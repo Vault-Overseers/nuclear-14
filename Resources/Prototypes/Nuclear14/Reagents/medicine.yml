@@ -1,0 +1,61 @@
+- type: reagent
+  id: HealingMixture #used in regular stimpacks
+  name: reagent-name-healing-mixture
+  group: Medicine
+  desc: reagent-desc-healing-mixture
+  physicalDesc: reagent-physical-desc-opaque
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -0.9
+            Brute: -0.9
+
+- type: reagent
+  id: RobustHealingMixture #used in super stimpacks
+  name: reagent-name--robust-healing-mixture
+  group: Medicine
+  desc: reagent-desc-robust-healing-mixture
+  physicalDesc: reagent-physical-desc-opaque
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -1.5
+            Brute: -1.5
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 35
+        damage:
+          types:
+            Asphyxiation: 0.5
+            Cellular: 0.3
+      - !type:MovespeedModifier
+        walkSpeedModifier: 0.50
+        sprintSpeedModifier: 0.50
+        conditions:
+        - !type:ReagentThreshold
+          min: 35
+      - !type:Drunk
+        conditions:
+        - !type:ReagentThreshold
+          min: 35
+
+- type: reagent
+  id: DamageResistMixture #used in med-x. TODO: figure out how to make a reagent give you dmg resistance 
+  name: reagent-name-damage-resist-mixture
+  group: Medicine
+  desc: reagent-desc-damage-resist-mixture
+  physicalDesc: reagent-physical-desc-opaque
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:Drunk
