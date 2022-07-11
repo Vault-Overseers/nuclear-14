@@ -87,3 +87,12 @@ reagent-desc-ultravasculine = Rapidly flushes toxins from the body, but places s
 
 reagent-name-ethylredoxrazine = ethylredoxrazine
 reagent-desc-ethylredoxrazine = Neutralises the effects of alcohol in the blood stream. Though it is commonly needed, it is rarely requested.
+
+reagent-name-healing-mixture = healing mixture
+reagent-desc-healing-mixture = A mixture of reagents that makes you heal.
+
+reagent-name-robust-healing-mixture = robust healing mixture
+reagent-desc-robust-healing-mixture = A mixture of reagents that makes you heal fast.
+
+reagent-name-damage-resist-mixture = damage resistant mixture
+reagent-desc-damage-resist-mixture = A mixture of reagents that makes you resistant to damage.
