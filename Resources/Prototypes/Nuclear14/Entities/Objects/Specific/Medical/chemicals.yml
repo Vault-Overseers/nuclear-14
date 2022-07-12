@@ -207,3 +207,32 @@
         reagents:
         - ReagentId: DamageModifyingMixture
           Quantity: 20
+
+- type: entity
+  name: RadAway
+  parent: ChemicalSyringe
+  id: RadAwayBloodbag
+  description: A bloodbag filled with an odd reagent that cures any Radiation you've substained.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Medical/bloodbags.rsi
+    netsync: false
+    layers:
+    - state: radaway
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: Appearance
+    visuals:
+      - type: SolutionContainerVisualizer
+        maxFillLevels: 1
+        changeColor: false
+        emptySpriteName: radaway_empty
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 20
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: RadAway
+          Quantity: 20

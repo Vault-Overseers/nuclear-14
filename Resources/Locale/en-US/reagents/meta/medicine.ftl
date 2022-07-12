@@ -96,3 +96,6 @@ reagent-desc-robust-healing-mixture = A mixture of reagents that makes you heal 
 
 reagent-name-damage-resist-mixture = damage resistant mixture
 reagent-desc-damage-resist-mixture = A mixture of reagents that makes you resistant to damage.
+
+reagent-name-radaway = radaway
+reagent-desc-radaway = An odd reagent that cures your radiation.
