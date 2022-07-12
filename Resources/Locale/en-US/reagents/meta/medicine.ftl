@@ -87,3 +87,18 @@ reagent-desc-ultravasculine = Rapidly flushes toxins from the body, but places s
 
 reagent-name-ethylredoxrazine = ethylredoxrazine
 reagent-desc-ethylredoxrazine = Neutralises the effects of alcohol in the blood stream. Though it is commonly needed, it is rarely requested.
+
+reagent-name-buffout = buffout
+reagent-desc-buffout = A reagent that makes you overall more robust, for a short period of time.
+
+reagent-name-rad-x = rad-x
+reagent-desc-rad-x = A reagent that makes you resistant to radiation.
+
+reagent-name-fixer = fixer
+reagent-desc-fixer = A reagent that cures your addictions.
+
+reagent-name-mentats = mentats
+reagent-desc-mentats = A reagent that makes you mentally sharper.
+
+reagent-name-cateye = cateye
+reagent-desc-cateye = A reagent that improves your low-light vision.
