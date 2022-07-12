@@ -1,0 +1,27 @@
+- type: job
+  id: WastelandChaplain
+  name: job-name-chaplain
+  startingGear: ChaplainGear
+  departments:
+  - Wastelanders
+  icon: "Chaplain"
+  supervisors: job-supervisors-wastelander
+  access:
+  - Chapel
+  - Maintenance
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: BibleUser #Lets them heal with bibles
+
+- type: startingGear
+  id: ChaplainGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChaplain
+    back: ClothingBackpackChaplainFilled
+    shoes: ClothingShoesColorBlack
+    id: ChaplainPDA
+    ears: ClothingHeadsetService
+  innerclothingskirt: ClothingUniformJumpskirtChaplain
+  satchel: ClothingBackpackSatchelChaplainFilled
+  duffelbag: ClothingBackpackDuffelChaplainFilled
