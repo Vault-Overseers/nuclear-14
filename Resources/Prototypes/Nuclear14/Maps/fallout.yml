@@ -1,0 +1,17 @@
+- type: gameMap
+  id: Fallout
+  mapName: 'Fallout'
+  mapPath: /Maps/fallout.yml
+  minPlayers: 0
+  stations:
+    Fallout: 
+      mapNameTemplate: '{0} fallout{1}'
+      nameGenerator:
+        !type:NanotrasenNameGenerator
+        prefixCreator: 'R4' # R4407/Goon. GS isn't as cool sounding.
+      overflowJobs:
+        - Wastelander
+      availableJobs:
+        Wastelander: [ -1, -1 ]
+        BoSMidKnightCommander: [ -1, -1 ]
+        BoSMidScribe: [ -1, -1 ]
