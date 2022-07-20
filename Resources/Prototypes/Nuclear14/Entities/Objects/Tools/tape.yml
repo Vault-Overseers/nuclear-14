@@ -1,0 +1,72 @@
+- type: entity
+  parent: BaseItem
+  id: N14BaseTape
+  abstract: true
+  name: duct tape
+  description: A tape of duct tape for your makeshifting needs. It's sticky.
+  components:
+    - type: Sprite
+      sprite: Nuclear14/Objects/Materials/tape.rsi
+    - type: Clothing
+      HeldPrefix: tape
+      Slots: [ mask, eyes ]
+      sprite: Nuclear14/Objects/Materials/tape.rsi
+      state: tape-30
+      size: 10
+    - type: Blindfold
+    - type: IngestionBlocker
+    - type: AddAccentClothing
+      accent: ReplacementAccent
+      replacement: mumble
+#    - type: Item
+#      size: 10
+#      HeldPrefix: tape
+    - type: Stack
+      stackType: Tape
+    - type: Handcuff
+      breakoutTime: 30
+      cuffedRSI: Objects/Misc/zipties.rsi
+      bodyIconState: body-overlay
+      color: red
+      startCuffSound:
+        path: /Audio/Items/Handcuffs/rope_start.ogg
+      endCuffSound:
+        path: /Audio/Items/Handcuffs/rope_end.ogg
+      startUncuffSound:
+        path: /Audio/Items/Handcuffs/rope_start.ogg
+      endUncuffSound:
+        path: /Audio/Items/Handcuffs/rope_breakout.ogg
+      startBreakoutSound:
+        path: /Audio/Items/Handcuffs/rope_takeoff.ogg
+    - type: Appearance
+      visuals:
+        - type: StackVisualizer
+          stackLayers:
+            - tape-10
+            - tape-20
+            - tape-30
+    - type: Tag
+      tags:
+        - Handcuffs
+
+- type: entity
+  parent: N14BaseTape
+  id: N14TapeStack
+  suffix: Full
+  components:
+    - type: Sprite
+      sprite: Nuclear14/Objects/Materials/tape.rsi
+      state: tape-30
+    - type: Stack
+      count: 30
+
+- type: entity
+  parent: N14TapeStack
+  id: N14TapeStack1
+  suffix: 1
+  components:
+    - type: Sprite
+      sprite: N14/Objects/Materials/tape.rsi
+      state: tape-10
+    - type: Stack
+      count: 1
