@@ -41,6 +41,54 @@
             min: 1
             max: 1
         offset: 0
+ 
+ - type: entity
+  parent: N14SignBase
+  id: N14SignVaultTec
+  name: Vault-Tec advert
+  description: "A near pristine pre-war advert for Vault-Tec."
+  components:
+  - type: Sprite
+    state: vaultec
+    scale: 0.5, 0.5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14SignVaultTecDamaged:
+            min: 1
+            max: 1
+        offset: 0
+ 
+- type: entity
+  parent: N14SignBase
+  id: N14SignMrHandy
+  name: Mr Handy advert
+  description: "A near pristine pre-war advert for Mr. Handy service robot."
+  components:
+  - type: Sprite
+    state: mrhandy
+    scale: 0.5, 0.5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14SignMrHandyDamaged:
+            min: 1
+            max: 1
+        offset: 0
     
 # Worn Adverts
 - type: entity
@@ -53,6 +101,50 @@
   - type: Sprite
     state: nukagirl-worn
     scale: 0.5, 0.5
+
+- type: entity
+  parent: N14SignBase
+  id: N14SignVaultTecWorn
+  suffix: worn
+  name: Vault-Tec advert
+  description: "A pre-war advert for Vault-Tec."
+  components:
+  - type: Sprite
+    state: vaulttec-worn
+    scale: 0.5, 0.5
+    
+- type: entity
+  parent: N14SignBase
+  id: N14SignVaultTecWorn2
+  suffix: damaged
+  name: Vault-Tec advert 2
+  description: "Another pre-war advert for Vault-Tec."
+  components:
+  - type: Sprite
+    state: vaulttec-worn2
+    scale: 0.5, 0.5
+
+- type: entity
+  parent: N14SignMrHandy
+  id: N14SignMrHandyWorn
+  suffix: worn
+  name: Mr. Handy advert
+  description: "A pre-war advert for Mr. Handy."
+  components:
+  - type: Sprite
+    state: mrhandy-worn
+    scale: 0.5, 0.5
+    
+- type: entity
+  parent: N14SignMrHandy
+  id: N14SignMrHandyWorn2
+  suffix: worn
+  name: Mr. Handy advert 2
+  description: "Another pre-war advert for Mr. Handy."
+  components:
+  - type: Sprite
+    state: mrhandy-worn2
+    scale: 0.5, 0.5
     
 # Damaged Adverts
 - type: entity
@@ -64,4 +156,37 @@
   components:
   - type: Sprite
     state: nukagirl-damaged
+    scale: 0.5, 0.5
+
+- type: entity
+  parent: N14SignBase
+  id: N14SignMrHandyDamaged
+  suffix: damaged
+  name: Mr. Handy advert
+  description: "A destroyed pre-war advert for Mr. Handy."
+  components:
+  - type: Sprite
+    state: mrhandy-damaged
+    scale: 0.5, 0.5
+    
+- type: entity
+  parent: N14SignBase
+  id: N14SignMrHandyDamaged2
+  suffix: damaged
+  name: Mr. Handy advert 2
+  description: "Another destroyed pre-war advert for Mr. Handy."
+  components:
+  - type: Sprite
+    state: mrhandy-damaged2
+    scale: 0.5, 0.5
+    
+- type: entity
+  parent: N14SignBase
+  id: N14SignVaultTecDamaged
+  suffix: damaged
+  name: Vault-Tec advert 
+  description: "A destroyed pre-war advert for Vault-Tec."
+  components:
+  - type: Sprite
+    state: vaultec-damaged
     scale: 0.5, 0.5
