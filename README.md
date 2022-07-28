@@ -8,11 +8,11 @@ Nuclear 14 is a Fallout fork based on Space Station 14 that runs on [Robust Tool
 
 ## Documentation/Wiki
 
-Our [docs site](https://docs.spacestation14.io/) has documentation on SS14s content, engine, game design and more. We also have lots of resources for new contributors to the project.
+The SS14 [docs site](https://docs.spacestation14.io/) has documentation on SS14's content, engine, game design and more. This is a good resource for understanding how to contribute to every avenue of the project such as creating sprites, entities and maps, as well as contributing the the underlying systems of the game.
 
 ## Contributing
 
-We are happy to accept contributions from anybody. Get in Discord if you want to help. We've got a [list of issues](https://github.com/Peptide90/nuclear-14-content/issues) that need to be done and anybody can pick them up. Don't be afraid to ask for help either!
+We are happy to accept contributions from anybody. Join the [Discord](https://discord.gg/4gGSWyNbQF) if you want to help. We've got a [list of issues / requests](https://github.com/Vault-Overseers/nuclear-14/issues) that need to be done and anybody can pick them up. Don't be afraid to ask for help either!
 
 ## Building
 
