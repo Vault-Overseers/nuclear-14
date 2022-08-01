@@ -52,7 +52,7 @@ jobs:
     - name: Update manifest JSON
       uses: appleboy/ssh-action@master
       with:
-        host: centcomm.spacestation14.io
+        host: nuclear14.com
         username: deployment-maid
         key: ${{ secrets.CENTCOMM_WIZARDS_BUILDS_PUSH_KEY }}
         script: "python3 /var/www/builds.nuclear14.com/manifest.py -c n14 -v ${{ github.sha }}"
