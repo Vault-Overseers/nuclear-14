@@ -23,6 +23,12 @@ namespace Content.Shared.Construction.Prototypes
         public string Description { get; } = string.Empty;
 
         /// <summary>
+        ///     Whether or not the recipe is hidden.
+        /// </summary>
+        [DataField("show")]
+        public bool Show { get; }
+
+        /// <summary>
         ///     The <see cref="ConstructionGraphPrototype"/> this construction will be using.
         /// </summary>
         [DataField("graph", customTypeSerializer:typeof(PrototypeIdSerializer<ConstructionGraphPrototype>))]
