@@ -195,6 +195,9 @@ namespace Content.Client.Construction.UI
 
             foreach (var prototype in _prototypeManager.EnumeratePrototypes<ConstructionPrototype>())
             {
+                if (!prototype.Show)
+                    continue;
+
                 var category = Loc.GetString(prototype.Category);
 
                 if (!string.IsNullOrEmpty(category))
