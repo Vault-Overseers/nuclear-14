@@ -47,10 +47,10 @@ reagent-name-leporazine = leporazine
 reagent-desc-leporazine = This keeps a patient's body temperature stable. High doses can allow short periods of unprotected EVA, but prevents use of the cryogenics tubes.
 
 reagent-name-barozine = barozine
-reagent-desc-barozine = A somewhat toxic medicine that prevents pressure damage. Causes extreme pain and jittering. Very poisonous when overdosed.
+reagent-desc-barozine = A potent drug that prevents pressure damage. Causes extreme pain and jittering. Very poisonous when overdosed.
 
 reagent-name-phalanximine = phalanximine
-reagent-desc-phalanximine = Used in the treatment of cancer, is as effective as Anti-Toxin. Causes moderate radiation and hair loss.
+reagent-desc-phalanximine = Used in the treatment of cancer. Causes moderate radiation poisoning.
 
 reagent-name-romerol = romerol
 reagent-desc-romerol = A difficult to procure chemical used in the reversal of the zombification process. Tastes like death.
@@ -99,3 +99,18 @@ reagent-desc-damage-resist-mixture = A mixture of reagents that makes you resist
 
 reagent-name-radaway = radaway
 reagent-desc-radaway = An odd reagent that cures your radiation.
+=======
+reagent-name-buffout = buffout
+reagent-desc-buffout = A reagent that makes you overall more robust, for a short period of time.
+
+reagent-name-rad-x = rad-x
+reagent-desc-rad-x = A reagent that makes you resistant to radiation.
+
+reagent-name-fixer = fixer
+reagent-desc-fixer = A reagent that cures your addictions.
+
+reagent-name-mentats = mentats
+reagent-desc-mentats = A reagent that makes you mentally sharper.
+
+reagent-name-cateye = cateye
+reagent-desc-cateye = A reagent that improves your low-light vision.
