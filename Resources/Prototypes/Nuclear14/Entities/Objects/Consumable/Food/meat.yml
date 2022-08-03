@@ -38,7 +38,7 @@
     solutions:
       food:
         reagents:
-        - ReagentId: UncookedAnimalProteins
+        - ReagentId: UncookedAnimalProteinsRad # TODO Make this
           Quantity: 5
 
 - type: entity
@@ -58,7 +58,7 @@
     solutions:
       food:
         reagents:
-        - ReagentId: UncookedAnimalProteins
+        - ReagentId: UncookedAnimalProteinsRad
           Quantity: 9
   - type: SliceableFood
     count: 3
@@ -76,7 +76,7 @@
     solutions:
       food:
         reagents:
-        - ReagentId: UncookedAnimalProteins
+        - ReagentId: UncookedAnimalProteinsRad
           Quantity: 9
   - type: SliceableFood
     count: 3
@@ -106,7 +106,7 @@
     solutions:
       food:
         reagents:
-        - ReagentId: UncookedAnimalProteins
+        - ReagentId: UncookedAnimalProteinsRad
           Quantity: 7
   - type: SliceableFood
     count: 3
@@ -114,7 +114,7 @@
 
 - type: entity
   name: raw radscorpion leg
-  parent: N14FoodMeatBase
+  parent: N14FoodMeatRadRaw
   id: N14FoodMeatRadscorpionLeg
   description: A still twitching leg of a radscorpion... you don't really want to eat this, do you?
   components:
@@ -188,6 +188,8 @@
           Quantity: 6
         - ReagentId: Protein
           Quantity: 6
+        - ReagentId: N14RadParticleFood
+          Quantity: 3
 
 
 - type: entity
@@ -207,6 +209,8 @@
           Quantity: 10
         - ReagentId: Protein
           Quantity: 5
+        - ReagentId: N14RadParticleFood
+          Quantity: 3
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatCutletCooked
@@ -228,6 +232,8 @@
           Quantity: 5
         - ReagentId: Protein
           Quantity: 10
+        - ReagentId: N14RadParticleFood
+          Quantity: 3
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatYaoguaiCutletCooked
@@ -275,6 +281,8 @@
           Quantity: 3
         - ReagentId: Protein
           Quantity: 3
+        - ReagentId: N14RadParticleFood
+          Quantity: 1
           
 - type: entity
   name: squirrel bits
@@ -293,6 +301,8 @@
           Quantity: 2
         - ReagentId: Protein
           Quantity: 2
+        - ReagentId: N14RadParticleFood
+          Quantity: 1
 
 # Cooked Boiled
 - type: entity
@@ -335,6 +345,8 @@
         reagents:
         - ReagentId: N14UncookedAnimalProteinsRad
           Quantity: 3
+        - ReagentId: N14RadParticleFood
+          Quantity: 1
 
 - type: entity
   name: raw yao-guai cutlet
@@ -347,12 +359,6 @@
     - state: cutlet
     - state: cutlet-alpha
       color: brown
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: N14UncookedAnimalProteinsRad
-          Quantity: 5
 
 - type: entity
   name: raw radchicken cutlet
@@ -411,6 +417,8 @@
           Quantity: 2
         - ReagentId: Protein
           Quantity: 2
+        - ReagentId: N14RadParticleFood
+          Quantity: 1
 
 - type: entity
   name: yao-guai cutlet
