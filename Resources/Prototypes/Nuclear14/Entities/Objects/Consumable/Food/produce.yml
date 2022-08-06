@@ -1,0 +1,95 @@
+# For produce that can't be immediately eaten use parent: ProduceBase
+# For produce that can be immediately eaten use parent: FoodProduceBase
+
+# TODO add melons, gourds and rad variants etc
+
+- type: entity
+  name: irradiated plant base
+  parent: FoodProduceBase
+  id: N14FoodProduceBase
+  description: A plant produce grown in the wastes.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: N14RadParticleFood
+          Quantity: 1
+          
+- type: entity
+  name: razorgrain
+  description: a hardier grain that can still be used in baking.
+  id: N14Razorgrain
+  parent: ProduceBase
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/wheat.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Flour
+          Quantity: 10
+  - type: Produce
+    seedId: N14Razorgrain
+
+- type: entity
+  name: irradiated carrot
+  parent: [N14FoodProduceBase, FoodCarrot]
+  id: N14FoodCarrotRad
+  description: A fresh carrot grown in the wastes.
+  components:
+  - type: Produce
+    seedId: N14CarrotRad # TODO Make this
+
+- type: entity
+  name: tato
+  parent: N14FoodProduceBase
+  id: N14FoodTato
+  description: Looks like a tomato, feels like a potato, tastes disgusting.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/tomato.rsi
+  - type: Produce
+    seedId: N14TatoRad
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuicePotato
+        Quantity: 10
+
+- type: entity
+  name: ear of corn
+  parent: FoodProduceBase
+  id: FoodCorn
+  description: Needs some butter! And some cooking...
+  components:
+  - type: Food
+    trash: FoodCornTrash
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/corn.rsi
+  - type: Produce
+    seedId: corn
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Cornoil
+        Quantity: 3
+      - ReagentId: Enzyme
+        Quantity: 2
+
+# Slices use ProduceSliceBase
