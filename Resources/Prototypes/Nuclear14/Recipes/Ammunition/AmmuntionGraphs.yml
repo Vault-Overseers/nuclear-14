@@ -1,0 +1,111 @@
+- type: constructionGraph
+ id: 308round
+ start: start
+ graph:
+  - node: start
+   edges:
+    - to: 308round
+    steps:
+      prototype: 308roundCasing
+      amount: 2
+      name: .308 round casing
+      icon:
+      sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+      doAfter: 2
+  - node: 308round
+    entity: 308round
+
+- type: constructionGraph
+ id: 5.56mmround
+ start: start
+ graph:
+  - node: start
+   edges:
+    - to: 5.56mmround
+    steps:
+      prototype: 44roundCasing
+      amount: 2
+      name: .44 round casing
+      icon:
+      sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+      doAfter: 2
+  - node: 5.56mmround
+    entity: 5.56mmround
+
+- type: constructionGraph
+ id: 44round
+ start: start
+ graph:
+  - node: start
+   edges:
+    - to: 44round
+    steps:
+      prototype: 44roundCasing
+      amount: 2
+      name: .44 round casing
+      icon:
+      sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+      doAfter: 2
+  - node: 44round
+    entity: 44round
+
+- type: constructionGraph
+ id: 10mmround
+ start: start
+ graph:
+  - node: start
+   edges:
+    - to: 10mmround
+    steps:
+      prototype: 10mmroundCasing
+      amount: 2
+      name: 10mm round casing
+      icon:
+      sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+      doAfter: 2
+  - node: 10mmround
+    entity: 10mmround
+
+- type: constructionGraph
+ id: ShotgunShell
+ start: start
+ graph:
+  - node: start
+   edges:
+    - to: ShotgunShell
+    steps:
+      prototype: ShotgunShellCasing
+      amount: 2
+      name: Shotgun Shell Casing
+      icon:
+      sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+      doAfter: 2
+  - node: ShotgunShell
+    entity: ShotgunShell
+
+#For breaking down bullets into generic casings
+
+- type: constructionGraph
+ id: genericCasing
+ start: start
+ graph:
+  - node: start
+   edges:
+    - to: genericCasing
+    steps:
+      tag: Rounds
+      name: Generic Casing
+      icon:
+      sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+      doAfter: 2
+      - node: casingStart
+   edges:
+    - to: genericCasing
+    steps:
+      tag: Casing
+      name: Generic Casing
+      icon:
+      sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+      doAfter: 2
+  - node: genericCasing
+    entity: genericCasing
