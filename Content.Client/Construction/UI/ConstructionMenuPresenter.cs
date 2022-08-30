@@ -161,6 +161,9 @@ namespace Content.Client.Construction.UI
 
             foreach (var recipe in _prototypeManager.EnumeratePrototypes<ConstructionPrototype>())
             {
+                if (!recipe.Show)
+					continue;
+
                 if (!string.IsNullOrEmpty(search))
                 {
                     if (!recipe.Name.ToLowerInvariant().Contains(search.Trim().ToLowerInvariant()))
@@ -195,7 +198,10 @@ namespace Content.Client.Construction.UI
 
             foreach (var prototype in _prototypeManager.EnumeratePrototypes<ConstructionPrototype>())
             {
-                var category = prototype.Category;
+                if (!prototype.Show)
+                    continue;
+
+                var category = Loc.GetString(prototype.Category);
 
                 if (!string.IsNullOrEmpty(category))
                     uniqueCategories.Add(category);
