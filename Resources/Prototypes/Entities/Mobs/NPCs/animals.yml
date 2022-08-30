@@ -307,6 +307,7 @@
     baseSprintSpeed : 6
   - type: Sprite
     drawdepth: Mobs
+    netsync: false
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: butterfly
@@ -327,16 +328,10 @@
       0: Alive
       5: Critical
       10: Dead
-  - type: RandomSpriteColor
-    state: butterfly
-    colors:
-      blue: "#1861d5"
-      red: "#951710"
-      pink: "#d5188d"
-      brown: "#a05212"
-      green: "#0e7f1b"
-      cyan: "#18a2d5"
-      yellow: "#d58c18"
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          butterfly: Rainbow
   - type: Appearance
   - type: DamageStateVisuals
     states:
@@ -1237,13 +1232,10 @@
     states:
       Alive:
         Base: snake
-  - type: Appearance
-    visuals:
-    - type: RotationVisualizer
-# It's death animation is animated so hopefully this should push for separation between "dying" and "death" states.
-     # looks stupid, Rotation visualizer for now
-     # dead: dead
-     # crit: dead
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
   - type: Butcherable
     spawned:
     - id: FoodMeat

@@ -4,11 +4,13 @@
   id: ChiefMedicalOfficer
   setPreference: false
   name: job-name-cmo
+  playTimeTracker: JobChiefMedicalOfficer
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 18000
   weight: 10
   startingGear: CMOGear
-  departments:
-  - Command
-  - Medical
   icon: "ChiefMedicalOfficer"
   requireAdminNotify: true
   supervisors: job-supervisors-captain

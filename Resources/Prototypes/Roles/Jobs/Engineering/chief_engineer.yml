@@ -2,11 +2,16 @@
   id: ChiefEngineer
   setPreference: false
   name: job-name-ce
+  playTimeTracker: JobChiefEngineer
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobAtmosphericTechnician
+      time: 3600
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 18000
   weight: 10
   startingGear: ChiefEngineerGear
-  departments:
-  - Command
-  - Engineering
   icon: "ChiefEngineer"
   requireAdminNotify: true
   supervisors: job-supervisors-captain

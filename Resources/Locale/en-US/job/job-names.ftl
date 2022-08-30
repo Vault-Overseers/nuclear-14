@@ -30,7 +30,7 @@ job-name-bartender = bartender
 job-name-passenger = passenger
 job-name-salvagespec = salvage specialist
 job-name-qm = quartermaster
-job-name-cargoteh = cargo technician
+job-name-cargotech = cargo technician
 job-name-chef = chef
 job-name-clown = clown
 job-name-ertleader = ERT leader
@@ -63,3 +63,10 @@ job-name-vault-security = Vault Security
 job-name-farmer = Farmer
 job-name-scavenger = Scavenger
 job-name-wastelander = Wastelander
+
+
+# Role timers - Make these alphabetical or I cut you
+JobAtmosphericTechnician = atmospheric technician
+JobSalvageSpecialist = salvage specialist
+JobWarden = warden
+
