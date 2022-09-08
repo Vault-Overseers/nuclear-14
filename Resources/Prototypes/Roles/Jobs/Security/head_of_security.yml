@@ -1,11 +1,17 @@
 - type: job
   id: HeadOfSecurity
+  setPreference: false
   name: job-name-hos
+  playTimeTracker: JobHeadOfSecurity
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobWarden
+      time: 3600
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000
   weight: 10
   startingGear: HoSGear
-  departments:
-  - Command
-  - Security
   icon: "HeadOfSecurity"
   requireAdminNotify: true
   supervisors: job-supervisors-captain
@@ -30,6 +36,7 @@
     eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadHatBeretHoS
     id: HoSPDA
+    gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
     belt: ClothingBeltSecurityFilled
   innerclothingskirt: ClothingUniformJumpskirtHoS
