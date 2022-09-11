@@ -1,0 +1,45 @@
+- type: entity
+  name: laser gun
+  parent: BaseWeaponBatterySmall
+  id: WeaponLaserGun
+  description: A handgun using light amplified by the stimulated emission of radiation.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Battery/laser_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 62.5
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: laser rifle
+  parent: BaseWeaponBatterySmall
+  id: WeaponLaserRifle
+  description: A rifle using light amplified by the stimulated emission of radiation.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 62.5
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
