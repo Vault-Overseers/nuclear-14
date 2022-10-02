@@ -23,6 +23,8 @@ using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Players;
 using Robust.Shared.Serialization;
@@ -196,12 +198,9 @@ namespace Content.Shared.Interaction
             if (target != null && Deleted(target.Value))
                 return;
 
-            // TODO COMBAT Consider using alt-interact for advanced combat? maybe alt-interact disarms?
-            if (!altInteract && TryComp(user, out SharedCombatModeComponent? combatMode) && combatMode.IsInCombatMode)
+            if (TryComp(user, out SharedCombatModeComponent? combatMode) && combatMode.IsInCombatMode)
             {
-                // Wide attack if there isn't a target or the target is out of range, click attack otherwise.
-                var shouldWideAttack = target == null || !InRangeUnobstructed(user, target.Value);
-                DoAttack(user, coordinates, shouldWideAttack, target);
+                // Eat the input
                 return;
             }
 
@@ -296,12 +295,6 @@ namespace Content.Shared.Interaction
                 checkCanInteract: false,
                 checkUseDelay: true,
                 checkAccess: false);
-        }
-
-        public virtual void DoAttack(EntityUid user, EntityCoordinates coordinates, bool wideAttack,
-            EntityUid? targetUid = null)
-        {
-            // TODO PREDICTION move server-side interaction logic into the shared system for interaction prediction.
         }
 
         public void InteractUsingRanged(EntityUid user, EntityUid used, EntityUid? target,
