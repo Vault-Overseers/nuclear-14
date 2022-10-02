@@ -15,10 +15,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Shuttles.Systems
@@ -51,7 +48,7 @@ namespace Content.Server.Shuttles.Systems
             SubscribeLocalEvent<ThrusterComponent, PowerChangedEvent>(OnPowerChange);
             SubscribeLocalEvent<ThrusterComponent, AnchorStateChangedEvent>(OnAnchorChange);
             SubscribeLocalEvent<ThrusterComponent, ReAnchorEvent>(OnThrusterReAnchor);
-            SubscribeLocalEvent<ThrusterComponent, MoveEvent>(OnRotate);
+            SubscribeLocalEvent<ThrusterComponent, RotateEvent>(OnRotate);
             SubscribeLocalEvent<ThrusterComponent, IsHotEvent>(OnIsHotEvent);
             SubscribeLocalEvent<ThrusterComponent, StartCollideEvent>(OnStartCollide);
             SubscribeLocalEvent<ThrusterComponent, EndCollideEvent>(OnEndCollide);
@@ -64,7 +61,9 @@ namespace Content.Server.Shuttles.Systems
         private void OnThrusterExamine(EntityUid uid, ThrusterComponent component, ExaminedEvent args)
         {
             // Powered is already handled by other power components
-            var enabled = Loc.GetString(component.Enabled ? "thruster-comp-enabled" : "thruster-comp-disabled");
+            var enabled = Loc.GetString("thruster-comp-enabled",
+                ("enabledColor", component.Enabled ? "green": "red"),
+                ("enabled", component.Enabled ? "on": "off"));
 
             args.PushMarkup(enabled);
 
@@ -79,7 +78,9 @@ namespace Content.Server.Shuttles.Systems
 
                 var exposed = NozzleExposed(xform);
 
-                var nozzleText = Loc.GetString(exposed ? "thruster-comp-nozzle-exposed" : "thruster-comp-nozzle-not-exposed");
+                var nozzleText = Loc.GetString("thruster-comp-nozzle-exposed",
+                    ("exposedColor", exposed ? "green" : "red"),
+                    ("exposed", exposed ? "is": "is not"));
 
                 args.PushMarkup(nozzleText);
             }
@@ -139,7 +140,7 @@ namespace Content.Server.Shuttles.Systems
         /// <summary>
         /// If the thruster rotates change the direction where the linear thrust is applied
         /// </summary>
-        private void OnRotate(EntityUid uid, ThrusterComponent component, ref MoveEvent args)
+        private void OnRotate(EntityUid uid, ThrusterComponent component, ref RotateEvent args)
         {
             // TODO: Disable visualizer for old direction
 
@@ -417,7 +418,7 @@ namespace Content.Server.Shuttles.Systems
             }
         }
 
-        private void OnStartCollide(EntityUid uid, ThrusterComponent component, ref StartCollideEvent args)
+        private void OnStartCollide(EntityUid uid, ThrusterComponent component, StartCollideEvent args)
         {
             if (args.OurFixture.ID != BurnFixture) return;
 
@@ -425,7 +426,7 @@ namespace Content.Server.Shuttles.Systems
             component.Colliding.Add((args.OtherFixture.Body).Owner);
         }
 
-        private void OnEndCollide(EntityUid uid, ThrusterComponent component, ref EndCollideEvent args)
+        private void OnEndCollide(EntityUid uid, ThrusterComponent component, EndCollideEvent args)
         {
             if (args.OurFixture.ID != BurnFixture) return;
 

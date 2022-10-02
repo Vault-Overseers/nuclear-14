@@ -1,4 +1,4 @@
-using Content.Server.Atmos;
+﻿using Content.Server.Atmos;
 using Content.Server.Atmos.Components;
 using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
@@ -81,16 +81,13 @@ namespace Content.Server.Atmos.EntitySystems
         {
             component.Target = target;
             component.User = user;
-            if (target != null)
-                component.LastPosition = Transform(target.Value).Coordinates;
-            else
-                component.LastPosition = null;
+            component.LastPosition = Transform(target ?? user).Coordinates;
             component.Enabled = true;
             Dirty(component);
             UpdateAppearance(component);
             if(!HasComp<ActiveGasAnalyzerComponent>(uid))
                 AddComp<ActiveGasAnalyzerComponent>(uid);
-            UpdateAnalyzer(uid, component);
+            UpdateAnalyzer(uid);
         }
 
         /// <summary>
@@ -146,14 +143,8 @@ namespace Content.Server.Atmos.EntitySystems
             if (!Resolve(uid, ref component))
                 return false;
 
-            if (!TryComp(component.User, out TransformComponent? xform))
-            {
-                DisableAnalyzer(uid, component);
-                return false;
-            }
-
             // check if the user has walked away from what they scanned
-            var userPos = xform.Coordinates;
+            var userPos = Transform(component.User).Coordinates;
             if (component.LastPosition.HasValue)
             {
                 // Check if position is out of range => don't update and disable
@@ -184,13 +175,6 @@ namespace Content.Server.Atmos.EntitySystems
             var deviceFlipped = false;
             if (component.Target != null)
             {
-                if (Deleted(component.Target))
-                {
-                    component.Target = null;
-                    DisableAnalyzer(uid, component, component.User);
-                    return false;
-                }
-
                 // gas analyzed was used on an entity, try to request gas data via event for override
                 var ev = new GasAnalyzerScanEvent();
                 RaiseLocalEvent(component.Target.Value, ev, false);

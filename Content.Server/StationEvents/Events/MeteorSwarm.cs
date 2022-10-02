@@ -1,7 +1,6 @@
 using Content.Server.GameTicking;
 using Content.Shared.Spawners.Components;
 using Robust.Shared.Map;
-using Robust.Shared.Physics.Components;
 
 namespace Content.Server.StationEvents.Events
 {

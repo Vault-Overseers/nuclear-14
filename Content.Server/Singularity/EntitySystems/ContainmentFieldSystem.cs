@@ -5,9 +5,7 @@ using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
-using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 
 namespace Content.Server.Singularity.EntitySystems;
@@ -24,7 +22,7 @@ public sealed class ContainmentFieldSystem : EntitySystem
         SubscribeLocalEvent<ContainmentFieldComponent, StartCollideEvent>(HandleFieldCollide);
     }
 
-    private void HandleFieldCollide(EntityUid uid, ContainmentFieldComponent component, ref StartCollideEvent args)
+    private void HandleFieldCollide(EntityUid uid, ContainmentFieldComponent component, StartCollideEvent args)
     {
         var otherBody = args.OtherFixture.Body.Owner;
 

@@ -30,8 +30,5 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField("highlightedRadarColor")]
         public Color HighlightedRadarColor = Color.Magenta;
-
-        [ViewVariables]
-        public int PathfindHandle = -1;
     }
 }

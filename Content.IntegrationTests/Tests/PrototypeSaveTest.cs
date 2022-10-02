@@ -8,7 +8,6 @@ using NUnit.Framework;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Map;
-using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
@@ -60,6 +59,7 @@ public sealed class PrototypeSaveTest
         "WeaponLauncherChinaLake",
         "WeaponLauncherRocket",
         "WeaponLauncherMultipleRocket",
+        "Crematorium",
         "JawsOfLife",
         "SyndicateJawsOfLife",
         "LightReplacer",
@@ -108,6 +108,13 @@ public sealed class PrototypeSaveTest
         "LauncherCreamPie",
         "GravityGenerator",
         "GravityGeneratorMini",
+        "Autolathe",
+        "Protolathe",
+        "CircuitImprinter",
+        "SecurityTechFab",
+        "MedicalTechFab",
+        "UniformPrinter",
+        "OreProcessor",
         "MagazinePistolSubMachineGunTopMounted",
         "EpinephrineChemistryBottle",
         "RobustHarvestChemistryBottle",
@@ -225,7 +232,7 @@ public sealed class PrototypeSaveTest
                         var compName = compFact.GetComponentName(compType);
                         compNames.Add(compName);
 
-                        if (compType == typeof(MetaDataComponent) || compType == typeof(TransformComponent) || compType == typeof(FixturesComponent))
+                        if (compType == typeof(MetaDataComponent) || compType == typeof(TransformComponent))
                             continue;
 
                         MappingDataNode compMapping;

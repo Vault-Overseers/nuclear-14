@@ -44,12 +44,9 @@ namespace Content.Client.Radiation
 
             foreach ((var shd, var instance) in _pulses.Values)
             {
-                if (instance.CurrentMapCoords.MapId != args.MapId)
-                    continue;
-
                 // To be clear, this needs to use "inside-viewport" pixels.
                 // In other words, specifically NOT IViewportControl.WorldToScreen (which uses outer coordinates).
-                var tempCoords = viewport.WorldToLocal(instance.CurrentMapCoords.Position);
+                var tempCoords = viewport.WorldToLocal(instance.CurrentMapCoords);
                 tempCoords.Y = viewport.Size.Y - tempCoords.Y;
                 shd?.SetParameter("renderScale", viewport.RenderScale);
                 shd?.SetParameter("positionInput", tempCoords);
@@ -62,7 +59,7 @@ namespace Content.Client.Radiation
                 shd?.SetParameter("SCREEN_TEXTURE", viewport.RenderTarget.Texture);
 
                 worldHandle.UseShader(shd);
-                worldHandle.DrawRect(Box2.CenteredAround(instance.CurrentMapCoords.Position, new Vector2(instance.Range, instance.Range) * 2f), Color.White);
+                worldHandle.DrawRect(Box2.CenteredAround(instance.CurrentMapCoords, new Vector2(instance.Range, instance.Range) * 2f), Color.White);
             }
 
             worldHandle.UseShader(null);
@@ -91,7 +88,7 @@ namespace Content.Client.Radiation
                             (
                                 _baseShader.Duplicate(),
                                 new RadiationShaderInstance(
-                                    _entityManager.GetComponent<TransformComponent>(pulseEntity).MapPosition,
+                                    _entityManager.GetComponent<TransformComponent>(pulseEntity).MapPosition.Position,
                                     pulse.VisualRange,
                                     pulse.StartTime,
                                     pulse.VisualDuration
@@ -109,7 +106,7 @@ namespace Content.Client.Radiation
                     _entityManager.TryGetComponent<RadiationPulseComponent?>(pulseEntity, out var pulse))
                 {
                     var shaderInstance = _pulses[pulseEntity];
-                    shaderInstance.instance.CurrentMapCoords = _entityManager.GetComponent<TransformComponent>(pulseEntity).MapPosition;
+                    shaderInstance.instance.CurrentMapCoords = _entityManager.GetComponent<TransformComponent>(pulseEntity).MapPosition.Position;
                     shaderInstance.instance.Range = pulse.VisualRange;
                 } else {
                     _pulses[pulseEntity].shd.Dispose();
@@ -124,9 +121,9 @@ namespace Content.Client.Radiation
             return _entityManager.GetComponent<TransformComponent>(pulseEntity).MapID == currentEyeLoc.MapId && _entityManager.GetComponent<TransformComponent>(pulseEntity).Coordinates.InRange(_entityManager, EntityCoordinates.FromMap(_entityManager, _entityManager.GetComponent<TransformComponent>(pulseEntity).ParentUid, currentEyeLoc), MaxDist);
         }
 
-        private sealed record RadiationShaderInstance(MapCoordinates CurrentMapCoords, float Range, TimeSpan Start, float Duration)
+        private sealed record RadiationShaderInstance(Vector2 CurrentMapCoords, float Range, TimeSpan Start, float Duration)
         {
-            public MapCoordinates CurrentMapCoords = CurrentMapCoords;
+            public Vector2 CurrentMapCoords = CurrentMapCoords;
             public float Range = Range;
             public TimeSpan Start = Start;
             public float Duration = Duration;

@@ -10,20 +10,18 @@ using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
-using Content.Shared.MobState.Components;
 using Content.Shared.Stacks;
-using Robust.Shared.Random;
+using Robust.Shared.Audio;
+using Robust.Shared.Player;
 
 namespace Content.Server.Medical;
 
 public sealed class HealingSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StackSystem _stacks = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
@@ -42,12 +40,10 @@ public sealed class HealingSystem : EntitySystem
         if (_mobStateSystem.IsDead(uid))
             return;
 
-        if (TryComp<StackComponent>(args.Component.Owner, out var stack) && stack.Count < 1)
-            return;
+        if (TryComp<StackComponent>(args.Component.Owner, out var stack) && stack.Count < 1) return;
 
         if (component.DamageContainerID is not null &&
-            !component.DamageContainerID.Equals(component.DamageContainerID))
-            return;
+            !component.DamageContainerID.Equals(component.DamageContainerID)) return;
 
         if (args.Component.BloodlossModifier != 0)
         {
@@ -70,8 +66,7 @@ public sealed class HealingSystem : EntitySystem
 
         if (args.Component.HealingEndSound != null)
         {
-            _audio.PlayPvs(args.Component.HealingEndSound, uid,
-                AudioHelpers.WithVariation(0.125f, _random).WithVolume(-5f));
+            SoundSystem.Play(args.Component.HealingEndSound.GetSound(), Filter.Pvs(uid, entityManager:EntityManager), uid, AudioHelpers.WithVariation(0.125f).WithVolume(-5f));
         }
     }
 
@@ -82,8 +77,7 @@ public sealed class HealingSystem : EntitySystem
 
     private void OnHealingUse(EntityUid uid, HealingComponent component, UseInHandEvent args)
     {
-        if (args.Handled)
-            return;
+        if (args.Handled) return;
 
         if (TryHeal(uid, args.User, args.User, component))
             args.Handled = true;
@@ -91,8 +85,7 @@ public sealed class HealingSystem : EntitySystem
 
     private void OnHealingAfterInteract(EntityUid uid, HealingComponent component, AfterInteractEvent args)
     {
-        if (args.Handled || !args.CanReach || args.Target == null)
-            return;
+        if (args.Handled || !args.CanReach || args.Target == null) return;
 
         if (TryHeal(uid, args.User, args.Target.Value, component))
             args.Handled = true;
@@ -130,13 +123,13 @@ public sealed class HealingSystem : EntitySystem
 
         if (component.HealingBeginSound != null)
         {
-            _audio.PlayPvs(component.HealingBeginSound, uid,
-                AudioHelpers.WithVariation(0.125f, _random).WithVolume(-5f));
+            SoundSystem.Play(component.HealingBeginSound.GetSound(), Filter.Pvs(uid, entityManager:EntityManager), uid, AudioHelpers.WithVariation(0.125f).WithVolume(-5f));
         }
 
-        var delay = user != target
-            ? component.Delay
-            : component.Delay * GetScaledHealingPenalty(user, component);
+        var delay = component.Delay;
+
+        if (user == target)
+            delay *= component.SelfHealPenaltyMultiplier;
 
         _doAfter.DoAfter(new DoAfterEventArgs(user, delay, component.CancelToken.Token, target)
         {
@@ -164,25 +157,6 @@ public sealed class HealingSystem : EntitySystem
         });
 
         return true;
-    }
-
-    /// <summary>
-    /// Scales the self-heal penalty based on the amount of damage taken
-    /// </summary>
-    /// <param name="uid"></param>
-    /// <param name="component"></param>
-    /// <returns></returns>
-    public float GetScaledHealingPenalty(EntityUid uid, HealingComponent component)
-    {
-        var output = component.Delay;
-        if (!TryComp<MobStateComponent>(uid, out var mobState) || !TryComp<DamageableComponent>(uid, out var damageable))
-            return output;
-
-        _mobStateSystem.TryGetEarliestCriticalState(mobState, 0, out var _, out var amount);
-        var percentDamage = (float) (damageable.TotalDamage / amount);
-        //basically make it scale from 1 to the multiplier.
-        var modifier = percentDamage * (component.SelfHealPenaltyMultiplier - 1) + 1;
-        return Math.Max(modifier, 1);
     }
 
     private sealed class HealingCompleteEvent : EntityEventArgs

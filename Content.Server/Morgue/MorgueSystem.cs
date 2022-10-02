@@ -2,16 +2,17 @@ using Content.Server.Morgue.Components;
 using Content.Shared.Morgue;
 using Content.Shared.Examine;
 using Robust.Server.GameObjects;
+using Content.Server.Popups;
+using Robust.Shared.Player;
+using Robust.Shared.Audio;
 using Content.Server.Storage.Components;
 using Content.Shared.Body.Components;
+using Content.Shared.Storage;
 
 namespace Content.Server.Morgue;
 
-public sealed class MorgueSystem : EntitySystem
+public sealed partial class MorgueSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -31,7 +32,7 @@ public sealed class MorgueSystem : EntitySystem
             return;
 
         appearance.TryGetData(MorgueVisuals.Contents, out MorgueContents contents);
-
+        
         var text = contents switch
         {
             MorgueContents.HasSoul => "morgue-entity-storage-component-on-examine-details-body-has-soul",
@@ -53,25 +54,25 @@ public sealed class MorgueSystem : EntitySystem
 
         if (storage.Contents.ContainedEntities.Count == 0)
         {
-            _appearance.SetData(uid, MorgueVisuals.Contents, MorgueContents.Empty);
+            app.SetData(MorgueVisuals.Contents, MorgueContents.Empty);
             return;
         }
 
         var hasMob = false;
-
+        
         foreach (var ent in storage.Contents.ContainedEntities)
         {
             if (!hasMob && HasComp<SharedBodyComponent>(ent))
                 hasMob = true;
 
-            if (HasComp<ActorComponent?>(ent))
+            if (TryComp<ActorComponent?>(ent, out var actor) && actor.PlayerSession != null)
             {
-                _appearance.SetData(uid, MorgueVisuals.Contents, MorgueContents.HasSoul, app);
+                app.SetData(MorgueVisuals.Contents, MorgueContents.HasSoul);
                 return;
             }
         }
 
-        _appearance.SetData(uid, MorgueVisuals.Contents, hasMob ? MorgueContents.HasMob : MorgueContents.HasContents, app);
+        app.SetData(MorgueVisuals.Contents, hasMob ? MorgueContents.HasMob : MorgueContents.HasContents);
     }
 
     /// <summary>
@@ -85,7 +86,7 @@ public sealed class MorgueSystem : EntitySystem
         {
             comp.AccumulatedFrameTime += frameTime;
 
-            CheckContents(comp.Owner, comp, storage);
+            CheckContents(comp.Owner, comp, storage, appearance);
 
             if (comp.AccumulatedFrameTime < comp.BeepTime)
                 continue;
@@ -94,7 +95,7 @@ public sealed class MorgueSystem : EntitySystem
 
             if (comp.DoSoulBeep && appearance.TryGetData(MorgueVisuals.Contents, out MorgueContents contents) && contents == MorgueContents.HasSoul)
             {
-                _audio.PlayPvs(comp.OccupantHasSoulAlarmSound, comp.Owner);
+                SoundSystem.Play(comp.OccupantHasSoulAlarmSound.GetSound(), Filter.Pvs(comp.Owner), comp.Owner);
             }
         }
     }

@@ -2,17 +2,31 @@ using Content.Shared.Weapons;
 using Content.Shared.Weapons.Melee;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
-using Robust.Shared.Animations;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Weapons.Melee;
 
 public sealed partial class MeleeWeaponSystem
 {
-    /// <summary>
-    /// It's a little on the long side but given we use multiple colours denoting what happened it makes it easier to register.
-    /// </summary>
-    private const float DamageAnimationLength = 0.30f;
+    private static readonly Animation DefaultDamageAnimation = new()
+    {
+        Length = TimeSpan.FromSeconds(DamageAnimationLength),
+        AnimationTracks =
+        {
+            new AnimationTrackComponentProperty()
+            {
+                ComponentType = typeof(SpriteComponent),
+                Property = nameof(SpriteComponent.Color),
+                KeyFrames =
+                {
+                    new AnimationTrackProperty.KeyFrame(Color.Red, 0f),
+                    new AnimationTrackProperty.KeyFrame(Color.White, DamageAnimationLength)
+                }
+            }
+        }
+    };
+
+    private const float DamageAnimationLength = 0.15f;
     private const string DamageAnimationKey = "damage-effect";
 
     private void InitializeEffect()
@@ -33,25 +47,27 @@ public sealed partial class MeleeWeaponSystem
     /// <summary>
     /// Gets the red effect animation whenever the server confirms something is hit
     /// </summary>
-    private Animation? GetDamageAnimation(EntityUid uid, Color color, SpriteComponent? sprite = null)
+    public Animation? GetDamageAnimation(EntityUid uid, SpriteComponent? sprite = null)
     {
         if (!Resolve(uid, ref sprite, false))
             return null;
 
         // 90% of them are going to be this so why allocate a new class.
+        if (sprite.Color.Equals(Color.White))
+            return DefaultDamageAnimation;
+
         return new Animation
         {
             Length = TimeSpan.FromSeconds(DamageAnimationLength),
             AnimationTracks =
             {
-                new AnimationTrackComponentProperty
+                new AnimationTrackComponentProperty()
                 {
                     ComponentType = typeof(SpriteComponent),
                     Property = nameof(SpriteComponent.Color),
-                    InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(color * sprite.Color, 0f),
+                        new AnimationTrackProperty.KeyFrame(Color.Red * sprite.Color, 0f),
                         new AnimationTrackProperty.KeyFrame(sprite.Color, DamageAnimationLength)
                     }
                 }
@@ -61,44 +77,36 @@ public sealed partial class MeleeWeaponSystem
 
     private void OnDamageEffect(DamageEffectEvent ev)
     {
-        var color = ev.Color;
+        if (Deleted(ev.Entity))
+            return;
 
-        foreach (var ent in ev.Entities)
+        var player = EnsureComp<AnimationPlayerComponent>(ev.Entity);
+
+        // Need to stop the existing animation first to ensure the sprite color is fixed.
+        // Otherwise we might lerp to a red colour instead.
+        if (_animation.HasRunningAnimation(ev.Entity, player, DamageAnimationKey))
         {
-            if (Deleted(ent))
-            {
-                continue;
-            }
-
-            var player = EnsureComp<AnimationPlayerComponent>(ent);
-            player.NetSyncEnabled = false;
-
-            // Need to stop the existing animation first to ensure the sprite color is fixed.
-            // Otherwise we might lerp to a red colour instead.
-            if (_animation.HasRunningAnimation(ent, player, DamageAnimationKey))
-            {
-                _animation.Stop(ent, player, DamageAnimationKey);
-            }
-
-            if (!TryComp<SpriteComponent>(ent, out var sprite))
-            {
-                continue;
-            }
-
-            if (TryComp<DamageEffectComponent>(ent, out var effect))
-            {
-                sprite.Color = effect.Color;
-            }
-
-            var animation = GetDamageAnimation(ent, color, sprite);
-
-            if (animation == null)
-                continue;
-
-            var comp = EnsureComp<DamageEffectComponent>(ent);
-            comp.NetSyncEnabled = false;
-            comp.Color = sprite.Color;
-            _animation.Play(player, animation, DamageAnimationKey);
+            _animation.Stop(ev.Entity, player, DamageAnimationKey);
         }
+
+        if (!TryComp<SpriteComponent>(ev.Entity, out var sprite))
+        {
+            return;
+        }
+
+        if (TryComp<DamageEffectComponent>(ev.Entity, out var effect))
+        {
+            sprite.Color = effect.Color;
+        }
+
+        var animation = GetDamageAnimation(ev.Entity, sprite);
+
+        if (animation == null)
+            return;
+
+        var comp = EnsureComp<DamageEffectComponent>(ev.Entity);
+        comp.NetSyncEnabled = false;
+        comp.Color = sprite.Color;
+        _animation.Play(player, DefaultDamageAnimation, DamageAnimationKey);
     }
 }

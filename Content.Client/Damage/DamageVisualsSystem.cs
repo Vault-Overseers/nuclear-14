@@ -230,7 +230,8 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
             // the layer key just doesn't exist, we skip it.
             foreach (var key in damageVisComp.TargetLayers)
             {
-                if (!spriteComponent.LayerMapTryGet(key, out var index))
+                if (!spriteComponent.LayerMapTryGet(key, out var index)
+                    || spriteComponent.LayerGetState(index).ToString() == null)
                 {
                     Logger.WarningS(SawmillName, $"Layer at key {key} was invalid for entity {entity}.");
                     continue;
@@ -252,18 +253,18 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
             // Otherwise, we start reserving layers. Since the filtering
             // loop above ensures that all of these layers are not null,
             // and have valid state IDs, there should be no issues.
-            foreach (var layer in damageVisComp.TargetLayerMapKeys)
+            foreach (object layer in damageVisComp.TargetLayerMapKeys)
             {
                 var layerCount = spriteComponent.AllLayers.Count();
                 var index = spriteComponent.LayerMapGet(layer);
-                // var layerState = spriteComponent.LayerGetState(index).ToString()!;
+                var layerState = spriteComponent.LayerGetState(index).ToString()!;
 
                 if (index + 1 != layerCount)
                 {
                     index += 1;
                 }
 
-                damageVisComp.LayerMapKeyStates.Add(layer, layer.ToString());
+                damageVisComp.LayerMapKeyStates.Add(layer, layerState);
 
                 // If we're an overlay, and we're targeting groups,
                 // we reserve layers per damage group.
@@ -273,7 +274,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
                     {
                         AddDamageLayerToSprite(spriteComponent,
                             sprite,
-                            $"{layer}_{group}_{damageVisComp.Thresholds[1]}",
+                            $"{layerState}_{group}_{damageVisComp.Thresholds[1]}",
                             $"{layer}{group}",
                             index);
                     }
@@ -287,7 +288,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
                 {
                     AddDamageLayerToSprite(spriteComponent,
                         damageVisComp.DamageOverlay,
-                        $"{layer}_{damageVisComp.Thresholds[1]}",
+                        $"{layerState}_{damageVisComp.Thresholds[1]}",
                         $"{layer}trackDamage",
                         index);
                     damageVisComp.DisabledLayers.Add(layer, false);

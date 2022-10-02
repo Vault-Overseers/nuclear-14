@@ -1,4 +1,3 @@
-using Content.Shared.CombatMode;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory.Events;
@@ -10,9 +9,8 @@ namespace Content.Shared.Item;
 
 public abstract class SharedItemSystem : EntitySystem
 {
-    [Dependency] private   readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private   readonly SharedCombatModeSystem _combatMode = default!;
-    [Dependency] protected readonly SharedContainerSystem Container = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
@@ -51,27 +49,11 @@ public abstract class SharedItemSystem : EntitySystem
         VisualsChanged(uid);
     }
 
-    /// <summary>
-    ///     Copy all item specific visuals from another item.
-    /// </summary>
-    public void CopyVisuals(EntityUid uid, ItemComponent otherItem, ItemComponent? item = null)
-    {
-        if (!Resolve(uid, ref item))
-            return;
-
-        item.RsiPath = otherItem.RsiPath;
-        item.InhandVisuals = otherItem.InhandVisuals;
-        item.HeldPrefix = otherItem.HeldPrefix;
-
-        Dirty(item);
-        VisualsChanged(uid);
-    }
-
     #endregion
 
     private void OnHandInteract(EntityUid uid, ItemComponent component, InteractHandEvent args)
     {
-        if (args.Handled || _combatMode.IsInCombatMode(args.User))
+        if (args.Handled)
             return;
 
         args.Handled = _handsSystem.TryPickup(args.User, uid, animateUser: false);
@@ -123,8 +105,8 @@ public abstract class SharedItemSystem : EntitySystem
 
         // if the item already in a container (that is not the same as the user's), then change the text.
         // this occurs when the item is in their inventory or in an open backpack
-        Container.TryGetContainingContainer(args.User, out var userContainer);
-        if (Container.TryGetContainingContainer(args.Target, out var container) && container != userContainer)
+        _container.TryGetContainingContainer(args.User, out var userContainer);
+        if (_container.TryGetContainingContainer(args.Target, out var container) && container != userContainer)
             verb.Text = Loc.GetString("pick-up-verb-get-data-text-inventory");
         else
             verb.Text = Loc.GetString("pick-up-verb-get-data-text");

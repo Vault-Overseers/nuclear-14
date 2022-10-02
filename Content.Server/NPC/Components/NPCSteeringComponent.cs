@@ -1,6 +1,5 @@
 using System.Threading;
 using Content.Server.CPUJob.JobQueues;
-using Content.Server.NPC.Pathfinding;
 using Robust.Shared.Map;
 
 namespace Content.Server.NPC.Components;
@@ -11,22 +10,23 @@ namespace Content.Server.NPC.Components;
 [RegisterComponent]
 public sealed class NPCSteeringComponent : Component
 {
-    /// <summary>
-    /// Have we currently requested a path.
-    /// </summary>
-    [ViewVariables]
-    public bool Pathfind => PathfindToken != null;
+    [ViewVariables] public Job<Queue<TileRef>>? Pathfind = null;
     [ViewVariables] public CancellationTokenSource? PathfindToken = null;
 
     /// <summary>
     /// Current path we're following to our coordinates.
     /// </summary>
-    [ViewVariables] public Queue<PathPoly> CurrentPath = new();
+    [ViewVariables] public Queue<TileRef> CurrentPath = new();
 
     /// <summary>
     /// End target that we're trying to move to.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)] public EntityCoordinates Coordinates;
+
+    /// <summary>
+    /// Target that we're trying to move to. If we have a path then this will be the first node on the path.
+    /// </summary>
+    [ViewVariables] public EntityCoordinates CurrentTarget;
 
     /// <summary>
     /// How close are we trying to get to the coordinates before being considered in range.
@@ -36,18 +36,9 @@ public sealed class NPCSteeringComponent : Component
     /// <summary>
     /// How far does the last node in the path need to be before considering re-pathfinding.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)] public float RepathRange = 1.2f;
-
-    public const int FailedPathLimit = 3;
-
-    /// <summary>
-    /// How many times we've failed to pathfind. Once this hits the limit we'll stop steering.
-    /// </summary>
-    [ViewVariables] public int FailedPathCount;
+    [ViewVariables(VVAccess.ReadWrite)] public float RepathRange = 1.5f;
 
     [ViewVariables] public SteeringStatus Status = SteeringStatus.Moving;
-
-    [ViewVariables(VVAccess.ReadWrite)] public PathFlags Flags = PathFlags.None;
 }
 
 public enum SteeringStatus : byte

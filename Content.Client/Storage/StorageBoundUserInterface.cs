@@ -1,10 +1,8 @@
 using Content.Client.Storage.UI;
-using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input;
 using Content.Client.Items.Managers;
-using Content.Client.UserInterface.Controls;
 using JetBrains.Annotations;
 using static Content.Shared.Storage.SharedStorageComponent;
 
@@ -41,10 +39,8 @@ namespace Content.Client.Storage
             }
         }
 
-        public void InteractWithItem(BaseButton.ButtonEventArgs args, ListData cData)
+        public void InteractWithItem(BaseButton.ButtonEventArgs args, EntityUid entity)
         {
-            if (cData is not EntityListData {Uid: var entity})
-                return;
             if (args.Event.Function == EngineKeyFunctions.UIClick)
             {
                 SendMessage(new StorageInteractWithItemEvent(entity));

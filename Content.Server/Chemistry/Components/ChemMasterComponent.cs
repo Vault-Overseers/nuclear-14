@@ -18,8 +18,11 @@ namespace Content.Server.Chemistry.Components
         [DataField("mode"), ViewVariables(VVAccess.ReadWrite)]
         public ChemMasterMode Mode = ChemMasterMode.Transfer;
 
-        [DataField("pillDosageLimit", required: true), ViewVariables(VVAccess.ReadWrite)]
-        public uint PillDosageLimit;
+        [DataField("pillProductionLimit", required: true), ViewVariables(VVAccess.ReadWrite)]
+        public uint PillProductionLimit;
+
+        [DataField("bottleProductionLimit", required: true), ViewVariables(VVAccess.ReadWrite)]
+        public uint BottleProductionLimit;
 
         [DataField("clickSound"), ViewVariables(VVAccess.ReadWrite)]
         public SoundSpecifier ClickSound = new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg");

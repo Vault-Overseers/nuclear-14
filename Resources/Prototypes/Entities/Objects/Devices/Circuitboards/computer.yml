@@ -12,7 +12,7 @@
       tags:
         - DroneUsable
     - type: StaticPrice
-      price: 100
+      price: 75
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -58,9 +58,9 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
-  id: CargoRequestComputerCircuitboard
-  name: cargo request computer board
-  description: A computer printed circuit board for a cargo request computer.
+  id: SupplyComputerCircuitboard
+  name: supply ordering computer board
+  description: A computer printed circuit board for a supply ordering console.
   components:
     - type: Sprite
       state: cpu_supply
@@ -71,23 +71,14 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
-  id: CargoShuttleComputerCircuitboard
-  name: cargo shuttle computer board
-  description: A computer printed circuit board for a cargo shuttle computer.
+  id: SupplyRequestComputerCircuitboard
+  name: supply request computer board
+  description: A computer printed circuit board for a supply request console.
   components:
     - type: Sprite
       state: cpu_supply
     - type: ComputerBoard
-      prototype: ComputerCargoShuttle
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: CargoShuttleConsoleCircuitboard
-  name: supply shuttle console board
-  description: A computer printed circuit board for a cargo shuttle console.
-  components:
-    - type: ComputerBoard
-      prototype: ComputerShuttleCargo
+      prototype: ComputerCargoOrders
 
 - type: entity
   parent: BaseComputerCircuitboard

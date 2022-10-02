@@ -1,4 +1,4 @@
-﻿using Content.Client.UserInterface.Controls;
+﻿using Content.Client.HUD.UI;
 
 namespace Content.Client.Viewport
 {

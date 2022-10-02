@@ -5,7 +5,7 @@ using Robust.Shared.Console;
 
 namespace Content.Server.Power
 {
-    [AdminCommand(AdminFlags.Debug)]
+    [AdminCommand(AdminFlags.Admin)]
     public sealed class SetBatteryPercentCommand : IConsoleCommand
     {
         public string Command => "setbatterypercent";

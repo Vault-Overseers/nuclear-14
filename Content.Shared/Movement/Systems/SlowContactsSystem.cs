@@ -1,8 +1,6 @@
 using Content.Shared.Movement.Components;
 using Robust.Shared.GameStates;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
+using Robust.Shared.Physics.Dynamics;
 
 namespace Content.Shared.Movement.Systems;
 
@@ -75,9 +73,6 @@ public sealed class SlowContactsSystem : EntitySystem
             if (!TryComp<SlowContactsComponent>(ent, out var slowContactsComponent))
                 continue;
 
-            if (slowContactsComponent.IgnoreWhitelist != null && slowContactsComponent.IgnoreWhitelist.IsValid(ent))
-                continue;
-
             walkSpeed = Math.Min(walkSpeed, slowContactsComponent.WalkSpeedModifier);
             sprintSpeed = Math.Min(sprintSpeed, slowContactsComponent.SprintSpeedModifier);
             remove = false;
@@ -90,14 +85,14 @@ public sealed class SlowContactsSystem : EntitySystem
             _toRemove.Add(uid);
     }
 
-    private void OnEntityExit(EntityUid uid, SlowContactsComponent component, ref EndCollideEvent args)
+    private void OnEntityExit(EntityUid uid, SlowContactsComponent component, EndCollideEvent args)
     {
         var otherUid = args.OtherFixture.Body.Owner;
         if (HasComp<MovementSpeedModifierComponent>(otherUid))
             _toUpdate.Add(otherUid);
     }
 
-    private void OnEntityEnter(EntityUid uid, SlowContactsComponent component, ref StartCollideEvent args)
+    private void OnEntityEnter(EntityUid uid, SlowContactsComponent component, StartCollideEvent args)
     {
         var otherUid = args.OtherFixture.Body.Owner;
         if (!HasComp<MovementSpeedModifierComponent>(otherUid))

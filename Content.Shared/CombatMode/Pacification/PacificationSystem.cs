@@ -1,3 +1,4 @@
+using Content.Shared.CombatMode;
 using Content.Shared.Actions;
 
 namespace Content.Shared.CombatMode.Pacification
@@ -17,9 +18,11 @@ namespace Content.Shared.CombatMode.Pacification
             if (!TryComp<SharedCombatModeComponent>(uid, out var combatMode))
                 return;
 
-            if (combatMode.CanDisarm != null)
-                combatMode.CanDisarm = false;
-
+            if (combatMode.DisarmAction != null)
+            {
+                _actionsSystem.SetToggled(combatMode.DisarmAction, false);
+                _actionsSystem.SetEnabled(combatMode.DisarmAction, false);
+            }
             if (combatMode.CombatToggleAction != null)
             {
                 combatMode.IsInCombatMode = false;
@@ -32,8 +35,8 @@ namespace Content.Shared.CombatMode.Pacification
             if (!TryComp<SharedCombatModeComponent>(uid, out var combatMode))
                 return;
 
-            if (combatMode.CanDisarm != null)
-                combatMode.CanDisarm = true;
+            if (combatMode.DisarmAction != null)
+                _actionsSystem.SetEnabled(combatMode.DisarmAction, true);
             if (combatMode.CombatToggleAction != null)
                 _actionsSystem.SetEnabled(combatMode.CombatToggleAction, true);
         }

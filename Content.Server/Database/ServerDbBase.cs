@@ -6,8 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Markings;
+using Content.Shared.CharacterAppearance;
+using Content.Shared.Markings;
 using Content.Shared.Preferences;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Enums;
@@ -27,7 +27,6 @@ namespace Content.Server.Database
                 .Preference
                 .Include(p => p.Profiles).ThenInclude(h => h.Jobs)
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
-                .Include(p => p.Profiles).ThenInclude(h => h.Traits)
                 .AsSingleQuery()
                 .SingleOrDefaultAsync(p => p.UserId == userId.UserId);
 
@@ -157,7 +156,6 @@ namespace Content.Server.Database
         {
             var jobs = profile.Jobs.ToDictionary(j => j.JobName, j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => a.AntagName);
-            var traits = profile.Traits.Select(t => t.TraitName);
 
             var sex = Sex.Male;
             if (Enum.TryParse<Sex>(profile.Sex, true, out var sexVal))
@@ -190,6 +188,7 @@ namespace Content.Server.Database
                     markings.Add(parsed);
                 }
             }
+            var markingsSet = new MarkingsSet(markings);
 
             return new HumanoidCharacterProfile(
                 profile.CharacterName,
@@ -206,14 +205,13 @@ namespace Content.Server.Database
                     Color.FromHex(profile.FacialHairColor),
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
-                    markings
+                    markingsSet
                 ),
                 clothing,
                 backpack,
                 jobs,
                 (PreferenceUnavailableMode) profile.PreferenceUnavailable,
-                antags.ToList(),
-                traits.ToList()
+                antags.ToList()
             );
         }
 
@@ -255,10 +253,6 @@ namespace Content.Server.Database
             entity.Antags.AddRange(
                 humanoid.AntagPreferences
                     .Select(a => new Antag {AntagName = a})
-            );
-            entity.Traits.AddRange(
-                humanoid.TraitPreferences
-                        .Select(t => new Trait {TraitName = t})
             );
 
             return entity;
@@ -742,13 +736,25 @@ namespace Content.Server.Database
 
             if (filter.AnyPlayers != null)
             {
-                query = query.Where(log => log.Players.Any(p => filter.AnyPlayers.Contains(p.PlayerUserId)));
+                var players = await db.AdminLogPlayer
+                    .Where(player => filter.AnyPlayers.Contains(player.PlayerUserId))
+                    .ToListAsync();
+
+                if (players.Count > 0)
+                {
+                    query = from log in query
+                        join player in db.AdminLogPlayer on log.Id equals player.LogId
+                        where filter.AnyPlayers.Contains(player.Player.UserId)
+                        select log;
+                }
             }
 
             if (filter.AllPlayers != null)
             {
-                query = query.Where(log => log.Players.All(p => filter.AllPlayers.Contains(p.PlayerUserId)));
+                // TODO ADMIN LOGGING
             }
+
+            query = query.Distinct();
 
             if (filter.LastLogId != null)
             {
@@ -769,14 +775,9 @@ namespace Content.Server.Database
                     $"Unknown {nameof(DateOrder)} value {filter.DateOrder}")
             };
 
-            const int hardLogLimit = 500_000;
             if (filter.Limit != null)
             {
-                query = query.Take(Math.Min(filter.Limit.Value, hardLogLimit));
-            }
-            else
-            {
-                query = query.Take(hardLogLimit);
+                query = query.Take(filter.Limit.Value);
             }
 
             return query;

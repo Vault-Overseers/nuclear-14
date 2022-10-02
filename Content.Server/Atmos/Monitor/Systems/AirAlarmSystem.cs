@@ -168,24 +168,6 @@ public sealed class AirAlarmSystem : EntitySystem
 
     private void OnDeviceListUpdate(EntityUid uid, AirAlarmComponent component, DeviceListUpdateEvent args)
     {
-        var query = GetEntityQuery<DeviceNetworkComponent>();
-        foreach (var device in args.OldDevices)
-        {
-            if (!query.TryGetComponent(device, out var deviceNet))
-            {
-                continue;
-            }
-
-            _atmosDevNetSystem.Deregister(uid, deviceNet.Address);
-        }
-
-        component.ScrubberData.Clear();
-        component.SensorData.Clear();
-        component.VentData.Clear();
-        component.KnownDevices.Clear();
-
-        UpdateUI(uid, component);
-
         SyncRegisterAllDevices(uid);
     }
 
@@ -312,8 +294,8 @@ public sealed class AirAlarmSystem : EntitySystem
         }
 
         var addr = string.Empty;
-        if (EntityManager.TryGetComponent(uid, out DeviceNetworkComponent? netConn))
-            addr = netConn.Address;
+        if (EntityManager.TryGetComponent(uid, out DeviceNetworkComponent? netConn)) addr = netConn.Address;
+
 
         if (args.AlarmType == AtmosAlarmType.Danger)
         {

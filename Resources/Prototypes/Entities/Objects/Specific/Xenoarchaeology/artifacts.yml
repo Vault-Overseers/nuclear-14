@@ -20,9 +20,8 @@
           !type:PhysShapeCircle
           radius: 0.45
         mass: 150
-        layer: # doesn't collide with artifact storage
-        - Opaque
-        - BulletImpassable
+        layer:
+        - WallLayer
         mask:
         - MachineMask
     - type: InteractionOutline
@@ -40,8 +39,6 @@
           !type:CableDeviceNode
           nodeGroupID: MVPower
           # sadly, HVPower and Apc cables doesn't work right now
-    - type: StaticPrice
-      price: 2000
     - type: Electrified
       requirePower: true
       noWindowInTile: true

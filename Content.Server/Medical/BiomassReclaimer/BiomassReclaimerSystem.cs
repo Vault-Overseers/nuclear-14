@@ -10,21 +10,19 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Content.Shared.CharacterAppearance.Components;
 using Content.Server.MobState;
 using Content.Server.Power.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Climbing;
-using Content.Server.Construction;
 using Content.Server.DoAfter;
-using Content.Server.Humanoid;
 using Content.Server.Mind.Components;
 using Content.Server.Stack;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Configuration;
 using Robust.Server.Player;
-using Robust.Shared.Physics.Components;
 
 namespace Content.Server.Medical.BiomassReclaimer
 {
@@ -92,7 +90,6 @@ namespace Content.Server.Medical.BiomassReclaimer
             SubscribeLocalEvent<ActiveBiomassReclaimerComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
             SubscribeLocalEvent<BiomassReclaimerComponent, AfterInteractUsingEvent>(OnAfterInteractUsing);
             SubscribeLocalEvent<BiomassReclaimerComponent, ClimbedOnEvent>(OnClimbedOn);
-            SubscribeLocalEvent<BiomassReclaimerComponent, RefreshPartsEvent>(OnRefreshParts);
             SubscribeLocalEvent<ReclaimSuccessfulEvent>(OnReclaimSuccessful);
             SubscribeLocalEvent<ReclaimCancelledEvent>(OnReclaimCancelled);
         }
@@ -148,19 +145,6 @@ namespace Content.Server.Medical.BiomassReclaimer
             _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(args.Instigator):player} used a biomass reclaimer to gib {ToPrettyString(args.Climber):target} in {ToPrettyString(uid):reclaimer}");
 
             StartProcessing(args.Climber, component);
-        }
-
-        private void OnRefreshParts(EntityUid uid, BiomassReclaimerComponent component, RefreshPartsEvent args)
-        {
-            var laserRating = args.PartRatings[component.MachinePartProcessingSpeed];
-            var manipRating = args.PartRatings[component.MachinePartYieldAmount];
-
-            //sloping down from 1/2 multiplier
-            component.ProcessingSpeedMultiplier =
-                component.BaseProcessingSpeedMultiplier * MathF.Pow(0.65f, laserRating - 1) + 0.1f;
-
-            //linear increase by .1 per rating
-            component.YieldPerUnitMass = component.BaseYieldPerUnitMass + (manipRating - 1) * 0.1f;
         }
 
         private void OnReclaimSuccessful(ReclaimSuccessfulEvent args)
@@ -225,20 +209,19 @@ namespace Content.Server.Medical.BiomassReclaimer
                 return false;
 
             // Reject souled bodies in easy mode.
-            if (_configManager.GetCVar(CCVars.BiomassEasyMode) &&
-                HasComp<HumanoidComponent>(dragged) &&
+            if (_configManager.GetCVar(CCVars.BiomassEasyMode) && HasComp<HumanoidAppearanceComponent>(dragged) &&
                 TryComp<MindComponent>(dragged, out var mindComp))
-            {
-                if (mindComp.Mind?.UserId != null && _playerManager.TryGetSessionById(mindComp.Mind.UserId.Value, out _))
-                    return false;
-            }
+                {
+                    if (mindComp.Mind?.UserId != null && _playerManager.TryGetSessionById(mindComp.Mind.UserId.Value, out var client))
+                        return false;
+                }
 
             return true;
         }
 
-        private readonly struct ReclaimCancelledEvent
+        private sealed class ReclaimCancelledEvent : EntityEventArgs
         {
-            public readonly EntityUid Reclaimer;
+            public EntityUid Reclaimer;
 
             public ReclaimCancelledEvent(EntityUid reclaimer)
             {
@@ -246,11 +229,11 @@ namespace Content.Server.Medical.BiomassReclaimer
             }
         }
 
-        private readonly struct ReclaimSuccessfulEvent
+        private sealed class ReclaimSuccessfulEvent : EntityEventArgs
         {
-            public readonly EntityUid User;
-            public readonly EntityUid Target;
-            public readonly EntityUid Reclaimer;
+            public EntityUid User;
+            public EntityUid Target;
+            public EntityUid Reclaimer;
             public ReclaimSuccessfulEvent(EntityUid user, EntityUid target, EntityUid reclaimer)
             {
                 User = user;

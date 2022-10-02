@@ -13,7 +13,5 @@ namespace Content.Shared.Vehicle.Components
         /// The vehicle this rider is currently riding.
         /// </summary>
         [ViewVariables] public EntityUid? Vehicle;
-
-        public override bool SendOnlyToOwner => true;
     }
 }

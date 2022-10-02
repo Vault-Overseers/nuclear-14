@@ -45,7 +45,7 @@ public abstract class SharedHandsComponent : Component
 }
 
 [Serializable, NetSerializable]
-public sealed class Hand //TODO: This should definitely be a struct - Jezi
+public sealed class Hand
 {
     [ViewVariables]
     public string Name { get; }

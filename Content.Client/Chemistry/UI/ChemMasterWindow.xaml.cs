@@ -75,12 +75,8 @@ namespace Content.Client.Chemistry.UI
                 Grid.AddChild(PillTypeButtons[i]);
             }
 
-            PillDosage.InitDefaultButtons();
-            PillNumber.InitDefaultButtons();
-            BottleDosage.InitDefaultButtons();
-
-            Tabs.SetTabTitle(0, Loc.GetString("chem-master-window-input-tab"));
-            Tabs.SetTabTitle(1, Loc.GetString("chem-master-window-output-tab"));
+            PillAmount.InitDefaultButtons();
+            BottleAmount.InitDefaultButtons();
         }
 
         private ReagentButton MakeReagentButton(string text, ChemMasterReagentAmount amount, string id, bool isBuffer, string styleClass)
@@ -102,30 +98,14 @@ namespace Content.Client.Chemistry.UI
             if (castState.UpdateLabel)
                 LabelLine = GenerateLabel(castState);
             UpdatePanelInfo(castState);
-
-            var output = castState.OutputContainerInfo;
-
-            BufferCurrentVolume.Text = $" {castState.BufferCurrentVolume?.Int() ?? 0}u";
-
-            InputEjectButton.Disabled = castState.InputContainerInfo is null;
-            OutputEjectButton.Disabled = output is null;
-            CreateBottleButton.Disabled = output is null || !output.HoldsReagents;
-            CreatePillButton.Disabled = output is null || output.HoldsReagents;
-
-            var remainingCapacity = output is null ? 0 : (output.MaxVolume - output.CurrentVolume).Int();
-            var holdsReagents = output?.HoldsReagents ?? false;
-            var pillNumberMax = holdsReagents ? 0 : remainingCapacity;
-            var bottleAmountMax = holdsReagents ? remainingCapacity : 0;
+            if (Contents.Children != null)
+            {
+                EjectButton.Disabled = !castState.HasContainer();
+            }
 
             PillTypeButtons[castState.SelectedPillType].Pressed = true;
-            PillNumber.IsValid = x => x >= 0 && x <= pillNumberMax;
-            PillDosage.IsValid = x => x > 0 && x <= castState.PillDosageLimit;
-            BottleDosage.IsValid = x => x >= 0 && x <= bottleAmountMax;
-
-            if (PillNumber.Value > pillNumberMax)
-                PillNumber.Value = pillNumberMax;
-            if (BottleDosage.Value > bottleAmountMax)
-                BottleDosage.Value = bottleAmountMax;
+            PillAmount.IsValid = x => x > 0 && x <= castState.PillProductionLimit;
+            BottleAmount.IsValid = x => x > 0 && x <= castState.BottleProductionLimit;
         }
 
         /// <summary>
@@ -154,8 +134,64 @@ namespace Content.Client.Chemistry.UI
             BufferTransferButton.Pressed = state.Mode == Shared.Chemistry.ChemMasterMode.Transfer;
             BufferDiscardButton.Pressed = state.Mode == Shared.Chemistry.ChemMasterMode.Discard;
 
-            BuildContainerUI(InputContainerInfo, state.InputContainerInfo, true);
-            BuildContainerUI(OutputContainerInfo, state.OutputContainerInfo, false);
+            ContainerInfo.Children.Clear();
+
+            if (!state.HasContainer())
+            {
+                ContainerInfo.Children.Add(new Label {Text = Loc.GetString("chem-master-window-no-container-loaded-text") });
+            }
+            else
+            {
+                ContainerInfo.Children.Add(new BoxContainer // Name of the container and its fill status (Ex: 44/100u)
+                {
+                    Orientation = LayoutOrientation.Horizontal,
+                    Children =
+                    {
+                        new Label {Text = $"{state.ContainerName}: "},
+                        new Label
+                        {
+                            Text = $"{state.ContainerCurrentVolume}/{state.ContainerMaxVolume}",
+                            StyleClasses = {StyleNano.StyleClassLabelSecondaryColor}
+                        }
+                    }
+                });
+
+                foreach (var reagent in state.ContainerReagents!.OrderBy(
+                    r => {_prototypeManager.TryIndex(r.ReagentId, out ReagentPrototype? p); return p?.LocalizedName;}))
+                {
+                    // Try to get the prototype for the given reagent. This gives us its name.
+                    _prototypeManager.TryIndex(reagent.ReagentId, out ReagentPrototype? proto);
+                    var name = proto?.LocalizedName ?? Loc.GetString("chem-master-window-unknown-reagent-text");
+
+                    if (proto != null)
+                    {
+                        ContainerInfo.Children.Add(new BoxContainer
+                        {
+                            Orientation = LayoutOrientation.Horizontal,
+                            Children =
+                            {
+                                new Label {Text = $"{name}: "},
+                                new Label
+                                {
+                                    Text = $"{reagent.Quantity}u",
+                                    StyleClasses = {StyleNano.StyleClassLabelSecondaryColor}
+                                },
+
+                                // Padding
+                                new Control {HorizontalExpand = true},
+
+                                MakeReagentButton("1", ChemMasterReagentAmount.U1, reagent.ReagentId, false, StyleBase.ButtonOpenRight),
+                                MakeReagentButton("5", ChemMasterReagentAmount.U5, reagent.ReagentId, false, StyleBase.ButtonOpenBoth),
+                                MakeReagentButton("10", ChemMasterReagentAmount.U10, reagent.ReagentId, false, StyleBase.ButtonOpenBoth),
+                                MakeReagentButton("25", ChemMasterReagentAmount.U25, reagent.ReagentId, false, StyleBase.ButtonOpenBoth),
+                                MakeReagentButton(Loc.GetString("chem-master-window-buffer-all-amount"), ChemMasterReagentAmount.All, reagent.ReagentId, false, StyleBase.ButtonOpenLeft),
+                            }
+                        });
+                    }
+                }
+            }
+
+
 
             BufferInfo.Children.Clear();
 
@@ -176,7 +212,7 @@ namespace Content.Client.Chemistry.UI
             bufferHBox.AddChild(bufferLabel);
             var bufferVol = new Label
             {
-                Text = $"{state.BufferCurrentVolume}u",
+                Text = $"{state.BufferCurrentVolume}",
                 StyleClasses = {StyleNano.StyleClassLabelSecondaryColor}
             };
             bufferHBox.AddChild(bufferVol);
@@ -212,92 +248,6 @@ namespace Content.Client.Chemistry.UI
                         }
                     });
                 }
-            }
-        }
-
-        private void BuildContainerUI(Control control, ContainerInfo? info, bool addReagentButtons)
-        {
-            control.Children.Clear();
-
-            if (info is null)
-            {
-                control.Children.Add(new Label
-                {
-                    Text = Loc.GetString("chem-master-window-no-container-loaded-text")
-                });
-            }
-            else
-            {
-                // Name of the container and its fill status (Ex: 44/100u)
-                control.Children.Add(new BoxContainer
-                {
-                    Orientation = LayoutOrientation.Horizontal,
-                    Children =
-                    {
-                        new Label {Text = $"{info.DisplayName}: "},
-                        new Label
-                        {
-                            Text = $"{info.CurrentVolume}/{info.MaxVolume}",
-                            StyleClasses = {StyleNano.StyleClassLabelSecondaryColor}
-                        }
-                    }
-                });
-
-                var contents = info.Contents
-                    .Select(lineItem =>
-                    {
-                        if (!info.HoldsReagents)
-                            return (lineItem.Id, lineItem.Id, lineItem.Quantity);
-
-                        // Try to get the prototype for the given reagent. This gives us its name.
-                        _prototypeManager.TryIndex(lineItem.Id, out ReagentPrototype? proto);
-                        var name = proto?.LocalizedName
-                                   ?? Loc.GetString("chem-master-window-unknown-reagent-text");
-
-                        return (name, lineItem.Id, lineItem.Quantity);
-
-                    })
-                    .OrderBy(r => r.Item1);
-
-                foreach (var (name, id, quantity) in contents)
-                {
-                    var inner = new BoxContainer
-                    {
-                        Orientation = LayoutOrientation.Horizontal,
-                        Children =
-                        {
-                            new Label { Text = $"{name}: " },
-                            new Label
-                            {
-                                Text = $"{quantity}u",
-                                StyleClasses = { StyleNano.StyleClassLabelSecondaryColor },
-                            }
-                        }
-                    };
-
-                    if (addReagentButtons)
-                    {
-                        var cs = inner.Children;
-
-                        // Padding
-                        cs.Add(new Control { HorizontalExpand = true });
-
-                        cs.Add(MakeReagentButton(
-                            "1", ChemMasterReagentAmount.U1, id, false, StyleBase.ButtonOpenRight));
-                        cs.Add(MakeReagentButton(
-                            "5", ChemMasterReagentAmount.U5, id, false, StyleBase.ButtonOpenBoth));
-                        cs.Add(MakeReagentButton(
-                            "10", ChemMasterReagentAmount.U10, id, false, StyleBase.ButtonOpenBoth));
-                        cs.Add(MakeReagentButton(
-                            "25", ChemMasterReagentAmount.U25, id, false, StyleBase.ButtonOpenBoth));
-                        cs.Add(MakeReagentButton(
-                            Loc.GetString("chem-master-window-buffer-all-amount"),
-                            ChemMasterReagentAmount.All, id, false, StyleBase.ButtonOpenLeft));
-                    }
-
-                    control.Children.Add(inner);
-                }
-
             }
         }
 

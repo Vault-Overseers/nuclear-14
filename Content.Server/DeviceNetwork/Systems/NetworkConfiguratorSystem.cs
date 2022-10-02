@@ -46,6 +46,7 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
         SubscribeLocalEvent<NetworkConfiguratorComponent, NetworkConfiguratorRemoveDeviceMessage>(OnRemoveDevice);
         SubscribeLocalEvent<NetworkConfiguratorComponent, NetworkConfiguratorClearDevicesMessage>(OnClearDevice);
         SubscribeLocalEvent<NetworkConfiguratorComponent, NetworkConfiguratorButtonPressedMessage>(OnConfigButtonPressed);
+        SubscribeLocalEvent<NetworkConfiguratorComponent, ManualDeviceListSyncMessage>(ManualDeviceListSync);
 
         SubscribeLocalEvent<DeviceListComponent, ComponentRemove>(OnComponentRemoved);
     }
@@ -329,5 +330,20 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
                 _deviceListSystem.GetDeviceList(component.ActiveDeviceList.Value)
                     .Select(v => (v.Key, MetaData(v.Value).EntityName)).ToHashSet()));
     }
+
+    // hacky solution related to mapping
+    private void ManualDeviceListSync(EntityUid uid, NetworkConfiguratorComponent comp,
+        ManualDeviceListSyncMessage args)
+    {
+        if (comp.ActiveDeviceList == null || args.Session is not IPlayerSession player)
+        {
+            return;
+        }
+
+        var devices = _deviceListSystem.GetAllDevices(comp.ActiveDeviceList.Value).ToHashSet();
+
+        _uiSystem.TrySendUiMessage(uid, NetworkConfiguratorUiKey.Configure, new ManualDeviceListSyncMessage(comp.ActiveDeviceList.Value, devices), player);
+    }
+
     #endregion
 }

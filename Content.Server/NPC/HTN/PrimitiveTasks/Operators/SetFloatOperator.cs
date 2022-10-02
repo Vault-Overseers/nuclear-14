@@ -1,4 +1,3 @@
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators;
@@ -13,8 +12,7 @@ public sealed class SetFloatOperator : HTNOperator
     [ViewVariables(VVAccess.ReadWrite), DataField("amount")]
     public float Amount;
 
-    public override async Task<(bool Valid, Dictionary<string, object>? Effects)> Plan(NPCBlackboard blackboard,
-        CancellationToken cancelToken)
+    public override async Task<(bool Valid, Dictionary<string, object>? Effects)> Plan(NPCBlackboard blackboard)
     {
         return (true, new Dictionary<string, object>()
         {

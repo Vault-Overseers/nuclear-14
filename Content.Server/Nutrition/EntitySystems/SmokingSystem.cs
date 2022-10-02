@@ -44,7 +44,6 @@ namespace Content.Server.Nutrition.EntitySystems
             SubscribeLocalEvent<SmokableComponent, ComponentShutdown>(OnSmokableShutdownEvent);
 
             InitializeCigars();
-            InitializePipes();
         }
 
         public void SetSmokableState(EntityUid uid, SmokableState state, SmokableComponent? smokable = null,

@@ -1,4 +1,3 @@
-using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -46,8 +45,8 @@ namespace Content.Server.Entry
         {
             base.Init();
 
-            var aczProvider = new ContentMagicAczProvider(IoCManager.Resolve<IDependencyCollection>());
-            IoCManager.Resolve<IStatusHost>().SetMagicAczProvider(aczProvider);
+            IoCManager.Resolve<IStatusHost>().SetAczInfo("Content.Client",
+                new[] { "Content.Client", "Content.Shared", "Content.Shared.Database" });
 
             var factory = IoCManager.Resolve<IComponentFactory>();
             var prototypes = IoCManager.Resolve<IPrototypeManager>();

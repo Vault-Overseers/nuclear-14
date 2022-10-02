@@ -6,7 +6,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Buffers;
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared.Examine;
 using static Content.Server.DeviceNetwork.Components.DeviceNetworkComponent;
 
 namespace Content.Server.DeviceNetwork.Systems
@@ -29,7 +28,6 @@ namespace Content.Server.DeviceNetwork.Systems
         {
             SubscribeLocalEvent<DeviceNetworkComponent, MapInitEvent>(OnMapInit);
             SubscribeLocalEvent<DeviceNetworkComponent, ComponentShutdown>(OnNetworkShutdown);
-            SubscribeLocalEvent<DeviceNetworkComponent, ExaminedEvent>(OnExamine);
         }
 
         public override void Update(float frameTime)
@@ -61,15 +59,6 @@ namespace Content.Server.DeviceNetwork.Systems
             if (frequency != null)
                 _packets.Enqueue(new DeviceNetworkPacketEvent(device.DeviceNetId, address, frequency.Value, device.Address, uid, data));
         }
-
-        private void OnExamine(EntityUid uid, DeviceNetworkComponent device, ExaminedEvent args)
-        {
-            if (device.ExaminableAddress)
-            {
-                args.PushText(Loc.GetString("device-address-examine-message", ("address", device.Address)));
-            }
-        }
-
         /// <summary>
         /// Automatically attempt to connect some devices when a map starts.
         /// </summary>

@@ -5,11 +5,9 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Temperature.Systems;
 using Content.Server.Body.Components;
 using Content.Shared.Examine;
-using Content.Shared.Rejuvenate;
-using Content.Shared.MobState.EntitySystems;
 using Robust.Server.GameObjects;
+using Content.Shared.Tag;
 using Robust.Shared.Containers;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
 
 namespace Content.Server.Atmos.Miasma
@@ -19,8 +17,6 @@ namespace Content.Server.Atmos.Miasma
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-        [Dependency] private readonly SharedMobStateSystem _mobState = default!;
-
         [Dependency] private readonly IRobustRandom _random = default!;
 
         /// System Variables
@@ -68,7 +64,7 @@ namespace Content.Server.Atmos.Miasma
         /// </summary>
         private float _poolAccumulator = 0f;
 
-        /// <summary>
+        /// <summmary>
         /// How long without an infection before we pick a new disease.
         /// </summary>
         private TimeSpan _poolRepickTime = TimeSpan.FromMinutes(5);
@@ -135,7 +131,6 @@ namespace Content.Server.Atmos.Miasma
             SubscribeLocalEvent<PerishableComponent, MobStateChangedEvent>(OnMobStateChanged);
             SubscribeLocalEvent<PerishableComponent, BeingGibbedEvent>(OnGibbed);
             SubscribeLocalEvent<PerishableComponent, ExaminedEvent>(OnExamined);
-            SubscribeLocalEvent<RottingComponent, RejuvenateEvent>(OnRejuvenate);
             // Containers
             SubscribeLocalEvent<AntiRottingContainerComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
             SubscribeLocalEvent<AntiRottingContainerComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
@@ -167,7 +162,7 @@ namespace Content.Server.Atmos.Miasma
 
         private void OnMobStateChanged(EntityUid uid, PerishableComponent component, MobStateChangedEvent args)
         {
-            if (_mobState.IsDead(uid))
+            if (args.Component.IsDead())
                 EnsureComp<RottingComponent>(uid);
         }
 
@@ -202,11 +197,6 @@ namespace Content.Server.Atmos.Miasma
             args.PushMarkup(Loc.GetString(description));
         }
 
-        private void OnRejuvenate(EntityUid uid, RottingComponent component, RejuvenateEvent args)
-        {
-            EntityManager.RemoveComponentDeferred<RottingComponent>(uid);
-        }
-
         /// Containers
 
         private void OnEntInserted(EntityUid uid, AntiRottingContainerComponent component, EntInsertedIntoContainerMessage args)
@@ -220,9 +210,7 @@ namespace Content.Server.Atmos.Miasma
 
         private void OnEntRemoved(EntityUid uid, AntiRottingContainerComponent component, EntRemovedFromContainerMessage args)
         {
-            // If we get de-parented due to entity shutdown don't add more flies.
-            if (TryComp<PerishableComponent>(args.Entity, out var perishable) &&
-                TryComp<MetaDataComponent>(uid, out var metadata) && metadata.EntityLifeStage < EntityLifeStage.Terminating)
+            if (TryComp<PerishableComponent>(args.Entity, out var perishable) && !Terminating(uid))
             {
                 ModifyPreservationSource(args.Entity, false);
                 ToggleDecomposition(args.Entity, true, perishable);
@@ -234,12 +222,12 @@ namespace Content.Server.Atmos.Miasma
         private void OnFliesInit(EntityUid uid, FliesComponent component, ComponentInit args)
         {
             component.VirtFlies = EntityManager.SpawnEntity("AmbientSoundSourceFlies", Transform(uid).Coordinates);
+            Transform(component.VirtFlies).AttachParent(uid);
         }
 
         private void OnFliesShutdown(EntityUid uid, FliesComponent component, ComponentShutdown args)
         {
-            if (!Terminating(uid))
-                Del(component.VirtFlies);
+            EntityManager.DeleteEntity(component.VirtFlies);
         }
 
         /// Public functions

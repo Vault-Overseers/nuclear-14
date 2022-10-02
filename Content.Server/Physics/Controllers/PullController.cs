@@ -2,7 +2,6 @@
 using Content.Shared.Pulling.Components;
 using Content.Shared.Rotatable;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Controllers;
 
 namespace Content.Server.Physics.Controllers

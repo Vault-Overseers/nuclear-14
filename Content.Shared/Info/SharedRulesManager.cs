@@ -1,6 +1,5 @@
 ﻿using Lidgren.Network;
 using Robust.Shared.Network;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.Info;
 
@@ -15,12 +14,12 @@ public abstract class SharedRulesManager
 
         public float PopupTime { get; set; }
 
-        public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
+        public override void ReadFromBuffer(NetIncomingMessage buffer)
         {
             PopupTime = buffer.ReadFloat();
         }
 
-        public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
+        public override void WriteToBuffer(NetOutgoingMessage buffer)
         {
             buffer.Write(PopupTime);
         }
@@ -33,11 +32,11 @@ public abstract class SharedRulesManager
     {
         public override MsgGroups MsgGroup => MsgGroups.Command;
 
-        public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
+        public override void ReadFromBuffer(NetIncomingMessage buffer)
         {
         }
 
-        public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
+        public override void WriteToBuffer(NetOutgoingMessage buffer)
         {
         }
     }
@@ -49,11 +48,11 @@ public abstract class SharedRulesManager
     {
         public override MsgGroups MsgGroup => MsgGroups.Command;
 
-        public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
+        public override void ReadFromBuffer(NetIncomingMessage buffer)
         {
         }
 
-        public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
+        public override void WriteToBuffer(NetOutgoingMessage buffer)
         {
         }
     }

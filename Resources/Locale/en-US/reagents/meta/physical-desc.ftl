@@ -80,4 +80,3 @@ reagent-physical-desc-sweet = sweet
 reagent-physical-desc-electric = electric
 reagent-physical-desc-chewy = chewy
 reagent-physical-desc-volatile = volatile
-reagent-physical-desc-inky = inky

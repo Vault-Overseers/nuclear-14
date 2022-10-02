@@ -12,20 +12,19 @@
     sprite: Objects/Weapons/Melee/fireaxe.rsi
     state: icon
   - type: MeleeWeapon
-    attackRate: 0.75
     damage:
       types:
         # axes are kinda like sharp hammers, you know?
-        Blunt: 5
-        Slash: 13
-        Structural: 7
+        Blunt: 4
+        Slash: 10
+        Structural: 5
   - type: Wieldable
   - type: IncreaseDamageOnWield
-    damage:
-      types:
-        Blunt: 2.5
-        Slash: 10.5
-        Structural: 60
+    modifiers:
+      flatReductions:
+        Blunt: -2 # negative reductions = increases
+        Slash: -8
+        Structural: -45
   - type: Item
     size: 150
   - type: Clothing

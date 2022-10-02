@@ -2,7 +2,7 @@
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
 using Content.Client.Clickable;
-using Content.Client.Options;
+using Content.Client.EscapeMenu;
 using Content.Client.Eui;
 using Content.Client.GhostKick;
 using Content.Client.HUD;
@@ -30,6 +30,7 @@ namespace Content.Client.IoC
             IoCManager.Register<IGameHud, GameHud>();
             IoCManager.Register<IParallaxManager, ParallaxManager>();
             IoCManager.Register<IChatManager, ChatManager>();
+            IoCManager.Register<IEscapeMenuOwner, EscapeMenuOwner>();
             IoCManager.Register<IModuleManager, ClientModuleManager>();
             IoCManager.Register<IClientPreferencesManager, ClientPreferencesManager>();
             IoCManager.Register<IItemSlotManager, ItemSlotManager>();

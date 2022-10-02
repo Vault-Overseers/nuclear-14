@@ -250,7 +250,7 @@ namespace Content.Client.Viewport
 
             EnsureViewportCreated();
 
-            var matrix = Matrix3.Invert(GetLocalToScreenMatrix());
+            var matrix = Matrix3.Invert(LocalToScreenMatrix());
 
             return _viewport!.LocalToWorld(matrix.Transform(coords));
         }
@@ -264,20 +264,14 @@ namespace Content.Client.Viewport
 
             var vpLocal = _viewport!.WorldToLocal(map);
 
-            var matrix = GetLocalToScreenMatrix();
+            var matrix = LocalToScreenMatrix();
 
             return matrix.Transform(vpLocal);
         }
 
-        public Matrix3 GetWorldToScreenMatrix()
+        private Matrix3 LocalToScreenMatrix()
         {
-            EnsureViewportCreated();
-            return _viewport!.GetWorldToLocalMatrix() * GetLocalToScreenMatrix();
-        }
-
-        public Matrix3 GetLocalToScreenMatrix()
-        {
-            EnsureViewportCreated();
+            DebugTools.AssertNotNull(_viewport);
 
             var drawBox = GetDrawBox();
             var scaleFactor = drawBox.Size / (Vector2) _viewport!.Size;

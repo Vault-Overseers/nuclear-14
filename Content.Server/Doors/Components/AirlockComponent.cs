@@ -50,13 +50,6 @@ namespace Content.Server.Doors.Components
         [DataField("openPanelVisible")]
         public bool OpenPanelVisible = false;
 
-        /// <summary>
-        /// Whether the airlock should stay open if the airlock was clicked.
-        /// If the airlock was bumped into it will still auto close.
-        /// </summary>
-        [DataField("keepOpenIfClicked")]
-        public bool KeepOpenIfClicked = false;
-
         private CancellationTokenSource _powerWiresPulsedTimerCancel = new();
         private bool _powerWiresPulsed;
 
@@ -111,12 +104,6 @@ namespace Content.Server.Doors.Components
                 UpdateBoltLightStatus();
             }
         }
-
-        /// <summary>
-        /// Whether the airlock should auto close. This value is reset every time the airlock closes.
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        public bool AutoClose = true;
 
         /// <summary>
         /// Delay until an open door automatically closes.

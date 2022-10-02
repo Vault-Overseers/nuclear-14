@@ -36,11 +36,6 @@ public enum CombatStatus : byte
     TargetUnreachable,
 
     /// <summary>
-    /// If the target is outside of our melee range.
-    /// </summary>
-    TargetOutOfRange,
-
-    /// <summary>
     /// Set if the weapon we were assigned is no longer valid.
     /// </summary>
     NoWeapon,

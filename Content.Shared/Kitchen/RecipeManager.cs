@@ -45,9 +45,7 @@ namespace Content.Shared.Kitchen
                     return 0;
                 }
 
-                var nx = x.IngredientCount();
-                var ny = y.IngredientCount();
-                return -nx.CompareTo(ny);
+                return -x.IngredientsReagents.Count.CompareTo(y.IngredientsReagents.Count);
             }
         }
     }

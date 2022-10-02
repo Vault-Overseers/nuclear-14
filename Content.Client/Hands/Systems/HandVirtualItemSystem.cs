@@ -1,5 +1,4 @@
-﻿using Content.Client.Hands.UI;
-using Content.Client.Items;
+﻿using Content.Client.Items;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using JetBrains.Annotations;

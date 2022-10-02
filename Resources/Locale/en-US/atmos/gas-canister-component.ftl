@@ -4,9 +4,6 @@
 
 gas-canister-bound-user-interface-title = Gas Canister
 
-# Popup
-gas-canister-popup-denied = Access denied
-
 # window
 
 gas-canister-window-ok-text = OK

@@ -9,7 +9,7 @@
     - FootstepSound
   - type: InputMover
   - type: MobMover
-  - type: Faction
+  - type: AiFactionTag
     factions:
     - SimpleHostile
   - type: Hands
@@ -33,13 +33,12 @@
       layer:
       - MachineLayer
   - type: CharacterInfo
-  - type: Humanoid
+  - type: HumanoidAppearance
   - type: AnimationPlayer
   - type: MeleeWeapon
-    hidden: true
     range: 1.5
-    angle: 0
-    animation: WeaponArcFist
+    arcwidth: 0
+    arc: fist
     damage:
       types:
         Blunt: 20

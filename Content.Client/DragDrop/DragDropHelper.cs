@@ -1,4 +1,5 @@
 ﻿using Robust.Client.Input;
+using Robust.Shared.IoC;
 using Robust.Shared.Map;
 
 namespace Content.Client.DragDrop

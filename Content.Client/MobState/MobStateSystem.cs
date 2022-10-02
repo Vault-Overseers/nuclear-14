@@ -1,6 +1,5 @@
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
-using Content.Shared.Interaction.Events;
 using Content.Shared.MobState;
 using Content.Shared.MobState.Components;
 using Content.Shared.MobState.EntitySystems;
@@ -27,13 +26,6 @@ public sealed partial class MobStateSystem : SharedMobStateSystem
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttach);
         SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetach);
         SubscribeLocalEvent<MobStateComponent, ComponentHandleState>(OnMobHandleState);
-        SubscribeLocalEvent<MobStateComponent, AttackAttemptEvent>(OnAttack);
-    }
-
-    private void OnAttack(EntityUid uid, MobStateComponent component, AttackAttemptEvent args)
-    {
-        if (IsIncapacitated(uid, component))
-            args.Cancel();
     }
 
     public override void Shutdown()

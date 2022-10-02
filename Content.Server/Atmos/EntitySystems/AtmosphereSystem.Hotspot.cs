@@ -153,7 +153,7 @@ namespace Content.Server.Atmos.EntitySystems
             }
             else
             {
-                var affected = tile.Air.RemoveVolume(tile.Hotspot.Volume);
+                var affected = tile.Air.RemoveRatio(tile.Hotspot.Volume / tile.Air.Volume);
                 affected.Temperature = tile.Hotspot.Temperature;
                 React(affected, tile);
                 tile.Hotspot.Temperature = affected.Temperature;

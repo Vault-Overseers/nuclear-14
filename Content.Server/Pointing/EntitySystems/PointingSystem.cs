@@ -24,7 +24,7 @@ using Robust.Shared.Timing;
 namespace Content.Server.Pointing.EntitySystems
 {
     [UsedImplicitly]
-    internal sealed class PointingSystem : SharedPointingSystem
+    internal sealed class PointingSystem : EntitySystem
     {
         [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -128,12 +128,7 @@ namespace Content.Server.Pointing.EntitySystems
 
             _rotateToFaceSystem.TryFaceCoordinates(player, mapCoords.Position);
 
-            var arrow = EntityManager.SpawnEntity("PointingArrow", mapCoords);
-
-            if (TryComp<PointingArrowComponent>(arrow, out var pointing))
-            {
-                pointing.EndTime = _gameTiming.CurTime + TimeSpan.FromSeconds(4);
-            }
+            var arrow = EntityManager.SpawnEntity("pointingarrow", mapCoords);
 
             if (EntityQuery<PointingArrowAngeringComponent>().FirstOrDefault() != null)
             {
@@ -236,28 +231,10 @@ namespace Content.Server.Pointing.EntitySystems
 
         public override void Update(float frameTime)
         {
-            var currentTime = _gameTiming.CurTime;
-
-            foreach (var component in EntityQuery<PointingArrowComponent>(true))
+            foreach (var component in EntityManager.EntityQuery<PointingArrowComponent>(true))
             {
-                Update(component, currentTime);
+                component.Update(frameTime);
             }
-        }
-
-        private void Update(PointingArrowComponent component, TimeSpan currentTime)
-        {
-            // TODO: That pause PR
-            if (component.EndTime > currentTime)
-                return;
-
-            if (component.Rogue)
-            {
-                RemComp<PointingArrowComponent>(component.Owner);
-                EnsureComp<RoguePointingArrowComponent>(component.Owner);
-                return;
-            }
-
-            Del(component.Owner);
         }
     }
 }

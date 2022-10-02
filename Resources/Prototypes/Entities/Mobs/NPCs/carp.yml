@@ -9,16 +9,26 @@
     - type: MobMover
     - type: HTN
       rootTask: SimpleHostileCompound
-    - type: Faction
+    - type: AiFactionTag
       factions:
         - SimpleHostile
     - type: Sprite
       drawdepth: Mobs
       netsync: false
-      sprite: Mobs/Aliens/Carps/space.rsi
       layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: base
+        - map: [ "enum.DamageStateVisualLayers.Base" ]
+          state: base
+          sprite: Mobs/Aliens/Carps/space.rsi
+        - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          state: mouth
+          sprite: Mobs/Aliens/Carps/space.rsi
+          shader: unshaded
+    - type: RandomSprite
+      available:
+        - enum.DamageStateVisualLayers.Base:
+            base: Rainbow
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            mouth: ""
     - type: CombatMode
       disarmAction:
         enabled: false
@@ -55,11 +65,10 @@
         - id: FoodMeatFish
           amount: 2
     - type: MeleeWeapon
-      hidden: true
       range: 1.5
-      angle: 0
-      animation: WeaponArcBite
-      soundHit:
+      arcwidth: 0
+      arc: bite
+      hitSound:
         path: /Audio/Effects/bite.ogg
       damage:
         types:
@@ -72,46 +81,41 @@
       tags:
         - Carp
         - DoorBumpOpener
-    - type: ReplacementAccent
-      accent: genericAggressive
 
 - type: entity
   parent: BaseMobCarp
   id: MobCarp
   components:
-  - type: Sprite
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: base
-    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-      state: mouth
-      shader: unshaded
-  - type: RandomSprite
-    available:
-    - enum.DamageStateVisualLayers.Base:
-        base: Rainbow
-      enum.DamageStateVisualLayers.BaseUnshaded:
-        mouth: ""
+    - type: ReplacementAccent
+      accent: genericAggressive
 
 - type: entity
   name: magicarp
-  parent: BaseMobCarp
+  parent: MobCarp
   id: MobCarpMagic
   description: Looks like some kind of fish. Might be magical.
   components:
     - type: Sprite
-      sprite: Mobs/Aliens/Carps/magic.rsi
+      drawdepth: Mobs
+      layers:
+        - map: [ "enum.DamageStateVisualLayers.Base" ]
+          state: base
+          sprite: Mobs/Aliens/Carps/magic.rsi
     - type: TypingIndicator
       proto: guardian
 
 - type: entity
   name: holocarp
-  parent: BaseMobCarp
+  parent: MobCarp
   id: MobCarpHolo
   description: Carp made out of holographic energies. Sadly for you, it is very much real.
   components:
     - type: Sprite
-      sprite: Mobs/Aliens/Carps/holo.rsi
+      drawdepth: Mobs
+      layers:
+        - map: [ "enum.DamageStateVisualLayers.Base" ]
+          state: base
+          sprite: Mobs/Aliens/Carps/holo.rsi
     - type: Physics
     - type: Fixtures
       fixtures:
@@ -134,8 +138,6 @@
     - type: GhostTakeoverAvailable
       prob: 0.33
       name: space carp on salvage wreck
-      allowMovement: true
-      allowSpeech: true
       description: |
         Defend the loot inside the salvage wreck!
     - type: SalvageMobRestrictions
@@ -147,8 +149,6 @@
   parent: BaseMobCarp
   components:
     - type: GhostTakeoverAvailable
-      allowMovement: true
-      allowSpeech: true
       makeSentient: true
       name: Sentient Carp
       description: Help the dragon flood the station with carps!

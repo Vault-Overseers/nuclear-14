@@ -662,7 +662,7 @@ namespace Content.Server.ParticleAccelerator.Components
             appearanceComponent.SetData(ParticleAcceleratorVisuals.VisualState, state);
         }
 
-        public override void Moved()
+        public override void Rotated()
         {
             // We rotate OURSELVES when scanning for parts, so don't actually run rescan on rotate.
             // That would be silly.

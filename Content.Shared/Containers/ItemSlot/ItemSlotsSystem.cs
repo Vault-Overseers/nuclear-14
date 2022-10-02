@@ -11,8 +11,6 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
-using Robust.Shared.Network;
-using Robust.Shared.Timing;
 
 namespace Content.Shared.Containers.ItemSlots
 {
@@ -21,8 +19,6 @@ namespace Content.Shared.Containers.ItemSlots
     /// </summary>
     public sealed class ItemSlotsSystem : EntitySystem
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly INetManager _netManager = default!;
         [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] private readonly SharedContainerSystem _containers = default!;
         [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
@@ -241,7 +237,7 @@ namespace Content.Shared.Containers.ItemSlots
 
             if (slot.Whitelist != null && !slot.Whitelist.IsValid(usedUid))
             {
-                if (_netManager.IsClient && _timing.IsFirstTimePredicted && popup.HasValue && !string.IsNullOrWhiteSpace(slot.WhitelistFailPopup))
+                if (popup.HasValue && !string.IsNullOrWhiteSpace(slot.WhitelistFailPopup))
                     _popupSystem.PopupEntity(Loc.GetString(slot.WhitelistFailPopup), uid, Filter.Entities(popup.Value));
                 return false;
             }

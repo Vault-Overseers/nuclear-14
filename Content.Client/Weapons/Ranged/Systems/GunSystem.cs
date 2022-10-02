@@ -82,11 +82,7 @@ public sealed partial class GunSystem : SharedGunSystem
         // ALL I WANT IS AN ANIMATED EFFECT
         foreach (var a in ev.Sprites)
         {
-            if (a.Sprite is not SpriteSpecifier.Rsi rsi ||
-                Deleted(a.coordinates.EntityId))
-            {
-                continue;
-            }
+            if (a.Sprite is not SpriteSpecifier.Rsi rsi) continue;
 
             var ent = Spawn("HitscanEffect", a.coordinates);
             var sprite = Comp<SpriteComponent>(ent);

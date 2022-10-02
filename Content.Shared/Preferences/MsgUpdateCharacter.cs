@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
@@ -15,17 +15,19 @@ namespace Content.Shared.Preferences
         public int Slot;
         public ICharacterProfile Profile = default!;
 
-        public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
+        public override void ReadFromBuffer(NetIncomingMessage buffer)
         {
             Slot = buffer.ReadInt32();
+            var serializer = IoCManager.Resolve<IRobustSerializer>();
             var length = buffer.ReadVariableInt32();
             using var stream = buffer.ReadAlignedMemory(length);
             Profile = serializer.Deserialize<ICharacterProfile>(stream);
         }
 
-        public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
+        public override void WriteToBuffer(NetOutgoingMessage buffer)
         {
             buffer.Write(Slot);
+            var serializer = IoCManager.Resolve<IRobustSerializer>();
             using (var stream = new MemoryStream())
             {
                 serializer.Serialize(stream, Profile);

@@ -29,7 +29,7 @@ namespace Content.Server.ParticleAccelerator.Components
             Master?.RescanParts();
         }
 
-        public virtual void Moved()
+        public virtual void Rotated()
         {
             RescanIfPossible();
         }

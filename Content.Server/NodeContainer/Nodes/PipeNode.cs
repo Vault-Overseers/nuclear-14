@@ -114,7 +114,7 @@ namespace Content.Server.NodeContainer.Nodes
             CurrentPipeDirection = _originalPipeDirection.RotatePipeDirection(xform.LocalRotation);
         }
 
-        bool IRotatableNode.RotateNode(in MoveEvent ev)
+        bool IRotatableNode.RotateEvent(ref RotateEvent ev)
         {
             if (_originalPipeDirection == PipeDirection.Fourway)
                 return false;

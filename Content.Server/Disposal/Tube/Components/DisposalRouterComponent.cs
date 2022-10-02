@@ -18,8 +18,8 @@ namespace Content.Server.Disposal.Tube.Components
 
         [Dependency] private readonly IEntityManager _entMan = default!;
 
-        [DataField("tags")]
-        public HashSet<string> Tags = new();
+        [ViewVariables]
+        public readonly HashSet<string> Tags = new();
 
         [ViewVariables]
         public bool Anchored =>

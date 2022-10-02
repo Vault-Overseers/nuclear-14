@@ -1,4 +1,3 @@
-using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
@@ -30,12 +29,6 @@ namespace Content.Client.Eye.Blinding
         }
         protected override bool BeforeDraw(in OverlayDrawArgs args)
         {
-            if (!_entityManager.TryGetComponent(_playerManager.LocalPlayer?.ControlledEntity, out EyeComponent? eyeComp))
-                return false;
-
-            if (args.Viewport.Eye != eyeComp.Eye)
-                return false;
-
             var playerEntity = _playerManager.LocalPlayer?.ControlledEntity;
 
             if (playerEntity == null)

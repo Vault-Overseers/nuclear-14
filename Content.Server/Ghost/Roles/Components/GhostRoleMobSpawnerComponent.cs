@@ -46,7 +46,7 @@ namespace Content.Server.Ghost.Roles.Components
             _entMan.EventBus.RaiseLocalEvent(mob, spawnedEvent, false);
 
             if (MakeSentient)
-                MakeSentientCommand.MakeSentient(mob, _entMan, AllowMovement, AllowSpeech);
+                MakeSentientCommand.MakeSentient(mob, _entMan);
 
             mob.EnsureComponent<MindComponent>();
 

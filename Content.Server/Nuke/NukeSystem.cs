@@ -519,10 +519,7 @@ namespace Content.Server.Nuke
                 component.IntensitySlope,
                 component.MaxIntensity);
 
-            RaiseLocalEvent(new NukeExplodedEvent()
-            {
-                OwningStation = transform.GridUid,
-            });
+            RaiseLocalEvent(new NukeExplodedEvent());
 
             _soundSystem.StopStationEventMusic(component.Owner, StationEventMusicType.Nuke);
             EntityManager.DeleteEntity(uid);
@@ -549,7 +546,6 @@ namespace Content.Server.Nuke
             {
                 TargetCancelledEvent = new NukeDisarmCancelledEvent(),
                 TargetFinishedEvent = new NukeDisarmSuccessEvent(),
-                BroadcastFinishedEvent = new NukeDisarmSuccessEvent(),
                 BreakOnDamage = true,
                 BreakOnStun = true,
                 BreakOnTargetMove = true,
@@ -574,10 +570,7 @@ namespace Content.Server.Nuke
         }
     }
 
-    public sealed class NukeExplodedEvent : EntityEventArgs
-    {
-        public EntityUid? OwningStation;
-    }
+    public sealed class NukeExplodedEvent : EntityEventArgs {}
 
     /// <summary>
     ///     Raised directed on the nuke when its disarm doafter is successful.

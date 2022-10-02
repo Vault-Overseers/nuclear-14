@@ -1,4 +1,5 @@
-﻿using Content.Shared.Humanoid.Markings;
+﻿using Content.Shared.CharacterAppearance;
+using Content.Shared.Markings;
 
 namespace Content.Shared.IoC
 {
@@ -6,6 +7,7 @@ namespace Content.Shared.IoC
     {
         public static void Register()
         {
+            IoCManager.Register<SpriteAccessoryManager, SpriteAccessoryManager>();
             IoCManager.Register<MarkingManager, MarkingManager>();
         }
     }

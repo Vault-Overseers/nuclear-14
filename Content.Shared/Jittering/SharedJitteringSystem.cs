@@ -1,4 +1,3 @@
-using Content.Shared.Rejuvenate;
 using Content.Shared.StatusEffect;
 using Robust.Shared.GameStates;
 using Robust.Shared.Timing;
@@ -23,7 +22,6 @@ namespace Content.Shared.Jittering
         {
             SubscribeLocalEvent<JitteringComponent, ComponentGetState>(OnGetState);
             SubscribeLocalEvent<JitteringComponent, ComponentHandleState>(OnHandleState);
-            SubscribeLocalEvent<JitteringComponent, RejuvenateEvent>(OnRejuvenate);
         }
 
         private void OnGetState(EntityUid uid, JitteringComponent component, ref ComponentGetState args)
@@ -38,11 +36,6 @@ namespace Content.Shared.Jittering
 
             component.Amplitude = jitteringState.Amplitude;
             component.Frequency = jitteringState.Frequency;
-        }
-
-        private void OnRejuvenate(EntityUid uid, JitteringComponent component, RejuvenateEvent args)
-        {
-            EntityManager.RemoveComponentDeferred<JitteringComponent>(uid);
         }
 
         /// <summary>

@@ -15,29 +15,75 @@ namespace Content.Shared.Slippery
     [NetworkedComponent]
     public sealed class SlipperyComponent : Component
     {
+        private float _paralyzeTime = 3f;
+        private float _launchForwardsMultiplier = 1f;
+        private SoundSpecifier _slipSound = new SoundPathSpecifier("/Audio/Effects/slip.ogg");
+
         /// <summary>
-        /// Path to the sound to be played when a mob slips.
+        ///     Path to the sound to be played when a mob slips.
         /// </summary>
         [ViewVariables]
         [DataField("slipSound")]
-        [Access(Other = AccessPermissions.ReadWriteExecute)]
-        public SoundSpecifier SlipSound = new SoundPathSpecifier("/Audio/Effects/slip.ogg");
+        public SoundSpecifier SlipSound
+        {
+            get => _slipSound;
+            set
+            {
+                if (value == _slipSound)
+                    return;
+
+                _slipSound = value;
+                Dirty();
+            }
+        }
 
         /// <summary>
-        /// How many seconds the mob will be paralyzed for.
+        ///     How many seconds the mob will be paralyzed for.
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("paralyzeTime")]
-        [Access(Other = AccessPermissions.ReadWrite)]
-        public float ParalyzeTime = 3f;
+        public float ParalyzeTime
+        {
+            get => _paralyzeTime;
+            set
+            {
+                if (MathHelper.CloseToPercent(_paralyzeTime, value)) return;
+
+                _paralyzeTime = value;
+                Dirty();
+            }
+        }
 
         /// <summary>
-        /// The entity's speed will be multiplied by this to slip it forwards.
+        ///     The entity's speed will be multiplied by this to slip it forwards.
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("launchForwardsMultiplier")]
-        [Access(Other = AccessPermissions.ReadWrite)]
-        public float LaunchForwardsMultiplier = 1f;
+        public float LaunchForwardsMultiplier
+        {
+            get => _launchForwardsMultiplier;
+            set
+            {
+                if (MathHelper.CloseToPercent(_launchForwardsMultiplier, value)) return;
+
+                _launchForwardsMultiplier = value;
+                Dirty();
+            }
+        }
+
+        public override ComponentState GetComponentState()
+        {
+            return new SlipperyComponentState(ParalyzeTime, LaunchForwardsMultiplier, SlipSound.GetSound());
+        }
+
+        public override void HandleComponentState(ComponentState? curState, ComponentState? nextState)
+        {
+            if (curState is not SlipperyComponentState state) return;
+
+            _paralyzeTime = state.ParalyzeTime;
+            _launchForwardsMultiplier = state.LaunchForwardsMultiplier;
+            _slipSound = new SoundPathSpecifier(state.SlipSound);
+        }
     }
 
     [Serializable, NetSerializable]

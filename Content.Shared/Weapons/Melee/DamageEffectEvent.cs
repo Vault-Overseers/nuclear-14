@@ -8,16 +8,10 @@ namespace Content.Shared.Weapons.Melee;
 [Serializable, NetSerializable]
 public sealed class DamageEffectEvent : EntityEventArgs
 {
-    /// <summary>
-    /// Color to play for the damage flash.
-    /// </summary>
-    public Color Color;
+    public EntityUid Entity;
 
-    public List<EntityUid> Entities;
-
-    public DamageEffectEvent(Color color, List<EntityUid> entities)
+    public DamageEffectEvent(EntityUid entity)
     {
-        Color = color;
-        Entities = entities;
+        Entity = entity;
     }
 }

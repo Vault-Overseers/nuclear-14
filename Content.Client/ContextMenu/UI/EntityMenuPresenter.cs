@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using Content.Client.CombatMode;
 using Content.Client.Examine;
 using Content.Client.Gameplay;
 using Content.Client.Verbs;
 using Content.Client.Viewport;
 using Content.Shared.CCVar;
-using Content.Shared.CombatMode;
 using Content.Shared.Input;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -47,7 +45,6 @@ namespace Content.Client.ContextMenu.UI
 
         private readonly VerbSystem _verbSystem;
         private readonly ExamineSystem _examineSystem;
-        private readonly SharedCombatModeSystem _combatMode;
 
         /// <summary>
         ///     This maps the currently displayed entities to the actual GUI elements.
@@ -62,13 +59,12 @@ namespace Content.Client.ContextMenu.UI
             IoCManager.InjectDependencies(this);
 
             _verbSystem = verbSystem;
-            _examineSystem = _entityManager.EntitySysManager.GetEntitySystem<ExamineSystem>();
-            _combatMode = _entityManager.EntitySysManager.GetEntitySystem<CombatModeSystem>();
+            _examineSystem = EntitySystem.Get<ExamineSystem>();
 
             _cfg.OnValueChanged(CCVars.EntityMenuGroupingType, OnGroupingChanged, true);
 
             CommandBinds.Builder
-                .Bind(EngineKeyFunctions.UseSecondary,  new PointerInputCmdHandler(HandleOpenEntityMenu, outsidePrediction: true))
+                .Bind(ContentKeyFunctions.OpenContextMenu,  new PointerInputCmdHandler(HandleOpenEntityMenu, outsidePrediction: true))
                 .Register<EntityMenuPresenter>();
         }
 
@@ -113,7 +109,7 @@ namespace Content.Client.ContextMenu.UI
                 return;
 
             // open verb menu?
-            if (args.Function == EngineKeyFunctions.UseSecondary)
+            if (args.Function == ContentKeyFunctions.OpenContextMenu)
             {
                 _verbSystem.VerbMenu.OpenVerbMenu(entity.Value);
                 args.Handle();
@@ -162,9 +158,6 @@ namespace Content.Client.ContextMenu.UI
                 return false;
 
             if (_stateManager.CurrentState is not GameplayStateBase)
-                return false;
-
-            if (_combatMode.IsInCombatMode(args.Session?.AttachedEntity))
                 return false;
 
             var coords = args.Coordinates.ToMap(_entityManager);

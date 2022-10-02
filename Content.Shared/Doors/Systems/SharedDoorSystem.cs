@@ -13,9 +13,6 @@ using System.Linq;
 using Content.Shared.Tag;
 using Content.Shared.Tools.Components;
 using Content.Shared.Verbs;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Doors.Systems;
 
@@ -450,15 +447,15 @@ public abstract class SharedDoorSystem : EntitySystem
         }
     }
 
-    private void PreventCollision(EntityUid uid, DoorComponent component, ref PreventCollideEvent args)
+    private void PreventCollision(EntityUid uid, DoorComponent component, PreventCollideEvent args)
     {
         if (component.CurrentlyCrushing.Contains(args.BodyB.Owner))
         {
-            args.Cancelled = true;
+            args.Cancel();
         }
     }
 
-    protected virtual void HandleCollide(EntityUid uid, DoorComponent door, ref StartCollideEvent args)
+    protected virtual void HandleCollide(EntityUid uid, DoorComponent door, StartCollideEvent args)
     {
         // TODO ACCESS READER move access reader to shared and predict door opening/closing
         // Then this can be moved to the shared system without mispredicting.

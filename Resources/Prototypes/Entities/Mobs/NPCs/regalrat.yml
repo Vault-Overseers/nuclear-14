@@ -6,15 +6,15 @@
   components:
   - type: CombatMode
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.00
-    baseSprintSpeed : 5.00
+    baseWalkSpeed : 3.75
+    baseSprintSpeed : 3.75
   - type: InputMover
   - type: MobMover
   - type: Reactive
     groups:
       Flammable: [Touch]
       Extinguish: [Touch]
-  - type: Faction
+  - type: AiFactionTag
     factions:
     - SimpleHostile
   - type: Sprite
@@ -32,19 +32,18 @@
         radius: 0.3
       mass: 65
       mask:
-      - SmallMobMask
+      - MobMask
       layer:
-      - SmallMobLayer
+      - MobLayer
   - type: MobState
     thresholds:
       0: Alive
       150: Critical
       200: Dead
   - type: MeleeWeapon
-    hidden: true
     range: 1
-    angle: 0
-    animation: WeaponArcClaw
+    arcwidth: 0
+    arc: claw
     damage:
       types:
         Slash: 12
@@ -93,6 +92,10 @@
       event: !type:RatKingDomainActionEvent
     hungerPerDomainUse: 50
   - type: MobsterAccent
+  - type: Access #he's so baller he gets his own access. NT got nothing on him
+    tags:
+    - Maintenance
+    - Service
   - type: Butcherable
     spawned:
     - id: ClothingHeadHatFancyCrown #how did that get there?
@@ -110,10 +113,6 @@
     - TongueTwister
   - type: MobPrice
     price: 2500 # rat wealth
-  - type: RandomMetadata
-    nameSegments:
-    - RegalRatNameKingdom
-    - RegalRatNameTitle
 
 - type: entity
   id: MobRatKingBuff
@@ -133,14 +132,12 @@
       300: Critical
       350: Dead
   - type: MeleeWeapon
-    hidden: true
     range: 1.5
-    angle: 0
-    attackRate: 0.75
-    animation: WeaponArcFist
+    arcwidth: 0
+    arc: fist
     damage:
       types:
-        Blunt: 66 #oof ouch owie my bones
+        Blunt: 50 #oof ouch owie my bones
   - type: Fixtures
     fixtures:
     - shape:
@@ -174,7 +171,7 @@
     groups:
       Flammable: [Touch]
       Extinguish: [Touch]
-  - type: Faction
+  - type: AiFactionTag
     factions:
     - SimpleHostile
   - type: Sprite
@@ -198,13 +195,12 @@
   - type: MobState
     thresholds:
       0: Alive
-      40: Critical
+      30: Critical
       60: Dead
   - type: MeleeWeapon
-    hidden: true
     range: 1
-    angle: 0
-    animation: WeaponArcClaw
+    arcwidth: 0
+    arc: claw
     damage:
       types:
         Slash: 5

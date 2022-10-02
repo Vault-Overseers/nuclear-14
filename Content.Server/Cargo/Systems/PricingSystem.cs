@@ -2,14 +2,13 @@
 using Content.Server.Administration;
 using Content.Server.Body.Components;
 using Content.Server.Cargo.Components;
-using Content.Shared.Materials;
+using Content.Server.Materials;
 using Content.Server.Stack;
 using Content.Shared.Administration;
 using Content.Shared.MobState.Components;
 using Robust.Shared.Console;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Cargo.Systems;
@@ -113,33 +112,6 @@ public sealed class PricingSystem : EntitySystem
     }
 
     /// <summary>
-    /// Get a rough price for an entityprototype. Does not consider contained entities.
-    /// </summary>
-    public double GetEstimatedPrice(EntityPrototype prototype, IComponentFactory? factory = null)
-    {
-        IoCManager.Resolve(ref factory);
-        var price = 0.0;
-
-        if (prototype.Components.TryGetValue(factory.GetComponentName(typeof(StaticPriceComponent)),
-                out var staticPriceProto))
-        {
-            var staticComp = (StaticPriceComponent) staticPriceProto.Component;
-
-            price += staticComp.Price;
-        }
-
-        if (prototype.Components.TryGetValue(factory.GetComponentName(typeof(StackPriceComponent)), out var stackpriceProto) &&
-            prototype.Components.TryGetValue(factory.GetComponentName(typeof(StackComponent)), out var stackProto))
-        {
-            var stackPrice = (StackPriceComponent) stackpriceProto.Component;
-            var stack = (StackComponent) stackProto.Component;
-            price += stack.Count * stackPrice.Price;
-        }
-
-        return price;
-    }
-
-    /// <summary>
     /// Appraises an entity, returning it's price.
     /// </summary>
     /// <param name="uid">The entity to appraise.</param>
@@ -151,7 +123,7 @@ public sealed class PricingSystem : EntitySystem
     public double GetPrice(EntityUid uid)
     {
         var ev = new PriceCalculationEvent();
-        RaiseLocalEvent(uid, ref ev);
+        RaiseLocalEvent(uid, ref ev, true);
 
         //TODO: Add an OpaqueToAppraisal component or similar for blocking the recursive descent into containers, or preventing material pricing.
 

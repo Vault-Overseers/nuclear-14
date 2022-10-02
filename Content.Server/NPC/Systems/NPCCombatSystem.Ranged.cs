@@ -2,7 +2,6 @@ using Content.Server.NPC.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.Interaction;
 using Robust.Shared.Map;
-using Robust.Shared.Physics.Components;
 
 namespace Content.Server.NPC.Systems;
 

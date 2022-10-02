@@ -14,8 +14,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Shuttles.Events;
-using Content.Server.Station.Components;
-using Robust.Shared.Physics.Components;
 
 namespace Content.Server.Shuttles.Systems;
 

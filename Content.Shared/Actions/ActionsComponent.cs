@@ -12,8 +12,6 @@ public sealed class ActionsComponent : Component
     [ViewVariables]
     [Access(typeof(SharedActionsSystem), Other = AccessPermissions.ReadExecute)] // FIXME Friends
     public SortedSet<ActionType> Actions = new();
-
-    public override bool SendOnlyToOwner => true;
 }
 
 [Serializable, NetSerializable]

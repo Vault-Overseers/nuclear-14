@@ -12,6 +12,7 @@ namespace Content.Client.Items.Systems;
 
 public sealed class ItemSystem : SharedItemSystem
 {
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly IResourceCache _resCache = default!;
 
     public override void Initialize()
@@ -29,8 +30,8 @@ public sealed class ItemSystem : SharedItemSystem
     public override void VisualsChanged(EntityUid uid)
     {
         // if the item is in a container, it might be equipped to hands or inventory slots --> update visuals.
-        if (Container.TryGetContainingContainer(uid, out var container))
-            RaiseLocalEvent(container.Owner, new VisualsChangedEvent(uid, container.ID));
+        if (_containerSystem.TryGetContainingContainer(uid, out var container))
+            RaiseLocalEvent(container.Owner, new VisualsChangedEvent(uid, container.ID), true);
     }
 
     /// <summary>

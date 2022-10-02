@@ -176,11 +176,6 @@ namespace Content.Server.Atmos
             return removed;
         }
 
-        public GasMixture RemoveVolume(float vol)
-        {
-            return RemoveRatio(vol / Volume);
-        }
-
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFromMutable(GasMixture sample)
         {

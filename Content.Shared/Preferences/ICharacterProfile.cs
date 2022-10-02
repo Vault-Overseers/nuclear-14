@@ -1,4 +1,4 @@
-using Content.Shared.Humanoid;
+using Content.Shared.CharacterAppearance;
 
 namespace Content.Shared.Preferences
 {

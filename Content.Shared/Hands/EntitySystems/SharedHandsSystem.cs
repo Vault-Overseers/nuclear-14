@@ -16,8 +16,6 @@ public abstract partial class SharedHandsSystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
 
-    protected Action<SharedHandsComponent?>? OnHandSetActive;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -31,7 +29,7 @@ public abstract partial class SharedHandsSystem : EntitySystem
         CommandBinds.Unregister<SharedHandsSystem>();
     }
 
-    public virtual void AddHand(EntityUid uid, string handName, HandLocation handLocation, SharedHandsComponent? handsComp = null)
+    public void AddHand(EntityUid uid, string handName, HandLocation handLocation, SharedHandsComponent? handsComp = null)
     {
         if (!Resolve(uid, ref handsComp, false))
             return;
@@ -53,7 +51,7 @@ public abstract partial class SharedHandsSystem : EntitySystem
         Dirty(handsComp);
     }
 
-    public virtual void RemoveHand(EntityUid uid, string handName, SharedHandsComponent? handsComp = null)
+    public void RemoveHand(EntityUid uid, string handName, SharedHandsComponent? handsComp = null)
     {
         if (!Resolve(uid, ref handsComp, false))
             return;
@@ -156,6 +154,7 @@ public abstract partial class SharedHandsSystem : EntitySystem
         Hand? hand = null;
         if (name != null && !handComp.Hands.TryGetValue(name, out hand))
             return false;
+
         return SetActiveHand(uid, hand, handComp);
     }
 
@@ -164,7 +163,7 @@ public abstract partial class SharedHandsSystem : EntitySystem
     /// </summary>
     /// <returns>True if the active hand was set to a NEW value. Setting it to the same value returns false and does
     /// not trigger interactions.</returns>
-    public bool SetActiveHand(EntityUid uid, Hand? hand, SharedHandsComponent? handComp = null)
+    public virtual bool SetActiveHand(EntityUid uid, Hand? hand, SharedHandsComponent? handComp = null)
     {
         if (!Resolve(uid, ref handComp))
             return false;
@@ -182,10 +181,10 @@ public abstract partial class SharedHandsSystem : EntitySystem
         }
 
         handComp.ActiveHand = hand;
-        OnHandSetActive?.Invoke(handComp);
 
         if (hand.HeldEntity != null)
             RaiseLocalEvent(hand.HeldEntity.Value, new HandSelectedEvent(uid), false);
+
         Dirty(handComp);
         return true;
     }

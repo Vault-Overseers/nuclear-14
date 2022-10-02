@@ -12,8 +12,6 @@ using Content.Shared.Tag;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
@@ -22,10 +20,10 @@ namespace Content.Server.Vehicle
     public sealed partial class VehicleSystem : SharedVehicleSystem
     {
         [Dependency] private readonly HandVirtualItemSystem _virtualItemSystem = default!;
+        [Dependency] private readonly MetaDataSystem _metadata = default!;
         [Dependency] private readonly MovementSpeedModifierSystem _modifier = default!;
         [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
         [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;
-        [Dependency] private readonly SharedJointSystem _joints = default!;
         [Dependency] private readonly SharedMoverController _mover = default!;
         [Dependency] private readonly TagSystem _tagSystem = default!;
 
@@ -112,11 +110,6 @@ namespace Content.Server.Vehicle
                 if (component.HornSound != null)
                 {
                     _actionsSystem.AddAction(args.BuckledEntity, component.HornAction, uid, actions);
-                }
-
-                if (TryComp<JointComponent>(args.BuckledEntity, out var joints))
-                {
-                    _joints.ClearJoints(joints);
                 }
 
                 return;

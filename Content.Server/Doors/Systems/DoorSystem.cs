@@ -21,8 +21,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Player;
 using System.Linq;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Events;
 
 namespace Content.Server.Doors.Systems;
 
@@ -170,7 +168,7 @@ public sealed class DoorSystem : SharedDoorSystem
 
         args.Verbs.Add(new AlternativeVerb()
         {
-            Text = Loc.GetString("door-pry"),
+            Text = "Pry door",
             Impact = LogImpact.Low,
             Act = () => TryPryDoor(uid, args.User, args.User, component, true),
         });
@@ -180,7 +178,7 @@ public sealed class DoorSystem : SharedDoorSystem
     /// <summary>
     ///     Pry open a door. This does not check if the user is holding the required tool.
     /// </summary>
-    public bool TryPryDoor(EntityUid target, EntityUid tool, EntityUid user, DoorComponent door, bool force = false)
+    private bool TryPryDoor(EntityUid target, EntityUid tool, EntityUid user, DoorComponent door, bool force = false)
     {
         if (door.BeingPried)
             return false;
@@ -258,7 +256,7 @@ public sealed class DoorSystem : SharedDoorSystem
     ///     Open a door if a player or door-bumper (PDA, ID-card) collide with the door. Sadly, bullets no longer
     ///     generate "access denied" sounds as you fire at a door.
     /// </summary>
-    protected override void HandleCollide(EntityUid uid, DoorComponent door, ref StartCollideEvent args)
+    protected override void HandleCollide(EntityUid uid, DoorComponent door, StartCollideEvent args)
     {
         // TODO ACCESS READER move access reader to shared and predict door opening/closing
         // Then this can be moved to the shared system without mispredicting.

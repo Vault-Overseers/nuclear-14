@@ -1,6 +1,5 @@
 using Lidgren.Network;
 using Robust.Shared.Network;
-using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Administration;
@@ -23,14 +22,14 @@ public sealed class NetworkResourceUploadMessage : NetMessage
         RelativePath = relativePath;
     }
 
-    public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
+    public override void ReadFromBuffer(NetIncomingMessage buffer)
     {
         var dataLength = buffer.ReadVariableInt32();
         Data = buffer.ReadBytes(dataLength);
         RelativePath = new ResourcePath(buffer.ReadString(), buffer.ReadString());
     }
 
-    public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
+    public override void WriteToBuffer(NetOutgoingMessage buffer)
     {
         buffer.WriteVariableInt32(Data.Length);
         buffer.Write(Data);

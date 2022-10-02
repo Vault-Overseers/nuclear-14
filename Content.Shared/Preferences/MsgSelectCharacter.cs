@@ -1,6 +1,5 @@
 ﻿using Lidgren.Network;
 using Robust.Shared.Network;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.Preferences
 {
@@ -13,12 +12,12 @@ namespace Content.Shared.Preferences
 
         public int SelectedCharacterIndex;
 
-        public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
+        public override void ReadFromBuffer(NetIncomingMessage buffer)
         {
             SelectedCharacterIndex = buffer.ReadVariableInt32();
         }
 
-        public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
+        public override void WriteToBuffer(NetOutgoingMessage buffer)
         {
             buffer.WriteVariableInt32(SelectedCharacterIndex);
         }

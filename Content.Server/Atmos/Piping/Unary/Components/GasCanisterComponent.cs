@@ -1,5 +1,4 @@
 using Content.Shared.Atmos;
-using Robust.Shared.Audio;
 
 namespace Content.Server.Atmos.Piping.Unary.Components
 {
@@ -53,8 +52,5 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("releaseValve")]
         public bool ReleaseValve { get; set; } = false;
-
-        [DataField("accessDeniedSound")]
-        public SoundSpecifier AccessDeniedSound = new SoundPathSpecifier("/Audio/Machines/custom_deny.ogg");
     }
 }

@@ -10,8 +10,7 @@ namespace Content.Server.Polymorph.Components
         /// The polymorph prototype, used to track various information
         /// about the polymorph
         /// </summary>
-        [DataField("prototype", required: true, customTypeSerializer:typeof(PrototypeIdSerializer<PolymorphPrototype>))]
-        public string Prototype = string.Empty;
+        public PolymorphPrototype Prototype = default!;
 
         /// <summary>
         /// The original entity that the player will revert back into

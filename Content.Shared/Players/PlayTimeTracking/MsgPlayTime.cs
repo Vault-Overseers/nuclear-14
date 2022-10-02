@@ -1,6 +1,5 @@
 ﻿using Lidgren.Network;
 using Robust.Shared.Network;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.Players.PlayTimeTracking;
 
@@ -13,7 +12,7 @@ public sealed class MsgPlayTime : NetMessage
 
     public Dictionary<string, TimeSpan> Trackers = new();
 
-    public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
+    public override void ReadFromBuffer(NetIncomingMessage buffer)
     {
         var count = buffer.ReadVariableInt32();
         for (var i = 0; i < count; i++)
@@ -22,7 +21,7 @@ public sealed class MsgPlayTime : NetMessage
         }
     }
 
-    public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
+    public override void WriteToBuffer(NetOutgoingMessage buffer)
     {
         buffer.WriteVariableInt32(Trackers.Count);
 

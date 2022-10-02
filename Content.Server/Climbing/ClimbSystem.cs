@@ -1,6 +1,5 @@
 using Content.Server.Climbing.Components;
 using Content.Server.DoAfter;
-using Content.Server.Interaction;
 using Content.Server.Interaction.Components;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
@@ -25,10 +24,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using SharpZstd.Interop;
 
@@ -43,7 +39,7 @@ public sealed class ClimbSystem : SharedClimbSystem
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly InteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly StunSystem _stunSystem = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
 
@@ -138,14 +134,18 @@ public sealed class ClimbSystem : SharedClimbSystem
         if (!_cfg.GetCVar(CCVars.GameTableBonk))
         {
             // Not set to always bonk, try clumsy roll.
-            if (!_interactionSystem.TryRollClumsy(user, component.BonkClumsyChance))
+            if (!TryComp(user, out ClumsyComponent? clumsy))
+                return false;
+
+            if (!clumsy.RollClumsy(component.BonkClumsyChance))
                 return false;
         }
 
         // BONK!
 
         _audioSystem.PlayPvs(component.BonkSound, component.Owner);
-        _stunSystem.TryParalyze(user, TimeSpan.FromSeconds(component.BonkTime), true);
+
+        _stunSystem.TryKnockdown(user, TimeSpan.FromSeconds(component.BonkTime), true);
 
         if (component.BonkDamage is { } bonkDmg)
             _damageableSystem.TryChangeDamage(user, bonkDmg, true);
@@ -224,7 +224,7 @@ public sealed class ClimbSystem : SharedClimbSystem
         return true;
     }
 
-    private void OnClimbEndCollide(EntityUid uid, ClimbingComponent component, ref EndCollideEvent args)
+    private void OnClimbEndCollide(EntityUid uid, ClimbingComponent component, EndCollideEvent args)
     {
         if (args.OurFixture.ID != ClimbingFixtureName
             || !component.IsClimbing

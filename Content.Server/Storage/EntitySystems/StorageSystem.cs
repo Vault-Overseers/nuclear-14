@@ -28,7 +28,6 @@ using Content.Server.Popups;
 using Content.Shared.Destructible;
 using static Content.Shared.Storage.SharedStorageComponent;
 using Content.Shared.ActionBlocker;
-using Content.Shared.CombatMode;
 using Content.Shared.Movement.Events;
 
 namespace Content.Server.Storage.EntitySystems
@@ -49,7 +48,6 @@ namespace Content.Server.Storage.EntitySystems
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
 
         /// <inheritdoc />
@@ -265,9 +263,6 @@ namespace Content.Server.Storage.EntitySystems
         /// <returns></returns>
         private void OnActivate(EntityUid uid, ServerStorageComponent storageComp, ActivateInWorldEvent args)
         {
-            if (args.Handled || _combatMode.IsInCombatMode(args.User))
-                return;
-
             if (TryComp(uid, out LockComponent? lockComponent) && lockComponent.Locked)
                 return;
 

@@ -1,6 +1,4 @@
-using System.Linq;
 using Content.Server.Construction.Components;
-using Content.Shared.Construction.Prototypes;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Construction;
@@ -38,32 +36,11 @@ public sealed partial class ConstructionSystem
         return parts;
     }
 
-    public Dictionary<string, float> GetPartsRatings(List<MachinePartComponent> parts)
-    {
-        var output = new Dictionary<string, float>();
-        foreach (var type in _prototypeManager.EnumeratePrototypes<MachinePartPrototype>())
-        {
-            var amount = 0;
-            var sumRating = 0;
-            foreach (var part in parts.Where(part => part.PartType == type.ID))
-            {
-                amount++;
-                sumRating += part.Rating;
-            }
-            var rating = amount != 0 ? sumRating / amount : 0;
-            output.Add(type.ID, rating);
-        }
-
-        return output;
-    }
-
     public void RefreshParts(MachineComponent component)
     {
-        var parts = GetAllParts(component);
-        EntityManager.EventBus.RaiseLocalEvent(component.Owner, new RefreshPartsEvent
+        EntityManager.EventBus.RaiseLocalEvent(component.Owner, new RefreshPartsEvent()
         {
-            Parts = parts,
-            PartRatings = GetPartsRatings(parts),
+            Parts = GetAllParts(component),
         }, true);
     }
 
@@ -92,16 +69,14 @@ public sealed partial class ConstructionSystem
             throw new Exception($"Entity with prototype {component.BoardPrototype} doesn't have a {nameof(MachineBoardComponent)}!");
         }
 
-        var xform = Transform(component.Owner);
         foreach (var (part, amount) in machineBoard.Requirements)
         {
-            var partProto = _prototypeManager.Index<MachinePartPrototype>(part);
             for (var i = 0; i < amount; i++)
             {
-                var p = EntityManager.SpawnEntity(partProto.StockPartPrototype, xform.Coordinates);
+                var p = EntityManager.SpawnEntity(MachinePartComponent.Prototypes[part], Transform(component.Owner).Coordinates);
 
                 if (!partContainer.Insert(p))
-                    throw new Exception($"Couldn't insert machine part of type {part} to machine with prototype {partProto.StockPartPrototype ?? "N/A"}!");
+                    throw new Exception($"Couldn't insert machine part of type {part} to machine with prototype {MetaData(component.Owner).EntityPrototype?.ID ?? "N/A"}!");
             }
         }
 
@@ -140,6 +115,4 @@ public sealed partial class ConstructionSystem
 public sealed class RefreshPartsEvent : EntityEventArgs
 {
     public IReadOnlyList<MachinePartComponent> Parts = new List<MachinePartComponent>();
-
-    public Dictionary<string, float> PartRatings = new Dictionary<string, float>();
 }

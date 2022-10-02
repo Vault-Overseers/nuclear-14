@@ -25,7 +25,6 @@
 
         /// <summary>
         ///     !!FUN!!
-        ///     This is stuff that trial administrators shouldn't quite have access to yet, e.g. for running events.
         /// </summary>
         Fun = 1 << 3,
 

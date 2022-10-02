@@ -1,6 +1,13 @@
+using Content.Server.Weapon.Melee;
+using Content.Server.Stunnable;
+using Content.Shared.Inventory.Events;
+using Content.Server.Weapon.Melee.Components;
+using Content.Server.Clothing.Components;
+using Content.Server.Damage.Components;
 using Content.Server.Damage.Events;
-using Content.Server.Weapons.Melee.Events;
-using Content.Shared.Weapons.Melee;
+using Robust.Shared.Audio;
+using Robust.Shared.Player;
+using Robust.Shared.Random;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Abilities.Boxer
@@ -13,26 +20,29 @@ namespace Content.Server.Abilities.Boxer
         {
             base.Initialize();
             SubscribeLocalEvent<BoxerComponent, ComponentInit>(OnInit);
-            SubscribeLocalEvent<BoxerComponent, ItemMeleeDamageEvent>(GetDamageModifiers);
+            SubscribeLocalEvent<BoxerComponent, MeleeHitEvent>(ApplyBoxerModifiers);
             SubscribeLocalEvent<BoxingGlovesComponent, StaminaMeleeHitEvent>(OnStamHit);
         }
 
-        private void OnInit(EntityUid uid, BoxerComponent component, ComponentInit args)
+        private void OnInit(EntityUid uid, BoxerComponent boxer, ComponentInit args)
         {
             if (TryComp<MeleeWeaponComponent>(uid, out var meleeComp))
-                meleeComp.Range *= component.RangeBonus;
+                meleeComp.Range *= boxer.RangeBonus;
         }
-        private void GetDamageModifiers(EntityUid uid, BoxerComponent component, ItemMeleeDamageEvent args)
+        private void ApplyBoxerModifiers(EntityUid uid, BoxerComponent component, MeleeHitEvent args)
         {
+            if (component.UnarmedModifiers == default!)
+            {
+                Logger.Warning("BoxerComponent on " + uid + " couldn't get damage modifiers. Know that adding components with damage modifiers through VV or similar is unsupported.");
+                return;
+            }
+
             args.ModifiersList.Add(component.UnarmedModifiers);
         }
-
         private void OnStamHit(EntityUid uid, BoxingGlovesComponent component, StaminaMeleeHitEvent args)
         {
-            if (!_containerSystem.TryGetContainingContainer(uid, out var equipee))
-                return;
-
-            if (TryComp<BoxerComponent>(equipee.Owner, out var boxer))
+            _containerSystem.TryGetContainingContainer(uid, out var equipee);
+            if (TryComp<BoxerComponent>(equipee?.Owner, out var boxer))
                 args.Multiplier *= boxer.BoxingGlovesModifier;
         }
     }

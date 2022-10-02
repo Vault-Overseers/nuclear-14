@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Alert;
-using Content.Shared.Rejuvenate;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -23,7 +22,6 @@ namespace Content.Shared.StatusEffect
 
             SubscribeLocalEvent<StatusEffectsComponent, ComponentGetState>(OnGetState);
             SubscribeLocalEvent<StatusEffectsComponent, ComponentHandleState>(OnHandleState);
-            SubscribeLocalEvent<StatusEffectsComponent, RejuvenateEvent>(OnRejuvenate);
         }
 
         public override void Update(float frameTime)
@@ -82,11 +80,6 @@ namespace Content.Shared.StatusEffect
                 component.ActiveEffects[key].RelevantComponent = effect.RelevantComponent;
                 // state handling should not add networked components, that is handled separately by the client game state manager.
             }
-        }
-
-        private void OnRejuvenate(EntityUid uid, StatusEffectsComponent component, RejuvenateEvent args)
-        {
-            TryRemoveAllStatusEffects(uid, component);
         }
 
         /// <summary>

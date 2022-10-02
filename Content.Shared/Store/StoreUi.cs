@@ -1,4 +1,5 @@
 using Content.Shared.FixedPoint;
+using Content.Shared.MobState;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Store;
@@ -12,12 +13,15 @@ public enum StoreUiKey : byte
 [Serializable, NetSerializable]
 public sealed class StoreUpdateState : BoundUserInterfaceState
 {
+    public readonly EntityUid? Buyer;
+
     public readonly HashSet<ListingData> Listings;
 
     public readonly Dictionary<string, FixedPoint2> Balance;
 
-    public StoreUpdateState(HashSet<ListingData> listings, Dictionary<string, FixedPoint2> balance)
+    public StoreUpdateState(EntityUid? buyer, HashSet<ListingData> listings, Dictionary<string, FixedPoint2> balance)
     {
+        Buyer = buyer;
         Listings = listings;
         Balance = balance;
     }
@@ -40,18 +44,24 @@ public sealed class StoreInitializeState : BoundUserInterfaceState
 [Serializable, NetSerializable]
 public sealed class StoreRequestUpdateInterfaceMessage : BoundUserInterfaceMessage
 {
-    public StoreRequestUpdateInterfaceMessage()
+    public EntityUid CurrentBuyer;
+
+    public StoreRequestUpdateInterfaceMessage(EntityUid currentBuyer)
     {
+        CurrentBuyer = currentBuyer;
     }
 }
 
 [Serializable, NetSerializable]
 public sealed class StoreBuyListingMessage : BoundUserInterfaceMessage
 {
+    public EntityUid Buyer;
+
     public ListingData Listing;
 
-    public StoreBuyListingMessage(ListingData listing)
+    public StoreBuyListingMessage(EntityUid buyer, ListingData listing)
     {
+        Buyer = buyer;
         Listing = listing;
     }
 }
@@ -59,12 +69,15 @@ public sealed class StoreBuyListingMessage : BoundUserInterfaceMessage
 [Serializable, NetSerializable]
 public sealed class StoreRequestWithdrawMessage : BoundUserInterfaceMessage
 {
+    public EntityUid Buyer;
+
     public string Currency;
 
     public int Amount;
 
-    public StoreRequestWithdrawMessage(string currency, int amount)
+    public StoreRequestWithdrawMessage(EntityUid buyer, string currency, int amount)
     {
+        Buyer = buyer;
         Currency = currency;
         Amount = amount;
     }

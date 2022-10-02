@@ -1,10 +1,7 @@
-using System.Linq;
 using Content.Server.Chemistry.Components;
-using Content.Server.Weapons.Melee.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Weapons.Melee;
-using Content.Shared.Weapons.Melee.Events;
 
 namespace Content.Server.Chemistry.EntitySystems
 {
@@ -13,7 +10,7 @@ namespace Content.Server.Chemistry.EntitySystems
         private void InitializeHypospray()
         {
             SubscribeLocalEvent<HyposprayComponent, AfterInteractEvent>(OnAfterInteract);
-            SubscribeLocalEvent<HyposprayComponent, MeleeHitEvent>(OnAttack);
+            SubscribeLocalEvent<HyposprayComponent, ClickAttackEvent>(OnClickAttack);
             SubscribeLocalEvent<HyposprayComponent, SolutionChangedEvent>(OnSolutionChange);
             SubscribeLocalEvent<HyposprayComponent, UseInHandEvent>(OnUseInHand);
         }
@@ -42,12 +39,12 @@ namespace Content.Server.Chemistry.EntitySystems
             comp.TryDoInject(target, user);
         }
 
-        public void OnAttack(EntityUid uid, HyposprayComponent comp, MeleeHitEvent args)
+        public void OnClickAttack(EntityUid uid, HyposprayComponent comp, ClickAttackEvent args)
         {
-            if (!args.HitEntities.Any())
+            if (args.Target == null)
                 return;
 
-            comp.TryDoInject(args.HitEntities.First(), args.User);
+            comp.TryDoInject(args.Target.Value, args.User);
         }
     }
 }

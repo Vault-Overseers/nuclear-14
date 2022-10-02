@@ -13,7 +13,6 @@ using Content.Shared.Shuttles.Systems;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameStates;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -46,6 +45,13 @@ namespace Content.Server.Shuttles.Systems
 
             SubscribeLocalEvent<PilotComponent, MoveEvent>(HandlePilotMove);
             SubscribeLocalEvent<PilotComponent, ComponentGetState>(OnGetState);
+            SubscribeLocalEvent<PilotComponent, ComponentGetStateAttemptEvent>(OnGetStateAttempt);
+        }
+
+        private void OnGetStateAttempt(EntityUid uid, PilotComponent component, ref ComponentGetStateAttemptEvent args)
+        {
+            if (args.Cancelled || !TryComp<ActorComponent>(uid, out var actor) || actor.PlayerSession != args.Player)
+                args.Cancelled = true;
         }
 
         private void OnDestinationMessage(EntityUid uid, ShuttleConsoleComponent component, ShuttleConsoleDestinationMessage args)

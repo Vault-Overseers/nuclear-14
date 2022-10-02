@@ -1,6 +1,5 @@
 using Content.Shared.Drunk;
 using Content.Shared.StatusEffect;
-using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
@@ -54,12 +53,6 @@ public sealed class DrunkOverlay : Overlay
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        if (!_entityManager.TryGetComponent(_playerManager.LocalPlayer?.ControlledEntity, out EyeComponent? eyeComp))
-            return false;
-
-        if (args.Viewport.Eye != eyeComp.Eye)
-            return false;
-
         _visualScale = BoozePowerToVisual(CurrentBoozePower);
         return _visualScale > 0;
     }

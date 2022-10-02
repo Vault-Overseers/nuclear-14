@@ -1,7 +1,6 @@
 using JetBrains.Annotations;
 using Lidgren.Network;
 using Robust.Shared.Network;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.Chat
 {
@@ -42,7 +41,7 @@ namespace Content.Shared.Chat
         public bool HideChat { get; set; }
 
 
-        public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
+        public override void ReadFromBuffer(NetIncomingMessage buffer)
         {
             Channel = (ChatChannel) buffer.ReadInt16();
             Message = buffer.ReadString();
@@ -62,7 +61,7 @@ namespace Content.Shared.Chat
             HideChat = buffer.ReadBoolean();
         }
 
-        public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
+        public override void WriteToBuffer(NetOutgoingMessage buffer)
         {
             buffer.Write((short)Channel);
             buffer.Write(Message);

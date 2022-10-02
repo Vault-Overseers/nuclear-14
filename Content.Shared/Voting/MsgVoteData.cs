@@ -1,6 +1,5 @@
 ﻿using Lidgren.Network;
 using Robust.Shared.Network;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.Voting
 {
@@ -18,7 +17,7 @@ namespace Content.Shared.Voting
         public bool IsYourVoteDirty;
         public byte? YourVote;
 
-        public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
+        public override void ReadFromBuffer(NetIncomingMessage buffer)
         {
             VoteId = buffer.ReadVariableInt32();
             VoteActive = buffer.ReadBoolean();
@@ -45,7 +44,7 @@ namespace Content.Shared.Voting
             }
         }
 
-        public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
+        public override void WriteToBuffer(NetOutgoingMessage buffer)
         {
             buffer.WriteVariableInt32(VoteId);
             buffer.Write(VoteActive);

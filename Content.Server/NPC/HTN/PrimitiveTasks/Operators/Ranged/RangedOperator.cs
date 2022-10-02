@@ -1,4 +1,3 @@
-using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.NPC.Components;
 using Content.Shared.MobState;
@@ -25,8 +24,7 @@ public sealed class RangedOperator : HTNOperator
 
     // Like movement we add a component and pass it off to the dedicated system.
 
-    public override async Task<(bool Valid, Dictionary<string, object>? Effects)> Plan(NPCBlackboard blackboard,
-        CancellationToken cancelToken)
+    public override async Task<(bool Valid, Dictionary<string, object>? Effects)> Plan(NPCBlackboard blackboard)
     {
         // Don't attack if they're already as wounded as we want them.
         if (!blackboard.TryGetValue<EntityUid>(TargetKey, out var target))

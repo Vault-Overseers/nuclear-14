@@ -1,6 +1,5 @@
 using Content.Client.Items;
 using Content.Client.Tools.Components;
-using Content.Client.Tools.UI;
 using Content.Shared.Tools;
 using Content.Shared.Tools.Components;
 using Robust.Client.GameObjects;
@@ -15,7 +14,6 @@ namespace Content.Client.Tools
             base.Initialize();
 
             SubscribeLocalEvent<WelderComponent, ComponentHandleState>(OnWelderHandleState);
-            SubscribeLocalEvent<WelderComponent, ItemStatusCollectMessage>(OnWelderGetStatusMessage);
             SubscribeLocalEvent<MultipleToolComponent, ItemStatusCollectMessage>(OnGetStatusMessage);
         }
 
@@ -45,11 +43,6 @@ namespace Content.Client.Tools
         private void OnGetStatusMessage(EntityUid uid, MultipleToolComponent welder, ItemStatusCollectMessage args)
         {
             args.Controls.Add(new MultipleToolStatusControl(welder));
-        }
-
-        private void OnWelderGetStatusMessage(EntityUid uid, WelderComponent component, ItemStatusCollectMessage args)
-        {
-            args.Controls.Add(new WelderStatusControl(component));
         }
 
         private void OnWelderHandleState(EntityUid uid, WelderComponent welder, ref ComponentHandleState args)

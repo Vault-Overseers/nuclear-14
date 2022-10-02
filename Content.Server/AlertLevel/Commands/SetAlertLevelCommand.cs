@@ -9,7 +9,7 @@ using Robust.Shared.Console;
 namespace Content.Server.AlertLevel.Commands
 {
     [UsedImplicitly]
-    [AdminCommand(AdminFlags.Admin)]
+    [AdminCommand(AdminFlags.Fun)]
     public sealed class SetAlertLevelCommand : IConsoleCommand
     {
         public string Command => "setalertlevel";

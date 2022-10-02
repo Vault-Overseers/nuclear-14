@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Client.Animations;
-using Content.Client.Hands.UI;
 using Content.Client.HUD;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
@@ -15,7 +14,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
-namespace Content.Client.Hands.Systems
+namespace Content.Client.Hands
 {
     [UsedImplicitly]
     public sealed class HandsSystem : SharedHandsSystem

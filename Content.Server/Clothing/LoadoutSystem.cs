@@ -2,7 +2,6 @@ using Content.Server.Clothing.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Server.Clothing
 {
@@ -13,7 +12,6 @@ namespace Content.Server.Clothing
     {
         [Dependency] private readonly StationSpawningSystem _station = default!;
         [Dependency] private readonly IPrototypeManager _protoMan = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
 
         public override void Initialize()
         {
@@ -24,10 +22,10 @@ namespace Content.Server.Clothing
 
         private void OnStartup(EntityUid uid, LoadoutComponent component, ComponentStartup args)
         {
-            if (component.Prototypes == null)
+            if (component.Prototype == string.Empty)
                 return;
 
-            var proto = _protoMan.Index<StartingGearPrototype>(_random.Pick(component.Prototypes));
+            var proto = _protoMan.Index<StartingGearPrototype>(component.Prototype);
             _station.EquipStartingGear(uid, proto, null);
         }
     }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Content.Client.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Binary.Components;
@@ -57,12 +57,10 @@ namespace Content.Client.Atmos.UI
 
         private void OnMixerSetPercentagePressed(string value)
         {
-            // We don't need to send both nodes because it's just 100.0f - node
+            // We don't need to send both nodes because it's just 1.0f - node
             float node = float.TryParse(value, out var parsed) ? parsed : 1.0f;
 
-            node = Math.Clamp(node, 0, 100);
-
-            if (_window is not null) node = _window.NodeOneLastEdited ? node : 100.0f - node;
+            if(_window is not null) node = _window.NodeOneLastEdited ? node : 1.0f - node;
 
             SendMessage(new GasMixerChangeNodePercentageMessage(node));
         }

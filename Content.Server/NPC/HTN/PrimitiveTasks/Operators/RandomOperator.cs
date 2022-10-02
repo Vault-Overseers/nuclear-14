@@ -1,4 +1,3 @@
-using System.Threading;
 using System.Threading.Tasks;
 using Robust.Shared.Random;
 
@@ -23,8 +22,7 @@ public sealed class RandomOperator : HTNOperator
     /// </summary>
     [DataField("maxKey", required: true)] public string MaxKey = string.Empty;
 
-    public override async Task<(bool Valid, Dictionary<string, object>? Effects)> Plan(NPCBlackboard blackboard,
-        CancellationToken cancelToken)
+    public override async Task<(bool Valid, Dictionary<string, object>? Effects)> Plan(NPCBlackboard blackboard)
     {
         return (true, new Dictionary<string, object>()
         {

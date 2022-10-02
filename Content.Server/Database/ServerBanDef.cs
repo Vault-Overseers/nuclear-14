@@ -55,15 +55,14 @@ namespace Content.Server.Database
         public string DisconnectMessage
         {
             get {
-                var expires = Loc.GetString("ban-banned-permanent");
+                var expires = "This is a permanent ban.";
                 if (this.ExpirationTime is { } expireTime)
                 {
                     var duration = expireTime - this.BanTime;
                     var utc = expireTime.ToUniversalTime();
-                    expires = Loc.GetString("ban-expires", ("duration", duration.TotalMinutes.ToString("N0")), ("time", utc.ToString("f")));
+                    expires = $"This ban is for {duration.TotalMinutes:N0} minutes and will expire at {utc:f} UTC.";
                 }
-                var details = Loc.GetString("ban-banned-1") + "\n" + Loc.GetString("ban-banned-2", ("reason", this.Reason)) + "\n" + expires;
-                return details;
+                return $"You, or another user of this computer or connection, are banned from playing here.\nThe ban reason is: \"{this.Reason}\"\n{expires}";
             }
         }
     }

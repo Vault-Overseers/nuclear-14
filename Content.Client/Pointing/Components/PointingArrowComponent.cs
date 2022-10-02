@@ -1,7 +1,12 @@
 using Content.Shared.Pointing.Components;
+using Robust.Client.GameObjects;
+using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Client.Pointing.Components
 {
     [RegisterComponent]
-    public sealed class PointingArrowComponent : SharedPointingArrowComponent {}
+    [ComponentReference(typeof(SharedPointingArrowComponent))]
+    public sealed class PointingArrowComponent : SharedPointingArrowComponent
+    {
+    }
 }

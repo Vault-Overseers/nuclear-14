@@ -1,6 +1,8 @@
-using Content.Client.UserInterface.Systems.Ghost;
+using Content.Client.Ghost.UI;
 using Content.Shared.Ghost;
 using Robust.Client.Player;
+using Robust.Shared.GameObjects;
+using Robust.Shared.IoC;
 
 namespace Content.Client.Ghost
 {

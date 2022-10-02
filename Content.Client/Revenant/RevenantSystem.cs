@@ -1,5 +1,4 @@
 using Content.Shared.Revenant;
-using Content.Shared.Revenant.Components;
 using Robust.Client.GameObjects;
 
 namespace Content.Client.Revenant;

@@ -151,9 +151,8 @@ public sealed class HTNSystem : EntitySystem
                 {
                     _sawmill.Fatal($"Received exception on planning job for {comp.Owner}!");
                     _npc.SleepNPC(comp.Owner);
-                    var exc = comp.PlanningJob.Exception;
                     RemComp<HTNComponent>(comp.Owner);
-                    throw exc;
+                    throw comp.PlanningJob.Exception;
                 }
 
                 // If a new planning job has finished then handle it.

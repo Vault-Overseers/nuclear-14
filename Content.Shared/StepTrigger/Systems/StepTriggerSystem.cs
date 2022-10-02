@@ -1,9 +1,7 @@
 using Content.Shared.StepTrigger.Components;
 using Robust.Shared.Collections;
 using Robust.Shared.GameStates;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
-using Robust.Shared.Physics.Events;
 
 namespace Content.Shared.StepTrigger.Systems;
 
@@ -99,7 +97,7 @@ public sealed class StepTriggerSystem : EntitySystem
         return msg.Continue && !msg.Cancelled;
     }
 
-    private void HandleCollide(EntityUid uid, StepTriggerComponent component, ref StartCollideEvent args)
+    private void HandleCollide(EntityUid uid, StepTriggerComponent component, StartCollideEvent args)
     {
         var otherUid = args.OtherFixture.Body.Owner;
 

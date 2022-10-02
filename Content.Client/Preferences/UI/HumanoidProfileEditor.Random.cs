@@ -1,5 +1,5 @@
+using Content.Shared.CharacterAppearance;
 using Content.Shared.Dataset;
-using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
@@ -15,8 +15,15 @@ namespace Content.Client.Preferences.UI
         private void RandomizeEverything()
         {
             Profile = HumanoidCharacterProfile.Random();
-            UpdateControls();
-            IsDirty = true;
+            UpdateSexControls();
+            UpdateGenderControls();
+            UpdateClothingControls();
+            UpdateAgeEdit();
+            UpdateNameEdit();
+            UpdateHairPickers();
+            UpdateEyePickers();
+
+            _skinColor.Value = _random.Next(0, 100);
         }
 
         private void RandomizeName()

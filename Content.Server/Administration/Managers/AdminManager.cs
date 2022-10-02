@@ -87,11 +87,6 @@ namespace Content.Server.Administration.Managers
                 throw new ArgumentException($"Player {session} is not an admin");
             }
 
-            if (reg.Data.Active)
-            {
-                return;
-            }
-
             _chat.DispatchServerMessage(session, Loc.GetString("admin-manager-became-admin-message"));
 
             var plyData = session.ContentData()!;

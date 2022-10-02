@@ -15,11 +15,13 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 7
+        Blunt: 5
     bluntStaminaDamageFactor: 2.0
     range: 1.5
-    angle: 60
-    animation: WeaponArcSlash
+    arcwidth: 60
+    arc: default
+    cooldownTime: 1.5
+    arcCooldownTime: 1.5
   - type: StaminaDamageOnHit
     damage: 55
   - type: Battery
@@ -27,7 +29,6 @@
     startingCharge: 1000
   - type: ItemCooldown
   - type: Item
-    heldPrefix: off
     size: 20
   - type: Clothing
     sprite: Objects/Weapons/Melee/stunbaton.rsi
@@ -44,8 +45,6 @@
         enum.ToggleVisuals.Layer:
           True: {state: stunbaton_on}
           False: {state: stunbaton_off}
-  - type: StaticPrice
-    price: 100
 
 - type: entity
   name: flash
@@ -62,13 +61,12 @@
         types:
           Blunt: 0 # why is this classed as a melee weapon? Is it needed for some interaction?
       range: 1
-      angle: 10
+      arcWidth: 10
+      arc: default
     - type: Item
       size: 5
       sprite: Objects/Weapons/Melee/flash.rsi
     - type: ItemCooldown
-    - type: StaticPrice
-      price: 40
 
 - type: entity
   name: portable flasher
