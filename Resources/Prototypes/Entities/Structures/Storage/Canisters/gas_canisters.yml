@@ -2,8 +2,6 @@
   abstract: true
   parent: BaseStructureDynamic
   id: GasCanister
-  name: gas canister
-  description: A canister that can contain any type of gas. It can be attached to connector ports using a wrench.
   components:
     - type: InteractionOutline
     - type: Transform
@@ -11,6 +9,7 @@
     - type: Sprite
       netsync: false
       sprite: Structures/Storage/canister.rsi
+      noRot: true
       layers:
         - state: grey
     - type: Appearance
@@ -24,6 +23,10 @@
           tankInserted:
             False: { state: can-open, visible: false }
             True: { state: can-open, visible: true }
+        enum.GasCanisterVisuals.Locked:
+          locked:
+            False: { state: can-unlocked, shader: "unshaded" }
+            True: { state: can-locked, shader: "unshaded" }
         enum.GasCanisterVisuals.PressureState:
           pressureLight:
             0: { state: can-o0, shader: "unshaded" }
@@ -80,11 +83,16 @@
           volume: 1
     - type: GasPortable
     - type: GasCanister
+    - type: StaticPrice
+      price: 1000
+    - type: AccessReader
+      access: [["Atmospherics"], ["ResearchDirector"]]
+    - type: Lock
+      locked: false
 
 - type: entity
   parent: GasCanister
   id: StorageCanister
-  name: storage canister
   components:
     - type: Sprite
       layers:
@@ -122,7 +130,6 @@
 - type: entity
   parent: GasCanister
   id: AirCanister
-  name: air canister
   components:
   - type: Sprite
     layers:
@@ -154,7 +161,6 @@
 - type: entity
   parent: GasCanister
   id: OxygenCanister
-  name: oxygen canister
   components:
   - type: Sprite
     layers:
@@ -185,7 +191,6 @@
 - type: entity
   parent: GasCanister
   id: NitrogenCanister
-  name: nitrogen canister
   components:
     - type: Sprite
       layers:
@@ -217,7 +222,6 @@
 - type: entity
   parent: GasCanister
   id: CarbonDioxideCanister
-  name: carbon dioxide canister
   components:
     - type: Sprite
       layers:
@@ -246,11 +250,12 @@
               max: 1
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
+    - type: Lock
+      locked: true
 
 - type: entity
   parent: GasCanister
   id: PlasmaCanister
-  name: plasma canister
   components:
     - type: Sprite
       layers:
@@ -281,11 +286,12 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
         - !type:DumpCanisterBehavior
+    - type: Lock
+      locked: true
 
 - type: entity
   parent: GasCanister
   id: TritiumCanister
-  name: tritium canister
   components:
     - type: Sprite
       layers:
@@ -316,11 +322,12 @@
               max: 1
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
+    - type: Lock
+      locked: true
 
 - type: entity
   parent: GasCanister
   id: WaterVaporCanister
-  name: water vapor canister
   components:
     - type: Sprite
       layers:
@@ -356,7 +363,6 @@
 - type: entity
   parent: GasCanister
   id: MiasmaCanister
-  name: miasma canister
   components:
     - type: Sprite
       layers:
@@ -389,11 +395,12 @@
               max: 1
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
+    - type: Lock
+      locked: true
 
 - type: entity
   parent: GasCanister
   id: NitrousOxideCanister
-  name: nitrous oxide canister
   components:
     - type: Sprite
       layers:
@@ -431,8 +438,6 @@
 - type: entity
   parent: GasCanister
   id: FrezonCanister
-  name: frezon canister
-  description: A coolant with light hallucinogenic properties. Proceed.
   components:
   - type: Sprite
     layers:
@@ -466,14 +471,14 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: Lock
+    locked: true
 
 # Broke Entities
 
 - type: entity
   parent: BaseStructure
   id: GasCanisterBrokenBase
-  name: broken gas canister
-  description: A broken gas canister. Not useless yet, as it can be salvaged for high quality materials.
   components:
     - type: Destructible
       thresholds:
@@ -514,7 +519,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: StorageCanisterBroken
-  name: broken storage canister
   noSpawn: true
   components:
     - type: Sprite
@@ -523,7 +527,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: AirCanisterBroken
-  name: broken air canister
   noSpawn: true
   components:
   - type: Sprite
@@ -532,7 +535,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: OxygenCanisterBroken
-  name: broken oxygen canister
   noSpawn: true
   components:
   - type: Sprite
@@ -541,7 +543,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: NitrogenCanisterBroken
-  name: broken nitrogen canister
   noSpawn: true
   components:
     - type: Sprite
@@ -550,7 +551,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: CarbonDioxideCanisterBroken
-  name: broken carbon dioxide canister
   noSpawn: true
   components:
     - type: Sprite
@@ -559,7 +559,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: PlasmaCanisterBroken
-  name: broken plasma canister
   noSpawn: true
   components:
     - type: Sprite
@@ -568,7 +567,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: TritiumCanisterBroken
-  name: broken tritium canister
   noSpawn: true
   components:
     - type: Sprite
@@ -586,7 +584,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: MiasmaCanisterBroken
-  name: broken miasma canister
   noSpawn: true
   components:
     - type: Sprite
@@ -595,7 +592,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: NitrousOxideCanisterBroken
-  name: broken nitrous oxide canister
   noSpawn: true
   components:
     - type: Sprite
@@ -604,7 +600,6 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: FrezonCanisterBroken
-  name: broken frezon canister
   noSpawn: true
   components:
   - type: Sprite

@@ -140,6 +140,13 @@ namespace Content.Server.Nuke
         private void OnAnchorChanged(EntityUid uid, NukeComponent component, ref AnchorStateChangedEvent args)
         {
             UpdateUserInterface(uid, component);
+
+            if (args.Anchored == false && component.Status == NukeStatus.ARMED && component.RemainingTime > component.DisarmDoafterLength)
+            {
+                // yes, this means technically if you can find a way to unanchor the nuke, you can disarm it
+                // without the doafter. but that takes some effort, and it won't allow you to disarm a nuke that can't be disarmed by the doafter.
+                DisarmBomb(uid, component);
+            }
         }
 
         #endregion
@@ -512,7 +519,10 @@ namespace Content.Server.Nuke
                 component.IntensitySlope,
                 component.MaxIntensity);
 
-            RaiseLocalEvent(new NukeExplodedEvent());
+            RaiseLocalEvent(new NukeExplodedEvent()
+            {
+                OwningStation = transform.GridUid,
+            });
 
             _soundSystem.StopStationEventMusic(component.Owner, StationEventMusicType.Nuke);
             EntityManager.DeleteEntity(uid);
@@ -539,6 +549,7 @@ namespace Content.Server.Nuke
             {
                 TargetCancelledEvent = new NukeDisarmCancelledEvent(),
                 TargetFinishedEvent = new NukeDisarmSuccessEvent(),
+                BroadcastFinishedEvent = new NukeDisarmSuccessEvent(),
                 BreakOnDamage = true,
                 BreakOnStun = true,
                 BreakOnTargetMove = true,
@@ -563,7 +574,10 @@ namespace Content.Server.Nuke
         }
     }
 
-    public sealed class NukeExplodedEvent : EntityEventArgs {}
+    public sealed class NukeExplodedEvent : EntityEventArgs
+    {
+        public EntityUid? OwningStation;
+    }
 
     /// <summary>
     ///     Raised directed on the nuke when its disarm doafter is successful.

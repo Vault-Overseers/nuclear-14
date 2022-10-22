@@ -1,8 +1,10 @@
 using System.Threading.Tasks;
 using Content.Server.Administration.Components;
+using Content.Server.Administration.Logs;
 using Content.Server.DoAfter;
 using Content.Server.Hands.Components;
 using Content.Shared.Cuffs.Components;
+using Content.Shared.Database;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
@@ -16,6 +18,10 @@ namespace Content.Server.Cuffs.Components
     public sealed class HandcuffComponent : SharedHandcuffComponent
     {
         [Dependency] private readonly IEntityManager _entities = default!;
+        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        
+        private string _brokenName = string.Empty;
+        private string _brokenDesc = string.Empty;
 
         /// <summary>
         ///     The time it takes to apply a <see cref="CuffedComponent"/> to an entity.
@@ -78,14 +84,22 @@ namespace Content.Server.Cuffs.Components
         /// </summary>
         [ViewVariables]
         [DataField("brokenName")]
-        public string BrokenName { get; set; } = default!;
+        public string BrokenName
+        {
+            get => _brokenName;
+            private set => _brokenName = Loc.GetString(value);
+        }
 
         /// <summary>
         ///     The iconstate used for broken handcuffs
         /// </summary>
         [ViewVariables]
         [DataField("brokenDesc")]
-        public string BrokenDesc { get; set; } = default!;
+        public string BrokenDesc
+        {
+            get => _brokenDesc;
+            private set => _brokenDesc = Loc.GetString(value);
+        }
 
         [ViewVariables]
         public bool Broken
@@ -173,11 +187,13 @@ namespace Content.Server.Cuffs.Components
                     if (target == user)
                     {
                         user.PopupMessage(Loc.GetString("handcuff-component-cuff-self-success-message"));
+                        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{_entities.ToPrettyString(user):player} has cuffed himself");
                     }
                     else
                     {
                         user.PopupMessage(Loc.GetString("handcuff-component-cuff-other-success-message",("otherName", target)));
                         target.PopupMessage(Loc.GetString("handcuff-component-cuff-by-other-success-message", ("otherName", user)));
+                        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{_entities.ToPrettyString(user):player} has cuffed {_entities.ToPrettyString(target):player}");
                     }
                 }
             }

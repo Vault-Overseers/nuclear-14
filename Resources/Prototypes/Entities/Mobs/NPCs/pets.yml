@@ -75,19 +75,19 @@
       Dead:
         Base: narsian_dead
   - type: MeleeWeapon
+    hidden: true
     range: 1.5
-    arcwidth: 0
-    arc: bite
+    angle: 0
+    animation: WeaponArcBite
     damage:
       types:
         Piercing: 5
         Slash: 5
   - type: InputMover
   - type: MobMover
-  - type: UtilityNPC
-    behaviorSets:
-    - UnarmedAttackHostiles
-  - type: AiFactionTag
+  - type: HTN
+    rootTask: SimpleHostileCompound
+  - type: Faction
     factions:
     - SimpleHostile
   - type: InteractionPopup

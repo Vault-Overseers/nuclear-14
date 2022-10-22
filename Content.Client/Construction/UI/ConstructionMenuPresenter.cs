@@ -161,13 +161,16 @@ namespace Content.Client.Construction.UI
 
             foreach (var recipe in _prototypeManager.EnumeratePrototypes<ConstructionPrototype>())
             {
+                if (!recipe.Show)
+					continue;
+
                 if (!string.IsNullOrEmpty(search))
                 {
                     if (!recipe.Name.ToLowerInvariant().Contains(search.Trim().ToLowerInvariant()))
                         continue;
                 }
 
-                if (!string.IsNullOrEmpty(category) && category != Loc.GetString("construction-presenter-category-all"))
+                if (!string.IsNullOrEmpty(category) && category != Loc.GetString("construction-category-all"))
                 {
                     if (recipe.Category != category)
                         continue;
@@ -191,10 +194,13 @@ namespace Content.Client.Construction.UI
             var uniqueCategories = new HashSet<string>();
 
             // hard-coded to show all recipes
-            uniqueCategories.Add(Loc.GetString("construction-presenter-category-all"));
+            uniqueCategories.Add(Loc.GetString("construction-category-all"));
 
             foreach (var prototype in _prototypeManager.EnumeratePrototypes<ConstructionPrototype>())
             {
+                if (!prototype.Show)
+                    continue;
+
                 var category = Loc.GetString(prototype.Category);
 
                 if (!string.IsNullOrEmpty(category))
