@@ -1,0 +1,50 @@
+# Burning Barrels
+- type: entity
+  parent: BaseStructureDynamic
+  id: N14BurningBarrel
+  name: burnt barrel
+  description: This barrel looks like it once contained a fire.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/burningbarrel.rsi
+    state: burnbarrel
+    netsync: false
+    noRot: true
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeCircle
+        radius: 0.2
+      density: 50
+      mask:
+      - MachineMask
+      layer:
+      - MidImpassable
+      - LowImpassable
+    
+- type: entity
+  parent: N14BurningBarrel
+  id: N14BurningBarrelLit
+  name: burning barrel
+  description: This barrel is smoldering. Toasty
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/burningbarrel.rsi
+    state: burnbarrel_lit
+    netsync: false
+  - type: PointLight
+    color: "#E25822"
+    radius: 1.0
+    energy: 5.0
+    netsync: false
+  - type: LightBehaviour
+    behaviours:
+      - !type:RandomizeBehaviour # immediately make it bright and flickery
+        id: burnbarrel_lit
+        interpolate: Nearest
+        minDuration: 0.02
+        maxDuration: 0.06
+        startValue: 6.0
+        endValue: 9.0
+        property: Energy
+        isLooped: true
