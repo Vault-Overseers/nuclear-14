@@ -39,6 +39,7 @@ job-name-ertsecurity = ERT security
 job-name-ertmedic = ERT medic
 job-name-ertjanitor = ERT janitor
 job-name-boxer = boxer
+job-name-zookeeper = zookeeper
 
 # N14
 job-name-bos-mid-knight-comm = Midwest Brotherhood Knight Commander
@@ -109,3 +110,4 @@ JobStationEngineer = station engineer
 JobTechnicalAssistant = technical assistant
 JobWarden = warden
 JobBoxer = boxer
+JobZookeeper = zookeeper
