@@ -1,37 +1,33 @@
-<p align="center"> <img alt="Space Station 14" width="880" height="300" src="https://raw.githubusercontent.com/space-wizards/asset-dump/de329a7898bb716b9d5ba9a0cd07f38e61f1ed05/github-logo.svg" /></p>
+# Base Station 14
 
-Space Station 14 is a remake of SS13 that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), our homegrown engine written in C#.
+Give your [Space Station 14](https://github.com/space-wizards/space-station-14) fork a stable foundation.
 
-This is the primary repo for Space Station 14. To prevent people forking RobustToolbox, a "content" pack is loaded by the client and server. This content pack contains everything needed to play the game on one specific server.
+**Base Station 14** provides stable branches of Space Station 14 that you can use to build your fork.
+A stable branch is cut from a specific upstream revision and is only updated with bug fixes and low-risk content (e.g. sprites and YAML) changes that do not break your fork's content.
 
-If you want to host or create content for SS14, this is the repo you need. It contains both RobustToolbox and the content pack for development of new content packs.
+## Using Base Station 14 In Your Fork
+To start a new fork using **Base Station 14**, simply clone this repository and check out the branch you want to start with.
 
-## Links
+If you have an existing fork:
 
-[Website](https://spacestation14.io/) | [Discord](https://discord.ss14.io/) | [Forum](https://forum.spacestation14.io/) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone Download](https://spacestation14.io/about/nightlies/)
+1. Add **Base Station 14** as a remote in your repository.
+2. Then, find the closest **Base Station 14** branch to your last upstream rebase or merge.
+3. Rebase or merge with the **Base Station 14** branch that you want to use.
 
-## Documentation/Wiki
+## Stable Branches
 
-Our [docs site](https://docs.spacestation14.io/) has documentation on SS14s content, engine, game design and more. We also have lots of resources for new contributors to the project.
+- `basestation/v1/stable`: Cut from upstream [9a38736c3c](https://github.com/space-wizards/space-station-14/commit/9a38736c3c) on 2022-10-22 (*To see changes:* `git log --oneline 9a38736c3c..basestation/v1/stable`)
 
 ## Contributing
+Stable branches will only be updated with upstream bug fixes and low-risk content updates.
 
-We are happy to accept contributions from anybody. Get in Discord if you want to help. We've got a [list of issues](https://github.com/space-wizards/space-station-14-content/issues) that need to be done and anybody can pick them up. Don't be afraid to ask for help either!
+We accept patches (`git format-patch`) or fast-forward-only pull requests to the `current` branch (e.g. `basestation/v1/current`).
 
-We are not currently accepting translations of the game on our main repository. If you would like to translate the game into another language consider creating a fork or contributing to a fork.
+If a bug fix is not available upstream, we will consider it for inclusion if it is also upstreamed, if applicable.
 
-## Building
+## Patch Kits
+**Base Station 14** consists of only upstream content.
+However, common content from the **Nanotrasen Fork Network** targeting specific **Base Station 14** stable branches are available.
+To add patch kit content, cherry-pick the appropriate patch kit matching your stable branch version.
 
-1. Clone this repo.
-2. Run `RUN_THIS.py` to init submodules and download the engine.
-3. Compile the solution.
-
-[More detailed instructions on building the project.](https://docs.spacestation14.io/getting-started/dev-setup)
-
-## License
-
-All code for the content repository is licensed under [MIT](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT).
-
-Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and the copyright in the metadata file. [Example](https://github.com/space-wizards/space-station-14/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
-
-Note that some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.
+- `ladders`: allow your players to travel from location to location or map to map: `git cherry-pick basestation/v1/ladders`
