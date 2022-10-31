@@ -1,8 +1,8 @@
 - type: entity
-  name: chemical syringe
   parent: BaseItem
-  description: A syringe filled with an unknown chemical. Chem junkies would kill you for it.
   id: ChemicalSyringe
+  name: chemical syringe
+  description: A syringe filled with an unknown chemical. Chem junkies would kill you for it.
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
@@ -23,16 +23,17 @@
     solutionName: pen
     transferAmount: 30
   - type: Appearance
-    visuals:
-    - type: SolutionContainerVisualizer
-      maxFillLevels: 1
-      changeColor: false
-      emptySpriteName: medipen_empty
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: medipen_empty
   - type: Tag
     tags:
     - Trash
   - type: Recyclable
   - type: SpaceGarbage
+  - type: TrashOnEmpty
+    solution: pen
 
 - type: entity
   name: stimpak
@@ -46,12 +47,10 @@
     layers:
     - state: firstaid
       map: [ "enum.SolutionContainerLayers.Fill" ]
-  - type: Appearance
-    visuals:
-      - type: SolutionContainerVisualizer
-        maxFillLevels: 1
-        changeColor: false
-        emptySpriteName: firstaid_empty
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: firstaid_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 25
@@ -75,12 +74,10 @@
     layers:
     - state: firstaid
       map: [ "enum.SolutionContainerLayers.Fill" ]
-  - type: Appearance
-    visuals:
-      - type: SolutionContainerVisualizer
-        maxFillLevels: 1
-        changeColor: false
-        emptySpriteName: firstaid_empty
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: firstaid_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 25
@@ -104,12 +101,10 @@
     layers:
     - state: stimpen
       map: [ "enum.SolutionContainerLayers.Fill" ]
-  - type: Appearance
-    visuals:
-      - type: SolutionContainerVisualizer
-        maxFillLevels: 1
-        changeColor: false
-        emptySpriteName: stimpen_empty
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: stimpen_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 18
@@ -133,12 +128,10 @@
     layers:
     - state: stimpen
       map: [ "enum.SolutionContainerLayers.Fill" ]
-  - type: Appearance
-    visuals:
-      - type: SolutionContainerVisualizer
-        maxFillLevels: 1
-        changeColor: false
-        emptySpriteName: stimpen_empty
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: stimpen_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 10
@@ -162,12 +155,10 @@
     layers:
     - state: morphen
       map: [ "enum.SolutionContainerLayers.Fill" ]
-  - type: Appearance
-    visuals:
-      - type: SolutionContainerVisualizer
-        maxFillLevels: 1
-        changeColor: false
-        emptySpriteName: morphen_empty
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: morphen_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 20
@@ -191,12 +182,10 @@
     layers:
     - state: morphen
       map: [ "enum.SolutionContainerLayers.Fill" ]
-  - type: Appearance
-    visuals:
-      - type: SolutionContainerVisualizer
-        maxFillLevels: 1
-        changeColor: false
-        emptySpriteName: morphen_empty
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: morphen_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 20
@@ -220,12 +209,10 @@
     layers:
     - state: radaway
       map: [ "enum.SolutionContainerLayers.Fill" ]
-  - type: Appearance
-    visuals:
-      - type: SolutionContainerVisualizer
-        maxFillLevels: 1
-        changeColor: false
-        emptySpriteName: radaway_empty
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: radaway_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 20
