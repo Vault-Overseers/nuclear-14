@@ -1,0 +1,51 @@
+- type: entity
+  id: BaseLadder
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/ladders.rsi
+    noRot: true
+    netsync: false
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Tag
+    tags:
+      - Structure
+  - type: InteractionOutline
+  - type: Warper
+      
+- type: entity
+  parent: BaseLadder
+  id: LadderTop
+  name: ladder
+  suffix: top
+  description: The top of a ladder. Use it to go down.
+  components:
+  - type: Sprite
+    state: ladder_top
+    
+- type: entity
+  parent: BaseLadder
+  id: LadderBottom
+  name: ladder
+  suffix: bottom
+  description: The bottom of a ladder. Use it to go up.
+  components:
+  - type: Sprite
+    state: ladder_bottom
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.25,0,0.25,0.5"
+      density: 60
+      mask:
+      - MachineMask
+      layer:
+      - MidImpassable
+      - LowImpassable

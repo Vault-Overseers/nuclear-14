@@ -1,0 +1,47 @@
+- type: entity
+  name: laser pistol
+  parent: BaseWeaponBattery
+  id: WeaponLaserPistol
+  description: A highly advanced laser pistol.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Battery/laser_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Battery/laser_pistol.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 122.5
+
+- type: entity
+  name: laser rifle
+  parent: BaseWeaponBattery
+  id: WeaponLaserRifle
+  description: A highly advanced laser rifle.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 62.5

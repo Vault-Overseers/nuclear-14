@@ -3,9 +3,13 @@ using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.Unary.Components;
+using Content.Server.Cargo.Systems;
+using Content.Server.Lock;
 using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
+using Content.Server.Popups;
+using Content.Server.Storage.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Binary.Components;
 using Content.Shared.Database;
@@ -14,6 +18,7 @@ using Content.Shared.Interaction;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
+using Robust.Shared.Player;
 
 namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 {
@@ -24,6 +29,9 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
         [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+        [Dependency] private readonly PopupSystem _popupSystem = default!;
+        [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+        [Dependency] private readonly SharedAudioSystem _audioSys = default!;
 
         public override void Initialize()
         {
@@ -36,10 +44,13 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
             SubscribeLocalEvent<GasCanisterComponent, InteractUsingEvent>(OnCanisterInteractUsing);
             SubscribeLocalEvent<GasCanisterComponent, EntInsertedIntoContainerMessage>(OnCanisterContainerInserted);
             SubscribeLocalEvent<GasCanisterComponent, EntRemovedFromContainerMessage>(OnCanisterContainerRemoved);
+            SubscribeLocalEvent<GasCanisterComponent, PriceCalculationEvent>(CalculateCanisterPrice);
+            SubscribeLocalEvent<GasCanisterComponent, GasAnalyzerScanEvent>(OnAnalyzed);
             // Bound UI subscriptions
             SubscribeLocalEvent<GasCanisterComponent, GasCanisterHoldingTankEjectMessage>(OnHoldingTankEjectMessage);
             SubscribeLocalEvent<GasCanisterComponent, GasCanisterChangeReleasePressureMessage>(OnCanisterChangeReleasePressure);
             SubscribeLocalEvent<GasCanisterComponent, GasCanisterChangeReleaseValveMessage>(OnCanisterChangeReleaseValve);
+            SubscribeLocalEvent<GasCanisterComponent, LockToggledEvent>(OnLockToggled);
 
         }
 
@@ -70,6 +81,9 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
             {
                 containerManager.MakeContainer<ContainerSlot>(canister.ContainerName);
             }
+
+            if (TryComp<LockComponent>(uid, out var lockComponent))
+                _appearanceSystem.SetData(uid, GasCanisterVisuals.Locked, lockComponent.Locked);
         }
 
         private void DirtyUI(EntityUid uid,
@@ -131,7 +145,15 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
                 && containerManager.TryGetContainer(canister.ContainerName, out var container))
                 impact = container.ContainedEntities.Count != 0 ? LogImpact.Medium : LogImpact.High;
 
-            _adminLogger.Add(LogType.CanisterValve, impact, $"{ToPrettyString(args.Session.AttachedEntity.GetValueOrDefault()):player} set the valve on {ToPrettyString(uid):canister} to {args.Valve:valveState}");
+            var containedGasDict = new Dictionary<Gas, float>();
+            var containedGasArray = Gas.GetValues(typeof(Gas));
+
+            for (int i = 0; i < containedGasArray.Length; i++)
+            {
+                containedGasDict.Add((Gas)i, canister.Air.Moles[i]);
+            }
+
+            _adminLogger.Add(LogType.CanisterValve, impact, $"{ToPrettyString(args.Session.AttachedEntity.GetValueOrDefault()):player} set the valve on {ToPrettyString(uid):canister} to {args.Valve:valveState} while it contained [{string.Join(", ", containedGasDict)}]");
 
             canister.ReleaseValve = args.Valve;
             DirtyUI(uid, canister);
@@ -204,6 +226,13 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
         {
             if (!EntityManager.TryGetComponent(args.User, out ActorComponent? actor))
                 return;
+            if (TryComp<LockComponent>(uid, out var lockComponent) && lockComponent.Locked)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("gas-canister-popup-denied"), uid, Filter.Entities(args.User));
+                if (component.AccessDeniedSound != null)
+                    _audioSys.PlayPvs(component.AccessDeniedSound, uid);
+                return;
+            }
 
             _userInterfaceSystem.GetUiOrNull(uid, GasCanisterUiKey.Key)?.Open(actor.PlayerSession);
             args.Handled = true;
@@ -213,6 +242,8 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
         private void OnCanisterInteractHand(EntityUid uid, GasCanisterComponent component, InteractHandEvent args)
         {
             if (!EntityManager.TryGetComponent(args.User, out ActorComponent? actor))
+                return;
+            if (TryComp<LockComponent>(uid, out var lockComponent) && lockComponent.Locked)
                 return;
 
             _userInterfaceSystem.GetUiOrNull(uid, GasCanisterUiKey.Key)?.Open(actor.PlayerSession);
@@ -283,6 +314,24 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
             containerAir.Clear();
             _atmosphereSystem.Merge(containerAir, buffer);
             containerAir.Multiply(containerAir.Volume / buffer.Volume);
+        }
+
+        private void CalculateCanisterPrice(EntityUid uid, GasCanisterComponent component, ref PriceCalculationEvent args)
+        {
+            args.Price += _atmosphereSystem.GetPrice(component.Air);
+        }
+
+                /// <summary>
+        /// Returns the gas mixture for the gas analyzer
+        /// </summary>
+        private void OnAnalyzed(EntityUid uid, GasCanisterComponent component, GasAnalyzerScanEvent args)
+        {
+            args.GasMixtures = new Dictionary<string, GasMixture?> { {Name(uid), component.Air} };
+        }
+
+        private void OnLockToggled(EntityUid uid, GasCanisterComponent component, LockToggledEvent args)
+        {
+            _appearanceSystem.SetData(uid, GasCanisterVisuals.Locked, args.Locked);
         }
     }
 }

@@ -8,6 +8,8 @@ namespace Content.Shared.Construction.Prototypes
     [Prototype("construction")]
     public sealed class ConstructionPrototype : IPrototype
     {
+        private string _category = string.Empty;
+
         [DataField("conditions")] private List<IConstructionCondition> _conditions = new();
 
         /// <summary>
@@ -21,6 +23,12 @@ namespace Content.Shared.Construction.Prototypes
         /// </summary>
         [DataField("description")]
         public string Description { get; } = string.Empty;
+
+        /// <summary>
+        ///     Whether or not the recipe is hidden.
+        /// </summary>
+        [DataField("show")]
+        public bool Show { get; }
 
         /// <summary>
         ///     The <see cref="ConstructionGraphPrototype"/> this construction will be using.
@@ -52,7 +60,12 @@ namespace Content.Shared.Construction.Prototypes
         [DataField("canBuildInImpassable")]
         public bool CanBuildInImpassable { get; private set; }
 
-        [DataField("category")] public string Category { get; private set; } = string.Empty;
+        [DataField("category")]
+        public string Category
+        {
+            get => _category;
+            private set => _category = Loc.GetString(value);
+        }
 
         [DataField("objectType")] public ConstructionType Type { get; private set; } = ConstructionType.Structure;
 

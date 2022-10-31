@@ -5,7 +5,9 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
+using Robust.Server.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 
 namespace Content.Server.Physics.Controllers
@@ -16,6 +18,37 @@ namespace Content.Server.Physics.Controllers
         [Dependency] private readonly ThrusterSystem _thruster = default!;
 
         private Dictionary<ShuttleComponent, List<(PilotComponent, InputMoverComponent, TransformComponent)>> _shuttlePilots = new();
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            SubscribeLocalEvent<RelayInputMoverComponent, PlayerAttachedEvent>(OnRelayPlayerAttached);
+            SubscribeLocalEvent<RelayInputMoverComponent, PlayerDetachedEvent>(OnRelayPlayerDetached);
+            SubscribeLocalEvent<InputMoverComponent, PlayerAttachedEvent>(OnPlayerAttached);
+            SubscribeLocalEvent<InputMoverComponent, PlayerDetachedEvent>(OnPlayerDetached);
+        }
+
+        private void OnRelayPlayerAttached(EntityUid uid, RelayInputMoverComponent component, PlayerAttachedEvent args)
+        {
+            if (TryComp<InputMoverComponent>(component.RelayEntity, out var inputMover))
+                SetMoveInput(inputMover, MoveButtons.None);
+        }
+
+        private void OnRelayPlayerDetached(EntityUid uid, RelayInputMoverComponent component, PlayerDetachedEvent args)
+        {
+            if (TryComp<InputMoverComponent>(component.RelayEntity, out var inputMover))
+                SetMoveInput(inputMover, MoveButtons.None);
+        }
+
+        private void OnPlayerAttached(EntityUid uid, InputMoverComponent component, PlayerAttachedEvent args)
+        {
+            SetMoveInput(component, MoveButtons.None);
+        }
+
+        private void OnPlayerDetached(EntityUid uid, InputMoverComponent component, PlayerDetachedEvent args)
+        {
+            SetMoveInput(component, MoveButtons.None);
+        }
 
         protected override bool CanSound()
         {
@@ -28,10 +61,23 @@ namespace Content.Server.Physics.Controllers
 
             var bodyQuery = GetEntityQuery<PhysicsComponent>();
             var relayQuery = GetEntityQuery<RelayInputMoverComponent>();
+            var xformQuery = GetEntityQuery<TransformComponent>();
+            var moverQuery = GetEntityQuery<InputMoverComponent>();
 
-            foreach (var (mover, xform) in EntityQuery<InputMoverComponent, TransformComponent>(true))
+            foreach (var mover in EntityQuery<InputMoverComponent>(true))
             {
                 if (relayQuery.TryGetComponent(mover.Owner, out var relayed) && relayed.RelayEntity != null)
+                {
+                    if (moverQuery.TryGetComponent(relayed.RelayEntity, out var relayMover))
+                    {
+                        relayMover.RelativeEntity = mover.RelativeEntity;
+                        relayMover.RelativeRotation = mover.RelativeRotation;
+                        relayMover.TargetRelativeRotation = mover.TargetRelativeRotation;
+                        continue;
+                    }
+                }
+
+                if (!xformQuery.TryGetComponent(mover.Owner, out var xform))
                 {
                     continue;
                 }
@@ -46,18 +92,13 @@ namespace Content.Server.Physics.Controllers
                     {
                         continue;
                     }
-
-                    if (TryComp<InputMoverComponent>(xform.ParentUid, out var parentMover))
-                    {
-                        mover.LastGridAngle = parentMover.LastGridAngle;
-                    }
                 }
                 else if (!bodyQuery.TryGetComponent(mover.Owner, out body))
                 {
                     continue;
                 }
 
-                HandleMobMovement(mover, body, xformMover, frameTime);
+                HandleMobMovement(mover, body, xformMover, frameTime, xformQuery);
             }
 
             HandleShuttleMovement(frameTime);

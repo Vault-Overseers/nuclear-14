@@ -1,8 +1,5 @@
 using Content.Shared.Damage;
-using Content.Shared.MobState.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.CharacterAppearance.Components;
-using Content.Shared.CharacterAppearance.Systems;
 using Content.Server.Disease.Components;
 using Content.Server.Body.Components;
 using Content.Server.Atmos.Components;
@@ -19,8 +16,6 @@ using Content.Server.Ghost.Roles.Components;
 using Content.Server.Hands.Components;
 using Content.Server.Mind.Commands;
 using Content.Server.Temperature.Components;
-using Content.Server.Weapon.Melee.Components;
-using Robust.Shared.Containers;
 using Content.Shared.Movement.Components;
 using Content.Shared.MobState;
 using Robust.Shared.Prototypes;
@@ -29,8 +24,12 @@ using Content.Server.Traitor;
 using Content.Shared.Zombies;
 using Content.Shared.Popups;
 using Content.Server.Atmos.Miasma;
+using Content.Server.Humanoid;
 using Content.Server.IdentityManagement;
+using Content.Shared.Humanoid;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Weapons.Melee;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Zombies
 {
@@ -47,7 +46,7 @@ namespace Content.Server.Zombies
         [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
         [Dependency] private readonly ServerInventorySystem _serverInventory = default!;
         [Dependency] private readonly DamageableSystem _damageable = default!;
-        [Dependency] private readonly SharedHumanoidAppearanceSystem _sharedHuApp = default!;
+        [Dependency] private readonly HumanoidSystem _sharedHuApp = default!;
         [Dependency] private readonly IdentitySystem _identity = default!;
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
         [Dependency] private readonly IChatManager _chatMan = default!;
@@ -93,8 +92,8 @@ namespace Content.Server.Zombies
             //you're a real zombie now, son.
             var zombiecomp = AddComp<ZombieComponent>(target);
 
-            ///we need to basically remove all of these because zombies shouldn't
-            ///get diseases, breath, be thirst, be hungry, or die in space
+            //we need to basically remove all of these because zombies shouldn't
+            //get diseases, breath, be thirst, be hungry, or die in space
             RemComp<DiseaseCarrierComponent>(target);
             RemComp<RespiratorComponent>(target);
             RemComp<BarotraumaComponent>(target);
@@ -106,29 +105,37 @@ namespace Content.Server.Zombies
             var rotting = EnsureComp<RottingComponent>(target);
             rotting.DealDamage = false;
 
-            ///This is needed for stupid entities that fuck up combat mode component
-            ///in an attempt to make an entity not attack. This is the easiest way to do it.
+            //This is needed for stupid entities that fuck up combat mode component
+            //in an attempt to make an entity not attack. This is the easiest way to do it.
             RemComp<CombatModeComponent>(target);
-            AddComp<CombatModeComponent>(target);
+            var combat = AddComp<CombatModeComponent>(target);
+            combat.IsInCombatMode = true;
 
-            ///This is the actual damage of the zombie. We assign the visual appearance
-            ///and range here because of stuff we'll find out later
+            var vocal = EnsureComp<VocalComponent>(target);
+            var scream = new SoundCollectionSpecifier ("ZombieScreams");
+            vocal.FemaleScream = scream;
+            vocal.MaleScream = scream;
+
+            //This is the actual damage of the zombie. We assign the visual appearance
+            //and range here because of stuff we'll find out later
             var melee = EnsureComp<MeleeWeaponComponent>(target);
-            melee.Arc = zombiecomp.AttackArc;
-            melee.ClickArc = zombiecomp.AttackArc;
+            melee.Animation = zombiecomp.AttackAnimation;
             melee.Range = 0.75f;
 
             //We have specific stuff for humanoid zombies because they matter more
-            if (TryComp<HumanoidAppearanceComponent>(target, out var huApComp)) //huapcomp
+            if (TryComp<HumanoidComponent>(target, out var huApComp)) //huapcomp
             {
-                //this bs is done because you can't directly update humanoid appearances
-                var appearance = huApComp.Appearance;
-                appearance = appearance.WithSkinColor(zombiecomp.SkinColor).WithEyeColor(zombiecomp.EyeColor);
-                _sharedHuApp.UpdateAppearance(target, appearance, huApComp);
-                _sharedHuApp.ForceAppearanceUpdate(target, huApComp);
+                _sharedHuApp.SetSkinColor(target, zombiecomp.SkinColor, humanoid: huApComp);
+                _sharedHuApp.SetBaseLayerColor(target, HumanoidVisualLayers.Eyes, zombiecomp.EyeColor, humanoid: huApComp);
 
-                ///This is done here because non-humanoids shouldn't get baller damage
-                ///lord forgive me for the hardcoded damage
+                // this might not resync on clone?
+                _sharedHuApp.SetBaseLayerId(target, HumanoidVisualLayers.Tail, zombiecomp.BaseLayerExternal, humanoid: huApComp);
+                _sharedHuApp.SetBaseLayerId(target, HumanoidVisualLayers.HeadSide, zombiecomp.BaseLayerExternal, humanoid: huApComp);
+                _sharedHuApp.SetBaseLayerId(target, HumanoidVisualLayers.HeadTop, zombiecomp.BaseLayerExternal, humanoid: huApComp);
+                _sharedHuApp.SetBaseLayerId(target, HumanoidVisualLayers.Snout, zombiecomp.BaseLayerExternal, humanoid: huApComp);
+
+                //This is done here because non-humanoids shouldn't get baller damage
+                //lord forgive me for the hardcoded damage
                 DamageSpecifier dspec = new();
                 dspec.DamageDict.Add("Slash", 13);
                 dspec.DamageDict.Add("Piercing", 7);
@@ -139,8 +146,8 @@ namespace Content.Server.Zombies
             //The zombie gets the assigned damage weaknesses and strengths
             _damageable.SetDamageModifierSetId(target, "Zombie");
 
-            ///This makes it so the zombie doesn't take bloodloss damage.
-            ///NOTE: they are supposed to bleed, just not take damage
+            //This makes it so the zombie doesn't take bloodloss damage.
+            //NOTE: they are supposed to bleed, just not take damage
             _bloodstream.SetBloodLossThreshold(target, 0f);
 
             //This is specifically here to combat insuls, because frying zombies on grilles is funny as shit.
@@ -186,8 +193,8 @@ namespace Content.Server.Zombies
                 ghostcomp.RoleRules = Loc.GetString("zombie-role-rules");
             }
 
-            ///Goes through every hand, drops the items in it, then removes the hand
-            ///may become the source of various bugs.
+            //Goes through every hand, drops the items in it, then removes the hand
+            //may become the source of various bugs.
             foreach (var hand in _sharedHands.EnumerateHands(target))
             {
                 _sharedHands.SetActiveHand(target, hand);
