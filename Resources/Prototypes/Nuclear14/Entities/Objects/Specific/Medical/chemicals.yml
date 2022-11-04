@@ -1,14 +1,16 @@
+# TODO: Sprites exist, just need entities and reagents etc: berserkpowder, bitterdrink, healingpowder, healingpoultice, hydra, traumapack, mourningpoultice? Plus anything else not sprited.
+
 - type: entity
   parent: BaseItem
-  id: ChemicalSyringe
+  id: N14ChemicalSyringe
   name: chemical syringe
   description: A syringe filled with an unknown chemical. Chem junkies would kill you for it.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
     netsync: false
     layers:
-    - state: medipen
+    - state: stimpak
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: Item
     sprite: Objects/Specific/Medical/medipen.rsi
@@ -26,25 +28,23 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: medipen_empty
+    emptySpriteName: stimpak0
   - type: Recyclable
 
 - type: entity
+  parent: N14ChemicalSyringe
+  id: N14Stimpak
   name: stimpak
-  parent: ChemicalSyringe
-  id: Stimpak
   description: A syringe filled with a wondrous mixture of medical reagents. Essential for those with little to no medical knowledge.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
-    netsync: false
     layers:
-    - state: firstaid
+    - state: stimpak
       map: [ "enum.SolutionContainerLayers.Fill" ]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: firstaid_empty
+    emptySpriteName: stimpak0
   - type: Hypospray
     solutionName: pen
     transferAmount: 25
@@ -57,21 +57,19 @@
           Quantity: 25
 
 - type: entity
+  parent: N14ChemicalSyringe
+  id: N14SuperStimpak
   name: super stimpak
-  parent: ChemicalSyringe
-  id: SuperStimpak
   description: A stronger version of the stimpak. Be careful, however, as you can overdose from taking too much.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
-    netsync: false
     layers:
-    - state: firstaid
+    - state: superstimpak
       map: [ "enum.SolutionContainerLayers.Fill" ]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: firstaid_empty
+    emptySpriteName: superstimpak0
   - type: Hypospray
     solutionName: pen
     transferAmount: 25
@@ -84,21 +82,19 @@
           Quantity: 25
 
 - type: entity
+  parent: N14ChemicalSyringe
+  id: N14Jet
   name: Jet
-  parent: ChemicalSyringe
-  id: Jet
   description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, and lasts longer than Turbo.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
-    netsync: false
     layers:
-    - state: stimpen
+    - state: jet
       map: [ "enum.SolutionContainerLayers.Fill" ]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: stimpen_empty
+    emptySpriteName: jet
   - type: Hypospray
     solutionName: pen
     transferAmount: 18
@@ -111,21 +107,19 @@
           Quantity: 18
 
 - type: entity
+  parent: N14ChemicalSyringe
+  id: N14Turbo
   name: Turbo
-  parent: ChemicalSyringe
-  id: Turbo
   description: A small injector fill with a narcotic reagent, that makes you feel as though the world around you is slowing down. It's stronger, and more dangerous than Jet.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
-    netsync: false
     layers:
-    - state: stimpen
+    - state: turbo
       map: [ "enum.SolutionContainerLayers.Fill" ]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: stimpen_empty
+    emptySpriteName: turbo
   - type: Hypospray
     solutionName: pen
     transferAmount: 10
@@ -138,21 +132,19 @@
           Quantity: 10
 
 - type: entity
+  parent: N14ChemicalSyringe
+  id: N14Med-X
   name: med-x
-  parent: ChemicalSyringe
-  id: Med-X
   description: A syringe filled with a powerful painkiller. Some believe that it makes you more resistant to pain.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
-    netsync: false
     layers:
-    - state: morphen
+    - state: medx
       map: [ "enum.SolutionContainerLayers.Fill" ]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: morphen_empty
+    emptySpriteName: medx0
   - type: Hypospray
     solutionName: pen
     transferAmount: 20
@@ -165,21 +157,19 @@
           Quantity: 20
 
 - type: entity
+  parent: N14ChemicalSyringe
+  id: N14Psycho
   name: psycho
-  parent: ChemicalSyringe
-  id: Psycho
   description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin. 
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
-    netsync: false
     layers:
-    - state: morphen
+    - state: psycho
       map: [ "enum.SolutionContainerLayers.Fill" ]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: morphen_empty
+    emptySpriteName: psycho0
   - type: Hypospray
     solutionName: pen
     transferAmount: 20
@@ -192,9 +182,9 @@
           Quantity: 20
 
 - type: entity
+  parent: N14ChemicalSyringe
+  id: N14RadAwayBloodbag
   name: RadAway
-  parent: ChemicalSyringe
-  id: RadAwayBloodbag
   description: A bloodbag filled with an odd reagent that cures any Radiation you've substained.
   components:
   - type: Sprite
