@@ -91,6 +91,9 @@
   - type: Sprite
     sprite: Nuclear14/Structures/Storage/barrels.rsi
     state: red-closed
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 120 # ~ 5 tile radius
     
 - type: entity
   parent: N14BaseBarrel
@@ -168,6 +171,15 @@
         reagents:
         - ReagentId: WeldingFuel
           Quantity: 500
+  - type: DamageOnToolInteract
+    tools:
+    - Welding
+    weldingDamage:
+      types:
+        Heat: 10
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 120 # ~ 5 tile radius
     
 - type: entity
   parent: N14YellowBarrelOpen
