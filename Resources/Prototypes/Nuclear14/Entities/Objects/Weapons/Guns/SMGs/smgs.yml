@@ -22,3 +22,53 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  name: 12 mm SMG
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGun12mm
+  description: A heavy submachinegun chambered in 12mm.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/SMGs/12mmSMG.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/SMGs/12mmSMG.rsi
+  - type: Gun
+    fireRate: 6
+    selectedMode: FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMagnumSubMachineGun
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnumSubMachineGun
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnum
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
