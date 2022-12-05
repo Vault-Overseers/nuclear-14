@@ -1,3 +1,192 @@
+# Barrels
+# Base
+- type: entity
+  parent: BaseStructureDynamic
+  id: N14BaseBarrel
+  name: barrel
+  description: This barrel looks like it could contain something.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/barrels.rsi
+    state: blue-closed
+    netsync: false
+    noRot: true
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeCircle
+        radius: 0.2
+      density: 50
+      mask:
+      - MachineMask
+      layer:
+      - MidImpassable
+      - LowImpassable
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: barrel
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:SpillBehavior
+        solution: barrel
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+# Base Open
+- type: entity
+  parent: N14BaseBarrel
+  id: N14BaseBarrelOpen
+  noSpawn: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      barrel:
+        maxVol: 500
+  - type: DrainableSolution
+    solution: barrel
+  - type: ReagentTank
+
+# Closed
+- type: entity
+  parent: N14BaseBarrel
+  id: N14BlackBarrel
+  name: black barrel
+  description: A worn out black barrel. The label is torn off.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/barrels.rsi
+    state: black-closed
+    
+- type: entity
+  parent: N14BaseBarrel
+  id: N14BlueBarrel
+  name: blue barrel
+  description: A blue barrel with a warning sign of. Maybe it contains water?
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/barrels.rsi
+    state: blue-closed
+    
+- type: entity
+  parent: N14BaseBarrel
+  id: N14RedBarrel
+  name: red barrel
+  description: A red barrel with an explosive warning sign on. Better be careful.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/barrels.rsi
+    state: red-closed
+    
+- type: entity
+  parent: N14BaseBarrel
+  id: N14YellowBarrel
+  name: yellow barrel
+  description: A yellow barrel with a radiation warning sign on. Better be careful.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/barrels.rsi
+    state: yellow-closed
+
+# Open
+- type: entity
+  parent: N14BaseBarrelOpen
+  id: N14BlackBarrelOpen
+  name: black barrel
+  description: A worn out black barrel. The label is torn off. The lid is off and you can see inside.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/barrels.rsi
+    state: black-open
+    
+- type: entity
+  parent: N14BaseBarrelOpen
+  id: N14BlueBarrelOpen
+  name: blue barrel
+  description: A blue barrel with a warning sign of. The lid is off and you can see inside.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/barrels.rsi
+    state: blue-open
+    
+- type: entity
+  parent: N14BaseBarrelOpen
+  id: N14RedBarrelOpen
+  name: red barrel
+  description: A red barrel with an explosive warning sign on. The lid is off and you can see inside.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/barrels.rsi
+    state: red-open
+    
+- type: entity
+  parent: N14BaseBarrelOpen
+  id: N14YellowBarrelOpen
+  name: yellow barrel
+  description: A yellow barrel with a radiation warning sign on. The lid is off and you can see inside but it still makes you twitch.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/barrels.rsi
+    state: yellow-open
+    
+# Full barrels
+- type: entity
+  parent: N14BlackBarrelOpen
+  id: N14BlackBarrelFull
+  description: A worn out black barrel. This one looks full of some dark liquid.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/barrels.rsi
+    state: black-full
+    # TODO - fill with some sort of waste product? Maybe just dirty water.
+    
+- type: entity
+  parent: N14RedBarrelOpen
+  id: N14RedBarrelFull
+  description: A red barrel with an explosive warning sign on. It has a golden liquid inside.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/barrels.rsi
+    state: red-full
+  - type: SolutionContainerManager
+    solutions:
+      barrel:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 500
+    
+- type: entity
+  parent: N14YellowBarrelOpen
+  id: N14YellowBarrelFull
+  description: A yellow barrel with a radiation warning sign on. You can see the glowing goo bubble.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/barrels.rsi
+    state: yellow-full
+  - type: RadiationSource
+    intensity: 2
+  - type: PointLight
+    netsync: false
+    radius: 1.5
+    energy: 1.6
+    color: "#3db83b"
+    castShadows: false
+    # TODO - fill with some sort of radioactive waste reagent.
+
 # Burning Barrels
 - type: entity
   parent: BaseStructureDynamic
