@@ -6,6 +6,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Database;
 using Content.Server.Ghost;
 using Content.Server.Maps;
+using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Server.ServerUpdates;
 using Content.Server.Station.Systems;
@@ -57,6 +58,7 @@ namespace Content.Server.GameTicking
             DebugTools.Assert(_prototypeManager.Index<JobPrototype>(FallbackOverflowJob).Name == FallbackOverflowJobName,
                 "Overflow role does not have the correct name!");
             InitializeGameRules();
+            InitMinPlayers();
 
             _initialized = true;
         }
@@ -118,5 +120,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly RoleBanManager _roleBanManager = default!;
         [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly ServerUpdateManager _serverUpdates = default!;
+        [Dependency] private readonly PlayTimeTrackingSystem _playTimeTrackings = default!;
+        [Dependency] private readonly UserDbDataManager _userDb = default!;
     }
 }

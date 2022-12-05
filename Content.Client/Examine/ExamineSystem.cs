@@ -1,4 +1,5 @@
 using Content.Client.Verbs;
+using Content.Shared.Eye.Blinding;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Input;
@@ -62,13 +63,23 @@ namespace Content.Client.Examine
             base.Shutdown();
         }
 
-        public override bool CanExamine(EntityUid examiner, MapCoordinates target, Ignored? predicate = null)
+        public override bool CanExamine(EntityUid examiner, MapCoordinates target, Ignored? predicate = null, EntityUid? examined = null, ExaminerComponent? examinerComp = null)
         {
-            var b = _eyeManager.GetWorldViewbounds();
-            if (!b.Contains(target.Position))
+            if (!Resolve(examiner, ref examinerComp, false))
                 return false;
 
-            return base.CanExamine(examiner, target, predicate);
+            if (examinerComp.SkipChecks)
+                return true;
+
+            if (examinerComp.CheckInRangeUnOccluded)
+            {
+                // TODO fix this. This should be using the examiner's eye component, not eye manager.
+                var b = _eyeManager.GetWorldViewbounds();
+                if (!b.Contains(target.Position))
+                    return false;
+            }
+
+            return base.CanExamine(examiner, target, predicate, examined, examinerComp);
         }
 
         private bool HandleExamine(in PointerInputCmdHandler.PointerInputCmdArgs args)
@@ -116,7 +127,7 @@ namespace Content.Client.Examine
             // Tooltips coming in from the server generally prioritize
             // opening at the old tooltip rather than the cursor/another entity,
             // since there's probably one open already if it's coming in from the server.
-            OpenTooltip(player.Value, ev.EntityUid, ev.CenterAtCursor, ev.OpenAtOldTooltip);
+            OpenTooltip(player.Value, ev.EntityUid, ev.CenterAtCursor, ev.OpenAtOldTooltip, ev.KnowTarget);
             UpdateTooltipInfo(player.Value, ev.EntityUid, ev.Message, ev.Verbs);
         }
 
@@ -131,7 +142,7 @@ namespace Content.Client.Examine
         ///     not fill it with information. This is done when the server sends examine info/verbs,
         ///     or immediately if it's entirely clientside.
         /// </summary>
-        public void OpenTooltip(EntityUid player, EntityUid target, bool centeredOnCursor=true, bool openAtOldTooltip=true)
+        public void OpenTooltip(EntityUid player, EntityUid target, bool centeredOnCursor=true, bool openAtOldTooltip=true, bool knowTarget = true)
         {
             // Close any examine tooltip that might already be opened
             // Before we do that, save its position. We'll prioritize opening any new popups there if
@@ -191,11 +202,22 @@ namespace Content.Client.Examine
                 });
             }
 
-            hBox.AddChild(new Label
+            if (knowTarget)
             {
-                Text = Identity.Name(target, EntityManager, player),
-                HorizontalExpand = true,
-            });
+                hBox.AddChild(new Label
+                {
+                    Text = Identity.Name(target, EntityManager, player),
+                    HorizontalExpand = true,
+                });
+            }
+            else
+            {
+                hBox.AddChild(new Label
+                {
+                    Text = "???",
+                    HorizontalExpand = true,
+                });
+            }
 
             panel.Measure(Vector2.Infinity);
             var size = Vector2.ComponentMax((minWidth, 0), panel.DesiredSize);
@@ -294,7 +316,13 @@ namespace Content.Client.Examine
                 return;
 
             FormattedMessage message;
-            OpenTooltip(playerEnt.Value, entity, centeredOnCursor, false);
+
+            // Basically this just predicts that we can't make out the entity if we have poor vision.
+            var canSeeClearly = true;
+            if (HasComp<BlurryVisionComponent>(playerEnt))
+                canSeeClearly = false;
+
+            OpenTooltip(playerEnt.Value, entity, centeredOnCursor, false, knowTarget: canSeeClearly);
             if (entity.IsClientSide())
             {
                 message = GetExamineText(entity, playerEnt);

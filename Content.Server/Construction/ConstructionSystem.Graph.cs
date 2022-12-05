@@ -1,4 +1,5 @@
 using Content.Server.Construction.Components;
+using Content.Server.Containers;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Construction.Steps;
@@ -232,16 +233,16 @@ namespace Content.Server.Construction
 
             construction.Node = id;
 
+            // ChangeEntity will handle the pathfinding update.
+            if (node.Entity is {} newEntity && ChangeEntity(uid, userUid, newEntity, construction) != null)
+                return true;
+
             if(performActions)
                 PerformActions(uid, userUid, node.Actions);
 
             // An action might have deleted the entity... Account for this.
             if (!Exists(uid))
                 return false;
-
-            // ChangeEntity will handle the pathfinding update.
-            if (node.Entity is {} newEntity && ChangeEntity(uid, userUid, newEntity, construction) != null)
-                return true;
 
             UpdatePathfinding(uid, construction);
             return true;
@@ -268,7 +269,11 @@ namespace Content.Server.Construction
             ContainerManagerComponent? containerManager = null)
         {
             if (!Resolve(uid, ref construction, ref metaData, ref transform))
-                return null;
+            {
+                // Failed resolve logs an error, but we want to actually log information about the failed construction
+                // graph. So lets let the UpdateInteractions() try-catch log that info for us.
+                throw new Exception("Missing construction components");
+            }
 
             if (newEntity == metaData.EntityPrototype?.ID || !_prototypeManager.HasIndex<EntityPrototype>(newEntity))
                 return null;
@@ -277,19 +282,32 @@ namespace Content.Server.Construction
             Resolve(uid, ref containerManager, false);
 
             // We create the new entity.
-            var newUid = EntityManager.SpawnEntity(newEntity, transform.Coordinates);
+            var newUid = EntityManager.CreateEntityUninitialized(newEntity, transform.Coordinates);
 
             // Construction transferring.
             var newConstruction = EntityManager.EnsureComponent<ConstructionComponent>(newUid);
 
-            // We set the graph and node accordingly... Then we append our containers to theirs.
+            // Transfer all construction-owned containers.
+            newConstruction.Containers.UnionWith(construction.Containers);
+
+            // Prevent MapInitEvent spawned entities from spawning into the containers.
+            // Containers created by ChangeNode() actions do not exist until after this function is complete,
+            // but this should be fine, as long as the target entity properly declared its managed containers.
+            if (TryComp(newUid, out ContainerFillComponent? containerFill) && containerFill.IgnoreConstructionSpawn)
+            {
+                foreach (var id in newConstruction.Containers)
+                {
+                    containerFill.Containers.Remove(id);
+                }
+            }
+
+            EntityManager.InitializeAndStartEntity(newUid);
+
+            // We set the graph and node accordingly.
             ChangeGraph(newUid, userUid, construction.Graph, construction.Node, false, newConstruction);
 
             if (construction.TargetNode is {} targetNode)
                 SetPathfindingTarget(newUid, targetNode, newConstruction);
-
-            // Transfer all construction-owned containers.
-            newConstruction.Containers.UnionWith(construction.Containers);
 
             // Transfer all pending interaction events too.
             while (construction.InteractionQueue.TryDequeue(out var ev))
@@ -327,9 +345,6 @@ namespace Content.Server.Construction
             }
 
             QueueDel(uid);
-
-            if(GetCurrentNode(newUid, newConstruction) is {} node)
-                PerformActions(newUid, userUid, node.Actions);
 
             return newUid;
         }

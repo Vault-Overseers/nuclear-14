@@ -9,8 +9,8 @@ namespace Content.Shared.GameTicking
         // See ideally these would be pulled from the job definition or something.
         // But this is easier, and at least it isn't hardcoded.
         //TODO: Move these, they really belong in StationJobsSystem or a cvar.
-        public const string FallbackOverflowJob = "Passenger";
-        public const string FallbackOverflowJobName = "job-name-passenger";
+        public const string FallbackOverflowJob = "VaultDweller";
+        public const string FallbackOverflowJobName = "job-name-vault-dweller";
     }
 
     [Serializable, NetSerializable]
@@ -97,9 +97,9 @@ namespace Content.Shared.GameTicking
         /// <summary>
         /// The Status of the Player in the lobby (ready, observer, ...)
         /// </summary>
-        public Dictionary<NetUserId, LobbyPlayerStatus> Status { get; }
+        public Dictionary<NetUserId, PlayerGameStatus> Status { get; }
 
-        public TickerLobbyReadyEvent(Dictionary<NetUserId, LobbyPlayerStatus> status)
+        public TickerLobbyReadyEvent(Dictionary<NetUserId, PlayerGameStatus> status)
         {
             Status = status;
         }
@@ -168,11 +168,11 @@ namespace Content.Shared.GameTicking
 
 
     [Serializable, NetSerializable]
-    public enum LobbyPlayerStatus : sbyte
+    public enum PlayerGameStatus : sbyte
     {
-        NotReady = 0,
-        Ready,
-        Observer,
+        NotReadyToPlay = 0,
+        ReadyToPlay,
+        JoinedGame,
     }
 }
 

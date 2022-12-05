@@ -2,6 +2,7 @@ using Content.Shared.Damage;
 using Content.Shared.MobState.EntitySystems;
 using Content.Shared.MobState.Components;
 using Content.Server.Damage.Components;
+using Robust.Shared.Physics.Components;
 
 namespace Content.Server.Contests
 {
@@ -13,7 +14,7 @@ namespace Content.Server.Contests
     /// >1 = Advantage to roller
     /// <1 = Advantage to target
     /// Roller should be the entity with an advantage from being bigger/healthier/more skilled, etc.
-    /// <summary>
+    /// </summary>
     public sealed class ContestsSystem : EntitySystem
     {
         [Dependency] private readonly SharedMobStateSystem _mobStateSystem = default!;
@@ -23,16 +24,13 @@ namespace Content.Server.Contests
         /// </summary>
         public float MassContest(EntityUid roller, EntityUid target, PhysicsComponent? rollerPhysics = null, PhysicsComponent? targetPhysics = null)
         {
-            if (!Resolve(roller, ref rollerPhysics) || !Resolve(target, ref targetPhysics))
-                return 1f;
-
-            if (rollerPhysics == null || targetPhysics == null)
+            if (!Resolve(roller, ref rollerPhysics, false) || !Resolve(target, ref targetPhysics, false))
                 return 1f;
 
             if (targetPhysics.FixturesMass == 0)
                 return 1f;
 
-            return (rollerPhysics.FixturesMass / targetPhysics.FixturesMass);
+            return rollerPhysics.FixturesMass / targetPhysics.FixturesMass;
         }
 
         /// <summary>
@@ -43,21 +41,18 @@ namespace Content.Server.Contests
         /// <summary>
         public float DamageContest(EntityUid roller, EntityUid target, DamageableComponent? rollerDamage = null, DamageableComponent? targetDamage = null)
         {
-            if (!Resolve(roller, ref rollerDamage) || !Resolve(target, ref targetDamage))
-                return 1f;
-
-            if (rollerDamage == null || targetDamage == null)
+            if (!Resolve(roller, ref rollerDamage, false) || !Resolve(target, ref targetDamage, false))
                 return 1f;
 
             // First, we'll see what health they go into crit at.
             float rollerThreshold = 100f;
             float targetThreshold = 100f;
 
-            if (TryComp<MobStateComponent>(roller, out var rollerState) && rollerState != null &&
+            if (TryComp<MobStateComponent>(roller, out var rollerState) &&
                 _mobStateSystem.TryGetEarliestIncapacitatedState(rollerState, 10000, out _, out var rollerCritThreshold))
                 rollerThreshold = (float) rollerCritThreshold;
 
-            if (TryComp<MobStateComponent>(target, out var targetState) && targetState != null &&
+            if (TryComp<MobStateComponent>(target, out var targetState) &&
                 _mobStateSystem.TryGetEarliestIncapacitatedState(targetState, 10000, out _, out var targetCritThreshold))
                 targetThreshold = (float) targetCritThreshold;
 
@@ -75,10 +70,7 @@ namespace Content.Server.Contests
         /// <summary>
         public float StaminaContest(EntityUid roller, EntityUid target, StaminaComponent? rollerStamina = null, StaminaComponent? targetStamina = null)
         {
-            if (!Resolve(roller, ref rollerStamina) || !Resolve(target, ref targetStamina))
-                return 1f;
-
-            if (rollerStamina == null || targetStamina == null)
+            if (!Resolve(roller, ref rollerStamina, false) || !Resolve(target, ref targetStamina, false))
                 return 1f;
 
             var rollerDamageScore= rollerStamina.StaminaDamage / rollerStamina.CritThreshold;
@@ -99,8 +91,9 @@ namespace Content.Server.Contests
             var massMultiplier = massWeight / weightTotal;
             var stamMultiplier = stamWeight / weightTotal;
 
-            return ((DamageContest(roller, target) * damageMultiplier) + (MassContest(roller, target) * massMultiplier)
-                    + (StaminaContest(roller, target) * stamMultiplier));
+            return DamageContest(roller, target) * damageMultiplier +
+                   MassContest(roller, target) * massMultiplier +
+                   StaminaContest(roller, target) * stamMultiplier;
         }
 
         /// <summary>
@@ -111,6 +104,7 @@ namespace Content.Server.Contests
         {
             return score switch
             {
+                // TODO: Should just be a curve
                 <= 0 => 1f,
                 <= 0.25f => 0.9f,
                 <= 0.5f => 0.75f,

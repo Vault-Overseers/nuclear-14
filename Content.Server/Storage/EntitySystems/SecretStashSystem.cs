@@ -13,6 +13,7 @@ namespace Content.Server.Storage.EntitySystems
     {
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+        [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
 
         public override void Initialize()
         {
@@ -24,14 +25,14 @@ namespace Content.Server.Storage.EntitySystems
         private void OnInit(EntityUid uid, SecretStashComponent component, ComponentInit args)
         {
             // set default secret part name
-            if (component.SecretPartName == "")
+            if (component.SecretPartName == string.Empty)
             {
                 var meta = EntityManager.GetComponent<MetaDataComponent>(uid);
                 var entityName = Loc.GetString("comp-secret-stash-secret-part-name", ("name", meta.EntityName));
                 component.SecretPartName = entityName;
             }
 
-            component.ItemContainer = ContainerHelpers.EnsureContainer<ContainerSlot>(uid, "stash", out _);
+            component.ItemContainer = _containerSystem.EnsureContainer<ContainerSlot>(uid, "stash", out _);
         }
 
         private void OnDestroyed(EntityUid uid, SecretStashComponent component, DestructionEventArgs args)

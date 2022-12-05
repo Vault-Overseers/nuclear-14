@@ -40,6 +40,10 @@
     sprite: Objects/Specific/Chemistry/beaker.rsi
   - type: Spillable
     solution: drink
+  - type: TrashOnEmpty
+    solution: drink
+  - type: StaticPrice
+    price: 0
 
 - type: entity
   name: bottle
@@ -54,10 +58,9 @@
         map: ["enum.SolutionContainerLayers.Fill"]
         visible: false
   - type: Appearance
-    visuals:
-    - type: SolutionContainerVisualizer
-      maxFillLevels: 6
-      fillBaseName: bottle-1-
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: bottle-1-
 
 - type: entity
   name: bottle
@@ -72,10 +75,9 @@
         map: ["enum.SolutionContainerLayers.Fill"]
         visible: false
   - type: Appearance
-    visuals:
-    - type: SolutionContainerVisualizer
-      maxFillLevels: 6
-      fillBaseName: bottle-2-
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: bottle-2-
 
 - type: entity
   name: bottle
@@ -90,10 +92,9 @@
         map: ["enum.SolutionContainerLayers.Fill"]
         visible: false
   - type: Appearance
-    visuals:
-    - type: SolutionContainerVisualizer
-      maxFillLevels: 6
-      fillBaseName: bottle-3-
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: bottle-3-
 
 - type: entity
   name: bottle
@@ -108,10 +109,9 @@
         map: ["enum.SolutionContainerLayers.Fill"]
         visible: false
   - type: Appearance
-    visuals:
-    - type: SolutionContainerVisualizer
-      maxFillLevels: 6
-      fillBaseName: bottle-4-
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: bottle-4-
 
 - type: entity
   id: EpinephrineChemistryBottle
@@ -141,6 +141,23 @@
           Quantity: 30
 
 - type: entity
+  id: UnstableMutagenChemistryBottle
+  name: unstable mutagen bottle
+  description: This will cause rapid mutations in your plants.
+  parent: BaseChemistryEmptyBottle
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: UnstableMutagen
+          Quantity: 30
+  - type: Tag
+    tags:
+    - Bottle
+
+- type: entity
   id: NocturineChemistryBottle
   name: nocturine bottle
   description: This will make someone fall down almost immediately. Hard to overdose on.
@@ -161,7 +178,7 @@
   components:
   - type: SolutionContainerManager
     solutions:
-      drink: 
+      drink:
         maxVol: 30
         reagents:
         - ReagentId: Ephedrine
@@ -174,7 +191,7 @@
   components:
   - type: SolutionContainerManager
     solutions:
-      drink: 
+      drink:
         maxVol: 30
         reagents:
         - ReagentId: Omnizine
