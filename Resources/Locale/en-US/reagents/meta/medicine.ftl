@@ -91,6 +91,18 @@ reagent-desc-ethylredoxrazine = Neutralises the effects of alcohol in the blood 
 reagent-name-cognizine = cognizine
 reagent-desc-cognizine = A mysterious chemical which is able to make any non-sentient creature sentient.
 
+reagent-name-healing-mixture = healing mixture
+reagent-desc-healing-mixture = A mixture of reagents that makes you heal.
+
+reagent-name-robust-healing-mixture = robust healing mixture
+reagent-desc-robust-healing-mixture = A mixture of reagents that makes you heal fast.
+
+reagent-name-damage-resist-mixture = damage resistant mixture
+reagent-desc-damage-resist-mixture = A mixture of reagents that makes you resistant to damage.
+
+reagent-name-radaway = radaway
+reagent-desc-radaway = An odd reagent that cures your radiation.
+
 reagent-name-buffout = buffout
 reagent-desc-buffout = A reagent that makes you overall more robust, for a short period of time.
 
