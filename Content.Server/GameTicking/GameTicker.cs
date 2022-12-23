@@ -58,6 +58,7 @@ namespace Content.Server.GameTicking
             DebugTools.Assert(_prototypeManager.Index<JobPrototype>(FallbackOverflowJob).Name == FallbackOverflowJobName,
                 "Overflow role does not have the correct name!");
             InitializeGameRules();
+            InitMinPlayers();
 
             _initialized = true;
         }

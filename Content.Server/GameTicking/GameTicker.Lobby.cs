@@ -1,4 +1,6 @@
+using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
+using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -28,6 +30,12 @@ namespace Content.Server.GameTicking
         /// </summary>
         public IReadOnlyDictionary<NetUserId, PlayerGameStatus> PlayerGameStatuses => _playerGameStatuses;
 
+        private void InitMinPlayers()
+        {
+            SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
+            SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
+        }
+
         public void UpdateInfoText()
         {
             RaiseNetworkEvent(GetInfoMsg(), Filter.Empty().AddPlayers(_playerManager.NetworkedSessions));
@@ -45,7 +53,7 @@ namespace Content.Server.GameTicking
             var mapName = map?.MapName ?? Loc.GetString("game-ticker-no-map-selected");
             var gmTitle = Loc.GetString(Preset.ModeTitle);
             var desc = Loc.GetString(Preset.Description);
-            return Loc.GetString("game-ticker-get-info-text",("roundId", RoundId), ("playerCount", playerCount),("mapName", mapName),("gmTitle", gmTitle),("desc", desc));
+            return Loc.GetString("game-ticker-get-info-text",("server", _baseServer.ServerName),("roundId", RoundId), ("playerCount", playerCount),("mapName", mapName),("gmTitle", gmTitle),("desc", desc));
         }
 
         private TickerLobbyReadyEvent GetStatusSingle(ICommonSession player, PlayerGameStatus gameStatus)
@@ -146,6 +154,34 @@ namespace Content.Server.GameTicking
             _playerGameStatuses[player.UserId] = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
             RaiseNetworkEvent(GetStatusMsg(player), player.ConnectedClient);
             RaiseNetworkEvent(GetStatusSingle(player, status));
+        }
+
+        private void CheckMinPlayers()
+        {
+            var minPlayers = _configurationManager.GetCVar(CCVars.MinPlayers);
+            if (minPlayers == 0)
+            {
+                // Disabled, return.
+                return;
+            }
+
+            if (_playerManager.PlayerCount < minPlayers)
+            {
+                _chatManager.DispatchServerAnnouncement(String.Format("At least {0:d} players are required to start the round.", minPlayers));
+                PauseStart(true);
+            } else {
+                PauseStart(false);
+            }
+        }
+
+        private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent ev)
+        {
+            CheckMinPlayers();
+        }
+
+        private void OnPlayerDetached(PlayerDetachedEvent ev)
+        {
+            CheckMinPlayers();
         }
     }
 }
