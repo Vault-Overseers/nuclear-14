@@ -59,15 +59,23 @@
   - type: Sprite
     sprite: Nuclear14/Structures/Furniture/desks.rsi
     state: desk_metal
-    # TODO: Update bounding box
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.95,-0.45,0.95,0.45"
+      density: 55
+      mask: # tables should collide with other tables
+      - TableMask
+      layer:
+      - TableLayer
     
 - type: entity
   id: N14TableDeskWood
-  parent: N14TableDeskSchool
+  parent: N14TableDeskMetal
   name: "wooden desk"
   description: A wooden desk for working at.
   components:
   - type: Sprite
     sprite: Nuclear14/Structures/Furniture/desks.rsi
     state: desk_wood
-    # TODO: Update bounding box
