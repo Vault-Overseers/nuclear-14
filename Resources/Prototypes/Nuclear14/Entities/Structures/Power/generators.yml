@@ -1,0 +1,18 @@
+- type: entity
+  parent: BaseGenerator
+  id: N14GeneratorFusioncore
+  description: A generator that uses expendable fusion cores.
+  name: fusion core generator
+  components:
+  - type: AmbientSound
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg # TODO: change to fusion core generator noise
+  - type: Sprite
+    sprite: Nuclear14/Structures/Power/fusion_generator.rsi
+    layers:
+    - state: fusion_generator
+    - state: fusion_generator_buttons # TODO: Tie to visualiser for lit and core status?
+      shader: unshaded
+    - state: fusion_generator_core
+      shader: unshaded
