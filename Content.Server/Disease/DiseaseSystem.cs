@@ -1,26 +1,27 @@
-using System.Threading;
-using Content.Shared.Disease;
-using Content.Shared.Disease.Components;
-using Content.Server.Disease.Components;
-using Content.Server.Clothing.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
-using Content.Shared.MobState.Components;
-using Content.Shared.Examine;
-using Content.Shared.Inventory;
-using Content.Shared.Interaction;
-using Content.Server.Popups;
+using Content.Server.Disease.Components;
 using Content.Server.DoAfter;
+using Content.Server.MobState;
+using Content.Server.Nutrition.EntitySystems;
+using Content.Server.Popups;
+using Content.Shared.Clothing.Components;
+using Content.Shared.Disease;
+using Content.Shared.Disease.Components;
+using Content.Shared.Examine;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Interaction;
+using Content.Shared.Inventory;
+using Content.Shared.Inventory.Events;
+using Content.Shared.Item;
+using Content.Shared.MobState.Components;
+using Content.Shared.Rejuvenate;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization.Manager;
-using Content.Shared.Inventory.Events;
-using Content.Server.Nutrition.EntitySystems;
 using Robust.Shared.Utility;
-using Content.Shared.IdentityManagement;
-using Content.Shared.Item;
-using Content.Server.MobState;
+using System.Threading;
 
 namespace Content.Server.Disease
 {
@@ -44,6 +45,7 @@ namespace Content.Server.Disease
             base.Initialize();
             SubscribeLocalEvent<DiseaseCarrierComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<DiseaseCarrierComponent, CureDiseaseAttemptEvent>(OnTryCureDisease);
+            SubscribeLocalEvent<DiseaseCarrierComponent, RejuvenateEvent>(OnRejuvenate);
             SubscribeLocalEvent<DiseasedComponent, UserInteractedWithItemEvent>(OnUserInteractDiseased);
             SubscribeLocalEvent<DiseasedComponent, ItemInteractedWithEvent>(OnTargetInteractDiseased);
             SubscribeLocalEvent<DiseasedComponent, EntitySpokeEvent>(OnEntitySpeak);
@@ -186,6 +188,11 @@ namespace Content.Server.Disease
                     return;
                 }
             }
+        }
+
+        private void OnRejuvenate(EntityUid uid, DiseaseCarrierComponent component, RejuvenateEvent args)
+        {
+            CureAllDiseases(uid, component);
         }
 
         /// <summary>

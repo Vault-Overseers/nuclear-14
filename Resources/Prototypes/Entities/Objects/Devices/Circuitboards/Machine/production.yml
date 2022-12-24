@@ -309,6 +309,24 @@
           ExamineName: Glass Beaker
 
 - type: entity
+  id: SeedExtractorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: seed extractor machine board
+  description: A machine printed circuit board for a seed extractor
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: SeedExtractor
+      requirements:
+        Manipulator: 2
+        Capacitor: 1
+      materialRequirements:
+        # replacing the console screen
+        Glass: 1
+        Cable: 2
+
+- type: entity
   id: SMESMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: SMES machine board
@@ -318,7 +336,7 @@
       sprite: Objects/Misc/module.rsi
       state: power_mod
     - type: MachineBoard
-      prototype: SMESBasic
+      prototype: SMESBasicEmpty
       requirements:
         Capacitor: 10
 
@@ -329,7 +347,7 @@
   description: A machine printed circuit board for a substation
   components:
     - type: MachineBoard
-      prototype: SubstationBasic
+      prototype: SubstationBasicEmpty
       requirements:
         Capacitor: 3
       materialRequirements:
@@ -541,3 +559,15 @@
       materialRequirements:
         Glass: 2
         Cable: 2
+
+- type: entity
+  id: GasRecyclerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: gas recycler board
+  description: A printed circuit board for a gas recycler
+  components:
+  - type: MachineBoard
+    prototype: GasRecycler
+    materialRequirements:
+      Steel: 10
+      Plasma: 10

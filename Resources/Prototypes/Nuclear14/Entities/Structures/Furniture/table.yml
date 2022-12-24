@@ -1,0 +1,81 @@
+- type: entity
+  id: N14FreeTableBase
+  parent: BaseStructure
+  name: table
+  description: A square piece of metal standing on four metal legs.
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: PlaceableSurface
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.45,-0.45,0.45,0.45"
+      density: 55
+      mask: # tables should collide with other tables
+      - TableMask
+      layer:
+      - TableLayer
+  - type: Sprite
+    netsync: false
+  - type: Climbable
+    bonk: true
+    bonkDamage:
+      types:
+        Blunt: 4
+    bonkSound: !type:SoundCollectionSpecifier
+      collection: TrayHit
+  - type: Clickable
+
+- type: entity
+  id: N14TableDeskSchool
+  parent: N14FreeTableBase
+  name: "school desk"
+  description: A wooden desk for studying at.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/schooldesk.rsi
+    state: desk_1
+    
+- type: entity
+  id: N14TableDeskSchoolDamaged
+  parent: N14TableDeskSchool
+  name: "school desk"
+  description: A wooden desk for studying at. Looks worse for wear.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/schooldesk.rsi
+    state: desk_2
+    
+- type: entity
+  id: N14TableDeskMetal
+  parent: N14TableDeskSchool
+  name: "metal desk"
+  description: A metal desk for working at. Sturdy.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/desks.rsi
+    state: desk_metal
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.95,-0.45,0.95,0.45"
+      density: 55
+      mask: # tables should collide with other tables
+      - TableMask
+      layer:
+      - TableLayer
+    
+- type: entity
+  id: N14TableDeskWood
+  parent: N14TableDeskMetal
+  name: "wooden desk"
+  description: A wooden desk for working at.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/desks.rsi
+    state: desk_wood
