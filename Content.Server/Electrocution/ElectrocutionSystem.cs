@@ -17,6 +17,7 @@ using Content.Shared.Maps;
 using Content.Shared.Popups;
 using Content.Shared.Pulling.Components;
 using Content.Shared.Speech.EntitySystems;
+using Content.Shared.Stats.StatModifier;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
@@ -46,6 +47,7 @@ namespace Content.Server.Electrocution
         [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger= default!;
         [Dependency] private readonly TagSystem _tagSystem = default!;
+        [Dependency] private readonly SharedStatsModifierSystem _modifierSystem = default!;
 
         private const string StatusEffectKey = "Electrocution";
         private const string DamageType = "Shock";
@@ -63,6 +65,8 @@ namespace Content.Server.Electrocution
         private const float JitterTimeMultiplier = 0.75f;
         private const float JitterAmplitude = 80f;
         private const float JitterFrequency = 8f;
+
+        private const float DebugModifierTimer = 5f;
 
         public override void Initialize()
         {
@@ -382,6 +386,9 @@ namespace Content.Server.Electrocution
             _stutteringSystem.DoStutter(uid, time * StutteringTimeMultiplier, refresh, statusEffects);
             _jitteringSystem.DoJitter(uid, time * JitterTimeMultiplier, refresh, JitterAmplitude, JitterFrequency, true,
                 statusEffects);
+
+            _modifierSystem.AddModifier(uid, time * DebugModifierTimer, refresh, "strength", -10, statusEffects);
+
 
             _popupSystem.PopupEntity(Loc.GetString("electrocuted-component-mob-shocked-popup-player"), uid,
                 Filter.Entities(uid).Unpredicted());
