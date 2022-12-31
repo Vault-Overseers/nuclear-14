@@ -32,12 +32,6 @@ namespace Content.Server.GameTicking
         /// </summary>
         public IReadOnlyDictionary<NetUserId, PlayerGameStatus> PlayerGameStatuses => _playerGameStatuses;
 
-        private void InitMinPlayers()
-        {
-            SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
-            SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
-        }
-
         public void UpdateInfoText()
         {
             RaiseNetworkEvent(GetInfoMsg(), Filter.Empty().AddPlayers(_playerManager.NetworkedSessions));
@@ -180,34 +174,6 @@ namespace Content.Server.GameTicking
             RaiseNetworkEvent(GetStatusSingle(player, status));
             // update server info to reflect new ready count
             UpdateInfoText();
-        }
-
-        private void CheckMinPlayers()
-        {
-            var minPlayers = _configurationManager.GetCVar(CCVars.MinPlayers);
-            if (minPlayers == 0)
-            {
-                // Disabled, return.
-                return;
-            }
-
-            if (_playerManager.PlayerCount < minPlayers)
-            {
-                _chatManager.DispatchServerAnnouncement(String.Format("At least {0:d} players are required to start the round.", minPlayers));
-                PauseStart(true);
-            } else {
-                PauseStart(false);
-            }
-        }
-
-        private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent ev)
-        {
-            CheckMinPlayers();
-        }
-
-        private void OnPlayerDetached(PlayerDetachedEvent ev)
-        {
-            CheckMinPlayers();
         }
     }
 }

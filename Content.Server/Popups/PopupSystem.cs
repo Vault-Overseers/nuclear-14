@@ -74,5 +74,11 @@ namespace Content.Server.Popups
         {
             RaiseNetworkEvent(new PopupEntityEvent(message, type, uid), filter, recordReplay);
         }
+
+        /* API compatibility */
+        public void PopupEntity(string message, EntityUid uid, Filter filter, PopupType type = PopupType.Small)
+        {
+            PopupEntity(message, uid, filter, false, type);
+        }
     }
 }
