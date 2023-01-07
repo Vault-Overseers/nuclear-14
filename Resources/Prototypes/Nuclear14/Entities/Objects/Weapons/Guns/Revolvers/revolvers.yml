@@ -1,0 +1,54 @@
+- type: entity
+  name: BaseWeaponRevolver
+  parent: BaseItem
+  id: BaseWeaponRevolver
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: icon
+  - type: Item
+    size: 10
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Revolvers/deckard.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1.5
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: ContainerContainer
+    containers:
+      revolver-ammo: !type:Container
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeMagnum
+    proto: CartridgeMagnum
+    capacity: 7
+    chambers: [ True, True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null, null ]
+    soundEject:
+      path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  name: Magnum revolver
+  parent: BaseWeaponRevolver
+  id: WeaponRevolverPython
+  description: The Big Iron. Uses .40 magnum ammo.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/magnum.rsi
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/magnum.rsi
+
