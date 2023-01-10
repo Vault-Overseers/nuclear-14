@@ -1,0 +1,65 @@
+- type: entity
+  parent: BaseItem
+  id: N14SeedBase
+  noSpawn: true
+  components:
+    - type: SolutionContainerManager
+    - type: Sprite
+      sprite: Objects/Specific/Hydroponics/seeds.rsi
+      state: seed
+      netsync: true
+    - type: Item
+      size: 2
+    - type: StaticPrice
+      price: 20
+
+- type: entity
+  parent: N14SeedBase
+  name: packet of razorgrain seeds
+  id: N14RazorgrainSeeds
+  components:
+    - type: Seed
+      seedId: N14Razorgrain
+    - type: Sprite
+      sprite: Objects/Specific/Hydroponics/wheat.rsi
+      
+- type: entity
+  parent: N14SeedBase
+  name: packet of maize seeds
+  id: N14MaizeSeeds
+  components:
+    - type: Seed
+      seedId: N14Maize
+    - type: Sprite
+      sprite: Objects/Specific/Hydroponics/corn.rsi
+      
+- type: entity
+  parent: N14SeedBase
+  name: packet of cabbage seeds
+  id: N14CabbageSeeds
+  components:
+    - type: Seed
+      seedId: N14Cabbage
+    - type: Sprite
+      sprite: Objects/Specific/Hydroponics/onion.rsi #placeholder TODO
+      
+# Irradiated Seeds
+- type: entity
+  parent: N14SeedBase
+  name: packet of carrot seeds
+  id: N14IrradiatedCarrotSeeds
+  components:
+    - type: Seed
+      seedId: N14CarrotRad
+    - type: Sprite
+      sprite: Objects/Specific/Hydroponics/carrot.rsi #placeholder TODO dirty packet sprite
+      
+- type: entity
+  parent: N14SeedBase
+  name: packet of tato seeds
+  id: N14IrradiatedTatoSeeds
+  components:
+    - type: Seed
+      seedId: N14TatoRad
+    - type: Sprite
+      sprite: Objects/Specific/Hydroponics/potato.rsi #placeholder TODO dirty packet sprite

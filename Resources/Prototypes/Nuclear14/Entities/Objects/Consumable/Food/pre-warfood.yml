@@ -29,24 +29,24 @@
 - type: entity
   name: BlamCo Mac & Cheese
   parent: N14FoodSnackBase
-  id: N14FoodBlamcoMacCheese
+  id: N14FoodBlamcomaccheese
   description: Highly processed macaroni with white sauce and cheese.
   components:
   - type: Sprite
     state: blamco
   - type: Food
-    trash: N14BlamcoMacCheeseTrash
+    trash: N14BlamcomaccheeseTrash
 
 - type: entity
   name: Large BlamCo Mac & Cheese
   parent: N14FoodSnackBase
-  id: N14FoodBlamcoMacCheeseLarge
+  id: N14FoodBlamcomaccheeseLarge
   description: Highly processed macaroni with white sauce and cheese. This is a larger family box.
   components:
   - type: Sprite
     state: blamco-large
   - type: Food
-    trash: N14BlamcoMacCheeseLargeTrash
+    trash: N14BlamcomaccheeseLargeTrash
 
 - type: entity
   name: Bubblegum
@@ -93,13 +93,13 @@
 - type: entity
   name: Dandy Boy Apples
   parent: N14FoodSnackBase
-  id: N14FoodDandyboyApples
+  id: N14FoodDandyboyapples
   description: Extremely sweet candied apples. Well preserved.
   components:
   - type: Sprite
     state: dandyapples
   - type: Food
-    trash: N14DandyboyApplesTrash
+    trash: N14DandyboyapplesTrash
     
 - type: entity
   name: canned dog food
@@ -110,7 +110,7 @@
   - type: Sprite
     state: dogfood
   - type: Food
-    trash: N14DogfoodTrash
+    trash: N14TinCanTrash
   - type: SolutionContainerManager
     solutions:
       food:
@@ -124,13 +124,13 @@
 - type: entity
   name: Fancy Lads Snack Cakes
   parent: N14FoodSnackBase
-  id: N14FoodFancyladsSnackCakes
+  id: N14FoodFancyladssnackcakes
   description: Small, frosted cakes laden with sugar and other sweeteners.
   components:
   - type: Sprite
     state: fancylads
   - type: Food
-    trash: N14FoodFancyladsSnackCakesTrash
+    trash: N14FoodFancyladssnackcakesTrash
     
 - type: entity
   name: InstaMash
@@ -152,7 +152,7 @@
   - type: Sprite
     state: porknbeans
   - type: Food
-    trash: N14FoodPorkBeansTrash
+    trash: N14TinCanTrash
     
 - type: entity
   name: mouldy food
@@ -163,7 +163,7 @@
   - type: Sprite
     state: rottenfood
   - type: Food
-    trash: N14FoodMouldyTrash
+#    trash: N14FoodMouldyTrash
   - type: SolutionContainerManager
     solutions:
       food:
@@ -203,7 +203,7 @@
   description: A sugary pre-war food with little to no nutritional value.
   components:
   - type: Sprite
-    state: steak
+    state: sugarbombs
   - type: Food
     trash: N14FoodSugarbombsTrash
   - type: SolutionContainerManager
@@ -247,12 +247,99 @@
     - Trash
   - type: Recyclable
   - type: SpaceGarbage # TODO check this
+  
+- type: entity
+  parent: N14FoodPacketTrash
+  id: N14TinCanTrash
+  name: empty tin can
+  components:
+  - type: Sprite
+    state: dogfood # TODO needs sprite
 
 - type: entity
-  noSpawn: true
   parent: N14FoodPacketTrash
-  id: N14BlamcoMacCheeseTrash
+  id: N14BlamcomaccheeseTrash
   name: empty Blamco box
   components:
   - type: Sprite
     state: blamco # TODO needs sprite
+    
+- type: entity
+  parent: N14FoodPacketTrash
+  id: N14BlamcomaccheeseLargeTrash
+  name: empty Blamco box
+  components:
+  - type: Sprite
+    state: blamco-large # TODO needs sprite
+    
+- type: entity
+  parent: N14FoodPacketTrash
+  id: N14BubblegumTrash
+  name: empty bubblegum pack
+  components:
+  - type: Sprite
+    state: bubblegum-trash
+    
+- type: entity
+  parent: N14FoodPacketTrash
+  id: N14CramTrash
+  name: empty cram box
+  components:
+  - type: Sprite
+    state: cram # TODO needs sprite
+    
+- type: entity
+  parent: N14FoodPacketTrash
+  id: N14CrispsTrash
+  name: empty crisps pack
+  components:
+  - type: Sprite
+    state: crisps # TODO needs sprite
+    
+- type: entity
+  parent: N14FoodPacketTrash
+  id: N14DandyboyapplesTrash
+  name: empty Dandyboy Apples box
+  components:
+  - type: Sprite
+    state: dandyapples # TODO needs sprite
+    
+- type: entity
+  parent: N14FoodPacketTrash
+  id: N14FancyladssnackcakesTrash
+  name: empty Fancy Lads Snack Cakes box
+  components:
+  - type: Sprite
+    state: fancylads # TODO needs sprite
+    
+- type: entity
+  parent: N14FoodPacketTrash
+  id: N14InstamashTrash
+  name: empty Instamash box
+  components:
+  - type: Sprite
+    state: instamash # TODO needs sprite
+    
+- type: entity
+  parent: N14FoodPacketTrash
+  id: N14SalisburysteakTrash
+  name: empty Salisbury Steak box
+  components:
+  - type: Sprite
+    state: steak # TODO needs sprite
+    
+- type: entity
+  parent: N14FoodPacketTrash
+  id: N14SugarbombsTrash
+  name: empty Sugar bombs box
+  components:
+  - type: Sprite
+    state: sugarbombs # TODO needs sprite
+    
+- type: entity
+  parent: N14FoodPacketTrash
+  id: N14YumyumdeviledeggsTrash
+  name: empty Yumyum Deviled Eggs box
+  components:
+  - type: Sprite
+    state: yumyum # TODO needs sprite
