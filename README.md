@@ -34,3 +34,5 @@ All code for the content repository is licensed under [MIT](https://github.com/s
 Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and the copyright in the metadata file. [Example](https://github.com/space-wizards/space-station-14/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json). 
 
 Note that some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.
+
+Please note as a fork of SS14, we will us assets originally from SS13 from various codebases and communities. In all cases we will reference the codebase and the commit that the asset was present in, and IF possible will credit the original author. Most codebases are a result of iterations over many years so sometimes this information can become hard to record. SS14 is built on this same philosophy of forking and cross contribution so please take it as a show of flattery and in good faith. Thank you.
