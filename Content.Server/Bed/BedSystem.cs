@@ -1,20 +1,20 @@
-using Content.Shared.Damage;
+using Content.Server.Actions;
 using Content.Server.Bed.Components;
-using Content.Server.Buckle.Components;
-using Content.Server.Body.Systems;
-using Content.Shared.Buckle.Components;
-using Content.Shared.Body.Components;
-using Content.Shared.Bed;
-using Content.Shared.Bed.Sleep;
 using Content.Server.Bed.Sleep;
+using Content.Server.Body.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
-using Content.Shared.Emag.Systems;
-using Content.Server.Actions;
-using Content.Server.Construction;
-using Content.Server.MobState;
 using Content.Shared.Actions.ActionTypes;
+using Content.Shared.Bed;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Body.Components;
+using Content.Shared.Buckle.Components;
+using Content.Shared.Damage;
+using Content.Shared.Emag.Systems;
+using Content.Server.Construction;
+using Content.Shared.Mobs.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Bed
 {
@@ -26,6 +26,8 @@ namespace Content.Server.Bed
         [Dependency] private readonly SleepingSystem _sleepingSystem = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+        [Dependency] private readonly IGameTiming _timing = default!;
+
         public override void Initialize()
         {
             base.Initialize();
@@ -34,6 +36,7 @@ namespace Content.Server.Bed
             SubscribeLocalEvent<StasisBedComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<StasisBedComponent, GotEmaggedEvent>(OnEmagged);
             SubscribeLocalEvent<StasisBedComponent, RefreshPartsEvent>(OnRefreshParts);
+            SubscribeLocalEvent<StasisBedComponent, UpgradeExamineEvent>(OnUpgradeExamine);
         }
 
         private void ManageUpdateList(EntityUid uid, HealOnBuckleComponent component, BuckleChangeEvent args)
@@ -42,6 +45,7 @@ namespace Content.Server.Bed
             if (args.Buckling)
             {
                 AddComp<HealOnBuckleHealingComponent>(uid);
+                component.NextHealTime = _timing.CurTime + TimeSpan.FromSeconds(component.HealTime);
                 if (sleepAction != null)
                     _actionsSystem.AddAction(args.BuckledEntity, new InstantAction(sleepAction), null);
                 return;
@@ -52,7 +56,6 @@ namespace Content.Server.Bed
 
             _sleepingSystem.TryWaking(args.BuckledEntity);
             RemComp<HealOnBuckleHealingComponent>(uid);
-            component.Accumulator = 0;
         }
 
         public override void Update(float frameTime)
@@ -61,12 +64,10 @@ namespace Content.Server.Bed
 
             foreach (var (_, bedComponent, strapComponent) in EntityQuery<HealOnBuckleHealingComponent, HealOnBuckleComponent, StrapComponent>())
             {
-                bedComponent.Accumulator += frameTime;
-
-                if (bedComponent.Accumulator < bedComponent.HealTime)
+                if (_timing.CurTime < bedComponent.NextHealTime)
                     continue;
 
-                bedComponent.Accumulator -= bedComponent.HealTime;
+                bedComponent.NextHealTime += TimeSpan.FromSeconds(bedComponent.HealTime);
 
                 if (strapComponent.BuckledEntities.Count == 0) continue;
 
@@ -94,7 +95,7 @@ namespace Content.Server.Bed
         {
             // In testing this also received an unbuckle event when the bed is destroyed
             // So don't worry about that
-            if (!HasComp<SharedBodyComponent>(args.BuckledEntity))
+            if (!HasComp<BodyComponent>(args.BuckledEntity))
                 return;
 
             if (!this.IsPowered(uid, EntityManager))
@@ -111,7 +112,7 @@ namespace Content.Server.Bed
             UpdateMetabolisms(uid, component, args.Powered);
         }
 
-        private void OnEmagged(EntityUid uid, StasisBedComponent component, GotEmaggedEvent args)
+        private void OnEmagged(EntityUid uid, StasisBedComponent component, ref GotEmaggedEvent args)
         {
             // Repeatable
             // Reset any metabolisms first so they receive the multiplier correctly
@@ -141,6 +142,10 @@ namespace Content.Server.Bed
             if (component.Emagged)
                 component.Multiplier = 1f / component.Multiplier;
         }
+
+        private void OnUpgradeExamine(EntityUid uid, StasisBedComponent component, UpgradeExamineEvent args)
+        {
+            args.AddPercentageUpgrade("stasis-bed-component-upgrade-stasis", component.Multiplier / component.BaseMultiplier);
+        }
     }
 }
-
