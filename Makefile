@@ -12,7 +12,7 @@ client:
 	cd ./bin/Content.Client && ../../linklibs && ./Content.Client
 
 fastclient:
-	cd ./bin/Content.Client && ../../linklibs && ./Content.Client --connect-address localhost:1211 --connect && pkill -TERM Content.Server
+	cd ./bin/Content.Client && ../../linklibs && ./Content.Client --connect-address localhost:1212 --connect && pkill -TERM Content.Server
 
 server:
 	cd ./bin/Content.Server && ./Content.Server
