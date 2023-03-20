@@ -1,0 +1,25 @@
+- type: entity
+  name: cardboard box
+  parent: BoxBase
+  id: N14BoxPlastic
+  description: An old plastic box for storing things.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Misc/storage.rsi
+    state: box
+
+- type: entity
+  name: wastelander box
+  parent: BoxCardboard
+  id: N14BoxPlasticFilledWastelander
+  components:
+    - type: StorageFill
+      contents:
+        - id: Flare
+          amount: 1
+        - id: RadXPill
+          amount: 1
+        - id: Ointment
+          amount: 1
+        - id: Gauze
+          amount: 1
