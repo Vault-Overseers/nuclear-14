@@ -1,0 +1,82 @@
+- type: entity
+  parent: Clothing
+  id: N14IDCard
+  name: identification card
+  description: A key to open certain doors.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: default
+  - type: Access
+  - type: IdCard
+  - type: StationRecordKeyStorage
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+
+# Vault
+- type: entity
+  parent: N14IDCard
+  id: N14IDCardVault
+  name: vault ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idpassenger
+  - type: PresetIdCard
+    job: VaultDweller
+    
+- type: entity
+  parent: N14IDCard
+  id: N14IDCardVaultEngineer
+  name: vault engineer ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idstationengineer
+  - type: PresetIdCard
+    job: VaultEngineer
+    
+- type: entity
+  parent: N14IDCard
+  id: N14IDCardVaultSecurity
+  name: vault security ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idsecurityofficer
+  - type: PresetIdCard
+    job: VaultSecurity
+    
+- type: entity
+  parent: N14IDCard
+  id: N14IDCardVaultDoctor
+  name: vault doctor ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idmedicaldoctor
+  - type: PresetIdCard
+    job: VaultDoctor
+    
+- type: entity
+  parent: N14IDCard
+  id: N14IDCardVaultOverseer
+  name: vault overseer ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idmedicaldoctor
+  - type: PresetIdCard
+    job: Overseer

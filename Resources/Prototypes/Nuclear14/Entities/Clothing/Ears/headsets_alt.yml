@@ -1,0 +1,170 @@
+﻿- type: entity
+  abstract: true
+  parent: Clothing
+  id: N14ClothingHeadsetAlt
+  name: headset
+  description: An updated, modular intercom that fits over the head. Takes encryption keys.
+  components:
+  - type: Headset
+  - type: Sprite
+    state: icon_alt
+  - type: Clothing
+    equippedPrefix: alt
+    slots:
+    - ears
+
+- type: entity
+  parent: N14ClothingHeadsetAlt
+  id: N14ClothingHeadsetVaulttec
+  name: Vault-Tec over-ear headset
+  components:
+    - type: Headset
+      channels:
+    - VaultCommon
+    - VaultCommand
+    - VaultEngineering
+    - VaultMedical
+    - VaultScience
+    - VaultSecurity
+      defaultChannel: VaultCommand
+    - type: Sprite
+      sprite: Clothing/Ears/Headsets/centcom.rsi
+    - type: Clothing
+      sprite: Clothing/Ears/Headsets/centcom.rsi
+
+- type: entity
+  parent: N14ClothingHeadsetAlt
+  id: N14ClothingHeadsetVaultCommand
+  name: command over-ear headset
+  components:
+  - type: Headset
+    channels:
+    - VaultCommon
+    - VaultCommand
+    - VaultEngineering
+    - VaultMedical
+    - VaultScience
+    - VaultSecurity
+    defaultChannel: VaultCommand
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/command.rsi
+
+- type: entity
+  parent: N14ClothingHeadsetAlt
+  id: N14ClothingHeadsetVaultDweller
+  name: vault over-ear headset
+  components:
+  - type: Headset
+    channels:
+    - VaultCommon
+    defaultChannel: VaultCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/cargo.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/cargo.rsi
+
+- type: entity
+  parent: N14ClothingHeadsetAlt
+  id: N14ClothingHeadsetVaultMedical
+  name: medical over-ear headset
+  components:
+  - type: Headset
+    channels:
+    - VaultCommon
+    - VaultMedical
+    defaultChannel: VaultMedical
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/medical.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/medical.rsi
+
+- type: entity
+  parent: N14ClothingHeadsetAlt
+  id: N14ClothingHeadsetVaultSecurity
+  name: security over-ear headset
+  components:
+  - type: Headset
+    channels:
+    - VaultCommon
+    - VaultSecurity
+    defaultChannel: VaultSecurity
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/security.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/security.rsi
+
+- type: entity
+  parent: N14ClothingHeadsetAlt
+  id: N14ClothingHeadsetVaultEngineering
+  name: engineering over-ear headset
+  components:
+  - type: Headset
+    channels:
+    - VaultCommon
+    - VaultEngineering
+    defaultChannel: VaultEngineering
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/engineering.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/engineering.rsi
+
+- type: entity
+  parent: N14ClothingHeadsetAlt
+  id: N14ClothingHeadsetVaultScience
+  name: science over-ear headset
+  components:
+  - type: Headset
+    channels:
+    - VaultCommon
+    - VaultScience
+    defaultChannel: VaultScience
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/science.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/science.rsi
+
+- type: entity
+  parent: N14ClothingHeadsetAlt
+  id: N14ClothingHeadsetCaravan
+  name: cargo over-ear headset
+  components:
+  - type: Headset
+    channels:
+    - WastelandCommon
+    - CaravanCompany
+    defaultChannel: CaravanCompany
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/cargo.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/cargo.rsi
+
+- type: entity
+  parent: N14ClothingHeadsetAlt
+  id: N14ClothingHeadsetBOSMidwest
+  name: midwest brotherhood over-ear headset
+  components:
+  - type: Headset
+    channels:
+    - BrotherhoodMidwest
+    defaultChannel: BrotherhoodMidwest
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/syndicate.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    
+- type: entity
+  parent: N14ClothingHeadsetAlt
+  id: N14ClothingHeadsetBOSWashington
+  name: washington brotherhood over-ear headset
+  components:
+  - type: Headset
+    channels:
+    - BrotherhoodWashington
+    defaultChannel: BrotherhoodWashington
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/syndicate.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/syndicate.rsi
+

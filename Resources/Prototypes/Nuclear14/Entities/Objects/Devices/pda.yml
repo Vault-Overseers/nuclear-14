@@ -1,0 +1,204 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: N14BasePipboy
+  name: Pip-boy 2000
+  description: a RobCo Industries PIPBoy 2000 Personal Information Processor. What a mouthful.
+  components:
+  - type: Appearance
+    visuals:
+    - type: PDAVisualizer
+      state: pda
+  - type: Sprite
+    sprite: Objects/Devices/pda.rsi
+    netsync: false
+  - type: Icon
+    sprite: Objects/Devices/pda.rsi
+    state: pda
+  - type: Item
+    size: 10
+  - type: ContainerContainer
+    containers:
+      PDA-id: !type:ContainerSlot {}
+      PDA-pen: !type:ContainerSlot {}
+      Cartridge-Slot: !type:ContainerSlot {}
+      program-container: !type:Container
+  - type: ItemSlots
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+    - Belt
+  - type: UnpoweredFlashlight
+    toggleAction:
+      name: action-name-toggle-light
+      description: action-description-toggle-light
+      icon: { sprite: Objects/Tools/flashlight.rsi, state: flashlight }
+      iconOn: Objects/Tools/flashlight.rsi/flashlight-on.png
+      event: !type:ToggleActionEvent
+  - type: PointLight
+    enabled: false
+    radius: 1.5
+    softness: 5
+    autoRot: true
+  - type: Ringer
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: PDA
+    prefix: device-address-prefix-console
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: CartridgeLoader
+    uiKey: enum.PDAUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+    cartridgeSlot:
+      priority: -1
+      name: Cartridge
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      whitelist:
+        components:
+          - Cartridge
+  - type: ActivatableUI
+    key: enum.PDAUiKey.Key
+    singleUser: true
+    closeOnHandDeselect: false
+  - type: UserInterface
+    interfaces:
+    - key: enum.PDAUiKey.Key
+      type: PDABoundUserInterface
+    - key: enum.StoreUiKey.Key
+      type: StoreBoundUserInterface
+    - key: enum.RingerUiKey.Key
+      type: RingerBoundUserInterface
+    - key: enum.InstrumentUiKey.Key
+      type: InstrumentBoundUserInterface
+    - key: enum.HealthAnalyzerUiKey.Key
+      type: HealthAnalyzerBoundUserInterface
+  - type: PDA
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+    idSlot:
+      name: ID Card
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      whitelist:
+        components:
+        - IdCard
+  - type: CrewManifestViewer
+    unsecure: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: Input
+    context: "human"
+
+# Vault
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultPDA
+  components:
+  - type: PDA
+    id: N14IDCardVault
+  - type: PDABorderColor
+    borderColor: "#717059"
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultEngineerPDA
+  components:
+  - type: PDA
+    id: N14IDCardVaultEngineer
+  - type: Appearance
+    visuals:
+    - type: PDAVisualizer
+      state: pda-interntech
+  - type: Icon
+    state: pda-interntech
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultDoctorPDA
+  components:
+  - type: PDA
+    id: N14IDCardVaultDoctor
+  - type: Appearance
+    visuals:
+    - type: PDAVisualizer
+      state: pda-internmed
+  - type: Icon
+    state: pda-internmed
+  - type: HealthAnalyzer
+    scanDelay: 1.4
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultSecurityPDA
+  components:
+  - type: PDA
+    id: N14IDCardVaultSecurity
+  - type: Appearance
+    visuals:
+    - type: PDAVisualizer
+      state: pda-interncadet
+  - type: Icon
+    state: pda-interncadet
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultChefPDA
+  description: Covered in grease and flour.
+  components:
+  - type: PDA
+    id: ChefIDCard
+  - type: Appearance
+    visuals:
+    - type: PDAVisualizer
+      state: pda-cook
+  - type: PDABorderColor
+    borderColor: "#d7d7d0"
+  - type: Icon
+    state: pda-cook
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultBotanistPDA
+  name: botanist PDA
+  description: Has an earthy scent.
+  components:
+  - type: PDA
+    id: BotanistIDCard
+  - type: Appearance
+    visuals:
+      - type: PDAVisualizer
+        state: pda-hydro
+  - type: Icon
+    state: pda-hydro
+    
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultOverseerPDA
+  components:
+  - type: PDA
+    id: N14IDCardVaultOverseer
+    penSlot:
+      startingItem: PenCap
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    visuals:
+      - type: PDAVisualizer
+        state: pda-captain
+  - type: PDABorderColor
+    borderColor: "#7C5D00"
+  - type: Icon
+    state: pda-captain
