@@ -85,3 +85,22 @@
       Wreak havoc and kill all humans!
   - type: ReplacementAccent
     accent: genericAggressive
+
+- type: entity
+  name: wave attacker
+  abstract: true
+  id: N14MobWave
+  components:
+  - type: HTN
+    rootTask: SimpleHostileCompound
+    blackboard:
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      ESP: !type:Bool
+        true
+      VisionRadius: !type:Single
+        100.0
