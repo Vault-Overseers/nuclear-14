@@ -9,9 +9,6 @@
     baseSprintSpeed : 6
   - type: Sprite
     drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: bloatfly
   - type: Physics
   - type: Speech
     speechSounds: Squeak
@@ -200,10 +197,6 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: gecko
-      sprite: Nuclear14/Mobs/Animals/gecko.rsi
   - type: Physics
   - type: MovementSpeedModifier
     baseWalkSpeed : 5
@@ -237,7 +230,7 @@
     angle: 0
     animation: WeaponArcBite
     damage:
-      groups:
+      types:
         Slash: 5
         
 - type: entity
@@ -287,6 +280,7 @@
     damage:
       groups:
         Brute: 1
+      types:
         Piercing: 4
   - type: SolutionContainerManager
     solutions:
@@ -303,10 +297,6 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: nightstalker-0
-      sprite: Nuclear14/Mobs/Animals/nightstalker.rsi
   - type: Physics
   - type: MovementSpeedModifier
     baseWalkSpeed : 5
@@ -342,6 +332,7 @@
     damage:
       groups:
         Brute: 3
+      types:
         Piercing: 5
   - type: SolutionContainerManager
     solutions:
