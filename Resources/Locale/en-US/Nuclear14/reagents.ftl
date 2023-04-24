@@ -9,3 +9,7 @@ reagent-desc-rad-particle-food = Too much will make you sick of living.
 ## Juices
 reagent-name-juice-cabbage = cabbage juice
 reagent-desc-juice-cabbage = Tastes rather bland and iron-y
+
+# Chems
+reagent-name-firetoxin = fire toxin
+reagent-desc-firetoxin = The hot stuff from firey creatures.
