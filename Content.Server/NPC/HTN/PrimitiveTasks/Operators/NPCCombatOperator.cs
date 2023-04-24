@@ -129,7 +129,7 @@ public abstract class NPCCombatOperator : HTNOperator
         var inLos = false;
 
         // If it's not an existing target then check LOS.
-        if (target != existingTarget)
+        if (target != existingTarget && !blackboard.GetValueOrDefault<bool>("ESP", EntManager))
         {
             inLos = ExamineSystemShared.InRangeUnOccluded(owner, target, radius, null);
 
