@@ -151,13 +151,15 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
         foreach (var ent in PickMonsters(wave))
         {
             var coord = RandomExtensions.Pick(_random, spawns);
-            _entMan.SpawnEntity(ent, coord);
+            var mob = _entMan.SpawnEntity(ent, coord);
+            var info = EnsureComp<WaveMobComponent>(mob);
+            // TODO: set info here
         }
     }
 
     private List<string> PickMonsters(int wave)
     {
-        return new List<string>(){"XenoAITimedSpawner", "SpawnMobBear", "SpaceTickSpawner"};
+        return new List<string>(){"MobXeno", "MobBearSpace", "MobCarp"};
     }
 
     private void OnMobDied(EntityUid mobUid, WaveMobComponent component, MobStateChangedEvent args)
