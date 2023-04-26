@@ -135,6 +135,10 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
             Logger.WarningS("waves", $"No spawn points found for the next wave");
         }
 
+        //TODO: the logic goes here to select the mobs from our cache and intellegintly spawn them. Use 'WavePool' function to calculate the next
+        // wave. use
+
+
 
     }
     private void OnMobDied(EntityUid mobUid, WaveMobComponent component, MobStateChangedEvent args)
