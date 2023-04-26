@@ -11,8 +11,12 @@ using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using System.Threading;
 using Timer = Robust.Shared.Timing.Timer;
+using Content.Server.Administration;
+using Robust.Shared.Console;
+using Content.Shared.Administration;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -22,6 +26,8 @@ namespace Content.Server.GameTicking.Rules;
 public sealed class WaveDefenseRuleSystem : GameRuleSystem
 {
     [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
 
     public override string Prototype => "WaveDefense";
@@ -48,7 +54,15 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
         SubscribeLocalEvent<WaveMobComponent, MobStateChangedEvent>(OnMobDied);
     }
 
-    public override void Started(){}
+    public override void Started()
+    {
+        Logger.InfoS("waves", $"Starting wave defense game mode");
+        WaveNumber = 0;
+        HighScore = 0;
+        KillCount = 0;
+        Defenders.Clear();
+        RestartTimer();
+    }
 
     public override void Ended()
     {
@@ -65,11 +79,6 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
             // TODO: If nobody readied up, refuse to start
             //ev.Cancel();
         }
-        WaveNumber = 0;
-        HighScore = 0;
-        KillCount = 0;
-        Defenders.Clear();
-        RestartTimer();
     }
 
     private void HandleLatejoin(PlayerSpawnCompleteEvent ev)
@@ -108,6 +117,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
         _timerCancel.Cancel();
         _timerCancel = new CancellationTokenSource();
         Timer.Spawn(_waveDefenseRuleConfig.WaveTime * 1000, TimerFired, _timerCancel.Token);
+        Logger.InfoS("waves", $"Next wave in {_waveDefenseRuleConfig.WaveTime} seconds");
     }
 
     public void StopTimer()
@@ -115,32 +125,41 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
         _timerCancel.Cancel();
     }
 
-    private void TimerFired()
+    public void TimerFired()
     {
         WaveNumber++;
-        _chatManager.DispatchServerAnnouncement(Loc.GetString("wave-defense-new-wave", ("number", WaveNumber)));
+        SpawnWave(WaveNumber);
+    }
+
+    private void SpawnWave(int wave)
+    {
+        _chatManager.DispatchServerAnnouncement(Loc.GetString("wave-defense-new-wave", ("number", wave)));
 
         var spawns = new List<EntityCoordinates>();
-
-        // Forgive me for hardcoding prototypes
         foreach (var (_, meta, xform) in EntityQuery<SpawnPointComponent, MetaDataComponent, TransformComponent>(true))
         {
-            if (meta.EntityPrototype?.ID != "SpawnPointWave") continue;
-
-            spawns.Add(xform.Coordinates);
+            if (meta.EntityPrototype?.ID == "SpawnPointWave")
+                spawns.Add(xform.Coordinates);
         }
 
         if (spawns.Count == 0)
         {
-            Logger.WarningS("waves", $"No spawn points found for the next wave");
+            Logger.WarningS("waves", $"No spawn points found on map. Not spawning any monsters.");
+            return;
         }
 
-        //TODO: the logic goes here to select the mobs from our cache and intellegintly spawn them. Use 'WavePool' function to calculate the next
-        // wave. use
-
-
-
+        foreach (var ent in PickMonsters(wave))
+        {
+            var coord = RandomExtensions.Pick(_random, spawns);
+            _entMan.SpawnEntity(ent, coord);
+        }
     }
+
+    private List<string> PickMonsters(int wave)
+    {
+        return new List<string>(){"XenoAITimedSpawner", "SpawnMobBear", "SpaceTickSpawner"};
+    }
+
     private void OnMobDied(EntityUid mobUid, WaveMobComponent component, MobStateChangedEvent args)
     {
         if (!RuleAdded)
@@ -174,5 +193,20 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
     private float WavePool()
     {
         return Defenders.Count * WaveNumber * _waveDefenseRuleConfig.DifficultyMod;
+    }
+}
+
+[AdminCommand(AdminFlags.Round)]
+sealed class NextWaveCommand : IConsoleCommand
+{
+    public string Command => "nextwave";
+    public string Description => "Send the next wave now if in wave defense mode";
+    public string Help => Loc.GetString("cmd-nextwave-help");
+
+    public void Execute(IConsoleShell shell, string argStr, string[] args)
+    {
+        var sysMan = IoCManager.Resolve<IEntitySystemManager>();
+        var _waves = sysMan.GetEntitySystem<WaveDefenseRuleSystem>();
+        _waves.TimerFired();
     }
 }
