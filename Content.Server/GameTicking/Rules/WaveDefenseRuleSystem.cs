@@ -3,8 +3,10 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.GameTicking.Rules.Configurations;
 using Content.Server.Objectives.Interfaces;
 using Content.Server.Players;
+using Content.Server.RoundEnd;
 using Content.Server.Spawners.Components;
 using Content.Server.Traitor;
+using Content.Shared.Mobs;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -19,15 +21,16 @@ namespace Content.Server.GameTicking.Rules;
 /// </summary>
 public sealed class WaveDefenseRuleSystem : GameRuleSystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IObjectivesManager _objectivesManager = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
 
     public override string Prototype => "WaveDefense";
 
     private WaveDefenseRuleConfiguration _waveDefenseRuleConfig = new();
 
     public int WaveNumber = 0;
+    public double HighScore = 0;
+    public double KillCount = 0;
 
     private CancellationTokenSource _timerCancel = new();
 
@@ -41,6 +44,8 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnPlayersSpawned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(HandleLatejoin);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
+        SubscribeLocalEvent<WaveDefenderComponent, MobStateChangedEvent>(OnPlayerDied);
+        SubscribeLocalEvent<WaveMobComponent, MobStateChangedEvent>(OnMobDied);
     }
 
     public override void Started(){}
@@ -61,6 +66,9 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
             //ev.Cancel();
         }
         WaveNumber = 0;
+        HighScore = 0;
+        KillCount = 0;
+        Defenders.Clear();
         RestartTimer();
     }
 
@@ -92,8 +100,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
     {
         if (!RuleAdded)
             return;
-
-        // TODO: Round-end text
+        ev.AddLine(Loc.GetString("wave-defense-end-text", ("number", WaveNumber), ("kills", KillCount), ("score", HighScore)));
     }
 
     public void RestartTimer()
@@ -129,6 +136,35 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
         }
 
 
+    }
+    private void OnMobDied(EntityUid mobUid, WaveMobComponent component, MobStateChangedEvent args)
+    {
+        if (!RuleAdded)
+            return;
+
+        if (args.NewMobState == MobState.Dead)
+        {
+            KillCount++;
+            HighScore += component.Difficulty * 10;
+            RemCompDeferred<WaveMobComponent>(mobUid);
+        }    
+    }
+
+    private void OnPlayerDied(EntityUid mobUid, WaveDefenderComponent component, MobStateChangedEvent args)
+    {
+        if (!RuleAdded)
+            return;
+
+        if (Defenders.Contains(mobUid) && args.NewMobState == MobState.Dead)
+        {
+            RemCompDeferred<WaveDefenderComponent>(mobUid);
+            Defenders.Remove(mobUid);
+        }
+
+        if (Defenders.Count <= 0)
+        {
+            _roundEndSystem.EndRound();
+        }
     }
 
     private float WavePool()
