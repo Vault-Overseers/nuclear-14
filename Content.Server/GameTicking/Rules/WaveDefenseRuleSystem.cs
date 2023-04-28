@@ -159,7 +159,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
 
     private List<string> PickMonsters(int wave)
     {
-        return new List<string>(){"MobXeno", "MobBearSpace", "MobCarp"};
+        return new List<string>(){"N14MobBloatflyWave", "N14MobMoleratWave", "N14MobGiantAntWave", "N14MobNightstalkerCubWave", "N14MobGeckoWave", "N14MobGiantFireAntWave", "N14MobNightstalkerWave"};
     }
 
     private void OnMobDied(EntityUid mobUid, WaveMobComponent component, MobStateChangedEvent args)
