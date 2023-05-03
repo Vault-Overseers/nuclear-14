@@ -1,13 +1,9 @@
 # Wave Defence Mobs
+# Ordered by difficulty
 # Animals
-
-- type: entity
-  parent: [ N14MobBloatfly, N14MobWave ]
-  id: N14MobBloatflyWave
-  suffix: WaveMode
   
 - type: entity
-  parent: [ N14MobMolerat, N14MobWave ]
+  parent: [ N14MobMolerat, N14MobWaveAnimal ]
   id: N14MobMoleratWave
   suffix: WaveMode
   components:
@@ -15,15 +11,7 @@
   difficulty: 3
   
 - type: entity
-  parent: [ N14MobGiantAnt, N14MobWave ]
-  id: N14MobGiantAntWave
-  suffix: WaveMode
-  components:
-  - type: WaveMob
-  difficulty: 5
-  
-- type: entity
-  parent: [ N14MobNightstalkerCub, N14MobWave ]
+  parent: [ N14MobNightstalkerCub, N14MobWaveAnimal ]
   id: N14MobNightstalkerCubWave
   suffix: WaveMode
   components:
@@ -31,7 +19,7 @@
   difficulty: 7
   
 - type: entity
-  parent: [ N14MobGecko, N14MobWave ]
+  parent: [ N14MobGecko, N14MobWaveAnimal ]
   id: N14MobGeckoWave
   suffix: WaveMode
   components:
@@ -39,17 +27,42 @@
   difficulty: 10
   
 - type: entity
-  parent: [ N14MobGiantFireAnt, N14MobWave ]
+  parent: [ N14MobNightstalker, N14MobWaveAnimal ]
+  id: N14MobNightstalkerWave
+  suffix: WaveMode
+  components:
+  - type: WaveMob
+  difficulty: 20
+
+- type: entity
+  parent: [ N14MobYaoguai, N14MobWaveAnimal ]
+  id: N14MobYaoguaiWave
+  suffix: WaveMode
+  components:
+  - type: WaveMob
+  difficulty: 20
+  unique: true
+
+# Insects
+
+- type: entity
+  parent: [ N14MobBloatfly, N14MobWaveInsect ]
+  id: N14MobBloatflyWave
+  suffix: WaveMode
+
+- type: entity
+  parent: [ N14MobGiantAnt, N14MobWaveInsect ]
+  id: N14MobGiantAntWave
+  suffix: WaveMode
+  components:
+  - type: WaveMob
+  difficulty: 5
+
+- type: entity
+  parent: [ N14MobGiantFireAnt, N14MobWaveInsect ]
   id: N14MobGiantFireAntWave
   suffix: WaveMode
   components:
   - type: WaveMob
   difficulty: 15
   
-- type: entity
-  parent: [ N14MobNightstalker, N14MobWave ]
-  id: N14MobNightstalkerWave
-  suffix: WaveMode
-  components:
-  - type: WaveMob
-  difficulty: 20
