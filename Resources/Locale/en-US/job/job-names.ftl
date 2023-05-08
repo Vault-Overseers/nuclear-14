@@ -111,3 +111,7 @@ job-name-vault-security = Vault Security
 job-name-farmer = Farmer
 job-name-scavenger = Scavenger
 job-name-wastelander = Wastelander
+job-name-survivor = Survivor
+
+# N14 Role Timers
+Survivor = Survivor

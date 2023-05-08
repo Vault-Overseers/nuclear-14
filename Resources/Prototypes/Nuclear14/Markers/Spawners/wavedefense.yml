@@ -1,9 +1,23 @@
 - type: entity
   id: SpawnPointWave
   parent: MarkerBase
-  name: Wave Defense Mob Spawner
+  name: Wave Defense Attacker Mob Spawner
   components:
   - type: SpawnPoint
   - type: Sprite
     layers:
     - state: green
+    - state: bear
+    
+- type: entity
+  id: SpawnPointWaveSurvivor
+  parent: MarkerBase
+  name: Wave Defense Survivor Spawner
+  components:
+  - type: SpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - state: passenger
+  - type: SpawnPoint
+    job_id: Survivor
