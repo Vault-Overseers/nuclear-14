@@ -1,8 +1,8 @@
 - type: entity
-  id: HandmadeDoor
-  name: handmade door
+  id: HandmadeDoor # TODO: Update ID prefix
+  name: makeshift door
   parent: BaseMaterialDoor
-  description: It's a wood door. It looks dirty, and handmade.
+  description: It's a wooden door. It looks dirty and handmade.
   components:
   - type: Sprite
     netsync: false
@@ -35,9 +35,9 @@
 
 - type: entity
   id: HouseDoor
-  name: house door
+  name: wooden door
   parent: WoodDoor
-  description: It's a door. I dunno about you, but I think it might be used for houses.
+  description: It's a door. Looks like a front door to a home.
   components:
   - type: Sprite
     netsync: false
@@ -48,7 +48,7 @@
 
 - type: entity
   id: HouseDoorClean
-  name: clean house door
+  name: wooden door
   parent: WoodDoor
   description: The cleanest door known to what remains of mankind.
   components:
@@ -61,7 +61,7 @@
 
 - type: entity
   id: RoomDoor
-  name: room door
+  name: wooden door
   parent: WoodDoor
   description: A door used inside pre-war houses that section off rooms.
   components:
@@ -74,7 +74,8 @@
 
 - type: entity
   id: RoomDoorDestroyed
-  name: destroyed room door
+  suffix: damaged
+  name: wooden door
   parent: WoodDoor
   description: A door used inside pre-war houses that section off rooms. Unsuprisingly, it looks like it'll fall apart at any moment.
   components:
@@ -89,7 +90,7 @@
   id: GlassDoor
   name: glass door
   parent: WoodDoor
-  description: It's a door with pannels made of clean glass.
+  description: It's a door with panels made of clean glass.
   components:
   - type: Sprite
     netsync: false
