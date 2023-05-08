@@ -1,3 +1,5 @@
+# Give radroach SmallMobMask and SmallMobLayer so can evade doors and tables.
+
 - type: entity
   name: bloatfly
   parent: N14MobBaseHostile
@@ -164,9 +166,9 @@
         radius: 0.20
       density: 20
       mask:
-      - SmallMobMask
+      - MobMask
       layer:
-      - SmallMobLayer
+      - MobLayer
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -197,6 +199,10 @@
   components:
   - type: Sprite
     drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: gecko
+      sprite: Nuclear14/Mobs/Animals/gecko.rsi
   - type: Physics
   - type: MovementSpeedModifier
     baseWalkSpeed : 5
@@ -256,9 +262,9 @@
         radius: 0.20
       density: 20
       mask:
-      - SmallMobMask
+      - MobMask
       layer:
-      - SmallMobLayer
+      - MobLayer
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -297,6 +303,10 @@
   components:
   - type: Sprite
     drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: nightstalker-1
+      sprite: Nuclear14/Mobs/Animals/nightstalker.rsi
   - type: Physics
   - type: MovementSpeedModifier
     baseWalkSpeed : 5
@@ -318,11 +328,11 @@
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: nightstalker-0
+        Base: nightstalker-1
       Critical:
-        Base: nightstalker-0
+        Base: nightstalker-1
       Dead:
-        Base: dead-0
+        Base: dead
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -349,6 +359,10 @@
   components:
   - type: Sprite
     drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: yaoguai
+      sprite: Nuclear14/Mobs/Animals/yaoguai.rsi
   - type: Physics
   - type: MovementSpeedModifier
     baseWalkSpeed : 4
