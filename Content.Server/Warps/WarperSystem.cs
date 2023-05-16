@@ -3,6 +3,8 @@ using Content.Server.Popups;
 using Content.Shared.Interaction;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 
 namespace Content.Server.Warps;
@@ -10,6 +12,7 @@ namespace Content.Server.Warps;
 public class WarperSystem : EntitySystem
 {
     [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly WarpPointSystem _warpPointSystem = default!;
 
     public override void Initialize()
@@ -62,9 +65,9 @@ public class WarperSystem : EntitySystem
         var xform = entMan.GetComponent<TransformComponent>(args.User);
         xform.Coordinates = destXform.Coordinates;
         xform.AttachToGridOrMap();
-        if (entMan.TryGetComponent(uid, out IPhysBody? physics))
+        if (entMan.TryGetComponent(uid, out PhysicsComponent? phys))
         {
-            physics.LinearVelocity = Vector2.Zero;
+            _physics.SetLinearVelocity(uid, Vector2.Zero);
         }
     }
 }

@@ -22,4 +22,22 @@ namespace Content.Server.Objectives.Requirements
             return (mind.CurrentJob.Prototype.ID != roleId);
         }
     }
+
+    [DataDefinition]
+    public sealed class RoleRequirement : IObjectiveRequirement
+    {
+        [DataField("roleId", customTypeSerializer:typeof(PrototypeIdSerializer<JobPrototype>))]
+        private string roleId = "";
+
+        /// <summary>
+        /// This requirement is met if the mind has the roleId.
+        /// </summary>
+        public bool CanBeAssigned(Mind.Mind mind)
+        {
+            if (mind.CurrentJob == null) // no job no problems
+                return false;
+
+            return (mind.CurrentJob.Prototype.ID == roleId);
+        }
+    }
 }
