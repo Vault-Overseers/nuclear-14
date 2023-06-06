@@ -17,6 +17,9 @@ using Timer = Robust.Shared.Timing.Timer;
 using Content.Server.Administration;
 using Robust.Shared.Console;
 using Content.Shared.Administration;
+using Content.Shared.Mobs.Components;
+using System.Linq;
+using Content.Shared.GameTicking;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -29,6 +32,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
     [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
     public override string Prototype => "WaveDefense";
 
@@ -40,7 +44,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
 
     private CancellationTokenSource _timerCancel = new();
 
-    public List<EntityUid> Defenders = new();
+    public List<string> Defenders = new();
 
     public override void Initialize()
     {
@@ -87,7 +91,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
             return;
 
         EnsureComp<WaveDefenderComponent>(ev.Mob);
-        Defenders.Add(ev.Mob);
+        Defenders.Add(ev.Profile.Name);
     }
 
     private void OnPlayersSpawned(RulePlayerJobsAssignedEvent ev)
@@ -100,7 +104,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
             if (player.AttachedEntity is { Valid: true } mob)
             {
                 EnsureComp<WaveDefenderComponent>(mob);
-                Defenders.Add(mob);
+                Defenders.Add(player.Name);
             }
         }
     }
@@ -109,7 +113,12 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
     {
         if (!RuleAdded)
             return;
-        ev.AddLine(Loc.GetString("wave-defense-end-text", ("number", WaveNumber), ("kills", KillCount), ("score", HighScore)));
+        ev.AddLine(Loc.GetString("wave-defence-end-text", ("number", WaveNumber), ("kills", KillCount), ("score", HighScore)));
+        ev.AddLine(Loc.GetString("wave-defence-participants"));
+        foreach (var player in Defenders)
+        {
+            ev.AddLine(player);
+        }
     }
 
     public void RestartTimer()
@@ -133,7 +142,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
 
     private void SpawnWave(int wave)
     {
-        _chatManager.DispatchServerAnnouncement(Loc.GetString("wave-defense-new-wave", ("number", wave)));
+        _chatManager.DispatchServerAnnouncement(Loc.GetString("wave-defence-new-wave", ("number", wave)));
 
         var spawns = new List<EntityCoordinates>();
         foreach (var (_, meta, xform) in EntityQuery<SpawnPointComponent, MetaDataComponent, TransformComponent>(true))
@@ -155,11 +164,52 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
             var info = EnsureComp<WaveMobComponent>(mob);
             // TODO: set info here
         }
+        RestartTimer();
     }
 
     private List<string> PickMonsters(int wave)
     {
-        return new List<string>(){"N14MobBloatflyWave", "N14MobMoleratWave", "N14MobGiantAntWave", "N14MobNightstalkerCubWave", "N14MobGeckoWave", "N14MobGiantFireAntWave", "N14MobNightstalkerWave"};
+        var entityPool = _protoManager.EnumeratePrototypes<EntityPrototype>();
+        var mobList = new Dictionary<string, Tuple<string, float, bool>>();
+
+        //heres the expensive bit but on the upside it should handle prototype reloading fine since
+        //we will invoke this once per wave spawn.
+        //if we want this done only once per round for instance, we would need to hook in to proto reload.
+
+        foreach (var proto in entityPool)
+        {
+            if (!proto.TryGetComponent<WaveMobComponent>(out var waveMobComp))
+                continue;
+
+            if (wave < waveMobComp.Difficulty)
+                continue;
+
+            var diffGroup = new Tuple<string, float, bool>(waveMobComp.Group, waveMobComp.Difficulty, waveMobComp.Unique);
+            mobList.Add(proto.ID, diffGroup);
+        }
+        //Todo: fine tune this, i just slapped an integer here wcgw.
+        //Ideally, we would have no numbers hard coded at all and should rely solely on the RuleConfig, so go there to change the actual difficulty
+        //or make a new rule config. Same goes with timer
+        var wavePool = wave * _waveDefenseRuleConfig.DifficultyMod * (Defenders.Count * 2);
+        var waveTemplate = _random.Pick(mobList).Value.Item1;
+        var spawnList = new List<string>();
+
+        while (wavePool > 0 && mobList.Count > 0)
+        {
+            var mobCandidate = _random.Pick(mobList);
+
+            if (mobCandidate.Value.Item1 != waveTemplate)
+                continue;
+
+            if (mobCandidate.Value.Item3)
+            {
+                mobList.Remove(mobCandidate.Key);
+            }
+
+            spawnList.Add(mobCandidate.Key);
+            wavePool -= mobCandidate.Value.Item2;
+        }
+        return spawnList;
     }
 
     private void OnMobDied(EntityUid mobUid, WaveMobComponent component, MobStateChangedEvent args)
@@ -179,22 +229,12 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
     {
         if (!RuleAdded)
             return;
-
-        if (Defenders.Contains(mobUid) && args.NewMobState == MobState.Dead)
-        {
-            RemCompDeferred<WaveDefenderComponent>(mobUid);
-            Defenders.Remove(mobUid);
-        }
-
-        if (Defenders.Count <= 0)
+        var defenders = EntityQuery<WaveDefenderComponent, MobStateComponent>(true);
+        var defendersAlive = defenders.Any(ent => ent.Item2.CurrentState == MobState.Alive && ent.Item1.Running);
+        if (!defendersAlive)
         {
             _roundEndSystem.EndRound();
         }
-    }
-
-    private float WavePool()
-    {
-        return Defenders.Count * WaveNumber * _waveDefenseRuleConfig.DifficultyMod;
     }
 }
 
