@@ -27,6 +27,7 @@ public sealed class NPCBlackboard : IEnumerable<KeyValuePair<string, object>>
         {"RangedRange", 7f},
         {"RotateSpeed", MathF.PI},
         {"VisionRadius", 7f},
+        {"ESP", false},
     };
 
     /// <summary>

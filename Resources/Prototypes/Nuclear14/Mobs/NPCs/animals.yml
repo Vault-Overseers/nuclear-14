@@ -1,0 +1,400 @@
+# Give radroach SmallMobMask and SmallMobLayer so can evade doors and tables.
+
+- type: entity
+  name: bloatfly
+  parent: N14MobBaseHostile
+  id: N14MobBloatfly
+  description: A mutated floating bug with an infectious bite.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 6
+  - type: Sprite
+    drawdepth: Mobs
+  - type: Physics
+  - type: Speech
+    speechSounds: Squeak
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeCircle
+        radius: 0.25
+      density: 10
+      mask:
+      - FlyingMobMask
+      layer:
+      - FlyingMobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: bloatfly
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Bloodstream
+    bloodMaxVolume: 50
+  - type: ReplacementAccent
+    accent: mouse
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 3
+  - type: NoSlip
+  
+  
+- type: entity
+  name: giant ant
+  parent: N14MobBaseHostile
+  id: N14MobGiantAnt
+  description: It's an ant...but giant. Watch for the nippers.
+  components:
+  - type: Faction
+    factions:
+    - SimpleHostile
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: giantant
+      sprite: Nuclear14/Mobs/Animals/giantant.rsi
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeCircle
+        radius: 0.5
+      density: 400
+      mask:
+      - MobMask
+      layer:
+      - MobLayer
+  - type: MovementAlwaysTouching
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: Stamina
+    excess: 150
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: giantant
+      Critical:
+        Base: giantant
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 3
+#    - id: MaterialHideBear TODO: Add material drop
+#      amount: 1
+#      prob: 0.3
+  - type: Bloodstream
+    bloodMaxVolume: 500
+  - type: CombatMode
+    disarmAction:
+      enabled: false
+      autoPopulate: false
+      name: action-name-disarm
+  - type: Temperature
+    heatDamageThreshold: 500
+    coldDamageThreshold: 0
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      groups:
+        Brute: 5
+        
+- type: entity
+  name: giant fire ant
+  parent: N14MobBaseHostile
+  id: N14MobGiantFireAnt
+  description: It's an ant...but giant and red. Watch for the nippers.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: fireant
+      sprite: Nuclear14/Mobs/Animals/fireant.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: fireant
+      Critical:
+        Base: fireant
+      Dead:
+        Base: dead
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: FireToxin
+          Quantity: 50
+          
+- type: entity
+  name: molerat
+  id: N14MobMolerat
+  parent: N14MobBaseHostile
+  description: Part mole, part rat, full pest Watch out for the teeth.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: molerat
+      sprite: Nuclear14/Mobs/Animals/molerat.rsi
+  - type: Physics
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 6
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeCircle
+        radius: 0.20
+      density: 20
+      mask:
+      - MobMask
+      layer:
+      - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: molerat
+      Critical:
+        Base: molerat
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 3
+        
+- type: entity
+  name: gecko
+  id: N14MobGecko
+  parent: N14MobBaseHostile
+  description: Looks like a dinosaur. The bite is worse than the claws.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: gecko
+      sprite: Nuclear14/Mobs/Animals/gecko.rsi
+  - type: Physics
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5
+    baseSprintSpeed : 6
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeCircle
+        radius: 0.5
+      density: 20
+      mask:
+      - MobMask
+      layer:
+      - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: gecko
+      Critical:
+        Base: gecko
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 5
+        
+- type: entity
+  name: nightstalker cub
+  id: N14MobNightstalkerCub
+  parent: N14MobBaseHostile
+  description: Is it a coyote? Why does it have a rattler...This one is small
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: nightstalker
+      sprite: Nuclear14/Mobs/Animals/nightstalkercub.rsi
+  - type: Physics
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5
+    baseSprintSpeed : 6
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeCircle
+        radius: 0.20
+      density: 20
+      mask:
+      - MobMask
+      layer:
+      - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: nightstalker
+      Critical:
+        Base: nightstalker
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 1
+      types:
+        Piercing: 4
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: Toxin
+          Quantity: 15
+          
+- type: entity
+  name: nightstalker
+  id: N14MobNightstalker
+  parent: N14MobBaseHostile
+  description: Is it a coyote? Why does it have a rattler...
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: nightstalker-1
+      sprite: Nuclear14/Mobs/Animals/nightstalker.rsi
+  - type: Physics
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5
+    baseSprintSpeed : 7
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeCircle
+        radius: 0.20
+      density: 20
+      mask:
+      - MobMask
+      layer:
+      - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: nightstalker-1
+      Critical:
+        Base: nightstalker-1
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 3
+      types:
+        Piercing: 5
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: Toxin
+          Quantity: 25
+
+- type: entity
+  name: yao guai
+  id: N14MobYaoguai
+  parent: N14MobBaseHostile
+  description: An angry bear...but uglier, meaner and with bigger claws.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: yaoguai
+      sprite: Nuclear14/Mobs/Animals/yaoguai.rsi
+  - type: Physics
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 6
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeCircle
+        radius: 1
+      density: 100
+      mask:
+      - MobMask
+      layer:
+      - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: yaoguai
+      Critical:
+        Base: yaoguai
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 15
