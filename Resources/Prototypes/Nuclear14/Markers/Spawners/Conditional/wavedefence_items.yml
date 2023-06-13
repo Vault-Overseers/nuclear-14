@@ -1,0 +1,86 @@
+- type: entity
+  name: Random Weapon Spawner
+  suffix: Melee
+  id: N14SpawnerRandomWeaponMelee
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Objects/Weapons/Melee/machete.rsi
+          state: icon
+    - type: RandomSpawner
+      prototypes:
+        - N14Hatchet
+        - N14BaseBallBat
+        - N14KitchenKnife
+        - N14ButchersCleaver
+        - N14WastelandSpear
+      chance: 0.70
+      offset: 0.0
+      rarePrototypes:
+        - N14SledgeHammer
+        - N14CombatKnife
+        - N14Machete
+      rareChance: 0.15
+      
+- type: entity
+  name: Random Medical Spawner
+  suffix: drugs / chems
+  id: N14SpawnerRandomMedical
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Nuclear14/Objects/Specific/Medical/drugs.rsi
+          state: jet
+    - type: RandomSpawner
+      prototypes:
+        - N14Stimpak
+        - N14Jet
+        - N14Turbo
+        - N14Med-X
+        - N14Psycho
+        - N14RadAwayBloodbag
+        - MentatsCanisterFilled
+      chance: 0.65
+      offset: 0.0
+      rarePrototypes:
+        - N14SuperStimpak
+        - BuffoutCanisterFilled
+        - RadXCanisterFilled
+      rareChance: 0.1
+      
+      
+
+# Timed Spawners
+- type: entity
+  name: Random Ammo Spawner
+  id: N14SpawnerTimedRandomAmmo
+  suffix: Timed, 10m
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+          state: base
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+		- MagazinePistolCaselessRifle
+		- MagazineCaselessRifle
+		- BaseMagazineHeavyRifle
+		- MagazineLightRifle
+		- MagazineMagnum
+		- MagazineMagnumSubMachineGun
+		- MagazinePistolSubMachineGunTopMounted
+		- MagazinePistol
+		- MagazinePistolSubMachineGun
+		- MagazineRifle
+		- MagazineShotgun
+      chance: 0.75
+      intervalSeconds: 1200
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
