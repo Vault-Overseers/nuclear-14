@@ -1,8 +1,28 @@
 - type: entity
+  name: 9mm Pistol
+  parent: BaseWeaponPistol
+  id: N14WeaponPistol9mm
+  description: A cheap, ubiquitous sidearm, chambered in 9 mm.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/9mm.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/9mm.rsi
+  - type: Gun
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+
+- type: entity
   name: 10mm Pistol
   parent: BaseWeaponPistol
   id: N14WeaponPistol10mm
-  description: A cheap, ubiquitous sidearm, chambered in 10 mm.
+  description: A cheap, ubiquitous sidearm, chambered in 10mm. # TODO: Need to create projectiles, magazines and boxes for 10mm.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Pistols/10mm.rsi
@@ -19,10 +39,52 @@
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
 
 - type: entity
+  name: .45 handgun
+  parent: BaseWeaponPistol
+  id: N14WeaponPistolColt
+  description: A rugged handgun chambered in .45.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/colt.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/colt.rsi
+  - type: Gun
+    fireRate: 4
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMagnum
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnum
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnum
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
   name: 12mm handgun
   parent: BaseWeaponPistol
   id: N14WeaponPistol12mm
-  description: A rugged, robust handgun chambered in 12 mm.
+  description: A rugged, robust handgun chambered in 12mm. # TODO: Need to create projectiles, magazines and boxes for 12mm.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Pistols/12mm.rsi
