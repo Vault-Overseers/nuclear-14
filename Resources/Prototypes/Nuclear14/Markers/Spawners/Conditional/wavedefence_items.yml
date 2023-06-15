@@ -25,6 +25,50 @@
       rareChance: 0.15
       
 - type: entity
+  name: Random Weapon Spawner
+  suffix: Small Guns
+  id: N14SpawnerRandomWeaponGunSmall
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Objects/Weapons/Melee/machete.rsi
+          state: icon
+    - type: RandomSpawner
+      prototypes:
+        - N14WeaponPistol9mm
+        - N14WeaponPistol10mm
+        - N14WeaponPistolColt
+        - N14WeaponPistol12mm
+        - N14WeaponRevolver9mm
+      chance: 0.70
+      offset: 0.0
+      rarePrototypes:
+        - N14WeaponRevolverMagnun
+      rareChance: 0.15
+      
+- type: entity
+  name: Random Weapon Spawner
+  suffix: Laser
+  id: N14SpawnerRandomWeaponGunLaser
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Nuclear14/Objects/Weapons/Guns/Battery/laser_pistol.rsi
+          state: base
+    - type: RandomSpawner
+      prototypes:
+        - N14WeaponLaserPistol
+      chance: 0.5
+      offset: 0.0
+      rarePrototypes:
+        - N14WeaponLaserRifle
+      rareChance: 0.15
+      
+- type: entity
   name: Random Medical Spawner
   suffix: drugs / chems
   id: N14SpawnerRandomMedical
@@ -82,5 +126,3 @@
 		- MagazineShotgun
       chance: 0.75
       intervalSeconds: 1200
-      minimumEntitiesSpawned: 1
-      maximumEntitiesSpawned: 1
