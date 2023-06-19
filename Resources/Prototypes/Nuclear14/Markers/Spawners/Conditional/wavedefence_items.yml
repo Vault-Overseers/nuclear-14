@@ -1,3 +1,4 @@
+# Weapons
 - type: entity
   name: Random Weapon Spawner
   suffix: Melee
@@ -33,7 +34,7 @@
     - type: Sprite
       layers:
         - state: red
-        - sprite: Objects/Weapons/Melee/machete.rsi
+        - sprite: Objects/Weapons/Guns/Revolvers/magnum.rsi
           state: icon
     - type: RandomSpawner
       prototypes:
@@ -46,7 +47,34 @@
       offset: 0.0
       rarePrototypes:
         - N14WeaponRevolverMagnun
+        - N14WeaponSubMachineGun12mm
+        - N14WeaponSubMachineGun10mm
+        - N14WeaponLaserPistol
       rareChance: 0.15
+      
+- type: entity
+  name: Random Weapon Spawner
+  suffix: Shotguns & Rifles
+  id: N14SpawnerRandomWeaponGunShotgunsRifles
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Objects/Weapons/Guns/Shotguns/combat_shotgun.rsi
+          state: icon
+    - type: RandomSpawner
+      prototypes:
+        - N14WeaponDoubleBarrelShotgun
+        - N14WeaponShotgun
+        - N14WeaponLaserRifle
+      chance: 0.65
+      offset: 0.0
+      rarePrototypes:
+        - N14WeaponAutoShotgun
+        - N14WeaponRifleR91
+        - N14WeaponSniperHunting
+      rareChance: 0.20
       
 - type: entity
   name: Random Weapon Spawner
@@ -67,7 +95,8 @@
       rarePrototypes:
         - N14WeaponLaserRifle
       rareChance: 0.15
-      
+
+# Drugs & Consumables
 - type: entity
   name: Random Medical Spawner
   suffix: drugs / chems
@@ -77,7 +106,7 @@
     - type: Sprite
       layers:
         - state: red
-        - sprite: /Nuclear14/Objects/Specific/Medical/drugs.rsi
+        - sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
           state: jet
     - type: RandomSpawner
       prototypes:
@@ -95,3 +124,92 @@
         - BuffoutCanisterFilled
         - RadXCanisterFilled
       rareChance: 0.1
+      
+- type: entity
+  name: Random Food Spawner
+  suffix: pre-war
+  id: N14SpawnerRandomFoodPreWar
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Nuclear14/Objects/Consumable/Food/pre-war.rsi
+          state: blamco
+    - type: RandomSpawner
+      prototypes:
+        - N14FoodBlamcomaccheese
+        - N14FoodBlamcomaccheeseLarge
+        - N14FoodBubblegum
+        - N14FoodCram
+        - N14FoodCrisps
+        - N14FoodDandyboyapples
+        - N14FoodDogfood
+        - N14FoodFancyladssnackcakes
+        - N14FoodInstamash
+        - N14FoodPorkBeans
+        - N14FoodSalisburysteak
+        - N14FoodSugarbombs
+        - N14FoodYumyumdeviledeggs
+      chance: 0.80
+      offset: 0.0
+      rarePrototypes:
+        - N14FoodMouldy
+      rareChance: 0.1
+      
+- type: entity
+  name: Random Food Trash Spawner
+  suffix: pre-war
+  id: N14SpawnerRandomFoodPreWarTrash
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Nuclear14/Objects/Consumable/Food/pre-war.rsi
+          state: rottenfood
+    - type: RandomSpawner
+      prototypes:
+        - N14FoodBlamcomaccheeseTrash
+        - N14FoodBlamcomaccheeseLargeTrash
+        - N14FoodBubblegumTrash
+        - N14FoodCramTrash
+        - N14FoodCrispsTrash
+        - N14FoodDandyboyapplesTrash
+        - N14FoodTinCanTrash
+        - N14FoodFancyladssnackcakesTrash
+        - N14FoodInstamashTrash
+        - N14FoodSalisburysteakTrash
+        - N14FoodSugarbombsTrash
+        - N14FoodYumyumdeviledeggsTrash
+      chance: 0.85
+      offset: 0.0
+      rarePrototypes:
+        - N14FoodMouldy
+      rareChance: 0.1
+      
+# Tools & Supplies
+- type: entity
+  name: Random Tool Spawner
+  id: N14SpawnerRandomTools
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Nuclear14/Objects/Tools/welder.rsi
+          state: icon
+    - type: RandomSpawner
+      prototypes:
+        - N14Wirecutter
+        - N14Screwdriver
+        - N14Wrench
+        - N14Welder
+      chance: 0.65
+      offset: 0.0
+      rarePrototypes:
+        - N14WelderIndustrial
+        - N14WelderIndustrialAdvanced
+      rareChance: 0.1
+      
+      
