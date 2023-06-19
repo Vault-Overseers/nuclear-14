@@ -1,0 +1,16 @@
+- type: gameMap
+  id: Wave1
+  mapName: 'Wave 1'
+  mapPath: /Maps/N14/wave1.yml
+  minPlayers: 0
+  stations:
+    Station:
+      mapNameTemplate: '{0} Wave Defense {1}'
+      nameGenerator:
+        !type:NanotrasenNameGenerator
+        prefixCreator: '14'
+      overflowJobs:
+        - Passenger
+      availableJobs:
+        Survivor: [ -1, -1 ]
+        Passenger: [ -1, -1 ]
