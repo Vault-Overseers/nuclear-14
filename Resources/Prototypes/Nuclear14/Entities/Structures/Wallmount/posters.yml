@@ -1,0 +1,122 @@
+- type: entity
+  parent: BaseSign
+  id: N14PosterBase # For 64x64 posters
+  abstract: true
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Nuclear14/Structures/Wallmounts/Posters/vault-tec.rsi
+    scale: 0.4, 0.4
+    snapCardinals: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/poster_broken.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PosterBroken:
+            min: 1
+            max: 1
+        offset: 0
+
+
+# Pristine Posters
+- type: entity
+  parent: N14PosterBase
+  id: N14PosterVaultTec01
+  name: Vault-Tec poster
+  description: "A near pristine poster advertising Vault-Tec."
+  components:
+  - type: Sprite
+    state: vault-tec01
+    
+- type: entity
+  parent: N14PosterBase
+  id: N14PosterVaultTec02
+  name: Vault-Tec poster
+  description: "A near pristine poster advertising Vault-Tec."
+  components:
+  - type: Sprite
+    state: vault-tec02
+    
+- type: entity
+  parent: N14PosterBase
+  id: N14PosterVaultTec05
+  name: Vault-Tec poster
+  description: "A near pristine poster advertising Vault-Tec."
+  components:
+  - type: Sprite
+    state: vault-tec05
+    
+- type: entity
+  parent: N14PosterBase
+  id: N14PosterVaultTec06
+  name: Vault-Tec poster
+  description: "A near pristine poster promoting science."
+  components:
+  - type: Sprite
+    state: vault-tec06
+    
+- type: entity
+  parent: N14PosterBase
+  id: N14PosterVaultTec07
+  name: Vault-Tec poster
+  description: "A near pristine poster advertising Vaults."
+  components:
+  - type: Sprite
+    state: vault-tec07
+    
+- type: entity
+  parent: N14PosterBase
+  id: N14PosterVaultTec10
+  name: Vault-Tec poster
+  description: "A near pristine poster promoting workplace safety."
+  components:
+  - type: Sprite
+    state: vault-tec10
+    
+# Worn posters
+- type: entity
+  parent: N14PosterBase
+  id: N14PosterVaultTec03
+  name: Vault-Tec poster
+  description: "A poster advertising Vault-Tec."
+  components:
+  - type: Sprite
+    state: vault-tec03
+    
+- type: entity
+  parent: N14PosterBase
+  id: N14PosterVaultTec04
+  name: Vault-Tec poster
+  description: "A Vault-Tec poster promoting hard work."
+  components:
+  - type: Sprite
+    state: vault-tec04
+    
+- type: entity
+  parent: N14PosterBase
+  id: N14PosterVaultTec08
+  name: Vault-Tec poster
+  description: "A worn Vault-Tec poster advertising Vaults."
+  components:
+  - type: Sprite
+    state: vault-tec08
+    
+- type: entity
+  parent: N14PosterBase
+  id: N14PosterVaultTec09
+  name: Vault-Tec poster
+  description: "A worn Vault-Tec poster. You can't make it out."
+  components:
+  - type: Sprite
+    state: vault-tec09
