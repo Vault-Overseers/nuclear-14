@@ -4,6 +4,16 @@
   description: A generator that uses expendable fusion cores.
   name: fusion core generator
   components:
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.8,-0.6,0.8,0.5"
+      density: 190
+      mask:
+      - MachineMask
+      layer:
+      - MachineLayer
   - type: AmbientSound
     range: 5
     sound:
@@ -27,6 +37,16 @@
   description: A fusion reactor built by vault-tec.
   name: vault-tec reactor
   components:
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.8,-1,0.8,1.5"
+      density: 190
+      mask:
+      - MachineMask
+      layer:
+      - MachineLayer
   - type: AmbientSound
     range: 5
     sound:
