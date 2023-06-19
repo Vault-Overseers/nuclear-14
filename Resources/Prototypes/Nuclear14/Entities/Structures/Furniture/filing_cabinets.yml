@@ -1,0 +1,43 @@
+- type: entity
+  name: N14 filing cabinet
+  parent: BaseStructureDynamic
+  id: N14filingCabinet
+  suffix: Empty
+  description: A cabinet for all your filing needs.
+  components:
+  - type: Storage
+    capacity: 80
+  - type: Sprite
+    netsync: false
+    sprite: Structures/Storage/cabinets.rsi
+    state: filingcabinet
+    noRot: true
+  - type: Appearance
+    visuals:
+    - type: BagOpenCloseVisualizer
+      openIcon: filingcabinet-open
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.18,-0.48,0.18,0.48"
+      density: 200
+      mask:
+      - MachineMask
+      layer:
+      - MachineLayer
+  - type: InteractionOutline
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+
+- type: entity
+  parent: [ N14filingCabinet, N14BaseTimedStorageFill ]
+  id: N14FilingCabinetRefilling
+  suffix: Refilling,Random
