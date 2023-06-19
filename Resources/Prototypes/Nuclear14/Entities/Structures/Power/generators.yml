@@ -4,6 +4,16 @@
   description: A generator that uses expendable fusion cores.
   name: fusion core generator
   components:
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.8,-0.6,0.8,0.5"
+      density: 190
+      mask:
+      - MachineMask
+      layer:
+      - MachineLayer
   - type: AmbientSound
     range: 5
     sound:
@@ -16,3 +26,36 @@
       shader: unshaded
     - state: fusion_generator_core
       shader: unshaded
+  - type: PowerSupplier
+    supplyRate: 5000
+    supplyRampRate: 250
+    supplyRampTolerance: 250
+      
+- type: entity
+  parent: BaseGenerator
+  id: N14GeneratorVaultTecReactor
+  description: A fusion reactor built by vault-tec.
+  name: vault-tec reactor
+  components:
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.8,-1,0.8,1.5"
+      density: 190
+      mask:
+      - MachineMask
+      layer:
+      - MachineLayer
+  - type: AmbientSound
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg # TODO: change to fusion core generator noise
+  - type: Sprite
+    sprite: Nuclear14/Structures/Power/vault-tec_reactor.rsi
+    layers:
+    - state: reactor
+  - type: PowerSupplier
+    supplyRate: 10000
+    supplyRampRate: 500
+    supplyRampTolerance: 500
