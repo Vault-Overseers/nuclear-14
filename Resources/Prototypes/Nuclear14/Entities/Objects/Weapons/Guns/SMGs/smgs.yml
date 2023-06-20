@@ -72,3 +72,71 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  name: 12mm AutoPipe
+  parent: BaseWeaponSubMachineGun
+  id: N14weapon12mmpipe
+  description: a makeshift 12mm SMG, looks like is gonna explode the second it shoots.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
+  - type: Gun
+    fireRate: 4
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/hpistol.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMagnumSubMachineGun
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnumSubMachineGun
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnum
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: 10mm AutoPipe
+  parent: BaseWeaponSubMachineGun
+  id: N14weapon10mmpipe
+  description: a makeshift 10mm SMG, if you shake it you could hear the loose parts inside of the gun.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
+  - type: Gun
+    fireRate: 8
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

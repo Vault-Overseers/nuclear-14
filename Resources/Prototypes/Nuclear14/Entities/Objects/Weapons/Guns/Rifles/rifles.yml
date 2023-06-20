@@ -43,3 +43,137 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  name: Chinese Assault Rifle
+  parent: BaseWeaponRifle
+  id: N14WeaponChineseRifle
+  description: A old foreing assault rifle with strange simbols on it, the chamber has enough space to hold a 7,62 bullet.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Rifles/chineserifle.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Rifles/chineserifle.rsi
+  - type: Gun
+    fireRate: 4
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: Assault Carbine
+  parent: BaseWeaponRifle
+  id: N14WeaponCarbine
+  description: A black compact assault rifle, uses 5.56 ammo.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Rifles/assaultcarbine.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Rifles/assaultcarbine.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+    selectedMode: FullAuto   
+    availableModes:
+    - FullAuto
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: Marksman Carbine
+  parent: BaseWeaponRifle
+  id: N14WeaponMarksman
+  description: A heavy semiautomatic rifle with a scope, uses 7.62 ammo.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Rifles/marksman.rsi
+    layers:
+     - state: base
+       map: ["enum.GunVisualLayers.Base"]
+     - state: mag-0
+       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    fireRate: 5
+    selectedMode: SemiAuto      
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
