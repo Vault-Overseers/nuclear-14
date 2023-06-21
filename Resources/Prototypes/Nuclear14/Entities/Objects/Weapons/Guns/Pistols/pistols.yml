@@ -121,3 +121,23 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: 10mm Pipe pistol
+  parent: BaseWeaponPistol
+  id: N14WeaponPipe10mm
+  description: a light 10mm makeshift pistol, the grip is incredibly uncomfortable.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/10mmPIPEpistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/10mmPIPEpistol.rsi
+  - type: Gun
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg

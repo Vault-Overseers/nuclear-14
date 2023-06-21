@@ -8,3 +8,20 @@
     sprite: Nuclear14/Objects/Weapons/Guns/Snipers/hunting.rsi
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Guns/Snipers/hunting.rsi
+
+- type: entity
+  name: Anti-Material rifle
+  parent: BaseWeaponSniper
+  id: N14WeaponAntiMaterial
+  description: A anti material rifle with a ergonomic, metallic skeleton design. only seeing at it you can tell it will rip some limbs apart. Uses .50 anti-material ammo.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/antimaterial.rsi
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/antimaterial.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeAntiMaterial
+    capacity: 5
+    proto: CartridgeAntiMaterial
