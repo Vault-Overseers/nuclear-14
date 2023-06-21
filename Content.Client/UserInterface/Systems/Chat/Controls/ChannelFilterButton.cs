@@ -1,4 +1,4 @@
-﻿using Content.Client.Resources;
+using Content.Client.Resources;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -8,9 +8,9 @@ namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
 public sealed class ChannelFilterButton : ContainerButton
 {
-    private static readonly Color ColorNormal = Color.FromHex("#7b7e9e");
-    private static readonly Color ColorHovered = Color.FromHex("#9699bb");
-    private static readonly Color ColorPressed = Color.FromHex("#789B8C");
+    private static readonly Color ColorNormal = Color.FromHex("#63563f");
+    private static readonly Color ColorHovered = Color.FromHex("#887f65");
+    private static readonly Color ColorPressed = Color.FromHex("#c2b591");
     private readonly TextureRect? _textureRect;
     public readonly ChannelFilterPopup ChatFilterPopup;
     private readonly ChatUIController _chatUIController;
