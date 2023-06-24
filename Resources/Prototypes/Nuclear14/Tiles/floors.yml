@@ -526,14 +526,18 @@
   thermalConductivity: 0.04
   heatCapacity: 10000
 
-# Water TODO: Make these animated, poke upstream about supporting this.
-#- type: tile
-#  id: WaterRiver
-#  name: river water
-#  sprite: /Textures/Nuclear14/Tiles/riverwater.rsi
-#  friction: 0.01
-#  isSubfloor: true
-#  isSpace: true
-#  sturdy: false
-#  thermalConductivity: 0.4
-#  heatCapacity: 700000
+#  Water
+- type: tile
+  id: WaterRiver
+  name: river water
+  sprite: /Textures/Nuclear14/Tiles/riverwater.png
+  variants: 32
+  placementVariants: [0, 1, 2, 3]
+  friction: 0.01
+  isSubfloor: true
+  isSpace: false # TODO: Make this true once default gas mix is set, water = space for boats
+#  footstepSounds:
+#    collection: FootstepAsteroid # need water sloshing
+  sturdy: false
+  thermalConductivity: 0.4
+  heatCapacity: 700000
