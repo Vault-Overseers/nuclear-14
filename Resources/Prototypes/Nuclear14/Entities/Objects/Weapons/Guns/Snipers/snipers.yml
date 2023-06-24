@@ -2,12 +2,21 @@
   name: hunting rifle
   parent: BaseWeaponSniper
   id: N14WeaponSniperHunting
-  description: A rugged bolt action rifle. Uses .30 rifle ammo.
+  description: A rugged bolt action rifle. Uses .45 ammo.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Snipers/hunting.rsi
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Guns/Snipers/hunting.rsi
+  - type: Gun
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeMagnum
+    capacity: 10
+    proto: CartridgeMagnum
+
+
 
 - type: entity
   name: Anti-Material rifle
@@ -25,3 +34,38 @@
       - CartridgeAntiMaterial
     capacity: 5
     proto: CartridgeAntiMaterial
+
+- type: entity
+  name: lever action carbine
+  parent: BaseWeaponSniper
+  id: N14WeaponLeverCarbine
+  description: A lever action short carbine. Uses .30 rifle ammo.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/levercarbine.rsi
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/levercarbine.rsi
+  - type: Gun
+    fireRate: 3
+    capacity: 14
+
+- type: entity
+  name: lever action rifle
+  parent: BaseWeaponSniper
+  id: N14WeaponLeverRifle
+  description: A long lever action repeater rifle. Uses .45 ammo.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/leverrifle.rsi
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/leverrifle.rsi
+  - type: Gun
+    fireRate: 2
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeMagnum
+    capacity: 10
+    proto: CartridgeMagnum
+
+
