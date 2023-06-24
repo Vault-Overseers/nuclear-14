@@ -37,7 +37,7 @@
 
 - type: entity
   name: lever action carbine
-  parent: BaseWeaponSniper
+  parent: N14WeaponSniperHunting
   id: N14WeaponLeverCarbine
   description: A lever action short carbine. Uses .30 rifle ammo.
   components:
@@ -47,11 +47,16 @@
     sprite: Nuclear14/Objects/Weapons/Guns/Snipers/levercarbine.rsi
   - type: Gun
     fireRate: 3
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeMagnum
     capacity: 14
+    proto: CartridgeMagnum
 
 - type: entity
   name: lever action rifle
-  parent: BaseWeaponSniper
+  parent: N14WeaponSniperHunting
   id: N14WeaponLeverRifle
   description: A long lever action repeater rifle. Uses .45 ammo.
   components:
@@ -61,11 +66,3 @@
     sprite: Nuclear14/Objects/Weapons/Guns/Snipers/leverrifle.rsi
   - type: Gun
     fireRate: 2
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - CartridgeMagnum
-    capacity: 10
-    proto: CartridgeMagnum
-
-
