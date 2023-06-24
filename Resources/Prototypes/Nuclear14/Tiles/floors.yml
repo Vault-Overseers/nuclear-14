@@ -283,6 +283,50 @@
   itemDrop: FloorTileItemMetalFreezer
   thermalConductivity: 0.04
   heatCapacity: 10000
+  
+- type: tile
+  id: FloorMetalTunnel
+  name: tunnel floor
+  sprite: /Textures/Nuclear14/Tiles/tunnelintact.png
+  baseTurfs:
+  - FloorWasteland
+  isSubfloor: false
+  canCrowbar: true
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  
+- type: tile
+  id: FloorMetalTunnelRusty
+  name: rusty tunnel floor
+  sprite: /Textures/Nuclear14/Tiles/tunnelrusty.png
+  baseTurfs:
+  - FloorWasteland
+  isSubfloor: false
+  canCrowbar: true
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
+  
+- type: tile
+  id: FloorMetalTunnelWasteland
+  name: wasteland tunnel floor
+  sprite: /Textures/Nuclear14/Tiles/tunnelwasteland.png
+  variants: 11
+  placementVariants: [0, 1, 2, 3, 5, 6, 7, 8, 9, 10]
+  baseTurfs:
+  - FloorWasteland
+  isSubfloor: false
+  canCrowbar: true
+  footstepSounds:
+    collection: FootstepFloor
+  friction: 0.30
+  thermalConductivity: 0.04
+  heatCapacity: 10000
  
 # Interior
 
@@ -357,7 +401,7 @@
   name: wood burnt broken
   sprite: /Textures/Nuclear14/Tiles/woodburntbroken.png
   variants: 7
-  placementVariants: [0, 1, 2, 3]
+  placementVariants: [0, 1, 2, 3, 4, 5, 6]
   baseTurfs:
   - FloorWasteland
   isSubfloor: false
@@ -389,7 +433,6 @@
   id: FloorCarpetRed
   name: carpet red
   sprite: /Textures/Nuclear14/Tiles/carpet.png
-  variants: 1
   baseTurfs:
   - FloorWasteland
   isSubfloor: false
@@ -409,7 +452,7 @@
   name: concrete
   sprite: /Textures/Nuclear14/Tiles/concrete.png
   variants: 6
-  placementVariants: [0, 1, 2, 3]
+  placementVariants: [0, 1, 2, 3, 4, 5]
   baseTurfs:
   - FloorWasteland
   isSubfloor: false
@@ -425,7 +468,7 @@
   name: concrete dark
   sprite: /Textures/Nuclear14/Tiles/concretedark.png
   variants: 6
-  placementVariants: [0, 1, 2, 3]
+  placementVariants: [0, 1, 2, 3, 4, 5]
   baseTurfs:
   - FloorWasteland
   isSubfloor: false
@@ -441,7 +484,7 @@
   name: concrete road
   sprite: /Textures/Nuclear14/Tiles/concreteroad.png
   variants: 6
-  placementVariants: [0, 1, 2, 3]
+  placementVariants: [0, 1, 2, 3, 4, 5]
   baseTurfs:
   - FloorWasteland
   isSubfloor: false
@@ -473,7 +516,6 @@
   id: FloorRubble
   name: rubble
   sprite: /Textures/Nuclear14/Tiles/rubble.png
-  variants: 1
   baseTurfs:
   - space
   isSubfloor: false
@@ -483,3 +525,15 @@
   friction: 0.30
   thermalConductivity: 0.04
   heatCapacity: 10000
+
+# Water TODO: Make these animated, poke upstream about supporting this.
+#- type: tile
+#  id: WaterRiver
+#  name: river water
+#  sprite: /Textures/Nuclear14/Tiles/riverwater.rsi
+#  friction: 0.01
+#  isSubfloor: true
+#  isSpace: true
+#  sturdy: false
+#  thermalConductivity: 0.4
+#  heatCapacity: 700000
