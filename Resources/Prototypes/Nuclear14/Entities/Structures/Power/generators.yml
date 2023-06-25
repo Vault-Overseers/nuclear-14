@@ -120,6 +120,16 @@
   description: An old reactor built into the floor. This ones suffered a meltdown.
   name: pre-war reactor
   components:
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.7,0,0.7,0.7"
+      density: 190
+      mask:
+      - MachineMask
+      layer:
+      - MachineLayer
   - type: Transform
     anchored: true
   - type: Clickable
