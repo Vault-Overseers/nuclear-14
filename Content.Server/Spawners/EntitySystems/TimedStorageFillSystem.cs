@@ -1,11 +1,12 @@
+using Content.Server.Spawners.Components;
+using Content.Server.Storage.EntitySystems;
 using Content.Server.Storage.Components;
 using Content.Shared.Storage;
 using Robust.Shared.Random;
-using Content.Server.Spawners.Components;
 
-namespace Content.Server.Storage.EntitySystems;
+namespace Content.Server.Spawners.EntitySystems;
 
-public sealed partial class TimedStorageFillSystem : EntitySystem
+public sealed class TimedStorageFillSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
@@ -15,10 +16,11 @@ public sealed partial class TimedStorageFillSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<TimedStorageFillComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<TimedStorageFillComponent, AnchorStateChangedEvent>(OnUnanchor);
     }
 
     private void OnStartup(EntityUid uid, TimedStorageFillComponent component, ComponentStartup args)
-    {        
+    {
         FillStorage(uid, component);
         component.NextRefillTime = _robustRandom.NextFloat(component.MinimumSeconds, component.MaximumSeconds);
     }
@@ -41,7 +43,8 @@ public sealed partial class TimedStorageFillSystem : EntitySystem
 
     private void FillStorage(EntityUid uid, TimedStorageFillComponent component)
     {
-        if (component.Contents.Count == 0) return;
+        if (component.Contents.Count == 0)
+            return;
 
         TryComp<ServerStorageComponent>(uid, out var serverStorageComp);
         TryComp<EntityStorageComponent>(uid, out var entityStorageComp);
@@ -71,6 +74,14 @@ public sealed partial class TimedStorageFillSystem : EntitySystem
 
             Logger.ErrorS("storage", $"Tried to StorageFill {item} inside {ToPrettyString(uid)} but can't.");
             EntityManager.DeleteEntity(ent);
+        }
+    }
+
+    private void OnUnanchor(EntityUid uid, TimedStorageFillComponent component, ref AnchorStateChangedEvent args)
+    {
+        if (!args.Anchored)
+        {
+            RemCompDeferred<TimedStorageFillComponent>(uid);
         }
     }
 }

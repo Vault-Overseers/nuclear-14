@@ -1,14 +1,10 @@
+using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.GameTicking.Rules.Configurations;
-using Content.Server.Objectives.Interfaces;
-using Content.Server.Players;
 using Content.Server.RoundEnd;
 using Content.Server.Spawners.Components;
-using Content.Server.Traitor;
 using Content.Shared.Mobs;
-using Robust.Server.Player;
-using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -19,7 +15,8 @@ using Robust.Shared.Console;
 using Content.Shared.Administration;
 using Content.Shared.Mobs.Components;
 using System.Linq;
-using Content.Shared.GameTicking;
+using Content.Server.Cargo.Components;
+using Content.Server.Station.Systems;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -33,6 +30,8 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private readonly CargoSystem _cargo = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     public override string Prototype => "WaveDefense";
 
@@ -190,7 +189,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
         //Todo: fine tune this, i just slapped an integer here wcgw.
         //Ideally, we would have no numbers hard coded at all and should rely solely on the RuleConfig, so go there to change the actual difficulty
         //or make a new rule config. Same goes with timer
-        var wavePool = wave * _waveDefenseRuleConfig.DifficultyMod * (Defenders.Count * 2);
+        var wavePool = wave * _waveDefenseRuleConfig.DifficultyMod * (Defenders.Count * 3);
         var waveTemplate = _random.Pick(mobList).Value.Item1;
         var spawnList = new List<string>();
 
@@ -222,7 +221,12 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
             KillCount++;
             HighScore += component.Difficulty * 10;
             RemCompDeferred<WaveMobComponent>(mobUid);
-        }    
+            var station = _station.GetOwningStation(mobUid);
+            if (TryComp<StationBankAccountComponent>(station, out var stationBank))
+            {
+                _cargo.UpdateBankAccount(stationBank, (int)(component.Difficulty * 100));
+            }
+        }
     }
 
     private void OnPlayerDied(EntityUid mobUid, WaveDefenderComponent component, MobStateChangedEvent args)
