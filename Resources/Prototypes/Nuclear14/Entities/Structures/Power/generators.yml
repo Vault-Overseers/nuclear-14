@@ -116,9 +116,11 @@
     color: "#B4FCF0"
     
 - type: entity
+  parent: BaseStructure
   id: N14GeneratorReactorFloorDestroyed
   description: An old reactor built into the floor. This ones suffered a meltdown.
   name: pre-war reactor
+  suffix: destroyed
   components:
   - type: Fixtures
     fixtures:
@@ -130,14 +132,6 @@
       - MachineMask
       layer:
       - MachineLayer
-  - type: Transform
-    anchored: true
-  - type: Clickable
-  - type: Physics
-    bodyType: Static
-  - type: Tag
-    tags:
-      - Structure
   - type: Sprite
     sprite: Nuclear14/Structures/Power/reactor_floor.rsi
     layers:
