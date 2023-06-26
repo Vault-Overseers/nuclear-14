@@ -12,7 +12,7 @@
   - type: MobMover
   - type: Faction
     factions:
-    - SimpleHostile
+    - WastelandHostile
   - type: HTN
     rootTask: SimpleHostileCompound
   - type: Sprite
@@ -24,7 +24,7 @@
   - type: Physics
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 6
+    baseSprintSpeed : 3
   - type: Fixtures
     fixtures:
     - shape:
@@ -100,7 +100,7 @@
     rootTask: SimpleHostileCompound
     blackboard:
       NavInteract: !type:Bool
-        true
+        false
       NavPry: !type:Bool
         true
       NavSmash: !type:Bool
@@ -111,6 +111,25 @@
         250.0
   - type: WaveMob
     difficulty: 1
+    
+- type: entity
+  abstract: true
+  parent: N14MobWave
+  id: N14MobWaveSmart
+  components:
+  - type: HTN
+    rootTask: SimpleHostileCompound
+    blackboard:
+      NavInteract: !type:Bool
+        true
+        
+- type: entity
+  abstract: true
+  parent: N14MobWaveSmart
+  id: N14MobWaveRanged
+  components:
+  - type: HTN
+    rootTask: SimpleRangedHostileCompound
     
 - type: entity
   abstract: true
