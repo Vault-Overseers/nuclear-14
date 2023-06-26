@@ -1,3 +1,5 @@
+# TODO: Generators need to make use of their other states, require fuel where necessary and be able to be turned off.
+
 - type: entity
   parent: BaseGenerator
   id: N14GeneratorFusioncore
@@ -14,6 +16,7 @@
       - MachineMask
       layer:
       - MachineLayer
+  - type: AmbientOnPowered
   - type: AmbientSound
     range: 5
     sound:
@@ -30,6 +33,35 @@
     supplyRate: 5000
     supplyRampRate: 250
     supplyRampTolerance: 250
+  - type: PointLight
+    radius: 1
+    energy: 4.5
+    softness: 0.5
+    color: "#B4FCF0"
+    
+- type: entity
+  parent: N14GeneratorFusioncore
+  id: N14GeneratorPrewar
+  description: A dirty old generator that uses fuel to run.
+  name: pre-war generator
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Power/generator.rsi
+    layers:
+    - state: generator_off
+    - state: generator_on
+    
+- type: entity
+  parent: N14GeneratorFusioncore
+  id: N14GeneratorPrewarUranium
+  description: A dirty old generator that uses raw uranium to run.
+  name: pre-war uranium generator
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Power/generator.rsi
+    layers:
+    - state: generator_off
+    - state: generator_uranium
       
 - type: entity
   parent: BaseGenerator
@@ -59,3 +91,56 @@
     supplyRate: 10000
     supplyRampRate: 500
     supplyRampTolerance: 500
+  - type: PointLight
+    radius: 3
+    energy: 4.5
+    softness: 0.5
+    color: "#B4FCF0"
+    
+- type: entity
+  parent: N14GeneratorVaultTecReactor
+  id: N14GeneratorReactorFloor
+  description: An old reactor built into the floor.
+  name: pre-war reactor
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Power/reactor_floor.rsi
+    layers:
+    - state: reactoroff
+    - state: norm0
+      shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 4.5
+    softness: 0.5
+    color: "#B4FCF0"
+    
+- type: entity
+  parent: BaseStructure
+  id: N14GeneratorReactorFloorDestroyed
+  description: An old reactor built into the floor. This ones suffered a meltdown.
+  name: pre-war reactor
+  suffix: destroyed
+  components:
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.7,0,0.7,0.7"
+      density: 190
+      mask:
+      - MachineMask
+      layer:
+      - MachineLayer
+  - type: Sprite
+    sprite: Nuclear14/Structures/Power/reactor_floor.rsi
+    layers:
+    - state: broken
+      shader: unshaded
+  - type: RadiationSource
+    intensity: 3
+  - type: PointLight
+    radius: 3
+    energy: 4.5
+    softness: 0.5
+    color: "#f05e1b"
