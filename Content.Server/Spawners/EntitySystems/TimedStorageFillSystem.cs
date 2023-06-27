@@ -15,11 +15,11 @@ public sealed class TimedStorageFillSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<TimedStorageFillComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<TimedStorageFillComponent, MapInitEvent>(OnStartup);
         SubscribeLocalEvent<TimedStorageFillComponent, AnchorStateChangedEvent>(OnUnanchor);
     }
 
-    private void OnStartup(EntityUid uid, TimedStorageFillComponent component, ComponentStartup args)
+    private void OnStartup(EntityUid uid, TimedStorageFillComponent component, MapInitEvent _)
     {
         FillStorage(uid, component);
         component.NextRefillTime = _robustRandom.NextFloat(component.MinimumSeconds, component.MaximumSeconds);
