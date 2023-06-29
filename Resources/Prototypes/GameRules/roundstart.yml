@@ -75,15 +75,17 @@
 
 - type: gameRule
   id: Vault
-  config:
-    !type:GenericGameRuleConfiguration
-    id: Vault
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: Vault
 
 - type: gameRule
   id: Waves
-  config:
-    !type:GenericGameRuleConfiguration
-    id: WaveDefense
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: WaveDefense
 
 # event schedulers
 - type: entity
