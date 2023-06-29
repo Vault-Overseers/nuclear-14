@@ -5,8 +5,11 @@
   minPlayers: 0
   stations:
     Station:
-      mapNameTemplate: 'Test Map Super Duper Mart'
-      overflowJobs:
-        - Survivor
-      availableJobs:
-        Survivor: [ -1, -1 ]
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Super Duper Mart'
+        - type: StationJobs
+          overflowJobs:
+            - Survivor
+          availableJobs:
+            Survivor: [ -1, -1 ]
