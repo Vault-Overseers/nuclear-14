@@ -1,4 +1,4 @@
-﻿using Content.Shared.Construction.Conditions;
+﻿﻿using Content.Shared.Construction.Conditions;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Utility;
@@ -22,17 +22,11 @@ public sealed class ConstructionPrototype : IPrototype
     [DataField("name")]
     public string Name= string.Empty;
 
-        /// <summary>
-        ///     Whether or not the recipe is hidden.
-        /// </summary>
-        [DataField("show")]
-        public bool Show { get; }
-
-        /// <summary>
-        ///     The <see cref="ConstructionGraphPrototype"/> this construction will be using.
-        /// </summary>
-        [DataField("graph", customTypeSerializer:typeof(PrototypeIdSerializer<ConstructionGraphPrototype>))]
-        public string Graph { get; } = string.Empty;
+    /// <summary>
+    ///     Whether or not the recipe is hidden.
+    /// </summary>
+    [DataField("show")]
+    public bool Show { get; }
 
     /// <summary>
     ///     "Useful" description displayed in the construction GUI.
