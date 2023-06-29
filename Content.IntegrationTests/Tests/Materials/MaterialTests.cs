@@ -41,7 +41,7 @@ namespace Content.IntegrationTests.Tests.Materials
                 {
                     foreach (var proto in allMaterialProtos)
                     {
-                        if (proto.StackEntity == "")
+                        if (proto.StackEntity == null)
                             continue;
 
                         var spawned = entityManager.SpawnEntity(proto.StackEntity, coords);
@@ -63,6 +63,8 @@ namespace Content.IntegrationTests.Tests.Materials
 
                 mapManager.DeleteMap(testMap.MapId);
             });
+
+            await pairTracker.CleanReturnAsync();
         }
     }
 }

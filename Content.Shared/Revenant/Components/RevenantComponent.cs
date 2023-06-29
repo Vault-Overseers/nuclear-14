@@ -1,8 +1,7 @@
-using System.Threading;
-using Content.Shared.Disease;
 using Content.Shared.FixedPoint;
 using Content.Shared.Store;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Revenant.Components;
@@ -19,6 +18,12 @@ public sealed class RevenantComponent : Component
 
     [DataField("stolenEssenceCurrencyPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<CurrencyPrototype>))]
     public string StolenEssenceCurrencyPrototype = "StolenEssence";
+
+    /// <summary>
+    /// Prototype to spawn when the entity dies.
+    /// </summary>
+    [DataField("spawnOnDeathPrototype", customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string SpawnOnDeathPrototype = "Ectoplasm";
 
     /// <summary>
     /// The entity's current max amount of essence. Can be increased
@@ -67,9 +72,6 @@ public sealed class RevenantComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("maxEssenceUpgradeAmount")]
     public float MaxEssenceUpgradeAmount = 10;
-
-    public CancellationTokenSource? SoulSearchCancelToken;
-    public CancellationTokenSource? HarvestCancelToken;
     #endregion
 
     //In the nearby radius, causes various objects to be thrown, messed with, and containers opened
@@ -157,12 +159,6 @@ public sealed class RevenantComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("blightRadius")]
     public float BlightRadius = 3.5f;
-
-    /// <summary>
-    /// The disease that is given to the victims of the ability.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("blightDiseasePrototypeId", customTypeSerializer: typeof(PrototypeIdSerializer<DiseasePrototype>))]
-    public string BlightDiseasePrototypeId = "SpectralTiredness";
     #endregion
 
     #region Malfunction Ability

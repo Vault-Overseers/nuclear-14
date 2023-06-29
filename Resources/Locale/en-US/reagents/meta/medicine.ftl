@@ -16,6 +16,9 @@ reagent-desc-bicaridine = An analgesic which is highly effective at treating bru
 reagent-name-cryoxadone = cryoxadone
 reagent-desc-cryoxadone = Required for the proper function of cryogenics. Heals all standard types of damage very swiftly, but only works in temperatures under 170K (usually this means cryo cells). Can also slowly heal clone damage, such as caused by cloning or Slimes.
 
+reagent-name-doxarubixadone = doxarubixadone 
+reagent-desc-doxarubixadone = A cryogenics chemical. Heals certain types of cellular damage done by Slimes and improper use of other chemicals.
+
 reagent-name-dermaline = dermaline
 reagent-desc-dermaline = An advanced chemical that is more effective at treating burn damage than Kelotane.
 
@@ -38,7 +41,7 @@ reagent-name-inaprovaline = inaprovaline
 reagent-desc-inaprovaline = Inaprovaline is a synaptic stimulant and cardiostimulant. Commonly used to stabilize patients- it stops oxygen loss when the patient is in critical health. It'll also slow down bleeding by a good amount. Acts as a decent painkiller.
 
 reagent-name-kelotane = kelotane
-reagent-desc-kelotane = Treats burn damage and prevents infection.
+reagent-desc-kelotane = Treats burn damage. Overdosing greatly reduces the body's ability to retain water.
 
 reagent-name-leporazine = leporazine
 reagent-desc-leporazine = This keeps a patient's body temperature stable. High doses can allow short periods of unprotected EVA, but prevents use of the cryogenics tubes.
@@ -96,6 +99,11 @@ reagent-desc-ethyloxyephedrine = An unstable medicine derived from desoxyephedri
 
 reagent-name-diphenylmethylamine = diphenylmethylamine
 reagent-desc-diphenylmethylamine = A more stable medicine than ethyloxyephedrine. Useful for keeping someone awake.
+
+reagent-name-sigynate = sigynate
+reagent-desc-sigynate = A thick pink syrup useful for neutralizing acids and soothing trauma caused by acids.  Tastes sweet!
+
+
 
 
 ## N14

@@ -32,7 +32,7 @@ public sealed partial class PathfindingSystem
     ///     If true, UpdateGrid() will not process grids.
     /// </summary>
     /// <remarks>
-    ///     Useful if something like a large explosion is in the process of shredding the grid, as it avoids uneccesary
+    ///     Useful if something like a large explosion is in the process of shredding the grid, as it avoids unneccesary
     ///     updating.
     /// </remarks>
     public bool PauseUpdating = false;
@@ -100,11 +100,12 @@ public sealed partial class PathfindingSystem
         // Still run even when paused.
         var query = AllEntityQuery<GridPathfindingComponent>();
 
-        while (query.MoveNext(out var comp))
+        while (query.MoveNext(out var uid, out var comp))
         {
+            // TODO: Dump all this shit and just do it live it's probably fast enough.
             if (comp.DirtyChunks.Count == 0 ||
-                comp.NextUpdate < curTime ||
-                !TryComp<MapGridComponent>(comp.Owner, out var mapGridComp))
+                curTime < comp.NextUpdate ||
+                !TryComp<MapGridComponent>(uid, out var mapGridComp))
             {
                 continue;
             }
@@ -119,7 +120,7 @@ public sealed partial class PathfindingSystem
 
             foreach (var origin in comp.DirtyChunks)
             {
-                var chunk = GetChunk(origin, comp.Owner, comp);
+                var chunk = GetChunk(origin, uid, comp);
                 dirt[idx] = chunk;
                 idx++;
             }
@@ -232,11 +233,6 @@ public sealed partial class PathfindingSystem
 
             comp.DirtyChunks.Clear();
         }
-
-#if DEBUG
-        if (updateCount > 0)
-            _sawmill.Debug($"Updated {updateCount} nav chunks in {_stopwatch.Elapsed.TotalMilliseconds:0.000}ms");
-#endif
     }
 
     private bool IsBodyRelevant(PhysicsComponent body)
@@ -357,7 +353,7 @@ public sealed partial class PathfindingSystem
 
         var currentTime = _timing.CurTime;
 
-        if (comp.NextUpdate < currentTime)
+        if (comp.NextUpdate < currentTime && !MetaData(gridUid).EntityPaused)
             comp.NextUpdate = currentTime + UpdateCooldown;
 
         var chunks = comp.DirtyChunks;
@@ -477,7 +473,8 @@ public sealed partial class PathfindingSystem
                             if (!fixturesQuery.TryGetComponent(ent, out var fixtures))
                                 continue;
 
-                            // TODO: Inefficient af
+                            var colliding = false;
+
                             foreach (var fixture in fixtures.Fixtures.Values)
                             {
                                 // Don't need to re-do it.
@@ -510,7 +507,12 @@ public sealed partial class PathfindingSystem
 
                                 collisionLayer |= fixture.CollisionLayer;
                                 collisionMask |= fixture.CollisionMask;
+                                colliding = true;
                             }
+
+                            // If entity doesn't intersect this node (e.g. thindows) then ignore it.
+                            if (!colliding)
+                                continue;
 
                             if (accessQuery.HasComponent(ent))
                             {

@@ -2,10 +2,10 @@ using Content.Client.SubFloor;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping;
-using Content.Shared.SubFloor;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.ResourceManagement;
+using Robust.Shared.Serialization.TypeSerializers.Implementations;
 
 namespace Content.Client.Atmos.EntitySystems;
 
@@ -13,6 +13,7 @@ namespace Content.Client.Atmos.EntitySystems;
 public sealed class AtmosPipeAppearanceSystem : EntitySystem
 {
     [Dependency] private readonly IResourceCache _resCache = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
@@ -27,7 +28,7 @@ public sealed class AtmosPipeAppearanceSystem : EntitySystem
         if (!TryComp(uid, out SpriteComponent? sprite))
             return;
 
-        if (!_resCache.TryGetResource(SharedSpriteComponent.TextureRoot / component.RsiPath, out RSIResource? rsi))
+        if (!_resCache.TryGetResource(SpriteSpecifierSerializer.TextureRoot / component.RsiPath, out RSIResource? rsi))
         {
             Logger.Error($"{nameof(AtmosPipeAppearanceSystem)} could not load to load RSI {component.RsiPath}.");
             return;
@@ -44,6 +45,18 @@ public sealed class AtmosPipeAppearanceSystem : EntitySystem
         }
     }
 
+    private void HideAllPipeConnection(SpriteComponent sprite)
+    {
+        foreach (PipeConnectionLayer layerKey in Enum.GetValues(typeof(PipeConnectionLayer)))
+        {
+            if (!sprite.LayerMapTryGet(layerKey, out var key))
+                continue;
+
+            var layer = sprite[key];
+            layer.Visible = false;
+        }
+    }
+
     private void OnAppearanceChanged(EntityUid uid, PipeAppearanceComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
@@ -56,11 +69,14 @@ public sealed class AtmosPipeAppearanceSystem : EntitySystem
             return;
         }
 
-        if (!args.Component.TryGetData(PipeColorVisuals.Color, out Color color))
-            color = Color.White;
-
-        if (!args.Component.TryGetData(PipeVisuals.VisualState, out PipeDirection worldConnectedDirections))
+        if (!_appearance.TryGetData<PipeDirection>(uid, PipeVisuals.VisualState, out var worldConnectedDirections, args.Component))
+        {
+            HideAllPipeConnection(args.Sprite);
             return;
+        }
+
+        if (!_appearance.TryGetData<Color>(uid, PipeColorVisuals.Color, out var color, args.Component))
+            color = Color.White;
 
         // transform connected directions to local-coordinates
         var connectedDirections = worldConnectedDirections.RotatePipeDirection(-Transform(uid).LocalRotation);

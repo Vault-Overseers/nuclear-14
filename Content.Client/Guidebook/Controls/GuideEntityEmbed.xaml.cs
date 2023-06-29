@@ -79,7 +79,8 @@ public sealed partial class GuideEntityEmbed : BoxContainer, IDocumentTag
         // do examination?
         if (args.Function == ContentKeyFunctions.ExamineEntity)
         {
-            _examineSystem.DoExamine(entity.Value);
+            _examineSystem.DoExamine(entity.Value,
+                userOverride: _guidebookSystem.GetGuidebookUser());
             args.Handle();
             return;
         }
@@ -164,7 +165,16 @@ public sealed partial class GuideEntityEmbed : BoxContainer, IDocumentTag
         if (args.TryGetValue("Interactive", out var interactive))
             Interactive = bool.Parse(interactive);
 
+        if (args.TryGetValue("Rotation", out var rotation))
+        {
+            Sprite.Rotation = Angle.FromDegrees(double.Parse(rotation));
+        }
+
         Margin = new Thickness(4, 8);
+
+        // By default, we will map-initialize guidebook entities.
+        if (!args.TryGetValue("Init", out var mapInit) || !bool.Parse(mapInit))
+            _entityManager.RunMapInit(ent, _entityManager.GetComponent<MetaDataComponent>(ent));
 
         control = this;
         return true;

@@ -10,7 +10,7 @@ public sealed class DamageStateVisualizerSystem : VisualizerSystem<DamageStateVi
     {
         var sprite = args.Sprite;
 
-        if (sprite == null || !args.Component.TryGetData(MobStateVisuals.State, out MobState data))
+        if (sprite == null || !AppearanceSystem.TryGetData<MobState>(uid, MobStateVisuals.State, out var data, args.Component))
         {
             return;
         }
@@ -18,16 +18,6 @@ public sealed class DamageStateVisualizerSystem : VisualizerSystem<DamageStateVi
         if (!component.States.TryGetValue(data, out var layers))
         {
             return;
-        }
-
-        if (component.Rotate)
-        {
-            sprite.NoRotation = data switch
-            {
-                MobState.Critical => false,
-                MobState.Dead => false,
-                _ => true
-            };
         }
 
         // Brain no worky rn so this was just easier.

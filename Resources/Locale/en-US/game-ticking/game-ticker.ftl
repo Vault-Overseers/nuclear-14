@@ -32,5 +32,5 @@ player-first-join-message = Player {$name} joined for the first time.
 # Displayed in chat to admins when a player leaves
 player-leave-message = Player {$name} left.
 
-latejoin-arrival-announcement = {$character} ({$job}) has woken up from cryosleep!
-latejoin-arrival-sender = Vault PA
+latejoin-arrival-announcement = {$character} ({$job}) has wandered into the area!
+latejoin-arrival-sender = Radio Broadcast

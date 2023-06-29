@@ -18,6 +18,7 @@ namespace Content.Client.NPC
         [Dependency] private readonly IInputManager _inputManager = default!;
         [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly IResourceCache _cache = default!;
+        [Dependency] private readonly NPCSteeringSystem _steering = default!;
 
         public PathfindingDebugMode Modes
         {
@@ -35,6 +36,15 @@ namespace Content.Client.NPC
                 else if (!overlayManager.HasOverlay<PathfindingOverlay>())
                 {
                     overlayManager.AddOverlay(new PathfindingOverlay(EntityManager, _eyeManager, _inputManager, _mapManager, _cache, this));
+                }
+
+                if ((value & PathfindingDebugMode.Steering) != 0x0)
+                {
+                    _steering.DebugEnabled = true;
+                }
+                else
+                {
+                    _steering.DebugEnabled = false;
                 }
 
                 _modes = value;
@@ -243,12 +253,10 @@ namespace Content.Client.NPC
             if ((_system.Modes & PathfindingDebugMode.Poly) != 0x0 &&
                 mouseWorldPos.MapId == args.MapId)
             {
-                if (!_mapManager.TryFindGridAt(mouseWorldPos, out var grid) || !xformQuery.TryGetComponent(grid.Owner, out var gridXform))
+                if (!_mapManager.TryFindGridAt(mouseWorldPos, out var gridUid, out var grid) || !xformQuery.TryGetComponent(gridUid, out var gridXform))
                     return;
 
-                var found = false;
-
-                if (!_system.Polys.TryGetValue(grid.Owner, out var data))
+                if (!_system.Polys.TryGetValue(gridUid, out var data))
                     return;
 
                 var tileRef = grid.GetTileRef(mouseWorldPos);
