@@ -89,3 +89,234 @@
     - state: redrocket1-worn
 
 # Street Signs
+
+
+
+# Street Poles / Lights
+- type: entity
+  parent: BaseStructure
+  id: N14StreetPowerPole
+  name: power Poles
+  description: An old wooden post mounted transformer for 
+  components:
+  - type: SpriteFade
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.1,-1.6,-0.4,-1.2"
+      density: 190
+      mask:
+      - MachineMask
+      layer:
+      - MidImpassable
+      - LowImpassable
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/powerpole.rsi
+    snapCardinals: true
+    noRot: true
+    state: powerpole1
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+      - !type:EmptyAllContainersBehaviour
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+
+
+- type: entity
+  abstract: true
+  parent: N14StreetPowerPole
+  id: N14BaseLightStructure
+  components:
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.7,-1.6,-0.5,-1.1"
+      density: 190
+      mask:
+      - MachineMask
+      layer:
+      - MidImpassable
+      - LowImpassable
+
+
+- type: entity
+  parent: N14BaseLightStructure
+  id: N14LightStreetLampPostAlwaysPowered
+  name: lamp post
+  description: "This light doesn't have an obvious power source."
+  suffix: Always Powered
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1.rsi
+    snapCardinals: true
+    noRot: true
+    drawdepth: Overdoors
+    layers:
+    - state: off
+    - state: on
+      map: ["enum.PoweredLightLayers.Base"]
+    state: on
+  - type: PointLight
+    radius: 7
+    energy: 0.6
+    softness: 0.4
+    offset: "0, -0.5"
+    
+- type: entity
+  parent: N14BaseLightStructure
+  id: N14LightStreetLampPostPoweredEmpty
+  name: post light
+  description: "A lamp post."
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1.rsi
+    state: off
+    drawdepth: Overdoors
+  - type: PointLight
+    enabled: false
+  - type: PoweredLight
+    bulb: Tube
+    damage:
+      types:
+        Heat: 20
+  - type: ContainerContainer
+    containers:
+      light_bulb: !type:ContainerSlot
+  - type: ApcPowerReceiver
+  - type: ExtensionCableReceiver
+  - type: DeviceNetwork
+    deviceNetId: Apc
+    receiveFrequencyId: SmartLight
+  - type: ApcNetworkConnection
+  - type: Appearance
+    visuals:
+    - type: PoweredLightVisualizer
+      blinkingSound:
+        path: "/Audio/Machines/light_tube_on.ogg"
+  - type: SignalReceiver
+    inputs:
+      On: []
+      Off: []
+      Toggle: []
+      
+- type: entity
+  parent: N14LightStreetLampPostPoweredEmpty
+  id: N14LightStreetLampPostPowered
+  name: post light
+  suffix: Powered
+  description: "A light fixture. Draws power and produces light when equipped with a light tube."
+  components:
+  - type: Sprite
+    layers:
+    - state: off
+    - state: on
+      map: [ "enum.PoweredLightLayers.Base" ]
+  - type: PoweredLight
+    hasLampOnSpawn: LightTube
+    damage:
+      types:
+        Heat: 20
+        
+- type: entity
+  parent: N14LightStreetLampPostAlwaysPowered
+  id: N14LightStreetLampPostRaiderAlwaysPowered
+  suffix: Always Powered
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider.rsi
+    
+- type: entity
+  parent: N14LightStreetLampPostPoweredEmpty
+  id: N14LightStreetLampPostRaiderPoweredEmpty
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider.rsi
+    state: off
+    
+- type: entity
+  parent: [ N14LightStreetLampPostRaiderPoweredEmpty, N14LightStreetLampPostPowered]
+  id: N14LightStreetLampPostRaiderPowered
+  suffix: Powered
+  components:
+  - type: Sprite
+    layers:
+    - state: off
+    - state: on
+      map: [ "enum.PoweredLightLayers.Base" ]
+  
+- type: entity
+  parent: N14LightStreetLampPostAlwaysPowered
+  id: N14LightStreetLampPostAlwaysPowered2
+  suffix: Always Powered
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2.rsi
+    
+- type: entity
+  parent: N14LightStreetLampPostPoweredEmpty
+  id: N14LightStreetLampPostPoweredEmpty2
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2.rsi
+    state: off
+    
+- type: entity
+  parent: N14LightStreetLampPostPowered
+  id: N14LightStreetLampPostPowered2
+  suffix: Powered
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2.rsi
+    layers:
+    - state: off
+    - state: on
+      map: [ "enum.PoweredLightLayers.Base" ]
+  
+- type: entity
+  parent: N14LightStreetLampPostAlwaysPowered
+  id: N14LightStreetLampPostRaiderAlwaysPowered2
+  suffix: Always Powered
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider.rsi
+    
+- type: entity
+  parent: N14LightStreetLampPostPoweredEmpty
+  id: N14LightStreetLampPostRaiderPoweredEmpty2
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider.rsi
+    state: off
+    
+- type: entity
+  parent: N14LightStreetLampPostPowered
+  id: N14LightStreetLampPostRaiderPowered2
+  suffix: Powered
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider.rsi
+    layers:
+    - state: off
+    - state: on
+      map: [ "enum.PoweredLightLayers.Base" ]
