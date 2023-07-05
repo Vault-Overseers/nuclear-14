@@ -1,0 +1,56 @@
+- type: entity
+  parent: BaseTree
+  id: N14FloraDesertCactus
+  name: Cactus
+  description: A cactus. Prickly.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/floradesert.rsi
+    state: cactus
+    offset: 0,0
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.7,-0.3,-0.4,-1.2"
+      density: 1000
+      layer:
+      - WallLayer
+    
+- type: entity
+  parent: N14FloraDesertCactus
+  id: N14FloraDesertTree1
+  name: "tree yucca"
+  description: A Joshua Tree.
+  components:
+  - type: Sprite
+    state: joshua_1
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "0.3,-0.3,-0.2,-1.2"
+      density: 1000
+      layer:
+      - WallLayer
+    
+- type: entity
+  parent: N14FloraDesertTree1
+  id: N14FloraDesertTree2
+  components:
+  - type: Sprite
+    state: joshua_2
+    
+- type: entity
+  parent: N14FloraDesertTree1
+  id: N14FloraDesertTree3
+  components:
+  - type: Sprite
+    state: joshua_3
+    
+- type: entity
+  parent: N14FloraDesertTree1
+  id: N14FloraDesertTree4
+  components:
+  - type: Sprite
+    state: joshua_4
