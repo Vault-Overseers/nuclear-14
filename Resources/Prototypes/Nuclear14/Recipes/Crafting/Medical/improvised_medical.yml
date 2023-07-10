@@ -1,0 +1,29 @@
+# Healing Powder
+- type: construction
+  name: healing powder
+  id: N14HealingPowder
+  graph: N14HealingPowder
+  startNode: start
+  targetNode: healingpowder
+  category: construction-category-medical
+  description: A pouch of healing powder.
+  show: true
+  icon:
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+    state: healingpowder
+  objectType: Item
+  
+- type: constructionGraph
+  id: N14HealingPowder
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: healingpowder
+          steps:
+            - material: BrocFlower
+            - material: XanderRoot
+            - tool: Crushing
+              doAfter: 5
+    - node: healingpowder
+      entity: ClothingHeadHatFlowerCrown
