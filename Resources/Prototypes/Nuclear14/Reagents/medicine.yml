@@ -13,6 +13,24 @@
           groups:
             Burn: -0.9
             Brute: -0.9
+            
+- type: reagent
+  id: HealingPowder
+  name: reagent-name-healing-powder
+  group: Medicine
+  desc: reagent-desc-healing-powder
+  physicalDesc: reagent-physical-desc-soothing
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -0.5
+            Brute: -0.5
+      - !type:ChemVomit
+        probability: 0.05
 
 - type: reagent
   id: RobustHealingMixture #used in super stimpacks
