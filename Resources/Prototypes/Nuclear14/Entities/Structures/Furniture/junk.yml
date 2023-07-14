@@ -1,7 +1,8 @@
 - type: entity
-  parent: BaseStructure
   id: N14JunkWoodBase
   abstract: true
+  placement:
+    mode: SnapgridCenter
   components:
   - type: Sprite
     sprite: Nuclear14/Structures/Furniture/junk.rsi
@@ -37,16 +38,17 @@
     - Wooden
   - type: Transform
     anchored: true
-    noRot: true
   - type: Physics
     bodyType: Static
   - type: Anchorable
   - type: Pullable
   - type: InteractionOutline
+  - type: Clickable
+# No fixture on this base, inherit from further down for fixture
   
 - type: entity
-  id: N14JunkWoodBase
-  parent: N14JunkMetalBase
+  parent: N14JunkWoodBase
+  id: N14JunkMetalBase
   abstract: true
   components:
   - type: Damageable
@@ -86,9 +88,20 @@
   components:
   - type: Sprite
     state: junk_dresser
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.45,-0.45,0.45,0.45"
+      density: 60
+      mask:
+      - MachineMask
+      layer:
+      - MidImpassable
+      - LowImpassable
     
 - type: entity
-  parent: N14JunkWoodBase
+  parent: N14JunkDresser
   id: N14JunkCabinet
   name: broken cabinet
   description: Once held clothes. Now it's junk.
@@ -97,7 +110,7 @@
     state: junk_cabinet
     
 - type: entity
-  parent: N14JunkWoodBase
+  parent: N14JunkDresser
   id: N14JunkTable
   name: broken table
   description: Ate without table, now I'm angry. Junk.
@@ -123,9 +136,20 @@
   components:
   - type: Sprite
     state: junk_machine
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.45,-0.45,0.45,0.45"
+      density: 60
+      mask:
+      - MachineMask
+      layer:
+      - MidImpassable
+      - LowImpassable
     
 - type: entity
-  parent: N14JunkMetalBase
+  parent: N14JunkMachine
   id: N14JunkMicrowave
   name: broken microwave
   description: Dirty old microwave. Now it's junk.
@@ -134,7 +158,7 @@
     state: junk_micro
     
 - type: entity
-  parent: N14JunkMetalBase
+  parent: N14JunkMachine
   id: N14JunkJukebox
   name: broken jukebox
   description: An old destroyed jukebox. Now it's junk.
@@ -161,7 +185,7 @@
     state: junk_bed2
     
 - type: entity
-  parent: N14JunkMetalBase
+  parent: N14JunkMachine
   id: N14JunkTV
   name: broken TV
   description: An old television. Now it's junk.
@@ -170,7 +194,7 @@
     state: junk_tv
     
 - type: entity
-  parent: N14JunkMetalBase
+  parent: N14JunkMachine
   id: N14JunkArcade
   name: broken arcade game
   description: An old arcade machine. Now it's junk.
@@ -188,13 +212,16 @@
     state: junk_urinal
     
 - type: entity
-  parent: N14JunkMetalBase
+  parent: SeatBase
   id: N14JunkToilet
   name: broken toilet
   description: Once a porcelain throne. Now it's junk.
   components:
   - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/junk.rsi
     state: junk_toilet
+  - type: SecretStash
+    secretPartName: secret-stash-part-toilet
     
 - type: entity
   parent: N14JunkMetalBase
@@ -215,22 +242,14 @@
     state: junk_sink
     
 - type: entity
-  parent: N14JunkMetalBase
+  parent: Mirror
   id: N14JunkMirror
   name: broken mirror
   description: Mirror mirror... I hope I don't get bad luck.
   components:
   - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/junk.rsi
     state: junk_mirror
-  - type: WallMount
-  - type: Clickable
-  - type: MagicMirror
-  - type: ActivatableUI
-    key: enum.MagicMirrorUiKey.Key
-  - type: UserInterface
-    interfaces:
-    - key: enum.MagicMirrorUiKey.Key
-      type: MagicMirrorBoundUserInterface
       
 - type: entity
   parent: N14JunkMetalBase
