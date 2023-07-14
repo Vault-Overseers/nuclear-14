@@ -207,3 +207,27 @@
         reagents:
         - ReagentId: RadAway
           Quantity: 20
+
+
+- type: entity
+  name: healing powder
+  parent: Pill
+  id: N14HealingPowder
+  description: A bag of tribal healing powder. Nausiating.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+    state: healingpowder
+  - type: Item
+    size: 5
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: HealingPowder
+          Quantity: 20
+  - type: Construction
+    graph: N14HealingPowder
+    node: healingpowder
