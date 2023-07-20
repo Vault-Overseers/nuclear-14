@@ -1,0 +1,605 @@
+- type: entity
+  parent: BaseItem
+  id: N14JunkItemBase
+  name: junk
+  description: it's junk!
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Misc/crafting_junk.rsi
+  - type: Tag
+    tags:
+    - JunkItem
+
+# Products and Random Bits
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkAbraxoCleaner
+  name: Abraxo Cleaner 
+  description: Abraxo brand detergent.
+  components:
+  - type: Sprite
+    state: abraxo # TODO: Add reagent and container stuff to this.
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14Junk8Ball
+  name: 8 Ball
+  description: A pool eight-ball.
+  components:
+  - type: Sprite
+    state: 8_ball
+    scale: 0.5, 0.5
+    
+- type: entity
+  parent: N14Junk8Ball
+  id: N14JunkBaseball
+  name: baseball
+  description: A worn baseball.
+  components:
+  - type: Sprite
+    state: baseball
+    
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkCoffeepot
+  name: coffee pot
+  description: A large metal coffee serving pot.
+  components:
+  - type: Sprite
+    state: coffeepot
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkCookpot
+  name: cook pot
+  description: A large metal cooking pot.
+  components:
+  - type: Sprite
+    state: cookpot
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkCrutch
+  name: crutch
+  description: An old wooden crutch.
+  components:
+  - type: Sprite
+    state: crutch
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkDuctTape
+  name: duct tape
+  description: A roll of sticky duct tape.
+  components:
+  - type: Sprite
+    state: duct_tape
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkIron
+  name: iron
+  description: A small iron for pressing clothes.
+  components:
+  - type: Sprite
+    state: iron
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkLunchbox
+  name: lunchbox
+  description: A small vault-tec branded lunchbox.
+  components:
+  - type: Sprite
+    state: lunchbox
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkPrewarMoney # TODO: Probably change this to a stack instead of a single entity.
+  name: pre-war money
+  description: A pre-war dollar bill.
+  components:
+  - type: Sprite
+    state: pre_war_money
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkTeapot
+  name: teapot
+  description: A metal teapot for serving tea.
+  components:
+  - type: Sprite
+    state: teapot
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkTimer
+  name: timer
+  description: An old egg timer. Still useful.
+  components:
+  - type: Sprite
+    state: timer
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkTincan
+  name: tin can
+  description: An old metal can. Probably had food in it.
+  components:
+  - type: Sprite
+    state: tincan
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkToaster
+  name: toaster
+  description: A pre-war toaster. Insert bread.
+  components:
+  - type: Sprite
+    state: toaster
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkToyNukaTruck
+  name: toy Nuka-Cola truck
+  description: An old Nuka-Cola truck toy.
+  components:
+  - type: Sprite
+    state: toy_Nuka_truck
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkToyRacecar
+  name: toy race car
+  description: An old toy race car.
+  components:
+  - type: Sprite
+    state: toy_race_car
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkTurpentine
+  name: turpentine
+  description: A can of turps.
+  components:
+  - type: Sprite
+    state: turpentine # TODO: Add reagent and container stuff to this.
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkVaultCanteen
+  name: vault canteen
+  description: A canteen branded with vault-113
+  components:
+  - type: Sprite
+    state: vault_113_canteen
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkWonderglue
+  name: Wonderglue
+  description: A bottle of old Wonderglue.
+  components:
+  - type: Sprite
+    state: wonderglue # TODO: Add reagent and container stuff to this.
+    
+    
+# Gun Parts
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsAction
+  name: gun action (part)
+  description: An action from a bolt action gun.
+  components:
+  - type: Sprite
+    state: action
+
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsAdvancedFrame
+  name: gun frame (part)
+  description: An advanced gun frame.
+  components:
+  - type: Sprite
+    state: advancedframe
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsBarrel
+  name: gun barrel (part)
+  description: An gun barrel.
+  components:
+  - type: Sprite
+    state: barrel
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsBolt
+  name: gun bolt(part)
+  description: A bolt for a gun.
+  components:
+  - type: Sprite
+    state: bolt
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsFrame
+  name: gun frame(part)
+  description: A frame for a gun.
+  components:
+  - type: Sprite
+    state: gunframe
+
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsFramePistol
+  name: pistol frame(part)
+  description: A frame for a pistol.
+  components:
+  - type: Sprite
+    state: pistolframe
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsReceiver
+  name: receiver(part)
+  description: A receiver for a gun.
+  components:
+  - type: Sprite
+    state: receiver
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsRecoilComp
+  name: recoil compensator(part)
+  description: A recoil compensator for a gun.
+  components:
+  - type: Sprite
+    state: recoilcomp
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsRifleFrame
+  name: rifle frame(part)
+  description: A frame for a rifle.
+  components:
+  - type: Sprite
+    state: rifleframe
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsRifleStock
+  name: rifle stock(part)
+  description: A stock for a rifle.
+  components:
+  - type: Sprite
+    state: riflestock
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsRifleScope
+  name: rifle scope(part)
+  description: A scope for a rifle.
+  components:
+  - type: Sprite
+    state: scope
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsStock
+  name: stock(part)
+  description: A metal stock for a gun.
+  components:
+  - type: Sprite
+    state: stock
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsStockWood
+  name: stock(part)
+  description: A wooden stock for a gun.
+  components:
+  - type: Sprite
+    state: stockwood
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsTrigger
+  name: trigger(part)
+  description: A trigger mechanism for a gun.
+  components:
+  - type: Sprite
+    state: trigger
+
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsWeaponParts1
+  name: energy weapon parts
+  description: A collection of broken weapon parts.
+  components:
+  - type: Sprite
+    state: weapon_parts_1
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsWeaponParts2
+  name: energy weapon parts
+  description: A collection of broken weapon parts.
+  components:
+  - type: Sprite
+    state: weapon_parts_2
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkGunpartsWeaponParts3
+  name: energy weapon parts
+  description: A collection of broken weapon parts.
+  components:
+  - type: Sprite
+    state: weapon_parts_3
+
+
+# Components
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentBoard1
+  name: circuit board
+  description: A silver looking circuit board.
+  components:
+  - type: Sprite
+    state: board_1
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentBoard2
+  name: circuit board
+  description: A gold looking circuit board.
+  components:
+  - type: Sprite
+    state: board_2
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentBoard3
+  name: circuit board
+  description: A green looking circuit board.
+  components:
+  - type: Sprite
+    state: board_3
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentBulb1
+  name: bulb
+  description: A tiny bulb.
+  components:
+  - type: Sprite
+    state: bulb_1
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentBulb2
+  name: bulb
+  description: A double bulb.
+  components:
+  - type: Sprite
+    state: bulb_2
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentBulb3
+  name: bulb
+  description: A large bulb.
+  components:
+  - type: Sprite
+    state: bulb_3
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentBuzzer
+  name: buzzer
+  description: An electronic buzzer.
+  components:
+  - type: Sprite
+    state: buzzer
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentCapacitor1
+  name: capacitor
+  description: An electrolytic capacitor.
+  components:
+  - type: Sprite
+    state: capacitor_1
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentCapacitor2
+  name: capacitor
+  description: A ceramic type capacitor.
+  components:
+  - type: Sprite
+    state: capacitor_2
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentCapacitor3
+  name: capacitor
+  description: A paper type capacitor.
+  components:
+  - type: Sprite
+    state: capacitor_3
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentDiode1
+  name: diode
+  description: An old vacuum diode.
+  components:
+  - type: Sprite
+    state: diode_1
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentDiode2
+  name: diode
+  description: A more advanced zener diode.
+  components:
+  - type: Sprite
+    state: diode_2
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentDiode3
+  name: diode
+  description: A standard diode.
+  components:
+  - type: Sprite
+    state: diode_3
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentMainboard
+  name: mainframe board
+  description: A sophisticated circuit board
+  components:
+  - type: Sprite
+    state: frame
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentFuse1
+  name: fuse
+  description: A large capacity, slow blow fuse.
+  components:
+  - type: Sprite
+    state: fuse_1
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentFuse2
+  name: fuse
+  description: A small capacity, fast blow fuse.
+  components:
+  - type: Sprite
+    state: fuse_1
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentGearLarge
+  name: large gear
+  description: A large mechanical gear.
+  components:
+  - type: Sprite
+    state: gear_large
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentGearSmall
+  name: small gear
+  description: A small mechanical gear.
+  components:
+  - type: Sprite
+    state: gear_small
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentIgniter
+  name: igniter
+  description: A small ignition device. Apply power for a spark.
+  components:
+  - type: Sprite
+    state: igniter
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentResistor1
+  name: resistor
+  description: A low resistance resistor.
+  components:
+  - type: Sprite
+    state: resistor_1
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentResistor2
+  name: resistor
+  description: A medium resistance resistor.
+  components:
+  - type: Sprite
+    state: resistor_2
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentResistor3
+  name: resistor
+  description: A high resistance resistor.
+  components:
+  - type: Sprite
+    state: resistor_3
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentScrew
+  name: screw
+  description: Aw screw it!
+  components:
+  - type: Sprite
+    state: screw
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentSensor
+  name: sensor board
+  description: A sophisticated sensor board.
+  components:
+  - type: Sprite
+    state: sensor
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentSensorModule
+  name: sensor module
+  description: An advanced sensor module.
+  components:
+  - type: Sprite
+    state: sensor_module
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentSwitch
+  name: sensor module
+  description: An electronics switch.
+  components:
+  - type: Sprite
+    state: switch_1
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentTransistor1
+  name: transistor
+  description: A FET or not-a-FET. That is the question.
+  components:
+  - type: Sprite
+    state: transistor_1
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentTransistor2
+  name: transistor
+  description: A bipolar junction transistor.
+  components:
+  - type: Sprite
+    state: transistor_2
+    
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkComponentTransistor3
+  name: transistor
+  description: A junction FET.
+  components:
+  - type: Sprite
+    state: transistor_3
+    

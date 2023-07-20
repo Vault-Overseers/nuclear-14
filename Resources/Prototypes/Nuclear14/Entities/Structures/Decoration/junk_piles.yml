@@ -1,0 +1,122 @@
+- type: entity
+  id: N14JunkPileBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Decoration/crafting_junk.rsi
+    snapCardinals: true
+    netsync: false
+    noRot: true
+    scale: 0.8, 0.8
+    drawdepth: Items
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/woodhit.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Tag
+    tags:
+    - JunkPile
+# No fixture on this base, inherit from further down for fixture
+
+# TODO: Add a loot box mechanic where using the pile does a doAfter then spits out useful items from a loot table.
+- type: entity
+  parent: N14JunkPileBase
+  id: N14JunkPile1
+  name: junk pile
+  description: Could be something useful in here.
+  components:
+  - type: Sprite
+    state: Junk_1
+
+- type: entity
+  parent: N14JunkPile1
+  id: N14JunkPile2
+  components:
+  - type: Sprite
+    state: Junk_2
+
+- type: entity
+  parent: N14JunkPile1
+  id: N14JunkPile3
+  components:
+  - type: Sprite
+    state: Junk_3
+
+- type: entity
+  parent: N14JunkPile1
+  id: N14JunkPile4
+  components:
+  - type: Sprite
+    state: Junk_4
+
+- type: entity
+  parent: N14JunkPile1
+  id: N14JunkPile5
+  components:
+  - type: Sprite
+    state: Junk_5
+
+- type: entity
+  parent: N14JunkPile1
+  id: N14JunkPile6
+  components:
+  - type: Sprite
+    state: Junk_6
+
+- type: entity
+  parent: N14JunkPile1
+  id: N14JunkPile7
+  components:
+  - type: Sprite
+    state: Junk_7
+
+- type: entity
+  parent: N14JunkPile1
+  id: N14JunkPile8
+  components:
+  - type: Sprite
+    state: Junk_8
+
+- type: entity
+  parent: N14JunkPile1
+  id: N14JunkPile9
+  components:
+  - type: Sprite
+    state: Junk_9
+
+- type: entity
+  parent: N14JunkPile1
+  id: N14JunkPile10
+  components:
+  - type: Sprite
+    state: Junk_10
+
+- type: entity
+  parent: N14JunkPile1
+  id: N14JunkPile11
+  components:
+  - type: Sprite
+    state: Junk_11
+
+- type: entity
+  parent: N14JunkPile1
+  id: N14JunkPile12
+  components:
+  - type: Sprite
+    state: Junk_12
