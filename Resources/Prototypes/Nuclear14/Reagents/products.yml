@@ -4,9 +4,9 @@
   group: Products
   desc: reagent-desc-abraxocleaner
   physicalDesc: reagent-physical-desc-abrasive
-  color: "#00e5ff"
+  color: "#e0dbd1"
   metabolisms:
-    Medicine:
+    Medicine: # TODO: Add negative effects
       effects:
       - !type:GenericStatusEffect
         key: SeeingRainbows
@@ -22,10 +22,28 @@
   group: Products
   desc: reagent-desc-wonderglue
   physicalDesc: reagent-physical-desc-gloopy
-  color: "#00e5ff"
+  color: "#edf0f2"
+  metabolisms:
+    Medicine: # TODO: Add negative effects
+      effects:
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 5
+        refresh: false
+      - !type:Jitter
+      
+- type: reagent
+  id: Turpentine
+  name: reagent-name-turpentine
+  group: Products
+  desc: reagent-desc-turpentine
+  physicalDesc: reagent-physical-desc-acrid
+  color: "#f0f1f3"
   metabolisms:
     Medicine:
-      effects:
+      effects: # TODO: Add negative effects
       - !type:GenericStatusEffect
         key: SeeingRainbows
         component: SeeingRainbows
