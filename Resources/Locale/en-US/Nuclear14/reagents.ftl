@@ -14,8 +14,11 @@ reagent-desc-juice-cabbage = Tastes rather bland and iron-y
 reagent-name-firetoxin = fire toxin
 reagent-desc-firetoxin = The hot stuff from firey creatures.
 
-reagent-name-firetoxin = fire toxin
-reagent-desc-firetoxin = The hot stuff from firey creatures.
-
 reagent-name-healing-powder = healing powder.
 reagent-desc-healing-powder = A powder made from crushed plants.
+
+## Products
+reagent-name-abraxocleaner = Abraxo Cleaner
+reagent-desc-abraxocleaner = A pre-war cleaning product.
+reagent-name-wonderglue = Wonderglue
+reagent-desc-wonderglue = A pre-war adhesive. Don't sniff it.
