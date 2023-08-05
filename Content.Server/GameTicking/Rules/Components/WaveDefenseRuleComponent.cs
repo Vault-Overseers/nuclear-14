@@ -1,12 +1,10 @@
-using Content.Server.GameTicking.Rules.Configurations;
 using Robust.Shared.Audio;
 
-namespace Content.Server.GameTicking.Rules.Configurations;
+namespace Content.Server.GameTicking.Rules.Components;
 
-public sealed class WaveDefenseRuleConfiguration : GameRuleConfiguration
+[RegisterComponent, Access(typeof(WaveDefenseRuleSystem))]
+public sealed class WaveDefenseRuleComponent : Component
 {
-    public override string Id => "WaveDefense";
-
     [DataField("difficulty")]
     public float DifficultyMod = 0.65f;
 
