@@ -1,0 +1,64 @@
+﻿- type: entity
+  id: N14CookingStove
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: stove
+  description: A pre-war stove
+  components:
+  - type: Microwave
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.VisualState:
+        enum.MicrowaveVisualizerLayers.Base:
+          Idle: { state: "stove" }
+          Broken: { state: "stove" } # TODO:
+          Cooking: { state: "stove_on" } 
+        enum.MicrowaveVisualizerLayers.BaseUnlit:
+          Idle: { state: "stove" }
+          Broken: { state: "stove" } # TODO:
+          Cooking: { state: "stove_on" }
+      enum.PowerDeviceVisuals.Powered:
+        enum.MicrowaveVisualizerLayers.BaseUnlit:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ActivatableUI
+    key: enum.MicrowaveUiKey.Key
+  - type: UserInterface
+    interfaces:
+    - key: enum.MicrowaveUiKey.Key
+      type: MicrowaveBoundUserInterface
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.3,-0.2,0.3,0.5"
+      density: 190
+      mask:
+      - MachineMask
+      layer:
+      - MachineLayer
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Structures/Decoration/crafting_junk.rsi
+    noRot: true
+    layers:
+    - state: stove
+      map: ["enum.MicrowaveVisualizerLayers.Base"]
+    - state: stove
+      map: ["enum.MicrowaveVisualizerLayers.BaseUnlit"]
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+  - type: ApcPowerReceiver
+    powerLoad: 400
+  - type: ContainerContainer
+    containers:
+      microwave_entity_container: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
