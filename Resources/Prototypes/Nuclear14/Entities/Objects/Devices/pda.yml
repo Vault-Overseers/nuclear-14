@@ -6,15 +6,36 @@
   description: a RobCo Industries PIPBoy 2000 Personal Information Processor. What a mouthful.
   components:
   - type: Appearance
-    visuals:
-    - type: PDAVisualizer
-      state: pda
   - type: Sprite
     sprite: Objects/Devices/pda.rsi
-    netsync: false
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
   - type: Icon
     sprite: Objects/Devices/pda.rsi
     state: pda
+  - type: Pda
+    state: pda
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+    idSlot:
+      name: ID Card
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      whitelist:
+        components:
+        - IdCard
   - type: Item
     size: 10
   - type: ContainerContainer
@@ -49,9 +70,11 @@
   - type: WirelessNetworkConnection
     range: 500
   - type: CartridgeLoader
-    uiKey: enum.PDAUiKey.Key
+    uiKey: enum.PdaUiKey.Key
     preinstalled:
+      - CrewManifestCartridge
       - NotekeeperCartridge
+      - NewsReadCartridge
     cartridgeSlot:
       priority: -1
       name: Cartridge
@@ -61,13 +84,13 @@
         components:
           - Cartridge
   - type: ActivatableUI
-    key: enum.PDAUiKey.Key
+    key: enum.PdaUiKey.Key
     singleUser: true
     closeOnHandDeselect: false
   - type: UserInterface
     interfaces:
-    - key: enum.PDAUiKey.Key
-      type: PDABoundUserInterface
+    - key: enum.PdaUiKey.Key
+      type: PdaBoundUserInterface
     - key: enum.StoreUiKey.Key
       type: StoreBoundUserInterface
     - key: enum.RingerUiKey.Key
@@ -76,20 +99,6 @@
       type: InstrumentBoundUserInterface
     - key: enum.HealthAnalyzerUiKey.Key
       type: HealthAnalyzerBoundUserInterface
-  - type: PDA
-    penSlot:
-      startingItem: Pen
-      priority: -1
-      whitelist:
-        tags:
-        - Write
-    idSlot:
-      name: ID Card
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-      whitelist:
-        components:
-        - IdCard
   - type: CrewManifestViewer
     unsecure: true
   - type: Tag
@@ -103,21 +112,17 @@
   parent: N14BasePipboy
   id: N14VaultPDA
   components:
-  - type: PDA
+  - type: Pda
     id: N14IDCardVault
-  - type: PDABorderColor
+  - type: PdaBorderColor
     borderColor: "#717059"
 
 - type: entity
   parent: N14BasePipboy
   id: N14VaultEngineerPDA
   components:
-  - type: PDA
+  - type: Pda
     id: N14IDCardVaultEngineer
-  - type: Appearance
-    visuals:
-    - type: PDAVisualizer
-      state: pda-interntech
   - type: Icon
     state: pda-interntech
 
@@ -125,12 +130,8 @@
   parent: N14BasePipboy
   id: N14VaultDoctorPDA
   components:
-  - type: PDA
+  - type: Pda
     id: N14IDCardVaultDoctor
-  - type: Appearance
-    visuals:
-    - type: PDAVisualizer
-      state: pda-internmed
   - type: Icon
     state: pda-internmed
   - type: HealthAnalyzer
@@ -142,12 +143,8 @@
   parent: N14BasePipboy
   id: N14VaultSecurityPDA
   components:
-  - type: PDA
+  - type: Pda
     id: N14IDCardVaultSecurity
-  - type: Appearance
-    visuals:
-    - type: PDAVisualizer
-      state: pda-interncadet
   - type: Icon
     state: pda-interncadet
 
@@ -156,13 +153,9 @@
   id: N14VaultChefPDA
   description: Covered in grease and flour.
   components:
-  - type: PDA
+  - type: Pda
     id: ChefIDCard
-  - type: Appearance
-    visuals:
-    - type: PDAVisualizer
-      state: pda-cook
-  - type: PDABorderColor
+  - type: PdaBorderColor
     borderColor: "#d7d7d0"
   - type: Icon
     state: pda-cook
@@ -173,12 +166,11 @@
   name: botanist PDA
   description: Has an earthy scent.
   components:
-  - type: PDA
+  - type: Pda
     id: BotanistIDCard
-  - type: Appearance
-    visuals:
-      - type: PDAVisualizer
-        state: pda-hydro
+  - type: PdaBorderColor
+    borderColor: "#44843c"
+    accentVColor: "#00cc35"
   - type: Icon
     state: pda-hydro
     
@@ -186,7 +178,7 @@
   parent: N14BasePipboy
   id: N14VaultOverseerPDA
   components:
-  - type: PDA
+  - type: Pda
     id: N14IDCardVaultOverseer
     penSlot:
       startingItem: PenCap
@@ -194,11 +186,7 @@
       whitelist:
         tags:
         - Write
-  - type: Appearance
-    visuals:
-      - type: PDAVisualizer
-        state: pda-captain
-  - type: PDABorderColor
+  - type: PdaBorderColor
     borderColor: "#7C5D00"
   - type: Icon
     state: pda-captain
