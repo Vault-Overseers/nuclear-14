@@ -40,7 +40,7 @@
 
 - type: entity
   name: .45 handgun
-  parent: BaseWeaponPistol
+  parent: BaseWeaponRevolver
   id: N14WeaponPistolColt
   description: A rugged handgun chambered in .45.
   components:
@@ -57,24 +57,6 @@
     fireRate: 4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineMagnum
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineMagnum
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeMagnum
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeMagnum
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
