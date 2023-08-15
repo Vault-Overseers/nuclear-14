@@ -12,10 +12,10 @@
     sprite: Structures/Storage/cabinets.rsi
     state: filingcabinet
     noRot: true
-  - type: Appearance
-    visuals:
-    - type: BagOpenCloseVisualizer
-      openIcon: filingcabinet-open
+    layers:
+    - state: filingcabinet
+    - state: filingcabinet-open
+      map: ["openLayer"]
   - type: UserInterface
     interfaces:
     - key: enum.StorageUiKey.Key

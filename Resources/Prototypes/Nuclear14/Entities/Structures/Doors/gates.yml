@@ -18,11 +18,6 @@
         - FullTileMask
         layer:
         - AirlockLayer
-  - type: Appearance
-    visuals:
-      - type: AirlockVisualizer
-        simpleVisuals: true
-        animationTime: 1.2
   - type: IconSmooth
     key: walls
     mode: NoSprite
@@ -35,10 +30,13 @@
   - type: Door
     bumpOpen: false
     clickOpen: true
+    canCrush: false
     closeTimeOne: 0.2
     closeTimeTwo: 0.6
     openTimeOne: 0.6
     openTimeTwo: 0.2
+    openingAnimationTime: 1.2
+    closingAnimationTime: 1.2
     openSound:
       path: /Audio/Effects/door_open.ogg
     closeSound:

@@ -1,72 +1,19 @@
 # Metal Closets
 - type: entity
-  parent: BaseStructureDynamic
+  parent: ClosetBase
   id: N14ClosetBase
   abstract: true
   components:
-  - type: ResistLocker
-  - type: Transform
-    noRot: true
   - type: Sprite
-    noRot: true
-    netsync: false
     sprite: Nuclear14/Structures/Storage/Closets/closet.rsi
     layers:
     - state: closet
+      map: ["enum.StorageVisualLayers.Base"]
     - state: closet_door
       map: ["enum.StorageVisualLayers.Door"]
-  - type: MovedByPressure
-  - type: DamageOnHighSpeedImpact
-    damage:
-      types:
-        Blunt: 5
-    soundHit:
-      path: /Audio/Effects/bang.ogg
-  - type: InteractionOutline
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-            bounds: "-0.25,-0.48,0.25,0.48"
-        density: 145
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-  - type: EntityStorage
-  - type: ContainerContainer
-    containers:
-      entity_storage: !type:Container
-  - type: PlaceableSurface
-    placeCentered: true
-    isPlaceable: false
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 150
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Effects/metalbreak.ogg
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          SheetSteel1:
-            min: 1
-            max: 1
-  - type: Appearance
-    visuals:
-    - type: StorageVisualizer
-      state: closet
-      state_open: closet_open
-      state_closed: closet_door
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
 
 - type: entity
   parent: N14ClosetBase
