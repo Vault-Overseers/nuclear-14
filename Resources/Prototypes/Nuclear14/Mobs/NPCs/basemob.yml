@@ -14,7 +14,8 @@
     factions:
     - SimpleHostile
   - type: HTN
-    rootTask: SimpleHostileCompound
+    rootTask:
+      task: SimpleHostileCompound
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -101,9 +102,12 @@
   id: N14MobWave
   components:
   - type: HTN
-    rootTask: SimpleHostileCompound
+    rootTask:
+      task: SimpleHostileCompound
     blackboard:
       NavInteract: !type:Bool
+        true
+      NavClimb: !type:Bool
         true
       NavPry: !type:Bool
         true
@@ -112,7 +116,7 @@
       ESP: !type:Bool
         true
       VisionRadius: !type:Single
-        250.0
+        500.0
   - type: WaveMob
     difficulty: 1
     
