@@ -1,0 +1,28 @@
+- type: entity
+  id: Well
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/well.rsi
+    noRot: true
+    netsync: false
+    state: well
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Tag
+    tags:
+      - Structure
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-1,0,1,0.5"
+      density: 500
+      mask:
+      - MachineMask
+      layer:
+      - MidImpassable
+      - LowImpassable
