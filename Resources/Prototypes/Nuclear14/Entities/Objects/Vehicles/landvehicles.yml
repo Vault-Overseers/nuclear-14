@@ -1,0 +1,122 @@
+- type: entity
+  parent: BaseVehicle
+  id: N14VehicleBikeGreen
+  name: green motorbike
+  description: A clean green motorbike.
+  components:
+  - type: Vehicle
+    northOverride: -0.1
+    southOverride: 0.1
+  - type: Sprite
+    sprite: N14/Objects/Vehicles/bikesbuggy.rsi
+    layers:
+    - state: bike2
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    netsync: false
+    noRot: true
+#  - type: RandomMetadata
+#    descriptionSegments: [ATVDescriptions]
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 7
+  - type: Strap
+    buckleOffset: "0.1, -0.05"
+    maxBuckleDistance: 1
+  - type: UnpoweredFlashlight
+    toggleAction:
+      name: action-name-toggle-light
+      description: action-description-toggle-light
+      icon: { sprite: Objects/Tools/flashlight.rsi, state: flashlight }
+      iconOn: Objects/Tools/flashlight.rsi/flashlight-on.png
+      event: !type:ToggleActionEvent
+  - type: PointLight
+    enabled: false
+    radius: 3.5
+    softness: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - ATVKeys # TODO: Change this
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -3
+			
+- type: entity
+  parent: N14VehicleBikeGreen
+  id: N14VehicleBikeFlamey
+  name: flamey motorbike
+  description: A motorbike with a flame decal.
+  components:
+  - type: Vehicle
+    northOverride: -0.1
+    southOverride: 0.1
+  - type: Sprite
+    layers:
+    - state: bike_flamey2
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+      
+- type: entity
+  parent: N14VehicleBikeGreen
+  id: N14VehicleBikeGreen2
+  name: flamey motorbike
+  description: A green motorbike.
+  components:
+  - type: Vehicle
+    northOverride: -0.1
+    southOverride: 0.1
+  - type: Sprite
+    layers:
+    - state: bike_green
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+      
+- type: entity
+  parent: N14VehicleBikeGreen
+  id: N14VehicleBikeRustLight
+  name: rusty motorbike
+  description: A rusty motorbike.
+  components:
+  - type: Vehicle
+    northOverride: -0.1
+    southOverride: 0.1
+  - type: Sprite
+    layers:
+    - state: bike_rust_light
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+      
+- type: entity
+  parent: N14VehicleBikeGreen
+  id: N14VehicleBikeRustMedium
+  name: rusty motorbike
+  description: A really rusty motorbike.
+  components:
+  - type: Vehicle
+    northOverride: -0.1
+    southOverride: 0.1
+  - type: Sprite
+    layers:
+    - state: bike_rust_med
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+      
+- type: entity
+  parent: N14VehicleBikeGreen
+  id: N14VehicleBikeScrambler
+  name: scrambler motorbike
+  description: A scrambler type motorbike.
+  components:
+  - type: Vehicle
+    northOverride: -0.1
+    southOverride: 0.1
+  - type: Sprite
+    layers:
+    - state: bike_scrambler2
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
