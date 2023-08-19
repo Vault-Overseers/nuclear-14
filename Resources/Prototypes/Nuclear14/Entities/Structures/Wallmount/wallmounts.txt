@@ -1,0 +1,47 @@
+# Fire Extinguisher
+- type: entity
+  parent: ExtinguisherCabinet
+  id: N14FireExtinguisherCabinet
+  name: fire extinguisher cabinet
+  description: A small wall mounted cabinet for a fire extinguisher.
+  components:
+    - type: Sprite
+      sprite: Structures/N14/Wallmounts/fireextinguisher.rsi
+      netsync: false
+      snapCardinals: true
+      layers:
+      - state: frame
+      - state: extinguisher
+        map: ["enum.ItemCabinetVisualLayers.ContainsItem"]
+        visible: true
+      - state: closed
+        map: ["enum.ItemCabinetVisualLayers.Door"]
+
+- type: entity
+  parent: N14FireExtinguisherCabinet
+  id: N14FireExtinguisherCabinetOpen
+  suffix: Open
+  components:
+  - type: ItemCabinet
+    opened: true
+
+- type: entity
+  parent: N14FireExtinguisherCabinet
+  id: N14FireExtinguisherCabinetFilled
+  suffix: Filled
+  components:
+  - type: ItemCabinet
+    cabinetSlot:
+      ejectOnInteract: true
+      startingItem: FireExtinguisher
+      whitelist:
+        components:
+        - FireExtinguisher
+
+- type: entity
+  parent: N14FireExtinguisherCabinetFilled
+  id: N14FireExtinguisherCabinetFilledOpen
+  suffix: Filled, Open
+  components:
+  - type: ItemCabinet
+    opened: true
