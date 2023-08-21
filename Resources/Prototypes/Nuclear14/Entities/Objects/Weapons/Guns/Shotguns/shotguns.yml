@@ -11,7 +11,12 @@
   - type: Gun
     fireRate: 8
   - type: BallisticAmmoProvider
+    autoCycle: false
+    whitelist:
+      tags:
+      - N14ShellShotgun12
     capacity: 2
+    proto: N14ShellShotgun12
 
 - type: entity
   name: shotgun
@@ -24,13 +29,18 @@
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: BallisticAmmoProvider
+    autoCycle: false
+    whitelist:
+      tags:
+      - N14ShellShotgun12
     capacity: 6
+    proto: N14ShellShotgun12
 
 - type: entity
   name: combat shotgun
   parent: BaseItem
   id: N14WeaponAutoShotgun
-  description: It's a magazine-fed automatic shotgun designed for close quarters combat.
+  description: It's a magazine-fed automatic shotgun designed for close quarters combat, uses 12 gauge shells.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/combat_shotgun.rsi
@@ -55,11 +65,11 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineShotgun
+        startingItem: N14MagazineShotgun12
         priority: 2
         whitelist:
           tags:
-          - MagazineShotgun
+          - N14MagazineShotgun12
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
   - type: ContainerContainer
@@ -77,7 +87,7 @@
   name: caravan shotgun
   parent: BaseWeaponShotgun
   id: N14WeaponCaravanShotgun
-  description: The perfect shotgun for a long jorney, works well for hunting brahmins, geckos and bandits.
+  description: The perfect shotgun for a long jorney. works well for hunting brahmins, geckos and bandits.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/caravan_shotgun.rsi
@@ -86,7 +96,12 @@
   - type: Gun
     fireRate: 6
   - type: BallisticAmmoProvider
+    autoCycle: false
+    whitelist:
+      tags:
+      - N14ShellShotgun20
     capacity: 2
+    proto: N14ShellShotgun20
 
 - type: entity
   name: lever action shotgun
@@ -99,6 +114,58 @@
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/lever_shotgun.rsi
   - type: BallisticAmmoProvider
-    capacity: 4
+    autoCycle: false
+    whitelist:
+      tags:
+      - N14ShellShotgun20
+    capacity: 8
+    proto: N14ShellShotgun20
   - type: Gun
     fireRate: 5
+
+- type: entity
+  name: riot shotgun
+  parent: BaseItem
+  id: N14WeaponRiotShotgun
+  description: A compact fully automatic shotgun used by the police forces of the pre war, chambered in 20 gauge shells.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/riot_shotgun.rsi
+    netsync: false
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/riot_shotgun.rsi
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazineShotgun20
+        priority: 2
+        whitelist:
+          tags:
+          - N14MagazineShotgun20
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

@@ -1,0 +1,39 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBox5.56Rifle
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14Cartridge5.56Rifle
+    proto: N14Cartridge5.56Rifle
+    capacity: 75
+  - type: Item
+    size: 20
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Nuclear14\Objects\Weapons\Guns\Ammunition\Boxes\5-56.rsi
+    netsync: false
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBox5.56Rifle
+  id: MagazineBox5.56
+  name: ammunition box (5.56mm)
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge5.56Rifle
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
