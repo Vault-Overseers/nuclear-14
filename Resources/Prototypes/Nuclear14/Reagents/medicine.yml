@@ -32,6 +32,24 @@
             Brute: -0.5
       - !type:ChemVomit
         probability: 0.05
+        
+# Poison
+- type: reagent
+  id: AntidoteMixture
+  name: reagent-name-antidote
+  group: Medicine
+  desc: reagent-desc-antidote
+  physicalDesc: reagent-physical-desc-soothing
+  color: "#D41244"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: -1 # TODO: Change this to poison only once we add toxin syringes.
+      - !type:ChemVomit
+        probability: 0.05
 
 - type: reagent
   id: RobustHealingMixture #used in super stimpacks
