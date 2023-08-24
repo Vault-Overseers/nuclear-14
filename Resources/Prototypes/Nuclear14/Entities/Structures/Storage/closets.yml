@@ -11,6 +11,10 @@
       map: ["enum.StorageVisualLayers.Base"]
     - state: closet_door
       map: ["enum.StorageVisualLayers.Door"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: closet
+    stateDoorOpen: closet_open
+    stateDoorClosed: closet_door
       
 - type: entity
   parent: N14ClosetBase
@@ -25,11 +29,16 @@
     sprite: Nuclear14/Structures/Storage/Closets/closet.rsi
     layers:
     - state: closet
+      map: ["enum.StorageVisualLayers.Base"]
     - state: closet_door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: closet
+    stateDoorOpen: closet_open
+    stateDoorClosed: closet_door
 
 
 - type: entity
