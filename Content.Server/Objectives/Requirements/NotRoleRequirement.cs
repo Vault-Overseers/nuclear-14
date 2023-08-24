@@ -9,7 +9,7 @@ namespace Content.Server.Objectives.Requirements
     public sealed class NotRoleRequirement : IObjectiveRequirement
     {
         [DataField("roleId", customTypeSerializer:typeof(PrototypeIdSerializer<JobPrototype>))]
-        private string roleId = "";
+        private string roleId = default!;
 
         /// <summary>
         /// This requirement is met if the traitor is NOT the roleId, and fails if they are.
@@ -27,7 +27,7 @@ namespace Content.Server.Objectives.Requirements
     public sealed class RoleRequirement : IObjectiveRequirement
     {
         [DataField("roleId", customTypeSerializer:typeof(PrototypeIdSerializer<JobPrototype>))]
-        private string roleId = "";
+        private string roleId = default!;
 
         /// <summary>
         /// This requirement is met if the mind has the roleId.

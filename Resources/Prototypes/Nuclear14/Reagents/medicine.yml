@@ -1,3 +1,4 @@
+# Healing
 - type: reagent
   id: HealingMixture #used in regular stimpacks
   name: reagent-name-healing-mixture
@@ -13,6 +14,24 @@
           groups:
             Burn: -0.9
             Brute: -0.9
+            
+- type: reagent
+  id: HealingPowder
+  name: reagent-name-healing-powder
+  group: Medicine
+  desc: reagent-desc-healing-powder
+  physicalDesc: reagent-physical-desc-soothing
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -0.5
+            Brute: -0.5
+      - !type:ChemVomit
+        probability: 0.05
 
 - type: reagent
   id: RobustHealingMixture #used in super stimpacks
@@ -48,18 +67,7 @@
         - !type:ReagentThreshold
           min: 35
 
-- type: reagent
-  id: DamageResistMixture #used in med-x. TODO: figure out how to make a reagent give you dmg resistance 
-  name: reagent-name-damage-resist-mixture
-  group: Medicine
-  desc: reagent-desc-damage-resist-mixture
-  physicalDesc: reagent-physical-desc-reasonably-metallic
-  color: "#00e5ff"
-  metabolisms:
-    Medicine:
-      effects:
-      - !type:Drunk
-
+# Radiation
 - type: reagent
   id: RadAway 
   name: reagent-name-damage-resist-mixture
@@ -74,3 +82,81 @@
         damage:
           types:
             Radiation: -2.5
+            
+- type: reagent
+  id: RadX
+  name: reagent-name-rad-x
+  group: Medicine
+  desc: reagent-desc-rad-x
+  physicalDesc: reagent-physical-desc-soapy
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: -2.5
+
+
+# Other
+- type: reagent
+  id: DamageResistMixture #used in med-x. TODO: figure out how to make a reagent give you dmg resistance 
+  name: reagent-name-damage-resist-mixture
+  group: Medicine
+  desc: reagent-desc-damage-resist-mixture
+  physicalDesc: reagent-physical-desc-reasonably-metallic
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:Drunk
+
+- type: reagent
+  id: Fixer
+  name: reagent-name-fixer
+  group: Medicine
+  desc: reagent-desc-fixer
+  physicalDesc: reagent-physical-desc-volatile
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:Drunk
+
+- type: reagent
+  id: Mentats
+  name: reagent-name-mentats
+  group: Medicine
+  desc: reagent-desc-mentats
+  physicalDesc: reagent-physical-desc-tangy
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:Drunk #TODO: when we get SPECIAL, make this increase Int, Chr, and remove this effect
+
+- type: reagent
+  id: Buffout
+  name: reagent-name-buffout
+  group: Medicine
+  desc: reagent-desc-buffout
+  physicalDesc: reagent-physical-desc-robust
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:Drunk
+      - !type:Jitter
+
+- type: reagent
+  id: Cateye
+  name: reagent-name-cateye
+  group: Medicine
+  desc: reagent-desc-cateye
+  physicalDesc: reagent-physical-desc-sticky
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:Jitter
