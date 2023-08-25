@@ -14,15 +14,15 @@
     noRot: true
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeAabb
-        bounds: "-0.2,-0.2,0.2,0.45"
-      density: 50
-      mask:
-      - MachineMask
-      layer:
-      - MidImpassable
-      - LowImpassable
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.2,-0.2,0.2,0.45"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - WallLayer
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -31,6 +31,13 @@
     - trigger:
         !type:DamageTypeTrigger
         damageType: Heat
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: barrel
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Piercing
         damage: 5
       behaviors:
       - !type:SolutionExplosionBehavior
@@ -221,15 +228,16 @@
     noRot: true
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeCircle
-        radius: 0.2
-      density: 50
-      mask:
-      - MachineMask
-      layer:
-      - MidImpassable
-      - LowImpassable
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.2
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
     
 - type: entity
   parent: N14BurningBarrel

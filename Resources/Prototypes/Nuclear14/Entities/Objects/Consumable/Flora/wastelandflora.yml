@@ -1,0 +1,103 @@
+# Base Plant
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: N14WastelandFlora
+  description: A plant growing wild in the wasteland.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Objects/Consumable/Flora/wastelandflora.rsi
+  - type: Item
+    sprite: Nuclear14/Objects/Consumable/Flora/wastelandflora.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14FloraProduceWildBrocFlower
+    sound:
+      path: /Audio/Items/eating_2.ogg
+
+# Plants
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildBroc
+  name: wild broc
+  description: A broc plant growing wild. It's flowering.
+  components:
+  - type: Sprite
+    state: wild_broc
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14FloraProduceWildBrocFlower
+      
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildXander
+  name: wild xander
+  description: A xander plant growing wild. It's healthy.
+  components:
+  - type: Sprite
+    state: wild_xander
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14FloraProduceWildXander
+
+# Base Wild Produce
+- type: entity
+  abstract: True
+  parent: FoodProduceBase
+  id: N14FloraProduce
+  name: wild produce base
+  description: A wild plant produce grown in the wastes.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 3
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: N14RadParticleFood
+          Quantity: 1
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Objects/Consumable/Flora/wastelandflora.rsi
+  - type: Item
+    sprite: Nuclear14/Objects/Consumable/Flora/wastelandflora.rsi
+          
+          
+# Plant Produce
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildBrocFlower
+  name: wild broc flower
+  description: A broc flower from a wild plant.
+  components:
+  - type: Sprite
+    state: BrocFlower
+  - type: Stack
+    stackType: BrocFlower
+    count: 1
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildXander
+  name: wild xander root
+  description: A xander root from a wild plant.
+  components:
+  - type: Sprite
+    state: xander_root
+  - type: Stack
+    stackType: XanderRoot
+    count: 1
