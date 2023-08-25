@@ -6,6 +6,9 @@
   id: N14MobBloatfly
   description: A mutated floating bug with an infectious bite.
   components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
   - type: Sprite
     drawdepth: Mobs
   - type: Physics
@@ -34,15 +37,13 @@
     bloodMaxVolume: 50
   - type: ReplacementAccent
     accent: mouse
-  - type: MeleeWeapon
-    hidden: true
-    soundHit:
-        path: /Audio/Effects/bite.ogg
-    angle: 0
-    animation: WeaponArcBite
-    damage:
-      types:
-        Piercing: 3
+  - type: BallisticAmmoProvider
+    proto: BulletAcid
+    capacity: 500
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
   - type: NoSlip
   
   
