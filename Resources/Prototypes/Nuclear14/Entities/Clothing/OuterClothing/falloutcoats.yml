@@ -17,24 +17,7 @@
         Slash: 0.85
         Piercing: 0.9
         Heat: 0.75
-
-- type: entity
-  parent: ClothingOuterStorageBase
-  id: N14ClothingOuterOverseerCoat
-  name: "overseer's coat"
-  description: A coat worn by someone important. It has the number 14 on the back.
-  components:
-  - type: Sprite
-    sprite: Nuclear14/Clothing/OuterClothing/Coats/falloutoverseercoat.rsi
-  - type: Clothing
-    sprite: Nuclear14/Clothing/OuterClothing/Coats/falloutoverseercoat.rsi
-  - type: TemperatureProtection
-    coefficient: 0.1
-  - type: Armor
-    modifiers:
-      coefficients:
-        Slash: 0.95
-        Heat: 0.75
+        
 
 - type: entity
   parent: N14ClothingOuterOverseerCoat
@@ -48,33 +31,14 @@
     sprite: Nuclear14/Clothing/OuterClothing/Coats/falloutbattlecoat.rsi
 
 - type: entity
-  parent: N14ClothingOuterOverseerCoat
+  parent: N14ClothingOuterBattlecoatCoat
   id: N14ClothingOuterBattlecoatTan
   name: tan battlecoat
-  description: For when you're going into battle.
   components:
   - type: Sprite
     sprite: Nuclear14/Clothing/OuterClothing/Coats/falloutbattlecoattan.rsi
   - type: Clothing
     sprite: Nuclear14/Clothing/OuterClothing/Coats/falloutbattlecoattan.rsi
-
-- type: entity
-  parent: ClothingOuterStorageBase
-  id: N14ClothingOuterEnclaverOfficerCoat
-  name: enclave officer coat
-  description: A coat worn by enclave officers. It has armor underneath.
-  components:
-  - type: Sprite
-    sprite: Nuclear14/Clothing/OuterClothing/Coats/falloutarmoredofficer.rsi
-  - type: Clothing
-    sprite: Nuclear14/Clothing/OuterClothing/Coats/falloutarmoredofficer.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.9
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -108,3 +72,65 @@
     sprite: Nuclear14/Clothing/OuterClothing/Coats/falloutleatherduster.rsi
   - type: Clothing
     sprite: Nuclear14/Clothing/OuterClothing/Coats/falloutleatherduster.rsi
+
+        
+# Brotherhood
+- type: entity
+  parent: N14ClothingOuterOverseerCoat
+  id: N14ClothingOuterBrotherhoodElderCoat
+  name: Elder greatcoat
+  description: For when you're going into battle.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/OuterClothing/Coats/brotherhoodeldercoat.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/OuterClothing/Coats/brotherhoodeldercoat.rsi
+    
+- type: entity
+  parent: N14ClothingOuterOverseerCoat
+  id: N14ClothingOuterBrotherhoodFieldScribeCoat
+  name: Brotherhood field Scribe coat
+  description: A warm coat worn by Brotherhood field Scribes.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/OuterClothing/Coats/brotherhoodfieldscribe.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/OuterClothing/Coats/brotherhoodfieldscribe.rsi
+    
+# Enclave
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: N14ClothingOuterEnclaverOfficerCoat
+  name: enclave officer coat
+  description: A coat worn by enclave officers. It has armor underneath.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/OuterClothing/Coats/falloutarmoredofficer.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/OuterClothing/Coats/falloutarmoredofficer.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.9
+    
+# Vault
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: N14ClothingOuterOverseerCoat
+  name: "overseer's coat"
+  description: A coat worn by someone important. It has the number 14 on the back.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/OuterClothing/Coats/falloutoverseercoat.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/OuterClothing/Coats/falloutoverseercoat.rsi
+  - type: TemperatureProtection
+    coefficient: 0.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.75

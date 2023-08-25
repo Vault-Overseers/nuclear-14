@@ -11,18 +11,19 @@
   - type: PlaceableSurface
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeAabb
-        bounds: "-0.45,-0.45,0.45,0.45"
-      density: 55
-      mask: # tables should collide with other tables
-      - TableMask
-      layer:
-      - TableLayer
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+        mask: # tables should collide with other tables
+        - TableMask
+        layer:
+        - TableLayer
   - type: Sprite
     netsync: false
   - type: Climbable
-    bonk: true
+  - type: Bonkable
     bonkDamage:
       types:
         Blunt: 4
@@ -61,14 +62,15 @@
     state: desk_metal
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeAabb
-        bounds: "-0.95,-0.45,0.95,0.45"
-      density: 55
-      mask: # tables should collide with other tables
-      - TableMask
-      layer:
-      - TableLayer
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.95,-0.45,0.95,0.45"
+        density: 55
+        mask: # tables should collide with other tables
+        - TableMask
+        layer:
+        - TableLayer
     
 - type: entity
   id: N14TableDeskWood

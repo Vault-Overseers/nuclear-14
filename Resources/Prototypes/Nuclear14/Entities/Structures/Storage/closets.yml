@@ -1,16 +1,195 @@
+# Metal Closets
 - type: entity
+  parent: ClosetBase
   id: N14ClosetBase
-  parent: BaseStructureDynamic
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Closets/closet.rsi
+    layers:
+    - state: closet
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: closet_door
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: closet
+    stateDoorOpen: closet_open
+    stateDoorClosed: closet_door
+      
+- type: entity
+  parent: N14ClosetBase
+  id: N14ClosetBaseW
   name: closet
   description: A basic closet for storing things.
   components:
-  - type: ResistLocker
-  - type: Transform
-    noRot: true
+  - type: Weldable
   - type: Sprite
     noRot: true
     netsync: false
-    sprite: Nuclear14/Structures/Storage/closet.rsi
+    sprite: Nuclear14/Structures/Storage/Closets/closet.rsi
+    layers:
+    - state: closet
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: closet_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: closet
+    stateDoorOpen: closet_open
+    stateDoorClosed: closet_door
+
+
+- type: entity
+  parent: N14ClosetBaseW
+  id: N14ClosetGrey1
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Closets/closetgrey.rsi
+  - type: Weldable
+
+- type: entity
+  parent: [ N14ClosetGrey1, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetGrey1Refilling
+  suffix: Refilling,Random
+
+- type: entity
+  id: N14ClosetGrey2
+  parent: N14ClosetBaseW
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Closets/closetgrey2.rsi
+
+- type: entity
+  parent: [ N14ClosetGrey2, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetGrey2Refilling
+  suffix: Refilling,Random
+
+- type: entity
+  parent: N14ClosetBaseW
+  id: N14ClosetRusty
+  name: rusty closet
+  description: A rusty old closet for storing things.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Closets/closetold.rsi
+
+- type: entity
+  parent: [ N14ClosetRusty, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetRustyRefilling
+  suffix: Refilling,Random
+
+- type: entity
+  parent: N14ClosetBaseW
+  id: N14ClosetGunCabinet
+  name: gun cabinet
+  description: A secure cabinet for storing guns.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Closets/guncabinet.rsi
+
+- type: entity
+  parent: [ N14ClosetGunCabinet, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetGunCabinetRefilling
+  suffix: Refilling,Random
+
+- type: entity
+  parent: N14ClosetBaseW
+  id: N14ClosetFridgeDirty
+  name: fridge
+  description: A dirty old fridge for keeping food fresh
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Closets/fridgedirty.rsi
+  - type: ExplosionResistance
+    resistance: 0.90
+  - type: AntiRottingContainer
+
+- type: entity
+  parent: N14ClosetBaseW
+  id: N14ClosetDouble
+  name: double closet
+  description: A double closet for holding twice the things.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Closets/doublecloset.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.15,-0.45,0.45,0.45"
+        density: 145
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: [ N14ClosetDouble, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetDoubleRefilling
+  suffix: Refilling,Random
+
+# Wooden Closets
+
+- type: entity
+  parent: N14ClosetBase
+  id: N14ClosetCabinetWood
+  name: cabinet
+  description: An old pre-war wooden cabinet.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Closets/cabinet.rsi
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/woodhit.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Wooden
+
+- type: entity
+  parent: [ N14ClosetCabinetWood, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetCabinetWoodRefilling
+  suffix: Refilling,Random
+
+# Wallmounted Closets
+- type: entity
+  id: N14ClosetWallMedicabinet
+  placement:
+    mode: SnapgridCenter
+  name: medicabinet
+  description: A medicabinet mounted on the wall.
+  components:
+  - type: InteractionOutline
+  - type: Clickable
+  - type: ResistLocker
+  - type: Weldable
+  - type: WallMount
+    arc: 180
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    drawdepth: WallMountedItems
+    netsync: false
+    noRot: false
+    sprite: Nuclear14/Structures/Storage/Closets/medicabinet.rsi
     layers:
     - state: closet
     - state: closet_door
@@ -18,33 +197,17 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
-  - type: MovedByPressure
-  - type: DamageOnHighSpeedImpact
-    damage:
-      types:
-        Blunt: 5
-    soundHit:
-      path: /Audio/Effects/bang.ogg
-  - type: InteractionOutline
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-    - shape:
-        !type:PhysShapeAabb
-        bounds: "-0.25,-0.48,0.25,0.48"
-      density: 145
-      mask:
-      - MachineMask
-      layer:
-      - MachineLayer
   - type: EntityStorage
+    isCollidableWhenOpen: true
+    enteringOffset: 0, -0.75
+    closeSound:
+      path: /Audio/Items/deconstruct.ogg
+    openSound:
+      path: /Audio/Items/deconstruct.ogg
   - type: ContainerContainer
     containers:
       entity_storage: !type:Container
-  - type: Weldable
-  - type: PlaceableSurface
-    placeCentered: true
-    isPlaceable: false
+        ents: []
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -64,9 +227,3 @@
           SheetSteel1:
             min: 1
             max: 1
-  - type: Appearance
-    visuals:
-    - type: StorageVisualizer
-      state: closet
-      state_open: closet_open
-      state_closed: closet_door

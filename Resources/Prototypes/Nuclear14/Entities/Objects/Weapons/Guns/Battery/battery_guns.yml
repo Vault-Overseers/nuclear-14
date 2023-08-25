@@ -23,6 +23,30 @@
     fireCost: 122.5
 
 - type: entity
+  name: plasma pistol
+  parent: BaseWeaponBattery
+  id: N14WeaponPlasmaPistol
+  description: A highly advanced plasma pistol.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Battery/plasma_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Battery/plasma_pistol.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: HitscanBatteryAmmoProvider
+    proto: Pulse
+    fireCost: 122.5
+
+- type: entity
   name: laser rifle
   parent: BaseWeaponBattery
   id: N14WeaponLaserRifle
@@ -44,4 +68,28 @@
     - SemiAuto
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
+    fireCost: 62.5
+
+- type: entity
+  name: plasma rifle
+  parent: BaseWeaponBattery
+  id: N14WeaponPlasmaRifle
+  description: A highly advanced plasma rifle.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: HitscanBatteryAmmoProvider
+    proto: Pulse
     fireCost: 62.5

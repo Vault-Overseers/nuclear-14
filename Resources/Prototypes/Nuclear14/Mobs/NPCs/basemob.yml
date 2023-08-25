@@ -10,11 +10,12 @@
   components:
   - type: InputMover
   - type: MobMover
-  - type: Faction
+  - type: NpcFactionMember
     factions:
     - SimpleHostile
   - type: HTN
-    rootTask: SimpleHostileCompound
+    rootTask:
+      task: SimpleHostileCompound
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -27,14 +28,15 @@
     baseSprintSpeed : 6
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeCircle
-        radius: 0.20
-      density: 20
-      mask:
-      - SmallMobMask
-      layer:
-      - SmallMobLayer
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
   - type: MobState
     allowedStates:
       - Alive
@@ -44,7 +46,7 @@
       0: Alive
       15: Dead
   - type: Stamina
-    excess: 15
+    critThreshold: 15
   - type: MovementAlwaysTouching
   - type: Appearance
   - type: DamageStateVisuals
@@ -60,10 +62,10 @@
   - type: Bloodstream
     bloodMaxVolume: 50
   - type: CombatMode
-    disarmAction:
+    combatToggleAction:
       enabled: false
       autoPopulate: false
-      name: action-name-disarm
+      name: action-name-combat
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -89,6 +91,9 @@
       Wreak havoc and kill all humans!
   - type: ReplacementAccent
     accent: genericAggressive
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
 
 # Wave Defence Base Hostile
 - type: entity
@@ -97,9 +102,12 @@
   id: N14MobWave
   components:
   - type: HTN
-    rootTask: SimpleHostileCompound
+    rootTask:
+      task: SimpleHostileCompound
     blackboard:
       NavInteract: !type:Bool
+        true
+      NavClimb: !type:Bool
         true
       NavPry: !type:Bool
         true
@@ -108,7 +116,7 @@
       ESP: !type:Bool
         true
       VisionRadius: !type:Single
-        100.0
+        500.0
   - type: WaveMob
     difficulty: 1
     

@@ -5,12 +5,12 @@
   minPlayers: 0
   stations:
     Station:
-      mapNameTemplate: '{0} Wave Defense {1}'
-      nameGenerator:
-        !type:NanotrasenNameGenerator
-        prefixCreator: '14'
-      overflowJobs:
-        - Passenger
-      availableJobs:
-        Survivor: [ -1, -1 ]
-        Passenger: [ -1, -1 ]
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Super Duper Mart'
+        - type: StationJobs
+          overflowJobs:
+            - Survivor
+          availableJobs:
+            Survivor: [ -1, -1 ]

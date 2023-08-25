@@ -1,0 +1,615 @@
+- type: entity
+  abstract: true
+  id: N14BaseTimedStorageFill
+  components:
+  - type: TimedStorageFill
+    contents:
+      - id: Pen
+        prob: 0.04
+      - id: N14CombatKnife
+        prob: 0.03
+      - id: N14Screwdriver
+        prob: 0.06
+      - id: N14Wirecutter
+        prob: 0.06
+      - id: N14Wrench
+        prob: 0.06
+      - id: PaperOffice
+        prob: 0.04
+        amount: 1
+        maxAmount: 3
+      - id: N14DrinkNukaColaBottleFull
+        prob: 0.05
+        amount: 1
+        maxAmount: 2
+      - id: Gauze
+        prob: 0.1
+        amount: 1
+        maxAmount: 2
+      - id: PillDexalin #Only here until theres a more in-universe way of recovering o2 loss
+        prob: 0.15
+        amount: 1
+        maxAmount: 2
+      - id: N14Stimpak
+        prob: 0.02
+        amount: 1
+        maxAmount: 2
+      - id: N14Antidote
+        prob: 0.02
+        amount: 1
+        maxAmount: 2
+      - id: N14SuperStimpak
+        prob: 0.01
+      - id: N14DrinkIrradiatedNukaColaBottleFull
+        prob: 0.02
+      - id: N14FoodDogfood
+        prob: 0.03
+      - id: N14FoodBubblegum
+        prob: 0.03
+      - id: N14FoodTato
+        prob: 0.03
+      - id: N14ClothingOuterCoatLeatherDuster
+        prob: 0.6
+        orGroup: Clothing
+      - id: N14ClothingOuterCoatDuster
+        prob: 0.6
+        orGroup: Clothing
+      - id: N14ClothingOuterCoatFollowerLab
+        prob: 0.3
+        orGroup: Clothing
+      - id: N14ClothingOuterEnclaverOfficerCoat
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingOuterBattlecoatTan
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingOuterBattlecoatCoat
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingHeadHatBaseball
+        prob: 0.6
+        orGroup: Clothing
+      - id: N14ClothingHeadHatBandit
+        prob: 0.6
+        orGroup: Clothing
+      - id: N14ClothingShoesJamrock
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingShoesRags
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingShoesRaider
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtFalloutBlack
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtFalloutBlue
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtDressBlack
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtDressBlue
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtSundress
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtWastelandDoc
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtMerc
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtTribal
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtFalloutBlue
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtDressBlack
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtDressBlue
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtSundress
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtWastelandDoc
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtMerc
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtTribal
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitVault
+        prob: 0.05
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitVault14
+        prob: 0.1
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitDetectiveAlt
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitBartenderAlt
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitRags
+        prob: 0.6
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitSettlerRags
+        prob: 0.6
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitCheckered
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitWastelandDoc
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitEnclave
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitMerc
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitMerchant
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitTrader
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitCaravan
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitMechanic
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitPreWarRelaxed
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitPreWarCasual
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitManagerSuit
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitPreWarManager
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitBlueSuit
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitPreWarLumberjack
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitCombat
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitBrahminFarmer
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitFollowers
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitCowboyBrown
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitCowboyGrey
+        prob: 0.4
+        orGroup: Clothing
+
+- type: entity
+  abstract: true
+  id: N14BaseLockerTimedStorageFill
+  components:
+    - type: TimedStorageFill
+      contents:
+        - id: CigCartonRed
+          prob: 0.04
+        - id: CigCartonBlack
+          prob: 0.04
+        - id: Blunt
+          prob: 0.04
+        - id: CigarCase
+          prob: 0.04
+        - id: SmokingPipeFilledTobacco
+          prob: 0.04
+        - id: GeigerCounter
+          prob: 0.06
+        - id: Mousetrap
+          prob: 0.04
+        - id: RadioHandheld
+          prob: 0.04
+        - id: AcousticGuitarInstrument
+          prob: 0.04
+        - id: SaxophoneInstrument
+          prob: 0.04
+        - id: N14RazorgrainSeeds
+          prob: 0.05
+        - id: N14IrradiatedTatoSeeds
+          prob: 0.05
+        - id: N14IrradiatedCarrotSeeds
+          prob: 0.05
+        - id: N14MaizeSeeds
+          prob: 0.05
+        - id: N14CabbageSeeds
+          prob: 0.05
+        - id: Torch
+          prob: 0.1
+        - id: MopItem
+          prob: 0.04
+        - id: N14Screwdriver
+          prob: 0.06
+        - id: N14Wirecutter
+          prob: 0.06
+        - id: N14Wrench
+          prob: 0.06
+        - id: N14Welder
+          prob: 0.15
+        - id: PowerCellHigh
+          prob: 0.08
+        - id: BriefcaseBrown
+          prob: 0.04
+        - id: Gauze
+          prob: 0.25
+          amount: 1
+          maxAmount: 2
+        - id: PillDexalin #Only here until theres a more in-universe way of recovering o2 loss
+          prob: 0.15
+          amount: 1
+          maxAmount: 2
+        - id: N14Stimpak
+          prob: 0.05
+          amount: 1
+          maxAmount: 2
+        - id: N14BaseBallBat
+          prob: 2
+          orGroup: Weapon
+        - id: FireAxe
+          prob: 0.04
+          orGroup: Weapon
+        - id: N14WastelandSpear
+          prob: 2
+          orGroup: Weapon
+        - id: Bola
+          prob: 0.1
+          orGroup: Weapon
+        - id: N14Hatchet
+          prob: 2
+          orGroup: Weapon
+        - id: N14SledgeHammer
+          prob: 1
+          orGroup: Weapon
+        - id: N14CombatKnife
+          prob: 2
+          orGroup: Weapon
+        - id: N14Machete
+          prob: 2
+          orGroup: Weapon
+        - id: N14WeaponPipe10mm
+          prob: 0.6
+          orGroup: Weapon
+        - id: N14WeaponLaserRifle
+          prob: 0.08
+          orGroup: Weapon
+        - id: N14WeaponPistol10mm
+          prob: 0.5
+          orGroup: Weapon
+        - id: N14WeaponLaserPistol
+          prob: 0.2
+          orGroup: Weapon
+        - id: N14WeaponPistol9mm
+          prob: 0.6
+          orGroup: Weapon
+        - id: N14WeaponPistolColt
+          prob: 0.3
+          orGroup: Weapon
+        - id: N14WeaponPistol12mm
+          prob: 0.2
+          orGroup: Weapon
+        - id: N14WeaponRevolver9mm
+          prob: 0.5
+          orGroup: Weapon
+        - id: N14WeaponCarbine
+          prob: 0.08
+          orGroup: Weapon
+        - id: N14WeaponChineseRifle
+          prob: 0.07
+          orGroup: Weapon
+        - id: N14WeaponMarksman
+          prob: 0.1
+          orGroup: Weapon
+        - id: N14WeaponDoubleBarrelShotgun
+          prob: 0.4
+          orGroup: Weapon
+        - id: N14WeaponShotgun
+          prob: 0.1
+          orGroup: Weapon
+        - id: N14WeaponAutoShotgun
+          prob: 0.08
+          orGroup: Weapon
+        - id: N14WeaponCaravanShotgun
+          prob: 0.4
+          orGroup: Weapon
+        - id: N14WeaponLeverShotgun
+          prob: 0.3
+          orGroup: Weapon
+        - id: N14WeaponSubMachineGun10mm
+          prob: 0.3
+          orGroup: Weapon
+        - id: N14WeaponSubMachineGun12mm
+          prob: 0.2
+          orGroup: Weapon
+        - id: N14weapon12mmpipe
+          prob: 0.4
+          orGroup: Weapon
+        - id: N14weapon10mmpipe
+          prob: 0.5
+          orGroup: Weapon
+        - id: N14WeaponSniperHunting
+          prob: 0.1
+          orGroup: Weapon
+        - id: N14WeaponAntiMateriel
+          prob: 0.08
+          orGroup: Weapon
+        - id: N14WeaponLeverCarbine
+          prob: 0.1
+          orGroup: Weapon
+        - id: N14WeaponLeverRifle
+          prob: 0.2
+          orGroup: Weapon
+        - id: N14ClothingOuterCoatLeatherDuster
+          prob: 0.6
+          orGroup: Clothing
+        - id: N14ClothingOuterCoatDuster
+          prob: 0.6
+          orGroup: Clothing
+        - id: N14ClothingOuterCoatFollowerLab
+          prob: 0.3
+          orGroup: Clothing
+        - id: N14ClothingOuterEnclaverOfficerCoat
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingOuterBattlecoatTan
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingOuterBattlecoatCoat
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingHeadHatBaseball
+          prob: 0.4
+          orGroup: Clothing
+        - id: N14ClothingHeadHatBandit
+          prob: 0.6
+          orGroup: Clothing
+        - id: N14ClothingShoesJamrock
+          prob: 0.4
+          orGroup: Clothing
+        - id: N14ClothingShoesRags
+          prob: 0.4
+          orGroup: Clothing
+        - id: N14ClothingShoesRaider
+          prob: 0.4
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtFalloutBlack
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtFalloutBlue
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtDressBlack
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtDressBlue
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtSundress
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtWastelandDoc
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtMerc
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtTribal
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtFalloutBlue
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtDressBlack
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtDressBlue
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtSundress
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtWastelandDoc
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtMerc
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpskirtTribal
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitVault
+          prob: 0.05
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitVault14
+          prob: 0.1
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitDetectiveAlt
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitBartenderAlt
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitRags
+          prob: 0.6
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitSettlerRags
+          prob: 0.6
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitCheckered
+          prob: 0.1
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitWastelandDoc
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitEnclave
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitMerc
+          prob: 0.4
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitMerchant
+          prob: 0.4
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitTrader
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitCaravan
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitMechanic
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitPreWarRelaxed
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitPreWarCasual
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitManagerSuit
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitPreWarManager
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitBlueSuit
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitPreWarLumberjack
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitCombat
+          prob: 0.4
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitBrahminFarmer
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitFollowers
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitCowboyBrown
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingUniformJumpsuitCowboyGrey
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingOuterLeatherArmor
+          prob: 0.6
+          orGroup: Clothing
+        - id: N14ClothingOuterMetalArmor
+          prob: 0.4
+          orGroup: Clothing
+        - id: N14ClothingOuterCombatArmor
+          prob: 0.2
+          orGroup: Clothing
+        - id: N14ClothingOuterCombatArmorMK2
+          prob: 0.1
+          orGroup: Clothing
+        - id: N14ClothingOuterTribalArmor
+          prob: 0.6
+          orGroup: Clothing
+        - id: N14ClothingOuterTribalArmorHeavy
+          prob: 0.4
+          orGroup: Clothing
+        - id: N14ClothingOuterRaiderBadlands
+          prob: 0.8
+          orGroup: Clothing
+        - id: N14ClothingOuterRaiderBlastmaster
+          prob: 0.8
+          orGroup: Clothing
+        - id: N14ClothingOuterRaiderCombat1
+          prob: 0.6
+          orGroup: Clothing
+        - id: N14ClothingOuterRaiderCombat2
+          prob: 0.6
+          orGroup: Clothing
+
+- type: entity
+  abstract: true
+  id: N14TimedStorageFillDomestic
+  components:
+    - type: TimedStorageFill
+      contents:
+        - id: N14FoodBlamcomaccheese
+          prob: 0.1
+        - id: N14FoodBlamcomaccheeseLarge
+          prob: 0.05
+        - id: N14FoodBubblegum
+          prob: 0.1
+        - id: N14FoodCram
+          prob: 0.1
+        - id: N14FoodCrisps
+          prob: 0.1
+        - id: N14FoodDandyboyapples
+          prob: 0.1
+        - id: N14FoodDogfood
+          prob: 0.1
+        - id: N14FoodFancyladssnackcakes
+          prob: 0.1
+        - id: N14FoodInstamash
+          prob: 0.1
+        - id: N14FoodPorkBeans
+          prob: 0.1
+        - id: N14FoodMouldy
+          prob: 0.1
+        - id: N14FoodSalisburysteak
+          prob: 0.1
+        - id: N14FoodSugarbombs
+          prob: 0.1
+        - id: N14FoodYumyumdeviledeggs
+          prob: 0.1
+        - id: N14FoodTinCanTrash
+          prob: 0.05
+        - id: N14FoodBlamcomaccheeseTrash
+          prob: 0.05
+        - id: N14FoodBlamcomaccheeseLargeTrash
+          prob: 0.05
+        - id: N14FoodBubblegumTrash
+          prob: 0.05
+        - id: N14FoodCrispsTrash
+          prob: 0.05
+        - id: N14FoodDandyboyapplesTrash
+          prob: 0.05
+        - id: N14FoodFancyladssnackcakesTrash
+          prob: 0.05
+        - id: N14FoodInstamashTrash
+          prob: 0.05
+        - id: N14FoodSalisburysteakTrash
+          prob: 0.05
+        - id: N14FoodSugarbombsTrash
+          prob: 0.05
+        - id: N14FoodYumyumdeviledeggsTrash
+          prob: 0.05
+        - id: N14DrinkNukaColaBottleFull
+          prob: 0.05
+        - id: N14DrinkIrradiatedNukaColaBottleFull
+          prob: 0.1
+        - id: N14Screwdriver
+          prob: 0.1
+        - id: N14Wrench
+          prob: 0.1
+        - id: N14KitchenKnife
+          prob: 0.05
+          # TODO: Add domestic crafting products here like abraxo cleaner etc.
