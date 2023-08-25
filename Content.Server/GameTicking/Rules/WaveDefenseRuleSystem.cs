@@ -200,7 +200,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem<WaveDefenseRuleCompon
             difficulty = rules.DifficultyMod;
         }
 
-        var wavePool = wave * difficulty * (Defenders.Count * 2.5);
+        var wavePool = wave * difficulty * (Defenders.Count * 2);
         var waveTemplate = _random.Pick(mobList).Value.Item1;
         var spawnList = new List<string>();
 
