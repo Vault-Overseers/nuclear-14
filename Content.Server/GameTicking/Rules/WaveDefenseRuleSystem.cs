@@ -112,6 +112,8 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem<WaveDefenseRuleCompon
                 ev.AddLine(player);
             }
         }
+
+        StopTimer();
     }
 
     public void RestartTimer()
@@ -198,7 +200,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem<WaveDefenseRuleCompon
             difficulty = rules.DifficultyMod;
         }
 
-        var wavePool = wave * difficulty * (Defenders.Count * 3);
+        var wavePool = wave * difficulty * (Defenders.Count * 2.5);
         var waveTemplate = _random.Pick(mobList).Value.Item1;
         var spawnList = new List<string>();
 
