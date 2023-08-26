@@ -14,22 +14,24 @@
     noRot: true
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeAabb
-        bounds: "-0.49,-0.49,0.49,-0.45" # TODO: Change this
-      density: 1000
-      mask:
-      - FullTileMask
-      layer:
-      - WallLayer
-    - shape:
-        !type:PhysShapeAabb
-        bounds: "0.49,0.49,0.45,-0.49" # TODO: Change this
-      density: 1000
-      mask:
-      - FullTileMask
-      layer:
-      - WallLayer
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.49,-0.49,0.49,-0.45" # TODO: Change this
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "0.49,0.49,0.45,-0.49" # TODO: Change this
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
   - type: InteractionOutline
 
 
@@ -102,15 +104,16 @@
   - type: SpriteFade
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeAabb
-        bounds: "-0.1,-1.6,-0.4,-1.2"
-      density: 190
-      mask:
-      - MachineMask
-      layer:
-      - MidImpassable
-      - LowImpassable
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.1,-1.6,-0.4,-1.2"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
   - type: Sprite
     sprite: Nuclear14/Structures/Furniture/Street_Furniture/powerpole.rsi
     snapCardinals: true
@@ -145,15 +148,26 @@
   components:
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeAabb
-        bounds: "-0.7,-1.6,-0.5,-1.1"
-      density: 190
-      mask:
-      - MachineMask
-      layer:
-      - MidImpassable
-      - LowImpassable
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.7,-1.6,-0.5,-1.1"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: SmartLight
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
 
 
 - type: entity
@@ -202,20 +216,9 @@
       light_bulb: !type:ContainerSlot
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
-  - type: DeviceNetwork
-    deviceNetId: Apc
-    receiveFrequencyId: SmartLight
-  - type: ApcNetworkConnection
-  - type: Appearance
-    visuals:
-    - type: PoweredLightVisualizer
-      blinkingSound:
-        path: "/Audio/Machines/light_tube_on.ogg"
-  - type: SignalReceiver
-    inputs:
-      On: []
-      Off: []
-      Toggle: []
+  - type: PoweredLightVisuals
+    blinkingSound:
+      path: "/Audio/Machines/light_tube_on.ogg"
       
 - type: entity
   parent: N14LightStreetLampPostPoweredEmpty

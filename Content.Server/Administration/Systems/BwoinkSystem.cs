@@ -15,7 +15,9 @@ using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared;
 using Robust.Shared.Configuration;
+using Robust.Shared.Enums;
 using Robust.Shared.Network;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Administration.Systems
@@ -26,6 +28,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IConfigurationManager _config = default!;
+        [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly IPlayerLocator _playerLocator = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
 
@@ -40,6 +43,7 @@ namespace Content.Server.Administration.Systems
         private Dictionary<NetUserId, string> _oldMessageIds = new();
         private readonly Dictionary<NetUserId, Queue<string>> _messageQueues = new();
         private readonly HashSet<NetUserId> _processingChannels = new();
+        private readonly Dictionary<NetUserId, (TimeSpan Timestamp, bool Typing)> _typingUpdateTimestamps = new();
 
         // Max embed description length is 4096, according to https://discord.com/developers/docs/resources/channel#embed-object-embed-limits
         // Keep small margin, just to be safe
@@ -63,8 +67,18 @@ namespace Content.Server.Administration.Systems
             _config.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);
             _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("AHELP");
             _maxAdditionalChars = GenerateAHelpMessage("", "", true).Length;
+            _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
 
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameRunLevelChanged);
+            SubscribeNetworkEvent<BwoinkClientTypingUpdated>(OnClientTypingUpdated);
+        }
+
+        private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
+        {
+            if (e.NewStatus != SessionStatus.InGame)
+                return;
+
+            RaiseNetworkEvent(new BwoinkDiscordRelayUpdated(!string.IsNullOrWhiteSpace(_webhookUrl)), e.Session);
         }
 
         private void OnGameRunLevelChanged(GameRunLevelChangedEvent args)
@@ -92,6 +106,31 @@ namespace Content.Server.Administration.Systems
             _relayMessages.Clear();
         }
 
+        private void OnClientTypingUpdated(BwoinkClientTypingUpdated msg, EntitySessionEventArgs args)
+        {
+            if (_typingUpdateTimestamps.TryGetValue(args.SenderSession.UserId, out var tuple) &&
+                tuple.Typing == msg.Typing &&
+                tuple.Timestamp + TimeSpan.FromSeconds(1) > _timing.RealTime)
+            {
+                return;
+            }
+
+            _typingUpdateTimestamps[args.SenderSession.UserId] = (_timing.RealTime, msg.Typing);
+
+            // Non-admins can only ever type on their own ahelp, guard against fake messages
+            var isAdmin = _adminManager.GetAdminData((IPlayerSession) args.SenderSession)?.HasFlag(AdminFlags.Adminhelp) ?? false;
+            var channel = isAdmin ? msg.Channel : args.SenderSession.UserId;
+            var update = new BwoinkPlayerTypingUpdated(channel, args.SenderSession.Name, msg.Typing);
+
+            foreach (var admin in GetTargetAdmins())
+            {
+                if (admin.UserId == args.SenderSession.UserId)
+                    continue;
+
+                RaiseNetworkEvent(update, admin);
+            }
+        }
+
         private void OnServerNameChanged(string obj)
         {
             _serverName = obj;
@@ -109,6 +148,8 @@ namespace Content.Server.Administration.Systems
         {
             _webhookUrl = url;
 
+            RaiseNetworkEvent(new BwoinkDiscordRelayUpdated(!string.IsNullOrWhiteSpace(url)));
+
             if (url == string.Empty)
                 return;
 
@@ -118,13 +159,13 @@ namespace Content.Server.Administration.Systems
             if (!match.Success)
             {
                 // TODO: Ideally, CVar validation during setting should be better integrated
-                Logger.Warning("Webhook URL does not appear to be valid. Using anyways...");
+                Log.Warning("Webhook URL does not appear to be valid. Using anyways...");
                 return;
             }
 
             if (match.Groups.Count <= 2)
             {
-                Logger.Error("Could not get webhook ID or token.");
+                Log.Error("Could not get webhook ID or token.");
                 return;
             }
 
@@ -395,13 +436,11 @@ namespace Content.Server.Administration.Systems
                 _messageQueues[msg.UserId].Enqueue(GenerateAHelpMessage(senderSession.Name, str, !personalChannel, admins.Count == 0));
             }
 
-            if (admins.Count != 0)
+            if (admins.Count != 0 || sendsWebhook)
                 return;
 
             // No admin online, let the player know
-            var systemText = sendsWebhook ?
-                Loc.GetString("bwoink-system-starmute-message-no-other-users-webhook") :
-                Loc.GetString("bwoink-system-starmute-message-no-other-users");
+            var systemText = Loc.GetString("bwoink-system-starmute-message-no-other-users");
             var starMuteMsg = new BwoinkTextMessage(message.UserId, SystemUserId, systemText);
             RaiseNetworkEvent(starMuteMsg, senderSession.ConnectedClient);
         }

@@ -1,3 +1,5 @@
+using Content.Server.GameTicking.Events;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Objectives.Interfaces;
 using Content.Server.Players;
 using Robust.Server.Player;
@@ -8,12 +10,10 @@ namespace Content.Server.GameTicking.Rules;
 /// <summary>
 /// Assign vault dwellers objectives at round-start and late-join.
 /// </summary>
-public sealed class VaultRuleSystem : GameRuleSystem
+public sealed class VaultRuleSystem : GameRuleSystem<VaultRuleComponent>
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IObjectivesManager _objectivesManager = default!;
-
-    public override string Prototype => "Vault";
 
     public override void Initialize()
     {
@@ -25,40 +25,49 @@ public sealed class VaultRuleSystem : GameRuleSystem
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
     }
 
-    public override void Started(){}
+    protected override void Started(EntityUid uid, VaultRuleComponent vaultRule, GameRuleComponent gameRule, GameRuleStartedEvent ev){}
 
-    public override void Ended(){}
+    protected override void Ended(EntityUid uid, VaultRuleComponent vaultRule, GameRuleComponent gameRule, GameRuleEndedEvent ev){}
 
     private void OnStartAttempt(RoundStartAttemptEvent ev)
     {
-        if (!RuleAdded)
-            return;
-
-        if (!ev.Forced)
+        var query = EntityQueryEnumerator<WaveDefenseRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var waves, out var gameRule))
         {
-            // TODO: If there is no overseer readied up, refuse to start
-            //ev.Cancel();
-        }
+            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
 
-        // TODO: Generate shared objectives here
+                if (!ev.Forced)
+                {
+                    // TODO: If there is no overseer readied up, refuse to start
+                    //ev.Cancel();
+                }
+
+            // TODO: Generate shared objectives here
+        }
     }
 
     private void HandleLatejoin(PlayerSpawnCompleteEvent ev)
     {
-        if (!RuleAdded)
-            return;
+        var query = EntityQueryEnumerator<WaveDefenseRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var vault, out var gameRule))
+        {
+            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
 
-        GiveObjectives(ev.Player);
+                GiveObjectives(ev.Player);
+        }
     }
 
     private void OnPlayersSpawned(RulePlayerJobsAssignedEvent ev)
     {
-        if (!RuleAdded)
-            return;
-
-        foreach (var player in ev.Players)
+        var query = EntityQueryEnumerator<WaveDefenseRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var vault, out var gameRule))
         {
-            GiveObjectives(player);
+            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
+
+                foreach (var player in ev.Players)
+                {
+                    GiveObjectives(player);
+                }
         }
     }
 
@@ -82,8 +91,9 @@ public sealed class VaultRuleSystem : GameRuleSystem
         {
             var objective = _objectivesManager.GetRandomObjective(mind, "OverseerObjectiveGroups");
             if (objective == null) continue;
-            if (mind.TryAddObjective(objective))
-                difficulty += objective.Difficulty;
+            //ToDo: Kevin Zheng: re-add the mind objective stuff here please, IDK how that all changed I havent touched the objective code.
+            // if (mind.TryAddObjective(objective))
+            //     difficulty += objective.Difficulty;
         }
 
         return true;
@@ -91,9 +101,14 @@ public sealed class VaultRuleSystem : GameRuleSystem
 
     private void OnRoundEndText(RoundEndTextAppendEvent ev)
     {
-        if (!RuleAdded)
-            return;
+        var query = EntityQueryEnumerator<WaveDefenseRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var vault, out var gameRule))
+        {
+            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
+                return;
 
-        // TODO: Round-end text
+
+            // TODO: Round-end text
+        }
     }
 }

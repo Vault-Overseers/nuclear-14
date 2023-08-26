@@ -14,14 +14,15 @@
     noRot: true
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeAabb
-        bounds: "-0.2,-0.2,0.2,0.45"
-      density: 50
-      mask:
-      - MachineMask
-      layer:
-      - WallLayer
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.2,-0.2,0.2,0.45"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - WallLayer
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -227,15 +228,16 @@
     noRot: true
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeCircle
-        radius: 0.2
-      density: 50
-      mask:
-      - MachineMask
-      layer:
-      - MidImpassable
-      - LowImpassable
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.2
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
     
 - type: entity
   parent: N14BurningBarrel

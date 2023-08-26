@@ -6,6 +6,9 @@
   id: N14MobBloatfly
   description: A mutated floating bug with an infectious bite.
   components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
   - type: Sprite
     drawdepth: Mobs
   - type: Physics
@@ -13,14 +16,15 @@
     speechSounds: Squeak
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeCircle
-        radius: 0.25
-      density: 10
-      mask:
-      - FlyingMobMask
-      layer:
-      - FlyingMobLayer
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.25
+        density: 10
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
   - type: DamageStateVisuals
     states:
       Alive:
@@ -33,15 +37,13 @@
     bloodMaxVolume: 50
   - type: ReplacementAccent
     accent: mouse
-  - type: MeleeWeapon
-    hidden: true
-    soundHit:
-        path: /Audio/Effects/bite.ogg
-    angle: 0
-    animation: WeaponArcBite
-    damage:
-      types:
-        Piercing: 3
+  - type: BallisticAmmoProvider
+    proto: BulletAcid
+    capacity: 100
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
   - type: NoSlip
   
   
@@ -51,9 +53,6 @@
   id: N14MobGiantAnt
   description: It's an ant...but giant. Watch for the nippers.
   components:
-  - type: Faction
-    factions:
-    - SimpleHostile
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -62,21 +61,22 @@
       sprite: Nuclear14/Mobs/Animals/giantant.rsi
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeCircle
-        radius: 0.3
-      density: 400
-      mask:
-      - MobMask
-      layer:
-      - MobLayer
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.3
+        density: 400
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: MovementAlwaysTouching
   - type: MobThresholds
     thresholds:
       0: Alive
       100: Dead
   - type: Stamina
-    excess: 150
+    critThreshold: 10
   - type: Appearance
   - type: DamageStateVisuals
     states:
@@ -96,10 +96,10 @@
   - type: Bloodstream
     bloodMaxVolume: 500
   - type: CombatMode
-    disarmAction:
+    combatToggleAction:
       enabled: false
       autoPopulate: false
-      name: action-name-disarm
+      name: action-name-combat
   - type: Temperature
     heatDamageThreshold: 500
     coldDamageThreshold: 0
@@ -158,14 +158,15 @@
     baseSprintSpeed : 4
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeCircle
-        radius: 0.20
-      density: 20
-      mask:
-      - MobMask
-      layer:
-      - MobLayer
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -206,14 +207,15 @@
     baseSprintSpeed : 3.6
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeCircle
-        radius: 0.3
-      density: 20
-      mask:
-      - MobMask
-      layer:
-      - MobLayer
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.3
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -254,14 +256,15 @@
     baseSprintSpeed : 3.7
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeCircle
-        radius: 0.3
-      density: 20
-      mask:
-      - MobMask
-      layer:
-      - MobLayer
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.3
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -309,14 +312,15 @@
     baseSprintSpeed : 3.6
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeCircle
-        radius: 0.20
-      density: 20
-      mask:
-      - MobMask
-      layer:
-      - MobLayer
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -361,14 +365,15 @@
       sprite: Nuclear14/Mobs/Animals/yaoguai.rsi
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeCircle
-        radius: 0.5
-      density: 100
-      mask:
-      - MobMask
-      layer:
-      - MobLayer
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.5
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -390,3 +395,6 @@
     damage:
       types:
         Slash: 15
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 3.6
