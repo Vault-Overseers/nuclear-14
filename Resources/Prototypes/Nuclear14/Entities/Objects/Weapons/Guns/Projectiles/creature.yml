@@ -4,6 +4,10 @@
   parent: BaseBullet
   noSpawn: true
   components:
+    - type: Physics
+      bodyType: Dynamic
+      linearDamping: 0.2
+      angularDamping: 0
     - type: Projectile
       damage:
         types:
@@ -15,4 +19,4 @@
     - type: Ammo
       muzzleFlash: null
     - type: TimedDespawn
-      lifetime: 3
+      lifetime: 2
