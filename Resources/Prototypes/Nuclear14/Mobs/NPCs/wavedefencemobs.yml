@@ -8,7 +8,7 @@
   suffix: WaveMode
   components:
   - type: WaveMob
-    difficulty: 1.5
+    difficulty: 2
   
 - type: entity
   parent: [ N14MobNightstalkerCub, N14MobWaveAnimal ]
@@ -46,10 +46,18 @@
 # Insects
 
 - type: entity
+  parent: [ N14MobRadroach, N14MobWaveAnimal ]
+  id: N14MobRadroachWave
+  suffix: WaveMode
+
+- type: entity
   parent: [ N14MobBloatfly, N14MobWaveInsect ]
   id: N14MobBloatflyWave
   suffix: WaveMode
-
+  components:
+  - type: WaveMob
+    difficulty: 1.5
+    
 - type: entity
   parent: [ N14MobGiantAnt, N14MobWaveInsect ]
   id: N14MobGiantAntWave
@@ -65,4 +73,12 @@
   components:
   - type: WaveMob
     difficulty: 6
+    
+- type: entity
+  parent: [ N14MobCazador, N14MobWaveInsect ]
+  id: N14MobCazadorWave
+  suffix: WaveMode
+  components:
+  - type: WaveMob
+    difficulty: 7
   
