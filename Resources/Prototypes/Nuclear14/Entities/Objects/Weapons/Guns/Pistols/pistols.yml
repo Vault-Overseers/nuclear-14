@@ -17,6 +17,21 @@
     fireRate: 5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazinePistol10mm
+        whitelist:
+          tags:
+            - N14MagazinePistol9mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol9
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol9
 
 - type: entity
   name: 10mm Pistol
@@ -37,10 +52,25 @@
     fireRate: 5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazinePistol10mm
+        whitelist:
+          tags:
+            - N14MagazinePistol10mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol10
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol10
 
 - type: entity
   name: .45 handgun
-  parent: BaseWeaponRevolver
+  parent: BaseWeaponPistol
   id: N14WeaponPistolColt
   description: A rugged handgun chambered in .45.
   components:
@@ -57,16 +87,34 @@
     fireRate: 4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazinePistol45
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14MagazinePistol45
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol45
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol45
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
 
 - type: entity
-  name: 12mm handgun
+  name: 12.7mm handgun
   parent: BaseWeaponPistol
   id: N14WeaponPistol12mm
-  description: A rugged, robust handgun chambered in 12mm. # TODO: Need to create projectiles, magazines and boxes for 12mm.
+  description: A rugged, robust handgun chambered in 12.7mm. # TODO: Need to create projectiles, magazines and boxes for 12mm.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Pistols/12mm.rsi
@@ -81,13 +129,31 @@
     fireRate: 4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazinePistol12mm
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14MagazinePistol12mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol12.7
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol12.7
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
 
 - type: entity
-  name: 10mm Pipe pistol
+  name: 10mm pipe pistol
   parent: BaseWeaponPistol
   id: N14WeaponPipe10mm
   description: a light 10mm makeshift pistol, the grip is incredibly uncomfortable.
@@ -102,6 +168,21 @@
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Guns/Pistols/10mmPIPEpistol.rsi
   - type: Gun
-    fireRate: 5
+    fireRate: 4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazinePistol10mm
+        whitelist:
+          tags:
+            - N14MagazinePistol10mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol10
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol10
