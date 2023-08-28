@@ -6,12 +6,14 @@
   components:
     - type: Physics
       bodyType: Dynamic
-      linearDamping: 0.2
-      angularDamping: 0
+      linearDamping: 1
+      angularDamping: 1
     - type: Projectile
       damage:
         types:
           Piercing: 2
+    - type: StaminaDamageOnCollide
+      damage: 6
     - type: Sprite
       sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
       layers:
