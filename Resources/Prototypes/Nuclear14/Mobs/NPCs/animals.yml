@@ -70,14 +70,12 @@
         - MobMask
         layer:
         - MobLayer
-  - type: MovementAlwaysTouching
   - type: MobThresholds
     thresholds:
       0: Alive
       100: Dead
   - type: Stamina
     critThreshold: 10
-  - type: Appearance
   - type: DamageStateVisuals
     states:
       Alive:
@@ -95,11 +93,6 @@
 #      prob: 0.3
   - type: Bloodstream
     bloodMaxVolume: 500
-  - type: CombatMode
-    combatToggleAction:
-      enabled: false
-      autoPopulate: false
-      name: action-name-combat
   - type: Temperature
     heatDamageThreshold: 500
     coldDamageThreshold: 0
@@ -115,7 +108,7 @@
         
 - type: entity
   name: giant fire ant
-  parent: N14MobBaseHostile
+  parent: N14MobGiantAnt
   id: N14MobGiantFireAnt
   description: It's an ant...but giant and red. Watch for the nippers.
   components:
@@ -152,7 +145,6 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: molerat
       sprite: Nuclear14/Mobs/Animals/molerat.rsi
-  - type: Physics
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 4
@@ -201,7 +193,6 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: gecko
       sprite: Nuclear14/Mobs/Animals/gecko.rsi
-  - type: Physics
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 3.6
@@ -250,7 +241,6 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: nightstalker
       sprite: Nuclear14/Mobs/Animals/nightstalkercub.rsi
-  - type: Physics
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 3.7
