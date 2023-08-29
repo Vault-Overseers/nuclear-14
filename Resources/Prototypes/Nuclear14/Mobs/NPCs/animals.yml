@@ -1,6 +1,8 @@
+# See basemob.yml for parent entities
+
 - type: entity
   name: bloatfly
-  parent: N14MobBaseHostile
+  parent: N14MobBaseHostileInsect
   id: N14MobBloatfly
   description: A mutated floating bug with an infectious bite.
   components:
@@ -44,7 +46,7 @@
   
 - type: entity
   name: giant ant
-  parent: N14MobBaseHostile
+  parent: N14MobBaseHostileInsect
   id: N14MobGiantAnt
   description: It's an ant...but giant. Watch for the nippers.
   components:
@@ -227,7 +229,7 @@
 - type: entity
   name: radroach
   id: N14MobRadroach
-  parent: N14MobBaseHostile
+  parent: N14MobBaseHostileInsect
   description: stinking roaches survived the bombs.
   components:
   - type: Sprite
@@ -239,7 +241,7 @@
       sprite: Nuclear14/Mobs/Animals/Insects/radroach.rsi
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 3
+    baseSprintSpeed : 3.5
   - type: Fixtures
     fixtures:
       fix1:
@@ -276,7 +278,7 @@
 - type: entity
   name: gecko
   id: N14MobGecko
-  parent: N14MobBaseHostile
+  parent: N14MobBaseHostileScaley
   description: Looks like a dinosaur. The bite is worse than the claws.
   components:
   - type: Sprite
@@ -435,7 +437,7 @@
 
 - type: entity
   name: cazador
-  parent: N14MobBaseHostile
+  parent: N14MobBaseHostileInsect
   id: N14MobCazador
   description: Pure hate with a stinger and wings.
   components:
@@ -534,18 +536,19 @@
     baseWalkSpeed : 3
     baseSprintSpeed : 3.6
 
+# Scaley Animals
 - type: entity
   name: deathclaw
   id: N14MobDeathclaw
-  parent: N14MobBaseHostile
+  parent: N14MobBaseHostileScaley
   description: Look at those claws.
   components:
   - type: Sprite
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: yaoguai # TODO: Change Me
-      sprite: Nuclear14/Mobs/Animals/yaoguai.rsi # TODO: Change Me
+      state: deathclaw
+      sprite: Nuclear14/Mobs/Animals/deathclaw.rsi
   - type: Fixtures
     fixtures:
       fix1:
@@ -564,9 +567,9 @@
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: yaoguai # TODO: Change Me
+        Base: deathclaw
       Critical:
-        Base: yaoguai # TODO: Change Me
+        Base: crit
       Dead:
         Base: dead
   - type: MeleeWeapon
@@ -610,8 +613,42 @@
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: yaoguai # TODO: Change Me
-      sprite: Nuclear14/Mobs/Animals/yaoguai.rsi # TODO: Change Me
+      state: deathclawalbino
+      sprite: Nuclear14/Mobs/Animals/deathclawalbino.rsi
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 22
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      750: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: deathclaw
+      Critical:
+        Base: deathclaw # TODO: Crit sprite
+      Dead:
+        Base: dead
+        
+- type: entity
+  name: metal deathclaw
+  id: N14MobDeathclawMetal
+  parent: N14MobDeathclawAlbino
+  description: They put armor on that thing?!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: deathclawmetal
+      sprite: Nuclear14/Mobs/Animals/deathclawmetal.rsi
   - type: MeleeWeapon
     hidden: true
     soundHit:
