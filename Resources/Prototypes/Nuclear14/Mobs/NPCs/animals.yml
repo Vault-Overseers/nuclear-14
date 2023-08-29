@@ -132,7 +132,7 @@
   name: molerat
   id: N14MobMolerat
   parent: N14MobBaseHostile
-  description: Part mole, part rat, full pest Watch out for the teeth.
+  description: Part mole, part rat, full pest. Watch out for the teeth.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -175,6 +175,54 @@
     damage:
       groups:
         Brute: 3
+
+- type: entity
+  name: feral dog
+  id: N14MobDogFeral
+  parent: N14MobBaseHostile
+  description: A rabid dog. Not so friendly friend.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: dogferal-1
+      sprite: Nuclear14/Mobs/Animals/dogferal.rsi
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dogferal-1
+      Critical:
+        Base: dogferal-1
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 5
         
 - type: entity
   name: radroach
@@ -485,3 +533,85 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 3.6
+
+# Passive Animals
+- type: entity
+  name: radstag
+  parent: cow
+  id: N14MobRadstag
+  description: Stag? Raaaad
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: radstag
+      sprite: N14/Mobs/Animals/radstag.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: radstag
+      Dead:
+        Base: dead
+  - type: Tag
+    tags:
+    - Radstag
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat # TODO: radstag steak 
+      amount: 5
+# TODO: Add mob specific milk
+
+- type: entity
+  name: brahmin
+  parent: cow
+  id: N14MobBrahmin
+  description: Moo? Wonder if I can eat that.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: brahmin
+      sprite: N14/Mobs/Animals/brahmin.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: brahmin
+      Dead:
+        Base: dead
+  - type: Tag
+    tags:
+    - Brahmin
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat # TODO: brahmin steak 
+      amount: 5
+# TODO: Add mob specific milk
+
+- type: entity
+  name: bighorner
+  parent: cow
+  id: N14MobBighorner
+  description: Fluffy but with horns.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: bighorner
+      sprite: N14/Mobs/Animals/bighorner.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: bighorner
+      Dead:
+        Base: dead
+  - type: Tag
+    tags:
+    - Radstag
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat # TODO: bighorner steak 
+      amount: 5
+# TODO: Add mob specific milk
