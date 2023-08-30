@@ -1,8 +1,8 @@
 ﻿- type: entity
-  name: emergency flare
+  name: flare
   parent: BaseItem
   id: Flare
-  description: A flare that produces a very bright light for a short while. Point the flame away from yourself.
+  description: Creates light for a short period of time.
   components:
   - type: Tag
     tags:
@@ -12,7 +12,7 @@
   - type: ExpendableLight
     spentName: expendable-light-spent-flare-name
     spentDesc: expendable-light-spent-flare-desc
-    glowDuration: 225
+    glowDuration: 300
     fadeOutDuration: 15
     iconStateOn: flare_unlit
     iconStateSpent: flare_spent
@@ -40,6 +40,7 @@
   - type: Item
     sprite: Objects/Misc/flare.rsi
     heldPrefix: unlit
+    size: 3
   - type: Appearance
   - type: PointLight
     enabled: false

@@ -62,10 +62,6 @@
   - type: Bloodstream
     bloodMaxVolume: 50
   - type: CombatMode
-    combatToggleAction:
-      enabled: false
-      autoPopulate: false
-      name: action-name-combat
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -80,10 +76,11 @@
       melee:
         reagents:
         - ReagentId: Toxin
-          Quantity: 1
+          Quantity: 0.1
   - type: MeleeChemicalInjector
     solution: melee
   - type: GhostTakeoverAvailable
+  - type: GhostRole
     prob: 0.33
     makeSentient: true
     name: hostile attacker # wave defence
@@ -94,6 +91,10 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: WastelandAnimal
+  - type: Puller
+    needsHands: true
+  - type: Speech
+    speechSounds: Squeak
 
 # Wave Defence Base Hostile
 - type: entity
@@ -116,7 +117,7 @@
       ESP: !type:Bool
         true
       VisionRadius: !type:Single
-        500.0
+        1000.0
   - type: WaveMob
     difficulty: 1
     

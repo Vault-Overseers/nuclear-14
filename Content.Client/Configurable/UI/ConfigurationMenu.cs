@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Numerics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -63,7 +63,7 @@ namespace Content.Client.Configurable.UI
             {
                 VerticalExpand = true,
                 HorizontalExpand = true,
-                ModulateSelfOverride = Color.FromHex("#202025")
+                ModulateSelfOverride = Color.FromHex("#282828")
             };
 
             outerColumn.AddChild(_column);

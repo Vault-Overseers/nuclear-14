@@ -34,6 +34,10 @@
         prob: 0.02
         amount: 1
         maxAmount: 2
+      - id: N14Antidote
+        prob: 0.02
+        amount: 1
+        maxAmount: 2
       - id: N14SuperStimpak
         prob: 0.01
       - id: N14DrinkIrradiatedNukaColaBottleFull
@@ -197,6 +201,97 @@
       - id: N14ClothingUniformJumpsuitCowboyGrey
         prob: 0.4
         orGroup: Clothing
+      - id: Magazine5.56Rifle
+        prob: 0.4
+        orGroup: Ammunition
+      - id: LongMagazine5.56Rifle
+        prob: 0.4
+        orGroup: Ammunition
+      - id: N14Cartridge5.56Rifle
+        prob: 1
+        orGroup: Ammunition
+        amount: 1
+        maxAmount: 10
+      - id: Magazine7.62Rifle
+        prob: 0.4
+        orGroup: Ammunition
+      - id: N14Cartridge7.62Rifle
+        prob: 1
+        orGroup: Ammunition
+        amount: 1
+        maxAmount: 10
+      - id: N14MagazinePistol9mm
+        prob: 0.4
+        orGroup: Ammunition
+      - id: N14CartridgePistol9
+        prob: 1
+        orGroup: Ammunition
+        amount: 1
+        maxAmount: 10
+      - id: N14MagazinePistol10mm
+        prob: 0.4
+        orGroup: Ammunition
+      - id: N14MagazineSMG10mm
+        prob: 0.4
+        orGroup: Ammunition
+      - id: N14CartridgePistol10
+        prob: 1
+        orGroup: Ammunition
+        amount: 1
+        maxAmount: 10
+      - id: N14MagazinePistol12mm
+        prob: 0.4
+        orGroup: Ammunition
+      - id: N14MagazineSMG12mm
+        prob: 0.4
+        orGroup: Ammunition
+      - id: N14CartridgePistol12.7
+        prob: 1
+        orGroup: Ammunition
+        amount: 1
+        maxAmount: 10
+      - id: N14MagazineShotgun12
+        prob: 0.2
+        orGroup: Ammunition
+      - id: N14ShellShotgun12
+        prob: 1
+        orGroup: Ammunition
+        amount: 1
+        maxAmount: 10
+      - id: N14MagazineShotgun20
+        prob: 0.2
+        orGroup: Ammunition
+      - id: N14ShellShotgun20
+        prob: 1
+        orGroup: Ammunition
+        amount: 1
+        maxAmount: 10
+      - id: N14MagazinePistol22lr
+        prob: 0.4
+        orGroup: Ammunition
+      - id: N14CartridgePistol22
+        prob: 1
+        orGroup: Ammunition
+        amount: 1
+        maxAmount: 10
+      - id: N14MagazinePistol45
+        prob: 0.4
+        orGroup: Ammunition
+      - id: N14CartridgePistol45
+        prob: 1
+        orGroup: Ammunition
+        amount: 1
+        maxAmount: 10
+      - id: N14Cartridge44Magnum
+        prob: 1
+        orGroup: Ammunition
+        amount: 1
+        maxAmount: 10
+      - id: N14Cartridge308Rifle
+        prob: 1
+        orGroup: Ammunition
+        amount: 1
+        maxAmount: 10
 
 - type: entity
   abstract: true
@@ -216,8 +311,6 @@
           prob: 0.04
         - id: GeigerCounter
           prob: 0.06
-        - id: Mousetrap
-          prob: 0.04
         - id: RadioHandheld
           prob: 0.04
         - id: AcousticGuitarInstrument
@@ -254,37 +347,33 @@
           prob: 0.25
           amount: 1
           maxAmount: 2
-        - id: PillDexalin #Only here until theres a more in-universe way of recovering o2 loss
-          prob: 0.15
-          amount: 1
-          maxAmount: 2
         - id: N14Stimpak
-          prob: 0.05
+          prob: 0.1
           amount: 1
-          maxAmount: 2
+          maxAmount: 3
         - id: N14BaseBallBat
-          prob: 2
+          prob: 1
           orGroup: Weapon
         - id: FireAxe
           prob: 0.04
           orGroup: Weapon
         - id: N14WastelandSpear
-          prob: 2
+          prob: 1
           orGroup: Weapon
         - id: Bola
           prob: 0.1
           orGroup: Weapon
         - id: N14Hatchet
-          prob: 2
-          orGroup: Weapon
-        - id: N14SledgeHammer
           prob: 1
           orGroup: Weapon
+        - id: N14SledgeHammer
+          prob: 0.5
+          orGroup: Weapon
         - id: N14CombatKnife
-          prob: 2
+          prob: 1
           orGroup: Weapon
         - id: N14Machete
-          prob: 2
+          prob: 1
           orGroup: Weapon
         - id: N14WeaponPipe10mm
           prob: 0.6
@@ -358,6 +447,79 @@
         - id: N14WeaponLeverRifle
           prob: 0.2
           orGroup: Weapon
+        - id: LongMagazine5.56Rifle
+          prob: 0.4
+          orGroup: Weapon
+        - id: Magazine5.56Rifle
+          prob: 0.4
+          orGroup: Weapon
+        - id: MagazineBox5.56
+          prob: 0.1
+          orGroup: Weapon
+        - id: Magazine7.62Rifle
+          prob: 0.4
+          orGroup: Weapon
+        - id: MagazineBox7.62
+          prob: 0.1
+          orGroup: Weapon
+        - id: N14MagazinePistol9mm
+          prob: 0.4
+          orGroup: Weapon
+        - id: MagazineBox9mm
+          prob: 0.1
+          orGroup: Weapon
+        - id: N14MagazinePistol10mm
+          prob: 0.4
+          orGroup: Weapon
+        - id: N14MagazineSMG10mm
+          prob: 0.4
+          orGroup: Weapon
+        - id: MagazineBox10mm
+          prob: 0.1
+          orGroup: Weapon
+        - id: N14MagazinePistol12mm
+          prob: 0.4
+          orGroup: Weapon
+        - id: N14MagazineSMG12mm
+          prob: 0.4
+          orGroup: Weapon
+        - id: MagazineBox12
+          prob: 0.1
+          orGroup: Weapon
+        - id: N14MagazineShotgun12
+          prob: 0.2
+          orGroup: Weapon
+        - id: MagazineBox12gauge
+          prob: 0.1
+          orGroup: Weapon
+        - id: N14MagazineShotgun20
+          prob: 0.2
+          orGroup: Weapon
+        - id: MagazineBox20gauge
+          prob: 0.1
+          orGroup: Weapon
+        - id: N14MagazinePistol22lr
+          prob: 0.4
+          orGroup: Weapon
+        - id: MagazineBox22
+          prob: 0.1
+          orGroup: Weapon
+        - id: N14MagazinePistol45
+          prob: 0.4
+          orGroup: Weapon
+        - id: MagazineBox45
+          prob: 0.1
+          orGroup: Weapon
+        - id: MagazineBox44
+          prob: 0.1
+          orGroup: Weapon
+        - id: MagazineBox45
+          prob: 0.1
+          orGroup: Weapon
+        - id: MagazineBox308
+          prob: 0.1
+          orGroup: Weapon
+        
         - id: N14ClothingOuterCoatLeatherDuster
           prob: 0.6
           orGroup: Clothing
