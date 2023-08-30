@@ -243,7 +243,6 @@
         - ReagentId: N14RadParticleFood
           Quantity: 3
 
-
 - type: entity
   name: brahmin steak
   parent: N14FoodMeatCooked
@@ -270,6 +269,60 @@
     graph: MeatSteakBrahmin
     node: start
     defaultTarget: SteakBrahmin
+
+- type: entity
+  name: bighorner steak
+  parent: N14FoodMeatCooked
+  id: N14FoodMeatBighornerCooked
+  description: A cooked slab of meat. Smells primal.
+  components:
+  - type: Sprite
+    layers:
+    - state: plain-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: N14RadParticleFood
+          Quantity: 3
+  - type: SliceableFood
+    count: 3
+    slice: N14FoodMeatCutletCooked
+  - type: Construction
+    graph: MeatSteakBighorner
+    node: start
+    defaultTarget: SteakBighorner
+
+- type: entity
+  name: radstag steak
+  parent: N14FoodMeatCooked
+  id: N14FoodMeatRadstagCooked
+  description: A cooked slab of meat. Smells primal.
+  components:
+  - type: Sprite
+    layers:
+    - state: plain-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: N14RadParticleFood
+          Quantity: 3
+  - type: SliceableFood
+    count: 3
+    slice: N14FoodMeatCutletCooked
+  - type: Construction
+    graph: MeatSteakRadstag
+    node: start
+    defaultTarget: SteakRadstag
 
 - type: entity
   name: cooked yao-guai
