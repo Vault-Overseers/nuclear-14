@@ -10,6 +10,15 @@ reagent-desc-rad-particle-food = Too much will make you sick of living.
 reagent-name-juice-cabbage = cabbage juice
 reagent-desc-juice-cabbage = Tastes rather bland and iron-y
 
+## Animals
+reagent-name-milk-brahmin = brahmin milk
+reagent-desc-milk-brahmin = tasty brahmin milk
+reagent-name-milk-bighorner = bighorner milk
+reagent-desc-milk-bighorner = fatty bighorner milk
+reagent-name-milk-radstag = radstag milk
+reagent-desc-milk-radstag = protein rich radstag milk
+
+
 # Chems
 reagent-name-firetoxin = fire toxin
 reagent-desc-firetoxin = The hot stuff from firey creatures.
