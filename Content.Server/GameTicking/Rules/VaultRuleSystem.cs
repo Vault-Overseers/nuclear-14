@@ -30,7 +30,7 @@ public sealed class FactionRuleSystem : GameRuleSystem<FactionRuleComponent>
 
     private ISawmill _sawmill = default!;
 
-    private Dictionary<NpcFactionPrototype, N14FactionGoalsComponent>
+    private Dictionary<NpcFactionPrototype, FactionGoalsComponent>? _roundGoals;
 
     public override void Initialize()
     {
@@ -42,7 +42,11 @@ public sealed class FactionRuleSystem : GameRuleSystem<FactionRuleComponent>
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
     }
 
-    protected override void Started(EntityUid uid, FactionRuleComponent vaultRule, GameRuleComponent gameRule, GameRuleStartedEvent ev){}
+    protected override void Started(EntityUid uid, FactionRuleComponent vaultRule, GameRuleComponent gameRule,
+        GameRuleStartedEvent ev)
+    {
+        _roundGoals.Clear();
+    }
 
     protected override void Ended(EntityUid uid, FactionRuleComponent vaultRule, GameRuleComponent gameRule, GameRuleEndedEvent ev){}
 

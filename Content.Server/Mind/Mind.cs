@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.FactionGoals;
 using Content.Server.GameTicking;
 using Content.Server.Mind.Components;
 using Content.Server.Objectives;
@@ -23,6 +24,7 @@ namespace Content.Server.Mind
         internal readonly ISet<Role> Roles = new HashSet<Role>();
 
         internal readonly List<Objective> Objectives = new();
+        internal readonly List<Goal> Goals = new();
 
         public string Briefing = String.Empty;
 
@@ -98,6 +100,12 @@ namespace Content.Server.Mind
         /// </summary>
         [ViewVariables]
         public IEnumerable<Objective> AllObjectives => Objectives;
+
+        /// <summary>
+        ///     An enumerable over all the goals this mind has.
+        /// </summary>
+        [ViewVariables]
+        public IEnumerable<Goal> AllGoals => Goals;
 
         /// <summary>
         ///     Prevents user from ghosting out

@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Logs;
+using Content.Server.FactionGoals;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
 using Content.Server.Ghost.Components;
@@ -494,6 +495,38 @@ public sealed class MindSystem : EntitySystem
         }
 
         mind.Objectives.Remove(objective);
+        return true;
+    }
+
+    /// <summary>
+    /// N14 chunklet copies, doing faction goals instead of objectives
+    /// </summary>
+    /// <param name="mind"></param>
+    /// <param name="objectivePrototype"></param>
+    /// <returns></returns>
+    public bool TryAddGoal(Mind mind, GoalPrototype goalPrototype)
+    {
+        if (!goalPrototype.CanBeAssigned(mind))
+            return false;
+        var goal = goalPrototype.GetObjective(mind);
+        if (mind.Goals.Contains(goal))
+            return false;
+
+        mind.Goals.Add(goal);
+        return true;
+    }
+
+    /// <summary>
+    /// Removes an objective to this mind.
+    /// </summary>
+    /// <returns>Returns true if the removal succeeded.</returns>
+    public bool TryRemoveGoal(Mind mind, int index)
+    {
+        if (index < 0 || index >= mind.Goals.Count) return false;
+
+        var goal = mind.Goals[index];
+
+        mind.Goals.Remove(goal);
         return true;
     }
 
