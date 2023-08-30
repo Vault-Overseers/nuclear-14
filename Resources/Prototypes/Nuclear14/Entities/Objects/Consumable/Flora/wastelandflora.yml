@@ -1,10 +1,15 @@
 # Base Plant
 - type: entity
   abstract: true
-  parent: BaseItem
   id: N14WastelandFlora
   description: A plant growing wild in the wasteland.
   components:
+  - type: Transform
+    anchored: true # doesn't need to be true, but then we need to add mass
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Clickable
   - type: Sprite
     netsync: false
     sprite: Nuclear14/Objects/Consumable/Flora/wastelandflora.rsi
@@ -12,6 +17,7 @@
     sprite: Nuclear14/Objects/Consumable/Flora/wastelandflora.rsi
   - type: Damageable
     damageContainer: Inorganic
+    damageModifierSet: Wood
   - type: Destructible
     thresholds:
     - trigger:
@@ -20,11 +26,16 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14FloraProduceWildBrocFlower
-    sound:
-      path: /Audio/Items/eating_2.ogg
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: SpaceShrooms
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+  - type: Tag
+    tags:
+      - Structure
 
 # Plants
 - type: entity
@@ -35,9 +46,8 @@
   components:
   - type: Sprite
     state: wild_broc
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14FloraProduceWildBrocFlower
+  - type: OreVein
+    currentOre: WildBrocFlower
       
 - type: entity
   parent: N14WastelandFlora
@@ -47,9 +57,8 @@
   components:
   - type: Sprite
     state: wild_xander
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14FloraProduceWildXander
+  - type: OreVein
+    currentOre: WildXander
 
 # Base Wild Produce
 - type: entity
