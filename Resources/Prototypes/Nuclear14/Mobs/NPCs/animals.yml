@@ -695,7 +695,18 @@
     spawned:
     - id: FoodMeat # TODO: radstag steak 
       amount: 5
-# TODO: Add mob specific milk
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 150
+        reagents:
+        - ReagentId: MilkRadstag
+          Quantity: 30
+  - type: Udder
+    reagentId: MilkRadstag
+    targetSolution: udder
+    quantity: 25
+    updateRate: 30
 
 - type: entity
   name: brahmin
@@ -722,7 +733,18 @@
     spawned:
     - id: FoodMeat # TODO: brahmin steak 
       amount: 5
-# TODO: Add mob specific milk
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 250
+        reagents:
+        - ReagentId: MilkBrahmin
+          Quantity: 30
+  - type: Udder
+    reagentId: MilkBrahmin
+    targetSolution: udder
+    quantity: 25
+    updateRate: 30
 
 - type: entity
   name: bighorner
@@ -749,4 +771,15 @@
     spawned:
     - id: FoodMeat # TODO: bighorner steak 
       amount: 5
-# TODO: Add mob specific milk
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 250
+        reagents:
+        - ReagentId: MilkBighorner
+          Quantity: 30
+  - type: Udder
+    reagentId: MilkBighorner
+    targetSolution: udder
+    quantity: 25
+    updateRate: 30
