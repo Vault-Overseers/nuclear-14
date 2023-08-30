@@ -675,46 +675,8 @@
 
 # Passive Animals
 - type: entity
-  name: radstag
-  parent: cow
-  id: N14MobRadstag
-  description: Stag? Raaaad
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: radstag
-      sprite: Nuclear14/Mobs/Animals/radstag.rsi
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: radstag
-      Dead:
-        Base: dead
-  - type: Tag
-    tags:
-    - Radstag
-  - type: Butcherable
-    spawned:
-    - id: N14FoodMeatRadstag
-      amount: 5
-  - type: SolutionContainerManager
-    solutions:
-      udder:
-        maxVol: 150
-        reagents:
-        - ReagentId: MilkRadstag
-          Quantity: 30
-  - type: Udder
-    reagentId: MilkRadstag
-    targetSolution: udder
-    quantity: 25
-    updateRate: 30
-
-- type: entity
   name: brahmin
-  parent: cow
+  parent: MobCow
   id: N14MobBrahmin
   description: Moo? Wonder if I can eat that.
   components:
@@ -749,10 +711,13 @@
     targetSolution: udder
     quantity: 25
     updateRate: 30
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
 
 - type: entity
   name: bighorner
-  parent: cow
+  parent: N14MobBrahmin
   id: N14MobBighorner
   description: Fluffy but with horns.
   components:
@@ -784,6 +749,44 @@
           Quantity: 30
   - type: Udder
     reagentId: MilkBighorner
+    targetSolution: udder
+    quantity: 25
+    updateRate: 30
+
+- type: entity
+  name: radstag
+  parent: N14MobBrahmin
+  id: N14MobRadstag
+  description: Stag? Raaaad
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: radstag
+      sprite: Nuclear14/Mobs/Animals/radstag.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: radstag
+      Dead:
+        Base: dead
+  - type: Tag
+    tags:
+    - Radstag
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadstag
+      amount: 5
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 150
+        reagents:
+        - ReagentId: MilkRadstag
+          Quantity: 30
+  - type: Udder
+    reagentId: MilkRadstag
     targetSolution: udder
     quantity: 25
     updateRate: 30
