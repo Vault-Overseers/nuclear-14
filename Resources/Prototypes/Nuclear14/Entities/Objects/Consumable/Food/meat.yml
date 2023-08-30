@@ -67,6 +67,56 @@
     slice: N14FoodMeatBrahminCutlet
 
 - type: entity
+  name: raw bighorner steak
+  parent: N14FoodMeatRadRaw
+  id: N14FoodMeatBighorner
+  description: A raw piece of rump bighorner.
+  components:
+  - type: Sprite
+    netsync: true
+    state: bacon
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          bacon: ""
+      - enum.DamageStateVisualLayers.Base:
+          bacon2: ""
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: N14UncookedAnimalProteinsRad
+          Quantity: 9
+  - type: SliceableFood
+    count: 3
+    slice: N14FoodMeatBighornerCutlet
+
+- type: entity
+  name: raw radstag steak
+  parent: N14FoodMeatRadRaw
+  id: N14FoodMeatRadstag
+  description: A raw piece of rump bighorner.
+  components:
+  - type: Sprite
+    netsync: true
+    state: bacon
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          bacon: ""
+      - enum.DamageStateVisualLayers.Base:
+          bacon2: ""
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: N14UncookedAnimalProteinsRad
+          Quantity: 9
+  - type: SliceableFood
+    count: 3
+    slice: N14FoodMeatRadstagCutlet
+
+- type: entity
   name: raw yao-guai meat
   parent: N14FoodMeatRadRaw
   id: N14FoodMeatYaoguai
@@ -351,6 +401,42 @@
           Quantity: 1
 
 - type: entity
+  name: raw brahmin cutlet
+  parent: N14FoodMeatRadCutlet
+  id: N14FoodMeatBrahminCutlet
+  description: A very grisly cutlet of brahmin meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet
+    - state: cutlet-alpha
+      color: brown
+
+- type: entity
+  name: raw bighorner cutlet
+  parent: N14FoodMeatRadCutlet
+  id: N14FoodMeatBighornerCutlet
+  description: A very grisly cutlet of bighorner meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet
+    - state: cutlet-alpha
+      color: brown
+
+- type: entity
+  name: raw radstag cutlet
+  parent: N14FoodMeatRadCutlet
+  id: N14FoodMeatRadstagCutlet
+  description: A very grisly cutlet of radstag meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet
+    - state: cutlet-alpha
+      color: brown
+
+- type: entity
   name: raw yao-guai cutlet
   parent: N14FoodMeatRadCutlet
   id: N14FoodMeatYaoguaiCutlet
@@ -421,6 +507,42 @@
           Quantity: 2
         - ReagentId: N14RadParticleFood
           Quantity: 1
+
+- type: entity
+  name: brahmin cutlet
+  parent: N14FoodMeatRadCutletCooked
+  id: N14FoodMeatBrahminCutletCooked
+  description: A very grisly cutlet of cooked brahmin meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet-cooked
+    - state: cutlet-alpha
+      color: brown
+
+- type: entity
+  name: bighorner cutlet
+  parent: N14FoodMeatRadCutletCooked
+  id: N14FoodMeatBighornerCutletCooked
+  description: A very grisly cutlet of cooked bighorner meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet-cooked
+    - state: cutlet-alpha
+      color: brown
+      
+- type: entity
+  name: radstag cutlet
+  parent: N14FoodMeatRadCutletCooked
+  id: N14FoodMeatRadstagCutletCooked
+  description: A very grisly cutlet of cooked radstag meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet-cooked
+    - state: cutlet-alpha
+      color: brown
 
 - type: entity
   name: yao-guai cutlet
