@@ -1,138 +1,10 @@
-- type: entity
-  name: bloatfly
-  parent: N14MobBaseHostile
-  id: N14MobBloatfly
-  description: A mutated floating bug with an infectious bite.
-  components:
-  - type: HTN
-    rootTask:
-      task: SimpleRangedHostileCompound
-  - type: Sprite
-    drawdepth: Mobs
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-            radius: 0.25
-        density: 10
-        mask:
-        - FlyingMobMask
-        layer:
-        - FlyingMobLayer
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: bloatfly
-      Critical:
-        Base: dead
-      Dead:
-        Base: dead
-  - type: Bloodstream
-    bloodMaxVolume: 50
-  - type: ReplacementAccent
-    accent: mouse
-  - type: BallisticAmmoProvider
-    proto: N14BulletAcid
-    capacity: 100
-  - type: Gun
-    fireRate: 0.5
-    selectedMode: FullAuto
-    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
-  - type: NoSlip
-  
-  
-- type: entity
-  name: giant ant
-  parent: N14MobBaseHostile
-  id: N14MobGiantAnt
-  description: It's an ant...but giant. Watch for the nippers.
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: giantant
-      sprite: Nuclear14/Mobs/Animals/giantant.rsi
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-            radius: 0.3
-        density: 400
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      100: Dead
-  - type: Stamina
-    critThreshold: 10
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: giantant
-      Critical:
-        Base: giantant
-      Dead:
-        Base: dead
-  - type: Butcherable
-    spawned:
-    - id: N14FoodMeatRadRaw
-      amount: 3
-#    - id: MaterialHideBear TODO: Add material drop
-#      amount: 1
-#      prob: 0.3
-  - type: Bloodstream
-    bloodMaxVolume: 500
-  - type: Temperature
-    heatDamageThreshold: 500
-    coldDamageThreshold: 0
-  - type: MeleeWeapon
-    hidden: true
-    soundHit:
-        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
-    angle: 0
-    animation: WeaponArcClaw
-    damage:
-      groups:
-        Brute: 5
-        
-- type: entity
-  name: giant fire ant
-  parent: N14MobGiantAnt
-  id: N14MobGiantFireAnt
-  description: It's an ant...but giant and red. Watch for the nippers.
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: fireant
-      sprite: Nuclear14/Mobs/Animals/fireant.rsi
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: fireant
-      Critical:
-        Base: fireant
-      Dead:
-        Base: dead
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        reagents:
-        - ReagentId: FireToxin
-          Quantity: 10
-          
+# See basemob.yml for parent entities
+
 - type: entity
   name: molerat
   id: N14MobMolerat
   parent: N14MobBaseHostile
-  description: Part mole, part rat, full pest Watch out for the teeth.
+  description: Part mole, part rat, full pest. Watch out for the teeth.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -175,23 +47,22 @@
     damage:
       groups:
         Brute: 3
-        
+
 - type: entity
-  name: radroach
-  id: N14MobRadroach
+  name: feral dog
+  id: N14MobDogFeral
   parent: N14MobBaseHostile
-  description: stinking roaches survived the bombs.
+  description: A rabid dog. Not so friendly friend.
   components:
   - type: Sprite
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: radroach
-      scale: 0.75, 0.75
-      sprite: Nuclear14/Mobs/Animals/Insects/radroach.rsi
+      state: dogferal-1
+      sprite: Nuclear14/Mobs/Animals/dogferal.rsi
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 3
+    baseWalkSpeed : 4
+    baseSprintSpeed : 5
   - type: Fixtures
     fixtures:
       fix1:
@@ -200,19 +71,19 @@
             radius: 0.20
         density: 20
         mask:
-        - SmallMobMask
+        - MobMask
         layer:
-        - SmallMobLayer
+        - MobLayer
   - type: MobThresholds
     thresholds:
       0: Alive
-      30: Dead
+      75: Dead
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: radroach
+        Base: dogferal-1
       Critical:
-        Base: radroach
+        Base: dogferal-1
       Dead:
         Base: dead
   - type: MeleeWeapon
@@ -223,12 +94,12 @@
     animation: WeaponArcBite
     damage:
       groups:
-        Brute: 2
+        Brute: 5
         
 - type: entity
   name: gecko
   id: N14MobGecko
-  parent: N14MobBaseHostile
+  parent: N14MobBaseHostileScaley
   description: Looks like a dinosaur. The bite is worse than the claws.
   components:
   - type: Sprite
@@ -272,6 +143,10 @@
     damage:
       types:
         Slash: 5
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatGecko
+      amount: 3
         
 - type: entity
   name: nightstalker cub
@@ -386,59 +261,6 @@
           Quantity: 5
 
 - type: entity
-  name: cazador
-  parent: N14MobBaseHostile
-  id: N14MobCazador
-  description: Pure hate with a stinger and wings.
-  components:
-  - type: NoSlip
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 6
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: cazador
-      sprite: Nuclear14/Mobs/Animals/Insects/cazador.rsi
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-            radius: 0.25
-        density: 10
-        mask:
-        - FlyingMobMask
-        layer:
-        - FlyingMobLayer
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: cazador
-      Critical:
-        Base: cazador
-      Dead:
-        Base: dead
-  - type: Bloodstream
-    bloodMaxVolume: 50
-  - type: MeleeWeapon
-    hidden: true
-    soundHit:
-        path: /Audio/Effects/bite.ogg
-    angle: 0
-    animation: WeaponArcBite
-    damage:
-      types:
-        Piercing: 5
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        reagents:
-        - ReagentId: Toxin
-          Quantity: 5
-
-- type: entity
   name: yao guai
   id: N14MobYaoguai
   parent: N14MobBaseHostile
@@ -485,3 +307,246 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 3.6
+
+# Scaley Animals
+- type: entity
+  name: deathclaw
+  id: N14MobDeathclaw
+  parent: N14MobBaseHostileScaley
+  description: Look at those claws.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: deathclaw
+      sprite: Nuclear14/Mobs/Animals/deathclaw.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.4 # TODO: Test this can fit through doors
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: deathclaw
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 15
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4
+  - type: Hands
+  - type: Puller
+  - type: Tool
+    speed: 1.5
+    qualities:
+      - Prying
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Insulated
+  - type: GhostRole
+    prob: 0.5
+    makeSentient: true
+    name: deathclaw
+    description: |
+      You're a smart killer. Use tactics to kill everyone.
+
+- type: entity
+  name: albino deathclaw
+  id: N14MobDeathclawAlbino
+  parent: N14MobDeathclaw
+  description: Look at those white claws.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: deathclawalbino
+      sprite: Nuclear14/Mobs/Animals/deathclawalbino.rsi
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 22
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      750: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: deathclaw
+      Critical:
+        Base: deathclaw # TODO: Crit sprite
+      Dead:
+        Base: dead
+        
+- type: entity
+  name: metal deathclaw
+  id: N14MobDeathclawMetal
+  parent: N14MobDeathclawAlbino
+  description: They put armor on that thing?!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: deathclawmetal
+      sprite: Nuclear14/Mobs/Animals/deathclawmetal.rsi
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 20
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      750: Dead
+
+# Passive Animals
+- type: entity
+  name: brahmin
+  parent: MobCow
+  id: N14MobBrahmin
+  description: Moo? Wonder if I can eat that.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    scale: 1.5, 1.5
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: brahmin-2
+      sprite: Nuclear14/Mobs/Animals/brahmin.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: brahmin-2
+      Dead:
+        Base: dead
+  - type: Tag
+    tags:
+    - Brahmin
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatBrahmin
+      amount: 5
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 250
+        reagents:
+        - ReagentId: N14MilkBrahmin
+          Quantity: 30
+  - type: Udder
+    reagentId: N14MilkBrahmin
+    targetSolution: udder
+    quantity: 25
+    updateRate: 30
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+
+- type: entity
+  name: bighorner
+  parent: N14MobBrahmin
+  id: N14MobBighorner
+  description: Fluffy but with horns.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: bighorner
+      sprite: Nuclear14/Mobs/Animals/bighorner.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: bighorner
+      Dead:
+        Base: dead
+  - type: Tag
+    tags:
+    - Radstag
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatBighorner
+      amount: 5
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 250
+        reagents:
+        - ReagentId: N14MilkBighorner
+          Quantity: 30
+  - type: Udder
+    reagentId: N14MilkBighorner
+    targetSolution: udder
+    quantity: 25
+    updateRate: 30
+
+- type: entity
+  name: radstag
+  parent: N14MobBrahmin
+  id: N14MobRadstag
+  description: Stag? Raaaad
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: radstag
+      sprite: Nuclear14/Mobs/Animals/radstag.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: radstag
+      Dead:
+        Base: dead
+  - type: Tag
+    tags:
+    - Radstag
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadstag
+      amount: 5
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 150
+        reagents:
+        - ReagentId: N14MilkRadstag
+          Quantity: 30
+  - type: Udder
+    reagentId: N14MilkRadstag
+    targetSolution: udder
+    quantity: 25
+    updateRate: 30

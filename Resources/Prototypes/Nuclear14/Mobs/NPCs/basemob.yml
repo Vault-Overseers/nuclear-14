@@ -21,7 +21,7 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: bloatfly
-      sprite: Nuclear14/Mobs/Animals/bloatfly.rsi
+      sprite: Nuclear14/Mobs/Insects/bloatfly.rsi # Replace this with a mob error or something
   - type: Physics
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
@@ -95,6 +95,27 @@
     needsHands: true
   - type: Speech
     speechSounds: Squeak
+    
+    
+- type: entity
+  name: scaley wasteland animal
+  abstract: true
+  id: N14MobBaseHostileScaley
+  parent: N14MobBaseHostile
+  components:
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: N14Scale
+    
+- type: entity
+  name: wasteland insect
+  abstract: true
+  id: N14MobBaseHostileInsect
+  parent: N14MobBaseHostile
+  components:
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: N14Insect
 
 # Wave Defence Base Hostile
 - type: entity

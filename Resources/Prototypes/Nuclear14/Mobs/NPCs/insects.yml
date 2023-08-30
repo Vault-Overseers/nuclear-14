@@ -1,0 +1,237 @@
+# See basemob.yml for parent entities
+
+- type: entity
+  name: bloatfly
+  parent: N14MobBaseHostileInsect
+  id: N14MobBloatfly
+  description: A mutated floating bug with an infectious bite.
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: bloatfly
+      sprite: Nuclear14/Mobs/Insects/bloatfly.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.25
+        density: 10
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: bloatfly
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Bloodstream
+    bloodMaxVolume: 50
+  - type: ReplacementAccent
+    accent: mouse
+  - type: BallisticAmmoProvider
+    proto: N14BulletAcid
+    capacity: 100
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: NoSlip
+  
+  
+- type: entity
+  name: giant ant
+  parent: N14MobBaseHostileInsect
+  id: N14MobGiantAnt
+  description: It's an ant...but giant. Watch for the nippers.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: giantant
+      sprite: Nuclear14/Mobs/Insects/giantant.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.3
+        density: 400
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: Stamina
+    critThreshold: 10
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: giantant
+      Critical:
+        Base: giantant
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 3
+#    - id: MaterialHideBear TODO: Add material drop
+#      amount: 1
+#      prob: 0.3
+  - type: Bloodstream
+    bloodMaxVolume: 500
+  - type: Temperature
+    heatDamageThreshold: 500
+    coldDamageThreshold: 0
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      groups:
+        Brute: 5
+        
+- type: entity
+  name: giant fire ant
+  parent: N14MobGiantAnt
+  id: N14MobGiantFireAnt
+  description: It's an ant...but giant and red. Watch for the nippers.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: fireant
+      sprite: Nuclear14/Mobs/Insects/fireant.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: fireant
+      Critical:
+        Base: fireant
+      Dead:
+        Base: dead
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: FireToxin
+          Quantity: 10
+        
+- type: entity
+  name: radroach
+  id: N14MobRadroach
+  parent: N14MobBaseHostileInsect
+  description: stinking roaches survived the bombs.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: radroach
+      scale: 0.75, 0.75
+      sprite: Nuclear14/Mobs/Insects/radroach.rsi
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 3.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: radroach
+      Critical:
+        Base: radroach
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 2
+
+- type: entity
+  name: cazador
+  parent: N14MobBaseHostileInsect
+  id: N14MobCazador
+  description: Pure hate with a stinger and wings.
+  components:
+  - type: NoSlip
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 6
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: cazador
+      sprite: Nuclear14/Mobs/Insects/cazador.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.25
+        density: 10
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: cazador
+      Critical:
+        Base: cazador
+      Dead:
+        Base: dead
+  - type: Bloodstream
+    bloodMaxVolume: 50
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 5
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: Toxin
+          Quantity: 5
