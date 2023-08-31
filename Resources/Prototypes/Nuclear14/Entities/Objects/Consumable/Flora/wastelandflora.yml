@@ -231,12 +231,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 3
         reagents:
         - ReagentId: Nutriment
-          Quantity: 5
+          Quantity: 1
         - ReagentId: Vitamin
-          Quantity: 4
+          Quantity: 1
         - ReagentId: N14RadParticleFood
           Quantity: 1
   - type: Sprite
@@ -245,6 +245,25 @@
     scale: 0.5, 0.5
   - type: Item
     sprite: Nuclear14/Objects/Consumable/Flora/wastelandflora.rsi
+    
+- type: entity
+  abstract: True
+  parent: N14FloraProduce
+  id: N14FloraProduceFood
+  name: wild food produce base
+  description: A wild plant produce grown in the wastes.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: N14RadParticleFood
+          Quantity: 1
           
           
 # Plant Produce
@@ -309,7 +328,7 @@
     count: 3
     
 - type: entity
-  parent: N14FloraProduce
+  parent: N14FloraProduceFood
   id: N14FloraProduceWildBarrelCactusFruit
   name: barrel cactus fruit
   description: Wild barrel cactus fruit.
@@ -321,7 +340,7 @@
     count: 2
     
 - type: entity
-  parent: N14FloraProduce
+  parent: N14FloraProduceFood
   id: N14FloraProduceWildCaveFungus
   name: cave fungus
   description: Wild cave fungi.
@@ -333,7 +352,7 @@
     count: 3
     
 - type: entity
-  parent: N14FloraProduce
+  parent: N14FloraProduceFood
   id: N14FloraProduceWildCaveFungusRad
   name: irradiated cave fungus
   description: Wild glowing cave fungi.
@@ -345,7 +364,7 @@
     count: 3
     
 - type: entity
-  parent: N14FloraProduce
+  parent: N14FloraProduceFood
   id: N14FloraProduceWildBuffaloGourd
   name: wild buffalo gourd
   description: Wild buffalo gourd.
@@ -381,7 +400,7 @@
     count: 3
     
 - type: entity
-  parent: N14FloraProduce
+  parent: N14FloraProduceFood
   id: N14FloraProduceWildMutfruit
   name: wild mutfruit
   description: Wild mutfruit. Looks tough.
@@ -393,7 +412,7 @@
     count: 1
     
 - type: entity
-  parent: N14FloraProduce
+  parent: N14FloraProduceFood
   id: N14FloraProduceWildPinyonNuts
   name: wild pinyon nuts
   description: Wild pinyon nuts. Grainy.
@@ -405,7 +424,7 @@
     count: 3
     
 - type: entity
-  parent: N14FloraProduce
+  parent: N14FloraProduceFood
   id: N14FloraProduceWildPricklyPearFruit
   name: wild prickly pear fruit
   description: Wild pricky pear fruit. Sharp.
@@ -417,7 +436,7 @@
     count: 2
     
 - type: entity
-  parent: N14FloraProduce
+  parent: N14FloraProduceFood
   id: N14FloraProduceWildTato
   name: wild tato
   description: Looks like a tomato, feels like a potato, tastes disgusting.
@@ -436,7 +455,7 @@
         Quantity: 10
        
 - type: entity
-  parent: N14FloraProduce
+  parent: N14FloraProduceFood
   id: N14FloraProduceWildBananaYucca
   name: wild bananaa yucca
   description: Looks like a banana, tastes like sweet tato.
