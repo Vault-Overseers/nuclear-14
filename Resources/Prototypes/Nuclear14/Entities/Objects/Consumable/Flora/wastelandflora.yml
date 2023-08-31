@@ -59,6 +59,166 @@
     state: wild_xander
   - type: OreVein
     currentOre: WildXander
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildAgave
+  name: wild agave
+  description: An agave plant growing wild. It's healthy.
+  components:
+  - type: Sprite
+    state: wild_agave
+  - type: OreVein
+    currentOre: WildAgave
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildCoyote
+  name: wild coyote
+  description: A coyote plant growing wild. It's healthy.
+  components:
+  - type: Sprite
+    state: wild_coyote
+  - type: OreVein
+    currentOre: WildCoyote
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildDatura
+  name: wild datura
+  description: A datura plant growing wild. It's healthy.
+  components:
+  - type: Sprite
+    state: wild_datura
+  - type: OreVein
+    currentOre: WildDatura
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildFeracactus
+  name: wild feracactus
+  description: A feracactus plant growing wild. It's healthy.
+  components:
+  - type: Sprite
+    state: wild_feracactus
+  - type: OreVein
+    currentOre: WildFeracactus
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildCaveFungus
+  name: wild cave fungus
+  description: A wild fungi. It looks healthy.
+  components:
+  - type: Sprite
+    state: wild_fungus
+  - type: OreVein
+    currentOre: WildCaveFungus
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildCaveFungusRad
+  name: wild irradiated cave fungus
+  description: A wild fungi. It glows.
+  components:
+  - type: Sprite
+    state: CaveFungusRad
+  - type: OreVein
+    currentOre: WildCaveFungusRad
+  - type: PointLight
+    radius: 1
+    energy: 1
+    color: "#2CFA1F"
+    castShadows: false
+    netsync: false
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildBuffaloGourd
+  name: wild gourd
+  description: A wild buffalo gourd plant. It looks healthy.
+  components:
+  - type: Sprite
+    state: wild_gourd
+  - type: OreVein
+    currentOre: WildGourd
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildWhiteHorsenettle
+  name: wild horsenettle
+  description: A wild horsenettle plant. It looks healthy.
+  components:
+  - type: Sprite
+    state: wild_horsenettle
+  - type: OreVein
+    currentOre: WhiteHorsenettle
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildMesquite
+  name: wild mesquite
+  description: A wild mesquite plant. It looks healthy.
+  components:
+  - type: Sprite
+    state: wild_mesquite
+  - type: OreVein
+    currentOre: WildMesquite
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildMutfruit
+  name: wild mutfruit
+  description: A wild mutfruit plant. It looks healthy.
+  components:
+  - type: Sprite
+    state: wild_mutfruit
+  - type: OreVein
+    currentOre: WildMutfruit
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildPinyon
+  name: wild pinyon
+  description: A wild pinyon plant. It looks healthy.
+  components:
+  - type: Sprite
+    state: wild_pinyon
+  - type: OreVein
+    currentOre: WildPinyon
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildPricklypear
+  name: wild prickly pear
+  description: A wild prickly pear plant. It looks healthy.
+  components:
+  - type: Sprite
+    state: wild_prickly
+  - type: OreVein
+    currentOre: WildPrickly
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildTato
+  name: wild tato
+  description: A wild tato plant. It looks healthy.
+  components:
+  - type: Sprite
+    state: wild_tato
+  - type: OreVein
+    currentOre: WildTato
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildBananaYucca
+  name: wild banana yucca
+  description: A wild yucca plant. It looks healthy.
+  components:
+  - type: Sprite
+    state: wild_yucca
+  - type: OreVein
+    currentOre: WildBananaYucca
 
 # Base Wild Produce
 - type: entity
@@ -71,17 +231,18 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 3
+        maxVol: 10
         reagents:
         - ReagentId: Nutriment
-          Quantity: 1
+          Quantity: 5
         - ReagentId: Vitamin
-          Quantity: 1
+          Quantity: 4
         - ReagentId: N14RadParticleFood
           Quantity: 1
   - type: Sprite
     netsync: false
     sprite: Nuclear14/Objects/Consumable/Flora/wastelandflora.rsi
+    scale: 0.5, 0.5
   - type: Item
     sprite: Nuclear14/Objects/Consumable/Flora/wastelandflora.rsi
           
@@ -97,7 +258,7 @@
     state: BrocFlower
   - type: Stack
     stackType: BrocFlower
-    count: 1
+    count: 2
     
 - type: entity
   parent: N14FloraProduce
@@ -110,3 +271,178 @@
   - type: Stack
     stackType: XanderRoot
     count: 1
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildAgave
+  name: wild agave leaves
+  description: Wild agave plant leaves.
+  components:
+  - type: Sprite
+    state: AgaveLeaf
+  - type: Stack
+    stackType: AgaveLeaf
+    count: 2
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildCoyoteTobacco
+  name: coyote tobacco leaves
+  description: Wild coyote tobacco plant leaves.
+  components:
+  - type: Sprite
+    state: CoyoteTobacco
+  - type: Stack
+    stackType: CoyoteTobacco
+    count: 3
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildDaturaFlower
+  name: datura flower
+  description: Wild datura flowers.
+  components:
+  - type: Sprite
+    state: Datura
+  - type: Stack
+    stackType: DaturaFlower
+    count: 3
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildBarrelCactusFruit
+  name: barrel cactus fruit
+  description: Wild barrel cactus fruit.
+  components:
+  - type: Sprite
+    state: BarrelCactusFruit
+  - type: Stack
+    stackType: BarrelCactusFruit
+    count: 2
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildCaveFungus
+  name: cave fungus
+  description: Wild cave fungi.
+  components:
+  - type: Sprite
+    state: CaveFungus
+  - type: Stack
+    stackType: CaveFungus
+    count: 3
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildCaveFungusRad
+  name: irradiated cave fungus
+  description: Wild glowing cave fungi.
+  components:
+  - type: Sprite
+    state: CaveFungusRad
+  - type: Stack
+    stackType: CaveFungusRad
+    count: 3
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildBuffaloGourd
+  name: wild buffalo gourd
+  description: Wild buffalo gourd.
+  components:
+  - type: Sprite
+    state: BuffaloGourd
+  - type: Stack
+    stackType: WildBuffaloGourd
+    count: 2
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildWhiteHorsenettle
+  name: white horsenettle flower
+  description: White horsenettle flower.
+  components:
+  - type: Sprite
+    state: WhiteHorsenettle
+  - type: Stack
+    stackType: WhiteHorsenettle
+    count: 2
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildMesquitePods
+  name: wild mesquite pods
+  description: Wild white horsenettle flower.
+  components:
+  - type: Sprite
+    state: MesquitePod
+  - type: Stack
+    stackType: MesquitePods
+    count: 3
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildMutfruit
+  name: wild mutfruit
+  description: Wild mutfruit. Looks tough.
+  components:
+  - type: Sprite
+    state: Mutfruit
+  - type: Stack
+    stackType: Mutfruit
+    count: 1
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildPinyonNuts
+  name: wild pinyon nuts
+  description: Wild pinyon nuts. Grainy.
+  components:
+  - type: Sprite
+    state: PinyonNuts
+  - type: Stack
+    stackType: PinyonNuts
+    count: 3
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildPricklyPearFruit
+  name: wild prickly pear fruit
+  description: Wild pricky pear fruit. Sharp.
+  components:
+  - type: Sprite
+    state: PricklyPear
+  - type: Stack
+    stackType: PricklyPear
+    count: 2
+    
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildTato
+  name: wild tato
+  description: Looks like a tomato, feels like a potato, tastes disgusting.
+  components:
+  - type: Sprite
+    state: Tato
+  - type: Stack
+    stackType: WildTato
+    count: 2
+  - type: Produce
+    seedId: N14TatoRad
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuicePotato
+        Quantity: 10
+       
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildBananaYucca
+  name: wild bananaa yucca
+  description: Looks like a banana, tastes like sweet tato.
+  components:
+  - type: Sprite
+    state: BananaYucca
+  - type: Stack
+    stackType: WildBananaYucca
+    count: 2
