@@ -8,7 +8,6 @@
     sprite: Nuclear14/Objects/Weapons/Melee/sledgehammer.rsi
     state: icon
   - type: MeleeWeapon
-    attackRate: 0.75
     damage:
       types:
         Blunt: 5
@@ -17,6 +16,35 @@
     damage:
       types:
         Blunt: 20
+  - type: Item
+    size: 150
+  - type: Clothing
+    slots:
+    - back
+  - type: Tool
+    qualities:
+      - Crushing
+    useSound:
+      path: /Audio/Items/eating_2.ogg # TODO: Crushing noise
+
+- type: entity
+  name: super sledge hammer
+  parent: BaseItem
+  id: N14SuperSledgeHammer
+  description: A bigger, heavier and more destructive sledge hammer, you really need some strong arms to swing it.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Melee/supersledge.rsi
+    state: icon
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 35
   - type: Item
     size: 150
   - type: Clothing
