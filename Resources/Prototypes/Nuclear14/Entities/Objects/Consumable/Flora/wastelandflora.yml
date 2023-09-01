@@ -26,9 +26,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: SpaceShrooms
   - type: Gatherable
     whitelist:
       components:
@@ -48,6 +45,15 @@
     state: wild_broc
   - type: OreVein
     currentOre: WildBrocFlower
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildBrocFlowerAll
+      PlantSampleTaker: WildBrocFlowerClippers
       
 - type: entity
   parent: N14WastelandFlora
@@ -59,7 +65,16 @@
     state: wild_xander
   - type: OreVein
     currentOre: WildXander
-    
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildXanderAll
+      PlantSampleTaker: WildXanderClippers
+      
 - type: entity
   parent: N14WastelandFlora
   id: N14WastelandFloraWildAgave
@@ -277,7 +292,7 @@
     state: BrocFlower
   - type: Stack
     stackType: BrocFlower
-    count: 2
+    count: 1
     
 - type: entity
   parent: N14FloraProduce
