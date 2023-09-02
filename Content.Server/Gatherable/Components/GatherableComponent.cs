@@ -28,4 +28,10 @@ public sealed class GatherableComponent : Component
     /// </summary>
     [DataField("loot")]
     public Dictionary<string, string>? MappedLoot = new();
+
+    /// <summary>
+    /// How long it takes to gather the item
+    /// </summary>
+    [DataField("gatherTime"), ViewVariables(VVAccess.ReadWrite)]
+    public int GatherTime = 1;
 }
