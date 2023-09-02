@@ -167,7 +167,7 @@
   - type: Sprite
     state: wild_horsenettle
   - type: OreVein
-    currentOre: WhiteHorsenettle
+    currentOre: WildWhiteHorsenettle
     
 - type: entity
   parent: N14WastelandFlora
@@ -178,7 +178,7 @@
   - type: Sprite
     state: wild_mesquite
   - type: OreVein
-    currentOre: WildMesquite
+    currentOre: MesquitePods
     
 - type: entity
   parent: N14WastelandFlora
@@ -200,7 +200,7 @@
   - type: Sprite
     state: wild_pinyon
   - type: OreVein
-    currentOre: WildPinyon
+    currentOre: PinyonNuts
     
 - type: entity
   parent: N14WastelandFlora
@@ -223,7 +223,16 @@
     state: wild_tato
   - type: OreVein
     currentOre: WildTato
-    
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildTatoAll
+      PlantSampleTaker: WildTatoClippers
+      
 - type: entity
   parent: N14WastelandFlora
   id: N14WastelandFloraWildBananaYucca
@@ -316,7 +325,7 @@
     state: AgaveLeaf
   - type: Stack
     stackType: AgaveLeaf
-    count: 2
+    count: 1
     
 - type: entity
   parent: N14FloraProduce
@@ -328,7 +337,7 @@
     state: CoyoteTobacco
   - type: Stack
     stackType: CoyoteTobacco
-    count: 3
+    count: 1
     
 - type: entity
   parent: N14FloraProduce
@@ -340,7 +349,7 @@
     state: Datura
   - type: Stack
     stackType: DaturaFlower
-    count: 3
+    count: 1
     
 - type: entity
   parent: N14FloraProduceFood
@@ -352,7 +361,7 @@
     state: BarrelCactusFruit
   - type: Stack
     stackType: BarrelCactusFruit
-    count: 2
+    count: 1
     
 - type: entity
   parent: N14FloraProduceFood
@@ -364,7 +373,7 @@
     state: CaveFungus
   - type: Stack
     stackType: CaveFungus
-    count: 3
+    count: 1
     
 - type: entity
   parent: N14FloraProduceFood
@@ -376,7 +385,7 @@
     state: CaveFungusRad
   - type: Stack
     stackType: CaveFungusRad
-    count: 3
+    count: 1
     
 - type: entity
   parent: N14FloraProduceFood
@@ -388,7 +397,7 @@
     state: BuffaloGourd
   - type: Stack
     stackType: WildBuffaloGourd
-    count: 2
+    count: 1
     
 - type: entity
   parent: N14FloraProduce
@@ -399,7 +408,7 @@
   - type: Sprite
     state: WhiteHorsenettle
   - type: Stack
-    stackType: WhiteHorsenettle
+    stackType: WildWhiteHorsenettle
     count: 2
     
 - type: entity
@@ -412,7 +421,7 @@
     state: MesquitePod
   - type: Stack
     stackType: MesquitePods
-    count: 3
+    count: 1
     
 - type: entity
   parent: N14FloraProduceFood
@@ -436,7 +445,7 @@
     state: PinyonNuts
   - type: Stack
     stackType: PinyonNuts
-    count: 3
+    count: 1
     
 - type: entity
   parent: N14FloraProduceFood
@@ -448,7 +457,7 @@
     state: PricklyPear
   - type: Stack
     stackType: PricklyPear
-    count: 2
+    count: 1
     
 - type: entity
   parent: N14FloraProduceFood
@@ -460,7 +469,7 @@
     state: Tato
   - type: Stack
     stackType: WildTato
-    count: 2
+    count: 1
   - type: Produce
     seedId: N14TatoRad
   - type: Extractable
@@ -479,4 +488,4 @@
     state: BananaYucca
   - type: Stack
     stackType: WildBananaYucca
-    count: 2
+    count: 1
