@@ -126,17 +126,16 @@
         - N14FloraDesertTree2
         - N14FloraDesertTree3
         - N14FloraDesertTree4
-        - N14BlackBarrelFull
-        - N14BlackBarrelOpen
-        - N14BlackBarrel
-        - N14RedBarrelFull
-        - N14RedBarrelOpen
-        - N14RedBarrel
-        - N14YellowBarrelFull
-        - N14YellowBarrelOpen
-        - N14YellowBarrel
-        - N14BlueBarrelOpen
-        - N14BlueBarrel
+        - N14WastelandFloraWildXander
+        - N14WastelandFloraWildAgave
+        - N14WastelandFloraWildCoyote
+        - N14WastelandFloraWildMutfruit
+        - N14WastelandFloraWildFeracactus
+        - N14WastelandFloraWildBuffaloGourd
+        - N14WastelandFloraWildMesquite
+        - N14WastelandFloraWildPinyon
+        - N14WastelandFloraWildPricklypear
+        - N14WastelandFloraWildBananaYucca
         - SpawnPointWave
         - SpawnPointWave
         - SpawnPointWave
@@ -153,9 +152,15 @@
         - FloorWasteland
       entities:
         - N14WastelandFloraWildXander
-        - N14WastelandFloraWildBroc
-        - N14WastelandFloraWildXander #Doubling up only because we only have 2 rn
-        - N14WastelandFloraWildBroc
+        - N14WastelandFloraWildAgave
+        - N14WastelandFloraWildCoyote
+        - N14WastelandFloraWildMutfruit
+        - N14WastelandFloraWildFeracactus
+        - N14WastelandFloraWildBuffaloGourd
+        - N14WastelandFloraWildMesquite
+        - N14WastelandFloraWildPinyon
+        - N14WastelandFloraWildPricklypear
+        - N14WastelandFloraWildBananaYucca
         - N14JunkPile1Refilling1
         - N14JunkPile1Refilling2
         - N14JunkPile1Refilling3
@@ -197,6 +202,24 @@
         seed: 0
         frequency: 0.02
         fractalType: None
+    # Plants only found along the water
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - FloorWasteland
+      threshold: 0.85
+      noise:
+        seed: 3
+        noiseType: OpenSimplex2
+        frequency: 1
+        lacunarity: 1.50
+        fractalType: Ridged
+        octaves: 1
+      entities:
+        - N14WastelandFloraWildTato
+        - N14WastelandFloraWildWhiteHorsenettle
+        - N14WastelandFloraWildDatura
+        - N14WastelandFloraWildBroc
+        - N14WastelandFloraWildMutfruit
     # Water
     - !type:BiomeEntityLayer
       allowedTiles:
