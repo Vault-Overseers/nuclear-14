@@ -1,0 +1,44 @@
+# steak
+- type: constructionGraph
+  id: MeatSteakBrahmin
+  start: start
+  graph:
+
+  - node: start
+    edges:
+    - to: SteakBrahmin
+      steps:
+      - minTemperature: 305
+
+  - node: SteakBrahmin
+    entity: N14FoodMeatBrahminCooked
+    
+
+- type: constructionGraph
+  id: MeatSteakBighorner
+  start: start
+  graph:
+
+  - node: start
+    edges:
+    - to: SteakBighorner
+      steps:
+      - minTemperature: 305
+
+  - node: SteakBrahmin
+    entity: N14FoodMeatBighornerCooked
+    
+    
+- type: constructionGraph
+  id: MeatSteakRadstag
+  start: start
+  graph:
+
+  - node: start
+    edges:
+    - to: SteakRadstag
+      steps:
+      - minTemperature: 305
+
+  - node: SteakBrahmin
+    entity: N14FoodMeatRadstagCooked

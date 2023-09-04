@@ -23,7 +23,7 @@ public sealed partial class GatherableSystem
             return;
         }
 
-        Gather(args.OtherEntity, uid, gatherable);
+        Gather(args.OtherEntity, uid, uid, gatherable);
         component.Amount--;
 
         if (component.Amount <= 0)
