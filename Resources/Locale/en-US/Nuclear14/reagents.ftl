@@ -26,8 +26,11 @@ reagent-desc-firetoxin = The hot stuff from firey creatures.
 reagent-name-healing-powder = healing powder
 reagent-desc-healing-powder = A powder made from crushed plants.
 
+reagent-name-antidote-mixture = antidote
+reagent-desc-antidote-mixture = An antidote made from radscorpion tail and water for treating poison.
+
 reagent-name-antidote = antidote
-reagent-desc-antidote = An antidote made from radscorpion tail and water for treating poison.
+reagent-desc-antidote = A potent antitoxin manufactured in a lab.
 
 ## Products
 reagent-name-abraxocleaner = Abraxo Cleaner

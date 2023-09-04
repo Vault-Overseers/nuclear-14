@@ -82,6 +82,36 @@
 
 - type: entity
   parent: N14ChemicalSyringe
+  id: N14ChemicalSyringeAntidote
+  name: antidote
+  description: A syringe filled with an effective antitoxin.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Medical/antidote-injector.rsi
+    netsync: false
+    layers:
+    - state: icon
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Item
+    sprite: Nuclear14/Objects/Specific/Medical/antidote-injector.rsi
+    size: 5
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 15
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: used
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Antidote
+          Quantity: 15
+
+- type: entity
+  parent: N14ChemicalSyringe
   id: N14Jet
   name: Jet
   description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, and lasts longer than Turbo.
