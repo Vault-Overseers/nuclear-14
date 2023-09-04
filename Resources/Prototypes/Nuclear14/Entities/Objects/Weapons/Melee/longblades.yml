@@ -10,17 +10,47 @@
   - type: Item
     size: 15
     sprite: Nuclear14/Objects/Weapons/Melee/machete.rsi
+  
+- type: entity
+  name: tribal machete
+  parent: N14Machete
+  id: N14TribalMachete
+  description: A tribal machete, made from the materials giben by the nature, this long blade has the perfect balance between tool and weapon.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Melee/tribal_machete.rsi
+    state: icon
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 16
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    sprite: Nuclear14/Objects/Weapons/Melee/tribal_machete.rsi
+  
+- type: entity
+  name: scrap machete
+  parent: N14Machete
+  id: N14ScrapMachete
+  description: A makeshift long blade machete, not the most sharp blade but it can still cut some meat.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Melee/scrap_machete.rsi
+    state: icon
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 16
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    sprite: Nuclear14/Objects/Weapons/Melee/scrap_machete.rsi
 
 - type: entity
   name: ripper
-  parent: BaseItem
+  parent: N14Machete
   id: N14ripper
   description: A light one handed wield chainsaw, originally designed by the pre-war army sappers to clean selvatic and wooded paths, it also works well against meat.
   components:
-  - type: Sharp
-  - type: Tag
-    tags:
-    - Machete
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Melee/ripper.rsi
     state: icon
@@ -33,52 +63,3 @@
   - type: Item
     size: 30
     sprite: Nuclear14/Objects/Weapons/Melee/ripper.rsi
-  - type: DisarmMalus
-  
-- type: entity
-  name: tribal machete
-  parent: BaseItem
-  id: N14TribalMachete
-  description: A tribal machete, made from the materials giben by the nature, this long blade has the perfect balance between tool and weapon.
-  components:
-  - type: Sharp
-  - type: Tag
-    tags:
-    - Machete
-  - type: Sprite
-    sprite: Nuclear14/Objects/Weapons/Melee/tribal_machete.rsi
-    state: icon
-  - type: MeleeWeapon
-    damage:
-      types:
-        Slash: 16
-    soundHit:
-        path: /Audio/Weapons/bladeslice.ogg
-  - type: Item
-    size: 15
-    sprite: Nuclear14/Objects/Weapons/Melee/tribal_machete.rsi
-  - type: DisarmMalus
-  
-- type: entity
-  name: scrap machete
-  parent: BaseItem
-  id: N14ScrapMachete
-  description: A makeshift long blade machete, not the most sharp blade but it can still cut some meat.
-  components:
-  - type: Sharp
-  - type: Tag
-    tags:
-    - Machete
-  - type: Sprite
-    sprite: Nuclear14/Objects/Weapons/Melee/scrap_machete.rsi
-    state: icon
-  - type: MeleeWeapon
-    damage:
-      types:
-        Slash: 16
-    soundHit:
-        path: /Audio/Weapons/bladeslice.ogg
-  - type: Item
-    size: 15
-    sprite: Nuclear14/Objects/Weapons/Melee/scrap_machete.rsi
-  - type: DisarmMalus
