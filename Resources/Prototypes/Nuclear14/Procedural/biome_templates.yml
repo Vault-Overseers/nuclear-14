@@ -97,9 +97,9 @@
         - Basalt6
         - Basalt7
         - Basalt8
-    # Trees. Barrels are trees in the wasteland deal with it.
+    # Trees and gatherable plants combined for now
     - !type:BiomeEntityLayer
-      threshold: 0.65
+      threshold: 0.7
       noise:
         seed: 0
         noiseType: OpenSimplex2
@@ -137,12 +137,9 @@
         - N14WastelandFloraWildPricklypear
         - N14WastelandFloraWildBananaYucca
         - SpawnPointWave
-        - SpawnPointWave
-        - SpawnPointWave
-        - SpawnPointWave
     # Loot Things. Split later into junk lootable/growing gatherable
     - !type:BiomeEntityLayer
-      threshold: 0.75
+      threshold: 0.8
       noise:
         seed: 2
         noiseType: OpenSimplex2
@@ -151,16 +148,6 @@
       allowedTiles:
         - FloorWasteland
       entities:
-        - N14WastelandFloraWildXander
-        - N14WastelandFloraWildAgave
-        - N14WastelandFloraWildCoyote
-        - N14WastelandFloraWildMutfruit
-        - N14WastelandFloraWildFeracactus
-        - N14WastelandFloraWildBuffaloGourd
-        - N14WastelandFloraWildMesquite
-        - N14WastelandFloraWildPinyon
-        - N14WastelandFloraWildPricklypear
-        - N14WastelandFloraWildBananaYucca
         - N14JunkPile1Refilling1
         - N14JunkPile1Refilling2
         - N14JunkPile1Refilling3
@@ -177,11 +164,11 @@
     - !type:BiomeEntityLayer
       allowedTiles:
         - FloorWasteland
-      threshold: -0.10
+      threshold: -0.15
       noise:
         seed: 0
         noiseType: Cellular
-        frequency: 0.03
+        frequency: 0.025
         lacunarity: 2
         fractalType: FBm
         octaves: 5
@@ -202,47 +189,3 @@
         seed: 0
         frequency: 0.02
         fractalType: None
-    # Plants only found along the water
-    - !type:BiomeEntityLayer
-      allowedTiles:
-        - FloorWasteland
-      threshold: 0.85
-      noise:
-        seed: 3
-        noiseType: OpenSimplex2
-        frequency: 1
-        lacunarity: 1.50
-        fractalType: Ridged
-        octaves: 1
-      entities:
-        - N14WastelandFloraWildTato
-        - N14WastelandFloraWildWhiteHorsenettle
-        - N14WastelandFloraWildDatura
-        - N14WastelandFloraWildBroc
-        - N14WastelandFloraWildMutfruit
-    # Water
-    - !type:BiomeEntityLayer
-      allowedTiles:
-        - FloorWasteland
-        - FloorPlanetDirt
-      threshold: 0.95
-      noise:
-        seed: 3
-        noiseType: OpenSimplex2
-        frequency: 0.003
-        lacunarity: 1.50
-        fractalType: Ridged
-        octaves: 1
-      entities:
-        - N14FloorWaterDirtyEntity
-    # Water sand
-    - !type:BiomeTileLayer
-      tile: FloorPlanetDirt
-      threshold: 0.95
-      noise:
-        seed: 3
-        noiseType: OpenSimplex2
-        frequency: 0.003
-        lacunarity: 1.50
-        fractalType: Ridged
-        octaves: 1
