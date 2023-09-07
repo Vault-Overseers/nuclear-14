@@ -31,4 +31,7 @@ public sealed class BiomeDecalLayer : IBiomeWorldLayer
 
     [DataField("decals", required: true, customTypeSerializer:typeof(PrototypeIdListSerializer<DecalPrototype>))]
     public List<string> Decals = new();
+
+    [DataField("color")]
+    public Color Color = Color.White;
 }
