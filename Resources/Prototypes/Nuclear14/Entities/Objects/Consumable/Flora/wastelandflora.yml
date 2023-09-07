@@ -45,6 +45,8 @@
     state: wild_agave
   - type: OreVein
     currentOre: WildAgave
+  - type: Produce
+    seedId: N14WildAgave
 
 - type: entity
   parent: N14WastelandFlora
@@ -56,6 +58,8 @@
     state: wild_yucca
   - type: OreVein
     currentOre: WildBananaYucca
+  - type: Produce
+    seedId: N14WildBananaYucca
 
 - type: entity
   parent: N14WastelandFlora
@@ -76,6 +80,8 @@
     loot:
       All: WildBlackberriesAll
       PlantSampleTaker: WildBlackberriesClippers
+  - type: Produce
+    seedId: N14WildBlackberry
 
 - type: entity
   parent: N14WastelandFlora
@@ -275,7 +281,8 @@
   description: A wild starlight berry plant. It looks healthy.
   components:
   - type: Sprite
-    state: wild_tato # N14TODO: Needs new sprite
+    sprite: Nuclear14/Objects/Consumable/Flora/starlight.rsi
+    state: starlight
   - type: OreVein
     currentOre: WildStarlightBerries
   - type: Gatherable
@@ -417,6 +424,18 @@
   - type: Stack
     stackType: AgaveLeaf
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractAgave
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractAgave
+        Quantity: 10
 
 - type: entity
   parent: N14FloraProduceFood
@@ -429,6 +448,18 @@
   - type: Stack
     stackType: WildBananaYucca
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractBananaYucca
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractBananaYucca
+        Quantity: 10
     
 - type: entity
   parent: N14FloraProduceFood
@@ -441,6 +472,18 @@
   - type: Stack
     stackType: Cabbage
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractCabbage
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractCabbage
+        Quantity: 10
 
 - type: entity
   parent: N14FloraProduceFood
@@ -453,6 +496,7 @@
   - type: Stack
     stackType: BarrelCactusFruit
     count: 1
+    
 
 - type: entity
   parent: N14FloraProduceFood
@@ -465,6 +509,18 @@
   - type: Stack
     stackType: WildBlackberries
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractBlackberries
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractBlackberries
+        Quantity: 10
 
 - type: entity
   parent: N14FloraProduce
@@ -477,6 +533,18 @@
   - type: Stack
     stackType: BrocFlower
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractBroc
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractBroc
+        Quantity: 10
 
 - type: entity
   parent: N14FloraProduceFood
@@ -489,6 +557,18 @@
   - type: Stack
     stackType: WildBuffaloGourd
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractBuffaloGourd
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractBuffaloGourd
+        Quantity: 10
 
 - type: entity
   parent: N14FloraProduceFood
@@ -509,7 +589,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 14
+        maxVol: 10
         reagents:
         - ReagentId: ExtractCabbage
           Quantity: 10
@@ -554,6 +634,18 @@
   - type: Stack
     stackType: CoyoteTobacco
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractCoyoteTobacco
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractCoyoteTobacco
+        Quantity: 10
     
 - type: entity
   parent: N14FloraProduce
@@ -566,6 +658,18 @@
   - type: Stack
     stackType: DaturaFlower
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractDatura
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractDatura
+        Quantity: 10
 
 - type: entity
   parent: N14FloraProduceFood
@@ -578,18 +682,42 @@
   - type: Stack
     stackType: WildJalapenoPepper
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractJalapenoPepper
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractJalapenoPepper
+        Quantity: 10
     
 - type: entity
   parent: N14FloraProduce
   id: N14FloraProduceWildMesquitePods
   name: wild mesquite pods
-  description: Wild white horsenettle flower.
+  description: Honey mesquite pods
   components:
   - type: Sprite
     state: MesquitePod
   - type: Stack
     stackType: MesquitePods
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractHoneyMesquitePod
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractHoneyMesquitePod
+        Quantity: 10
     
 - type: entity
   parent: N14FloraProduceFood
@@ -602,6 +730,18 @@
   - type: Stack
     stackType: Mutfruit
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractMutfruit
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractMutfruit
+        Quantity: 10
 
 - type: entity
   parent: N14FloraProduceFood
@@ -657,6 +797,18 @@
   - type: Stack
     stackType: PricklyPear
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractPricklyPearFruit
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractPricklyPearFruit
+        Quantity: 10
 
 - type: entity
   parent: N14FloraProduceFood
@@ -682,10 +834,23 @@
   description: Wild starlight berries. Great in tea.
   components:
   - type: Sprite
-    state: PricklyPear # N14TODO: Upload StarlightBerries
+    sprite: Nuclear14/Objects/Consumable/Flora/starlight.rsi
+    state: starlight_berries_fruit
   - type: Stack
     stackType: WildStarlightBerries
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractStarlightBerries
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractStarlightBerries
+        Quantity: 10
 
 - type: entity
   parent: N14FloraProduceFood
@@ -698,6 +863,18 @@
   - type: Stack
     stackType: WildTarberries
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractTarberries
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractTarberries
+        Quantity: 10
     
 - type: entity
   parent: N14FloraProduceFood
@@ -712,10 +889,17 @@
     count: 1
   - type: Produce
     seedId: N14TatoRad
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractTato
+          Quantity: 10
   - type: Extractable
     juiceSolution:
       reagents:
-      - ReagentId: JuicePotato
+      - ReagentId: ExtractTato
         Quantity: 10
 
 - type: entity
@@ -728,7 +912,19 @@
     state: WhiteHorsenettle
   - type: Stack
     stackType: WildWhiteHorsenettle
-    count: 2
+    count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractWhiteHorsenettle
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractWhiteHorsenettle
+        Quantity: 10
 
 - type: entity
   parent: N14FloraProduce
@@ -741,3 +937,15 @@
   - type: Stack
     stackType: XanderRoot
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractXander
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractXander
+        Quantity: 10
