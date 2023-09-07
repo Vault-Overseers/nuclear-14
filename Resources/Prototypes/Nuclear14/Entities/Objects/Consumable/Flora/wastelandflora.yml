@@ -259,6 +259,17 @@
 
 - type: entity
   parent: N14WastelandFlora
+  id: N14WastelandFloraWildRazorgrain
+  name: wild razorgrain plant
+  description: A razorgrain plant. It looks healthy.
+  components:
+  - type: Sprite
+    state: wild_pinyon # N14TODO: SPRITE
+  - type: OreVein
+    currentOre: WildRazorgrain
+
+- type: entity
+  parent: N14WastelandFlora
   id: N14WastelandFloraWildStarlightBerries
   name: wild starlight berry plant
   description: A wild starlight berry plant. It looks healthy.
@@ -481,6 +492,35 @@
 
 - type: entity
   parent: N14FloraProduceFood
+  id: N14FloraProduceWildCabbage
+  name: wild cabbage
+  description: Wild cabbage.
+  components:
+  - type: Sprite
+    state: BuffaloGourd # N14TODO SPRITE
+  - type: Stack
+    stackType: WildCabbage
+    count: 1
+  - type: FlavorProfile
+    flavors:
+      - cabbage
+  - type: Produce
+    seedId: N14WildCabbage
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: ExtractCabbage
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractCabbage
+        Quantity: 10
+
+- type: entity
+  parent: N14FloraProduceFood
   id: N14FloraProduceWildCaveFungus
   name: cave fungus
   description: Wild cave fungi.
@@ -617,6 +657,23 @@
   - type: Stack
     stackType: PricklyPear
     count: 1
+
+- type: entity
+  parent: N14FloraProduceFood
+  id: N14FloraProduceWildRazorgrain
+  name: wild razorgrain
+  description: a hardier grain that can still be used in baking.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/wheat.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: ExtractRazorgrainFlour
+          Quantity: 10
+  - type: Produce
+    seedId: N14WildRazorgrain
 
 - type: entity
   parent: N14FloraProduceFood
