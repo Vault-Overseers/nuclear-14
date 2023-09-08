@@ -6,7 +6,7 @@
   name: clipping-wild-agave-name
   noun: clipping-wild-agave-noun
   displayName: clipping-wild-agave-display-name
-  plantRsi: Objects/Specific/Hydroponics/tobacco.rsi #N14TODO: Needs new sprite
+  plantRsi: Nuclear14/Objects/Specific/Hydroponics/agave.rsi
   productPrototypes:
     - N14FloraProduceWildAgave
   lifespan: 25
@@ -48,7 +48,7 @@
   name: clipping-wild-blackberry-name
   noun: clipping-wild-blackberry-noun
   displayName: clipping-wild-blackberry-display-name
-  plantRsi: Objects/Specific/Hydroponics/tobacco.rsi #N14TODO: Needs new sprite
+  plantRsi: Nuclear14/Objects/Specific/Hydroponics/blackberry.rsi
   productPrototypes:
     - N14FloraProduceWildBlackberries
   lifespan: 25
@@ -56,7 +56,7 @@
   production: 1
   yield: 5
   potency: 10
-  growthStages: 3
+  growthStages: 4
   waterConsumption: 0.6
   chemicals:
     ExtractBlackberries:
@@ -69,7 +69,7 @@
   name: clipping-wild-broc-name
   noun: clipping-wild-broc-noun
   displayName: clipping-wild-broc-display-name
-  plantRsi: Objects/Specific/Hydroponics/tobacco.rsi #N14TODO: Needs new sprite
+  plantRsi: Nuclear14/Objects/Specific/Hydroponics/broc.rsi # N14TODO: Update this, its not a good representation
   productPrototypes:
     - N14FloraProduceWildBrocFlower
   lifespan: 25
@@ -90,7 +90,7 @@
   name: clipping-wild-buffalo-gourd-name
   noun: clipping-wild-buffalo-gourd-noun
   displayName: clipping-wild-buffalo-gourd-display-name
-  plantRsi: Objects/Specific/Hydroponics/tobacco.rsi #N14TODO: Needs new sprite
+  plantRsi: Nuclear14/Objects/Specific/Hydroponics/buffalogourd.rsi
   productPrototypes:
     - N14FloraProduceWildBuffaloGourd
   lifespan: 25
@@ -111,7 +111,7 @@
   name: clipping-wild-cabbage-name
   noun: clipping-wild-cabbage-noun
   displayName: clipping-wild-cabbage-display-name
-  plantRsi: Objects/Specific/Hydroponics/tobacco.rsi #N14TODO: Needs new sprite
+  plantRsi: Nuclear14/Objects/Specific/Hydroponics/cabbage.rsi
   productPrototypes:
     - N14FloraProduceWildCabbage
   lifespan: 25
@@ -126,37 +126,15 @@
       Min: 1
       Max: 10
       PotencyDivisor: 25
-
+      
 - type: seed
-  id: N14WildRazorgrain
-  name: seeds-wild-razorgrain-name
-  noun: seeds-wild-razorgrain-noun-seeds
-  displayName: seeds-razorgrain-display-name
-  plantRsi: Objects/Specific/Hydroponics/wheat.rsi
+  id: N14WildCarrot
+  name: clipping-wild-carrot-name
+  noun: clipping-wild-carrot-noun
+  displayName: clipping-wild-carrot-display-name
+  plantRsi: Nuclear14/Objects/Specific/Hydroponics/carrot.rsi
   productPrototypes:
-    - N14FloraProduceWildRazorgrain
-  lifespan: 25
-  maturation: 6
-  production: 1
-  yield: 4
-  potency: 5
-  idealLight: 8
-  waterConsumption: 0.6
-  nutrientConsumption: 0.15
-  chemicals:
-    ExtractRazorgrainFlour:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 25
-
-- type: seed
-  id: N14CarrotRad
-  name: seeds-carrot-rad-name
-  noun: seeds-noun-seeds
-  displayName: seeds-carrot-rad-display-name
-  plantRsi: Objects/Specific/Hydroponics/carrot.rsi
-  productPrototypes:
-    - N14FoodCarrotRad
+    - N14FloraProduceWildCarrot
   lifespan: 25
   maturation: 10
   production: 1
@@ -165,21 +143,80 @@
   growthStages: 3
   waterConsumption: 0.6
   chemicals:
-    JuiceCarrot:
+    ExtractCarrot:
       Min: 1
-      Max: 5
-      PotencyDivisor: 20
-    Vitamin:
-      Min: 1
-      Max: 4
+      Max: 10
       PotencyDivisor: 25
-
+      
 - type: seed
-  id: N14Maize
+  id: N14CoyoteTobacco
+  name: clipping-coyote-tobacco-name
+  noun: clipping-coyote-tobacco-noun
+  displayName: clipping-coyote-tobacco-display-name
+  plantRsi: Nuclear14/Objects/Specific/Hydroponics/coyotetobacco.rsi
+  productPrototypes:
+    - N14FloraProduceWildCoyoteTobacco
+  lifespan: 25
+  maturation: 10
+  production: 1
+  yield: 5
+  potency: 10
+  growthStages: 4
+  waterConsumption: 0.6
+  chemicals:
+    ExtractCoyoteTobacco:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 20
+      
+- type: seed
+  id: N14Datura
+  name: clipping-datura-name
+  noun: clipping-datura-noun
+  displayName: clipping-datura-display-name
+  plantRsi: Nuclear14/Objects/Specific/Hydroponics/datura.rsi
+  productPrototypes:
+    - N14FloraProduceWildDatura
+  lifespan: 25
+  maturation: 10
+  production: 1
+  yield: 5
+  potency: 10
+  growthStages: 4
+  waterConsumption: 0.6
+  chemicals:
+    ExtractDatura:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 20
+      
+- type: seed
+  id: N14Jalapeno
+  name: clipping-jalapeno-name
+  noun: clipping-jalapeno-noun
+  displayName: clipping-jalapeno-display-name
+  plantRsi: Nuclear14/Objects/Specific/Hydroponics/jalapeno.rsi
+  productPrototypes:
+    - N14FloraProduceWildJalapenoPepper
+  lifespan: 25
+  maturation: 10
+  production: 1
+  yield: 5
+  potency: 10
+  growthStages: 4
+  waterConsumption: 0.6
+  chemicals:
+    ExtractJalapenoPepper:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 20
+      
+- type: seed
+  id: N14WildMaize
   name: seeds-maize-name
-  noun: seeds-noun-seeds
+  noun: seeds-maize-noun-seeds
   displayName: seeds-maize-display-name
-  plantRsi: Objects/Specific/Hydroponics/corn.rsi
+  plantRsi: Nuclear14/Objects/Specific/Hydroponics/maize.rsi
   productPrototypes:
     - N14FoodMaize
   lifespan: 25
@@ -202,11 +239,33 @@
       PotencyDivisor: 25
 
 - type: seed
+  id: N14WildRazorgrain
+  name: seeds-wild-razorgrain-name
+  noun: seeds-wild-razorgrain-noun-seeds
+  displayName: seeds-razorgrain-display-name
+  plantRsi: Nuclear14/Objects/Specific/Hydroponics/razorgrain.rsi # N14TODO: Update this, its not a good representation
+  productPrototypes:
+    - N14FloraProduceWildRazorgrain
+  lifespan: 25
+  maturation: 6
+  production: 1
+  yield: 4
+  potency: 5
+  idealLight: 8
+  waterConsumption: 0.6
+  nutrientConsumption: 0.15
+  chemicals:
+    ExtractRazorgrainFlour:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 25
+
+- type: seed
   id: N14TatoRad
   name: seeds-tato-name
   noun: seeds-noun-seeds
   displayName: seeds-tato-display-name
-  plantRsi: Objects/Specific/Hydroponics/potato.rsi
+  plantRsi: Nuclear14/Objects/Specific/Hydroponics/tato.rsi
   productPrototypes:
     - N14FloraProduceWildTato
   lifespan: 30
@@ -231,7 +290,7 @@
   name: seeds-starlight-name
   noun: seeds-starlight-seeds
   displayName: seeds-starlight-display-name
-  plantRsi: Objects/Specific/Hydroponics/potato.rsi
+  plantRsi: Nuclear14/Objects/Specific/Hydroponics/starlight.rsi
   productPrototypes:
     - N14WastelandFloraWildStarlightBerries
   lifespan: 30
@@ -239,7 +298,7 @@
   production: 1
   yield: 4
   potency: 10
-  growthStages: 4
+  growthStages: 3
   waterConsumption: 0.6
   chemicals:
     Nutriment:

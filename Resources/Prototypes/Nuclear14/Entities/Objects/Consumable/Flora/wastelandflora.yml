@@ -68,7 +68,8 @@
   description: A wild blackberry plant. It looks healthy.
   components:
   - type: Sprite
-    state: wild_tato # N14TODO: Needs new sprite
+    sprite: Nuclear14/Objects/Specific/Hydroponics/blackberry.rsi
+    state: harvest
   - type: OreVein
     currentOre: WildBlackberries
   - type: Gatherable
@@ -80,8 +81,6 @@
     loot:
       All: WildBlackberriesAll
       PlantSampleTaker: WildBlackberriesClippers
-  - type: Produce
-    seedId: N14WildBlackberry
 
 - type: entity
   parent: N14WastelandFlora
@@ -102,8 +101,6 @@
     loot:
       All: WildBrocFlowerAll
       PlantSampleTaker: WildBrocFlowerClippers
-  - type: Produce
-    seedId: N14WildBroc
     
 - type: entity
   parent: N14WastelandFlora
@@ -123,9 +120,34 @@
   description: A wild cabbage plant. It looks healthy.
   components:
   - type: Sprite
-    state: wild_gourd #N14TODO: Sprite
+    sprite: Nuclear14/Objects/Specific/Hydroponics/cabbage.rsi
+    layers: 
+       state: produce
+       state: harvest
   - type: OreVein
     currentOre: WildCabbage
+    
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildCarrot
+  name: wild carrot plant
+  description: A wild carrot plant. It looks healthy.
+  components:
+  - type: Sprite
+    state: wild_gourd #N14TODO: Sprite
+  - type: OreVein
+    currentOre: WildCarrot
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildCarrotAll
+      PlantSampleTaker: WildCarrotClippers
+  - type: Produce
+    seedId: N14WildCarrot
 
 - type: entity
   parent: N14WastelandFlora
@@ -165,6 +187,15 @@
     state: wild_coyote
   - type: OreVein
     currentOre: WildCoyote
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildCoyoteTobaccoAll
+      PlantSampleTaker: WildCoyoteTobaccoClippers
     
 - type: entity
   parent: N14WastelandFlora
@@ -176,6 +207,15 @@
     state: wild_datura
   - type: OreVein
     currentOre: WildDatura
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildDaturaAll
+      PlantSampleTaker: WildDaturaClippers
     
 - type: entity
   parent: N14WastelandFlora
@@ -198,7 +238,30 @@
     state: wild_feracactus # N14TODO: Update
   - type: OreVein
     currentOre: WildJalapenoPepper
-    
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildJalapenoAll
+      PlantSampleTaker: WildJalapenoClippers
+
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildMaize
+  name: wild maize plant
+  description: A wild maize plant. It looks healthy.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Hydroponics/starlight.rsi
+    state: harvest
+  - type: OreVein
+    currentOre: WildMaize
+  - type: Produce
+    seedId: N14WildMaize
+
 - type: entity
   parent: N14WastelandFlora
   id: N14WastelandFloraWildMesquite
@@ -228,7 +291,8 @@
   description: A wild onion plant. It looks healthy.
   components:
   - type: Sprite
-    state: wild_tato # N14TODO: Needs new sprite
+    sprite: Nuclear14/Objects/Specific/Hydroponics/onion.rsi
+    state: harvest
   - type: OreVein
     currentOre: WildOnion
   - type: Gatherable
@@ -270,7 +334,8 @@
   description: A razorgrain plant. It looks healthy.
   components:
   - type: Sprite
-    state: wild_pinyon # N14TODO: SPRITE
+    sprite: Nuclear14/Objects/Specific/Hydroponics/razorgrain.rsi
+    state: harvest
   - type: OreVein
     currentOre: WildRazorgrain
 
@@ -302,7 +367,8 @@
   description: A wild tarberry plant. It looks healthy.
   components: # N14TODO: This should only grow on water
   - type: Sprite
-    state: wild_tato # N14TODO: Needs new sprite
+    sprite: Nuclear14/Objects/Specific/Hydroponics/tarberry.rsi
+    state: harvest
   - type: OreVein
     currentOre: WildTarberries
   - type: Gatherable
@@ -436,11 +502,13 @@
       reagents:
       - ReagentId: ExtractAgave
         Quantity: 10
+  - type: Produce
+    seedId: N14WildAgave
 
 - type: entity
   parent: N14FloraProduceFood
   id: N14FloraProduceWildBananaYucca
-  name: wild bananaa yucca
+  name: wild banana yucca
   description: Looks like a banana, tastes like sweet tato.
   components:
   - type: Sprite
@@ -460,30 +528,8 @@
       reagents:
       - ReagentId: ExtractBananaYucca
         Quantity: 10
-    
-- type: entity
-  parent: N14FloraProduceFood
-  id: N14FloraProduceWildCabbage
-  name: wild cabbage
-  description: Wild cabbage. Full of iron.
-  components:
-  - type: Sprite
-    state: BarrelCactusFruit # N14TODO: sprite
-  - type: Stack
-    stackType: Cabbage
-    count: 1
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: ExtractCabbage
-          Quantity: 10
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: ExtractCabbage
-        Quantity: 10
+  - type: Produce
+    seedId: N14WildBananaYucca
 
 - type: entity
   parent: N14FloraProduceFood
@@ -505,7 +551,8 @@
   description: Wild blackberries. Juicy.
   components:
   - type: Sprite
-    state: PricklyPear # N14TODO: Upload Blackberries
+    sprite: Nuclear14/Objects/Specific/Hydroponics/blackberry.rsi
+    state: produce
   - type: Stack
     stackType: WildBlackberries
     count: 1
@@ -521,6 +568,8 @@
       reagents:
       - ReagentId: ExtractBlackberries
         Quantity: 10
+  - type: Produce
+    seedId: N14WildBlackberry
 
 - type: entity
   parent: N14FloraProduce
@@ -545,6 +594,8 @@
       reagents:
       - ReagentId: ExtractBroc
         Quantity: 10
+  - type: Produce
+    seedId: N14WildBroc
 
 - type: entity
   parent: N14FloraProduceFood
@@ -569,23 +620,24 @@
       reagents:
       - ReagentId: ExtractBuffaloGourd
         Quantity: 10
+  - type: Produce
+    seedId: N14WildBuffaloGourd
 
 - type: entity
   parent: N14FloraProduceFood
   id: N14FloraProduceWildCabbage
   name: wild cabbage
-  description: Wild cabbage.
+  description: Wild cabbage; full of iron.
   components:
   - type: Sprite
-    state: BuffaloGourd # N14TODO SPRITE
+    sprite: Nuclear14/Objects/Specific/Hydroponics/cabbage.rsi
+    state: produce
   - type: Stack
     stackType: WildCabbage
     count: 1
   - type: FlavorProfile
     flavors:
       - cabbage
-  - type: Produce
-    seedId: N14WildCabbage
   - type: SolutionContainerManager
     solutions:
       food:
@@ -598,6 +650,38 @@
       reagents:
       - ReagentId: ExtractCabbage
         Quantity: 10
+  - type: Produce
+    seedId: N14WildCabbage
+        
+- type: entity
+  parent: N14FloraProduceFood
+  id: N14FloraProduceWildCarrot
+  name: wild carrot
+  description: Wild carrot.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Hydroponics/carrot.rsi
+    state: produce
+  - type: Stack
+    stackType: WildCarrot
+    count: 1
+  - type: FlavorProfile
+    flavors:
+      - cabbage
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractCarrot
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractCarrot
+        Quantity: 10
+  - type: Produce
+    seedId: N14WildCarrot
 
 - type: entity
   parent: N14FloraProduceFood
@@ -646,6 +730,8 @@
       reagents:
       - ReagentId: ExtractCoyoteTobacco
         Quantity: 10
+  - type: Produce
+    seedId: N14CoyoteTobacco
     
 - type: entity
   parent: N14FloraProduce
@@ -670,6 +756,8 @@
       reagents:
       - ReagentId: ExtractDatura
         Quantity: 10
+  - type: Produce
+    seedId: N14Datura
 
 - type: entity
   parent: N14FloraProduceFood
@@ -678,7 +766,8 @@
   description: Wild jalapeno pepper. Spicy.
   components:
   - type: Sprite
-    state: PricklyPear # N14TODO: Sprites
+    sprite: Nuclear14/Objects/Specific/Hydroponics/jalapeno.rsi
+    state: produce
   - type: Stack
     stackType: WildJalapenoPepper
     count: 1
@@ -694,6 +783,35 @@
       reagents:
       - ReagentId: ExtractJalapenoPepper
         Quantity: 10
+  - type: Produce
+    seedId: N14WildJalapeno
+        
+- type: entity
+  parent: N14FloraProduce
+  id: N14FloraProduceWildMaize
+  name: wild maize
+  description: Wild maize. Can be used to make a corn like flour.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Hydroponics/maize.rsi
+    state: produce
+  - type: Stack
+    stackType: WildMaize
+    count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractMaize
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractMaize
+        Quantity: 10
+  - type: Produce
+    seedId: N14WildMaize
     
 - type: entity
   parent: N14FloraProduce
@@ -718,6 +836,8 @@
       reagents:
       - ReagentId: ExtractHoneyMesquitePod
         Quantity: 10
+  - type: Produce
+    seedId: N14WildMesquite
     
 - type: entity
   parent: N14FloraProduceFood
@@ -742,6 +862,8 @@
       reagents:
       - ReagentId: ExtractMutfruit
         Quantity: 10
+  - type: Produce
+    seedId: N14WildMutfruit
 
 - type: entity
   parent: N14FloraProduceFood
@@ -750,7 +872,8 @@
   description: Wild onion. Fragrant.
   components:
   - type: Sprite
-    state: Mutfruit # N14TODO: New sprite needed
+    sprite: Nuclear14/Objects/Specific/Hydroponics/onion.rsi
+    state: produce
   - type: Stack
     stackType: WildOnion
     count: 1
@@ -769,7 +892,7 @@
         - ReagentId: Allicin
           Quantity: 2
   - type: Produce
-    seedId: onionred # N14TODO: Create Seed
+    seedId: N14WildOnion
   - type: SliceableFood
     count: 4
     slice: FoodOnionRedSlice # N14TODO: Create slice
@@ -851,15 +974,18 @@
       reagents:
       - ReagentId: ExtractStarlightBerries
         Quantity: 10
+  - type: Produce
+    seedId: N14Starlight
 
 - type: entity
   parent: N14FloraProduceFood
   id: N14FloraProduceWildTarberries
-  name: wild tarberries
+  name: tarberries
   description: Wild tarberries. Juicy.
   components:
   - type: Sprite
-    state: PricklyPear # N14TODO: Upload Tarberries
+    sprite: Nuclear14/Objects/Specific/Hydroponics/tarberry.rsi
+    state: produce
   - type: Stack
     stackType: WildTarberries
     count: 1
@@ -875,6 +1001,8 @@
       reagents:
       - ReagentId: ExtractTarberries
         Quantity: 10
+  - type: Produce
+    seedId: N14Tarberry
     
 - type: entity
   parent: N14FloraProduceFood
@@ -887,8 +1015,6 @@
   - type: Stack
     stackType: WildTato
     count: 1
-  - type: Produce
-    seedId: N14TatoRad
   - type: SolutionContainerManager
     solutions:
       food:
@@ -901,6 +1027,8 @@
       reagents:
       - ReagentId: ExtractTato
         Quantity: 10
+  - type: Produce
+    seedId: N14WildTato
 
 - type: entity
   parent: N14FloraProduce
@@ -925,6 +1053,8 @@
       reagents:
       - ReagentId: ExtractWhiteHorsenettle
         Quantity: 10
+  - type: Produce
+    seedId: N14WhiteHorsenettle
 
 - type: entity
   parent: N14FloraProduce
@@ -949,3 +1079,5 @@
       reagents:
       - ReagentId: ExtractXander
         Quantity: 10
+  - type: Produce
+    seedId: N14Xander
