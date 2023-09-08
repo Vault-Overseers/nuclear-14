@@ -74,6 +74,26 @@
     loot:
       All: WildBananaYuccaAll
       PlantSampleTaker: WildBananaYuccaClippers
+      
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildBarrelCactus
+  name: wild barrel cactus
+  description: A barrel cactus plant growing wild. It's healthy.
+  components:
+  - type: Sprite
+    state: wild_feracactus
+  - type: OreVein
+    currentOre: WildBarrelCactus
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildBarrelCactusAll
+      PlantSampleTaker: WildBarrelCactusClippers
 
 - type: entity
   parent: N14WastelandFlora
@@ -144,9 +164,9 @@
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Specific/Hydroponics/cabbage.rsi
-    layers: 
-      state: produce
-      state: harvest
+    layers:
+      - state: harvest
+      - state: produce
   - type: OreVein
     currentOre: WildCabbage
   - type: Gatherable
@@ -265,17 +285,6 @@
     loot:
       All: WildDaturaAll
       PlantSampleTaker: WildDaturaClippers
-    
-- type: entity
-  parent: N14WastelandFlora
-  id: N14WastelandFloraWildFeracactus
-  name: wild feracactus
-  description: A feracactus plant growing wild. It's healthy.
-  components:
-  - type: Sprite
-    state: wild_feracactus
-  - type: OreVein
-    currentOre: WildFeracactus
 
 - type: entity
   parent: N14WastelandFlora
@@ -471,8 +480,8 @@
   - type: Sprite
     sprite: Nuclear14/Objects/Specific/Hydroponics/tarberry.rsi
     layers:
-      state: produce # N14TODO: Needs a better sprite layerthan this, look at the seed and product sprites and how they should work.
-      state: harvest
+      - state: harvest
+      - state: produce # N14TODO: Needs a better sprite layer than this, look at the seed and product sprites and how they should work.
   - type: OreVein
     currentOre: WildTarberries
   - type: Gatherable
@@ -655,6 +664,20 @@
   - type: Stack
     stackType: BarrelCactusFruit
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractCactusWater
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractCactusWater
+        Quantity: 10
+  - type: Produce
+    seedId: N14WildBarrelCactus
     
 
 - type: entity
