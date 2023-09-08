@@ -45,8 +45,15 @@
     state: wild_agave
   - type: OreVein
     currentOre: WildAgave
-  - type: Produce
-    seedId: N14WildAgave
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildAgaveAll
+      PlantSampleTaker: WildAgaveClippers
 
 - type: entity
   parent: N14WastelandFlora
@@ -58,8 +65,15 @@
     state: wild_yucca
   - type: OreVein
     currentOre: WildBananaYucca
-  - type: Produce
-    seedId: N14WildBananaYucca
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildBananaYuccaAll
+      PlantSampleTaker: WildBananaYuccaClippers
 
 - type: entity
   parent: N14WastelandFlora
@@ -112,6 +126,15 @@
     state: wild_gourd
   - type: OreVein
     currentOre: WildGourd
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildBuffaloGourdAll
+      PlantSampleTaker: WildBuffaloGourdClippers
 
 - type: entity
   parent: N14WastelandFlora
@@ -122,10 +145,19 @@
   - type: Sprite
     sprite: Nuclear14/Objects/Specific/Hydroponics/cabbage.rsi
     layers: 
-       state: produce
-       state: harvest
+      state: produce
+      state: harvest
   - type: OreVein
     currentOre: WildCabbage
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildCabbageAll
+      PlantSampleTaker: WildCabbageClippers
     
 - type: entity
   parent: N14WastelandFlora
@@ -134,7 +166,8 @@
   description: A wild carrot plant. It looks healthy.
   components:
   - type: Sprite
-    state: wild_gourd #N14TODO: Sprite
+    sprite: Nuclear14/Objects/Specific/Hydroponics/cabbage.rsi
+    state: harvest
   - type: OreVein
     currentOre: WildCarrot
   - type: Gatherable
@@ -159,6 +192,14 @@
     state: wild_fungus
   - type: OreVein
     currentOre: WildCaveFungus
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildCaveFungusAll
     
 - type: entity
   parent: N14WastelandFlora
@@ -176,6 +217,14 @@
     color: "#2CFA1F"
     castShadows: false
     netsync: false
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildCaveFungusRadAll
 
 - type: entity
   parent: N14WastelandFlora
@@ -235,7 +284,8 @@
   description: A jalapeno pepper plant growing wild. It's healthy.
   components:
   - type: Sprite
-    state: wild_feracactus # N14TODO: Update
+    sprite: Nuclear14/Objects/Specific/Hydroponics/jalapeno.rsi
+    state: harvest
   - type: OreVein
     currentOre: WildJalapenoPepper
   - type: Gatherable
@@ -255,12 +305,19 @@
   description: A wild maize plant. It looks healthy.
   components:
   - type: Sprite
-    sprite: Nuclear14/Objects/Specific/Hydroponics/starlight.rsi
+    sprite: Nuclear14/Objects/Specific/Hydroponics/maize.rsi
     state: harvest
   - type: OreVein
     currentOre: WildMaize
-  - type: Produce
-    seedId: N14WildMaize
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildMaizeAll
+      PlantSampleTaker: WildMaizeClippers
 
 - type: entity
   parent: N14WastelandFlora
@@ -272,6 +329,15 @@
     state: wild_mesquite
   - type: OreVein
     currentOre: MesquitePods
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildMesquiteAll
+      PlantSampleTaker: WildMesquiteClippers
     
 - type: entity
   parent: N14WastelandFlora
@@ -283,6 +349,15 @@
     state: wild_mutfruit
   - type: OreVein
     currentOre: WildMutfruit
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildMutfruitAll
+      PlantSampleTaker: WildMutfruitClippers
 
 - type: entity
   parent: N14WastelandFlora
@@ -315,6 +390,15 @@
     state: wild_pinyon
   - type: OreVein
     currentOre: PinyonNuts
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildPinyonAll
+      PlantSampleTaker: WildPinyonClippers
     
 - type: entity
   parent: N14WastelandFlora
@@ -326,6 +410,15 @@
     state: wild_prickly
   - type: OreVein
     currentOre: WildPrickly
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildPricklyPearAll
+      PlantSampleTaker: WildPricklyPearClippers
 
 - type: entity
   parent: N14WastelandFlora
@@ -338,6 +431,15 @@
     state: harvest
   - type: OreVein
     currentOre: WildRazorgrain
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildRazorgrainAll
+      PlantSampleTaker: WildRazorgrainClippers
 
 - type: entity
   parent: N14WastelandFlora
@@ -368,7 +470,9 @@
   components: # N14TODO: This should only grow on water
   - type: Sprite
     sprite: Nuclear14/Objects/Specific/Hydroponics/tarberry.rsi
-    state: harvest
+    layers:
+      state: produce # N14TODO: Needs a better sprite layerthan this, look at the seed and product sprites and how they should work.
+      state: harvest
   - type: OreVein
     currentOre: WildTarberries
   - type: Gatherable
@@ -411,6 +515,15 @@
     state: wild_horsenettle
   - type: OreVein
     currentOre: WildWhiteHorsenettle
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildWhiteHorsenettleAll
+      PlantSampleTaker: WildWhiteHorsenettleClippers
 
 - type: entity
   parent: N14WastelandFlora
@@ -908,6 +1021,8 @@
   - type: Stack
     stackType: PinyonNuts
     count: 1
+  - type: Produce
+    seedId: N14WildPinyon
     
 - type: entity
   parent: N14FloraProduceFood
