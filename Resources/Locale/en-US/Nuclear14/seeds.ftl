@@ -55,6 +55,10 @@ clipping-mutfruit-name = mutfruit clipping
 clipping-mutfruit-noun = mutfruit clippings
 clipping-mutfruit-display-name = mutfruit clipping
 
+clipping-wild-onion-name = wild onion clipping
+clipping-wild-onion-noun = wild onion clippings
+clipping-wild-onion-display-name = wild onion clipping
+
 clipping-pinyon-name = pinyon clipping
 clipping-pinyon-noun = pinyon clippings
 clipping-pinyon-display-name = pinyon clipping
