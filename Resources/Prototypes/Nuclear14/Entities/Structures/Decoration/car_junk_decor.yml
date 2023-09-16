@@ -1,0 +1,29 @@
+- type: entity
+  id: N14CarJunkDecor
+  parent: BaseStructure
+  name: ruined car
+  description: it's a ruined car, there is nothing of use here.
+  components:
+    - type: Sprite
+      sprite: Nuclear14/Structures/Decoration/carjunkdecor.rsi
+      state: car
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.40,-0.40,0.40,0.40"
+          density: 85
+          mask:
+          - FullTileMask
+          layer:
+          - WallLayer
+
+- type: entity
+  parent: N14CarJunkDecor
+  id: N14VanJunkDecor
+  name: ruined van
+  description: it's a ruined van, there is nothing of use here.
+  components:
+    - type: Sprite
+      state: van
