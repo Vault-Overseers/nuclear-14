@@ -1,19 +1,27 @@
 - type: entity
-  id: N14ComputerCargoOrders
+  id: N14BaseComputer
   parent: BaseComputer
-  name: cargo request computer
-  description: Used to order supplies.
+  name: computer
+  description: An old heavy computer.
   components:
   - type: Sprite
+    sprite: Textures/Nuclear14/Structures/Machines/computer.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
     - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
+      state: keyboard
     - map: ["computerLayerScreen"]
-      state: request
+      state: screens
     - map: ["computerLayerKeys"]
-      state: tech_key
+      state: keys
+
+- type: entity
+  id: N14ComputerCargoOrders
+  parent: N14BaseComputer
+  name: cargo request computer
+  description: Used to order supplies.
+  components:
   - type: CargoOrderConsole
   - type: ActivatableUI
     key: enum.CargoConsoleUiKey.Orders
