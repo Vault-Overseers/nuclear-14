@@ -1,14 +1,15 @@
 - type: entity
-  name: rad-x pill
+  name: waster pill
   parent: Pill
-  id: N14RadXPill
-  description: A pill of Rad-X. It makes you more resistant to radiation. 
+  id: N14BasePill
+  abstract: True
+  description: A pill of some sort. 
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Specific/Medical/pills.rsi
     state: pill5
   - type: Item
-    size: 1
+    size: Tiny
     sprite: Nuclear14/Objects/Specific/Medical/pills.rsi
   - type: Food
     forceFeedDelay: 1
@@ -19,27 +20,36 @@
     solutions:
       food:
         maxVol: 20
-        reagents: 
-        - ReagentId: RadX
-          Quantity: 20
   - type: SolutionSpiker
     sourceSolution: food
   - type: DeleteOnTrigger
   - type: Extractable
     grindableSolutionName: food
 
+
+- type: entity
+  name: rad-x pill
+  parent: N14BasePill
+  id: N14RadXPill
+  description: A pill of Rad-X. It makes you more resistant to radiation. 
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents: 
+        - ReagentId: RadX
+          Quantity: 20
+
 - type: entity
   name: buffout pill
-  parent: Pill
+  parent: N14BasePill
   id: N14BuffoutPill
   description: A pill of Buffout. It makes you stronger, enhances your reflexes, and allows you to endure more. 
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Specific/Medical/pills.rsi
     state: pill1
-  - type: Item
-    size: 1
-    sprite: Nuclear14/Objects/Specific/Medical/pills.rsi
   - type: SolutionContainerManager
     solutions:
       food:
@@ -50,15 +60,13 @@
 
 - type: entity
   name: mentats pill
-  parent: Pill
+  parent: N14BasePill
   id: N14MentatsPill
   description: A pill of Mentats. It makes you mentally sharper. 
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Specific/Medical/pills.rsi
     state: pill4
-  - type: Item
-    size: 1
     sprite: Nuclear14/Objects/Specific/Medical/pills.rsi
   - type: SolutionContainerManager
     solutions:
@@ -70,16 +78,13 @@
 
 - type: entity
   name: fixer pill
-  parent: Pill
+  parent: N14BasePill
   id: N14FixerPill
   description: A pill of Fixer. It helps you get over your addictions. 
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Specific/Medical/pills.rsi
     state: pill3
-  - type: Item
-    size: 1
-    sprite: Nuclear14/Objects/Specific/Medical/pills.rsi
   - type: SolutionContainerManager
     solutions:
       food:
@@ -90,16 +95,13 @@
 
 - type: entity
   name: cateye pill
-  parent: Pill
+  parent: N14BasePill
   id: N14CateyePill
   description: A pill of Ceteye. It temporarily grants you better low-light vision. 
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Specific/Medical/pills.rsi
     state: pill2
-  - type: Item
-    size: 1
-    sprite: Nuclear14/Objects/Specific/Medical/pills.rsi
   - type: SolutionContainerManager
     solutions:
       food:
