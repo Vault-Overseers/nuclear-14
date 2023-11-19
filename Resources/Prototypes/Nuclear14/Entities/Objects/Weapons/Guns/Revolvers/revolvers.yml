@@ -8,25 +8,40 @@
     sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/small_revolver.rsi
   - type: Clothing
     sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/small_revolver.rsi
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - N14CartridgePistol9
+    proto: N14CartridgePistol9
 
 - type: entity
   name: Magnum revolver
   parent: BaseWeaponRevolver
   id: N14WeaponRevolverMagnun
-  description: The Big Iron. Uses .40 magnum ammo.
+  description: The Big Iron. Uses .44 magnum ammo.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/magnum.rsi
   - type: Clothing
     sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/magnum.rsi
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - N14Cartridge44Magnum
+    proto: N14Cartridge44Magnum
 
 - type: entity
   name: hunting revolver
   parent: BaseWeaponRevolver
   id: N14WeaponHunterRevolver
-  description: A heavy revolver with a long cannon designed to hunt big animals, it also works the same for people. Uses .40 magnum ammo.
+  description: A heavy revolver with a long cannon designed to hunt small animals, but it also works for people. Uses .44 magnum ammo.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/hunt_revolver.rsi
   - type: Clothing
     sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/hunt_revolver.rsi
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - N14Cartridge44Magnum
+    proto: N14Cartridge44Magnum

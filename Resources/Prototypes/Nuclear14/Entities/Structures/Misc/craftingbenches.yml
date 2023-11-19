@@ -1,0 +1,39 @@
+- type: entity
+  parent: BaseStructure
+  id: N14WorkbenchMetal
+  description: A workbench with metal working tools for crafting.
+  name: workbench
+  components:
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.8,-0.6,0.8,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/forgeworkbench.rsi
+    state: bench_metal
+  - type: PointLight
+    radius: 2
+    energy: 1
+    softness: 0.5
+    color: "#f05e1b"
+    offset: "0.5, 0"
+    
+- type: entity
+  parent: N14WorkbenchMetal
+  id: N14WorkbenchForge
+  description: A forge made from pieces of scrap. Looks hot.
+  name: forge
+  components:
+  - type: Sprite
+    state: forge
+  - type: PointLight
+    energy: 2
+    offset: "-0.65, 0"

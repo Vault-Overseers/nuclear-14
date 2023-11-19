@@ -1,0 +1,40 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBox308
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14Cartridge308Rifle
+    proto: N14Cartridge308Rifle
+    capacity: 32
+  - type: Item
+    size: 20
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Boxes/308.rsi
+    netsync: false
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBox308
+  id: MagazineBox308
+  name: ammunition box (.308)
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge308Rifle
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+

@@ -1,0 +1,49 @@
+- type: entity
+  id: N14BaseMagazineShotgun12
+  name: ammo drum (12 gauge shells)
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - N14MagazineShotgun12
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14ShellShotgun12
+    capacity: 8
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
+  - type: Item
+    size: 5
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/12gauge/mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: N14MagazineShotgun12
+  name: ammo drum (12 gauge shells)
+  parent: N14BaseMagazineShotgun12
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14ShellShotgun12
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

@@ -1,0 +1,1 @@
+﻿construction-category-medical = Medical

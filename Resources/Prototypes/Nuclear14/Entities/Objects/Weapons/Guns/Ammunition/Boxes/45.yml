@@ -1,0 +1,39 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBox45
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14CartridgePistol45
+    proto: N14CartridgePistol45
+    capacity: 75
+  - type: Item
+    size: 20
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Boxes/45-auto.rsi
+    netsync: false
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBox45
+  id: MagazineBox45
+  name: ammunition box (45 auto)
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14CartridgePistol45
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

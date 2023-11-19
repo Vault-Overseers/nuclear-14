@@ -1,0 +1,39 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBox7.62Rifle
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14Cartridge7.62Rifle
+    proto: N14Cartridge7.62ifle
+    capacity: 60
+  - type: Item
+    size: 20
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Boxes/7-62.rsi
+    netsync: false
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBox7.62Rifle
+  id: MagazineBox7.62
+  name: ammunition box (7.62mm)
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge7.62Rifle
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

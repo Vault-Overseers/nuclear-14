@@ -1,0 +1,37 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBox20gauge
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14ShellShotgun20
+    proto: N14ShellShotgun20
+    capacity: 30
+  - type: Item
+    size: 20
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Boxes/20-gauge.rsi
+    netsync: false
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBox20gauge
+  id: MagazineBox20gauge
+  name: ammunition box (20 gauge)
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14ShellShotgun20
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]

@@ -1,0 +1,28 @@
+# Healing Powder
+- type: construction
+  name: healing powder
+  id: N14HealingPowder
+  graph: N14HealingPowder
+  startNode: start
+  targetNode: healingpowder
+  category: construction-category-medical
+  description: A pouch of healing powder.
+  show: true
+  icon:
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+    state: healingpowder
+  objectType: Item
+  
+- type: constructionGraph
+  id: N14HealingPowder
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: healingpowder
+          steps:
+            - material: BrocFlower
+            - material: XanderRoot # TODO: Find out if we can add a tool step for crushing. Tests fail for now with it in. Slap crafting doesn't like tool steps.
+            
+    - node: healingpowder
+      entity: N14HealingPowder

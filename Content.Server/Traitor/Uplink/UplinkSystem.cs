@@ -4,6 +4,7 @@ using Content.Shared.Inventory;
 using Content.Shared.PDA;
 using Content.Server.Store.Components;
 using Content.Shared.FixedPoint;
+using Content.Shared.Store;
 
 namespace Content.Server.Traitor.Uplink
 {
@@ -13,6 +14,7 @@ namespace Content.Server.Traitor.Uplink
         [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
         [Dependency] private readonly StoreSystem _store = default!;
 
+        [ValidatePrototypeId<CurrencyPrototype>]
         public const string TelecrystalCurrencyPrototype = "Telecrystal";
 
         /// <summary>
@@ -24,7 +26,7 @@ namespace Content.Server.Traitor.Uplink
         public int GetTCBalance(StoreComponent component)
         {
             FixedPoint2? tcBalance = component.Balance.GetValueOrDefault(TelecrystalCurrencyPrototype);
-            return tcBalance != null ? tcBalance.Value.Int() : 0;
+            return tcBalance?.Int() ?? 0;
         }
 
         /// <summary>
@@ -46,15 +48,14 @@ namespace Content.Server.Traitor.Uplink
             }
 
             var store = EnsureComp<StoreComponent>(uplinkEntity.Value);
-            _store.InitializeFromPreset(uplinkPresetId, store);
+            _store.InitializeFromPreset(uplinkPresetId, uplinkEntity.Value, store);
             store.AccountOwner = user;
             store.Balance.Clear();
 
             if (balance != null)
             {
                 store.Balance.Clear();
-                _store.TryAddCurrency(
-                    new Dictionary<string, FixedPoint2>() { { TelecrystalCurrencyPrototype, balance.Value } }, store);
+                _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, balance.Value } }, uplinkEntity.Value, store);
             }
 
             // TODO add BUI. Currently can't be done outside of yaml -_-
@@ -62,7 +63,11 @@ namespace Content.Server.Traitor.Uplink
             return true;
         }
 
-        private EntityUid? FindUplinkTarget(EntityUid user)
+        /// <summary>
+        /// Finds the entity that can hold an uplink for a user.
+        /// Usually this is a pda in their pda slot, but can also be in their hands. (but not pockets or inside bag, etc.)
+        /// </summary>
+        public EntityUid? FindUplinkTarget(EntityUid user)
         {
             // Try to find PDA in inventory
             if (_inventorySystem.TryGetContainerSlotEnumerator(user, out var containerSlotEnumerator))
@@ -71,7 +76,7 @@ namespace Content.Server.Traitor.Uplink
                 {
                     if (!pdaUid.ContainedEntity.HasValue) continue;
 
-                    if (HasComp<PDAComponent>(pdaUid.ContainedEntity.Value) || HasComp<StoreComponent>(pdaUid.ContainedEntity.Value))
+                    if (HasComp<PdaComponent>(pdaUid.ContainedEntity.Value) || HasComp<StoreComponent>(pdaUid.ContainedEntity.Value))
                         return pdaUid.ContainedEntity.Value;
                 }
             }
@@ -79,7 +84,7 @@ namespace Content.Server.Traitor.Uplink
             // Also check hands
             foreach (var item in _handsSystem.EnumerateHeld(user))
             {
-                if (HasComp<PDAComponent>(item) || HasComp<StoreComponent>(item))
+                if (HasComp<PdaComponent>(item) || HasComp<StoreComponent>(item))
                     return item;
             }
 

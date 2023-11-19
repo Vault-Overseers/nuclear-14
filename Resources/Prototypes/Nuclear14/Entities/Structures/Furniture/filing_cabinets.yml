@@ -12,10 +12,10 @@
     sprite: Structures/Storage/cabinets.rsi
     state: filingcabinet
     noRot: true
-  - type: Appearance
-    visuals:
-    - type: BagOpenCloseVisualizer
-      openIcon: filingcabinet-open
+    layers:
+    - state: filingcabinet
+    - state: filingcabinet-open
+      map: ["openLayer"]
   - type: UserInterface
     interfaces:
     - key: enum.StorageUiKey.Key
@@ -24,14 +24,15 @@
     noRot: true
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeAabb
-        bounds: "-0.18,-0.48,0.18,0.48"
-      density: 200
-      mask:
-      - MachineMask
-      layer:
-      - MachineLayer
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.18,-0.48,0.18,0.48"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
   - type: InteractionOutline
   - type: ContainerContainer
     containers:

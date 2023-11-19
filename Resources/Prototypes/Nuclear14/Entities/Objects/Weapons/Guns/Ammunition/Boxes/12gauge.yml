@@ -1,0 +1,37 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBox12gauge
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14ShellShotgun12
+    proto: N14ShellShotgun12
+    capacity: 30
+  - type: Item
+    size: 20
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Boxes/12-gauge.rsi
+    netsync: false
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBox12gauge
+  id: MagazineBox12gauge
+  name: ammunition box (12 gauge)
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14ShellShotgun12
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]

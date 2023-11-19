@@ -1,4 +1,5 @@
-﻿using Content.Client.Resources;
+using System.Numerics;
+using Content.Client.Resources;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -8,9 +9,9 @@ namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
 public sealed class ChannelFilterButton : ContainerButton
 {
-    private static readonly Color ColorNormal = Color.FromHex("#7b7e9e");
-    private static readonly Color ColorHovered = Color.FromHex("#9699bb");
-    private static readonly Color ColorPressed = Color.FromHex("#789B8C");
+    private static readonly Color ColorNormal = Color.FromHex("#63563f");
+    private static readonly Color ColorHovered = Color.FromHex("#887f65");
+    private static readonly Color ColorPressed = Color.FromHex("#c2b591");
     private readonly TextureRect? _textureRect;
     public readonly ChannelFilterPopup ChatFilterPopup;
     private readonly ChatUIController _chatUIController;
@@ -55,8 +56,8 @@ public sealed class ChannelFilterButton : ContainerButton
         {
             var globalPos = GlobalPosition;
             var (minX, minY) = ChatFilterPopup.MinSize;
-            var box = UIBox2.FromDimensions(globalPos - (FilterDropdownOffset, 0),
-                (Math.Max(minX, ChatFilterPopup.MinWidth), minY));
+            var box = UIBox2.FromDimensions(globalPos - new Vector2(FilterDropdownOffset, 0),
+                new Vector2(Math.Max(minX, ChatFilterPopup.MinWidth), minY));
             ChatFilterPopup.Open(box);
         }
         else
