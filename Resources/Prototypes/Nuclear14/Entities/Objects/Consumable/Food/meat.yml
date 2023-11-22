@@ -6,7 +6,8 @@
   components:
   - type: Food
   - type: Sprite
-    sprite: Objects/Consumable/Food/meat.rsi
+    sprite: Nuclear14/Objects/Consumable/Food/meat.rsi
+    sprite: meat
     netsync: false
   - type: SolutionContainerManager
     solutions:
@@ -33,7 +34,7 @@
     tags:
     - Raw
   - type: Sprite
-    state: bear
+    state: morsels
   - type: SolutionContainerManager
     solutions:
       food:
@@ -48,14 +49,8 @@
   description: A raw piece of rump brahmin.
   components:
   - type: Sprite
-    netsync: true
-    state: bacon
-  - type: RandomSprite
-    available:
-      - enum.DamageStateVisualLayers.Base:
-          bacon: ""
-      - enum.DamageStateVisualLayers.Base:
-          bacon2: ""
+    sprite: Nuclear14/Objects/Consumable/Food/meat.rsi
+    sprite: meat
   - type: SolutionContainerManager
     solutions:
       food:
@@ -72,25 +67,12 @@
 
 - type: entity
   name: raw bighorner steak
-  parent: N14FoodMeatRadRaw
+  parent: N14FoodMeatBrahmin
   id: N14FoodMeatBighorner
   description: A raw piece of rump bighorner.
   components:
   - type: Sprite
-    netsync: true
-    state: bacon
-  - type: RandomSprite
-    available:
-      - enum.DamageStateVisualLayers.Base:
-          bacon: ""
-      - enum.DamageStateVisualLayers.Base:
-          bacon2: ""
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: N14UncookedAnimalProteinsRad
-          Quantity: 9
+    state: fatty
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatBighornerCutlet
@@ -101,25 +83,12 @@
 
 - type: entity
   name: raw radstag steak
-  parent: N14FoodMeatRadRaw
+  parent: N14FoodMeatBrahmin
   id: N14FoodMeatRadstag
   description: A raw piece of rump bighorner.
   components:
   - type: Sprite
-    netsync: true
-    state: bacon
-  - type: RandomSprite
-    available:
-      - enum.DamageStateVisualLayers.Base:
-          bacon: ""
-      - enum.DamageStateVisualLayers.Base:
-          bacon2: ""
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: N14UncookedAnimalProteinsRad
-          Quantity: 9
+    state: porkchop
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadstagCutlet
@@ -130,7 +99,7 @@
 
 - type: entity
   name: raw yao-guai meat
-  parent: N14FoodMeatRadRaw
+  parent: N14FoodMeatBrahmin
   id: N14FoodMeatYaoguai
   description: A very muscular slab of raw yao-guai meat.
   components:
@@ -165,7 +134,7 @@
   description: A slab of radscorpion meat.
   components:
   - type: Sprite
-    state: spider
+    state: scorpiontail
   - type: SolutionContainerManager
     solutions:
       food:
@@ -183,7 +152,7 @@
   description: A still twitching leg of a radscorpion... you don't really want to eat this, do you?
   components:
   - type: Sprite
-    state: spiderleg
+    state: scorpiontail #spiderleg N14TODO: Needs new sprite, add to materials_crafting.rsi
           
 - type: entity
   name: raw radchicken
@@ -191,12 +160,10 @@
   id: N14FoodMeatRadchicken
   description: A raw piece of radchicken. Slimy and pale.
   components:
-  - type: Sprite
-    layers:
-    - state: bird
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadchickenCutlet
+    # N14TODO: New sprite for this too? Pale breast? see bird upstream
 
 - type: entity
   name: raw gecko steak
@@ -205,8 +172,7 @@
   description: tough chunk of gecko meat. It glistens.
   components:
   - type: Sprite
-    layers:
-    - state: lizard
+    state: goldengecko
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatGeckoCutlet
@@ -216,20 +182,13 @@
   parent: N14FoodMeatRadRaw
   id: N14FoodMeatIguana
   description: morsels of a poor iguana.
-  components:
-  - type: Sprite
-    layers:
-    - state: lizard
+    # N14TODO: New sprite for this too? SEE UPSTREAM LIZARD
           
 - type: entity
   name: raw squirrel bits
   parent: N14FoodMeatRadRaw
   id: N14FoodMeatSquirrel
   description: morsels of a poor squirrel.
-  components:
-  - type: Sprite
-    layers:
-    - state: lizard
 
 # Cooked
 - type: entity
@@ -243,7 +202,7 @@
     - Cooked
   - type: Sprite
     layers:
-    - state: plain-cooked
+    - state: meat_roasted
   - type: SolutionContainerManager
     solutions:
       food:
@@ -261,9 +220,6 @@
   id: N14FoodMeatBrahminCooked
   description: A cooked slab of meat. Smells primal.
   components:
-  - type: Sprite
-    layers:
-    - state: plain-cooked
   - type: SolutionContainerManager
     solutions:
       food:
@@ -284,23 +240,13 @@
 
 - type: entity
   name: bighorner steak
-  parent: N14FoodMeatCooked
+  parent: N14FoodMeatBrahminCooked
   id: N14FoodMeatBighornerCooked
   description: A cooked slab of meat. Smells primal.
   components:
   - type: Sprite
     layers:
-    - state: plain-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Protein
-          Quantity: 5
-        - ReagentId: N14RadParticleFood
-          Quantity: 3
+    - state: fatty_roasted
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatBighornerCutletCooked
@@ -311,23 +257,13 @@
 
 - type: entity
   name: radstag steak
-  parent: N14FoodMeatCooked
+  parent: N14FoodMeatBrahminCooked
   id: N14FoodMeatRadstagCooked
   description: A cooked slab of meat. Smells primal.
   components:
   - type: Sprite
     layers:
-    - state: plain-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Protein
-          Quantity: 5
-        - ReagentId: N14RadParticleFood
-          Quantity: 3
+    - state: porkchop_roasted
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadstagCutletCooked
@@ -338,23 +274,10 @@
 
 - type: entity
   name: cooked yao-guai
-  parent: N14FoodMeatCooked
+  parent: N14FoodMeatBrahminCooked
   id: N14FoodMeatYaoguaiCooked
   description: A well-cooked slab of yao-guai meat. Tough, but tasty with the right sides.
   components:
-  - type: Sprite
-    layers:
-    - state: product-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Protein
-          Quantity: 10
-        - ReagentId: N14RadParticleFood
-          Quantity: 3
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatYaoguaiCutletCooked
@@ -365,9 +288,10 @@
   id: N14FoodMeatRadchickenCooked
   description: A cooked piece of radchicken. Best used in other recipes.
   components:
-  - type: Sprite
-    layers:
-    - state: bird-cooked
+# N14TODO: need cooked morsel sprite or food on a stick sprites for below too
+#  - type: Sprite
+#    layers:
+#    - state: bird-cooked
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadchickenCutletCooked
@@ -380,7 +304,7 @@
   components:
   - type: Sprite
     layers:
-    - state: lizard-cooked
+    - state: goldengecko_roasted
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatGeckoCutletCooked
@@ -391,9 +315,10 @@
   id: N14FoodMeatIguanaCooked
   description: Cooked, pulled iguana meat.
   components:
-  - type: Sprite
-    layers:
-    - state: lizard-cooked
+# N14TODO: 
+#  - type: Sprite
+#    layers:
+#    - state: lizard-cooked
   - type: SolutionContainerManager
     solutions:
       food:
@@ -411,9 +336,10 @@
   id: N14FoodMeatSquirrelCooked
   description: Cooked, meager squirrel meat.
   components:
-  - type: Sprite
-    layers:
-    - state: lizard-cooked
+# N14TODO: 
+#  - type: Sprite
+#    layers:
+#    - state: lizard-cooked
   - type: SolutionContainerManager
     solutions:
       food:
@@ -432,9 +358,10 @@
   id: N14FoodMeatRadscorpionLegBoiled
   description: A giant radscorpion leg that's had the life boiled out of it.
   components:
-  - type: Sprite
-    layers:
-    - state: plate-meat
+# N14TODO: 
+#  - type: Sprite
+#    layers:
+#    - state: plate-meat
     - state: spiderleg-cooked
   - type: SolutionContainerManager
     solutions:
