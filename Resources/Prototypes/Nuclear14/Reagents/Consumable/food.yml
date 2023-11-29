@@ -29,3 +29,22 @@
   physicalDesc: reagent-physical-desc-metallic
   color: "#FFFFE5"
   parent: Uranium
+  
+  
+  
+- type: reagent
+  id: N14ScorpionTail
+  name: reagent-name-scorpiontail
+  desc: reagent-desc-scorpiontail
+  physicalDesc: reagent-physical-desc-clumpy
+  color: "#FFFFE5"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Human
+        damage:
+          types:
+            Poison: 2
