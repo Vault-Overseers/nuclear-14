@@ -1,0 +1,34 @@
+#chairs
+- type: construction
+  name: soil
+  id: N14Soil
+  graph: N14Soil
+  startNode: start
+  targetNode: Soil
+  category: construction-category-utility
+  description: A patch of soil for growing things.
+  icon:
+    sprite: Structures/Hydroponics/misc.rsi
+    state: soil
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: planter
+  id: N14Planter
+  graph: N14Planter
+  startNode: start
+  targetNode: Planter
+  category: construction-category-utility
+  description: A planter for growing things in.
+  icon:
+    sprite: Nuclear14/Structures/Hydroponics/planterbox.rsi
+    state: icon
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
