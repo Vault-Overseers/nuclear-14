@@ -1,0 +1,41 @@
+# Fusion Cores work as batteries so they can be plugged into fusion core generators (not actual generators) and power armor (mechs)
+- type: entity
+  name: fusion core
+  description: A rechargeable standardized power cell. This one looks like a rare and powerful prototype.
+  id: N14PowerCellFusioncore
+  suffix: Full
+  parent: BasePowerCell
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Power/fusioncore.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: icon
+#    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+#      state: o2
+#      shader: unshaded
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: Extractable
+    juiceSolution:
+      reagents:
+        - ReagentId: Zinc # N14TODO: Nuclear material?
+          Quantity: 5
+
+- type: entity
+  id: N14PowerCellFusioncoreEmpty
+  suffix: Empty
+  parent: N14PowerCellFusioncore
+  components:
+  - type: Sprite
+    layers:
+      - map: [ "enum.PowerCellVisualLayers.Base" ]
+        state: icon
+#      - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+#        state: o2
+#        shader: unshaded
+#        visible: false
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 0

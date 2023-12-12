@@ -1,0 +1,107 @@
+# TODO: Generators need to make use of their other states, require fuel where necessary and be able to be turned off.
+
+- type: entity
+  parent: BaseStructure
+  id: N14GeneratorFusioncoreEmpty
+  prefix: Empty
+  name: fusion core generator
+  description: A generator that uses expendable fusion cores. Insert a core for power.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.8,-0.6,0.8,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Nuclear14/Structures/Power/fusion_generator.rsi
+    layers:
+    - state: fusion_generator
+    - state: fusion_generator_buttons # TODO: Tie to visualiser for lit and core status?
+      shader: unshaded
+  - type: Appearance
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors: #excess damage, don't spawn entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
+
+- type: entity
+  parent: N14GeneratorFusioncoreEmpty
+  id: N14GeneratorFusioncore
+  prefix: Full
+  name: fusion core generator
+  description: A generator that uses expendable fusion cores.
+  components:
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg # TODO: change to fusion core generator noise
+  - type: Sprite
+    sprite: Nuclear14/Structures/Power/fusion_generator.rsi
+    layers:
+    - state: fusion_generator
+    - state: fusion_generator_buttons # TODO: Tie to visualiser for lit and core status?
+      shader: unshaded
+    - state: fusion_generator_core
+      shader: unshaded
+  - type: PointLight
+    radius: 1
+    energy: 4.5
+    softness: 0.5
+    color: "#B4FCF0"
+  - type: ExaminableBattery
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerProvider
+    voltage: Medium
+  - type: PowerNetworkBattery
+    maxSupply: 10000
+    maxChargeRate: 5000
+    supplyRampTolerance: 1000
+    supplyRampRate: 500
+  - type: Electrified
+    onHandInteract: false
+    onInteractUsing: false
+    onBump: false
+    requirePower: true
+    highVoltageNode: output
+  - type: Apc
+    voltage: High
+  - type: UserInterface
+    interfaces:
+    - key: enum.ApcUiKey.Key
+      type: ApcBoundUserInterface
+  - type: ActivatableUI
+    inHandsOnly: false
+    singleUser: true
+    key: enum.ApcUiKey.Key
