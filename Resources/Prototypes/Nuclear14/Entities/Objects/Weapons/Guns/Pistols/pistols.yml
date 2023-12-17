@@ -32,6 +32,10 @@
         whitelist:
           tags:
             - N14CartridgePistol9
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
 
 - type: entity
   name: 10mm Pistol
@@ -67,6 +71,10 @@
         whitelist:
           tags:
             - N14CartridgePistol10
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
 
 - type: entity
   name: .45 handgun
@@ -109,6 +117,10 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
 
 - type: entity
   name: 12.7mm handgun
@@ -151,6 +163,10 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
 
 - type: entity
   name: 10mm pipe pistol
@@ -186,3 +202,79 @@
         whitelist:
           tags:
             - N14CartridgePistol10
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+
+- type: entity
+  name: chinese pistol
+  parent: BaseWeaponPistol
+  id: N14WeaponPistolChinese
+  description: A elegant and long pistol with a internal magazine, chambered in 9 mm.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/9mm.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/chinesepistol.rsi
+  - type: Gun
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol9
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol9
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14CartridgePistol9
+    capacity: 14
+    proto: N14CartridgePistol9
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+
+- type: entity
+  name: the spy
+  parent: BaseWeaponPistol
+  id: N14WeaponPistolSpy
+  description: A totally modified chinese pistol. with a integrated silencer, fully automatic conversion and a extended magazine this pistol was designed for brutal silent murder, chambered in 9 mm.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/9mm.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/chinesepistol.rsi
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol9
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol9
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14CartridgePistol9
+    capacity: 24
+    proto: N14CartridgePistol9
+  - type: Gun
+    selectedMode: Fullauto
+    availableModes:
+      - Fullauto
