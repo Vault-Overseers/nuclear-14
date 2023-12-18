@@ -54,6 +54,12 @@ reagent-desc-rad-x = A reagent that makes you resistant to radiation.
 reagent-name-fixer = fixer
 reagent-desc-fixer = A reagent that cures your addictions.
 
+reagent-name-mentats = mentats
+reagent-desc-mentats = A reagent that makes you mentally sharper.
+
+reagent-name-cateye = cateye
+reagent-desc-cateye = A reagent that improves your low-light vision.
+
 # Meta
 reagent-name-movespeedmod-mixture = movementspeed modifying mixture
 reagent-desc-movespeedmod-mixture = A mixture of reagents that makes you move fast.
