@@ -42,6 +42,43 @@
     
 - type: entity
   parent: N14GeneratorFusioncore
+  id: N14GeneratorFusionMini
+  description: A generator that uses heavy water for fusion power.
+  name: mini fusion generator
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.8"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Nuclear14/Structures/Power/32x48_machines.rsi
+    layers:
+    - state: generator
+  - type: PowerSupplier
+    supplyRate: 1000
+    supplyRampRate: 250
+    supplyRampTolerance: 250
+    
+- type: entity
+  parent: N14GeneratorFusionMini
+  id: N14GeneratorFusionMiniRusted
+  description: A generator that uses heavy water for fusion power. This ones rusted.
+  name: mini fusion generator
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Power/32x48_machines.rsi
+    layers:
+    - state: generator_rust
+    
+- type: entity
+  parent: N14GeneratorFusioncore
   id: N14GeneratorPrewar
   description: A dirty old generator that uses fuel to run.
   name: pre-war generator
