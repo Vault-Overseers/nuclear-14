@@ -17,6 +17,9 @@
     fireRate: 5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -52,6 +55,9 @@
     fireRate: 5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -87,6 +93,9 @@
     fireRate: 4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -129,6 +138,9 @@
     fireRate: 4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -171,6 +183,9 @@
     fireRate: 4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -186,3 +201,84 @@
         whitelist:
           tags:
             - N14CartridgePistol10
+
+- type: entity
+  name: chinese pistol
+  parent: BaseWeaponPistol
+  id: N14WeaponPistolChinese
+  description: A elegant and long barrel pistol with a integrated magazine, chambered in 9 mm.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/chinesepistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/chinesepistol.rsi
+    size: 10
+  - type: Clothing
+    slots:
+    - suitStorage
+    - Belt
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol9
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol9
+    selectedMode: Semiauto
+    availableModes:
+    - Semiauto
+  - type: BallisticAmmoProvider
+    capacity: 14
+    proto: N14CartridgePistol9
+    whitelist:
+      tags:
+      - N14CartridgePistol9
+
+
+- type: entity
+  name: the spy
+  parent: BaseWeaponSniper
+  id: N14WeaponPistolSpy
+  description: A modified version of the common chinese pistols. with a integrated silencer, extended mag and fully automatic conversion this gun was designed with passion, chambered in 9 mm.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/thespy.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/thespy.rsi
+    size: 10
+  - type: Clothing
+    slots:
+    - suitStorage
+    - Belt
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -10
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol9
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol9
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+  - type: BallisticAmmoProvider
+    capacity: 24
+    proto: N14CartridgePistol9
+    whitelist:
+      tags:
+      - N14CartridgePistol9
