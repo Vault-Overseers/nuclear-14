@@ -1,0 +1,22 @@
+- type: entity
+  parent: BaseMachine
+  id: N14BaseMachineServerRack
+  name: server rack
+  description: An old server rack filled with electronics.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Machines/32x48_machines.rsi
+    snapCardinals: true
+    layers:
+    - state: rack
+    - state: rack_on
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Appearance
+  # N14TODO: Add deconstruction graph to machine frame tall (spits out electronics), then to steel.
