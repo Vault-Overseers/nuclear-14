@@ -195,3 +195,24 @@
     Medicine:
       effects:
       - !type:Jitter
+
+- type: reagent
+  id: Daytripper
+  name: reagent-name-daytripper
+  group: Medicine
+  desc: reagent-desc-daytripper
+  physicalDesc: reagent-physical-desc-sticky
+  color: "#00e5ff"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 10
+        refresh: false
+    Food:
+      effects:
+      - !type:SatiateThirst
+        factor: -0.2
