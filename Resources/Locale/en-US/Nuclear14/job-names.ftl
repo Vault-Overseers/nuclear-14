@@ -10,6 +10,7 @@ job-name-bos-washington-scribe = Washington Brotherhood Scribe
 
 job-name-caravan-leader = Caravan Leader
 job-name-caravan-trader = Caravan Trader
+job-name-caravan-guard = Caravan Guard
 
 job-name-ncr-cadet = NCR Cadet
 job-name-ncr-nco = NCR NCO
