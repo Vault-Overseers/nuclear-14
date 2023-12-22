@@ -1,16 +1,42 @@
 - type: entity
+  parent: UnfinishedMachineFrame
+  id: N14MachineFrameTall
+  description: A metal frame for housing machinery and electronics
+  suffix: Unfinished
+  components:
+    - type: Construction
+      containers:
+        - machine_board
+        - machine_parts
+      graph: Machine
+      node: missingWires
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: Sprite
+      sprite: Nuclear14/Structures/Power/32x48_machines.rsi
+      state: rack # N14TODO: Replace with custom empty rack sprite.
+#    - type: Construction
+#      containers:
+#        - machine_board
+#        - machine_parts
+#      graph: N14TallMachineFrame
+#      node: missingWires
+
+- type: entity
   parent: BaseMachine
-  id: N14MachineRack
-  name: electronics rack
-  description: An old rack filled with electronics.
+  id: N14BaseMachinePowered
+  name: server rack
+  description: An old server rack filled with electronics.
+  abstract: true
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Machines/32x48_machines.rsi
+    sprite: Nuclear14/Structures/Power/32x48_machines.rsi
     snapCardinals: true
     layers:
     - state: rack
     - state: rack_on
-      shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
   - type: GenericVisualizer
     visuals:
@@ -19,11 +45,28 @@
           True: { visible: true }
           False: { visible: false }
   - type: Appearance
+
+- type: entity
+  parent: N14BaseMachinePowered
+  id: N14MachineRack
+  name: electronics rack
+  description: An old rack filled with electronics.
+  id: N14BaseMachinePowered
+  name: server rack
+  description: An old server rack filled with electronics.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Power/32x48_machines.rsi
+    snapCardinals: true
+    layers:
+    - state: rack
+    - state: rack_on
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
   # N14TODO: Add deconstruction graph to machine frame tall (spits out electronics and wire), then to steel.
   
 - type: entity
   parent: N14MachineRack
-  id: N14MachineServerRackServer
+  id: N14MachineRackServer
   name: server rack
   description: An old server rack filled with electronics.
   components:
@@ -38,7 +81,7 @@
       
 - type: entity
   parent: N14MachineRack
-  id: N14MachineServerRackRecorder
+  id: N14MachineRackRecorder
   name: electrical recorder
   description: An old rack with a fault recorder in.
   components:
@@ -50,3 +93,37 @@
     - state: recorder_on
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
+
+- type: entity
+  parent: N14BaseMachinePowered
+  id: N14MachineServerRack
+  name: server rack
+  description: An old server rack filled with electronics.
+#  components:
+  # N14TODO: Add deconstruction graph to machine frame tall (spits out electronics), then to steel.
+  
+- type: entity
+  parent: BaseMachine
+  id: N14MachineComputerMainframe # Probably a computer, move it there?
+  name: mainframe
+  description: Probably the biggest computer you've ever seen.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Machines/mainframe.rsi
+    snapCardinals: true
+    layers:
+    - state: mainframe
+    - state: mainframe_on
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.25,-0.5,0.25,0.5"
+          density: 190
+          mask:
+          - MachineMask
+          layer:
+          - MachineLayer
