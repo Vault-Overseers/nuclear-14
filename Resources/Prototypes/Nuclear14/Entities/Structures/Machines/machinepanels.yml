@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseMachine
-  id: N14BaseMachineServerRack
-  name: server rack
-  description: An old server rack filled with electronics.
+  id: N14MachineRack
+  name: electronics rack
+  description: An old rack filled with electronics.
   components:
   - type: Sprite
     sprite: Nuclear14/Structures/Machines/32x48_machines.rsi
@@ -19,4 +19,34 @@
           True: { visible: true }
           False: { visible: false }
   - type: Appearance
-  # N14TODO: Add deconstruction graph to machine frame tall (spits out electronics), then to steel.
+  # N14TODO: Add deconstruction graph to machine frame tall (spits out electronics and wire), then to steel.
+  
+- type: entity
+  parent: N14MachineRack
+  id: N14MachineServerRackServer
+  name: server rack
+  description: An old server rack filled with electronics.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Machines/32x48_machines.rsi
+    snapCardinals: true
+    layers:
+    - state: serverrack
+    - state: serverrack_on
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      
+- type: entity
+  parent: N14MachineRack
+  id: N14MachineServerRackRecorder
+  name: electrical recorder
+  description: An old rack with a fault recorder in.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Machines/32x48_machines.rsi
+    snapCardinals: true
+    layers:
+    - state: recorder
+    - state: recorder_on
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
