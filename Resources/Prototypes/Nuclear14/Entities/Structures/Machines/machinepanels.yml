@@ -160,7 +160,10 @@
   id: N14MachineRackServer
   name: server rack
   description: An old server rack filled with electronics.
-  # N14TODO: Add deconstruction graph to machine frame tall (spits out electronics and wire), then to steel.
+  components:
+  - type: Construction
+    graph: N14TallMachineFrame
+    node: ServerRack
   
 - type: entity
   parent: N14BaseMachinePowered
@@ -176,6 +179,9 @@
     - state: recorder
     - state: recorder_on
       map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: Construction
+    graph: N14TallMachineFrame
+    node: RecorderRack
   
 - type: entity
   parent: N14BaseMachine

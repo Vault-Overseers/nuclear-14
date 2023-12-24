@@ -43,6 +43,16 @@
             - tool: Screwing
               doAfter: 0.5
             - material: Circuitry
+        - to: ServerRack
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+            - material: Circuitry
+        - to: RecorderRack
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+            - material: Circuitry
 
         - to: missingWires
           completed:
@@ -57,7 +67,39 @@
       edges:
         - to: machineFrame
           steps:
-            - tool: Prying
+            - tool: Screwing
+              doAfter: 2
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14MachineFrameTallWired
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: N14MaterialCircuitry1
+              amount: 1
+            - !type:DeleteEntity {}
+            
+    - node: ServerRack
+      entity: N14MachineRackServer
+      edges:
+        - to: machineFrame
+          steps:
+            - tool: Screwing
+              doAfter: 2
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14MachineFrameTallWired
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: N14MaterialCircuitry1
+              amount: 1
+            - !type:DeleteEntity {}
+            
+    - node: RecorderRack
+      entity: N14MachineRackRecorder
+      edges:
+        - to: machineFrame
+          steps:
+            - tool: Screwing
               doAfter: 2
           completed:
             - !type:SpawnPrototype
