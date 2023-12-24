@@ -1,31 +1,109 @@
+# Frames
 - type: entity
-  parent: UnfinishedMachineFrame
   id: N14MachineFrameTall
   description: A metal frame for housing machinery and electronics
-  suffix: Unfinished
+  suffix: Frame
+  placement:
+    mode: SnapgridCenter
   components:
-    - type: Construction
-      containers:
-        - machine_board
-        - machine_parts
-      graph: Machine
-      node: missingWires
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-        machine_parts: !type:Container
     - type: Sprite
       sprite: Nuclear14/Structures/Power/32x48_machines.rsi
-      state: rack # N14TODO: Replace with custom empty rack sprite.
-#    - type: Construction
-#      containers:
-#        - machine_board
-#        - machine_parts
-#      graph: N14TallMachineFrame
-#      node: missingWires
+      state: rackempty
+      offset: 0, 1
+    - type: Transform
+      anchored: true
+      noRot: true
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.25,-0.5,0.25,0.5"
+          density: 190
+          mask:
+          - MachineMask
+          layer:
+          - MachineLayer
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Metallic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: start
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Construction
+      graph: N14TallMachineFrame
+      node: missingWires
+      
+- type: entity
+  parent: N14MachineFrameTall
+  id: N14MachineFrameTallWired
+  description: A metal frame for housing machinery and electronics
+  suffix: Wired
+  components:
+    - type: Sprite
+      sprite: Nuclear14/Structures/Power/32x48_machines.rsi
+      state: rackparts
+      offset: 0, 1
+    - type: Construction
+      graph: N14TallMachineFrame
+      node: machineFrame
+      
+# Machine Base
+- type: entity
+  abstract: true
+  parent: BaseStructure
+  id: N14BaseMachine
+  components: # Not Anchorable due to sprite offset needs
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
 
 - type: entity
-  parent: BaseMachine
+  parent: N14BaseMachine
   id: N14BaseMachinePowered
   name: server rack
   description: An old server rack filled with electronics.
@@ -34,9 +112,10 @@
   - type: Sprite
     sprite: Nuclear14/Structures/Power/32x48_machines.rsi
     snapCardinals: true
+    offset: 0, 1
     layers:
-    - state: rack
-    - state: rack_on
+    - state: serverrack
+    - state: serverrack_on
       map: ["enum.PowerDeviceVisualLayers.Powered"]
   - type: GenericVisualizer
     visuals:
@@ -48,59 +127,43 @@
 
 - type: entity
   parent: N14BaseMachinePowered
-  id: N14MachineRack
+  id: N14MachineRackElectronics
   name: electronics rack
   description: An old rack filled with electronics.
-  id: N14BaseMachinePowered
-  name: server rack
-  description: An old server rack filled with electronics.
   components:
   - type: Sprite
     sprite: Nuclear14/Structures/Power/32x48_machines.rsi
     snapCardinals: true
+    offset: 0, 1
     layers:
     - state: rack
     - state: rack_on
       map: ["enum.PowerDeviceVisualLayers.Powered"]
-  # N14TODO: Add deconstruction graph to machine frame tall (spits out electronics and wire), then to steel.
+    - type: Construction
+      graph: N14TallMachineFrame
+      node: ElectronicsRack
   
 - type: entity
-  parent: N14MachineRack
+  parent: N14BaseMachinePowered
   id: N14MachineRackServer
   name: server rack
   description: An old server rack filled with electronics.
-  components:
-  - type: Sprite
-    sprite: Nuclear14/Structures/Machines/32x48_machines.rsi
-    snapCardinals: true
-    layers:
-    - state: serverrack
-    - state: serverrack_on
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-      
+  # N14TODO: Add deconstruction graph to machine frame tall (spits out electronics and wire), then to steel.
+  
 - type: entity
-  parent: N14MachineRack
+  parent: N14BaseMachinePowered
   id: N14MachineRackRecorder
   name: electrical recorder
   description: An old rack with a fault recorder in.
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Machines/32x48_machines.rsi
+    sprite: Nuclear14/Structures/Power/32x48_machines.rsi
     snapCardinals: true
+    offset: 0, 1
     layers:
     - state: recorder
     - state: recorder_on
-      shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
-
-- type: entity
-  parent: N14BaseMachinePowered
-  id: N14MachineServerRack
-  name: server rack
-  description: An old server rack filled with electronics.
-#  components:
-  # N14TODO: Add deconstruction graph to machine frame tall (spits out electronics), then to steel.
   
 - type: entity
   parent: BaseMachine
@@ -121,7 +184,7 @@
         fix1:
           shape:
             !type:PhysShapeAabb
-            bounds: "-0.25,-0.5,0.25,0.5"
+            bounds: "-1,-1,1,2"
           density: 190
           mask:
           - MachineMask
