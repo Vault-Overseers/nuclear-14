@@ -39,12 +39,39 @@
         damage: 100
       behaviors:
       - !type:ChangeConstructionNodeBehavior
-        node: start
+        node: destroyedMachineFrame
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Construction
     graph: N14TallMachineFrame
     node: missingWires
+    
+- type: entity
+  parent: N14MachineFrameTall
+  id: N14MachineFrameTallDestroyed
+  name: destroyed machine
+  description: A destroyed frame that used to hold machinery and electronics
+  components:
+    - type: Sprite
+      sprite: Nuclear14/Structures/Power/32x48_machines.rsi
+      state: rackdestroyed
+      offset: 0, 1
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SheetSteel1:
+              min: 1
+              max: 3
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Construction
+      graph: N14TallMachineFrame
+      node: destroyedMachineFrame
       
 - type: entity
   parent: N14MachineFrameTall
@@ -97,6 +124,8 @@
         !type:DamageTrigger
         damage: 100
       behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: destroyedMachineFrame
       - !type:DoActsBehavior
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
