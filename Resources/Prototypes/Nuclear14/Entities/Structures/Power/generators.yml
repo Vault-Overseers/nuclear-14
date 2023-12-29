@@ -65,6 +65,70 @@
     supplyRate: 1000
     supplyRampRate: 250
     supplyRampTolerance: 250
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14MachineFrameTallDestroyed:
+            min: 1
+            max: 1
+      - !type:SpawnGasBehavior
+        gasMixture:
+          volume: 1000
+          moles:
+            - 0 # oxygen
+            - 0 # nitrogen
+            - 340.5701689 # carbon dioxide
+          temperature: 373.15
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 100
+    intensitySlope: 2
+    totalIntensity: 200
+    
+- type: entity
+  parent: N14GeneratorFusionMini
+  id: N14GeneratorFusionEnclave
+  description: A generator that uses heavy water for fusion power.
+  name: enclave fusion generator
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.8"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Nuclear14/Structures/Power/enclave.rsi
+    layers:
+    - state: generator_enclave_off
+    - state: generator_enclave_on
+      shader: unshaded
+  - type: PowerSupplier
+    supplyRate: 1000
+    supplyRampRate: 250
+    supplyRampTolerance: 250
     
 - type: entity
   parent: N14GeneratorFusionMini
