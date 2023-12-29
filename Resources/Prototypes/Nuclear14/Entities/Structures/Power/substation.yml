@@ -2,7 +2,7 @@
 - type: entity
   abstract: true
   id: N14BaseSubstation
-  parent: [ BaseMachine, ConstructibleMachine ]
+  parent: BaseMachine
   name: substation
   description: Reduces the voltage of electricity put into it.
   placement:
@@ -125,6 +125,37 @@
   - type: Sprite
     sprite: Nuclear14/Structures/Power/32x48_machines.rsi
     state: substation_rust
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14SubstationRustyDestroyed:
+            min: 1
+            max: 1
+      - !type:SpawnGasBehavior
+        gasMixture:
+          volume: 1000
+          moles:
+            - 0 # oxygen
+            - 0 # nitrogen
+            - 340.5701689 # carbon dioxide
+          temperature: 373.15
 
 - type: entity
   parent: N14SubstationBasicRusty

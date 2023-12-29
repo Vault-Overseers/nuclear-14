@@ -2,7 +2,7 @@
 - type: entity
   abstract: true
   id: N14PowerStorageBase
-  parent: [ BaseMachine, ConstructibleMachine ]
+  parent: BaseMachine
   name: energy storage unit
   description: A high-capacity energy storage unit.
   placement:
@@ -72,9 +72,6 @@
     requirePower: true
     highVoltageNode: input
     mediumVoltageNode: output
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: StrongMetallic
   - type: BatterySensor
   - type: DeviceNetwork
     deviceNetId: AtmosDevices
