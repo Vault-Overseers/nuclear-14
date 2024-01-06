@@ -1,7 +1,6 @@
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Server.GameTicking.Rules.Configurations;
 using Content.Server.RoundEnd;
 using Content.Server.Spawners.Components;
 using Content.Shared.Mobs;
@@ -23,7 +22,7 @@ namespace Content.Server.GameTicking.Rules;
 /// <summary>
 /// Assign vault dwellers objectives at round-start and late-join.
 /// </summary>
-public sealed class WaveDefenseRuleSystem : GameRuleSystem
+public sealed class WaveDefenseRuleSystem : GameRuleSystem<WaveDefenseRuleComponent>
 {
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IEntityManager _entMan = default!;
@@ -32,10 +31,6 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly CargoSystem _cargo = default!;
     [Dependency] private readonly StationSystem _station = default!;
-
-    public override string Prototype => "WaveDefense";
-
-    private WaveDefenseRuleConfiguration _waveDefenseRuleConfig = new();
 
     public int WaveNumber = 0;
     public double HighScore = 0;
@@ -49,7 +44,6 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RoundStartAttemptEvent>(OnStartAttempt);
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnPlayersSpawned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(HandleLatejoin);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
@@ -57,7 +51,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
         SubscribeLocalEvent<WaveMobComponent, MobStateChangedEvent>(OnMobDied);
     }
 
-    public override void Started()
+    protected override void Started(EntityUid uid, WaveDefenseRuleComponent rules, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         Logger.InfoS("waves", $"Starting wave defense game mode");
         WaveNumber = 0;
@@ -67,65 +61,73 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
         RestartTimer();
     }
 
-    public override void Ended()
+    protected override void Ended(EntityUid uid, WaveDefenseRuleComponent rules, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
         StopTimer();
     }
 
-    private void OnStartAttempt(RoundStartAttemptEvent ev)
-    {
-        if (!RuleAdded)
-            return;
-
-        if (!ev.Forced)
-        {
-            // TODO: If nobody readied up, refuse to start
-            //ev.Cancel();
-        }
-    }
-
     private void HandleLatejoin(PlayerSpawnCompleteEvent ev)
     {
-        if (!RuleAdded)
-            return;
-
-        EnsureComp<WaveDefenderComponent>(ev.Mob);
-        Defenders.Add(ev.Profile.Name);
+        var query = EntityQueryEnumerator<WaveDefenseRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var waves, out var gameRule))
+        {
+            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
+                return;
+            EnsureComp<WaveDefenderComponent>(ev.Mob);
+            Defenders.Add(ev.Profile.Name);
+        }
     }
 
     private void OnPlayersSpawned(RulePlayerJobsAssignedEvent ev)
     {
-        if (!RuleAdded)
-            return;
-
-        foreach (var player in ev.Players)
+        var query = EntityQueryEnumerator<WaveDefenseRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var nukeops, out var gameRule))
         {
-            if (player.AttachedEntity is { Valid: true } mob)
+            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
+                return;
+
+            foreach (var player in ev.Players)
             {
-                EnsureComp<WaveDefenderComponent>(mob);
-                Defenders.Add(player.Name);
+                if (player.AttachedEntity is { Valid: true } mob)
+                {
+                    EnsureComp<WaveDefenderComponent>(mob);
+                    Defenders.Add(player.Name);
+                }
             }
         }
     }
 
     private void OnRoundEndText(RoundEndTextAppendEvent ev)
     {
-        if (!RuleAdded)
-            return;
-        ev.AddLine(Loc.GetString("wave-defence-end-text", ("number", WaveNumber), ("kills", KillCount), ("score", HighScore)));
-        ev.AddLine(Loc.GetString("wave-defence-participants"));
-        foreach (var player in Defenders)
+        var query = EntityQueryEnumerator<WaveDefenseRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var rules, out var gameRule))
         {
-            ev.AddLine(player);
+            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
+                return;
+            ev.AddLine(Loc.GetString("wave-defence-end-text", ("number", WaveNumber), ("kills", KillCount),
+                ("score", HighScore)));
+            ev.AddLine(Loc.GetString("wave-defence-participants"));
+            foreach (var player in Defenders)
+            {
+                ev.AddLine(player);
+            }
         }
+
+        StopTimer();
     }
 
     public void RestartTimer()
     {
-        _timerCancel.Cancel();
-        _timerCancel = new CancellationTokenSource();
-        Timer.Spawn(_waveDefenseRuleConfig.WaveTime * 1000, TimerFired, _timerCancel.Token);
-        Logger.InfoS("waves", $"Next wave in {_waveDefenseRuleConfig.WaveTime} seconds");
+        var query = EntityQueryEnumerator<WaveDefenseRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var rules, out var gameRule))
+        {
+            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
+                return;
+            _timerCancel.Cancel();
+            _timerCancel = new CancellationTokenSource();
+            Timer.Spawn(rules.WaveTime * 1000, TimerFired, _timerCancel.Token);
+            Logger.InfoS("waves", $"Next wave in {rules.WaveTime} seconds");
+        }
     }
 
     public void StopTimer()
@@ -189,7 +191,16 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
         //Todo: fine tune this, i just slapped an integer here wcgw.
         //Ideally, we would have no numbers hard coded at all and should rely solely on the RuleConfig, so go there to change the actual difficulty
         //or make a new rule config. Same goes with timer
-        var wavePool = wave * _waveDefenseRuleConfig.DifficultyMod * (Defenders.Count * 3);
+        var difficulty = 0f;
+        var query = EntityQueryEnumerator<WaveDefenseRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var rules, out var gameRule))
+        {
+            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
+                continue;
+            difficulty = rules.DifficultyMod;
+        }
+
+        var wavePool = wave * difficulty * (Defenders.Count * 2);
         var waveTemplate = _random.Pick(mobList).Value.Item1;
         var spawnList = new List<string>();
 
@@ -213,31 +224,38 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem
 
     private void OnMobDied(EntityUid mobUid, WaveMobComponent component, MobStateChangedEvent args)
     {
-        if (!RuleAdded)
-            return;
-
-        if (args.NewMobState == MobState.Dead)
+        var query = EntityQueryEnumerator<WaveDefenseRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var rules, out var gameRule))
         {
-            KillCount++;
-            HighScore += component.Difficulty * 10;
-            RemCompDeferred<WaveMobComponent>(mobUid);
-            var station = _station.GetOwningStation(mobUid);
-            if (TryComp<StationBankAccountComponent>(station, out var stationBank))
+            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
+                return;
+            if (args.NewMobState == MobState.Dead)
             {
-                _cargo.UpdateBankAccount(stationBank, (int)(component.Difficulty * 100));
+                KillCount++;
+                HighScore += component.Difficulty * 10;
+                RemCompDeferred<WaveMobComponent>(mobUid);
+                var station = _station.GetOwningStation(mobUid);
+                if (TryComp<StationBankAccountComponent>(station, out var stationBank))
+                {
+                    _cargo.UpdateBankAccount(station.Value, stationBank, (int) (component.Difficulty * 100));
+                }
             }
         }
     }
 
     private void OnPlayerDied(EntityUid mobUid, WaveDefenderComponent component, MobStateChangedEvent args)
     {
-        if (!RuleAdded)
-            return;
-        var defenders = EntityQuery<WaveDefenderComponent, MobStateComponent>(true);
-        var defendersAlive = defenders.Any(ent => ent.Item2.CurrentState == MobState.Alive && ent.Item1.Running);
-        if (!defendersAlive)
+        var query = EntityQueryEnumerator<WaveDefenseRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var nukeops, out var gameRule))
         {
-            _roundEndSystem.EndRound();
+            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
+                return;
+            var defenders = EntityQuery<WaveDefenderComponent, MobStateComponent>(true);
+            var defendersAlive = defenders.Any(ent => ent.Item2.CurrentState == MobState.Alive && ent.Item1.Running);
+            if (!defendersAlive)
+            {
+                _roundEndSystem.EndRound();
+            }
         }
     }
 }

@@ -6,6 +6,15 @@
   description: A modular intercom that fits over the head. Takes encryption keys.
   components:
   - type: Headset
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+  - type: EncryptionKeyHolder
+    keySlots: 4
   - type: Sprite
     state: icon_alt
   - type: Clothing
@@ -18,15 +27,10 @@
   id: N14ClothingHeadsetVaulttec
   name: Vault-Tec over-ear headset
   components:
-  - type: Headset
-    channels:
-    - VaultCommon
-    - VaultCommand
-    - VaultEngineering
-    - VaultMedical
-    - VaultScience
-    - VaultSecurity
-    defaultChannel: VaultCommand
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
   - type: Sprite
     sprite: Clothing/Ears/Headsets/centcom.rsi
   - type: Clothing
@@ -37,15 +41,10 @@
   id: N14ClothingHeadsetVaultCommand
   name: command over-ear headset
   components:
-  - type: Headset
-    channels:
-    - VaultCommon
-    - VaultCommand
-    - VaultEngineering
-    - VaultMedical
-    - VaultScience
-    - VaultSecurity
-    defaultChannel: VaultCommand
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
   - type: Sprite
     sprite: Clothing/Ears/Headsets/command.rsi
   - type: Clothing
@@ -56,10 +55,10 @@
   id: N14ClothingHeadsetVaultDweller
   name: vault over-ear headset
   components:
-  - type: Headset
-    channels:
-    - VaultCommon
-    defaultChannel: VaultCommon
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/cargo.rsi
   - type: Clothing
@@ -70,11 +69,11 @@
   id: N14ClothingHeadsetVaultMedical
   name: medical over-ear headset
   components:
-  - type: Headset
-    channels:
-    - VaultCommon
-    - VaultMedical
-    defaultChannel: VaultMedical
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyMedical
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/medical.rsi
   - type: Clothing
@@ -85,11 +84,11 @@
   id: N14ClothingHeadsetVaultSecurity
   name: security over-ear headset
   components:
-  - type: Headset
-    channels:
-    - VaultCommon
-    - VaultSecurity
-    defaultChannel: VaultSecurity
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySecurity
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/security.rsi
   - type: Clothing
@@ -100,11 +99,11 @@
   id: N14ClothingHeadsetVaultEngineering
   name: engineering over-ear headset
   components:
-  - type: Headset
-    channels:
-    - VaultCommon
-    - VaultEngineering
-    defaultChannel: VaultEngineering
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyEngineering
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/engineering.rsi
   - type: Clothing
@@ -115,40 +114,25 @@
   id: N14ClothingHeadsetVaultScience
   name: science over-ear headset
   components:
-  - type: Headset
-    channels:
-    - VaultCommon
-    - VaultScience
-    defaultChannel: VaultScience
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyScience
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/science.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/science.rsi
-
-- type: entity
-  parent: N14ClothingHeadsetAlt
-  id: N14ClothingHeadsetCaravan
-  name: cargo over-ear headset
-  components:
-  - type: Headset
-    channels:
-    - WastelandCommon
-    - CaravanCompany
-    defaultChannel: CaravanCompany
-  - type: Sprite
-    sprite: Clothing/Ears/Headsets/cargo.rsi
-  - type: Clothing
-    sprite: Clothing/Ears/Headsets/cargo.rsi
 
 - type: entity
   parent: N14ClothingHeadsetAlt
   id: N14ClothingHeadsetBOSMidwest
   name: midwest brotherhood over-ear headset
   components:
-  - type: Headset
-    channels:
-    - BrotherhoodMidwest
-    defaultChannel: BrotherhoodMidwest
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyBrotherhoodMidwest
   - type: Sprite
     sprite: Clothing/Ears/Headsets/syndicate.rsi
   - type: Clothing
@@ -159,12 +143,25 @@
   id: N14ClothingHeadsetBOSWashington
   name: washington brotherhood over-ear headset
   components:
-  - type: Headset
-    channels:
-    - BrotherhoodWashington
-    defaultChannel: BrotherhoodWashington
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyBrotherhoodWashington
   - type: Sprite
     sprite: Clothing/Ears/Headsets/syndicate.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/syndicate.rsi
-
+    
+- type: entity
+  parent: N14ClothingHeadsetAlt
+  id: N14ClothingHeadsetEnclave
+  name: enclave over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyEnclave
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/syndicate.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/syndicate.rsi

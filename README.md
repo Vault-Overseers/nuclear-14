@@ -35,7 +35,7 @@ Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licens
 
 Note that some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.
 
-Please note as a fork of SS14, we will us assets originally from SS13 from various codebases and communities. In all cases we will reference the codebase and the commit that the asset was present in, and IF possible will credit the original author. Most codebases are a result of iterations over many years so sometimes this information can become hard to record. SS14 is built on this same philosophy of forking and cross contribution so please take it as a show of flattery and in good faith. Thank you.
+Please note that as a fork of SS14, we will use assets originally from SS13, from various codebases and communities. In all cases we will reference the codebase and the commit that the asset was present in, and IF possible will credit the original author. Most codebases are a result of iterations over many years so sometimes this information can become hard to record. SS14 is built on this same philosophy of forking and cross contribution so please take it as a show of flattery and in good faith. Thank you.
 
 ## Legal Disclaimer
 Nuclear14 isn't endorsed by Bethesda Softworks, ZeniMax Media Inc or Microsoft, and doesn't reflect the views or opinions of any of these companies or anyone officially involved with making Fallout. Fallout and Bethesda Softworks and all related logos are trademarks or registered trademarks of Bethesda Softworks, Microsoft and all other relevant companies.

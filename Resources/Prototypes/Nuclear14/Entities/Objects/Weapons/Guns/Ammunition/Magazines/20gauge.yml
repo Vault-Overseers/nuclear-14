@@ -1,0 +1,50 @@
+- type: entity
+  id: N14BaseMagazineShotgun20
+  name: ammo drum (20 gauge shells)
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - N14MagazineShotgun20
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14ShellShotgun20
+    capacity: 10
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
+  - type: Item
+    size: 5
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/20gauge/mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: N14MagazineShotgun20
+  name: ammo drum (20 gauge shells)
+  parent: N14BaseMagazineShotgun20
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14ShellShotgun20
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+

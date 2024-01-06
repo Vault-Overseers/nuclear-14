@@ -1,0 +1,39 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBox9mm
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14CartridgePistol9
+    proto: NN14CartridgePistol9
+    capacity: 80
+  - type: Item
+    size: 20
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Boxes/9mm.rsi
+    netsync: false
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBox9mm
+  id: MagazineBox9mm
+  name: ammunition box (9mm)
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14CartridgePistol9
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

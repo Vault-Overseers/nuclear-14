@@ -1,0 +1,24 @@
+- type: entity
+  id: N14BulletAcid
+  name: acid spit
+  parent: BaseBullet
+  noSpawn: true
+  components:
+    - type: Physics
+      bodyType: Dynamic
+      linearDamping: 1
+      angularDamping: 1
+    - type: Projectile
+      damage:
+        types:
+          Piercing: 2
+    - type: StaminaDamageOnCollide
+      damage: 6
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+      layers:
+        - state: xeno_toxic
+    - type: Ammo
+      muzzleFlash: null
+    - type: TimedDespawn
+      lifetime: 1

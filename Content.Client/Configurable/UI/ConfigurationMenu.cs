@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Numerics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
@@ -21,7 +22,7 @@ namespace Content.Client.Configurable.UI
 
         public ConfigurationMenu(ConfigurationBoundUserInterface owner)
         {
-            MinSize = SetSize = (300, 250);
+            MinSize = SetSize = new Vector2(300, 250);
             Owner = owner;
 
             _inputs = new List<(string name, LineEdit input)>();
@@ -62,7 +63,7 @@ namespace Content.Client.Configurable.UI
             {
                 VerticalExpand = true,
                 HorizontalExpand = true,
-                ModulateSelfOverride = Color.FromHex("#202025")
+                ModulateSelfOverride = Color.FromHex("#282828")
             };
 
             outerColumn.AddChild(_column);
@@ -92,7 +93,7 @@ namespace Content.Client.Configurable.UI
                 var input = new LineEdit
                 {
                     Name = field.Key + "-input",
-                    Text = field.Value,
+                    Text = field.Value ?? "",
                     IsValid = Validate,
                     HorizontalExpand = true,
                     SizeFlagsStretchRatio = .8f

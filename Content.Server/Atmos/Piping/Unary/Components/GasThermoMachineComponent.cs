@@ -11,10 +11,6 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         [DataField("inlet")]
         public string InletName = "pipe";
 
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("enabled")]
-        public bool Enabled = true;
-
         /// <summary>
         ///     Current maximum temperature, calculated from <see cref="BaseHeatCapacity"/> and the quality of matter
         ///     bins. The heat capacity effectively determines the rate at which the thermo machine can add or remove
@@ -52,7 +48,7 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         public float MaxTemperature;
 
         /// <summary>
-        ///     Minimum temperature the device can reach with a 0 total laser quality. Usually the quality will be at
+        ///     Minimum temperature the device can reach with a 0 total capacitor quality. Usually the quality will be at
         ///     least 1.
         /// </summary>
         [DataField("baseMinTemperature")]
@@ -60,7 +56,7 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         public float BaseMinTemperature = 96.625f; // Selected so that tier-1 parts can reach 73.15k
 
         /// <summary>
-        ///     Maximum temperature the device can reach with a 0 total laser quality. Usually the quality will be at
+        ///     Maximum temperature the device can reach with a 0 total capacitor quality. Usually the quality will be at
         ///     least 1.
         /// </summary>
         [DataField("baseMaxTemperature")]
@@ -91,6 +87,13 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         ///     The machine part that affects the temperature range.
         /// </summary>
         [DataField("machinePartTemperature", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
-        public string MachinePartTemperature = "Laser";
+        public string MachinePartTemperature = "Capacitor";
+
+        /// <summary>
+        /// Last amount of energy added/removed from the attached pipe network
+        /// </summary>
+        [DataField("lastEnergyDelta")]
+        [ViewVariables(VVAccess.ReadWrite)]
+        public float LastEnergyDelta;
     }
 }

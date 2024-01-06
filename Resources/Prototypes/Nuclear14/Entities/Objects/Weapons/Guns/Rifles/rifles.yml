@@ -20,20 +20,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle
+        startingItem: Magazine5.56Rifle
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+            - Magazine5.56Rifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: N14Cartridge5.56Rifle
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - N14Cartridge5.56Rifle
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -67,20 +67,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifle
+        startingItem: Magazine7.62Rifle
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineLightRifle
+            - Magazine7.62Rifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle
+        startingItem: N14Cartridge7.62Rifle
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - N14Cartridge7.62Rifle
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -105,7 +105,7 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
-    selectedMode: FullAuto   
+    selectedMode: FullAuto
     availableModes:
     - FullAuto
     - SemiAuto
@@ -113,20 +113,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle
+        startingItem: LongMagazine5.56Rifle
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+
+            - LongMagazine5.56Rifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: N14Cartridge5.56Rifle
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - N14Cartridge5.56Rifle
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -151,27 +152,73 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
     fireRate: 5
-    selectedMode: SemiAuto      
+    selectedMode: SemiAuto
     availableModes:
     - SemiAuto
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifle
+        startingItem: Magazine7.62Rifle
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineLightRifle
+            - Magazine7.62Rifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle
+        startingItem: N14Cartridge7.62Rifle
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - N14Cartridge7.62Rifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: Service Rifle
+  parent: BaseWeaponRifle
+  id: N14WeaponService
+  description: A cheap mass produced post war rifle made by the NCR, chambered in 5.56.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Rifles/servicerifle.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Rifles/servicerifle.rsi
+  - type: Gun
+    fireRate: 4
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine5.56Rifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine5.56Rifle
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge5.56Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge5.56Rifle
   - type: MagazineVisuals
     magState: mag
     steps: 1

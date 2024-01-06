@@ -1,0 +1,75 @@
+- type: entity
+  id: N14BaseMagazine45Pistol
+  name: pistol magazine (45. auto)
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - N14MagazinePistol45
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14CartridgePistol45
+    capacity: 8
+  - type: Item
+    size: 5
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/45/pistolmag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: N14MagazinePistol45
+  name: pistol magazine (45. auto)
+  parent: N14BaseMagazine45Pistol
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14CartridgePistol45
+
+- type: entity
+  id: BaseMagazine45SubMachineGun
+  name: SMG magazine (45. auto)
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Magazine45SubMachineGun
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14CartridgePistol45
+    capacity: 25
+  - type: Item
+    size: 10
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/45/smgmag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance

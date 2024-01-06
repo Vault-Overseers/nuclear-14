@@ -1,0 +1,82 @@
+- type: entity
+  parent: hydroponicsSoil
+  id: N14HydroponicsPlanter
+  name: planter
+  description: A wooden planter with soil for growing things in.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.1"
+        density: 190
+        hard: true
+        mask:
+        - MachineMask
+  - type: Anchorable
+  - type: Pullable
+  - type: Sprite
+    layers:
+      - sprite: Nuclear14/Structures/Hydroponics/planterbox.rsi
+        state: icon
+      - sprite: Nuclear14/Structures/Hydroponics/planterbox.rsi
+        state: redflag
+        map: [ "health_alert" ]
+        visible: false
+      - sprite: Nuclear14/Structures/Hydroponics/planterbox.rsi
+        state: blueflag
+        map: [ "water_alert" ]
+        visible: false
+      - sprite: Nuclear14/Structures/Hydroponics/planterbox.rsi
+        state: yellowflag
+        map: [ "nutri_alert" ]
+        visible: false
+      - sprite: Nuclear14/Structures/Hydroponics/planterbox.rsi
+        state: redflag
+        map: [ "undefined_alert" ]
+        visible: false
+      - sprite: Nuclear14/Structures/Hydroponics/planterbox.rsi
+        state: greenflag
+        map: [ "harvest_alert" ]
+        visible: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PlantHolderVisuals.HealthLight:
+        health_alert:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PlantHolderVisuals.WaterLight:
+        water_alert:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PlantHolderVisuals.NutritionLight:
+        nutri_alert:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PlantHolderVisuals.AlertLight:
+        undefined_alert:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PlantHolderVisuals.HarvestLight:
+        harvest_alert:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PlantHolder
+    drawWarnings: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/flowing_water_open.ogg

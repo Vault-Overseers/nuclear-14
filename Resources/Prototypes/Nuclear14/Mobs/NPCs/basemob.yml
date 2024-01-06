@@ -10,31 +10,33 @@
   components:
   - type: InputMover
   - type: MobMover
-  - type: Faction
+  - type: NpcFactionMember
     factions:
     - SimpleHostile
   - type: HTN
-    rootTask: SimpleHostileCompound
+    rootTask:
+      task: SimpleHostileCompound
   - type: Sprite
     drawdepth: Mobs
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: bloatfly
-      sprite: Nuclear14/Mobs/Animals/bloatfly.rsi
+      sprite: Nuclear14/Mobs/Insects/bloatfly.rsi # Replace this with a mob error or something
   - type: Physics
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 6
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeCircle
-        radius: 0.20
-      density: 20
-      mask:
-      - SmallMobMask
-      layer:
-      - SmallMobLayer
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
   - type: MobState
     allowedStates:
       - Alive
@@ -44,7 +46,7 @@
       0: Alive
       15: Dead
   - type: Stamina
-    excess: 15
+    critThreshold: 15
   - type: MovementAlwaysTouching
   - type: Appearance
   - type: DamageStateVisuals
@@ -60,10 +62,6 @@
   - type: Bloodstream
     bloodMaxVolume: 50
   - type: CombatMode
-    disarmAction:
-      enabled: false
-      autoPopulate: false
-      name: action-name-disarm
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -78,10 +76,11 @@
       melee:
         reagents:
         - ReagentId: Toxin
-          Quantity: 1
+          Quantity: 0.1
   - type: MeleeChemicalInjector
     solution: melee
   - type: GhostTakeoverAvailable
+  - type: GhostRole
     prob: 0.33
     makeSentient: true
     name: hostile attacker # wave defence
@@ -92,6 +91,31 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: WastelandAnimal
+  - type: Puller
+    needsHands: true
+  - type: Speech
+    speechSounds: Squeak
+    
+    
+- type: entity
+  name: scaley wasteland animal
+  abstract: true
+  id: N14MobBaseHostileScaley
+  parent: N14MobBaseHostile
+  components:
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: N14Scale
+    
+- type: entity
+  name: wasteland insect
+  abstract: true
+  id: N14MobBaseHostileInsect
+  parent: N14MobBaseHostile
+  components:
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: N14Insect
 
 # Wave Defence Base Hostile
 - type: entity
@@ -100,9 +124,12 @@
   id: N14MobWave
   components:
   - type: HTN
-    rootTask: SimpleHostileCompound
+    rootTask:
+      task: SimpleHostileCompound
     blackboard:
       NavInteract: !type:Bool
+        true
+      NavClimb: !type:Bool
         true
       NavPry: !type:Bool
         true
@@ -111,7 +138,7 @@
       ESP: !type:Bool
         true
       VisionRadius: !type:Single
-        250.0
+        1000.0
   - type: WaveMob
     difficulty: 1
     

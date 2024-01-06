@@ -12,8 +12,9 @@
       - !type:HealthChange
         damage:
           groups:
-            Burn: -0.9
-            Brute: -0.9
+            Burn: -2.0
+            Brute: -2.0
+            Airloss: -2.0
             
 - type: reagent
   id: HealingPowder
@@ -32,6 +33,40 @@
             Brute: -0.5
       - !type:ChemVomit
         probability: 0.05
+        
+# Poison
+- type: reagent
+  id: AntidoteMixture
+  name: reagent-name-antidote-mixture
+  group: Medicine
+  desc: reagent-desc-antidote-mixture
+  physicalDesc: reagent-physical-desc-soothing
+  color: "#D41244"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: -1 # TODO: Change this to poison only once we add toxin syringes.
+      - !type:ChemVomit
+        probability: 0.01
+
+# Poison
+- type: reagent
+  id: Antidote
+  name: reagent-name-antidote
+  group: Medicine
+  desc: reagent-desc-antidote
+  physicalDesc: reagent-physical-desc-soothing
+  color: "#D41244"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: -5 # TODO: Change this to poison only once we add toxin syringes.
 
 - type: reagent
   id: RobustHealingMixture #used in super stimpacks
@@ -46,15 +81,15 @@
       - !type:HealthChange
         damage:
           groups:
-            Burn: -1.5
-            Brute: -1.5
+            Burn: -5
+            Brute: -5
+            Airloss: -5
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
           min: 35
         damage:
           types:
-            Asphyxiation: 0.5
             Cellular: 0.3
       - !type:MovespeedModifier
         walkSpeedModifier: 0.50
@@ -160,3 +195,24 @@
     Medicine:
       effects:
       - !type:Jitter
+
+- type: reagent
+  id: Daytripper
+  name: reagent-name-daytripper
+  group: Medicine
+  desc: reagent-desc-daytripper
+  physicalDesc: reagent-physical-desc-sticky
+  color: "#00e5ff"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 10
+        refresh: false
+    Food:
+      effects:
+      - !type:SatiateThirst
+        factor: -0.2
