@@ -154,6 +154,9 @@
   - type: Sprite
     snapCardinals: true
     state: showcase
+  - type: Transform
+    anchored: true
+    noRot: true
     
 - type: entity
   parent: N14ShelfWood
@@ -172,3 +175,72 @@
   components:
   - type: Sprite
     state: stand_wood_small
+    
+- type: entity
+  parent: N14ShelfWood
+  id: N14ShelfWoodClothesRack
+  name: clothes rack
+  description: A wooden rack for storing clothes.
+  components:
+  - type: Sprite
+    state: clothing_rack
+    
+# Metal Shelves
+- type: entity
+  parent: N14ShelfWood
+  id: N14ShelfMetal
+  name: metal shelf
+  description: A cold metal shelf.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
+    netsync: false
+    state: metal_shelf
+    offset: 0, 0.5
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: N14ShelfMetal
+  id: N14ShelfMetalShop
+  name: shop shelf
+  description: A metal shelf for displaying goods.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
+    netsync: false
+    state: shelf_shop
+    
+- type: entity
+  parent: N14ShelfMetal
+  id: N14ShelfMetalMeds
+  name: medical shelf
+  description: A metal shelf for storing meds.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
+    netsync: false
+    state: medshelves
