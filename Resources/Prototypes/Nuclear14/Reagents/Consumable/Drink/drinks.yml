@@ -23,10 +23,18 @@
   parent: GreenTea
   name: reagent-name-tea-agave
   desc: reagent-desc-tea-agave
+  metabolisms:
+    Drink:
+      effects:
+      - !type:AdjustReagent
+        reagent: Sugar
+        amount: 0.4
+      - !type:SatiateThirst
+        factor: 4
 
 - type: reagent
   id: TeaBlackberry
-  parent: GreenTea
+  parent: TeaAgave
   name: reagent-name-tea-blackberry
   desc: reagent-desc-tea-blackberry
 
@@ -41,16 +49,31 @@
   parent: GreenTea
   name: reagent-name-tea-broc
   desc: reagent-desc-tea-broc
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -0.25
+            Brute: -0.25
 
 - type: reagent
   id: TeaDatura
   parent: GreenTea
   name: reagent-name-tea-datura
   desc: reagent-desc-tea-datura
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: 2.5
 
 - type: reagent
   id: TeaHoneyMesquite
-  parent: GreenTea
+  parent: TeaAgave
   name: reagent-name-tea-honeymesquite
   desc: reagent-desc-tea-honeymesquite
 
@@ -68,25 +91,25 @@
 
 - type: reagent
   id: TeaPricklypear
-  parent: GreenTea
+  parent: TeaAgave
   name: reagent-name-tea-pricklypear
   desc: reagent-desc-tea-pricklypear
 
 - type: reagent
   id: TeaStarlightberry
-  parent: GreenTea
+  parent: TeaAgave
   name: reagent-name-tea-starlightberry
   desc: reagent-desc-tea-starlightberry
 
 - type: reagent
   id: TeaTarberry
-  parent: GreenTea
+  parent: TeaAgave
   name: reagent-name-tea-tarberry
   desc: reagent-desc-tea-tarberry
 
 - type: reagent
   id: TeaWhiteHorsenettle
-  parent: GreenTea
+  parent: TeaDatura
   name: reagent-name-tea-whitehorsenettle
   desc: reagent-desc-tea-whitehorsenettle
 
