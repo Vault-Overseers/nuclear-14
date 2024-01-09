@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseSign
-  id: N14SignBase
+  id: N14SignBase # for non directional signs otherwise remove snapCardinals: true
   abstract: true
   components:
   - type: WallMount
@@ -8,6 +8,7 @@
   - type: Sprite
     drawdepth: WallTops
     sprite: Nuclear14/Structures/Wallmounts/adverts.rsi
+    snapCardinals: true # one direction
   - type: Destructible
     thresholds:
     - trigger:

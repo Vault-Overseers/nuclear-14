@@ -1,0 +1,124 @@
+﻿- type: constructionGraph
+  id: N14TallMachineFrame
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+        - !type:DeleteEntity
+      edges:
+        - to: missingWires
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 2.5
+        - to: destroyedMachineFrame
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 2.5
+
+    - node: missingWires
+      entity: N14MachineFrameTall
+      edges:
+        - to: machineFrame
+          steps:
+            - material: Cable
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 5
+            - !type:DeleteEntity
+          steps:
+            - tool: Welding
+              doAfter: 5
+
+    - node: machineFrame
+      entity: N14MachineFrameTallWired
+      edges:
+        - to: ElectronicsRack
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+            - material: Circuitry
+        - to: ServerRack
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+            - material: Circuitry
+        - to: RecorderRack
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+            - material: Circuitry
+
+        - to: missingWires
+          completed:
+            - !type:SpawnPrototype
+              prototype: CableApcStack1
+          steps:
+            - tool: Cutting
+              doAfter: 0.25
+
+    - node: ElectronicsRack
+      entity: N14MachineRackElectronics
+      edges:
+        - to: machineFrame
+          steps:
+            - tool: Screwing
+              doAfter: 2
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14MachineFrameTallWired
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: N14MaterialCircuitry1
+              amount: 1
+            - !type:DeleteEntity {}
+            
+    - node: ServerRack
+      entity: N14MachineRackServer
+      edges:
+        - to: machineFrame
+          steps:
+            - tool: Screwing
+              doAfter: 2
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14MachineFrameTallWired
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: N14MaterialCircuitry1
+              amount: 1
+            - !type:DeleteEntity {}
+            
+    - node: RecorderRack
+      entity: N14MachineRackRecorder
+      edges:
+        - to: machineFrame
+          steps:
+            - tool: Screwing
+              doAfter: 2
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14MachineFrameTallWired
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: N14MaterialCircuitry1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: destroyedMachineFrame
+      entity: N14MachineFrameTallDestroyed
+      edges:
+        - to: start
+          steps:
+            - tool: Welding
+              doAfter: 5
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 3
+            - !type:DeleteEntity {}
