@@ -70,6 +70,35 @@ reagent-desc-extract-white-horsenettle = A group of nettles and berries, they do
 reagent-name-extract-xander = xander extract
 reagent-desc-extract-xander = An edible root, it was obviously pulled from the ground at some point. Tastes similar to a potato, very starchy, but good to eat.
 
+## Teas
+reagent-name-tea-agave = agave tea
+reagent-desc-tea-agave = sweet and tangy tea.
+reagent-name-tea-blackberry = blackberry tea
+reagent-desc-tea-blackberry = sweet yet tart.
+reagent-name-tea-barrelcactus = barrel cactus tea
+reagent-desc-tea-barrelcactus = weak tea.
+reagent-name-tea-broc = broc tea
+reagent-desc-tea-broc = medicinal but dull.
+reagent-name-tea-datura = datura tea
+reagent-desc-tea-datura = bitter drink.
+reagent-name-tea-honeymesquite = honey mesquite tea
+reagent-desc-tea-honeymesquite = oddly sweet.
+reagent-name-tea-mutfruit = mutfruit tea
+reagent-desc-tea-mutfruit = dull but homely.
+reagent-name-tea-nettle = nettle tea
+reagent-desc-tea-nettle = medicinal and warming.
+reagent-name-tea-pricklypear = prickly pear tea
+reagent-desc-tea-pricklypear = fruity.
+reagent-name-tea-starlightberry = starlightberry tea
+reagent-desc-tea-starlightberry = bursting with flavor.
+reagent-name-tea-tarberry = tarberry tea
+reagent-desc-tea-tarberry = bursting with flavor.
+reagent-name-tea-whitehorsenettle = white horsenettle tea
+reagent-desc-tea-whitehorsenettle = tingly.
+reagent-name-tea-xander = xander tea
+reagent-desc-tea-xander = medicinal root tea.
+
+
 # Chems
 reagent-name-firetoxin = fire toxin
 reagent-desc-firetoxin = The hot stuff from firey creatures.
