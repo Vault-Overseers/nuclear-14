@@ -20,11 +20,18 @@ reagent-desc-irradiated-nuka-cola = This Nuka-Cola gives off a slight tingle.
 
 ## Animals
 reagent-name-milk-brahmin = brahmin milk
-reagent-desc-milk-brahmin = tasty brahmin milk
+reagent-desc-milk-brahmin = Tasty brahmin milk.
 reagent-name-milk-bighorner = bighorner milk
-reagent-desc-milk-bighorner = fatty bighorner milk
+reagent-desc-milk-bighorner = Fatty bighorner milk.
 reagent-name-milk-radstag = radstag milk
-reagent-desc-milk-radstag = protein rich radstag milk
+reagent-desc-milk-radstag = Protein rich radstag milk.
+
+reagent-name-fireantnectar = Fire ant nectar
+reagent-desc-fireantnectar = Crystals of fire ant nectar.
+reagent-name-bloatflyacid = bloatfly acid
+reagent-desc-bloatflyacid = Acid from the sac of a bloatfly.
+reagent-name-cazadoracid = cazador acid
+reagent-desc-cazadoracid = Acid from the sac of a cazador stinger.
 
 ## Extracts
 reagent-name-extract-agave-nectar = agave nectar extract
@@ -72,31 +79,33 @@ reagent-desc-extract-xander = An edible root, it was obviously pulled from the g
 
 ## Teas
 reagent-name-tea-agave = agave tea
-reagent-desc-tea-agave = sweet and tangy tea.
+reagent-desc-tea-agave = Sweet and tangy tea.
 reagent-name-tea-blackberry = blackberry tea
-reagent-desc-tea-blackberry = sweet yet tart.
+reagent-desc-tea-blackberry = Sweet yet tart.
 reagent-name-tea-barrelcactus = barrel cactus tea
-reagent-desc-tea-barrelcactus = weak tea.
+reagent-desc-tea-barrelcactus = Weak tea.
 reagent-name-tea-broc = broc tea
-reagent-desc-tea-broc = medicinal but dull.
+reagent-desc-tea-broc = Medicinal but dull.
 reagent-name-tea-datura = datura tea
-reagent-desc-tea-datura = bitter drink.
+reagent-desc-tea-datura = Bitter drink.
 reagent-name-tea-honeymesquite = honey mesquite tea
-reagent-desc-tea-honeymesquite = oddly sweet.
+reagent-desc-tea-honeymesquite = Oddly sweet.
 reagent-name-tea-mutfruit = mutfruit tea
-reagent-desc-tea-mutfruit = dull but homely.
+reagent-desc-tea-mutfruit = Dull but homely.
 reagent-name-tea-nettle = nettle tea
-reagent-desc-tea-nettle = medicinal and warming.
+reagent-desc-tea-nettle = Medicinal and warming.
 reagent-name-tea-pricklypear = prickly pear tea
 reagent-desc-tea-pricklypear = fruity.
 reagent-name-tea-starlightberry = starlightberry tea
-reagent-desc-tea-starlightberry = bursting with flavor.
+reagent-desc-tea-starlightberry = Bursting with flavor.
 reagent-name-tea-tarberry = tarberry tea
-reagent-desc-tea-tarberry = bursting with flavor.
+reagent-desc-tea-tarberry = Bursting with flavor.
 reagent-name-tea-whitehorsenettle = white horsenettle tea
-reagent-desc-tea-whitehorsenettle = tingly.
+reagent-desc-tea-whitehorsenettle = Tingly.
 reagent-name-tea-xander = xander tea
 reagent-desc-tea-xander = medicinal root tea.
+reagent-name-tea-fireantnectar = fire ant nectar
+reagent-desc-tea-fireantnectar = Crystalised nectar from a fire ant. Sugary.
 
 
 # Chems
