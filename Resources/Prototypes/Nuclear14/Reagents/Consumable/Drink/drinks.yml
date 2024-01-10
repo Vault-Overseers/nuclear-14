@@ -18,6 +18,7 @@
   desc: reagent-desc-milk-radstag
 
 # Tea
+## Plant Teas
 - type: reagent
   id: TeaAgave
   parent: GreenTea
@@ -118,3 +119,24 @@
   parent: GreenTea
   name: reagent-name-tea-xander
   desc: reagent-desc-tea-xander
+
+  ## Other Teas
+- type: reagent
+  parent: TeaAgave
+  id: TeaFireantNectar
+  name: reagent-name-tea-fireantnectar
+  desc: reagent-desc-tea-fireantnectar
+  metabolisms:
+    Drink:
+      effects:
+      - !type:AdjustReagent
+        reagent: Sugar
+        amount: 0.4
+      - !type:SatiateThirst
+        factor: 4
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -1.5
