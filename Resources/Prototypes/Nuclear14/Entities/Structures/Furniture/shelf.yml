@@ -82,6 +82,7 @@
 # Wood shelf
 - type: entity
   id: N14ShelfWood
+  suffix: south
   parent: BaseStructure
   name: wooden shelf
   description: A dusty old shelf.
@@ -122,7 +123,47 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.6,-0.05,0.45,0.7"
+          bounds: "-0.6,-0.05,0.6,0.7"  # should be this but doesn't rotate right.
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        
+- type: entity
+  parent: N14ShelfWood
+  id: N14ShelfWoodEast
+  suffix: East
+  name: wooden shelf
+  description: A dusty old shelf.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,0.7,0.7,1.3"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        
+- type: entity
+  parent: N14ShelfWood
+  id: N14ShelfWoodWest
+  suffix: West
+  name: wooden shelf
+  description: A dusty old shelf.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,-0.3,0.6,0.3"
         density: 60
         mask:
         - MachineMask
@@ -136,6 +177,42 @@
   components:
   - type: Sprite
     state: wood_shelf-alt
+
+- type: entity
+  parent: N14ShelfWoodAlt
+  id: N14ShelfWoodAltEast
+  suffix: East
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,0.7,0.7,1.3"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  
+- type: entity
+  parent: N14ShelfWoodAlt
+  id: N14ShelfWoodAltWest
+  suffix: West
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,-0.3,0.6,0.3"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
     
 - type: entity
   parent: N14ShelfWood
