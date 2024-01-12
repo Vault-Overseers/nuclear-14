@@ -26,6 +26,9 @@
         reagents:
         - ReagentId: Abraxocleaner
           Quantity: 50
+  - type: PhysicalComposition
+    materialComposition:
+      Cardboard: 5
     
 - type: entity
   parent: N14JunkItemBase
@@ -36,6 +39,9 @@
   - type: Sprite
     state: 8_ball
     scale: 0.5, 0.5
+  - type: PhysicalComposition
+    materialComposition:
+      N14Plastic: 10
     
 - type: entity
   parent: N14Junk8Ball
@@ -55,9 +61,12 @@
   components:
   - type: Sprite
     state: coffeepot
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkCoffeepot
   id: N14JunkCookpot
   name: cook pot
   description: A large metal cooking pot.
@@ -73,6 +82,9 @@
   components:
   - type: Sprite
     state: crutch
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 20
     
 - type: entity
   parent: N14JunkItemBase
@@ -82,9 +94,12 @@
   components:
   - type: Sprite
     state: duct_tape
+  - type: PhysicalComposition
+    materialComposition:
+      Adhesive: 25
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkCoffeepot
   id: N14JunkIron
   name: iron
   description: A small iron for pressing clothes.
@@ -100,9 +115,12 @@
   components:
   - type: Sprite
     state: lunchbox
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 10
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkLunchbox
   id: N14JunkTeapot
   name: teapot
   description: A metal teapot for serving tea.
@@ -118,15 +136,22 @@
   components:
   - type: Sprite
     state: timer
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 5
+      Circuitry: 1
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkLunchbox
   id: N14JunkTincan
   name: tin can
   description: An old metal can. Probably had food in it.
   components:
   - type: Sprite
     state: tincan
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 5
     
 - type: entity
   parent: N14JunkItemBase
@@ -136,6 +161,10 @@
   components:
   - type: Sprite
     state: toaster
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+      Circuitry: 1
     
 - type: entity
   parent: N14JunkItemBase
@@ -145,9 +174,13 @@
   components:
   - type: Sprite
     state: toy_Nuka_truck
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 5
+      Steel: 5
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkToyNukaTruck
   id: N14JunkToyRacecar
   name: toy race car
   description: An old toy race car.
@@ -169,6 +202,9 @@
         reagents:
         - ReagentId: Turpentine
           Quantity: 50
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 5
     
 - type: entity
   parent: N14JunkItemBase
@@ -178,6 +214,14 @@
   components:
   - type: Sprite
     state: vault_113_canteen
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 5
+      Steel: 5
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 25
     
 - type: entity
   parent: N14JunkItemBase
@@ -193,6 +237,9 @@
         reagents:
         - ReagentId: Wonderglue
           Quantity: 25
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 5
     
     
 # Gun Parts
@@ -204,9 +251,12 @@
   components:
   - type: Sprite
     state: action
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 5
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsAdvancedFrame
   name: gun frame (part)
   description: An advanced gun frame.
@@ -215,7 +265,7 @@
     state: advancedframe
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsBarrel
   name: gun barrel (part)
   description: An gun barrel.
@@ -224,7 +274,7 @@
     state: barrel
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsBolt
   name: gun bolt(part)
   description: A bolt for a gun.
@@ -233,7 +283,7 @@
     state: bolt
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsFrame
   name: gun frame(part)
   description: A frame for a gun.
@@ -242,7 +292,7 @@
     state: gunframe
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsFramePistol
   name: pistol frame(part)
   description: A frame for a pistol.
@@ -251,7 +301,7 @@
     state: pistolframe
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsReceiver
   name: receiver(part)
   description: A receiver for a gun.
@@ -260,7 +310,7 @@
     state: receiver
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsRecoilComp
   name: recoil compensator(part)
   description: A recoil compensator for a gun.
@@ -269,7 +319,7 @@
     state: recoilcomp
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsRifleFrame
   name: rifle frame(part)
   description: A frame for a rifle.
@@ -278,7 +328,7 @@
     state: rifleframe
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsRifleStock
   name: rifle stock(part)
   description: A stock for a rifle.
@@ -287,7 +337,7 @@
     state: riflestock
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsRifleScope
   name: rifle scope(part)
   description: A scope for a rifle.
@@ -296,7 +346,7 @@
     state: scope
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsStock
   name: stock(part)
   description: A metal stock for a gun.
@@ -312,9 +362,12 @@
   components:
   - type: Sprite
     state: stockwood
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 5
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsTrigger
   name: trigger(part)
   description: A trigger mechanism for a gun.
@@ -323,7 +376,7 @@
     state: trigger
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsWeaponParts1
   name: energy weapon parts
   description: A collection of broken weapon parts.
@@ -332,7 +385,7 @@
     state: weapon_parts_1
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsWeaponParts2
   name: energy weapon parts
   description: A collection of broken weapon parts.
@@ -341,7 +394,7 @@
     state: weapon_parts_2
     
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkGunpartsAction
   id: N14JunkGunpartsWeaponParts3
   name: energy weapon parts
   description: A collection of broken weapon parts.
