@@ -17,11 +17,6 @@
         !type:DamageTrigger
         damage: 300
       behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Girder:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
@@ -47,6 +42,49 @@
     sprite: Nuclear14/Structures/Walls/ruins.rsi
   - type: Icon
     sprite: Nuclear14/Structures/Walls/ruins.rsi
+  - type: IconSmooth
+    key: walls
+    base: ruin
+    
+- type: entity
+  parent: N14WallStore
+  id: N14WallBrick
+  name: brick wall
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Walls/brick.rsi
+  - type: Icon
+    sprite: Nuclear14/Structures/Walls/brick.rsi
+  - type: IconSmooth
+    key: walls
+    base: brick
+    
+# Metal walls
+- type: entity
+  parent: BaseWall
+  id: N14WallMetalEnclave
+  name: metal wall
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Walls/enclavewall.rsi
+  - type: Icon
+    sprite: Nuclear14/Structures/Walls/enclavewall.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls
+    base: enclave
     
 # Wood walls
 - type: entity
@@ -79,7 +117,7 @@
         acts: ["Destruction"]
   - type: IconSmooth
     key: walls
-    base: store
+    base: wood
     
 - type: entity
   parent: BaseStructureDynamic
