@@ -47,3 +47,81 @@
     sprite: Nuclear14/Structures/Walls/ruins.rsi
   - type: Icon
     sprite: Nuclear14/Structures/Walls/ruins.rsi
+    
+# Wood walls
+- type: entity
+  parent: BaseWall
+  id: N14WallWoodWhite
+  name: wooden wall
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Walls/woodwhite.rsi
+  - type: Icon
+    sprite: Nuclear14/Structures/Walls/woodwhite.rsi
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/woodhit.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: IconSmooth
+    key: walls
+    base: store
+    
+- type: entity
+  parent: BaseStructureDynamic
+  id: N14WallWoodWhiteFrame
+  name: wall frame
+  description: Part of a wooden wall supporting the structure.
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - GlassAirlockLayer
+  - type: Sprite
+    sprite: Nuclear14/Structures/Walls/woodwhite.rsi
+    state: girder
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/woodhit.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
