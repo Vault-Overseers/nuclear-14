@@ -1,6 +1,7 @@
 # For all other walls see SS14
-# Make a base for wood, metal walls etc for destruction
+# Make a base for wood, metal walls (breaks to girder), concrete (breaks to nothing / rubble), rebarconcrete (breaks to rebar girder) etc for destruction
 
+# Concrete Walls
 - type: entity
   parent: BaseWall
   id: N14WallStore
@@ -36,3 +37,13 @@
     sprite: Nuclear14/Structures/Walls/superstore.rsi
   - type: Icon
     sprite: Nuclear14/Structures/Walls/superstore.rsi
+    
+- type: entity
+  parent: N14WallStore
+  id: N14WallRuins
+  name: ruined wall
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Walls/ruins.rsi
+  - type: Icon
+    sprite: Nuclear14/Structures/Walls/ruins.rsi
