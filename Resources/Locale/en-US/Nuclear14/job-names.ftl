@@ -11,7 +11,7 @@ job-description-bos-washington-initiate = Prove yourself to your chapter to prog
 job-name-bos-washington-knight = Washington Brotherhood Knight
 job-description-bos-washington-knight = The military arm of the Brotherhood. Defend your chapter in their objectives and manufacture equipment.
 job-name-bos-washington-paladin = Washington Brotherhood Paladin
-job-description-bos-washington-paladin - Protect the Brotherhood at all costs. Take the elders will out into the wasteland.
+job-description-bos-washington-paladin = Protect the Brotherhood at all costs. Take the elders will out into the wasteland.
 job-name-bos-washington-scribe = Washington Brotherhood Scribe
 job-description-bos-washington-scribe = Conduct scientific missions and research for your brotherhood chapter.
 
