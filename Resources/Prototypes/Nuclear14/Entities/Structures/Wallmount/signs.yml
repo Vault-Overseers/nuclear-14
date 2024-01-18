@@ -1,26 +1,5 @@
-- type: entity
-  parent: BaseSign
-  id: N14SignBase
-  name: Poster
-  abstract: true
-  components:
-  - type: WallMount
-    arc: 360
-  - type: Sprite
-    drawdepth: WallTops
-    sprite: Nuclear14/Structures/Wallmounts/signs_32x32.rsi
-    snapCardinals: true
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Effects/poster_broken.ogg
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
+# see adverts for sign base
+# see street_furniture for floor signs
 
 # 32x32
 - type: entity
@@ -30,10 +9,11 @@
   description: Bar! Get drunk here.
   components:
   - type: Sprite
+    sprite: Nuclear14/Structures/Wallmounts/signs_32x32.rsi
     state: bar
 
 - type: entity
-  parent: N14SignBase
+  parent: N14SignBar
   id: N14SignClinic
   name: clinic sign
   description: A clinic sign. Hopefully they have meds.
@@ -42,7 +22,7 @@
     state: clinic
 
 - type: entity
-  parent: N14SignBase
+  parent: N14SignBar
   id: N14SignOpen1
   name: open sign
   description: Open for business. Maybe.
@@ -72,7 +52,7 @@
     state: open_bar_on
     
 - type: entity
-  parent: N14SignBase
+  parent: N14SignBar
   id: N14SignForRent
   name: for rent sign
   description: A sign advertising a place for rent.
@@ -82,7 +62,7 @@
     
 # 64x32
 - type: entity
-  parent: N14SignBase
+  parent: N14SignBar
   id: N14SignBazaarOn
   name: bazaar sign
   description: A sign for a bazaar. How bizarre.
@@ -116,7 +96,7 @@
   description: We are open sign. I hope so.
   components:
   - type: Sprite
-    state: we_are_open
+    state: we_open_open
     
 - type: entity
   parent: N14SignBazaarOn
@@ -126,8 +106,3 @@
   components:
   - type: Sprite
     state: workers
-    
-# 64x64
-
-
-# Road works ahead. Sure hope it does!
