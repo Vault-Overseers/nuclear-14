@@ -1,4 +1,54 @@
 - type: entity
+  id: N14BarricadeWindow
+  parent: BaseStructure
+  name: barricade
+  description: A makeshift barricade.
+  components:
+    - type: CanBuildWindowOnTop
+    - type: Sprite
+      netsync: false
+      drawdepth: Overdoors
+      sprite: Nuclear14/Structures/Furniture/barricades.rsi
+      state: boarded
+    - type: Icon
+      sprite: Nuclear14/Structures/Furniture/barricades.rsi
+      state: boarded
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Wood
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+              bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - GlassLayer
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+              
+- type: entity
+  parent: N14BarricadeWindow
+  id: N14BarricadeDoor
+  name: locked door
+  description: A locked door. Might have to break it down.
+  components:
+    - type: Sprite
+      sprite: Nuclear14/Structures/Furniture/barricades.rsi
+      state: locked
+    - type: Icon
+      sprite: Nuclear14/Structures/Furniture/barricades.rsi
+      state: locked
+
+- type: entity
   id: N14WindowBars
   parent: BaseStructure
   name: window bars
@@ -9,10 +59,7 @@
         Brute:
           path:
             "/Audio/Weapons/grille_hit.ogg"
-    - type: CanBuildWindowOnTop
     - type: Sprite
-      netsync: false
-      drawdepth: Overdoors
       sprite: Nuclear14/Structures/Windows/windowbars.rsi
       state: icon
     - type: Icon
@@ -39,21 +86,16 @@
         low:
           !type:CableDeviceNode
           nodeGroupID: Apc
-    - type: Physics
-      bodyType: Static
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-              bounds: "-0.5,-0.5,0.5,0.5"
-          layer:
-          - GlassLayer
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 200
-          behaviors:
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
+              
+- type: entity
+  id: N14WindowBars2
+  parent: N14WindowBars
+  components:
+    - type: Sprite
+      netsync: false
+      drawdepth: Overdoors
+      sprite: Nuclear14/Structures/Furniture/barricades.rsi
+      state: bars
+    - type: Icon
+      sprite: Nuclear14/Structures/Furniture/barricades.rsi
+      state: bars
