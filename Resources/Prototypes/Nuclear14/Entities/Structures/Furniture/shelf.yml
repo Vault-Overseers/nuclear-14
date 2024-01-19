@@ -43,6 +43,15 @@
     bodyType: Static
   - type: Anchorable
   - type: Pullable
+  - type: Storage
+    capacity: 50
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
   
 - type: entity
   id: N14Bookshelf
@@ -133,6 +142,15 @@
         layer:
         - MidImpassable
         - LowImpassable
+  - type: Storage
+    capacity: 50
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
         
 - type: entity
   parent: N14ShelfWood

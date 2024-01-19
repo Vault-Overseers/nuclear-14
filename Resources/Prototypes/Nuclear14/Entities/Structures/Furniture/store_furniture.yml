@@ -8,9 +8,11 @@
   - type: Sprite
     sprite: Nuclear14/Structures/Furniture/Store_Furniture/delistand.rsi
     netsync: false
-    state: deli_stand
     noRot: true
     offset: 0, 0.25
+    layers: 
+      - state: deli_stand
+      - map: ["enum.StorageFillLayers.Fill"]
   - type: Fixtures
     fixtures:
       fix1:
@@ -39,6 +41,20 @@
             max: 3
       - !type:DoActsBehavior
         acts: ["Destruction"]
+# storage + visualiser stuff
+  - type: Storage
+    capacity: 25
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: Appearance
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: food
           
 # Wood
 - type: entity
