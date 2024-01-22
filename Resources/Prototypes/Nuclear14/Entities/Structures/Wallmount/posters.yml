@@ -28,7 +28,87 @@
             min: 1
             max: 1
         offset: 0
+  - type: Transform
+    anchored: true
+    noRot: true
 
+# NCR Propaganda+
+- type: entity
+  parent: N14SignNotice
+  id: N14PosterWanted
+  name: wanted poster
+  description: A wanted poster for some waster.
+  components:
+  - type: Sprite
+    state: wanted_poster
+    
+- type: entity
+  parent: N14SignNotice
+  id: N14PosterFallout
+  name: fallout poster
+  description: A poster depicting nuclear fallout.
+  components:
+  - type: Sprite
+    state: poster_fallout
+    
+- type: entity
+  parent: N14SignNotice
+  id: N14PosterWecan
+  name: we can poster
+  description: we can!
+  components:
+  - type: Sprite
+    state: poster_wecan
+    
+- type: entity
+  parent: N14SignNotice
+  id: N14PosterNCR1
+  name: NCR poster
+  suffix: wrench
+  description: NCR propaganda of some sort.
+  components:
+  - type: Sprite
+    state: ncr_sign
+    
+- type: entity
+  parent: N14PosterNCR1
+  id: N14PosterNCR2
+  suffix: enlist
+  components:
+  - type: Sprite
+    state: ncr_enlist
+    
+- type: entity
+  parent: N14PosterNCR1
+  id: N14PosterNCR3
+  suffix: looselip
+  components:
+  - type: Sprite
+    state: ncr_looselip
+    
+- type: entity
+  parent: N14PosterNCR1
+  id: N14PosterNCR4
+  suffix: you
+  components:
+  - type: Sprite
+    state: ncr_you
+    
+- type: entity
+  parent: N14PosterNCR1
+  id: N14PosterNCR5
+  suffix: espionage
+  components:
+  - type: Sprite
+    state: ncr_espionage
+    
+- type: entity
+  parent: N14PosterNCR1
+  id: N14PosterNCR6
+  suffix: bombs
+  components:
+  - type: Sprite
+    state: ncr_bombs
 
 # Pristine Posters
 - type: entity
