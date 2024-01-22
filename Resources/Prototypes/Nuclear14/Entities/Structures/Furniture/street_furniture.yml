@@ -168,9 +168,185 @@
 
 
 # Street Signs
-
 # Road works ahead. Sure hope it does!
+# Base floor sign
+- type: entity
+  parent: N14SignFloorBase
+  id: N14SignStreetBase
+  name: street sign
+  description: It's a sign!
+  abstract: true
+  components:
+  - type: Sprite
+    snapCardinals: false
+    noRot: true
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetsigns.rsi
+  - type: Transform
+    noRot: false
+  - type: Fixtures # removes the fixture because why not. It's thin and directions would break the BB.
 
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetInterstate
+  name: interstate sign
+  suffix: 6 directions
+  description: An old interstate road sign.
+  components:
+  - type: Sprite
+    state: interstate
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetInterstateShot
+  name: interstate sign
+  suffix: shot
+  description: An old interstate road sign that's been shot.
+  components:
+  - type: Sprite
+    state: interstate80_shot
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetStop
+  name: stop sign
+  suffix: 4 directions
+  description: An old road stop sign.
+  components:
+  - type: Sprite
+    state: stop
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetNoturning
+  name: no turning sign
+  suffix: 4 directions
+  description: An old no turning sign.
+  components:
+  - type: Sprite
+    state: noturn
+
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetNoparking
+  name: no parking sign
+  description: An old no parking sign.
+  components:
+  - type: Sprite
+    state: noparking
+
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetSign
+  name: street sign
+  description: An old street sign
+  components:
+  - type: Sprite
+    state: street
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetOneway
+  name: one way sign
+  suffix: 2 directions
+  description: An old one way road sign.
+  components:
+  - type: Sprite
+    state: direction
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetBusstop
+  name: bus stop sign
+  description: An old bus stop sign.
+  components:
+  - type: Sprite
+    state: busstop
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetRailcrossing
+  name: rail crossing sign
+  description: An old rail crossing sign.
+  components:
+  - type: Sprite
+    state: railcrossing
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetOnedirection
+  name: ahead only sign
+  suffix: 4 directions
+  description: An old one direction sign.
+  components:
+  - type: Sprite
+    state: onlydir
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetSpeedlimit
+  name: speed limit sign
+  suffix: 4 directions
+  description: An old speed limit sign.
+  components:
+  - type: Sprite
+    state: speed
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetWarning
+  name: warning sign
+  suffix: 4 directions
+  description: An old road warning sign.
+  components:
+  - type: Sprite
+    state: warnings
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetTurn
+  name: turn sign
+  suffix: 6 directions
+  description: An old road turn sign.
+  components:
+  - type: Sprite
+    state: turn
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetExit
+  name: exit sign
+  suffix: 2 directions
+  description: An old road exit sign.
+  components:
+  - type: Sprite
+    state: exit
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetNopedestrians
+  name: no pedestrians sign
+  description: An old no pedestrians sign.
+  components:
+  - type: Sprite
+    state: nopedestrian
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetMerge
+  name: merge ahead sign
+  description: An old merge ahead sign.
+  components:
+  - type: Sprite
+    state: merge
+
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetSnake
+  name: snake ahead sign
+  description: An old road curves ahead sign.
+  components:
+  - type: Sprite
+    state: snake
 
 # Street Poles
 - type: entity
