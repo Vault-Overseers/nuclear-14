@@ -4,6 +4,8 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
+using Content.Shared.Nuclear14.Special.Components;
+using Content.Shared.Nuclear14.CCVar;
 using Content.Shared.Popups;
 using Content.Shared.Timing;
 using Content.Shared.Verbs;
@@ -158,6 +160,23 @@ public sealed class WieldableSystem : EntitySystem
             return false;
         }
 
+        // Nuclear14 - Strength is needed to weild
+        if (!EntityManager.TryGetComponent<SpecialComponent>(user, out var special))
+        {
+            if(!quiet)
+                _popupSystem.PopupClient(Loc.GetString("player-component-no-special"), user, user);
+            return false;
+        }
+
+        var strNeeded = _config.GetCVar<int>(SpecialCCVars.StrengthWeild);
+        if(special.TotalStrength < strNeeded)
+        {
+            var message = Loc.GetString("player-component-not-enough-strength-weild",
+                ("number", strNeeded), ("item", uid));
+            _popupSystem.PopupClient(message, user, user);
+            return false;
+        }
+        // Nuclear14 end
         // Seems legit.
         return true;
     }

@@ -12,6 +12,8 @@ using Content.Shared.Slippery;
 using Content.Shared.Strip.Components;
 using Content.Shared.Temperature;
 using Content.Shared.Verbs;
+using Robust.Shared.Containers;
+using Content.Shared.Nuclear14.Special;
 
 namespace Content.Shared.Inventory;
 
@@ -46,6 +48,9 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowSyndicateIconsComponent>>(RelayInventoryEvent);
 
         SubscribeLocalEvent<InventoryComponent, GetVerbsEvent<EquipmentVerb>>(OnGetEquipmentVerbs);
+        // Nuclear14 Cloth Special Modifiers
+        SubscribeLocalEvent<InventoryComponent, RefreshSpecialModifiersEvent>(RelayInventoryEvent);
+        // Nuclear14 end
     }
 
     protected void RefRelayInventoryEvent<T>(EntityUid uid, InventoryComponent component, ref T args) where T : IInventoryRelayEvent
