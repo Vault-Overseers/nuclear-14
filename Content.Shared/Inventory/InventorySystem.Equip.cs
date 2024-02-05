@@ -15,6 +15,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Shared.Nuclear14.Special;
 
 namespace Content.Shared.Inventory;
 
@@ -22,6 +23,9 @@ public abstract partial class InventorySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
+    // Nuclear14 Cloth Special Modifiers
+    [Dependency] private readonly SpecialModifierSystem _specialModifiers = default!;
+    // Nuclear14 end
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
@@ -211,6 +215,10 @@ public abstract partial class InventorySystem
         inventory.Dirty();
 
         _movementSpeed.RefreshMovementSpeedModifiers(target);
+
+        // Nuclear14 Cloth Special Modifiers
+        _specialModifiers.RefreshClothingSpecialModifiers(target);
+        // Nuclear14 end
 
         return true;
     }
@@ -408,6 +416,10 @@ public abstract partial class InventorySystem
         inventory.Dirty();
 
         _movementSpeed.RefreshMovementSpeedModifiers(target);
+
+        // Nuclear14 Cloth Special Modifiers
+        _specialModifiers.RefreshClothingSpecialModifiers(target);
+        // Nuclear14 end
 
         return true;
     }
