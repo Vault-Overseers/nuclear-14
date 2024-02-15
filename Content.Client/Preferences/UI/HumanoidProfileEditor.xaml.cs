@@ -33,6 +33,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Direction = Robust.Shared.Maths.Direction;
+using Content.Shared.Nuclear14.Special;
+using Content.Shared.Nuclear14.CCVar;
 
 namespace Content.Client.Preferences.UI
 {
@@ -69,6 +71,9 @@ namespace Content.Client.Preferences.UI
 
         private TabContainer _tabContainer => CTabContainer;
         private BoxContainer _jobList => CJobList;
+        private Label _specialPointsLabel => SpecialPointsLabel; // Nuclear14 special bar points label
+        private ProgressBar _specialPointsBar => SpecialPointsBar; // Nuclear14 The above labels' names are referencing their position relative to this element
+        private BoxContainer _specialList => CSpecialList; // Nuclear14 Special list
         private BoxContainer _antagList => CAntagList;
         private Label _traitPointsLabel => TraitPointsLabel;
         private int _traitCount;
@@ -82,6 +87,7 @@ namespace Content.Client.Preferences.UI
         private BoxContainer _loadoutsTab => CLoadoutsTab;
         private TabContainer _loadoutsTabs => CLoadoutsTabs;
         private readonly List<JobPrioritySelector> _jobPriorities;
+        private readonly List<SpecialPrioritySelector> _specialPriorities; // Nuclear14 User special choice
         private OptionButton _preferenceUnavailableButton => CPreferenceUnavailableButton;
         private readonly Dictionary<string, BoxContainer> _jobCategories;
         private readonly List<SpeciesPrototype> _speciesList;
@@ -490,6 +496,16 @@ namespace Content.Client.Preferences.UI
 
             #endregion Jobs
 
+            // Nuclear14 Special
+            #region Specials
+
+            _tabContainer.SetTabTitle(5, Loc.GetString("humanoid-profile-editor-specials-tab"));
+            _specialPriorities = new List<SpecialPrioritySelector>();
+            UpdateSpecialRequirements();
+
+            #endregion Specials
+            // Nuclear14 end
+
             #region Antags
 
             _tabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-antags-tab"));
@@ -783,6 +799,56 @@ namespace Content.Client.Preferences.UI
 
             Save();
         }
+        // Nuclear14 update Special select requirments
+        private void UpdateSpecialRequirements()
+        {
+            _specialList.DisposeAllChildren();
+            _specialPriorities.Clear();
+
+            var points = _configurationManager.GetCVar(SpecialCCVars.MaxSpecial);
+            _specialPointsLabel.Text = Loc.GetString("humanoid-profile-editor-loadouts-points-label", ("points", points), ("max", points));
+            _specialPointsBar.MaxValue = points;
+            _specialPointsBar.Value = points;
+
+
+            foreach (var special in _prototypeManager.EnumeratePrototypes<SpecialPrototype>().OrderBy(a => a.Order))
+            {
+                    var selector = new SpecialPrioritySelector(special, _prototypeManager);
+
+                    _specialList.AddChild(selector);
+                    _specialPriorities.Add(selector);
+
+                    selector.PriorityChanged += priority =>
+                    {
+                        foreach (var specialSelector in _specialPriorities)
+                        {
+
+                            if(priority != 0)
+                            {
+                                var temp = _specialPointsBar.Value - (int) priority;
+                                if (temp < 0){
+                                }
+                                else
+                                {
+                                    _specialPointsLabel.Text = Loc.GetString("humanoid-profile-editor-special-points-label", ("points", _specialPointsBar.Value), ("max", _specialPointsBar.MaxValue));
+                                    _specialPointsBar.Value = temp;
+                                }
+                            }
+                            else
+                            {
+                                _specialPointsLabel.Text = Loc.GetString("humanoid-profile-editor-special-points-label", ("points", _specialPointsBar.Value), ("max", _specialPointsBar.MaxValue));
+                                _specialPointsBar.Value += (int) specialSelector.Priority;
+                            }
+                            Profile = Profile?.WithSpecialPriority(special.ID, priority);
+                            IsDirty = true;
+
+                            UpdateSpecialPriorities();
+                        }
+                    };
+
+                }
+        }
+        // Nuclear14 end
 
         private void OnFlavorTextChange(string content)
         {
@@ -1317,6 +1383,7 @@ namespace Content.Client.Preferences.UI
             UpdateEyePickers();
             UpdateSaveButton();
             UpdateJobPriorities();
+            UpdateSpecialPriorities(); // Nuclear14 Special Priorities
             UpdateAntagPreferences();
             UpdateTraitPreferences();
             UpdateLoadouts(_loadoutsShowUnusableButton.Pressed);
@@ -1341,6 +1408,264 @@ namespace Content.Client.Preferences.UI
                 var priority = Profile?.JobPriorities.GetValueOrDefault(jobId, JobPriority.Never) ?? JobPriority.Never;
 
                 prioritySelector.Priority = priority;
+            }
+        }
+
+        // Nuclear14 Special
+        private void UpdateSpecialPriorities()
+        {
+            var points = _configurationManager.GetCVar(SpecialCCVars.MaxSpecial);
+            _specialPointsBar.Value = points;
+            _specialPointsLabel.Text = Loc.GetString("humanoid-profile-editor-special-points-label", ("points", _specialPointsBar.Value), ("max", _specialPointsBar.MaxValue));
+
+            foreach (var prioritySelector in _specialPriorities)
+            {
+                var specialId = prioritySelector.Special.ID;
+
+                var priority = Profile?.SpecialPriorities.GetValueOrDefault(specialId, SpecialPriority.Zero) ?? SpecialPriority.Zero;
+
+                prioritySelector.Priority = priority;
+
+                if (priority != SpecialPriority.Zero)
+                {
+                    points -= (int) priority;
+                    _specialPointsBar.Value = points;
+                    _specialPointsLabel.Text = Loc.GetString("humanoid-profile-editor-special-points-label", ("points", points), ("max", _specialPointsBar.MaxValue));
+
+                }
+            }
+            if (points < 0)
+                _saveButton.Disabled = true;
+
+        }
+
+        private sealed class SpecialPrioritySelector : Control
+        {
+            public SpecialPrototype Special { get; }
+            private readonly RadioOptions<int> _optionButton;
+
+            public SpecialPriority Priority
+            {
+                get => (SpecialPriority) _optionButton.SelectedValue;
+                set => _optionButton.SelectByValue((int) value);
+            }
+
+            public event Action<SpecialPriority>? PriorityChanged;
+            private Label _specialTitle;
+
+            public SpecialPrioritySelector(SpecialPrototype special, IPrototypeManager prototypeManager)
+            {
+                Special = special;
+
+                _optionButton = new RadioOptions<int>(RadioOptionsLayout.Horizontal)
+                {
+                    FirstButtonStyle = StyleBase.ButtonOpenRight,
+                    ButtonStyle = StyleBase.ButtonOpenBoth,
+                    LastButtonStyle = StyleBase.ButtonOpenLeft
+                };
+                //Override default radio option button width
+                _optionButton.GenerateItem = GenerateButton;
+                // Text, Value
+                _optionButton.AddItem(Loc.GetString("humanoid-profile-editor-special-priority-one-button"), (int) SpecialPriority.One);
+                _optionButton.AddItem(Loc.GetString("humanoid-profile-editor-special-priority-two-button"), (int) SpecialPriority.Two);
+                _optionButton.AddItem(Loc.GetString("humanoid-profile-editor-special-priority-three-button"), (int) SpecialPriority.Three);
+                _optionButton.AddItem(Loc.GetString("humanoid-profile-editor-special-priority-four-button"), (int) SpecialPriority.Four);
+                _optionButton.AddItem(Loc.GetString("humanoid-profile-editor-special-priority-five-button"), (int) SpecialPriority.Five);
+                _optionButton.AddItem(Loc.GetString("humanoid-profile-editor-special-priority-six-button"), (int) SpecialPriority.Six);
+                _optionButton.AddItem(Loc.GetString("humanoid-profile-editor-special-priority-seven-button"), (int) SpecialPriority.Seven);
+                _optionButton.AddItem(Loc.GetString("humanoid-profile-editor-special-priority-eight-button"), (int) SpecialPriority.Eight);
+                _optionButton.AddItem(Loc.GetString("humanoid-profile-editor-special-priority-nine-button"), (int) SpecialPriority.Nine);
+                _optionButton.AddItem(Loc.GetString("humanoid-profile-editor-special-priority-ten-button"), (int) SpecialPriority.Ten);
+
+                _optionButton.OnItemSelected += args =>
+                {
+                    _optionButton.Select(args.Id);
+                    PriorityChanged?.Invoke(Priority);
+                };
+
+                var icon = new TextureRect
+                {
+                    TextureScale = new Vector2(2, 2),
+                    Stretch = TextureRect.StretchMode.KeepCentered
+                };
+
+                var specialIcon = prototypeManager.Index<StatusIconPrototype>(special.Icon);
+                icon.Texture = specialIcon.Icon.Frame0();
+
+                _specialTitle = new Label()
+                {
+                    Margin = new Thickness(5f,5f,5f,5f),
+                    Text = special.LocalizedName,
+                    MinSize = new Vector2(100, 0),
+                    MouseFilter = MouseFilterMode.Stop
+                };
+
+                if (special.LocalizedDescription != null)
+                {
+                    _specialTitle.ToolTip = special.LocalizedDescription;
+                    _specialTitle.TooltipDelay = 0.2f;
+                }
+
+                AddChild(new BoxContainer
+                {
+                    Orientation = LayoutOrientation.Horizontal,
+                    Children =
+                    {
+                        icon,
+                        _specialTitle,
+                        _optionButton,
+                    }
+                });
+            }
+            private Button GenerateButton(string text, int value)
+            {
+                var btn = new Button
+                {
+                    Text = text,
+                    MinWidth = 40
+                };
+                return btn;
+            }
+        }
+        // Nuclear14 end
+
+        private abstract class RequirementsSelector<T> : Control
+        {
+            public T Proto { get; }
+            public bool Disabled => _lockStripe.Visible;
+
+            protected readonly RadioOptions<int> Options;
+            private StripeBack _lockStripe;
+            private Label _requirementsLabel;
+
+            protected RequirementsSelector(T proto)
+            {
+                Proto = proto;
+
+                Options = new RadioOptions<int>(RadioOptionsLayout.Horizontal)
+                {
+                    FirstButtonStyle = StyleBase.ButtonOpenRight,
+                    ButtonStyle = StyleBase.ButtonOpenBoth,
+                    LastButtonStyle = StyleBase.ButtonOpenLeft
+                };
+                //Override default radio option button width
+                Options.GenerateItem = GenerateButton;
+
+                Options.OnItemSelected += args => Options.Select(args.Id);
+
+                _requirementsLabel = new Label()
+                {
+                    Text = Loc.GetString("role-timer-locked"),
+                    Visible = true,
+                    HorizontalAlignment = HAlignment.Center,
+                    StyleClasses = {StyleBase.StyleClassLabelSubText},
+                };
+
+                _lockStripe = new StripeBack()
+                {
+                    Visible = false,
+                    HorizontalExpand = true,
+                    MouseFilter = MouseFilterMode.Stop,
+                    Children =
+                    {
+                        _requirementsLabel
+                    }
+                };
+
+                // Setup must be called after
+            }
+
+            /// <summary>
+            /// Actually adds the controls, must be called in the inheriting class' constructor.
+            /// </summary>
+            protected void Setup((string, int)[] items, string title, int titleSize, string? description, TextureRect? icon = null)
+            {
+                foreach (var (text, value) in items)
+                {
+                    Options.AddItem(Loc.GetString(text), value);
+                }
+
+                var titleLabel = new Label()
+                {
+                    Margin = new Thickness(5f, 0, 5f, 0),
+                    Text = title,
+                    MinSize = new Vector2(titleSize, 0),
+                    MouseFilter = MouseFilterMode.Stop,
+                    ToolTip = description
+                };
+
+                var container = new BoxContainer
+                {
+                    Orientation = LayoutOrientation.Horizontal,
+                };
+
+                if (icon != null)
+                    container.AddChild(icon);
+                container.AddChild(titleLabel);
+                container.AddChild(Options);
+                container.AddChild(_lockStripe);
+
+                AddChild(container);
+            }
+
+            public void LockRequirements(FormattedMessage requirements)
+            {
+                var tooltip = new Tooltip();
+                tooltip.SetMessage(requirements);
+                _lockStripe.TooltipSupplier = _ => tooltip;
+                _lockStripe.Visible = true;
+                Options.Visible = false;
+            }
+
+            // TODO: Subscribe to roletimers event. I am too lazy to do this RN But I doubt most people will notice fn
+            public void UnlockRequirements()
+            {
+                _lockStripe.Visible = false;
+                Options.Visible = true;
+            }
+
+            private Button GenerateButton(string text, int value)
+            {
+                return new Button
+                {
+                    Text = text,
+                    MinWidth = 90
+                };
+            }
+        }
+
+        private sealed class JobPrioritySelector : RequirementsSelector<JobPrototype>
+        {
+            public JobPriority Priority
+            {
+                get => (JobPriority) Options.SelectedValue;
+                set => Options.SelectByValue((int) value);
+            }
+
+            public event Action<JobPriority>? PriorityChanged;
+
+            public JobPrioritySelector(JobPrototype proto, IPrototypeManager protoMan)
+                : base(proto)
+            {
+                Options.OnItemSelected += args => PriorityChanged?.Invoke(Priority);
+
+                var items = new[]
+                {
+                    ("humanoid-profile-editor-job-priority-high-button", (int) JobPriority.High),
+                    ("humanoid-profile-editor-job-priority-medium-button", (int) JobPriority.Medium),
+                    ("humanoid-profile-editor-job-priority-low-button", (int) JobPriority.Low),
+                    ("humanoid-profile-editor-job-priority-never-button", (int) JobPriority.Never),
+                };
+
+                var icon = new TextureRect
+                {
+                    TextureScale = new Vector2(2, 2),
+                    VerticalAlignment = VAlignment.Center
+                };
+                var jobIcon = protoMan.Index<StatusIconPrototype>(proto.Icon);
+                icon.Texture = jobIcon.Icon.Frame0();
+
+                Setup(items, proto.LocalizedName, 200, proto.LocalizedDescription, icon);
             }
         }
 
