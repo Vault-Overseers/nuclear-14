@@ -23,6 +23,8 @@ using Robust.Shared.Physics;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Nuclear14.Special.Components;
+using Content.Shared.Popups;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -37,6 +39,7 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private const float DamagePitchVariation = 0.05f;
     public const float GunClumsyChance = 0.5f;
@@ -95,7 +98,7 @@ public sealed partial class GunSystem : SharedGunSystem
         var toMap = toCoordinates.ToMapPos(EntityManager, TransformSystem);
         var mapDirection = toMap - fromMap.Position;
         var mapAngle = mapDirection.ToAngle();
-        var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle());
+        var angle = GetRecoilAngle(user, Timing.CurTime, gun, mapDirection.ToAngle()); // Nuclear14 include user to get his Speicial
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
         var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out var grid)
@@ -309,10 +312,26 @@ public sealed partial class GunSystem : SharedGunSystem
         return angles;
     }
 
-    private Angle GetRecoilAngle(TimeSpan curTime, GunComponent component, Angle direction)
+    // Nuclear14 Shooting accuracy depends on Perception.
+    // EntityUid? uid is added to method signature
+    private Angle GetRecoilAngle(EntityUid? uid, TimeSpan curTime, GunComponent component, Angle direction)
     {
         var timeSinceLastFire = (curTime - component.LastFire).TotalSeconds;
-        var newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, component.MinAngleModified.Theta, component.MaxAngleModified.Theta);
+        var minAngle = component.MinAngleModified;
+        var decay = component.AngleDecayModified;
+        var maxAngle = component.MaxAngleModified;
+        Angle newTheta;
+        if (TryComp<SpecialComponent>(uid, out var special))
+        {
+            maxAngle += Angle.FromDegrees((10f - special.TotalPerception));
+            minAngle += Angle.FromDegrees((10f - special.TotalPerception));
+            decay += Angle.FromDegrees((special.TotalPerception - 10f) / 5);
+
+            newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - decay.Theta * timeSinceLastFire, minAngle.Theta, maxAngle.Theta);
+        }
+        else
+            newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, component.MinAngleModified.Theta, component.MaxAngleModified.Theta);
+        // Nuclear14 end
         component.CurrentAngle = new Angle(newTheta);
         component.LastFire = component.NextFire;
 

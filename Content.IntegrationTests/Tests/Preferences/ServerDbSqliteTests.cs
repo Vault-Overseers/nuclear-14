@@ -4,6 +4,7 @@ using Content.Server.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
+using Content.Shared.Nuclear14.Special;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Configuration;
@@ -62,7 +63,17 @@ namespace Content.IntegrationTests.Tests.Preferences
                 },
                 PreferenceUnavailableMode.StayInLobby,
                 new List<string> (),
-                new List<string>()
+                new List<string> (),
+                new Dictionary<string, SpecialPriority>
+                {
+                    {"Strength", SpecialPriority.Five},
+                    {"Perception", SpecialPriority.Five},
+                    {"Endurance", SpecialPriority.Five},
+                    {"Charisma", SpecialPriority.Five},
+                    {"Intelligence", SpecialPriority.Five},
+                    {"Agility", SpecialPriority.Five},
+                    {"Luck", SpecialPriority.Five}
+                }
             );
         }
 

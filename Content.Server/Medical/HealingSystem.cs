@@ -16,6 +16,7 @@ using Content.Shared.Medical;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Nuclear14.Special.Components;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
@@ -79,7 +80,52 @@ public sealed class HealingSystem : EntitySystem
         if (healing.ModifyBloodLevel != 0)
             _bloodstreamSystem.TryModifyBloodLevel(entity.Owner, healing.ModifyBloodLevel);
 
-        var healed = _damageable.TryChangeDamage(entity.Owner, healing.Damage, true, origin: args.Args.User);
+        // Nuclear14 Use Special for healing multiplier
+        // healing multiplier applying when getting healed by things like ointments
+        // It is different for doctor and patient depending on doctor Int, pacient Endurance / both Luck
+        // Multiply both of them to get final one. Below are single muiltipliers calculated for stats
+        // 1.13 when primal stat is 5
+        // 1.46 when primal stat is 10
+        // 0.86 when primal stat is 1
+        // 1.23 when primal stat is 5, but luck 10
+        // Example of final heal multiplier:
+        // 1.13 * 1.13 ~ 1.27 when both doctor and patient primal stat is 5
+        // 1.13 * 1.46 ~ 1.64 when one primal stat is 10, another is 5
+        // for each Primal point we get 0.067 = 6.7%
+        // for each Luck we get 0.02 = 2%
+        var newDic = healing.Damage;
+        foreach(var entry in newDic.DamageDict)
+        {
+            if (entry.Value >= 0) continue;
+
+            float newValue = entry.Value.Float();
+            if (TryComp<SpecialComponent>(args.User, out var special)){
+                newValue *= 0.70f + (special.TotalIntelligence / 15f + special.TotalLuck / 50f);
+            }
+            if (TryComp<SpecialComponent>(entity.Owner, out var special2)){
+                newValue *= 0.70f + (special2.TotalEndurance / 15f + special2.TotalLuck / 50f);
+            }
+            newDic.DamageDict[entry.Key] = newValue;
+        }
+
+        var healed = _damageable.TryChangeDamage(entity.Owner, newDic, true, origin: args.Args.User);
+
+        // remove modifier after perfoming healing, to prevent accumulating
+        foreach(var entry in newDic.DamageDict)
+        {
+            if (entry.Value >= 0) continue;
+
+            float newValue = entry.Value.Float();
+            // todo: use log
+            if (TryComp<SpecialComponent>(args.User, out var special)){
+                newValue /= 0.70f + (special.TotalIntelligence / 15f + special.TotalLuck / 50f);
+            }
+            if (TryComp<SpecialComponent>(entity.Owner, out var special2)){
+                newValue /= 0.70f + (special2.TotalEndurance / 15f + special2.TotalLuck / 50f);
+            }
+            newDic.DamageDict[entry.Key] = newValue;
+        }
+        //Nuclear14 end
 
         if (healed == null && healing.BloodlossModifier != 0)
             return;

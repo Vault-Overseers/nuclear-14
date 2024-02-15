@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
+using Content.Shared.Nuclear14.Special;
 
 namespace Content.Server.Database
 {
@@ -38,6 +39,7 @@ namespace Content.Server.Database
             var prefs = await db.DbContext
                 .Preference
                 .Include(p => p.Profiles).ThenInclude(h => h.Jobs)
+                .Include(p => p.Profiles).ThenInclude(h => h.Specials) // Nuclear14 Special
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
                 .AsSingleQuery()
@@ -86,6 +88,7 @@ namespace Content.Server.Database
                 .Include(p => p.Preference)
                 .Where(p => p.Preference.UserId == userId.UserId)
                 .Include(p => p.Jobs)
+                .Include(p => p.Specials) // Nuclear14 Special
                 .Include(p => p.Antags)
                 .Include(p => p.Traits)
                 .AsSplitQuery()
@@ -172,6 +175,7 @@ namespace Content.Server.Database
         private static HumanoidCharacterProfile ConvertProfiles(Profile profile)
         {
             var jobs = profile.Jobs.ToDictionary(j => j.JobName, j => (JobPriority) j.Priority);
+            var specials = profile.Specials.ToDictionary(j => j.SpecialName, j => (SpecialPriority) j.Priority); // Nuclear14 Special
             var antags = profile.Antags.Select(a => a.AntagName);
             var traits = profile.Traits.Select(t => t.TraitName);
 
@@ -232,7 +236,8 @@ namespace Content.Server.Database
                 jobs,
                 (PreferenceUnavailableMode) profile.PreferenceUnavailable,
                 antags.ToList(),
-                traits.ToList()
+                traits.ToList(),
+                specials // Nuclear14 Special
             );
         }
 
@@ -267,11 +272,19 @@ namespace Content.Server.Database
             profile.PreferenceUnavailable = (DbPreferenceUnavailableMode) humanoid.PreferenceUnavailable;
 
             profile.Jobs.Clear();
+            profile.Specials.Clear(); // Nuclear14 Special
             profile.Jobs.AddRange(
                 humanoid.JobPriorities
                     .Where(j => j.Value != JobPriority.Never)
                     .Select(j => new Job {JobName = j.Key, Priority = (DbJobPriority) j.Value})
             );
+            // Nuclear14 Special
+            profile.Specials.AddRange(
+                humanoid.SpecialPriorities
+                    .Where(j => j.Value != SpecialPriority.Zero)
+                    .Select(j => new Special {SpecialName = j.Key, Priority = (DbSpecialPriority) j.Value})
+            );
+            // Nuclear14 end
 
             profile.Antags.Clear();
             profile.Antags.AddRange(
