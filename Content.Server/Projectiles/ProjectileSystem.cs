@@ -10,6 +10,9 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Physics.Events;
 using Content.Shared.Effects;
+using Content.Shared.Nuclear14.Special.Components;
+using Content.Shared.Popups;
+using Robust.Shared.Random;
 
 namespace Content.Server.Projectiles;
 
@@ -20,6 +23,8 @@ public sealed class ProjectileSystem : SharedProjectileSystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly GunSystem _guns = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -48,6 +53,20 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
         var otherName = ToPrettyString(target);
         var direction = args.OurBody.LinearVelocity.Normalized();
+
+        // Nuclear14 Avoid geing hit with projectiles! pure luck?
+        if (TryComp<SpecialComponent>(target, out var special))
+        {
+            var rand = _random.Next(100);
+            if (special.TotalLuck > rand)
+            {
+                var message = Loc.GetString("special-lucky-evasion");
+                _popup.PopupEntity(message, target);
+                return;
+            }
+        }
+        // Nuclear14 end
+
         var modifiedDamage = _damageableSystem.TryChangeDamage(target, component.Damage, component.IgnoreResistances, origin: component.Shooter);
         var deleted = Deleted(target);
 

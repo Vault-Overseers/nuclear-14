@@ -3,6 +3,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.DoAfter;
 using Content.Shared.Nuclear14.Special.Components;
 
 namespace Content.Shared.Nuclear14.Special
@@ -10,6 +11,7 @@ namespace Content.Shared.Nuclear14.Special
     public sealed class SpecialModifierSystem : EntitySystem
     {
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
 
         public override void Initialize()
         {
@@ -72,6 +74,17 @@ namespace Content.Shared.Nuclear14.Special
             special.AgilityModifier = ev.AgilityModifier;
             special.LuckModifier = ev.LuckModifier;
 
+            var doAfterEventArgs = new DoAfterArgs(uid, 0, new RefreshSpecialModifiersDoAfterEvent(), uid, uid)
+            {
+                BreakOnUserMove = false,
+                BreakOnTargetMove = false,
+                BreakOnDamage = false,
+                NeedHand = false,
+                RequireCanInteract = false,
+            };
+            if (!_doAfter.TryStartDoAfter(doAfterEventArgs))
+                return;
+
             Dirty(special);
         }
 
@@ -130,5 +143,33 @@ namespace Content.Shared.Nuclear14.Special
         {
             StrengthModifier += strengthModifier;
         }
+        public void ModifyPerception(int perceptionModifier)
+        {
+            PerceptionModifier += perceptionModifier;
+        }
+        public void ModifyEndurance(int enduranceModifier)
+        {
+            EnduranceModifier += enduranceModifier;
+        }
+        public void ModifyCharisma(int charismaModifier)
+        {
+            CharismaModifier += charismaModifier;
+        }
+        public void ModifyIntelligence(int intelligenceModifier)
+        {
+            IntelligenceModifier += intelligenceModifier;
+        }
+        public void ModifyAgility(int agilityModifier)
+        {
+            AgilityModifier += agilityModifier;
+        }
+        public void ModifyLuck(int luckModifier)
+        {
+            LuckModifier += luckModifier;
+        }
+    }
+    [Serializable, NetSerializable]
+    public sealed class RefreshSpecialModifiersDoAfterEvent : SimpleDoAfterEvent
+    {
     }
 }
