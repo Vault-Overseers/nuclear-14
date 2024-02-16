@@ -28,6 +28,7 @@ public sealed class MobThresholdSystem : EntitySystem
 
     private void OnGetState(EntityUid uid, MobThresholdsComponent component, ref ComponentGetState args)
     {
+        // Nuclear14 HP depends on Endurance
         var totalEndurance = 0;
         if (TryComp<SpecialComponent>(uid, out var special))
             totalEndurance = special.TotalEndurance;
@@ -42,10 +43,12 @@ public sealed class MobThresholdSystem : EntitySystem
             component.StateAlertDict,
             component.ShowOverlays,
             component.AllowRevives);
+        // Nuclear14 end
     }
 
     private void OnHandleState(EntityUid uid, MobThresholdsComponent component, ref ComponentHandleState args)
     {
+        // Nuclear14 HP depends on Endurance
         var totalEndurance = 0;
         if (TryComp<SpecialComponent>(uid, out var special))
             totalEndurance = special.TotalEndurance;
@@ -59,6 +62,7 @@ public sealed class MobThresholdSystem : EntitySystem
             return;
         component.Thresholds = new SortedDictionary<FixedPoint2, MobState>(thresholds);
         // component.Thresholds = new SortedDictionary<FixedPoint2, MobState>(state.UnsortedThresholds);
+        // Nuclear14 end
         component.TriggersAlerts = state.TriggersAlerts;
         component.CurrentThresholdState = state.CurrentThresholdState;
         component.AllowRevives = state.AllowRevives;
@@ -456,7 +460,7 @@ public sealed class MobThresholdSystem : EntitySystem
         if (!TryComp<MobStateComponent>(target, out var mobState) || !TryComp<DamageableComponent>(target, out var damageable))
             return;
 
-        thresholds.BaseThresholds = new SortedDictionary<FixedPoint2, MobState>(thresholds.Thresholds);
+        thresholds.BaseThresholds = new SortedDictionary<FixedPoint2, MobState>(thresholds.Thresholds);  // Nuclear14 HP depends on Endurance
 
         CheckThresholds(target, mobState, thresholds, damageable);
         UpdateAllEffects((target, thresholds, mobState, damageable), mobState.CurrentState);
