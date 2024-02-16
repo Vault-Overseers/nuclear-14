@@ -27,6 +27,7 @@ public sealed class MobThresholdSystem : EntitySystem
 
     private void OnGetState(EntityUid uid, MobThresholdsComponent component, ref ComponentGetState args)
     {
+        // Nuclear14 HP depends on Endurance
         var totalEndurance = 0;
         if (TryComp<SpecialComponent>(uid, out var special))
             totalEndurance = special.TotalEndurance;
@@ -39,10 +40,12 @@ public sealed class MobThresholdSystem : EntitySystem
             component.TriggersAlerts,
             component.CurrentThresholdState,
             component.AllowRevives);
+        // Nuclear14 end
     }
 
     private void OnHandleState(EntityUid uid, MobThresholdsComponent component, ref ComponentHandleState args)
     {
+        // Nuclear14 HP depends on Endurance
         var totalEndurance = 0;
         if (TryComp<SpecialComponent>(uid, out var special))
             totalEndurance = special.TotalEndurance;
@@ -56,6 +59,7 @@ public sealed class MobThresholdSystem : EntitySystem
             return;
         component.Thresholds = new SortedDictionary<FixedPoint2, MobState>(thresholds);
         // component.Thresholds = new SortedDictionary<FixedPoint2, MobState>(state.UnsortedThresholds);
+        // Nuclear14 end
         component.TriggersAlerts = state.TriggersAlerts;
         component.CurrentThresholdState = state.CurrentThresholdState;
         component.AllowRevives = state.AllowRevives;
@@ -416,7 +420,7 @@ public sealed class MobThresholdSystem : EntitySystem
         if (!TryComp<MobStateComponent>(target, out var mobState) || !TryComp<DamageableComponent>(target, out var damageable))
             return;
 
-        thresholds.BaseThresholds = new SortedDictionary<FixedPoint2, MobState>(thresholds.Thresholds);
+        thresholds.BaseThresholds = new SortedDictionary<FixedPoint2, MobState>(thresholds.Thresholds);  // Nuclear14 HP depends on Endurance
 
         CheckThresholds(target, mobState, thresholds, damageable);
         var ev = new MobThresholdChecked(target, mobState, thresholds, damageable);
