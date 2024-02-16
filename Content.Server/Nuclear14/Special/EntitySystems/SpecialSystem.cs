@@ -87,7 +87,7 @@ public sealed class SpecialSystem : EntitySystem
 
     private void OnSpecialModifiersChanged(EntityUid uid, SpecialComponent component, RefreshSpecialModifiersDoAfterEvent args)
     {
-        if (component.BaseIntelligence + component.IntelligenceModifier < 3)
+        if (component.TotalIntelligence < 3)
         {
             EnsureComp<LowIntelligenceAccentComponent>(uid);
         }
