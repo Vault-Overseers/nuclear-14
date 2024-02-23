@@ -16,7 +16,7 @@
     maxAngle: 65
     angleIncrease: 4
     angleDecay: 16    
-    fireRate: 5
+    fireRate: 2
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -53,6 +53,9 @@
     quickEquip: false
     slots:
     - Belt
+  - type: Gun
+    minAngle: 10
+    maxAngle: 20
 
 - type: entity
   id: BaseWeaponPowerCellMedium
@@ -97,7 +100,6 @@
         whitelist:
           tags:
             - N14PowerCellHigh
-            - PowerCell
   - type: Gun 
     fireRate: 3
 
@@ -126,7 +128,6 @@
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
-            - PowerCell
             - N14PlasmaCartridge
   - type: MagazineVisuals
     magState: mag
@@ -166,9 +167,8 @@
         whitelist:
           tags:
             - N14PowerCellHigh
-            - PowerCell
   - type: Gun 
-    fireRate: 2
+    fireRate: 3
 
 - type: entity
   name: plasma rifle
@@ -231,7 +231,6 @@
         whitelist:
           tags:
             - N14PlasmaCartridge
-            - PowerCell
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -266,7 +265,6 @@
         whitelist:
           tags:
             - N14PlasmaCartridge
-            - PowerCell
   - type: MagazineVisuals
     magState: mag
     steps: 5
