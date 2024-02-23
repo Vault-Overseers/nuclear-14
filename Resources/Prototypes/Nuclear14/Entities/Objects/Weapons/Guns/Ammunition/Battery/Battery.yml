@@ -7,11 +7,13 @@
   components:
   - type: Battery
     pricePerJoule: 0.15
-  - type: PowerCell
   - type: Explosive
     explosionType: Default
     maxIntensity: 200
     intensitySlope: 1.5
+  - type: Tag
+    tags:
+      - PowerCell
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Battery/microfusion.rsi
   - type: SolutionContainerManager
@@ -49,9 +51,6 @@
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
-  - type: MachinePart
-    part: PowerCell
-    rating: 3
 
 - type: entity
   name: plasma cartridge
@@ -62,13 +61,15 @@
   components:
   - type: Battery
     pricePerJoule: 0.15
-  - type: PowerCell
   - type: Explosive
     explosionType: Default
     maxIntensity: 200
     intensitySlope: 1.5
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Battery/plasma.rsi
+  - type: Tag
+    tags:
+      - PowerCell
   - type: SolutionContainerManager
     solutions:
       battery:
@@ -104,6 +105,3 @@
   - type: Battery
     maxCharge: 500
     startingCharge: 500
-  - type: MachinePart
-    part: PowerCell
-    rating: 3

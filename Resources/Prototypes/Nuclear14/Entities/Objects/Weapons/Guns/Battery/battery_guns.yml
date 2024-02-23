@@ -16,7 +16,7 @@
     maxAngle: 65
     angleIncrease: 4
     angleDecay: 16    
-    fireRate: 2
+    fireRate: 5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -33,6 +33,7 @@
         whitelist:
           tags:
             - N14PowerCellHigh
+            - PowerCell
   - type: Appearance
   - type: StaticPrice
     price: 500
@@ -86,6 +87,19 @@
     magState: mag
     steps: 5
     zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellHigh
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellHigh
+            - PowerCell
+  - type: Gun 
+    fireRate: 3
 
 - type: entity
   name: plasma pistol
@@ -112,6 +126,7 @@
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
+            - PowerCell
             - N14PlasmaCartridge
   - type: MagazineVisuals
     magState: mag
@@ -141,6 +156,19 @@
     magState: mag
     steps: 5
     zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellHigh
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellHigh
+            - PowerCell
+  - type: Gun 
+    fireRate: 2
 
 - type: entity
   name: plasma rifle
@@ -203,6 +231,7 @@
         whitelist:
           tags:
             - N14PlasmaCartridge
+            - PowerCell
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -237,6 +266,7 @@
         whitelist:
           tags:
             - N14PlasmaCartridge
+            - PowerCell
   - type: MagazineVisuals
     magState: mag
     steps: 5
