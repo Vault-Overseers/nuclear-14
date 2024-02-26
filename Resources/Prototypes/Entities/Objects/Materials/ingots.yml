@@ -51,6 +51,14 @@
   - type: Item
     heldPrefix: gold
   - type: Appearance
+  - type: Extractable
+    grindableSolutionName: gold
+  - type: SolutionContainerManager
+    solutions:
+      gold:
+        reagents:
+        - ReagentId: Gold
+          Quantity: 10
 
 - type: entity
   parent: IngotGold
@@ -88,6 +96,14 @@
   - type: Item
     heldPrefix: silver
   - type: Appearance
+  - type: Extractable
+    grindableSolutionName: gold
+  - type: SolutionContainerManager
+    solutions:
+      gold:
+        reagents:
+        - ReagentId: Silver
+          Quantity: 10
 
 - type: entity
   parent: IngotSilver
@@ -97,3 +113,5 @@
   components:
   - type: Sprite
     state: silver
+  - type: Stack
+    count: 1

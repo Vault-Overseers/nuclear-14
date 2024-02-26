@@ -44,6 +44,8 @@
       - id: Cautery
       - id: Retractor
       - id: ScalpelAdvanced
+      - id: ClothingHandsGlovesNitrile
+      - id: EmergencyRollerBedSpawnFolded
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -153,13 +155,13 @@
     tags: [] # ignore "WhitelistChameleon" tag
   - type: StorageFill
     contents:
+      - id: ClothingOuterArmorBasic
       - id: ClothingHeadHatCentcom
       - id: ClothingEyesGlassesSunglasses
       - id: ClothingUniformJumpsuitCentcomOfficial
       - id: ClothingShoesBootsJack
       - id: ClothingHandsGlovesColorBlack
       - id: ClothingHeadsetAltCentComFake
-      - id: ClothingOuterArmorBasic
       - id: Paper
       - id: Pen
       - id: CentcomPDAFake
@@ -199,7 +201,8 @@
   description: Contains 3 pairs of syndicate pyjamas and 3 plushies for the ultimate sleepover.
   components:
   - type: Storage
-    maxTotalWeight: 44
+    grid:
+    - 0,0,8,4
   - type: StorageFill
     contents:
       - id: ClothingUniformJumpsuitPyjamaSyndicateRed
@@ -256,7 +259,9 @@
       - id: ClothingHeadHelmetSyndicate
       - id: ClothingOuterHardsuitSyndicate
       - id: ClothingMaskGasSyndicate
+      - id: ClothingHandsGlovesColorYellowBudget
       - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -269,6 +274,35 @@
       - id: ClothingOuterHardsuitSyndie
       - id: ClothingMaskGasSyndicate
       - id: ClothingHandsGlovesCombat
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
+  name: syndicate elite hardsuit bundle
+  description: "Contains the Syndicate's elite hardsuit, which comes with some more stuff in it."
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterHardsuitSyndieElite
+      - id: ClothingMaskGasSyndicate
+      - id: ClothingHandsGlovesCombat
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateHardsuitExtrasBundle
+  name: syndicate hardsuit extras bundle
+  description: "Contains stuff that you will absolutely want to have when purchasing a hardsuit."
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingMaskGasSyndicate
+      - id: ClothingHandsGlovesCombat
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -294,8 +328,8 @@
     contents:
       - id: BoxSurvivalSyndicate
       - id: WeaponPistolViper
-      - id: PinpointerNuclear
-      - id: MicroBombImplanter
+      - id: PinpointerSyndicateNuclear
+      - id: DeathAcidifierImplanter
 
 
 - type: entity
@@ -312,10 +346,10 @@
       - id: Cautery
       - id: CombatKnife
       - id: WeaponPistolViper
-      - id: PinpointerNuclear
+      - id: PinpointerSyndicateNuclear
       - id: HandheldHealthAnalyzer
       - id: CombatMedipen
-      - id: MicroBombImplanter
+      - id: DeathAcidifierImplanter
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateMedicalBundle
@@ -329,6 +363,6 @@
       - id: Defibrillator
       - id: CombatMedipen
         amount: 3
-      - id: ClothingHandsGlovesLatex
+      - id: ClothingHandsGlovesNitrile
       - id: SyringeTranexamicAcid
       - id: SyringeHyronalin

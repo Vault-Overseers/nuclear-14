@@ -38,7 +38,8 @@
       map: ["pink-box6"]
       visible: false
   - type: Storage
-    maxSlots: 6
+    grid:
+    - 0,0,5,0
     whitelist:
       tags:
       - Donut
@@ -118,7 +119,8 @@
       map: ["box12"]
       visible: false
   - type: Storage
-    maxSlots: 12
+    grid:
+    - 0,0,5,1
     whitelist:
       tags:
       - Egg
@@ -206,14 +208,14 @@
       map: ["enum.StorageVisualLayers.Door"]
   # TODO make these entitystorage again + placeablesurface after entity storage ECS gets merged.
   - type: Storage
-    maxSlots: 1
+    grid:
+    - 0,0,1,1
     maxItemSize: Normal
-    whitelist:
-      tags:
-      - Pizza
   - type: Item
     sprite: Objects/Consumable/Food/Baked/pizza.rsi
     heldPrefix: box
+    shape:
+    - 0,0,1,1
   - type: Appearance
   - type: EntityStorageVisuals
     stateDoorOpen: box-open
@@ -297,7 +299,8 @@
       map: ["box6"]
       visible: false
   - type: Storage
-    maxSlots: 6
+    grid:
+    - 0,0,1,2
   - type: Item
     sprite: Objects/Consumable/Food/Baked/nuggets.rsi
     size: Small
@@ -331,7 +334,8 @@
     sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
     state: box
   - type: Storage
-    maxTotalWeight: 12
+    grid:
+    - 0,0,3,2
     whitelist:
       tags:
       - DonkPocket
@@ -387,16 +391,28 @@
 
 - type: entity
   parent: FoodBoxDonkpocket
-  id: FoodBoxDonkpocketGondola
-  name: box of gondola-flavoured donk-pockets
+  id: FoodBoxDonkpocketStonk
+  name: box of limited edition stonk-pockets
   components:
   - type: Sprite
-    state: gondola-box
+    state: stonk-box
   - type: Item
     sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
   - type: StorageFill
     contents:
-    - id: FoodDonkpocketGondola
+    - id: FoodDonkpocketStonk
+      amount: 6
+
+- type: entity
+  parent: FoodBoxDonkpocket
+  id: FoodBoxDonkpocketCarp
+  name: box of carp-pockets
+  components:
+  - type: Sprite
+    state: carp-box
+  - type: StorageFill
+    contents:
+    - id: FoodDonkpocketCarp
       amount: 6
 
 - type: entity
@@ -459,6 +475,10 @@
   - type: Item
     sprite: Objects/Storage/Happyhonk/clown.rsi
     heldPrefix: box
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,3,3
   - type: Tag
     tags:
     - Trash
@@ -583,7 +603,8 @@
   name: syndicate snack box
   components:
   - type: Storage
-    maxSlots: 9
+    grid:
+    - 0,0,5,2
   - type: StorageFill
     contents:
     # toy

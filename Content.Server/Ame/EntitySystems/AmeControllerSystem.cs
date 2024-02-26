@@ -16,6 +16,7 @@ using Content.Shared.Popups;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -176,7 +177,7 @@ public sealed class AmeControllerSystem : EntitySystem
         if (!Exists(jar))
             return;
 
-        controller.JarSlot.Remove(jar!.Value);
+        _containerSystem.Remove(jar!.Value, controller.JarSlot);
         UpdateUi(uid, controller);
         if (Exists(user))
             _handsSystem.PickupOrDrop(user, jar!.Value);
@@ -262,6 +263,7 @@ public sealed class AmeControllerSystem : EntitySystem
         {
             < 10 => AmeControllerState.Fuck,
             < 50 => AmeControllerState.Critical,
+            < 80 => AmeControllerState.Warning,
             _ => AmeControllerState.On,
         };
 
@@ -302,7 +304,7 @@ public sealed class AmeControllerSystem : EntitySystem
             return;
         }
 
-        comp.JarSlot.Insert(args.Used);
+        _containerSystem.Insert(args.Used, comp.JarSlot);
         _popupSystem.PopupEntity(Loc.GetString("ame-controller-component-interact-using-success"), uid, args.User, PopupType.Medium);
 
         UpdateUi(uid, comp);

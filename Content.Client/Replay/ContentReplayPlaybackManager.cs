@@ -121,7 +121,7 @@ public sealed class ContentReplayPlaybackManager
                 // Mark as handled -- the event won't get raised.
                 return true;
             case TickerJoinGameEvent:
-                if (!_entMan.EntityExists(_player.LocalPlayer?.ControlledEntity))
+                if (!_entMan.EntityExists(_player.LocalEntity))
                     _entMan.System<ReplaySpectatorSystem>().SetSpectatorPosition(default);
                 return true;
             case ChatMessage chat:
@@ -139,7 +139,6 @@ public sealed class ContentReplayPlaybackManager
         {
             case RoundEndMessageEvent:
             case PopupEvent:
-            case AudioMessage:
             case PickupAnimationEvent:
             case MeleeLungeEvent:
             case SharedGunSystem.HitscanEvent:

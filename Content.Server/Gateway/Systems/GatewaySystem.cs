@@ -1,6 +1,6 @@
 using Content.Server.Gateway.Components;
 using Content.Server.Station.Systems;
-using Content.Server.UserInterface;
+using Content.Shared.UserInterface;
 using Content.Shared.Access.Systems;
 using Content.Shared.Gateway;
 using Content.Shared.Popups;
@@ -8,6 +8,9 @@ using Content.Shared.Teleportation.Components;
 using Content.Shared.Teleportation.Systems;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -29,7 +32,6 @@ public sealed class GatewaySystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<GatewayComponent, EntityUnpausedEvent>(OnGatewayUnpaused);
         SubscribeLocalEvent<GatewayComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<GatewayComponent, ActivatableUIOpenAttemptEvent>(OnGatewayOpenAttempt);
         SubscribeLocalEvent<GatewayComponent, BoundUIOpenedEvent>(UpdateUserInterface);
@@ -43,11 +45,6 @@ public sealed class GatewaySystem : EntitySystem
 
         component.Enabled = value;
         UpdateAllGateways();
-    }
-
-    private void OnGatewayUnpaused(EntityUid uid, GatewayComponent component, ref EntityUnpausedEvent args)
-    {
-        component.NextReady += args.PausedTime;
     }
 
     private void OnStartup(EntityUid uid, GatewayComponent comp, ComponentStartup args)
@@ -288,7 +285,6 @@ public sealed class GatewaySystem : EntitySystem
             return;
 
         gatewayComp.Name = gatewayName;
-        Dirty(gatewayUid, gatewayComp);
     }
 }
 
