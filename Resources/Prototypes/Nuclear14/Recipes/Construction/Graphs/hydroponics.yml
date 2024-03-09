@@ -1,0 +1,74 @@
+# - type: constructionGraph
+  # id: N14Soil
+  # start: start
+  # graph:
+    # - node: start
+      # edges:
+        # - to: Soil
+          # steps:
+            # - prototype: N14SackCompost # consider changing this to material step as seems to be broken
+              # name: Compost Sack
+              # icon: 
+                # sprite: Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
+                # state: daesack3 
+    # - node: Soil
+      # entity: N14Soil
+      # edges:
+        # - to: start
+          # completed:
+            # - !type:SpawnPrototype
+              # prototype: N14SackCompost
+              # amount: 1
+            # - !type:DeleteEntity {}
+          # steps:
+            # - tool: Screwing
+              # doAfter: 3
+
+
+# - type: constructionGraph
+  # id: N14Planter
+  # start: start
+  # graph:
+    # - node: start
+      # edges:
+        # - to: box
+          # completed:
+            # - !type:SnapToGrid
+              # southRotation: true
+          # steps:
+            # - material: WoodPlank
+              # amount: 4
+              # doAdfter: 5
+              
+    # - node: box
+      # entity: N14HydroponicsPlanterEmpty
+      # edges:
+        # - to: Planter
+          # steps:
+            # - prototype: N14SackCompost
+              # name: Compost Sack
+              # icon: 
+                # sprite: Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
+                # state: daesack3
+              
+        # - to: start
+          # completed:
+          # - !type:SpawnPrototype
+            # prototype: MaterialWoodPlank1
+            # amount: 4
+          # - !type:DeleteEntity {}
+          # steps:
+          # - tool: Prying
+            # doAfter: 3
+            
+    # - node: Planter
+      # entity: N14HydroponicsPlanter
+      # edges:
+        # - to: box
+          # completed:
+          # - !type:SpawnPrototype
+                # prototype: N14Soil
+                # amount: 1
+                # doAfter: 2
+          # steps:
+            # - tool: Shoveling

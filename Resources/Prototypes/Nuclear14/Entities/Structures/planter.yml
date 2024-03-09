@@ -1,9 +1,22 @@
 - type: entity
   parent: hydroponicsSoil
-  id: N14HydroponicsPlanter
-  name: planter
-  description: A wooden planter with soil for growing things in.
+  id: N14Soil
   components:
+  # - type: Construction
+    # graph: N14Soil
+    # node: Soil
+
+
+- type: entity
+  parent: BaseStructure
+  id: N14HydroponicsPlanterEmpty
+  name: planter
+  description: A wooden planter for growing things. Just needs soil.
+  components:
+  - type: Sprite
+    layers:
+      - sprite: Nuclear14/Structures/Hydroponics/planterbox.rsi
+        state: empty
   - type: Fixtures
     fixtures:
       fix1:
@@ -14,8 +27,27 @@
         hard: true
         mask:
         - MachineMask
-  - type: Anchorable
-  - type: Pullable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  # - type: Construction
+    # graph: N14Planter
+    # node: box
+
+
+- type: entity
+  parent: N14Soil
+  id: N14HydroponicsPlanter
+  name: planter
+  description: A wooden planter with soil for growing things in.
+  components:
   - type: Sprite
     layers:
       - sprite: Nuclear14/Structures/Hydroponics/planterbox.rsi
@@ -63,8 +95,16 @@
         harvest_alert:
           True: { visible: true }
           False: { visible: false }
-  - type: PlantHolder
-    drawWarnings: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.1"
+        density: 190
+        hard: true
+        mask:
+        - MachineMask
   - type: Destructible
     thresholds:
     - trigger:
@@ -75,8 +115,13 @@
         node: machineFrame
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: PlantHolder
+    drawWarnings: true
   - type: AmbientSound
     volume: -9
     range: 5
     sound:
       path: /Audio/Ambience/Objects/flowing_water_open.ogg
+  # - type: Construction
+    # graph: N14Planter
+    # node: Planter
