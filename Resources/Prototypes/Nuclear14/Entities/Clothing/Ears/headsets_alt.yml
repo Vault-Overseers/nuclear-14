@@ -1,11 +1,10 @@
 ﻿- type: entity
   abstract: true
-  parent: Clothing
+  parent: ClothingHeadsetAlt
   id: N14ClothingHeadsetAlt
   name: headset
   description: A modular intercom that fits over the head. Takes encryption keys.
   components:
-  - type: Headset
   - type: ContainerContainer
     containers:
       key_slots: !type:Container
@@ -13,14 +12,8 @@
     containers:
       key_slots:
       - EncryptionKeyCommon
-  - type: EncryptionKeyHolder
-    keySlots: 4
   - type: Sprite
     state: icon_alt
-  - type: Clothing
-    equippedPrefix: alt
-    slots:
-    - ears
 
 - type: entity
   parent: N14ClothingHeadsetAlt
