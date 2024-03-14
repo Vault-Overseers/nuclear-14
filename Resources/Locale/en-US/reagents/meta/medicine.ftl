@@ -105,35 +105,3 @@ reagent-desc-sigynate = A thick pink syrup useful for neutralizing acids and soo
 
 reagent-name-saline = saline
 reagent-desc-saline = "A mixture of salt and water. Commonly used to treat dehydration or low fluid presence in blood."
-
-
-
-
-
-## N14
-reagent-name-healing-mixture = healing mixture
-reagent-desc-healing-mixture = A mixture of reagents that makes you heal.
-
-reagent-name-robust-healing-mixture = robust healing mixture
-reagent-desc-robust-healing-mixture = A mixture of reagents that makes you heal fast.
-
-reagent-name-damage-resist-mixture = damage resistant mixture
-reagent-desc-damage-resist-mixture = A mixture of reagents that makes you resistant to damage.
-
-reagent-name-radaway = radaway
-reagent-desc-radaway = An odd reagent that cures your radiation.
-
-reagent-name-buffout = buffout
-reagent-desc-buffout = A reagent that makes you overall more robust, for a short period of time.
-
-reagent-name-rad-x = rad-x
-reagent-desc-rad-x = A reagent that makes you resistant to radiation.
-
-reagent-name-fixer = fixer
-reagent-desc-fixer = A reagent that cures your addictions.
-
-reagent-name-mentats = mentats
-reagent-desc-mentats = A reagent that makes you mentally sharper.
-
-reagent-name-cateye = cateye
-reagent-desc-cateye = A reagent that improves your low-light vision.

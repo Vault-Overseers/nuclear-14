@@ -1,0 +1,592 @@
+# For directional 64x64 sprites below there is an entity for each main direction (south, east, west). 
+# If bounding boxes improve in future these can be simplified. For now this is required as rotating the sprite ruins the bounding box. - Peptide
+
+# Bookshelf bookshelves
+- type: entity
+  id: N14BookshelfDirty
+  parent: BaseStructure
+  name: "bookshelf"
+  description: A dusty old shelf.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/bookshelf.rsi
+    snapCardinals: true
+    netsync: false
+    layers:
+      - state: bookshelf_2
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/woodhit.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Wooden
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
+  - type: Pullable
+  - type: Storage
+    capacity: 50
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  
+- type: entity
+  id: N14Bookshelf
+  parent: N14BookshelfDirty
+  name: "bookshelf"
+  description: Dusty old books.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/bookshelf.rsi
+    layers:
+      - state: bookshelf_1
+      - state: book-0
+        map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          book-0: ""
+      - enum.DamageStateVisualLayers.Base:
+          book-1: ""
+      - enum.DamageStateVisualLayers.Base:
+          book-2: ""
+      - enum.DamageStateVisualLayers.Base:
+          book-3: ""
+      - enum.DamageStateVisualLayers.Base:
+          book-4: ""
+      - enum.DamageStateVisualLayers.Base:
+          book-5: ""
+          
+- type: entity
+  id: N14BookshelfDestroyed
+  parent: N14BookshelfDirty
+  name: "bookshelf"
+  description: A broken old shelf.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/bookshelf.rsi
+    layers:
+      - state: bookshelf_3
+      
+# Wood shelf
+- type: entity
+  id: N14ShelfWood
+  suffix: south
+  parent: BaseStructure
+  name: wooden shelf
+  description: A dusty old shelf.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
+    netsync: false
+    state: wood_shelf
+    offset: 0, 0.5
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/woodhit.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Wooden
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+  - type: Pullable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,-0.05,0.6,0.7"  # should be this but doesn't rotate right.
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Storage
+    capacity: 50
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        
+- type: entity
+  parent: N14ShelfWood
+  id: N14ShelfWoodEast
+  suffix: East
+  name: wooden shelf
+  description: A dusty old shelf.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,0.7,0.7,1.3"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        
+- type: entity
+  parent: N14ShelfWood
+  id: N14ShelfWoodWest
+  suffix: West
+  name: wooden shelf
+  description: A dusty old shelf.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,-0.3,0.6,0.3"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  
+- type: entity
+  parent: N14ShelfWood
+  id: N14ShelfWoodAlt
+  components:
+  - type: Sprite
+    state: wood_shelf-alt
+
+- type: entity
+  parent: N14ShelfWoodAlt
+  id: N14ShelfWoodAltEast
+  suffix: Alt, East
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,0.7,0.7,1.3"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  
+- type: entity
+  parent: N14ShelfWoodAlt
+  id: N14ShelfWoodAltWest
+  suffix: Alt, West
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,-0.3,0.6,0.3"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+    
+- type: entity
+  parent: N14ShelfWood
+  id: N14ShelfWoodBig
+  name: big wooden shelf
+  components:
+  - type: Sprite
+    state: wood_shelf_big
+    
+- type: entity
+  parent: N14ShelfWoodBig
+  id: N14ShelfWoodBigEast
+  suffix: East
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1,0.5,1,0.8"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        
+- type: entity
+  parent: N14ShelfWoodBig
+  id: N14ShelfWoodBigWest
+  suffix: West
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1,-0.1,1,-0.4"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+    
+- type: entity
+  parent: N14ShelfWood
+  id: N14ShelfWoodShowcase
+  name: showcase
+  description: A wooden stand for showing things off.
+  components:
+  - type: Sprite
+    snapCardinals: true
+    state: showcase
+  - type: Transform
+    anchored: true
+    noRot: true
+    
+- type: entity
+  parent: N14ShelfWood
+  id: N14ShelfWoodStand
+  name: wooden stand
+  description: A stand, not a sit. Missing a TV.
+  components:
+  - type: Sprite
+    state: stand_wood
+    
+- type: entity
+  parent: N14ShelfWoodStand
+  id: N14ShelfWoodStandEast
+  suffix: East
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1,0.8,0.4,1.2"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        
+- type: entity
+  parent: N14ShelfWoodStand
+  id: N14ShelfWoodStandWest
+  suffix: West
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,0.2,1,-0.2"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+    
+- type: entity
+  parent: N14ShelfWood
+  id: N14ShelfWoodStandSmall
+  name: small wooden stand
+  description: A small stand. For small people.
+  components:
+  - type: Sprite
+    state: stand_wood_small
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.4,0.5,0.2"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        
+- type: entity
+  parent: N14ShelfWoodStandSmall
+  id: N14ShelfWoodStandSmallEast
+  suffix: East
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.7,1.3,0.5,0.7"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        
+- type: entity
+  parent: N14ShelfWoodStandSmall
+  id: N14ShelfWoodStandSmallWest
+  suffix: West
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.7,0.2"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+    
+- type: entity
+  parent: N14ShelfWood
+  id: N14ShelfWoodClothesRack
+  name: clothes rack
+  description: A wooden rack for storing clothes.
+  components:
+  - type: Sprite
+    state: clothing_rack
+    
+- type: entity
+  parent: N14ShelfWoodClothesRack
+  id: N14ShelfWoodClothesRackEast
+  suffix: East
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.7,1.3,0.8,0.7"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        
+- type: entity
+  parent: N14ShelfWoodClothesRack
+  id: N14ShelfWoodClothesRackWest
+  suffix: West
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.8,-0.2,0.7,0.2"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+    
+# Metal Shelves
+- type: entity
+  parent: N14ShelfWood
+  id: N14ShelfMetal
+  name: metal shelf
+  description: A cold metal shelf.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
+    netsync: false
+    state: metal_shelf
+    offset: 0, 0.5
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: N14ShelfMetal
+  id: N14ShelfMetalEast
+  suffix: East
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,0.7,0.7,1.3"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        
+- type: entity
+  parent: N14ShelfMetal
+  id: N14ShelfMetalWest
+  suffix: West
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,-0.3,0.6,0.3"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+        
+        
+- type: entity
+  parent: N14ShelfMetal
+  id: N14ShelfMetalShop
+  name: shop shelf
+  description: A metal shelf for displaying goods.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
+    state: shelf_shop
+    
+    
+- type: entity
+  parent: N14ShelfMetalShop
+  id: N14ShelfMetalShopEast
+  suffix: East
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,1,0.7,1.4"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+    
+- type: entity
+  parent: N14ShelfMetalShop
+  id: N14ShelfMetalShopWest
+  suffix: West
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,0,0.6,0.5"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+    
+- type: entity
+  parent: N14ShelfMetal
+  id: N14ShelfMetalMeds
+  name: medical shelf
+  description: A metal shelf for storing meds.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
+    state: medshelves
+    
+- type: entity
+  parent: N14ShelfMetalShopEast
+  id: N14ShelfMetalMedsEast
+  name: medical shelf
+  description: A metal shelf for storing meds.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
+    state: medshelves
+    
+- type: entity
+  parent: N14ShelfMetalShopWest
+  id: N14ShelfMetalMedsWest
+  name: medical shelf
+  description: A metal shelf for storing meds.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
+    state: medshelves

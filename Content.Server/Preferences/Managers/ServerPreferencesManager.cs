@@ -12,6 +12,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.Nuclear14.Special;
 
 
 namespace Content.Server.Preferences.Managers
@@ -287,6 +288,9 @@ namespace Content.Server.Preferences.Managers
                             .WithJobPriorities(
                                 hp.JobPriorities.Where(job =>
                                     _protos.HasIndex<JobPrototype>(job.Key)))
+                            .WithSpecialPriorities(
+                                hp.SpecialPriorities.Where(special =>
+                                    _protos.HasIndex<SpecialPrototype>(special.Key))) // Nuclear14 Special
                             .WithAntagPreferences(
                                 hp.AntagPreferences.Where(antag =>
                                     _protos.HasIndex<AntagPrototype>(antag)))

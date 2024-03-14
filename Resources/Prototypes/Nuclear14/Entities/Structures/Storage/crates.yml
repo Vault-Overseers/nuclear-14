@@ -28,25 +28,20 @@
 
 # Wooden
 - type: entity
-  parent: BaseStructureDynamic
+  parent: CrateWoodenGrave
   id: N14CrateWooden
   name: wooden crate
   components:
   - type: Icon
     sprite: Nuclear14/Structures/Storage/Crates/cratewooden.rsi
     state: icon
-  - type: Transform
-    noRot: true
   - type: Sprite
-    noRot: true
     sprite: Nuclear14/Structures/Storage/Crates/cratewooden.rsi
     layers:
     - state: base
       map: ["enum.StorageVisualLayers.Base"]
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
-  - type: InteractionOutline
-  - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
@@ -58,36 +53,6 @@
         - SmallMobMask #this is so they can go under plastic flaps
         layer:
         - MachineLayer
-  - type: EntityStorage
-  - type: PlaceableSurface
-    isPlaceable: false # defaults to closed.
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Wood
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateDoorOpen: open
-    stateDoorClosed: closed
-  - type: PaperLabel
-    labelSlot:
-      insertVerbText: Attach Label
-      ejectVerbText: Remove Label
-      whitelist:
-        components:
-        - Paper
-  - type: ContainerContainer
-    containers:
-      entity_storage: !type:Container
-      paper_label: !type:ContainerSlot
-  - type: ItemSlots
     
 - type: entity
   parent: [ N14CrateWooden, N14WastelandBotanyTimedStorageFill ]

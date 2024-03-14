@@ -4,6 +4,8 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
+using Content.Shared.Nuclear14.Special.Components;
+using Content.Shared.Nuclear14.CCVar;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee;
@@ -12,6 +14,7 @@ using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable.Components;
+using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Content.Shared.Timing;
 
@@ -19,6 +22,7 @@ namespace Content.Shared.Wieldable;
 
 public sealed class WieldableSystem : EntitySystem
 {
+    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedHandVirtualItemSystem _virtualItemSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
@@ -153,6 +157,23 @@ public sealed class WieldableSystem : EntitySystem
             return false;
         }
 
+        // Nuclear14 - Strength is needed to weild
+        if (!EntityManager.TryGetComponent<SpecialComponent>(user, out var special))
+        {
+            if(!quiet)
+                _popupSystem.PopupClient(Loc.GetString("player-component-no-special"), user, user);
+            return false;
+        }
+
+        var strNeeded = _config.GetCVar<int>(SpecialCCVars.StrengthWeild);
+        if(special.TotalStrength < strNeeded)
+        {
+            var message = Loc.GetString("player-component-not-enough-strength-weild",
+                ("number", strNeeded), ("item", uid));
+            _popupSystem.PopupClient(message, user, user);
+            return false;
+        }
+        // Nuclear14 end
         // Seems legit.
         return true;
     }

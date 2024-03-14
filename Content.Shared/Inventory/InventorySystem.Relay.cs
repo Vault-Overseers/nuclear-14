@@ -13,6 +13,7 @@ using Content.Shared.Strip.Components;
 using Content.Shared.Temperature;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Content.Shared.Nuclear14.Special;
 
 namespace Content.Shared.Inventory;
 
@@ -44,6 +45,12 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowThirstIconsComponent>>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowSyndicateIconsComponent>>(RelayInventoryEvent);
 
+        SubscribeLocalEvent<InventoryComponent, GetVerbsEvent<EquipmentVerb>>(OnGetStrippingVerbs);
+
+        // Nuclear14 Cloth Special Modifiers
+        SubscribeLocalEvent<InventoryComponent, RefreshSpecialModifiersEvent>(RelayInventoryEvent);
+        // Nuclear14 end
+        
         SubscribeLocalEvent<InventoryComponent, GetVerbsEvent<EquipmentVerb>>(OnGetEquipmentVerbs);
     }
 
