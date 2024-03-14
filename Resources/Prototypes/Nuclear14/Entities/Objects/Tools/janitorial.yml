@@ -1,0 +1,46 @@
+- type: entity
+  parent: MopItem
+  name: mop
+  id: N14Mop
+  description: A mop that can't be stopped, viscera cleanup detail awaits.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Janitorial/mop.rsi # N14TODO: New Sprite?
+    state: mop
+
+- type: entity
+  parent: MopBucket
+  id: N14MopBucket
+  name: mop bucket
+  description: Holds water and the tears of the janitor.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Janitorial/janitorial.rsi
+    noRot: true
+    layers:
+    - state: mopbucket
+    - state: mopbucket_water-1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+    drawdepth: Objects
+
+- type: entity
+  parent: N14MopBucket
+  id: N14MopBucketFull
+  suffix: full
+  name: mop bucket
+  components:
+    - type: Sprite
+      layers:
+        - state: mopbucket
+        - state: mopbucket_water-3
+          map: [ "enum.SolutionContainerLayers.Fill" ]
+    - type: SolutionContainerManager
+      solutions:
+        bucket:
+          maxVol: 600
+          reagents:
+            - ReagentId: Water
+              Quantity: 600
+
+# Just use upstream rags ID: RagItem
