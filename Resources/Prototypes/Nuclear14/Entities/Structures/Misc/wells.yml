@@ -1,0 +1,65 @@
+- type: entity
+  id: N14WellBoarded
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/well.rsi
+    noRot: true
+    netsync: false
+    state: well
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: Tag
+    tags:
+      - Structure
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-1,0,1,0.5"
+      density: 500
+      mask:
+      - MachineMask
+      layer:
+      - MidImpassable
+      - LowImpassable
+
+- type: entity
+  parent: N14WellBoarded
+  id: N14WellWaterClean # N14TODO: Needs new sprite. Maybe change base to abstract and remove noRot etc and make child noRot since water well may have rotations.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      well:
+        reagents:
+        - ReagentId: Water
+          Quantity: 500
+  - type: DrainableSolution
+    solution: well
+  - type: ReagentTank
+
+- type: entity
+  parent: N14WellWaterClean
+  id: N14WellWaterDirty # N14TODO: As above
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      well:
+        reagents:
+        - ReagentId: WaterDirty
+          Quantity: 500
+
+- type: entity
+  parent: N14WellWaterClean
+  id: N14WellWaterIrradiated # N14TODO: As above
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      well:
+        reagents:
+        - ReagentId: WaterIrradiated
+          Quantity: 500
