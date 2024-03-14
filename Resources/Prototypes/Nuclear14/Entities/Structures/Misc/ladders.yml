@@ -1,5 +1,6 @@
 - type: entity
   id: BaseLadder
+  name: ladder
   abstract: true
   placement:
     mode: SnapgridCenter
@@ -21,7 +22,6 @@
 - type: entity
   parent: BaseLadder
   id: LadderTop
-  name: ladder
   suffix: top
   description: The top of a ladder. Use it to go down.
   components:
@@ -31,12 +31,65 @@
 - type: entity
   parent: BaseLadder
   id: LadderBottom
-  name: ladder
   suffix: bottom
   description: The bottom of a ladder. Use it to go up.
   components:
   - type: Sprite
     state: ladder_bottom
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.3,0.1,-1,-1"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        
+# MS13 Sprites
+- type: entity
+  parent: LadderTop
+  id: LadderTopBunkerOpen
+  name: bunker entrance
+  suffix: open
+  description: Looks like it leads down somewhere.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/laddersms13.rsi
+    state: bunker_open
+    
+- type: entity
+  parent: LadderTop
+  id: LadderTopManholeOpen
+  name: manhole
+  suffix: open
+  description: Looks like it leads down somewhere.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/laddersms13.rsi
+    state: manhole_open
+    
+- type: entity
+  parent: LadderTop
+  id: LadderSquareTop
+  suffix: square
+  description: Looks like it leads down somewhere.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/laddersms13.rsi
+    state: ladder01
+    
+- type: entity
+  parent: LadderBottom
+  id: LadderSquareBottom
+  suffix: bottom, square
+  description: The bottom of a ladder. Use it to go up.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/laddersms13.rsi
+    state: ladder10
   - type: Fixtures
     fixtures:
       fix1:
@@ -49,13 +102,72 @@
         layer:
         - MidImpassable
         - LowImpassable
+        
+- type: entity
+  parent: LadderSquareBottom
+  id: LadderSquareMid
+  suffix: mid, square
+  description: The middle of a ladder. Up or down.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/laddersms13.rsi
+    state: ladder11
+    
+- type: entity
+  parent: BaseLadder
+  id: LadderRopeTop1
+  suffix: rope, top
+  name: climbing rope
+  description: The top of a rope. Going down!
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/laddersms13.rsi
+    state: rope
+    
+- type: entity
+  parent: BaseLadder
+  id: LadderRopeBottom1
+  suffix: rope, bottom
+  name: climbing rope
+  description: The bottom of a rope. Going up!
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/laddersms13.rsi
+    state: rope_down
+    
+- type: entity
+  parent: BaseStructure
+  id: LadderTopBunkerClosed
+  name: bunker entrance
+  suffix: closed
+  description: A closed up entrance to a bunker.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/laddersms13.rsi
+    state: bunker_closed
+    noRot: true
+    netsync: false
+  - type: Transform
+    anchored: true
+  - type: Fixtures
+  
+- type: entity
+  parent: LadderTopBunkerClosed
+  id: LadderTopManholeClosed
+  name: manhole cover
+  suffix: closed
+  description: A closed up entrance to a bunker.
+  components:
+  - type: Sprite
+    state: manhole_closed
 
 # SS14 Sprites
 # Tops
 - type: entity
   parent: BaseLadder
   id: LadderTopMetal
-  name: ladder
   suffix: top, metal, painted
   description: The top of a ladder. Use it to go down.
   components:
@@ -73,7 +185,6 @@
 - type: entity
   parent: LadderTopMetal
   id: LadderTopMetalPaint2
-  name: ladder
   suffix: top, metal, flaking
   description: The top of a ladder. Use it to go down.
   components:
@@ -90,7 +201,6 @@
 - type: entity
   parent: LadderTopMetal
   id: LadderTopMetalPaint3
-  name: ladder
   suffix: top, metal, flaked
   description: The top of a ladder. Use it to go down.
   components:
@@ -107,7 +217,6 @@
 - type: entity
   parent: LadderTopMetal
   id: LadderTopMetalRusted
-  name: ladder
   suffix: top, metal, rusted
   description: The top of a ladder. Use it to go down. Rusty.
   components:
@@ -119,7 +228,6 @@
 - type: entity
   parent: LadderTopMetal
   id: LadderTopMetalDamaged
-  name: ladder
   suffix: top, metal
   description: The top of a ladder. Use it to go down. This one looks damaged.
   components:
@@ -140,7 +248,6 @@
 - type: entity
   parent: LadderBottom
   id: LadderBottomMetal
-  name: ladder
   suffix: bottom, metal
   description: The bottom of a ladder. Use it to go up.
   components:
@@ -151,7 +258,6 @@
 - type: entity
   parent: LadderBottomMetal
   id: LadderBottomMetalPaint1
-  name: ladder
   suffix: bottom, metal, painted
   description: The bottom of a ladder. Use it to go down.
   components:
@@ -168,7 +274,6 @@
 - type: entity
   parent: LadderBottomMetal
   id: LadderBottomMetalPaint2
-  name: ladder
   suffix: bottom, metal, flaking
   description: The bottom of a ladder. Use it to go down.
   components:
@@ -185,7 +290,6 @@
 - type: entity
   parent: LadderBottomMetal
   id: LadderBottomMetalPaint3
-  name: ladder
   suffix: bottom, metal, flaked
   description: The bottom of a ladder. Use it to go down.
   components:
@@ -202,7 +306,6 @@
 - type: entity
   parent: LadderBottomMetal
   id: LadderBottomMetalDamaged
-  name: ladder
   suffix: bottom
   description: The bottom of a ladder. Use it to go up. Looks damaged.
   components:
@@ -212,7 +315,6 @@
 - type: entity
   parent: LadderBottomMetal
   id: LadderBottomMetalRusted
-  name: ladder
   suffix: bottom, metal, rusted
   description: The bottom of a ladder. Use it to go down. Rusty.
   components:
