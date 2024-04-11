@@ -2,17 +2,10 @@
 - type: entity
   abstract: true
   id: N14PowerStorageBase
-  parent: BaseMachine
+  parent: BaseSMES
   name: energy storage unit
   description: A high-capacity energy storage unit.
-  placement:
-    mode: SnapgridCenter
   components:
-  - type: AmbientSound
-    volume: -7
-    range: 3
-    sound:
-      path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: Sprite
     sprite: Nuclear14/Structures/Power/powerstorage.rsi
     snapCardinals: true
@@ -28,59 +21,6 @@
       - map: ["enum.SmesVisualLayers.Output"]
         state: "smes-op1"
         shader: unshaded
-  - type: Smes
-  - type: Appearance
-  - type: Battery
-    startingCharge: 0
-  - type: ExaminableBattery
-  - type: NodeContainer
-    examinable: true
-    nodes:
-      input:
-        !type:CableDeviceNode
-        nodeGroupID: HVPower
-      output:
-        !type:CableTerminalPortNode
-        nodeGroupID: HVPower
-  - type: BatteryCharger
-    voltage: High
-    node: output
-  - type: BatteryDischarger
-    voltage: High
-    node: input
-  - type: PowerNetworkBattery
-    maxSupply: 150000
-    maxChargeRate: 5000
-    supplyRampTolerance: 5000
-    supplyRampRate: 1000
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#c9c042"
-    castShadows: false
-  - type: WiresPanel
-  - type: Wires
-    BoardName: "SMES" # N14TODO: change board.
-    LayoutId: SMES
-  - type: Machine
-    board: SMESMachineCircuitboard
-  - type: StationInfiniteBatteryTarget
-  - type: Electrified
-    onHandInteract: false
-    onInteractUsing: false
-    onBump: false
-    requirePower: true
-    highVoltageNode: input
-    mediumVoltageNode: output
-  - type: BatterySensor
-  - type: DeviceNetwork
-    deviceNetId: AtmosDevices
-    receiveFrequencyId: AtmosMonitor
-    transmitFrequencyId: AtmosMonitor
-    prefix: device-address-prefix-smes
-    sendBroadcastAttemptEvent: true
-    examinableAddress: true
-  - type: WiredNetworkConnection
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: StrongMetallic
