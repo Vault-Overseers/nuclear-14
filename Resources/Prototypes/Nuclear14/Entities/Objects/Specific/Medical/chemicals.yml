@@ -1,0 +1,279 @@
+# TODO: Sprites exist, just need entities and reagents etc: berserkpowder, bitterdrink, healingpowder, healingpoultice, hydra, traumapack, mourningpoultice? Plus anything else not sprited.
+
+- type: entity
+  parent: BaseItem
+  id: N14ChemicalSyringe
+  name: chemical syringe
+  description: A syringe filled with an unknown chemical. Chem junkies would kill you for it.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+    netsync: false
+    layers:
+    - state: stimpak
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Item
+    sprite: Objects/Specific/Medical/medipen.rsi
+    size: 5
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 30
+  - type: ExaminableSolution
+    solution: pen
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 30
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: stimpak0
+
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14Stimpak
+  name: stimpak
+  description: A syringe filled with a wondrous mixture of medical reagents. Essential for those with little to no medical knowledge.
+  components:
+  - type: Sprite
+    layers:
+    - state: stimpak
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: stimpak0
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 25
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 25
+        reagents:
+        - ReagentId: HealingMixture
+          Quantity: 25
+
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14SuperStimpak
+  name: super stimpak
+  description: A stronger version of the stimpak. Be careful, however, as you can overdose from taking too much.
+  components:
+  - type: Sprite
+    layers:
+    - state: superstimpak
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: superstimpak0
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 25
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 25
+        reagents:
+        - ReagentId: RobustHealingMixture
+          Quantity: 25
+
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14ChemicalSyringeAntidote
+  name: antidote
+  description: A syringe filled with an effective antitoxin.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Medical/antidote-injector.rsi
+    netsync: false
+    layers:
+    - state: icon
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Item
+    sprite: Nuclear14/Objects/Specific/Medical/antidote-injector.rsi
+    size: 5
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 15
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: used
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Antidote
+          Quantity: 15
+
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14Jet
+  name: Jet
+  description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, and lasts longer than Turbo.
+  components:
+  - type: Sprite
+    layers:
+    - state: jet
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: jet
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 18
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 18
+        reagents:
+        - ReagentId: MovespeedMixture
+          Quantity: 18
+
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14Turbo
+  name: Turbo
+  description: A small injector fill with a narcotic reagent, that makes you feel as though the world around you is slowing down. It's stronger, and more dangerous than Jet.
+  components:
+  - type: Sprite
+    layers:
+    - state: turbo
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: turbo
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 10
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 10
+        reagents:
+        - ReagentId: RobustMovespeedMixture
+          Quantity: 10
+
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14Med-X
+  name: med-x
+  description: A syringe filled with a powerful painkiller. Some believe that it makes you more resistant to pain.
+  components:
+  - type: Sprite
+    layers:
+    - state: medx
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: medx0
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 20
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: DamageResistMixture
+          Quantity: 20
+
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14Psycho
+  name: psycho
+  description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin. 
+  components:
+  - type: Sprite
+    layers:
+    - state: psycho
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: psycho0
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 20
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: DamageModifyingMixture
+          Quantity: 20
+
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14RadAwayBloodbag
+  name: RadAway
+  description: A bloodbag filled with an odd reagent that cures any Radiation you've substained.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Medical/bloodbags.rsi
+    netsync: false
+    layers:
+    - state: radaway
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: radaway_empty
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 20
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: RadAway
+          Quantity: 20
+
+
+- type: entity
+  name: healing powder
+  parent: Pill
+  id: N14HealingPowder
+  description: A bag of tribal healing powder. Nausiating.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+    state: healingpowder
+  - type: Item
+    size: 5
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: HealingPowder
+          Quantity: 20
+  - type: Construction
+    graph: N14HealingPowder
+    node: healingpowder
+    
+    
+- type: entity
+  parent: DrinkBottleBaseFull
+  id: N14Antidote
+  name: antidote
+  description: A toxin antidote made from radscorpion tail and water.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: AntidoteMixture
+          Quantity: 100
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Medical/fallout2.rsi
+    state: antidote

@@ -1,0 +1,198 @@
+﻿# New Terminal
+- type: constructionGraph
+  id: TerminalNew
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+        - !type:DeleteEntity
+      edges:
+        - to: missingWires
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2.5
+        - to: Broken
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2.5
+
+    - node: missingWires
+      entity: N14ComputerTerminalBase
+      edges:
+        - to: Frame
+          steps:
+            - material: Cable
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Welding
+              doAfter: 2
+
+    - node: Frame
+      entity: N14ComputerTerminalNewWired
+      edges:
+        - to: Terminal
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+            - material: Circuitry
+
+        - to: missingWires
+          completed:
+            - !type:SpawnPrototype
+              prototype: CableApcStack1
+          steps:
+            - tool: Cutting
+              doAfter: 0.25
+
+    - node: Terminal
+      entity: N14ComputerTerminalNew
+      edges:
+        - to: Frame
+          steps:
+            - tool: Screwing
+              doAfter: 2
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14ComputerTerminalNewWired
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: N14MaterialCircuitry1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: Broken
+      entity: N14ComputerTerminalNewBroken
+      edges:
+        - to: start
+          steps:
+            - tool: Welding
+              doAfter: 2
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+
+# Normal Terminal
+- type: constructionGraph
+  id: Terminal
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+        - !type:DeleteEntity
+      edges:
+        - to: missingWires
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2.5
+        - to: Broken
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2.5
+
+    - node: missingWires
+      entity: N14ComputerTerminalBase
+      edges:
+        - to: Frame
+          steps:
+            - material: Cable
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Welding
+              doAfter: 2
+
+    - node: Frame
+      entity: N14ComputerTerminalWired
+      edges:
+        - to: Terminal
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+            - material: Circuitry
+
+        - to: missingWires
+          completed:
+            - !type:SpawnPrototype
+              prototype: CableApcStack1
+          steps:
+            - tool: Cutting
+              doAfter: 0.25
+
+    - node: Terminal
+      entity: N14ComputerTerminal
+      edges:
+        - to: Frame
+          steps:
+            - tool: Screwing
+              doAfter: 2
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14ComputerTerminalWired
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: N14MaterialCircuitry1
+              amount: 1
+            - !type:DeleteEntity {}
+            
+        - to: Rigged
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+            - tag: bomb
+              store: bomb
+              name: explosive
+              icon: Objects/Weapons/Bombs/c4.rsi/icon.png
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14ComputerTerminalRigged
+              amount: 1
+            - !type:DeleteEntity {}
+            
+    - node: Rigged
+      entity: N14ComputerTerminalRigged
+      edges:
+        - to: Terminal
+          steps:
+            - tool: Screwing
+              doAfter: 2
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14ComputerTerminal
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: C4
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: Broken
+      entity: N14ComputerTerminalBroken
+      edges:
+        - to: start
+          steps:
+            - tool: Welding
+              doAfter: 2
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}

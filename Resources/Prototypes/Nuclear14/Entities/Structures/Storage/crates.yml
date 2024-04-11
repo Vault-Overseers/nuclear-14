@@ -1,0 +1,78 @@
+- type: entity
+  parent: CrateGenericSteel
+  id: N14CrateFootlocker
+  name: footlocker
+  description: A footlocker for someones equipment.
+  components:
+  - type: Icon
+    sprite: Nuclear14/Structures/Storage/Crates/footlocker.rsi
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Crates/footlocker.rsi
+  - type: Reflect
+    reflects:
+    - Energy
+    reflectProb: 0.2
+    spread: 90
+
+- type: entity
+  parent: N14CrateFootlocker
+  id: N14CrateEnclave
+  name: metal crate
+  description: An advanced looking crate. Might have high tech stuff in.
+  components:
+  - type: Icon
+    sprite: Nuclear14/Structures/Storage/Crates/crateenclave.rsi
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Crates/crateenclave.rsi
+    # N14TODO: Will need an access locked variant.
+
+# Wooden
+- type: entity
+  parent: CrateWoodenGrave
+  id: N14CrateWooden
+  name: wooden crate
+  components:
+  - type: Icon
+    sprite: Nuclear14/Structures/Storage/Crates/cratewooden.rsi
+    state: icon
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Crates/cratewooden.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 50
+        mask:
+        - SmallMobMask #this is so they can go under plastic flaps
+        layer:
+        - MachineLayer
+    
+- type: entity
+  parent: [ N14CrateWooden, N14WastelandBotanyTimedStorageFill ]
+  id: N14CrateWastelandBotanyRefilling
+  suffix: Refilling, Random Botany
+    
+- type: entity
+  parent: N14CrateWooden
+  id: N14CrateMilitary
+  name: military crate
+  description: An old wooden crate. Looks like it might have some supplies in.
+  components:
+  - type: Icon
+    sprite: Nuclear14/Structures/Storage/Crates/cratemilitary.rsi
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Crates/cratemilitary.rsi
+    
+- type: entity
+  parent: [ N14CrateMilitary, N14BaseMilitaryTimedStorageFill ]
+  id: N14CrateMilitaryRefilling
+  suffix: Refilling, Random Military
+    
+    

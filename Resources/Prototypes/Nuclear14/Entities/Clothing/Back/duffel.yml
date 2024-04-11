@@ -1,0 +1,59 @@
+- type: entity
+  parent: Clothing
+  id: N14ClothingBackpackDuffel
+  name: duffel bag
+  description: A large duffel bag for holding extra things.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/duffel.rsi
+    state: icon
+  - type: Item
+    size: 9999
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: Storage
+    capacity: 120
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+
+- type: entity
+  parent: N14ClothingBackpackDuffel
+  id: N14ClothingBackpackDuffelSalvage
+  name: salvage duffel bag
+  description: A large duffel bag for holding extra exotic treasures.
+  components:
+    - type: Sprite
+      sprite: Clothing/Back/Duffels/salvage.rsi
+
+- type: entity
+  parent: N14ClothingBackpackDuffel
+  id: N14ClothingBackpackDuffelMilitary
+  name: military duffel bag
+  description: A large duffel bag for holding heavy equipment.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+
+- type: entity
+  parent: N14ClothingBackpackDuffelMilitary
+  id: N14ClothingBackpackDuffelMilitaryMedical
+  name: military medical duffel bag
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon-med
+  - type: Item
+    heldPrefix: med
+  - type: Clothing
+    equippedPrefix: med
