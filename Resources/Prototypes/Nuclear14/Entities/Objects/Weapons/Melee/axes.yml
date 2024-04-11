@@ -20,6 +20,7 @@
         Piercing: 5
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Melee/hatchet.rsi
+    size: Medium
 
 - type: entity
   name: fireaxe
@@ -35,11 +36,13 @@
     quickEquip: false
     slots:
     - back
+  - type: Item
+    size: Ginormous
   - type: Tool
     qualities:
       - Prying
-  - type: TilePrying
-    advanced: true
+  - type: ToolTileCompatible
+  - type: Prying
 
 - type: entity
   name: axe
@@ -67,8 +70,6 @@
       types:
         Blunt: 2
         Slash: 18
-  - type: Item
-    size: 150
   - type: Clothing
     sprite: Nuclear14/Objects/Weapons/Melee/axe.rsi
     quickEquip: false
