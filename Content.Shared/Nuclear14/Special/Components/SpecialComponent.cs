@@ -8,7 +8,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Shared.Nuclear14.Special.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]//, AutoGenerateComponentState]
 public sealed partial class SpecialComponent : Component
 {
     #region Special Base Stats
@@ -109,13 +109,13 @@ public sealed partial class SpecialComponent : Component
     /// <summary>
     ///     Don't let Special go above this value.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadOnly)]//, AutoNetworkedField]
     public int SpecialAmountMax = 10;
 
     /// <summary>
     ///     Don't let Special go below this value.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadOnly)]//, AutoNetworkedField]
     public int SpecialAmountMin = 1;
 
     #endregion

@@ -23,9 +23,4 @@ clothing-agility-decrease-equal-examine = agility is decreased by [color=red]{$a
 clothing-luck-increase-equal-examine = luck is increased by [color=green]{$luck}[/color]
 clothing-luck-decrease-equal-examine = luck is decreased by [color=red]{$luck}[/color]
 
-<<<<<<<< HEAD:Resources/Locale/Nuclear14/special.ftl
-
-player-component-not-enough-strength-weild = You need at lease {$number} Strength to weild this
-========
 player-component-not-enough-strength-weild = You need at least {$number} Strength to weild this
->>>>>>>> 99d5feb1f0 (Special character creation, tweaks):Resources/Locale/en-US/Nuclear14/Special/special.ftl
