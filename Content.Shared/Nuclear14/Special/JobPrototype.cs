@@ -11,7 +11,7 @@ namespace Content.Shared.Nuclear14.Special
     ///     Describes information for a single job on the station.
     /// </summary>
     [Prototype("special")]
-    public sealed class SpecialPrototype : IPrototype
+    public sealed partial class SpecialPrototype : IPrototype
     {
         [ViewVariables]
         [IdDataField]

@@ -5,7 +5,7 @@ namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
 
 [RegisterComponent]
 [NetworkedComponent]
-public sealed class PerceptionModifierMetabolismComponent : Component
+public sealed partial class PerceptionModifierMetabolismComponent : Component
 {
     [ViewVariables]
     public int PerceptionModifier { get; set; }

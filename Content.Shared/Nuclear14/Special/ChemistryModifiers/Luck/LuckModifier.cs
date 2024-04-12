@@ -11,12 +11,12 @@ namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
     /// Default metabolism for stimulants and tranqs. Attempts to find a LuckModifier on the target,
     /// adding one if not there and to change the Luck
     /// </summary>
-    public sealed class LuckModifierReagent : ReagentEffect
-    {
+public sealed partial class LuckModifierReagent : ReagentEffect
+{
 
     [DataField("luckModifier")]
     public int LuckModifier { get; set; } = 0;
-        
+
     /// <summary>
     /// How long the modifier applies (in seconds) when metabolized.
     /// </summary>

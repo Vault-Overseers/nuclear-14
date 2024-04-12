@@ -8,15 +8,15 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Shared.Nuclear14.Special.Components;
 
-[RegisterComponent, NetworkedComponent]//, AutoGenerateComponentState]
-public sealed class SpecialComponent : Component
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class SpecialComponent : Component
 {
     #region Special Base Stats
 
     /// <summary>
     /// SPECIAL Strength of player
     /// </summary>
-    /// 
+    ///
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("strength")]
     public int BaseStrength { get; set; } = 5;

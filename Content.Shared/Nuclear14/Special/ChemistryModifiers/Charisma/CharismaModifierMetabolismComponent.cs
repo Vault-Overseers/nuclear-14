@@ -5,7 +5,7 @@ namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
 
 [RegisterComponent]
 [NetworkedComponent]
-public sealed class CharismaModifierMetabolismComponent : Component
+public sealed partial class CharismaModifierMetabolismComponent : Component
 {
     [ViewVariables]
     public int CharismaModifier { get; set; }

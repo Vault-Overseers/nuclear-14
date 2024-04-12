@@ -11,12 +11,12 @@ namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
     /// Default metabolism for stimulants and tranqs. Attempts to find a IntelligenceModifier on the target,
     /// adding one if not there and to change the Intelligence
     /// </summary>
-    public sealed class IntelligenceModifierReagent : ReagentEffect
-    {
+public sealed partial class IntelligenceModifierReagent : ReagentEffect
+{
 
     [DataField("intelligenceModifier")]
     public int IntelligenceModifier { get; set; } = 0;
-        
+
     /// <summary>
     /// How long the modifier applies (in seconds) when metabolized.
     /// </summary>

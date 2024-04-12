@@ -5,7 +5,7 @@ namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
 
 [RegisterComponent]
 [NetworkedComponent]
-public sealed class AgilityModifierMetabolismComponent : Component
+public sealed partial class AgilityModifierMetabolismComponent : Component
 {
     [ViewVariables]
     public int AgilityModifier { get; set; }

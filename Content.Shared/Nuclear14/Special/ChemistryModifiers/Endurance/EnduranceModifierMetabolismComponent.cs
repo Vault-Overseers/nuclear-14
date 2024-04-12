@@ -5,7 +5,7 @@ namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
 
 [RegisterComponent]
 [NetworkedComponent]
-public sealed class EnduranceModifierMetabolismComponent : Component
+public sealed partial class EnduranceModifierMetabolismComponent : Component
 {
     [ViewVariables]
     public int EnduranceModifier { get; set; }

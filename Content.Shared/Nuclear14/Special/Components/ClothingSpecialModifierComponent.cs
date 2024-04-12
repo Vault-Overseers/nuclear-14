@@ -10,14 +10,14 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Nuclear14.Special.Components;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(ClothingSpecialModifierSystem))]
-public sealed class ClothingSpecialModifierComponent : Component
+public sealed partial class ClothingSpecialModifierComponent : Component
 {
     #region Special stats
 
     /// <summary>
     /// SPECIAL Strength of cloth boost
     /// </summary>
-    /// 
+    ///
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("strengthModifier")]
     public int StrengthModifier = 0;
@@ -25,7 +25,7 @@ public sealed class ClothingSpecialModifierComponent : Component
     /// <summary>
     /// SPECIAL Perception of cloth boost
     /// </summary>
-    /// 
+    ///
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("perceptionModifier")]
     public int PerceptionModifier = 0;
@@ -33,7 +33,7 @@ public sealed class ClothingSpecialModifierComponent : Component
     /// <summary>
     /// SPECIAL Endurance of cloth boost
     /// </summary>
-    /// 
+    ///
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("enduranceModifier")]
     public int EnduranceModifier = 0;
@@ -41,7 +41,7 @@ public sealed class ClothingSpecialModifierComponent : Component
     /// <summary>
     /// SPECIAL Charisma of cloth boost
     /// </summary>
-    /// 
+    ///
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("charismaModifier")]
     public int CharismaModifier = 0;
@@ -49,7 +49,7 @@ public sealed class ClothingSpecialModifierComponent : Component
     /// <summary>
     /// SPECIAL Intelligence of cloth boost
     /// </summary>
-    /// 
+    ///
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("intelligenceModifier")]
     public int IntelligenceModifier = 0;
@@ -57,7 +57,7 @@ public sealed class ClothingSpecialModifierComponent : Component
     /// <summary>
     /// SPECIAL Agility of cloth boost
     /// </summary>
-    /// 
+    ///
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("agilityModifier")]
     public int AgilityModifier = 0;
@@ -65,7 +65,7 @@ public sealed class ClothingSpecialModifierComponent : Component
     /// <summary>
     /// SPECIAL Luck of cloth boost
     /// </summary>
-    /// 
+    ///
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("luckModifier")]
     public int LuckModifier = 0;
@@ -96,12 +96,12 @@ public sealed class ClothingSpecialModifierComponentState : ComponentState
 
     public ClothingSpecialModifierComponentState(
         int strengthModifier,
-        int perceptionModifier,  
-        int enduranceModifier, 
-        int charismaModifier, 
-        int intelligenceModifier, 
-        int agilityModifier, 
-        int luckModifier, 
+        int perceptionModifier,
+        int enduranceModifier,
+        int charismaModifier,
+        int intelligenceModifier,
+        int agilityModifier,
+        int luckModifier,
         bool enabled)
     {
         StrengthModifier = strengthModifier;
