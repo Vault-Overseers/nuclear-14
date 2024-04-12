@@ -74,10 +74,9 @@ namespace Content.Shared.Nuclear14.Special
             special.AgilityModifier = ev.AgilityModifier;
             special.LuckModifier = ev.LuckModifier;
 
-            var doAfterEventArgs = new DoAfterArgs(uid, 0, new RefreshSpecialModifiersDoAfterEvent(), uid, uid)
+            var doAfterEventArgs = new DoAfterArgs(EntityManager, uid, 0, new RefreshSpecialModifiersDoAfterEvent(), uid, uid)
             {
-                BreakOnUserMove = false,
-                BreakOnTargetMove = false,
+                BreakOnMove = false,
                 BreakOnDamage = false,
                 NeedHand = false,
                 RequireCanInteract = false,
@@ -169,7 +168,7 @@ namespace Content.Shared.Nuclear14.Special
         }
     }
     [Serializable, NetSerializable]
-    public sealed class RefreshSpecialModifiersDoAfterEvent : SimpleDoAfterEvent
+    public sealed partial class RefreshSpecialModifiersDoAfterEvent : SimpleDoAfterEvent
     {
     }
 }

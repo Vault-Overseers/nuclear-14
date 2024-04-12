@@ -11,12 +11,12 @@ namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
     /// Default metabolism for stimulants and tranqs. Attempts to find a CharismaModifier on the target,
     /// adding one if not there and to change the Charisma
     /// </summary>
-    public sealed class CharismaModifierReagent : ReagentEffect
-    {
+public sealed partial class CharismaModifierReagent : ReagentEffect
+{
 
     [DataField("charismaModifier")]
     public int CharismaModifier { get; set; } = 0;
-        
+
     /// <summary>
     /// How long the modifier applies (in seconds) when metabolized.
     /// </summary>

@@ -6,7 +6,7 @@ using static Content.Shared.Nuclear14.Special.ChemistryModifiers.CharismaModifie
 using Content.Shared.Nuclear14.Special.ChemistryModifiers;
 
 namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
-public sealed class MetabolismCharismaModifierSystem : EntitySystem
+public sealed partial class MetabolismCharismaModifierSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SpecialModifierSystem _specialModifiers = default!;

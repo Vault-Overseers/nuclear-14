@@ -5,7 +5,7 @@ namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
 
 [RegisterComponent]
 [NetworkedComponent]
-public sealed class IntelligenceModifierMetabolismComponent : Component
+public sealed partial class IntelligenceModifierMetabolismComponent : Component
 {
     [ViewVariables]
     public int IntelligenceModifier { get; set; }

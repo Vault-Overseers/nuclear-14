@@ -5,7 +5,7 @@ namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
 
 [RegisterComponent]
 [NetworkedComponent]
-public sealed class LuckModifierMetabolismComponent : Component
+public sealed partial class LuckModifierMetabolismComponent : Component
 {
     [ViewVariables]
     public int LuckModifier { get; set; }

@@ -11,12 +11,12 @@ namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
     /// Default metabolism for stimulants and tranqs. Attempts to find a PerceptionModifier on the target,
     /// adding one if not there and to change the perception
     /// </summary>
-    public sealed class PerceptionModifierReagent : ReagentEffect
-    {
+public sealed partial class PerceptionModifierReagent : ReagentEffect
+{
 
     [DataField("perceptionModifier")]
     public int PerceptionModifier { get; set; } = 0;
-        
+
     /// <summary>
     /// How long the modifier applies (in seconds) when metabolized.
     /// </summary>

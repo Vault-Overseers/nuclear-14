@@ -11,12 +11,12 @@ namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
     /// Default metabolism for stimulants and tranqs. Attempts to find a EnduranceModifier on the target,
     /// adding one if not there and to change the endurance
     /// </summary>
-    public sealed class EnduranceModifierReagent : ReagentEffect
-    {
+public sealed partial class EnduranceModifierReagent : ReagentEffect
+{
 
     [DataField("enduranceModifier")]
     public int EnduranceModifier { get; set; } = 0;
-        
+
     /// <summary>
     /// How long the modifier applies (in seconds) when metabolized.
     /// </summary>

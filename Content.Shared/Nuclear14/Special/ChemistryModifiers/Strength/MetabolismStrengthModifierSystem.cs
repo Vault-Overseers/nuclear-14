@@ -6,7 +6,7 @@ using static Content.Shared.Nuclear14.Special.ChemistryModifiers.StrengthModifie
 using Content.Shared.Nuclear14.Special.ChemistryModifiers;
 
 namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
-public sealed class MetabolismStrengthModifierSystem : EntitySystem
+public sealed partial class MetabolismStrengthModifierSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SpecialModifierSystem _specialModifiers = default!;

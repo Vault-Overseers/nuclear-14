@@ -9,10 +9,10 @@ using Content.Shared.Nuclear14.Special.Components;
 
 namespace Content.Shared.Nuclear14.Special;
 
-public sealed class ClothingSpecialModifierSystem : EntitySystem
+public sealed partial class ClothingSpecialModifierSystem : EntitySystem
 {
     [Dependency] private readonly SpecialModifierSystem _specialModifiers = default!;
-    
+
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly ExamineSystemShared _examine = default!;
 
@@ -179,20 +179,20 @@ public sealed class ClothingSpecialModifierSystem : EntitySystem
         msg.PushNewline();
         }
 
-        if  (strengthModifier != 0 || 
-        perceptionModifier != 0 || 
-        enduranceModifier != 0 || 
+        if  (strengthModifier != 0 ||
+        perceptionModifier != 0 ||
+        enduranceModifier != 0 ||
         enduranceModifier != 0 ||
         charismaModifier != 0 ||
         intelligenceModifier != 0 ||
         agilityModifier != 0 ||
         luckModifier != 0
         )
-        _examine.AddDetailedExamineVerb(args, 
-            component, 
-            msg, 
-            Loc.GetString("clothing-special-examinable-verb-text"), 
-            "/Textures/Interface/VerbIcons/outfit.svg.192dpi.png", 
+        _examine.AddDetailedExamineVerb(args,
+            component,
+            msg,
+            Loc.GetString("clothing-special-examinable-verb-text"),
+            "/Textures/Interface/VerbIcons/outfit.svg.192dpi.png",
             Loc.GetString("clothing-special-examinable-verb-message")
         );
     }

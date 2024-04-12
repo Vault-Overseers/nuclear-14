@@ -5,7 +5,7 @@ namespace Content.Shared.Nuclear14.Special.ChemistryModifiers;
 
 [RegisterComponent]
 [NetworkedComponent]
-public sealed class StrengthModifierMetabolismComponent : Component
+public sealed partial class StrengthModifierMetabolismComponent : Component
 {
     [ViewVariables]
     public int StrengthModifier { get; set; }
