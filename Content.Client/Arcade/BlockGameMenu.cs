@@ -367,7 +367,7 @@ namespace Content.Client.Arcade
             var back = new StyleBoxTexture
             {
                 Texture = panelTex,
-                Modulate = Color.FromHex("#4a4a51"),
+                Modulate = Color.FromHex("#475247"),
             };
             back.SetPatchMargin(StyleBox.Margin.All, 10);
 
@@ -391,7 +391,7 @@ namespace Content.Client.Arcade
             var previewBack = new StyleBoxTexture
             {
                 Texture = panelTex,
-                Modulate = Color.FromHex("#4a4a51")
+                Modulate = Color.FromHex("#475247")
             };
             previewBack.SetPatchMargin(StyleBox.Margin.All, 10);
 
@@ -429,7 +429,7 @@ namespace Content.Client.Arcade
             var previewBack = new StyleBoxTexture
             {
                 Texture = panelTex,
-                Modulate = Color.FromHex("#4a4a51")
+                Modulate = Color.FromHex("#475247")
             };
             previewBack.SetPatchMargin(StyleBox.Margin.All, 10);
 

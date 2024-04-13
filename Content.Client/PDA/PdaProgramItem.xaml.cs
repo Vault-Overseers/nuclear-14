@@ -9,12 +9,12 @@ namespace Content.Client.PDA;
 public sealed partial class PdaProgramItem : ContainerButton
 {
     public const string StylePropertyBgColor = "backgroundColor";
-    public const string NormalBgColor = "#313138";
-    public const string HoverColor = "#3E6C45";
+    public const string NormalBgColor = "#282828";
+    public const string HoverColor = "#f2f282";
 
     private readonly StyleBoxFlat _styleBox = new()
     {
-        BackgroundColor = Color.FromHex("#25252a"),
+        BackgroundColor = Color.FromHex("#1f1f1f"),
     };
 
     public Color BackgroundColor
