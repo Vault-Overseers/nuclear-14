@@ -6,7 +6,9 @@
   description: A cabinet for all your filing needs.
   components:
   - type: Storage
-    capacity: 80
+    grid:
+    - 0,0,6,3
+    maxItemSize: Huge
   - type: Sprite
     netsync: false
     sprite: Structures/Storage/cabinets.rsi
@@ -40,7 +42,7 @@
 
 
 # TODO:RESET:TIMEDSTORAGEFILL
-# - type: entity
-  # parent: [ N14filingCabinet, N14BaseTimedStorageFill ]
-  # id: N14FilingCabinetRefilling
-  # suffix: Refilling,Random
+- type: entity
+  parent: [ N14filingCabinet, N14BaseTimedStorageFill ]
+  id: N14FilingCabinetRefilling
+  suffix: Refilling,Random

@@ -105,7 +105,7 @@ namespace Content.Client.Kitchen.UI
             if (_menu == null) return;
 
             //Set the cook time info label
-            var cookTime = cState.ActiveButtonIndex == 0 
+            var cookTime = cState.ActiveButtonIndex == 0
                 ? Loc.GetString("microwave-menu-instant-button")
                 : cState.CurrentCookTime.ToString();
 
@@ -134,7 +134,7 @@ namespace Content.Client.Kitchen.UI
             }
             else
             {
-                _menu.IngredientsPanel.PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#1B1B1E") };
+                _menu.IngredientsPanel.PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#282828") };
             }
         }
 
