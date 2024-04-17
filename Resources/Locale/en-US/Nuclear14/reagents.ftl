@@ -6,9 +6,11 @@ reagent-name-rad-particle-food = radioactive contamination
 reagent-desc-rad-particle-food = Too much will make you sick of living.
 
 # Drinks
-## Juices
-reagent-name-juice-cabbage = cabbage juice
-reagent-desc-juice-cabbage = Tastes rather bland and iron-y
+## Soda
+reagent-name-nuka-cola = Nuka-Cola
+reagent-desc-nuka-cola = Nuka-Cola brand soda from before war. Sugary goodness.
+reagent-name-irradiated-nuka-cola = irradiated Nuka-Cola
+reagent-desc-irradiated-nuka-cola = This Nuka-Cola gives off a slight tingle.
 
 ## Animals
 reagent-name-milk-brahmin = brahmin milk
@@ -30,7 +32,7 @@ reagent-desc-extract-broc = broc flower extract
 reagent-name-extract-buffalo-gourd = buffalo gourd  juice
 reagent-desc-extract-buffalo-gourd = buffalo gourd extract
 reagent-name-extract-cabbage = cabbage juice
-reagent-desc-extract-cabbage = cabbage extract
+reagent-desc-extract-cabbage = Tastes rather bland and iron-y
 reagent-name-extract-cactus-water = cactus water
 reagent-desc-extract-cactus-water = cactus water
 reagent-name-extract-carrot = carrot juice
