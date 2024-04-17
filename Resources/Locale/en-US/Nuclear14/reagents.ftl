@@ -105,6 +105,10 @@ reagent-desc-mentats = A reagent that makes you mentally sharper.
 reagent-name-cateye = cateye
 reagent-desc-cateye = A reagent that improves your low-light vision.
 
+reagent-name-daytripper = daytripper
+reagent-desc-daytripper = The perfect escape for your horrible life.
+
+
 # Meta
 reagent-name-movespeedmod-mixture = movementspeed modifying mixture
 reagent-desc-movespeedmod-mixture = A mixture of reagents that makes you move fast.
