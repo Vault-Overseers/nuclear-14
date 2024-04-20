@@ -1,0 +1,90 @@
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltBoSWebbing
+  name: BoS carrier
+  description: A simple black carrier capable of holding all kind of ammo.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/Belt/boswebbing.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/Belt/boswebbing.rsi
+  - type: Storage
+    whitelist:
+      tags:
+        - CigPack
+      components:
+        - BallisticAmmoProvider
+        - CartridgeAmmo
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltMilitary
+  name: military carrier
+  description: A simple brown carrier capable of holding all kind of ammo, it was commonly used by the military of the pre-war.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/Belt/militarywebbing.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/Belt/militarywebbing.rsi
+  - type: Storage
+    whitelist:
+      tags:
+        - CigPack
+      components:
+        - BallisticAmmoProvider
+        - CartridgeAmmo
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltNCR
+  name: NCR belt
+  description: A leather belt designed by the NCR for their troops.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/Belt/ncrbelt.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/Belt/ncrbelt.rsi
+  - type: Storage
+    whitelist:
+      tags:
+        - CigPack
+      components:
+        - BallisticAmmoProvider
+        - CartridgeAmmo
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltNCRBandolier
+  name: NCR bandolier
+  description: A bandolier commonly used by NCR marksmans and pointmans to carry single shells or cartridges.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/Belt/ncrbandolier.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/Belt/ncrbandolier.rsi
+  - type: Item
+    size: 60
+  - type: Storage
+    capacity: 60
+    whitelist:
+      tags:
+        - ShellShotgun
+        - CartridgeAmmo
+      components:
+        - CartridgeAmmo
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltRope
+  name: rope belt
+  description: A handmade belt with a rope, not the best but at least works.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/Belt/ropebelt.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/Belt/ropebelt.rsi
+  - type: Storage
+    capacity: 20

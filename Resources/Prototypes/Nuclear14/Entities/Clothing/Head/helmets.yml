@@ -1,5 +1,69 @@
 - type: entity
   parent: ClothingHeadBase
+  id: ClothingHeadHatLightBase
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: light-icon
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+  - type: Clothing
+    equippedPrefix: off
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 3
+    netsync: false
+  - type: Appearance
+  - type: HandheldLight
+    addPrefix: false
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        property: Radius
+        enabled: false
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        minValue: 0.1
+        maxValue: 2.0
+        isLooped: true
+        property: Radius
+        enabled: false
+  - type: ToggleableLightVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: Item
+    heldPrefix: off
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+
+- type: entity
+  parent: ClothingHeadBase
   id: N14ClothingHeadHatBaseHelmetMetal
   name: metal helmet
   abstract: true
@@ -174,3 +238,59 @@
     sprite: Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmetmp.rsi
   - type: Clothing
     sprite: Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmetmp.rsi
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMetal
+  id: N14ClothingHeadHatNCRHelmetMetalMedic
+  name: NCR medic helmet
+  description: A rounded NCR helmet offering some protection worn by field medics.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmetmedic.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmetmedic.rsi
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMK2
+  id: N14ClothingHeadHatRangerHelmet
+  name: ranger combat helmet
+  description: A helmet offering advanced protection, this one is commonly used by rangers.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/Head/FalloutHelmets/rangerhelmet.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/Head/FalloutHelmets/rangerhelmet.rsi
+
+# midwest BoS
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMetal
+  id: N14ClothingHeadHatMidwestBosHelmet
+  name: midwest BoS helmet
+  description: A modified combat helmet to addapt to the midwest brotherhood needs.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/boshelmet.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/boshelmet.rsi
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMK2
+  id: N14ClothingHeadHatVeteranMidwestBosHelmet
+  name: veteran midwest BoS helmet
+  description: A modified combat helmet with extra metal plates to cover the face.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/boshelmetV2.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/boshelmetV2.rsi
+
+- type: entity
+  parent: ClothingHeadHatLightBase
+  id: ClothingHeadScribeSet
+  name: scribe headset
+  description: A simple headset with a built-in flashlight.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/bosheadset.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/bosheadset.rsi
