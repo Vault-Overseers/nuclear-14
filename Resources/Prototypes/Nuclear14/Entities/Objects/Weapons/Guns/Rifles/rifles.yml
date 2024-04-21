@@ -264,3 +264,57 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  name: battle rifle
+  parent: BaseWeaponRifle
+  id: N14WeaponBattleRifle
+  description: A long semi automatic rifle feed by clips, chambered in the powerfull 308.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Rifles/battlerifle.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Rifles/battlerifle.rsi
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -59
+  - type: Gun
+    minAngle: 24
+    maxAngle: 60
+    angleIncrease: 4
+    angleDecay: 16   
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: ClipMagazine308Rifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14Clip308Rifle
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge308Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge308Rifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
