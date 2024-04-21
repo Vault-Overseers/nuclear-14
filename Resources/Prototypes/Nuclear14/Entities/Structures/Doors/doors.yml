@@ -1,0 +1,312 @@
+# N14:TODO: make base doors for damage resists and destruction loot for wood, metal /+ secure, glass and cloth.
+
+# Wooden Doors
+- type: entity
+  parent: BaseMaterialDoor
+  id: N14DoorMakeshift
+  name: makeshift door
+  description: It's a wooden door. It looks dirty and handmade.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/wooddoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    bumpOpen: false
+    clickOpen: true
+    closeTimeOne: 0.2
+    closeTimeTwo: 0.6
+    openTimeOne: 0.6
+    openTimeTwo: 0.2
+    openSound:
+      path: /Audio/Effects/door_open.ogg
+    closeSound:
+      path: /Audio/Effects/door_close.ogg
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: N14DoorMakeshift
+  id: N14DoorWoodHouseWhite
+  name: wooden door
+  description: It's a door. Looks like a front door to a home.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/housedoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+      
+# N14:TODO Make a version with a coloured paint layer peeling? random.
+
+- type: entity
+  parent: N14DoorMakeshift
+  id: N14DoorWoodHouseWhiteClean
+  name: wooden door
+  description: The cleanest door known to what remains of mankind.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/housecleandoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: N14DoorMakeshift
+  id: N14DoorWoodRoom
+  name: wooden door
+  description: A door used inside pre-war houses that section off rooms.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/roomdoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: N14DoorMakeshift
+  id: N14DoorWoodRoomDamaged
+  suffix: damaged
+  name: wooden door
+  description: A door used inside pre-war houses. Unsuprisingly, it looks like it'll fall apart at any moment.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/room_ddoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+      
+- type: entity
+  parent: BaseMaterialDoor
+  id: N14DoorRoomRepaired
+  name: door
+  suffix: repaired
+  description: This door looks worse for wear, but fixed up a little.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/roomdoor_repaired.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+      
+- type: entity
+  parent: N14DoorMakeshift
+  id: N14DoorWoodSecure
+  name: secure door
+  description: It's a secure door, made out of wood. Hope you brought bobby pins.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/securedoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+      
+- type: entity
+  parent: BaseMaterialDoor
+  id: N14DoorWoodSecureNCR
+  name: secure door
+  suffix: NCR
+  description: A secure door made from wood and bearing an NCR embled.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/securedoor_ncr.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+# Metal Doors
+- type: entity
+  parent: N14DoorMakeshift
+  id: N14DoorMetalReinforced
+  name: metal reinforced door
+  description: It's a door, reinforced with metal. Hope you brought you bobby pins.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/metaldoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: N14DoorMakeshift
+  id: N14DoorMetalSecureBrotherhood
+  name: secure brotherhood door
+  description: It's secure, AND branded! What more could you want?
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/bosdoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: N14DoorMakeshift
+  id: N14DoorCellMetal
+  name: cell door
+  description: A door that bad guys are locked behind.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/celldoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    occludes: false
+  - type: Occluder
+    enabled: false
+
+- type: entity
+  parent: N14DoorMakeshift
+  id: N14DoorMetalBar
+  name: barred door
+  description: A door made from metal bars.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/barreddoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    occludes: false
+  - type: Occluder
+    enabled: false
+
+- type: entity
+  parent: N14DoorMakeshift
+  id: N14DoorMetalIron
+  name: iron door
+  description: A door made of iron, secured with another block of iron.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/irondoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+      
+- type: entity
+  parent: BaseMaterialDoor
+  id: N14DoorMetalSecure
+  name: secure door
+  description: A secure door made from steel.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/securesteeldoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+      
+- type: entity
+  parent: BaseMaterialDoor
+  id: N14DoorSpikedGate
+  name: spiked gate
+  description: A spiked gate to scare off the weak.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/spikedgate.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+# Glass Doors
+- type: entity
+  parent: N14DoorMakeshift
+  id: N14DoorGlass
+  name: glass door
+  description: It's a door with panels made of clean glass.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/glassdoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    occludes: false
+  - type: Occluder
+    enabled: false
+
+- type: entity
+  parent: N14DoorGlass
+  id: N14DoorGlassDirty
+  name: dirty glass door
+  description: It's a glass door. You can barely make out what's behind it...
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/dirtyglassdoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    occludes: true
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: N14DoorGlass
+  id: N14DoorGlassBroken
+  name: broken glass door
+  description: Shattered, just like your marriage.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/brokenglassdoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: N14DoorGlass
+  id: N14DoorGlassStore
+  name: store door
+  description: It's a glass door found at pre-war stores. Hey, that rhymes!
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/storedoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: N14DoorGlass
+  id: N14DoorGlassStoreDirty
+  name: dirty store door
+  description: It's a glass door used at pre-war stores. It doesn't seem like it's been washed recently.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/dirtystoredoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+      
+# Other
+- type: entity
+  parent: BaseMaterialDoor
+  id: N14DoorTentflap
+  name: tent flap
+  description: A door for a tent.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/tentflap.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
