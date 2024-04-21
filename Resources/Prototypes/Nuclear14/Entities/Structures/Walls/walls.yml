@@ -213,6 +213,7 @@
     sprite: Nuclear14/Structures/Walls/woodlog.rsi
   - type: Icon
     sprite: Nuclear14/Structures/Walls/woodlog.rsi
+    state: full
   - type: IconSmooth
     key: walls
     base: log
@@ -224,3 +225,32 @@
   - type: Sprite
     sprite: Nuclear14/Structures/Walls/woodlog.rsi
     state: girder
+    
+# Tent Walls
+- type: entity
+  parent: BaseWall
+  id: N14WallTent
+  name: tent wall
+  description: A tent made from cloth. Keeps the weather out at least.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Walls/tent.rsi
+  - type: Icon
+    sprite: Nuclear14/Structures/Walls/tent.rsi
+  - type: Damageable
+    damageModifierSet: Web
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: IconSmooth
+    key: walls
+    base: tent
