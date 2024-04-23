@@ -6,6 +6,12 @@ reagent-name-rad-particle-food = radioactive contamination
 reagent-desc-rad-particle-food = Too much will make you sick of living.
 
 # Drinks
+reagent-name-water-dirty = dirty water
+reagent-desc-water-dirty = Looks murky.
+
+reagent-name-water-irradiated = irradiated water
+reagent-desc-water-irradiated = That'll put arms on your chest.
+
 ## Soda
 reagent-name-nuka-cola = Nuka-Cola
 reagent-desc-nuka-cola = Nuka-Cola brand soda from before war. Sugary goodness.
