@@ -1,5 +1,7 @@
 - type: entity
   id: N14WellBoarded
+  name: Boarded well
+  description: It's a well that's been boarded up. Maybe a crowbar will reveal it's secrets.
   placement:
     mode: SnapgridCenter
   components:
@@ -32,10 +34,14 @@
         - Impassable
         - MidImpassable
         - LowImpassable
+# N14:TODO Add a way to open this and turn it into a ladder to dungeons.
 
 - type: entity
   parent: N14WellBoarded
   id: N14WellWaterClean 
+  name: water well
+  description: A well. Hopefully it's got some water at the bottom. Let's hope it's clean.
+  suffix: Clean
   components:
   - type: Sprite
     state: wellwheel
@@ -64,7 +70,8 @@
 
 - type: entity
   parent: N14WellWaterClean
-  id: N14WellWaterDirty # N14TODO: As above
+  id: N14WellWaterDirty
+  suffix: Dirty
   components:
   - type: SolutionContainerManager
     solutions:
@@ -76,6 +83,7 @@
 - type: entity
   parent: N14WellWaterClean
   id: N14WellWaterIrradiated # N14TODO: As above
+  suffix: Irradiated
   components:
   - type: SolutionContainerManager
     solutions:
