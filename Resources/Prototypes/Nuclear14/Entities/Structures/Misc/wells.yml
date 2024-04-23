@@ -16,22 +16,42 @@
     tags:
       - Structure
   - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+    canCollide: true
   - type: Fixtures
     fixtures:
-    - shape:
-        !type:PhysShapeAabb
-        bounds: "-1,0,1,0.5"
-      density: 500
-      mask:
-      - MachineMask
-      layer:
-      - MidImpassable
-      - LowImpassable
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.60,-0.4,0.6,0.7"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Impassable
+        - MidImpassable
+        - LowImpassable
 
 - type: entity
   parent: N14WellBoarded
-  id: N14WellWaterClean # N14TODO: Needs new sprite. Maybe change base to abstract and remove noRot etc and make child noRot since water well may have rotations.
+  id: N14WellWaterClean 
   components:
+  - type: Sprite
+    state: wellwheel
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.50,-0.6,0.7,0.55"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Impassable
+        - MidImpassable
+        - LowImpassable
   - type: SolutionContainerManager
     solutions:
       well:
