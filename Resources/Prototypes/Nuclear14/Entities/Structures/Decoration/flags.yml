@@ -24,7 +24,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          collection: WoodDestroy
+          collection: MetalBreak
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Transform
@@ -35,8 +35,55 @@
   - type: Clickable
   - type: SpriteFade
   
+# Flammable flags
 - type: entity
   parent: N14DecorationFlagBearerEmpty
+  id: N14DecorationFlagFlammable
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: ExtinguishOnInteract
+    extinguishAttemptSound:
+      path: /Audio/Items/candle_blowing.ogg
+      params:
+        variation: 0.05
+        volume: 10
+  - type: UseDelay
+  - type: Flammable
+    fireSpread: true
+    canResistFire: false
+    alwaysCombustible: true
+    canExtinguish: true
+    firestacksOnIgnite: 3.0
+    firestackFade: -0.01
+    damage:
+      types:
+        Heat: 0.1
+  - type: Appearance
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Standing
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14DecorationFlagBearerEmpty:
+            min: 1
+            max: 1
+  
+- type: entity
+  parent: N14DecorationFlagFlammable
   id: N14DecorationFlagNCR
   name: NCR flag
   description: A flag with a two headed bear, the symbol of the New California Republic.
@@ -45,7 +92,7 @@
     state: ncrflag
     
 - type: entity
-  parent: N14DecorationFlagBearerEmpty
+  parent: N14DecorationFlagFlammable
   id: N14DecorationFlagOasis
   name: Oasis flag
   description: A flag depicting a stylised pink flower on a green background. It's the symbol of the town of Oasis.
@@ -54,7 +101,7 @@
     state: oasisflag
     
 - type: entity
-  parent: N14DecorationFlagBearerEmpty
+  parent: N14DecorationFlagFlammable
   id: N14DecorationFlagBrotherhoodWashington
   name: Washington Brotherhood flag
   description: A red and black flag with a sword surrounded in gears and wings, in a dazzling gold.
@@ -64,7 +111,7 @@
     state: bosflag
     
 - type: entity
-  parent: N14DecorationFlagBearerEmpty
+  parent: N14DecorationFlagFlammable
   id: N14DecorationFlagFollowers
   name: Followers flag
   description: A white flag with the black Follower's of the Apocalpyse cross on it.
@@ -74,7 +121,7 @@
     state: followersflag
     
 - type: entity
-  parent: N14DecorationFlagBearerEmpty
+  parent: N14DecorationFlagFlammable
   id: N14DecorationFlagEnclave
   name: Enclave flag
   description: An Enclave flag atop a bearer.
@@ -84,7 +131,7 @@
     state: enclaveflag
     
 - type: entity
-  parent: N14DecorationFlagBearerEmpty
+  parent: N14DecorationFlagFlammable
   id: N14DecorationFlagGunner
   name: Gunner flag
   description: A Gunner flag atop a bearer.
@@ -94,7 +141,7 @@
     state: gunnerflag
     
 - type: entity
-  parent: N14DecorationFlagBearerEmpty
+  parent: N14DecorationFlagFlammable
   id: N14DecorationFlagLocust
   name: Locust flag
   description: A flag with a skull, the symbol of Locusts.
@@ -104,7 +151,7 @@
     state: locustflag
     
 - type: entity
-  parent: N14DecorationFlagBearerEmpty
+  parent: N14DecorationFlagFlammable
   id: N14DecorationFlagHighvalleyhills
   name: High Valley Hills flag
   description: A flag with two white stripes, blue border and a red centre with a white Vault-Tec logo, turned on its side and stretched out
@@ -114,7 +161,7 @@
     state: hvhflag
     
 - type: entity
-  parent: N14DecorationFlagBearerEmpty
+  parent: N14DecorationFlagFlammable
   id: N14DecorationFlagVaultTecCityCoalition
   name:  Vault-Tec City Coalition flag
   description: An Vault-Tec City Coalition flag atop a bearer.
@@ -124,7 +171,7 @@
     state: vtccflag
     
 - type: entity
-  parent: N14DecorationFlagBearerEmpty
+  parent: N14DecorationFlagFlammable
   id: N14DecorationFlagYuma
   name: Yuma flag
   description: A banner depicting three rivers meeting at its center, overlaid with an ear of corn.
@@ -134,7 +181,7 @@
     state: cornflag
     
 - type: entity
-  parent: N14DecorationFlagBearerEmpty
+  parent: N14DecorationFlagFlammable
   id: N14DecorationFlagKhans
   name:  Great Khans flag
   description: A flag worn and weathered from a long cherished history. A decorated smiling skull smiles mockingly upon those who challenge it.
@@ -144,7 +191,7 @@
     state: khanflag
     
 - type: entity
-  parent: N14DecorationFlagBearerEmpty
+  parent: N14DecorationFlagFlammable
   id: N14DecorationFlagChurch
   name: The Church flag
   description: A blood red flag featuring a symbol associated with nuclear radiation.
