@@ -1,3 +1,4 @@
+# See Objects/Decoration/flags.yml for flag items. See wallmounts folder for wall flags.
 - type: entity
   id: N14DecorationFlagBearerEmpty
   name: flag bearer
@@ -151,47 +152,3 @@
   - type: Sprite
     sprite: Nuclear14/Structures/Decoration/flags.rsi
     state: cotc
-    
-- type: entity
-  parent: BaseItem
-  id: N14DecorationFlagpoleNCR
-  name: NCR Flag pole
-  description: An NCR flag on a wooden pole.
-  components:
-  - type: Sprite
-    sprite: Nuclear14/Structures/Decoration/flags.rsi
-    state: flagpole_ncr
-    noRot: true
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    damage:
-      types:
-        Blunt: 10
-        Structural: 5
-    soundHit:
-      collection: MetalThud
-  - type: Wieldable
-  - type: IncreaseDamageOnWield
-    damage:
-      types:
-        Blunt: 5
-        Structural: 10
-  - type: Item
-    size: Huge
-  - type: UseDelay
-    delay: 1
-  - type: Damageable
-    damageModifierSet: Wood
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WoodDestroy
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-        # N14TODO: Needs inhands sprites
