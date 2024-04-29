@@ -1,32 +1,9 @@
 ﻿- type: entity
   id: N14CookingStove
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  parent: KitchenElectricGrill
   name: stove
-  description: A pre-war stove
+  description: A pre-war stove for cooking things.
   components:
-  - type: Microwave
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.PowerDeviceVisuals.VisualState:
-        enum.MicrowaveVisualizerLayers.Base:
-          Idle: { state: "stove" }
-          Broken: { state: "stove" } # TODO:
-          Cooking: { state: "stove_on" } 
-        enum.MicrowaveVisualizerLayers.BaseUnlit:
-          Idle: { state: "stove" }
-          Broken: { state: "stove" } # TODO:
-          Cooking: { state: "stove_on" }
-      enum.PowerDeviceVisuals.Powered:
-        enum.MicrowaveVisualizerLayers.BaseUnlit:
-          True: { visible: true }
-          False: { visible: false }
-  - type: ActivatableUI
-    key: enum.MicrowaveUiKey.Key
-  - type: UserInterface
-    interfaces:
-    - key: enum.MicrowaveUiKey.Key
-      type: MicrowaveBoundUserInterface
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -48,18 +25,3 @@
       map: ["enum.MicrowaveVisualizerLayers.Base"]
     - state: stove
       map: ["enum.MicrowaveVisualizerLayers.BaseUnlit"]
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Breakage"]
-  - type: ApcPowerReceiver
-    powerLoad: 400
-  - type: ContainerContainer
-    containers:
-      microwave_entity_container: !type:Container
-      machine_board: !type:Container
-      machine_parts: !type:Container

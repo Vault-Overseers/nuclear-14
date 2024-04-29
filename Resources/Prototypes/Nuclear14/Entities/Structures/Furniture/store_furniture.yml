@@ -43,7 +43,12 @@
         acts: ["Destruction"]
 # storage + visualiser stuff
   - type: Storage
-    capacity: 25
+    grid:
+    - 0,0,5,1
+    maxItemSize: Normal
+    # whitelist:
+      # tags:
+        # - Food
   - type: UserInterface
     interfaces:
     - key: enum.StorageUiKey.Key
@@ -80,7 +85,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/woodhit.ogg
+          collection: WoodDestroy
       - !type:SpawnEntitiesBehavior
         spawn:
           MaterialWoodPlank:

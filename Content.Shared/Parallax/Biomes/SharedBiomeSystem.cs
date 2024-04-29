@@ -246,7 +246,7 @@ public abstract class SharedBiomeSystem : EntitySystem
     /// Tries to get the relevant decals for this tile.
     /// </summary>
     public bool TryGetDecals(Vector2i indices, List<IBiomeLayer> layers, int seed, MapGridComponent grid,
-        [NotNullWhen(true)] out List<(string ID, Vector2 Position)>? decals)
+        [NotNullWhen(true)] out List<(string ID, Vector2 Position, Color Color)>? decals)
     {
         if (!TryGetBiomeTile(indices, layers, seed, grid, out var tileRef))
         {
@@ -301,7 +301,7 @@ public abstract class SharedBiomeSystem : EntitySystem
                 return false;
             }
 
-            decals = new List<(string ID, Vector2 Position)>();
+            decals = new List<(string ID, Vector2 Position, Color Color)>();
 
             for (var x = 0; x < decalLayer.Divisions; x++)
             {
@@ -314,7 +314,7 @@ public abstract class SharedBiomeSystem : EntitySystem
                     if (decalValue < decalLayer.Threshold)
                         continue;
 
-                    decals.Add((Pick(decalLayer.Decals, (noiseCopy.GetNoise(indices.X, indices.Y, x + y * decalLayer.Divisions) + 1f) / 2f), index));
+                    decals.Add((Pick(decalLayer.Decals, (noiseCopy.GetNoise(indices.X, indices.Y, x + y * decalLayer.Divisions) + 1f) / 2f), index, decalLayer.Color));
                 }
             }
 
