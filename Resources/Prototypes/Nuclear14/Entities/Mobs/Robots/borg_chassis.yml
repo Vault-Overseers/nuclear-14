@@ -4,24 +4,33 @@
   name: protectron
   components:
   - type: Sprite
+    sprite: Nuclear14/Mobs/Robots/protectron.rsi
     layers:
-    - state: protectron_common
-    - state: protectron_common  # change me
+    - state: icon
+      map: ["movement"]
+    - state: icon  # change me
       map: ["enum.BorgVisualLayers.Light"]
       shader: unshaded
       visible: false
-    - state: protectron_common # change me
+    - state: icon # change me
       shader: unshaded
       map: ["light"]
       visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: walking # change me
+    noMovementLayers:
+      movement:
+        state: icon # change me
   - type: BorgChassis
     maxModules: 6
     moduleWhitelist:
       tags:
       - BorgModuleGeneric
-      - - BorgModuleJanitor
-    hasMindState: protectron_common_on
-    noMindState: protectron_common_off
+      - BorgModuleJanitor
+    hasMindState: on
+    noMindState: off
   # - type: Construction
     # node: cyborg
   - type: Speech
@@ -35,6 +44,7 @@
   name: protectron builder
   components:
   - type: Sprite
+    sprite: Nuclear14/Mobs/Robots/ms13robots.rsi
     layers:
     - state: protectron_builder
       map: ["movement"]

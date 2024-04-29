@@ -3,6 +3,7 @@
   abstract: true
   parent: MobSiliconBase
   id: N14MobRobotHostile
+  suffix: hostile npc
   name: robot
   description: Designed to serve humankind. Maybe it ended it.
   components:
@@ -10,7 +11,7 @@
   - type: MobMover
   - type: NpcFactionMember
     factions:
-    - SimpleHostile
+    - SimpleHostile # N14:TODO: Change this to a robot enemy faction
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -61,7 +62,7 @@
     soundHit:
         path: /Audio/Effects/bite.ogg
     angle: 0
-    animation: WeaponArcBite
+    animation: WeaponArcPunch
     damage:
       groups:
         Brute: 2
@@ -79,9 +80,30 @@
     damageModifierSet: WastelandAnimal
   - type: Puller
     needsHands: true
+# TODO: Make them shout things at people using advertise.
 
 - type: entity
   parent: N14MobRobotHostile
   id: N14MobRobotAssaultronHostile
   name: Assaultron
   description: Horrifying.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2
+    baseSprintSpeed : 4
+    
+- type: entity
+  parent: N14MobRobotHostile
+  id: N14MobRobotProtectronHostile
+  name: Protectron
+  description: A common protectron looking for a fight.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 1
+    baseSprintSpeed : 2
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      sprite: Nuclear14/Mobs/Robots/ms13robots.rsi
+      state: protectron_common
