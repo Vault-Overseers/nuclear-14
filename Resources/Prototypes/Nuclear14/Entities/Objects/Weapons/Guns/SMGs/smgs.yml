@@ -261,3 +261,105 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  name: 9mm SMG
+  parent: BaseWeaponSubMachineGun
+  id: N14weapon9mmSMG
+  description: a metallic pre-war simple SMG, chambered in 9mm.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/SMGs/9mmSMG.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/SMGs/9mmSMG.rsi
+  - type: Gun
+    fireRate: 7
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 16
+    angleIncrease: 4
+    angleDecay: 16  
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -15
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazineSMG9mm
+        whitelist:
+          tags:
+            - N14MagazineSMG9mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol9
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol9
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: .45 SMG
+  parent: BaseWeaponSubMachineGun
+  id: N14weapon45SMG
+  description: A pre-war SMG with a wooden stock, chambered in .45.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/SMGs/45SMG.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/SMGs/45SMG.rsi
+  - type: Gun
+    fireRate: 7
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 16
+    angleIncrease: 4
+    angleDecay: 16  
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -15
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine45SubMachineGun
+        whitelist:
+          tags:
+            - Magazine45SubMachineGun
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol45
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol45
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

@@ -38,4 +38,20 @@
   - type: BallisticAmmoProvider
     proto: N14CartridgePistol9
 
-
+- type: entity
+  id: N14MagazineSMG9mm
+  name: SMG magazine (9mm)
+  parent: N14BaseMagazine9mmPistol
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/9mm/smgmag.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - N14CartridgePistol9
+    capacity: 31
+    proto: N14CartridgePistol9
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
