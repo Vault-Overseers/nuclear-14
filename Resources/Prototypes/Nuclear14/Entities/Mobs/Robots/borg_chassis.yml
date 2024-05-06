@@ -19,10 +19,10 @@
   - type: SpriteMovement
     movementLayers:
       movement:
-        state: walking # change me
+        state: walking
     noMovementLayers:
       movement:
-        state: icon # change me
+        state: icon
   - type: BorgChassis
     maxModules: 6
     moduleWhitelist:
@@ -90,3 +90,19 @@
     # access: [["Cargo"], ["Salvage"], ["Command"], ["Research"]]
   - type: Inventory
     templateId: borgTall
+    
+    
+# this is how you give it modules and a cell, need variants for each that are empty and filled
+  # - type: ContainerFill
+    # containers:
+      # borg_brain:
+        # - PositronicBrain
+      # borg_module:
+        # - BorgModuleOperative
+        # - BorgModuleL6C
+        # - BorgModuleEsword
+  # - type: ItemSlots
+    # slots:
+      # cell_slot:
+        # name: power-cell-slot-component-slot-name-default
+        # startingItem: PowerCellHyper
