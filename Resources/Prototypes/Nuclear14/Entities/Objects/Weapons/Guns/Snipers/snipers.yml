@@ -124,3 +124,28 @@
     angleIncrease: 4
     angleDecay: 16   
 
+- type: entity
+  name: varmint rifle
+  parent: BaseWeaponSniper
+  id: N14WeaponSniperVarmint
+  description: A pre-war low power bolt action rifle, originally designed to hunt small animals this gun works fine with anything not bigger than a human. Uses 5.56 ammo.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/varmint.rsi
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/varmint.rsi
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -104
+  - type: Gun
+    minAngle: 24
+    maxAngle: 105
+    angleIncrease: 4
+    angleDecay: 16   
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14Cartridge5.56Rifle
+    capacity: 15
+    proto: N14Cartridge5.56Rifle
