@@ -53,12 +53,11 @@
         - SmallMobMask #this is so they can go under plastic flaps
         layer:
         - MachineLayer
-
-# TODO:RESET:TIMEDSTORAGEFILL
-# - type: entity
-  # parent: [ N14CrateWooden, N14WastelandBotanyTimedStorageFill ]
-  # id: N14CrateWastelandBotanyRefilling
-  # suffix: Refilling, Random Botany
+    
+- type: entity
+  parent: [ N14CrateWooden, N14WastelandBotanyTimedStorageFill ]
+  id: N14CrateWastelandBotanyRefilling
+  suffix: Refilling, Random Botany
     
 - type: entity
   parent: N14CrateWooden
@@ -70,11 +69,96 @@
     sprite: Nuclear14/Structures/Storage/Crates/cratemilitary.rsi
   - type: Sprite
     sprite: Nuclear14/Structures/Storage/Crates/cratemilitary.rsi
-
-# TODO:RESET:TIMEDSTORAGEFILL
-# - type: entity
-  # parent: [ N14CrateMilitary, N14BaseMilitaryTimedStorageFill ]
-  # id: N14CrateMilitaryRefilling
-  # suffix: Refilling, Random Military
+    
+- type: entity
+  parent: [ N14CrateMilitary, N14BaseMilitaryTimedStorageFill ]
+  id: N14CrateMilitaryRefilling
+  suffix: Refilling, Random Military
     
     
+# Breakable Crates (deconstruct or destroy)
+- type: entity
+  parent: BaseStructureDynamic
+  id: N14CrateBreakBase
+  name: wooden crate
+  description: Might have to break it to see whats inside.
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/woodhit.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 0
+            max: 1
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Crates/woodencrates.rsi
+    # N14TODO: Add crate deconstruction
+    
+- type: entity
+  parent: N14CrateBreakBase
+  id: N14CrateBreakWood
+  suffix: wood
+  components:
+  - type: Sprite
+    state: wood_crate
+    
+- type: entity
+  parent: N14CrateBreakBase
+  id: N14CrateBreakPlain
+  suffix: plain
+  components:
+  - type: Sprite
+    state: plain_crate
+    
+- type: entity
+  parent: N14CrateBreakBase
+  id: N14CrateBreakPlainDamaged
+  suffix: plain damaged
+  components:
+  - type: Sprite
+    state: plain_crate-1 # N14TODO: Make this random between states -1, -2 and -3
+    
+- type: entity
+  parent: N14CrateBreakBase
+  id: N14CrateBreakSarsaparilla
+  name: sunset sarsaparilla crate
+  components:
+  - type: Sprite
+    state: sarsaparilla_crate
+    
+- type: entity
+  parent: N14CrateBreakSarsaparilla
+  id: N14CrateBreakSarsaparillaDamaged
+  suffix: damaged
+  components:
+  - type: Sprite
+    state: sarsaparilla_crate-1
+    
+- type: entity
+  parent: N14CrateBreakBase
+  id: N14CrateBreakArmy
+  name: army crate
+  components:
+  - type: Sprite
+    state: army_crate
+    
+- type: entity
+  parent: N14CrateBreakArmy
+  id: N14CrateBreakArmyDamaged
+  suffix: damaged
+  components:
+  - type: Sprite
+    state: army_crate-1 # N14TODO: Make this random between states -1 and -2
