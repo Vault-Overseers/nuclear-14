@@ -777,7 +777,7 @@ namespace Content.Shared.CCVar
         /// Should users be able to see their own notes? Admins will be able to see and set notes regardless
         /// </summary>
         public static readonly CVarDef<bool> SeeOwnNotes =
-            CVarDef.Create("admin.see_own_notes", false, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
+            CVarDef.Create("admin.see_own_notes", true, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
 
         /// <summary>
         /// Should the server play a quick sound to the active admins whenever a new player joins?
