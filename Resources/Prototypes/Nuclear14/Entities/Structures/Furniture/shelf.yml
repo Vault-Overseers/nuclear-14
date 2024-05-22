@@ -93,19 +93,17 @@
     layers:
       - state: bookshelf_3
       
-# Wood shelf
+# Normal Shelves
 - type: entity
-  id: N14ShelfWood
-  suffix: south
+  id: N14ShelfWood1
   parent: BaseStructure
   name: wooden shelf
   description: A dusty old shelf.
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
+    sprite: Nuclear14/Structures/Furniture/np13_misc.rsi
     netsync: false
-    state: wood_shelf
-    offset: 0, 0.5
+    state: shelf_wood
   - type: Damageable
     damageModifierSet: Wood
     damageContainer: Inorganic
@@ -137,7 +135,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.6,-0.05,0.6,0.7"  # should be this but doesn't rotate right.
+          bounds: "-0.3,-0.05,0.3,0.7"  # should be this but doesn't rotate right.
         density: 60
         mask:
         - MachineMask
@@ -155,6 +153,31 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
+
+
+# Tall
+# Wood shelf
+- type: entity
+  id: N14ShelfWood
+  suffix: south
+  parent: N14ShelfWood1
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
+    state: wood_shelf
+    offset: 0, 0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,-0.05,0.6,0.7"  # should be this but doesn't rotate right.
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
         
 - type: entity
   parent: N14ShelfWood
