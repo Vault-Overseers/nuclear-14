@@ -323,8 +323,10 @@ public sealed partial class GunSystem : SharedGunSystem
         Angle newTheta;
         if (TryComp<SpecialComponent>(uid, out var special))
         {
-            maxAngle += Angle.FromDegrees((10f - special.TotalPerception));
+            maxAngle += Angle.FromDegrees((40f - special.TotalPerception * 5));
             minAngle += Angle.FromDegrees((10f - special.TotalPerception));
+            maxAngle *= 1.5 - special.TotalPerception / 10;
+            minAngle *= 1.5 - special.TotalPerception / 10;
             decay += Angle.FromDegrees((special.TotalPerception - 10f) / 5);
 
             newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - decay.Theta * timeSinceLastFire, minAngle.Theta, maxAngle.Theta);
