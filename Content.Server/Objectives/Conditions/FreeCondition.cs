@@ -1,4 +1,5 @@
-using Content.Server.Objectives.Interfaces;
+using Content.Server.Objectives;
+using Content.Shared.Objectives.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;

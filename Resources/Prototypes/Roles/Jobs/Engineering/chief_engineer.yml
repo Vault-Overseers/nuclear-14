@@ -15,7 +15,7 @@
       department: Engineering
       time: 36000 #10 hrs
     - !type:OverallPlaytimeRequirement
-      time: 144000 #40 hrs      
+      time: 144000 #40 hrs
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
@@ -29,6 +29,12 @@
   - External
   - ChiefEngineer
   - Atmospherics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
 
 - type: startingGear
   id: ChiefEngineerGear
@@ -41,6 +47,6 @@
     eyes: ClothingEyesGlassesMeson
     ears: ClothingHeadsetCE
     belt: ClothingBeltUtilityEngineering
-  innerclothingskirt: ClothingUniformJumpskirtChiefEngineer
+  innerClothingSkirt: ClothingUniformJumpskirtChiefEngineer
   satchel: ClothingBackpackSatchelChiefEngineerFilled
   duffelbag: ClothingBackpackDuffelChiefEngineerFilled

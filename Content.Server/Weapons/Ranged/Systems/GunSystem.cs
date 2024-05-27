@@ -10,13 +10,13 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Effects;
-using Content.Shared.FixedPoint;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Reflect;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -27,6 +27,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using SharedGunSystem = Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
+using Content.Shared.Nuclear14.Special.Components;
+using Content.Shared.Popups;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -42,6 +44,7 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     public const float DamagePitchVariation = SharedMeleeWeaponSystem.DamagePitchVariation;
     public const float GunClumsyChance = 0.5f;
@@ -54,12 +57,12 @@ public sealed partial class GunSystem : SharedGunSystem
 
     private void OnBallisticPrice(EntityUid uid, BallisticAmmoProviderComponent component, ref PriceCalculationEvent args)
     {
-        if (string.IsNullOrEmpty(component.FillProto) || component.UnspawnedCount == 0)
+        if (string.IsNullOrEmpty(component.Proto) || component.UnspawnedCount == 0)
             return;
 
-        if (!ProtoManager.TryIndex<EntityPrototype>(component.FillProto, out var proto))
+        if (!ProtoManager.TryIndex<EntityPrototype>(component.Proto, out var proto))
         {
-            Log.Error($"Unable to find fill prototype for price on {component.FillProto} on {ToPrettyString(uid)}");
+            Log.Error($"Unable to find fill prototype for price on {component.Proto} on {ToPrettyString(uid)}");
             return;
         }
 
@@ -239,7 +242,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         {
                             if (!Deleted(hitEntity))
                             {
-                                if (dmg.Total > FixedPoint2.Zero)
+                                if (dmg.Any())
                                 {
                                     _color.RaiseEffect(Color.Red, new List<EntityUid>() { hitEntity }, Filter.Pvs(hitEntity, entityManager: EntityManager));
                                 }
@@ -283,7 +286,7 @@ public sealed partial class GunSystem : SharedGunSystem
         // Do a throw
         if (!HasComp<ProjectileComponent>(uid))
         {
-            RemComp<AmmoComponent>(uid);
+            RemoveShootable(uid);
             // TODO: Someone can probably yeet this a billion miles so need to pre-validate input somewhere up the call stack.
             ThrowingSystem.TryThrow(uid, mapDirection, gun.ProjectileSpeed, user);
             return;
@@ -305,7 +308,7 @@ public sealed partial class GunSystem : SharedGunSystem
         if (user != null)
         {
             var projectile = EnsureComp<ProjectileComponent>(uid);
-            Projectiles.SetShooter(projectile, user.Value);
+            Projectiles.SetShooter(uid, projectile, user.Value);
             projectile.Weapon = gunUid;
         }
 
@@ -331,10 +334,26 @@ public sealed partial class GunSystem : SharedGunSystem
         return angles;
     }
 
+    // Nuclear14 Shooting accuracy depends on Perception.
+    // EntityUid? uid is added to method signature
     private Angle GetRecoilAngle(TimeSpan curTime, GunComponent component, Angle direction)
     {
         var timeSinceLastFire = (curTime - component.LastFire).TotalSeconds;
-        var newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncrease.Theta - component.AngleDecay.Theta * timeSinceLastFire, component.MinAngle.Theta, component.MaxAngle.Theta);
+        var minAngle = component.MinAngle;
+        var decay = component.AngleDecay;
+        var maxAngle = component.MaxAngle;
+        Angle newTheta;
+        if (TryComp<SpecialComponent>(uid, out var special))
+        {
+            maxAngle += Angle.FromDegrees((10f - special.TotalPerception));
+            minAngle += Angle.FromDegrees((10f - special.TotalPerception));
+            decay += Angle.FromDegrees((special.TotalPerception - 10f) / 5);
+
+            newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncrease.Theta - component.AngleDecay.Theta * timeSinceLastFire, component.MinAngle.Theta, component.MaxAngle.Theta);
+        }
+        else
+            newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncrease.Theta - component.AngleDecay.Theta * timeSinceLastFire, component.MinAngle.Theta, component.MaxAngle.Theta);
+        // Nuclear14 end
         component.CurrentAngle = new Angle(newTheta);
         component.LastFire = component.NextFire;
 
@@ -398,7 +417,7 @@ public sealed partial class GunSystem : SharedGunSystem
         // Lord
         // Forgive me for the shitcode I am about to do
         // Effects tempt me not
-        var sprites = new List<(EntityCoordinates coordinates, Angle angle, SpriteSpecifier sprite, float scale)>();
+        var sprites = new List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier sprite, float scale)>();
         var gridUid = fromCoordinates.GetGridUid(EntityManager);
         var angle = mapDirection;
 
@@ -421,18 +440,27 @@ public sealed partial class GunSystem : SharedGunSystem
         {
             if (hitscan.MuzzleFlash != null)
             {
-                sprites.Add((fromCoordinates.Offset(angle.ToVec().Normalized() / 2), angle, hitscan.MuzzleFlash, 1f));
+                var coords = fromCoordinates.Offset(angle.ToVec().Normalized() / 2);
+                var netCoords = GetNetCoordinates(coords);
+
+                sprites.Add((netCoords, angle, hitscan.MuzzleFlash, 1f));
             }
 
             if (hitscan.TravelFlash != null)
             {
-                sprites.Add((fromCoordinates.Offset(angle.ToVec() * (distance + 0.5f) / 2), angle, hitscan.TravelFlash, distance - 1.5f));
+                var coords = fromCoordinates.Offset(angle.ToVec() * (distance + 0.5f) / 2);
+                var netCoords = GetNetCoordinates(coords);
+
+                sprites.Add((netCoords, angle, hitscan.TravelFlash, distance - 1.5f));
             }
         }
 
         if (hitscan.ImpactFlash != null)
         {
-            sprites.Add((fromCoordinates.Offset(angle.ToVec() * distance), angle.FlipPositive(), hitscan.ImpactFlash, 1f));
+            var coords = fromCoordinates.Offset(angle.ToVec() * distance);
+            var netCoords = GetNetCoordinates(coords);
+
+            sprites.Add((netCoords, angle.FlipPositive(), hitscan.ImpactFlash, 1f));
         }
 
         if (sprites.Count > 0)

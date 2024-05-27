@@ -1,10 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.GameStates;
+using Content.Shared.Nuclear14.Special.Components;
 
 namespace Content.Shared.Mobs.Systems;
 
@@ -26,28 +27,79 @@ public sealed class MobThresholdSystem : EntitySystem
 
     private void OnGetState(EntityUid uid, MobThresholdsComponent component, ref ComponentGetState args)
     {
+        // Nuclear14 HP depends on Endurance
+        var totalEndurance = 0;
+        if (TryComp<SpecialComponent>(uid, out var special))
+            totalEndurance = special.TotalEndurance;
         var thresholds = new Dictionary<FixedPoint2, MobState>();
-        foreach (var (key, value) in component.Thresholds)
+        foreach (var (key, value) in component.BaseThresholds)
         {
-            thresholds.Add(key, value);
+            thresholds.Add(key + FixedPoint2.New(totalEndurance * 5), value);
         }
         args.State = new MobThresholdsComponentState(thresholds,
             component.TriggersAlerts,
             component.CurrentThresholdState,
+            component.StateAlertDict,
+            component.ShowOverlays,
             component.AllowRevives);
+        // Nuclear14 end
     }
 
     private void OnHandleState(EntityUid uid, MobThresholdsComponent component, ref ComponentHandleState args)
     {
+        // Nuclear14 HP depends on Endurance
+        var totalEndurance = 0;
+        if (TryComp<SpecialComponent>(uid, out var special))
+            totalEndurance = special.TotalEndurance;
+        var thresholds = new Dictionary<FixedPoint2, MobState>();
+        foreach (var (key, value) in component.BaseThresholds)
+        {
+            thresholds.Add(key + FixedPoint2.New(totalEndurance * 5), value);
+        }
+
         if (args.Current is not MobThresholdsComponentState state)
             return;
         component.Thresholds = new SortedDictionary<FixedPoint2, MobState>(state.UnsortedThresholds);
+        // component.Thresholds = new SortedDictionary<FixedPoint2, MobState>(state.UnsortedThresholds);
+        // Nuclear14 end
         component.TriggersAlerts = state.TriggersAlerts;
         component.CurrentThresholdState = state.CurrentThresholdState;
         component.AllowRevives = state.AllowRevives;
     }
 
     #region Public API
+
+    /// <summary>
+    /// Gets the next available state for a mob.
+    /// </summary>
+    /// <param name="target">Target entity</param>
+    /// <param name="mobState">Supplied MobState</param>
+    /// <param name="nextState">The following MobState. Can be null if there isn't one.</param>
+    /// <param name="thresholdsComponent">Threshold Component Owned by the target</param>
+    /// <returns>True if the next mob state exists</returns>
+    public bool TryGetNextState(
+        EntityUid target,
+        MobState mobState,
+        [NotNullWhen(true)] out MobState? nextState,
+        MobThresholdsComponent? thresholdsComponent = null)
+    {
+        nextState = null;
+        if (!Resolve(target, ref thresholdsComponent))
+            return false;
+
+        MobState? min = null;
+        foreach (var state in thresholdsComponent.Thresholds.Values)
+        {
+            if (state <= mobState)
+                continue;
+
+            if (min == null || state < min)
+                min = state;
+        }
+
+        nextState = min;
+        return nextState != null;
+    }
 
     /// <summary>
     /// Get the Damage Threshold for the appropriate state if it exists
@@ -61,12 +113,15 @@ public sealed class MobThresholdSystem : EntitySystem
     {
         if (!Resolve(target, ref thresholdComponent))
             return FixedPoint2.Zero;
+        var totalEndurance = 0;
+        if (TryComp<SpecialComponent>(target, out var special))
+            totalEndurance = special.TotalEndurance;
 
         foreach (var pair in thresholdComponent.Thresholds)
         {
             if (pair.Value == mobState)
             {
-                return pair.Key;
+                return pair.Key + FixedPoint2.New(totalEndurance * 5);
             }
         }
 
@@ -85,6 +140,10 @@ public sealed class MobThresholdSystem : EntitySystem
         [NotNullWhen(true)] out FixedPoint2? threshold,
         MobThresholdsComponent? thresholdComponent = null)
     {
+        var totalEndurance = 0;
+        if (TryComp<SpecialComponent>(target, out var special))
+            totalEndurance = special.TotalEndurance;
+
         threshold = null;
         if (!Resolve(target, ref thresholdComponent))
             return false;
@@ -93,7 +152,7 @@ public sealed class MobThresholdSystem : EntitySystem
         {
             if (pair.Value == mobState)
             {
-                threshold = pair.Key;
+                threshold = pair.Key + FixedPoint2.New(totalEndurance * 5);
                 return true;
             }
         }
@@ -161,8 +220,11 @@ public sealed class MobThresholdSystem : EntitySystem
             percentage = 0;
             return true;
         }
+        var totalEndurance = 0;
+        if (TryComp<SpecialComponent>(target, out var special))
+            totalEndurance = special.TotalEndurance;
 
-        percentage = FixedPoint2.Min(1.0f, damage / threshold.Value);
+        percentage = FixedPoint2.Min(1.0f, damage / (threshold.Value + FixedPoint2.New(totalEndurance * 5)));
         return true;
     }
 
@@ -248,6 +310,9 @@ public sealed class MobThresholdSystem : EntitySystem
     {
         if (!Resolve(target, ref threshold))
             return;
+        var totalEndurance = 0;
+        if (TryComp<SpecialComponent>(target, out var special))
+            totalEndurance = special.TotalEndurance;
 
         // create a duplicate dictionary so we don't modify while enumerating.
         var thresholds = new Dictionary<FixedPoint2, MobState>(threshold.Thresholds);
@@ -257,8 +322,8 @@ public sealed class MobThresholdSystem : EntitySystem
                 continue;
             threshold.Thresholds.Remove(damageThreshold);
         }
-        threshold.Thresholds[damage] = mobState;
-        Dirty(threshold);
+        threshold.Thresholds[damage + FixedPoint2.New(totalEndurance * 5)] = mobState;
+        Dirty(target, threshold);
         VerifyThresholds(target, threshold);
     }
 
@@ -288,7 +353,7 @@ public sealed class MobThresholdSystem : EntitySystem
         if (!Resolve(uid, ref component, false))
             return;
         component.AllowRevives = val;
-        Dirty(component);
+        Dirty(uid, component);
         VerifyThresholds(uid, component);
     }
 
@@ -297,14 +362,18 @@ public sealed class MobThresholdSystem : EntitySystem
     #region Private Implementation
 
     private void CheckThresholds(EntityUid target, MobStateComponent mobStateComponent,
-        MobThresholdsComponent thresholdsComponent, DamageableComponent damageableComponent)
+        MobThresholdsComponent thresholdsComponent, DamageableComponent damageableComponent, EntityUid? origin = null)
     {
+        var totalEndurance = 0;
+        if (TryComp<SpecialComponent>(target, out var special))
+            totalEndurance = special.TotalEndurance;
+
         foreach (var (threshold, mobState) in thresholdsComponent.Thresholds.Reverse())
         {
-            if (damageableComponent.TotalDamage < threshold)
+            if (damageableComponent.TotalDamage < threshold + FixedPoint2.New(totalEndurance * 5))
                 continue;
 
-            TriggerThreshold(target, mobState, mobStateComponent, thresholdsComponent);
+            TriggerThreshold(target, mobState, mobStateComponent, thresholdsComponent, origin);
             break;
         }
     }
@@ -313,7 +382,8 @@ public sealed class MobThresholdSystem : EntitySystem
         EntityUid target,
         MobState newState,
         MobStateComponent? mobState = null,
-        MobThresholdsComponent? thresholds = null)
+        MobThresholdsComponent? thresholds = null,
+        EntityUid? origin = null)
     {
         if (!Resolve(target, ref mobState, ref thresholds) ||
             mobState.CurrentState == newState)
@@ -327,7 +397,7 @@ public sealed class MobThresholdSystem : EntitySystem
             Dirty(target, thresholds);
         }
 
-        _mobStateSystem.UpdateMobState(target, mobState);
+        _mobStateSystem.UpdateMobState(target, mobState, origin);
     }
 
     private void UpdateAlerts(EntityUid target, MobState currentMobState, MobThresholdsComponent? threshold = null,
@@ -340,33 +410,37 @@ public sealed class MobThresholdSystem : EntitySystem
         if (!threshold.TriggersAlerts)
             return;
 
-        switch (currentMobState)
+        if (!threshold.StateAlertDict.TryGetValue(currentMobState, out var currentAlert))
         {
-            case MobState.Alive:
+            Log.Error($"No alert alert for mob state {currentMobState} for entity {ToPrettyString(target)}");
+            return;
+        }
+
+        if (!_alerts.TryGet(currentAlert, out var alertPrototype))
+        {
+            Log.Error($"Invalid alert type {currentAlert}");
+            return;
+        }
+
+        if (alertPrototype.SupportsSeverity)
+        {
+            var severity = _alerts.GetMinSeverity(currentAlert);
+            if (TryGetNextState(target, currentMobState, out var nextState, threshold) &&
+                TryGetPercentageForState(target, nextState.Value, damageable.TotalDamage, out var percentage))
             {
-                var severity = _alerts.GetMinSeverity(AlertType.HumanHealth);
-                if (TryGetIncapPercentage(target, damageable.TotalDamage, out var percentage))
-                {
-                    severity = (short) MathF.Floor(percentage.Value.Float() *
-                                                   _alerts.GetSeverityRange(AlertType.HumanHealth));
-                    severity += _alerts.GetMinSeverity(AlertType.HumanHealth);
-                }
-                _alerts.ShowAlert(target, AlertType.HumanHealth, severity);
-                break;
+                percentage = FixedPoint2.Clamp(percentage.Value, 0, 1);
+
+                severity = (short) MathF.Round(
+                    MathHelper.Lerp(
+                        _alerts.GetMinSeverity(currentAlert),
+                        _alerts.GetMaxSeverity(currentAlert),
+                        percentage.Value.Float()));
             }
-            case MobState.Critical:
-            {
-                _alerts.ShowAlert(target, AlertType.HumanCrit);
-                break;
-            }
-            case MobState.Dead:
-            {
-                _alerts.ShowAlert(target, AlertType.HumanDead);
-                break;
-            }
-            case MobState.Invalid:
-            default:
-                throw new ArgumentOutOfRangeException(nameof(currentMobState), currentMobState, null);
+            _alerts.ShowAlert(target, currentAlert, severity);
+        }
+        else
+        {
+            _alerts.ShowAlert(target, currentAlert);
         }
     }
 
@@ -374,7 +448,7 @@ public sealed class MobThresholdSystem : EntitySystem
     {
         if (!TryComp<MobStateComponent>(target, out var mobState))
             return;
-        CheckThresholds(target, mobState, thresholds, args.Damageable);
+        CheckThresholds(target, mobState, thresholds, args.Damageable, args.Origin);
         var ev = new MobThresholdChecked(target, mobState, thresholds, args.Damageable);
         RaiseLocalEvent(target, ref ev, true);
         UpdateAlerts(target, mobState.CurrentState, thresholds, args.Damageable);
@@ -384,6 +458,9 @@ public sealed class MobThresholdSystem : EntitySystem
     {
         if (!TryComp<MobStateComponent>(target, out var mobState) || !TryComp<DamageableComponent>(target, out var damageable))
             return;
+
+        thresholds.BaseThresholds = new SortedDictionary<FixedPoint2, MobState>(thresholds.Thresholds);  // Nuclear14 HP depends on Endurance
+
         CheckThresholds(target, mobState, thresholds, damageable);
         var ev = new MobThresholdChecked(target, mobState, thresholds, damageable);
         RaiseLocalEvent(target, ref ev, true);

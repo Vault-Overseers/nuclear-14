@@ -8,10 +8,11 @@ using Content.Shared.CCVar;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
-using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.Nuclear14.Special;
 
 
 namespace Content.Server.Preferences.Managers
@@ -167,7 +168,7 @@ namespace Content.Server.Preferences.Managers
         }
 
         // Should only be called via UserDbDataManager.
-        public async Task LoadData(IPlayerSession session, CancellationToken cancel)
+        public async Task LoadData(ICommonSession session, CancellationToken cancel)
         {
             if (!ShouldStorePrefs(session.ConnectedClient.AuthType))
             {
@@ -207,12 +208,12 @@ namespace Content.Server.Preferences.Managers
             }
         }
 
-        public void OnClientDisconnected(IPlayerSession session)
+        public void OnClientDisconnected(ICommonSession session)
         {
             _cachedPlayerPrefs.Remove(session.UserId);
         }
 
-        public bool HavePreferencesLoaded(IPlayerSession session)
+        public bool HavePreferencesLoaded(ICommonSession session)
         {
             return _cachedPlayerPrefs.ContainsKey(session.UserId);
         }
@@ -287,6 +288,9 @@ namespace Content.Server.Preferences.Managers
                             .WithJobPriorities(
                                 hp.JobPriorities.Where(job =>
                                     _protos.HasIndex<JobPrototype>(job.Key)))
+                            .WithSpecialPriorities(
+                                hp.SpecialPriorities.Where(special =>
+                                    _protos.HasIndex<SpecialPrototype>(special.Key))) // Nuclear14 Special
                             .WithAntagPreferences(
                                 hp.AntagPreferences.Where(antag =>
                                     _protos.HasIndex<AntagPrototype>(antag)))

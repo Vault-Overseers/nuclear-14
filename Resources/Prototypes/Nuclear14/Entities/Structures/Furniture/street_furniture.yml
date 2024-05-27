@@ -1,16 +1,14 @@
-# Billboards
+# Base floor sign
 - type: entity
-  id: StreetFurnitureBillboardNukacola1
+  id: N14SignFloorBase
   parent: BaseStructure
-  name: billboard
-  description: A billboard advertising nuka cola.
+  name: sign
+  description: It's a sign!
+  abstract: true
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
     snapCardinals: true
-    layers:
-    - state: base
-    - state: nukacola1
+    drawdepth: Overdoors
   - type: Transform
     noRot: true
   - type: Fixtures
@@ -18,7 +16,53 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-            bounds: "-0.49,-0.49,0.49,-0.45" # TODO: Change this
+          bounds: "0.5,0.3,-0.5,-1"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: InteractionOutline
+  - type: SpriteFade
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+      - !type:EmptyAllContainersBehaviour
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+
+# Billboards
+- type: entity
+  id: StreetFurnitureBillboardNukacola1
+  parent: N14SignFloorBase
+  name: billboard
+  description: A billboard advertising nuka cola.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
+    layers:
+    - state: base
+    - state: nukacola1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "2.1,-1.5,2,-3"
         density: 1000
         mask:
         - FullTileMask
@@ -27,13 +71,12 @@
       fix2:
         shape:
           !type:PhysShapeAabb
-            bounds: "0.49,0.49,0.45,-0.49" # TODO: Change this
+            bounds: "-2,-1.5,-2.2,-3"
         density: 1000
         mask:
         - FullTileMask
         layer:
         - WallLayer
-  - type: InteractionOutline
 
 
 - type: entity
@@ -91,18 +134,231 @@
     - state: base
     - state: redrocket1-worn
 
-# Street Signs
-
-
-
-# Street Poles / Lights
+# Floor Signs
 - type: entity
-  parent: BaseStructure
-  id: N14StreetPowerPole
-  name: power Poles
-  description: An old wooden post mounted transformer for 
+  parent: N14SignFloorBase
+  id: N14SignFloorBazaar
+  suffix: bazaar
+  description: A sign for a bazaar. How bizarre!
   components:
-  - type: SpriteFade
+  - type: Sprite
+    sprite: Nuclear14/Structures/Decoration/signs_64x64.rsi
+    state: bazaar
+    
+- type: entity
+  parent: N14SignFloorBase
+  id: N14SignFloorOpen
+  suffix: we are open
+  description: We are open!
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Decoration/signs_64x64.rsi
+    state: we_open
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.3,0.1,-1,-1"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+
+
+# Street Signs
+# Road works ahead. Sure hope it does!
+# Base floor sign
+- type: entity
+  parent: N14SignFloorBase
+  id: N14SignStreetBase
+  name: street sign
+  description: It's a sign!
+  abstract: true
+  components:
+  - type: Sprite
+    snapCardinals: false
+    noRot: true
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetsigns.rsi
+  - type: Transform
+    noRot: false
+  - type: Fixtures # removes the fixture because why not. It's thin and directions would break the BB.
+
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetInterstate
+  name: interstate sign
+  suffix: 6 directions
+  description: An old interstate road sign.
+  components:
+  - type: Sprite
+    state: interstate
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetInterstateShot
+  name: interstate sign
+  suffix: shot
+  description: An old interstate road sign that's been shot.
+  components:
+  - type: Sprite
+    state: interstate80_shot
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetStop
+  name: stop sign
+  suffix: 4 directions
+  description: An old road stop sign.
+  components:
+  - type: Sprite
+    state: stop
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetNoturning
+  name: no turning sign
+  suffix: 4 directions
+  description: An old no turning sign.
+  components:
+  - type: Sprite
+    state: noturn
+
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetNoparking
+  name: no parking sign
+  description: An old no parking sign.
+  components:
+  - type: Sprite
+    state: noparking
+
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetSign
+  name: street sign
+  description: An old street sign
+  components:
+  - type: Sprite
+    state: street
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetOneway
+  name: one way sign
+  suffix: 2 directions
+  description: An old one way road sign.
+  components:
+  - type: Sprite
+    state: direction
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetBusstop
+  name: bus stop sign
+  description: An old bus stop sign.
+  components:
+  - type: Sprite
+    state: busstop
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetRailcrossing
+  name: rail crossing sign
+  description: An old rail crossing sign.
+  components:
+  - type: Sprite
+    state: railcrossing
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetOnedirection
+  name: ahead only sign
+  suffix: 4 directions
+  description: An old one direction sign.
+  components:
+  - type: Sprite
+    state: onlydir
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetSpeedlimit
+  name: speed limit sign
+  suffix: 4 directions
+  description: An old speed limit sign.
+  components:
+  - type: Sprite
+    state: speed
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetWarning
+  name: warning sign
+  suffix: 4 directions
+  description: An old road warning sign.
+  components:
+  - type: Sprite
+    state: warnings
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetTurn
+  name: turn sign
+  suffix: 6 directions
+  description: An old road turn sign.
+  components:
+  - type: Sprite
+    state: turn
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetExit
+  name: exit sign
+  suffix: 2 directions
+  description: An old road exit sign.
+  components:
+  - type: Sprite
+    state: exit
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetNopedestrians
+  name: no pedestrians sign
+  description: An old no pedestrians sign.
+  components:
+  - type: Sprite
+    state: nopedestrian
+    
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetMerge
+  name: merge ahead sign
+  description: An old merge ahead sign.
+  components:
+  - type: Sprite
+    state: merge
+
+- type: entity
+  parent: N14SignStreetBase
+  id: N14SignStreetSnake
+  name: snake ahead sign
+  description: An old road curves ahead sign.
+  components:
+  - type: Sprite
+    state: snake
+
+# Street Poles
+- type: entity
+  parent: N14SignFloorBase
+  id: N14StreetPowerPoleRight
+  name: power pole
+  suffix: right
+  description: An old wooden post mounted transformer for power distribution.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/powerpole.rsi
+    state: powerpole1
   - type: Fixtures
     fixtures:
       fix1:
@@ -115,49 +371,35 @@
         layer:
         - MidImpassable
         - LowImpassable
-  - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/powerpole.rsi
-    noRot: true
-    state: powerpole1
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          SheetSteel1:
-            min: 1
-            max: 2
-      - !type:EmptyAllContainersBehaviour
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Effects/metalbreak.ogg
-
-
+          
 - type: entity
-  abstract: true
-  parent: N14StreetPowerPole
-  id: N14BaseLightStructure
+  parent: N14StreetPowerPoleRight
+  id: N14StreetPowerPoleRightLeft
+  suffix: left
   components:
+  - type: Sprite
+    state: powerpole2
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
-            bounds: "-0.7,-1.6,-0.5,-1.1"
+            bounds: "0.4,-1.6,0.1,-1.2"
         density: 190
         mask:
         - MachineMask
         layer:
         - MidImpassable
         - LowImpassable
+
+# Street Lights
+- type: entity
+  abstract: true
+  parent: N14StreetPowerPoleRight
+  id: N14BaseLightStructure
+  name: lamp post
+  description: Let there be light.
+  components:
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: SmartLight
@@ -168,24 +410,31 @@
       - On
       - Off
       - Toggle
-
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.8,-1.6,-0.4,-1.2"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
 
 - type: entity
   parent: N14BaseLightStructure
-  id: N14LightStreetLampPostAlwaysPowered
-  name: lamp post
-  description: "This light doesn't have an obvious power source."
-  suffix: Always Powered
+  id: N14LightStreetLampPostAlwaysPoweredRight
+  suffix: Always Powered, Right
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1.rsi
-    noRot: true
-    drawdepth: Overdoors
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_right.rsi
     layers:
     - state: off
     - state: on
       map: ["enum.PoweredLightLayers.Base"]
-    state: on
+    state: on1
   - type: PointLight
     radius: 7
     energy: 0.6
@@ -193,16 +442,39 @@
     offset: "0, -0.5"
     
 - type: entity
-  parent: N14BaseLightStructure
-  id: N14LightStreetLampPostPoweredEmpty
-  name: post light
-  description: "A lamp post."
-  suffix: Empty
+  parent: N14LightStreetLampPostAlwaysPoweredRight
+  id: N14LightStreetLampPostAlwaysPoweredLeft
+  description: This light doesn't have an obvious power source.
+  suffix: Always Powered, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1.rsi
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_left.rsi
+    layers:
+    - state: off
+    - state: on
+      map: ["enum.PoweredLightLayers.Base"]
+    state: on
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "0.8,-1.6,0.4,-1.2"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+    
+- type: entity
+  parent: N14BaseLightStructure
+  id: N14LightStreetLampPostPoweredEmptyRight
+  suffix: Empty, Right
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_right.rsi
     state: off
-    drawdepth: Overdoors
   - type: PointLight
     enabled: false
   - type: PoweredLight
@@ -220,11 +492,31 @@
       path: "/Audio/Machines/light_tube_on.ogg"
       
 - type: entity
-  parent: N14LightStreetLampPostPoweredEmpty
-  id: N14LightStreetLampPostPowered
-  name: post light
-  suffix: Powered
-  description: "A light fixture. Draws power and produces light when equipped with a light tube."
+  parent: N14LightStreetLampPostPoweredEmptyRight
+  id: N14LightStreetLampPostPoweredEmptyLeft
+  suffix: Empty, Left
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_left.rsi
+    state: off
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "0.8,-1.6,0.4,-1.2"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+      
+- type: entity
+  parent: N14LightStreetLampPostPoweredEmptyRight
+  id: N14LightStreetLampPostPoweredRight
+  suffix: Powered, Right
+  description: A light fixture. Draws power and produces light when equipped with a light tube.
   components:
   - type: Sprite
     layers:
@@ -238,26 +530,71 @@
         Heat: 20
         
 - type: entity
-  parent: N14LightStreetLampPostAlwaysPowered
-  id: N14LightStreetLampPostRaiderAlwaysPowered
-  suffix: Always Powered
+  parent: N14LightStreetLampPostPoweredEmptyLeft
+  id: N14LightStreetLampPostPoweredLeft
+  suffix: Powered, Left
+  description: A light fixture. Draws power and produces light when equipped with a light tube.
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider.rsi
+    layers:
+    - state: off
+    - state: on
+      map: [ "enum.PoweredLightLayers.Base" ]
+  - type: PoweredLight
+    hasLampOnSpawn: LightTube
+    damage:
+      types:
+        Heat: 20
+        
+- type: entity
+  parent: N14LightStreetLampPostAlwaysPoweredRight
+  id: N14LightStreetLampPostRaiderAlwaysPoweredRight
+  suffix: Always Powered, Right
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider_right.rsi
     
 - type: entity
-  parent: N14LightStreetLampPostPoweredEmpty
-  id: N14LightStreetLampPostRaiderPoweredEmpty
-  suffix: Empty
+  parent: N14LightStreetLampPostAlwaysPoweredLeft
+  id: N14LightStreetLampPostRaiderAlwaysPoweredLeft
+  suffix: Always Powered, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider.rsi
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider_left.rsi
+    
+- type: entity
+  parent: N14LightStreetLampPostPoweredEmptyRight
+  id: N14LightStreetLampPostRaiderPoweredEmptyRight
+  suffix: Empty, Right
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider_right.rsi
     state: off
     
 - type: entity
-  parent: [ N14LightStreetLampPostRaiderPoweredEmpty, N14LightStreetLampPostPowered]
-  id: N14LightStreetLampPostRaiderPowered
-  suffix: Powered
+  parent: N14LightStreetLampPostPoweredEmptyLeft
+  id: N14LightStreetLampPostRaiderPoweredEmptyLeft
+  suffix: Empty, Left
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider_left.rsi
+    state: off
+    
+- type: entity
+  parent: [ N14LightStreetLampPostRaiderPoweredEmptyRight, N14LightStreetLampPostPoweredRight]
+  id: N14LightStreetLampPostRaiderPoweredRight
+  suffix: Powered, Right
+  components:
+  - type: Sprite
+    layers:
+    - state: off
+    - state: on
+      map: [ "enum.PoweredLightLayers.Base" ]
+      
+- type: entity
+  parent: [ N14LightStreetLampPostRaiderPoweredEmptyLeft, N14LightStreetLampPostPoweredLeft]
+  id: N14LightStreetLampPostRaiderPoweredLeft
+  suffix: Powered, Left
   components:
   - type: Sprite
     layers:
@@ -266,58 +603,128 @@
       map: [ "enum.PoweredLightLayers.Base" ]
   
 - type: entity
-  parent: N14LightStreetLampPostAlwaysPowered
-  id: N14LightStreetLampPostAlwaysPowered2
-  suffix: Always Powered
+  parent: N14LightStreetLampPostAlwaysPoweredRight
+  id: N14LightStreetLampPostAlwaysPoweredRight2
+  suffix: Always Powered, Right
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2.rsi
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_right.rsi
     
 - type: entity
-  parent: N14LightStreetLampPostPoweredEmpty
-  id: N14LightStreetLampPostPoweredEmpty2
-  suffix: Empty
+  parent: N14LightStreetLampPostAlwaysPoweredLeft
+  id: N14LightStreetLampPostAlwaysPoweredLeft2
+  suffix: Always Powered, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2.rsi
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_left.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "0.1,-1.6,0.5,-1.2"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+    
+- type: entity
+  parent: N14LightStreetLampPostPoweredEmptyRight
+  id: N14LightStreetLampPostPoweredEmptyRight2
+  suffix: Empty, Right
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_right.rsi
     state: off
     
 - type: entity
-  parent: N14LightStreetLampPostPowered
-  id: N14LightStreetLampPostPowered2
-  suffix: Powered
+  parent: N14LightStreetLampPostPoweredEmptyLeft
+  id: N14LightStreetLampPostPoweredEmptyLeft2
+  suffix: Empty, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2.rsi
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_left.rsi
+    state: off
+    
+- type: entity
+  parent: N14LightStreetLampPostPoweredRight
+  id: N14LightStreetLampPostPoweredRight2
+  suffix: Powered, Right
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_right.rsi
+    layers:
+    - state: off
+    - state: on
+      map: [ "enum.PoweredLightLayers.Base" ]
+      
+- type: entity
+  parent: N14LightStreetLampPostPoweredLeft
+  id: N14LightStreetLampPostPoweredLeft2
+  suffix: Powered, Left
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_left.rsi
     layers:
     - state: off
     - state: on
       map: [ "enum.PoweredLightLayers.Base" ]
   
 - type: entity
-  parent: N14LightStreetLampPostAlwaysPowered
-  id: N14LightStreetLampPostRaiderAlwaysPowered2
-  suffix: Always Powered
+  parent: N14LightStreetLampPostAlwaysPoweredRight
+  id: N14LightStreetLampPostRaiderAlwaysPoweredRight2
+  suffix: Always Powered, Right
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider.rsi
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_right.rsi
     
 - type: entity
-  parent: N14LightStreetLampPostPoweredEmpty
-  id: N14LightStreetLampPostRaiderPoweredEmpty2
-  suffix: Empty
+  parent: N14LightStreetLampPostAlwaysPoweredLeft
+  id: N14LightStreetLampPostRaiderAlwaysPoweredLeft2
+  suffix: Always Powered, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider.rsi
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_left.rsi
+    
+- type: entity
+  parent: N14LightStreetLampPostPoweredEmptyRight
+  id: N14LightStreetLampPostRaiderPoweredEmptyRight2
+  suffix: Empty, Right
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_right.rsi
     state: off
     
 - type: entity
-  parent: N14LightStreetLampPostPowered
-  id: N14LightStreetLampPostRaiderPowered2
-  suffix: Powered
+  parent: N14LightStreetLampPostPoweredEmptyLeft
+  id: N14LightStreetLampPostRaiderPoweredEmptyLeft2
+  suffix: Empty, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider.rsi
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_left.rsi
+    state: off
+    
+- type: entity
+  parent: N14LightStreetLampPostPoweredRight
+  id: N14LightStreetLampPostRaiderPoweredRight2
+  suffix: Powered, Right
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_right.rsi
+    layers:
+    - state: off
+    - state: on
+      map: [ "enum.PoweredLightLayers.Base" ]
+      
+- type: entity
+  parent: N14LightStreetLampPostPoweredLeft
+  id: N14LightStreetLampPostRaiderPoweredLeft2
+  suffix: Powered, Left
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_left.rsi
     layers:
     - state: off
     - state: on

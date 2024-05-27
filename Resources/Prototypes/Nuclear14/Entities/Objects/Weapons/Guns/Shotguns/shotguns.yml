@@ -2,12 +2,13 @@
   name: double-barrel shotgun
   parent: BaseWeaponShotgun
   id: N14WeaponDoubleBarrelShotgun
-  description: An immortal classic.
+  description: An immortal classic, uses 12 gauge shells.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
+  - type: Wieldable
   - type: Gun
     fireRate: 8
   - type: BallisticAmmoProvider
@@ -33,6 +34,7 @@
       - N14ShellShotgun12
     capacity: 6
     proto: N14ShellShotgun12
+  - type: Wieldable
 
 - type: entity
   name: combat shotgun
@@ -51,8 +53,16 @@
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/combat_shotgun.rsi
     size: 30
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -104
   - type: Gun
-    fireRate: 2
+    minAngle: 24
+    maxAngle: 105
+    angleIncrease: 4
+    angleDecay: 16  
+    fireRate: 3
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -86,12 +96,13 @@
   name: caravan shotgun
   parent: BaseWeaponShotgun
   id: N14WeaponCaravanShotgun
-  description: The perfect shotgun for a long jorney. works well for hunting brahmins, geckos and bandits.
+  description: The perfect shotgun for a long jorney. works well for hunting brahmins, geckos and fiends, uses 20 gauge shells.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/caravan_shotgun.rsi
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/caravan_shotgun.rsi
+  - type: Wieldable
   - type: Gun
     fireRate: 6
   - type: BallisticAmmoProvider
@@ -105,7 +116,7 @@
   name: lever action shotgun
   parent: BaseWeaponShotgun
   id: N14WeaponLeverShotgun
-  description: The perfect gun for a cowboy close quarters fight.
+  description: The perfect gun for a cowboy, it uses 20 gauge shells.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/lever_shotgun.rsi
@@ -117,14 +128,22 @@
       - N14ShellShotgun20
     capacity: 8
     proto: N14ShellShotgun20
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -104
   - type: Gun
-    fireRate: 5
+    minAngle: 24
+    maxAngle: 105
+    angleIncrease: 4
+    angleDecay: 16  
+    fireRate: 3
 
 - type: entity
   name: riot shotgun
   parent: BaseItem
   id: N14WeaponRiotShotgun
-  description: A compact fully automatic shotgun used by the police forces of the pre war, chambered in 20 gauge shells.
+  description: A compact semi automatic shotgun used by the police forces of the pre war, chambered in 20 gauge shells.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/riot_shotgun.rsi
@@ -136,11 +155,19 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Guns/Shotguns/riot_shotgun.rsi
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -104
   - type: Gun
-    fireRate: 2
-    selectedMode: FullAuto
+    minAngle: 24
+    maxAngle: 105
+    angleIncrease: 4
+    angleDecay: 16  
+    fireRate: 4
+    selectedMode: SemiAuto
     availableModes:
-    - FullAuto
+    - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
     soundEmpty:

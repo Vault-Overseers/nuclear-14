@@ -14,6 +14,7 @@ using Content.Shared.Medical;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Nuclear14.Special.Components;
 using Content.Shared.Stacks;
 using Content.Server.Popups;
 using Robust.Shared.Random;
@@ -76,7 +77,52 @@ public sealed class HealingSystem : EntitySystem
         if (healing.ModifyBloodLevel != 0)
             _bloodstreamSystem.TryModifyBloodLevel(uid, healing.ModifyBloodLevel);
 
-        var healed = _damageable.TryChangeDamage(uid, healing.Damage, true, origin: args.Args.User);
+        // Nuclear14 Use Special for healing multiplier
+        // healing multiplier applying when getting healed by things like ointments
+        // It is different for doctor and patient depending on doctor Int, pacient Endurance / both Luck
+        // Multiply both of them to get final one. Below are single muiltipliers calculated for stats
+        // 1.13 when primal stat is 5
+        // 1.46 when primal stat is 10
+        // 0.86 when primal stat is 1
+        // 1.23 when primal stat is 5, but luck 10
+        // Example of final heal multiplier: 
+        // 1.13 * 1.13 ~ 1.27 when both doctor and patient primal stat is 5
+        // 1.13 * 1.46 ~ 1.64 when one primal stat is 10, another is 5
+        // for each Primal point we get 0.067 = 6.7%
+        // for each Luck we get 0.02 = 2%
+        var newDic = healing.Damage;
+        foreach(var entry in newDic.DamageDict)
+        {
+            if (entry.Value >= 0) continue;
+
+            float newValue = entry.Value.Float();
+            if (TryComp<SpecialComponent>(args.User, out var special)){
+                newValue *= 0.70f + (special.TotalIntelligence / 15f + special.TotalLuck / 50f);
+            }
+            if (TryComp<SpecialComponent>(uid, out var special2)){
+                newValue *= 0.70f + (special2.TotalEndurance / 15f + special2.TotalLuck / 50f);
+            }
+            newDic.DamageDict[entry.Key] = newValue;
+        }
+
+        var healed = _damageable.TryChangeDamage(uid, newDic, true, origin: args.Args.User);
+
+        // remove modifier after perfoming healing, to prevent accumulating
+        foreach(var entry in newDic.DamageDict)
+        {
+            if (entry.Value >= 0) continue;
+
+            float newValue = entry.Value.Float();
+            // todo: use log
+            if (TryComp<SpecialComponent>(args.User, out var special)){
+                newValue /= 0.70f + (special.TotalIntelligence / 15f + special.TotalLuck / 50f);
+            }
+            if (TryComp<SpecialComponent>(uid, out var special2)){
+                newValue /= 0.70f + (special2.TotalEndurance / 15f + special2.TotalLuck / 50f);
+            }
+            newDic.DamageDict[entry.Key] = newValue;
+        }
+        //Nuclear14 end
 
         if (healed == null && healing.BloodlossModifier != 0)
             return;
@@ -84,10 +130,18 @@ public sealed class HealingSystem : EntitySystem
         var total = healed?.Total ?? FixedPoint2.Zero;
 
         // Re-verify that we can heal the damage.
-        _stacks.Use(args.Used.Value, 1);
 
-        if (_stacks.GetCount(args.Used.Value) <= 0)
-            dontRepeat = true;
+        if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
+        {
+            _stacks.Use(args.Used.Value, 1, stackComp);
+
+            if (_stacks.GetCount(args.Used.Value, stackComp) <= 0)
+                dontRepeat = true;
+        }
+        else
+        {
+            QueueDel(args.Used.Value);
+        }
 
         if (uid != args.User)
         {
@@ -157,7 +211,7 @@ public sealed class HealingSystem : EntitySystem
         if (user != target && !_interactionSystem.InRangeUnobstructed(user, target, popup: true))
             return false;
 
-        if (!TryComp<StackComponent>(uid, out var stack) || stack.Count < 1)
+        if (TryComp<StackComponent>(uid, out var stack) && stack.Count < 1)
             return false;
 
         if (!TryComp<BloodstreamComponent>(target, out var bloodstream))
@@ -179,7 +233,7 @@ public sealed class HealingSystem : EntitySystem
             : component.Delay * GetScaledHealingPenalty(user, component);
 
         var doAfterEventArgs =
-            new DoAfterArgs(user, delay, new HealingDoAfterEvent(), target, target: target, used: uid)
+            new DoAfterArgs(EntityManager, user, delay, new HealingDoAfterEvent(), target, target: target, used: uid)
             {
                 //Raise the event on the target if it's not self, otherwise raise it on self.
                 BreakOnUserMove = true,

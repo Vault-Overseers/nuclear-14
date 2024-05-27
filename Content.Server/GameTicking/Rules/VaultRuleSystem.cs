@@ -1,9 +1,10 @@
 using Content.Server.GameTicking.Events;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Objectives.Interfaces;
+using Content.Server.Objectives;
 using Content.Server.Players;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Content.Shared.Objectives.Components;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -13,7 +14,7 @@ namespace Content.Server.GameTicking.Rules;
 public sealed class VaultRuleSystem : GameRuleSystem<VaultRuleComponent>
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IObjectivesManager _objectivesManager = default!;
+    [Dependency] private readonly ObjectivesSystem _objectives = default!;
 
     public override void Initialize()
     {
@@ -92,8 +93,8 @@ public sealed class VaultRuleSystem : GameRuleSystem<VaultRuleComponent>
             var objective = _objectivesManager.GetRandomObjective(mind, "OverseerObjectiveGroups");
             if (objective == null) continue;
             //ToDo: Kevin Zheng: re-add the mind objective stuff here please, IDK how that all changed I havent touched the objective code.
-            // if (mind.TryAddObjective(objective))
-            //     difficulty += objective.Difficulty;
+            // _mindSystem.AddObjective(mindId, mind, objective.Value);
+            // difficulty += Comp<ObjectiveComponent>(objective.Value).Difficulty;
         }
 
         return true;

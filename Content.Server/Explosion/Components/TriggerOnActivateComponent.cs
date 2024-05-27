@@ -1,7 +1,9 @@
-﻿namespace Content.Server.Explosion.Components;
+using Robust.Shared.Audio;
+
+namespace Content.Server.Explosion.Components;
 
 /// <summary>
 /// Triggers on click.
 /// </summary>
 [RegisterComponent]
-public sealed class TriggerOnActivateComponent : Component { }
+public sealed partial class TriggerOnActivateComponent : Component { }

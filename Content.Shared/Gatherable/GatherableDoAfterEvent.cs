@@ -4,6 +4,6 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Gatherable;
 
 [Serializable, NetSerializable]
-public sealed class GatherableDoAfterEvent : SimpleDoAfterEvent
+public sealed partial class GatherableDoAfterEvent : SimpleDoAfterEvent
 {
 }

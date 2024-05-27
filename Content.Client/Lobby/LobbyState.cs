@@ -65,7 +65,7 @@ namespace Content.Client.Lobby
 
             _characterSetup.SaveButton.OnPressed += _ =>
             {
-                _characterSetup.Save();
+                // _characterSetup.Save(); //Nuclear14 workaround to prevent saving using this button, as I can't make it disable dependent on Special points 
                 _lobby.CharacterPreview.UpdateUI();
             };
 
@@ -80,6 +80,10 @@ namespace Content.Client.Lobby
             _gameTicker.InfoBlobUpdated += UpdateLobbyUi;
             _gameTicker.LobbyStatusUpdated += LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
+
+            _preferencesManager.OnServerDataLoaded += PreferencesDataLoaded;
+
+            _lobby.CharacterPreview.UpdateUI();
         }
 
         protected override void Shutdown()
@@ -100,6 +104,13 @@ namespace Content.Client.Lobby
 
             _characterSetup?.Dispose();
             _characterSetup = null;
+
+            _preferencesManager.OnServerDataLoaded -= PreferencesDataLoaded;
+        }
+
+        private void PreferencesDataLoaded()
+        {
+            _lobby?.CharacterPreview.UpdateUI();
         }
 
         private void OnSetupPressed(BaseButton.ButtonEventArgs args)

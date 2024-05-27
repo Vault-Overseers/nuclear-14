@@ -1,6 +1,67 @@
 - type: entity
+  name: N14BasePistol
+  parent: BaseItem
+  id: N14BaseWeaponPistol
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: 10
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Gun
+    fireRate: 6
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+
+- type: entity
   name: 9mm Pistol
-  parent: BaseWeaponPistol
+  parent: N14BaseWeaponPistol
   id: N14WeaponPistol9mm
   description: A cheap, ubiquitous sidearm, chambered in 9 mm.
   components:
@@ -35,7 +96,7 @@
 
 - type: entity
   name: 10mm Pistol
-  parent: BaseWeaponPistol
+  parent: N14BaseWeaponPistol
   id: N14WeaponPistol10mm
   description: A cheap, ubiquitous sidearm, chambered in 10mm. # TODO: Need to create projectiles, magazines and boxes for 10mm.
   components:
@@ -70,7 +131,7 @@
 
 - type: entity
   name: .45 handgun
-  parent: BaseWeaponPistol
+  parent: N14BaseWeaponPistol
   id: N14WeaponPistolColt
   description: A rugged handgun chambered in .45.
   components:
@@ -112,7 +173,7 @@
 
 - type: entity
   name: 12.7mm handgun
-  parent: BaseWeaponPistol
+  parent: N14BaseWeaponPistol
   id: N14WeaponPistol12mm
   description: A rugged, robust handgun chambered in 12.7mm. # TODO: Need to create projectiles, magazines and boxes for 12mm.
   components:
@@ -154,7 +215,7 @@
 
 - type: entity
   name: 10mm pipe pistol
-  parent: BaseWeaponPistol
+  parent: N14BaseWeaponPistol
   id: N14WeaponPipe10mm
   description: a light 10mm makeshift pistol, the grip is incredibly uncomfortable.
   components:
@@ -186,3 +247,124 @@
         whitelist:
           tags:
             - N14CartridgePistol10
+
+- type: entity
+  name: chinese pistol
+  parent: BaseWeaponSniper
+  id: N14WeaponPistolChinese
+  description: A elegant and long barrel pistol with a integrated magazine, chambered in 9 mm.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/chinesepistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/chinesepistol.rsi
+    size: 10
+  - type: Clothing
+    slots:
+    - suitStorage
+    - Belt
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+    selectedMode: Semiauto
+    availableModes:
+    - Semiauto
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol9
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol9
+  - type: BallisticAmmoProvider
+    capacity: 14
+    proto: N14CartridgePistol9
+    whitelist:
+      tags:
+      - N14CartridgePistol9
+
+- type: entity
+  name: the spy
+  parent: BaseWeaponSniper
+  id: N14WeaponPistolSpy
+  description: A modified version of the common chinese pistols. with a integrated silencer, extended mag and fully automatic conversion this gun was designed with passion, chambered in 9 mm.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/thespy.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/thespy.rsi
+    size: 10
+  - type: Clothing
+    slots:
+    - suitStorage
+    - Belt
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -10
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol9
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol9
+  - type: BallisticAmmoProvider
+    capacity: 24
+    proto: N14CartridgePistol9
+    whitelist:
+      tags:
+      - N14CartridgePistol9
+
+- type: entity
+  name: 22lr Pistol
+  parent: N14BaseWeaponPistol
+  id: N14WeaponPistol22lr
+  description: A simple and silenced pistol, chambered in 22lr.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/22lr.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Pistols/22lr.rsi
+  - type: Gun
+    fireRate: 8
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -12
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazinePistol22lr
+        whitelist:
+          tags:
+            - N14MagazinePistol22lr
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol22
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol22

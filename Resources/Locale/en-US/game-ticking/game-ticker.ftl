@@ -35,3 +35,5 @@ player-leave-message = Player {$name} left.
 
 latejoin-arrival-announcement = {$character} ({$job}) has wandered into the area!
 latejoin-arrival-sender = Radio Broadcast
+latejoin-arrivals-direction = A traintransferring you to the area will arrive shortly.
+latejoin-arrivals-direction-time = A train transferring you to the area will arrive in {$time}.
