@@ -45,6 +45,14 @@
     fireRate: 0.5
     selectedMode: FullAuto
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 1
+      prob: 0.75
+    - id: N14FoodBloatflyAcidSac
+      amount: 1
+      prob: 0.75
   
   
 - type: entity
@@ -88,9 +96,6 @@
     spawned:
     - id: N14FoodMeatRadRaw
       amount: 3
-#    - id: MaterialHideBear TODO: Add material drop
-#      amount: 1
-#      prob: 0.3
   - type: Bloodstream
     bloodMaxVolume: 500
   - type: Temperature
@@ -132,6 +137,13 @@
         reagents:
         - ReagentId: FireToxin
           Quantity: 10
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 3
+    - id: N14FoodFireantNectar
+      amount: 1
+      prob: 0.75
         
 - type: entity
   name: radroach
@@ -181,6 +193,91 @@
     damage:
       groups:
         Brute: 2
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadroachFillet
+      amount: 1
+        
+- type: entity
+  name: radscorpion
+  parent: N14MobBaseHostileInsect
+  id: N14MobRadscorpion
+  description: It's a giant radscorpion! Stingy sting.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: radscorpion
+      sprite: Nuclear14/Mobs/Insects/radscorpion.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.3
+        density: 400
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Stamina
+    critThreshold: 10
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: radscorpion
+      Critical:
+        Base: radscorpion
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadscorpion
+      amount: 1
+    - id: N14FoodMeatRadscorpionLeg
+      amount: 2
+      prob: 0.8
+    - id: N14MaterialRadscorpionTail
+      amount: 1
+      prob: 0.8
+  - type: Bloodstream
+    bloodMaxVolume: 500
+  - type: Temperature
+    heatDamageThreshold: 500
+    coldDamageThreshold: 0
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Piercing: 5
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: Toxin
+          Quantity: 3
+          
+- type: entity
+  name: barkscorpion
+  parent: N14MobRadscorpion
+  id: N14MobRadscorpionBark
+  description: It's a giant bark radscorpion! Stingy sting. 
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: radscorpion
+      sprite: Nuclear14/Mobs/Insects/radscorpionbark.rsi
 
 - type: entity
   name: cazador
@@ -233,3 +330,10 @@
         reagents:
         - ReagentId: Toxin
           Quantity: 5
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 1
+    - id: N14FoodCazadorAcidSac
+      amount: 1
+      prob: 0.75

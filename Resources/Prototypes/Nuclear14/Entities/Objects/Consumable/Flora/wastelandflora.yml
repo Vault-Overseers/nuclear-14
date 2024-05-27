@@ -367,6 +367,26 @@
     loot:
       All: WildMutfruitAll
       PlantSampleTaker: WildMutfruitClippers
+      
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildNettle
+  name: wild nettles
+  description: A wild nettle plant. It looks healthy.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/nettle.rsi
+  - type: OreVein
+    currentOre: WildNettle
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildNettleAll
+      PlantSampleTaker: WildNettleClippers
 
 - type: entity
   parent: N14WastelandFlora
@@ -1000,6 +1020,32 @@
         Quantity: 10
   - type: Produce
     seedId: N14WildMutfruit
+    
+- type: entity
+  parent: N14FloraProduceFood
+  id: N14FloraProduceWildNettle
+  name: wild nettle
+  description: Wild nettles. Stingy.
+  components:
+  - type: Sprite
+    state: Objects/Specific/Hydroponics/nettle.rsi
+  - type: Stack
+    stackType: Nettles
+    count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractNettle
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractNettle
+        Quantity: 10
+  - type: Produce
+    seedId: N14WildNettle
 
 - type: entity
   parent: N14FloraProduceFood

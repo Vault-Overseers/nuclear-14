@@ -1,3 +1,69 @@
+# Base 50 units
+- type: entity
+  parent: DrinkBottleBaseFull
+  id: DrinkBottleBaseFull50
+  abstract: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+
+# Milk
+# Empty Bottle
+- type: entity
+  parent: DrinkBottleBaseFull50
+  id: N14DrinkBottleMilkEmpty
+  name: milk bottle
+  description: Looks good at holding milky substances.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi # N14TODO:SPRITE: Change this
+
+- type: entity
+  parent: N14DrinkBottleMilkEmpty
+  id: N14DrinkMilkBrahmin
+  name: brahmin milk
+  description: The glass bottle of brahmin milk.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14MilkBrahmin
+          Quantity: 50
+  - type: Sprite
+    sprite: Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi # N14TODO:SPRITE: Change this
+
+- type: entity
+  parent: N14DrinkMilkBrahmin
+  id: N14DrinkMilkBighorner
+  name: bighorner milk
+  description: The glass bottle of bighorner milk.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14MilkBighorner
+          Quantity: 50
+
+- type: entity
+  parent: N14DrinkMilkBrahmin
+  id: N14DrinkMilkRadstag
+  name: radstag milk
+  description: The glass bottle of radstag milk.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14MilkRadstag
+          Quantity: 50
+
 # Soda
 - type: entity
   parent: DrinkBottleGlassBaseFull
