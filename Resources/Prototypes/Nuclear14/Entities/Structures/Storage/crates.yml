@@ -162,6 +162,52 @@
   - type: Sprite
     sprite: Nuclear14/Structures/Storage/Crates/vaultstandard.rsi
 
+- type: entity
+  parent: CrateGeneric
+  id: N14Trashbin
+  name: trash bin
+  description: A trash bin for putting rubbish in.
+  components:
+  - type: Icon
+    sprite: Nuclear14/Structures/Storage/Crates/trashbin.rsi
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Crates/trashbin.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    
+- type: entity
+  parent: N14CrateFootlocker
+  id: N14CrateTrashcart
+  name: trash cart
+  description: A trash cart for transporting waste.
+  components:
+  - type: Icon
+    sprite: Nuclear14/Structures/Storage/Crates/trashcart.rsi
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Crates/trashcart.rsi
+  - type: TileFrictionModifier
+    modifier: 0.4
+    
+- type: entity
+  parent: CrateGeneric
+  id: N14CrateFreezer
+  name: freezer
+  description: A freezer for keeping things cool.
+  components:
+  - type: Icon
+    sprite: Nuclear14/Structures/Storage/Crates/freezer.rsi
+  - type: Sprite
+    sprite: Nuclear14/Structures/Storage/Crates/freezer.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: AntiRottingContainer
+
 # Wooden
 - type: entity
   parent: CrateGeneric
@@ -210,8 +256,7 @@
   parent: [ N14CrateMilitary, N14BaseMilitaryTimedStorageFill ]
   id: N14CrateMilitaryRefilling
   suffix: Refilling, Random Military
-    
-    
+
 # Breakable Crates (deconstruct or destroy)
 - type: entity
   parent: BaseStructureDynamic
