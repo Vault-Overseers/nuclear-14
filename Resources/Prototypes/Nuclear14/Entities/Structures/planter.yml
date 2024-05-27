@@ -1,7 +1,61 @@
 - type: entity
-  parent: hydroponicsSoil
   id: N14Soil
+  name: soil
+  description: Looks good for planting things in.
+  placement:
+    mode: SnapgridCenter
   components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.1"
+        density: 190
+        hard: false
+        mask:
+        - FullTileMask
+        layer:
+        - FullTileMask
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Sprite
+    sprite: Structures/Hydroponics/misc.rsi
+    state: soil
+    noRot: true
+  - type: PlantHolder
+    drawWarnings: false
+  - type: SolutionContainerManager
+    solutions:
+      soil:
+        maxVol: 200
+  - type: RefillableSolution
+    solution: soil
+    maxRefill: 50
+  - type: Transform
+    anchored: true
+  - type: Reactive
+    reactions:
+    - reagents: [Water]
+      methods: [Touch, Ingestion, Injection]
+      effects:
+      - !type:AddToSolutionReaction
+        solution: soil
+  - type: Appearance
+  - type: PlantHolderVisuals
   # - type: Construction
     # graph: N14Soil
     # node: Soil
@@ -33,8 +87,11 @@
         !type:DamageTrigger
         damage: 100
       behaviors:
-      - !type:ChangeConstructionNodeBehavior
-        node: machineFrame
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
       - !type:DoActsBehavior
         acts: ["Destruction"]
   # - type: Construction
@@ -95,26 +152,6 @@
         harvest_alert:
           True: { visible: true }
           False: { visible: false }
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.1"
-        density: 190
-        hard: true
-        mask:
-        - MachineMask
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:ChangeConstructionNodeBehavior
-        node: machineFrame
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: PlantHolder
     drawWarnings: true
   - type: AmbientSound
@@ -122,6 +159,19 @@
     range: 5
     sound:
       path: /Audio/Ambience/Objects/flowing_water_open.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   # - type: Construction
     # graph: N14Planter
     # node: Planter
