@@ -165,13 +165,13 @@
   - type: Sprite
     sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
     state: wood_shelf
-    offset: 0, 0.5
+    offset: 0.5, 0.5
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.6,-0.05,0.6,0.7"  # should be this but doesn't rotate right.
+          bounds: "-0.1,-0.05,1.1,0.7"  # should be this but doesn't rotate right.
         density: 60
         mask:
         - MachineMask
@@ -327,6 +327,18 @@
   components:
   - type: Sprite
     state: stand_wood
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,0.2,1.1,-0.2"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
     
 - type: entity
   parent: N14ShelfWoodStand
@@ -377,7 +389,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.5,-0.4,0.5,0.2"
+          bounds: "0.1,-0.05,0.9,0.2"  
         density: 60
         mask:
         - MachineMask
@@ -477,7 +489,7 @@
     sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
     netsync: false
     state: metal_shelf
-    offset: 0, 0.5
+    offset: 0.5, 0.5
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -550,6 +562,18 @@
   - type: Sprite
     sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
     state: shelf_shop
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.05,1.5,1"  
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
     
     
 - type: entity
