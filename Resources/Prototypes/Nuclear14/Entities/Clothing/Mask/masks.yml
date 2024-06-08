@@ -1,54 +1,33 @@
 - type: entity
-  parent: ClothingMaskGas
-  id: ClothingMaskGasCombat
-  name: combat gas mask
-  description: A advanced pre-war military gas mask.
+  parent: ClothingMaskBase
+  id: N14ClothingMaskHockey
+  name: hockey mask
+  description: A light white mask with red lines and holes to breath.
   components:
-  - type: Item
-    size: Tiny
   - type: Sprite
-    sprite: Nuclear14/Clothing/Mask/Gasmask/combatgasmask.rsi
+    sprite: Nuclear14/Clothing/Mask/hockeymask.rsi
   - type: Clothing
-    sprite: Nuclear14/Clothing/Mask/Gasmask/combatgasmask.rsi
+    sprite: Nuclear14/Clothing/Mask/hockeymask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.95
         Slash: 0.95
-        Piercing: 0.90
-        Heat: 0.90
 
 - type: entity
-  parent: ClothingMaskGas
-  id: ClothingMaskGasFire
-  name: fire gas mask
-  description: A gasmask with extra protection against fire.
+  parent: ClothingMaskBase
+  id: N14ClothingMaskPlate
+  name: plate mask
+  description: A steel plate with 2 holes and shaped to cover the face.
   components:
-  - type: Item
-    size: Tiny
   - type: Sprite
-    sprite: Nuclear14/Clothing/Mask/Gasmask/firegasmask.rsi
+    sprite: Nuclear14/Clothing/Mask/platemask.rsi
   - type: Clothing
-    sprite: Nuclear14/Clothing/Mask/Gasmask/firegasmask.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Heat: 0.85
-
-- type: entity
-  parent: ClothingMaskGas
-  id: ClothingMaskGasMiner
-  name: miner gas mask
-  description: A gasmask used to keep the breath clear in mines.
-  components:
-  - type: Item
-    size: Tiny
-  - type: Sprite
-    sprite: Nuclear14/Clothing/Mask/Gasmask/minergasmask.rsi
-  - type: Clothing
-    sprite: Nuclear14/Clothing/Mask/Gasmask/minergasmask.rsi
+    sprite: Nuclear14/Clothing/Mask/platemask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
   - type: Armor
     modifiers:
       coefficients:
@@ -56,21 +35,19 @@
         Slash: 0.90
 
 - type: entity
-  parent: ClothingMaskGas
-  id: ClothingMaskGasRiot
-  name: riot gas mask
-  description: The last in pre-war military gas masks technology, with extra protection.
+  parent: ClothingMaskBase
+  id: N14ClothingMaskGrill
+  name: steel grill mask
+  description: A steel mask with a grill shaped visor.
   components:
-  - type: Item
-    size: Tiny
   - type: Sprite
-    sprite: Nuclear14/Clothing/Mask/Gasmask/riotgasmask.rsi
+    sprite: Nuclear14/Clothing/Mask/grillmask.rsi
   - type: Clothing
-    sprite: Nuclear14/Clothing/Mask/Gasmask/riotgasmask.rsi
+    sprite: Nuclear14/Clothing/Mask/grillmask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.90
         Slash: 0.90
-        Piercing: 0.95
-        Heat: 0.95

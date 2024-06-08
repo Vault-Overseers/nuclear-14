@@ -19,7 +19,7 @@
   name: rifleman kit
   parent: KitBase
   id: KitRifleman
-  description: A crate containing all a NCR soldier needs to patrol on the wasteland.
+  description: A crate with all a NCR soldier needs to patrol on the wasteland, this one contains a service rifle.
   components:
   - type: Sprite
     state: rifleman
@@ -46,7 +46,7 @@
   name: gunner kit
   parent: KitBase
   id: KitGunner
-  description: A crate containing all a NCR machine gunner needs to patrol on the wasteland.
+  description: A crate with all a NCR machine gunner needs to patrol on the wasteland, this one contains a machine gun.
   components:
   - type: Sprite
     state: gunner
@@ -71,7 +71,7 @@
   name: marksman kit
   parent: KitBase
   id: KitMarksman
-  description: A crate containing all a NCR marksman needs to patrol on the wasteland.
+  description: A crate with all a NCR marksman needs to patrol on the wasteland, this one contains a rifle.
   components:
   - type: Sprite
     state: marksman
@@ -96,7 +96,7 @@
   name: pointman kit
   parent: KitBase
   id: KitPointman
-  description: A crate containing all a NCR pointman needs to patrol on the wasteland.
+  description: A crate with all a NCR pointman needs to patrol on the wasteland, this one contains a shotgun.
   components:
   - type: Sprite
     state: pointman
@@ -121,7 +121,7 @@
   name: medic kit
   parent: KitBase
   id: KitMedic
-  description: A crate containing all a NCR medic needs to patrol on the wasteland.
+  description: A crate with all a NCR medic needs to patrol on the wasteland, this one contains a SMG with meds.
   components:
   - type: Sprite
     state: medic
@@ -148,7 +148,7 @@
   name: special rifleman kit
   parent: KitBase
   id: KitSpecialRifleman
-  description: A crate containing advance weaponry for high rank troops and veterans.
+  description: A crate with advance weaponry for high rank troops and veterans, this one contains a high caliber battle rifle.
   components:
   - type: Sprite
     state: marksman
@@ -173,7 +173,7 @@
   name: special assault kit
   parent: KitBase
   id: KitSpecialAssault
-  description: A crate containing advance weaponry for high rank troops and veterans.
+  description: A crate with advance weaponry for high rank troops and veterans, this one contains a assault rifle.
   components:
   - type: Sprite
     state: rifleman
@@ -196,7 +196,7 @@
   name: special gunner kit
   parent: KitBase
   id: KitSpecialGunner
-  description: A crate containing advance weaponry for high rank troops and veterans.
+  description: A crate with advance weaponry for high rank troops and veterans, this one contains a heavy machine gun.
   components:
   - type: Sprite
     state: marksman
@@ -218,7 +218,7 @@
   name: special pointman kit
   parent: KitBase
   id: KitSpecialPointman
-  description: A crate containing advance weaponry for high rank troops and veterans.
+  description: A crate with advance weaponry for high rank troops and veterans, this one contains a semiauto shotgun.
   components:
   - type: Sprite
     state: pointman
@@ -234,5 +234,27 @@
       - id: N14MagazinePistol10mm
       - id: N14MagazinePistol10mm
       - id: N14CombatKnife         
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: charger kit
+  parent: KitBase
+  id: KitCharger
+  description: A crate with all a NCR soldier needs to patrol on the wasteland, this one contains a spear and other kind of armor.
+  components:
+  - type: Sprite
+    state: charger
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WastelandFlagSpear
+      - id: N14ClothingOuterNCRPlate
+      - id: N14ClothingMaskPlate
+      - id: ClothingBeltNCR
+      - id: N14WeaponPistol10mm
+      - id: N14MagazinePistol10mm
+      - id: N14MagazinePistol10mm        
     sound:
       path: /Audio/Effects/unwrap.ogg
