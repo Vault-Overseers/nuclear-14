@@ -108,3 +108,19 @@
   components:
   - type: Sprite
     sprite: Nuclear14/Clothing/Back/Backpacks/packoverseer.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: N14ClothingBackpackCarrier
+  name: heavy carrier
+  description: A backpack designed to hold heavy weapons.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/Back/Backpacks/packoverseer.rsi
+  - type: Storage
+    whitelist:
+      tags:
+        - N14HeavyGun
+      components:
+        - BallisticAmmoProvider
+        - CartridgeAmmo

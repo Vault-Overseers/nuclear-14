@@ -1,0 +1,35 @@
+- type: entity
+  id: N14BaseMagazine5mmMinigun
+  name: minigun magazine (5mm)
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - N14MinigunMagazine5mm
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14CartridgePistol5
+    capacity: 200
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    netsync: false
+    sprite: Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/5mm/mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Appearance
+
+- type: entity
+  id: N14MagazineMinigun5mm
+  name: minigun box (5mm)
+  parent: N14BaseMagazine5mmMinigun
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14CartridgePistol5

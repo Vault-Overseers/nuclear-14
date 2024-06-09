@@ -1,0 +1,41 @@
+- type: entity
+  name: missile launcher
+  parent: BaseWeaponLauncher
+  id: N14WeaponLauncherMissile
+  description: A advance pre-war shoulder mounted missile launcher, its kinda obvious what kind of ammo it uses.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Heavy/missilelauncher.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Heavy/missilelauncher.rsi
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -104 
+  - type: Gun
+    fireRate: 0.5
+    minAngle: 24
+    maxAngle: 105
+    angleIncrease: 4
+    angleDecay: 16 
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - N14Missile
+    proto: N14ProjectileMissile
+    capacity: 1
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
