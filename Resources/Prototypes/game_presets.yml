@@ -3,7 +3,7 @@
   alias:
     - survival
   name: survival-title
-  showInVote: true # secret # DeltaV - Me when the survival. Used for periapsis.
+  showInVote: false # secret
   description: survival-description
   rules:
     - RampingStationEventScheduler
@@ -27,7 +27,7 @@
   - extended
   - shittersafari
   name: extended-title
-  showInVote: true #2boring2vote # DeltaV - I'd like to disagree, used for periapsis.
+  showInVote: false #2boring2vote
   description: extended-description
   rules:
   - BasicStationEventScheduler
@@ -50,7 +50,7 @@
     - secret
     - sekrit
   name: secret-title
-  showInVote: true
+  showInVote: false
   description: secret-description
   rules:
     - Secret
@@ -104,8 +104,8 @@
     - dm
   name: death-match-title
   description: death-match-description
-  #maxPlayers: 15
-  showInVote: false # DeltaV - No.
+  maxPlayers: 15
+  showInVote: false
   supportedMaps: DeathMatchMapPool
   rules:
     - DeathMatch31
@@ -165,3 +165,11 @@
     - Pirates
     - BasicStationEventScheduler
     - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Waves
+  name: Vault Wave Defense
+  description: Defend the vault from waves of increasingly difficult attackers.
+  showInVote: true
+  rules:
+    - Waves
