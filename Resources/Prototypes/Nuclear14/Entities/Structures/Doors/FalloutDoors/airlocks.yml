@@ -1,15 +1,14 @@
 - type: entity
   id: N14Airlock
   parent: Airlock
-  name: airlock
-  description: It opens, it closes, and maybe crushes you.
+  name: bunker door
+  description: It opens, it closes, it might crush you, and there might be only radiation and monsters behind it. Has to be manually activated.
   abstract: true
 
 - type: entity
   parent: N14Airlock
   id: AirlockExternalVault # TODO: Update to N14 prefix once wavemap is merged.
   suffix: Vault
-  description: It opens, it closes, it might crush you, and there might be only radiation and monsters behind it. Has to be manually activated.
   components:
   - type: Door
     bumpOpen: false
@@ -24,3 +23,30 @@
       path: /Audio/Machines/airlock_deny.ogg
   - type: Sprite
     sprite: Nuclear14/Structures/Doors/FalloutDoors/vaultdoor.rsi
+    
+- type: entity
+  parent: N14Airlock
+  id: N14DoorBunker
+  components:
+  - type: Door
+    bumpOpen: false
+    crushDamage:
+      types:
+        Blunt: 30 #if the 2 ton vault door breaking every bone in your body doesn't kill you, the suffocation will
+  - type: Sprite
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/bunkerdoor.rsi
+    
+- type: entity
+  parent: N14Airlock
+  id: N14DoorBunkerGlass
+  components:
+  - type: Door
+    bumpOpen: false
+    crushDamage:
+      types:
+        Blunt: 30 #if the 2 ton vault door breaking every bone in your body doesn't kill you, the suffocation will
+    occludes: false
+  - type: Occluder
+    enabled: false
+  - type: Sprite
+    sprite: Nuclear14/Structures/Doors/FalloutDoors/glassbunkerdoor.rsi
