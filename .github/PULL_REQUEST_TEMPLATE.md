@@ -40,23 +40,5 @@ The title must be within the <summary> tags or you won't see it
 <details><summary><h1>Media</h1></summary>
 <p>
 
-![Example Media Embed](https://example.com/thisimageisntreal.png)
-
 </p>
 </details>
-
----
-
-# Changelog
-
-<!--
-You can add an author after the `:cl:` to change the name that appears in the changelog (ex: `:cl: Death`)
-Leaving it blank will default to your GitHub display name
-This includes all available types for the changelog
--->
-
-:cl:
-- add: Added fun :D
-- tweak: Tweaked fun
-- fix: Fixed fun!
-- remove: Removed fun :(
