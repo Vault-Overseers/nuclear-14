@@ -118,44 +118,43 @@
     damageModifierSet: N14Insect
   - type: NoSlip
 
-# TODO:RESET:WAVEDEFENCE
 # Wave Defence Base Hostile
-- type: entity
-  name: wave attacker
-  abstract: true
-  id: N14MobWave
-  components:
-  - type: HTN
-    rootTask:
-      task: SimpleHostileCompound
-    blackboard:
-      NavInteract: !type:Bool
-        true
-      NavClimb: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-      NavSmash: !type:Bool
-        true
-      ESP: !type:Bool
-        true
-      VisionRadius: !type:Single
-        1000.0
-  - type: WaveMob
-    difficulty: 1
+# - type: entity
+  # name: wave attacker
+  # abstract: true
+  # id: N14MobWave
+  # components:
+  # - type: HTN
+    # rootTask:
+      # task: SimpleHostileCompound
+    # blackboard:
+      # NavInteract: !type:Bool
+        # true
+      # NavClimb: !type:Bool
+        # true
+      # NavPry: !type:Bool
+        # true
+      # NavSmash: !type:Bool
+        # true
+      # ESP: !type:Bool
+        # true
+      # VisionRadius: !type:Single
+        # 1000.0
+  # - type: WaveMob
+    # difficulty: 1
 
-- type: entity
-  abstract: true
-  id: N14MobWaveAnimal
-  parent: N14MobWave
-  components:
-  - type: WaveMob
-    group: Animals
+# - type: entity
+  # abstract: true
+  # id: N14MobWaveAnimal
+  # parent: N14MobWave
+  # components:
+  # - type: WaveMob
+    # group: Animals
 
-- type: entity
-  abstract: true
-  id: N14MobWaveInsect
-  parent: N14MobWave
-  components:
-  - type: WaveMob
-    group: Insects
+# - type: entity
+  # abstract: true
+  # id: N14MobWaveInsect
+  # parent: N14MobWave
+  # components:
+  # - type: WaveMob
+    # group: Insects
