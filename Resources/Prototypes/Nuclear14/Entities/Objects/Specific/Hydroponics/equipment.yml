@@ -4,7 +4,7 @@
   parent: BaseItem
   id: N14Sack
   name: sack
-  descriptiion: A woven sack for storing things.
+  description: A woven sack for storing things.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
@@ -12,9 +12,11 @@
     netsync: true
     scale: 0.75, 0.75
   - type: Item
-    size: 30
+    size: Huge
   - type: Storage
-    capacity: 30
+    maxItemSize: Huge
+    grid:
+    - 0,0,7,4
       
 - type: entity
   parent: N14Sack
@@ -42,7 +44,7 @@
     netsync: true
     scale: 0.75, 0.75
   - type: Item
-    size: 30
+    size: Huge
       
 - type: entity
   parent: N14SackCompost

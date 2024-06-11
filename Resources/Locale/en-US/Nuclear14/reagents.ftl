@@ -18,6 +18,26 @@ reagent-desc-nuka-cola = Nuka-Cola brand soda from before war. Sugary goodness.
 reagent-name-irradiated-nuka-cola = irradiated Nuka-Cola
 reagent-desc-irradiated-nuka-cola = This Nuka-Cola gives off a slight tingle.
 
+## Alcohol
+reagent-name-beantownbrownbeer = Beantown Brown Beer
+reagent-desc-beantownbrownbeer = Beantown Brown Beer
+reagent-name-bourbon = bourbon
+reagent-desc-bourbon = bourbon
+reagent-name-gammagulpbeer = Gammagulp Beer
+reagent-desc-gammagulpbeer = Gammagulp Beer
+reagent-name-gwinnetstout = Gwinnet Stout
+reagent-desc-gwinnetstout = Gwinnet Stout
+reagent-name-lager = lager
+reagent-desc-lager = lager
+reagent-name-pilsner = pilsner
+reagent-desc-pilsner = pilsner
+reagent-name-roentgenrum = Roentgen Rum
+reagent-desc-roentgenrum = Roentgen Rum
+reagent-name-rotgut = Rotgut
+reagent-desc-rotgut = Rotgut
+reagent-name-scotch = scotch
+reagent-desc-scotch = scotch
+
 ## Animals
 reagent-name-milk-brahmin = brahmin milk
 reagent-desc-milk-brahmin = Tasty brahmin milk.
@@ -62,6 +82,8 @@ reagent-name-extract-maize = maize extract
 reagent-desc-extract-maize = Corn before there was corn, this vegetable is all sorts of different colours. Tastes slightly sweet and starchy.
 reagent-name-extract-mutfruit = mutfruit juice
 reagent-desc-extract-mutfruit = A mutated piece of fruit that no one is exactly sure how it came to be. Tastes like berries, apples, bananas.. But they've all gone slightly bad.
+reagent-name-extract-nettle = nettle juice
+reagent-desc-extract-nettle = Juice from a prickly nettle. Tastes minty and medicinal.
 reagent-name-extract-pricky-pear-fruit = prickly pear juice
 reagent-desc-extract-pricky-pear-fruit = The fruit from a cactus, make sure you get rod of the pokers before eating. Tastes of melon, or kiwi, it is very juicy and refreshing.
 reagent-name-extract-razorgrain = razorgrain flour
