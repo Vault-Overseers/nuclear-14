@@ -7,7 +7,7 @@
   - type: Food
   - type: Sprite
     sprite: Nuclear14/Objects/Consumable/Food/meat.rsi
-    state: meat
+    state: brahminmeat
     netsync: false
   - type: SolutionContainerManager
     solutions:
@@ -49,8 +49,7 @@
   description: A raw piece of rump brahmin.
   components:
   - type: Sprite
-    sprite: Nuclear14/Objects/Consumable/Food/meat.rsi
-    state: meat
+    state: brahminmeat
   - type: SolutionContainerManager
     solutions:
       food:
@@ -72,7 +71,7 @@
   description: A raw piece of rump bighorner.
   components:
   - type: Sprite
-    state: fatty
+    state: bighornermeat
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatBighornerCutlet
@@ -85,10 +84,10 @@
   name: raw radstag steak
   parent: N14FoodMeatBrahmin
   id: N14FoodMeatRadstag
-  description: A raw piece of rump bighorner.
+  description: A raw piece of rump radstag.
   components:
   - type: Sprite
-    state: porkchop
+    state: radstagmeat
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadstagCutlet
@@ -104,7 +103,7 @@
   description: A very muscular slab of raw yao-guai meat.
   components:
   - type: Sprite
-    state: meat
+    state: brahminmeat
   - type: SolutionContainerManager
     solutions:
       food:
@@ -135,7 +134,7 @@
   description: A slab of radscorpion meat.
   components:
   - type: Sprite
-    state: scorpiontail
+    state: radscorpionmeat
   - type: SolutionContainerManager
     solutions:
       food:
@@ -158,7 +157,7 @@
     - state: spiderleg
           
 - type: entity
-  name: raw radchicken
+  name: raw radchicken meat
   parent: N14FoodMeatRadRaw
   id: N14FoodMeatRadchicken
   description: A raw piece of radchicken. Slimy and pale.
@@ -172,13 +171,13 @@
     - state: bird
 
 - type: entity
-  name: raw gecko steak
+  name: raw gecko meat
   parent: N14FoodMeatRadRaw
   id: N14FoodMeatGecko
   description: tough chunk of gecko meat. It glistens.
   components:
   - type: Sprite
-    state: silvergecko
+    state: silvergeckomeat
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatGeckoCutlet
@@ -195,6 +194,9 @@
   parent: N14FoodMeatRadRaw
   id: N14FoodMeatSquirrel
   description: morsels of a poor squirrel.
+  components:
+  - type: Sprite
+    state: morsels
   
 - type: entity
   name: raw radroach fillet
@@ -203,21 +205,51 @@
   description: radroach fillet
   components:
   - type: Sprite
-    state: radroach
+    state: radroachfillet
+
+- type: entity
+  name: raw mirelurk claw
+  parent: N14FoodMeatRadRaw
+  id: N14FoodMeatMirelurkClaw
+  description: Exotic mirelurk claw.
+  components:
+  - type: Sprite
+    state: mirelurkclaw
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: N14UncookedAnimalProteinsRad
+          Quantity: 5
+
+- type: entity
+  name: raw radlurk claw
+  parent: N14FoodMeatRadRaw
+  id: N14FoodMeatRadlurkClaw
+  description: Exotic radlurk claw.
+  components:
+  - type: Sprite
+    state: radlurkclaw
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: N14UncookedAnimalProteinsRad
+          Quantity: 5
 
 # Cooked
 - type: entity
-  name: cooked rad meat
+  name: cooked irradiated meat
   parent: N14FoodMeatBase
   id: N14FoodMeatCooked
-  description: A cooked slab of meat.
+  description: Cooked morsels of irradiated meat.
   components:
   - type: Tag
     tags:
     - Cooked
   - type: Sprite
     layers:
-    - state: meat_roasted
+    - state: morsels_roasted
   - type: SolutionContainerManager
     solutions:
       food:
@@ -230,11 +262,14 @@
           Quantity: 3
 
 - type: entity
-  name: brahmin steak
+  name: cooked brahmin steak
   parent: N14FoodMeatCooked
   id: N14FoodMeatBrahminCooked
   description: A cooked slab of meat. Smells primal.
   components:
+  - type: Sprite
+    layers:
+    - state: brahminmeat_roasted
   - type: SolutionContainerManager
     solutions:
       food:
@@ -254,14 +289,14 @@
     defaultTarget: SteakBrahmin
 
 - type: entity
-  name: bighorner steak
+  name: cooked bighorner steak
   parent: N14FoodMeatBrahminCooked
   id: N14FoodMeatBighornerCooked
   description: A cooked slab of meat. Smells primal.
   components:
   - type: Sprite
     layers:
-    - state: fatty_roasted
+    - state: bighornermeat_roasted
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatBighornerCutletCooked
@@ -271,14 +306,14 @@
     defaultTarget: SteakBighorner
 
 - type: entity
-  name: radstag steak
+  name: cooked radstag steak
   parent: N14FoodMeatBrahminCooked
   id: N14FoodMeatRadstagCooked
   description: A cooked slab of meat. Smells primal.
   components:
   - type: Sprite
     layers:
-    - state: porkchop_roasted
+    - state: radstagmeat_roasted
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadstagCutletCooked
@@ -288,17 +323,33 @@
     defaultTarget: SteakRadstag
 
 - type: entity
-  name: cooked yao-guai
+  name: cooked yao-guai steak
   parent: N14FoodMeatBrahminCooked
   id: N14FoodMeatYaoguaiCooked
   description: A well-cooked slab of yao-guai meat. Tough, but tasty with the right sides.
   components:
+  - type: Sprite
+    layers:
+    - state: brahminmeat_roasted
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatYaoguaiCutletCooked
 
 - type: entity
-  name: cooked radchicken
+  name: cooked radscorpion steak
+  parent: N14FoodMeatCooked
+  id: N14FoodMeatRadscorpionCooked
+  description: A cooked piece of radscorpion.
+  components:
+  - type: Sprite
+    layers:
+    - state: radscorpionmeat_roasted
+  - type: SliceableFood
+    count: 3
+    slice: N14FoodMeatRadscorpionCutletCooked
+
+- type: entity
+  name: cooked radchicken meat
   parent: N14FoodMeatCooked
   id: N14FoodMeatRadchickenCooked
   description: A cooked piece of radchicken. Best used in other recipes.
@@ -312,20 +363,20 @@
     slice: N14FoodMeatRadchickenCutletCooked
 
 - type: entity
-  name: gecko steak
+  name: cooked gecko steak
   parent: N14FoodMeatCooked
   id: N14FoodMeatGeckoCooked
   description: Cooked, tough gecko meat.
   components:
   - type: Sprite
     layers:
-    - state: silvergecko_roasted
+    - state: silvergeckomeat_roasted
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatGeckoCutletCooked
     
 - type: entity
-  name: iguana bits
+  name: cooked iguana bits
   parent: N14FoodMeatCooked
   id: N14FoodMeatIguanaCooked
   description: Cooked, pulled iguana meat.
@@ -345,14 +396,14 @@
           Quantity: 1
           
 - type: entity
-  name: squirrel bits
+  name: cooked squirrel bits
   parent: N14FoodMeatCooked
   id: N14FoodMeatSquirrelCooked
   description: Cooked, meager squirrel meat.
   components:
   - type: Sprite
     layers:
-    - state: silvergecko_roasted
+    - state: morsels_roasted
   - type: SolutionContainerManager
     solutions:
       food:
@@ -365,14 +416,14 @@
           Quantity: 1
           
 - type: entity
-  name: radroach fillet
+  name: cooked radroach fillet
   parent: N14FoodMeatCooked
   id: N14FoodMeatRadroachFilletCooked
   description: Cooked, hard radroach.
   components:
   - type: Sprite
     layers:
-    - state: radroach_roasted
+    - state: radroachfillet_roasted
   - type: SolutionContainerManager
     solutions:
       food:
@@ -383,16 +434,47 @@
           Quantity: 2
         - ReagentId: N14RadParticleFood
           Quantity: 1
-          
+
 - type: entity
-  name: radscorpion tail
-  parent: N14FoodMeatIguanaCooked
-  id: N14FoodMeatRadscorpionTailCooked
-  description: Cooked, chewy radscorpion tail.
+  name: cooked mirelurk claw
+  parent: N14FoodMeatCooked
+  id: N14FoodMeatMirelurkClawCooked
+  description: Cooked, exotic mirelurk claw.
   components:
   - type: Sprite
     layers:
-    - state: scorpiontail_roasted
+    - state: mirelurkclaw_roasted
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: N14RadParticleFood
+          Quantity: 1
+
+- type: entity
+  name: cooked radlurk claw
+  parent: N14FoodMeatCooked
+  id: N14FoodMeatRadlurkClawCooked
+  description: Cooked, exotic radlurk claw.
+  components:
+  - type: Sprite
+    layers:
+    - state: radlurkclaw_roasted
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: N14RadParticleFood
+          Quantity: 4
+
 
 # Cooked Boiled
 - type: entity
@@ -549,7 +631,7 @@
           Quantity: 1
 
 - type: entity
-  name: brahmin cutlet
+  name: cooked brahmin cutlet
   parent: N14FoodMeatRadCutletCooked
   id: N14FoodMeatBrahminCutletCooked
   description: A very grisly cutlet of cooked brahmin meat.
@@ -561,7 +643,7 @@
       color: brown
 
 - type: entity
-  name: bighorner cutlet
+  name: cooked bighorner cutlet
   parent: N14FoodMeatRadCutletCooked
   id: N14FoodMeatBighornerCutletCooked
   description: A very grisly cutlet of cooked bighorner meat.
@@ -573,7 +655,7 @@
       color: brown
       
 - type: entity
-  name: radstag cutlet
+  name: cooked radstag cutlet
   parent: N14FoodMeatRadCutletCooked
   id: N14FoodMeatRadstagCutletCooked
   description: A very grisly cutlet of cooked radstag meat.
@@ -585,7 +667,7 @@
       color: brown
 
 - type: entity
-  name: yao-guai cutlet
+  name: cooked yao-guai cutlet
   parent: N14FoodMeatRadCutletCooked
   id: N14FoodMeatYaoguaiCutletCooked
   description: A very grisly cutlet of cooked yao-guai meat.
@@ -597,7 +679,7 @@
       color: brown
 
 - type: entity
-  name: radchicken cutlet
+  name: cooked radchicken cutlet
   parent: N14FoodMeatRadCutletCooked
   id: N14FoodMeatRadchickenCutletCooked
   description: A cutlet of cooked radchicken. Remember to wash your hands!
@@ -607,7 +689,7 @@
     color: white
 
 - type: entity
-  name: gecko cutlet
+  name: cooked gecko cutlet
   parent: N14FoodMeatRadCutletCooked
   id: N14FoodMeatGeckoCutletCooked
   description: Delicious cooked dino cutlet.
@@ -618,7 +700,7 @@
       color: green
 
 - type: entity
-  name: radscorpion cutlet
+  name: cooked radscorpion cutlet
   parent: N14FoodMeatRadCutletCooked
   id: N14FoodMeatRadscorpionCutletCooked
   description: A cutlet of cooked radscorpion meat. Finally edible.
