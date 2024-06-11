@@ -42,3 +42,18 @@
 
   - node: SteakBrahmin
     entity: N14FoodMeatRadstagCooked
+
+
+- type: constructionGraph
+  id: MeatSteakGecko
+  start: start
+  graph:
+
+  - node: start
+    edges:
+    - to: GeckoSteak
+      steps:
+      - minTemperature: 305
+
+  - node: SteakBrahmin
+    entity: N14FoodMeatGeckoCooked
