@@ -69,7 +69,7 @@
   noSpawn: true
   components:
   - type: GameRule
-    minPlayers: 20
+    minPlayers: 35
   - type: NukeopsRule
     faction: Syndicate
 
@@ -93,8 +93,6 @@
   noSpawn: true
   components:
   - type: RevolutionaryRule
-    maxHeadRevs: 2 # DeltaV
-    playersPerHeadRev: 30 # DeltaV - need highpop readied up for multiple headrevs
 
 - type: entity
   id: Sandbox
@@ -116,6 +114,20 @@
   noSpawn: true
   components:
   - type: ZombieRule
+
+- type: entity
+  id: Vault
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: VaultRule
+
+- type: entity
+  id: Waves
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: WaveDefenseRule
 
 # event schedulers
 - type: entity
@@ -144,6 +156,7 @@
     - id: BasicTrashVariationPass
     - id: SolidWallRustingVariationPass
     - id: ReinforcedWallRustingVariationPass
+    # - id: CutWireVariationPass
     - id: BasicPuddleMessVariationPass
       prob: 0.99
       orGroup: puddleMess
