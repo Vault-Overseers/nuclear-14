@@ -22,19 +22,29 @@
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Melee/hatchet.rsi
     size: Normal
-
+    
 - type: entity
-  name: tribal hatchet
-  parent: N14Hatchet
-  id: N14TribalHatchet
-  description: A tool that is just as useful as a weapon. Used for chopping things.
+  name: fireaxe
+  parent: N14BaseAxe
+  id: N14FireAxe
+  description: Truly, the weapon of a madman. Who would think to fight fire with an axe?
   components:
   - type: Sprite
-    sprite: Nuclear14/Objects/Weapons/Melee/tribalhatchet.rsi
+    sprite: Nuclear14/Objects/Weapons/Melee/fireaxe.rsi
     state: icon
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Melee/fireaxe.rsi
+    quickEquip: false
+    slots:
+    - back
   - type: Item
-    sprite: Nuclear14/Objects/Weapons/Melee/tribalhatchet.rsi
-    
+    size: Ginormous
+  - type: Tool
+    qualities:
+      - Prying
+  - type: ToolTileCompatible
+  - type: Prying
+
 - type: entity
   name: axe
   parent: BaseItem
@@ -66,26 +76,3 @@
     quickEquip: false
     slots:
     - back
-  - type: Item
-    sprite: Nuclear14/Objects/Weapons/Melee/axe.rsi
-    size: Huge
-    
-- type: entity
-  name: fireaxe
-  parent: N14BaseAxe
-  id: N14FireAxe
-  description: Truly, the weapon of a madman. Who would think to fight fire with an axe?
-  components:
-  - type: Sprite
-    sprite: Nuclear14/Objects/Weapons/Melee/fireaxe.rsi
-    state: icon
-  - type: Clothing
-    sprite: Nuclear14/Objects/Weapons/Melee/fireaxe.rsi
-    quickEquip: false
-    slots:
-    - back
-  - type: Tool
-    qualities:
-      - Prying
-  - type: ToolTileCompatible
-  - type: Prying

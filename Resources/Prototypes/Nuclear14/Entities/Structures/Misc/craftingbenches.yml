@@ -1,290 +1,39 @@
 - type: entity
   parent: BaseStructure
-  id: N14WorkbenchBase
+  id: N14WorkbenchMetal
   description: A workbench with metal working tools for crafting.
   name: workbench
-  abstract: true
   components:
   - type: InteractionOutline
-  - type: Appearance
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
-            bounds: "-0.7,-0.1,0.7,0.3"
+            bounds: "-0.8,-0.6,0.8,0.5"
         density: 190
         mask:
         - MachineMask
         layer:
         - MachineLayer
   - type: Sprite
-    sprite: Nuclear14/Structures/Misc/workbenches.rsi
-    state: workbench
-    offset: 0.5, 0
-  - type: Lathe
-  - type: MaterialStorage
-  - type: ActivatableUI
-    key: enum.LatheUiKey.Key
-  - type: UserInterface
-    interfaces:
-    - key: enum.LatheUiKey.Key
-      type: LatheBoundUserInterface
-  - type: ExtensionCableReceiver
-  - type: ApcPowerReceiver
-    needsPower: false
-    
-- type: entity
-  parent: N14WorkbenchBase
-  id: N14WorkbenchWeaponbench
-  description: A workbench with weapon working tools for crafting.
-  name: weapon workbench
-  components:
-  - type: Sprite
-    state: weaponbench
-    
-- type: entity
-  parent: N14WorkbenchBase
-  id: N14WorkbenchAmmobench
-  description: A workbench with ammo working tools for crafting.
-  name: ammo workbench
-  components:
-  - type: Sprite
-    state: ammobench
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-  - type: Lathe
-    idleState: icon
-    runningState: icon # change this
-    staticRecipes: # Ammo related only.
-      - N14Cartridge5.56Rifle
-      - Magazine5.56Rifle
-      - LongMagazine5.56Rifle
-      - LMGMagazine5.56Rifle
-      - MagazineBox5.56
-      - N14CartridgePistol5
-      - N14MagazineMinigun5mm
-      - N14Cartridge7.62Rifle
-      - Magazine7.62Rifle
-      - MagazineBox7.62
-      - N14CartridgePistol9
-      - N14MagazinePistol9mm
-      - N14MagazineSMG9mm
-      - MagazineBox9mm
-      - N14CartridgePistol10
-      - N14MagazinePistol10mm
-      - N14MagazineSMG10mm
-      - MagazineBox10mm
-      - N14CartridgePistol12.7
-      - N14MagazinePistol12mm
-      - N14MagazineSMG12mm
-      - N14TopMagazineSMG12mm
-      - MagazineBox12
-      - N14ShellShotgun12
-      - N14MagazineShotgun12
-      - MagazineBox12gauge
-      - N14ShellShotgun20
-      - N14MagazineShotgun20
-      - MagazineBox20gauge
-      - N14CartridgePistol22
-      - N14MagazinePistol22lr
-      - MagazineBox22
-      - N14Cartridge44Magnum
-      - MagazineBox44
-      - N14CartridgePistol45
-      - N14MagazinePistol45
-      - Magazine45SubMachineGun
-      - MagazineBox45
-      - N14Cartridge308Rifle
-      - Magazine308Rifle
-      - ClipMagazine308Rifle
-      - MagazineBox308
-      
-- type: entity
-  parent: N14WorkbenchBase
-  id: N14WorkbenchArmorbench
-  description: A workbench with armor working tools for crafting.
-  name: armor workbench
-  components:
-  - type: Sprite
-    state: armorbench
-    
-- type: entity
-  parent: N14WorkbenchBase
-  id: N14WorkbenchTinkerbench
-  description: A workbench with tinkering tools for crafting.
-  name: tinker workbench
-  components:
-  - type: Sprite
-    state: tinkerbench
-    
-- type: entity
-  parent: BaseStructure
-  id: N14WorkbenchChemistryset
-  description: A chemistry set for crafting drugs and compounds
-  name: chemical set
-  components:
-  - type: InteractionOutline
-  - type: Sprite
-    sprite: Nuclear14/Structures/Misc/workbenches.rsi
-    state: chemicalset
-    drawdepth: SmallObjects
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.10,-0.10,0.10,0.10"
-        density: 500
-        mask:
-          - TabletopMachineMask
-  - type: ItemSlots
-    slots:
-      beakerSlot:
-        whitelist:
-          components:
-          - FitsInDispenser
-      outputSlot:
-        whitelistFailPopup: chem-master-component-cannot-put-entity-message
-        whitelist:
-          tags:
-          - Bottle
-          - PillCanister
-  - type: SolutionContainerManager
-    solutions:
-      buffer: {}
-  - type: DumpableSolution
-    solution: buffer
-    unlimited: true
-  - type: ActivatableUI
-    key: enum.ChemMasterUiKey.Key
-  - type: UserInterface
-    interfaces:
-    - key: enum.ChemMasterUiKey.Key
-      type: ChemMasterBoundUserInterface
-  - type: ChemMaster
-    pillDosageLimit: 20
-
-- type: entity
-  parent: N14WorkbenchBase
-  id: N14WorkbenchMetal
-  description: A workbench with metal working tools for crafting.
-  name: workbench
-  components:
+    sprite: Nuclear14/Structures/Misc/forgeworkbench.rsi
+    state: bench_metal
   - type: PointLight
     radius: 2
     energy: 1
     softness: 0.5
     color: "#f05e1b"
     offset: "0.5, 0"
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-  - type: Lathe
-    idleState: icon
-    runningState: icon # change this
-    staticRecipes:
-      # Tools
-      - N14Wirecutter
-      - N14Screwdriver
-      - N14Welder
-      - N14Wrench
-      - N14CableStack
-      - N14CableMVStack
-      - N14CableHVStack
-      - N14Crowbar
-      - N14Pickaxe
-      - N14Shovel
-      - N14Multitool
-      - N14NetworkConfigurator
-      - N14PowerDrill
-      - N14HandheldGPSBasic
-      - N14TRayScanner
-      - N14GasAnalyzer
-      - N14SprayPainter
-      - N14RPED
-      - N14MiningDrill
-      # Kitchen
-      - N14ButchersCleaver
-      - N14KitchenKnife
-      - N14DrinkMug
-      - N14DrinkMugMetal
-      - N14DrinkGlass
-      - N14DrinkShotGlass
-      - N14DrinkGlassCoupeShaped
-      - N14FoodPlate
-      - N14FoodPlateSmall
-      - N14FoodPlatePlastic
-      - N14FoodPlateSmallPlastic
-      - N14FoodBowlBig
-      - N14FoodPlateTin
-      - N14FoodKebabSkewer
-      # Janitorial
-      - N14Mop
-      - N14MopBucket
-      - N14Bucket
-      - N14WetFloorSign
-      - N14SprayBottle
-      - N14TrashBag
-      - N14LightReplacer
-      - N14Mousetrap
-      - N14Plunger
-      - N14WeaponSprayNozzle
-      - N14ClothingBackpackWaterTank
-      # Chemistry
-      - N14Beaker
-      - N14LargeBeaker
-      - N14Dropper
-      - N14Syringe
-      - N14PillCanister
-      - N14ChemistryEmptyBottle01
-      - N14PillCanisterRadX
-      - N14PillCanisterMentats
-      - N14PillCanisterBuffout
-      - N14PillCanisterCateye
-      - N14PillCanisterFixer
-      - N14JetInhaler
-      # Misc
-      - N14LightTube
-      - N14LedLightTube
-      - N14SodiumLightTube
-      - N14ExteriorLightTube
-      - N14LightBulb
-      - N14LedLightBulb
-      - N14GlowstickRed
-      - N14Flare
-      - N14FlashlightLantern
-      - N14Matchbox
     
 - type: entity
-  parent: N14WorkbenchBase
+  parent: N14WorkbenchMetal
   id: N14WorkbenchForge
   description: A forge made from pieces of scrap. Looks hot.
   name: forge
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Misc/forgeworkbench.rsi
     state: forge
   - type: PointLight
     energy: 2
     offset: "-0.65, 0"
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-  - type: Lathe
-    idleState: icon
-    runningState: icon # change this
-    staticRecipes:
-      # Ores
-      - IngotLead
-      - SulfurPowder

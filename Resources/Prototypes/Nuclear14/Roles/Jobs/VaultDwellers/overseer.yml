@@ -1,0 +1,31 @@
+- type: job
+  id: Overseer
+  setPreference: false # Delete line for RP
+  name: job-name-overseer
+  description: job-description-overseer
+  playTimeTracker: Overseer
+  weight: 20
+  startingGear: OverseerGear
+  icon: "JobIconCaptain"
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  canBeAntag: false
+  supervisors: job-supervisors-vault-overseer
+  accessGroups:
+  - VaultOverseer
+
+- type: startingGear
+  id: OverseerGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitVault14
+    back: N14ClothingBackpackVaultOverseerFilled
+    shoes: ClothingShoesColorBlack
+    eyes: ClothingEyesGlassesSunglasses
+    id: N14VaultOverseerPDA
+    ears: N14ClothingHeadsetVaultCommand
+  innerClothingSkirt: N14ClothingUniformJumpsuitVault14
+  satchel: N14ClothingBackpackVaultOverseerFilled #placeholder
+  duffelbag: N14ClothingBackpackVaultOverseerFilled #placeholder
+
+- type: playTimeTracker
+  id: Overseer

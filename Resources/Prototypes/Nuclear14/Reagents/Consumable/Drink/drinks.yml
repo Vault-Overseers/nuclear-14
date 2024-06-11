@@ -1,0 +1,142 @@
+# Animals
+- type: reagent
+  id: N14MilkBrahmin
+  parent: Milk
+  name: reagent-name-milk-brahmin
+  desc: reagent-desc-milk-brahmin
+  
+- type: reagent
+  id: N14MilkBighorner
+  parent: Milk
+  name: reagent-name-milk-bighorner
+  desc: reagent-desc-milk-bighorner
+  
+- type: reagent
+  id: N14MilkRadstag
+  parent: Milk
+  name: reagent-name-milk-radstag
+  desc: reagent-desc-milk-radstag
+
+# Tea
+## Plant Teas
+- type: reagent
+  id: TeaAgave
+  parent: GreenTea
+  name: reagent-name-tea-agave
+  desc: reagent-desc-tea-agave
+  metabolisms:
+    Drink:
+      effects:
+      - !type:AdjustReagent
+        reagent: Sugar
+        amount: 0.4
+      - !type:SatiateThirst
+        factor: 4
+
+- type: reagent
+  id: TeaBlackberry
+  parent: TeaAgave
+  name: reagent-name-tea-blackberry
+  desc: reagent-desc-tea-blackberry
+
+- type: reagent
+  id: TeaBarrelCactus
+  parent: GreenTea
+  name: reagent-name-tea-barrelcactus
+  desc: reagent-desc-tea-barrelcactus
+
+- type: reagent
+  id: TeaBroc
+  parent: GreenTea
+  name: reagent-name-tea-broc
+  desc: reagent-desc-tea-broc
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -0.25
+            Brute: -0.25
+
+- type: reagent
+  id: TeaDatura
+  parent: GreenTea
+  name: reagent-name-tea-datura
+  desc: reagent-desc-tea-datura
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: 2.5
+
+- type: reagent
+  id: TeaHoneyMesquite
+  parent: TeaAgave
+  name: reagent-name-tea-honeymesquite
+  desc: reagent-desc-tea-honeymesquite
+
+- type: reagent
+  id: TeaMutfruit
+  parent: GreenTea
+  name: reagent-name-tea-mutfruit
+  desc: reagent-desc-tea-mutfruit
+
+- type: reagent
+  id: TeaNettle
+  parent: GreenTea
+  name: reagent-name-tea-nettle
+  desc: reagent-desc-tea-nettle
+
+- type: reagent
+  id: TeaPricklypear
+  parent: TeaAgave
+  name: reagent-name-tea-pricklypear
+  desc: reagent-desc-tea-pricklypear
+
+- type: reagent
+  id: TeaStarlightberry
+  parent: TeaAgave
+  name: reagent-name-tea-starlightberry
+  desc: reagent-desc-tea-starlightberry
+
+- type: reagent
+  id: TeaTarberry
+  parent: TeaAgave
+  name: reagent-name-tea-tarberry
+  desc: reagent-desc-tea-tarberry
+
+- type: reagent
+  id: TeaWhiteHorsenettle
+  parent: TeaDatura
+  name: reagent-name-tea-whitehorsenettle
+  desc: reagent-desc-tea-whitehorsenettle
+
+- type: reagent
+  id: TeaXander
+  parent: GreenTea
+  name: reagent-name-tea-xander
+  desc: reagent-desc-tea-xander
+
+  ## Other Teas
+- type: reagent
+  parent: TeaAgave
+  id: TeaFireantNectar
+  name: reagent-name-tea-fireantnectar
+  desc: reagent-desc-tea-fireantnectar
+  metabolisms:
+    Drink:
+      effects:
+      - !type:AdjustReagent
+        reagent: Sugar
+        amount: 0.4
+      - !type:SatiateThirst
+        factor: 4
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -1.5
