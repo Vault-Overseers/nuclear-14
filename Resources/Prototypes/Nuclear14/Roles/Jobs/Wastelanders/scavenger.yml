@@ -1,0 +1,27 @@
+- type: job
+  id: WastelandScavenger
+  setPreference: false # Delete line for RP
+  name: job-name-scavenger
+  description: job-description-scavenger
+  playTimeTracker: WastelandScavenger
+  startingGear: ScavengerGear
+  icon: "JobIconJanitor"
+  supervisors: job-supervisors-wastelander
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: GarbageDay
+    prototype: WeaponRevolverInspector
+
+- type: startingGear
+  id: ScavengerGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitMechanic
+    back: N14ClothingBackpackWastelanderFilled
+    shoes: ClothingShoesBootsSalvage
+    belt: N14ClothingBeltUtilityFilled
+  innerClothingSkirt: N14ClothingUniformJumpsuitMechanic
+  satchel: N14ClothingBackpackSatchelWastelanderFilled
+  duffelbag: N14ClothingBackpackDuffelFilled
+
+- type: playTimeTracker
+  id: WastelandScavenger

@@ -1,0 +1,29 @@
+- type: job
+  id: VaultDoctor
+  setPreference: false # Delete line for RP
+  name: job-name-vault-doctor
+  description: job-description-vault-doctor
+  playTimeTracker: VaultDoctor
+  startingGear: VaultDoctorGear
+  icon: "JobIconMedicalDoctor"
+  supervisors: job-supervisors-overseer
+  access:
+  - VaultDweller
+  - VaultMedical
+
+- type: startingGear
+  id: VaultDoctorGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitVault14
+    back: N14ClothingBackpackVaultDoctorFilled
+    shoes: ClothingShoesColorWhite
+    outerClothing: ClothingOuterCoatLab
+    id: N14VaultDoctorPDA
+    ears: N14ClothingHeadsetVaultMedical
+    belt: ClothingBeltMedicalFilled
+  innerClothingSkirt: N14ClothingUniformJumpsuitVault14
+  satchel: N14ClothingBackpackVaultDoctorFilled
+  duffelbag: N14ClothingBackpackVaultDoctorFilled
+
+- type: playTimeTracker
+  id: VaultDoctor

@@ -1,0 +1,31 @@
+- type: job
+  id: NCRNCO
+  setPreference: false # Delete line for RP
+  name: job-name-ncr-nco
+  description: job-description-ncr-nco
+  playTimeTracker: NCRNCO
+  startingGear: NCRNCOGear
+  icon: "JobIconSecurityOfficer"
+  supervisors: job-supervisors-ncr
+  canBeAntag: false
+  access:
+  - NCRCadet
+  - NCRSoldier
+  - NCRNCO
+  
+- type: startingGear
+  id: NCRNCOGear
+  equipment:
+    head: N14ClothingHeadHatNCRHelmetMetalMilitaryPolice
+    back: N14ClothingBackpackNCR
+    jumpsuit: N14ClothingOfficerUniformNCR
+    shoes: N14ClothingBootsLeather
+    belt: ClothingBeltNCR
+    eyes: ClothingEyesGlassesSunglasses
+    outerClothing: N14ClothingOuterNCRVest
+    id: N14IDNCRDogtag
+    ears: ClothingHeadsetSecurity #placeholder
+  innerClothingSkirt: N14ClothingOfficerUniformNCR #placeholder
+
+- type: playTimeTracker
+  id: NCRNCO

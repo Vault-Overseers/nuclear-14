@@ -1,0 +1,27 @@
+# For all other walls see SS14
+# Make a base for wood, metal walls (breaks to girder), concrete (breaks to nothing / rubble), rebarconcrete (breaks to rebar girder) etc for destruction
+
+# Concrete Walls
+- type: entity
+  parent: BaseWall
+  id: N14WallBrickTall
+  name: brick wall
+  suffix: tall
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Walls/32x64/brick.rsi
+    drawdepth: Mobs
+  - type: SpriteFade
+  - type: Icon
+    sprite: Nuclear14/Structures/Walls/32x64/brick.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls
+    base: tallbrick

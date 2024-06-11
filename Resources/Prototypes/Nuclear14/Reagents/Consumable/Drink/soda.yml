@@ -1,0 +1,34 @@
+- type: reagent
+  id: NukaCola
+  name: reagent-name-nuka-cola
+  parent: BaseSoda
+  desc: reagent-desc-nuka-cola
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#362d1d"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.1
+
+- type: reagent
+  id: IrradiatedNukaCola
+  name: reagent-name-irradiated-nuka-cola
+  parent: BaseSoda
+  desc: reagent-desc-irradiated-nuka-cola
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#4a4a32"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 0.1
