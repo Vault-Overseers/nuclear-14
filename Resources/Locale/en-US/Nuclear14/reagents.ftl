@@ -185,10 +185,14 @@ reagent-desc-robust-movespeedmod-mixture = A mixture of reagents that makes you 
 reagent-name-damage-mod-mixture = damage modifying mixture
 reagent-desc-damage-mod-mixture = A mixture of reagents that makes you deal more damage.
 
-## Products
+# Products
 reagent-name-abraxocleaner = Abraxo Cleaner
 reagent-desc-abraxocleaner = A pre-war cleaning product.
 reagent-name-wonderglue = Wonderglue
 reagent-desc-wonderglue = A pre-war adhesive. Don't sniff it.
 reagent-name-turpentine = Turpentine
 reagent-desc-turpentine = A spirit used for cleaning things.
+
+# Other
+reagent-name-scorpiontail = scorpion tail
+reagent-desc-scorpiontail = scorpion tail. Stingy.
