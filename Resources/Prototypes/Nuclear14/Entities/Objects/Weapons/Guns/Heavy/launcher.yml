@@ -1,0 +1,81 @@
+- type: entity
+  name: grenade launcher
+  parent: BaseWeaponLauncher
+  id: N14WeaponLauncherGrenade
+  description: A pump action heavy grenade launcher with 4 grenades capacity, 4 times more fun, it uses 40mm grenades.
+  components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -104 
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Heavy/grenadelauncher.rsi
+    layers:
+      - state: icon
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Heavy/grenadelauncher.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    minAngle: 24
+    maxAngle: 105
+    angleIncrease: 4
+    angleDecay: 16   
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - N14Grenade
+    capacity: 4
+    proto: GrenadeProjectile
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+
+- type: entity
+  name: grenade rifle
+  parent: BaseWeaponLauncher
+  id: N14WeaponRifleGrenade
+  description: A break action single shot light grenade launcher, coolest thing ever, it uses 40mm grenades has ammo.
+  components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -104
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Heavy/grenaderifle.rsi
+    layers:
+      - state: icon
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Heavy/grenaderifle.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    minAngle: 24
+    maxAngle: 105
+    angleIncrease: 4
+    angleDecay: 16   
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - N14Grenade
+    capacity: 1
+    proto: GrenadeProjectile
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
