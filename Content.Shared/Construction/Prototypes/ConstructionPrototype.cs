@@ -15,7 +15,7 @@ public sealed partial class ConstructionPrototype : IPrototype
     ///     Hide from the construction list
     /// </summary>
     [DataField("hide")]
-    public bool Hide = false;
+    public bool Hide = true;
 
     /// <summary>
     ///     Friendly name displayed in the construction GUI.
