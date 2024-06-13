@@ -15,7 +15,7 @@
     - SimpleHostile
   - type: HTN
     rootTask:
-      task: SimpleHostileCompound
+      task: SimpleDumbHostileCompound # This replaced SimpleHostileCompound and means they don't dodge between attacks.
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -24,8 +24,8 @@
       sprite: Nuclear14/Mobs/Insects/bloatfly.rsi # Replace this with a mob error or something
   - type: Physics
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 6
+    baseWalkSpeed : 2
+    baseSprintSpeed : 3.9
   - type: Fixtures
     fixtures:
       fix1:
@@ -64,6 +64,8 @@
   - type: CombatMode
   - type: MeleeWeapon
     hidden: true
+    attackRate: 0.5
+    range: 1
     soundHit:
         path: /Audio/Effects/bite.ogg
     angle: 0
@@ -126,7 +128,7 @@
   components:
   - type: HTN
     rootTask:
-      task: SimpleHostileCompound
+      task: SimpleDumbHostileCompound
     blackboard:
       NavInteract: !type:Bool
         true
