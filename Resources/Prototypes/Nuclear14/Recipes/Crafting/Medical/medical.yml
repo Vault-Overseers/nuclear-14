@@ -67,3 +67,31 @@
             
     - node: stimpak
       entity: N14Stimpak
+      
+# Jet
+- type: construction
+  name: jet inhaler
+  id: N14JetInhaler
+  graph: N14JetInhaler
+  startNode: start
+  targetNode: jet
+  category: construction-category-medical
+  description: A jet inhaler. Smells like farts, speeds things up.
+  hide: false
+  icon:
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+    state: jet
+  objectType: Item
+  
+- type: constructionGraph
+  id: N14JetInhaler
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: jet
+          steps:
+          - material: Plastic
+            
+    - node: jet
+      entity: N14JetInhaler

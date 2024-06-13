@@ -111,11 +111,12 @@
         reagents:
         - ReagentId: Antidote
           Quantity: 15
-
+          
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14Jet
-  name: Jet
+  id: N14JetInhaler
+  suffix: empty
+  name: Jet inhaler
   description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, and lasts longer than Turbo.
   components:
   - type: Sprite
@@ -129,6 +130,17 @@
   - type: Hypospray
     solutionName: pen
     transferAmount: 18
+  - type: Construction # N14:TODO: Probably move this to lathe
+    graph: N14JetInhaler
+    node: jet
+
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14Jet
+  suffix: filled
+  name: Jet
+  description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, and lasts longer than Turbo.
+  components:
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -136,6 +148,9 @@
         reagents:
         - ReagentId: MovespeedMixture
           Quantity: 18
+  - type: Construction
+    graph: N14Jet
+    node: jet
 
 - type: entity
   parent: N14ChemicalSyringe
