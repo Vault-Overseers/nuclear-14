@@ -1,0 +1,45 @@
+- type: constructionGraph
+  id: N14DoorGraph
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        # - to: metalDoor
+          # completed:
+            # - !type:SnapToGrid { }
+          # steps:
+            # - material: Steel
+              # amount: 20
+              # doAfter: 15
+        - to: woodDoorMakeshift
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 10
+              doAfter: 15
+
+    # - node: metalDoor
+      # entity: MetalDoor
+      # edges:
+        # - to: start
+          # completed:
+            # - !type:SpawnPrototype
+              # prototype: SheetSteel1
+              # amount: 20
+          # steps:
+            # - tool: Anchoring
+              # doAfter: 15
+    - node: woodDoorMakeshift
+      entity: N14DoorMakeshift
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 10
+          steps:
+            - tool: Anchoring
+              doAfter: 15

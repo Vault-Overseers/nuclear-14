@@ -110,6 +110,19 @@
     
 # Wood walls
 - type: entity
+  id: N14WallWoodFrame
+  parent: Barricade
+  name: wooden wall Frame
+  description: A frame for building into a wall.
+  components:
+  - type: Construction
+    graph: N14WoodWall
+    node: Frame
+  - type: Sprite
+    sprite: Nuclear14/Structures/Walls/woodlog.rsi
+    state: girder
+
+- type: entity
   parent: BaseWall
   id: N14WallWoodWhite
   name: wooden wall
@@ -216,14 +229,9 @@
   - type: IconSmooth
     key: walls
     base: log
-    
-- type: entity
-  parent: N14WallWoodWhiteFrame
-  id: N14WallWoodLogFrame
-  components:
-  - type: Sprite
-    sprite: Nuclear14/Structures/Walls/woodlog.rsi
-    state: girder
+  - type: Construction
+    graph: N14WoodWall
+    node: logWall
     
 # Tent Walls
 - type: entity
