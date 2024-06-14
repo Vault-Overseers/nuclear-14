@@ -1,0 +1,44 @@
+- type: entity
+  parent: IngotBase
+  id: IngotLead
+  name: lead bar
+  suffix: Full
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Lead: 100
+  - type: Stack
+    stackType: Lead
+    baseLayer: base
+    layerStates:
+    - silver
+    - silver_2
+    - silver_3
+  - type: Sprite
+    state: silver_3
+    layers:
+    - state: silver_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: silver
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: lead
+  - type: SolutionContainerManager
+    solutions:
+      lead:
+        reagents:
+        - ReagentId: Lead
+          Quantity: 10
+
+- type: entity
+  parent: IngotLead
+  id: IngotLead1
+  name: lead bar
+  suffix: Single
+  components:
+  - type: Sprite
+    state: silver
+  - type: Stack
+    count: 1

@@ -167,6 +167,8 @@ reagent-desc-fixer = A reagent that cures your addictions.
 
 reagent-name-mentats = mentats
 reagent-desc-mentats = A reagent that makes you mentally sharper.
+reagent-name-mentats-berry = berry mentats
+reagent-desc-mentats-berry = A fruity reagent that makes you mentally sharper.
 
 reagent-name-cateye = cateye
 reagent-desc-cateye = A reagent that improves your low-light vision.
