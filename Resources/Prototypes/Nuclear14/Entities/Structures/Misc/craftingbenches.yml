@@ -1,8 +1,9 @@
 - type: entity
   parent: BaseStructure
-  id: N14WorkbenchMetal
+  id: N14WorkbenchBase
   description: A workbench with metal working tools for crafting.
   name: workbench
+  abstract: true
   components:
   - type: InteractionOutline
   - type: Fixtures
@@ -19,12 +20,99 @@
   - type: Sprite
     sprite: Nuclear14/Structures/Misc/forgeworkbench.rsi
     state: bench_metal
+  - type: Lathe
+  - type: MaterialStorage
+  - type: ActivatableUI
+    key: enum.LatheUiKey.Key
+  - type: UserInterface
+    interfaces:
+    - key: enum.LatheUiKey.Key
+      type: LatheBoundUserInterface
+    - key: enum.ResearchClientUiKey.Key
+      type: ResearchClientBoundUserInterface
+
+- type: entity
+  parent: N14WorkbenchBase
+  id: N14WorkbenchMetal
+  description: A workbench with metal working tools for crafting.
+  name: workbench
+  components:
   - type: PointLight
     radius: 2
     energy: 1
     softness: 0.5
     color: "#f05e1b"
     offset: "0.5, 0"
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: Lathe
+    idleState: icon
+    runningState: icon # change this
+    staticRecipes:
+      # Tools
+      - N14Wirecutter
+      - N14Screwdriver
+      - N14Welder
+      - N14Wrench
+      - N14CableStack
+      - N14CableMVStack
+      - N14CableHVStack
+      - N14Crowbar
+      - N14Pickaxe
+      - N14Shovel
+      - N14Multitool
+      - N14NetworkConfigurator
+      - N14PowerDrill
+      - N14HandheldGPSBasic
+      - N14TRayScanner
+      - N14GasAnalyzer
+      - N14SprayPainter
+      - N14RPED
+      - N14MiningDrill
+      # Kitchen
+      - N14ButchersCleaver
+      - N14KitchenKnife
+      - N14DrinkMug
+      - N14DrinkMugMetal
+      - N14DrinkGlass
+      - N14DrinkShotGlass
+      - N14DrinkGlassCoupeShaped
+      - N14FoodPlate
+      - N14FoodPlateSmall
+      - N14FoodPlatePlastic
+      - N14FoodPlateSmallPlastic
+      - N14FoodBowlBig
+      - N14FoodPlateTin
+      - N14FoodKebabSkewer
+      # Janitorial
+      - N14Mop
+      - N14MopBucket
+      - N14Bucket
+      - N14WetFloorSign
+      - N14SprayBottle
+      - N14TrashBag
+      - N14LightReplacer
+      - N14Mousetrap
+      - N14Plunger
+      - N14WeaponSprayNozzle
+      - N14ClothingBackpackWaterTank
+      # Chemistry
+      - N14Beaker
+      - N14LargeBeaker
+      - N14Dropper
+      - N14Syringe
+      - N14PillCanister
+      - N14ChemistryEmptyBottle01
+      - N14PillCanisterRadX
+      - N14PillCanisterMentats
+      - N14PillCanisterBuffout
+      - N14PillCanisterCateye
+      - N14PillCanisterFixer
+      - N14JetInhaler
     
 - type: entity
   parent: N14WorkbenchMetal
