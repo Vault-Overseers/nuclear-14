@@ -169,6 +169,10 @@ reagent-name-mentats = mentats
 reagent-desc-mentats = A reagent that makes you mentally sharper.
 reagent-name-mentats-berry = berry mentats
 reagent-desc-mentats-berry = A fruity reagent that makes you mentally sharper.
+reagent-name-mentats-grape = grape mentats
+reagent-desc-mentats-grape = A fruity reagent that makes you mentally sharper.
+reagent-name-mentats-orange = orange mentats
+reagent-desc-mentats-orange = A citrus reagent that makes you mentally sharper.
 
 reagent-name-cateye = cateye
 reagent-desc-cateye = A reagent that improves your low-light vision.
