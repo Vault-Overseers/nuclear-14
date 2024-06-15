@@ -11,7 +11,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-            bounds: "-0.8,-0.6,0.8,0.5"
+            bounds: "-0.7,-0.1,0.7,0.3"
         density: 190
         mask:
         - MachineMask
@@ -49,7 +49,59 @@
   components:
   - type: Sprite
     state: ammobench
-    
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: Lathe
+    idleState: icon
+    runningState: icon # change this
+    staticRecipes: # Ammo related only.
+      - N14Cartridge5.56Rifle
+      - Magazine5.56Rifle
+      - LongMagazine5.56Rifle
+      - LMGMagazine5.56Rifle
+      - MagazineBox5.56
+      - N14CartridgePistol5
+      - N14MagazineMinigun5mm
+      - N14Cartridge7.62Rifle
+      - Magazine7.62Rifle
+      - MagazineBox7.62
+      - N14CartridgePistol9
+      - N14MagazinePistol9mm
+      - N14MagazineSMG9mm
+      - MagazineBox9mm
+      - N14CartridgePistol10
+      - N14MagazinePistol10mm
+      - N14MagazineSMG10mm
+      - MagazineBox10mm
+      - N14CartridgePistol12.7
+      - N14MagazinePistol12mm
+      - N14MagazineSMG12mm
+      - N14TopMagazineSMG12mm
+      - MagazineBox12
+      - N14ShellShotgun12
+      - N14MagazineShotgun12
+      - MagazineBox12gauge
+      - N14ShellShotgun20
+      - N14MagazineShotgun20
+      - MagazineBox20gauge
+      - N14CartridgePistol22
+      - N14MagazinePistol22lr
+      - MagazineBox22
+      - N14Cartridge44Magnum
+      - MagazineBox44
+      - N14CartridgePistol45
+      - N14MagazinePistol45
+      - Magazine45SubMachineGun
+      - MagazineBox45
+      - N14Cartridge308Rifle
+      - Magazine308Rifle
+      - ClipMagazine308Rifle
+      - MagazineBox308
+      
 - type: entity
   parent: N14WorkbenchBase
   id: N14WorkbenchArmorbench
@@ -76,6 +128,7 @@
   components:
   - type: InteractionOutline
   - type: Sprite
+    sprite: Nuclear14/Structures/Misc/workbenches.rsi
     state: chemicalset
     drawdepth: SmallObjects
   - type: Fixtures
@@ -204,6 +257,7 @@
   name: forge
   components:
   - type: Sprite
+    sprite: Nuclear14/Structures/Misc/forgeworkbench.rsi
     state: forge
   - type: PointLight
     energy: 2
