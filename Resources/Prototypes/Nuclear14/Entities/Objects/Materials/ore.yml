@@ -1,0 +1,30 @@
+- type: entity
+  parent: OreBase
+  id: LeadOre
+  name: lead ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: LeadOre
+  - type: Sprite
+    state: iron
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawLead: 500
+  - type: Extractable
+    grindableSolutionName: leadore
+  - type: SolutionContainerManager
+    solutions:
+      leadore:
+        reagents:
+        - ReagentId: Lead
+          Quantity: 10
+
+- type: entity
+  id: LeadOre1
+  parent: LeadOre
+  suffix: Single
+  components:
+    - type: Stack
+      count: 1
