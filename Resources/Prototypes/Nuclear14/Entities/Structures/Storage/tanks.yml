@@ -1,8 +1,8 @@
 ﻿# N14:TODO: Add the destroyed versions of these as a destruction spawn.
 
 - type: entity
-  id: N14StorageTank
   parent: BaseStructure
+  id: N14StorageTankBase
   name: storage tank
   description: A liquids storage tank.
   abstract: true
@@ -11,17 +11,6 @@
     noRot: true
   - type: InteractionOutline
   - type: Physics
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.9,-0.5,0.9,0.2"
-        density: 155
-        mask:
-        - MachineMask
-        layer:
-        - WallLayer
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -70,8 +59,8 @@
 
 # In use
 - type: entity
-  id: N14FuelTankWide
-  parent: N14StorageTank
+  id: N14StorageTankWide
+  parent: N14StorageTankBase
   name: fuel tank
   description: A fuel tank. It's used to store high amounts of fuel.
   suffix: Empty
@@ -101,10 +90,21 @@
   - type: Explosive
     explosionType: Default
     totalIntensity: 120 # ~ 5 tile radius
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.9,-0.5,0.9,0.2"
+        density: 155
+        mask:
+        - MachineMask
+        layer:
+        - WallLayer
 
 - type: entity
-  id: N14FuelTankWideFull
-  parent: N14FuelTankWide
+  parent: N14StorageTankWide
+  id: N14StorageTankWideFullFuel
   suffix: Full
   components:
   - type: SolutionContainerManager
@@ -116,8 +116,8 @@
           
           
 - type: entity
-  id: N14FuelTank
-  parent: N14FuelTankWide
+  parent: N14StorageTankWide
+  id: N14StorageTank
   suffix: Empty
   components:
   - type: Sprite
@@ -137,8 +137,8 @@
         - WallLayer
       
 - type: entity
-  id: N14FuelTankFull
-  parent: N14FuelTank
+  id: N14StorageTankFullFuel
+  parent: N14StorageTank
   suffix: Full
   components:
   - type: SolutionContainerManager
@@ -149,8 +149,8 @@
           Quantity: 1500
           
 - type: entity
-  id: N14FuelTankHuge
-  parent: N14FuelTankWide
+  id: N14StorageTankHuge
+  parent: N14StorageTankWide
   suffix: Empty
   components:
   - type: Sprite
@@ -170,8 +170,8 @@
         - WallLayer
       
 - type: entity
-  id: N14FuelTankHugeFull
-  parent: N14FuelTankHuge
+  id: N14StorageTankHugeFullFuel
+  parent: N14StorageTankHuge
   suffix: Full
   components:
   - type: SolutionContainerManager
@@ -180,3 +180,48 @@
         reagents:
         - ReagentId: WeldingFuel
           Quantity: 2000
+          
+- type: entity
+  parent: N14StorageTankBase
+  id: N14StorageTankVat
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/np13_misc.rsi
+    layers:
+      - state: vat
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.9,-0.7,-0.1,0.4"
+        density: 155
+        mask:
+        - MachineMask
+        layer:
+        - WallLayer
+      
+- type: entity
+  parent: N14StorageTankVat
+  id: N14StorageTankVatFullFuel
+  suffix: Full, fuel
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 1500
+          
+- type: entity
+  parent: N14StorageTankVat
+  id: N14StorageTankVatFullWater
+  suffix: Full, water
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: Water
+          Quantity: 1500
