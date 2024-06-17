@@ -17,6 +17,9 @@
     maxItemSize: Huge
     grid:
     - 0,0,7,4
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
       
 - type: entity
   parent: N14Sack
@@ -37,6 +40,8 @@
 - type: entity
   parent: BaseItem
   id: N14SackCompost
+  name: compost sack
+  description: A sack for storing compost.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
@@ -45,18 +50,57 @@
     scale: 0.75, 0.75
   - type: Item
     size: Huge
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 300
+  - type: DrainableSolution
+    solution: sack
+  - type: ExaminableSolution
+    solution: sack
+  - type: SolutionContainerManager
+    solutions:
+      sack:
+        maxVol: 100
+        
+- type: entity
+  parent: N14SackCompost
+  id: N14SackCompostFull
+  suffix: full
+  # components:
+  # - type: SolutionContainerManager
+    # solutions:
+      # sack:
+        # maxVol: 100
+        # reagents:
+        # - ReagentId: Fertilizer
+          # Quantity: 100
       
 - type: entity
   parent: N14SackCompost
-  id: N14SackFertiliser
+  id: N14SackFertilizer
+  name: fertilizer sack
+  description: A sack for storing fertilizer.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
-    state: daesack4
+    state: daesack2
+    layers:
+    - state: daesack2
+      map: ["base"]
+  - type: Item
+    heldPrefix: daesack2
+    
+- type: entity
+  parent: N14SackFertilizer
+  id: N14SackFertilizerFull
+  suffix: full
+  name: fertilizer sack
+  description: A sack for storing fertilizer.
+  components:
   - type: SolutionContainerManager
     solutions:
-      drink:
+      sack:
         maxVol: 100
         reagents:
-        - ReagentId: EZNutrient
+        - ReagentId: Fertilizer
           Quantity: 100

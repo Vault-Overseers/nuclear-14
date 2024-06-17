@@ -167,6 +167,12 @@ reagent-desc-fixer = A reagent that cures your addictions.
 
 reagent-name-mentats = mentats
 reagent-desc-mentats = A reagent that makes you mentally sharper.
+reagent-name-mentats-berry = berry mentats
+reagent-desc-mentats-berry = A fruity reagent that makes you mentally sharper.
+reagent-name-mentats-grape = grape mentats
+reagent-desc-mentats-grape = A fruity reagent that makes you mentally sharper.
+reagent-name-mentats-orange = orange mentats
+reagent-desc-mentats-orange = A citrus reagent that makes you mentally sharper.
 
 reagent-name-cateye = cateye
 reagent-desc-cateye = A reagent that improves your low-light vision.
@@ -192,6 +198,16 @@ reagent-name-wonderglue = Wonderglue
 reagent-desc-wonderglue = A pre-war adhesive. Don't sniff it.
 reagent-name-turpentine = Turpentine
 reagent-desc-turpentine = A spirit used for cleaning things.
+
+# Ores, Metals, Materials
+materials-gunpowder = gunpowder
+materials-lead = lead
+materials-sulfur = sulfur
+materials-raw-lead = raw lead
+materials-raw-sulfur = raw sulfur
+reagent-name-gunpowder = gunpowder
+reagent-desc-gunpowder = gunpowder
+
 
 # Other
 reagent-name-scorpiontail = scorpion tail

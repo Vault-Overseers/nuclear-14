@@ -1,0 +1,98 @@
+- type: entity
+  parent: OreBase
+  id: LeadOre
+  name: lead ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: LeadOre
+    count: 10
+  - type: Sprite
+    sprite: /Textures/Nuclear14/Objects/Misc/materials.rsi
+    state: lead
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawLead: 500
+  - type: Extractable
+    grindableSolutionName: leadore
+  - type: SolutionContainerManager
+    solutions:
+      leadore:
+        reagents:
+        - ReagentId: Lead
+          Quantity: 10
+
+- type: entity
+  id: LeadOre1
+  parent: LeadOre
+  suffix: Single
+  components:
+    - type: Stack
+      count: 1
+      
+- type: entity
+  parent: OreBase
+  id: SulfurOre
+  name: sulfur ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: SulfurOre
+    count: 10
+  - type: Sprite
+    sprite: /Textures/Nuclear14/Objects/Misc/materials.rsi
+    state: sulfur
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawSulfur: 500
+  - type: Extractable
+    grindableSolutionName: sulfurore
+  - type: SolutionContainerManager
+    solutions:
+      sulfurore:
+        reagents:
+        - ReagentId: Sulfur
+          Quantity: 10
+
+- type: entity
+  id: SulfurOre1
+  parent: SulfurOre
+  suffix: Single
+  components:
+    - type: Stack
+      count: 1
+      
+- type: entity
+  parent: OreBase
+  id: FertilizerOre
+  name: fertilizer ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: FertilizerOre
+    count: 10
+  - type: Sprite
+    sprite: /Textures/Nuclear14/Objects/Misc/crafting_material.rsi
+    state: ore_fertilizer
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Fertilizer: 10
+  - type: Extractable
+    grindableSolutionName: fertilizer
+  - type: SolutionContainerManager
+    solutions:
+      fertilizer:
+        reagents:
+        - ReagentId: Fertilizer
+          Quantity: 10
+
+- type: entity
+  id: FertilizerOre1
+  parent: FertilizerOre
+  suffix: Single
+  components:
+    - type: Stack
+      count: 1
