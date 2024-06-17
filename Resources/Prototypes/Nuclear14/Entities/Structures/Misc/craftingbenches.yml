@@ -6,6 +6,7 @@
   abstract: true
   components:
   - type: InteractionOutline
+  - type: Appearance
   - type: Fixtures
     fixtures:
       fix1:
@@ -29,6 +30,9 @@
     interfaces:
     - key: enum.LatheUiKey.Key
       type: LatheBoundUserInterface
+  - type: ExtensionCableReceiver
+  - type: ApcPowerReceiver
+    needsPower: false
     
 - type: entity
   parent: N14WorkbenchBase
