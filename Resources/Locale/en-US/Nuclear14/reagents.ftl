@@ -199,6 +199,16 @@ reagent-desc-wonderglue = A pre-war adhesive. Don't sniff it.
 reagent-name-turpentine = Turpentine
 reagent-desc-turpentine = A spirit used for cleaning things.
 
+# Ores, Metals, Materials
+materials-gunpowder = gunpowder
+materials-lead = lead
+materials-sulfur = sulfur
+materials-raw-lead = raw lead
+materials-raw-sulfur = raw sulfur
+reagent-name-gunpowder = gunpowder
+reagent-desc-gunpowder = gunpowder
+
+
 # Other
 reagent-name-scorpiontail = scorpion tail
 reagent-desc-scorpiontail = scorpion tail. Stingy.

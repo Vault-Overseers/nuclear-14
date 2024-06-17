@@ -249,7 +249,7 @@
       - N14JetInhaler
     
 - type: entity
-  parent: N14WorkbenchMetal
+  parent: N14WorkbenchBase
   id: N14WorkbenchForge
   description: A forge made from pieces of scrap. Looks hot.
   name: forge
@@ -260,4 +260,16 @@
   - type: PointLight
     energy: 2
     offset: "-0.65, 0"
-    
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: Lathe
+    idleState: icon
+    runningState: icon # change this
+    staticRecipes:
+      # Ores
+      - IngotLead
+      - SulfurPowder

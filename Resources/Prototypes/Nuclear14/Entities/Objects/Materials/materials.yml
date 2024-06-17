@@ -1,0 +1,96 @@
+# See specific/hydroponics for fertilizer.
+
+- type: entity
+  parent: BaseItem
+  id: Gunpowder
+  name: gunpowder
+  suffix: Full, 100
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Gunpowder: 100
+  - type: Stack
+    stackType: Gunpowder
+    baseLayer: powder_lead
+  - type: Sprite
+    sprite: /Textures/Nuclear14/Objects/Misc/materials.rsi
+    state: powder_lead
+    layers:
+    - state: powder_lead
+      map: ["base"]
+  - type: Item
+    heldPrefix: powder_lead
+  - type: Appearance
+  - type: SolutionContainerManager
+    solutions:
+      powder:
+        reagents:
+        - ReagentId: Gunpowder
+          Quantity: 10
+  - type: DrainableSolution
+    solution: powder
+  - type: ExaminableSolution
+    solution: powder
+  - type: DeleteOnSolutionEmpty
+    solution: powder
+
+- type: entity
+  parent: Gunpowder
+  id: Gunpowder1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: Gunpowder
+  id: Gunpowder10
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: Gunpowder
+  id: SulfurPowder
+  name: sulfur
+  suffix: Full, 100
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Sulfur: 100
+  - type: Stack
+    stackType: Sulfur
+    baseLayer: powder_brass
+  - type: Sprite
+    sprite: /Textures/Nuclear14/Objects/Misc/materials.rsi
+    state: powder_brass
+    layers:
+    - state: powder_brass
+      map: ["base"]
+  - type: Item
+    heldPrefix: powder_brass
+  - type: Appearance
+  - type: SolutionContainerManager
+    solutions:
+      powder:
+        reagents:
+        - ReagentId: Sulfur
+          Quantity: 10
+
+- type: entity
+  parent: SulfurPowder
+  id: SulfurPowder1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: SulfurPowder
+  id: SulfurPowder10
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10

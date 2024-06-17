@@ -48,15 +48,29 @@
       
 - type: entity
   parent: N14SackCompost
-  id: N14SackFertiliser
+  id: N14SackFertilizer
+  name: fertilizer sack
+  description: A sack filled with fertilizer.
   components:
-  - type: Sprite
-    sprite: Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
-    state: daesack4
   - type: SolutionContainerManager
     solutions:
-      drink:
+      sack:
         maxVol: 100
         reagents:
-        - ReagentId: EZNutrient
+        - ReagentId: Fertilizer
           Quantity: 100
+  - type: PhysicalComposition
+    materialComposition:
+      Fertilizer: 100
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
+    state: daesack2
+    layers:
+    - state: daesack2
+      map: ["base"]
+  - type: Item
+    heldPrefix: daesack2
+  - type: DrainableSolution
+    solution: sack
+  - type: ExaminableSolution
+    solution: sack
