@@ -57,6 +57,20 @@
   - type: Construction
     graph: N14Stimpak
     node: stimpak
+    
+- type: entity
+  parent: N14Stimpak
+  id: N14StimpakDirty
+  name: dirty stimpak
+  description: A syringe filled with a wondrous mixture of medical reagents. Essential for those with little to no medical knowledge.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 25
+        reagents:
+        - ReagentId: DirtyStimpak
+          Quantity: 25
 
 - type: entity
   parent: N14ChemicalSyringe

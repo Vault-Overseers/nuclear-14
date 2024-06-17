@@ -17,6 +17,25 @@
             Airloss: -2.0
             
 - type: reagent
+  id: DirtyStimpak
+  name: reagent-name-dirty-stimpak
+  group: Medicine
+  desc: reagent-desc-dirty-stimpak
+  physicalDesc: reagent-physical-desc-soothing
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -1.5
+            Brute: -1.5
+            Airloss: -1.5
+          types:
+            Radiation: 0.1
+            
+- type: reagent
   id: HealingPowder
   name: reagent-name-healing-powder
   group: Medicine
