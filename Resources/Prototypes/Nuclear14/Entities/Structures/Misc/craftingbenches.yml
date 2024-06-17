@@ -1,0 +1,132 @@
+- type: entity
+  parent: BaseStructure
+  id: N14Workbench
+  description: A workbench with metal working tools for crafting.
+  name: workbench
+  components:
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.8,-0.6,0.8,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/workbenches.rsi
+    state: workbench
+    offset: 0.5, 0
+    
+- type: entity
+  parent: N14Workbench
+  id: N14WorkbenchWeaponbench
+  description: A workbench with weapon working tools for crafting.
+  name: weapon workbench
+  components:
+  - type: Sprite
+    state: weaponbench
+    
+- type: entity
+  parent: N14Workbench
+  id: N14WorkbenchAmmobench
+  description: A workbench with ammo working tools for crafting.
+  name: ammo workbench
+  components:
+  - type: Sprite
+    state: ammobench
+    
+- type: entity
+  parent: N14Workbench
+  id: N14WorkbenchArmorbench
+  description: A workbench with armor working tools for crafting.
+  name: armor workbench
+  components:
+  - type: Sprite
+    state: armorbench
+    
+- type: entity
+  parent: N14Workbench
+  id: N14WorkbenchTinkerbench
+  description: A workbench with tinkering tools for crafting.
+  name: tinker workbench
+  components:
+  - type: Sprite
+    state: tinkerbench
+    
+- type: entity
+  parent: N14Workbench
+  id: N14WorkbenchChemistryset
+  description: A chemistry set for crafting drugs and compounds
+  name: chemical set
+  components:
+  - type: Sprite
+    state: chemicalset
+    drawdepth: SmallObjects
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 500
+        mask:
+          - TabletopMachineMask
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          components:
+          - FitsInDispenser
+      outputSlot:
+        whitelistFailPopup: chem-master-component-cannot-put-entity-message
+        whitelist:
+          tags:
+          - Bottle
+          - PillCanister
+  - type: SolutionContainerManager
+    solutions:
+      buffer: {}
+  - type: DumpableSolution
+    solution: buffer
+    unlimited: true
+  - type: ActivatableUI
+    key: enum.ChemMasterUiKey.Key
+  - type: UserInterface
+    interfaces:
+    - key: enum.ChemMasterUiKey.Key
+      type: ChemMasterBoundUserInterface
+  - type: ChemMaster
+    pillDosageLimit: 20
+
+- type: entity
+  parent: N14Workbench
+  id: N14WorkbenchMetal
+  description: A workbench with metal working tools for crafting.
+  name: workbench
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/forgeworkbench.rsi
+    state: bench_metal
+  - type: PointLight
+    radius: 2
+    energy: 1
+    softness: 0.5
+    color: "#f05e1b"
+    offset: "0.5, 0"
+    
+- type: entity
+  parent: N14WorkbenchMetal
+  id: N14WorkbenchForge
+  description: A forge made from pieces of scrap. Looks hot.
+  name: forge
+  components:
+  - type: Sprite
+    state: forge
+  - type: PointLight
+    energy: 2
+    offset: "-0.65, 0"
+    
