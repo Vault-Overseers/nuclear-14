@@ -45,6 +45,8 @@ reagent-name-milk-bighorner = bighorner milk
 reagent-desc-milk-bighorner = Fatty bighorner milk.
 reagent-name-milk-radstag = radstag milk
 reagent-desc-milk-radstag = Protein rich radstag milk.
+reagent-name-wasteland-blood = waster blood
+reagent-desc-wasteland-blood = waster blood
 
 reagent-name-fireantnectar = Fire ant nectar
 reagent-desc-fireantnectar = Crystals of fire ant nectar.
