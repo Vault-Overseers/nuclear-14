@@ -1,3 +1,33 @@
+- type: entity
+  name: wallet
+  id: N14Wallet
+  parent: BaseStorageItem
+  description: A wallet for storing lots of money.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Misc/storage.rsi
+    state: wallet
+    scale: 0.6, 0.6
+  - type: Item
+    storedRotation: -90
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - belt
+  - type: Storage
+    grid:
+    - 0,0,2,1
+    maxItemSize: Tiny
+    quickInsert: true
+    areaInsert: true
+    # whitelist:
+      # components:
+        # - Produce
+        # - Seed
+  - type: Dumpable
+  - type: Construction
+    graph: N14Wallet
+    node: wallet
 # Caps
 # Scroll down for other currencies
 - type: entity
@@ -34,12 +64,15 @@
         mask:
         - ItemMask
   - type: Appearance
+  - type: Item
+    size: Tiny
 
 - type: stack
   id: Caps
   name: caps
   icon: { sprite: /Textures/Nuclear14/Objects/Misc/currency.rsi, state: caps3 }
   spawn: N14CurrencyCap
+  maxCount: 1000
 
 - type: entity
   parent: N14CurrencyCap
@@ -101,6 +134,7 @@
   name: pre-war money
   icon: { sprite: /Textures/Nuclear14/Objects/Misc/currency.rsi, state: prewar3 }
   spawn: N14CurrencyPrewar
+  maxCount: 1000
 
 - type: entity
   parent: N14CurrencyPrewar
@@ -162,6 +196,7 @@
   name: NCR dollars
   icon: { sprite: /Textures/Nuclear14/Objects/Misc/currency.rsi, state: ncr3 }
   spawn: N14CurrencyNCRDollar
+  maxCount: 1000
 
 - type: entity
   parent: N14CurrencyNCRDollar
@@ -223,6 +258,7 @@
   name: legion aurei
   icon: { sprite: /Textures/Nuclear14/Objects/Misc/currency.rsi, state: aurelius3 }
   spawn: N14CurrencyLegionAureus
+  maxCount: 1000
 
 - type: entity
   parent: N14CurrencyLegionAureus
@@ -284,6 +320,7 @@
   name: legion denarii
   icon: { sprite: /Textures/Nuclear14/Objects/Misc/currency.rsi, state: denarius3 }
   spawn: N14CurrencyLegionDenarius
+  maxCount: 1000
 
 - type: entity
   parent: N14CurrencyLegionDenarius

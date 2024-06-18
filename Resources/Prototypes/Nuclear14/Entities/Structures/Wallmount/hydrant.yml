@@ -2,6 +2,8 @@
   id: N14WallmountFireHydrant
   name: fire hydrant
   description: A wall mounted hydrant for putting out large fires.
+  placement:
+    mode: SnapgridCenter
   components:
     - type: WallMount
       arc: 360
@@ -16,6 +18,9 @@
       - state: frame
       - state: closed
         map: ["enum.ItemCabinetVisualLayers.Door"]
+      - state: closed # N14:TODO: Add this state
+        map: ["enum.ItemCabinetVisualLayers.ContainsItem"]
+        visible: true
     - type: ItemCabinet
       cabinetSlot:
         ejectOnInteract: true
@@ -49,8 +54,6 @@
             - !type:PlaySoundBehavior
               sound:
                 collection: MetalBreak
-  placement:
-    mode: SnapgridCenter
 
 - type: entity
   id: N14WallmountFireHydrantOpen
