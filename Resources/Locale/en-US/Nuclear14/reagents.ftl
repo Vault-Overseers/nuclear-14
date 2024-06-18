@@ -146,8 +146,10 @@ reagent-name-antidote = antidote
 reagent-desc-antidote = A potent antitoxin manufactured in a lab.
 
 # Medicine
-reagent-name-healing-mixture = healing mixture
+reagent-name-healing-mixture = stimpak
 reagent-desc-healing-mixture = A mixture of reagents that makes you heal.
+reagent-name-dirty-stimpak = dirty stimpak
+reagent-desc-dirty-stimpak = A dirty mixture of reagents that makes you heal.
 
 reagent-name-robust-healing-mixture = robust healing mixture
 reagent-desc-robust-healing-mixture = A mixture of reagents that makes you heal fast.
@@ -209,6 +211,8 @@ materials-raw-lead = raw lead
 materials-raw-sulfur = raw sulfur
 reagent-name-gunpowder = gunpowder
 reagent-desc-gunpowder = gunpowder
+reagent-name-fertilizer = fertilizer
+reagent-desc-fertilizer = fertilizer
 
 
 # Other
