@@ -45,6 +45,8 @@ reagent-name-milk-bighorner = bighorner milk
 reagent-desc-milk-bighorner = Fatty bighorner milk.
 reagent-name-milk-radstag = radstag milk
 reagent-desc-milk-radstag = Protein rich radstag milk.
+reagent-name-wasteland-blood = waster blood
+reagent-desc-wasteland-blood = waster blood
 
 reagent-name-fireantnectar = Fire ant nectar
 reagent-desc-fireantnectar = Crystals of fire ant nectar.
@@ -144,8 +146,10 @@ reagent-name-antidote = antidote
 reagent-desc-antidote = A potent antitoxin manufactured in a lab.
 
 # Medicine
-reagent-name-healing-mixture = healing mixture
+reagent-name-healing-mixture = stimpak
 reagent-desc-healing-mixture = A mixture of reagents that makes you heal.
+reagent-name-dirty-stimpak = dirty stimpak
+reagent-desc-dirty-stimpak = A dirty mixture of reagents that makes you heal.
 
 reagent-name-robust-healing-mixture = robust healing mixture
 reagent-desc-robust-healing-mixture = A mixture of reagents that makes you heal fast.
@@ -167,6 +171,12 @@ reagent-desc-fixer = A reagent that cures your addictions.
 
 reagent-name-mentats = mentats
 reagent-desc-mentats = A reagent that makes you mentally sharper.
+reagent-name-mentats-berry = berry mentats
+reagent-desc-mentats-berry = A fruity reagent that makes you mentally sharper.
+reagent-name-mentats-grape = grape mentats
+reagent-desc-mentats-grape = A fruity reagent that makes you mentally sharper.
+reagent-name-mentats-orange = orange mentats
+reagent-desc-mentats-orange = A citrus reagent that makes you mentally sharper.
 
 reagent-name-cateye = cateye
 reagent-desc-cateye = A reagent that improves your low-light vision.
@@ -192,6 +202,18 @@ reagent-name-wonderglue = Wonderglue
 reagent-desc-wonderglue = A pre-war adhesive. Don't sniff it.
 reagent-name-turpentine = Turpentine
 reagent-desc-turpentine = A spirit used for cleaning things.
+
+# Ores, Metals, Materials
+materials-gunpowder = gunpowder
+materials-lead = lead
+materials-sulfur = sulfur
+materials-raw-lead = raw lead
+materials-raw-sulfur = raw sulfur
+reagent-name-gunpowder = gunpowder
+reagent-desc-gunpowder = gunpowder
+reagent-name-fertilizer = fertilizer
+reagent-desc-fertilizer = fertilizer
+
 
 # Other
 reagent-name-scorpiontail = scorpion tail
