@@ -10,7 +10,8 @@
   - type: Tag
     tags:
     - JunkItem
-    
+    - Trash
+
 - type: entity
   parent: N14JunkItemBase
   id: N14JunkItemBasePlastic # Parent anything made from plastic to this.
@@ -22,20 +23,35 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 50
-      
+
 - type: entity
   parent: N14JunkItemBase
   id: N14JunkItemBaseMetal # Parent anything made from metal to this.
   abstract: true
   components:
+  - type: WelderRefinable
+    refineResult:
+    - SheetSteel1
   - type: PhysicalComposition
     materialComposition:
       Steel: 50
 
+- type: entity
+  parent: [N14JunkItemBase, DrinkBottlePlasticBaseFull]
+  id: N14JunkItemBaseContainer
+  abstract: true
+  components:
+  - type: WelderRefinable
+    refineResult:
+    - SheetPlastic1
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+
 # TODO: Give all items in orGroup: "JunkItem" material composition they can be "welded", "wrenched" or "pried" into
 # Products and Random Bits
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBasePlasticContainer
   id: N14JunkAbraxoCleaner
   name: Abraxo Cleaner
   description: Abraxo brand detergent.
@@ -48,6 +64,12 @@
         reagents:
         - ReagentId: Abraxocleaner
           Quantity: 50
+  - type: WelderRefinable
+    refineResult:
+    - MaterialCardboard2
+  - type: PhysicalComposition
+    materialComposition:
+      Cardboard: 100
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -112,6 +134,10 @@
   components:
   - type: Sprite
     state: iron
+  - type: WelderRefinable
+    refineResult:
+    - SheetSteel1
+    - SheetSteel1
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -177,7 +203,7 @@
     state: toy_race_car
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBaseContainer
   id: N14JunkTurpentine
   name: turpentine
   description: A can of turps.
@@ -220,7 +246,7 @@
       type: TransferAmountBoundUserInterface
 
 - type: entity
-  parent: N14JunkItemBasePlastic
+  parent: N14JunkItemBaseContainer
   id: N14JunkWonderglue
   name: Wonderglue
   description: A bottle of old Wonderglue.
