@@ -39,7 +39,7 @@
     # Needs a run down variant of the sprite
 
 
-# Broken vendor as storage type
+# vendors as storage type
 - type: entity
   parent: VendingMachine
   id: N14VendingMachineNukaColaNew
@@ -109,3 +109,71 @@
         prob: 0.05
       - id: N14DrinkNukaColaWild
         prob: 0.05
+        
+# Cigarette vendors
+- type: entity
+  parent: BaseStructure
+  id: N14VendingMachineCigarette
+  suffix: storage, empty
+  name: cigarette vendor
+  description: A Pre-War vending machine that dispenses cigarettes. 
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Machines/VendingMachines/vendors.rsi
+    layers:
+    - state: cigarette
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    maxItemSize: Normal
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: Transform
+    anchored: true
+    
+- type: entity
+  parent: N14VendingMachineCigarette
+  id: N14VendingMachineCigaretteFilled
+  suffix: random
+  components:
+  - type: StorageFill
+    contents:
+      - id: N14CigarettePackWinston
+        prob: 0.3
+      - id: N14CigarettePackMarlboro
+        prob: 0.3
+      - id: N14CigarettePackKool
+        prob: 0.3
+      - id: N14CigarettePackSalem
+        prob: 0.3
+      - id: N14CigarettePackWinston
+        prob: 0.2
+      - id: N14CigarettePackMarlboro
+        prob: 0.2
+      - id: N14CigarettePackKool
+        prob: 0.2
+      - id: N14CigarettePackSalem
+        prob: 0.2
+        
+- type: entity
+  parent: N14VendingMachineCigarette
+  id: N14VendingMachineCigaretteFilledRepublic
+  suffix: republics
+  name: Republics cig vendor
+  description: A pre-war cigarette vendor that's been filled with Republic cigarette packs.
+  components:
+  - type: StorageFill
+    contents:
+      - id: N14CigarettePackRepublics
+        prob: 0.5
+      - id: N14CigarettePackRepublics
+        prob: 0.5
+      - id: N14CigarettePackRepublics
+        prob: 0.5
+      - id: N14CigarettePackRepublics
+        prob: 0.3
