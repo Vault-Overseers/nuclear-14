@@ -17,7 +17,7 @@
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 30
+        maxVol: 15
   - type: ExaminableSolution
     solution: pen
   - type: Hypospray
@@ -32,6 +32,56 @@
   - type: WelderRefinable
     refineResult:
     - SheetPlastic1
+
+- type: entity
+  name: doctors syringe
+  parent: BaseItem
+  description: Used to draw blood samples from mobs, or to inject them with reagents. Chem junkies would kill you for it.
+  id: N14BaseSyringe
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+    layers:
+      - state: stimpak
+        map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Item
+    sprite: Objects/Specific/Medical/medipen.rsi
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+  - type: Injector
+    injectOnly: false
+  - type: ExaminableSolution
+    solution: injector
+  - type: Spillable
+    solution: injector
+  - type: TrashOnSolutionEmpty
+    solution: injector
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: stimpak0
+  - type: WelderRefinable
+    refineResult:
+    - SheetPlastic1
+  - type: Tag
+    tags:
+    - Syringe
+
+- type: entity
+  parent: N14BaseSyringe
+  id: N14DoctorSyringe
+  components:
+  - type: Injector
+    transferAmount: 15
+    toggleState: Draw
+  - type: Tag
+    tags:
+    - Syringe
+    - Trash
 
 - type: entity
   parent: N14ChemicalSyringe
