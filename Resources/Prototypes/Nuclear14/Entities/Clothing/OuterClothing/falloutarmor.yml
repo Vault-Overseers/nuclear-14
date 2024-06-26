@@ -12,17 +12,9 @@
     modifiers:
       coefficients:
         Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.8
-        Heat: 0.8
-  # - type: ClothingSpecialModifier
-    # strengthModifier: 1
-    # perceptionModifier: 3
-    # enduranceModifier: -2 # check negative
-    # charismaModifier: 8 # to see we don't get more than 10
-    # intelligenceModifier: -6 # to see we still have 1 after sum with base 5
-    # # agilityModifier: 1 to check it doesn't show
-    # luckModifier: 0 # to check it does not show
+        Slash: 0.7
+        Piercing: 0.9
+        Heat: 0.5
 
 - type: entity
   parent: ClothingOuterBase
@@ -40,12 +32,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.7
+        Blunt: 0.6
+        Slash: 0.6
         Piercing: 0.7
-        Heat: 0.8
-  # - type: ClothingSpecialModifier
-    # intelligenceModifier: 2
+        Heat: 0.9
 
 - type: entity
   parent: ClothingOuterBase
@@ -62,8 +52,8 @@
       coefficients:
         Blunt: 0.65
         Slash: 0.65
-        Piercing: 0.75
-        Heat: 0.8
+        Piercing: 0.6
+        Heat: 0.6
 
 - type: entity
   parent: ClothingOuterBase
@@ -78,10 +68,28 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.55
-        Slash: 0.55
-        Piercing: 0.65
-        Heat: 0.7
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.5
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterMarineArmor
+  name: marine armor
+  description: A extremely advance piece of combat armor, the strongest you can find.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutmarinearmor.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutmarinearmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.45
+        Heat: 0.45
 
 - type: entity
   parent: N14ClothingOuterCombatArmorMK2
@@ -110,7 +118,7 @@
         Blunt: 0.7
         Slash: 0.7
         Piercing: 0.7
-        Heat: 0.9
+        Heat: 0.7
 
 - type: entity
   parent: ClothingOuterBase
@@ -128,7 +136,7 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.4
-        Heat: 0.9
+        Heat: 0.6
 
 # Tribal
 - type: entity
@@ -183,9 +191,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.80
-        Slash: 0.80
-        Heat: 0.9
+        Blunt: 0.75
+        Slash: 0.75
+        Heat: 0.8
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -200,8 +208,8 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.75
+        Blunt: 0.7
+        Slash: 0.7
     
 
 - type: entity
@@ -220,7 +228,7 @@
         Blunt: 0.75
         Slash: 0.75
         Piercing: 0.7
-        Heat: 0.9
+        Heat: 0.7
 
 - type: entity
   parent: N14ClothingOuterRaiderCombat1
@@ -235,10 +243,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
+        Blunt: 0.7
+        Slash: 0.7
         Piercing: 0.65
-        Heat: 0.8
+        Heat: 0.7
 
 - type: entity
   parent: ClothingOuterBase
@@ -315,6 +323,24 @@
         Heat: 0.5
 
 - type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterNCRPlate
+  name: NCR plate armor
+  description: A bunch of light steel plates connected to a hollow regular vest, designed to protect during melee combat.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutNCRplatevest.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutNCRplatevest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.9
+        Heat: 0.7
+
+- type: entity
   parent: ClothingOuterStorageBase
   id: N14ClothingOuterNCRPouchedVest
   name: pouched leather NCR vest
@@ -327,13 +353,31 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
+        Blunt: 0.8
+        Slash: 0.8
         Piercing: 0.7
         Heat: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 0.80
     sprintModifier: 0.80
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: N14ClothingOuterNCRLightPouchedVest
+  name: light pouched leather NCR vest
+  description: A hardened leather vest with a light ballistic plate inside, this vest comes with a pack of pouches to hold any kind of things.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutNCRlightwebvest.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutNCRlightwebvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.7
+        Heat: 0.5
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -350,7 +394,7 @@
       coefficients:
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.7
+        Piercing: 0.6
         Heat: 0.5
 
 - type: entity
@@ -366,15 +410,15 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.65
+        Blunt: 0.6
+        Slash: 0.6
         Piercing: 0.6
         Heat: 0.8
 
 - type: entity
   parent: ClothingOuterBase
   id: N14ClothingOuterRangerCoat
-  name: dessert ranger armor
+  name: desert ranger armor
   description: The most feared and skillfull soldiers that the wasteland can create tend to wear this armor.
   components:
   - type: Sprite
@@ -384,65 +428,18 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
+        Blunt: 0.65
+        Slash: 0.65
         Piercing: 0.5
-        Heat: 0.5
+        Heat: 0.6
 
 # washington BoS
-
-- type: entity
-  parent: ClothingOuterBase
-  id: N14ClothingOuterCombatArmorBOSSenior
-  name: brotherhood senior armor 
-  description: A suit of combat armor used by Brotherhood of Steel seniors.
-  components:
-  - type: Sprite
-    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutbossenior.rsi 
-  - type: Clothing
-    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutbossenior.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.65
-        Heat: 0.7
-
-- type: entity
-  parent: N14ClothingOuterCombatArmorBOSSenior
-  id: N14ClothingOuterCombatArmorBOSKnight
-  name: brotherhood knight armor
-  description: A suit of combat armor used by Brotherhood of Steel knights.
-  components:
-  - type: Sprite
-    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutbosknight.rsi
-  - type: Clothing
-    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutbosknight.rsi
-
-- type: entity
-  parent: ClothingOuterBase
-  id: N14ClothingOuterCombatArmorBOSCaptain
-  name: brotherhood captain armor
-  description: A suit of combat armor used by Brotherhood of Steel captains. This one looks the nicest.
-  components:
-  - type: Sprite
-    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutboscaptain.rsi
-  - type: Clothing
-    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutboscaptain.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.6
-        Heat: 0.7
 
 - type: entity
   parent: N14ClothingOuterCombatArmorMK2
   id: N14ClothingOuterCombatArmorBOSMK2
   name: brotherhood combat armor mk2
-  description: A suit of combat armor used by the Brotherhood of Steel. It looks stronger.
+  description: A suit of combat armor used by the Washington Brotherhood of Steel.
   components:
   - type: Sprite
     sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutbosmk2armor.rsi
@@ -450,27 +447,20 @@
     sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutbosmk2armor.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: N14ClothingOuterCombatArmor
   id: N14ClothingOuterCombatArmorBOS
   name: brotherhood combat armor
-  description: A suit of combat armor used by the Brotherhood of Steel.
+  description: A suit of combat armor used by the low ranks of the Washington Brotherhood of Steel.
   components:
   - type: Sprite
     sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutbosarmor.rsi
   - type: Clothing
     sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutbosarmor.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.65
-        Slash: 0.65
-        Piercing: 0.7
-        Heat: 0.8
 
 - type: entity
   parent: ClothingOuterStorageBase
   id: N14ClothingOuterBosScribe
-  name: scribe leather vest
+  name: researcher leather vest
   description: A leather vest with everything a scribe could need during a field job, theres no don quixote without a sancho panza.
   components:
   - type: Sprite
@@ -481,8 +471,8 @@
     modifiers:
       coefficients:
         Blunt: 0.8
-        Slash: 0.75
-        Piercing: 0.9
+        Slash: 0.8
+        Piercing: 0.8
         Heat: 0.6
 
 # midwest BoS
@@ -500,14 +490,14 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.7
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
         Heat: 0.9
 
 - type: entity
   parent: ClothingOuterBase
-  id: N14ClothingOuterMidwestArmorLeader
+  id: N14ClothingOuterMidwestArmorMK2
   name: veteran midwest BoS combat armor
   description: A suit of combat armor modified with multiple well polished metal plates and orange lines, a more robust version.
   components:
@@ -518,9 +508,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.55
-        Slash: 0.55
-        Piercing: 0.6
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
         Heat: 0.8
 
 # craftable armors

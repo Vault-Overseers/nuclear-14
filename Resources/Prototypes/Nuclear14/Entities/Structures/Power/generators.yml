@@ -39,6 +39,11 @@
     energy: 4.5
     softness: 0.5
     color: "#B4FCF0"
+  - type: Explosive # lowered this to stop spacing on current map.
+    explosionType: Minibomb
+    totalIntensity: 100
+    intensitySlope: 1
+    maxIntensity: 150
     
 - type: entity
   parent: N14GeneratorFusioncore
@@ -149,9 +154,10 @@
     layers:
     - state: generator_off
     - state: generator_on
+    offset: 0.5, 0
     
 - type: entity
-  parent: N14GeneratorFusioncore
+  parent: N14GeneratorPrewar
   id: N14GeneratorPrewarUranium
   description: A dirty old generator that uses raw uranium to run.
   name: pre-war uranium generator

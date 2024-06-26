@@ -245,6 +245,27 @@
         - PlantSampleTaker
     loot:
       All: WildCaveFungusRadAll
+      
+- type: entity
+  parent: N14WastelandFlora
+  id: N14WastelandFloraWildCotton
+  name: wild cotton plant
+  description: A cotton plant growing wild. It's healthy.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/cotton.rsi
+    state: harvest
+  - type: OreVein
+    currentOre: WildCotton
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildCottonAll
+      PlantSampleTaker: CottonSeeds
 
 - type: entity
   parent: N14WastelandFlora

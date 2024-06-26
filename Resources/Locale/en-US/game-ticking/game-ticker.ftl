@@ -33,10 +33,10 @@ player-first-join-message = Player {$name} joined for the first time.
 # Displayed in chat to admins when a player leaves
 player-leave-message = Player {$name} left.
 
-latejoin-arrival-announcement = {$character} ({$job}) has arrived at the station!
-latejoin-arrival-sender = Station
-latejoin-arrivals-direction = A shuttle transferring you to your station will arrive shortly.
-latejoin-arrivals-direction-time = A shuttle transferring you to your station will arrive in {$time}.
+latejoin-arrival-announcement = Someone new has been spotted in the area.
+latejoin-arrival-sender = Radio Broadcast
+latejoin-arrivals-direction = An escape transport will arrive shortly.
+latejoin-arrivals-direction-time = An escape transport will arrive in {$time} to take you away.
 
 preset-not-enough-ready-players = Can't start {$presetName}. Requires {$minimumPlayers} players but we have {$readyPlayersCount}.
 preset-no-one-ready = Can't start {$presetName}. No players are ready.
