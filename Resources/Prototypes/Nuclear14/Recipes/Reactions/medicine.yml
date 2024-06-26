@@ -7,7 +7,42 @@
       amount: 1
   products:
     AntidoteMixture: 2
-    
+
+- type: reaction
+  id: AntidoteMixtureConversion
+  reactants:
+    AntidoteMixture:
+      amount: 100
+    Silicon:
+      amount: 20 # 2 grinded glass
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14Antidote
+
+- type: reaction
+  id: Antidote
+  reactants:
+    AntidoteMixture:
+      amount: 1
+    ExtractTarberries:
+      amount: 1
+  products:
+    Antidote: 2
+
+- type: reaction
+  id: AntidoteConversion
+  reactants:
+    Antidote:
+      amount: 15
+    Oil:
+      amount: 5
+    Phosphorus:
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14ChemicalSyringeAntidote
+
+
 - type: reaction
   id: Jet
   reactants:
@@ -17,7 +52,7 @@
       amount: 1
   products:
     MovespeedMixture: 2
-    
+
 - type: reaction
   id: Mentats
   reactants:
@@ -29,7 +64,7 @@
       # amount: 1
   products:
     Mentats: 2
-    
+
 - type: reaction
   id: MentatsBerry
   reactants:
@@ -39,7 +74,7 @@
       amount: 1
   products:
     MentatsBerry: 1
-    
+
 - type: reaction
   id: MentatsGrape
   reactants:
@@ -51,7 +86,7 @@
       # amount: 1
   products:
     MentatsGrape: 1
-    
+
 - type: reaction
   id: MentatsOrange
   reactants:
@@ -61,7 +96,7 @@
       amount: 1
   products:
     MentatsOrange: 1
-    
+
 - type: reaction
   id: Stimpak
   reactants:
@@ -73,7 +108,20 @@
       amount: 1
   products:
     HealingMixture: 1
-    
+
+- type: reaction
+  id: StimpakConversion
+  reactants:
+    HealingMixture:
+      amount: 25
+    Oil: # Plastic contains 5u of Oil and 5u of Phosphorus
+      amount: 5
+    Phosphorus:
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14Stimpak
+
 - type: reaction
   id: DirtyStimpak
   reactants:
@@ -85,3 +133,16 @@
       amount: 1
   products:
     DirtyStimpak: 1
+
+- type: reaction
+  id: DirtyStimpakConversion
+  reactants:
+    DirtyStimpak:
+      amount: 25
+    Oil:
+      amount: 5
+    Phosphorus:
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14StimpakDirty
