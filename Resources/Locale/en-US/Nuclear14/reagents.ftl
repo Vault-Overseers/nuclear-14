@@ -100,6 +100,8 @@ reagent-name-extract-white-horsenettle = white horsenettle extract
 reagent-desc-extract-white-horsenettle = A group of nettles and berries, they don't seem too safe to eat. Tastes of poison, trying to swallow it tastes a lot of effort and makes your stomach hurt.
 reagent-name-extract-xander = xander extract
 reagent-desc-extract-xander = An edible root, it was obviously pulled from the ground at some point. Tastes similar to a potato, very starchy, but good to eat.
+reagent-name-extract-fungusrad = irradiated fungus extract
+reagent-desc-extract-fungusrad = An irradiated and glowing green fungus. Tastes revolting and mushy. It will gladly donate you some of it's green glow.
 
 ## Teas
 reagent-name-tea-agave = agave tea
@@ -202,6 +204,8 @@ reagent-name-wonderglue = Wonderglue
 reagent-desc-wonderglue = A pre-war adhesive. Don't sniff it.
 reagent-name-turpentine = Turpentine
 reagent-desc-turpentine = A spirit used for cleaning things.
+reagent-name-antiseptic = Antiseptic
+reagent-desc-antiseptic = A cleaning solution made from Abraxo Cleaner and some Rubbing Alcohol.
 
 # Ores, Metals, Materials
 materials-gunpowder = gunpowder

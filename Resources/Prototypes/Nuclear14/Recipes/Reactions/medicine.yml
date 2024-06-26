@@ -1,4 +1,14 @@
 - type: reaction
+  id: Antiseptic
+  reactants:
+    Abraxocleaner:
+      amount: 1
+    Ethanol:
+      amount: 1
+    products:
+      Antiseptic: 2
+
+- type: reaction
   id: AntidoteMixture
   reactants:
     Ethanol:
@@ -42,6 +52,31 @@
     - !type:CreateEntityReactionEffect
       entity: N14ChemicalSyringeAntidote
 
+- type: reaction
+  id: RadAway
+  reactants:
+    ExtractFungusRad:
+      amount: 1
+    Antiseptic:
+      amount: 2
+    Water:
+      amount: 2
+  products:
+    RadAway:
+      amount: 5
+
+- type: reaction
+  id: RadAwayConversion
+  reactants:
+    RadAway:
+      amount: 20
+    Oil:
+      amount: 5
+    Phosphorus:
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14RadAwayBloodbag
 
 - type: reaction
   id: Jet
