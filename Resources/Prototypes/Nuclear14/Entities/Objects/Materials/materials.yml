@@ -28,11 +28,12 @@
         reagents:
         - ReagentId: Gunpowder
           Quantity: 10
-  - type: DrainableSolution
-    solution: powder
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Gunpowder
+        Quantity: 10
   - type: ExaminableSolution
-    solution: powder
-  - type: DeleteOnSolutionEmpty
     solution: powder
   - type: Tag
     tags:
@@ -81,6 +82,11 @@
         reagents:
         - ReagentId: Sulfur
           Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Sulfur
+        Quantity: 10
 
 - type: entity
   parent: SulfurPowder
