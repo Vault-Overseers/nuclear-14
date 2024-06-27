@@ -357,3 +357,107 @@
   - type: Sprite
     sprite: Nuclear14/Objects/Specific/Medical/fallout2.rsi
     state: antidote
+
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14SmellingSalts
+  name: smelling salts
+  description: A small glass ampoule containing smelling salts. Their smell is said to wake up even a dead ghoul.
+  components:
+  - type: Sprite
+    layers:
+    - state: smellingsalts
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: smellingsalts0
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 25
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 10
+        reagents:
+        - ReagentId: SmellingSalts
+          Quantity: 10
+
+- type: entity
+  parent: Pill
+  id: N14HealingPoultice
+  name: healing Healing
+  description: A bag of poultice to help with all common ailments slowly.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+    state: healingpoultice
+  - type: Item
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: HealingPoultice
+          Quantity: 20
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: N14Bitterdrink
+  name: Bitterdrink
+  description: A bottle containing a mixture of plants to aid against poisons and radiation.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Bitterdrink
+          Quantity: 50
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+    state: bitterdrink
+
+- type: entity
+  parent: Pill
+  id: N14MourningPoultice
+  name: mourning poultice
+  description: A bag of powder made from poisonous flowers for use within tribal ceremenoies.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+    state: mourningpoultice
+  - type: Item
+    sprite: Nuclear14/Objects/Specific/Medical/drugs.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: MourningPoultice
+          Quantity: 20
+
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14UltraStimpak
+  name: ultra stimpak
+  description: A special type of super stimpak with an additional mixture of chemicals which makes a man near invincible at a great cost. It is widely deemed inhumane and outlawed.
+  components:
+  - type: Sprite
+    layers:
+    - state: ultrastimpak
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: ultrarstimpak0
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 25
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 25
+        reagents:
+        - ReagentId: UltraRobustHealingMixture
+          Quantity: 25
