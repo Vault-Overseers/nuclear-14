@@ -147,6 +147,18 @@ reagent-desc-antidote-mixture = An antidote made from radscorpion tail and water
 reagent-name-antidote = antidote
 reagent-desc-antidote = A potent antitoxin manufactured in a lab.
 
+reagent-name-healing-poultice = healing poultice
+reagent-desc-healing-poultice = A powder made from a large mixture of plants.
+
+reagent-name-bitterdrink = bitterdrink
+reagent-desc-bitterdrink = A mixture of crushed plants mixed with water neutralizing poison and radiation from body.
+
+reagent-name-smelling-salts = smelling salts
+reagent-desc-smelling-salts = A grainy mixture of rocks with an insanely potent smell.
+
+reagent-name-mourning-poultice = mournin poultice
+reagent-desc-mourning-poultice = A mixture of poisonous crushed plants used in tribalistic ceremonies said to make you see gods.
+
 # Medicine
 reagent-name-healing-mixture = stimpak
 reagent-desc-healing-mixture = A mixture of reagents that makes you heal.
@@ -155,6 +167,9 @@ reagent-desc-dirty-stimpak = A dirty mixture of reagents that makes you heal.
 
 reagent-name-robust-healing-mixture = robust healing mixture
 reagent-desc-robust-healing-mixture = A mixture of reagents that makes you heal fast.
+
+reagent-name-ultra-robust-healing-mixture = ultra robust healing mixture
+reagent-desc-ultra-robust-healing-mixture = A mixture of reagents that make you heal faster than you can feel it, however it comes with hefty side effects.
 
 reagent-name-damage-resist-mixture = damage resistant mixture
 reagent-desc-damage-resist-mixture = A mixture of reagents that makes you resistant to damage.
