@@ -118,6 +118,30 @@
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
+  name: morale booster kit
+  parent: KitBase
+  id: KitMorale
+  description: Only the most loyal troops of the NCR carry low quality equipment, a special troop made only to boost the morale during suicide charges.
+  components:
+  - type: Sprite
+    state: pointman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterNCRPlate
+      - id: N14ClothingMaskPlate
+      - id: ClothingBeltNCRPouches
+      - id: N14WastelandFlagSpear
+      - id: N14ClothingBackpackSatchelNCR
+      - id: N14WeaponPistolColt
+      - id: N14MagazinePistol45
+      - id: N14MagazinePistol45 
+      - id: N14CombatKnife         
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
   name: medic kit
   parent: KitBase
   id: KitMedic
@@ -130,7 +154,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: N14ClothingOuterNCRPouchedVest
-      - id: ClothingBeltNCRHarness
+      - id: ClothingBeltNCRHarnessfilled
       - id: N14ClothingBackpackSatchelNCR
       - id: N14weapon9mmSMG
       - id: N14MagazineSMG9mm

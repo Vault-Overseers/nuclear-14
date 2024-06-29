@@ -95,7 +95,7 @@
     damage:
       groups:
         Brute: 5
-        
+
 - type: entity
   name: gecko
   id: N14MobGecko
@@ -147,7 +147,7 @@
     spawned:
     - id: N14FoodMeatGecko
       amount: 3
-        
+
 - type: entity
   name: nightstalker cub
   id: N14MobNightstalkerCub
@@ -203,7 +203,7 @@
         reagents:
         - ReagentId: Toxin
           Quantity: 2.5
-          
+
 - type: entity
   name: nightstalker
   id: N14MobNightstalker
@@ -281,7 +281,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-            radius: 0.5
+            radius: 0.49
         density: 100
         mask:
         - MobMask
@@ -312,6 +312,7 @@
     damage:
       types:
         Slash: 15
+        Structural: 5
     range: 1.25
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
@@ -363,6 +364,7 @@
     damage:
       types:
         Slash: 15
+        Structural: 5
     range: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
@@ -373,6 +375,11 @@
     speed: 1.5
     qualities:
       - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
     useSound:
       path: /Audio/Items/crowbar.ogg
   - type: Insulated
@@ -405,6 +412,7 @@
     damage:
       types:
         Slash: 22
+        Structural: 10
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -417,7 +425,7 @@
         Base: deathclaw # TODO: Crit sprite
       Dead:
         Base: dead
-        
+
 - type: entity
   name: metal deathclaw
   id: N14MobDeathclawMetal
@@ -439,6 +447,7 @@
     damage:
       types:
         Slash: 20
+        Structural: 10
   - type: MobThresholds
     thresholds:
       0: Alive
