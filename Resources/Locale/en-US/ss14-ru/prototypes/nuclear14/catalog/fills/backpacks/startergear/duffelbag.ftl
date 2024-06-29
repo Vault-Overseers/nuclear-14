@@ -1,0 +1,10 @@
+ent-N14ClothingBackpackDuffelFilled = { ent-N14ClothingBackpackDuffel }
+    .desc = { ent-N14ClothingBackpackDuffel.desc }
+ent-N14ClothingBackpackDuffelChaplainFilled = { ent-N14ClothingBackpackDuffel }
+    .desc = { ent-N14ClothingBackpackDuffel.desc }
+ent-N14ClothingBackpackDuffelMusicianFilled = { ent-N14ClothingBackpackDuffel }
+    .desc = { ent-N14ClothingBackpackDuffel.desc }
+ent-N14ClothingBackpackDuffelCaravanFilled = { ent-N14ClothingBackpackDuffelSalvage }
+    .desc = { ent-N14ClothingBackpackDuffelSalvage.desc }
+ent-N14ClothingBackpackDuffelMilitaryFilled = { ent-N14ClothingBackpackDuffelMilitary }
+    .desc = { ent-N14ClothingBackpackDuffelMilitary.desc }

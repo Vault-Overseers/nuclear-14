@@ -1,0 +1,12 @@
+ent-N14WeaponDoubleBarrelShotgun = double-barrel shotgun
+    .desc = An immortal classic, uses 12 gauge shells.
+ent-N14WeaponShotgun = shotgun
+    .desc = A pump action shotgun.
+ent-N14WeaponAutoShotgun = combat shotgun
+    .desc = It's a magazine-fed automatic shotgun designed for close quarters combat, uses 12 gauge shells.
+ent-N14WeaponCaravanShotgun = caravan shotgun
+    .desc = The perfect shotgun for a long jorney. works well for hunting brahmins, geckos and fiends, uses 20 gauge shells.
+ent-N14WeaponLeverShotgun = lever action shotgun
+    .desc = The perfect gun for a cowboy, it uses 20 gauge shells.
+ent-N14WeaponRiotShotgun = riot shotgun
+    .desc = A compact semi automatic shotgun used by the police forces of the pre war, chambered in 20 gauge shells.

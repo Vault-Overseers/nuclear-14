@@ -1,0 +1,17 @@
+ent-N14GasPipeBase = { ent-GasPipeBase }
+    .desc = { ent-GasPipeBase.desc }
+ent-N14GasPipeEnd = { ent-N14GasPipeBase }
+    .suffix = End
+    .desc = { ent-N14GasPipeBase.desc }
+ent-N14GasPipeStraight = { ent-N14GasPipeBase }
+    .suffix = Straight
+    .desc = { ent-N14GasPipeBase.desc }
+ent-N14GasPipeBend = { ent-N14GasPipeBase }
+    .suffix = Bend
+    .desc = { ent-N14GasPipeBase.desc }
+ent-N14GasPipeTJunction = { ent-N14GasPipeBase }
+    .suffix = TJunction
+    .desc = { ent-N14GasPipeBase.desc }
+ent-N14GasPipeFourway = { ent-N14GasPipeBase }
+    .suffix = Fourway
+    .desc = { ent-N14GasPipeBase.desc }

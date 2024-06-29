@@ -1,0 +1,12 @@
+ent-DrinkJuiceBoxBaseFull = { ent-DrinkBase }
+    .desc = { ent-DrinkBase.desc }
+ent-DrinkJuiceOrangeJuicebox = orange juice box
+    .desc = A great source of vitamins. Stay healthy!
+ent-DrinkJuicePineappleJuicebox = pineapple juice box
+    .desc = Everyone's favourite juice.
+ent-DrinkJuiceAppleJuicebox = apple juice box
+    .desc = Sweet apple juice. Don't be late for school!
+ent-DrinkJuiceGrapeJuicebox = grape juice box
+    .desc = Tasty grape juice in a fun little container. Non-alcoholic!
+ent-DrinkChocolateJuicebox = chocolate milk juice box
+    .desc = Tasty chocolate juice and milk in a small box. Contains Theobromine.

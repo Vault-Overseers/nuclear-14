@@ -1,0 +1,10 @@
+ent-N14FurnitureWashingmachine = стиральная машинка
+    .desc = Не отстирает ваши грехи и сраные портки.
+ent-N14FurnitureWashingmachineIndustrial = { ent-N14FurnitureWashingmachine }
+    .suffix = Промышленная
+    .desc = { ent-N14FurnitureWashingmachine.desc }
+ent-N14ClosetSafe = сейф
+    .desc = Might be filled with valuables.
+ent-N14ClosetSafeSpinner = { ent-N14ClosetSafe }
+    .suffix = ручной
+    .desc = { ent-N14ClosetSafe.desc }

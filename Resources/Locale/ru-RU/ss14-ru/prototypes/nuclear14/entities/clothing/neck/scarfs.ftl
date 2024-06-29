@@ -1,0 +1,14 @@
+ent-ClothingNeckRedScarf = красный шарф
+    .desc = Короткий шарф.
+ent-ClothingNeckDesertMask = песочный шарф
+    .desc = Короткий шарф.
+ent-ClothingNeckBlueScarf = синий шарф
+    .desc = Короткий шарф.
+ent-ClothingNeckGreenScarf = зелёный шарф
+    .desc = Короткий шарф.
+ent-ClothingNeckOrangeScarf = оранжевый шарф
+    .desc = Короткий шарф.
+ent-ClothingNeckBrownScarf = коричневый шарф
+    .desc = Короткий шарф.
+ent-ClothingNeckPatriotScarf = патриотический шарф
+    .desc = Короткий шарф.

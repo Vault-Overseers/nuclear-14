@@ -1,0 +1,10 @@
+ent-N14TentLeatherWall = палатка
+    .desc = Палатка сделанная из обрезков кожи.
+ent-N14TentLeatherCorner = { ent-N14TentLeatherWall }
+    .suffix = угол
+    .desc = { ent-N14TentLeatherWall.desc }
+ent-N14TentClothWall = палатка
+    .desc = Палатка, сделанная из ткани.
+ent-N14TentClothCorner = { ent-N14TentClothWall }
+    .suffix = угол
+    .desc = { ent-N14TentClothWall.desc }

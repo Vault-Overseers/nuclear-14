@@ -1,0 +1,16 @@
+ent-N14BasePipboy = Пип-Бой 2000
+    .desc = Модельный ряд персональных компьютеров от компании 'РобКо Индастриз', носимых с помощью ремешка на запястье.
+ent-N14VaultPDA = { ent-N14BasePipboy }
+    .desc = { ent-N14BasePipboy.desc }
+ent-N14VaultEngineerPDA = { ent-N14BasePipboy }
+    .desc = { ent-N14BasePipboy.desc }
+ent-N14VaultDoctorPDA = { ent-N14BasePipboy }
+    .desc = { ent-N14BasePipboy.desc }
+ent-N14VaultSecurityPDA = { ent-N14BasePipboy }
+    .desc = { ent-N14BasePipboy.desc }
+ent-N14VaultChefPDA = { ent-N14BasePipboy }
+    .desc = Covered in grease and flour.
+ent-N14VaultBotanistPDA = КПК ботаника
+    .desc = Пахнет землёй.
+ent-N14VaultOverseerPDA = { ent-N14BasePipboy }
+    .desc = { ent-N14BasePipboy.desc }

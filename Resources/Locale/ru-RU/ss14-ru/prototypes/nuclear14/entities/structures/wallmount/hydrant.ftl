@@ -1,0 +1,10 @@
+ent-N14WallmountFireHydrant = пожарный гидрант
+    .desc = Настенный гидрант для тушения больших пожаров.
+ent-N14WallmountFireHydrantOpen = { ent-N14WallmountFireHydrant }
+    .suffix = Открыт
+    .desc = { ent-N14WallmountFireHydrant.desc }
+ent-N14WallmountFireHydrantOld = { ent-N14WallmountFireHydrant }
+    .desc = { ent-N14WallmountFireHydrant.desc }
+ent-N14WallmountFireHydrantOldOpen = { ent-N14WallmountFireHydrantOld }
+    .suffix = Открыт
+    .desc = { ent-N14WallmountFireHydrantOld.desc }

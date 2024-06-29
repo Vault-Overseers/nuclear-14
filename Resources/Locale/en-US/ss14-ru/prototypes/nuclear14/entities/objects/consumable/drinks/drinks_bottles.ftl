@@ -1,0 +1,14 @@
+ent-DrinkBottleBaseFull50 = { ent-DrinkBottleGlassBaseFull }
+    .desc = { ent-DrinkBottleGlassBaseFull.desc }
+ent-N14DrinkBottleMilkEmpty = milk bottle
+    .desc = Looks good at holding milky substances.
+ent-N14DrinkMilkBrahmin = brahmin milk
+    .desc = The glass bottle of brahmin milk.
+ent-N14DrinkMilkBighorner = bighorner milk
+    .desc = The glass bottle of bighorner milk.
+ent-N14DrinkMilkRadstag = radstag milk
+    .desc = The glass bottle of radstag milk.
+ent-N14DrinkNukaColaBottleFull = Nuka Cola bottle
+    .desc = The leading cola since 2044.
+ent-N14DrinkIrradiatedNukaColaBottleFull = irratiated Nuka Cola bottle
+    .desc = The leading cola since 2044. Looks a bit... weird.

@@ -1,0 +1,14 @@
+ent-DrinkBottleBaseFull50 = { ent-DrinkBottleGlassBaseFull }
+    .desc = { ent-DrinkBottleGlassBaseFull.desc }
+ent-N14DrinkBottleMilkEmpty = бутылка молока
+    .desc = Выглядит полезным для вас.
+ent-N14DrinkMilkBrahmin = молоко брамина
+    .desc = Стеклянная бутылка с густым молоком брамина.
+ent-N14DrinkMilkBighorner = молоко толсторога
+    .desc = Стеклянная бутылка с густым молоком торсторога.
+ent-N14DrinkMilkRadstag = молоко рад-оленя
+    .desc = Стеклянная бутылка с молоком радоленя.
+ent-N14DrinkNukaColaBottleFull = бутылка Ядер-Колы
+    .desc = Лучшая кола с 2044.
+ent-N14DrinkIrradiatedNukaColaBottleFull = радиоактивная Ядер-Кола
+    .desc = Лучшая кола с 2044. Эта бутылка выглядит немного... странно.

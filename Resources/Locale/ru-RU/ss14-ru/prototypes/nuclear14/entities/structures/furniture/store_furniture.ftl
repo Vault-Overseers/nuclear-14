@@ -1,0 +1,14 @@
+ent-N14StoreDeliCounter = Прилавок с деликатесами
+    .desc = Металлический прилавок, созданный для демонстрации деликатесов.
+ent-N14StoreFruitstand = Прилавок с фруктами
+    .desc = Ящик для демонстрации продуктов
+    .suffix = пустой
+ent-N14StoreFruitstand1 = Прилавок с фруктами
+    .desc = Ящик для демонстрации продуктов. Кажется, внутри что-то есть.
+    .suffix = коричневый
+ent-N14StoreFruitstand2 = { ent-N14StoreFruitstand1 }
+    .suffix = зелёный
+    .desc = { ent-N14StoreFruitstand1.desc }
+ent-N14StoreFruitstand3 = { ent-N14StoreFruitstand1 }
+    .suffix = жёлтый
+    .desc = { ent-N14StoreFruitstand1.desc }

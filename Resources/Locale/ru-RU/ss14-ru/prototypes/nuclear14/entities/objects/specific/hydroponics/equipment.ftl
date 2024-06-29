@@ -1,0 +1,16 @@
+ent-N14Sack = мешок
+    .desc = Плетёный мешок для хранения вещей.
+ent-N14Sack4 = { ent-N14Sack }
+    .desc = { ent-N14Sack.desc }
+ent-N14Sack5 = { ent-N14Sack }
+    .desc = { ent-N14Sack.desc }
+ent-N14SackCompost = мешок компоста
+    .desc = Плетёный мешок для хранения компоста.
+ent-N14SackCompostFull = { ent-N14SackCompost }
+    .suffix = Полный
+    .desc = { ent-N14SackCompost.desc }
+ent-N14SackFertilizer = мешок удобрений
+    .desc = Плетёный мешок для хранения удобрений.
+ent-N14SackFertilizerFull = мешок удобрений
+    .desc = Плетёный мешок для хранения удобрений.
+    .suffix = Полный

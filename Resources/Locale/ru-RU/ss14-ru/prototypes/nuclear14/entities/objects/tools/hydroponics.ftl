@@ -1,0 +1,10 @@
+ent-N14HydroponicsToolHoe = мотыга
+    .desc = { ent-HydroponicsToolMiniHoe.desc }
+ent-N14HydroponicsToolClippers = { ent-HydroponicsToolClippers }
+    .desc = { ent-HydroponicsToolClippers.desc }
+ent-N14HydroponicsToolScythe = { ent-HydroponicsToolScythe }
+    .desc = Острое и изогнутое лезвие на длинной фиберметаллической рукоятке, этот инструмент позволяет легко пожинать то, что вы сеете.
+ent-N14HydroponicsToolHatchet = { ent-HydroponicsToolHatchet }
+    .desc = Очень острое лезвие топора на короткой фиберметаллической рукоятке. У него долгая историю измельчения предметов, но сейчас используется для колки дров.
+ent-N14HydroponicsToolShovel = лопата
+    .desc = Большой инструмент для копания и перемещения грунта.

@@ -1,0 +1,14 @@
+ent-ClothingBeltBoSWebbing = BoS carrier
+    .desc = A simple black carrier capable of holding all kind of ammo.
+ent-ClothingBeltMilitary = military carrier
+    .desc = A simple brown carrier capable of holding all kind of ammo, it was commonly used by the military of the pre-war.
+ent-ClothingBeltNCR = NCR belt
+    .desc = A leather belt designed by the NCR for their troops.
+ent-ClothingBeltNCRPouches = NCR pouches bandolier
+    .desc = A leather bandolier with multiple pouches designed by the NCR for their troops.
+ent-ClothingBeltNCRHarness = NCR Harness
+    .desc = A leather harness designed by the NCR for their troops.
+ent-ClothingBeltNCRBandolier = NCR bandolier
+    .desc = A bandolier commonly used by NCR marksmans and pointmans to carry single shells or cartridges.
+ent-ClothingBeltRope = rope belt
+    .desc = A handmade belt with a rope, not the best but at least works.

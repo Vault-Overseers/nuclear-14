@@ -1,0 +1,9 @@
+ent-PaperWrittenNoteFromMumGeneric = note from mom
+    .suffix = Lunchbox, Generic
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenNoteFromMumHealthy = note from mom
+    .suffix = Lunchbox, Healthy
+    .desc = { ent-PaperWrittenNoteFromMumGeneric.desc }
+ent-PaperWrittenNoteFromMumUnhealthy = note from mom
+    .suffix = Lunchbox, Unhealthy
+    .desc = { ent-PaperWrittenNoteFromMumGeneric.desc }

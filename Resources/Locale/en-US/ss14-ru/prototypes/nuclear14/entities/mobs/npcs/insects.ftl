@@ -1,0 +1,14 @@
+ent-N14MobBloatfly = bloatfly
+    .desc = A mutated floating bug with an infectious bite.
+ent-N14MobGiantAnt = giant ant
+    .desc = It's an ant...but giant. Watch for the nippers.
+ent-N14MobGiantFireAnt = giant fire ant
+    .desc = It's an ant...but giant and red. Watch for the nippers.
+ent-N14MobRadroach = radroach
+    .desc = stinking roaches survived the bombs.
+ent-N14MobRadscorpion = radscorpion
+    .desc = It's a giant radscorpion! Stingy sting.
+ent-N14MobRadscorpionBark = barkscorpion
+    .desc = It's a giant bark radscorpion! Stingy sting.
+ent-N14MobCazador = cazador
+    .desc = Pure hate with a stinger and wings.
