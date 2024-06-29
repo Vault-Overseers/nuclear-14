@@ -1,5 +1,11 @@
 ent-N14JunkItemBase = мусор
     .desc = Это мусор!
+ent-N14JunkItemBasePlastic = { ent-N14JunkItemBase }
+    .desc = { ent-N14JunkItemBase.desc }
+ent-N14JunkItemBaseMetal = { ent-N14JunkItemBase }
+    .desc = { ent-N14JunkItemBase.desc }
+ent-N14JunkItemBaseContainer = { ent-N14JunkItemBase }
+  .desc = { ent-N14JunkItemBase.desc }
 ent-N14JunkAbraxoCleaner = Очиститель Абраксо
     .desc = Фирменный очиститель Абраско.
 ent-N14Junk8Ball = шар 8

@@ -1,3 +1,5 @@
+ent-EffectRCDConstruction = { "" }
+    .desc = { "" }
 ent-EffectRCDBase = { "" }
     .desc = { "" }
 ent-EffectRCDDeconstructPreview = { ent-EffectRCDBase }

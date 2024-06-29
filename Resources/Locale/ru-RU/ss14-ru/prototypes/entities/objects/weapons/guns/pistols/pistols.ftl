@@ -1,4 +1,4 @@
-ent-BaseWeaponPistol = BasePistol
+ent-BaseWeaponPistol = Пистоль
     .desc = Дерзай — налетай, целься и стреляй.
 ent-WeaponPistolViper = Гадюка
     .desc = Небольшой, легко скрываемый, но маломощный пистолет. Оснащён полностью автоматическим ресивером. Использует патроны калибра .35 авто.
@@ -9,5 +9,11 @@ ent-WeaponPistolCobra = Кобра
 ent-WeaponPistolMk58 = МК 58
     .desc = Дешёвый и распространённый пистолет, производимый дочерней компанией Nanotrasen. Использует патроны калибра .35 авто.
     .suffix = Пистолет
+ent-WeaponPistolMk58Nonlethal = { ent-WeaponPistolMk58 }
+    .suffix = Травматическое
+    .desc = { ent-WeaponPistolMk58.desc }
 ent-WeaponPistolN1984 = N1984
     .desc = Запасное оружие любого уважающего себя офицера. Выпускается в калибре .45 магнум, самом богоугодном калибре.
+ent-WeaponPistolN1984Nonlethal = N1984
+    .suffix = Травматическое
+    .desc = { ent-WeaponPistolN1984.desc }

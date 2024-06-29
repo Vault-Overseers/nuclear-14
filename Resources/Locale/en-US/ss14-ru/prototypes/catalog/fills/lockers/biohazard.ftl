@@ -11,5 +11,5 @@ ent-ClosetL3JanitorFilled = { ent-ClosetL3Janitor }
     .suffix = Filled, Janitor
     .desc = { ent-ClosetL3Janitor.desc }
 ent-ClosetL3ScienceFilled = { ent-ClosetL3Virology }
-    .suffix = Filled, Science
+    .suffix = Filled, Epistemics
     .desc = { ent-ClosetL3Virology.desc }

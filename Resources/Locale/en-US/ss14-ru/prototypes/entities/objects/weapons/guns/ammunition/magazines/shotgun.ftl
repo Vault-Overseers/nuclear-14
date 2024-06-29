@@ -1,8 +1,5 @@
 ent-BaseMagazineShotgun = ammo drum (.50 shells)
     .desc = { ent-BaseItem.desc }
-ent-MagazineShotgunEmpty = ammo drum (.50 shells any)
-    .suffix = empty
-    .desc = { ent-BaseMagazineShotgun.desc }
 ent-MagazineShotgun = ammo drum (.50 pellet)
     .desc = { ent-BaseMagazineShotgun.desc }
 ent-MagazineShotgunBeanbag = ammo drum (.50 beanbags)

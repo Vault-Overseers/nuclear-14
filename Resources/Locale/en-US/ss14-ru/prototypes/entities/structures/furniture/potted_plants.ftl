@@ -50,8 +50,10 @@ ent-PottedPlant23 = { ent-PottedPlantBase }
     .desc = { ent-PottedPlantBase.desc }
 ent-PottedPlant24 = { ent-PottedPlantBase }
     .desc = { ent-PottedPlantBase.desc }
-ent-PottedPlantRD = RD's potted plant
-    .desc = A gift from the botanical staff, presented after the RD's reassignment. There's a tag on it that says "Y'all come back now, y'hear?" It doesn't look very healthy...
+ent-PottedPlantRD = Mystagogue's potted plant
+    .desc =
+        A gift from the botanical staff, presented after the Mystagogue's reassignment. There's a tag on it that says "Y'all come back now, y'hear?"
+        It doesn't look very healthy...
 ent-PottedPlant26 = { ent-PottedPlantBase }
     .desc = Is it just me, or is it blinking?
 ent-PottedPlant27 = plastic potted plant
