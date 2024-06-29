@@ -371,12 +371,10 @@
     baseSprintSpeed : 4
   - type: Hands
   - type: Puller
-  - type: Tool
-    speed: 1.5
-    qualities:
-      - Prying
-    useSound:
-      path: /Audio/Items/crowbar.ogg
+  - type: Prying
+    speedModifier: 0.75
+    pryPowered: true
+    force: true
   - type: Insulated
   - type: GhostRole
     prob: 0.5
@@ -442,6 +440,7 @@
     damage:
       types:
         Slash: 20
+        Structural: 10
   - type: MobThresholds
     thresholds:
       0: Alive
