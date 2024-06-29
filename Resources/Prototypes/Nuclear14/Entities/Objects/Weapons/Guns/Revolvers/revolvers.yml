@@ -12,7 +12,25 @@
     whitelist:
       tags:
         - N14CartridgePistol9
+        - SpeedLoader
     proto: N14CartridgePistol9
+
+- type: entity
+  name: 10mm revolver
+  parent: BaseWeaponRevolver
+  id: N14WeaponRevolver10mm
+  description: The first prototype for the semiauto 10mm pistol, Uses 10mm.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/10mmrevolver.rsi
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/10mmrevolver.rsi
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - N14CartridgePistol10
+        - SpeedLoader
+    proto: N14CartridgePistol10
 
 - type: entity
   name: Magnum revolver
@@ -28,13 +46,14 @@
     whitelist:
       tags:
         - N14Cartridge44Magnum
+        - SpeedLoader
     proto: N14Cartridge44Magnum
 
 - type: entity
   name: hunting revolver
   parent: BaseWeaponRevolver
   id: N14WeaponHunterRevolver
-  description: A heavy revolver with a long cannon designed to hunt small animals, but it also works for people. Uses .44 magnum ammo.
+  description: A heavy revolver with a long cannon designed to hunt small animals, but it also works for people. Uses .45-70 gov't ammo.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/hunt_revolver.rsi
@@ -43,5 +62,23 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - N14Cartridge44Magnum
-    proto: N14Cartridge44Magnum
+        - N14Cartridge45-70
+        - SpeedLoader
+    proto: N14Cartridge45-70
+
+- type: entity
+  name: ranger sequoia
+  parent: BaseWeaponRevolver
+  id: N14WeaponRangerSequoia
+  description: 20 years of suffering for a good looking glorified revolver, worth it. Uses .45-70 gov't ammo.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/ranger_sequoia.rsi
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/ranger_sequoia.rsi
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - N14Cartridge45-70
+        - SpeedLoader
+    proto: N14Cartridge45-70

@@ -1,7 +1,7 @@
 ﻿job-supervisors-bos-mid = the midwest brotherhood knight commander
 job-supervisors-bos-washington-elder = lead your faction to victory!
 job-supervisors-bos-washington = follow your elder to victory!
-job-supervisors-bos-washington-initiate = follow orders from all other roles within the chapter
+job-supervisors-bos-washington-recruit = follow orders from all other roles within the chapter
 job-supervisors-caravan = the caravan leader
 job-supervisors-caravan-leader = lead your caravan company to riches through trade
 job-supervisors-ncr = the NCR officer

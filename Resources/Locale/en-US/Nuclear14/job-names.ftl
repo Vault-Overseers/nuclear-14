@@ -1,19 +1,25 @@
 # N14
-job-name-bos-mid-knight-comm = Midwest Brotherhood Knight Commander
-job-description-bos-mid-knight-comm = Lead the Midwest Brotherhood of Steel on their mission.
+job-name-bos-mid-paladin-comm = Midwest Brotherhood Paladin Commander
+job-description-bos-mid-paladin-comm = Lead the Midwest Brotherhood of Steel on their mission.
+job-name-bos-mid-paladin = Midwest Brotherhood Paladin
+job-description-bos-mid-paladin = Follow the Paladin Commander on their mission.
+job-name-bos-mid-knight = Midwest Brotherhood Knight
+jb-description-bos-mid-knight = Follow the Paladin Commander on their mission.
 job-name-bos-mid-scribe = Midwest Brotherhood Scribe
 job-description-bos-mid-scribe = Conduct scientific missions and research for your brotherhood chapter.
+job-name-bos-mid-squire = Midwest Brotherhood Squire
+jb-description-bos-mid-squire = Follow your Knight into battle and do their bidding.
 
-job-name-bos-washington-elder = Washington Brotherhood Elder
-job-description-bos-washington-elder = Lead the Washington Brotherhood of Steel to glory in their mission.
-job-name-bos-washington-initiate = Washington Brotherhood Initiate
-job-description-bos-washington-initiate = Prove yourself to your chapter to progress through the ranks.
-job-name-bos-washington-knight = Washington Brotherhood Knight
-job-description-bos-washington-knight = The military arm of the Brotherhood. Defend your chapter in their objectives and manufacture equipment.
-job-name-bos-washington-paladin = Washington Brotherhood Paladin
-job-description-bos-washington-paladin = Protect the Brotherhood at all costs. Take the elders will out into the wasteland.
-job-name-bos-washington-scribe = Washington Brotherhood Scribe
-job-description-bos-washington-scribe = Conduct scientific missions and research for your brotherhood chapter.
+job-name-bos-washington-commander = Washington Brotherhood Commander
+job-description-bos-washington-commander = Lead the Washington Brotherhood of Steel to glory in their mission.
+job-name-bos-washington-recruit = Washington Brotherhood Initiate
+job-description-bos-washington-recruit = Prove yourself to your chapter to progress through the ranks.
+job-name-bos-washington-soldier = Washington Brotherhood Knight
+job-description-bos-washington-soldier = The military arm of the Brotherhood. Defend your chapter in their objectives and manufacture equipment.
+job-name-bos-washington-captain = Washington Brotherhood Captain
+job-description-bos-washington-captain = Protect the Brotherhood at all costs. Take the Commanders will out into the wasteland.
+job-name-bos-washington-researcher = Washington Brotherhood Scribe
+job-description-bos-washington-researcher = Conduct scientific missions and research for your brotherhood chapter.
 
 job-name-caravan-leader = Caravan Leader
 job-description-caravan-leader = Coordinate the caravan company in the area and strike up trade deals with the locals.

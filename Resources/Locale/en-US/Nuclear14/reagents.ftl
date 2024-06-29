@@ -95,11 +95,13 @@ reagent-desc-extract-starlight-berries = A berry that is yellow and seems to set
 reagent-name-extract-tarberries = tarberry juice
 reagent-desc-extract-tarberries = A water-grown crop that is slightly orange in appearance. Tastes odd, juicy, but with very little flavour, it tingles the tongue.
 reagent-name-extract-tato = tato juice
-reagent-desc-extract-tato = What formerly may have been a tomato. Red and angry. Tastes juicy, slightly firm, would be good on a sandwich. 
+reagent-desc-extract-tato = What formerly may have been a tomato. Red and angry. Tastes juicy, slightly firm, would be good on a sandwich.
 reagent-name-extract-white-horsenettle = white horsenettle extract
 reagent-desc-extract-white-horsenettle = A group of nettles and berries, they don't seem too safe to eat. Tastes of poison, trying to swallow it tastes a lot of effort and makes your stomach hurt.
 reagent-name-extract-xander = xander extract
 reagent-desc-extract-xander = An edible root, it was obviously pulled from the ground at some point. Tastes similar to a potato, very starchy, but good to eat.
+reagent-name-extract-fungusrad = irradiated fungus extract
+reagent-desc-extract-fungusrad = An irradiated and glowing green fungus. Tastes revolting and mushy. It will gladly donate you some of it's green glow.
 
 ## Teas
 reagent-name-tea-agave = agave tea
@@ -145,6 +147,18 @@ reagent-desc-antidote-mixture = An antidote made from radscorpion tail and water
 reagent-name-antidote = antidote
 reagent-desc-antidote = A potent antitoxin manufactured in a lab.
 
+reagent-name-healing-poultice = healing poultice
+reagent-desc-healing-poultice = A powder made from a large mixture of plants.
+
+reagent-name-bitterdrink = bitterdrink
+reagent-desc-bitterdrink = A mixture of crushed plants mixed with water neutralizing poison and radiation from body.
+
+reagent-name-smelling-salts = smelling salts
+reagent-desc-smelling-salts = A grainy mixture of rocks with an insanely potent smell.
+
+reagent-name-mourning-poultice = mournin poultice
+reagent-desc-mourning-poultice = A mixture of poisonous crushed plants used in tribalistic ceremonies said to make you see gods.
+
 # Medicine
 reagent-name-healing-mixture = stimpak
 reagent-desc-healing-mixture = A mixture of reagents that makes you heal.
@@ -153,6 +167,9 @@ reagent-desc-dirty-stimpak = A dirty mixture of reagents that makes you heal.
 
 reagent-name-robust-healing-mixture = robust healing mixture
 reagent-desc-robust-healing-mixture = A mixture of reagents that makes you heal fast.
+
+reagent-name-ultra-robust-healing-mixture = ultra robust healing mixture
+reagent-desc-ultra-robust-healing-mixture = A mixture of reagents that make you heal faster than you can feel it, however it comes with hefty side effects.
 
 reagent-name-damage-resist-mixture = damage resistant mixture
 reagent-desc-damage-resist-mixture = A mixture of reagents that makes you resistant to damage.
@@ -202,6 +219,8 @@ reagent-name-wonderglue = Wonderglue
 reagent-desc-wonderglue = A pre-war adhesive. Don't sniff it.
 reagent-name-turpentine = Turpentine
 reagent-desc-turpentine = A spirit used for cleaning things.
+reagent-name-antiseptic = Antiseptic
+reagent-desc-antiseptic = A cleaning solution made from Abraxo Cleaner and some Rubbing Alcohol.
 
 # Ores, Metals, Materials
 materials-gunpowder = gunpowder
@@ -210,9 +229,11 @@ materials-sulfur = sulfur
 materials-raw-lead = raw lead
 materials-raw-sulfur = raw sulfur
 reagent-name-gunpowder = gunpowder
-reagent-desc-gunpowder = gunpowder
+reagent-desc-gunpowder = Small pellet gunpowder. Now just add lead.
 reagent-name-fertilizer = fertilizer
-reagent-desc-fertilizer = fertilizer
+reagent-desc-fertilizer = Ground fertilizer. Perfect for your plants!
+reagent-name-sulfur = sulfur
+reagent-desc-sulfur = Ground sulfur in a powdery form. You should really wear a gas mask.
 
 
 # Other

@@ -28,11 +28,12 @@
         reagents:
         - ReagentId: Gunpowder
           Quantity: 10
-  - type: DrainableSolution
-    solution: powder
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Gunpowder
+        Quantity: 10
   - type: ExaminableSolution
-    solution: powder
-  - type: DeleteOnSolutionEmpty
     solution: powder
   - type: Tag
     tags:
@@ -81,6 +82,11 @@
         reagents:
         - ReagentId: Sulfur
           Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Sulfur
+        Quantity: 10
 
 - type: entity
   parent: SulfurPowder
@@ -97,3 +103,35 @@
   components:
   - type: Stack
     count: 10
+    
+- type: entity
+  parent: SheetPaper
+  id: N14Paper
+  name: paper
+  suffix: 10
+  components:
+  - type: Stack
+    stackType: N14Paper
+    count: 10
+    baseLayer: base
+    layerStates:
+    - paper
+  - type: Sprite
+    sprite: /Textures/Nuclear14/Objects/Misc/clutter.rsi
+    state: paper
+    layers:
+    - state: paper
+      map: ["base"]
+  - type: Item
+    heldPrefix: paper
+  - type: Construction
+    graph: N14Paper
+    node: paper
+
+- type: entity
+  parent: N14Paper
+  id: N14Paper1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1

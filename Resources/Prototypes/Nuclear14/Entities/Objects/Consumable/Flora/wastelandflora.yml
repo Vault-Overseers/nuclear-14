@@ -74,7 +74,7 @@
     loot:
       All: WildBananaYuccaAll
       PlantSampleTaker: WildBananaYuccaClippers
-      
+
 - type: entity
   parent: N14WastelandFlora
   id: N14WastelandFloraWildBarrelCactus
@@ -135,7 +135,7 @@
     loot:
       All: WildBrocFlowerAll
       PlantSampleTaker: WildBrocFlowerClippers
-    
+
 - type: entity
   parent: N14WastelandFlora
   id: N14WastelandFloraWildBuffaloGourd
@@ -178,7 +178,7 @@
     loot:
       All: WildCabbageAll
       PlantSampleTaker: WildCabbageClippers
-    
+
 - type: entity
   parent: N14WastelandFlora
   id: N14WastelandFloraWildCarrot
@@ -220,7 +220,7 @@
         - PlantSampleTaker
     loot:
       All: WildCaveFungusAll
-    
+
 - type: entity
   parent: N14WastelandFlora
   id: N14WastelandFloraWildCaveFungusRad
@@ -248,6 +248,27 @@
 
 - type: entity
   parent: N14WastelandFlora
+  id: N14WastelandFloraWildCotton
+  name: wild cotton plant
+  description: A cotton plant growing wild. It's healthy.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/cotton.rsi
+    state: harvest
+  - type: OreVein
+    currentOre: WildCotton
+  - type: Gatherable
+    whitelist:
+      components:
+        - Hands
+      tags:
+        - PlantSampleTaker
+    loot:
+      All: WildCottonAll
+      PlantSampleTaker: CottonSeeds
+
+- type: entity
+  parent: N14WastelandFlora
   id: N14WastelandFloraWildCoyote
   name: wild coyote plant
   description: A coyote plant growing wild. It's healthy.
@@ -265,7 +286,7 @@
     loot:
       All: WildCoyoteTobaccoAll
       PlantSampleTaker: WildCoyoteTobaccoClippers
-    
+
 - type: entity
   parent: N14WastelandFlora
   id: N14WastelandFloraWildDatura
@@ -347,7 +368,7 @@
     loot:
       All: WildMesquiteAll
       PlantSampleTaker: WildMesquiteClippers
-    
+
 - type: entity
   parent: N14WastelandFlora
   id: N14WastelandFloraWildMutfruit
@@ -367,7 +388,7 @@
     loot:
       All: WildMutfruitAll
       PlantSampleTaker: WildMutfruitClippers
-      
+
 - type: entity
   parent: N14WastelandFlora
   id: N14WastelandFloraWildNettle
@@ -408,7 +429,7 @@
     loot:
       All: WildOnionAll
       PlantSampleTaker: WildOnionClippers
-    
+
 - type: entity
   parent: N14WastelandFlora
   id: N14WastelandFloraWildPinyon
@@ -428,7 +449,7 @@
     loot:
       All: WildPinyonAll
       PlantSampleTaker: WildPinyonClippers
-    
+
 - type: entity
   parent: N14WastelandFlora
   id: N14WastelandFloraWildPricklypear
@@ -513,7 +534,7 @@
     loot:
       All: WildTarberriesAll
       PlantSampleTaker: WildTarberriesClippers
-    
+
 - type: entity
   parent: N14WastelandFlora
   id: N14WastelandFloraWildTato
@@ -599,7 +620,7 @@
     scale: 0.7, 0.7
   - type: Item
     sprite: Nuclear14/Objects/Consumable/Flora/wastelandflora.rsi
-    
+
 - type: entity
   abstract: True
   parent: N14FloraProduce
@@ -618,8 +639,8 @@
           Quantity: 4
         - ReagentId: N14RadParticleFood
           Quantity: 1
-          
-          
+
+
 # Plant Produce
 - type: entity
   parent: N14FloraProduce
@@ -698,7 +719,7 @@
         Quantity: 10
   - type: Produce
     seedId: N14WildBarrelCactus
-    
+
 
 - type: entity
   parent: N14FloraProduceFood
@@ -808,7 +829,7 @@
         Quantity: 10
   - type: Produce
     seedId: N14WildCabbage
-        
+
 - type: entity
   parent: N14FloraProduceFood
   id: N14FloraProduceWildCarrot
@@ -850,7 +871,7 @@
   - type: Stack
     stackType: CaveFungus
     count: 1
-    
+
 - type: entity
   parent: N14FloraProduceFood
   id: N14FloraProduceWildCaveFungusRad
@@ -862,7 +883,19 @@
   - type: Stack
     stackType: CaveFungusRad
     count: 1
-    
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractFungusRad
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractFungusRad
+        Quantity: 10
+
 - type: entity
   parent: N14FloraProduce
   id: N14FloraProduceWildCoyoteTobacco
@@ -888,7 +921,7 @@
         Quantity: 10
   - type: Produce
     seedId: N14CoyoteTobacco
-    
+
 - type: entity
   parent: N14FloraProduce
   id: N14FloraProduceWildDaturaFlower
@@ -941,7 +974,7 @@
         Quantity: 10
   - type: Produce
     seedId: N14WildJalapeno
-        
+
 - type: entity
   parent: N14FloraProduce
   id: N14FloraProduceWildMaize
@@ -968,7 +1001,7 @@
         Quantity: 10
   - type: Produce
     seedId: N14WildMaize
-    
+
 - type: entity
   parent: N14FloraProduce
   id: N14FloraProduceWildMesquitePods
@@ -994,7 +1027,7 @@
         Quantity: 10
   - type: Produce
     seedId: N14WildMesquite
-    
+
 - type: entity
   parent: N14FloraProduceFood
   id: N14FloraProduceWildMutfruit
@@ -1020,7 +1053,7 @@
         Quantity: 10
   - type: Produce
     seedId: N14WildMutfruit
-    
+
 - type: entity
   parent: N14FloraProduceFood
   id: N14FloraProduceWildNettle
@@ -1079,7 +1112,7 @@
   - type: SliceableFood
     count: 4
     slice: FoodOnionRedSlice # N14TODO: Create slice
-    
+
 - type: entity
   parent: N14FloraProduceFood
   id: N14FloraProduceWildPinyonNuts
@@ -1093,7 +1126,7 @@
     count: 1
   - type: Produce
     seedId: N14WildPinyon
-    
+
 - type: entity
   parent: N14FloraProduceFood
   id: N14FloraProduceWildPricklyPearFruit
@@ -1188,7 +1221,7 @@
         Quantity: 10
   - type: Produce
     seedId: N14Tarberry
-    
+
 - type: entity
   parent: N14FloraProduceFood
   id: N14FloraProduceWildTato
