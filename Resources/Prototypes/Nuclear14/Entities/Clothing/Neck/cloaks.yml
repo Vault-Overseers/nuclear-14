@@ -2,7 +2,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakBrotherhoodWashington
+  id: N14ClothingNeckCloakBrotherhoodWashington
   name: Washington Brotherhood cloak
   description: A black cloak with a circular red Brotherhood logo.
   components:
@@ -13,7 +13,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakNCR
+  id: N14ClothingNeckCloakNCR
   name: NCR cloak
   description: A comfy cloak with a NCR logo on one side, this kind of cloaks are commonly used by the troopers during hard weathers.
   components:
@@ -22,36 +22,60 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakRanger
+  id: N14ClothingNeckCloakRanger
   name: NCR ranger cape
   description: Ranger cape made from what looks like old poncho fitted with star, stripes and a bear. Most likely has a holster hidden underneath.
   components:
   - type: Sprite
     sprite: Nuclear14/Clothing/Neck/NCRrangercape.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHoodRangerCloak
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakRangerPoncho
+  id: N14ClothingNeckCloakRangerPoncho
   name: ranger poncho
   description: A durable muslin poncho. Tough enough to bear the elements and serve as handy blanket.
   components:
   - type: Sprite
     sprite: Nuclear14/Clothing/Neck/NCRrangerponcho.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHoodPonchoCloak
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
 
 # Neutral
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakLeather
+  id: N14ClothingNeckCloakLeather
   name: leather cloak
   description: A handmade cloak, comfy and warm.
   components:
   - type: Sprite
     sprite: Nuclear14/Clothing/Neck/leathercloak.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHoodLeatherCloak
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakYaoguai
+  id: N14ClothingNeckCloakYaoguai
   name: yaoguai cloak
   description: A handmade cloak, comfy and warm this piece comes from a dangerous yaoguai.
   components:
