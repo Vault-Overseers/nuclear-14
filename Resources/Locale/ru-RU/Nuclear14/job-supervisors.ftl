@@ -1,7 +1,7 @@
 job-supervisors-bos-mid = командиру рыцарей среднезападного братства стали 
 job-supervisors-bos-washington-elder = ведите свою фракцию к победе!
 job-supervisors-bos-washington = следуйте за старейшиной к победе!
-job-supervisors-bos-washington-initiate = подчиняйтесь приказам всех других ролей
+job-supervisors-bos-washington-recruit = подчиняйтесь приказам всех других ролей
 job-supervisors-caravan = лидеру каравана
 job-supervisors-caravan-leader = ведите свою караванную компанию к богатству через торговлю
 job-supervisors-ncr = офицеру НКР

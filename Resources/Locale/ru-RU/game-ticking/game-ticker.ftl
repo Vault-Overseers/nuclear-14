@@ -32,15 +32,9 @@ player-join-message = Игрок { $name } зашёл!
 player-first-join-message = Игрок { $name } зашёл на сервер впервые.
 # Displayed in chat to admins when a player leaves
 player-leave-message = Игрок { $name } вышел!
-latejoin-arrival-announcement =
-    { $character } ({ $job }) { $gender ->
-        [male] прибыл
-        [female] прибыла
-        [epicene] прибыли
-       *[neuter] прибыл
-    } на станцию!
-latejoin-arrival-sender = Станции
-latejoin-arrivals-direction = Вскоре прибудет шаттл, который доставит вас на станцию.
-latejoin-arrivals-direction-time = Шаттл, который доставит вас на станцию, прибудет через { $time }.
+latejoin-arrival-announcement = В зоне замечен новый выживший.
+latejoin-arrival-sender = Радиовещание
+latejoin-arrivals-direction = Эвакуационный транспорт скоро прибудет.
+latejoin-arrivals-direction-time = Эвакуационный транспорт прибудет через { $time }.
 preset-not-enough-ready-players = Не удалось запустить пресет { $presetName }. Требуется { $minimumPlayers } игроков, но готовы только { $readyPlayersCount }.
 preset-no-one-ready = Не удалось запустить режим { $presetName }. Нет готовых игроков.
