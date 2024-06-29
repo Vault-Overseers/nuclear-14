@@ -44,7 +44,10 @@
     totalIntensity: 100
     intensitySlope: 1
     maxIntensity: 150
-    
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StructuralMetallic
+
 - type: entity
   parent: N14GeneratorFusioncore
   id: N14GeneratorFusionMini
@@ -101,7 +104,7 @@
             - 0 # nitrogen
             - 340.5701689 # carbon dioxide
           temperature: 373.15
-    
+
 - type: entity
   parent: N14GeneratorFusionMini
   id: N14GeneratorFusionEnclave
@@ -131,7 +134,7 @@
     supplyRate: 1000
     supplyRampRate: 250
     supplyRampTolerance: 250
-    
+
 - type: entity
   parent: N14GeneratorFusionMini
   id: N14GeneratorFusionMiniRusted
@@ -142,7 +145,7 @@
     sprite: Nuclear14/Structures/Power/32x48_machines.rsi
     layers:
     - state: generator_rust
-    
+
 - type: entity
   parent: N14GeneratorFusioncore
   id: N14GeneratorPrewar
@@ -155,7 +158,7 @@
     - state: generator_off
     - state: generator_on
     offset: 0.5, 0
-    
+
 - type: entity
   parent: N14GeneratorPrewar
   id: N14GeneratorPrewarUranium
@@ -167,7 +170,7 @@
     layers:
     - state: generator_off
     - state: generator_uranium
-      
+
 - type: entity
   parent: BaseGenerator
   id: N14GeneratorVaultTecReactor
@@ -202,7 +205,7 @@
     energy: 4.5
     softness: 0.5
     color: "#B4FCF0"
-    
+
 - type: entity
   parent: N14GeneratorVaultTecReactor
   id: N14GeneratorReactorFloor
@@ -224,7 +227,7 @@
     totalIntensity: 20000 # ~15 tile radius.
     intensitySlope: 5
     maxIntensity: 50
-    
+
 - type: entity
   parent: BaseStructure
   id: N14GeneratorReactorFloorDestroyed
