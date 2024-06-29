@@ -371,10 +371,17 @@
     baseSprintSpeed : 4
   - type: Hands
   - type: Puller
+  - type: Tool
+    speed: 1.5
+    qualities:
+      - Prying
   - type: Prying
-    speedModifier: 0.75
-    pryPowered: true
-    force: true
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
   - type: Insulated
   - type: GhostRole
     prob: 0.5
