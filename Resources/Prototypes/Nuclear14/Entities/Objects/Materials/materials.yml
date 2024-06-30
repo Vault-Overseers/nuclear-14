@@ -9,7 +9,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      Gunpowder: 100
+      Gunpowder: 10
   - type: Stack
     stackType: Gunpowder
     baseLayer: powder_lead
@@ -22,17 +22,14 @@
   - type: Item
     heldPrefix: powder_lead
   - type: Appearance
+  - type: Extractable
+    grindableSolutionName: gunpowder
   - type: SolutionContainerManager
     solutions:
-      powder:
+      gunpowder:
         reagents:
         - ReagentId: Gunpowder
           Quantity: 10
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Gunpowder
-        Quantity: 10
   - type: ExaminableSolution
     solution: powder
   - type: Tag
@@ -63,7 +60,7 @@
   components:
   - type: PhysicalComposition
     materialComposition:
-      Sulfur: 100
+      Sulfur: 10
   - type: Stack
     stackType: Sulfur
     baseLayer: powder_brass
@@ -76,17 +73,14 @@
   - type: Item
     heldPrefix: powder_brass
   - type: Appearance
+  - type: Extractable
+    grindableSolutionName: sulfur
   - type: SolutionContainerManager
     solutions:
-      powder:
+      sulfur:
         reagents:
         - ReagentId: Sulfur
           Quantity: 10
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Sulfur
-        Quantity: 10
 
 - type: entity
   parent: SulfurPowder
@@ -103,7 +97,7 @@
   components:
   - type: Stack
     count: 10
-    
+
 - type: entity
   parent: SheetPaper
   id: N14Paper
