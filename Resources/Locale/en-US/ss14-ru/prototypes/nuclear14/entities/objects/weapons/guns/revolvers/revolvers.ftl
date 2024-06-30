@@ -1,6 +1,10 @@
 ent-N14WeaponRevolver9mm = 9mm revolver
     .desc = A small, compact six shooter. Uses 9mm ammo.
+ent-N14WeaponRevolver10mm = 10mm revolver
+    .desc = The first prototype for the semiauto 10mm pistol, Uses 10mm.
 ent-N14WeaponRevolverMagnun = Magnum revolver
     .desc = The Big Iron. Uses .44 magnum ammo.
 ent-N14WeaponHunterRevolver = hunting revolver
-    .desc = A heavy revolver with a long cannon designed to hunt small animals, but it also works for people. Uses .44 magnum ammo.
+    .desc = A heavy revolver with a long cannon designed to hunt small animals, but it also works for people. Uses .45-70 gov't ammo.
+ent-N14WeaponRangerSequoia = ranger sequoia
+    .desc = 20 years of suffering for a good looking glorified revolver, worth it. Uses .45-70 gov't ammo.

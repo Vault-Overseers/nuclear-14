@@ -198,7 +198,6 @@ reagent-desc-fertilizer = удобрение
 # Other
 reagent-name-scorpiontail = хвост скорпиона
 reagent-desc-scorpiontail = Хвост скорпиона. Острый.
-
 reagent-name-extract-fungusrad = экстракт облученного гриба
 reagent-desc-extract-fungusrad = Облученный и светящийся зеленый гриб. На вкус отвратительный и мягкий. С радостью поделится с вами своим зеленым свечением.
 reagent-name-healing-poultice = целебная припарка

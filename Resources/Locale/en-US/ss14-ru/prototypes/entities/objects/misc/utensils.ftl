@@ -12,5 +12,3 @@ ent-SpoonPlastic = plastic spoon
     .desc = There is no spoon.
 ent-KnifePlastic = plastic knife
     .desc = That's not a knife. This is a knife.
-ent-BarSpoon = bar spoon
-    .desc = Your personal helper to mix drinks and changes lives.

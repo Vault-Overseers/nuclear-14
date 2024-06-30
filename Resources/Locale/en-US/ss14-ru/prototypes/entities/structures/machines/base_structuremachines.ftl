@@ -4,5 +4,3 @@ ent-BaseMachinePowered = { ent-BaseMachine }
     .desc = { ent-BaseMachine.desc }
 ent-ConstructibleMachine = { "" }
     .desc = { "" }
-ent-SmallConstructibleMachine = { ent-ConstructibleMachine }
-    .desc = { ent-ConstructibleMachine.desc }

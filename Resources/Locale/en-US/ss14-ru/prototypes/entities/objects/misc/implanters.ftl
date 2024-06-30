@@ -37,5 +37,5 @@ ent-DeathRattleImplanter = death rattle implanter
     .desc = { ent-BaseImplantOnlyImplanterSyndi.desc }
 ent-DeathAcidifierImplanter = death acidifier implanter
     .desc = { ent-BaseImplantOnlyImplanterSyndi.desc }
-ent-MindShieldImplanter = mindshield implanter
+ent-MindShieldImplanter = mind-shield implanter
     .desc = { ent-BaseImplantOnlyImplanter.desc }

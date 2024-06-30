@@ -1,4 +1,4 @@
-job-supervisors-bos-mid = командиру рыцарей среднезападного братства стали 
+job-supervisors-bos-mid = командиру рыцарей среднезападного братства стали
 job-supervisors-bos-washington-elder = ведите свою фракцию к победе!
 job-supervisors-bos-washington = следуйте за старейшиной к победе!
 job-supervisors-bos-washington-recruit = подчиняйтесь приказам всех других ролей

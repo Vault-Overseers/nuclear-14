@@ -128,21 +128,23 @@ class KeyFinder:
         for idx, en_message in enumerate(en_file_parsed.body):
             if isinstance(en_message, ast.ResourceComment) or isinstance(en_message, ast.GroupComment) or isinstance(en_message, ast.Comment):
                 continue
-
+    
             ru_message_analog_idx = py_.find_index(ru_file_parsed.body, lambda ru_message: self.find_duplicate_message_id_name(ru_message, en_message))
             have_changes = False
-
-            # Attributes
-            if getattr(en_message, 'attributes', None) and ru_message_analog_idx != -1:
-                if not ru_file_parsed.body[ru_message_analog_idx].attributes:
-                    ru_file_parsed.body[ru_message_analog_idx].attributes = en_message.attributes
-                    have_changes = True
-                else:
-                    for en_attr in en_message.attributes:
-                        ru_attr_analog = py_.find(ru_file_parsed.body[ru_message_analog_idx].attributes, lambda ru_attr: ru_attr.id.name == en_attr.id.name)
-                        if not ru_attr_analog:
-                            ru_file_parsed.body[ru_message_analog_idx].attributes.append(en_attr)
-                            have_changes = True
+    
+            # Проверка, что объект не является Junk и имеет атрибуты
+            if ru_message_analog_idx != -1 and not isinstance(ru_file_parsed.body[ru_message_analog_idx], ast.Junk) and hasattr(ru_file_parsed.body[ru_message_analog_idx], 'attributes'):
+                # Attributes
+                if getattr(en_message, 'attributes', None):
+                    if not ru_file_parsed.body[ru_message_analog_idx].attributes:
+                        ru_file_parsed.body[ru_message_analog_idx].attributes = en_message.attributes
+                        have_changes = True
+                    else:
+                        for en_attr in en_message.attributes:
+                            ru_attr_analog = py_.find(ru_file_parsed.body[ru_message_analog_idx].attributes, lambda ru_attr: ru_attr.id.name == en_attr.id.name)
+                            if not ru_attr_analog:
+                                ru_file_parsed.body[ru_message_analog_idx].attributes.append(en_attr)
+                                have_changes = True
 
             # New elements
             if ru_message_analog_idx == -1:

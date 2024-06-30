@@ -1,6 +1,6 @@
 ent-ClothingHeadsetAlt = headset
     .desc = An updated, modular intercom that fits over the head. Takes encryption keys.
-ent-ClothingHeadsetAltCargo = quartermaster's over-ear headset
+ent-ClothingHeadsetAltCargo = logistics officer's over-ear headset
     .desc = { ent-ClothingHeadsetAlt.desc }
 ent-ClothingHeadsetAltCentCom = CentCom over-ear headset
     .desc = { ent-ClothingHeadsetAlt.desc }
@@ -15,7 +15,7 @@ ent-ClothingHeadsetAltMedical = chief medical officer's over-ear headset
     .desc = { ent-ClothingHeadsetAlt.desc }
 ent-ClothingHeadsetAltSecurity = head of security's over-ear headset
     .desc = { ent-ClothingHeadsetAlt.desc }
-ent-ClothingHeadsetAltScience = research director's over-ear headset
+ent-ClothingHeadsetAltScience = mystagogue's over-ear headset
     .desc = { ent-ClothingHeadsetAlt.desc }
 ent-ClothingHeadsetAltSyndicate = blood-red over-ear headset
     .desc = An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).

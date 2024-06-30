@@ -10,5 +10,5 @@ ent-N14WeaponAdvanceSubMachineGun12mm = advance 12.7mm SMG
     .desc = A bulky sub machine gun with a top magazine fed system, it uses 12mm ammmo.
 ent-N14weapon9mmSMG = 9mm SMG
     .desc = a metallic pre-war simple SMG, chambered in 9mm.
-ent-N14weapon45SMG = .45 SMG
+ent-N14Weapon45SMG = .45 SMG
     .desc = A pre-war SMG with a wooden stock, chambered in .45.
