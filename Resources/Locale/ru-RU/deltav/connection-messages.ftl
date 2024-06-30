@@ -1,1 +1,1 @@
-whitelist-not-whitelisted-peri = You are not whitelisted. To become whitelisted, apply on our forum. It can be found at https://forum.delta-v.org/
+whitelist-not-whitelisted-peri = Вы не находитесь в белом списке. Чтобы попасть в него, вам нужно стать бета-тестером, подав заявку. Вы можете подать ее в нашем канале Discord https://discord.gg/corvax-frontier

@@ -1,1 +1,1 @@
-energygun-examine-fire-mode = The firemode is set to { $mode }
+energygun-examine-fire-mode = Режим ведения огня переведен в: { $mode }
