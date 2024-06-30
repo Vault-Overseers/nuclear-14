@@ -1,10 +1,10 @@
 ent-N14WeaponRevolver9mm = 9-мм револьвер
-    .desc = Маленький удобный револьвер, использующий боеприпасы 9мм калибра.
-ent-N14WeaponRevolver10mm = 10mm revolver
-    .desc = The first prototype for the semiauto 10mm pistol, Uses 10mm.
+    .desc = Маленький удобный револьвер, использующий боеприпасы 9-мм калибра.
+ent-N14WeaponRevolver10mm = 10-мм револьвер
+    .desc = Первый прототип полуавтоматического 10-мм пистолита, использует боеприпасы 10-мм калибра.
 ent-N14WeaponRevolverMagnun = магнум
     .desc = Большой и мощный револьвер. Использует боеприпасы .44 калибра.
 ent-N14WeaponHunterRevolver = охотничий револьвер
     .desc = Тяжелый револьвер с длинным стволом, предназначенный для охоты на мелких животных. Также подходит и для людей. Использует патроны "магнум" 44-го калибра.
-ent-N14WeaponRangerSequoia = ranger sequoia
-    .desc = 20 years of suffering for a good looking glorified revolver, worth it. Uses .45-70 gov't ammo.
+ent-N14WeaponRangerSequoia = 'Секвойя' рейнджера
+    .desc = 20 лет страданий ради красивого пафосного револьвера. Оно того стоило. Использует патроны .45-70.
