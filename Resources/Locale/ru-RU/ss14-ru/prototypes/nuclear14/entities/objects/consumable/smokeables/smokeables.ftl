@@ -1,8 +1,8 @@
-ent-N14PackRollingPaper = pack of rolling paper
-    .desc = A pack of thin pieces of paper used to make fine smokeables.
+ent-N14PackRollingPaper = пачка папиросной бумаги
+    .desc = Пачка тонких листков бумаги, используемых для создания отменного курева.
 ent-N14RollingPaper = { ent-PaperRolling }
-    .suffix = Full
+    .suffix = Полный
     .desc = { ent-PaperRolling.desc }
 ent-N14RollingPaper1 = { ent-N14RollingPaper }
-    .suffix = Single
+    .suffix = Один
     .desc = { ent-N14RollingPaper.desc }
