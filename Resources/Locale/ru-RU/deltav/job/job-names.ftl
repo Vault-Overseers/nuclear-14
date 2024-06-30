@@ -1,1 +1,1 @@
-job-name-medical-borg = Medical Cyborg
+job-name-medical-borg = Медицинский борг

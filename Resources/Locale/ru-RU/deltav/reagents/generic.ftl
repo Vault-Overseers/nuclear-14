@@ -1,3 +1,3 @@
 ### Messages that can be utilized by multiple reagents.
 
-generic-reagent-effect-damnation = Your liver cries out in agony! Damnation!
+generic-reagent-effect-damnation = Печень вопит от боли! Твою ж мать! Как же мне больно...
