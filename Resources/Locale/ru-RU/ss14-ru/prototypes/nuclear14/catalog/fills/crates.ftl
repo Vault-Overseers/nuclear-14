@@ -1,6 +1,6 @@
 ent-N14CrateBreakPlainFilledCigarettes = { ent-N14CrateBreakPlain }
-    .suffix = cigarette packs random
+    .suffix = ящик случайных сигарет
     .desc = { ent-N14CrateBreakPlain.desc }
-ent-N14CrateBreakPlainFilledCigarettesRepublic = Republic cigarette crate
-    .suffix = republics
+ent-N14CrateBreakPlainFilledCigarettesRepublic = Ящик республиканских сигарет
+    .suffix = республиканские
     .desc = { ent-N14CrateBreakPlain.desc }
