@@ -37,6 +37,13 @@ job-description-ncr-officer = A local leader in the NCR military. Fulfil your mi
 job-name-ncr-soldier = NCR Soldier
 job-description-ncr-soldier = The backbone of any military. Soldiers get stuff done and follow an NCO on missions.
 
+job-name-ranger-recruit = Ranger Recruit
+job-description-ranger-recruit = You've just been accepted within the Desert Rangers. Prove yourself worthy by learning the ropes and helping the wasteland become a better place.
+job-name-ranger-ranking = Ranger
+job-description-ranger-ranking = As an Ranger, you are the vigilante the wasteland needs. Your mission is to keep the wasteland safe for the innocent and bring justice to the raider gangs, as well as continuing the tradition of stopping slavery in it's tracks.
+job-name-ranger-veteran = Veteran Ranger
+job-description-ranger-veteran = You answer to yourself, working either independently or with your team to complete your mission objectives however required, operating either alone, in a squad or with one of the other factions. Your primary mission is to improve the situation of the wasteland and to neutralize slavers and raiders operating in the area.
+
 job-name-tribal = Tribesperson
 job-description-tribal = Maintain your tribes way of life in the wasteland at all costs. Security, crafting, wellbeing, homelife, you do it all.
 job-name-tribal-elder = Tribe Elder
@@ -65,7 +72,7 @@ job-name-wastelander = Wastelander
 job-description-wastelander = Survive in the wasteland and carve out your own path. It's tough out there alone, consider finding others.
 
 job-name-townsperson = Townsperson
-job-description-townsperson = A member of the new world society. Follow the town rules or try run for Mayor to change them. 
+job-description-townsperson = A member of the new world society. Follow the town rules or try run for Mayor to change them.
 job-name-towndoctor = Town Doctor
 job-description-towndoctor = Sell your medical knowledge as a service. Treat the injured for money and manage a doctors practice in town.
 job-name-townmechanic = Town Mechanic

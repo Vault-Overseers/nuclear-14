@@ -159,12 +159,24 @@
   id: N14RockGreyMining
   parent: N14RockGrey
   name: ore vein
-  suffix: higher ore yield .33
+  suffix: higher ore yield .44
   description: An asteroid.
   components:
   - type: OreVein
-    oreChance: 0.33
+    oreChance: 0.44
     oreRarityPrototypeId: RandomOreDistributionStandard
+  - type: Sprite
+    layers:
+      - state: rock_asteroid
+      - map: [ "enum.EdgeLayer.South" ]
+        state: rock_asteroid_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: rock_asteroid_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: rock_asteroid_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: rock_asteroid_west
+      - state: rock_coal
 
 - type: entity
   id: SteelRock

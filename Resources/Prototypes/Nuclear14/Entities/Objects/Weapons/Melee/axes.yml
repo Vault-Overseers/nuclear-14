@@ -22,6 +22,31 @@
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Melee/hatchet.rsi
     size: Normal
+
+- type: entity
+  name: tribal hatchet
+  parent: BaseItem
+  id: N14TribalHatchet
+  description: A tool that is just as useful as a weapon. Used for chopping things.
+  components:
+  - type: Tag
+    tags:
+    - BotanyHatchet
+    - Axe
+  - type: Sharp
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Melee/tribalhatchet.rsi
+    state: icon
+    netsync: false
+  - type: UseDelay
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 12
+        Piercing: 5
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Melee/tribalhatchet.rsi
+    size: Normal
     
 - type: entity
   name: fireaxe
