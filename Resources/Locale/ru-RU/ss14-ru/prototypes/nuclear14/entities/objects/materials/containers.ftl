@@ -1,5 +1,5 @@
-ent-N14FuelTankHandy = fuel tank
-    .desc = A tank of Mr Handy fuel.
-ent-N14FuelTankHandyRusty = fuel tank
-    .desc = A rusty tank of Mr Handy fuel.
-    .suffix = rusty
+ent-N14FuelTankHandy = топливный бак
+    .desc = Бак с топливом производства Mr Handy.
+ent-N14FuelTankHandyRusty = топливный бак
+    .desc = Бак с топливом производства Mr Handy.
+    .suffix = ржавый
