@@ -1,2 +1,2 @@
-ent-N14Cartridge45-70 = cartridge (.45-70 gov't)
+ent-N14Cartridge45-70 = пуля (.45-70)
     .desc = { ent-BaseCartridgeLightRifle.desc }
