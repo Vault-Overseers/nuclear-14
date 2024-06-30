@@ -4,6 +4,8 @@
   id: N14WeaponSniperHunting
   description: A rugged bolt action rifle. Uses .308 ammo.
   components:
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/hunting.rsi
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Snipers/hunting.rsi
   - type: Item
@@ -48,7 +50,24 @@
     minAngle: 24
     maxAngle: 105
     angleIncrease: 4
-    angleDecay: 16   
+    angleDecay: 16
+
+- type: entity
+  name: .50 NCR rifle 
+  parent: N14WeaponAntiMateriel
+  id: N14Weapon50NcrRifle
+  description: A try by the NCR to make .50 ammo a standart on normal infantry, very cheap but it will deal a lot of damage. Uses .50 anti-material ammo.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/50ncrrifle.rsi
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/50ncrrifle.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14Cartridge.50
+    capacity: 1
+    proto: N14Cartridge.50
 
 - type: entity
   name: lever action carbine
@@ -56,6 +75,8 @@
   id: N14WeaponLeverCarbine
   description: A lever action short carbine. Uses .44 ammo.
   components:
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/levercarbine.rsi
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Snipers/levercarbine.rsi
   - type: Item
@@ -69,7 +90,7 @@
     maxAngle: 105
     angleIncrease: 4
     angleDecay: 16   
-    fireRate: 3
+    fireRate: 1
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -83,27 +104,42 @@
   id: N14WeaponLeverRifle
   description: A long lever action repeater rifle. Uses .308 ammo.
   components:
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/leverrifle.rsi
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Snipers/leverrifle.rsi
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Guns/Snipers/leverrifle.rsi
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -104
   - type: Gun
-    minAngle: 24
-    maxAngle: 105
-    angleIncrease: 4
-    angleDecay: 16   
-    fireRate: 2
+    fireRate: 1
 
 - type: entity
-  name: Pipe Rifle
+  name: brush gun
+  parent: N14WeaponSniperHunting
+  id: N14WeaponBrushGun
+  description: A powerfull lever action carbine. Uses .45-70 gov't ammo.
+  components:
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/brushgun.rsi
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/brushgun.rsi
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/brushgun.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14Cartridge45-70
+    capacity: 10
+    proto: N14Cartridge45-70
+
+- type: entity
+  name: pipe rifle
   parent: N14WeaponSniperHunting
   id: N14WeaponPipeRifle
   description: A piece of metal pipe with a wooden stock, works has a gun and uses .308 ammo.
   components:
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/piperifle.rsi
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Snipers/piperifle.rsi
   - type: Item
@@ -114,15 +150,7 @@
       tags:
       - N14Cartridge308Rifle
     capacity: 1
-    proto: N14Cartridge308Rifle
-  - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -104
-  - type: Gun
-    minAngle: 24
-    maxAngle: 105
-    angleIncrease: 4
-    angleDecay: 16   
+    proto: N14Cartridge308Rifle  
 
 - type: entity
   name: varmint rifle
@@ -130,6 +158,8 @@
   id: N14WeaponSniperVarmint
   description: A pre-war low power bolt action rifle, originally designed to hunt small animals this gun works fine with anything not bigger than a human. Uses 5.56 ammo.
   components:
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Snipers/varmint.rsi
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Snipers/varmint.rsi
   - type: Item

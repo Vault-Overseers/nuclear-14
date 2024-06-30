@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckMantleBrotherhoodWashington
+  id: N14ClothingNeckMantleBrotherhoodWashington
   name: Washington Brotherhood mantle
   description: A red with black mantle, wore by high ranks of the washington BoS army it represents a high status.
   components:
@@ -11,7 +11,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckMantleNCR
+  id: N14ClothingNeckMantleNCR
   name: NCR squad leader mantle
   description: A tiny piece of cloth holded with a rope, commonly used between sergeants from the NCR army.
   components:
@@ -22,7 +22,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckMantleLeather
+  id: N14ClothingNeckMantleLeather
   name: leather mantle
   description: A comfortable brown long mantle.
   components:
@@ -30,3 +30,11 @@
     sprite: Nuclear14/Clothing/Neck/leathermantle.rsi
   - type: Clothing
     sprite: Nuclear14/Clothing/Neck/leathermantle.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHoodLeatherCloak
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
