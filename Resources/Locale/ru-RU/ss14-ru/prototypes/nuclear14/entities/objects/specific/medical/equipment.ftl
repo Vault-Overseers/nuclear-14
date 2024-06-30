@@ -1,3 +1,3 @@
-ent-N14MortarpestleGrinder = mortar & pestle
-    .desc = A mortar and pestle for grinding things into reagents.
-    .suffix = grinder/juicer
+ent-N14MortarpestleGrinder = ступка с пестиком
+    .desc = Ступка и пестик для измельчения вещей в реагенты.
+    .suffix = измельчитель/соковыжималка
