@@ -38,11 +38,11 @@ job-name-ncr-soldier = NCR Soldier
 job-description-ncr-soldier = The backbone of any military. Soldiers get stuff done and follow an NCO on missions.
 
 job-name-ranger-recruit = Ranger Recruit
-job-description-ranger-recruit = You've just been accepted within the ranks of NCR Rangers. Prove yourself worthy by learning the ropes and completing your objectives given to you by seniors.
+job-description-ranger-recruit = You've just been accepted within the Desert Rangers. Prove yourself worthy by learning the ropes and helping the wasteland become a better place.
 job-name-ranger-ranking = Ranger
-job-description-ranger-ranking = As an NCR Ranger, you are the premier special forces unit of the NCR. You are the forward observations and support the Army in it's campaigns, as well as continuing the tradition of stopping slavery in it's tracks.
+job-description-ranger-ranking = As an Ranger, you are the vigilante the wasteland needs. Your mission is to keep the wasteland safe for the innocent and bring justice to the raider gangs, as well as continuing the tradition of stopping slavery in it's tracks.
 job-name-ranger-veteran = Veteran Ranger
-job-description-ranger-veteran = You answer directly to the Captain, working either independently or in a team to complete your mission objectives however required, operating either alone, in a squad or with the NCR Army. Your primary mission is to improve general opinion of the Republic and to neutralize slavers and raiders operating in the area.
+job-description-ranger-veteran = You answer to yourself, working either independently or with your team to complete your mission objectives however required, operating either alone, in a squad or with one of the other factions. Your primary mission is to improve the situation of the wasteland and to neutralize slavers and raiders operating in the area.
 
 job-name-tribal = Tribesperson
 job-description-tribal = Maintain your tribes way of life in the wasteland at all costs. Security, crafting, wellbeing, homelife, you do it all.
