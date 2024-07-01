@@ -1,7 +1,8 @@
 - type: entity
-  id: N14FloraLog1
+  id: N14FloraLogBase
   name: log
   description: Once a tree, always a log.
+  abstract: true
   components:
   - type: Clickable
   - type: InteractionOutline
@@ -9,18 +10,18 @@
     noRot: true
     sprite: Nuclear14/Structures/Decoration/flora.rsi
     state: tree_log
-    drawdepth: Overdoors
+    drawdepth: FloorObjects
   - type: Physics
-    bodyType: Static
+    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.35,-0.4,0.35,0.4"
-        density: 100
-        layer:
-        - WallLayer
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 2000
+        mask:
+        - TableMask
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Wood
@@ -52,7 +53,7 @@
         acts: [ "Destruction" ]
       - !type:SpawnEntitiesBehavior
         spawn:
-          N14FloraTimber:
+          N14FloraLogTimber:
             min: 1
             max: 1
   - type: SoundOnGather
@@ -64,15 +65,30 @@
   - type: OreVein
     oreChance: 1.0
     currentOre: Timber
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,-0.05"
+  - type: Pullable
+  
+- type: entity
+  parent: N14FloraLogBase
+  id: N14FloraLog1
+  suffix: seat
+  name: log
+  description: Once a tree, always a log.
+  components:
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,-0.05"
             
 - type: entity
-  parent: N14FloraLog1
-  id: N14FloraTimber
+  parent: N14FloraLogBase
+  id: N14FloraLogTimber
+  name: timber
+  suffix: item
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Decoration/flora.rsi
     state: tree_timber
-  - type: SoundOnGather
   - type: Gatherable
     whitelist:
       tags:
@@ -105,13 +121,19 @@
           MaterialWoodPlank1:
             min: 1
             max: 1
+  - type: Stack
+    stackType: N14Timber
+    count: 1
+  - type: Material
+  - type: Item
+    size: Huge
     
 - type: entity
-  parent: N14FloraLog1
+  parent: N14FloraLogBase
   id: N14FloraLog3
+  suffix: stash
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Decoration/flora.rsi
     state: timber
   - type: PottedPlantHide
   - type: SecretStash

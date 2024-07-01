@@ -1,0 +1,24 @@
+- type: constructionGraph
+  id: N14Bonfire
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: bonfire
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: N14Timber # Maybe change this to stones and have wood as a fuel.
+              amount: 3
+              doAfter: 1
+              
+    - node: bonfire
+      entity: N14Bonfire
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14FloraLogTimber
+              amount: 3
