@@ -129,3 +129,49 @@
   components:
   - type: Stack
     count: 1
+    
+- type: entity
+  parent: BaseItem
+  id: N14Dung
+  name: dung pile
+  description: flip those cowpats for free fertilizer!
+  components:
+  - type: Sprite
+    sprite: /Textures/Nuclear14/Objects/Misc/crafting_material.rsi
+    noRot: true
+    layers:
+      - state: dung
+      - state: dung-flies
+  - type: Perishable
+    rotAfter: 240
+    # don't want it giving off ammonia only bodies
+    molsPerSecondPerUnitMass: 0
+  - type: RotInto
+    entity: N14CompostRotted
+    stage: 1
+# N14:TODO: Add creampie ing but worse and it makes you throw up.
+    
+- type: entity
+  parent: BaseItem
+  id: N14CompostRotted
+  name: compost
+  description: Rotting remains, like a compost. Good for fertilizing.
+  components:
+  - type: Sprite
+    sprite: /Textures/Nuclear14/Objects/Misc/crafting_material.rsi
+    state: compost
+  - type: SolutionContainerManager
+    solutions:
+      dung:
+        maxVol: 25
+        reagents:
+        - ReagentId: Fertilizer
+          Quantity: 25
+  - type: DrainableSolution
+    solution: dung
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
+  - type: DeleteOnSolutionEmpty
+    solution: dung
+  - type: TimedDespawn
+    lifetime: 120 # Absorbs into the ground if you're not quick
