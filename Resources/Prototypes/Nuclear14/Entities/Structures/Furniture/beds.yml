@@ -11,6 +11,9 @@
   - type: Transform
     anchored: true
     noRot: false
+  - type: Construction
+    graph: N14Bed
+    node: bed
     
 - type: entity
   parent: N14Bed
@@ -30,15 +33,64 @@
   components:
   - type: Sprite
     state: bed_wood
+  - type: Construction
+    graph: N14Bed
+    node: bedwood
+    
 # TODO: Reduce the healing rate of all these at some point compared to a proper bed.   
 - type: entity
   parent: N14Bed
   id: N14Bedroll
   name: Bedroll
-  description: A bed roll good for caravaning with. Not very comfy
+  description: A bed roll good for caravaning with. Not very comfy.
   components:
   - type: Sprite
     state: bedroll_unrolled
+  - type: Construction
+    graph: N14Bed
+    node: bedroll
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14BedrollItem:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialCloth1:
+            min: 0
+            max: 2
+    
+- type: entity
+  parent: BaseItem
+  id: N14BedrollItem
+  name: Bedroll
+  description: A rolled up bed for travelling light. Lay it down somewhere to rest.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Furniture/bedsandchairs.rsi
+    state: bedroll_rolled
+  - type: Construction
+    graph: N14BedrollItem
+    node: bedroll
+  - type: Tag
+    tags:
+    - Bedroll
+  - type: Item
+    size: Huge
     
 - type: entity
   parent: N14Bed
@@ -48,6 +100,9 @@
   components:
   - type: Sprite
     state: mattress0
+  - type: Construction
+    graph: N14Bed
+    node: mattress
     
 - type: entity
   parent: N14Bed
