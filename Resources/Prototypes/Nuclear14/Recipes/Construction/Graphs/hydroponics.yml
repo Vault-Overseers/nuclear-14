@@ -15,11 +15,11 @@
         - to: start
           completed:
             - !type:SpawnPrototype
-              prototype: N14CompostRotting
+              prototype: N14CompostRotted
               amount: 1
             - !type:DeleteEntity {}
           steps:
-            - tool: Shoveling
+            - tool: Prying # shoveling
               doAfter: 3
 
 
@@ -36,7 +36,7 @@
           steps:
             - material: WoodPlank
               amount: 4
-              doAdfter: 5
+              doAfter: 5
               
     - node: box
       entity: N14HydroponicsPlanterEmpty
@@ -63,8 +63,8 @@
         - to: box
           completed:
           - !type:SpawnPrototype
-                prototype: N14CompostRotting
+                prototype: N14CompostRotted
                 amount: 2
                 doAfter: 2
           steps:
-            - tool: Shoveling
+            - tool: Prying # shoveling
