@@ -1,4 +1,4 @@
-ent-PosterLegitFuckAround = Fuck Around...
-    .desc = ...and find out. Sponsored by the Intergalactic Bartenders' Federation, Delta branch.
-ent-PosterContrabandGotWood = Got Wood?
-    .desc = A grimy old advert for a seedy lumber company. "You got a friend in me." is scrawled in the corner.
+ent-PosterLegitFuckAround = Вокруг они мудаки...
+    .desc = ... и узнаешь. Спонсор: Межгалактическая Федерация Барменов, филиал Дельта.
+ent-PosterContrabandGotWood = Дровишек подкинешь?
+    .desc = Грязная старая реклама подозрительной лесозаготовительной компании. В углу каракулями написано "У меня есть друг для тебя".

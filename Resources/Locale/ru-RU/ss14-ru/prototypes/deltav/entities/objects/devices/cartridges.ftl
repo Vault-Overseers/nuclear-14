@@ -1,2 +1,2 @@
-ent-CrimeAssistCartridge = crime assist cartridge
-    .desc = A cartridge that helps identify crimes and see appropriate punishment.
+ent-CrimeAssistCartridge = картридж криминального анализа
+    .desc = Картридж, помогающий определить преступление и подобрать соответствующее наказание. 

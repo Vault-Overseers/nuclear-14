@@ -1,6 +1,6 @@
-ent-CrateFoodKvassTank = Kvass tank crate
-    .desc = A tank with refreshing kvass, which helps so much in the heat.
-ent-CrateFoodDonkpocketSavory = Donk Pocket shipment (Savory)
-    .desc = A shipment of five boxes from the savory Donk Pocket variety selection.
-ent-CrateFoodDonkpocketSweet = Donk Pocket shipment (Sweet)
-    .desc = A shipment of five boxes from the sweet Donk Pocket variety selection.
+ent-CrateFoodKvassTank = Ящик с квасом
+    .desc = Бочка с освежающим квасом, который так необходим в жару.
+ent-CrateFoodDonkpocketSavory = Партия "Донк-карман" (Солёная)
+    .desc = Партия из пяти коробок из ассортимента солёных "Донк-карман".
+ent-CrateFoodDonkpocketSweet = Партия "Донк-карман" (Сладкая)
+    .desc = Партия из пяти коробок из ассортимента сладких "Донк-карман"

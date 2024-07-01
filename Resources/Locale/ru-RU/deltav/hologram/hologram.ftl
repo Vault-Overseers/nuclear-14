@@ -1,3 +1,3 @@
-hologram-on-examine = [color=lightblue]It is but a transient specter...[/color]
-hologram-disarm-blocked = Your hand phases through { THE($target) }.
-hologram-disarm-blocked-other = { THE($performerName) }'s hand phases through { THE($target) }.
+hologram-on-examine = [color=lightblue]Это всего лишь мимолетный призрак...[/color]
+hologram-disarm-blocked = Твоя рука проходит сквозь { THE($target) }.
+hologram-disarm-blocked-other = Рука { THE($performerName) } проходит сквозь { THE($target) }.

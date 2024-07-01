@@ -1,6 +1,6 @@
-ent-ToyRenault = renault toy
-    .desc = Almost as cute and adorable as the real Renault!
-ent-ToySiobhan = siobhan toy
-    .desc = Nearly as fluffy as the real Shivs!
-ent-ToyZero = toy zero
-    .desc = whirrrrrrrrr taktaktaktaktak BOOM whirrrrrrr
+ent-ToyRenault = игрушка Рено
+.desc = Почти такая же милая и очаровательная, как настоящий Рено!
+ent-ToySiobhan = игрушка Сив
+.desc = Почти такая же пушистая, как настоящие Сивы!
+ent-ToyZero = игрушка Зеро
+.desc =  ВЖЖЖЖЖЖЖЖЖ  ТАК-ТАК-ТАК-ТАК-ТАК БАМ ВЖЖЖЖЖЖЖЖЖЖ

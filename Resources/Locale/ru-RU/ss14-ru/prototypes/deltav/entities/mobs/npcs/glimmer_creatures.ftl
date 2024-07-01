@@ -1,2 +1,2 @@
-ent-MobGlimmerMite = glimmer mite
-    .desc = A strange pest from a world beyond the noosphere.
+ent-MobGlimmerMite = мерцающий клещ
+    .desc = Странный паразит из мира за пределами ноосферы.

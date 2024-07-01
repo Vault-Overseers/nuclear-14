@@ -1,2 +1,2 @@
 # crystals of bluespace
-materials-unit-crystal = crystal
+materials-unit-crystal = кристалл

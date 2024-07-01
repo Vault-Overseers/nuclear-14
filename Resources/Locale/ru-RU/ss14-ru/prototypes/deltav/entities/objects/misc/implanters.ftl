@@ -1,2 +1,2 @@
-ent-BionicSyrinxImplanter = bionic syrinx implanter
-    .desc = { ent-BaseImplantOnlyImplanterSyndi.desc }
+ent-BionicSyrinxImplanter = бионический имплантатор
+.desc = { ent-BaseImplantOnlyImplanterSyndi.desc }

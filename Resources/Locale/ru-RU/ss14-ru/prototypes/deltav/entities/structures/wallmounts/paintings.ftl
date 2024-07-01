@@ -1,4 +1,4 @@
-ent-PaintingBlunt = Blunt Painting
-    .desc = A blunt smoking weird-cat thing with a smug look.
-ent-PaintingSpoon = Spoon Painting
-    .desc = The type of painting that really ties together a room.
+ent-PaintingBlunt = Картина "Глупыха"
+    .desc = Картина с тупо выглядящим странным кошачьим существом, курящим косяк.
+ent-PaintingSpoon = Картина "Ложка"
+    .desc = Это тот самый тип исскуства, который действительно способен объединить комнату.

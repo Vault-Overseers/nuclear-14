@@ -1,2 +1,2 @@
-ent-BookIanDossier = head of personnel's photobook
-    .desc = VERY CONFIDENTIAL. This folder contains various pictures of Ian cherished by the Head of Personnel.
+ent-BookIanDossier = фотоальбом главы персонала
+.desc = СТРОГО КОНФИДЕНЦИАЛЬНО. Эта папка содержит различные фотографии Иана, хранимые начальником персонала.

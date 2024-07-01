@@ -1,7 +1,7 @@
-ent-ClothingHandsGlovesInspection = inspection gloves
-    .desc = A fancy pair of white gloves, both durable and delicate.
-ent-ClothingHandsGlovesRyuzoGauntlets = golden gauntlets
-    .desc = Because sometimes, things just need to be based on your fists.
-    .suffix = ADMIN ONLY, DO NOT MAP
-ent-ClothingHandsGlovesChemist = heavy nitrile gloves
-    .desc = A pair of thick gloves that provide some protection from caustic chemicals.
+ent-ClothingHandsGlovesInspection =  инспекционные  перчатки
+    .desc =  Нарядная  пара  белых  перчаток,  одновременно  прочных  и  изящных.
+ent-ClothingHandsGlovesRyuzoGauntlets =  золотые  накладки  
+    .desc =  Потому  что  иногда  все  зависит  от  кулаков.
+    .suffix =  ТОЛЬКО  ДЛЯ  АДМИНА,  НЕ  МАППИТЬ
+ent-ClothingHandsGlovesChemist =  тяжелые  нитриловые  перчатки
+    .desc =  Пара  толстых  перчаток,  которые  обеспечивают  некоторую  защиту  от  едких  химических  веществ.

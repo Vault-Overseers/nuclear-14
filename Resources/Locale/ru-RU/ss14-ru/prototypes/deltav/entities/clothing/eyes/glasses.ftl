@@ -1,2 +1,2 @@
-ent-ClothingEyesGlassesChemist = safety glasses
-    .desc = Glasses made for chemists and other workers dealing with caustic reagents.
+ent-ClothingEyesGlassesChemist = защитные очки
+    .desc =  Очки,  предназначенные  для  химиков  и  других  работников,  имеющих  дело  с  едкими  реагентами.

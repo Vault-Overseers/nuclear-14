@@ -1,4 +1,4 @@
-ent-MobArcticFoxSiobhan = Siobhan
-    .desc = Her name is pronounced "Shivahn", but she is known as Shivs by her associates. A fluffy, adorable arctic fox.
-ent-MobSecDogLaika = Laika
-    .desc = Much like her namesake, Laika is a specimen of indeterminate breed, fresh off the streets and ready to tussle.
+ent-MobArcticFoxSiobhan = Шивон
+    .desc = Её имя произносится как "Шиван", но её соратники зовут её Шивс. Пушистая, очаровательная полярная лисица. 
+ent-MobSecDogLaika = Лайка
+    .desc = Как и её тёзка, Лайка — собака неопределённой породы, только что с улицы и готовая к драке.

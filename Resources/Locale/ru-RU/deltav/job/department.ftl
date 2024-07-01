@@ -1,2 +1,2 @@
-department-Epistemics = Epistemics
-department-Logistics = Logistics
+department-Epistemics = Эпистемика
+department-Logistics = Логистика

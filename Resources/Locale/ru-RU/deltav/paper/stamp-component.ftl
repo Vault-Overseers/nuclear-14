@@ -1,2 +1,2 @@
-stamp-component-stamped-name-lawyer = Lawyer
-stamp-component-stamped-name-psychologist = Psychologist
+stamp-component-stamped-name-lawyer = Юрист
+stamp-component-stamped-name-psychologist = Психолог

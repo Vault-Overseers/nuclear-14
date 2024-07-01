@@ -1,31 +1,31 @@
 ## Nyano
 
-flavor-base-acidic = acidic
-flavor-complex-nuggie = like "chicken"
-flavor-complex-enthralling = enthralling
-flavor-complex-sublime = sublime
-flavor-complex-holy = heavenly
-flavor-base-seeds = seeds
-flavor-complex-cotton = like cotton
-flavor-complex-vanilla = like vanilla
-flavor-complex-soju = like bold, alcoholic rice
-flavor-complex-orangecreamcicle = like creamy, alcoholic orange juice
-flavor-complex-silverjack = like a rockstars dream
-flavor-complex-brainbomb = like liver damage
-flavor-complex-atomicpunch = like bittersweet radiation
-flavor-complex-circusjuice = extremely funny
-flavor-complex-pinkdrink = overwhelmingly like pink
-flavor-complex-sapopicante = like tomatoes and spices
-flavor-complex-graveyard = like a strong cold brew
-flavor-complex-bubbletea = like creamy sweetness
-flavor-complex-corncob = like a sick joke
+flavor-base-acidic = кислый
+flavor-complex-nuggie = как "курица"
+flavor-complex-enthralling = захватывающий
+flavor-complex-sublime = возвышенный
+flavor-complex-holy = небесный
+flavor-base-seeds = семена
+flavor-complex-cotton = как хлопок
+flavor-complex-vanilla = как ваниль
+flavor-complex-soju = как крепкий, алкогольный рис
+flavor-complex-orangecreamcicle = как кремовый, алкогольный апельсиновый сок
+flavor-complex-silverjack = как мечта рок-звезды
+flavor-complex-brainbomb = как повреждение печени
+flavor-complex-atomicpunch = как горьковатая радиация
+flavor-complex-circusjuice = очень смешной
+flavor-complex-pinkdrink = подавляюще как розовый
+flavor-complex-sapopicante = как помидоры и специи
+flavor-complex-graveyard = как крепкий холодный кофе
+flavor-complex-bubbletea = как сладкая кремовость
+flavor-complex-corncob = как больной анекдот
 
 ## Delta
 
-flavor-complex-gunmetal = bittersweet and creamy
-flavor-complex-lemondrop = refreshingly tart
-flavor-complex-greengrass = like a holiday in the sun
-flavor-complex-daiquiri = fashionable
-flavor-complex-arsonistsbrew = like ash and flame
-flavor-complex-healthcodeviolation = ominous
-flavor-complex-pumpkin = like pumpkin
+flavor-complex-gunmetal = горьковатый и кремовый
+flavor-complex-lemondrop = освежающе кислый
+flavor-complex-greengrass = как отдых на солнце
+flavor-complex-daiquiri = модный
+flavor-complex-arsonistsbrew = как пепел и пламя
+flavor-complex-healthcodeviolation = зловещий
+flavor-complex-pumpkin = как тыква

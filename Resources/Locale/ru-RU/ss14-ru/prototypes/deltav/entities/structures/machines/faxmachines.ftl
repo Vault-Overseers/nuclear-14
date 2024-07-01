@@ -1,3 +1,3 @@
-ent-FaxMachineListeningSyndie = listening post long range fax machine
-    .suffix = Syndicate
+ent-FaxMachineListeningSyndie = прослушка дальнего радиуса действия для факса
+    .suffix = Синдикат
     .desc = { ent-FaxMachineBase.desc }

@@ -1,4 +1,4 @@
-ent-MobIfritFamiliar = Ifrit
-    .desc = The mystagogue's servant.
-ent-WelderIfrit = ifrit hand
-    .desc = The welding hand of an ifrit.
+ent-MobIfritFamiliar = Ифрит
+    .desc = Слуга мистика.
+ent-WelderIfrit = рука ифрита
+    .desc = Сварочная рука ифрита.
