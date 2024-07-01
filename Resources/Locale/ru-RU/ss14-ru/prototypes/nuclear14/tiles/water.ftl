@@ -1,2 +1,2 @@
-ent-N14FloorWaterDirtyEntity = water
-    .desc = A real thirst quencher.
+ent-N14FloorWaterDirtyEntity = вода
+    .desc = Мутная вода, в которой плавают мусор и неизвестные существа. Настоящий утолитель жажды... если вы не боитесь подхватить какую-нибудь заразу.
