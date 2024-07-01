@@ -67,6 +67,12 @@
   - type: DrainableSolution
     solution: well
   - type: ReagentTank
+  - type: SolutionRegeneration
+    solution: well
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 1
 
 - type: entity
   parent: N14WellWaterClean
@@ -79,6 +85,12 @@
         reagents:
         - ReagentId: WaterDirty
           Quantity: 500
+  - type: SolutionRegeneration
+    solution: well
+    generated:
+      reagents:
+      - ReagentId: WaterDirty
+        Quantity: 1
 
 - type: entity
   parent: N14WellWaterClean
@@ -91,3 +103,9 @@
         reagents:
         - ReagentId: WaterIrradiated
           Quantity: 500
+  - type: SolutionRegeneration
+    solution: well
+    generated:
+      reagents:
+      - ReagentId: WaterIrradiated
+        Quantity: 1
