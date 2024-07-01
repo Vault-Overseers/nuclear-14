@@ -1,4 +1,4 @@
-ent-FoodPiePumpkin = pumpkin pie
-    .desc = A seasonal favorite, consisting mostly of pumpkin and a handful of spooky spices.
-ent-FoodPiePumpkinSlice = slice of pumpkin pie
+ent-FoodPiePumpkin = тыквенный пирог
+    .desc = Сезонное лакомство, состоящее в основном из тыквы и щепки жутких специй. 
+ent-FoodPiePumpkinSlice = кусок тыквенного пирога
     .desc = { ent-FoodPieSliceBase.desc }

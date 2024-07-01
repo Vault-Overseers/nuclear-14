@@ -1,2 +1,2 @@
-ent-FoodMealScrambledEggs = scrambled eggs
-    .desc = Some cooked eggs with salt. Yummy!
+ent-FoodMealScrambledEggs = яичница-болтунья
+    .desc = Приготовленные яйца с солью. Вкуснятина!

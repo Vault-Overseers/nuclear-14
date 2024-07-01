@@ -1,2 +1,2 @@
-ent-CourierBag = courier bag
-    .desc = Keeps your parcels safe.
+ent-CourierBag = сумка курьера
+    .desc = Хранит ваши посылки в безопасности.

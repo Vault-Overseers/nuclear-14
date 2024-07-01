@@ -1,2 +1,2 @@
-ent-WeaponLightMachineGunL6Borg = Experimental L6 SAW
-    .desc = A rather traditionally made LMG with a pleasantly lacquered wooden pistol grip. Uses replicated .30 rifle ammo generated internally.
+ent-WeaponLightMachineGunL6Borg = Экспериментальный L6 SAW
+    .desc = Довольно традиционно сделанный ЛМГ с приятной лакированной деревянной пистолетной рукояткой. Использует реплицированные .30 винтовочные патроны, генерируемые внутри.

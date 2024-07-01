@@ -1,3 +1,3 @@
-ent-ClothingNeckMantleRyuzo = ornate mantle
-    .desc = In days of old, giving one's life was considered the ultimate sacrifice. The owner of this mantle, however, has dedicated their life twice over.
-    .suffix = ADMIN ONLY, DO NOT MAP
+ent-ClothingNeckMantleRyuzo = богато украшенная мантия
+	.desc =  В старые времена отдача своей жизни считалась высшим жертвоприношением. Владелец этой мантии, однако, посвятил этому свою  жизнь  дважды.
+	.suffix = ТОЛЬКО ДЛЯ АДМИНА, НЕ МАППИТЬ

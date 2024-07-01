@@ -1,6 +1,6 @@
-ent-ClothingOuterArmorPlateCarrier = plate carrier
-    .desc = A large and bulky carrier featuring steel plates that offer decent protection against gunfire.
-ent-ClothingOuterArmorDuraVest = durathread vest
-    .desc = A tight-fitting and sturdy armor vest, reinforced with durathread weave to protect against sharp objects and blunt force trauma.
+ent-ClothingOuterArmorPlateCarrier = бронежилет
+    .desc =  Большой и громоздкий бронежилет с стальными пластинами, обеспечивающий приличную защиту от огнестрельного оружия.
+ent-ClothingOuterArmorDuraVest = жилет из дуранити
+    .desc =  Плотно прилегающий и прочный бронежилет, усиленный тканью из дуранити для защиты от острых предметов и тупой силы.
 ent-ClothingOuterArmorARC = ARCS
-    .desc = The Advanced Riot Control Suit, or ARCS for short, is generally regarded as far too bulky and overly hot for any practical use - but when the riots are raging, most officers invariably take great comfort from the thick and claustrophobic padding.
+    .desc =  Advanced Riot Control Suit (ARCS) или, короче, ARCS, как правило, считается слишком громоздким и слишком жарким для любого практического использования, - но когда бушуют бунты, большинство офицеров неизменно находят утешение в толстой и клаустрофобной подкладке.

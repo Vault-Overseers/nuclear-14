@@ -1,8 +1,8 @@
-ent-WeaponPistolViperWood = viper
-    .desc = A small, low-power pistol with pleasant lacquered wooden grips. Uses .35 auto ammo.
-    .suffix = Wood
-ent-WeaponPistolPollock = Pollock
-    .desc = A compact and mass-produced combat pistol. Uses .35 auto ammo.
-    .suffix = Mercenary
-ent-WeaponPistolPsiBreaker = psi-breaker
-    .desc = A small, flashy pistol with a marble style grip. Provides no tactical advantage. Uses .38 special ammo.
+ent-WeaponPistolViperWood = кобра
+    .desc = Маленький маломощный пистолет с приятными лакированными деревянными рукоятками. Использует патроны .35 auto.
+    .suffix = Деревянный
+ent-WeaponPistolPollock = Поллок
+    .desc = Компактный и массовый боевой пистолет. Использует патроны .35 auto. 
+    .suffix = Наёмник
+ent-WeaponPistolPsiBreaker = Пси-разрушитель
+    .desc = Маленький, эффектный пистолет с мраморной рукояткой. Не даёт никаких тактических преимуществ. Использует патроны .38 special.

@@ -1,3 +1,3 @@
-ent-ClothingOuterArmorPlateCarrierUnremoveable = grafted plate carrier
-    .desc = An off-the-shelf plate carrier that has been cruelly grafted onto its wearers body
-    .suffix = Unremoveable
+ent-ClothingOuterArmorPlateCarrierUnremoveable = пришитый бронежилет
+    .desc =  Серийный бронежилет,  жестоко  пришитый  к  телу  носителя
+    .suffix = Не снимается

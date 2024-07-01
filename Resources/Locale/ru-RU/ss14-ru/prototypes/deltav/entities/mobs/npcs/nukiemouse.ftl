@@ -1,3 +1,3 @@
-ent-MobNukieMouse = nuclear operative mouse
-    .desc = A Nuclear Operative... MOUSE?!
-    .suffix = syndicate
+ent-MobNukieMouse = мышь-оперативник
+    .desc = Оперативник... МЫШЬ?! 
+    .suffix = синдикат

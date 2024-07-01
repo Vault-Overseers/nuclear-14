@@ -1,2 +1,2 @@
-ent-EncryptionKeyPrison = Prison encryption key
-    .desc = An encryption key used by anybody who needs to speak with the prisoners
+ent-EncryptionKeyPrison = ключ шифрования тюрьмы
+    .desc = Ключ шифрования, используемый всеми, кому нужно связаться с заключёнными.

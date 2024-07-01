@@ -1,5 +1,5 @@
-ent-SpareIdCabinet = spare id cabinet
-    .desc = There is a small label that reads "For emergency use only".
+ent-SpareIdCabinet = шкаф с запасными картами доступа
+    .desc = На маленькой этикетке написано "Только для использования в чрезвычайных ситуациях".
 ent-SpareIdCabinetFilled = { ent-SpareIdCabinet }
-    .suffix = Filled
+    .suffix = Заполненный
     .desc = { ent-SpareIdCabinet.desc }

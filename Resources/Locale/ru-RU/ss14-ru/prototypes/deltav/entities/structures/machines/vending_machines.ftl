@@ -1,4 +1,4 @@
-ent-VendingMachinePride = Pride-O-Mat
-    .desc = A vending machine containing crimes.
-ent-VendingMachineCourierDrobe = CourierDrobe
-    .desc = Neither solar flares nor meteors nor plasma fire nor void of space stays these couriers from the swift completion of their appointed rounds.
+ent-VendingMachinePride = Прайд-О-Мат
+    .desc = Автомат, продающий преступления. 
+ent-VendingMachineCourierDrobe = КурьероРоб
+    .desc = Ни солнечные вспышки, ни метеоры, ни плазменные пожары, ни пустота космоса не мешают этим курьерским дронам быстро выполнять свои назначенные маршруты.

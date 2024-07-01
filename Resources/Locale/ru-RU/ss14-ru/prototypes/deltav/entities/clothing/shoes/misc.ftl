@@ -1,2 +1,2 @@
-ent-ClothingShoesMiscWhite = white leather shoes
-    .desc = Impeccably shined white leather shoes. Don't tread on these tootsies.
+ent-ClothingShoesMiscWhite = белые кожаные туфли
+    .desc = Безупречно начищенные белые кожаные туфли.

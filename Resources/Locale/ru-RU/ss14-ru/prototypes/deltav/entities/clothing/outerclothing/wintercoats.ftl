@@ -1,8 +1,8 @@
-ent-ClothingOuterWinterCCWarden = central command's armored winter coat
-    .desc = A tough, utilitarian coat designed for the wardens of Central Command. Reinforced kevlar plating and high quality fur allow the user to look stylish while staying protected.
-ent-ClothingOuterCorporateJacket = Nanotrasen Corporate Jacket
-    .desc = A cozy jacket with the Nanotrasen logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
-ent-ClothingOuterDenimJacket = Denim jacket
-    .desc = A jean jacket with a warm inner lining.
-ent-ClothingOuterStasecSweater = station security sweater
-    .desc = A thick synthetic sweater with reinforced shoulders and elbows, enough to warm even the harshest security officer's cold heart.
+ent-ClothingOuterWinterCCWarden = бронированное зимнее пальто Центрального командования
+    .desc = Прочное, утилитарное пальто, разработанное для надзирателей Центрального командования. Усиленные кевларовые пластины и высококачественный мех позволяют пользователю выглядеть стильно, оставаясь при этом защищенным.
+ent-ClothingOuterCorporateJacket = куртка Nanotrasen
+    .desc = Уютная куртка с логотипом Nanotrasen, напечатанным на спине. Товар, выдаваемый станциям с коэффициентом безопасности, э-э... семь.
+ent-ClothingOuterDenimJacket = джинсовая куртка
+    .desc = Джинсовая куртка с теплой подкладкой.
+ent-ClothingOuterStasecSweater = свитер службы безопасности
+    .desc = Толстый синтетический свитер с усиленными плечами и локтями, достаточно теплый, чтобы согреть даже самое холодное сердце жесткого офицера службы безопасности.

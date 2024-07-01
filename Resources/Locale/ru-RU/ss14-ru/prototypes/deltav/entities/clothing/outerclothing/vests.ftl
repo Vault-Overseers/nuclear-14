@@ -1,4 +1,4 @@
-ent-ClothingOuterVestFlak = flak jacket
-    .desc = A dusty and weathered flak jacket.
-ent-ClothingOuterVestFlakPress = flak jacket (press)
-    .desc = A flak jacket for reporters in wartorn zones.
+ent-ClothingOuterVestFlak = бронежилет
+    .desc = Пыльный и потертый бронежилет.
+ent-ClothingOuterVestFlakPress = бронежилет (пресса)
+    .desc = Бронежилет для репортеров в военных зонах.

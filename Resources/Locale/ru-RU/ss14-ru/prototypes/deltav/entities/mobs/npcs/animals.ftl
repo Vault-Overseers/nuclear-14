@@ -1,4 +1,4 @@
-ent-MobArcticFox = arctic fox
-    .desc = Wears a regal coat of snowy elegance, belying its cold and resourceful nature.
-ent-MobSecDog = security dog
-    .desc = Funnily enough, this pig is actually a dog.
+ent-MobArcticFox = полярная лисица
+    .desc = Носит царственную шубку снежной элегантности, скрывающую ее хладнокровную и изворотливую натуру.
+ent-MobSecDog = охранный пес
+    .desc = Забавно, но эта свинья на самом деле - собака.

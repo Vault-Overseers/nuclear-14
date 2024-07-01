@@ -1,2 +1,2 @@
-ent-FoodMealGrilledCheese = grilled cheese
-    .desc = Two slices of bread cooked in butter with a lofty wedge of cheese in the middle.
+ent-FoodMealGrilledCheese = жареный бутерброд с сыром 
+    .desc = Два кусочка хлеба, обжаренных на масле с щедрой порцией сыра посередине.

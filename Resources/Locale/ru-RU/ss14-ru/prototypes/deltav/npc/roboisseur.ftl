@@ -1,2 +1,2 @@
-ent-Roboisseur = Mr. Butlertron
-    .desc = It asks for food to deliver to exotic customers across the cosmos. Powered by the latest technology in bluespace food delivery.
+ent-Roboisseur = Мистер Батлертрон
+    .desc = Просит еду, чтобы доставить ее экзотическим клиентам по всей вселенной. Работает на основе новейших технологий доставки еды по блюспейс измерению.

@@ -1,2 +1,2 @@
-ent-SyndicateMonitoringServer = suspicious crew monitoring server
-    .desc = Receives and relays the status of all active suit sensors.
+ent-SyndicateMonitoringServer = подозрительный сервер мониторинга экипажа
+    .desc = Получает и передает информацию о состоянии всех активных датчиков костюмов.

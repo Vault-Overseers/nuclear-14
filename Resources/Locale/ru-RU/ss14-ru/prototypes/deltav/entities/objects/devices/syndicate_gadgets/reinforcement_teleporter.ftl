@@ -1,2 +1,2 @@
-ent-ReinforcementRadioSyndicateNukieMouse = suspicious moldy cheese
-    .desc = Moldy cheese with a little worm sticking out of it and a... blinking antenna? Might attract an odd mouse.
+ent-ReinforcementRadioSyndicateNukieMouse = подозрительный заплесневелый сыр 
+    .desc = Заплесневелый сыр с торчащим из него маленьким червячком и... мигающей антенной? Может привлечь странную мышь.
