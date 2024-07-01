@@ -1,8 +1,8 @@
-ent-RandomRockSpawner = Mining Rock Spawner
+ent-RandomRockSpawner = Генератор горных пород
     .desc = { ent-MarkerBase.desc }
-ent-RandomCrystalSpawner = Crystal Spawner
+ent-RandomCrystalSpawner = Генератор кристаллов
     .desc = { ent-MarkerBase.desc }
-ent-RandomWallRockSpawner = Wall Rock Spawner
+ent-RandomWallRockSpawner = Генератор стенных пород
     .desc = { ent-MarkerBase.desc }
-ent-RandomBasaltRockSpawner = Basalt Rock Spawner
+ent-RandomBasaltRockSpawner = Генератор базальтовых пород
     .desc = { ent-MarkerBase.desc }

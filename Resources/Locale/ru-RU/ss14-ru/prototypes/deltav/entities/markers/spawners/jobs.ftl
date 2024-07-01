@@ -1,2 +1,2 @@
-ent-SpawnPointMedicalBorg = medical cyborg
+ent-SpawnPointMedicalBorg = медицинский борг
     .desc = { ent-SpawnPointJobBase.desc }
