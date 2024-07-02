@@ -61,12 +61,31 @@
   color: "#664330"
   physicalDesc: reagent-physical-desc-thick
   plantMetabolism:
-    - !type:PlantAdjustNutrition
-      amount: 2
+  - !type:PlantAdjustNutrition
+    amount: 2
+  - !type:PlantAdjustPests
+    prob: 0.1
+    amount: -1
+  - !type:PlantAdjustHealth
+    amount: 0.1
+  - !type:PlantAffectGrowth
+    prob: 0.2
+    amount: 1
+  - !type:PlantDiethylamine {}
   metabolisms:
-    Food:
+    Poison:
       effects:
-      - !type:SatiateHunger
-        conditions:
-        - !type:OrganType
-          type: Plant
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 1
+      - !type:ChemVomit
+        probability: 0.45
+          
+- type: material
+  id: N14Timber
+  stackEntity: N14FloraLogTimber
+  name: materials-timber
+  icon: { sprite: Nuclear14/Structures/Decoration/flora.rsi, state: tree_timber }
+  color: "#1D3B3E"
+  price: 0.15

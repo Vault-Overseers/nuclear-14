@@ -9,7 +9,7 @@
   physicalDesc: reagent-physical-desc-syrupy
   flavor: syrupy
   color: "#babf4d"
-  
+
 - type: reagent
   parent: BaseDrink
   id: ExtractBananaYucca
@@ -48,7 +48,7 @@
             Brute: -0.1
       - !type:ChemVomit
         probability: 0.1
-        
+
 - type: reagent
   parent: BaseDrink
   id: ExtractBuffaloGourd
@@ -58,7 +58,7 @@
   physicalDesc: reagent-physical-desc-cloudy
   flavor: watermelon
   color: "#f0ff8c"
-        
+
 - type: reagent
   parent: BaseDrink
   id: ExtractCabbage
@@ -73,7 +73,7 @@
       effects:
       - !type:ModifyBloodLevel
         amount: 0.5
-  
+
 - type: reagent
   parent: BaseDrink
   id: ExtractCactusWater #barrel cactus
@@ -82,7 +82,7 @@
   desc: reagent-desc-extract-cactus-water
   physicalDesc: reagent-physical-desc-odorless
   color: "#5f959c"
-  
+
 - type: reagent
   id: ExtractCarrot
   name: reagent-name-extract-carrot
@@ -102,9 +102,9 @@
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.5
-  
+
 # Cave fungus = no reagent
-        
+
 - type: reagent
   id: ExtractCoyoteTobacco
   name: reagent-name-extract-coyote-tobacco
@@ -116,7 +116,7 @@
   plantMetabolism:
   - !type:PlantAdjustHealth
     amount: -5
-    
+
 - type: reagent
   id: ExtractDatura #HeartbreakerToxin
   name: reagent-name-extract-datura
@@ -135,7 +135,7 @@
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: 10
-    
+
 - type: reagent
   parent: BaseDrink
   id: ExtractHoneyMesquitePod
@@ -145,7 +145,7 @@
   physicalDesc: reagent-physical-desc-sugary
   flavor: sweet
   color: "#f0ff8c"
-  
+
 - type: reagent
   parent: BaseDrink
   id: ExtractJalapenoPepper
@@ -155,7 +155,7 @@
   physicalDesc: reagent-physical-desc-spicy
   flavor: spicy
   color: "#d12519"
-  
+
 - type: reagent
   id: ExtractMaize
   name: reagent-name-extract-maize
@@ -172,7 +172,7 @@
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.2
-  
+
 - type: reagent
   parent: BaseDrink
   id: ExtractMutfruit
@@ -182,7 +182,7 @@
   physicalDesc: reagent-physical-desc-pulpy
   flavor: fiber
   color: "#6ab854"
-  
+
 - type: reagent
   parent: BaseDrink
   id: ExtractNettle
@@ -192,7 +192,7 @@
   physicalDesc: reagent-physical-desc-chalky
   flavor: bitter
   color: "#009900"
-  
+
 # No reagent for pinyon...yet?
 
 - type: reagent
@@ -204,7 +204,7 @@
   physicalDesc: reagent-physical-desc-citric
   flavor: fruity
   color: "#6ab854"
-  
+
 - type: reagent
   id: ExtractRazorgrainFlour
   name: reagent-name-extract-razorgrain
@@ -244,8 +244,8 @@
   desc: reagent-desc-extract-tarberries
   physicalDesc: reagent-physical-desc-sugary
   flavor: sweet
-  color: "#2746b8"  
-  
+  color: "#2746b8"
+
 - type: reagent
   parent: BaseDrink
   id: ExtractTato
@@ -255,7 +255,7 @@
   physicalDesc: reagent-physical-desc-starchy
   flavor: savory
   color: "#97a832"
-        
+
 - type: reagent
   id: ExtractWhiteHorsenettle
   name: reagent-name-extract-white-horsenettle
@@ -274,7 +274,7 @@
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: 10
-        
+
 - type: reagent
   id: ExtractXander
   name: reagent-name-extract-xander
@@ -292,3 +292,21 @@
             Brute: -0.1
       - !type:ChemVomit
         probability: 0.1
+
+- type: reagent
+  id: ExtractFungusRad
+  name: reagent-name-extract-fungusrad
+  group: Toxins
+  desc: reagent-desc-extract-fungusrad
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#4eff3b"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1
+            Radiation: 0.5
+      - !type:ChemVomit
+        probability: 0.2

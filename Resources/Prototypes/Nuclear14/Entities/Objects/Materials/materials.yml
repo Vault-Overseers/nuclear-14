@@ -9,7 +9,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      Gunpowder: 100
+      Gunpowder: 10
   - type: Stack
     stackType: Gunpowder
     baseLayer: powder_lead
@@ -22,17 +22,15 @@
   - type: Item
     heldPrefix: powder_lead
   - type: Appearance
+  - type: Extractable
+    grindableSolutionName: gunpowder
   - type: SolutionContainerManager
     solutions:
-      powder:
+      gunpowder:
         reagents:
         - ReagentId: Gunpowder
           Quantity: 10
-  - type: DrainableSolution
-    solution: powder
   - type: ExaminableSolution
-    solution: powder
-  - type: DeleteOnSolutionEmpty
     solution: powder
   - type: Tag
     tags:
@@ -62,7 +60,7 @@
   components:
   - type: PhysicalComposition
     materialComposition:
-      Sulfur: 100
+      Sulfur: 10
   - type: Stack
     stackType: Sulfur
     baseLayer: powder_brass
@@ -75,9 +73,11 @@
   - type: Item
     heldPrefix: powder_brass
   - type: Appearance
+  - type: Extractable
+    grindableSolutionName: sulfur
   - type: SolutionContainerManager
     solutions:
-      powder:
+      sulfur:
         reagents:
         - ReagentId: Sulfur
           Quantity: 10
@@ -97,7 +97,7 @@
   components:
   - type: Stack
     count: 10
-    
+
 - type: entity
   parent: SheetPaper
   id: N14Paper
@@ -128,4 +128,54 @@
   suffix: Single
   components:
   - type: Stack
+    count: 1
+    
+- type: entity
+  parent: BaseItem
+  id: N14Dung
+  name: dung pile
+  description: flip those cowpats for free fertilizer!
+  components:
+  - type: Sprite
+    sprite: /Textures/Nuclear14/Objects/Misc/crafting_material.rsi
+    noRot: true
+    layers:
+      - state: dung
+      - state: dung-flies
+  - type: Perishable
+    rotAfter: 240
+    # don't want it giving off ammonia only bodies
+    molsPerSecondPerUnitMass: 0
+  - type: RotInto
+    entity: N14CompostRotted
+    stage: 1
+# N14:TODO: Add creampie ing but worse and it makes you throw up.
+    
+- type: entity
+  parent: BaseItem
+  id: N14CompostRotted
+  name: compost
+  description: Rotting remains, like a compost. Good for fertilizing.
+  components:
+  - type: Sprite
+    sprite: /Textures/Nuclear14/Objects/Misc/crafting_material.rsi
+    state: compost
+  - type: SolutionContainerManager
+    solutions:
+      dung:
+        maxVol: 25
+        reagents:
+        - ReagentId: Fertilizer
+          Quantity: 25
+  - type: DrainableSolution
+    solution: dung
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
+  - type: DeleteOnSolutionEmpty
+    solution: dung
+  - type: TimedDespawn
+    lifetime: 120 # Absorbs into the ground if you're not quick
+  - type: Material
+  - type: Stack
+    stackType: Compost
     count: 1

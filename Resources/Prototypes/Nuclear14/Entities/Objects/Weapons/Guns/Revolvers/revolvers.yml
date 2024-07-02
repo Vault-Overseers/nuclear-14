@@ -19,7 +19,7 @@
   name: 10mm revolver
   parent: BaseWeaponRevolver
   id: N14WeaponRevolver10mm
-  description: The first prototype for the semiauto 10mm pistol, Uses 10mm.
+  description: The first prototype for the semiauto 10mm pistol, Uses 10mm ammo.
   components:
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/10mmrevolver.rsi
@@ -33,7 +33,7 @@
     proto: N14CartridgePistol10
 
 - type: entity
-  name: Magnum revolver
+  name: magnum revolver
   parent: BaseWeaponRevolver
   id: N14WeaponRevolverMagnun
   description: The Big Iron. Uses .44 magnum ammo.
@@ -42,6 +42,23 @@
     sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/magnum.rsi
   - type: Clothing
     sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/magnum.rsi
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - N14Cartridge44Magnum
+        - SpeedLoader
+    proto: N14Cartridge44Magnum
+
+- type: entity
+  name: captain revolver
+  parent: BaseWeaponRevolver
+  id: N14WeaponRevolverCaptainMagnun
+  description: A true freedom fighter carries his flag everywhere, even on his gun. Uses .44 magnum ammo.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/captainmagnum.rsi
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Guns/Revolvers/captainmagnum.rsi
   - type: RevolverAmmoProvider
     whitelist:
       tags:
