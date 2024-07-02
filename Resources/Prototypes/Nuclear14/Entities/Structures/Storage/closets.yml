@@ -19,6 +19,8 @@
     stateDoorClosed: closet_door
   - type: Transform
     anchored: true
+  - type: Anchorable # Makes the anchoring near impossible due to high time requirement
+    delay: 3600
 
 - type: entity
   parent: N14ClosetBase
@@ -54,14 +56,14 @@
   - type: Weldable
 
 - type: entity
-  parent: [ N14ClosetGrey1, N14BaseLockerTimedStorageFill ]
+  parent: [ N14ClosetGrey1, N14BaseLockerTimedStorageFill, N14TimedStorageFillDomestic ]
   id: N14ClosetGrey1Refilling
-  suffix: Refilling,Random
-  
+  suffix: Refilling,Domestic,Random
+
 - type: entity
-  parent: [ N14ClosetGrey1, N14BaseLockerStorageFill ]
+  parent: [ N14ClosetGrey1, N14BaseLockerStorageFill, N14StorageFillDomestic ]
   id: N14LootClosetGrey1
-  suffix: Loot,Random
+  suffix: Loot,Domestic,Random
 
 - type: entity
   id: N14ClosetGrey2
@@ -71,14 +73,14 @@
     sprite: Nuclear14/Structures/Storage/Closets/closetgrey2.rsi
 
 - type: entity
-  parent: [ N14ClosetGrey2, N14BaseLockerTimedStorageFill ]
+  parent: [ N14ClosetGrey2, N14BaseLockerTimedStorageFill, N14TimedStorageFillDomestic ]
   id: N14ClosetGrey2Refilling
-  suffix: Refilling,Random
-  
+  suffix: Refilling,Domestic,Random
+
 - type: entity
-  parent: [ N14ClosetGrey2, N14BaseLockerStorageFill ]
+  parent: [ N14ClosetGrey2, N14BaseLockerStorageFill, N14StorageFillDomestic ]
   id: N14LootClosetGrey2
-  suffix: Loot,Random
+  suffix: Loot,Domestic,Random
 
 - type: entity
   parent: N14ClosetBaseW
@@ -90,14 +92,14 @@
     sprite: Nuclear14/Structures/Storage/Closets/closetold.rsi
 
 - type: entity
-  parent: [ N14ClosetRusty, N14BaseLockerTimedStorageFill ]
+  parent: [ N14ClosetRusty, N14BaseLockerTimedStorageFill, N14TimedStorageFillDomestic ]
   id: N14ClosetRustyRefilling
-  suffix: Refilling,Random
-  
+  suffix: Refilling,Domestic,Random
+
 - type: entity
-  parent: [ N14ClosetRusty, N14BaseLockerStorageFill ]
+  parent: [ N14ClosetRusty, N14BaseLockerStorageFill, N14StorageFillDomestic ]
   id: N14LootClosetRusty
-  suffix: Loot,Random
+  suffix: Loot,Domestic,Random
 
 - type: entity
   parent: N14ClosetBaseW
@@ -109,14 +111,14 @@
     sprite: Nuclear14/Structures/Storage/Closets/guncabinet.rsi
 
 - type: entity
-  parent: [ N14ClosetGunCabinet, N14BaseLockerTimedStorageFill ]
+  parent: [ N14ClosetGunCabinet, N14BaseLockerTimedStorageFill, N14BaseMilitaryTimedStorageFill ]
   id: N14ClosetGunCabinetRefilling
-  suffix: Refilling,Random
-  
+  suffix: Refilling,Military,Random
+
 - type: entity
-  parent: [ N14ClosetGunCabinet, N14BaseLockerStorageFill ]
+  parent: [ N14ClosetGunCabinet, N14BaseLockerStorageFill, N14StorageFillDomestic ]
   id: N14LootClosetGunCabinet
-  suffix: Loot,Random
+  suffix: Loot,Domestic,Random
 
 - type: entity
   parent: N14ClosetBaseW
@@ -151,14 +153,14 @@
         - MachineLayer
 
 - type: entity
-  parent: [ N14ClosetDouble, N14BaseLockerTimedStorageFill ]
+  parent: [ N14ClosetDouble, N14BaseLockerTimedStorageFill, N14TimedStorageFillDomestic ]
   id: N14ClosetDoubleRefilling
-  suffix: Refilling,Random
-  
+  suffix: Refilling,Domestic,Random
+
 - type: entity
-  parent: [ N14ClosetDouble, N14BaseLockerStorageFill ]
+  parent: [ N14ClosetDouble, N14BaseLockerStorageFill, N14StorageFillDomestic ]
   id: N14LootClosetDouble
-  suffix: Loot,Random
+  suffix: Loot,Domestic,Random
 
 # Wooden Closets
 
@@ -194,14 +196,14 @@
     - Wooden
 
 - type: entity
-  parent: [ N14ClosetCabinetWood, N14BaseLockerTimedStorageFill ]
+  parent: [ N14ClosetCabinetWood, N14BaseLockerTimedStorageFill, N14TimedStorageFillDomestic ]
   id: N14ClosetCabinetWoodRefilling
-  suffix: Refilling,Random
-  
+  suffix: Refilling,Domestic,Random
+
 - type: entity
-  parent: [ N14ClosetCabinetWood, N14BaseLockerStorageFill ]
+  parent: [ N14ClosetCabinetWood, N14BaseLockerStorageFill, N14StorageFillDomestic ]
   id: N14LootClosetCabinetWood
-  suffix: Loot,Random
+  suffix: Loot,Domestic,Random
 
 - type: entity
   parent: N14ClosetBaseW
@@ -277,3 +279,13 @@
           SheetSteel1:
             min: 1
             max: 1
+
+- type: entity
+  parent: [ N14ClosetWallMedicabinet, N14TimedStorageFillMedical ]
+  id: N14ClosetWallMedicabinetRefilling
+  suffix: Refilling,Medical,Random
+
+- type: entity
+  parent: [ N14ClosetWallMedicabinet, N14StorageFillMedical ]
+  id: N14LootClosetWallMedicabinet
+  suffix: Loot,Medical,Random
