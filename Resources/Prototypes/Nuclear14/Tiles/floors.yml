@@ -1600,28 +1600,45 @@
 - type: tile
   id: FloorDirtNew
   name: dirt
-  sprite: /Textures/Nuclear14/Tiles/dirt.png
-  variants: 1
-  baseTurf: space
+  sprite: /Textures/Nuclear14/Tiles/Dirt/dirt.png
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Nuclear14/Tiles/Dirt/single_edge_SE.png
+    NorthEast: /Textures/Nuclear14/Tiles/Dirt/single_edge_NE.png
+    NorthWest: /Textures/Nuclear14/Tiles/Dirt/single_edge_NW.png
+    SouthWest: /Textures/Nuclear14/Tiles/Dirt/single_edge_SW.png
+    South: /Textures/Nuclear14/Tiles/Dirt/double_edge_S.png
+    East: /Textures/Nuclear14/Tiles/Dirt/double_edge_E.png
+    North: /Textures/Nuclear14/Tiles/Dirt/double_edge_N.png
+    West: /Textures/Nuclear14/Tiles/Dirt/double_edge_W.png
+  # baseTurf: FloorBase
   isSubfloor: true
   footstepSounds:
     collection: FootstepAsteroid
-  friction: 0.30
-  thermalConductivity: 0.04
   heatCapacity: 10000
+  weather: true
   
 - type: tile
   id: FloorRubble
   name: rubble
-  sprite: /Textures/Nuclear14/Tiles/rubble.png
+  sprite: /Textures/Nuclear14/Tiles/Rubble/rubble.png
   variants: 4
-  baseTurf: space
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Nuclear14/Tiles/Rubble/single_edge_SE.png
+    NorthEast: /Textures/Nuclear14/Tiles/Rubble/single_edge_NE.png
+    NorthWest: /Textures/Nuclear14/Tiles/Rubble/single_edge_NW.png
+    SouthWest: /Textures/Nuclear14/Tiles/Rubble/single_edge_SW.png
+    South: /Textures/Nuclear14/Tiles/Rubble/double_edge_S.png
+    East: /Textures/Nuclear14/Tiles/Rubble/double_edge_E.png
+    North: /Textures/Nuclear14/Tiles/Rubble/double_edge_N.png
+    West: /Textures/Nuclear14/Tiles/Rubble/double_edge_W.png
+  # baseTurf: FloorBase
   isSubfloor: true
   footstepSounds:
     collection: FootstepAsteroid
-  friction: 0.30
-  thermalConductivity: 0.04
   heatCapacity: 10000
+  weather: true
 
 #  Water
 - type: tile
