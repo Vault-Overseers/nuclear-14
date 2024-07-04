@@ -22,6 +22,11 @@
     currentTemperature: 290
   - type: InternalTemperature
     conductivity: 0.43
+  - type: Perishable
+    # raw meat rots in 15 minutes, get it into the freezer fast or preserve it.
+    rotAfter: 900
+    # don't want meat giving off ammonia only bodies
+    molsPerSecondPerUnitMass: 0
 
 # Use tags for Raw, Cooked and Cutlet
 
