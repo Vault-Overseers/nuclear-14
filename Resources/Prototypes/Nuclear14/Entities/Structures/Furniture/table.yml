@@ -219,12 +219,13 @@
   - type: Sprite
     sprite: Nuclear14/Structures/Furniture/Tables/desks.rsi
     state: desk_metal
+    offset: 0.5, 0
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
-            bounds: "-0.95,-0.45,0.95,0.45"
+            bounds: "-0.35,0,1.35,0.45"
         density: 55
         mask: # tables should collide with other tables
         - TableMask
@@ -257,12 +258,13 @@
   - type: Sprite
     sprite: Nuclear14/Structures/Furniture/Tables/desks.rsi
     state: desk_wood
+    offset: 0.5, 0
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
-            bounds: "-0.95,-0.45,0.95,0.45"
+            bounds: "-0,0,1,0.45"
         density: 55
         mask: # tables should collide with other tables
         - TableMask
@@ -295,18 +297,10 @@
   components:
   - type: Sprite
     sprite: Nuclear14/Structures/Furniture/64x64_furniture.rsi
-    state: table_cards
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-            bounds: "-0.75,-0.45,0.75,0"
-        density: 55
-        mask: # tables should collide with other tables
-        - TableMask
-        layer:
-        - TableLayer
+    layers:
+    - state: table_cards1
+    - state: table_cards2
+      # drawdepth: OverMobs
 
 - type: entity
   parent: N14TableCasinoCards

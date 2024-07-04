@@ -2,9 +2,10 @@
 
 - type: entity
   parent: BaseGenerator
-  id: N14GeneratorFusioncore
+  id: N14GeneratorBase
+  abstract: true
   description: A generator that uses expendable fusion cores.
-  name: fusion core generator
+  name: generator
   components:
   - type: Fixtures
     fixtures:
@@ -41,15 +42,42 @@
     color: "#B4FCF0"
   - type: Explosive # lowered this to stop spacing on current map.
     explosionType: Minibomb
-    totalIntensity: 100
-    intensitySlope: 1
-    maxIntensity: 150
+    totalIntensity: 200
+    intensitySlope: 2
+    maxIntensity: 200
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: StructuralMetallic
 
 - type: entity
-  parent: N14GeneratorFusioncore
+  parent: N14GeneratorBase
+  id: N14GeneratorFusioncore
+  description: A generator that uses expendable fusion cores.
+  name: fusion core generator
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.2,-0.2,1.2,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Nuclear14/Structures/Power/fusion_generator.rsi
+    offset: 0.5, 0
+    layers:
+    - state: fusion_generator
+    - state: fusion_generator_buttons # TODO: Tie to visualiser for lit and core status?
+      shader: unshaded
+    - state: fusion_generator_core
+      shader: unshaded
+
+- type: entity
+  parent: N14GeneratorBase
   id: N14GeneratorFusionMini
   description: A generator that uses heavy water for fusion power.
   name: mini fusion generator
@@ -158,6 +186,17 @@
     - state: generator_off
     - state: generator_on
     offset: 0.5, 0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.3,-0.2,1,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
 
 - type: entity
   parent: N14GeneratorPrewar
@@ -172,7 +211,7 @@
     - state: generator_uranium
 
 - type: entity
-  parent: BaseGenerator
+  parent: N14GeneratorBase
   id: N14GeneratorVaultTecReactor
   description: A fusion reactor built by vault-tec.
   name: vault-tec reactor

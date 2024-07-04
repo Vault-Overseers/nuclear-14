@@ -5,3 +5,27 @@
   - type: Construction
     graph: N14Bonfire
     node: bonfire
+  - type: EntityHeater
+  - type: ApcPowerReceiver
+    powerLoad: 0 
+    needsPower: false
+  - type: ItemPlacer
+    maxEntities: 4 # big grill, many steaks
+    whitelist:
+      components:
+      - Temperature
+  - type: PlaceableSurface
+  - type: ExtensionCableReceiver
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.08,-0.35,0.15,0.25"
+        mask:
+        - TabletopMachineMask
+        layer:
+        - Impassable
+        - MidImpassable
+        - LowImpassable
+        hard: false
