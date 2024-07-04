@@ -7,16 +7,12 @@
   - type: Item
     size: Small
   - type: AmmoCounter
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -34
-    maxAngle: -63
   - type: Gun
     minAngle: 35
     maxAngle: 65
     angleIncrease: 4
     angleDecay: 16    
-    fireRate: 2
+    fireRate: 1
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -99,7 +95,7 @@
           tags:
             - N14PowerCellHigh
   - type: Gun 
-    fireRate: 3
+    fireRate: 1
 
 - type: entity
   name: plasma pistol
@@ -141,6 +137,10 @@
   id: N14WeaponLaserRifle
   description: A highly advanced laser rifle.
   components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
     layers:
@@ -151,6 +151,10 @@
       shader: unshaded
   - type: Clothing
     sprite: Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -166,7 +170,7 @@
           tags:
             - N14PowerCellHigh
   - type: Gun 
-    fireRate: 3
+    fireRate: 2
 
 - type: entity
   name: plasma rifle
@@ -174,6 +178,10 @@
   id: N14WeaponPlasmaRifle
   description: A highly advanced plasma rifle.
   components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle.rsi
     layers:
@@ -184,6 +192,10 @@
       shader: unshaded
   - type: Clothing
     sprite: Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -209,6 +221,10 @@
   id: N14WeaponUrbanPlasmaRifle
   description: A mass produced pre war plasma rifle designed for close quarters combat in urban environments.
   components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Battery/plasma_urban.rsi
     layers:
@@ -219,6 +235,10 @@
       shader: unshaded
   - type: Clothing
     sprite: Nuclear14/Objects/Weapons/Guns/Battery/plasma_urban.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -243,6 +263,10 @@
   id: N14WeaponMultiplas
   description: A modified urban plasma rifle, it spreads the plasma into multiple projectiles but sacrifices accuracy.
   components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
   - type: Sprite
     sprite: Nuclear14/Objects/Weapons/Guns/Battery/multiplas.rsi
     layers:
@@ -253,6 +277,10 @@
       shader: unshaded
   - type: Clothing
     sprite: Nuclear14/Objects/Weapons/Guns/Battery/multiplas.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: ItemSlots
     slots:
       gun_magazine:
