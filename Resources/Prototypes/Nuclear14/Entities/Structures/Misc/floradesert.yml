@@ -56,3 +56,59 @@
   components:
   - type: Sprite
     state: joshua_4
+    
+- type: entity
+  parent: N14FloraDesertCactus
+  id: N14FloraTreeBald
+  name: bald tree
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/trees-ms.rsi
+    state: bald
+    
+- type: entity
+  parent: N14FloraTreeBald
+  id: N14FloraTreePine
+  name: pine tree
+  components:
+  - type: Sprite
+    layers:
+    - state: pine_1
+      map: [ "tree" ]
+  - type: RandomSprite
+    available:
+      - tree:
+          pine_1: ""
+          pine_1_alt: ""
+          
+- type: entity
+  parent: N14FloraTreeBald
+  id: N14FloraTreeDead1
+  name: dead tree
+  components:
+  - type: Sprite
+    layers:
+    - state: dead_tree1
+      map: [ "tree" ]
+  - type: RandomSprite
+    available:
+      - tree:
+          dead_tree1: ""
+          dead_tree2: ""
+          dead_tree3: ""
+          
+- type: entity
+  parent: N14FloraTreeDead1
+  id: N14FloraTreeDead2
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Structures/Misc/trees-dead.rsi
+    layers:
+    - state: tree_1
+      map: [ "tree" ]
+  - type: RandomSprite
+    available:
+      - tree:
+          tree_1: ""
+          tree_2: ""
+          tree_3: ""

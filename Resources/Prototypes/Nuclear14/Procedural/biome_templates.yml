@@ -6,6 +6,7 @@
     - !type:BiomeDecalLayer
       allowedTiles:
         - FloorWasteland
+        - FloorDirtNew
       divisions: 2
       threshold: -0.50
       noise:
@@ -58,6 +59,7 @@
     - !type:BiomeDecalLayer
       allowedTiles:
         - FloorWasteland
+        - FloorDirtNew
       divisions: 1
       threshold: -0.15
       noise:
@@ -90,6 +92,7 @@
     - !type:BiomeDecalLayer
       allowedTiles:
         - FloorWasteland
+        - FloorDirtNew
       divisions: 1
       threshold: -0.0
       noise:
@@ -111,6 +114,7 @@
     - !type:BiomeDecalLayer
       allowedTiles:
         - FloorWasteland
+        - FloorDirtNew
       divisions: 1
       threshold: -0.0
       noise:
@@ -202,6 +206,47 @@
         - SpawnPointWave
         - N14FloraLog1
         - N14FloraLog3
+    - !type:BiomeEntityLayer
+      threshold: 0.7
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        frequency: 2
+      allowedTiles:
+        - FloorDirtNew
+      entities:
+        - N14FloraTreeBald
+        - N14FloraTreePine
+        - N14FloraTreeDead1
+        - N14FloraTreeDead2
+        - N14WastelandFloraWildTato
+        - N14WastelandFloraWildXander
+        - N14WastelandFloraWildBuffaloGourd
+        - N14WastelandFloraWildBroc
+        - N14WastelandFloraWildCotton
+        - N14WastelandFloraWildMutfruit
+        - N14WastelandFloraWildPinyon
+        - FloraTreeStump
+        - FloraRockSolid01
+        - FloraRockSolid02
+        - FloraRockSolid03
+        - N14FloraLog1
+        - N14FloraLog3
+    - !type:BiomeEntityLayer
+      threshold: 0.5
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        frequency: 4
+      allowedTiles:
+        - FloorDirtNew
+      entities:
+        - N14FloraTreeBald
+        - N14FloraTreePine
+        - N14FloraTreeDead1
+        - N14FloraTreeDead2
     # Loot Things. Split later into junk lootable/growing gatherable
     # - !type:BiomeEntityLayer
       # threshold: 0.8
@@ -248,8 +293,15 @@
       threshold: -1.0
       tile: FloorWasteland
     - !type:BiomeTileLayer
-      threshold: -0.50
-      tile: FloorWasteland
+      threshold: 0.6
+      tile: FloorDirtNew
+      noise:
+        seed: 0
+        frequency: 0.02
+        fractalType: None
+    - !type:BiomeTileLayer
+      threshold: 0.9
+      tile: WaterRiver
       noise:
         seed: 0
         frequency: 0.02
