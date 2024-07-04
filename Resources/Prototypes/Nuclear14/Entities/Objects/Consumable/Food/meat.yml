@@ -1,6 +1,6 @@
 # Base
 - type: entity
-  parent: FoodMeatRawBase
+  parent: FoodMeat
   id: N14FoodMeatBase
   abstract: true
   components:
@@ -20,6 +20,13 @@
           Quantity: 1
   - type: Temperature
     currentTemperature: 290
+  - type: InternalTemperature
+    conductivity: 0.43
+  - type: Perishable
+    # raw meat rots in 15 minutes, get it into the freezer fast or preserve it.
+    rotAfter: 900
+    # don't want meat giving off ammonia only bodies
+    molsPerSecondPerUnitMass: 0
 
 # Use tags for Raw, Cooked and Cutlet
 
@@ -286,7 +293,7 @@
   - type: Construction
     graph: MeatSteakBrahmin
     node: start
-    defaultTarget: SteakBrahmin
+    defaultTarget: SteakCooked
 
 - type: entity
   name: cooked bighorner steak
@@ -303,7 +310,7 @@
   - type: Construction
     graph: MeatSteakBighorner
     node: start
-    defaultTarget: SteakBighorner
+    defaultTarget: SteakCooked
 
 - type: entity
   name: cooked radstag steak
@@ -320,7 +327,7 @@
   - type: Construction
     graph: MeatSteakRadstag
     node: start
-    defaultTarget: SteakRadstag
+    defaultTarget: SteakCooked
 
 - type: entity
   name: cooked yao-guai steak
@@ -500,8 +507,8 @@
 # Cutlets
 # Raw
 - type: entity
-  name: raw Rad cutlet
-  parent: FoodMeatBase
+  name: raw rad cutlet
+  parent: N14FoodMeatBase
   id: N14FoodMeatRadCutlet
   description: A raw meat cutlet from a wasteland animal.
   components:
