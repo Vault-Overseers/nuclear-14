@@ -13,8 +13,10 @@ public abstract partial class SharedPuddleSystem
     private const string WaterIrradiated = "WaterIrradiated";
     [ValidatePrototypeId<ReagentPrototype>]
     private const string WastelandBlood = "WastelandBlood";
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string Blood = "Blood";
 
-    public static readonly string[] EvaporationReagents = [Water, WaterDirty, WaterIrradiated, WastelandBlood];
+    public static readonly string[] EvaporationReagents = [Water, WaterDirty, WaterIrradiated, WastelandBlood, Blood];
 
     public bool CanFullyEvaporate(Solution solution)
     {
