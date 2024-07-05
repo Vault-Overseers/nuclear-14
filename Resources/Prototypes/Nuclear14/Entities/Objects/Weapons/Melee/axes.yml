@@ -1,0 +1,91 @@
+- type: entity
+  name: hatchet
+  parent: BaseItem
+  id: N14Hatchet
+  description: A tool that is just as useful as a weapon. Used for chopping things.
+  components:
+  - type: Tag
+    tags:
+    - BotanyHatchet
+    - Axe
+  - type: Sharp
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Melee/hatchet.rsi
+    state: icon
+    netsync: false
+  - type: UseDelay
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 10
+        Piercing: 5
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Melee/hatchet.rsi
+    size: Normal
+
+- type: entity
+  name: tribal hatchet
+  parent: N14Hatchet
+  id: N14TribalHatchet
+  description: A tool that is just as useful as a weapon. Used for chopping things.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Melee/tribalhatchet.rsi
+    state: icon
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Melee/tribalhatchet.rsi
+    
+- type: entity
+  name: axe
+  parent: BaseItem
+  id: N14BaseAxe
+  description: A heavy wood axe, classic tool and weapon.
+  components:
+  - type: Tag
+    tags:
+    - FireAxe
+  - type: Sharp
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Melee/axe.rsi
+    state: icon
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        # axes are kinda like sharp hammers, you know?
+        Blunt: 5
+        Slash: 5
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 2
+        Slash: 18
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Melee/axe.rsi
+    quickEquip: false
+    slots:
+    - back
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Melee/axe.rsi
+    size: Huge
+    
+- type: entity
+  name: fireaxe
+  parent: N14BaseAxe
+  id: N14FireAxe
+  description: Truly, the weapon of a madman. Who would think to fight fire with an axe?
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Melee/fireaxe.rsi
+    state: icon
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Melee/fireaxe.rsi
+    quickEquip: false
+    slots:
+    - back
+  - type: Tool
+    qualities:
+      - Prying
+  - type: ToolTileCompatible
+  - type: Prying
