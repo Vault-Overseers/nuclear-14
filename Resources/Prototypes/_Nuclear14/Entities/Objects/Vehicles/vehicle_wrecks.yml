@@ -1,0 +1,67 @@
+- type: entity
+  parent: BaseStructure
+  id: N14VehicleBikeRust1
+  name: rusted bike
+  description: Cool bike if it wasn't rusted and missing wheels.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Vehicles/bikesbuggy.rsi
+    state: bike_rust_med_no_wheels
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.8,-1,-0.4,1"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+            
+- type: entity
+  parent: N14VehicleBikeRust1
+  id: N14VehicleCarWreck
+  name: wrecked car
+  description: Cool bike if it wasn't rusted and missing wheels.
+  components:
+  - type: Sprite
+    state: derelict
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,-1,0.2,1"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable

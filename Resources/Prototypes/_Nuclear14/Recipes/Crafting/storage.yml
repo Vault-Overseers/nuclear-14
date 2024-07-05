@@ -1,0 +1,161 @@
+# Sacks
+- type: construction
+  name: sack
+  id: N14Sack
+  graph: N14Sack
+  startNode: start
+  targetNode: sack
+  category: construction-category-storage
+  description: A sack for storing things.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
+    state: daesack
+  objectType: Item
+  
+- type: constructionGraph
+  id: N14Sack
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: sack
+          steps:
+            - material: Cloth
+              amount: 3
+              doAfter: 3
+           
+    - node: sack
+      entity: N14Sack
+      edges:
+        - to: start
+          steps:
+            - tool: Cutting
+              doAfter: 3
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+            - !type:EmptyAllContainers
+            - !type:DeleteEntity
+
+- type: construction
+  name: sack compost
+  id: N14SackCompost
+  graph: N14SackCompost
+  startNode: start
+  targetNode: sack
+  category: construction-category-storage
+  description: A sack for storing compost.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
+    state: daesack3
+  objectType: Item
+  
+- type: constructionGraph
+  id: N14SackCompost
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: sack
+          steps:
+            - material: Cloth
+              amount: 3
+              doAfter: 3
+           
+    - node: sack
+      entity: N14SackCompost
+      edges:
+        - to: start
+          steps:
+            - tool: Cutting
+              doAfter: 3
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+            - !type:EmptyAllContainers
+            - !type:DeleteEntity
+            
+- type: construction
+  name: sack fertilizer
+  id: N14SackFertilizer
+  graph: N14SackFertilizer
+  startNode: start
+  targetNode: sack
+  category: construction-category-storage
+  description: A sack for storing compost.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
+    state: daesack2
+  objectType: Item
+  
+- type: constructionGraph
+  id: N14SackFertilizer
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: sack
+          steps:
+            - material: Cloth
+              amount: 3
+              doAfter: 3
+           
+    - node: sack
+      entity: N14SackFertilizer
+      edges:
+        - to: start
+          steps:
+            - tool: Cutting
+              doAfter: 3
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+            - !type:EmptyAllContainers
+            - !type:DeleteEntity
+
+# Wallet
+- type: construction
+  name: wallet
+  id: N14Wallet
+  graph: N14Wallet
+  startNode: start
+  targetNode: wallet
+  category: construction-category-storage
+  description: A wallet for storing all your hard earned money.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Objects/Misc/storage.rsi
+    state: wallet
+  objectType: Item
+  
+- type: constructionGraph
+  id: N14Wallet
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: wallet
+          steps:
+            - material: Cloth 
+              amount: 3
+              doAfter: 3
+           
+    - node: wallet
+      entity: N14Wallet
+      edges:
+        - to: start
+          steps:
+            - tool: Cutting
+              doAfter: 3
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+            - !type:EmptyAllContainers
+            - !type:DeleteEntity

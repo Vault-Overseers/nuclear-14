@@ -1,0 +1,26 @@
+- type: job
+  id: CaravanTrader
+  setPreference: true
+  name: job-name-caravan-trader
+  description: job-description-caravan-trader
+  playTimeTracker: CaravanTrader
+  startingGear: CaravanTraderGear
+  icon: "JobIconCargoTechnician"
+  supervisors: job-supervisors-caravan
+  access:
+  - CaravanCompanyTrader
+  - CaravanCompanyGuard
+
+- type: startingGear
+  id: CaravanTraderGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitTrader
+    back: N14ClothingBackpackCaravanTraderFilled
+    shoes: N14ClothingBootsLeather
+    id: N14IDPassportCaravan
+  innerClothingSkirt: N14ClothingUniformJumpsuitTrader #placeholder
+  satchel: N14ClothingBackpackSatchelCaravanFilled
+  duffelbag: N14ClothingBackpackDuffelCaravanFilled
+
+- type: playTimeTracker
+  id: CaravanTrader

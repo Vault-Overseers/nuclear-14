@@ -1,0 +1,181 @@
+# See specific/hydroponics for fertilizer.
+
+- type: entity
+  parent: BaseItem
+  id: Gunpowder
+  name: gunpowder
+  suffix: Full, 100
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Gunpowder: 10
+  - type: Stack
+    stackType: Gunpowder
+    baseLayer: powder_lead
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: powder_lead
+    layers:
+    - state: powder_lead
+      map: ["base"]
+  - type: Item
+    heldPrefix: powder_lead
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: gunpowder
+  - type: SolutionContainerManager
+    solutions:
+      gunpowder:
+        reagents:
+        - ReagentId: Gunpowder
+          Quantity: 10
+  - type: ExaminableSolution
+    solution: powder
+  - type: Tag
+    tags:
+      - RawMaterial
+
+- type: entity
+  parent: Gunpowder
+  id: Gunpowder1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: Gunpowder
+  id: Gunpowder10
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: Gunpowder
+  id: SulfurPowder
+  name: sulfur
+  suffix: Full, 100
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Sulfur: 10
+  - type: Stack
+    stackType: Sulfur
+    baseLayer: powder_brass
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: powder_brass
+    layers:
+    - state: powder_brass
+      map: ["base"]
+  - type: Item
+    heldPrefix: powder_brass
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: sulfur
+  - type: SolutionContainerManager
+    solutions:
+      sulfur:
+        reagents:
+        - ReagentId: Sulfur
+          Quantity: 10
+
+- type: entity
+  parent: SulfurPowder
+  id: SulfurPowder1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: SulfurPowder
+  id: SulfurPowder10
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: SheetPaper
+  id: N14Paper
+  name: paper
+  suffix: 10
+  components:
+  - type: Stack
+    stackType: N14Paper
+    count: 10
+    baseLayer: base
+    layerStates:
+    - paper
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/clutter.rsi
+    state: paper
+    layers:
+    - state: paper
+      map: ["base"]
+  - type: Item
+    heldPrefix: paper
+  - type: Construction
+    graph: N14Paper
+    node: paper
+
+- type: entity
+  parent: N14Paper
+  id: N14Paper1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+    
+- type: entity
+  parent: BaseItem
+  id: N14Dung
+  name: dung pile
+  description: flip those cowpats for free fertilizer!
+  components:
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/crafting_material.rsi
+    noRot: true
+    layers:
+      - state: dung
+      - state: dung-flies
+  - type: Perishable
+    rotAfter: 240
+    # don't want it giving off ammonia only bodies
+    molsPerSecondPerUnitMass: 0
+  - type: RotInto
+    entity: N14CompostRotted
+    stage: 1
+# N14:TODO: Add creampie ing but worse and it makes you throw up.
+    
+- type: entity
+  parent: BaseItem
+  id: N14CompostRotted
+  name: compost
+  description: Rotting remains, like a compost. Good for fertilizing.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/crafting_material.rsi
+    state: compost
+  - type: SolutionContainerManager
+    solutions:
+      dung:
+        maxVol: 25
+        reagents:
+        - ReagentId: Fertilizer
+          Quantity: 25
+  - type: DrainableSolution
+    solution: dung
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
+  - type: DeleteOnSolutionEmpty
+    solution: dung
+  - type: TimedDespawn
+    lifetime: 120 # Absorbs into the ground if you're not quick
+  - type: Material
+  - type: Stack
+    stackType: Compost
+    count: 1
