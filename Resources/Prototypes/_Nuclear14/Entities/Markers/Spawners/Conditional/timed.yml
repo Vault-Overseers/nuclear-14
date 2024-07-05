@@ -15,7 +15,7 @@
       prototypes:
         - N14MobMolerat
       chance: 0.65
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
 
@@ -35,7 +35,7 @@
       prototypes:
         - N14MobDogFeral
       chance: 0.65
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
 
@@ -55,7 +55,7 @@
       prototypes:
         - N14MobGecko
       chance: 0.65
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
 
@@ -75,7 +75,7 @@
       prototypes:
         - N14MobNightstalkerCub
       chance: 0.65
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
@@ -95,7 +95,7 @@
       prototypes:
         - N14MobNightstalker
       chance: 0.65
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
@@ -115,7 +115,7 @@
       prototypes:
         - N14MobYaoguai
       chance: 0.75
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
 
@@ -135,7 +135,7 @@
       prototypes:
         - N14MobDeathclaw
       chance: 0.75
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
 
@@ -155,7 +155,7 @@
       prototypes:
         - N14MobDeathclawAlbino
       chance: 0.75
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
 
@@ -175,7 +175,7 @@
       prototypes:
         - N14MobDeathclawMetal
       chance: 0.65
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
 
@@ -197,7 +197,7 @@
       prototypes:
         - N14MobBloatfly
       chance: 0.75
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 4
 
@@ -217,14 +217,14 @@
       prototypes:
         - N14MobCazador
       chance: 0.75
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerAnt
-  name: Ant Timed Spawner
+  name: Fireant Timed Spawner
   components:
     - type: Sprite
       layers:
@@ -237,7 +237,7 @@
       prototypes:
         - N14MobGiantAnt
       chance: 0.75
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
@@ -257,7 +257,7 @@
       prototypes:
         - N14MobGiantFireAnt
       chance: 0.75
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
@@ -277,7 +277,7 @@
       prototypes:
         - N14MobRadroach
       chance: 0.75
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 4
 
@@ -297,7 +297,7 @@
       prototypes:
         - N14MobRadscorpion
       chance: 0.75
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
@@ -317,7 +317,7 @@
       prototypes:
         - N14MobRadscorpionBark
       chance: 0.75
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
@@ -338,7 +338,7 @@
       prototypes:
         - N14MobBrahmin
       chance: 0.95
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
 
@@ -358,7 +358,7 @@
       prototypes:
         - N14MobBighorner
       chance: 0.95
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
 
@@ -378,86 +378,6 @@
       prototypes:
         - N14MobRadstag
       chance: 0.95
-      intervalSeconds: 2400
+      intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
-
-- type: entity
-  parent: N14TimedSpawnerMolerat
-  id: N14TimedSpawnerChicken
-  name: Chicken Timed Spawner
-  components:
-    - type: Sprite
-      layers:
-        - state: blue
-        - sprite: _Nuclear14/Mobs/Animals/chicken.rsi
-          state: chicken
-        - state: timed
-    - type: Timer
-    - type: TimedSpawner
-      prototypes:
-        - N14MobChicken
-      chance: 0.95
-      intervalSeconds: 2400
-      minimumEntitiesSpawned: 1
-      maximumEntitiesSpawned: 3
-      
-- type: entity
-  name: Raider Ranged Psycho Timed Spawner
-  id: N14TimedSpawnerMobRaiderPsychoRanged
-  parent: N14TimedSpawnerMolerat
-  components:
-  - type: Sprite
-    layers:
-      - state: blue
-      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
-        state: raider_ranged
-      - state: timed
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-      - N14MobRaiderPsychoRanged
-    chance: 0.95
-    intervalSeconds: 2400
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 2
-
-- type: entity
-  name: Raider Psycho Boss Timed Spawner
-  id: N14TimedSpawnerMobRaiderBoss
-  parent: N14TimedSpawnerMolerat
-  components:
-  - type: Sprite
-    layers:
-      - state: blue
-      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
-        state: raiderboss
-      - state: timed
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-      - N14MobRaiderBoss
-    chance: 0.95
-    intervalSeconds: 2400
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-
-- type: entity
-  name: Raider Psycho Timed Spawner
-  id: N14TimedSpawnerMobRaiderPsycho
-  parent: N14TimedSpawnerMolerat
-  components:
-  - type: Sprite
-    layers:
-      - state: blue
-      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/RaiderPsycho.rsi
-        state: raider_melee
-      - state: timed
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-      - N14MobRaiderPsycho
-    chance: 0.95
-    intervalSeconds: 2400
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 3
