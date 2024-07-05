@@ -1,0 +1,78 @@
+- type: entity
+  parent: BaseMaterialDoorNavMap
+  id: N14DoorMetalBlueTall
+  name: metal Door
+  suffix: tall
+  description: An old blue metal door.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Nuclear14/Structures/Doors/TallDoors/metalblue.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    bumpOpen: false
+    clickOpen: true
+    closeTimeOne: 0
+    closeTimeTwo: 0
+    openTimeOne: 0
+    openTimeTwo: 0
+    closedDrawDepth: Mobs
+    openDrawDepth: Mobs
+    openSound:
+      path: /Audio/Effects/door_open.ogg
+    closeSound:
+      path: /Audio/Effects/door_close.ogg
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  # - type: Lock
+    # locked: true
+    # lockSlotId: lock_slot
+  # - type: ItemSlots
+    # slots: 
+      # lock_slot:
+        # name: cp-lock-slot-component-slot-name-default
+        # disableEject: true
+        # insertOnInteract: false
+        # ejectOnBreak: true
+        # whitelist:
+          # components:
+          # - CPLock
+  # - type: ContainerContainer
+    # containers:
+      # lock_slot: !type:ContainerSlot
+
+# - type: entity
+  # parent: CP14BaseWoodDoor
+  # id: CP14WoodDoorOpened
+  # suffix: Opened
+  # components:
+  # - type: Lock
+    # locked: false
+
+# - type: entity
+  # parent: CP14BaseWoodDoor
+  # id: CP14WoodDoorTavern
+  # suffix: Tavern
+  # components:
+  # - type: ItemSlots
+    # slots: 
+      # lock_slot:
+        # name: cp-lock-slot-component-slot-name-default
+        # startingItem: CP14LockTavern
+        # disableEject: true
+        # insertOnInteract: false
+        # ejectOnBreak: true
+        # whitelist:
+          # components:
+          # - CPLock

@@ -1,0 +1,384 @@
+# Base 50 units
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: DrinkBottleBaseFull50
+  abstract: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+
+# Milk
+# Empty Bottle
+- type: entity
+  parent: DrinkBottleBaseFull50
+  id: N14DrinkBottleMilkEmpty
+  name: milk bottle
+  description: Looks good at holding milky substances.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi # N14TODO:SPRITE: Change this
+
+- type: entity
+  parent: N14DrinkBottleMilkEmpty
+  id: N14DrinkMilkBrahmin
+  name: brahmin milk
+  description: The glass bottle of brahmin milk.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14MilkBrahmin
+          Quantity: 50
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi # N14TODO:SPRITE: Change this
+
+- type: entity
+  parent: N14DrinkMilkBrahmin
+  id: N14DrinkMilkBighorner
+  name: bighorner milk
+  description: The glass bottle of bighorner milk.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14MilkBighorner
+          Quantity: 50
+
+- type: entity
+  parent: N14DrinkMilkBrahmin
+  id: N14DrinkMilkRadstag
+  name: radstag milk
+  description: The glass bottle of radstag milk.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14MilkRadstag
+          Quantity: 50
+
+# Soda
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: N14DrinkNukaColaBottleFull
+  name: Nuka Cola bottle
+  description: The leading cola since 2044.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola
+          Quantity: 50
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: N14DrinkIrradiatedNukaColaBottleFull
+  name: irratiated Nuka Cola bottle
+  description: The leading cola since 2044. Looks a bit... weird.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: IrradiatedNukaCola
+          Quantity: 50
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi
+    
+# New Soda
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: N14DrinkNukaColaEmpty
+  name: Nuka Cola bottle
+  description: The leading cola since 2044.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: empty
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14DrinkNukaColaBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Item
+    size: Small
+    
+- type: entity
+  parent: BrokenBottle
+  id: N14DrinkNukaColaBroken
+  name: broken Nuka Cola bottle
+  description: The leading cola since 2044.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: broken
+    
+- type: entity
+  parent: N14DrinkNukaColaEmpty
+  id: N14DrinkNukaColaCherry
+  name: Nuka Cola Cherry
+  description: The leading cola since 2044. Cherry flavor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: cherry
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola # Change me
+          Quantity: 50
+          
+- type: entity
+  parent: N14DrinkNukaColaEmpty
+  id: N14DrinkNukaCola
+  name: Nuka Cola
+  description: The leading cola since 2044.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: cola
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola
+          Quantity: 50
+          
+- type: entity
+  parent: N14DrinkNukaColaEmpty
+  id: N14DrinkNukaColaGrape
+  name: Nuka Cola Grape
+  description: The leading cola since 2044. Grape flavor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: grape
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola # Change me
+          Quantity: 50
+          
+- type: entity
+  parent: N14DrinkNukaColaEmpty
+  id: N14DrinkNukaColaOrange
+  name: Nuka Cola Orange
+  description: The leading cola since 2044. Orange flavor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: orange
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola # Change me
+          Quantity: 50
+          
+- type: entity
+  parent: N14DrinkNukaColaEmpty
+  id: N14DrinkNukaColaYellow
+  name: Nuka Cola Yellow
+  description: A rare flavor of Nuka-Cola from crazy naked Roshambo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: piss
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola # Change me
+          Quantity: 50
+          
+- type: entity
+  parent: N14DrinkNukaColaEmpty
+  id: N14DrinkNukaColaQuantum
+  name: Nuka Cola Quantum
+  description: The leading cola since 2044.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: quantum
+    shader: unshaded
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola # Change me
+          Quantity: 50
+          
+- type: entity
+  parent: N14DrinkNukaColaEmpty
+  id: N14DrinkNukaColaQuartz
+  name: Nuka Cola Quartz
+  description: The leading cola since 2044.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: quartz
+    shader: unshaded
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola # Change me
+          Quantity: 50
+  - type: PointLight
+    color: "#B2FFFF"
+    radius: 1.5
+    energy: 0.2
+          
+- type: entity
+  parent: N14DrinkNukaColaEmpty
+  id: N14DrinkNukaColaVictory
+  name: Nuka Cola Victory
+  description: The leading cola since 2044.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: victory
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola # Change me
+          Quantity: 50
+          
+- type: entity
+  parent: N14DrinkNukaColaEmpty
+  id: N14DrinkNukaColaWild
+  name: Nuka Cola Wild
+  description: The leading cola since 2044.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: wild
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola # Change me
+          Quantity: 50
+
+# Alcohol
+#N14Absinthe
+#N14Ale
+#N14AlcoholZ
+#N14BeantownBrownBeer
+#N14Bourbon
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: N14DrinkGammagulpBeer
+  name: Gamma Gulp Beer
+  description: One of Gecko's biggest exports. A mild, radioactive alcohol.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/alcohol.rsi
+    state: gammagulp
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14GammaGulpBeer
+          Quantity: 50
+
+#N14GwinnetStout
+#N14Lager
+#N14Moonshine
+#N14Pilsner
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: N14DrinkRoentgenRum
+  name: Roentgen Rum
+  description: One of Gecko's biggest exports. A strong, tingly alcohol.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/alcohol.rsi
+    state: roentgen
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14RoentgenRum
+          Quantity: 50
+          
+#N14RotGut
+#N14RumNuka
+#N14Scotch
+#N14Vodka
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: N14DrinkWhisky
+  name: whiskey
+  description: A bottle of standard looking whiskey
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/alcohol.rsi
+    state: whisky
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Whiskey
+          Quantity: 50
+          
+#N14WhiskeyRare
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: N14DrinkWine
+  name: wine
+  description: Nappa Valley Wine.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/alcohol.rsi
+    state: nappavalleywine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14Wine
+          Quantity: 50

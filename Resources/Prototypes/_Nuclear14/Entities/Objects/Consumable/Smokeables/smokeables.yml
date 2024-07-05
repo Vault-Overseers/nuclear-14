@@ -1,0 +1,49 @@
+- type: entity
+  parent: BaseStorageItem
+  name: pack of rolling paper
+  id: N14PackRollingPaper
+  description: A pack of thin pieces of paper used to make fine smokeables.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,1
+    whitelist:
+      tags:
+      - RollingPaper
+      - CigFilter
+  - type: StorageFill
+    contents:
+      - id: N14RollingPaper
+        amount: 4
+  - type: Sprite
+    sprite: Objects/Consumable/Smokeables/Cigarettes/paper.rsi
+    state: cigpapers
+  - type: Item
+    sprite: Objects/Consumable/Smokeables/Cigarettes/paper.rsi
+
+- type: entity
+  parent: PaperRolling
+  id: N14RollingPaper
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: N14RollingPaper
+    count: 5
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/smokeables.rsi
+    state: rollie_paper
+    scale: 0.6, 0.6
+  - type: Item
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/smokeables.rsi
+    size: Tiny
+  - type: Construction
+    graph: N14RollingPaper
+    node: rollingpaper
+
+- type: entity
+  id: N14RollingPaper1
+  suffix: Single
+  parent: N14RollingPaper
+  components:
+    - type: Stack
+      count: 1
