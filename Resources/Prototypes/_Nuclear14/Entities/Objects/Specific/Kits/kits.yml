@@ -1,0 +1,469 @@
+- type: entity
+  name: rifleman kit
+  parent: BaseItem
+  id: KitBase
+  description: box, jaja.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: rifleman kit
+  parent: KitBase
+  id: KitRifleman
+  description: A crate containing all a NCR soldier needs to patrol on the wasteland.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterNCRVest
+      - id: ClothingBeltNCRPouches
+      - id: N14ClothingBackpackNCR
+      - id: N14WeaponService
+      - id: Magazine5.56Rifle
+      - id: Magazine5.56Rifle
+      - id: Magazine5.56Rifle
+      - id: Magazine5.56Rifle
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: gunner kit
+  parent: KitBase
+  id: KitGunner
+  description: A crate containing all a NCR machine gunner needs to patrol on the wasteland.
+  components:
+  - type: Sprite
+    state: gunner
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterNCRVest
+      - id: ClothingBeltNCR
+      - id: N14ClothingBackpackNCR
+      - id: N14WeaponLMG
+      - id: LMGMagazine5.56Rifle
+      - id: LMGMagazine5.56Rifle
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: marksman kit
+  parent: KitBase
+  id: KitMarksman
+  description: A crate containing all a NCR marksman needs to patrol on the wasteland.
+  components:
+  - type: Sprite
+    state: marksman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterNCRVest
+      - id: ClothingBeltNCRBandolier
+      - id: N14ClothingBackpackSatchelNCR
+      - id: N14WeaponSniperHunting
+      - id: MagazineBox308
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: pointman kit
+  parent: KitBase
+  id: KitPointman
+  description: A crate containing all a NCR pointman needs to patrol on the wasteland.
+  components:
+  - type: Sprite
+    state: pointman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterNCRVest
+      - id: ClothingBeltNCRBandolier
+      - id: N14ClothingBackpackSatchelNCR
+      - id: N14WeaponShotgun
+      - id: MagazineBox12gauge
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: morale booster kit
+  parent: KitBase
+  id: KitMorale
+  description: Only the most loyal troops of the NCR carry low quality equipment, a special troop made only to boost the morale during suicide charges.
+  components:
+  - type: Sprite
+    state: pointman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterNCRPlate
+      - id: N14ClothingMaskPlate
+      - id: ClothingBeltNCRPouches
+      - id: N14WastelandFlagSpear
+      - id: N14ClothingBackpackSatchelNCR
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14CombatKnife         
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: medic kit
+  parent: KitBase
+  id: KitMedic
+  description: A crate containing all a NCR medic needs to patrol on the wasteland.
+  components:
+  - type: Sprite
+    state: medic
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterNCRPouchedVest
+      - id: ClothingBeltMedicalfilled
+      - id: N14ClothingBackpackSatchelNCR
+      - id: N14weapon9mmSMG
+      - id: N14MagazineSMG9mm
+      - id: N14MagazineSMG9mm
+      - id: N14MagazineSMG9mm
+      - id: N14MagazineSMG9mm
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: special rifleman kit
+  parent: KitBase
+  id: KitSpecialRifleman
+  description: A crate containing advance weaponry for high rank troops and veterans.
+  components:
+  - type: Sprite
+    state: marksman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponBattleRifle
+      - id: ClipMagazine308Rifle
+      - id: ClipMagazine308Rifle
+      - id: ClipMagazine308Rifle
+      - id: ClipMagazine308Rifle
+      - id: ClipMagazine308Rifle
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: special assault kit
+  parent: KitBase
+  id: KitSpecialAssault
+  description: A crate containing advance weaponry for high rank troops and veterans.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponCarbine
+      - id: LongMagazine5.56Rifle
+      - id: LongMagazine5.56Rifle
+      - id: LongMagazine5.56Rifle
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: special gunner kit
+  parent: KitBase
+  id: KitSpecialGunner
+  description: A crate containing advance weaponry for high rank troops and veterans.
+  components:
+  - type: Sprite
+    state: marksman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponAutoRifle
+      - id: Magazine308Rifle
+      - id: Magazine308Rifle
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: special pointman kit
+  parent: KitBase
+  id: KitSpecialPointman
+  description: A crate containing advance weaponry for high rank troops and veterans.
+  components:
+  - type: Sprite
+    state: pointman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponRiotShotgun
+      - id: N14MagazineShotgun20
+      - id: N14MagazineShotgun20
+      - id: N14MagazineShotgun20
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+# Desert Rangers
+
+- type: entity
+  name: ranger rifleman kit
+  parent: KitBase
+  id: KitRiflemanRanger
+  description: A crate containing advance weaponry for members of the rangers.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponCarbine
+      - id: LongMagazine5.56Rifle
+      - id: LongMagazine5.56Rifle
+      - id: LongMagazine5.56Rifle
+      - id: MagazineBox5.56
+      - id: N14Stimpak
+      - id: BoxMRE
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: ranger marksman kit
+  parent: KitBase
+  id: KitMarksmanRanger
+  description: A crate containing advance weaponry for members of the rangers.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponMarksman
+      - id: Magazine7.62Rifle
+      - id: Magazine7.62Rifle
+      - id: Magazine7.62Rifle
+      - id: MagazineBox7.62
+      - id: N14Stimpak
+      - id: BoxMRE
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: ranger CQB specialist kit
+  parent: KitBase
+  id: KitCQBRanger
+  description: A crate containing advance weaponry for members of the rangers.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponAutoShotgun
+      - id: N14MagazineShotgun12
+      - id: N14MagazineShotgun12
+      - id: N14MagazineShotgun12
+      - id: MagazineBox12gauge
+      - id: N14Stimpak
+      - id: BoxMRE
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: veteran ranger precision rifle kit
+  parent: KitBase
+  id: KitRiflemanRangerVeteran
+  description: A cache containing belongings of a veteran ranger.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponBrushGun
+      - id: MagazineBox45-70
+      - id: MagazineBox45-70
+      - id: MagazineBox45-70
+      - id: N14Stimpak
+      - id: N14Stimpak
+      - id: BoxMRE
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: veteran ranger heavy sniper kit
+  parent: KitBase
+  id: KitHeavySniperRangerVeteran
+  description: A cache containing belongings of a veteran ranger.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponAntiMateriel
+      - id: MagazineBox50
+      - id: MagazineBox50
+      - id: N14Stimpak
+      - id: N14Stimpak
+      - id: BoxMRE
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: veteran ranger trailman kit
+  parent: KitBase
+  id: KitTrailmanRangerVeteran
+  description: A cache containing belongings of a veteran ranger.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLeverCarbine
+      - id: MagazineBox44
+      - id: MagazineBox44
+      - id: MagazineBox44
+      - id: N14Stimpak
+      - id: N14Stimpak
+      - id: BoxMRE
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: veteran ranger assault kit
+  parent: KitBase
+  id: KitAssaultRangerVeteran
+  description: A cache containing belongings of a veteran ranger.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponCarbine
+      - id: LongMagazine5.56Rifle
+      - id: LongMagazine5.56Rifle
+      - id: LongMagazine5.56Rifle
+      - id: MagazineBox5.56
+      - id: N14Stimpak
+      - id: N14Stimpak
+      - id: BoxMRE
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: veteran ranger marksman kit
+  parent: KitBase
+  id: KitMarksmanRangerVeteran
+  description: A cache containing belongings of a veteran ranger.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponMarksman
+      - id: Magazine7.62Rifle
+      - id: Magazine7.62Rifle
+      - id: Magazine7.62Rifle
+      - id: MagazineBox7.62
+      - id: N14Stimpak
+      - id: N14Stimpak
+      - id: BoxMRE
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: veteran ranger cqb kit
+  parent: KitBase
+  id: KitCQBRangerVeteran
+  description: A cache containing belongings of a veteran ranger.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponRiotShotgun
+      - id: N14MagazineShotgun20
+      - id: N14MagazineShotgun20
+      - id: N14MagazineShotgun20
+      - id: MagazineBox20gauge
+      - id: N14CombatKnife
+      - id: N14Stimpak
+      - id: N14Stimpak
+      - id: BoxMRE
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
