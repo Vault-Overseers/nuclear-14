@@ -8,9 +8,9 @@
   name: store wall
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/store.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/store.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/store.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/store.rsi
   - type: Destructible
     thresholds:
     - trigger:
@@ -29,9 +29,9 @@
   name: store wall
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/superstore.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/superstore.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/superstore.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/superstore.rsi
     
 - type: entity
   parent: N14WallStore
@@ -40,9 +40,9 @@
   description: A ruined wall from a pre-war structure.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/ruins.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/ruins.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/ruins.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/ruins.rsi
   - type: IconSmooth
     key: wallsruins
     base: ruin
@@ -53,9 +53,9 @@
   name: brick wall
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/brick.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/brick.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/brick.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/brick.rsi
   - type: IconSmooth
     key: wallsbrick
     base: brick
@@ -67,9 +67,9 @@
   suffix: light
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/concrete.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/concrete.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/concrete.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/concrete.rsi
     
 - type: entity
   parent: N14WallConcreteLight
@@ -77,9 +77,9 @@
   suffix: dark
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/concretedark.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/concretedark.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/concretedark.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/concretedark.rsi
     
 # Metal walls
 - type: entity
@@ -88,9 +88,9 @@
   name: metal wall
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/enclavewall.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/enclavewall.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/enclavewall.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/enclavewall.rsi
   - type: Destructible
     thresholds:
     - trigger:
@@ -119,7 +119,7 @@
     graph: N14WoodWall
     node: Frame
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/woodlog.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/woodlog.rsi
     state: girder
 
 - type: entity
@@ -128,9 +128,9 @@
   name: wooden wall
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/woodwhite.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/woodwhite.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/woodwhite.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/woodwhite.rsi
   - type: Damageable
     damageModifierSet: Wood
     damageContainer: Inorganic
@@ -177,7 +177,7 @@
         layer:
         - GlassAirlockLayer
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/woodwhite.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/woodwhite.rsi
     state: girder
   - type: Damageable
     damageModifierSet: Wood
@@ -204,9 +204,9 @@
   id: N14WallWoodDark
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/wooddark.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/wooddark.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/wooddark.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/wooddark.rsi
     
 - type: entity
   parent: N14WallWoodWhiteFrame
@@ -223,9 +223,9 @@
   description: A wall made out of wooden logs.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/woodlognew.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/woodlognew.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/woodlognew.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/woodlognew.rsi
   - type: IconSmooth
     key: log
     base: log
@@ -241,9 +241,9 @@
   description: A tent made from cloth. Keeps the weather out at least.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/tent.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/tent.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/tent.rsi
+    sprite: _Nuclear14/Structures/Walls/nc14/tent.rsi
   - type: Damageable
     damageModifierSet: Web
     damageContainer: Inorganic
@@ -261,3 +261,261 @@
   - type: IconSmooth
     key: tent
     base: tent
+    
+# MS13 walls
+
+- type: entity
+  parent: BaseWall
+  id: N14WallBrickMS13
+  name: brick wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/brick.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/brick.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyMetallic
+  - type: IconSmooth
+    key: walls
+    base: brick
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallBunkerMS13
+  name: bunker wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/bunker.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/bunker.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
+  - type: IconSmooth
+    key: walls
+    base: bunker
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallConcreteMS13
+  name: concrete wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/concrete.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/concrete.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: IconSmooth
+    key: walls
+    base: concrete
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallDungeonMS13
+  name: dungeon wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/dungeon.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/dungeon.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
+  - type: IconSmooth
+    key: walls
+    base: dungeon
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallMetalMS13
+  name: metal wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/metal.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/metal.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: IconSmooth
+    key: walls
+    base: metal
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallPrisonMS13
+  name: prison wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/prison.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/prison.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: IconSmooth
+    key: walls
+    base: prison
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallMetalReinforcedMS13
+  name: reinforced metal wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/rmetal.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/rmetal.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
+  - type: IconSmooth
+    key: walls
+    base: rmetal
+
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallRockMS13
+  name: rock wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/rock.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/rock.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyMetallic
+  - type: IconSmooth
+    key: walls
+    base: rock
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallMetalReinforcedRustMS13
+  name: rust reinforced metal wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/rrmetal.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/rrmetal.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
+  - type: IconSmooth
+    key: walls
+    base: rrmetal
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallMetalRustMS13
+  name: rust metal wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/rustmetal.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/rustmetal.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: IconSmooth
+    key: walls
+    base: rustmetal
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallScrapMS13
+  name: scrap wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/scrap.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/scrap.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: IconSmooth
+    key: walls
+    base: scrap
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallSewerMS13
+  name: sewer wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/sewer.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/sewer.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: IconSmooth
+    key: walls
+    base: sewer
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallSidingMS13
+  name: siding wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/siding.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/siding.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: IconSmooth
+    key: walls
+    base: siding
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallVaultMS13
+  name: vault wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/vault.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/vault.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
+  - type: IconSmooth
+    key: walls
+    base: vault
+    
+- type: entity
+  parent: BaseWall
+  id: N14WallWoodMS13
+  name: wood wall
+  suffix: slanted
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/wood.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/wood.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: IconSmooth
+    key: walls
+    base: wood
