@@ -1,0 +1,137 @@
+- type: entity
+  id: N14FloraLogBase
+  name: log
+  description: Once a tree, always a log.
+  abstract: true
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    noRot: true
+    sprite: _Nuclear14/Structures/Decoration/flora.rsi
+    state: tree_log
+    drawdepth: FloorObjects
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 2000
+        mask:
+        - TableMask
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Effects/chop.ogg
+        params:
+          variation: 0.05
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14FloraLogTimber:
+            min: 1
+            max: 1
+  - type: SoundOnGather
+  - type: Gatherable
+    whitelist:
+      tags:
+        - Axe
+        - BotanyHatchet
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: Timber
+  - type: Pullable
+  
+- type: entity
+  parent: N14FloraLogBase
+  id: N14FloraLog1
+  suffix: seat
+  name: log
+  description: Once a tree, always a log.
+  components:
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,-0.05"
+            
+- type: entity
+  parent: N14FloraLogBase
+  id: N14FloraLogTimber
+  name: timber
+  suffix: item
+  components:
+  - type: Sprite
+    state: tree_timber
+  - type: Gatherable
+    whitelist:
+      tags:
+        - Saw
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: WoodPlank
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 1
+  - type: Stack
+    stackType: N14Timber
+    count: 1
+  - type: Material
+  - type: Item
+    size: Huge
+    
+- type: entity
+  parent: N14FloraLogBase
+  id: N14FloraLog3
+  suffix: stash
+  components:
+  - type: Sprite
+    state: timber
+  - type: PottedPlantHide
+  - type: SecretStash
+    secretPartName: secret-stash-part-plant

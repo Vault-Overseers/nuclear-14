@@ -1,0 +1,40 @@
+- type: entity
+  id: N14BaseSpeedLoader45-70
+  name: "speed loader (45-70 gov)"
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - SpeedLoader
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - N14Cartridge45-70
+    capacity: 6
+  - type: Sprite
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  id: SpeedLoader45-70
+  name: "speed loader (45-70 gov)"
+  parent: N14BaseSpeedLoader45-70
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge45-70
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Speedloaders/45_70loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-6
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: base
+    steps: 7
+    zeroVisible: false
+  - type: Appearance
