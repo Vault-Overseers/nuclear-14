@@ -4,6 +4,10 @@
   name: Washington soldier
   description: Follow your captain orders, no matter how much death they will cause, you follow orders.
   playTimeTracker: BoSWashingtonSoldier
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: BosWashingtonRecruit
+      time: 3600 # 1 hour as BosWashingtonRecruit
   startingGear: BoSWashingtonSoldierGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-bos-washington
@@ -11,7 +15,7 @@
   access:
   - WashingtonInitiate
   - WashingtonKnight
-  
+
 - type: startingGear
   id: BoSWashingtonSoldierGear
   equipment:
