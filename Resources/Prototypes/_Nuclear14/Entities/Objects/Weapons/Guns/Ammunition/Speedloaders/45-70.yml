@@ -38,3 +38,24 @@
     steps: 7
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  id: SpeedLoader45-70Tube
+  name: "speed loader tube (45-70 gov)"
+  parent: N14BaseSpeedLoader45-70
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge45-70
+    capacity: 10
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Speedloaders/45_70loadertube.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-10
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: base
+    steps: 11
+    zeroVisible: false
+  - type: Appearance
