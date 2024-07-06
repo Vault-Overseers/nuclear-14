@@ -15,6 +15,7 @@ department-BrotherhoodMidwest-description = Midwest branch of the Brotherhood of
 department-BrotherhoodWashington-description = Washington branch of the Brotherhood of Steel
 department-CaravanCompany-description = The local Caravan Company responsible for import and export of goods.
 department-NCR-description = A settler detachment sent by the New California Republic
+department-NCRRanger-description = A special detachment of NCR which overtake near impossible duties to aid New California Republic in their victory over slavery and raiders.
 department-Tribe-description = A local tribal group trying to get by.
 department-Vault-description = The local Vault Dwellers
 department-Wastelander-description = Wastelanders living in the pacific northwest.
