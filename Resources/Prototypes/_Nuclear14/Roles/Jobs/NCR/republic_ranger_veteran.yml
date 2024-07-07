@@ -4,6 +4,14 @@
   name: Republic Ranger Veteran
   description: the most experienced and robust soldiers form part of this elite group of the NCR army, lead troops or act by yourself under the orders of the republic.
   playTimeTracker: NCRRangerVeteran
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: NCR
+      time: 72000 # 20 hours as NCR
+    - !type:DepartmentTimeRequirement
+      department: NCRRanger
+      time: 36000 # 10 hours as NCRRanger
+    - !type:WhitelistRequirement
   weight: 10
   startingGear: NCRRangerVeteranGear
   icon: "JobIconHeadOfSecurity"
@@ -16,7 +24,7 @@
   id: NCRRangerVeteranGear
   equipment:
     jumpsuit: N14ClothingUniformRangerVeteran
-    shoes: N14ClothingBootsCombat
+    shoes: N14ClothingBootsCombatMK2Filled
     gloves: N14ClothingHandsGlovesCombat
     belt: ClothingBeltRevolvervetfilled
     mask: ClothingMaskGasRangerOld

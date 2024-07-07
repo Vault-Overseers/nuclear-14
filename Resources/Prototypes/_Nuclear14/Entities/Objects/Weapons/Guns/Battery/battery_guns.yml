@@ -11,7 +11,7 @@
     minAngle: 35
     maxAngle: 65
     angleIncrease: 4
-    angleDecay: 16    
+    angleDecay: 16
     fireRate: 1
     selectedMode: SemiAuto
     availableModes:
@@ -63,7 +63,7 @@
     quickEquip: false
     slots:
     - Belt
-
+# MARK: Pistols
 - type: entity
   name: laser pistol
   parent: N14BaseWeaponPowerCellSmall
@@ -94,7 +94,7 @@
         whitelist:
           tags:
             - N14PowerCellHigh
-  - type: Gun 
+  - type: Gun
     fireRate: 1
 
 - type: entity
@@ -130,7 +130,8 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/plasma_cutter.ogg
-
+    fireRate: 1.5
+# MARK: Rifles
 - type: entity
   name: laser rifle
   parent: N14BaseWeaponPowerCellMedium
@@ -169,8 +170,11 @@
         whitelist:
           tags:
             - N14PowerCellHigh
-  - type: Gun 
-    fireRate: 2
+  - type: Gun
+    fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
 
 - type: entity
   name: plasma rifle
@@ -211,8 +215,12 @@
     steps: 5
     zeroVisible: true
   - type: Gun
+    fireRate: 3
     soundGunshot:
       path: /Audio/Weapons/plasma_cutter.ogg
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
 
 
 - type: entity
@@ -254,9 +262,13 @@
     steps: 5
     zeroVisible: true
   - type: Gun
+    fireRate: 4
     soundGunshot:
       path: /Audio/Weapons/plasma_cutter.ogg
-
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+# MARK: Shotguns
 - type: entity
   name: multiplas
   parent: N14BaseWeaponPowerCellMedium
@@ -296,6 +308,7 @@
     steps: 5
     zeroVisible: true
   - type: Gun
+    fireRate: 2
     soundGunshot:
       path: /Audio/Weapons/plasma_cutter.ogg
 

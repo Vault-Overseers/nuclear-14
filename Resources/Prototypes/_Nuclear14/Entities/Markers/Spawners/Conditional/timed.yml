@@ -223,8 +223,28 @@
 
 - type: entity
   parent: N14TimedSpawnerMolerat
-  id: N14TimedSpawnerFireant
+  id: N14TimedSpawnerAnt
   name: Fireant Timed Spawner
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: _Nuclear14/Mobs/Insects/giantant.rsi
+          state: giantant
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - N14MobGiantAnt
+      chance: 0.75
+      intervalSeconds: 600
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 2
+
+- type: entity
+  parent: N14TimedSpawnerMolerat
+  id: N14TimedSpawnerFireant
+  name: Fire Ant Timed Spawner
   components:
     - type: Sprite
       layers:
