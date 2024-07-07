@@ -1,30 +1,14 @@
 - type: job
   id: BoSMidPaladin
   setPreference: true
-  name: job-name-bos-mid-paladin
-  description: job-description-bos-mid-paladin
+  name: Midwest paladin
+  description: lead the knights and squired during the mission, follow the paladin commander directions and fight for the brotherhood.
   playTimeTracker: BoSMidPaladin
-  requirements:
-    - !type:DepartmentTimeRequirement
-      department: BrotherhoodMidwest
-      time: 18000 # 5 hours
   startingGear: BoSMidPaladinGear
   icon: "JobIconPassenger"
   canBeAntag: false
-  access:
-  - BoSMidwest
-  - Paladin
-  special:
-  - !type:AddComponentSpecial
-    components:
-      - type: NpcFactionMember
-        factions:
-          - BrotherhoodMidwest
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
+  accessGroups:
+  - BOSMidwest
 
 - type: startingGear
   id: BoSMidPaladinGear
@@ -32,11 +16,10 @@
     jumpsuit: N14ClothingUniformBosRecon
     back: N14ClothingBackpackMilitary
     shoes: N14ClothingBootsCombatFilled
-    head:  N14ClothingHeadHatBrotherhoodMidwestHelmetVeteran
+    head:  N14ClothingHeadHatBrotherhoodFieldCap
     outerClothing: N14ClothingOuterMidwestArmorMK2
-    pocket1: NCRBoSMidwestPaladinkits
     hands: N14ClothingHandsGlovesCombat
-    id: N14IDBrotherhoodHolotagPaladin
+    id: N14IDBrotherhoodHolotag
     ears: N14ClothingHeadsetBOSMidwest #placeholder
     belt: ClothingBeltMilitary
 

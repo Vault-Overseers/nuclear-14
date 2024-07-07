@@ -1,39 +1,26 @@
 - type: job
   id: BoSMidScribe
   setPreference: true
-  name: job-name-bos-mid-scribe
-  description: job-description-bos-mid-scribe
+  name: Midwest scribe
+  description: Maintain equipment and support the knights and paladins in their mission.
   playTimeTracker: BoSMidScribe
-  requirements:
-    - !type:DepartmentTimeRequirement
-      department: BrotherhoodMidwest
-      time: 3600 # 1 hour
   startingGear: BoSMidScribeGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-bos-mid
   access:
-  - BoSMidwest
-  special:
-  - !type:AddComponentSpecial
-    components:
-      - type: NpcFactionMember
-        factions:
-          - BrotherhoodMidwest
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
+  - ScribeMidwest
 
 - type: startingGear
   id: BoSMidScribeGear
   equipment:
+    head: ClothingHeadBrotherhoodScribeHeadset
     jumpsuit: N14ClothingUniformJumpsuitBOSGreen
     back: N14ClothingBackpackSatchelMilitary
-    shoes: N14ClothingBootsLeather
-    pocket1: NCRBoSMidwestScribekits
+    shoes: N14ClothingBootsCombatFilled
+    outerClothing: N14ClothingOuterMidwestBoSCoat
     id: N14IDBrotherhoodHolotag
     ears: N14ClothingHeadsetBOSMidwest
+    belt: N14ClothingBeltUtilityFilled
 
 - type: playTimeTracker
   id: BoSMidScribe

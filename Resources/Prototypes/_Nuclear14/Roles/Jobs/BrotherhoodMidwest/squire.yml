@@ -1,44 +1,24 @@
 - type: job
-  id: BoSMidSquire # It was renamed to Initiate, but don't change the ID!
+  id: BoSMidSquire
   setPreference: true
-  overrideConsoleVisibility: true
-  canBeAntag: false
-  name: job-name-bos-mid-squire
-  description: job-description-bos-mid-squire
+  name: Midwest squire
+  description: Follow orders and become the hardened steel the brotherhood wants you to be.
   playTimeTracker: BoSMidSquire
-  requirements:
-    - !type:CharacterLogicOrRequirement
-      requirements:
-        - !type:CharacterSpeciesRequirement
-          species:
-            - Human
-            - Ghoul
-    - !type:CharacterOverallTimeRequirement
-      min: 3600
   startingGear: BoSMidSquireGear
-  alwaysUseSpawner: true
   icon: "JobIconPassenger"
-  supervisors: job-supervisors-bos-mid-initiate
-  access:
-  - BoSMidwest
-  special:
-  - !type:AddComponentSpecial
-    components:
-      - type: NpcFactionMember
-        factions:
-          - Wastelander
-          - BrotherhoodMidwest
+  canBeAntag: false
+  accessGroups:
+  - BOSMidwest
 
 - type: startingGear
   id: BoSMidSquireGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSGreen
-    back: N14ClothingBackpackMilitaryFilled
-    shoes: N14ClothingBootsLeatherFilled
-    head: N14ClothingHeadHatArmyCap
-    outerClothing: N14ClothingOuterMBoSInitiateArmor
-    pocket1: BoSMidwestInitSet
-    id: N14IDBrotherhoodHolotagSquire
+    back: N14ClothingBackpackMilitary
+    shoes: N14ClothingBootsCombatFilled
+    head: N14ClothingHeadHatBrotherhoodMidwestHelmet
+    outerClothing: N14ClothingOuterMidwestArmor
+    id: N14IDBrotherhoodHolotag
     belt: ClothingBeltMilitary
 
 - type: playTimeTracker
