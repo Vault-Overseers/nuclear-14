@@ -1,44 +1,30 @@
 - type: job
   id: CaravanLeader
   setPreference: true
-  overrideConsoleVisibility: false
-  canBeAntag: false
   name: job-name-caravan-leader
   description: job-description-caravan-leader
   playTimeTracker: CaravanLeader
   requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-      - Human
-      - Ghoul
-    - !type:CharacterDepartmentTimeRequirement
+    - !type:DepartmentTimeRequirement
       department: CaravanCompany
-      min: 7200 # 2 hours as Caravan member
+      time: 3600 # 1 hour as Caravan Trader
   weight: 10
   startingGear: CaravanLeaderGear
   icon: "JobIconQuarterMaster"
+  canBeAntag: false
   supervisors: job-supervisors-caravan-leader
-  alwaysUseSpawner: true
   accessGroups:
   - CaravanCompany
-  special:
-  - !type:AddComponentSpecial
-    components:
-      - type: NpcFactionMember
-        factions:
-          - Wastelander
-          - CaravanCompany
-      - type: CPRTraining
 
 - type: startingGear
   id: CaravanLeaderGear
   equipment:
-    head: N14ClothingHeadHatCaravanSuit
-    jumpsuit: N14ClothingUniformJumpsuitCaravanSuit
+    head: N14ClothingHeadHatTrucker
+    jumpsuit: N14ClothingUniformJumpsuitMerchant
     back: N14ClothingBackpackCaravanLeaderFilled
-    shoes: N14ClothingShoesBlack
+    shoes: N14ClothingBootsLeather
     pocket1: N14WeaponPistol12mm
-    id: N14IDPassportCaravanLeader
+    id: N14IDPassportCaravan
 
 - type: playTimeTracker
   id: CaravanLeader

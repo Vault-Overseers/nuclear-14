@@ -1,14 +1,14 @@
 - type: job
-  id: NCRSoldier
+  id: NCRQM
   setPreference: true
-  name: NCR soldier
-  description: Follow orders and fight for the republic.
-  playTimeTracker: NCRSoldier
+  name: NCR quartermaster
+  description: Protect the armory and trade looted equipment with any wastelander.
+  playTimeTracker: NCRQM
   requirements:
     - !type:DepartmentTimeRequirement
       department: NCR
-      time: 3600 # 1 hour
-  startingGear: NCRSoldierGear
+      time: 14400 # 4 hours
+  startingGear: NCRQMGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-ncr-nco
   canBeAntag: false
@@ -17,9 +17,9 @@
   - NCRSoldier
 
 - type: startingGear
-  id: NCRSoldierGear
+  id: NCRQMGear
   equipment:
-    head: N14ClothingHeadHatNCRHelmetMetal
+    head: N14ClothingHeadHatNCRBeretQM
     jumpsuit: N14ClothingUniformNCR
     shoes: N14ClothingBootsLeather
     id: N14IDNCRDogtag
@@ -27,4 +27,4 @@
   satchel: N14ClothingBackpackSatchelNCRFilled
 
 - type: playTimeTracker
-  id: NCRSoldier
+  id: NCRQM

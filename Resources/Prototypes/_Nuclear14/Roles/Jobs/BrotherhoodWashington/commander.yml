@@ -1,50 +1,33 @@
 - type: job
   id: BoSWashingtonCommander
   setPreference: true
-  overrideConsoleVisibility: false
-  canBeAntag: true
-  name: job-name-bos-washington-commander
-  description: job-description-bos-washington-commander
+  name: Washington commander
+  description: You have a job to do, complete the mission no matter how much it costs, no matter how much blood needs to be spilled.
   playTimeTracker: BoSWashingtonCommander
   requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-      - Human
-    - !type:CharacterDepartmentTimeRequirement
+    - !type:DepartmentTimeRequirement
       department: BrotherhoodWashington
-      min: 72000 #20 hours
-    - !type:CharacterLogicOrRequirement
-      requirements:
-        - !type:CharacterSpeciesRequirement
-          species:
-            - Human
+      time: 36000 # 10 hours
+  weight: 10
   startingGear: BoSWashingtonCommanderGear
-  alwaysUseSpawner: true
   icon: "JobIconHeadOfSecurity"
-  supervisors: job-supervisors-bos-wash-commander
+  supervisors: job-supervisors-bos-washington-commander
   requireAdminNotify: true
+  canBeAntag: false
   accessGroups:
   - BOSWashington
-  special:
-  - !type:AddComponentSpecial
-    components:
-      - type: NpcFactionMember
-        factions:
-          - Wastelander
-          - BrotherhoodWashington
 
 - type: startingGear
   id: BoSWashingtonCommanderGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSBlack
-    back: N14ClothingBackpackSatchelMilitaryFilled
-    shoes: N14ClothingBootsLeatherFilled
+    back: N14ClothingBackpackMilitary
+    shoes: N14ClothingBootsCombatMK2Filled
     neck: N14ClothingNeckCloakBrotherhoodWashington
-    outerClothing: N14ClothingOuterWBoSPaladinArmor
-    id: N14IDBrotherhoodWashingtonHolotagCommander
+    head: N14ClothingHeadHatBrotherhoodBeret
+    id: N14IDBrotherhoodHolotag
     ears: N14ClothingHeadsetBOSWashington
     belt: ClothingBeltBoSWebbing
-    pocket1: BoSWashingtonPaladinKits
 
 - type: playTimeTracker
   id: BoSWashingtonCommander
