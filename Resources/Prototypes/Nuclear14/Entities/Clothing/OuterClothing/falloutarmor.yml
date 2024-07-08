@@ -18,6 +18,25 @@
 
 - type: entity
   parent: ClothingOuterBase
+  id: N14ClothingOuterLightMetalArmor
+  name: light metal armor
+  description: A suit of light metal armor that provides protection against physical threats.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutlightmetal.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutlightmetal.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.8
+
+
+- type: entity
+  parent: ClothingOuterBase
   id: N14ClothingOuterMetalArmor
   name: metal armor
   description: A suit of metal armor that provides protection against physical threats, at the cost of movement.
@@ -166,9 +185,6 @@
     sprite: Nuclear14/Clothing/OuterClothing/Armor/fallouttribalheavy.rsi
   - type: Clothing
     sprite: Nuclear14/Clothing/OuterClothing/Armor/fallouttribalheavy.rsi
-  - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
   - type: Armor
     modifiers:
       coefficients:
@@ -176,6 +192,60 @@
         Slash: 0.65
         Piercing: 0.7
         Heat: 0.8
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterChitinArmor
+  name: chitin armor
+  description: A suit of handmade armor, made from a lot of chitin from insects.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutchitinarmor.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutchitinarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.65
+        Piercing: 0.95
+        Heat: 0.65
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterRadArmor
+  name: radscorpion armor
+  description: A suit of handmade armor, made of pieces of exoskeleton from radscorpions.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutradarmor.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutradarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.75
+        Heat: 0.8
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterInsectArmor
+  name: radscorpion armor
+  description: A suit of handmade armor, made from a blend of different insect pieces, very protective.
+  components:
+  - type: Sprite
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutinsectarmor.rsi
+  - type: Clothing
+    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutinsectarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.65
+        Piercing: 0.65
+        Heat: 0.7
 
 # Raiders
 - type: entity
@@ -682,58 +752,3 @@
         Piercing: 0.5
         Heat: 0.8
 
-# craftable armors
-
-- type: entity
-  parent: ClothingOuterBase
-  id: N14ClothingOuterChitinArmor
-  name: chitin armor
-  description: A suit of handmade armor, made from a lot of chitin from insects.
-  components:
-  - type: Sprite
-    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutchitinarmor.rsi
-  - type: Clothing
-    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutchitinarmor.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.95
-        Slash: 0.65
-        Piercing: 0.95
-        Heat: 0.65
-
-- type: entity
-  parent: ClothingOuterBase
-  id: N14ClothingOuterRadArmor
-  name: radscorpion armor
-  description: A suit of handmade armor, made of pieces of exoskeleton from radscorpions.
-  components:
-  - type: Sprite
-    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutradarmor.rsi
-  - type: Clothing
-    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutradarmor.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.70
-        Slash: 0.70
-        Piercing: 0.75
-        Heat: 0.8
-
-- type: entity
-  parent: ClothingOuterBase
-  id: N14ClothingOuterLightMetalArmor
-  name: light metal armor
-  description: A suit of light metal armor that provides protection against physical threats.
-  components:
-  - type: Sprite
-    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutlightmetal.rsi
-  - type: Clothing
-    sprite: Nuclear14/Clothing/OuterClothing/Armor/falloutlightmetal.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.85
-        Slash: 0.7
-        Piercing: 0.7
-        Heat: 0.8
