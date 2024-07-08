@@ -12,11 +12,8 @@
     whitelist:
       tags:
         - N14CartridgePistol9
-        - SpeedLoader9
+        - SpeedLoader
     proto: N14CartridgePistol9
-  - type: Gun
-    soundGunshot:
-      collection: N14Revolver9mmGunshot
 
 - type: entity
   name: 10mm revolver
@@ -32,11 +29,8 @@
     whitelist:
       tags:
         - N14CartridgePistol10
-        - SpeedLoader10
+        - SpeedLoader
     proto: N14CartridgePistol10
-  - type: Gun
-    soundGunshot:
-      collection: N14Revolver10mmGunshot
 
 - type: entity
   name: magnum revolver
@@ -52,11 +46,8 @@
     whitelist:
       tags:
         - N14Cartridge44Magnum
-        - SpeedLoader44
+        - SpeedLoader
     proto: N14Cartridge44Magnum
-  - type: Gun
-    soundGunshot:
-      collection: N14RevolverMagnunGunshot
 
 - type: entity
   name: captain revolver
@@ -64,11 +55,6 @@
   id: N14WeaponRevolverCaptainMagnun
   description: A true freedom fighter carries his flag everywhere, even on his gun. Uses .44 magnum ammo.
   components:
-  - type: Gun
-    fireRate: 2
-    resetOnHandSelected: false
-    soundGunshot:
-      collection: N14RevolverMagnunGunshot
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/captainmagnum.rsi
   - type: Clothing
@@ -77,7 +63,7 @@
     whitelist:
       tags:
         - N14Cartridge44Magnum
-        - SpeedLoader44
+        - SpeedLoader
     proto: N14Cartridge44Magnum
 
 - type: entity
@@ -86,9 +72,6 @@
   id: N14WeaponHunterRevolver
   description: A heavy revolver with a long cannon designed to hunt small animals, but it also works for people. Uses .45-70 gov't ammo.
   components:
-  - type: Gun
-    soundGunshot:
-      collection: N14HunterRevolverGunshot
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/hunt_revolver.rsi
   - type: Clothing
@@ -97,20 +80,15 @@
     whitelist:
       tags:
         - N14Cartridge45-70
-        - SpeedLoader45-70
+        - SpeedLoader
     proto: N14Cartridge45-70
 
 - type: entity
   name: wild whisper
   parent: BaseWeaponRevolver
   id: N14Weaponwildwhisper
-  description: Its said that after a troublemaker gets shot down with this revolver some words are whispered to their ears, no one knows what the question is, but the answer is always "innocent". Uses .45-70 gov't ammo.
+  description: Its said that after a troublemaker get shoot down with this revolver some words are whispered to their ears, no one knows what the question is, but the awnser is always "innocent". Uses .45-70 gov't ammo.
   components:
-  - type: Gun
-    fireRate: 2
-    resetOnHandSelected: false
-    soundGunshot:
-      collection: N14HunterRevolverGunshot
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/wild_whisper.rsi
   - type: Clothing
@@ -119,7 +97,7 @@
     whitelist:
       tags:
         - N14Cartridge45-70
-        - SpeedLoader45-70
+        - SpeedLoader
     proto: N14Cartridge45-70
 
 - type: entity
@@ -134,130 +112,9 @@
     sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/ranger_sequoia.rsi
   - type: Gun
     fireRate: 2
-    resetOnHandSelected: false
-    soundGunshot:
-      collection: N14HunterRevolverGunshot
   - type: RevolverAmmoProvider
     whitelist:
       tags:
         - N14Cartridge45-70
-        - SpeedLoader45-70
+        - SpeedLoader
     proto: N14Cartridge45-70
-
-- type: entity
-  name: tribal handgun
-  parent: N14WeaponRevolverBase
-  id: N14WeaponRevolver44Tribal
-  description: A tribal revolver, simple but very handy. Uses .44 magnum ammo.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/tribalrevolver1.rsi
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/tribalrevolver1.rsi
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-      - N14Cartridge44Magnum
-      - SpeedLoader44
-    proto: N14Cartridge44Magnum
-    chambers: [true, true, true, true]
-    ammoSlots: [null, null, null, null]
-    capacity: 4
-  - type: Gun
-    soundGunshot:
-      collection: N14RevolverMagnunGunshot
-    fireRate: 1
-
-- type: entity
-  name: tribal revolver
-  parent: N14WeaponRevolverBase
-  id: N14WeaponRevolver44TribalUpgraded
-  description: A tribal revolver, upgraded to hold 6 bullets and a slightly faster fire rate. Uses .44 magnum ammo.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/tribalrevolver2.rsi
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/tribalrevolver2.rsi
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-        - N14Cartridge44Magnum
-        - SpeedLoader44
-    proto: N14Cartridge44Magnum
-    capacity: 6
-  - type: Gun
-    soundGunshot:
-      collection: N14RevolverMagnunGunshot
-    fireRate: 1.5
-
-- type: entity
-  name: tribal revolver
-  parent: N14WeaponRevolverBase
-  id: N14WeaponRevolver44TribalUpgradedExtra
-  description: A tribal revolver, upgraded to hold 8 bullets and fire faster. Uses .44 magnum ammo.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/tribalrevolver3.rsi
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/tribalrevolver3.rsi
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-        - N14Cartridge44Magnum
-        - SpeedLoader44
-    proto: N14Cartridge44Magnum
-    chambers: [true, true, true, true, true, true, true, true]
-    ammoSlots: [null, null, null, null, null, null, null, null]
-    capacity: 8
-  - type: Gun
-    soundGunshot:
-      collection: N14RevolverMagnunGunshot
-    fireRate: 2
-
-- type: entity
-  name: handcannon
-  parent: N14WeaponRevolverBase
-  id: N14WeaponRevolver45-70Handcannon
-  description: A long and heavy tribal handcannon. Uses .45-70 gov't ammo.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/tribalhandcannon.rsi
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/tribalhandcannon.rsi
-  - type: Gun
-    fireRate: 1
-    resetOnHandSelected: false
-    soundGunshot:
-      collection: N14HunterRevolverGunshot
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-        - N14Cartridge45-70
-        - SpeedLoader45-70
-    proto: N14Cartridge45-70
-    chambers: [true, true, true, true]
-    ammoSlots: [null, null, null, null]
-    capacity: 4
-
-- type: entity
-  name: decorated handcannon
-  parent: N14WeaponRevolverBase
-  id: N14WeaponRevolver45-70HandcannonUpgraded
-  description: A long and heavy tribal handcannon, upgraded with a bigger cylinder to hold more bullets. Uses .45-70 gov't ammo.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/tribalhandcannon2.rsi
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/tribalhandcannon2.rsi
-  - type: Gun
-    fireRate: 2
-    resetOnHandSelected: false
-    soundGunshot:
-      collection: N14HunterRevolverGunshot
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-        - N14Cartridge45-70
-        - SpeedLoader45-70
-    proto: N14Cartridge45-70
-    capacity: 6
