@@ -381,3 +381,23 @@
       intervalSeconds: 600
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
+
+- type: entity
+  parent: N14TimedSpawnerMolerat
+  id: N14TimedSpawnerChicken
+  name: Chicken Timed Spawner
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: _Nuclear14/Mobs/Animals/chicken.rsi
+          state: chicken
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - N14MobChicken
+      chance: 0.95
+      intervalSeconds: 600
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 3

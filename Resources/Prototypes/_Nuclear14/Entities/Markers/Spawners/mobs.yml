@@ -15,6 +15,21 @@
       - N14MobBrahmin
       
 - type: entity
+  name: Chicken Spawner
+  id: N14SpawnMobChicken
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Animals/chicken.rsi
+        state: chicken
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobChicken
+      
+- type: entity
   name: Bighorner Spawner
   id: N14SpawnMobBighorner
   parent: MarkerBase

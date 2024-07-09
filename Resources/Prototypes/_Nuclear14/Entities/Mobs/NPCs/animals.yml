@@ -47,6 +47,20 @@
     damage:
       groups:
         Brute: 3
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Molerat
+    offspring:
+    - id: N14MobMolerat
+      maxAmount: 1
+  - type: ReproductivePartner
+  - type: Tag
+    tags:
+    - Molerat
 
 - type: entity
   name: feral dog
@@ -95,6 +109,20 @@
     damage:
       groups:
         Brute: 5
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - DogFeral
+    offspring:
+    - id: N14MobDogFeral
+      maxAmount: 1
+  - type: ReproductivePartner
+  - type: Tag
+    tags:
+    - DogFeral
 
 - type: entity
   name: gecko
@@ -147,6 +175,23 @@
     spawned:
     - id: N14FoodMeatGecko
       amount: 3
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-laid-egg-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Gecko
+    offspring:
+    - id: N14FoodEggGeckoFertilized
+      maxAmount: 3
+  - type: ReproductivePartner
+  - type: EggLayer
+    eggSpawn:
+    - id: N14FoodEggGecko
+  - type: Tag
+    tags:
+    - Gecko
 
 - type: entity
   name: nightstalker cub
@@ -263,6 +308,23 @@
         reagents:
         - ReagentId: Toxin
           Quantity: 5
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-laid-egg-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Nightstalker
+    offspring:
+    - id: N14FoodEggNightstalkerFertilized
+      maxAmount: 3
+  - type: ReproductivePartner
+  - type: EggLayer
+    eggSpawn:
+    - id: N14FoodEggNightstalker
+  - type: Tag
+    tags:
+    - Nightstalker
 
 - type: entity
   name: yao guai
@@ -318,6 +380,20 @@
     baseWalkSpeed : 3
     baseSprintSpeed : 3.6
   - type: NoSlip
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Yaoguai
+    offspring:
+    - id: N14MobYaoguai
+      maxAmount: 1
+  - type: ReproductivePartner
+  - type: Tag
+    tags:
+    - Yaoguai
 
 # Scaley Animals
 - type: entity
@@ -394,6 +470,23 @@
     description: |
       You're a smart killer. Use tactics to kill everyone.
   - type: NoSlip
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-laid-egg-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Deathclaw
+    offspring:
+    - id: N14FoodEggDeathclawFertilized
+      maxAmount: 1
+  - type: ReproductivePartner
+  - type: EggLayer
+    eggSpawn:
+    - id: N14FoodEggDeathclaw
+  - type: Tag
+    tags:
+    - Deathclaw
 
 - type: entity
   name: albino deathclaw
@@ -510,6 +603,17 @@
     intervalSeconds: 300
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Brahmin
+    offspring:
+    - id: N14MobBrahmin
+      maxAmount: 1
+  - type: ReproductivePartner
 
 - type: entity
   name: bighorner
@@ -531,7 +635,7 @@
         Base: dead
   - type: Tag
     tags:
-    - Radstag
+    - Bighorner
   - type: Butcherable
     spawned:
     - id: N14FoodMeatBighorner
@@ -548,6 +652,17 @@
     targetSolution: udder
     quantity: 25
     updateRate: 30
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Bighorner
+    offspring:
+    - id: N14MobBighorner
+      maxAmount: 1
+  - type: ReproductivePartner
 
 - type: entity
   name: radstag
@@ -586,3 +701,55 @@
     targetSolution: udder
     quantity: 25
     updateRate: 30
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Radstag
+    offspring:
+    - id: N14MobRadstag
+      maxAmount: 1
+  - type: ReproductivePartner
+
+- type: entity
+  parent: MobChicken
+  id: N14MobChicken
+  name: chicken
+  description: Cluck cluck.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: chicken
+      sprite: _Nuclear14/Mobs/Animals/chicken.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: chicken
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadchicken
+      amount: 1
+      prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-laid-egg-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Chicken
+    offspring:
+    - id: N14FoodEggChickenFertilized
+      maxAmount: 3
+  - type: ReproductivePartner
+  - type: EggLayer
+    eggSpawn:
+    - id: N14FoodEggChicken
