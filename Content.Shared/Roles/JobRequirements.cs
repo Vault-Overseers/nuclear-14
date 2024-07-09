@@ -133,8 +133,8 @@ namespace Content.Shared.Roles
                         if (deptDiff <= 0)
                             return true;
 
-                        reason = FormattedMessage.FromMarkup(Loc.GetString(
-                            $"{localePrefix}department-insufficient",
+                        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+                            "role-timer-department-insufficient",
                             ("time", Math.Ceiling(deptDiff)),
                             ("department", Loc.GetString(deptRequirement.Department)),
                             ("departmentColor", department.Color.ToHex())));
@@ -145,7 +145,7 @@ namespace Content.Shared.Roles
                         if (deptDiff <= 0)
                         {
                             reason = FormattedMessage.FromMarkup(Loc.GetString(
-                                $"{localePrefix}department-too-high",
+                                "role-timer-department-too-high",
                                 ("time", -deptDiff),
                                 ("department", Loc.GetString(deptRequirement.Department)),
                                 ("departmentColor", department.Color.ToHex())));
@@ -165,7 +165,7 @@ namespace Content.Shared.Roles
                             return true;
 
                         reason = FormattedMessage.FromMarkup(Loc.GetString(
-                            $"{localePrefix}overall-insufficient",
+                            "role-timer-overall-insufficient",
                               ("time", Math.Ceiling(overallDiff))));
                         return false;
                     }
@@ -173,7 +173,7 @@ namespace Content.Shared.Roles
                     {
                         if (overallDiff <= 0 || overallTime >= overallRequirement.Time)
                         {
-                            reason = FormattedMessage.FromMarkup(Loc.GetString($"{localePrefix}overall-too-high", ("time", -overallDiff)));
+                            reason = FormattedMessage.FromMarkup(Loc.GetString("role-timer-overall-too-high", ("time", -overallDiff)));
                             return false;
                         }
 
@@ -201,7 +201,7 @@ namespace Content.Shared.Roles
                             return true;
 
                         reason = FormattedMessage.FromMarkup(Loc.GetString(
-                            $"{localePrefix}role-insufficient",
+                            "role-timer-role-insufficient",
                             ("time", Math.Ceiling(roleDiff)),
                             ("job", Loc.GetString(proto)),
                             ("departmentColor", departmentColor.ToHex())));
@@ -212,7 +212,7 @@ namespace Content.Shared.Roles
                         if (roleDiff <= 0)
                         {
                             reason = FormattedMessage.FromMarkup(Loc.GetString(
-                                $"{localePrefix}role-too-high",
+                                "role-timer-role-too-high",
                                 ("time", -roleDiff),
                                 ("job", Loc.GetString(proto)),
                                 ("departmentColor", departmentColor.ToHex())));
