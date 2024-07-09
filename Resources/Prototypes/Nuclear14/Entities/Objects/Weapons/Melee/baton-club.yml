@@ -1,28 +1,6 @@
 - type: entity
-  parent: BaseItem
-  id: N14BaseBatonClub
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: Nuclear14/Objects/Weapons/Melee/policebaton.rsi
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    damage:
-      types:
-        Blunt: 10
-  - type: Sprite
-  - type: Item
-    size: Big
-  - type: Clothing
-    sprite: Nuclear14/Objects/Weapons/Melee/policebaton.rsi
-    quickEquip: false
-    slots:
-    - belt
-    - suitStorage
-
-- type: entity
   name: police baton
-  parent: N14BaseBatonClub
+  parent: BaseItem
   id: N14BasePoliceBaton
   components:
   - type: StaminaDamageOnHit
@@ -30,6 +8,7 @@
   - type: StaminaDamageOnCollide
     damage: 20
   - type: MeleeWeapon
+    wideAnimationRotation: -135
     damage:
       types:
         Blunt: 16
@@ -46,10 +25,11 @@
 
 - type: entity
   name: tribal club
-  parent: N14BaseBatonClub
+  parent: BaseItem
   id: N14BaseTribalClub
   components:
   - type: MeleeWeapon
+    wideAnimationRotation: -135
     damage:
       types:
         Blunt: 24
@@ -59,6 +39,27 @@
     size: Big
   - type: Clothing
     sprite: Nuclear14/Objects/Weapons/Melee/tribalclub.rsi
+    quickEquip: false
+    slots:
+    - belt
+    - suitStorage
+
+- type: entity
+  name: broken pipe
+  parent: BaseItem
+  id: N14BaseBrokenPipe
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 22
+  - type: Sprite
+    sprite: Nuclear14/Objects/Weapons/Melee/pipe.rsi
+  - type: Item
+    size: Big
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Melee/pipe.rsi
     quickEquip: false
     slots:
     - belt
