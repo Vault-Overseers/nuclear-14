@@ -1,8 +1,8 @@
 - type: job
   id: NCRSoldier
   setPreference: true
-  name: job-name-ncr-soldier
-  description: job-description-ncr-soldier
+  name: NCR soldier
+  description: Follow orders and fight for the republic.
   playTimeTracker: NCRSoldier
   requirements:
     - !type:DepartmentTimeRequirement
@@ -13,7 +13,8 @@
   supervisors: job-supervisors-ncr-nco
   canBeAntag: false
   access:
-  - NCR
+  - NCRCadet
+  - NCRSoldier
   special:
   - !type:AddComponentSpecial
     components:
@@ -25,11 +26,10 @@
   id: NCRSoldierGear
   equipment:
     head: N14ClothingHeadHatNCRHelmetMetal
-    back: N14ClothingBackpackNCRFilled
     jumpsuit: N14ClothingUniformNCR
     shoes: N14ClothingBootsLeather
     id: N14IDNCRDogtag
-    pocket1: NCRtrooperloadoutkits
+    backpack: N14ClothingBackpackSatchelNCRFilled
   innerClothingSkirt: N14ClothingUniformNCR #placeholder
   satchel: N14ClothingBackpackSatchelNCRFilled
 

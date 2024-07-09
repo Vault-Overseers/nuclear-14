@@ -1,8 +1,8 @@
 - type: job
   id: NCRQM
   setPreference: true
-  name: job-name-ncr-qm
-  description: job-description-ncr-qm
+  name: NCR quartermaster
+  description: Protect the armory and trade looted equipment with any wastelander.
   playTimeTracker: NCRQM
   requirements:
     - !type:DepartmentTimeRequirement
@@ -13,8 +13,8 @@
   supervisors: job-supervisors-ncr-nco
   canBeAntag: false
   access:
-  - NCR
-  - NCRNCO
+  - NCRCadet
+  - NCRSoldier
   special:
   - !type:AddComponentSpecial
     components:
@@ -26,12 +26,10 @@
   id: NCRQMGear
   equipment:
     head: N14ClothingHeadHatNCRBeretQM
-    back: N14ClothingBackpackNCRFilled
     jumpsuit: N14ClothingUniformNCR
     shoes: N14ClothingBootsLeather
-    id: N14IDNCRDogtagNCO
-    pocket1: NCRNCOloadoutkits
-    pocket2: RadioHandheld
+    id: N14IDNCRDogtag
+    backpack: N14ClothingBackpackSatchelNCRFilled
   innerClothingSkirt: N14ClothingUniformNCR #placeholder
   satchel: N14ClothingBackpackSatchelNCRFilled
 
