@@ -1,14 +1,14 @@
 - type: job
   id: VaultSecurity
+  setPreference: false # Delete line for RP
   name: job-name-vault-security
   description: job-description-vault-security
   playTimeTracker: VaultSecurity
   requirements:
-    - !type:CharacterDepartmentTimeRequirement
+    - !type:DepartmentTimeRequirement
       department: Vault
-      min: 7200 # 2 hours
+      time: 7200 # 2 hours
   startingGear: VaultSecurityGear
-  alwaysUseSpawner: true
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-overseer
   canBeAntag: false
@@ -21,11 +21,6 @@
       - type: NpcFactionMember
         factions:
           - Vault
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: VaultSecurityGear
@@ -33,13 +28,13 @@
     jumpsuit: N14ClothingUniformJumpsuitVault14
     back: N14ClothingBackpackVaultSecurityFilled
     shoes: N14ClothingBootsBlack
-    eyes: N14ClothingEyesSunGlasses
-    head: N14ClothingHeadHatVaultRiot
+    eyes: ClothingEyesGlassesSunglasses
+    head: ClothingHeadHelmetRiot
     outerClothing: N14ClothingOuterVaultSecVest
     id: N14VaultSecurityPDA
     pocket1: N14WeaponPistol10mm
-    pocket2: Handcuffs
-    ears: N14ClothingHeadsetVaultDweller
-    belt: N14PoliceBaton
+    ears: N14ClothingHeadsetVaultSecurity
+    belt: N14ClothingBeltPoliceFilled
+
 - type: playTimeTracker
   id: VaultSecurity

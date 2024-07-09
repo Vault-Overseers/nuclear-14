@@ -1,7 +1,7 @@
 - type: job
   id: RangerRecruit
   setPreference: false
-  name: job-name-ranger-recruit
+  name: recruit desert ranger
   description: job-description-ranger-recruit
   playTimeTracker: RangerRecruit
   startingGear: RangerRecruitGear
@@ -9,7 +9,8 @@
   supervisors: job-supervisors-ranger
   canBeAntag: false
   access:
-  - NCR
+  - NCRCadet
+  - NCRSoldier
   - NCRRanger
   special:
   - !type:AddComponentSpecial
@@ -17,16 +18,13 @@
       - type: NpcFactionMember
         factions:
           - Rangers
-  requirements:
-    - !type:CharacterWhitelistRequirement
 
 - type: startingGear
   id: RangerRecruitGear
   equipment:
-    head: N14ClothingHeadHatCowboyBrown
+    head: N14ClothingHeadHatCowboyRang
     back: N14ClothingBackpackMilitaryFilled
     jumpsuit: N14ClothingUniformRangerV1
-    ears: N14ClothingHeadsetNCR
     shoes: N14ClothingBootsLeather
     belt: ClothingBeltRevolverdesertfilled
     pocket1: MagazineBox45-70
@@ -34,7 +32,7 @@
     eyes: ClothingEyesGlassesSunglasses
     outerClothing: N14ClothingOuterRangerCombat
     id: N14IDBadgeNCRDesertRangerRecruit
-  innerClothingSkirt: N14ClothingUniformRangerV1 #placeholder
+  innerClothingSkirt: N14ClothingOfficerUniformNCR #placeholder
   satchel: N14ClothingBackpackSatchelMilitaryFilled
   duffelbag: N14ClothingBackpackDuffelMilitaryFilled
 

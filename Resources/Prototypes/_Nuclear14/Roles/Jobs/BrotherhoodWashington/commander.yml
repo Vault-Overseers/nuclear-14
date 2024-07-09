@@ -1,16 +1,15 @@
 - type: job
   id: BoSWashingtonCommander
   setPreference: true
-  name: job-name-bos-washington-commander
-  description: job-description-bos-washington-commander
+  name: Washington commander
+  description: You have a job to do, complete the mission no matter how much it costs, no matter how much blood needs to be spilled.
   playTimeTracker: BoSWashingtonCommander
   requirements:
-    - !type:CharacterDepartmentTimeRequirement
+    - !type:DepartmentTimeRequirement
       department: BrotherhoodWashington
-      min: 72000 #20 hours
+      time: 36000 # 10 hours
   weight: 10
   startingGear: BoSWashingtonCommanderGear
-  alwaysUseSpawner: true
   icon: "JobIconHeadOfSecurity"
   supervisors: job-supervisors-bos-washington-commander
   requireAdminNotify: true
@@ -23,11 +22,6 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodWashington
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSWashingtonCommanderGear
@@ -37,7 +31,7 @@
     shoes: N14ClothingBootsCombatMK2Filled
     neck: N14ClothingNeckCloakBrotherhoodWashington
     head: N14ClothingHeadHatBrotherhoodBeret
-    id: N14IDBrotherhoodWashingtonHolotagCommander
+    id: N14IDBrotherhoodHolotag
     ears: N14ClothingHeadsetBOSWashington
     belt: ClothingBeltBoSWebbing
 
