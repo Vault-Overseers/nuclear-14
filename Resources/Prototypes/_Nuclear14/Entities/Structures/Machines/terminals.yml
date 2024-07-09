@@ -294,19 +294,35 @@
   parent: N14ComputerTerminalBase
   id: N14ComputerTerminalWallBase
   abstract: true
+  placement:
+    mode: SnapgridCenter
   components:
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.20,-0.10,0.25,0.35"
-        density: 250
-        mask:
-          - FullTileMask
-        layer:
-          - WallLayer
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Construction
+    graph: TerminalNew
+    node: missingWires
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: Broken
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: WallMount
+  - type: Sprite
+    offset: 0, 1
   
 # Wall Terminal
 # N14TODO: Needs a way to use it to use the off state.

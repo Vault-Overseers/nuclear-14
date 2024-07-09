@@ -324,7 +324,7 @@
 
 - type: entity
   name: healing powder
-  parent: Pill
+  parent: BaseItem
   id: N14HealingPowder
   description: A bag of tribal healing powder. Nausiating.
   components:
@@ -333,6 +333,7 @@
     state: healingpowder
   - type: Item
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+    size: Small
   - type: SolutionContainerManager
     solutions:
       food:
@@ -340,6 +341,30 @@
         reagents:
         - ReagentId: HealingPowder
           Quantity: 20
+  - type: Food
+    forceFeedDelay: 1
+    transferAmount: null
+    eatMessage: food-swallow
+    useSound: /Audio/Items/pill.ogg
+  - type: FlavorProfile
+    ignoreReagents: []
+  - type: SolutionSpiker
+    sourceSolution: food
+  - type: Extractable
+    grindableSolutionName: food
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:SpillBehavior
+        solution: food
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: Construction
     graph: N14HealingPowder
     node: healingpowder
@@ -387,7 +412,7 @@
           Quantity: 10
 
 - type: entity
-  parent: Pill
+  parent: N14HealingPowder
   id: N14HealingPoultice
   name: healing poultice
   description: A bag of poultice to help with all common ailments slowly.
@@ -422,7 +447,7 @@
     state: bitterdrink
 
 - type: entity
-  parent: Pill
+  parent: N14HealingPowder
   id: N14MourningPoultice
   name: mourning poultice
   description: A bag of powder made from poisonous flowers for use within tribal ceremenoies.
