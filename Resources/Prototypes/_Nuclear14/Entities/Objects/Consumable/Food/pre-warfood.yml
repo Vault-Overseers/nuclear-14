@@ -67,7 +67,7 @@
           Quantity: 2
         - ReagentId: Theobromine
           Quantity: 3
-          
+
 - type: entity
   name: Cram
   parent: N14FoodSnackBase
@@ -89,7 +89,7 @@
     state: crisps
   - type: Food
     trash: N14FoodCrispsTrash
-    
+
 - type: entity
   name: Dandy Boy Apples
   parent: N14FoodSnackBase
@@ -100,30 +100,59 @@
     state: dandyapples
   - type: Food
     trash: N14FoodDandyboyapplesTrash
-    
+
 - type: entity
-  name: canned dog food
-  parent: N14FoodSnackBase
+  parent: FoodTinBase
   id: N14FoodDogfood
+  name: canned dog food
   description: A can of beef stew meant for dogs.
   components:
   - type: Sprite
-    state: dogfood
+    sprite: _Nuclear14/Objects/Consumable/Food/dogfood.rsi
+  - type: FlavorProfile
+    flavors:
+    - meaty
   - type: Food
-    trash: N14FoodTinCanTrash
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 7
-        - ReagentId: N14RadParticleFood
-          Quantity: 1
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 100
-          
+    trash: N14FoodDogFoodTrash
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
+
+- type: entity
+  parent: FoodTinBaseTrash
+  id: N14FoodDogFoodTrash
+  name: canned dog food
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/dogfood.rsi
+
+- type: entity
+  parent: FoodTinBase
+  id: N14FoodDinki-Di
+  name: Dinki Di Dog Food
+  description: A can of Gen-u-ine premium dog food, a worthy meal for any road warrior.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/dinkidi.rsi
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: Food
+    trash: N14FoodDinki-DiTrash
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
+
+- type: entity
+  parent: FoodTinBaseTrash
+  id: N14FoodDinki-DiTrash
+  name: Dinki-Di Dog Food
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/dinkidi.rsi
+
 - type: entity
   name: Fancy Lads Snack Cakes
   parent: N14FoodSnackBase
@@ -134,7 +163,7 @@
     state: fancylads
   - type: Food
     trash: N14FoodFancyladssnackcakesTrash
-    
+
 - type: entity
   name: InstaMash
   parent: N14FoodSnackBase
@@ -145,9 +174,9 @@
     state: instamash
   - type: Food
     trash: N14FoodInstamashTrash
-    
+
 - type: entity
-  name: Pork n' Beans 
+  name: Pork n' Beans
   parent: N14FoodSnackBase
   id: N14FoodPorkBeans
   description: Beans stewed in a tomato sauce with chunks of cured pork belly.
@@ -159,7 +188,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
-    
+
 - type: entity
   name: mouldy food
   parent: N14FoodSnackBase
@@ -181,7 +210,7 @@
           Quantity: 3
         - ReagentId: Ipecac
           Quantity: 2
-          
+
 - type: entity
   name: Salisbury Steak
   parent: N14FoodSnackBase
@@ -201,7 +230,7 @@
           Quantity: 9
         - ReagentId: N14RadParticleFood
           Quantity: 1
-          
+
 - type: entity
   name: Sugar Bombs
   parent: N14FoodSnackBase
@@ -223,7 +252,7 @@
           Quantity: 1
         - ReagentId: Sugar
           Quantity: 5
-          
+
 - type: entity
   name: YumYum Deviled Eggs
   parent: N14FoodSnackBase
@@ -234,7 +263,7 @@
     state: yumyum
   - type: Food
     trash: N14FoodYumyumdeviledeggsTrash
-          
+
 # Trash
 - type: entity
   noSpawn: true
@@ -254,14 +283,15 @@
   - type: PhysicalComposition
     materialComposition:
       Cardboard: 100
-  
+
 - type: entity
   parent: N14FoodPacketTrash
   id: N14FoodTinCanTrash
   name: empty tin can
   components:
   - type: Sprite
-    state: dogfood # TODO needs sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/dogfood.rsi
+    state: trash
   - type: WelderRefinable
     refineResult:
     - SheetSteel1
@@ -276,7 +306,7 @@
   components:
   - type: Sprite
     state: blamco_trash
-    
+
 - type: entity
   parent: N14FoodPacketTrash
   id: N14FoodBlamcomaccheeseLargeTrash
@@ -284,7 +314,7 @@
   components:
   - type: Sprite
     state: blamco_large_trash
-    
+
 - type: entity
   parent: N14FoodPacketTrash
   id: N14FoodBubblegumTrash
@@ -292,7 +322,7 @@
   components:
   - type: Sprite
     state: bubblegum_trash
-    
+
 - type: entity
   parent: N14FoodPacketTrash
   id: N14FoodCramTrash
@@ -300,7 +330,7 @@
   components:
   - type: Sprite
     state: cram_trash
-    
+
 - type: entity
   parent: N14FoodPacketTrash
   id: N14FoodCrispsTrash
@@ -308,7 +338,7 @@
   components:
   - type: Sprite
     state: crisps_trash
-    
+
 - type: entity
   parent: N14FoodPacketTrash
   id: N14FoodDandyboyapplesTrash
@@ -316,7 +346,7 @@
   components:
   - type: Sprite
     state: dandyapples_trash
-    
+
 - type: entity
   parent: N14FoodPacketTrash
   id: N14FoodFancyladssnackcakesTrash
@@ -324,7 +354,7 @@
   components:
   - type: Sprite
     state: fancylads_trash
-    
+
 - type: entity
   parent: N14FoodPacketTrash
   id: N14FoodInstamashTrash
@@ -332,7 +362,7 @@
   components:
   - type: Sprite
     state: instamash_trash
-    
+
 - type: entity
   parent: N14FoodPacketTrash
   id: N14FoodSalisburysteakTrash
@@ -340,7 +370,7 @@
   components:
   - type: Sprite
     state: steak_trash
-    
+
 - type: entity
   parent: N14FoodPacketTrash
   id: N14FoodSugarbombsTrash
@@ -348,7 +378,7 @@
   components:
   - type: Sprite
     state: sugarbombs_trash
-    
+
 - type: entity
   parent: N14FoodPacketTrash
   id: N14FoodYumyumdeviledeggsTrash
