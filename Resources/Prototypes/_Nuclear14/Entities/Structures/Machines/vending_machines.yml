@@ -110,6 +110,70 @@
       - id: N14DrinkNukaColaWild
         prob: 0.05
         
+- type: entity
+  parent: VendingMachine
+  id: N14VendingMachineVim
+  suffix: storage, empty
+  name: Vim machine
+  description: A Pre-War vending machine that dispenses Vim branded beverages. 
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Machines/VendingMachines/vim.rsi
+    layers:
+    - state: vimmachine
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b34747"
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    maxItemSize: Small
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: Transform
+    anchored: true
+    noRot: false
+    
+- type: entity
+  parent: N14VendingMachineVim
+  id: N14VendingMachineVimFilled
+  suffix: storage, random
+  components:
+  - type: StorageFill
+    contents:
+      - id: N14DrinkNukaColaEmpty
+        prob: 0.3
+      - id: N14DrinkNukaColaBroken
+        prob: 0.3
+      - id: N14DrinkNukaCola
+        prob: 0.3
+      - id: N14DrinkNukaCola
+        prob: 0.3
+      - id: N14DrinkNukaCola
+        prob: 0.2
+      - id: N14DrinkNukaColaCherry
+        prob: 0.1
+      - id: N14DrinkNukaColaGrape
+        prob: 0.1
+      - id: N14DrinkNukaColaOrange
+        prob: 0.1
+      - id: N14DrinkNukaColaYellow
+        prob: 0.05
+      - id: N14DrinkNukaColaQuantum
+        prob: 0.05
+      - id: N14DrinkNukaColaQuartz
+        prob: 0.05
+      - id: N14DrinkNukaColaVictory
+        prob: 0.05
+      - id: N14DrinkNukaColaWild
+        prob: 0.05
+        
 # Cigarette vendors
 - type: entity
   parent: BaseStructure
