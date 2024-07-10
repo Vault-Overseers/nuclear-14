@@ -314,6 +314,66 @@
             - N14Cartridge556Rifle
 
 - type: entity
+  name: scout rifle
+  parent: BaseWeaponRifle
+  id: N14WeaponScout
+  description: A modified version of the service rifle made by rangers in the field. It is capable of using larger 5.56 magazines.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/scoutrifle.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/scoutrifle.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -21
+    maxAngle: -46
+  - type: Gun
+    minAngle: 18
+    maxAngle: 46
+    angleIncrease: 4
+    angleDecay: 12
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine5.56Rifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine5.56Rifle
+            - LongMagazine5.56Rifle
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge5.56Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge5.56Rifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
   name: battle rifle
   parent: N14WeaponRifleBase
   id: N14WeaponRifle308Battle
