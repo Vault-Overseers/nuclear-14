@@ -14,13 +14,10 @@
 - type: reaction
   id: Composting
   source: true # breakdown of existing resource
-  quantized: true
-  # requiredMixerCategories:
-  # - Composting
+  requiredMixerCategories:
+  - Composting
   reactants:
     Dung:
-      amount: 10
-    Water:
       amount: 10
   effects:
     - !type:CreateEntityReactionEffect

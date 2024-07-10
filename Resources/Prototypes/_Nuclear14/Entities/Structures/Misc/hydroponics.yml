@@ -20,10 +20,15 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: ReactionMixer
-    mixMessage: "compost-mixing-success"
     reactionTypes:
     - Composting
+    # mixMessage: "compost-mixing-success"
   - type: SolutionContainerMixer
+    mixDuration: 5
+    mixingSound:
+      path: /Audio/Machines/buzz_loop.ogg
+      params:
+        volume: -5
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
     snapCardinals: true
