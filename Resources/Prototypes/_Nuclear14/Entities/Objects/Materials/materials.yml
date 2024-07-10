@@ -146,10 +146,20 @@
     rotAfter: 240
     # don't want it giving off ammonia only bodies
     molsPerSecondPerUnitMass: 0
-  - type: RotInto
-    entity: N14CompostRotted
-    stage: 1
 # N14:TODO: Add creampie ing but worse and it makes you throw up.
+  - type: SolutionContainerManager
+    solutions:
+      dung:
+        maxVol: 25
+        reagents:
+        - ReagentId: Dung
+          Quantity: 25
+  - type: DrainableSolution
+    solution: dung
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
+  - type: DeleteOnSolutionEmpty
+    solution: dung
 
 - type: entity
   parent: BaseItem
@@ -162,19 +172,17 @@
     state: compost
   - type: SolutionContainerManager
     solutions:
-      dung:
+      compost:
         maxVol: 25
         reagents:
         - ReagentId: Fertilizer
           Quantity: 25
   - type: DrainableSolution
-    solution: dung
+    solution: compost
   - type: SolutionTransfer
     canChangeTransferAmount: false
   - type: DeleteOnSolutionEmpty
-    solution: dung
-  - type: TimedDespawn
-    lifetime: 120 # Absorbs into the ground if you're not quick
+    solution: compost
   - type: Material
   - type: Stack
     stackType: Compost
