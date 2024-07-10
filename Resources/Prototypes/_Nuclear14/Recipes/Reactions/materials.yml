@@ -10,3 +10,18 @@
   effects:
     - !type:CreateEntityReactionEffect
       entity: Gunpowder1
+      
+- type: reaction
+  id: Composting
+  source: true # breakdown of existing resource
+  quantized: true
+  # requiredMixerCategories:
+  # - Composting
+  reactants:
+    Dung:
+      amount: 10
+    Water:
+      amount: 10
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14CompostRotted
