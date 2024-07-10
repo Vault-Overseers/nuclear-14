@@ -1,3 +1,4 @@
+#MARK: Basic Kits
 - type: entity
   name: rifleman kit
   parent: BaseItem
@@ -163,6 +164,8 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
 
+#MARK: Special Kits
+
 - type: entity
   name: special rifleman kit
   parent: KitBase
@@ -260,7 +263,32 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
 
-# Desert Rangers
+#MARK: Ranger Kits
+
+- type: entity
+  name: ranger service kit
+  parent: KitBase
+  id: KitServiceRanger
+  description: A crate containing advance weaponry for members of the rangers.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingBeltNCRPouches
+      - id: N14WeaponService
+      - id: Magazine5.56Rifle
+      - id: Magazine5.56Rifle
+      - id: Magazine5.56Rifle
+      - id: Magazine5.56Rifle
+      - id: MagazineBox5.56
+      - id: N14Stimpak
+      - id: N14BoxCardboardMREBoxKFilled
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
 
 - type: entity
   name: ranger rifleman kit
@@ -292,7 +320,7 @@
   description: A crate containing advance weaponry for members of the rangers.
   components:
   - type: Sprite
-    state: rifleman
+    state: marksman
   - type: Item
     size: Huge
   - type: SpawnItemsOnUse
@@ -315,21 +343,48 @@
   description: A crate containing advance weaponry for members of the rangers.
   components:
   - type: Sprite
-    state: rifleman
+    state: pointman
   - type: Item
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponAutoShotgun
-      - id: N14MagazineShotgun12
-      - id: N14MagazineShotgun12
-      - id: N14MagazineShotgun12
-      - id: MagazineBox12gauge
+      - id: N14WeaponRiotShotgun
+      - id: N14MagazineShotgun20
+      - id: N14MagazineShotgun20
+      - id: N14MagazineShotgun20
+      - id: MagazineBox20gauge
+      - id: N14CombatKnife
+      - id: N14Stimpak
       - id: N14Stimpak
       - id: N14BoxCardboardMREBoxKFilled
       - id: N14CombatKnife
     sound:
       path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: ranger trailman kit
+  parent: KitBase
+  id: KitTrailmanRanger
+  description: A cache containing belongings of a veteran ranger.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLeverCarbine
+      - id: MagazineBox44
+      - id: MagazineBox44
+      - id: MagazineBox44
+      - id: N14Stimpak
+      - id: N14Stimpak
+      - id: N14BoxCardboardMREBoxKFilled
+      - id: N14CombatKnife
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+#MARK: Veteran Kits
 
 - type: entity
   name: veteran ranger precision rifle kit
@@ -362,7 +417,7 @@
   description: A cache containing belongings of a veteran ranger.
   components:
   - type: Sprite
-    state: rifleman
+    state: marksman
   - type: Item
     size: Huge
   - type: SpawnItemsOnUse
@@ -370,29 +425,6 @@
       - id: N14WeaponAntiMateriel
       - id: MagazineBox50
       - id: MagazineBox50
-      - id: N14Stimpak
-      - id: N14Stimpak
-      - id: N14BoxCardboardMREBoxKFilled
-      - id: N14CombatKnife
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: veteran ranger trailman kit
-  parent: KitBase
-  id: KitTrailmanRangerVeteran
-  description: A cache containing belongings of a veteran ranger.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLeverCarbine
-      - id: MagazineBox44
-      - id: MagazineBox44
-      - id: MagazineBox44
       - id: N14Stimpak
       - id: N14Stimpak
       - id: N14BoxCardboardMREBoxKFilled
@@ -431,7 +463,7 @@
   description: A cache containing belongings of a veteran ranger.
   components:
   - type: Sprite
-    state: rifleman
+    state: marksman
   - type: Item
     size: Huge
   - type: SpawnItemsOnUse
@@ -441,31 +473,6 @@
       - id: Magazine7.62Rifle
       - id: Magazine7.62Rifle
       - id: MagazineBox7.62
-      - id: N14Stimpak
-      - id: N14Stimpak
-      - id: N14BoxCardboardMREBoxKFilled
-      - id: N14CombatKnife
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: veteran ranger cqb kit
-  parent: KitBase
-  id: KitCQBRangerVeteran
-  description: A cache containing belongings of a veteran ranger.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponRiotShotgun
-      - id: N14MagazineShotgun20
-      - id: N14MagazineShotgun20
-      - id: N14MagazineShotgun20
-      - id: MagazineBox20gauge
-      - id: N14CombatKnife
       - id: N14Stimpak
       - id: N14Stimpak
       - id: N14BoxCardboardMREBoxKFilled

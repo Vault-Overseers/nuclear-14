@@ -1,3 +1,5 @@
+#MARK: NCR
+
 - type: loadout
   id: LoadoutNCRKitRifleman
   category: Roles
@@ -150,6 +152,19 @@
   items:
     - KitSpecialPointman
 
+#MARK: Republic Rangers
+
+- type: loadout
+  id: LoadoutRangerKitService
+  category: Roles
+  cost: 8
+  exclusive: true
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRRanger
+  items:
+    - KitServiceRanger
+
 - type: loadout
   id: LoadoutRangerKitRifleman
   category: Roles
@@ -158,8 +173,6 @@
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - RangerRecruit
-        - Ranger
         - NCRRanger
   items:
     - KitRiflemanRanger
@@ -172,8 +185,6 @@
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - RangerRecruit
-        - Ranger
         - NCRRanger
   items:
     - KitMarksmanRanger
@@ -186,9 +197,8 @@
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - RangerRecruit
-        - Ranger
         - NCRRanger
+        - NCRRangerVeteran
   items:
     - KitCQBRanger
 
@@ -200,7 +210,6 @@
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - RangerVeteran
         - NCRRangerVeteran
   items:
     - KitRiflemanRangerVeteran
@@ -213,7 +222,6 @@
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - RangerVeteran
         - NCRRangerVeteran
   items:
     - KitHeavySniperRangerVeteran
@@ -226,7 +234,6 @@
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - RangerVeteran
         - NCRRangerVeteran
   items:
     - KitTrailmanRangerVeteran
@@ -239,7 +246,6 @@
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - RangerVeteran
         - NCRRangerVeteran
   items:
     - KitAssaultRangerVeteran
@@ -252,21 +258,7 @@
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - RangerVeteran
         - NCRRangerVeteran
   items:
     - KitMarksmanRangerVeteran
-
-- type: loadout
-  id: LoadoutVeteranRangerKitCQB
-  category: Roles
-  cost: 8
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - RangerVeteran
-        - NCRRangerVeteran
-  items:
-    - KitCQBRangerVeteran
 
