@@ -1,4 +1,4 @@
-# NCR
+#MARK: NCR
 - type: entity
   parent: N14DoorWoodSecureNCR
   id: N14DoorWoodSecureNCRLocked
@@ -16,6 +16,16 @@
   components:
   - type: AccessReader
     access: [["NCRNCO"]]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: N14DoorWoodSecureNCR
+  id: N14DoorCellMetalLockedMP
+  suffix: NCR, Locked, MP
+  components:
+  - type: AccessReader
+    access: [["NCRMedic"]]
   - type: Wires
     layoutId: AirlockSecurity
 
@@ -59,7 +69,7 @@
   - type: Wires
     layoutId: HighSec
 
-# BOS
+#MARK: BoS
 - type: entity
   parent: N14DoorBunker
   id: N14DoorBunkerLockedBOSMidwest
@@ -119,3 +129,161 @@
     access: [["PaladinCommander"]]
   - type: Wires
     layoutId: HighSec
+
+#MARK: Oasis
+
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedSheriff
+  suffix: Oasis, Locked, Sheriff
+  components:
+  - type: AccessReader
+    access: [["Sheriff"]]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: N14DoorCellMetal
+  id: N14DoorCellMetalLockedSheriff
+  suffix: Oasis, Locked, Sheriff
+  components:
+  - type: AccessReader
+    access: [["Sheriff"]]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedMayor
+  suffix: Oasis, Locked, Mayor
+  components:
+  - type: AccessReader
+    access: [["Mayor"]]
+  - type: Wires
+    layoutId: AirlockService
+
+#MARK: Keylocked
+
+#IronKey
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedIron
+  suffix: Locked, IronKey
+  components:
+  - type: AccessReader
+    access: [["IronKey"]]
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: N14DoorMetalSecure
+  id: N14DoorMetalSecureLockedIron
+  suffix: Locked, IronKey
+  components:
+  - type: AccessReader
+    access: [["IronKey"]]
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: N14DoorCellMetal
+  id: N14DoorCellMetalLockedIron
+  suffix: Locked, IronKey
+  components:
+  - type: AccessReader
+    access: [["IronKey"]]
+  - type: Wires
+    layoutId: AirlockCargo
+
+#BronzeKey
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedBronze
+  suffix: Locked, BronzeKey
+  components:
+  - type: AccessReader
+    access: [["BronzeKey"]]
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: N14DoorMetalSecure
+  id: N14DoorMetalSecureLockedBronze
+  suffix: Locked, BronzeKey
+  components:
+  - type: AccessReader
+    access: [["BronzeKey"]]
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: N14DoorCellMetal
+  id: N14DoorCellMetalLockedBronze
+  suffix: Locked, BronzeKey
+  components:
+  - type: AccessReader
+    access: [["BronzeKey"]]
+  - type: Wires
+    layoutId: AirlockCargo
+
+#BrassKey
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedBrass
+  suffix: Locked, BrassKey
+  components:
+  - type: AccessReader
+    access: [["BrassKey"]]
+  - type: Wires
+    layoutId: AirlockCargo
+
+    - type: entity
+  parent: N14DoorMetalSecure
+  id: N14DoorMetalSecureLockedBrass
+  suffix: Locked, BrassKey
+  components:
+  - type: AccessReader
+    access: [["BrassKey"]]
+  - type: Wires
+    layoutId: AirlockCargo
+
+    - type: entity
+  parent: N14DoorCellMetal
+  id: N14DoorCellMetalLockedBrass
+  suffix: Locked, BrassKey
+  components:
+  - type: AccessReader
+    access: [["BrassKey"]]
+  - type: Wires
+    layoutId: AirlockCargo
+
+#SilverKey
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedSilver
+  suffix: Locked, SilverKey
+  components:
+  - type: AccessReader
+    access: [["SilverKey"]]
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: N14DoorMetalSecure
+  id: N14DoorMetalSecureLockedSilver
+  suffix: Locked, SilverKey
+  components:
+  - type: AccessReader
+    access: [["SilverKey"]]
+  - type: Wires
+    layoutId: AirlockCargo
+
+    - type: entity
+  parent: N14DoorCellMetal
+  id: N14DoorCellMetalLockedSilver
+  suffix: Locked, SilverKey
+  components:
+  - type: AccessReader
+    access: [["SilverKey"]]
+  - type: Wires
+    layoutId: AirlockCargo
