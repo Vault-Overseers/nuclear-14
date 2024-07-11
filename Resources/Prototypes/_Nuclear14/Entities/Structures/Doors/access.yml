@@ -1,0 +1,101 @@
+# NCR
+- type: entity
+  parent: N14DoorWoodSecureNCR
+  id: N14DoorWoodSecureNCRLocked
+  suffix: NCR, Locked
+  components:
+  - type: AccessReader
+    access: [["NCR"]]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: N14DoorWoodSecureNCR
+  id: N14DoorWoodSecureNCRLockedNCO
+  suffix: NCR, Locked, NCO
+  components:
+  - type: AccessReader
+    access: [["NCRNCO"]]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: N14DoorWoodSecureNCR
+  id: N14DoorWoodSecureNCRLockedOfficer
+  suffix: NCR, Locked, Officer
+  components:
+  - type: AccessReader
+    access: [["NCROfficer"]]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: N14DoorWoodSecureNCR
+  id: N14DoorWoodSecureNCRLockedRanger
+  suffix: NCR, Locked, Ranger
+  components:
+  - type: AccessReader
+    access: [["NCRRanger"]]
+  - type: Wires
+    layoutId: HighSec
+
+# BOS
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBOSMidwest
+  suffix: BOSMidwest, Locked
+  components:
+  - type: AccessReader
+    access: [["BoSMidwest"]]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBOSMidwest
+  suffix: BOSMidwest, Locked
+  components:
+  - type: AccessReader
+    access: [["BoSMidwest"]]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedPaladin
+  suffix: BOSMidwest, Locked, Paladin
+  components:
+  - type: AccessReader
+    access: [["Paladin"]]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedPaladin
+  suffix: BOSMidwest, Locked, Paladin
+  components:
+  - type: AccessReader
+    access: [["Paladin"]]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedPaladinCommander
+  suffix: BOSMidwest, Locked, Commander
+  components:
+  - type: AccessReader
+    access: [["PaladinCommander"]]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedPaladinCommander
+  suffix: BOSMidwest, Locked, Commander
+  components:
+  - type: AccessReader
+    access: [["PaladinCommander"]]
+  - type: Wires
+    layoutId: HighSec
