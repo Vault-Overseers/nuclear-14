@@ -21,6 +21,26 @@
 
 - type: entity
   parent: N14DoorWoodSecureNCR
+  id: N14DoorWoodSecureNCRLockedMP
+  suffix: NCR, Locked, MP
+  components:
+  - type: AccessReader
+    access: [["NCRMP"]]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: N14DoorCellMetal
+  id: N14DoorCellMetalLockedMP
+  suffix: NCR, Locked, MP
+  components:
+  - type: AccessReader
+    access: [["NCRMP"]]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: N14DoorWoodSecureNCR
   id: N14DoorWoodSecureNCRLockedOfficer
   suffix: NCR, Locked, Officer
   components:
