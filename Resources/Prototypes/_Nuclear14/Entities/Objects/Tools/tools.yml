@@ -1,0 +1,220 @@
+- type: entity
+  name: wirecutters
+  parent: Wirecutter
+  id: N14Wirecutter
+  description: This kills the wire.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Tools/wirecutters.rsi
+    netsync: false
+    layers:
+    - state: cutters
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: cutters-cutty-thingy
+  - type: Item
+    sprite: _Nuclear14/Objects/Tools/wirecutters.rsi
+    storedRotation: -90
+
+- type: entity
+  name: screwdriver
+  parent: Screwdriver
+  id: N14Screwdriver
+  description: Industrial grade torque in a small screwdriving package.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Tools/screwdriver.rsi
+    netsync: false
+    layers:
+    - state: screwdriver
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: screwdriver-screwybits
+  - type: Item
+    sprite: _Nuclear14/Objects/Tools/screwdriver.rsi
+    storedRotation: -90
+
+- type: entity
+  name: wrench
+  parent: Wrench
+  id: N14Wrench
+  description: 'A common tool for assembly and disassembly. Remember: righty tighty, lefty loosey.'
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Tools/wrench.rsi
+    state: icon
+    netsync: false
+  - type: Item
+    sprite: _Nuclear14/Objects/Tools/wrench.rsi
+    storedRotation: -90
+
+- type: entity
+  name: multitool
+  parent: Multitool
+  id: N14Multitool
+  description: An advanced tool to copy, store, and send electrical pulses and signals through wires and machines
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/multitool_drop.ogg
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Tools/multitool.rsi
+    layers:
+    - state: icon
+    - state: green-unlit
+      shader: unshaded
+  - type: Item
+    sprite: _Nuclear14/Objects/Tools/multitool.rsi
+    storedRotation: -90
+      
+- type: entity
+  name: shovel
+  parent: Shovel
+  id: N14Shovel
+  description: A large tool for digging and moving dirt.
+  # components:
+  # - type: Tool
+    # qualities:
+      # - Shoveling
+    # useSound:
+      # path: /Audio/Items/crowbar.ogg
+      
+# Saws
+
+- type: entity
+  name: saw
+  id: N14Saw
+  parent: Saw
+  components:
+  - type: Sharp
+  - type: Utensil
+    types:
+      - Knife
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/saw.rsi
+    state: saw
+  - type: Item
+    sprite: Objects/Specific/Medical/Surgery/saw.rsi
+    storedRotation: 90
+  - type: Tool
+    qualities:
+      - Sawing
+    speed: 1.0
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 10
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+
+- type: entity
+  name: choppa
+  id: N14SawImprovised
+  parent: N14Saw
+  description: A wicked serrated blade made of whatever nasty sharp things you could find. # It would make a pretty decent weapon, given there are more space for some tool mods too.
+  components:
+  - type: Sprite
+    state: improv
+  - type: Item
+    heldPrefix: improv
+  - type: Tool
+    qualities:
+      - Sawing
+    speed: 0.5
+
+- type: entity
+  parent: N14Saw
+  id: N14SawElectric
+  name: circular saw
+  description: For heavy duty cutting.
+  components:
+  - type: Sprite
+    state: electric
+  - type: Item
+    heldPrefix: electric
+    storedRotation: 90
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 15
+    soundHit:
+      path: /Audio/Items/drill_hit.ogg
+  - type: Tool
+    qualities:
+      - Sawing
+    speed: 1.5
+
+- type: entity
+  parent: N14Saw
+  id: N14SawAdvanced
+  name: advanced circular saw
+  description: You think you can cut anything with it.
+  components:
+  - type: Sprite
+    state: advanced
+  - type: Item
+    heldPrefix: advanced
+    storedRotation: 90
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      groups:
+        Brute: 15
+    soundHit:
+      path: /Audio/Items/drill_hit.ogg
+  - type: Tool
+    qualities:
+      - Sawing
+    speed: 2.0
+
+- type: entity
+  parent: BaseItem
+  id: N14Chainsaw
+  name: chainsaw
+  description: A very large chainsaw. Usually you use this for cutting down trees... usually.
+  components:
+  - type: Wieldable
+    wieldSound: !type:SoundPathSpecifier
+      path: /Audio/Weapons/chainsawwield.ogg
+      params:
+        volume: -3
+  - type: Sharp
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/chainsaw.rsi
+    state: icon
+  - type: MeleeWeapon
+    autoAttack: true
+    angle: 0
+    wideAnimationRotation: -135
+    attackRate: 4
+    damage:
+      types:
+        Slash: 2
+        Blunt: 2
+        Structural: 4
+    soundHit:
+      path: /Audio/Weapons/chainsaw.ogg
+      params:
+        volume: -3
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 4
+        Structural: 4
+  - type: Item
+    size: Huge
+    sprite: Objects/Weapons/Melee/chainsaw.rsi
+  - type: DisarmMalus
+  - type: RefillableSolution
+    solution: Welder
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 300
+        maxVol: 300
+  - type: UseDelay
+    delay: 1
+  - type: Tool
+    qualities:
+      - Sawing
+    speed: 3.0

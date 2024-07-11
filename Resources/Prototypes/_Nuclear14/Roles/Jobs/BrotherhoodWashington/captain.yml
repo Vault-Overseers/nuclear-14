@@ -1,0 +1,40 @@
+- type: job
+  id: BoSWashingtonCaptain
+  setPreference: true
+  name: Washington captain
+  description: lead the washington troops and make sure the objetives are accomplished, keep on line the troops.
+  playTimeTracker: BoSWashingtonCaptain
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: BrotherhoodWashington
+      time: 18000 # 5 hours
+  startingGear: BoSWashingtonCaptainGear
+  icon: "JobIconPassenger"
+  supervisors: job-name-bos-washington
+  canBeAntag: false
+  access:
+  - WashingtonInitiate
+  - WashingtonKnight
+  - WashingtonScribe
+  - WashingtonPaladin
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodWashington
+
+- type: startingGear
+  id: BoSWashingtonCaptainGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitBOSRed
+    back: N14ClothingBackpackMilitary
+    shoes: N14ClothingBootsCombatMK2Filled
+    head: N14ClothingHeadHatBrotherhoodCap
+    outerClothing: N14ClothingOuterCombatArmorBOSMK2
+    id: N14IDBrotherhoodHolotag
+    ears: N14ClothingHeadsetBOSWashington
+    belt: ClothingBeltBoSWebbing
+
+- type: playTimeTracker
+  id: BoSWashingtonCaptain

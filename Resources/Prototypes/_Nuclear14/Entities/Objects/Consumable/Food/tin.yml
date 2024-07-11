@@ -1,0 +1,206 @@
+# Need something that you can open these tins with. I suggest a prying or cutting tool.
+
+# C ration 1
+
+- type: entity
+  parent: FoodTinBase
+  id: N14FoodTinC1
+  name: c ration type 1
+  description: A canned food product containing the entree portion of a military combat ration.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Tins/c_ration_1.rsi
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - salty
+    - cheap
+  - type: Food
+    trash: N14FoodTinC1Trash
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  parent: N14FoodTinC1
+  id: N14FoodTinC1Open
+  suffix: Open
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-open
+      map: ["icon"]
+  - type: Openable
+    opened: true
+
+- type: entity
+  parent: FoodTinBaseTrash
+  id: N14FoodTinC1Trash
+  name: c ration type 1
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Tins/c_ration_1.rsi
+
+# C ration 2
+
+- type: entity
+  parent: FoodTinBase
+  id: N14FoodTinC2
+  name: c ration crackers
+  description: A canned food product containing crackers as part of a military combat ration. Use a knife to get the crackers out.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Tins/c_ration_2.rsi
+  - type: SliceableFood
+    slice: FoodCrackerCSlice
+  - type: FlavorProfile
+    flavors:
+    - chalky
+    - salty
+    - cheap
+  - type: Food
+    trash: N14FoodTinC2Trash
+  - type: Tag
+    tags:
+    - Bread
+
+- type: entity
+  parent: N14FoodTinC2
+  id: N14FoodTinC2Open
+  suffix: Open
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-open
+      map: ["icon"]
+  - type: Openable
+    opened: true
+
+- type: entity
+  parent: FoodTinBaseTrash
+  id: N14FoodTinC2Trash
+  name: c ration type 2
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Tins/c_ration_2.rsi
+
+# C ration 3
+
+- type: entity
+  parent: FoodTinBase
+  id: N14FoodTinC3
+  name: c ration type 3
+  description: A canned food product containing the dessert portion of a military combat ration.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Tins/c_ration_3.rsi
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - fruity
+    - cheap
+  - type: Food
+    trash: N14FoodTinC3Trash
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  parent: N14FoodTinC3
+  id: N14FoodTinC3Open
+  suffix: Open
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-open
+      map: ["icon"]
+  - type: Openable
+    opened: true
+
+- type: entity
+  parent: FoodTinBaseTrash
+  id: N14FoodTinC3Trash
+  name: c ration type 3
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Tins/c_ration_3.rsi
+
+# K Ration
+
+- type: entity
+  parent: FoodTinBase
+  id: N14FoodTinK
+  name: k ration
+  description: A canned food product containing the field option of a military combat ration.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Tins/k_ration.rsi
+  - type: FlavorProfile
+    flavors:
+    - piquant
+    - meaty
+    - salty
+  - type: Food
+    trash: N14FoodTinKTrash
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  parent: N14FoodTinK
+  id: N14FoodTinKOpen
+  suffix: Open
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-open
+      map: ["icon"]
+  - type: Openable
+    opened: true
+
+- type: entity
+  parent: FoodTinBaseTrash
+  id: N14FoodTinKTrash
+  name: K ration
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Tins/k_ration.rsi
+
+# K Crackers
+
+- type: entity
+  parent: FoodTinBase
+  id: N14FoodTinKCracker
+  name: k ration crackers
+  description: A canned food product containing crackers as part of a military combat ration. Use a knife to get the crackers out.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Tins/c_ration_2.rsi
+  - type: SliceableFood
+    slice: FoodCrackerKSlice
+  - type: FlavorProfile
+    flavors:
+    - butter
+    - bread
+  - type: Food
+    trash: N14FoodTinC2Trash
+  - type: Tag
+    tags:
+    - Bread
+
+- type: entity
+  parent: N14FoodTinKCracker
+  id: N14FoodTinKCrackerOpen
+  suffix: Open
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-open
+      map: ["icon"]
+  - type: Openable
+    opened: true
+
+- type: entity
+  parent: N14FoodTinC2Trash
+  id: N14FoodTinKCrackerTrash
+  name: k ration crackers

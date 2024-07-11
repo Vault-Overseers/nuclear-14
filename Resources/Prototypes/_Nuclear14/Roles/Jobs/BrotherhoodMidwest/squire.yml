@@ -1,0 +1,31 @@
+- type: job
+  id: BoSMidSquire
+  setPreference: true
+  name: Midwest squire
+  description: Follow orders and become the hardened steel the brotherhood wants you to be.
+  playTimeTracker: BoSMidSquire
+  startingGear: BoSMidSquireGear
+  icon: "JobIconPassenger"
+  canBeAntag: false
+  accessGroups:
+  - BOSMidwest
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodMidwest
+
+- type: startingGear
+  id: BoSMidSquireGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitBOSGreen
+    back: N14ClothingBackpackMilitary
+    shoes: N14ClothingBootsCombatFilled
+    head: N14ClothingHeadHatBrotherhoodMidwestHelmet
+    outerClothing: N14ClothingOuterMidwestArmor
+    id: N14IDBrotherhoodHolotag
+    belt: ClothingBeltMilitary
+
+- type: playTimeTracker
+  id: BoSMidSquire

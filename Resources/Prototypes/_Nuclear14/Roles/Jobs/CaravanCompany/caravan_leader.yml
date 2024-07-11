@@ -1,0 +1,36 @@
+- type: job
+  id: CaravanLeader
+  setPreference: true
+  name: job-name-caravan-leader
+  description: job-description-caravan-leader
+  playTimeTracker: CaravanLeader
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: CaravanCompany
+      time: 3600 # 1 hour as Caravan Trader
+  weight: 10
+  startingGear: CaravanLeaderGear
+  icon: "JobIconQuarterMaster"
+  canBeAntag: false
+  supervisors: job-supervisors-caravan-leader
+  accessGroups:
+  - CaravanCompany
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - CaravanCompany
+
+- type: startingGear
+  id: CaravanLeaderGear
+  equipment:
+    head: N14ClothingHeadHatTrucker
+    jumpsuit: N14ClothingUniformJumpsuitMerchant
+    back: N14ClothingBackpackCaravanLeaderFilled
+    shoes: N14ClothingBootsLeather
+    pocket1: N14WeaponPistol12mm
+    id: N14IDPassportCaravan
+
+- type: playTimeTracker
+  id: CaravanLeader
