@@ -23,6 +23,9 @@
   - type: Construction
     graph: N14Sack
     node: sack
+  - type: Tag
+    tags:
+    - ComposterCompatible
       
 - type: entity
   parent: N14Sack
@@ -44,7 +47,7 @@
   parent: BaseItem
   id: N14SackCompost
   name: compost sack
-  description: A sack for storing compost.
+  description: A sack for storing compost or dung
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
@@ -60,13 +63,21 @@
     solution: sack
   - type: ExaminableSolution
     solution: sack
+  - type: DrawableSolution
+    solution: sack
+  - type: RefillableSolution
+    solution: sack
   - type: SolutionContainerManager
     solutions:
       sack:
         maxVol: 100
+        canMix: true
   - type: Construction
     graph: N14SackCompost
     node: sack
+  - type: Tag
+    tags:
+    - ComposterCompatible
         
 - type: entity
   parent: N14SackCompost

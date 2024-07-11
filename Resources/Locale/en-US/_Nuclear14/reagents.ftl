@@ -8,15 +8,40 @@ reagent-desc-rad-particle-food = Too much will make you sick of living.
 # Drinks
 reagent-name-water-dirty = dirty water
 reagent-desc-water-dirty = Looks murky.
-
 reagent-name-water-irradiated = irradiated water
 reagent-desc-water-irradiated = That'll put arms on your chest.
+reagent-name-water-filtered = filtered water
+reagent-desc-water-filtered = almost as good as it gets.
 
 ## Soda
 reagent-name-nuka-cola = Nuka-Cola
 reagent-desc-nuka-cola = Nuka-Cola brand soda from before war. Sugary goodness.
 reagent-name-irradiated-nuka-cola = irradiated Nuka-Cola
 reagent-desc-irradiated-nuka-cola = This Nuka-Cola gives off a slight tingle.
+reagent-name-nuka-cola-quantum = Nuka-Cola Quantum
+reagent-desc-nuka-cola-quantum = Nuka-Cola Quantum
+reagent-name-nuka-cola-clear = Nuka-Cola Clear
+reagent-desc-nuka-cola-clear = Nuka-Cola Clear
+reagent-name-nuka-cola-cherry = Nuka-Cola Cherry
+reagent-desc-nuka-cola-cherry = Nuka-Cola Cherry
+reagent-name-nuka-cola-grape = Nuka-Cola Grape
+reagent-desc-nuka-cola-grape = Nuka-Cola Grape
+reagent-name-nuka-cola-orange = Nuka-Cola Orange
+reagent-desc-nuka-cola-orange = Nuka-Cola Orange
+reagent-name-nuka-cola-victory = Nuka-Cola Victory
+reagent-desc-nuka-cola-victory = Nuka-Cola Victory
+reagent-name-nuka-cola-yellow = Nuka-Cola Yellow
+reagent-desc-nuka-cola-yellow = Nuka-Cola Yellow
+reagent-name-nuka-cola-quartz = Nuka-Cola Quartz
+reagent-desc-nuka-cola-quartz = Nuka-Cola Quartz
+reagent-name-vim = Vim
+reagent-desc-vim = Vim
+reagent-name-vim-captainsblend = Vim Captains Blend
+reagent-desc-vim-captainsblend = Vim Captains Blend
+reagent-name-vim-refresh = Vim Refresh
+reagent-desc-vim-refresh = Vim Refresh
+reagent-name-vim-quartz = Vim Quartz
+reagent-desc-vim-quartz = Vim Quartz
 
 ## Alcohol
 reagent-name-beantownbrownbeer = Beantown Brown Beer
@@ -232,6 +257,8 @@ reagent-name-gunpowder = gunpowder
 reagent-desc-gunpowder = Small pellet gunpowder. Now just add lead.
 reagent-name-fertilizer = fertilizer
 reagent-desc-fertilizer = Ground fertilizer. Perfect for your plants!
+reagent-name-dung = dung
+reagent-desc-dung = Animal dung. Ripe for turning into compost.
 reagent-name-sulfur = sulfur
 reagent-desc-sulfur = Ground sulfur in a powdery form. You should really wear a gas mask.
 
@@ -239,3 +266,6 @@ reagent-desc-sulfur = Ground sulfur in a powdery form. You should really wear a 
 # Other
 reagent-name-scorpiontail = scorpion tail
 reagent-desc-scorpiontail = scorpion tail. Stingy.
+
+compost-mixing-success = compost mixed
+mixing-verb-composting = mix compost
