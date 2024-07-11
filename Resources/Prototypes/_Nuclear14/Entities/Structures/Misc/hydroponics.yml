@@ -1,3 +1,82 @@
+# Compost box
+- type: entity
+  parent: BaseStructure
+  id: N14CompostBox
+  name: compost box
+  description: Insert animal dung in here to produce compost.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: InteractionOutline
+  - type: Damageable # We need to make N14BaseStructureWood etc to reparent in bulk for destruction.
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ReactionMixer
+    reactionTypes:
+    - Composting
+    # mixMessage: "compost-mixing-success"
+  - type: SolutionContainerMixer
+    mixDuration: 5
+    mixingSound:
+      path: /Audio/Machines/buzz_loop.ogg
+      params:
+        volume: -5
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
+    snapCardinals: true
+    netsync: false
+    state: compostbin
+  - type: ApcPowerReceiver
+    powerLoad: 0
+    needsPower: false
+  - type: ItemSlots
+    slots:
+      mixer:
+        whitelist:
+          tags:
+            - ComposterCompatible
+  - type: ContainerContainer
+    containers:
+      mixer: !type:ContainerSlot
+
+            
+# Seed Extractor
+- type: entity
+  id: N14SeedExtractor
+  name: seed extractor
+  parent: BaseStructure
+  description: Extracts seeds from produce.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
+    snapCardinals: true
+    netsync: false
+    state: seedextractor
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.4,0.25,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: SeedExtractor
+  - type: ApcPowerReceiver
+    powerLoad: 0 
+    needsPower: false
+
+# Soils and Planters
 - type: entity
   id: N14Soil
   name: soil
