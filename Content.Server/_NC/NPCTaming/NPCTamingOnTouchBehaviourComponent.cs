@@ -46,17 +46,23 @@ public sealed partial class NPCTamingOnTouchBehaviourComponent : Component
     /// Successfully tamed popup message
     /// </summary>
     [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
-    public string SuccessPopup;
+    public string SuccessPopup = string.Empty;
 
     /// <summary>
     /// Failed to tame popup message
     /// </summary>
     [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
-    public string DeniedPopup;
+    public string DeniedPopup = string.Empty;
 
     /// <summary>
     /// Current friend
     /// </summary>
     [ViewVariables]
     public EntityUid? Friend = null;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan AggroTime = TimeSpan.FromSeconds(20);
+
+    [ViewVariables]
+    public Dictionary<EntityUid, TimeSpan> AggroMemories = new();
 }

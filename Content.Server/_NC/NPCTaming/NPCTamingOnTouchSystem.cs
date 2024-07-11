@@ -3,9 +3,12 @@ using Content.Server.NPC;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Content.Server.Popups;
+using Content.Shared.Damage;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server._NC.NPCTaming;
 
@@ -15,14 +18,41 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<NPCTamingOnTouchBehaviourComponent, ActivateInWorldEvent>(OnPetTry);
+        SubscribeLocalEvent<TamedNpcFriendComponent, DamageChangedEvent>(OnFriendDamaged);
     }
 
+    private void OnFriendDamaged(Entity<TamedNpcFriendComponent> entity, ref DamageChangedEvent args)
+    {
+        if (!args.DamageIncreased)
+            return;
+
+        if (args.Origin is not { } origin)
+            return;
+
+        if (!HasComp<MobStateComponent>(origin))
+            return;
+
+        if (_npcFaction.IsEntityFriendly(entity, origin))
+            return;
+
+        if (!TryComp<NPCTamingOnTouchBehaviourComponent>(entity.Comp.Pet, out var petComp))
+            return;
+
+        // pet will try to kill itself
+        if (entity.Comp.Pet == args.Origin)
+            return;
+
+        _npcFaction.AggroEntity(entity.Comp.Pet, origin);
+        petComp.AggroMemories[origin] = _timing.CurTime + petComp.AggroTime;
+    }
     private void OnPetTry(Entity<NPCTamingOnTouchBehaviourComponent> entity, ref ActivateInWorldEvent args)
     {
         var (uid, comp) = entity;
@@ -65,6 +95,9 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
         if (comp.Friend != null)
             RemoveFriend(uid, comp.Friend.Value, comp);
 
+        if (TryComp<TamedNpcFriendComponent>(args.User, out var tamedComp))
+            RemovePet(args.User, tamedComp);
+
         // add new friend respectively
         AddFriend(uid, args.User, comp);
 
@@ -79,9 +112,25 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
         if (!Resolve(owner, ref component))
             return;
 
+        var friendComp = EnsureComp<TamedNpcFriendComponent>(friend);
+        friendComp.Pet = owner;
+
         component.Friend = friend;
         var exception = EnsureComp<FactionExceptionComponent>(owner);
         exception.Ignored.Add(friend);
+    }
+
+    private void RemovePet(EntityUid host, TamedNpcFriendComponent? component = null)
+    {
+        if (!Resolve(host, ref component, logMissing: false))
+            return;
+
+        if (Deleted(component.Pet) ||
+            !TryComp<NPCTamingOnTouchBehaviourComponent>(component.Pet, out var petComp))
+            return;
+
+        if (petComp.Friend != null)
+            RemoveFriend(component.Pet, petComp.Friend.Value, petComp);
     }
 
     public void RemoveFriend(EntityUid owner, EntityUid friend, NPCTamingOnTouchBehaviourComponent? component = null)
@@ -89,8 +138,26 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
         if (!Resolve(owner, ref component))
             return;
 
+        RemComp<TamedNpcFriendComponent>(friend);
         var exception = EnsureComp<FactionExceptionComponent>(owner);
         exception.Ignored.Remove(friend);
         component.Friend = null;
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<NPCTamingOnTouchBehaviourComponent, FactionExceptionComponent>();
+        while (query.MoveNext(out var uid, out var petComp, out var factionException))
+        {
+            foreach (var memory in petComp.AggroMemories)
+            {
+                if (!TerminatingOrDeleted(memory.Key) && _timing.CurTime < memory.Value)
+                    continue;
+
+                _npcFaction.DeAggroEntity(uid, memory.Key, factionException);
+            }
+        }
     }
 }
