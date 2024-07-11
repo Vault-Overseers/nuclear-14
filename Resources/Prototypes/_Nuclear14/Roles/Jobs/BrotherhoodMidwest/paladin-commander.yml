@@ -1,15 +1,14 @@
 - type: job
   id: BoSMidPaladinCommander
   setPreference: true
-  name: job-name-bos-mid-paladin-comm
-  description: job-description-bos-mid-paladin-comm
+  name: Midwest paladin commander
+  description: Lead the midwest exploration team, follow the objetives and take decisions to take control over the wasteland.
   playTimeTracker: BoSMidPaladinCommander
   requirements:
-    - !type:CharacterDepartmentTimeRequirement
+    - !type:DepartmentTimeRequirement
       department: BrotherhoodMidwest
-      min: 72000 # 20 hours
+      time: 36000 # 10 hours
   startingGear: BoSMidPaladinCommanderGear
-  alwaysUseSpawner: true
   icon: "JobIconPassenger"
   canBeAntag: false
   accessGroups:
@@ -20,11 +19,6 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodMidwest
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSMidPaladinCommanderGear
@@ -32,10 +26,7 @@
     jumpsuit: N14ClothingUniformBosRecon
     back: N14ClothingBackpackMilitary
     shoes: N14ClothingBootsCombatFilled
-    head:  N14ClothingHeadHatBrotherhoodFieldCap
-    outerClothing: N14ClothingOuterMidwestArmorMK2
     hands: N14ClothingHandsGlovesCombat
-    pocket1: NCRBoSMidwestPaladinkits
     id: N14IDBrotherhoodHolotagCommander
     ears: N14ClothingHeadsetBOSMidwest
     belt: ClothingBeltMilitary
