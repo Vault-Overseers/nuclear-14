@@ -8,9 +8,10 @@ reagent-desc-rad-particle-food = Too much will make you sick of living.
 # Drinks
 reagent-name-water-dirty = dirty water
 reagent-desc-water-dirty = Looks murky.
-
 reagent-name-water-irradiated = irradiated water
 reagent-desc-water-irradiated = That'll put arms on your chest.
+reagent-name-water-filtered = filtered water
+reagent-desc-water-filtered = almost as good as it gets.
 
 ## Soda
 reagent-name-nuka-cola = Nuka-Cola
