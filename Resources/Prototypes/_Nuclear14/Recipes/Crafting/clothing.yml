@@ -193,3 +193,31 @@
            doAfter: 5
    - node: bandanabrown
      entity: ClothingMaskBandBrown
+
+- type: construction
+  name: grey bandana
+  id: greybandana
+  graph: greybandana
+  startNode: start
+  targetNode: bandanagrey
+  category: construction-category-misc
+  objectType: Item
+  description: It's a hat, and a mask.
+  icon:
+    sprite: Clothing/Head/Bandanas/grey.rsi
+    state: icon_mask
+  hide: false
+
+- type: constructionGraph
+  id: greybandana
+  start: start
+  graph:
+   - node: start
+     edges:
+       - to: bandanagrey
+         steps:
+         - material: Cloth
+           amount: 1
+           doAfter: 5
+   - node: bandanagrey
+     entity: ClothingMaskBandGrey
