@@ -22,11 +22,9 @@
   - type: Item
     heldPrefix: powder_lead
   - type: Appearance
-  - type: Extractable
-    grindableSolutionName: gunpowder
   - type: SolutionContainerManager
     solutions:
-      gunpowder:
+      powder:
         reagents:
         - ReagentId: Gunpowder
           Quantity: 10
@@ -35,6 +33,12 @@
   - type: Tag
     tags:
       - RawMaterial
+  - type: DrainableSolution
+    solution: powder
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
+  - type: DeleteOnSolutionEmpty
+    solution: powder
 
 - type: entity
   parent: Gunpowder
@@ -73,8 +77,6 @@
   - type: Item
     heldPrefix: powder_brass
   - type: Appearance
-  - type: Extractable
-    grindableSolutionName: sulfur
   - type: SolutionContainerManager
     solutions:
       sulfur:
@@ -129,6 +131,31 @@
   components:
   - type: Stack
     count: 1
+    
+- type: entity
+  parent: Gunpowder
+  id: Charcoal
+  name: charcoal
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Charcoal: 100
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: powder_lead
+    color: "#6f6f6f"
+    layers:
+    - state: powder_lead
+      map: ["base"]
+  - type: Item
+    heldPrefix: powder_lead
+  - type: SolutionContainerManager
+    solutions:
+      powder:
+        reagents:
+        - ReagentId: Charcoal
+          Quantity: 10
 
 - type: entity
   parent: BaseItem
