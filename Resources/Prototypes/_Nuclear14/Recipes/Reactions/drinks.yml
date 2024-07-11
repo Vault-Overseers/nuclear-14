@@ -1,8 +1,32 @@
 # Water Purification
+- type: reaction
+  id: WaterClean
+  minTemp: 373.15 # 100 degrees Celcius.
+  reactants:
+    WaterFiltered:
+      amount: 1
+  products:
+    Water: 1
 
-# Filtered Water + Boiling = Water
-# Dirty Water + Charcoal = FilteredWater
-# Irradiated Water + Iodide Tablets = DirtyWater (Do we have a fallout in world product to substitute for iodide)? Abraxo Cleaner?
+- type: reaction
+  id: WaterFiltered
+  reactants:
+    Charcoal:
+      amount: 1
+    WaterDirty:
+      amount: 1
+  products:
+    WaterFiltered: 1
+
+- type: reaction
+  id: WaterDirty
+  reactants:
+    Abraxocleaner:
+      amount: 1
+    WaterIrradiated:
+      amount: 1
+  products:
+    WaterDirty: 1
 
 # Plant Teas
 - type: reaction

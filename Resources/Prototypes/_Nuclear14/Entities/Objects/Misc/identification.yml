@@ -84,7 +84,7 @@
 
 # Passports
 - type: entity
-  parent: Clothing
+  parent: N14IDCard
   id: N14IDPassportBlank
   name: blank passport
   description: A blank passport used by wastelanders.
@@ -92,15 +92,9 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: passport_blank
-    scale: 0.6, 0.6
+    scale: 0.7, 0.7
   - type: Clothing
-    slots:
-    - idcard
     sprite: _Nuclear14/Objects/Misc/identification.rsi
-  - type: Item
-    heldPrefix: default
-  - type: StationRecordKeyStorage
-  - type: IdCard
 
 - type: entity
   parent: N14IDPassportBlank
@@ -158,6 +152,34 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: bos_holotag
+  - type: PresetIdCard
+    job: BoSMidScribe
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodHolotagPaladin
+  name: holotag
+  description: An ID holotag worn by the Paladins of the Brotherhood of Steel.
+  suffix: Paladin
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSMidPaladin
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodHolotagCommander
+  name: holotag
+  description: An ID holotag worn by the Paladin Commander of the Brotherhood of Steel.
+  suffix: Commander
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSMidPaladinCommander
 
 - type: entity
   parent: N14IDPassportBlank
@@ -170,6 +192,32 @@
     state: ncrdogtag
   - type: PresetIdCard
     job: NCRSoldier
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDNCRDogtagNCO
+  name: dogtag
+  description: An ID dogtag worn by decently ranking members of the NCR.
+  suffix: NCO
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ncrdogtag
+  - type: PresetIdCard
+    job: NCRNCO
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDNCRDogtagOfficer
+  name: dogtag
+  description: An ID dogtag worn by high ranking members of the NCR.
+  suffix: Officer
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ncrdogtag
+  - type: PresetIdCard
+    job: NCROfficer
 
 # Desert Rangers
 - type: entity
@@ -197,6 +245,12 @@
     job: NCRRanger
 
 - type: entity
+  parent: N14IDBadgeNCRDesertRanger
+  id: N14IDBadgeNCRRanger
+  description: An ID badge worn by Republic Rangers.
+  suffix: NCR
+
+- type: entity
   parent: N14IDPassportBlank
   id: N14IDBadgeNCRDesertRangerElite
   name: ranger elite badge
@@ -207,6 +261,12 @@
     state: ranger_elite
   - type: PresetIdCard
     job: NCRRangerVeteran
+
+- type: entity
+  parent: N14IDBadgeNCRDesertRangerElite
+  id: N14IDBadgeNCRRangerElite
+  description: An ID badge worn by Elite Republic Rangers.
+  suffix: NCR
 
 - type: entity
   parent: N14IDPassportBlank
