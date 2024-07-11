@@ -7,25 +7,18 @@
     snap:
     - Wall
   components:
-  - type: FloorOccluder
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
   - type: Transform
     anchored: true
   - type: SyncSprite
   - type: Clickable
-  - type: Sprite
+  - type: Sprite #TODO: replace this sprite with a dirty one
     sprite: Tiles/Planet/water.rsi
     drawdepth: BelowFloor
     layers:
       - state: shoreline_water
-  - type: SolutionContainerManager
-    solutions:
-      pool:
-        maxVol: 9999999 #.inf seems to break the whole yaml file, but would definitely be preferable.
-        reagents:
-        - ReagentId: Water
-          Quantity: 9999999
-  - type: DrainableSolution
-    solution: pool
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
@@ -36,7 +29,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.4"
+          bounds: "-0.5,-0.5,0.5,0.5"
         layer:
           - SlipLayer
         mask:
@@ -45,16 +38,15 @@
         hard: false
   - type: FootstepModifier
     footstepSoundCollection:
-      collection: N14FootstepWater
+      collection: FootstepWater
       params:
         volume: 8
-
 
 - type: entity
   parent: N14FloorWaterDirtyEntity
   id: N14FloorWaterSewerDeep
   name: deep sewer water
-  description: Years of built up feces and urine and other fluids.
+  description: A real thirst quencher.
   components:
   - type: Sprite
     sprite: _Nuclear14/Tiles/ms13/Water.rsi
@@ -63,17 +55,11 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.2
     sprintSpeedModifier: 0.2
-  - type: FishingPool
-    loot: FishingDeep
-    successChance: 0.4
-  - type: TileEmission
-    color: "#55b240"
-
+      
 - type: entity
   parent: N14FloorWaterSewerDeep
   id: N14FloorWaterSewerMedium
   name: sewer water
-  description: Years of built up feces and urine and other fluids.
   components:
   - type: Sprite
     layers:
@@ -81,112 +67,15 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.4
     sprintSpeedModifier: 0.4
-
+      
 - type: entity
   parent: N14FloorWaterSewerDeep
   id: N14FloorWaterSewerShallow
   name: shallow sewer water
-  description: Years of built up feces and urine and other fluids.
   components:
   - type: Sprite
     layers:
       - state: sewer_shallow
-  - type: SpeedModifierContacts
-    walkSpeedModifier: 0.6
-    sprintSpeedModifier: 0.6
-  - type: FishingPool
-    loot: FishingShallow
-    successChance: 0.5
-
-- type: entity
-  parent: N14FloorWaterDirtyEntity
-  id: N14FloorWaterDeep
-  name: deep water
-  description: Endless Abyss.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Tiles/ms13/Water.rsi
-    layers:
-      - state: water_deep
-  - type: SpeedModifierContacts
-    walkSpeedModifier: 0.2
-    sprintSpeedModifier: 0.2
-
-- type: entity
-  parent: N14FloorWaterDeep
-  id: N14FloorWaterMedium
-  name: water
-  description: Unclean water, likely highly unclean.
-  components:
-  - type: Sprite
-    layers:
-      - state: water_medium
-  - type: SpeedModifierContacts
-    walkSpeedModifier: 0.4
-    sprintSpeedModifier: 0.4
-
-- type: entity
-  parent: N14FloorWaterDeep
-  id: N14FloorWaterShallow
-  name: shallow water
-  description: Unclean water, likely highly unclean
-  components:
-  - type: Sprite
-    layers:
-      - state: water_shallow
-  - type: SpeedModifierContacts
-    walkSpeedModifier: 0.6
-    sprintSpeedModifier: 0.6
-  - type: FishingPool
-    loot: FishingShallow
-    successChance: 0.5
-
-- type: entity
-  parent: N14FloorWaterDirtyEntity
-  id: N14FloorWaterSaltDeep
-  name: deep salt water
-  description: Endless Abyss.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Tiles/ms13/Water.rsi
-    layers:
-      - state: water_deep
-  - type: SpeedModifierContacts
-    walkSpeedModifier: 0.2
-    sprintSpeedModifier: 0.2
-  - type: SolutionContainerManager
-    solutions:
-      pool:
-        maxVol: 9999999 #.inf seems to break the whole yaml file, but would definitely be preferable.
-        reagents:
-        - ReagentId: Water #TODO: Add WaterSalt Reagent.
-          Quantity: 9999999
-  - type: FishingPool
-    loot: FishingDeep
-    successChance: 0.4
-
-- type: entity
-  parent: N14FloorWaterSaltDeep
-  id: N14FloorWaterSaltMedium
-  name: salt water
-  description: Unclean water, tainted with salt.
-  components:
-  - type: Sprite
-    layers:
-      - state: water_medium
-  - type: SpeedModifierContacts
-    walkSpeedModifier: 0.4
-    sprintSpeedModifier: 0.4
-
-- type: entity
-  parent: N14FloorWaterSaltDeep
-  id: N14FloorWaterSaltShallow
-  name: shallow salt water
-  description: Unclean water, tainted with salt
-  components:
-  - type: Sprite
-    layers:
-      - state: water_shallow
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.6
     sprintSpeedModifier: 0.6

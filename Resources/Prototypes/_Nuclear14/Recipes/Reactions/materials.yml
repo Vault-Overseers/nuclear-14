@@ -1,0 +1,46 @@
+- type: reaction
+  id: Gunpowder
+  reactants:
+    Sulfur:
+      amount: 1
+    Carbon:
+      amount: 1
+    Fertilizer:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: Gunpowder1
+      
+# - type: reaction
+  # id: Composting
+  # source: true # breakdown of existing resource
+  # requiredMixerCategories:
+  # - Composting
+  # reactants:
+    # Dung:
+      # amount: 10
+  # effects:
+    # - !type:CreateEntityReactionEffect
+      # entity: N14CompostRotted
+      
+- type: reaction
+  id: Composting
+  source: true # breakdown of existing resource
+  reactants:
+    Dung:
+      amount: 10
+    Water:
+      amount: 10
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14CompostRotted
+      
+- type: reaction
+  id: Cleaner
+  reactants:
+    Abraxocleaner:
+      amount: 1
+    Water:
+      amount: 1
+  products:
+    SpaceCleaner: 2

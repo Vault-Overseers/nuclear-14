@@ -294,4 +294,8 @@ reagent-name-scorpiontail = scorpion tail
 reagent-desc-scorpiontail = scorpion tail. Stingy.
 
 compost-mixing-success = compost mixed
+<<<<<<< HEAD
 mixing-verb-composting = mix compost
+=======
+mixing-verb-composting = mix compost
+>>>>>>> 2d975c254c (QoL 3 (#327))

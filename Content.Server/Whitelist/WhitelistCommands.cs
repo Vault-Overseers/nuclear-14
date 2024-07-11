@@ -11,7 +11,7 @@ using Robust.Shared.Network;
 
 namespace Content.Server.Whitelist;
 
-[AdminCommand(AdminFlags.Whitelist)] // DeltaV - Custom permission for whitelist
+[AdminCommand(AdminFlags.Ban)] // DeltaV - Custom permission for whitelist
 public sealed class AddWhitelistCommand : LocalizedCommands
 {
     public override string Command => "whitelistadd";
