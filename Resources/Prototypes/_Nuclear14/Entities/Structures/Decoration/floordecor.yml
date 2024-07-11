@@ -1,6 +1,8 @@
 - type: entity
   id: N14DecorFloorBase
   abstract: true
+  placement:
+    mode: SnapgridCenter
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Decoration/cave_decor.rsi
@@ -28,6 +30,7 @@
     bodyType: Static
 # No fixture on this base, inherit from further down for fixture
 
+# Cave Decor
 - type: entity
   parent: N14DecorFloorBase
   id: N14DecorFloorBoard1
@@ -325,3 +328,355 @@
   components:
   - type: Sprite
     state: sign_right
+    
+# World Decor
+- type: entity
+  parent: N14DecorFloorBase
+  id: N14DecorFloorPaper
+  name: scattered paper
+  description: A mess of papers
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Decoration/world.rsi
+    state: scattered_papers
+    # add destruction drop for materials
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorPaper1
+  components:
+  - type: Sprite
+    state: papers_1
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorPaper2
+  components:
+  - type: Sprite
+    state: papers_2
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorPaper3
+  components:
+  - type: Sprite
+    state: papers_3
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorScrapwood
+  name: wood scraps
+  description: wood scraps
+  components:
+  - type: Sprite
+    state: woodscrap
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorBrickrubble
+  name: brick rubble
+  description: brick rubble
+  components:
+  - type: Sprite
+    state: brickrubble
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorCardboard
+  name: cardboard boxes
+  description: cardboard scrap boxes
+  components:
+  - type: Sprite
+    state: cardboard
+    # add destruction drop for materials
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorPallet
+  name: pallet
+  description: a wooden pallet.
+  components:
+  - type: Sprite
+    state: pallet
+        # add destruction drop for materials
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorPalletStack
+  name: pallet stack
+  description: a stack of wooden pallets
+  components:
+  - type: Sprite
+    state: pallet_stack
+        # add destruction drop for materials
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorBrickStack
+  name: brick stack
+  description: a neat stack of bricks
+  components:
+  - type: Sprite
+    state: brickpile
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorBookstack1
+  name: book stack
+  description: a stack of books
+  components:
+  - type: Sprite
+    state: bookstack_1
+        # add destruction drop for materials
+    
+- type: entity
+  parent: N14DecorFloorBookstack1
+  id: N14DecorFloorBookstack2
+  components:
+  - type: Sprite
+    state: bookstack_2
+    
+- type: entity
+  parent: N14DecorFloorBookstack1
+  id: N14DecorFloorBookstack3
+  components:
+  - type: Sprite
+    state: bookstack_3
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorBookPile1
+  name: book pile
+  description: a pile of books
+  components:
+  - type: Sprite
+    state: bookpile_1
+        # add destruction drop for materials
+        
+- type: entity
+  parent: N14DecorFloorBookPile1
+  id: N14DecorFloorBookPile2
+  components:
+  - type: Sprite
+    state: bookpile_2
+    
+- type: entity
+  parent: N14DecorFloorBookPile1
+  id: N14DecorFloorBookPile3
+  components:
+  - type: Sprite
+    state: bookpile_3
+    
+- type: entity
+  parent: N14DecorFloorBookPile1
+  id: N14DecorFloorBookPile4
+  components:
+  - type: Sprite
+    state: bookpile_4
+    
+- type: entity
+  parent: N14DecorFloorBookPile1
+  id: N14DecorFloorBookPile5
+  components:
+  - type: Sprite
+    state: bookpile_5
+    
+- type: entity
+  parent: N14DecorFloorBookPile1
+  id: N14DecorFloorBookPile6
+  components:
+  - type: Sprite
+    state: bookpile_6
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorFood1
+  name: food stuff
+  description: some old food stuff
+  components:
+  - type: Sprite
+    state: foodstuff_1
+    
+- type: entity
+  parent: N14DecorFloorFood1
+  id: N14DecorFloorFood2
+  components:
+  - type: Sprite
+    state: foodstuff_2
+    
+- type: entity
+  parent: N14DecorFloorFood1
+  id: N14DecorFloorFood3
+  components:
+  - type: Sprite
+    state: foodstuff_3
+    
+- type: entity
+  parent: N14DecorFloorFood1
+  id: N14DecorFloorFood4
+  components:
+  - type: Sprite
+    state: foodstuff_4
+    
+- type: entity
+  parent: N14DecorFloorFood1
+  id: N14DecorFloorFood5
+  components:
+  - type: Sprite
+    state: foodstuff_5
+    
+- type: entity
+  parent: N14DecorFloorFood1
+  id: N14DecorFloorFood6
+  components:
+  - type: Sprite
+    state: foodstuff_6
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorTrashbags1
+  name: trash bags
+  description: some old trash bags
+  components:
+  - type: Sprite
+    state: trashbags_1
+    
+- type: entity
+  parent: N14DecorFloorTrashbags1
+  id: N14DecorFloorTrashbags2
+  components:
+  - type: Sprite
+    state: trashbags_2
+    
+- type: entity
+  parent: N14DecorFloorTrashbags1
+  id: N14DecorFloorTrashbags3
+  components:
+  - type: Sprite
+    state: trashbags_3
+    
+- type: entity
+  parent: N14DecorFloorTrashbags1
+  id: N14DecorFloorTrashbags4
+  components:
+  - type: Sprite
+    state: trashbags_4
+    
+- type: entity
+  parent: N14DecorFloorTrashbags1
+  id: N14DecorFloorTrashbags5
+  components:
+  - type: Sprite
+    state: trashbags_5
+    
+- type: entity
+  parent: N14DecorFloorTrashbags1
+  id: N14DecorFloorTrashbags6
+  components:
+  - type: Sprite
+    state: trashbags_6
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorGlass1
+  name: glass bottles
+  description: some old glass scraps
+  components:
+  - type: Sprite
+    state: glass_1
+    # add glass shard destruction
+    
+- type: entity
+  parent: N14DecorFloorGlass1
+  id: N14DecorFloorGlass2
+  components:
+  - type: Sprite
+    state: glass_2
+    
+- type: entity
+  parent: N14DecorFloorGlass1
+  id: N14DecorFloorGlass3
+  components:
+  - type: Sprite
+    state: glass_3
+    
+- type: entity
+  parent: N14DecorFloorGlass1
+  id: N14DecorFloorGlass4
+  components:
+  - type: Sprite
+    state: glass_4
+    
+- type: entity
+  parent: N14DecorFloorGlass1
+  id: N14DecorFloorGlass5
+  components:
+  - type: Sprite
+    state: glass_5
+    
+- type: entity
+  parent: N14DecorFloorGlass1
+  id: N14DecorFloorGlass6
+  components:
+  - type: Sprite
+    state: glass_6
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorSignMines
+  name: mines
+  description: danger of mines and death...
+  components:
+  - type: Sprite
+    state: mine_sign
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorFloorSkeleton
+  name: skeleton
+  description: looks a little worse for wear
+  components:
+  - type: Sprite
+    state: skeleton
+    
+- type: entity
+  parent: N14DecorFloorPaper
+  id: N14DecorConcreteBarrier
+  name: concrete barrier
+  description: an old concrete barrier for stopping traffic.
+  components:
+  - type: Sprite
+    state: concrete_barrier
+    
+- type: entity
+  parent: N14DecorConcreteBarrier
+  id: N14DecorConcreteBarrierDamaged
+  components:
+  - type: Sprite
+    layers:
+    - state: concrete_barrier_1
+      map: [ "body" ]
+  - type: RandomSprite
+    available:
+      - body:
+          concrete_barrier_1: ""
+          concrete_barrier_2: ""
+          concrete_barrier_3: ""
+          concrete_barrier_4: ""
+          concrete_barrier_5: ""
+          
+- type: entity
+  parent: N14DecorConcreteBarrier
+  id: N14DecorConcreteBarrierStriped
+  name: concrete barrier
+  description: an old concrete barrier for stopping traffic.
+  components:
+  - type: Sprite
+    layers:
+    - state: concrete_barrier_alt
+      map: [ "body" ]
+  - type: RandomSprite
+    available:
+      - body:
+          concrete_barrier_alt: ""
+          concrete_barrier_alt_2: ""
