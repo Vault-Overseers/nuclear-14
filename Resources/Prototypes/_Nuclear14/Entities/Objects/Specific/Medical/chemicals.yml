@@ -402,14 +402,16 @@
     emptySpriteName: smellingsalts0
   - type: Hypospray
     solutionName: pen
-    transferAmount: 25
+    transferAmount: 10
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 10
+        maxVol: 15
         reagents:
         - ReagentId: SmellingSalts
           Quantity: 10
+        - ReagentId: Epinephrine
+          Quantity: 5
 
 - type: entity
   parent: N14HealingPowder
@@ -478,7 +480,7 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: ultrarstimpak0
+    emptySpriteName: ultrastimpak0
   - type: Hypospray
     solutionName: pen
     transferAmount: 25
@@ -489,3 +491,59 @@
         reagents:
         - ReagentId: UltraRobustHealingMixture
           Quantity: 25
+
+- type: entity
+  parent: N14HealingPowder
+  id: N14Traumapack
+  name: traumapack
+  description: A backpack filled with a blend of healing chemicals that inject automatically upon the wearer being hurt.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+    state: traumapack
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: TraumaPowder
+          Quantity: 30
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:SpillBehavior
+        solution: food
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: UseDelay
+    delay: 1
+
+- type: entity
+  parent: Gauze
+  id: N14Bandage
+  name: bandage
+  description: A long strip cloth which can stop bleeding. Mostly sterile.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+    state: bandage
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: N14Ethanol
+  name: ethanol bottle
+  description: A small brownish bottle containing ethanol. Great for disinfecting wounds.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Ethanol
+          Quantity: 50
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+    state: ethanol

@@ -82,6 +82,26 @@
       - !type:ChemVomit
         probability: 0.05
 
+# Strong overtime healing
+- type: reagent
+  id: TraumaPowder
+  name: reagent-name-healing-powder
+  group: Medicine
+  desc: reagent-desc-healing-powder
+  physicalDesc: reagent-physical-desc-soothing
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.1 # Slow
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -1
+            Brute: -1
+            Poison: -1
+            Airloss: -2
+
 # Poison
 - type: reagent
   id: AntidoteMixture
