@@ -1,0 +1,40 @@
+- type: entity
+  id: BaseMagazine.50AMR
+  name: "magazine (.50 BMG)"
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - N14Magazine.50AMR
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14Cartridge.50
+    proto: N14Cartridge.50
+    capacity: 5
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/50/amrmag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: Magazine.50AMR
+  name: "magazine (.50 BMG)"
+  parent: BaseMagazine.50AMR
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge.50
