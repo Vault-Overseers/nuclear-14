@@ -12,7 +12,7 @@
     layers:
     - state: crypt_silver
     - state: common_label
-    
+
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyBrotherhoodWashington
@@ -42,3 +42,18 @@
     layers:
     - state: crypt_red
     - state: synd_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyNCR
+  name: NCR encryption key
+  description: An encryption key used by the NCR.
+  components:
+  - type: EncryptionKey
+    channels:
+    - NCR
+    defaultChannel: NCR
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - state: sec_label
