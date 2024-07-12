@@ -45,6 +45,14 @@
   meltingPoint: 100.0
   
 - type: material
+  id: Charcoal
+  stackEntity: Charcoal
+  name: materials-charcoal
+  icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: powder_lead }
+  color: "#1D3B3E"
+  price: 0.15
+  
+- type: material
   id: Fertilizer
   stackEntity: FertilizerOre1
   name: materials-fertilizer
@@ -81,6 +89,24 @@
             Caustic: 1
       - !type:ChemVomit
         probability: 0.45
+        
+- type: reagent
+  id: Dung
+  name: reagent-name-dung
+  group: Botanical
+  desc: reagent-desc-dung
+  flavor: bitter
+  color: "#664330"
+  physicalDesc: reagent-physical-desc-thick
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 1
+      - !type:ChemVomit
+        probability: 0.80
           
 - type: material
   id: N14Timber
