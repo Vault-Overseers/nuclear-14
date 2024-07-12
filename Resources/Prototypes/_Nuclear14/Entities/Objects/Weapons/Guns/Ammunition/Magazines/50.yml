@@ -1,12 +1,12 @@
 - type: entity
-  id: BaseMagazine.50AMR
+  id: BaseMagazine50AMR
   name: "magazine (.50 BMG)"
   parent: BaseItem
   abstract: true
   components:
   - type: Tag
     tags:
-      - N14Magazine.50AMR
+      - N14Magazine50AMR
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
@@ -17,6 +17,8 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
+  - type: Item
+    storedRotation: -90
   - type: Sprite
     netsync: false
     sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/50/amrmag.rsi
@@ -32,9 +34,9 @@
   - type: Appearance
 
 - type: entity
-  id: Magazine.50AMR
+  id: N14Magazine50AMR
   name: "magazine (.50 BMG)"
-  parent: BaseMagazine.50AMR
+  parent: BaseMagazine50AMR
   components:
   - type: BallisticAmmoProvider
     proto: N14Cartridge.50
