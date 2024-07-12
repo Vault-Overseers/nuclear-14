@@ -250,11 +250,15 @@ reagent-desc-antiseptic = A cleaning solution made from Abraxo Cleaner and some 
 # Ores, Metals, Materials
 materials-gunpowder = gunpowder
 materials-lead = lead
+materials-aluminium = aluminium
 materials-sulfur = sulfur
 materials-raw-lead = raw lead
+materials-raw-aluminium = raw aluminium
 materials-raw-sulfur = raw sulfur
 reagent-name-gunpowder = gunpowder
 reagent-desc-gunpowder = Small pellet gunpowder. Now just add lead.
+reagent-name-aluminium = aluminium
+reagent-desc-aluminium = Ground aluminium in a small almost powder like form.
 reagent-name-fertilizer = fertilizer
 reagent-desc-fertilizer = Ground fertilizer. Perfect for your plants!
 reagent-name-dung = dung
