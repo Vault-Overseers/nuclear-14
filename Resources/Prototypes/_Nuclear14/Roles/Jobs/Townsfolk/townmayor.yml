@@ -1,30 +1,19 @@
 - type: job
   id: TownMayor
   setPreference: true
-  overrideConsoleVisibility: false
-  canBeAntag: false
   name: job-name-townmayor
   description: job-description-townmayor
   playTimeTracker: TownMayor
-  requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-      - Human
-      - Ghoul
-    - !type:CharacterDepartmentTimeRequirement
-      department: Townsfolk
-      min: 36000 # 10 hours
   startingGear: TownMayorGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk
   accessGroups:
-  - Townie
+  - Oasis
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
-          - Wastelander
           - Townsfolk
 
 - type: startingGear
@@ -33,9 +22,9 @@
     jumpsuit: N14ClothingUniformJumpsuitCheckered
     back: N14ClothingBackpackMayorFilled
     shoes: N14ClothingShoesBrown
+    belt: N14WeaponPistolChinese
     id: N14IDBadgeTownMayor
     pocket1: RadioHandheld
-    belt: N14WalletLottaCash
   innerClothingSkirt: N14ClothingUniformJumpskirtFalloutBlack
   satchel: N14ClothingBackpackSatchelMayorFilled
   duffelbag: N14ClothingBackpackDuffelMayorFilled
