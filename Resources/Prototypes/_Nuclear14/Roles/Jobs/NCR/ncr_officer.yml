@@ -1,0 +1,40 @@
+- type: job
+  id: NCROfficer
+  setPreference: true
+  name: job-name-ncr-officer
+  description: job-description-ncr-officer
+  playTimeTracker: NCROfficer
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: NCR
+      time: 72000 # 20 hours
+  weight: 10
+  startingGear: NCROfficerGear
+  icon: "JobIconHeadOfSecurity"
+  requireAdminNotify: true
+  canBeAntag: false
+  accessGroups:
+  - NCR
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - NCR
+
+- type: startingGear
+  id: NCROfficerGear
+  equipment:
+    head: N14ClothingHeadHatNCRBeretOfficer
+    jumpsuit: N14ClothingOfficerUniformNCR
+    ears: N14ClothingHeadsetNCR
+    shoes: N14ClothingBootsLeather
+    belt: ClothingBeltRevolverCaptainfilled
+    eyes: ClothingEyesGlassesSunglasses
+    id: N14IDNCRDogtagOfficer
+    backpack: N14ClothingBackpackSatchelNCRFilled
+  innerClothingSkirt: N14ClothingOfficerUniformNCR #placeholder
+  satchel: N14ClothingBackpackSatchelNCRFilled
+
+- type: playTimeTracker
+  id: NCROfficer

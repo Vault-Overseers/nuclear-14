@@ -1,0 +1,43 @@
+- type: job
+  id: RangerVeteran
+  setPreference: false
+  name: veteran desert ranger
+  description: job-description-ranger-veteran
+  playTimeTracker: RangerVeteran
+  weight: 10
+  startingGear: RangerVeteranGear
+  icon: "JobIconHeadOfSecurity"
+  supervisors: job-supervisors-ncr-captain
+  requireAdminNotify: true
+  canBeAntag: false
+  accessGroups:
+  - NCR
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Rangers
+
+- type: startingGear
+  id: RangerVeteranGear
+  equipment:
+    head: N14ClothingHeadHatRangerHelmetEliteOld
+    back: N14ClothingBackpackMilitaryFilled
+    jumpsuit: N14ClothingUniformRangerV3
+    ears: N14ClothingHeadsetNCR
+    shoes: N14ClothingBootsCombatFilled
+    gloves: N14ClothingHandsGlovesCombat
+    belt: ClothingBeltRevolverdesertfilled
+    mask: ClothingMaskGasRangerElite
+    pocket1: MagazineBox45-70
+    pocket2: FlashlightSeclite
+    eyes: ClothingEyesGlassesSunglasses
+    outerClothing: N14ClothingOuterRangerEliteOld
+    id: N14IDBadgeNCRDesertRangerElite
+  innerClothingSkirt: N14ClothingOfficerUniformNCR #placeholder
+  satchel: N14ClothingBackpackSatchelMilitaryFilled
+  duffelbag: N14ClothingBackpackDuffelMilitaryFilled
+
+- type: playTimeTracker
+  id: RangerVeteran
