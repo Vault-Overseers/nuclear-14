@@ -1,0 +1,403 @@
+- type: entity
+  name: 10mm SMG
+  parent: BaseWeaponSubMachineGun
+  id: N14WeaponSubMachineGun10mm
+  description: Fully automatic submachinegun chambered in 10mm. # TODO: Need to create projectiles, magazines and boxes for 10mm.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmSMG.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmSMG.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmSMG.rsi
+  - type: Gun
+    fireRate: 9
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 48
+    angleIncrease: 6
+    angleDecay: 16
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -15
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazineSMG10mm
+        whitelist:
+          tags:
+            - N14MagazineSMG10mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol10
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol10
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: 12.7mm SMG
+  parent: BaseWeaponSubMachineGun
+  id: N14WeaponSubMachineGun12mm
+  description: A heavy submachinegun chambered in 12mm. # TODO: Need to create projectiles, magazines and boxes for 12mm.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmSMG.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmSMG.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    minAngle: 12
+    maxAngle: 40
+    angleIncrease: 4
+    angleDecay: 16
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -11
+    maxAngle: -23
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazineSMG12mm
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14MagazineSMG12mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol12.7
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol12.7
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: 12.7mm autopipe
+  parent: BaseWeaponSubMachineGun
+  id: N14weapon12mmpipe
+  description: a makeshift 12mm SMG, looks like is gonna explode the second it shoots.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
+  - type: Gun
+    fireRate: 4
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/hpistol.ogg
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 56
+    angleIncrease: 4
+    angleDecay: 16
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -15
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazineSMG12mm
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14MagazineSMG12mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol12.7
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol12.7
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: 10mm autopipe
+  parent: BaseWeaponSubMachineGun
+  id: N14weapon10mmpipe
+  description: a makeshift 10mm SMG, if you shake it you could hear the loose parts inside of the gun.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
+  - type: Gun
+    fireRate: 8
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 56
+    angleIncrease: 4
+    angleDecay: 16
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -15
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazineSMG10mm
+        whitelist:
+          tags:
+            - N14MagazineSMG10mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol10
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol10
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: advance 12.7mm SMG
+  parent: BaseWeaponSubMachineGun
+  id: N14WeaponAdvanceSubMachineGun12mm
+  description: A bulky sub machine gun with a top magazine fed system, it uses 12mm ammmo.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/advance12mm.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/advance12mm.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 7
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    minAngle: 16
+    maxAngle: 30
+    angleIncrease: 4
+    angleDecay: 16
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -15
+    maxAngle: -29
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14TopMagazineSMG12mm
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14TopMagazineSMG12mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol12.7
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol12.7
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: 9mm SMG
+  parent: BaseWeaponSubMachineGun
+  id: N14weapon9mmSMG
+  description: a metallic pre-war simple SMG, chambered in 9mm.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/9mmSMG.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/9mmSMG.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/9mmSMG.rsi
+  - type: Gun
+    fireRate: 7
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 24
+    angleIncrease: 4
+    angleDecay: 16
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -15
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazineSMG9mm
+        whitelist:
+          tags:
+            - N14MagazineSMG9mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol9
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol9
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: .45 SMG
+  parent: BaseWeaponSubMachineGun
+  id: N14Weapon45SMG
+  description: A pre-war SMG with a wooden stock, chambered in .45.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/45SMG.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/45SMG.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/45SMG.rsi
+  - type: Gun
+    fireRate: 7
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 30
+    angleIncrease: 4
+    angleDecay: 16
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -15
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine45SubMachineGun
+        whitelist:
+          tags:
+            - Magazine45SubMachineGun
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol45
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol45
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

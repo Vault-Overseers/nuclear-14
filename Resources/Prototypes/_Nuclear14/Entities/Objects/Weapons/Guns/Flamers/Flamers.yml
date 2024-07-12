@@ -1,0 +1,71 @@
+- type: entity
+  id: WeaponFireGunBase
+  abstract: true
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/water_pistol.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Pistols/water_pistol.rsi
+    size: Huge
+  - type: Gun
+    cameraRecoilScalar: 0 #no recoil
+    fireRate: 10
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Nuclear14/Weapons/Flames/flamer.ogg
+  - type: SolutionContainerManager
+    solutions:
+      chamber:
+        maxVol: 500
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 500
+  - type: SolutionAmmoProvider
+    solutionId: chamber
+    proto: FireProjectile
+  - type: SolutionTransfer
+    transferAmount: 5
+    maxTransferAmount: 50
+    minTransferAmount: 5
+    canChangeTransferAmount: true
+  - type: UserInterface
+    interfaces:
+    - key: enum.TransferAmountUiKey.Key
+      type: TransferAmountBoundUserInterface
+  - type: DrawableSolution
+    solution: chamber
+  - type: RefillableSolution
+    solution: chamber
+  - type: DrainableSolution
+    solution: chamber
+  - type: ExaminableSolution
+    solution: chamber
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  id: WeaponFlamer
+  parent: WeaponFireGunBase
+  name: Flamer
+  description: A light flamethrower designed for close quarters combat, it also works to heat a excellent BBQ.
+  components:
+  - type: Gun
+    cameraRecoilScalar: 0 #no recoil
+    fireRate: 20
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/soaker.rsi
+    layers:
+    - state: detail1
+    - state: detail2
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: icon
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: Item
+    sprite: Objects/Weapons/Guns/Pistols/soaker.rsi
+    size: Normal

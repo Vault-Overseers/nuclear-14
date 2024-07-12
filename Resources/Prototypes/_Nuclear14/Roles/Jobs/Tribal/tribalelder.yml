@@ -1,0 +1,32 @@
+- type: job
+  id: TribalElder
+  setPreference: true
+  name: job-name-tribal-elder
+  description: job-description-tribal-elder
+  playTimeTracker: TribalElder
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Tribe
+      time: 7200 # 2 hours
+  startingGear: TribalElderGear
+  icon: "JobIconBotanist"
+  supervisors: job-supervisors-tribal-elder
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Tribal
+
+- type: startingGear
+  id: TribalElderGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitTribal
+    outerClothing: N14ClothingOuterTribalArmorHeavy
+    shoes: N14ClothingShoesTribal
+    gloves: N14ClothingHandsGlovesTribal
+  innerClothingSkirt: N14ClothingUniformJumpskirtTribal
+  satchel: N14ClothingBackpackSatchelTribalFilled
+
+- type: playTimeTracker
+  id: TribalElder

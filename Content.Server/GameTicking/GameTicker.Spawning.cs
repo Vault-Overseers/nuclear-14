@@ -2,7 +2,6 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Managers;
-using Content.Server._NF.Respawn;
 using Content.Server.Ghost;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
@@ -230,13 +229,10 @@ namespace Content.Server.GameTicking
                     Loc.GetString(
                         "latejoin-arrival-announcement",
                     ("character", MetaData(mob).EntityName),
-					("gender", character.Gender), // Corvax-LastnameGender
                     ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))
                     ), Loc.GetString("latejoin-arrival-sender"),
                     playDefaultSound: false);
             }
-
-            AddComp<RespawnResetComponent>(mob);
 
             if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))
             {

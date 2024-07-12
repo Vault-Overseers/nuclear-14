@@ -1,0 +1,31 @@
+- type: job
+  id: BoSWashingtonRecruit
+  setPreference: true
+  name: Washington recruit
+  description: Follow orders and climb the ranks for better a better life, theres no other choice.
+  playTimeTracker: BoSWashingtonRecruit
+  startingGear: BoSWashingtonRecruitGear
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-bos-washington-recruit
+  canBeAntag: false
+  access:
+  - WashingtonInitiate
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodWashington
+
+- type: startingGear
+  id: BoSWashingtonRecruitGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitBOSRed
+    back: N14ClothingBackpackMilitary
+    shoes: N14ClothingBootsCombatFilled
+    id: N14IDBrotherhoodHolotag
+    outerClothing: N14ClothingOuterCombatArmorBOS
+    belt: ClothingBeltBoSWebbing
+
+- type: playTimeTracker
+  id: BoSWashingtonRecruit

@@ -1,0 +1,38 @@
+- type: job
+  id: TownDeputy
+  setPreference: true
+  name: job-name-towndeputy
+  description: job-description-towndeputy
+  playTimeTracker: TownDeputy
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Townsfolk
+      time: 3600 # 1 hours
+  startingGear: TownDeputyGear
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-townsfolk
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Townsfolk
+
+- type: startingGear
+  id: TownDeputyGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitCowboyBrown
+    head: N14ClothingHeadHatDeputy
+    back: N14ClothingBackpackDeputyFilled
+    shoes: N14ClothingShoesBlack
+    id: N14IDBadgeTownDeputy
+    outerClothing: N14ClothingOuterPoliceVest
+    belt: ClothingBelt9mmfilled
+    pocket1: RadioHandheld
+    pocket2: N14WeaponRevolver10mm
+    suitstorage: N14WeaponLeverCarbine
+  satchel: N14ClothingBackpackSatchelDeputyFilled
+  duffelbag: N14ClothingBackpackDuffelDeputyFilled
+
+- type: playTimeTracker
+  id: TownDeputy

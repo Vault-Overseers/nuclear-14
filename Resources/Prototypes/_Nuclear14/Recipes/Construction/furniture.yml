@@ -1,0 +1,90 @@
+# Beds
+- type: construction
+  id: N14Bed
+  name: bed
+  description: This is used to lie in, sleep in or strap on. Resting here provides extremely slow healing.
+  graph: N14Bed
+  startNode: start
+  targetNode: bed
+  category: construction-category-furniture
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/bedsandchairs.rsi
+    state: bed
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
+    
+- type: construction
+  id: N14BedWood
+  name: bed
+  description: This is used to lie in, sleep in or strap on. Resting here provides extremely slow healing.
+  graph: N14Bed
+  startNode: start
+  targetNode: bedwood
+  category: construction-category-furniture
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/bedsandchairs.rsi
+    state: bed_wood
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
+
+- type: construction
+  id: N14MedicalBed
+  name: medical bed
+  description: A hospital bed for patients to recover in. Resting here provides fairly slow healing.
+  graph: bed
+  startNode: start
+  targetNode: medicalbed
+  category: construction-category-furniture
+  icon:
+    sprite: Structures/Furniture/furniture.rsi
+    state: bed-MED
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
+    
+- type: construction
+  id: N14Bedroll
+  name: bed roll
+  description: A basic cloth bedroll for sleeping in while travelling. Make one using the rolled up crafting recipe.
+  graph: N14Bed
+  startNode: start
+  targetNode: bedroll
+  category: construction-category-furniture
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/bedsandchairs.rsi
+    state: bedroll_unrolled
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
+    
+- type: construction
+  id: N14BedMattress
+  name: mattress
+  description: A basic cloth mattress for bedding down.
+  graph: N14Bed
+  startNode: start
+  targetNode: mattress
+  category: construction-category-furniture
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/bedsandchairs.rsi
+    state: mattress1
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
