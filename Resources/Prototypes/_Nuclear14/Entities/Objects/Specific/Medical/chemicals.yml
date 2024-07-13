@@ -339,14 +339,11 @@
     emptySpriteName: radawayinhaler0
   - type: Hypospray
     solutionName: pen
-    transferAmount: 15
+    transferAmount: 10
   - type: SolutionContainerManager
     solutions:
       pen:
         maxVol: 30
-        reagents:
-        - ReagentId: RadAway
-          Quantity: 0
   - type: Construction
     node: N14RadAwayInhalerTrash
     defaultTarget: N14RadAwayInhaler
@@ -357,6 +354,8 @@
   name: RadAway inhaler
   description: A jet inhaler with a RadAway phial screwed on top of it. Two puffs away from being rad free.
   components:
+  - type: Food
+    trash: N14RadAwayInhalerTrash
   - type: SolutionContainerManager
     solutions:
       pen:
