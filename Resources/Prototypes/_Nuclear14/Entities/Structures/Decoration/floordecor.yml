@@ -332,9 +332,18 @@
 # World Decor
 - type: entity
   parent: N14DecorFloorBase
+  id: N14DecorFloorWorldBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Decoration/world.rsi
+
+- type: entity
+  parent: N14DecorFloorWorldBase
   id: N14DecorFloorPaper
   name: scattered paper
   description: A mess of papers
+  suffix: 8 states
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Decoration/world.rsi
@@ -342,76 +351,95 @@
     # add destruction drop for materials
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorFloorPaper1
+  suffix: 4 states
+  name: scattered paper
+  description: A mess of papers
   components:
   - type: Sprite
     state: papers_1
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorPaper1
   id: N14DecorFloorPaper2
   components:
   - type: Sprite
     state: papers_2
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorPaper1
   id: N14DecorFloorPaper3
   components:
   - type: Sprite
     state: papers_3
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorFloorScrapwood
   name: wood scraps
   description: wood scraps
+  suffix: 6 states
   components:
   - type: Sprite
     state: woodscrap
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorFloorBrickrubble
   name: brick rubble
   description: brick rubble
+  suffix: "6 states"
   components:
   - type: Sprite
     state: brickrubble
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorFloorCardboard
   name: cardboard boxes
   description: cardboard scrap boxes
+  suffix: "6 states"
   components:
   - type: Sprite
     state: cardboard
     # add destruction drop for materials
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorFloorPallet
   name: pallet
   description: a wooden pallet.
+  suffix: "2 states"
   components:
   - type: Sprite
     state: pallet
         # add destruction drop for materials
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorFloorPalletStack
   name: pallet stack
   description: a stack of wooden pallets
+  suffix: "2 states"
   components:
   - type: Sprite
     state: pallet_stack
         # add destruction drop for materials
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorPalletStack
   id: N14DecorFloorBrickStack
   name: brick stack
   description: a neat stack of bricks
@@ -420,7 +448,7 @@
     state: brickpile
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorFloorBookstack1
   name: book stack
   description: a stack of books
@@ -444,7 +472,7 @@
     state: bookstack_3
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorFloorBookPile1
   name: book pile
   description: a pile of books
@@ -489,7 +517,7 @@
     state: bookpile_6
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorFloorFood1
   name: food stuff
   description: some old food stuff
@@ -533,13 +561,24 @@
     state: foodstuff_6
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorFloorTrashbags1
   name: trash bags
   description: some old trash bags
   components:
   - type: Sprite
     state: trashbags_1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
     
 - type: entity
   parent: N14DecorFloorTrashbags1
@@ -577,7 +616,7 @@
     state: trashbags_6
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorFloorGlass1
   name: glass bottles
   description: some old glass scraps
@@ -622,7 +661,7 @@
     state: glass_6
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorSignMines
   name: mines
   description: danger of mines and death...
@@ -631,7 +670,7 @@
     state: mine_sign
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorFloorSkeleton
   name: skeleton
   description: looks a little worse for wear
@@ -640,13 +679,24 @@
     state: skeleton
     
 - type: entity
-  parent: N14DecorFloorPaper
+  parent: N14DecorFloorWorldBase
   id: N14DecorConcreteBarrier
   name: concrete barrier
   description: an old concrete barrier for stopping traffic.
   components:
   - type: Sprite
     state: concrete_barrier
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
     
 - type: entity
   parent: N14DecorConcreteBarrier
