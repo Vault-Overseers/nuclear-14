@@ -20,10 +20,11 @@
         - !type:ReagentThreshold
           min: 30
         damage:
-          types:
+          groups:
             Burn: -1.0
             Brute: -1.0
             Airloss: -1.0
+          types:
             Poison: 0.2
       - !type:HealthChange # to prevent doping
         conditions:
@@ -56,10 +57,11 @@
         - !type:ReagentThreshold
           min: 30
         damage:
-          types:
+          groups:
             Burn: -1.0
             Brute: -1.0
             Airloss: -1.0
+          types:
             Poison: 0.2
       - !type:HealthChange
         conditions:
@@ -105,8 +107,9 @@
           groups:
             Burn: -1
             Brute: -1
-            Poison: -1
             Airloss: -2
+          types:
+            Poison: -1
 
 # Poison
 - type: reagent
@@ -165,10 +168,11 @@
         - !type:ReagentThreshold
           min: 30
         damage:
-          types:
+          groups:
             Burn: -2.0
             Brute: -2.0
             Airloss: -2.0
+          types:
             Poison: 3
             Cellular: 0.5 # permanent damage, be glad you aint dead
       - !type:MovespeedModifier
@@ -458,10 +462,11 @@
         - !type:ReagentThreshold
           min: 30
         damage:
-          types:
+          groups:
             Burn: -10 # Temporary invincibility more or less
             Brute: -10
             Airloss: -10
+          types:
             Poison: 3
             Cellular: 2 # Congratulations. Still revivable, but permanently fucked
       - !type:MovespeedModifier
