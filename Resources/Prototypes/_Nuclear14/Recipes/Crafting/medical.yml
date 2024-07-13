@@ -105,6 +105,7 @@
   category: construction-category-medical
   objectType: Item
   description: A jet inhaler with a RadAway phial screwed on top of it. Two puffs away from being rad free.
+  hide: false
   icon:
     sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
     state: radawayinhaler
@@ -117,19 +118,27 @@
     edges:
     - to: empty
       steps:
-      - material: N14JetInhaler
-      - material: Glass
-        amount: 1
-        doAfter: 3
+        - tag: Jet
+          name: jet
+          icon:
+            sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+            state: jet
+        - material: Glass
+          amount: 1
+          doAfter: 3
   - node: empty
     entity: N14RadAwayInhalerTrash
     edges:
-    - to: inhaler
+    - to: refill
       steps:
-      - material: RadAwayPhial
-        doAfter: 2
-    - to: inhaler
-      entity: N14RadAwayInhaler
+        - tag: Phial
+          name: RadAway Phial
+          icon:
+            sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+            state: radawayphial
+          doAfter: 2
+  - node: refill
+    entity: N14RadAwayInhaler
 
 # Jet
 - type: construction

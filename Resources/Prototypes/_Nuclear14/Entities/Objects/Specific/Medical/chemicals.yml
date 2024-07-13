@@ -203,6 +203,9 @@
   - type: Construction # N14:TODO: Probably move this to lathe
     graph: N14JetInhaler
     node: jet
+  - type: Tag
+    tags:
+    - Jet
 
 - type: entity
   parent: N14JetInhaler
@@ -347,7 +350,7 @@
   - type: Construction
     graph: N14RadAwayInhaler
     node: empty
-    defaultTarget: inhaler
+    defaultTarget: refill
 
 - type: entity
   parent: N14RadAwayInhalerTrash
@@ -381,7 +384,7 @@
     solution: pen
   - type: Construction
     graph: N14RadAwayInhaler
-    node: inhaler
+    node: refill
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -409,6 +412,14 @@
   - type: PhysicalComposition
     materialComposition:
       Glass: 50
+  - type: ExaminableSolution
+    solution: drink
+  - type: Tag
+    tags:
+    - Phial
+  - type: Construction
+    graph: N14RadAwayPhial
+    node: phial
 
 - type: entity
   name: healing powder
