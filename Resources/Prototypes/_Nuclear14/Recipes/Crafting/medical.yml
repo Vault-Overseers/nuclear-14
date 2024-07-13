@@ -12,7 +12,7 @@
     sprite: _Nuclear14/Objects/Specific/Medical/ss13_chemical.rsi
     state: mortar
   objectType: Item
-  
+
 - type: constructionGraph
   id: N14MortarPestle
   start: start
@@ -24,7 +24,7 @@
             - material: WoodPlank
               amount: 2
               doAfter: 5
-            
+
     - node: mortarpestle
       entity: N14MortarpestleGrinder
 
@@ -43,7 +43,7 @@
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     state: healingpowder
   objectType: Item
-  
+
 - type: constructionGraph
   id: N14HealingPowder
   start: start
@@ -54,7 +54,7 @@
           steps:
             - material: BrocFlower
             - material: XanderRoot # TODO: Find out if we can add a tool step for crushing. Tests fail for now with it in. Slap crafting doesn't like tool steps.
-            
+
     - node: healingpowder
       entity: N14HealingPowder
 
@@ -72,7 +72,7 @@
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     state: stimpak
   objectType: Item
-  
+
 - type: constructionGraph
   id: N14Stimpak
   start: start
@@ -82,23 +82,19 @@
         - to: stimpak
           steps:
           - material: BrocFlower
-          - material: XanderRoot 
+          - material: XanderRoot
           - tag: Syringe
             name: a syringe
             icon:
               sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
               state: stimpak
             doAfter: 1
-          - tag: Bloodpack
-            name: a bloodpack
-            icon:
-              sprite: Objects/Specific/Medical/medical.rsi
-              state: bloodpack
+          - material: Bloodpack
             doAfter: 1
-            
+
     - node: stimpak
       entity: N14Stimpak
-      
+
 # Jet
 - type: construction
   name: jet inhaler
@@ -113,7 +109,7 @@
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     state: jet
   objectType: Item
-  
+
 - type: constructionGraph
   id: N14JetInhaler
   start: start
@@ -123,6 +119,6 @@
         - to: jet
           steps:
           - material: Plastic
-            
+
     - node: jet
       entity: N14JetInhaler
