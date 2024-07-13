@@ -321,6 +321,81 @@
         - ReagentId: RadAway
           Quantity: 20
 
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14RadAwayInhalerTrash
+  name: RadAway inhaler
+  description: A jet inhaler with a RadAway phial screwed on top of it. Two puffs away from being rad free.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+    netsync: false
+    layers:
+    - state: radawayinhaler
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+    changeColor: false
+    emptySpriteName: radawayinhaler0
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 15
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 30
+        reagents:
+        - ReagentId: RadAway
+          Quantity: 0
+  - type: Construction
+    node: N14RadAwayInhalerTrash
+    defaultTarget: N14RadAwayInhaler
+
+- type: entity
+  parent: N14RadAwayInhalerTrash
+  id: N14RadAwayInhaler
+  name: RadAway inhaler
+  description: A jet inhaler with a RadAway phial screwed on top of it. Two puffs away from being rad free.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 30
+        reagents:
+        - ReagentId: RadAway
+          Quantity: 30
+  - type: TrashOnSolutionEmpty
+    solution: pen
+  - type: Construction
+    graph: N14RadAwayInhaler
+    node: N14RadAwayInhaler
+
+- type: entity
+  parent: N14JunkItemBasePlastic
+  id: N14RadAwayPhial
+  name: RadAway phial
+  description: A coloured phial containing RadAway.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+    netsync: false
+    state: radawayphial
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: radawayphial0
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: RadAway
+          Quantity: 30
+  - type: WelderRefinable
+    refineResult:
+    - MaterialGlass
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 50
 
 - type: entity
   name: healing powder

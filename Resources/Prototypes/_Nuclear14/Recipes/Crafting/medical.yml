@@ -95,6 +95,42 @@
     - node: stimpak
       entity: N14Stimpak
 
+# RadAway Inhaler
+- type: construction
+  name: RadAway inhaler
+  id: N14RadAwayInhaler
+  graph: N14RadAwayInhaler
+  startNode: start
+  targetNode: N14RadAwayInhaler
+  category: construction-category-medical
+  objectType: Item
+  description: A jet inhaler with a RadAway phial screwed on top of it. Two puffs away from being rad free.
+  icon:
+    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+    state: radawayinhaler
+
+- type: constructionGraph
+  id: N14RadAwayInhaler
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: N14RadAwayInhalerTrash
+      steps:
+      - material: N14JetInhaler
+      - material: Glass
+        amount: 1
+        doAfter: 3
+  - node: N14RadAwayInhalerTrash
+    entity: N14RadAwayInhalerTrash
+    edges:
+    - to: N14RadAwayInhaler
+      steps:
+      - material: RadAwayPhial
+        doAfter: 2
+    - to: N14RadAwayInhaler
+      entity: N14RadAwayInhaler
+
 # Jet
 - type: construction
   name: jet inhaler
