@@ -101,7 +101,7 @@
   id: N14RadAwayInhaler
   graph: N14RadAwayInhaler
   startNode: start
-  targetNode: N14RadAwayInhaler
+  targetNode: inhaler
   category: construction-category-medical
   objectType: Item
   description: A jet inhaler with a RadAway phial screwed on top of it. Two puffs away from being rad free.
@@ -115,20 +115,20 @@
   graph:
   - node: start
     edges:
-    - to: N14RadAwayInhalerTrash
+    - to: empty
       steps:
       - material: N14JetInhaler
       - material: Glass
         amount: 1
         doAfter: 3
-  - node: N14RadAwayInhalerTrash
+  - node: empty
     entity: N14RadAwayInhalerTrash
     edges:
-    - to: N14RadAwayInhaler
+    - to: inhaler
       steps:
       - material: RadAwayPhial
         doAfter: 2
-    - to: N14RadAwayInhaler
+    - to: inhaler
       entity: N14RadAwayInhaler
 
 # Jet

@@ -344,6 +344,10 @@
     solutions:
       pen:
         maxVol: 30
+  - type: Construction
+    graph: N14RadAwayInhaler
+    node: empty
+    defaultTarget: inhaler
 
 - type: entity
   parent: N14RadAwayInhalerTrash
@@ -353,6 +357,19 @@
   components:
   - type: Food
     trash: N14RadAwayInhalerTrash
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+    netsync: false
+    layers:
+    - state: radawayinhaler
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: radawayinhaler0
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 10
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -364,7 +381,7 @@
     solution: pen
   - type: Construction
     graph: N14RadAwayInhaler
-    node: N14RadAwayInhaler
+    node: inhaler
 
 - type: entity
   parent: N14JunkItemBasePlastic
