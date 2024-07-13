@@ -13,6 +13,22 @@
     state: mortar
   objectType: Item
 
+- type: constructionGraph
+  id: N14MortarPestle
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: mortarpestle
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 5
+
+    - node: mortarpestle
+      entity: N14MortarpestleGrinder
+
+
 # Healing Powder
 - type: construction
   name: healing powder
@@ -27,6 +43,20 @@
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     state: healingpowder
   objectType: Item
+
+- type: constructionGraph
+  id: N14HealingPowder
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: healingpowder
+          steps:
+            - material: BrocFlower
+            - material: XanderRoot # TODO: Find out if we can add a tool step for crushing. Tests fail for now with it in. Slap crafting doesn't like tool steps.
+
+    - node: healingpowder
+      entity: N14HealingPowder
 
 # Stimpaks
 - type: construction
@@ -43,52 +73,27 @@
     state: stimpak
   objectType: Item
 
-# RadAway Inhaler
-- type: construction
-  name: RadAway inhaler
-  id: N14RadAwayInhaler
-  graph: N14RadAwayInhaler
-  startNode: start
-  targetNode: refill
-  category: construction-category-medical
-  objectType: Item
-  description: A jet inhaler with a RadAway phial screwed on top of it. Two puffs away from being rad free.
-  hide: false
-  icon:
-    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
-    state: radawayinhaler
+- type: constructionGraph
+  id: N14Stimpak
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: stimpak
+          steps:
+          - material: BrocFlower
+          - material: XanderRoot
+          - tag: Syringe
+            name: a syringe
+            icon:
+              sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+              state: stimpak
+            doAfter: 1
+          - material: Bloodpack
+            doAfter: 1
 
-# RadAway Phial
-
-- type: construction
-  name: RadAway Phial
-  id: N14RadAwayPhial
-  graph: N14RadAwayPhial
-  startNode: start
-  targetNode: fill
-  category: construction-category-medical
-  description: A coloured phial containing RadAway.
-  hide: true
-  icon:
-    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
-    state: radawayphial_icon
-  objectType: Item
-
-#TODO: Crashes game, needs a C# script to support it
-# RadAway phial simple refill
-# - type: construction
-#   name: RadAway Phial Refill
-#   id: N14RadAwayPhialRefill
-#   graph: N14RadAwayPhialRefill
-#   startNode: start
-#   targetNode: fill
-#   category: construction-category-medical
-#   description: A coloured phial containing RadAway.
-#   hide: true
-#   icon:
-#     sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
-#     state: radawayphial_icon
-#   objectType: Item
+    - node: stimpak
+      entity: N14Stimpak
 
 # Jet
 - type: construction
@@ -104,3 +109,16 @@
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     state: jet
   objectType: Item
+
+- type: constructionGraph
+  id: N14JetInhaler
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: jet
+          steps:
+          - material: Plastic
+
+    - node: jet
+      entity: N14JetInhaler

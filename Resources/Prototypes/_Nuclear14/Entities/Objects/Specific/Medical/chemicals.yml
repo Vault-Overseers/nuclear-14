@@ -31,7 +31,7 @@
     emptySpriteName: stimpak0
   - type: WelderRefinable
     refineResult:
-    - id: SheetPlastic1
+    - SheetPlastic1
   - type: Tag
     tags:
     - Syringe
@@ -69,7 +69,7 @@
     emptySpriteName: stimpak0
   - type: WelderRefinable
     refineResult:
-    - id: SheetPlastic1
+    - SheetPlastic1
   - type: Tag
     tags:
     - Syringe
@@ -118,7 +118,7 @@
   parent: N14Stimpak
   id: N14StimpakDirty
   name: dirty stimpak
-  description: A syringe filled with a once-wondrous mixture of medical reagents, now tainted by the wastes. Essential for those with little to no medical knowledge.
+  description: A syringe filled with a wondrous mixture of medical reagents. Essential for those with little to no medical knowledge.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -155,9 +155,8 @@
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14ChemicalSyringeAntidoteEmpty
-  suffix: empty
-  name: antidote syringe
+  id: N14ChemicalSyringeAntidote
+  name: antidote
   description: A syringe filled with an effective antitoxin.
   components:
   - type: Sprite
@@ -175,14 +174,6 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: used
-
-- type: entity
-  parent: N14ChemicalSyringeAntidoteEmpty
-  id: N14ChemicalSyringeAntidote
-  suffix: filled
-  name: antidote
-  description: A syringe filled with an effective antitoxin.
-  components:
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -196,7 +187,7 @@
   id: N14JetInhaler
   suffix: empty
   name: Jet inhaler
-  description: A rare injector filled with a narcotic reagent that makes you feel as though you're speeding up. It's weaker but lasts longer than Turbo.
+  description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, and lasts longer than Turbo.
   components:
   - type: Sprite
     layers:
@@ -212,31 +203,27 @@
   - type: Construction # N14:TODO: Probably move this to lathe
     graph: N14JetInhaler
     node: jet
-  - type: Tag
-    tags:
-    - Jet
 
 - type: entity
   parent: N14JetInhaler
   id: N14Jet
   suffix: filled
   name: Jet
-  description: A rare injector filled with a narcotic reagent that makes you feel as though you're speeding up. It's weaker but lasts longer than Turbo.
+  description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, and lasts longer than Turbo.
   components:
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 15
+        maxVol: 18
         reagents:
         - ReagentId: MovespeedMixture
-          Quantity: 15
+          Quantity: 18
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14TurboInhaler
-  suffix: empty
-  name: Turbo inhaler
-  description: A small injector filled with a narcotic reagent that makes you feel as though the world around you is slowing down. It's stronger and more dangerous than Jet.
+  id: N14Turbo
+  name: Turbo
+  description: A small injector fill with a narcotic reagent, that makes you feel as though the world around you is slowing down. It's stronger, and more dangerous than Jet.
   components:
   - type: Sprite
     layers:
@@ -249,18 +236,6 @@
   - type: Hypospray
     solutionName: pen
     transferAmount: 10
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 10
-
-- type: entity
-  parent: N14TurboInhaler
-  id: N14Turbo
-  suffix: filled
-  name: Turbo
-  description: A small injector filled with a narcotic reagent that makes you feel as though the world around you is slowing down. It's stronger and more dangerous than Jet.
-  components:
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -296,43 +271,8 @@
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14HydraInhaler
-  suffix: empty
-  name: hydra inhaler
-  description: A bottle of Supa Yum soda with several vials attached to it. Contains a mildly potent healing chemical that comes with addictive side effects.
-  components:
-  - type: Sprite
-    layers:
-    - state: hydra
-      map: [ "enum.SolutionContainerLayers.Fill" ]
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: hydra0
-  - type: Hypospray
-    solutionName: pen
-    transferAmount: 15
-
-
-- type: entity
-  parent: N14HydraInhaler
-  id: N14Hydra
-  suffix: filled
-  name: hydra
-  description: A bottle of Supa Yum soda with several vials attached to it. Contains a mildly potent healing chemical that comes with addictive side effects.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 15
-        reagents:
-        - ReagentId: Hydra
-          Quantity: 15
-
-- type: entity
-  parent: N14ChemicalSyringe
-  id: N14PsychoSyringe
-  name: psycho syringe
+  id: N14Psycho
+  name: psycho
   description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin.
   components:
   - type: Sprite
@@ -350,17 +290,6 @@
     solutions:
       pen:
         maxVol: 20
-
-- type: entity
-  parent: N14PsychoSyringe
-  id: N14Psycho
-  name: psycho
-  description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 20
         reagents:
         - ReagentId: DamageModifyingMixture
           Quantity: 20
@@ -369,7 +298,7 @@
   parent: N14ChemicalSyringe
   id: N14RadAwayBloodbag
   name: RadAway
-  description: A bloodbag filled with an odd oily reagent that cures any radiation you've sustained.
+  description: A bloodbag filled with an odd reagent that cures any Radiation you've substained.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/bloodbags.rsi
@@ -392,153 +321,7 @@
         - ReagentId: RadAway
           Quantity: 20
 
-#MARK: RadAway Inhaler
-- type: entity
-  parent: N14ChemicalSyringe
-  id: N14RadAwayInhalerBase
-  name: RadAway inhaler
-  description: A jet inhaler with a RadAway phial screwed on top of it. Three puffs away from being rad free.
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
-    netsync: false
-    layers:
-    - state: radawayinhaler1
-      map: [ "enum.SolutionContainerLayers.Fill" ]
-    - state: radawayinhaler
-    - state: radawayinhaler_text
-  - type: SolutionContainerVisuals
-    maxFillLevels: 3
-    changeColor: true
-    fillBaseName: radawayinhaler
-    emptySpriteName: radawayinhaler
-  - type: Hypospray
-    solutionName: pen
-    transferAmount: 10
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 30
 
-- type: entity
-  parent: N14RadAwayInhalerBase
-  id: N14RadAwayInhalerTrash
-  suffix: Trash
-  components:
-  - type: Construction
-    graph: N14RadAwayInhaler
-    node: empty
-    defaultTarget: refill
-
-- type: entity
-  parent: N14RadAwayInhalerBase
-  id: N14RadAwayInhaler
-  name: RadAway inhaler
-  description: A jet inhaler with a RadAway phial screwed on top of it. Three puffs away from being rad free.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 30
-        reagents:
-        - ReagentId: RadAway
-          Quantity: 30
-  - type: Construction
-    graph: N14RadAwayInhaler
-    node: refill
-
-#MARK: Phial Base
-- type: entity
-  parent: BaseBeaker
-  id: N14RadAwayPhialBase
-  name: RadAway phial
-  description: A coloured phial containing RadAway. This one appears to be empty.
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
-    layers:
-      - state: radawayphial1
-        map: ["enum.SolutionContainerLayers.Fill"]
-        visible: false
-      - state: radawayphial
-      - state: radawayphial_text
-  - type: SolutionContainerVisuals
-    maxFillLevels: 3
-    changeColor: true
-    fillBaseName: radawayphial
-  - type: Item
-    size: Tiny
-  - type: WelderRefinable
-    refineResult:
-    - id: SheetGlass1
-  - type: PhysicalComposition
-    materialComposition:
-      Glass: 50
-
-#TODO: Needs a C# code to support its crafting
-# - type: entity
-#   parent: N14RadAwayPhialBase
-#   id: N14RadAwayPhialCraft
-#   name: RadAway phial
-#   description: A coloured phial containing RadAway. This one appears to be empty.
-#   suffix: crafting
-#   components:
-#   - type: Construction
-#     graph: N14RadAwayPhialRefill
-#     node: start
-#     defaultTarget: fill
-
-- type: entity
-  parent: N14RadAwayPhialBase
-  id: N14RadAwayPhialEmpty
-  suffix: empty
-  components:
-  - type: Construction
-    graph: N14RadAwayPhial
-    node: start
-    defaultTarget: fill
-
-- type: entity
-  parent: N14JunkItemBaseBreak
-  id: N14RadAwayPhial
-  name: RadAway phial
-  description: A coloured phial containing RadAway.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
-    layers:
-    - state: radawayphial_icon
-      map: [ "enum.SolutionContainerLayers.Fill" ]
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: radawayphial
-  - type: WelderRefinable
-    refineResult:
-    - id: SheetGlass1
-  - type: PhysicalComposition
-    materialComposition:
-      Glass: 50
-  - type: ExaminableSolution
-    solution: drink
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: RadAway
-          Quantity: 30
-  - type: Spillable
-    solution: drink
-  - type: Tag
-    tags:
-    - Phial
-  - type: Construction
-    graph: N14RadAwayPhial
-    node: fill
-
-#MARK: Healing Powder
 - type: entity
   name: healing powder
   parent: BaseItem
@@ -579,17 +362,19 @@
       behaviors:
       - !type:SpillBehavior
         solution: food
+        transferForensics: true
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
     graph: N14HealingPowder
     node: healingpowder
 
+
 - type: entity
   parent: DrinkBottleGlassBaseFull
   id: N14Antidote
   name: antidote
-  description: A toxin antidote made from radscorpion tail and ethanol.
+  description: A toxin antidote made from radscorpion tail and water.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -617,20 +402,22 @@
     emptySpriteName: smellingsalts0
   - type: Hypospray
     solutionName: pen
-    transferAmount: 15
+    transferAmount: 10
   - type: SolutionContainerManager
     solutions:
       pen:
         maxVol: 15
         reagents:
         - ReagentId: SmellingSalts
-          Quantity: 15
+          Quantity: 10
+        - ReagentId: Epinephrine
+          Quantity: 5
 
 - type: entity
   parent: N14HealingPowder
   id: N14HealingPoultice
   name: healing poultice
-  description: A bag of poultice to help with all common ailments if slowly.
+  description: A bag of poultice to help with all common ailments slowly.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
@@ -684,7 +471,7 @@
   parent: N14ChemicalSyringe
   id: N14UltraStimpak
   name: ultra stimpak
-  description: A special type of super-stimpak with an additional mixture of chemicals which makes a man near invincible at a great cost. It is widely deemed inhumane and outlawed.
+  description: A special type of super stimpak with an additional mixture of chemicals which makes a man near invincible at a great cost. It is widely deemed inhumane and outlawed.
   components:
   - type: Sprite
     layers:
@@ -707,15 +494,13 @@
 
 - type: entity
   parent: N14HealingPowder
-  id: N14Traumapack #TODO: N14Traumapack needs new sound
+  id: N14Traumapack
   name: traumapack
-  description: A backpack filled with a blend of healing chemicals that inject automatically upon the wearer being hurt. The mechanism seems to be broken, however.
+  description: A backpack filled with a blend of healing chemicals that inject automatically upon the wearer being hurt.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     state: traumapack
-  - type: Item
-    size: Normal
   - type: SolutionContainerManager
     solutions:
       food:
@@ -731,6 +516,7 @@
       behaviors:
       - !type:SpillBehavior
         solution: food
+        transferForensics: true
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
 
@@ -738,7 +524,7 @@
   parent: Gauze
   id: N14Bandage
   name: bandage
-  description: A long strip of cloth which can stop bleeding. Mostly sterile.
+  description: A long strip cloth which can stop bleeding. Mostly sterile.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
@@ -748,7 +534,7 @@
   parent: DrinkBottleGlassBaseFull
   id: N14Ethanol
   name: ethanol bottle
-  description: A small brown glass bottle containing ethanol. Great for disinfecting wounds.
+  description: A small brownish bottle containing ethanol. Great for disinfecting wounds.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -760,35 +546,3 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     state: ethanol
-
-- type: entity
-  name: aloe salve
-  description: Used to treat those nasty burns. Less effective on caustic burns.
-  parent: Ointment
-  id: N14AloeSalve
-  suffix: Full
-  components:
-  - type: Stack
-    stackType: N14AloeSalve
-    count: 10
-    baseLayer: base
-    layerStates:
-    - aloe1
-    - aloe2
-    - aloe3
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Specific/Medical/ms13_medical_new.rsi
-    layers:
-    - state: aloe3
-      map: ["base"]
-
-- type: entity
-  id: N14AloeSalve1
-  parent: N14AloeSalve
-  suffix: Single
-  components:
-  - type: Stack
-    stackType: N14AloeSalve
-    count: 1
-  - type: Sprite
-    state: aloe1
