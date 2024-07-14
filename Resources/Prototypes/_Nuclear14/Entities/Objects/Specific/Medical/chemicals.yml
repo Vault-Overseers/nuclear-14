@@ -391,9 +391,10 @@
 
 - type: entity
   parent: BaseBeaker
-  id: N14RadAwayPhialEmpty
+  id: N14RadAwayPhialBase
   name: RadAway phial
   description: A coloured phial containing RadAway. This one appears to be empty
+  abstract: true
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
@@ -404,7 +405,7 @@
         visible: false
   - type: SolutionContainerVisuals
     maxFillLevels: 3
-    changeColor: false
+    changeColor: true
     fillBaseName: radawayphial
   - type: WelderRefinable
     refineResult:
@@ -412,9 +413,28 @@
   - type: PhysicalComposition
     materialComposition:
       Glass: 50
+
+- type: entity
+  parent: N14RadAwayPhialBase
+  id: N14RadAwayPhialCraft
+  name: RadAway phial
+  description: A coloured phial containing RadAway. This one appears to be empty
+  suffix: crafting
+  components:
   - type: Construction
     graph: N14RadAwayPhial
     node: phial
+    defaultTarget: refill
+
+- type: entity
+  parent: N14RadAwayPhialBase
+  id: N14RadAwayPhialEmpty
+  suffix: empty
+  components:
+  - type: Construction
+    graph: N14RadAwayPhialRefill
+    node: start
+    defaultTarget: fill
 
 - type: entity
   parent: N14JunkItemBase
@@ -425,14 +445,12 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
     layers:
-      - state: radawayphial
-      - state: radawayphial1
-        map: ["enum.SolutionContainerLayers.Fill"]
-        visible: false
+    - state: radawayphial_icon
+      map: [ "enum.SolutionContainerLayers.Fill" ]
   - type: SolutionContainerVisuals
-    maxFillLevels: 3
+    maxFillLevels: 1
     changeColor: false
-    fillBaseName: radawayphial
+    emptySpriteName: radawayphial
   - type: WelderRefinable
     refineResult:
     - MaterialGlass

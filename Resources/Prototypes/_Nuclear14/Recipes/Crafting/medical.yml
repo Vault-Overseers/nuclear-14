@@ -168,7 +168,7 @@
         - material: Plastic
           doAfter: 3
   - node: phial
-    entity: N14RadAwayPhialEmpty
+    entity: N14RadAwayPhialCraft
     edges:
     - to: refill
       conditions:
@@ -187,6 +187,40 @@
         doAfter: 1
   - node: refill
     entity: N14RadAwayPhial
+
+# RadAway phial simple refill
+- type: construction
+  name: RadAway Phial Refill
+  id: N14RadAwayPhialRefill
+  graph: N14RadAwayPhialRefill
+  startNode: start
+  targetNode: fill
+  category: construction-category-medical
+  description: A coloured phial containing RadAway.
+  hide: true
+  icon:
+    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+    state: radawayphial_icon
+  objectType: Item
+
+- type: constructionGraph
+  id: N14RadAwayPhialRefill
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: fill
+      conditions:
+      - !type:MinSolution
+        solution: beaker
+        reagent:
+          ReagentId: RadAway
+        quantity: 30
+      steps:
+      - tool: Screwing
+        doAfter: 1
+  - node: fill
+    entity: N14RadAwayPhial #TODO: Make it not crash the game
 
 # Jet
 - type: construction
