@@ -6,6 +6,11 @@
       actions:
         - !type:DestroyEntity {}
       edges:
+        - to: N14ChairSchool
+          steps:
+            - material: WoodPlank
+              amount: 1
+              doAfter: 1
         - to: N14ChairWood
           steps:
             - material: WoodPlank
@@ -104,6 +109,18 @@
           steps:
             - material: Plastic
               amount: 2
+              doAfter: 1
+
+    - node: N14ChairSchool
+      entity: N14ChairSchool
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 1
+          steps:
+            - tool: Screwing
               doAfter: 1
 
     - node: N14ChairWood
