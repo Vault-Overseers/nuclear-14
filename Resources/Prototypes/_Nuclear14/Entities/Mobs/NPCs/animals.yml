@@ -205,12 +205,9 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: nightstalker
       sprite: _Nuclear14/Mobs/Animals/nightstalkercub.rsi
-  - type: Bloodstream
-    bloodMaxVolume: 30
-    bloodReagent: WastelandBlood
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.5
-    baseSprintSpeed : 4.5
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4
   - type: Fixtures
     fixtures:
       fix1:
@@ -222,22 +219,16 @@
         - MobMask
         layer:
         - MobLayer
-  - type: MobState
-    allowedStates:
-      - Alive
-      - Critical
-      - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      150: Dead
+      100: Dead
   - type: DamageStateVisuals
     states:
       Alive:
         Base: nightstalker
       Critical:
-        Base: dead
+        Base: nightstalker
       Dead:
         Base: dead
   - type: MeleeWeapon
@@ -270,12 +261,9 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: nightstalker-1
       sprite: _Nuclear14/Mobs/Animals/nightstalker.rsi
-  - type: Bloodstream
-    bloodMaxVolume: 50
-    bloodReagent: WastelandBlood
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.5
-    baseSprintSpeed : 5
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4
   - type: Fixtures
     fixtures:
       fix1:
@@ -287,16 +275,10 @@
         - MobMask
         layer:
         - MobLayer
-  - type: MobState
-    allowedStates:
-      - Alive
-      - Critical
-      - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Critical
-      200: Dead
+      150: Dead
   - type: Butcherable
     spawned:
     - id: N14MaterialNightstalkerPelt
@@ -306,7 +288,7 @@
       Alive:
         Base: nightstalker-1
       Critical:
-        Base: dead
+        Base: nightstalker-1
       Dead:
         Base: dead
   - type: MeleeWeapon
@@ -375,8 +357,6 @@
     spawned:
     - id: N14MaterialYaoguaiHide
       amount: 1
-    - id: N14FoodMeatYaoguai
-      amount: 2
   - type: DamageStateVisuals
     states:
       Alive:
@@ -439,16 +419,10 @@
         - MobMask
         layer:
         - MobLayer
-  - type: MobState
-    allowedStates:
-      - Alive
-      - Critical
-      - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
-      500: Critical
-      600: Dead
+      500: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       250: 0.7
@@ -464,7 +438,7 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-      collection: AlienClaw
+     collection: AlienClaw
     angle: 0
     animation: WeaponArcClaw
     damage:
@@ -529,7 +503,7 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-      collection: AlienClaw
+     collection: AlienClaw
     angle: 0
     animation: WeaponArcClaw
     damage:
@@ -539,14 +513,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      750: Critical
-      900: Dead
+      750: Dead
   - type: DamageStateVisuals
     states:
       Alive:
         Base: deathclaw
       Critical:
-        Base: dead # TODO: Crit sprite
+        Base: deathclaw # TODO: Crit sprite
       Dead:
         Base: dead
 
@@ -588,13 +561,17 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-      collection: AlienClaw
+     collection: AlienClaw
     angle: 0
     animation: WeaponArcClaw
     damage:
       types:
         Slash: 20
         Structural: 10
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      750: Dead
 
 # Passive Animals
 - type: entity
@@ -622,7 +599,7 @@
   - type: Butcherable
     spawned:
     - id: N14FoodMeatBrahmin
-      amount: 4
+      amount: 5
     - id: N14MaterialBrahminHide
       amount: 1
       prob: 0.95
@@ -685,7 +662,7 @@
   - type: Butcherable
     spawned:
     - id: N14FoodMeatBighorner
-      amount: 4
+      amount: 5
   - type: SolutionContainerManager
     solutions:
       udder:
@@ -734,7 +711,7 @@
   - type: Butcherable
     spawned:
     - id: N14FoodMeatRadstag
-      amount: 4
+      amount: 5
   - type: SolutionContainerManager
     solutions:
       udder:
@@ -799,49 +776,3 @@
   - type: EggLayer
     eggSpawn:
     - id: N14FoodEggChicken
-
-- type: entity
-  parent: N14MobBaseSimple
-  id: N14MobIguana
-  name: iguana
-  description: Little green food...I mean friend.
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: iguana
-      sprite: _Nuclear14/Mobs/Animals/iguana.rsi
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: iguana
-      Dead:
-        Base: dead
-  # - type: Butcherable
-    # spawned:
-    # - id: N14FoodMeatRadchicken
-      # amount: 1
-      # prob: 0.95
-  - type: Damageable
-    damageContainer: Biological
-    damageModifierSet: WastelandAnimal
-  # - type: Reproductive
-    # breedChance: 0.05
-    # birthPopup: reproductive-laid-egg-popup
-    # makeOffspringInfant: false
-    # partnerWhitelist:
-      # tags:
-      # - Chicken
-    # offspring:
-    # - id: N14FoodEggChickenFertilized
-      # maxAmount: 3
-  # - type: ReproductivePartner
-  # - type: EggLayer
-    # eggSpawn:
-    # - id: N14FoodEggChicken
-  - type: Item
-    size: Small
-  - type: HTN
-    rootTask:
-      task: MouseCompound
