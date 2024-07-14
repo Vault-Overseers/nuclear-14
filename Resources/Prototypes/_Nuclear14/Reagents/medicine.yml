@@ -193,7 +193,7 @@
   group: Medicine
   desc: reagent-desc-damage-resist-mixture
   physicalDesc: reagent-physical-desc-oily
-  color: "#00e5ff"
+  color: "#ff9000"
   metabolisms:
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
@@ -202,6 +202,22 @@
         damage:
           types:
             Radiation: -5
+
+- type: reagent
+  id: RadAwayDiluted
+  name: reagent-name-damage-resist-mixture
+  group: Medicine
+  desc: reagent-desc-damage-resist-mixture
+  physicalDesc: reagent-physical-desc-oily
+  color: "#ffbb60"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.2 # Effectively once every 5 seconds.
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: -2.5
 
 - type: reagent
   id: RadX
@@ -217,7 +233,7 @@
       - !type:HealthChange
         damage:
           types:
-            Radiation: -2.5
+            Radiation: -1
 
 # Other
 - type: reagent

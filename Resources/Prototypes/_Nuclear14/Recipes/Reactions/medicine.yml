@@ -62,7 +62,28 @@
     Water:
       amount: 2
   products:
-    RadAway: 5
+    RadAway: 3
+
+- type: reaction
+  id: RadAwayPhialConversion
+  reactants:
+    RadAway:
+      amount: 30
+    Silicon:
+      amount: 10
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14RadAwayPhial
+
+- type: reaction
+  id: RadAwayDiluted
+  reactants:
+    RadAway:
+      amount: 1
+    Water:
+      amount: 2
+  products:
+    RadAwayDiluted: 2
 
 - type: reaction
   id: RadAwayConversion
