@@ -343,6 +343,9 @@
   - type: Hypospray
     solutionName: pen
     transferAmount: 10
+  - type: DeleteOnSolutionEmpty
+    solution: pen
+    entity: N14RadAwayPhial # How do I spawn an entity on delete?
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -387,25 +390,49 @@
     node: refill
 
 - type: entity
-  parent: N14JunkItemBasePlastic
+  parent: BaseBeaker
+  id: N14RadAwayPhialEmpty
+  name: RadAway phial
+  description: A coloured phial containing RadAway. This one appears to be empty
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+    layers:
+      - state: radawayphial
+      - state: radawayphial1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    changeColor: false
+    fillBaseName: radawayphial
+  - type: WelderRefinable
+    refineResult:
+    - MaterialGlass
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 50
+  - type: Construction
+    graph: N14RadAwayPhial
+    node: phial
+
+- type: entity
+  parent: N14JunkItemBase
   id: N14RadAwayPhial
   name: RadAway phial
   description: A coloured phial containing RadAway.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
-    netsync: false
-    state: radawayphial
+    layers:
+      - state: radawayphial
+      - state: radawayphial1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
   - type: SolutionContainerVisuals
-    maxFillLevels: 1
+    maxFillLevels: 3
     changeColor: false
-    emptySpriteName: radawayphial0
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: RadAway
-          Quantity: 30
+    fillBaseName: radawayphial
   - type: WelderRefinable
     refineResult:
     - MaterialGlass
@@ -414,12 +441,18 @@
       Glass: 50
   - type: ExaminableSolution
     solution: drink
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: RadAway
+          Quantity: 30
   - type: Tag
     tags:
     - Phial
   - type: Construction
     graph: N14RadAwayPhial
-    node: phial
+    node: filled
 
 - type: entity
   name: healing powder
