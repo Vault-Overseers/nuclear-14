@@ -1,0 +1,93 @@
+#MARK: Lead
+- type: entity
+  parent: IngotBase
+  id: IngotLead
+  name: lead bar
+  suffix: Full
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Lead: 100
+  - type: Stack
+    stackType: Lead
+    baseLayer: base
+    layerStates:
+    - ingot_lead
+    - ingot_lead
+    - ingot_lead
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: ingot_lead
+    layers:
+    - state: ingot_lead
+      map: ["base"]
+  - type: Item
+    heldPrefix: ingot_lead
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: lead
+  - type: SolutionContainerManager
+    solutions:
+      lead:
+        reagents:
+        - ReagentId: Lead
+          Quantity: 10
+
+- type: entity
+  parent: IngotLead
+  id: IngotLead1
+  name: lead bar
+  suffix: Single
+  components:
+  - type: Sprite
+    state: ingot_lead
+  - type: Stack
+    count: 1
+
+#MARK: Aluminum
+- type: entity
+  parent: IngotBase
+  id: IngotAluminum
+  name: aluminum bar
+  suffix: Full
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Aluminum: 100
+  - type: Stack
+    stackType: Aluminum
+    baseLayer: base
+    layerStates:
+    - ingot_aluminum
+    - ingot_aluminum
+    - ingot_aluminum
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: ingot_aluminum
+    layers:
+    - state: ingot_aluminum
+      map: ["base"]
+  - type: Item
+    heldPrefix: ingot_aluminum
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: aluminum
+  - type: SolutionContainerManager
+    solutions:
+      aluminum:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 10
+
+- type: entity
+  parent: IngotAluminum
+  id: IngotAluminum1
+  name: aluminum bar
+  suffix: Single
+  components:
+  - type: Sprite
+    state: ingot_aluminum
+  - type: Stack
+    count: 1

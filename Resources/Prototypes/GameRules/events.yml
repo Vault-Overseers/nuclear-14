@@ -67,17 +67,16 @@
     duration: 1
   - type: ClericalErrorRule
 
-- type: entity
-  parent: BaseGameRule
-  id: ClosetSkeleton
-  noSpawn: true
-  components:
-  - type: StationEvent
-    weight: 10
-    duration: 1
-    minimumPlayers: 10
-  - type: RandomEntityStorageSpawnRule
-    prototype: MobSkeletonCloset
+#- type: entity
+#  parent: BaseGameRule # DeltaV - this shit is busted most of the time
+#  id: ClosetSkeleton
+#  noSpawn: true
+#  components:
+#  - type: StationEvent
+#    weight: 10
+#    duration: 1
+#  - type: RandomEntityStorageSpawnRule
+#    prototype: MobSkeletonCloset
 
 - type: entity
   parent: BaseGameRule
@@ -85,7 +84,7 @@
   noSpawn: true
   components:
   - type: StationEvent
-    weight: 5
+    weight: 1 # DeltaV - was 5
     duration: 1
     earliestStart: 45
     reoccurrenceDelay: 60
@@ -99,9 +98,9 @@
   noSpawn: true
   components:
   - type: StationEvent
-    weight: 10
+    weight: 3 # DeltaV - was 10
     duration: 1
-    earliestStart: 30
+    earliestStart: 45 # DeltaV - was 30
     reoccurrenceDelay: 60
     minimumPlayers: 40
   - type: NinjaSpawnRule
@@ -137,7 +136,7 @@
   - type: StationEvent
     startAnnouncement: station-event-gas-leak-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/gas_leak.ogg # DeltaV - custom announcer
     endAnnouncement: station-event-gas-leak-end-announcement
     earliestStart: 10
     minimumPlayers: 5
@@ -199,9 +198,11 @@
       prob: 0.02
     - id: MobMouse2
       prob: 0.02
-    specialEntries:
-    - id: SpawnPointGhostRatKing
-      prob: 0.005
+    # DeltaV - Rat King spawns under MidRoundAntag - Comment out Rat King from spawning with MouseMigration gamerule
+    # specialEntries:
+    # - id: SpawnPointGhostRatKing
+    #   prob: 0.005
+    # End of modified code
 
 - type: entity
   id: CockroachMigration
@@ -240,17 +241,17 @@
     maxDuration: 120
   - type: PowerGridCheckRule
 
-- type: entity
-  id: RandomSentience
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    weight: 10
-    duration: 1
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
-  - type: RandomSentienceRule
+# - type: entity # DeltaV - Removes the random sentience.
+#   id: RandomSentience
+#   parent: BaseGameRule
+#   noSpawn: true
+#   components:
+#   - type: StationEvent
+#     weight: 10
+#     duration: 1
+#     startAudio:
+#       path: /Audio/Announcements/attention.ogg
+#   - type: RandomSentienceRule
 
 - type: entity
   parent: BaseGameRule
@@ -281,18 +282,18 @@
     lightBreakChancePerSecond: 0.0003
     doorToggleChancePerSecond: 0.001
 
-- type: entity
-  parent: BaseGameRule
-  id: TerminatorSpawn
-  noSpawn: true
-  components:
-  - type: StationEvent
-    weight: 8
-    duration: 1
-    earliestStart: 30
-    minimumPlayers: 20
-  - type: RandomSpawnRule
-    prototype: SpawnPointGhostTerminator
+# - type: entity # DeltaV - replaced terminator with paradox anomaly in midroundantag rule
+#   parent: BaseGameRule
+#   id: TerminatorSpawn
+#   noSpawn: true
+#   components:
+#   - type: StationEvent
+#     weight: 8
+#     duration: 1
+#     earliestStart: 30
+#     minimumPlayers: 20
+#   - type: RandomSpawnRule
+#    prototype: SpawnPointGhostTerminator
 
 - type: entity
   id: VentClog
@@ -302,7 +303,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-clog-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/ventclog.ogg # DeltaV - custom announcer
     earliestStart: 15
     minimumPlayers: 15
     weight: 5
@@ -375,24 +376,24 @@
     - id: MobGiantSpiderAngry
       prob: 0.05
 
-- type: entity
-  id: SpiderClownSpawn
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
-    startDelay: 10
-    earliestStart: 20
-    minimumPlayers: 15
-    weight: 1
-    duration: 60
-  - type: VentCrittersRule
-    entries:
-    - id: MobClownSpider
-      prob: 0.05
+# - type: entity # DeltaV - Prevent normal spawning of MobClownSpider
+#  id: SpiderClownSpawn
+#  parent: BaseGameRule
+#  noSpawn: true
+#  components:
+#  - type: StationEvent
+#    startAnnouncement: station-event-vent-creatures-start-announcement
+#    startAudio:
+#      path: /Audio/Announcements/attention.ogg
+#    startDelay: 10
+#    earliestStart: 20
+#    minimumPlayers: 15
+#    weight: 1
+#    duration: 60
+#  - type: VentCrittersRule
+#    entries:
+#    - id: MobClownSpider
+#      prob: 0.05
 
 - type: entity
   id: ZombieOutbreak
@@ -400,9 +401,9 @@
   noSpawn: true
   components:
   - type: StationEvent
-    earliestStart: 50
+    earliestStart: 90 # DeltaV - was 50
     minimumPlayers: 15
-    weight: 5
+    weight: 2.5 # DeltaV - was 5
     duration: 1
   - type: ZombieRule
     minStartDelay: 0 #let them know immediately
@@ -417,8 +418,8 @@
   noSpawn: true
   components:
   - type: StationEvent
-    earliestStart: 45
-    weight: 5
+    earliestStart: 60
+    weight: 3
     minimumPlayers: 20
     reoccurrenceDelay: 30
     duration: 1
@@ -440,45 +441,20 @@
     sounds:
       collection: Paracusia
 
-- type: entity
-  id: ImmovableRodSpawn
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    startAnnouncement: station-event-immovable-rod-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
-    weight: 5
-    duration: 1
-    earliestStart: 45
-    minimumPlayers: 20
-  - type: ImmovableRodRule
-    rodPrototypes:
-    - id: ImmovableRodKeepTilesStill
-      prob: 0.95
-      orGroup: rodProto
-    - id: ImmovableRodMop
-      prob: 0.0072
-      orGroup: rodProto
-    - id: ImmovableRodShark
-      prob: 0.0072
-      orGroup: rodProto
-    - id: ImmovableRodClown
-      prob: 0.0072
-      orGroup: rodProto
-    - id: ImmovableRodBanana
-      prob: 0.0072
-      orGroup: rodProto
-    - id: ImmovableRodHammer
-      prob: 0.0072
-      orGroup: rodProto
-    - id: ImmovableRodThrongler
-      prob: 0.0072
-      orGroup: rodProto
-    - id: ImmovableRodGibstick
-      prob: 0.0072
-      orGroup: rodProto
+#- type: entity # DeltaV - Why does this exist??
+#  id: ImmovableRodSpawn
+#  parent: BaseGameRule
+#  noSpawn: true
+#  components:
+#  - type: StationEvent
+#    startAnnouncement: station-event-immovable-rod-start-announcement
+#    startAudio:
+#      path: /Audio/Announcements/attention.ogg
+#    weight: 5
+#    duration: 1
+#    earliestStart: 45
+#    minimumPlayers: 20
+#  - type: ImmovableRodRule
 
 - type: entity
   noSpawn: true

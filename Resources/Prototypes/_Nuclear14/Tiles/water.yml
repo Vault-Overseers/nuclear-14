@@ -1,0 +1,81 @@
+- type: entity
+  id: N14FloorWaterDirtyEntity
+  name: water
+  description: A real thirst quencher.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+  - type: Transform
+    anchored: true
+  - type: SyncSprite
+  - type: Clickable
+  - type: Sprite #TODO: replace this sprite with a dirty one
+    sprite: Tiles/Planet/water.rsi
+    drawdepth: BelowFloor
+    layers:
+      - state: shoreline_water
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+        hard: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWater
+      params:
+        volume: 8
+
+- type: entity
+  parent: N14FloorWaterDirtyEntity
+  id: N14FloorWaterSewerDeep
+  name: deep sewer water
+  description: A real thirst quencher.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Tiles/ms13/Water.rsi
+    layers:
+      - state: sewer_deep
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.2
+    sprintSpeedModifier: 0.2
+      
+- type: entity
+  parent: N14FloorWaterSewerDeep
+  id: N14FloorWaterSewerMedium
+  name: sewer water
+  components:
+  - type: Sprite
+    layers:
+      - state: sewer_medium
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.4
+    sprintSpeedModifier: 0.4
+      
+- type: entity
+  parent: N14FloorWaterSewerDeep
+  id: N14FloorWaterSewerShallow
+  name: shallow sewer water
+  components:
+  - type: Sprite
+    layers:
+      - state: sewer_shallow
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.6
+    sprintSpeedModifier: 0.6

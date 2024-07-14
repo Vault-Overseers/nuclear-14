@@ -1,0 +1,32 @@
+- type: job
+  id: NCRCadet
+  setPreference: true
+  name: NCR cadet
+  description: Show your officers that youre ready to become a private of the NCR army.
+  playTimeTracker: NCRCadet
+  startingGear: NCRCadetGear
+  icon: "JobIconSecurityCadet"
+  supervisors: job-supervisors-ncr-nco
+  canBeAntag: false
+  access:
+  - NCR
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - NCR
+
+- type: startingGear
+  id: NCRCadetGear
+  equipment:
+    head: N14ClothingHeadHatNCRSidecap
+    jumpsuit: N14ClothingUniformNCR
+    shoes: N14ClothingBootsLeather
+    id: N14IDNCRDogtag
+    backpack: N14ClothingBackpackSatchelNCRFilled
+  innerClothingSkirt: N14ClothingUniformNCR #placeholder
+  satchel: N14ClothingBackpackSatchelNCRFilled
+
+- type: playTimeTracker
+  id: NCRCadet

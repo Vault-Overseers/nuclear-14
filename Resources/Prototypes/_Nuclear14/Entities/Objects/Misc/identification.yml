@@ -1,0 +1,440 @@
+# ID Cards
+- type: entity
+  parent: Clothing
+  id: N14IDCard
+  name: identification card
+  description: A key to open certain doors.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: default
+  - type: Access
+  - type: IdCard
+  - type: StationRecordKeyStorage
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+
+# Vault
+- type: entity
+  parent: N14IDCard
+  id: N14IDCardVault
+  name: vault ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idpassenger
+  - type: PresetIdCard
+    job: VaultDweller
+
+- type: entity
+  parent: N14IDCard
+  id: N14IDCardVaultEngineer
+  name: vault engineer ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idstationengineer
+  - type: PresetIdCard
+    job: VaultEngineer
+
+- type: entity
+  parent: N14IDCard
+  id: N14IDCardVaultSecurity
+  name: vault security ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idsecurityofficer
+  - type: PresetIdCard
+    job: VaultSecurity
+
+- type: entity
+  parent: N14IDCard
+  id: N14IDCardVaultDoctor
+  name: vault doctor ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idmedicaldoctor
+  - type: PresetIdCard
+    job: VaultDoctor
+
+- type: entity
+  parent: N14IDCard
+  id: N14IDCardVaultOverseer
+  name: vault overseer ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idmedicaldoctor
+  - type: PresetIdCard
+    job: Overseer
+
+# Passports
+- type: entity
+  parent: N14IDCard
+  id: N14IDPassportBlank
+  name: blank passport
+  description: A blank passport used by wastelanders.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport_blank
+    scale: 0.7, 0.7
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDPassport
+  name: passport
+  description: A stamped passport used by wastelanders as ID.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport
+
+- type: entity
+  parent: N14IDPassport
+  id: N14IDPassportCaravan
+  name: caravan passport
+  description: A stamped passport used by caravaneers as ID.
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDPassportPhoto
+  name: passport
+  description: A passport used by wastelanders as ID.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport_photo
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDPassportVIP
+  name: passport
+  description: A passport used by VIPs of the wasteland.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport_presidential
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDDoctor
+  name: doctors ID
+  description: An ID card worn by medical doctors.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: doctor
+
+# Other Factions
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodHolotag
+  name: holotag
+  description: An ID holotag worn by the Brotherhood of Steel.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSMidScribe
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodHolotagPaladin
+  name: holotag
+  description: An ID holotag worn by the Paladins of the Brotherhood of Steel.
+  suffix: Paladin
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSMidPaladin
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodHolotagCommander
+  name: holotag
+  description: An ID holotag worn by the Paladin Commander of the Brotherhood of Steel.
+  suffix: Commander
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSMidPaladinCommander
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDNCRDogtag
+  name: dogtag
+  description: An ID dogtag worn by members of the NCR.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ncrdogtag
+  - type: PresetIdCard
+    job: NCRSoldier
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDNCRDogtagNCO
+  name: dogtag
+  description: An ID dogtag worn by decently ranking members of the NCR.
+  suffix: NCO
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ncrdogtag
+  - type: PresetIdCard
+    job: NCRNCO
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDNCRDogtagOfficer
+  name: dogtag
+  description: An ID dogtag worn by high ranking members of the NCR.
+  suffix: Officer
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ncrdogtag
+  - type: PresetIdCard
+    job: NCROfficer
+
+# Desert Rangers
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBadgeNCRDesertRangerRecruit
+  name: ranger recruit badge
+  description: An ID badge worn by Desert Ranger Recruits.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ranger_recruit
+  - type: PresetIdCard
+    job: RangerRecruit
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBadgeNCRDesertRanger
+  name: ranger badge
+  description: An ID badge worn by Desert Rangers.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ranger
+  - type: PresetIdCard
+    job: NCRRanger
+
+- type: entity
+  parent: N14IDBadgeNCRDesertRanger
+  id: N14IDBadgeNCRRanger
+  description: An ID badge worn by Republic Rangers.
+  suffix: NCR
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBadgeNCRDesertRangerElite
+  name: ranger elite badge
+  description: An ID badge worn by Elite Desert Ranger.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ranger_elite
+  - type: PresetIdCard
+    job: NCRRangerVeteran
+
+- type: entity
+  parent: N14IDBadgeNCRDesertRangerElite
+  id: N14IDBadgeNCRRangerElite
+  description: An ID badge worn by Elite Republic Rangers.
+  suffix: NCR
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBadgeNCRDesertRangerChief
+  name: ranger chief badge
+  description: An ID badge worn by the Chief Desert Ranger.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ranger_chief
+  - type: PresetIdCard
+    job: NCRRangerVeteran
+
+# Townsfolk
+- type: entity
+  parent: N14IDPassportPhoto
+  id: N14IDPassportTownsfolk
+  name: passport
+  description: A passport used by townsfolk as ID.
+
+- type: entity
+  parent: N14IDDoctor
+  id: N14IDDoctorTown
+  name: doctors ID
+  description: An ID card worn by the town doctor.
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBadgeTownDeputy
+  name: town deputy badge
+  description: An ID badge worn by a town deputy.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: deputy
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBadgeTownSheriff
+  name: town sheriff badge
+  description: An ID badge worn by a town sheriff.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: sheriff
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBadgeTownMayor
+  name: town mayor badge
+  description: An ID badge worn by a town mayor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: mayor
+
+# Raiders / Tribes
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDTribeSawbonePendant
+  name: sawbone pendant
+  description: A pendant often worn by tribes as ID. This one is a sawbone.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: sawbone
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDTribeBulletsPendant
+  name: bullet pendant
+  description: A pendant often worn by tribes as ID. This one is made of bullets.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: raider
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDTribeEnforcerPendant
+  name: enforcer pendant
+  description: A pendant often worn by tribes as ID. This one is a jet canister.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: enforcer
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDTribeBossPendant
+  name: bullet pendant
+  description: A pendant worn by a tribal leader.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: boss
+
+# Fun / Misc
+- type: entity
+  parent: N14IDDoctor
+  id: N14IDDoctorFollower
+  name: followers ID
+  description: An ID card worn by the Followers of the Apocalypse.
+
+#MARK: Keys
+
+- type: entity
+  parent: N14IDCard
+  id: N14IDKeyIron
+  name: iron key
+  description: a worn out iron key. I wonder where it goes?
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: iron
+  - type: Access
+    tags:
+    - IronKey
+
+- type: entity
+  parent: N14IDCard
+  id: N14IDKeyBrass
+  name: brass key
+  description: a worn out brass key. I wonder where it goes?
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: brass
+  - type: Access
+    tags:
+    - BrassKey
+
+- type: entity
+  parent: N14IDCard
+  id: N14IDKeyBronze
+  name: bronze key
+  description: a worn out bronze key. I wonder where it goes?
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bronze
+  - type: Access
+    tags:
+    - BronzeKey
+
+- type: entity
+  parent: N14IDCard
+  id: N14IDKeySilver
+  name: silver key
+  description: a worn out silver key. I wonder where it goes?
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: silver
+  - type: Access
+    tags:
+    - SilverKey
+
+- type: entity
+  parent: N14IDCard
+  id: N14IDKeyGold
+  name: gold key
+  suffix: AllKeyAccess
+  description: a sparkling gold key. I wonder where it goes?
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: gold
+  - type: Access
+    groups:
+    - GoldenKey

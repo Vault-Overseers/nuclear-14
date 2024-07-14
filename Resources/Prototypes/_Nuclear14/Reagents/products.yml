@@ -1,0 +1,89 @@
+- type: reagent
+  id: Abraxocleaner
+  name: reagent-name-abraxocleaner
+  group: Products
+  desc: reagent-desc-abraxocleaner
+  physicalDesc: reagent-physical-desc-abrasive
+  color: "#e0dbd1"
+  metabolisms:
+    Poison: # TODO: Add negative effects
+      effects:
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 5
+        refresh: false
+      - !type:Jitter
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.5
+            Caustic: 1
+
+- type: reagent
+  id: Wonderglue
+  name: reagent-name-wonderglue
+  group: Products
+  desc: reagent-desc-wonderglue
+  physicalDesc: reagent-physical-desc-gloopy
+  color: "#edf0f2"
+  metabolisms:
+    Poison: # TODO: Add negative effects
+      effects:
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 5
+        refresh: false
+      - !type:Jitter
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.2
+            Caustic: 0.5
+
+- type: reagent
+  id: Turpentine
+  name: reagent-name-turpentine
+  group: Products
+  desc: reagent-desc-turpentine
+  physicalDesc: reagent-physical-desc-acrid
+  color: "#f0f1f3"
+  metabolisms:
+    Poison:
+      effects: # TODO: Add negative effects
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 5
+        refresh: false
+      - !type:Jitter
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.5
+
+- type: reagent
+  id: Antiseptic
+  name: reagent-name-antiseptic
+  group: Products
+  desc: reagent-desc-turpentine
+  physicalDesc: reagent-physical-desc-strong-smelling
+  color: "#98cbf5"
+  metabolisms:
+    Poison:
+      effects: # TODO: Add negative effects
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 5
+        refresh: false
+      - !type:Jitter
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.5
