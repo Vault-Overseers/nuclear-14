@@ -3,6 +3,7 @@
   name: mop
   id: MopItem
   description: A mop that can't be stopped, viscera cleanup detail awaits.
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Specific/Janitorial/mop.rsi
@@ -32,14 +33,15 @@
     tags:
       - Mop
       - MopBasic
-  - type: GuideHelp
-    guides:
-    - Janitorial
+  # - type: GuideHelp
+    # guides:
+    # - Janitorial
 
 - type: entity
   parent: BaseItem
   name: advanced mop
   id: AdvMopItem
+  noSpawn: true
   description: Motorized mop that has a bigger reservoir and quickly replaces reagents inside with water. Automatic Clown Countermeasure not included.
   components:
     - type: Sprite
@@ -167,9 +169,9 @@
       storagebase: !type:Container
         ents: []
       shark_slot: !type:ContainerSlot {}
-  - type: GuideHelp
-    guides:
-    - Janitorial
+  # - type: GuideHelp
+    # guides:
+    # - Janitorial
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -226,6 +228,7 @@
   suffix: Explosive
   parent: WetFloorSign
   id: WetFloorSignMineExplosive
+  noSpawn: true
   components:
   - type: StepTrigger
     intersectRatio: 0.2
@@ -491,9 +494,9 @@
         wetfloorsign_slot1: !type:ContainerSlot {}
         lightreplacer_slot: !type:ContainerSlot {}
         spraybottle_slot:  !type:ContainerSlot {}
-    - type: GuideHelp
-      guides:
-      - Janitorial
+    # - type: GuideHelp
+      # guides:
+      # - Janitorial
     - type: TileFrictionModifier
       modifier: 0.4 # makes it slide
 
@@ -576,9 +579,9 @@
   - type: Item
     sprite: Objects/Specific/Janitorial/plunger.rsi
     heldPrefix: plunger
-  - type: GuideHelp
-    guides:
-    - Janitorial
+  # - type: GuideHelp
+    # guides:
+    # - Janitorial
   - type: Clothing
     sprite: Objects/Specific/Janitorial/plunger.rsi
     slots:
