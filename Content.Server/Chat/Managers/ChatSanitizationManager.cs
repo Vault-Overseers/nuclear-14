@@ -93,6 +93,44 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { "[':", "chatsan-tearfully-smiles" },
         { "('=", "chatsan-tearfully-smiles" },
         { "['=", "chatsan-tearfully-smiles" },
+        // Corvax-Localization-Start
+        { "хд", "chatsan-laughs" },
+        { "о-о", "chatsan-wide-eyed" }, // cyrillic о
+        { "о.о", "chatsan-wide-eyed" }, // cyrillic о
+        { "0_о", "chatsan-wide-eyed" }, // cyrillic о
+        { "о/", "chatsan-waves" }, // cyrillic о
+        { "о7", "chatsan-salutes" }, // cyrillic о
+        { "0_o", "chatsan-wide-eyed" },
+        { "лмао", "chatsan-laughs" },
+        { "рофл", "chatsan-laughs" },
+        { "яхз", "chatsan-shrugs" },
+        { ":0", "chatsan-surprised" },
+        { ":р", "chatsan-stick-out-tongue" }, // cyrillic р
+        { "кек", "chatsan-laughs" },
+        { "T_T", "chatsan-cries" },
+        { "Т_Т", "chatsan-cries" }, // cyrillic T
+        { "=_(", "chatsan-cries" },
+        { "!с", "chatsan-laughs" },
+        { "!в", "chatsan-sighs" },
+        { "!х", "chatsan-claps" },
+        { "!щ", "chatsan-snaps" },
+        { "))", "chatsan-smiles-widely" },
+        { ")", "chatsan-smiles" },
+        { "((", "chatsan-frowns-deeply" },
+        { "(", "chatsan-frowns" },
+        { "дрочит", "молится" },
+        { "ебет", "молится" },
+        { "ебёт", "молится" },
+        { "трахает", "молится" },
+        { "срёт", "молится" },
+        { "срет", "молится" },
+        { "ссыт", "молится" },
+        { "обоссал", "помолился" },
+        { "зигует", "бьёт себя по лицу" },
+        { "зиганул", "бьёт себя по лицу" },
+        { "кинул плотную", "бьёт себя по лицу" },
+        { "кинул потную", "бьёт себя по лицу" },
+        // Corvax-Localization-End
     };
 
     private bool _doSanitize;

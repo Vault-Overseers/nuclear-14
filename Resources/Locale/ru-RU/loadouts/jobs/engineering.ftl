@@ -1,5 +1,5 @@
-loadout-name-LoadoutEngineeringChickenSuit = eggmospheric technician suit
-loadout-description-LoadoutEngineeringChickenSuit = For the Eggmos tech who always knows where home is...
-loadout-description-LoadoutEngineeringUniformJumpskirtSenior = A skirt fit for the best of the best.
-loadout-description-LoadoutEngineeringUniformJumpsuitSenior = A suit fit for the best of the best.
-loadout-description-LoadoutEngineeringItemInflatable = A box containing inflatable walls and doors, for quickly patching up breaches.
+loadout-name-LoadoutEngineeringChickenSuit = Костюм яйцосферного техника
+loadout-description-LoadoutEngineeringChickenSuit = Для яйцосферного техника, который всегда знает, где его дом...
+loadout-description-LoadoutEngineeringUniformJumpskirtSenior = Юбка, подходящая для лучших из лучших.
+loadout-description-LoadoutEngineeringUniformJumpsuitSenior = Костюм, подходящий для лучших из лучших.
+loadout-description-LoadoutEngineeringItemInflatable = Набор с надувными стенами и дверями для быстрого устранения пробоин.

@@ -1,4 +1,4 @@
-magnet-pickup-component-toggle-verb = Toggle magnet
-magnet-pickup-component-on-examine-main = The magnet appears to be { $stateText }.
-magnet-pickup-component-magnet-on = [color=darkgreen]on[/color]
-magnet-pickup-component-magnet-off = [color=darkred]off[/color]
+magnet-pickup-component-toggle-verb = Переключить магнит
+magnet-pickup-component-on-examine-main = Кажется, магнит включен: { $stateText }.
+magnet-pickup-component-magnet-on = [color=darkgreen]включен[/color]
+magnet-pickup-component-magnet-off = [color=darkred]выключен[/color]

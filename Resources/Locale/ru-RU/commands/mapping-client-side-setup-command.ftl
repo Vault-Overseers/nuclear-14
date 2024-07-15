@@ -1,2 +1,2 @@
-cmd-mappingclientsidesetup-desc = Sets up the lighting control and such settings client-side. Sent by 'mapping' to client.
-cmd-mappingclientsidesetup-help = Usage: { $command }
+cmd-mappingclientsidesetup-desc = Настраивает управление освещением и другие настройки на стороне клиента. Отправляется 'mapping' на клиент.
+cmd-mappingclientsidesetup-help = Использование: { $command }

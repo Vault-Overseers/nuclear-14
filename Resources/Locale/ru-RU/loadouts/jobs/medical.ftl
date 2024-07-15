@@ -1,3 +1,3 @@
-loadout-description-LoadoutMedicalUniformJumpskirtSenior = A skirt fit for the best of the best.
-loadout-description-LoadoutMedicalUniformJumpsuitSenior = A suit fit for the best of the best.
-loadout-description-LoadoutMedicalHeadBeretSeniorPhysician = A beret fit for the best of the best.
+loadout-description-LoadoutMedicalUniformJumpskirtSenior = Юбка, подходящая для лучших из лучших.
+loadout-description-LoadoutMedicalUniformJumpsuitSenior = Костюм, подходящий для лучших из лучших.
+loadout-description-LoadoutMedicalHeadBeretSeniorPhysician = Берет, подходящий для лучших из лучших.

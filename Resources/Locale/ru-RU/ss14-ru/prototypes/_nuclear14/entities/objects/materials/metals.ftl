@@ -1,0 +1,12 @@
+ent-IngotLead = свинцовый слиток
+    .suffix = Полный
+    .desc = { ent-IngotBase.desc }
+ent-IngotLead1 = свинцовый слиток
+    .suffix = Один
+    .desc = { ent-IngotLead.desc }
+ent-IngotAluminum = алюминиевый слиток
+    .suffix = Полный
+    .desc = { ent-IngotBase.desc }
+ent-IngotAluminum1 = aluminum bar
+    .suffix = Один
+    .desc = { ent-IngotAluminum.desc }

@@ -1,0 +1,11 @@
+ent-N14WellBoarded = Boarded well
+    .desc = It's a well that's been boarded up. Maybe a crowbar will reveal it's secrets.
+ent-N14WellWaterClean = water well
+    .desc = A well. Hopefully it's got some water at the bottom. Let's hope it's clean.
+    .suffix = Clean
+ent-N14WellWaterDirty = { ent-N14WellWaterClean }
+    .suffix = Dirty
+    .desc = { ent-N14WellWaterClean.desc }
+ent-N14WellWaterIrradiated = { ent-N14WellWaterClean }
+    .suffix = Irradiated
+    .desc = { ent-N14WellWaterClean.desc }

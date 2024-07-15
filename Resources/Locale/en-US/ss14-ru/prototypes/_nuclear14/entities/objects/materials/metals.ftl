@@ -1,0 +1,12 @@
+ent-IngotLead = lead bar
+    .suffix = Full
+    .desc = { ent-IngotBase.desc }
+ent-IngotLead1 = lead bar
+    .suffix = Single
+    .desc = { ent-IngotLead.desc }
+ent-IngotAluminum = aluminum bar
+    .suffix = Full
+    .desc = { ent-IngotBase.desc }
+ent-IngotAluminum1 = aluminum bar
+    .suffix = Single
+    .desc = { ent-IngotAluminum.desc }

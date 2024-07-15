@@ -1,5 +1,5 @@
-loadout-description-LoadoutOuterGhostSheet = Spooky...
-loadout-description-LoadoutOuterCoatBomberjacket = A sleek bomber jacket.
-loadout-description-LoadoutOuterCoatHoodieBlack = A warm hoodie.
-loadout-description-LoadoutOuterCoatHoodieGrey = A warm hoodie.
-loadout-description-LoadoutOuterCoatWinterCoat = For keeping nice and snug.
+loadout-description-LoadoutOuterGhostSheet = Страшновато...
+loadout-description-LoadoutOuterCoatBomberjacket = Стильная куртка бомбер.
+loadout-description-LoadoutOuterCoatHoodieBlack = Теплый худи черного цвета.
+loadout-description-LoadoutOuterCoatHoodieGrey = Теплый худи серого цвета.
+loadout-description-LoadoutOuterCoatWinterCoat = Для теплой и уютной атмосферы.

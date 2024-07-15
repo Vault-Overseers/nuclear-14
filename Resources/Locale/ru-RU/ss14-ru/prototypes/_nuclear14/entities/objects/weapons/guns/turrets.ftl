@@ -1,0 +1,15 @@
+ent-N14WeaponTurretBrotherhoodMidwestSecureArea = { ent-BaseWeaponTurret }
+    .suffix = Среднезападное БС, Враждебная
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-N14WeaponTurretBrotherhoodMidwest = { ent-BaseWeaponTurret }
+    .suffix = Среднезападное БС
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-N14WeaponTurretBrotherhoodWashingtonSecureArea = { ent-BaseWeaponTurret }
+    .suffix = Вашингтонское БС, Враждебная
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-N14WeaponTurretBrotherhoodWashington = { ent-BaseWeaponTurret }
+    .suffix = Вашингтонское БС
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-N14WeaponTurretVault = { ent-BaseWeaponTurret }
+    .suffix = Убежище, Враждебная
+    .desc = { ent-BaseWeaponTurret.desc }

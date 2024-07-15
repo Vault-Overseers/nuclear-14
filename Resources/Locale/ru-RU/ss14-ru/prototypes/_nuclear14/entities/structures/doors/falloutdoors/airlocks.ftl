@@ -1,0 +1,9 @@
+ent-N14Airlock = Дверь бункера
+    .desc = Массивная дверь бункера, способная выдержать не один ядерный удар. Может как открыться, так и захлопнуться, раздавив вас. Снаружи вас ждут только полчища монстров и смертельная радиация. Может быть активирована вручную.
+ent-N14DoorBunkerVault = { ent-N14Airlock }
+    .suffix = Хранилище
+    .desc = { ent-N14Airlock.desc }
+ent-N14DoorBunker = { ent-N14Airlock }
+    .desc = { ent-N14Airlock.desc }
+ent-N14DoorBunkerGlass = { ent-N14Airlock }
+    .desc = { ent-N14Airlock.desc }
