@@ -110,7 +110,7 @@
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
   id: N14ClothingOuterPowerArmorAdvanced1
-  name: advanced power armor suit
+  name: X-01 power armor suit
   description: A rare, bulky and advanced suit of power armor. It includes partial hermetic sealing, that helps protect against radiation!
   components:
   - type: Sprite
@@ -138,28 +138,30 @@
 - type: entity
   parent: N14ClothingOuterPowerArmorAdvanced1
   id: N14ClothingOuterPowerArmorAdvanced2
-  name: advanced power armor suit
-  description: A rare, bulky and advanced suit of power armor. It includes partial hermetic sealing, that helps protect against radiation!
+  name: X-02 power armor suit
+  description: A mass-produced version of the original APA. It sports less plating, but is easier to repair and maintain.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/advanced2.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/advanced2.rsi
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.90
+    sprintModifier: 0.90
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.2
-        Slash: 0.15
-        Piercing: 0.2
-        Heat: 0.20
-        Radiation: 0.3
+        Blunt: 0.5
+        Slash: 0.30
+        Piercing: 0.35
+        Heat: 0.40
+        Radiation: 0.4
   - type: TemperatureProtection
     coefficient: 0.2
   - type: ExplosionResistance
     damageCoefficient: 0.2
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHelmetPowerArmorX02
 
 - type: entity
   parent: ClothingOuterEVASuitBase
