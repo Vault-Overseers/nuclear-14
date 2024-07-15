@@ -203,6 +203,9 @@
   - type: Construction # N14:TODO: Probably move this to lathe
     graph: N14JetInhaler
     node: jet
+  - type: Tag
+    tags:
+    - Jet
 
 - type: entity
   parent: N14JetInhaler
@@ -321,7 +324,151 @@
         - ReagentId: RadAway
           Quantity: 20
 
+#MARK: RadAway Inhaler
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14RadAwayInhalerBase
+  name: RadAway inhaler
+  description: A jet inhaler with a RadAway phial screwed on top of it. Three puffs away from being rad free.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+    netsync: false
+    layers:
+    - state: radawayinhaler1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+    - state: radawayinhaler
+    - state: radawayinhaler_text
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    changeColor: true
+    fillBaseName: radawayinhaler
+    emptySpriteName: radawayinhaler
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 10
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 30
 
+- type: entity
+  parent: N14RadAwayInhalerBase
+  id: N14RadAwayInhalerTrash
+  suffix: Trash
+  components:
+  - type: Construction
+    graph: N14RadAwayInhaler
+    node: empty
+    defaultTarget: refill
+
+- type: entity
+  parent: N14RadAwayInhalerBase
+  id: N14RadAwayInhaler
+  name: RadAway inhaler
+  description: A jet inhaler with a RadAway phial screwed on top of it. Three puffs away from being rad free.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 30
+        reagents:
+        - ReagentId: RadAway
+          Quantity: 30
+  - type: Construction
+    graph: N14RadAwayInhaler
+    node: refill
+
+#MARK: Phial Base
+- type: entity
+  parent: BaseBeaker
+  id: N14RadAwayPhialBase
+  name: RadAway phial
+  description: A coloured phial containing RadAway. This one appears to be empty
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+    layers:
+      - state: radawayphial1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+      - state: radawayphial
+      - state: radawayphial_text
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    changeColor: true
+    fillBaseName: radawayphial
+  - type: WelderRefinable
+    refineResult:
+    - MaterialGlass
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 50
+
+#TODO: Needs a C# code to support its crafting
+# - type: entity
+#   parent: N14RadAwayPhialBase
+#   id: N14RadAwayPhialCraft
+#   name: RadAway phial
+#   description: A coloured phial containing RadAway. This one appears to be empty
+#   suffix: crafting
+#   components:
+#   - type: Construction
+#     graph: N14RadAwayPhialRefill
+#     node: start
+#     defaultTarget: fill
+
+- type: entity
+  parent: N14RadAwayPhialBase
+  id: N14RadAwayPhialEmpty
+  suffix: empty
+  components:
+  - type: Construction
+    graph: N14RadAwayPhial
+    node: start
+    defaultTarget: fill
+
+- type: entity
+  parent: N14JunkItemBaseGlass
+  id: N14RadAwayPhial
+  name: RadAway phial
+  description: A coloured phial containing RadAway.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+    layers:
+    - state: radawayphial_icon
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: radawayphial
+  - type: WelderRefinable
+    refineResult:
+    - MaterialGlass
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 50
+  - type: ExaminableSolution
+    solution: drink
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: RadAway
+          Quantity: 30
+  - type: Spillable
+    solution: drink
+  - type: Tag
+    tags:
+    - Phial
+  - type: Construction
+    graph: N14RadAwayPhial
+    node: fill
+
+#MARK: Healing Powder
 - type: entity
   name: healing powder
   parent: BaseItem

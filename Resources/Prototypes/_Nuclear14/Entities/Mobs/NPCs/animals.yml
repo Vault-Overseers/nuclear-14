@@ -524,6 +524,29 @@
         Base: dead
 
 - type: entity
+  name: deathclaw maid
+  id: N14MobDeathclawMaid
+  parent: N14MobDeathclaw
+  description: They put maid outfit on that thing?!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: maidclaw
+      sprite: _Nuclear14/Mobs/Animals/maidclaw.rsi
+  - type: Reproductive
+    breedChance: 0.15
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: maidclaw
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+
+- type: entity
   name: metal deathclaw
   id: N14MobDeathclawMetal
   parent: N14MobDeathclawAlbino
