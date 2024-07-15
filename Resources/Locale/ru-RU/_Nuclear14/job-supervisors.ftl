@@ -1,0 +1,17 @@
+job-supervisors-bos-mid = командиру рыцарей Среднезападного Братства
+job-supervisors-bos-washington-elder = ведите свою фракцию к победе!
+job-supervisors-bos-washington = следуйте за своим старейшиной к победе!
+job-supervisors-bos-washington-recruit = выполняйте приказы всех других ролей в отделении
+job-supervisors-caravan = главе каравана
+job-supervisors-caravan-leader = ведите свою караванную компанию к богатству через торговлю
+job-supervisors-ncr = офицеру НКР
+job-supervisors-ncr-nco = офицеру НКР, затем сержанту
+job-supervisors-ncr-captain = капитану НКР
+job-supervisors-ranger = рейнджеру
+job-supervisors-veteran-ranger = ветерану-рейнджеру
+job-supervisors-tribal = старейшине племени
+job-supervisors-tribal-elder = ведите своё племя к здоровью и процветанию
+job-supervisors-overseer = смотрителю Убежища
+job-supervisors-vault-overseer = ведите своё Убежище к процветанию и поддерживайте статус-кво
+job-supervisors-wastelander = заботьтесь о себе прежде всего
+job-supervisors-townsfolk = мэру города

@@ -1,0 +1,10 @@
+ent-N14HydroponicsToolHoe = hoe
+    .desc = { ent-HydroponicsToolMiniHoe.desc }
+ent-N14HydroponicsToolClippers = { ent-HydroponicsToolClippers }
+    .desc = { ent-HydroponicsToolClippers.desc }
+ent-N14HydroponicsToolScythe = { ent-HydroponicsToolScythe }
+    .desc = A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow.
+ent-N14HydroponicsToolHatchet = { ent-HydroponicsToolHatchet }
+    .desc = Can I axe you a question?
+ent-N14HydroponicsToolShovel = shovel
+    .desc = A tool for digging holes and moving aggregates.

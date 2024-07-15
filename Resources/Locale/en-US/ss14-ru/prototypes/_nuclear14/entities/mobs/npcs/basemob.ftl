@@ -1,0 +1,14 @@
+ent-N14MobBaseHostile = wasteland animal
+    .desc = It's a dirty wasteland animal. Watch out for it's bite, it could be infectious.
+ent-N14MobBaseHostileScaley = scaley wasteland animal
+    .desc = { ent-N14MobBaseHostile.desc }
+ent-N14MobBaseHostileInsect = wasteland insect
+    .desc = { ent-N14MobBaseHostile.desc }
+ent-N14MobWave = wave attacker
+    .desc = { "" }
+ent-N14MobWaveAnimal = { ent-N14MobWave }
+    .desc = { ent-N14MobWave.desc }
+ent-N14MobWaveInsect = { ent-N14MobWave }
+    .desc = { ent-N14MobWave.desc }
+ent-N14TameableMobBase = { ent-SimpleMobBase }
+    .desc = { ent-SimpleMobBase.desc }

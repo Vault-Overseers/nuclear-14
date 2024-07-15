@@ -1,0 +1,14 @@
+ent-N14MobHumanTownsperson = Городской Житель
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanTownShopkeeper = Городской Торговец
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanTownSheriff = Городской Шериф
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanTownMechanic = Городской Механик
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanTownMayor = Мэр Города
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanTownDoctor = Городской Врач
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanTownDeputy = Городской Помощник Шерифа
+    .desc = { ent-MobHuman.desc }

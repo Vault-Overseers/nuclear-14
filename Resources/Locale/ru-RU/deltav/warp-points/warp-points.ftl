@@ -30,4 +30,4 @@ warp-point-cryo = Криокамеры
 warp-point-chapel = Церковь
 warp-point-library = Библиотека
 warp-point-dorms = Дорматории
-warp-point-disposals = Disposals
+warp-point-disposals = Свалка

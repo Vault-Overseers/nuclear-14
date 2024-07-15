@@ -1,0 +1,12 @@
+ent-N14ClothingHeadHelmetPowerArmorT45 = t-45 power armor helmet
+    .desc = An old helmet used with T-45 Power Armor suits. It's amazing these still exist.
+ent-N14ClothingHeadHelmetPowerArmorT51 = t-51 power armor helmet
+    .desc = An old helmet used with T-51 Power Armor suits. It looks more advanced than your common everyday T-45.
+ent-N14ClothingHeadHelmetPowerArmorT60 = t-60 power armor helmet
+    .desc = An old helmet used with T-60 Power Armor suits, very similar to the T-45.
+ent-N14ClothingHeadHelmetPowerArmorX01 = x-01 power armor helmet
+    .desc = A advance helmet used with X-01 power armor suits, .
+ent-N14ClothingHeadHelmetPowerArmorT51BC = x-01 power armor helmet
+    .desc = The pinnacle of pre-war technology, appropriated by the Brotherhood of Steel. Commonly worn by Head Paladins.
+ent-N14ClothingHeadHelmetPowerArmorT45NCR = t-45 NCR power armor helmet
+    .desc = Originally existing as T-45d power armor that was recovered by the NCR and repurposed for the use within NCR.

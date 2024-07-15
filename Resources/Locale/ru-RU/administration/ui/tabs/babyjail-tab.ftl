@@ -1,11 +1,11 @@
 admin-ui-baby-jail-window-title = Baby Jail
-admin-ui-baby-jail-enabled = Baby Jail Enabled
-admin-ui-baby-jail-disabled = Baby Jail Disabled
-admin-ui-baby-jail-tooltip = The baby jail restricts players from joining if their account is too old or they do have too much overall playtime on this server.
-admin-ui-baby-jail-show-reason = Show Reason
-admin-ui-baby-jail-show-reason-tooltip = Show the user why they were blocked from connecting by the baby jail.
-admin-ui-baby-jail-max-account-age = Max. Account Age
-admin-ui-baby-jail-max-overall-minutes = Max. Overall Playtime
-admin-ui-baby-jail-is-enabled = [font size=20][bold]The baby jail is currently enabled.[/bold][/font]
-admin-ui-baby-jail-enabled-admin-alert = The baby jail has been enabled.
-admin-ui-baby-jail-disabled-admin-alert = The baby jail has been disabled.
+admin-ui-baby-jail-enabled = Baby Jail включен
+admin-ui-baby-jail-disabled = Baby Jail выключен
+admin-ui-baby-jail-tooltip = Baby Jail ограничивает игроков от подключения, если их аккаунт слишком старый или у них слишком много общего игрового времени на этом сервере.
+admin-ui-baby-jail-show-reason = Показать причину
+admin-ui-baby-jail-show-reason-tooltip = Показывает пользователю, почему Baby Jail заблокировал его подключение.
+admin-ui-baby-jail-max-account-age = Макс. возраст аккаунта
+admin-ui-baby-jail-max-overall-minutes = Макс. общее игровое время
+admin-ui-baby-jail-is-enabled = [font size=20][bold]Baby Jail в данный момент включен.[/bold][/font]
+admin-ui-baby-jail-enabled-admin-alert = Baby Jail был включен.
+admin-ui-baby-jail-disabled-admin-alert = Baby Jail был выключен.

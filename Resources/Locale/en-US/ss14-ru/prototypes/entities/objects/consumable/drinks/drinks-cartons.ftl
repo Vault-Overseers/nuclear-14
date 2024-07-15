@@ -1,5 +1,7 @@
 ent-DrinkCartonBaseFull = { ent-DrinkBase }
     .desc = { ent-DrinkBase.desc }
+ent-DrinkCartonBaseLargeFull = { ent-DrinkCartonBaseFull }
+    .desc = { ent-DrinkCartonBaseFull.desc }
 ent-DrinkCartonVisualsOpenable = { "" }
     .desc = { "" }
 ent-DrinkJuiceLimeCarton = lime juice
@@ -16,3 +18,9 @@ ent-DrinkSoyMilkCarton = soy milk
     .desc = White and nutritious soy goodness!
 ent-DrinkOatMilkCarton = oat milk
     .desc = It's oat milk. Tan and nutritious goodness!
+ent-DrinkCartonBaseSmallFull = { ent-DrinkCartonBaseFull }
+    .desc = { ent-DrinkCartonBaseFull.desc }
+ent-DrinkMilkCartonMini = mini milk
+    .desc = An opaque white liquid produced by the mammary glands of mammals.
+ent-DrinkMilkCartonMiniChocolate = mini choco milk
+    .desc = A milk drink flavored with chocolate.

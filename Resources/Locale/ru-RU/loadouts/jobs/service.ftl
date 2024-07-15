@@ -1,7 +1,7 @@
-loadout-description-LoadoutServiceClownUniformJesterAlt = For the fool who knows their place.
-loadout-description-LoadoutServiceClownShoesJester = For the fool who knows their place.
-loadout-description-LoadoutServiceClownHeadJesterHatAlt = For the fool who knows their place.
-loadout-description-LoadoutServiceBotanistUniformOveralls = A rugged pair of overalls.
-loadout-description-LoadoutServiceReporterUniformJournalist = For the reporter on the case!
-loadout-description-LoadoutServiceReporterUniformDetectivesuit = Always reminds you of the one that got away...
-loadout-description-LoadoutServiceReporterUniformDetectiveskirt = Always reminds you of the one that got away...
+loadout-description-LoadoutServiceClownUniformJesterAlt = Для шута, который знает свое место.
+loadout-description-LoadoutServiceClownShoesJester = Для шута, который знает свое место.
+loadout-description-LoadoutServiceClownHeadJesterHatAlt = Для шута, который знает свое место.
+loadout-description-LoadoutServiceBotanistUniformOveralls = Прочные комбинезоны.
+loadout-description-LoadoutServiceReporterUniformJournalist = Для журналиста на задании!
+loadout-description-LoadoutServiceReporterUniformDetectivesuit = Всегда напоминает о том, что ушло…
+loadout-description-LoadoutServiceReporterUniformDetectiveskirt = Всегда напоминает о том, что ушло…

@@ -1,0 +1,11 @@
+ent-N14FloraLogBase = бревно
+    .desc = Было дерево, осталась древесина.
+ent-N14FloraLog1 = древесина
+    .desc = Было дерево, осталась древесина.
+    .suffix = кресло
+ent-N14FloraLogTimber = пень
+    .suffix = предмет
+    .desc = { ent-N14FloraLogBase.desc }
+ent-N14FloraLog3 = { ent-N14FloraLog1 }
+    .suffix = тайник
+    .desc = { ent-N14FloraLogBase.desc }

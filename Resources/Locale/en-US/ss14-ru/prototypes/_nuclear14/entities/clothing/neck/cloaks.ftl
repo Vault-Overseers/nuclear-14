@@ -1,0 +1,12 @@
+ent-N14ClothingNeckCloakBrotherhoodWashington = Washington Brotherhood cloak
+    .desc = A black cloak with a circular red Brotherhood logo.
+ent-N14ClothingNeckCloakNCR = NCR cloak
+    .desc = A comfy cloak with a NCR logo on one side, this kind of cloaks are commonly used by the troopers during hard weathers.
+ent-N14ClothingNeckCloakRanger = NCR ranger cape
+    .desc = Ranger cape made from what looks like old poncho fitted with star, stripes and a bear. Most likely has a holster hidden underneath.
+ent-N14ClothingNeckCloakRangerPoncho = ranger poncho
+    .desc = A durable muslin poncho. Tough enough to bear the elements and serve as handy blanket.
+ent-N14ClothingNeckCloakLeather = leather cloak
+    .desc = A handmade cloak, comfy and warm.
+ent-N14ClothingNeckCloakYaoguai = yaoguai cloak
+    .desc = A handmade cloak, comfy and warm this piece comes from a dangerous yaoguai.

@@ -1,0 +1,10 @@
+ent-N14MobHumanVaultDweller = Житель Убежища
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanVaultDoctor = Врач Убежища
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanVaultEngineer = Инженер Убежища
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanVaultSecurity = Охрана Убежища
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanOverseer = Смотритель Убежища
+    .desc = { ent-MobHuman.desc }

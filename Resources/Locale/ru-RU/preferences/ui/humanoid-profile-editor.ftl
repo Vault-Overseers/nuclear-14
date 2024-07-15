@@ -11,6 +11,9 @@ humanoid-profile-editor-sex-female-text = Женский
 humanoid-profile-editor-sex-unsexed-text = Отсутствует
 humanoid-profile-editor-age-label = Возраст:
 humanoid-profile-editor-skin-color-label = Цвет кожи:
+humanoid-profile-editor-height-label = Height: { $height }cm
+humanoid-profile-editor-width-label = Width: { $width }cm
+humanoid-profile-editor-weight-label = Weight: { $weight }kg
 humanoid-profile-editor-species-label = Раса:
 humanoid-profile-editor-pronouns-label = Личное местоимение:
 humanoid-profile-editor-pronouns-male-text = Он / Его
@@ -43,6 +46,24 @@ humanoid-profile-editor-department-jobs-label = { $departmentName }
 humanoid-profile-editor-antags-tab = Антагонисты
 humanoid-profile-editor-antag-preference-yes-button = Да
 humanoid-profile-editor-antag-preference-no-button = Нет
+humanoid-profile-editor-traits-header =
+    You have { $points ->
+        [1] 1 point
+       *[other] { $points } points
+    } and { $maxTraits ->
+        [2147483648]
+            { $traits ->
+                [1] { $traits } trait
+               *[other] { $traits } traits
+            }
+       *[other] { $traits }/{ $maxTraits } traits
+    }
+humanoid-profile-editor-traits-show-unusable-button = Show Unusable
+humanoid-profile-editor-traits-show-unusable-button-tooltip =
+    When enabled, traits that your current character setup cannot use will be shown highlighted in red.
+    You will still not be able to use the invalid traits unless your character setup changes to fit the requirements.
+    This is most likely useful only if there's a bug hiding traits you actually can use or if you want to see other species' traits or something.
+humanoid-profile-editor-traits-no-traits = No traits found
 humanoid-profile-editor-job-priority-high-button = Высокий
 humanoid-profile-editor-job-priority-medium-button = Средний
 humanoid-profile-editor-job-priority-low-button = Низкий

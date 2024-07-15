@@ -1,3 +1,3 @@
-loadout-description-LoadoutScienceUniformJumpskirtSenior = A skirt fit for the best of the best.
-loadout-description-LoadoutScienceUniformJumpsuitSenior = A suit fit for the best of the best.
-loadout-description-LoadoutScienceOuterLabcoatSeniorResearcher = A labcoat fit for the best of the best.
+loadout-description-LoadoutScienceUniformJumpskirtSenior = Юбка, подходящая для лучших из лучших.
+loadout-description-LoadoutScienceUniformJumpsuitSenior = Костюм, подходящий для лучших из лучших.
+loadout-description-LoadoutScienceOuterLabcoatSeniorResearcher = Лабораторный халат для выдающегося исследователя.

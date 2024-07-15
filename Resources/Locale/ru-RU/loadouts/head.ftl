@@ -1,2 +1,2 @@
-loadout-description-LoadoutHeadBeaverHat = Gentlemen.
-loadout-description-LoadoutHeadTophat = A stylish black tophat.
+loadout-description-LoadoutHeadBeaverHat = Для настоящих джентльменов.
+loadout-description-LoadoutHeadTophat = Стильный черный цилиндр.

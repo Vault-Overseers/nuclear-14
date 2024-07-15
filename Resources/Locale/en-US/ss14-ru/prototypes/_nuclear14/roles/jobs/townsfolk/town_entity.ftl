@@ -1,0 +1,14 @@
+ent-N14MobHumanTownsperson = Townsperson
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanTownShopkeeper = TownShopkeeper
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanTownSheriff = TownSheriff
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanTownMechanic = TownMechanic
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanTownMayor = TownMayor
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanTownDoctor = TownDoctor
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanTownDeputy = TownDeputy
+    .desc = { ent-MobHuman.desc }
