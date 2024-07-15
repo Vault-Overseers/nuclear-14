@@ -1,0 +1,87 @@
+# parent to MobSiliconBase
+- type: entity
+  abstract: true
+  parent: MobSiliconBase
+  id: N14MobRobotHostile
+  name: robot
+  description: Designed to serve humankind. Maybe it ended it.
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      sprite: _Nuclear14/Mobs/Robots/ms13robots.rsi
+      state: assaultron
+  - type: Physics
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      15: Dead
+  - type: Stamina
+    critThreshold: 15
+  - type: MovementAlwaysTouching
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead
+  # - type: Bloodstream
+    # bloodMaxVolume: 50
+  - type: CombatMode
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 2
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    prob: 0.33
+    makeSentient: true
+    name: hostile attacker # wave defence
+    description: |
+      Wreak havoc and kill all humans!
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+  - type: Puller
+    needsHands: true
+
+- type: entity
+  parent: N14MobRobotHostile
+  id: N14MobRobotAssaultronHostile
+  name: Assaultron
+  description: Horrifying.
