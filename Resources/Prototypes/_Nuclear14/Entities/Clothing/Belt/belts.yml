@@ -120,12 +120,35 @@
     sprite: _Nuclear14/Clothing/Belt/ropebelt.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Belt/ropebelt.rsi
+    
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltQuiverSpear
+  name: spear quiver
+  description: A simple quiver for holding spears
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/quiver_spear.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/quiver_spear.rsi
+  - type: Storage
+    whitelist:
+      tags:
+        - Spear
+    grid:
+    - 0,0,7,3
+    maxItemSize: Ginormous
+  # - type: Appearance
+  # - type: StorageContainerVisuals
+    # maxFillLevels: 3
+    # fillBaseName: fill-
+
 
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltRevolver
   name: revolver holster
-  description: Can hold security gear like handcuffs and flashes.
+  description: Can hold a revolver and speedloaders.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Belt/revolverholster.rsi
@@ -137,3 +160,34 @@
         - Revolver
         - SpeedLoader
   - type: Appearance
+  
+- type: entity
+  parent: ClothingBeltRevolver
+  id: ClothingBeltCowboy
+  name: cowboy belt
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/cowboy.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/cowboy.rsi
+    
+- type: entity
+  parent: ClothingBeltNCR
+  id: ClothingBeltEnclave
+  name: Enclave belt
+  description: A leather belt designed by the Enclave.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/enclavebelt.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/enclavebelt.rsi
+    
+- type: entity
+  parent: ClothingBeltPlant
+  id: ClothingBeltFarmer
+  name: farmers belt
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/gardener.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/gardener.rsi
