@@ -1,0 +1,191 @@
+# parent to MobSiliconBase
+- type: entity
+  abstract: true
+  parent: MobSiliconBase
+  id: N14MobRobotHostile
+  suffix: hostile npc
+  name: robot
+  description: Designed to serve humankind. Maybe it ended it.
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile # N14:TODO: Change this to a robot enemy faction
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      sprite: _Nuclear14/Mobs/Robots/ms13robots.rsi
+      state: assaultron
+  - type: Physics
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: Stamina
+    critThreshold: 20
+  - type: MovementAlwaysTouching
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead
+  # - type: Bloodstream
+    # bloodMaxVolume: 50
+  - type: CombatMode
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/metal_thud1.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      groups:
+        Brute: 5
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    prob: 0.33
+    makeSentient: true
+    name: hostile attacker # wave defence
+    description: |
+      Wreak havoc and kill all humans!
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+  - type: Puller
+    needsHands: true
+# TODO: Make them shout things at people using advertise.
+
+- type: entity
+  parent: N14MobRobotHostile
+  id: N14MobRobotAssaultronHostile
+  name: Assaultron
+  description: Horrifying.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2
+    baseSprintSpeed : 4
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: assaultron
+    description: |
+      Wreak havoc and kill all humans!
+  - type: Sprite
+    sprite: Nuclear14/Mobs/Robots/assaultron.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon  # change me
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon # change me
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: walking
+    noMovementLayers:
+      movement:
+        state: icon
+    
+- type: entity
+  parent: N14MobRobotHostile
+  id: N14MobRobotProtectronHostile
+  name: Protectron
+  description: A common protectron looking for a fight.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 1
+    baseSprintSpeed : 2
+  - type: Sprite
+    sprite: Nuclear14/Mobs/Robots/protectron.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon  # change me
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon # change me
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: walking
+    noMovementLayers:
+      movement:
+        state: icon
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: protectron
+    description: |
+      Wreak havoc and kill all humans!
+      
+- type: entity
+  parent: N14MobRobotHostile
+  id: N14MobRobotMrHandyClaw
+  name: Mr Handy
+  description: A domestic Mr Handy model with a claw attachment.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 1
+    baseSprintSpeed : 2
+  - type: Sprite
+    sprite: Nuclear14/Mobs/Robots/mrhandyclaw.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon  # change me
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon # change me
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: walking
+    noMovementLayers:
+      movement:
+        state: icon
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: protectron
+    description: |
+      Wreak havoc and kill all humans!
