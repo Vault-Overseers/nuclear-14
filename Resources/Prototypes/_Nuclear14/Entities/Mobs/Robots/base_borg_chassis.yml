@@ -5,7 +5,6 @@
   description: A machine designed to serve humankind.
   save: false
   abstract: true
-  suffix: player
   components:
   - type: Reactive
     groups:
@@ -62,12 +61,12 @@
     locPrefix: silicon
   - type: UserInterface
     interfaces:
-      enum.SiliconLawsUiKey.Key:
-        type: SiliconLawBoundUserInterface
-      enum.BorgUiKey.Key:
-        type: BorgBoundUserInterface
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
+    - key: enum.SiliconLawsUiKey.Key
+      type: SiliconLawBoundUserInterface
+    - key: enum.BorgUiKey.Key
+      type: BorgBoundUserInterface
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
   - type: ActivatableUI
     key: enum.BorgUiKey.Key
   # - type: SiliconLawBound
@@ -82,14 +81,18 @@
     templateId: borg
   - type: Hands
     showInHands: false
-    # disableExplosionRecursion: true # not in our version of the game yet 16/07/2024
+    disableExplosionRecursion: true
   - type: IntrinsicRadioReceiver
   # - type: IntrinsicRadioTransmitter
     # channels:
     # - Binary
+    # - Common
+    # - Science
   # - type: ActiveRadio
     # channels:
     # - Binary
+    # - Common
+    # - Science
   - type: ZombieImmune
   - type: Repairable
     doAfterDelay: 10
@@ -125,14 +128,13 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Pai
-  # - type: Vocal # not in our version of the game yet 16/07/2024
-    # sounds:
-      # Unsexed: UnisexSilicon
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSilicon
   - type: UnblockableSpeech
   - type: Lock
     locked: true
   - type: ActivatableUIRequiresLock
-  # - type: LockedWiresPanel # not in our version of the game yet 16/07/2024
   - type: Flashable
   - type: Damageable
     damageContainer: Silicon
@@ -195,37 +197,10 @@
   - type: StandingState
   - type: Tag
     tags:
+    - ShoesRequiredStepTriggerImmune
     - DoorBumpOpener
     - CanPilot
   - type: Emoting
   # - type: GuideHelp
     # guides:
-  - type: Eye
-    visMask:
-      - PsionicInvisibility
-      - Normal
-  - type: LanguageKnowledge
-    speaks:
-    - English
-    - Chinese
-    - RobotTalk
-    understands:
-    - English
-    - Chinese
-    - RobotTalk
-  - type: CanWalk
-  - type: NpcFactionMember
-    factions:
-    - Wastelander
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-      borg_module:
-        - BorgModuleService
-        - BorgModuleMusique
-        - BorgModuleGardening
-        - BorgModuleHarvesting
-        - BorgModuleFireExtinguisher
-        - BorgModuleRadiationDetection
-        - BorgModuleTool
+      # - Cyborgs
