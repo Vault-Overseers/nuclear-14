@@ -9,6 +9,7 @@ job-supervisors-ncr-nco = офицеру НКР, затем сержанту
 job-supervisors-ncr-captain = капитану НКР
 job-supervisors-ranger = рейнджеру
 job-supervisors-veteran-ranger = ветерану-рейнджеру
+job-supervisors-chief-ranger = главному рейнджеру
 job-supervisors-tribal = старейшине племени
 job-supervisors-tribal-elder = ведите своё племя к здоровью и процветанию
 job-supervisors-overseer = смотрителю Убежища

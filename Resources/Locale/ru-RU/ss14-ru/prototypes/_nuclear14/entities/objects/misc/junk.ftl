@@ -1,5 +1,7 @@
 ent-N14JunkItemBase = мусор
     .desc = Это никуда не годится. Хлам, который даже радтараканы брезгуют тащить в своё гнездо.
+ent-N14JunkItemBaseGlass = мусор
+    .desc = Это никуда не годится. Хлам, который даже радтараканы брезгуют тащить в своё гнездо.
 ent-N14JunkItemBasePlastic = { ent-N14JunkItemBase }
     .desc = { ent-N14JunkItemBase.desc }
 ent-N14JunkItemBaseMetal = { ent-N14JunkItemBase }

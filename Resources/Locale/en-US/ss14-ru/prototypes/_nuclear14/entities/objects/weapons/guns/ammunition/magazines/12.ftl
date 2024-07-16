@@ -1,0 +1,12 @@
+ent-N14BaseMagazine127Pistol = pistol magazine (12.7mm)
+    .desc = { ent-BaseItem.desc }
+ent-N14MagazinePistol12mm = pistol magazine (12.7mm)
+    .desc = { ent-N14BaseMagazine127Pistol.desc }
+ent-N14BaseMagazine127SubMachineGun = SMG magazine (12.7mm)
+    .desc = { ent-BaseItem.desc }
+ent-N14MagazineSMG12mm = SMG magazine (12.7mm)
+    .desc = { ent-N14BaseMagazine127SubMachineGun.desc }
+ent-N14BaseTopMag127SubMachineGun = SMG top magazine (12.7mm)
+    .desc = { ent-BaseItem.desc }
+ent-N14TopMagazineSMG12mm = top mounted SMG magazine (12.7mm)
+    .desc = { ent-N14BaseTopMag127SubMachineGun.desc }

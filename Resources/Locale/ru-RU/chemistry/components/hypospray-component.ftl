@@ -6,7 +6,7 @@ hypospray-invalid-text = Ошибка
 hypospray-volume-label =
     Объём: [color=white]{ $currentVolume }/{ $totalVolume } ед.[/color]
     Режим: [color=white]{ $modeString }[/color]
-hypospray-volume-text = Объём: [color=white]{$currentVolume}/{$totalVolume}[/color]
+hypospray-volume-text = Объём: [color=white]{ $currentVolume }/{ $totalVolume }[/color]
 
 ## Entity
 

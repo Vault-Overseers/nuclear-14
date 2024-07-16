@@ -1,3 +1,5 @@
+ent-N14DecorFloorBase = { "" }
+    .desc = { "" }
 ent-N14DecorFloorBoard1 = напольная доска
     .desc = Не давай грязи испортить твои ботинки.
 ent-N14DecorFloorBoard2 = напольная доска

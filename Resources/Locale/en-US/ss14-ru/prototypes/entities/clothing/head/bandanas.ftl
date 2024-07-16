@@ -19,4 +19,3 @@ ent-ClothingHeadBandSkull = skull bandana
 ent-ClothingHeadBandMerc = mercenary bandana
   .desc = { ent-ClothingMaskBandMerc.desc }
 ent-ClothingHeadBandBrown = brown bandana
-  .desc = { ent-ClothingMaskBandBrown.desc }
