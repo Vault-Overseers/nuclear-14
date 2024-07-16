@@ -69,11 +69,11 @@ clipping-pricky-pear-display-name = pricky pear clipping
 
 clipping-wild-razorgrain-name = wild razorgrain clipping
 clipping-wild-razorgrain-noun = wild razorgrain clippings
-clipping-wild-razorgrain-display-name = wild grain clipping
+clipping-wild-razorgrain-display-name = wild razorgrain clippings
 
 clipping-razorgrain-name = razorgrain clipping
 clipping-razorgrain-noun = razorgrain clippings
-clipping-razorgrain-display-name = grain clipping
+clipping-razorgrain-display-name = razorgrain clipping
 
 clipping-wild-tato-name = wild tato clipping
 clipping-wild-tato-noun = wild tato clippings
