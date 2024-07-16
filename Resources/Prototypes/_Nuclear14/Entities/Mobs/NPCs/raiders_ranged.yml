@@ -1,7 +1,7 @@
 - type: entity
   name: Psycho Raider
   parent: BaseMobHuman
-  id: N14MobRaider
+  id: N14MobRaiderPsychoRanged
   description: "Psychopatic raider who will shoot and rob just about anyone."
   components:
     - type: NpcFactionMember
@@ -88,3 +88,30 @@
         visible: false
       - sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/9mm.rsi
         state: inhand-right
+
+- type: entity
+  name: Psycho Raider Boss
+  parent: N14MobRaiderPsychoRanged
+  id: N14MobRaiderBoss
+  description: "Boss of all those psycho raiders you see around this area. Good luck!"
+  components:
+    - type: Gun
+      fireRate: 5
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+    - type: CombatMode
+    - type: BasicEntityAmmoProvider
+      proto: N14CartridgePistol9
+      capacity: 30
+      count: 30
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 2
+      rechargeSound:
+        path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+    - type: Loadout
+      prototypes:
+        - RaiderBossGear
+
