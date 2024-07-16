@@ -1,15 +1,16 @@
-# N14
+# Midwest Brotherhood
 job-name-bos-mid-paladin-comm = Midwest Brotherhood Paladin Commander
 job-description-bos-mid-paladin-comm = Lead the Midwest Brotherhood of Steel on their mission.
 job-name-bos-mid-paladin = Midwest Brotherhood Paladin
 job-description-bos-mid-paladin = Follow the Paladin Commander on their mission.
 job-name-bos-mid-knight = Midwest Brotherhood Knight
-jb-description-bos-mid-knight = Follow the Paladin Commander on their mission.
+job-description-bos-mid-knight = Follow the Paladin Commander on their mission.
 job-name-bos-mid-scribe = Midwest Brotherhood Scribe
 job-description-bos-mid-scribe = Conduct scientific missions and research for your brotherhood chapter.
 job-name-bos-mid-squire = Midwest Brotherhood Squire
-jb-description-bos-mid-squire = Follow your Knight into battle and do their bidding.
+job-description-bos-mid-squire = Follow your Knight into battle and do their bidding.
 
+# Washington Brotherhood
 job-name-bos-washington-commander = Washington Brotherhood Commander
 job-description-bos-washington-commander = Lead the Washington Brotherhood of Steel to glory in their mission.
 job-name-bos-washington-recruit = Washington Brotherhood Initiate
@@ -21,6 +22,7 @@ job-description-bos-washington-captain = Protect the Brotherhood at all costs. T
 job-name-bos-washington-researcher = Washington Brotherhood Scribe
 job-description-bos-washington-researcher = Conduct scientific missions and research for your brotherhood chapter.
 
+# Caravan
 job-name-caravan-leader = Caravan Leader
 job-description-caravan-leader = Coordinate the caravan company in the area and strike up trade deals with the locals.
 job-name-caravan-trader = Caravan Trader
@@ -28,22 +30,37 @@ job-description-caravan-trader = Conduct trade missions and travel caravan route
 job-name-caravan-guard = Caravan Guard
 job-description-caravan-guard = Protect the caravan company traders, their livestock and their inventory.
 
+# NCR
 job-name-ncr-cadet = NCR Cadet
-job-description-ncr-cadet = The junior ranks in the NCR. Prove yourself in your duties to get promoted.
+job-description-ncr-cadet = Show your officers that youre ready to become a private of the NCR army.
+job-name-ncr-doctor = NCR Doctor
+job-description-ncr-doctor = Treat the troopers and offer services to the wasteland people.
+job-name-ncr-mp = NCR Military Police
+job-description-ncr-mp = Protect the camp and make sure the soldiers behave correctly.
+job-name-ncr-qm = NCR Quartermaster
+job-description-ncr-qm = Protect the armory and trade looted equipment with any wastelander.
 job-name-ncr-nco = NCR NCO
 job-description-ncr-nco = A non commissioned officer in the NCR military. Lead a squad to protect the NCRs interests in the region.
 job-name-ncr-officer = NCR Officer
 job-description-ncr-officer = A local leader in the NCR military. Fulfil your missions by coordinating your military forces in the area.
 job-name-ncr-soldier = NCR Soldier
 job-description-ncr-soldier = The backbone of any military. Soldiers get stuff done and follow an NCO on missions.
+job-name-ncr-ranger = NCR Ranger
+job-description-ncr-ranger = The most experienced and robust soldiers form part of this elite group of the NCR army, lead troops or act by yourself under the orders of the republic.
+job-name-ncr-ranger-veteran = NCR Ranger Veteran
+job-description-ncr-ranger-veteran = The most experienced and robust soldiers form part of this elite group of the NCR army, lead troops or act by yourself under the orders of the republic.
 
-job-name-ranger-recruit = Ranger Recruit
+# Rangers
+job-name-ranger-recruit = Desert Ranger Recruit
 job-description-ranger-recruit = You've just been accepted within the Desert Rangers. Prove yourself worthy by learning the ropes and helping the wasteland become a better place.
-job-name-ranger-ranking = Ranger
+job-name-ranger-ranking = Desert Ranger
 job-description-ranger-ranking = As an Ranger, you are the vigilante the wasteland needs. Your mission is to keep the wasteland safe for the innocent and bring justice to the raider gangs, as well as continuing the tradition of stopping slavery in it's tracks.
-job-name-ranger-veteran = Veteran Ranger
+job-name-ranger-chief = Chief Desert Ranger
+job-description-ranger-chief = As Chief Desert Ranger, you lead all ranger operations, ensuring the safety and training of your ranks. Your mission is to forge alliances, direct large-scale missions, and maintain the legacy of justice in the wasteland.
+job-name-ranger-veteran = Desert Ranger Veteran
 job-description-ranger-veteran = You answer to yourself, working either independently or with your team to complete your mission objectives however required, operating either alone, in a squad or with one of the other factions. Your primary mission is to improve the situation of the wasteland and to neutralize slavers and raiders operating in the area.
 
+# Tribal
 job-name-tribal = Tribesperson
 job-description-tribal = Maintain your tribes way of life in the wasteland at all costs. Security, crafting, wellbeing, homelife, you do it all.
 job-name-tribal-elder = Tribe Elder
@@ -53,6 +70,7 @@ job-description-tribal-farmer = Produce food and goods for the tribe to sustain 
 job-name-tribal-healer = Tribal Healer
 job-description-tribal-healer = Produce medicines and compounds for the tribe, as is tradition.
 
+# Vault
 job-name-overseer = Vault Overseer
 job-description-overseer = Follow Vault Tec's objectives in managing your Vault and ensure everything goes to plan...
 job-name-vault-doctor = Vault Doctor
@@ -64,6 +82,7 @@ job-description-vault-engineer = Maintain the Vault and all it's vital systems t
 job-name-vault-security = Vault Security
 job-description-vault-security = Keep order within the Vault and report to the Overseer. For the good of the Vault!
 
+# Wasteland
 job-name-farmer = Farmer
 job-description-farmer = Produce crops in the wasteland for yourself or to barter with others.
 job-name-scavenger = Scavenger
@@ -71,6 +90,7 @@ job-description-scavenger = Scavenge the ruins of the wastes for pre-war treasur
 job-name-wastelander = Wastelander
 job-description-wastelander = Survive in the wasteland and carve out your own path. It's tough out there alone, consider finding others.
 
+# Town
 job-name-townsperson = Townsperson
 job-description-townsperson = A member of the new world society. Follow the town rules or try run for Mayor to change them.
 job-name-towndoctor = Town Doctor
