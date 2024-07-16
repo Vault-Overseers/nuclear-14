@@ -1,20 +1,20 @@
 - type: entity
   abstract: true
   parent: BaseItem
-  id: BaseMagazineBox762Rifle
+  id: BaseMagazineBox556Rifle
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
-        - N14Cartridge762Rifle
-    proto: N14Cartridge762ifle
-    capacity: 60
+        - N14Cartridge556Rifle
+    proto: N14Cartridge556Rifle
+    capacity: 75
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Boxes/7-62.rsi
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Boxes/5-56.rsi
     netsync: false
   - type: MagazineVisuals
     magState: mag
@@ -23,12 +23,12 @@
   - type: Appearance
 
 - type: entity
-  parent: BaseMagazineBox762Rifle
-  id: MagazineBox762
-  name: ammunition box (7.62mm)
+  parent: BaseMagazineBox556Rifle
+  id: MagazineBox556
+  name: ammunition box (5.56mm)
   components:
   - type: BallisticAmmoProvider
-    proto: N14Cartridge762Rifle
+    proto: N14Cartridge556Rifle
   - type: Sprite
     layers:
     - state: base
