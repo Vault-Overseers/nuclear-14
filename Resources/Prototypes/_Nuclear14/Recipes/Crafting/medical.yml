@@ -95,6 +95,133 @@
     - node: stimpak
       entity: N14Stimpak
 
+# RadAway Inhaler
+- type: construction
+  name: RadAway inhaler
+  id: N14RadAwayInhaler
+  graph: N14RadAwayInhaler
+  startNode: start
+  targetNode: refill
+  category: construction-category-medical
+  objectType: Item
+  description: A jet inhaler with a RadAway phial screwed on top of it. Two puffs away from being rad free.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+    state: radawayinhaler
+
+- type: constructionGraph
+  id: N14RadAwayInhaler
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: empty
+      steps:
+        - tag: Jet
+          name: jet
+          icon:
+            sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+            state: jet
+        - material: Glass
+          amount: 1
+          doAfter: 3
+  - node: empty
+    entity: N14RadAwayInhalerTrash
+    edges:
+    - to: refill
+      steps:
+        - tag: Phial
+          name: RadAway Phial
+          icon:
+            sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+            state: radawayphial_icon
+          doAfter: 2
+  - node: refill
+    entity: N14RadAwayInhaler
+# RadAway Phial
+
+- type: construction
+  name: RadAway Phial
+  id: N14RadAwayPhial
+  graph: N14RadAwayPhial
+  startNode: start
+  targetNode: fill
+  category: construction-category-medical
+  description: A coloured phial containing RadAway.
+  hide: true
+  icon:
+    sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+    state: radawayphial_icon
+  objectType: Item
+
+- type: constructionGraph
+  id: N14RadAwayPhial
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: fill
+      conditions:
+      - !type:MinSolution
+        solution: beaker
+        reagent:
+          ReagentId: RadAway
+        quantity: 30
+      steps:
+      - tool: Screwing
+        doAfter: 1
+  - node: fill
+    entity: N14RadAwayPhial
+
+#TODO: Crashes game, needs a C# script to support it
+# RadAway phial simple refill
+# - type: construction
+#   name: RadAway Phial Refill
+#   id: N14RadAwayPhialRefill
+#   graph: N14RadAwayPhialRefill
+#   startNode: start
+#   targetNode: fill
+#   category: construction-category-medical
+#   description: A coloured phial containing RadAway.
+#   hide: true
+#   icon:
+#     sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+#     state: radawayphial_icon
+#   objectType: Item
+
+# - type: constructionGraph
+#   id: N14RadAwayPhialRefill
+#  start: start
+#  graph:
+#   - node: start
+#     edges:
+#     - to: phial
+#       steps:
+#         - material: CaveFungusRad
+#         - material: Plastic
+#           doAfter: 3
+#   - node: phial
+#     entity: N14RadAwayPhialEmpty
+#     edges:
+#     - to: refill
+#       conditions:
+#       - !type:MinSolution
+#         solution: beaker
+#         reagent:
+#           ReagentId: Antiseptic
+#         quantity: 20
+#       - !type:MinSolution
+#         solution: beaker
+#         reagent:
+#           ReagentId: Water
+#         quantity: 10
+#       steps:
+#       - tool: Screwing
+#         doAfter: 1
+#   - node: fill
+#     entity: N14RadAwayPhial
+
 # Jet
 - type: construction
   name: jet inhaler

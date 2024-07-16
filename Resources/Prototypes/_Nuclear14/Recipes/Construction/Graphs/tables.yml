@@ -1,0 +1,27 @@
+﻿- type: constructionGraph
+  id: N14Table
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DeleteEntity {}
+      edges:
+        - to: N14TableWoodSettler
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 3
+
+    - node: N14TableWoodSettler
+      entity: N14TableWoodSettler
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3

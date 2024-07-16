@@ -5,5 +5,5 @@ ent-N14FilingCabinetRefilling = { ent-N14filingCabinet }
     .suffix = Восполняемый, Случайный
     .desc = { ent-N14filingCabinet.desc }
 ent-N14LootFilingCabinet = { ent-N14filingCabinet }
-  .suffix = Лут, Случайный
-  .desc = { ent-N14filingCabinet.desc }
+    .suffix = Лут, Случайный
+    .desc = { ent-N14filingCabinet.desc }

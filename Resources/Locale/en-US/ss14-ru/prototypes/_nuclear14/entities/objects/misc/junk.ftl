@@ -1,5 +1,7 @@
 ent-N14JunkItemBase = junk
     .desc = it's junk!
+ent-N14JunkItemBaseGlass = junk
+    .desc = it's junk!
 ent-N14JunkItemBasePlastic = { ent-N14JunkItemBase }
     .desc = { ent-N14JunkItemBase.desc }
 ent-N14JunkItemBaseMetal = { ent-N14JunkItemBase }

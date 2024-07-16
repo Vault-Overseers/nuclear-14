@@ -22,4 +22,3 @@ department-Wastelander-description = Жители пустошей, обитаю
 department-Townsfolk-description = Горожане из местного города, пытающиеся поддерживать порядок.
 department-Followers-description = Последователи Апокалипсиса на гуманитарной миссии.
 department-Zetan-description = Дзетанские исследователи, призванные исследовать Вас!
-

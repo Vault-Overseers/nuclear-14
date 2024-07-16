@@ -1,5 +1,5 @@
 # Utility
-uplink-reinforcement-radio-nukie-mouse-name =Мышиное подкрепление Оперативника
+uplink-reinforcement-radio-nukie-mouse-name = Мышиное подкрепление Оперативника
 uplink-reinforcement-radio-nukie-mouse-desc = Вызовите на помощь специально обученную мышь.
 # Implants
 uplink-bionic-syrinx-implanter-name = бионический голосовой имплант

@@ -44,3 +44,54 @@
     range: 200
     ports:
       - OrderSender
+      
+- type: entity
+  parent: [ SignalButton, N14ComputerTerminalWallControls ]
+  id: N14ControlTerminalButton
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Machines/Terminals/terminal_classic.rsi
+    state: computer
+
+# Camera Monitors
+## Base
+- type: entity
+  parent: N14ComputerTerminalWallDisplays
+  id: N14ComputerCameraDisplay
+  name: camera display unit
+  description: A surveillance camera monitor. You're watching them. Maybe.
+  abstract: true
+  components:
+  # - type: Computer
+    # board: SurveillanceCameraMonitorCircuitboard
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCamera
+    transmitFrequencyId: SurveillanceCamera
+  - type: WiredNetworkConnection
+  - type: DeviceNetworkRequiresPower
+  - type: Speech
+  - type: SurveillanceCameraSpeaker
+  - type: SurveillanceCameraMonitor
+  - type: ActivatableUI
+    key: enum.SurveillanceCameraMonitorUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      - key: enum.SurveillanceCameraMonitorUiKey.Key
+        type: SurveillanceCameraMonitorBoundUserInterface
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+
+# In Use
+- type: entity
+  parent: N14ComputerCameraDisplay
+  id: N14ComputerCameraDisplayBrotherhoodWashington
+  suffix: BOS Washington
+  components:
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCamera
+    transmitFrequencyId: SurveillanceCameraBrotherhoodWashington
