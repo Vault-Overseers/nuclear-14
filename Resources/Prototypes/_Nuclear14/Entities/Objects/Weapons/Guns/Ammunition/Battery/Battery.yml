@@ -56,6 +56,28 @@
     startingCharge: 1200
 
 - type: entity
+  name: fusion cell
+  description: A large energy container the size of a hand, commonly used as ammo for heavy laser weapons.
+  id: N14PowerCellFusion
+  suffix: Full
+  parent: N14BasePowerCell
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Battery/fusion.rsi
+    layers:
+      - map: [ "enum.PowerCellVisualLayers.Base" ]
+        state: empty
+      - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+        state: o2
+        shader: unshaded
+  - type: Tag
+    tags:
+      - N14PowerCellFusion
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
+
+- type: entity
   name: plasma cartridge
   description: A small green glowing cartridge, commonly used has ammo for any kind of plasma weapon.
   id: N14BasePlasmaCell

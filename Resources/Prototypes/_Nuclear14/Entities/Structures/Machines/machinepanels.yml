@@ -237,3 +237,65 @@
         - MachineMask
         layer:
         - MachineLayer
+
+# Panels in use
+## Base
+- type: entity
+  parent: N14MachineRackRecorder
+  id: N14MachineRackCameraRouterBase
+  name: camera router
+  description: An old rack with camera recording equipment in.
+  abstract: true
+  components:
+    - type: DeviceNetwork
+      deviceNetId: Wired
+      receiveFrequencyId: SurveillanceCamera
+      transmitFrequencyId: SurveillanceCamera
+    - type: WiredNetworkConnection
+    - type: DeviceNetworkRequiresPower
+    - type: UserInterface
+      interfaces:
+        - key: enum.SurveillanceCameraSetupUiKey.Router
+          type: SurveillanceCameraSetupBoundUi
+
+## Cameras
+### See devicenet_frequencies.yml for definitions
+- type: entity
+  parent: N14MachineRackCameraRouterBase
+  id: N14MachineRackCameraRouterBrotherhoodWashington
+  suffix: BOS Washington
+  components:
+    - type: SurveillanceCameraRouter
+      subnetFrequency: SurveillanceCameraBrotherhoodWashington
+      
+- type: entity
+  parent: N14MachineRackCameraRouterBase
+  id: N14MachineRackCameraRouterBrotherhoodMidwest
+  suffix: BOS Midwest
+  components:
+    - type: SurveillanceCameraRouter
+      subnetFrequency: SurveillanceCameraBrotherhoodMidwest
+      
+- type: entity
+  parent: N14MachineRackCameraRouterBase
+  id: N14MachineRackCameraRouterNCR
+  suffix: NCR
+  components:
+    - type: SurveillanceCameraRouter
+      subnetFrequency: SurveillanceCameraNCR
+      
+- type: entity
+  parent: N14MachineRackCameraRouterBase
+  id: N14MachineRackCameraRouterTown
+  suffix: Town
+  components:
+    - type: SurveillanceCameraRouter
+      subnetFrequency: SurveillanceCameraTown
+      
+- type: entity
+  parent: N14MachineRackCameraRouterBase
+  id: N14MachineRackCameraRouterVault
+  suffix: Vault
+  components:
+    - type: SurveillanceCameraRouter
+      subnetFrequency: SurveillanceCameraVault

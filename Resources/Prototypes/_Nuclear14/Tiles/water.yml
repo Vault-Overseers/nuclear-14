@@ -41,3 +41,41 @@
       collection: FootstepWater
       params:
         volume: 8
+
+- type: entity
+  parent: N14FloorWaterDirtyEntity
+  id: N14FloorWaterSewerDeep
+  name: deep sewer water
+  description: A real thirst quencher.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Tiles/ms13/Water.rsi
+    layers:
+      - state: sewer_deep
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.2
+    sprintSpeedModifier: 0.2
+      
+- type: entity
+  parent: N14FloorWaterSewerDeep
+  id: N14FloorWaterSewerMedium
+  name: sewer water
+  components:
+  - type: Sprite
+    layers:
+      - state: sewer_medium
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.4
+    sprintSpeedModifier: 0.4
+      
+- type: entity
+  parent: N14FloorWaterSewerDeep
+  id: N14FloorWaterSewerShallow
+  name: shallow sewer water
+  components:
+  - type: Sprite
+    layers:
+      - state: sewer_shallow
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.6
+    sprintSpeedModifier: 0.6

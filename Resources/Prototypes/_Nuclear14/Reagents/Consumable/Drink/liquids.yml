@@ -1,10 +1,10 @@
 # Things that don't fit in the other files names go here.
 
 - type: reagent
-  id: WaterDirty
-  name: reagent-name-water-dirty
+  id: WaterFiltered
+  name: reagent-name-water-filtered
   parent: Water
-  desc: reagent-desc-water-dirty
+  desc: reagent-desc-water-filtered
   physicalDesc: reagent-physical-desc-translucent
   metabolisms:
     Drink: # can maybe remove this code duplication if its not overwritten, same below.
@@ -16,7 +16,26 @@
       - !type:HealthChange
         damage:
           types:
+            Poison: 0.1
+
+- type: reagent
+  id: WaterDirty
+  name: reagent-name-water-dirty
+  parent: Water
+  desc: reagent-desc-water-dirty
+  physicalDesc: reagent-physical-desc-translucent
+  metabolisms:
+    Drink: # can maybe remove this code duplication if its not overwritten, same below.
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
             Radiation: 0.25
+            Poison: 0.1
 
 - type: reagent
   id: WaterIrradiated
@@ -35,3 +54,4 @@
         damage:
           types:
             Radiation: 1 # You really shouldn't drink this.
+            Poison: 0.1

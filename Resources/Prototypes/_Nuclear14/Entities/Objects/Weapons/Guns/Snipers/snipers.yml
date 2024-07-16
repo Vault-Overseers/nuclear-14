@@ -19,7 +19,7 @@
     maxAngle: 105
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 2
+    fireRate: 1.5
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -29,20 +29,24 @@
 
 - type: entity
   name: Anti-Materiel rifle
-  parent: BaseWeaponSniper
+  parent: BaseWeaponRifle
   id: N14WeaponAntiMateriel
   description: A anti materiel rifle with a ergonomic, metallic skeleton design. only seeing at it you can tell it will rip some limbs apart. Uses .50 anti-material ammo.
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/antimateriel.rsi
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/antimateriel.rsi
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - N14Cartridge50
-    capacity: 5
-    proto: N14Cartridge50
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/antimateriel.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
   - type: Wieldable
   - type: GunWieldBonus
     minAngle: -23
@@ -53,10 +57,38 @@
     angleIncrease: 4
     angleDecay: 16
     fireRate: 1.2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14Magazine50AMR
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14Magazine50AMR
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge50
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge50
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
 
 - type: entity
   name: .50 NCR rifle
-  parent: N14WeaponAntiMateriel
+  parent: BaseWeaponSniper
   id: N14Weapon50NcrRifle
   description: A try by the NCR to make .50 ammo a standart on normal infantry, very cheap but it will deal a lot of damage. Uses .50 anti-material ammo.
   components:
@@ -70,6 +102,16 @@
       - N14Cartridge50
     capacity: 1
     proto: N14Cartridge50
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -104
+  - type: Gun
+    minAngle: 24
+    maxAngle: 105
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 1.2
 
 - type: entity
   name: lever action carbine
@@ -128,7 +170,7 @@
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/brushgun.rsi
   - type: Gun
-    fireRate: 3
+    fireRate: 2
     soundGunshot:
       path: /Audio/_Nuclear14/Weapons/Firing/brushgunfire.ogg
   - type: BallisticAmmoProvider
@@ -180,7 +222,7 @@
     maxAngle: 105
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 2
+    fireRate: 2.2
   - type: BallisticAmmoProvider
     whitelist:
       tags:

@@ -1,3 +1,4 @@
+using Content.Server._NC.NPCTaming;
 using Content.Server.NPC.Systems;
 
 namespace Content.Server.NPC.Components;
@@ -6,7 +7,7 @@ namespace Content.Server.NPC.Components;
 /// Prevents an NPC from attacking ignored entities from enemy factions.
 /// Can be added to if pettable, see PettableFriendComponent.
 /// </summary>
-[RegisterComponent, Access(typeof(NpcFactionSystem))]
+[RegisterComponent, Access(typeof(NpcFactionSystem), typeof(NPCTamingOnTouchSystem))] // Nuclear14-Changes
 public sealed partial class FactionExceptionComponent : Component
 {
     /// <summary>

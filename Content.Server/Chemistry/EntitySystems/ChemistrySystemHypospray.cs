@@ -5,6 +5,8 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
+using Content.Server.Body.Components;
+using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Forensics;
 using Content.Shared.IdentityManagement;
@@ -22,6 +24,7 @@ namespace Content.Server.Chemistry.EntitySystems
     public sealed partial class ChemistrySystem
     {
         [Dependency] private readonly UseDelaySystem _useDelay = default!;
+        [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
 
         private void InitializeHypospray()
         {
@@ -30,6 +33,7 @@ namespace Content.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<HyposprayComponent, SolutionContainerChangedEvent>(OnSolutionChange);
             SubscribeLocalEvent<HyposprayComponent, UseInHandEvent>(OnUseInHand);
             SubscribeLocalEvent<HyposprayComponent, ComponentGetState>(OnHypoGetState);
+            SubscribeLocalEvent<HyposprayComponent, HyposprayDoAfterEvent>(HyposprayDoAfter);
         }
 
         private void OnHypoGetState(Entity<HyposprayComponent> entity, ref ComponentGetState args)
@@ -61,8 +65,29 @@ namespace Content.Server.Chemistry.EntitySystems
             var target = args.Target;
             var user = args.User;
 
-            TryDoInject(entity, target, user);
+            if (target != user && HasComp<BloodstreamComponent>(target))
+            {
+                _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(1), new HyposprayDoAfterEvent(), entity.Owner, target: target, used: user)
+                {
+                    BreakOnUserMove = true,
+                    BreakOnDamage = true,
+                    BreakOnTargetMove = true,
+                    MovementThreshold = 0.1f,
+                });
+            }
+            else
+            {
+                TryDoInject(entity, target, user);
+            }
         }
+        
+         private void HyposprayDoAfter(Entity<HyposprayComponent> entity, ref HyposprayDoAfterEvent args)
+         {
+            if (args.Cancelled || args.Handled || args.Args.Target == null)
+            return;
+            TryDoInject(entity, args.Args.Target.Value, args.Args.User);
+            args.Handled = true;
+         }
 
         public void OnAttack(Entity<HyposprayComponent> entity, ref MeleeHitEvent args)
         {
