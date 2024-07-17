@@ -1,31 +1,36 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Text; // Nuclear 14
 using Content.Shared.CCVar;
-using Content.Shared.Customization.Systems;
-using Content.Shared.Players.JobWhitelist;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
+using Content.Shared._NC.Roles; // Nuclear 14
 using Robust.Client;
 using Robust.Client.Player;
+using Content.Client.Preferences; // Nuclear 14
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.Preferences; // Nuclear 14
 using Robust.Shared.Utility;
 
 namespace Content.Client.Players.PlayTimeTracking;
 
-public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
+public sealed partial class JobRequirementsManager
 {
     [Dependency] private readonly IBaseClient _client = default!;
     [Dependency] private readonly IClientNetManager _net = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly IClientPreferencesManager _clientPreferences = default!; // Nuclear 14
 
-    private readonly Dictionary<string, TimeSpan> _roles = new();
+    public readonly Dictionary<string, TimeSpan> PlayTimes = new();
     private readonly List<string> _roleBans = new();
+
     private ISawmill _sawmill = default!;
-    private readonly List<string> _jobWhitelists = new();
+
     public event Action? Updated;
 
     public void Initialize()
@@ -36,7 +41,6 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         _net.RegisterNetMessage<MsgRoleBans>(RxRoleBans);
         _net.RegisterNetMessage<MsgPlayTime>(RxPlayTime);
         _net.RegisterNetMessage<MsgWhitelist>(RxWhitelist);
-        _net.RegisterNetMessage<MsgJobWhitelist>(RxJobWhitelist);
 
         _client.RunLevelChanged += ClientOnRunLevelChanged;
     }
@@ -46,15 +50,16 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         if (e.NewLevel == ClientRunLevel.Initialize)
         {
             // Reset on disconnect, just in case.
-            _roles.Clear();
-            _jobWhitelists.Clear();
-            _roleBans.Clear();
+            PlayTimes.Clear();
         }
     }
 
     private void RxRoleBans(MsgRoleBans message)
     {
         _sawmill.Debug($"Received roleban info containing {message.Bans.Count} entries.");
+
+        if (_roleBans.Equals(message.Bans))
+            return;
 
         _roleBans.Clear();
         _roleBans.AddRange(message.Bans);
@@ -63,12 +68,12 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 
     private void RxPlayTime(MsgPlayTime message)
     {
-        _roles.Clear();
+        PlayTimes.Clear();
 
         // NOTE: do not assign _roles = message.Trackers due to implicit data sharing in integration tests.
         foreach (var (tracker, time) in message.Trackers)
         {
-            _roles[tracker] = time;
+            PlayTimes[tracker] = time;
         }
 
         /*var sawmill = Logger.GetSawmill("play_time");
@@ -79,55 +84,95 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         Updated?.Invoke();
     }
 
-    private void RxJobWhitelist(MsgJobWhitelist message)
+    public bool IsAllowed(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
     {
-        _jobWhitelists.Clear();
-        _jobWhitelists.AddRange(message.Whitelist);
-        Updated?.Invoke();
-    }
+        var reasonBuilder = new StringBuilder(); // Nuclear 14
+        reason = null;
 
-    public bool CheckJobWhitelist(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
-    {
-        reason = default;
-        if (!_cfg.GetCVar(CCVars.GameRoleWhitelist))
+        if (_roleBans.Contains($"Job:{job.ID}"))
+        {
+            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-ban"));
+            return false;
+        }
+
+        var player = _playerManager.LocalSession;
+        if (player == null)
             return true;
 
-        if (job.Whitelisted && !_jobWhitelists.Contains(job.ID))
+        // Nuclear 14 start
+        if (job.JobBlockForSpecies != null)
         {
-            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-not-whitelisted"));
+            if (_clientPreferences?.Preferences == null)
+                return true;
+
+            var nameSpecie = ((HumanoidCharacterProfile)_clientPreferences.Preferences.SelectedCharacter!).Species;
+            var first = true;
+
+            foreach (var jobBlockForSpecie in job.JobBlockForSpecies)
+            {
+                string? speciesReason;
+                if (JobBlockForSpecies.TryRequirementMet(jobBlockForSpecie, nameSpecie, out speciesReason))
+                    continue;
+
+                if (!first)
+                    reasonBuilder.Append('\n');
+                first = false;
+                reasonBuilder.AppendLine(speciesReason);
+            }
+        }
+
+        if (!CheckRoleTime(job.Requirements, out var timeReason))
+        {
+            if (reasonBuilder.Length > 0)
+                reasonBuilder.Append('\n');
+            reasonBuilder.Append(timeReason!.ToMarkup());
+        }
+
+        if (reasonBuilder.Length > 0)
+        {
+            reason = FormattedMessage.FromMarkup(reasonBuilder.ToString());
             return false;
         }
 
         return true;
     }
+        // Nuclear 14 end
+
+    public bool CheckRoleTime(HashSet<JobRequirement>? requirements, [NotNullWhen(false)] out FormattedMessage? reason, string? localePrefix = "role-timer-")
+    {
+        reason = null;
+
+        if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
+            return true;
+
+        var reasons = new List<string>();
+        foreach (var requirement in requirements)
+        {
+            if (JobRequirements.TryRequirementMet(requirement, PlayTimes, out var jobReason, _entManager, _prototypes, _whitelisted, localePrefix))
+                continue;
+
+            reasons.Add(jobReason.ToMarkup());
+        }
+
+        reason = reasons.Count == 0 ? null : FormattedMessage.FromMarkup(string.Join('\n', reasons));
+        return reason == null;
+    }
 
     public TimeSpan FetchOverallPlaytime()
     {
-        return _roles.TryGetValue("Overall", out var overallPlaytime) ? overallPlaytime : TimeSpan.Zero;
+        return PlayTimes.TryGetValue("Overall", out var overallPlaytime) ? overallPlaytime : TimeSpan.Zero;
     }
 
-    public Dictionary<string, TimeSpan> FetchPlaytimeByRoles()
+    public IEnumerable<KeyValuePair<string, TimeSpan>> FetchPlaytimeByRoles()
     {
         var jobsToMap = _prototypes.EnumeratePrototypes<JobPrototype>();
-        var ret = new Dictionary<string, TimeSpan>();
 
         foreach (var job in jobsToMap)
-            if (_roles.TryGetValue(job.PlayTimeTracker, out var locJobName))
-                ret.Add(job.Name, locJobName);
-
-        return ret;
-    }
-
-
-    public Dictionary<string, TimeSpan> GetPlayTimes()
-    {
-        var dict = FetchPlaytimeByRoles();
-        dict.Add(PlayTimeTrackingShared.TrackerOverall, FetchOverallPlaytime());
-        return dict;
-    }
-
-    public Dictionary<string, TimeSpan> GetRawPlayTimeTrackers()
-    {
-        return _roles;
+        {
+            if (PlayTimes.TryGetValue(job.PlayTimeTracker, out var locJobName))
+            {
+                yield return new KeyValuePair<string, TimeSpan>(job.Name, locJobName);
+            }
+        }
     }
 }
