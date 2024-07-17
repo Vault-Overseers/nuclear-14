@@ -61,7 +61,7 @@
     sprite: _Nuclear14/Structures/Storage/Crates/crateenclave.rsi
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/Crates/crateenclave.rsi
-    # TODO: Will need an access locked variant.
+    # N14TODO: Will need an access locked variant.
 
 - type: entity
   parent: [ N14CrateEnclave, N14BaseMilitaryStorageFill ]
@@ -95,16 +95,6 @@
     sprite: _Nuclear14/Structures/Storage/Crates/medicalcrate.rsi
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/Crates/medicalcrate.rsi
-
-- type: entity
-  parent: [ N14CrateMedical, N14StorageFillMedical ]
-  id: N14LootCrateMedical
-  suffix: Loot, Medical
-
-- type: entity
-  parent: [ N14CrateMedical, N14TimedStorageFillMedical ]
-  id: N14CrateMedicalRefilling
-  suffix: Refilling, Medical
 
 - type: entity
   parent: CrateGenericSteel
@@ -342,7 +332,7 @@
   parent: BaseStructureDynamic
   id: N14CrateBreakBase
   name: wooden crate
-  description: A wooden crate for storage.
+  description: Might have to break it to see whats inside.
   abstract: true
   components:
   - type: Damageable
@@ -371,15 +361,11 @@
     grid:
     - 0,0,6,3
     maxItemSize: Huge
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
         ents: []
-  - type: InteractionOutline
+    # N14TODO: Add crate deconstruction
 
 - type: entity
   parent: N14CrateBreakBase
@@ -403,7 +389,7 @@
   suffix: plain damaged
   components:
   - type: Sprite
-    state: plain_crate-1 # TODO: Make this random between states -1, -2 and -3
+    state: plain_crate-1 # N14TODO: Make this random between states -1, -2 and -3
 
 - type: entity
   parent: N14CrateBreakBase
@@ -435,4 +421,4 @@
   suffix: damaged
   components:
   - type: Sprite
-    state: army_crate-1 # TODO: Make this random between states -1 and -2
+    state: army_crate-1 # N14TODO: Make this random between states -1 and -2
