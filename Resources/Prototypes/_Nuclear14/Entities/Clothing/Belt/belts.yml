@@ -1,5 +1,21 @@
 - type: entity
   parent: ClothingBeltStorageBase
+  id: N14ClothingBeltStorageBase
+  name: Abstract Belt
+  description: You shouldn't be seeing this.
+  abstract: true
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+        - CigPack
+        - N14AmmoCell
+      components:
+        - BallisticAmmoProvider
+        - CartridgeAmmo
+
+- type: entity
+  parent: N14ClothingBeltStorageBase
   id: ClothingBeltBoSWebbing
   name: BoS carrier
   description: A simple black carrier capable of holding all kind of ammo.
@@ -8,17 +24,10 @@
     sprite: _Nuclear14/Clothing/Belt/boswebbing.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Belt/boswebbing.rsi
-  - type: Storage
-    whitelist:
-      tags:
-        - CigPack
-      components:
-        - BallisticAmmoProvider
-        - CartridgeAmmo
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: N14ClothingBeltStorageBase
   id: ClothingBeltMilitary
   name: military carrier
   description: A simple brown carrier capable of holding all kind of ammo, it was commonly used by the military of the pre-war.
@@ -27,17 +36,10 @@
     sprite: _Nuclear14/Clothing/Belt/militarywebbing.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Belt/militarywebbing.rsi
-  - type: Storage
-    whitelist:
-      tags:
-        - CigPack
-      components:
-        - BallisticAmmoProvider
-        - CartridgeAmmo
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: N14ClothingBeltStorageBase
   id: ClothingBeltNCR
   name: NCR belt
   description: A leather belt designed by the NCR for their troops.
@@ -46,17 +48,10 @@
     sprite: _Nuclear14/Clothing/Belt/ncrbelt.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Belt/ncrbelt.rsi
-  - type: Storage
-    whitelist:
-      tags:
-        - CigPack
-      components:
-        - BallisticAmmoProvider
-        - CartridgeAmmo
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: N14ClothingBeltStorageBase
   id: ClothingBeltNCRPouches
   name: NCR pouches bandolier
   description: A leather bandolier with multiple pouches designed by the NCR for their troops.
@@ -65,17 +60,10 @@
     sprite: _Nuclear14/Clothing/Belt/ncrpouches.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Belt/ncrpouches.rsi
-  - type: Storage
-    whitelist:
-      tags:
-        - CigPack
-      components:
-        - BallisticAmmoProvider
-        - CartridgeAmmo
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: N14ClothingBeltStorageBase
   id: ClothingBeltNCRHarness
   name: NCR Harness
   description: A leather harness designed by the NCR for their troops.
@@ -84,17 +72,10 @@
     sprite: _Nuclear14/Clothing/Belt/ncrharness.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Belt/ncrharness.rsi
-  - type: Storage
-    whitelist:
-      tags:
-        - CigPack
-      components:
-        - BallisticAmmoProvider
-        - CartridgeAmmo
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: N14ClothingBeltStorageBase
   id: ClothingBeltNCRBandolier
   name: bandolier
   description: A bandolier commonly used to carry single shells or cartridges.
@@ -111,7 +92,7 @@
         - CartridgeAmmo
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: N14ClothingBeltStorageBase
   id: ClothingBeltRope
   name: rope belt
   description: A handmade belt with a rope, not the best but at least works.
@@ -120,9 +101,9 @@
     sprite: _Nuclear14/Clothing/Belt/ropebelt.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Belt/ropebelt.rsi
-    
+
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: N14ClothingBeltStorageBase
   id: ClothingBeltQuiverSpear
   name: spear quiver
   description: A simple quiver for holding spears
@@ -145,7 +126,7 @@
 
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: N14ClothingBeltStorageBase
   id: ClothingBeltRevolver
   name: revolver holster
   description: Can hold a revolver and speedloaders.
@@ -159,8 +140,10 @@
       tags:
         - Revolver
         - SpeedLoader
+      components:
+        - BallisticAmmoProvider
   - type: Appearance
-  
+
 - type: entity
   parent: ClothingBeltRevolver
   id: ClothingBeltCowboy
@@ -170,9 +153,9 @@
     sprite: _Nuclear14/Clothing/Belt/cowboy.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Belt/cowboy.rsi
-    
+
 - type: entity
-  parent: ClothingBeltNCR
+  parent: N14ClothingBeltStorageBase
   id: ClothingBeltEnclave
   name: Enclave belt
   description: A leather belt designed by the Enclave.
@@ -181,7 +164,7 @@
     sprite: _Nuclear14/Clothing/Belt/enclavebelt.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Belt/enclavebelt.rsi
-    
+
 - type: entity
   parent: ClothingBeltPlant
   id: ClothingBeltFarmer
