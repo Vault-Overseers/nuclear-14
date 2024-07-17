@@ -7,14 +7,13 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: NCR
-      min: 36000 # 10 hours
+      time: 36000 # 10 hours
   startingGear: NCRNCOGear
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-ncr
   canBeAntag: false
   access:
-  - NCRCadet
-  - NCRSoldier
+  - NCR
   - NCRNCO
   special:
   - !type:AddComponentSpecial
@@ -28,12 +27,14 @@
   equipment:
     head: N14ClothingHeadHatNCRHelmetMetal
     back: N14ClothingBackpackNCR
+    ears: N14ClothingHeadsetNCR
     jumpsuit: N14ClothingOfficerUniformNCR
     shoes: N14ClothingBootsLeather
     neck: N14ClothingNeckMantleNCR
     belt: ClothingBeltNCR
     outerClothing: N14ClothingOuterNCRVest
-    id: N14IDNCRDogtag
+    pocket1: NCRNCOloadoutkits
+    id: N14IDNCRDogtagNCO
     backpack: N14ClothingBackpackSatchelNCRFilled
   innerClothingSkirt: N14ClothingOfficerUniformNCR #placeholder
   satchel: N14ClothingBackpackSatchelNCRFilled
