@@ -1,8 +1,8 @@
 - type: job
   id: BoSMidPaladin
   setPreference: true
-  name: Midwest paladin
-  description: lead the knights and squired during the mission, follow the paladin commander directions and fight for the brotherhood.
+  name: job-name-bos-mid-paladin
+  description: job-description-bos-mid-paladin
   playTimeTracker: BoSMidPaladin
   requirements:
     - !type:DepartmentTimeRequirement
@@ -11,15 +11,16 @@
   startingGear: BoSMidPaladinGear
   icon: "JobIconPassenger"
   canBeAntag: false
-  accessGroups:
-  - BOSMidwest
+  access:
+  - BoSMidwest
+  - Paladin
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
           - BrotherhoodMidwest
-  
+
 - type: startingGear
   id: BoSMidPaladinGear
   equipment:
@@ -29,7 +30,7 @@
     head:  N14ClothingHeadHatBrotherhoodFieldCap
     outerClothing: N14ClothingOuterMidwestArmorMK2
     hands: N14ClothingHandsGlovesCombat
-    id: N14IDBrotherhoodHolotag
+    id: N14IDBrotherhoodHolotagPaladin
     ears: N14ClothingHeadsetBOSMidwest #placeholder
     belt: ClothingBeltMilitary
 

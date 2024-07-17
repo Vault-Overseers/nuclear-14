@@ -5,7 +5,7 @@
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: circuits_3 }
   color: "#8A9A5B"
   price: 0.1
-  
+
 # Metals
 - type: material
   id: Lead
@@ -15,7 +15,7 @@
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: ingot_lead }
   color: "#C0C0C0"
   price: 0.15
-  
+
 - type: material
   id: Sulfur
   stackEntity: SulfurPowder1
@@ -23,6 +23,15 @@
   unit: materials-unit-bar
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: powder_brass }
   color: "#FDD805"
+  price: 0.15
+
+- type: material
+  id: Aluminum
+  stackEntity: IngotAluminum1
+  name: materials-aluminum
+  unit: materials-unit-bar
+  icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: ingot_aluminum }
+  color: "#C0C0C0"
   price: 0.15
 
 # Materials
@@ -33,17 +42,32 @@
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: powder_lead }
   color: "#3E201D"
   price: 0.15
-  
+
 - type: reagent
   id: Gunpowder
   name: reagent-name-gunpowder
   desc: reagent-desc-gunpowder
   physicalDesc: reagent-physical-desc-powdery
-  flavor: bitter
   color: "#3E201D"
-  boilingPoint: 100.0
-  meltingPoint: 100.0
-  
+  boilingPoint: 673.0
+  meltingPoint: 607.0
+  metabolisms:
+    Poison:
+      metabolismRate: 0.05
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1
+
+- type: material
+  id: Charcoal
+  stackEntity: Charcoal
+  name: materials-charcoal
+  icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: powder_lead }
+  color: "#1D3B3E"
+  price: 0.15
+
 - type: material
   id: Fertilizer
   stackEntity: FertilizerOre1
@@ -51,7 +75,7 @@
   icon: { sprite: /Textures/_Nuclear14/Objects/Specific/Hydroponics/equipment.rsi, state: daesack2 }
   color: "#1D3B3E"
   price: 0.15
-  
+
 - type: reagent
   id: Fertilizer
   name: reagent-name-fertilizer
@@ -78,10 +102,28 @@
       - !type:HealthChange
         damage:
           types:
-            Caustic: 1
+            Poison: 0.5
       - !type:ChemVomit
         probability: 0.45
-          
+
+- type: reagent
+  id: Dung
+  name: reagent-name-dung
+  group: Botanical
+  desc: reagent-desc-dung
+  flavor: bitter
+  color: "#664330"
+  physicalDesc: reagent-physical-desc-thick
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1
+      - !type:ChemVomit
+        probability: 0.80
+
 - type: material
   id: N14Timber
   stackEntity: N14FloraLogTimber
