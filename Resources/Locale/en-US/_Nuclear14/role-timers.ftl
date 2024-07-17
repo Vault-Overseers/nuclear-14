@@ -1,0 +1,1 @@
+role-timer-race-ban = You not can play {$race} on this job.
