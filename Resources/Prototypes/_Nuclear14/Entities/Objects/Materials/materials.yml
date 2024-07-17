@@ -1,39 +1,12 @@
 # See specific/hydroponics for fertilizer.
 
-#MARK: Base
 - type: entity
-  abstract: true
-  parent: MaterialBase
-  id: N14MaterialBase
-  suffix: Full, 30
-  description: A raw material.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/materials.rsi
-  - type: Material
-  - type: Appearance
-
-- type: entity
-  parent: N14MaterialBase
-  id: N14MaterialBasePowder
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
-    state: powder_lead
-  - type: ExaminableSolution
-    solution: powder
-  - type: Extractable
-    grindableSolutionName: powder
-
-# Other
-#MARK: Gunpowder
-- type: entity
-  parent: N14MaterialBasePowder
+  parent: BaseItem
   id: Gunpowder
   name: gunpowder
-  description: Explosive.
+  suffix: Full, 100
   components:
+  - type: Material
   - type: PhysicalComposition
     materialComposition:
       Gunpowder: 100
@@ -48,12 +21,32 @@
       map: ["base"]
   - type: Item
     heldPrefix: powder_lead
+  - type: Appearance
   - type: SolutionContainerManager
     solutions:
       powder:
         reagents:
         - ReagentId: Gunpowder
           Quantity: 10
+  - type: ExaminableSolution
+    solution: powder
+  - type: Tag
+    tags:
+      - RawMaterial
+  - type: DrainableSolution
+    solution: powder
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
+  - type: DeleteOnSolutionEmpty
+    solution: powder
+
+- type: entity
+  parent: Gunpowder
+  id: Gunpowder1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
 
 - type: entity
   parent: Gunpowder
@@ -65,25 +58,9 @@
 
 - type: entity
   parent: Gunpowder
-  id: Gunpowder20
-  suffix: 20
-  components:
-  - type: Stack
-    count: 20
-
-- type: entity
-  parent: Gunpowder
-  id: Gunpowder1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-#MARK: Sulfur
-- type: entity
-  parent: N14MaterialBasePowder
   id: SulfurPowder
   name: sulfur
+  suffix: Full, 100
   components:
   - type: PhysicalComposition
     materialComposition:
@@ -99,12 +76,21 @@
       map: ["base"]
   - type: Item
     heldPrefix: powder_brass
+  - type: Appearance
   - type: SolutionContainerManager
     solutions:
-      powder:
+      sulfur:
         reagents:
         - ReagentId: Sulfur
           Quantity: 10
+
+- type: entity
+  parent: SulfurPowder
+  id: SulfurPowder1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
 
 - type: entity
   parent: SulfurPowder
@@ -115,19 +101,10 @@
     count: 10
 
 - type: entity
-  parent: SulfurPowder
-  id: SulfurPowder1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-#MARK: Sheet paper
-- type: entity
-  parent: SheetOtherBase
+  parent: SheetPaper
   id: N14Paper
   name: paper
-  suffix: Full, 10
+  suffix: 10
   components:
   - type: Stack
     stackType: N14Paper
@@ -135,7 +112,6 @@
     baseLayer: base
     layerStates:
     - paper
-  - type: Material
   - type: Sprite
     sprite: /Textures/_Nuclear14/Objects/Misc/clutter.rsi
     state: paper
@@ -147,27 +123,6 @@
   - type: Construction
     graph: N14Paper
     node: paper
-  - type: PhysicalComposition
-    materialComposition:
-      Paper: 100
-  - type: Extractable
-    grindableSolutionName: paper
-  - type: SolutionContainerManager
-    solutions:
-      paper:
-        reagents:
-        - ReagentId: Cellulose
-          Quantity: 3
-  - type: StaticPrice
-    price: 0
-
-- type: entity
-  parent: N14Paper
-  id: N14Paper10
-  suffix: 10
-  components:
-  - type: Stack
-    count: 10
 
 - type: entity
   parent: N14Paper
@@ -176,16 +131,13 @@
   components:
   - type: Stack
     count: 1
-
-#MARK: Charcoal
+    
 - type: entity
-  parent: N14MaterialBasePowder
+  parent: Gunpowder
   id: Charcoal
   name: charcoal
   components:
-  - type: Stack
-    stackType: Charcoal
-    baseLayer: powder_lead
+  - type: Material
   - type: PhysicalComposition
     materialComposition:
       Charcoal: 100
@@ -198,476 +150,65 @@
       map: ["base"]
   - type: Item
     heldPrefix: powder_lead
-  - type: Appearance
   - type: SolutionContainerManager
     solutions:
       powder:
         reagents:
         - ReagentId: Charcoal
           Quantity: 10
-  - type: StaticPrice
-    price: 0
 
-- type: entity
-  parent: Charcoal
-  id: Charcoal10
-  suffix: 10
-  components:
-  - type: Stack
-    count: 10
-
-- type: entity
-  parent: Charcoal
-  id: Charcoal1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-#MARK: Circuitry
-- type: entity
-  parent: N14MaterialBase
-  id: N14MaterialCircuitry
-  name: circuitry
-  suffix: Full
-  components:
-  - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      Circuitry: 100
-  - type: Stack
-    stackType: Circuitry
-    baseLayer: base
-    layerStates:
-    - circuits
-    - circuits_2
-    - circuits_3
-    count: 15
-  - type: Sprite
-    state: circuits_3
-    layers:
-    - state: circuits_3
-      map: ["base"]
-  - type: Appearance
-
-- type: entity
-  parent: N14MaterialCircuitry
-  id: N14MaterialCircuitry10
-  suffix: 10
-  components:
-  - type: Sprite
-    state: circuits_2
-  - type: Stack
-    count: 10
-
-- type: entity
-  parent: N14MaterialCircuitry
-  id: N14MaterialCircuitry1
-  suffix: Single
-  components:
-  - type: Sprite
-    state: circuits
-  - type: Stack
-    count: 1
-
-# Organic
-#MARK: Leather
-- type: entity
-  parent: N14MaterialBase
-  id: N14MaterialLeather
-  name: leather
-  description: A piece of leather, just non-special leather.
-  suffix: Full, 15
-  components:
-  - type: Sprite
-    state: leather_3
-    layers:
-    - state: leather_3
-      map: ["base"]
-  - type: Stack
-    stackType: Leather
-    count: 15
-    baseLayer: base
-    layerStates:
-    - leather_1
-    - leather_2
-    - leather_3
-  - type: PhysicalComposition
-    materialComposition:
-      Leather: 100
-
-- type: entity
-  parent: N14MaterialLeather
-  id: N14MaterialLeather1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-#MARK: Raw leather
-- type: entity
-  parent: N14MaterialBase
-  id: N14MaterialRawLeather
-  name: raw leather
-  description: A piece of raw, unusable skin. Nothing special.
-  suffix: Full, 15
-  components:
-  - type: Sprite
-    state: raw_leather_2
-    layers:
-    - state: raw_leather_2
-      map: ["base"]
-  - type: Stack
-    stackType: RawLeather
-    count: 15
-    baseLayer: base
-    layerStates:
-    - raw_leather_1
-    - raw_leather_2
-  - type: PhysicalComposition
-    materialComposition:
-      RawLeather: 100
-
-- type: entity
-  parent: N14MaterialRawLeather
-  id: N14MaterialRawLeather1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-#MARK: Ant-chitin
-- type: entity
-  parent: N14MaterialBase
-  id: N14MaterialAntChitin
-  name: ant chitin
-  description: A strong and resistent piece of ant "skin".
-  suffix: Full, 3
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
-    state: chitin_3
-    layers:
-    - state: chitin_3
-      map: ["base"]
-  - type: Stack
-    stackType: AntChitin
-    count: 3
-    baseLayer: base
-    layerStates:
-    - chitin_1
-    - chitin_1
-    - chitin_2
-    - chitin_3
-  - type: PhysicalComposition
-    materialComposition:
-      AntChitin: 100
-  - type: Item
-    size: Small
-
-- type: entity
-  parent: N14MaterialAntChitin
-  id: N14MaterialAntChitin1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-#MARK: Exoskeleton
-- type: entity
-  parent: N14MaterialBase
-  id: N14MaterialExoskeleton
-  name: radscorpion exoskeleton piece
-  description: A strong and resistent piece of radscorpion exoskeleton.
-  suffix: ""
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
-    state: rad_exo
-  - type: PhysicalComposition
-    materialComposition:
-      Exoskeleton: 100
-  - type: Item
-    size: Small
-
-#MARK: Thread
-- type: entity
-  parent: N14MaterialBase
-  id: N14MaterialThread
-  name: thread
-  description: A product made from finely twisted yarn.
-  suffix: Full, 10
-  components:
-  - type: Sprite
-    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
-    state: thread
-    layers:
-    - state: thread
-      map: ["base"]
-  - type: Stack
-    stackType: Thread
-    count: 10
-    baseLayer: base
-    layerStates:
-    - thread
-    - thread
-    - thread
-  - type: PhysicalComposition
-    materialComposition:
-      Thread: 100
-  - type: Item
-    size: Small
-
-- type: entity
-  parent: N14MaterialThread
-  id: N14MaterialThread1
-  name: thread
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-#MARK: Scrap
 - type: entity
   parent: BaseItem
-  id: N14ScrapBase
-  description: A collection of damaged, components and materials that are no longer suitable for their original purpose, but may still have some value.
-  abstract: true
+  id: N14Dung
+  name: dung pile
+  description: flip those cowpats for free fertilizer!
   components:
   - type: Sprite
-    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
-  - type: Item
-    size: Small
-  - type: StaticPrice
-    price: 0
-  - type: Tag
-    tags:
-    - Scrap
-
-- type: entity
-  parent: N14ScrapBase
-  id: N14Scrap
-  name: scrap
-  suffix: Full, 30
-  components:
-  - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      Scrap: 100
-  - type: Stack
-    count: 30
-    stackType: N14Scrap
-    baseLayer: base
-    layerStates:
-    - scrap
-    - scrap_2
-    - scrap_3
-  - type: Sprite
-    state: scrap_3
+    sprite: /Textures/_Nuclear14/Objects/Misc/crafting_material.rsi
+    noRot: true
     layers:
-    - state: scrap_3
-      map: ["base"]
-  - type: Item
-    heldPrefix: scrap
-  - type: Appearance
+      - state: dung
+      - state: dung-flies
+# N14:TODO: Add creampie ing but worse and it makes you throw up.
+  - type: SolutionContainerManager
+    solutions:
+      dung:
+        maxVol: 25
+        reagents:
+        - ReagentId: Dung
+          Quantity: 25
+  - type: DrainableSolution
+    solution: dung
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
+  - type: DeleteOnSolutionEmpty
+    solution: dung
+  - type: TimedDespawn
+    lifetime: 300
 
 - type: entity
-  parent: N14Scrap
-  id: N14Scrap1
-  name: scrap
-  suffix: Single
+  parent: BaseItem
+  id: N14CompostRotted
+  name: compost
+  description: Rotting remains, like a compost. Good for fertilizing.
   components:
-  - type: Stack
-    count: 1
-
-#MARK: Scrap Electronic
-- type: entity
-  parent: N14ScrapBase
-  id: N14ScrapElectronic
-  name: electronic scrap
-  suffix: Full, 30
-  components:
-  - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      ScrapElectronic: 100
-  - type: Stack
-    count: 30
-    stackType: N14ScrapElectronic
-    baseLayer: base
-    layerStates:
-    - scrap_electronic
-    - scrap_electronic_2
   - type: Sprite
-    state: scrap_electronic
-    layers:
-    - state: scrap_electronic_2
-      map: ["base"]
-  - type: Item
-    heldPrefix: scrap_electronic
-  - type: Appearance
-
-- type: entity
-  parent: N14ScrapElectronic
-  id: N14ScrapElectronic1
-  name: electronic scrap
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-#MARK: Scrap Steel
-- type: entity
-  parent: N14ScrapBase
-  id: N14ScrapSteel
-  name: steel scrap
-  suffix: Full, 30
-  components:
+    sprite: /Textures/_Nuclear14/Objects/Misc/crafting_material.rsi
+    state: compost
+  - type: SolutionContainerManager
+    solutions:
+      compost:
+        maxVol: 25
+        reagents:
+        - ReagentId: Fertilizer
+          Quantity: 25
+  - type: DrainableSolution
+    solution: compost
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
+  - type: DeleteOnSolutionEmpty
+    solution: compost
   - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      ScrapSteel: 100
   - type: Stack
-    count: 30
-    stackType: N14ScrapSteel
-    baseLayer: base
-    layerStates:
-    - scrap_steel
-    - scrap_steel_2
-  - type: Sprite
-    state: scrap_steel
-    layers:
-    - state: scrap_steel_2
-      map: ["base"]
-  - type: Item
-    heldPrefix: scrap_steel
-  - type: Appearance
-
-- type: entity
-  parent: N14ScrapSteel
-  id: N14ScrapSteel1
-  name: steel scrap
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-#MARK: Scrap Gold
-- type: entity
-  parent: N14ScrapBase
-  id: N14ScrapGold
-  name: gold scrap
-  suffix: Full, 30
-  components:
-  - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      ScrapGold: 100
-  - type: Stack
-    count: 30
-    stackType: N14ScrapGold
-    baseLayer: base
-  - type: Sprite
-    state: scrap_gold
-  - type: Item
-    heldPrefix: scrap_gold
-  - type: Appearance
-
-- type: entity
-  parent: N14ScrapGold
-  id: N14ScrapGold1
-  name: gold scrap
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-#MARK: Scrap Copper
-- type: entity
-  parent: N14ScrapBase
-  id: N14ScrapCopper
-  name: copper scrap
-  suffix: Full, 30
-  components:
-  - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      ScrapCopper: 100
-  - type: Stack
-    count: 30
-    stackType: N14ScrapCopper
-    baseLayer: base
-  - type: Sprite
-    state: scrap_copper
-  - type: Item
-    heldPrefix: scrap_copper
-  - type: Appearance
-
-- type: entity
-  parent: N14ScrapCopper
-  id: N14ScrapCopper1
-  name: copper scrap
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-#MARK: Scrap Brass
-- type: entity
-  parent: N14ScrapBase
-  id: N14ScrapBrass
-  name: brass scrap
-  suffix: Full, 30
-  components:
-  - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      ScrapBrass: 100
-  - type: Stack
-    count: 30
-    stackType: N14ScrapBrass
-    baseLayer: base
-  - type: Sprite
-    state: scrap_brass
-  - type: Item
-    heldPrefix: scrap_brass
-  - type: Appearance
-
-- type: entity
-  parent: N14ScrapBrass
-  id: N14ScrapBrass1
-  name: brass scrap
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-#MARK: Scrap Lead
-- type: entity
-  parent: N14ScrapBase
-  id: N14ScrapLead
-  name: lead scrap
-  suffix: Full, 30
-  components:
-  - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      ScrapLead: 100
-  - type: Stack
-    count: 30
-    stackType: N14ScrapLead
-    baseLayer: base
-  - type: Sprite
-    state: scrap_lead
-  - type: Item
-    heldPrefix: scrap_lead
-  - type: Appearance
-
-- type: entity
-  parent: N14ScrapLead
-  id: N14ScrapLead1
-  name: lead scrap
-  suffix: Single
-  components:
-  - type: Stack
+    stackType: Compost
     count: 1
