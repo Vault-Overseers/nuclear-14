@@ -1,14 +1,14 @@
 - type: entity
   abstract: true
   parent: BaseItem
-  id: BaseMagazineBox5.56Rifle
+  id: BaseMagazineBox556Rifle
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
-        - N14Cartridge5.56Rifle
-    proto: N14Cartridge5.56Rifle
+        - N14Cartridge556Rifle
+    proto: N14Cartridge556Rifle
     capacity: 75
   - type: ContainerContainer
     containers:
@@ -23,12 +23,12 @@
   - type: Appearance
 
 - type: entity
-  parent: BaseMagazineBox5.56Rifle
-  id: MagazineBox5.56
+  parent: BaseMagazineBox556Rifle
+  id: MagazineBox556
   name: ammunition box (5.56mm)
   components:
   - type: BallisticAmmoProvider
-    proto: N14Cartridge5.56Rifle
+    proto: N14Cartridge556Rifle
   - type: Sprite
     layers:
     - state: base
