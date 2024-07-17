@@ -41,8 +41,7 @@ namespace Content.Shared._NC.Roles
 
             if (string.Equals(jobBlockForSpecie.NameSpecie, species, StringComparison.OrdinalIgnoreCase))
             {
-                var nameSpecies = Loc.GetString($"species-name-{species.ToLowerInvariant().Replace("person", "")}");
-                reason = Loc.GetString("role-timer-race-ban", ("race", nameSpecies.ToLowerInvariant()));
+                reason = Loc.GetString("role-timer-race-ban");
                 return false;
             }
 

@@ -1,17 +1,17 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Text;
+using System.Text; // Nuclear 14
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
-using Content.Shared._NC.Roles;
+using Content.Shared._NC.Roles; // Nuclear 14
 using Robust.Client;
 using Robust.Client.Player;
-using Content.Client.Preferences;
+using Content.Client.Preferences; // Nuclear 14
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
-using Content.Shared.Preferences;
+using Content.Shared.Preferences; // Nuclear 14
 using Robust.Shared.Utility;
 
 namespace Content.Client.Players.PlayTimeTracking;
@@ -24,7 +24,7 @@ public sealed partial class JobRequirementsManager
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IClientPreferencesManager _clientPreferences = default!;
+    [Dependency] private readonly IClientPreferencesManager _clientPreferences = default!; // Nuclear 14
 
     public readonly Dictionary<string, TimeSpan> PlayTimes = new();
     private readonly List<string> _roleBans = new();
@@ -86,7 +86,7 @@ public sealed partial class JobRequirementsManager
 
     public bool IsAllowed(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
     {
-        var reasonBuilder = new StringBuilder();
+        var reasonBuilder = new StringBuilder(); // Nuclear 14
         reason = null;
 
         if (_roleBans.Contains($"Job:{job.ID}"))
@@ -99,6 +99,7 @@ public sealed partial class JobRequirementsManager
         if (player == null)
             return true;
 
+        // Nuclear 14 start
         if (job.JobBlockForSpecies != null)
         {
             if (_clientPreferences?.Preferences == null)
@@ -135,6 +136,7 @@ public sealed partial class JobRequirementsManager
 
         return true;
     }
+        // Nuclear 14 end
 
     public bool CheckRoleTime(HashSet<JobRequirement>? requirements, [NotNullWhen(false)] out FormattedMessage? reason, string? localePrefix = "role-timer-")
     {
