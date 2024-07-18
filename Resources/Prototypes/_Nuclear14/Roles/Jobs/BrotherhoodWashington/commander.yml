@@ -1,8 +1,8 @@
 - type: job
   id: BoSWashingtonCommander
   setPreference: true
-  name: Washington commander
-  description: You have a job to do, complete the mission no matter how much it costs, no matter how much blood needs to be spilled.
+  name: job-name-bos-washington-commander
+  description: job-description-bos-washington-commander
   playTimeTracker: BoSWashingtonCommander
   requirements:
     - !type:DepartmentTimeRequirement
@@ -22,6 +22,11 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodWashington
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSWashingtonCommanderGear

@@ -1,8 +1,8 @@
 - type: job
   id: NCRMP
   setPreference: true
-  name: NCR military police
-  description: Protect the camp and make sure the soldiers behave correctly.
+  name: job-name-ncr-mp
+  description: job-description-ncr-mp
   playTimeTracker: NCRMP
   requirements:
     - !type:DepartmentTimeRequirement
@@ -13,9 +13,8 @@
   supervisors: job-supervisors-ncr
   canBeAntag: false
   access:
-  - NCRCadet
-  - NCRSoldier
-  - NCRNCO
+  - NCR
+  - NCRMP
   special:
   - !type:AddComponentSpecial
     components:
@@ -32,7 +31,7 @@
     shoes: N14ClothingBootsLeather
     belt: N14ClothingBeltPoliceFilled
     outerClothing: N14ClothingOuterNCRLightPouchedVest
-    id: N14IDNCRDogtag
+    id: N14IDNCRDogtagNCO
     backpack: N14ClothingBackpackSatchelNCRFilled
   innerClothingSkirt: N14ClothingMPUniformNCR #placeholder
   satchel: N14ClothingBackpackSatchelNCRFilled

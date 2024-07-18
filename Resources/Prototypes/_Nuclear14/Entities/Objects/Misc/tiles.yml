@@ -316,7 +316,7 @@
     heldPrefix: wood
   - type: FloorTile
     outputs:
-      - FloorAsteroidSand
+      - FloorWasteland
       - FloorWoodOak
   - type: Stack
     stackType: FloorTileWoodOak
@@ -335,7 +335,7 @@
     heldPrefix: wood
   - type: FloorTile
     outputs:
-      - FloorAsteroidSand
+      - FloorWasteland
       - FloorWoodHouse
   - type: Stack
     stackType: FloorTileWoodHouse
@@ -354,13 +354,77 @@
     heldPrefix: wood
   - type: FloorTile
     outputs:
-      - FloorAsteroidSand
+      - FloorWasteland
       - FloorWoodMaple
   - type: Stack
     stackType: FloorTileWoodMaple
 #  - type: Construction
 #    graph: TileWood
 #    node: woodtilelight
+
+- type: entity
+  name: industrial floor
+  parent: FloorTileItemBase
+  id: FloorTileItemMetalIndustrial
+  components:
+  - type: Sprite
+    state: wood
+  - type: Item
+    heldPrefix: wood
+  - type: FloorTile
+    outputs:
+      - FloorWasteland
+      - FloorMS13MetalIndustrial
+  - type: Stack
+    stackType: FloorTileMetalIndustrial
+    
+- type: entity
+  name: metal floor
+  parent: FloorTileItemBase
+  id: FloorTileItemMetalMS13
+  components:
+  - type: Sprite
+    state: wood
+  - type: Item
+    heldPrefix: wood
+  - type: FloorTile
+    outputs:
+      - FloorWasteland
+      - FloorMS13MetalTile
+  - type: Stack
+    stackType: FloorTileMetalMS13
+    
+- type: entity
+  name: metal grate floor
+  parent: FloorTileItemBase
+  id: FloorTileItemMetalGrate
+  components:
+  - type: Sprite
+    state: wood
+  - type: Item
+    heldPrefix: wood
+  - type: FloorTile
+    outputs:
+      - FloorWasteland
+      - FloorMS13MetalGrate
+  - type: Stack
+    stackType: FloorTileMetalGrate
+    
+- type: entity
+  name: metal solid floor
+  parent: FloorTileItemBase
+  id: FloorTileItemMetalSolid
+  components:
+  - type: Sprite
+    state: wood
+  - type: Item
+    heldPrefix: wood
+  - type: FloorTile
+    outputs:
+      - FloorWasteland
+      - FloorMS13MetalSolid
+  - type: Stack
+    stackType: FloorTileMetalSolid
 
 # Carpets
 
@@ -375,7 +439,7 @@
     heldPrefix: wood
   - type: FloorTile
     outputs:
-      - FloorAsteroidSand
+      - FloorWasteland
       - FloorCarpetRed
   - type: Stack
     stackType: FloorTileCarpetRed

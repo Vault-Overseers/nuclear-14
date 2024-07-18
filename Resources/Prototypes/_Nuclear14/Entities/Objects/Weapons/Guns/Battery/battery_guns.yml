@@ -312,3 +312,54 @@
     soundGunshot:
       path: /Audio/Weapons/plasma_cutter.ogg
 
+#MARK: Heavy
+
+- type: entity
+  name: laser gatling gun
+  parent: N14BaseWeaponPowerCellMedium
+  id: N14WeaponLaserGatling
+  description: A minigun, but laser for those who really needed an upscaling.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_gatling.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_gatling.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellFusion
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellFusion
+  - type: Gun
+    minAngle: 8
+    maxAngle: 16
+    fireRate: 7
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: Appearance
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8

@@ -1,4 +1,4 @@
-# Healing
+#MARK: Healing
 - type: reagent
   id: HealingMixture #used in regular stimpacks
   name: reagent-name-healing-mixture
@@ -15,6 +15,24 @@
             Burn: -2.0
             Brute: -2.0
             Airloss: -2.0
+      - !type:HealthChange # Bonus for poison
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+        damage:
+          groups:
+            Burn: -1.0
+            Brute: -1.0
+            Airloss: -1.0
+          types:
+            Poison: 0.2
+      - !type:HealthChange # to prevent doping
+        conditions:
+        - !type:ReagentThreshold
+          min: 50
+        damage:
+          types:
+            Poison: 1
 
 - type: reagent
   id: DirtyStimpak
@@ -34,6 +52,24 @@
             Airloss: -1.5
           types:
             Radiation: 0.1
+      - !type:HealthChange # to prevent doping
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+        damage:
+          groups:
+            Burn: -1.0
+            Brute: -1.0
+            Airloss: -1.0
+          types:
+            Poison: 0.2
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 50
+        damage:
+          types:
+            Poison: 1
 
 - type: reagent
   id: HealingPowder
@@ -44,6 +80,7 @@
   color: "#00e5ff"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Slow
       effects:
       - !type:HealthChange
         damage:
@@ -52,6 +89,27 @@
             Brute: -0.5
       - !type:ChemVomit
         probability: 0.05
+
+# Strong overtime healing
+- type: reagent
+  id: TraumaPowder
+  name: reagent-name-healing-powder
+  group: Medicine
+  desc: reagent-desc-healing-powder
+  physicalDesc: reagent-physical-desc-soothing
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.1 # Slow
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -1
+            Brute: -1
+            Airloss: -2
+          types:
+            Poison: -1
 
 # Poison
 - type: reagent
@@ -63,6 +121,7 @@
   color: "#D41244"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Slow
       effects:
       - !type:HealthChange
         damage:
@@ -81,6 +140,7 @@
   color: "#D41244"
   metabolisms:
     Medicine:
+      metabolismRate: 0.5 # Medium
       effects:
       - !type:HealthChange
         damage:
@@ -103,23 +163,28 @@
             Burn: -5
             Brute: -5
             Airloss: -5
-      - !type:HealthChange
+      - !type:HealthChange # Taking 2 is more or less a guaranteed death
         conditions:
         - !type:ReagentThreshold
-          min: 35
+          min: 30
         damage:
+          groups:
+            Burn: -2.0
+            Brute: -2.0
+            Airloss: -2.0
           types:
-            Cellular: 0.3
+            Poison: 3
+            Cellular: 0.5 # permanent damage, be glad you aint dead
       - !type:MovespeedModifier
         walkSpeedModifier: 0.50
         sprintSpeedModifier: 0.50
         conditions:
         - !type:ReagentThreshold
-          min: 35
+          min: 30
       - !type:Drunk
         conditions:
         - !type:ReagentThreshold
-          min: 35
+          min: 30
 
 # Radiation
 - type: reagent
@@ -128,9 +193,26 @@
   group: Medicine
   desc: reagent-desc-damage-resist-mixture
   physicalDesc: reagent-physical-desc-oily
-  color: "#00e5ff"
+  color: "#ff9000"
   metabolisms:
     Medicine:
+      metabolismRate: 0.2 # Effectively once every 5 seconds.
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: -5
+
+- type: reagent
+  id: RadAwayDiluted
+  name: reagent-name-damage-resist-mixture
+  group: Medicine
+  desc: reagent-desc-damage-resist-mixture
+  physicalDesc: reagent-physical-desc-oily
+  color: "#ffbb60"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:HealthChange
         damage:
@@ -146,12 +228,12 @@
   color: "#00e5ff"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Slow
       effects:
       - !type:HealthChange
         damage:
           types:
-            Radiation: -2.5
-
+            Radiation: -1
 
 # Other
 - type: reagent
@@ -175,6 +257,7 @@
   color: "#00e5ff"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:Drunk
 
@@ -187,6 +270,7 @@
   color: "#00e5ff"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:Drunk #TODO: when we get SPECIAL, make this increase Int, Chr, and remove this effect
 
@@ -199,6 +283,7 @@
   color: "#2E0071"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:Drunk #TODO: when we get SPECIAL, make this increase Int, Chr, and remove this effect
 
@@ -211,6 +296,7 @@
   color: "#9932a4"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:Drunk #TODO: when we get SPECIAL, make this increase Int, Chr, and remove this effect
 
@@ -223,6 +309,7 @@
   color: "#ffb82e"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:Drunk #TODO: when we get SPECIAL, make this increase Int, Chr, and remove this effect
 
@@ -235,6 +322,7 @@
   color: "#00e5ff"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:Drunk
       - !type:Jitter
@@ -248,6 +336,7 @@
   color: "#00e5ff"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:Jitter
 
@@ -260,6 +349,7 @@
   color: "#00e5ff"
   metabolisms:
     Poison:
+      metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:GenericStatusEffect
         key: SeeingRainbows
@@ -281,6 +371,7 @@
   color: "#e1f5f4"
   metabolisms:
     Medicine:
+      metabolismRate: 5 # Effectively 5 ticks per second
       effects:
       - !type:HealthChange
         damage:
@@ -299,6 +390,7 @@
   color: "#24b530"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:HealthChange
         damage:
@@ -309,7 +401,7 @@
       - !type:ChemVomit
         probability: 0.05
       - !type:Drunk
-        min: 25
+        min: 15
       - !type:Jitter
         min: 25
 
@@ -322,6 +414,7 @@
   color: "#ba67f5"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:HealthChange
         damage:
@@ -342,6 +435,7 @@
   color: "#1d3d22"
   metabolisms:
     Medicine:
+      metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:HealthChange
         damage:
@@ -378,16 +472,19 @@
             Burn: -10
             Brute: -10
             Airloss: -10
-            Toxin: 1
-          types:
-            Radiation: 0.2
+            Toxin: 0.5
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
-          min: 35
+          min: 30
         damage:
+          groups:
+            Burn: -10 # Temporary invincibility more or less
+            Brute: -10
+            Airloss: -10
           types:
-            Cellular: 0.8
+            Poison: 3
+            Cellular: 2 # Congratulations. Still revivable, but permanently fucked
       - !type:MovespeedModifier
         walkSpeedModifier: 0.40
         sprintSpeedModifier: 0.40

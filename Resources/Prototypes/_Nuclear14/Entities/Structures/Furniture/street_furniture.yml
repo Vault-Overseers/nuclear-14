@@ -752,3 +752,105 @@
     - state: off
     - state: on
       map: [ "enum.PoweredLightLayers.Base" ]
+      
+# Other Furniture
+- type: entity
+  parent: BaseStructure
+  id: N14DecorStreetPayphone
+  name: payphone
+  description: An old payphone
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Decoration/world.rsi
+    state: payphone
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 80
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 40
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+  - type: Pullable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.4,0.2,0.2"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+
+- type: entity
+  parent: N14DecorStreetPayphone
+  id: N14DecorStreetMailbox
+  name: mailbox
+  description: An old mailbox
+  components:
+  - type: Sprite
+    netsync: false
+    state: mailbox_old
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    maxItemSize: Large
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+
+- type: entity
+  parent: N14DecorStreetMailbox
+  id: N14DecorStreetMailboxWide
+  name: mailbox
+  description: An old wide mailbox
+  components:
+  - type: Sprite
+    state: mailbox
+    
+- type: entity
+  parent: N14DecorStreetMailbox
+  id: N14DecorStreetTrashbin
+  name: trashbin
+  description: An old trashbin
+  components:
+  - type: Sprite
+    state: trashbin
+    
+- type: entity
+  parent: N14DecorStreetTrashbin
+  id: N14DecorStreetTrashbinDamaged
+  suffix: damaged, random
+  components:
+  - type: Sprite
+    layers:
+    - state: trashbin-1
+      map: [ "body" ]
+  - type: RandomSprite
+    available:
+      - body:
+          trashbin-1: ""
+          trashbin-2: ""
+          trashbin-3: ""
