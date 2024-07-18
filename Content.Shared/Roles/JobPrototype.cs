@@ -1,3 +1,4 @@
+using Content.Shared._NC.Roles; // Nuclear 14
 using Content.Shared.Access;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
@@ -44,6 +45,11 @@ namespace Content.Shared.Roles
 
         [DataField("requirements")]
         public HashSet<JobRequirement>? Requirements;
+
+        // Nuclear 14 start
+        [DataField("jobBlockForSpecies")]
+        public HashSet<JobBlockAbstract>? JobBlockForSpecies;
+        // Nuclear 14 end
 
         [DataField("joinNotifyCrew")]
         public bool JoinNotifyCrew { get; private set; } = false;

@@ -169,10 +169,6 @@
     layers:
       - state: dung
       - state: dung-flies
-  - type: Perishable
-    rotAfter: 240
-    # don't want it giving off ammonia only bodies
-    molsPerSecondPerUnitMass: 0
 # N14:TODO: Add creampie ing but worse and it makes you throw up.
   - type: SolutionContainerManager
     solutions:
@@ -187,6 +183,8 @@
     canChangeTransferAmount: false
   - type: DeleteOnSolutionEmpty
     solution: dung
+  - type: TimedDespawn
+    lifetime: 300
 
 - type: entity
   parent: BaseItem

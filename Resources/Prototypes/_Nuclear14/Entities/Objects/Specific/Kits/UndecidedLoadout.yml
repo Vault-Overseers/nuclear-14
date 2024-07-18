@@ -1,0 +1,314 @@
+#MARK: Undecided Loadout Backpacks
+- type: entity
+  id: NCRtrooperloadoutkits
+  name: Undecided NCR Trooper Loadout Kit
+  description: please only take one
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - RiflemanSet
+    - GunnerSet
+    - MarksmanSet
+    - PointmanSet
+    - MoraleSet
+    - MedicSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: NCRNCOloadoutkits
+  name: Undecided NCR NCO Loadout Kit
+  description: please only take one
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - RiflemanSet
+    - GunnerSet
+    - MarksmanSet
+    - PointmanSet
+    - MoraleSet
+    - MedicSet
+    - SpecialRiflemanSet
+    - SpecialAssaultSet
+    - SpecialGunnerSet
+    - SpecialPointmanSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: NCRrangerloadoutkits
+  name: Undecided NCR Ranger Loadout Kit
+  description: please only take one
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - RangerServiceSet
+    - RangerRiflemanSet
+    - RangerMarksmanSet
+    - RangerCQBSet
+    - RangerTrailmanSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: NCRveteranrangerloadoutkits
+  name: Undecided NCR Veteran Ranger Loadout Kit
+  description: please only take one
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - RangerServiceSet
+    - RangerRiflemanSet
+    - RangerMarksmanSet
+    - RangerCQBSet
+    - RangerTrailmanSet
+    - VeteranRangerServiceSet
+    - VeteranRangerRiflemanSet
+    - VeteranRangerHeavySniperSet
+    - VeteranRangerAssaultSet
+    - VeteranRangerMarksmanSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+#MARK: Trooper Kits
+
+- type: UndecidedLoadoutBackpackSet
+  id: RiflemanSet
+  name: undecided-loadout-category-rifleman-name
+  description: undecided-loadout-category-rifleman-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitRifleman
+
+- type: UndecidedLoadoutBackpackSet
+  id: GunnerSet
+  name: undecided-loadout-category-gunner-name
+  description: undecided-loadout-category-gunner-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: gunner
+  content:
+  - KitRifleman
+
+- type: UndecidedLoadoutBackpackSet
+  id: MarksmanSet
+  name: undecided-loadout-category-marksman-name
+  description: undecided-loadout-category-marksman-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitMarksman
+
+- type: UndecidedLoadoutBackpackSet
+  id: PointmanSet
+  name: undecided-loadout-category-pointman-name
+  description: undecided-loadout-category-pointman-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  content:
+  - KitPointman
+
+- type: UndecidedLoadoutBackpackSet
+  id: MoraleSet
+  name: undecided-loadout-category-morale-name
+  description: undecided-loadout-category-morale-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  content:
+  - KitMorale
+
+- type: UndecidedLoadoutBackpackSet
+  id: MedicSet
+  name: undecided-loadout-category-medic-name
+  description: undecided-loadout-category-medic-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: medic
+  content:
+  - KitMedic
+
+#MARK: Special Kits
+
+- type: UndecidedLoadoutBackpackSet
+  id: SpecialRiflemanSet
+  name: undecided-loadout-category-special-rifleman-name
+  description: undecided-loadout-category-special-rifleman-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitSpecialRifleman
+
+- type: UndecidedLoadoutBackpackSet
+  id: SpecialAssaultSet
+  name: undecided-loadout-category-special-assault-name
+  description: undecided-loadout-category-special-assault-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitSpecialAssault
+
+- type: UndecidedLoadoutBackpackSet
+  id: SpecialGunnerSet
+  name: undecided-loadout-category-special-gunner-name
+  description: undecided-loadout-category-special-gunner-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitSpecialGunner
+
+- type: UndecidedLoadoutBackpackSet
+  id: SpecialPointmanSet
+  name: undecided-loadout-category-special-pointman-name
+  description: undecided-loadout-category-special-pointman-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  content:
+  - KitSpecialPointman
+  #MARK: Ranger Kits
+
+- type: UndecidedLoadoutBackpackSet
+  id: RangerServiceSet
+  name: undecided-loadout-category-ranger-service-name
+  description: undecided-loadout-category-ranger-service-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitServiceRanger
+
+- type: UndecidedLoadoutBackpackSet
+  id: RangerRiflemanSet
+  name: undecided-loadout-category-ranger-rifleman-name
+  description: undecided-loadout-category-ranger-rifleman-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitRiflemanRanger
+
+- type: UndecidedLoadoutBackpackSet
+  id: RangerMarksmanSet
+  name: undecided-loadout-category-ranger-marksman-name
+  description: undecided-loadout-category-ranger-marksman-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitMarksmanRanger
+
+- type: UndecidedLoadoutBackpackSet
+  id: RangerCQBSet
+  name: undecided-loadout-category-ranger-cqb-name
+  description: undecided-loadout-category-ranger-cqb-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitCQBRanger
+
+- type: UndecidedLoadoutBackpackSet
+  id: RangerTrailmanSet
+  name: undecided-loadout-category-ranger-trailman-name
+  description: undecided-loadout-category-ranger-trailman-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitTrailmanRanger
+
+#MARK: Veteran Kits
+
+- type: UndecidedLoadoutBackpackSet
+  id: VeteranRangerServiceSet
+  name: undecided-loadout-category-veteran-ranger-service-name
+  description: undecided-loadout-category-veteran-ranger-service-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitServiceRangerVeteran
+
+- type: UndecidedLoadoutBackpackSet
+  id: VeteranRangerRiflemanSet
+  name: undecided-loadout-category-veteran-ranger-precision-rifle-name
+  description: undecided-loadout-category-veteran-ranger-precision-rifle-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitRiflemanRangerVeteran
+
+- type: UndecidedLoadoutBackpackSet
+  id: VeteranRangerHeavySniperSet
+  name: undecided-loadout-category-veteran-ranger-heavy-sniper-name
+  description: undecided-loadout-category-veteran-ranger-heavy-sniper-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitHeavySniperRangerVeteran
+
+- type: UndecidedLoadoutBackpackSet
+  id: VeteranRangerAssaultSet
+  name: undecided-loadout-category-veteran-ranger-assault-name
+  description: undecided-loadout-category-veteran-ranger-assault-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitAssaultRangerVeteran
+
+- type: UndecidedLoadoutBackpackSet
+  id: VeteranRangerMarksmanSet
+  name: undecided-loadout-category-veteran-ranger-marksman-name
+  description: undecided-loadout-category-veteran-ranger-marksman-description
+  sprite: 
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitMarksmanRangerVeteran

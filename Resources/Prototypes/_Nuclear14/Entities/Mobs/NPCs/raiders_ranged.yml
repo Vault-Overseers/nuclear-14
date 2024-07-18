@@ -1,0 +1,119 @@
+- type: entity
+  name: Psycho Raider
+  parent: BaseMobHuman
+  id: N14MobRaiderPsychoRanged
+  description: "Psychopatic raider who will shoot and rob just about anyone."
+  suffix: AI
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Raider
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        100: Dead #Tweak for "Acidify on Crit"
+    - type: MindContainer
+      showExamineInfo: False
+    - type: Loadout
+      prototypes:
+        - RaiderPistolGear
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
+      fireRate: 2
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+    - type: CombatMode
+    - type: BasicEntityAmmoProvider
+      proto: N14CartridgePistol9
+      capacity: 12
+      count: 12
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1
+      rechargeSound:
+        path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+    - type: Sprite
+      layers:
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - shader: StencilClear
+        sprite: Mobs/Species/Human/parts.rsi #PJB on stencil clear being on the left leg: "...this is 'fine'" -https://github.com/space-wizards/space-station-14/pull/12217#issuecomment-1291677115
+        # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
+        # sprite refactor when
+        state: l_leg
+      - shader: StencilMask
+        map: ["enum.HumanoidVisualLayers.StencilMask"]
+        sprite: Mobs/Customization/masking_helpers.rsi
+        state: unisex_full
+        visible: false
+      - map: ["jumpsuit"]
+      - map: ["enum.HumanoidVisualLayers.LFoot"]
+      - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: ["enum.HumanoidVisualLayers.LHand"]
+      - map: ["enum.HumanoidVisualLayers.RHand"]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "ears" ]
+      - map: [ "eyes" ]
+      - map: [ "belt" ]
+      - map: [ "id" ]
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - map: [ "clownedon" ] # Dynamically generated
+        sprite: "Effects/creampie.rsi"
+        state: "creampie_human"
+        visible: false
+      - sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/9mm.rsi
+        state: inhand-right
+
+- type: entity
+  name: Psycho Raider Boss
+  parent: N14MobRaiderPsychoRanged
+  id: N14MobRaiderBoss
+  description: "Boss of all those psycho raiders you see around this area. Good luck!"
+  suffix: AI
+  components:
+    - type: Gun
+      fireRate: 5
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+    - type: CombatMode
+    - type: BasicEntityAmmoProvider
+      proto: N14CartridgePistol9
+      capacity: 30
+      count: 30
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 2
+      rechargeSound:
+        path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+    - type: Loadout
+      prototypes:
+        - RaiderBossGear
+
