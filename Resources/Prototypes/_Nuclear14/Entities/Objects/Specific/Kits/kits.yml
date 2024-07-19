@@ -517,3 +517,24 @@
       path: /Audio/Effects/unwrap.ogg
 
 # the knifes seem a bit redundant due to combat boots being able to hold their own knifes, will keep them for now
+
+#MARK: BoS Midwest Kits
+
+- type: entity
+  name: Brotherhood basic issue kit
+  parent: KitBase
+  id: KitDefaultBoSMidwest
+  description: A crate containing everything a member of Brotherhood might need.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserRifle
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellHigh
+        amount: 3
+      - id: N14Stimpak
+      - id: BoxMRE
