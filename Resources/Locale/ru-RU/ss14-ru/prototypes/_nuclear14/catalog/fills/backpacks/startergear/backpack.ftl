@@ -1,6 +1,6 @@
 ent-N14ClothingBackpackWastelanderFilled = { ent-N14ClothingBackpackExplorer }
     .desc = { ent-N14ClothingBackpackExplorer.desc }
-	ent-N14ClothingBackpackRandomFill = { ent-N14ClothingBackpackExplorer }
+ent-N14ClothingBackpackRandomFill = { ent-N14ClothingBackpackExplorer }
     .desc = { ent-N14ClothingBackpackExplorer.desc }
 ent-N14ClothingBackpackChaplainFilled = { ent-N14ClothingBackpackTrekker }
     .desc = { ent-N14ClothingBackpackTrekker.desc }
