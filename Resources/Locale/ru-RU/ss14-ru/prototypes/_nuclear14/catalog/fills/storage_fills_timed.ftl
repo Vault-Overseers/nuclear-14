@@ -12,3 +12,7 @@ ent-N14TimedStorageFillMedical = { "" }
     .desc = { "" }
 ent-N14WastelandBotanyTimedStorageFill = { "" }
     .desc = { "" }
+ent-N14ClosetFridgeTimedFill = { "" }
+    .desc = { "" }
+ent-N14StorageFillSafePrewarTimed = { "" }
+    .desc = { "" }
