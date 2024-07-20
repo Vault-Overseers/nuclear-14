@@ -67,7 +67,7 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
             return;
         }
 
-        if (comp.Whitelist != null && !comp.Whitelist.IsValid(uid))
+        if (comp.Whitelist != null && !comp.Whitelist.IsValid(args.User))
         {
             _popup.PopupEntity(Loc.GetString(comp.DeniedPopup), uid, args.User);
             return;
