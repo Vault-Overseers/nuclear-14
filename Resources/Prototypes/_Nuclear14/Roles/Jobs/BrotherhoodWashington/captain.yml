@@ -1,8 +1,8 @@
 - type: job
   id: BoSWashingtonCaptain
   setPreference: true
-  name: Washington captain
-  description: lead the washington troops and make sure the objetives are accomplished, keep on line the troops.
+  name: job-name-bos-washington-captain
+  description: job-description-bos-washington-captain
   playTimeTracker: BoSWashingtonCaptain
   requirements:
     - !type:DepartmentTimeRequirement
@@ -23,6 +23,11 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodWashington
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSWashingtonCaptainGear

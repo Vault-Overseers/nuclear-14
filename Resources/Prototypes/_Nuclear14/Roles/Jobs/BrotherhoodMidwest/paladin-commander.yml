@@ -1,8 +1,8 @@
 - type: job
   id: BoSMidPaladinCommander
   setPreference: true
-  name: Midwest paladin commander
-  description: Lead the midwest exploration team, follow the objetives and take decisions to take control over the wasteland.
+  name: job-name-bos-mid-paladin-comm
+  description: job-description-bos-mid-paladin-comm
   playTimeTracker: BoSMidPaladinCommander
   requirements:
     - !type:DepartmentTimeRequirement
@@ -19,6 +19,11 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodMidwest
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSMidPaladinCommanderGear

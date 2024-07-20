@@ -1,8 +1,8 @@
 - type: job
   id: BoSMidPaladin
   setPreference: true
-  name: Midwest paladin
-  description: lead the knights and squired during the mission, follow the paladin commander directions and fight for the brotherhood.
+  name: job-name-bos-mid-paladin
+  description: job-description-bos-mid-paladin
   playTimeTracker: BoSMidPaladin
   requirements:
     - !type:DepartmentTimeRequirement
@@ -20,6 +20,11 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodMidwest
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSMidPaladinGear
