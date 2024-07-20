@@ -1,4 +1,4 @@
-﻿using Content.Shared.Actions;
+using Content.Shared.Actions;
 using Content.Shared.Alert;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Rounding;
@@ -48,7 +48,7 @@ public abstract class SharedNightVisionSystem : EntitySystem
     private void OnNightVisionRemove(Entity<NightVisionComponent> ent, ref ComponentRemove args)
     {
         if (ent.Comp.Alert is { } alert)
-            _alerts.ClearAlert(ent, alert);
+            _alerts.ClearAlert(ent, AlertType.NightVision);
 
         NightVisionRemoved(ent);
     }
@@ -117,9 +117,9 @@ public abstract class SharedNightVisionSystem : EntitySystem
         if (ent.Comp.Alert is { } alert)
         {
             var level = MathF.Max((int) NightVisionState.Off, (int) ent.Comp.State);
-            var max = _alerts.GetMaxSeverity(alert);
+            var max = _alerts.GetMaxSeverity(AlertType.NightVision);
             var severity = max - ContentHelpers.RoundToLevels(level, (int) NightVisionState.Full, max + 1);
-            _alerts.ShowAlert(ent, alert, (short) severity);
+            _alerts.ShowAlert(ent, AlertType.NightVision, (short) severity);
         }
 
         NightVisionChanged(ent);
