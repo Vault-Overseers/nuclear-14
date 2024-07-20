@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Server.Interaction;
 using Content.Server.NPC;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
