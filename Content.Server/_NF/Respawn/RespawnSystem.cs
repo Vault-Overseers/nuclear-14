@@ -45,7 +45,10 @@ public sealed class RespawnSystem : EntitySystem
         if (TryComp<MobStateComponent>(entity, out var state) && state.CurrentState == MobState.Dead)
             return;
 
-        ResetRespawnTime(entity, _player.GetSessionById(e.Mind.Comp.UserId.Value));
+        if (!_player.TryGetSessionById(e.Mind.Comp.UserId.Value, out var session))
+            return;
+
+        ResetRespawnTime(entity, session);
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent e)
