@@ -25,6 +25,7 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<NPCTamingOnTouchBehaviourComponent, ActivateInWorldEvent>(OnPetTry);
         SubscribeLocalEvent<TamedNpcFriendComponent, DamageChangedEvent>(OnFriendDamaged);
     }
@@ -32,6 +33,9 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
     private void OnFriendDamaged(Entity<TamedNpcFriendComponent> entity, ref DamageChangedEvent args)
     {
         if (!args.DamageIncreased)
+            return;
+
+        if (TerminatingOrDeleted(entity))
             return;
 
         if (args.Origin is not { } origin)
@@ -57,6 +61,9 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
     {
         var (uid, comp) = entity;
 
+        if (TerminatingOrDeleted(args.User) || TerminatingOrDeleted(uid))
+            return;
+
         if (comp.Friend == args.User)
             return;
 
@@ -67,7 +74,7 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
             return;
         }
 
-        if (comp.Whitelist != null && !comp.Whitelist.IsValid(uid))
+        if (comp.Whitelist != null && !comp.Whitelist.IsValid(args.User))
         {
             _popup.PopupEntity(Loc.GetString(comp.DeniedPopup), uid, args.User);
             return;
@@ -105,6 +112,7 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
             _npc.SetBlackboard(uid, NPCBlackboard.FollowTarget, new EntityCoordinates(comp.Friend.Value, Vector2.Zero));
 
         _popup.PopupEntity(Loc.GetString(comp.SuccessPopup), uid, args.User);
+        args.Handled = true;
     }
 
     public void AddFriend(EntityUid owner, EntityUid friend, NPCTamingOnTouchBehaviourComponent? component = null)
