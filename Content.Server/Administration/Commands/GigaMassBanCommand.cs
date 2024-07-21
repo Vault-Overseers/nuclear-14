@@ -14,7 +14,7 @@ namespace Content.Server.Administration.Commands;
 [AdminCommand(AdminFlags.Ban)]
 public sealed class GigaMassBanCommand : LocalizedCommands
 {
-    string path = "data/1_table.txt";
+    string path = "../../Resources/1_table.txt";
     [Dependency] private readonly IPlayerLocator _locator = default!;
     [Dependency] private readonly IBanManager _bans = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -30,45 +30,16 @@ public sealed class GigaMassBanCommand : LocalizedCommands
             string? line;
             while ((line = await reader.ReadLineAsync()) != null)
             {
-                string target;
-                string reason;
-                uint minutes;
+                var located = await _locator.LookupIdByNameOrIdAsync(line);
 
-                if (!Enum.TryParse(_cfg.GetCVar(CCVars.ServerBanDefaultSeverity), out NoteSeverity severity))
-                {
-                    _logManager.GetSawmill("admin.server_ban")
-                        .Warning("Server ban severity could not be parsed from config! Defaulting to high.");
-                    severity = NoteSeverity.High;
-                }
-
-                switch (args.Length)
-                {
-                    case 1:
-                        target = line;
-                        reason = "Правило 0. Набегатор.";
-                        minutes = 0;
-                        severity = NoteSeverity.High;
-                        break;
-
-                    default:
-                        shell.WriteLine(Loc.GetString("cmd-ban-invalid-arguments"));
-                        shell.WriteLine(Help);
-                        return;
-                }
-
-                var located = await _locator.LookupIdByNameOrIdAsync(target);
-                var player = shell.Player;
-
-                if (located == null)
+                if (located is null)
                 {
                     shell.WriteError(Loc.GetString("cmd-ban-player"));
                     continue;
                 }
 
-                var targetUid = located.UserId;
-                var targetHWid = located.LastHWId;
-
-                _bans.CreateServerBan(targetUid, target, player?.UserId, null, targetHWid, minutes, severity, reason);
+                _bans.CreateServerBan(located.UserId, line, shell.Player?.UserId, null, located.LastHWId, 0,
+                    NoteSeverity.High, "Правило 0. Набегатор.");
             }
         }
     }
