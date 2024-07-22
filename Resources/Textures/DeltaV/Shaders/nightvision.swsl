@@ -1,0 +1,17 @@
+uniform sampler2D SCREEN_TEXTURE;
+varying vec2 UV;
+
+void fragment() {
+    highp vec4 color = texture2D(SCREEN_TEXTURE, UV);
+
+    float grayscale = dot(color.rgb, vec3(0.299, 0.587, 0.114));
+
+    highp vec3 greenTint = vec3(0.1, 1.0, 0.1);
+
+    float brightnessBoost = 2.0;
+    grayscale = min(grayscale * brightnessBoost, 1.0);
+
+    highp vec3 nightVisionColor = grayscale * greenTint;
+
+    gl_FragColor = vec4(nightVisionColor, 1.0);
+}
