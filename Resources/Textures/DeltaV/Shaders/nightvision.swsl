@@ -1,17 +1,40 @@
+// Vertex Shader
+void vertex() {
+    VERTEX = PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX_POS, 1.0);
+    UV = VERTEX_UV0;
+}
+
+// Fragment Shader
 uniform sampler2D SCREEN_TEXTURE;
-varying vec2 UV;
+uniform sampler2D noiseTex; 
+uniform sampler2D maskTex; 
+uniform highp float TIME; // elapsedTime
+uniform highp float luminanceThreshold; // 0.2
+uniform highp float colorAmplification; // 4.0
+uniform highp float effectCoverage; // 0.5
 
 void fragment() {
-    highp vec4 color = texture2D(SCREEN_TEXTURE, UV);
+    highp vec4 finalColor;
 
-    float grayscale = dot(color.rgb, vec3(0.299, 0.587, 0.114));
+    if (FRAGCOORD.x < effectCoverage) {
+        highp vec2 uv;           
+        uv.x = 0.4 * sin(TIME * 50.0);                                 
+        uv.y = 0.4 * cos(TIME * 50.0);                                 
 
-    highp vec3 greenTint = vec3(0.1, 1.0, 0.1);
+        highp float m = texture(maskTex, FRAGCOORD.xy).r;
+        highp vec3 n = texture(noiseTex, FRAGCOORD.xy * 3.5 + uv).rgb;
+        highp vec3 c = texture(SCREEN_TEXTURE, FRAGCOORD.xy + n.xy * 0.005).rgb;
+  
+        highp float lum = dot(vec3(0.30, 0.59, 0.11), c);
+        if (lum < luminanceThreshold) {
+            c *= colorAmplification;
+        }
+  
+        highp vec3 visionColor = vec3(0.1, 0.95, 0.2);
+        finalColor.rgb = (c + n * 0.2) * visionColor * m;
+    } else {
+        finalColor = texture(SCREEN_TEXTURE, FRAGCOORD.xy);
+    }
 
-    float brightnessBoost = 2.0;
-    grayscale = min(grayscale * brightnessBoost, 1.0);
-
-    highp vec3 nightVisionColor = grayscale * greenTint;
-
-    gl_FragColor = vec4(nightVisionColor, 1.0);
+    COLOR = vec4(finalColor.rgb, 1.0);
 }
