@@ -13,6 +13,7 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
+using Content.Shared._NC.Radio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 
