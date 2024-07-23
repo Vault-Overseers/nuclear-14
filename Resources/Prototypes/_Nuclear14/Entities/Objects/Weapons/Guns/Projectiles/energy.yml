@@ -42,6 +42,21 @@
     soundHit:
       path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
 
+- type: entity
+  name: plasma
+  id: BulletBigPlasma
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Heat: 40
+        Radiation: 10
+    soundHit:
+      path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
+
 - type: entity #TODO: Finish Projectile Laser
   name: laser
   id: BulletLaser
@@ -74,5 +89,40 @@
     damage:
       types:
         Heat: 20
+    soundHit:
+      collection: MeatLaserImpact
+
+- type: entity 
+  name: recharger laser
+  id: BulletRechargerLaser
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser_greyscale
+      shader: unshaded
+      color: red
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+        - Opaque
+      fly-by: *flybyfixture
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Heat: 12
     soundHit:
       collection: MeatLaserImpact

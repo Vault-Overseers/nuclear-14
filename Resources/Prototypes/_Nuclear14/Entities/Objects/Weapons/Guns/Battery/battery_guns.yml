@@ -131,13 +131,49 @@
     soundGunshot:
       path: /Audio/Weapons/plasma_cutter.ogg
     fireRate: 1.5
+
+- type: entity
+  name: plasma defender
+  parent: N14BaseWeaponPowerCellSmall
+  id: N14WeaponPlasmaDefender
+  description: A highly advanced plasma pistol with a upgraded rate of fire.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_pistol.rsi
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PlasmaCartridge
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PlasmaCartridge
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/plasma_cutter.ogg
+    fireRate: 2.5
+
 # MARK: Recharger guns
  
 - type: entity
-  name: laser rifle
+  name: recharger rifle
   parent: BaseWeaponBattery
-  id: WeaponRechargerPistol
-  description: Favoured by Nanotrasen Security for being cheap and easy to use.
+  id: N14WeaponRechargerRifle
+  description: The first model for a self charging laser rifle, its low energy consume and advance internal battery makes this gun last for centuries without recharging.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_rifle.rsi
@@ -157,14 +193,14 @@
     availableModes:
     - SemiAuto
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
-    fireCost: 62.5
+    proto: BulletRechargerLaser
+    fireCost: 50
 
 - type: entity
-  name: antique laser pistol
+  name: recharger pistol
   parent: BaseWeaponBatterySmall
-  id: WeaponRechargerPistol
-  description: This is an antique laser pistol. All craftsmanship is of the highest quality. It is decorated with assistant leather and chrome. The object menaces with spikes of energy.
+  id: N14WeaponRechargerPistol
+  description: The upgraded version of the recharger rifle, compact but maintaining the same power, its low energy consume and advance internal battery makes this gun last for centuries without recharging.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_pistol.rsi
@@ -180,8 +216,8 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
-    fireCost: 100
+    proto: BulletRechargerLaser
+    fireCost: 50
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40
@@ -207,7 +243,7 @@
     minAngle: -30
     maxAngle: -58
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_autorifle.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -215,7 +251,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_autorifle.rsi
     quickEquip: false
     slots:
     - Back
@@ -251,7 +287,7 @@
     minAngle: -30
     maxAngle: -58
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle.rsi
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_autorifle.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -259,7 +295,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle.rsi
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_autorifle.rsi
     quickEquip: false
     slots:
     - Back
@@ -308,6 +344,50 @@
       shader: unshaded
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellHigh
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellHigh
+  - type: Gun
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+
+- type: entity
+  name: prototype laser rifle
+  parent: N14BaseWeaponPowerCellMedium
+  id: N14WeaponLaserProtoRifle
+  description: The last and most advanced model of laser rifle ever made.
+  components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_protorifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_protorifle.rsi
     quickEquip: false
     slots:
     - Back
@@ -467,10 +547,148 @@
     fireRate: 2
     soundGunshot:
       path: /Audio/Weapons/plasma_cutter.ogg
-#MARK: Sniper
 
+#MARK: Sniper (just a different looking laser rifle until we get more options)
+
+- type: entity
+  name: wattz 3000 laser rifle
+  parent: N14BaseWeaponPowerCellMedium
+  id: N14WeaponWattz3000
+  description: A highly advanced laser rifle.
+  components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/wattz3000.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/wattz3000.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellHigh
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellHigh
+  - type: Gun
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+
+- type: entity
+  name: wattz 2000 laser rifle
+  parent: N14BaseWeaponPowerCellMedium
+  id: N14WeaponWattz2000
+  description: A highly advanced laser rifle.
+  components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/wattz2000.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/wattz2000.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellHigh
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellHigh
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
 
 #MARK: Heavy
+
+- type: entity
+  name: plasma caster
+  parent: N14BaseWeaponPowerCellMedium
+  id: N14WeaponPlasmaCaster
+  description: A massive plasma gun with a pretty sharp cannon, this gun is feed with plasma shells.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_caster.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_caster.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PlasmaShell
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PlasmaShell
+  - type: Gun
+    minAngle: 10
+    maxAngle: 16
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: Appearance
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
 
 - type: entity
   name: laser gatling gun
