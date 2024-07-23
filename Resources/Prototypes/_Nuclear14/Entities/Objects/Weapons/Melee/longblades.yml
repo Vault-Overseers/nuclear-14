@@ -10,8 +10,6 @@
     damage:
       types:
         Slash: 20
-    soundHit:
-      collection: N14BladeMediumSwing
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Melee/machete.rsi
     quickEquip: false
@@ -22,14 +20,14 @@
     sprite: _Nuclear14/Objects/Weapons/Melee/machete.rsi
     state: icon
   - type: Item
-    size: Normal
+    size: Large
     sprite: _Nuclear14/Objects/Weapons/Melee/machete.rsi
 
 - type: entity
   name: tribal machete
   parent: N14Machete
   id: N14TribalMachete
-  description: A tribal machete, made from the materials given by nature, this long blade has the perfect balance between tool and weapon.
+  description: A tribal machete, made from the materials giben by the nature, this long blade has the perfect balance between tool and weapon.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Melee/tribal_machete.rsi
@@ -57,7 +55,7 @@
   name: scrap machete
   parent: N14Machete
   id: N14ScrapMachete
-  description: A makeshift long blade machete, not the sharpest blade but it can still cut some meat.
+  description: A makeshift long blade machete, not the most sharp blade but it can still cut some meat.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Melee/scrap_machete.rsi
@@ -85,7 +83,7 @@
   name: ripper
   parent: N14Machete
   id: N14ripper
-  description: A light one-handed chainsaw originally designed for the pre-war army sappers to clean selvatic and wooded paths, it also works well against flesh.
+  description: A light one handed wield chainsaw, originally designed by the pre-war army sappers to clean selvatic and wooded paths, it also works well against meat.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Melee/ripper.rsi
@@ -96,115 +94,16 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/ripper.rsi
     state: icon
-  - type: EmbeddableProjectile
-    sound: /Audio/_Nuclear14/Weapons/Melee/Swing/ripper.ogg
   - type: DamageOtherOnHit
     damage:
       types:
-        Slash: 18
-        Pierce: 9
-  - type: Sharp
-  - type: MeleeWeapon
-    autoAttack: true
-    angle: 0
-    wideAnimationRotation: -135
-    attackRate: 4
-    damage:
-      types:
-        Slash: 6
-        Piercing: 3
-        Structural: 8
-    soundHit:
-      path: /Audio/_Nuclear14/Weapons/Melee/Swing/ripper.ogg
-  - type: Item
-    size: Large
-    sprite: _Nuclear14/Objects/Weapons/Melee/ripper.rsi
-  - type: DisarmMalus
-  - type: RefillableSolution
-    solution: Welder
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 300
-        maxVol: 300
-  - type: UseDelay
-    delay: 1
-  - type: Tool
-    qualities:
-      - Sawing
-    speedModifier: 3.0
-
-- type: entity
-  name: ceremonial sword
-  parent: N14Machete
-  id: N14CeremonialSword
-  description: "An impressive double-edged sword, this weapon's size and sharpness make you think it could cleave a man in two."
-  components:
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Melee/ceremonialsword.rsi
-    quickEquip: false
-    slots:
-    - Belt
-    - suitStorage
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Melee/ceremonialsword.rsi
-    state: icon
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Slash: 21
-  - type: MeleeWeapon
-    damage:
-      types:
-        Slash: 28
-    soundHit:
-        path: /Audio/Weapons/bladeslice.ogg
-  - type: Item
-    sprite: _Nuclear14/Objects/Weapons/Melee/ceremonialsword.rsi
-
-- type: entity
-  name: chinese officer sword
-  parent: N14Machete
-  id: N14ChineseSword
-  description: "An impressive double-edged sword used by pre-war chinese officers, this weapon's size and sharpness make you think it could cleave a man in two."
-  components:
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Melee/chinesesword.rsi
-    quickEquip: false
-    slots:
-    - Belt
-    - suitStorage
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Melee/chinesesword.rsi
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Slash: 20
-  - type: MeleeWeapon
-    damage:
-      types:
-        Slash: 20
-    soundHit:
-        path: /Audio/Weapons/bladeslice.ogg
-  - type: Item
-    sprite: _Nuclear14/Objects/Weapons/Melee/chinesesword.rsi
-
-- type: entity
-  name: longsword
-  parent: N14Machete
-  id: N14LongSword
-  description: You feel like you're in the medieval ages already...
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Melee/long_sword.rsi
-    state: icon
+        Slash: 30
   - type: MeleeWeapon
     damage:
       types:
         Slash: 25
     soundHit:
-        path: /Audio/Weapons/bladeslice.ogg
+        path: /Audio/Weapons/chainsaw.ogg
   - type: Item
-    sprite: _Nuclear14/Objects/Weapons/Melee/long_sword.rsi
+    size: Huge
+    sprite: _Nuclear14/Objects/Weapons/Melee/ripper.rsi
