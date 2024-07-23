@@ -5,11 +5,16 @@
   description: job-description-bos-mid-squire
   playTimeTracker: BoSMidSquire
   startingGear: BoSMidSquireGear
-  alwaysUseSpawner: true
   icon: "JobIconPassenger"
   canBeAntag: false
-  accessGroups:
-  - BOSMidwest
+  access:
+  - BoSMidwest
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodMidwest
 
 - type: startingGear
   id: BoSMidSquireGear
@@ -17,9 +22,10 @@
     jumpsuit: N14ClothingUniformJumpsuitBOSGreen
     back: N14ClothingBackpackMilitary
     shoes: N14ClothingBootsCombatFilled
-    head: N14ClothingHeadHatArmyCap
+    head: N14ClothingHeadHatBrotherhoodMidwestHelmet
     outerClothing: N14ClothingOuterMidwestArmor
-    id: N14IDBrotherhoodHolotag
+    pocket1: NCRBoSMidwestkits
+    id: N14IDBrotherhoodHolotagSquire
     belt: ClothingBeltMilitary
 
 - type: playTimeTracker

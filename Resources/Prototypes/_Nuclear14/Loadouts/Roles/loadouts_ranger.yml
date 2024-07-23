@@ -1,6 +1,6 @@
 # MARK: Ranger
 - type: loadout
-  id: LoadoutNCRRangerArmor
+  id: LoadoutNCRRangerVest
   category: Roles
   cost: 4
   exclusive: true
@@ -12,7 +12,7 @@
     - N14ClothingOuterRangerVest
 
 - type: loadout
-  id: LoadoutNCRRangerGun1
+  id: LoadoutNCRRangerArmorB
   category: Roles
   cost: 4
   exclusive: true
@@ -21,8 +21,19 @@
       jobs:
         - NCRRanger
   items:
-    - N14Weapon50NcrRifle
-    - MagazineBox50
+    - N14ClothingOuterRangerArmorB
+
+- type: loadout
+  id: LoadoutNCRRangerDuster
+  category: Roles
+  cost: 4
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRRanger
+  items:
+    - N14ClothingOuterRangerDuster
 
 - type: loadout
   id: LoadoutNCRhelmet
@@ -37,78 +48,6 @@
     - N14ClothingHeadHatRangerHelmet
 
 # MARK: Ranger + Vet
-- type: loadout
-  id: LoadoutNCRRangerGun2
-  category: Roles
-  cost: 4
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
-  items:
-    - N14WeaponCarbine
-    - LongMagazine556Rifle
-    - LongMagazine556Rifle
-
-- type: loadout
-  id: LoadoutNCRRangerGun3
-  category: Roles
-  cost: 4
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
-  items:
-    - N14WeaponLeverRifle
-    - MagazineBox308
-
-- type: loadout
-  id: LoadoutNCRRangerGun4
-  category: Roles
-  cost: 4
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
-  items:
-    - N14WeaponRiotShotgun
-    - N14MagazineShotgun20
-    - N14MagazineShotgun20
-
-- type: loadout
-  id: LoadoutNCRRangerGun5
-  category: Roles
-  cost: 4
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
-  items:
-    - N14WeaponLeverCarbine
-    - MagazineBox44
-
-- type: loadout
-  id: LoadoutNCR556
-  category: Roles
-  cost: 2
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
-  items:
-    - LongMagazine556Rifle
-    - LongMagazine556Rifle
-    - MagazineBox556
 
 - type: loadout
   id: LoadoutNCR50
@@ -154,7 +93,7 @@
 - type: loadout
   id: LoadoutNCR44
   category: Roles
-  cost: 4
+  cost: 2
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
@@ -174,19 +113,17 @@
     - !type:CharacterJobRequirement
       jobs:
         - NCRRanger
-        - NCRRangerVeteran
   items:
     - ClothingMaskGasRangerBroken
 
 - type: loadout
   id: LoadoutNCRmaskCombat
   category: Roles
-  cost: 2
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NCRRanger
         - NCRRangerVeteran
   items:
     - ClothingMaskGasCombat
@@ -194,7 +131,7 @@
 - type: loadout
   id: LoadoutNCRhatB
   category: Roles
-  cost: 2
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
@@ -207,7 +144,7 @@
 - type: loadout
   id: LoadoutNCRhatGrey
   category: Roles
-  cost: 2
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
@@ -220,7 +157,7 @@
 - type: loadout
   id: LoadoutNCRhatGreyBanded
   category: Roles
-  cost: 2
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
@@ -233,7 +170,7 @@
 - type: loadout
   id: LoadoutNCRhatBeret
   category: Roles
-  cost: 2
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
@@ -246,7 +183,7 @@
 - type: loadout
   id: LoadoutNCRmaskDesert
   category: Roles
-  cost: 2
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
@@ -259,7 +196,7 @@
 - type: loadout
   id: LoadoutNCRuniformV1
   category: Roles
-  cost: 2
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
@@ -272,7 +209,7 @@
 - type: loadout
   id: LoadoutNCRuniformV2
   category: Roles
-  cost: 2
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
@@ -285,7 +222,7 @@
 - type: loadout
   id: LoadoutNCRuniformV3
   category: Roles
-  cost: 2
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
@@ -296,9 +233,48 @@
     - N14ClothingUniformRangerV3
 
 - type: loadout
+  id: LoadoutNCRuniformModif
+  category: Roles
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRRanger
+        - NCRRangerVeteran
+  items:
+    - N14ClothingUniformRangerModif
+
+- type: loadout
+  id: LoadoutNCRuniformBlue
+  category: Roles
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRRanger
+        - NCRRangerVeteran
+  items:
+    - N14ClothingUniformRangerBlue
+
+- type: loadout
+  id: LoadoutNCRuniformPants
+  category: Roles
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRRanger
+        - NCRRangerVeteran
+  items:
+    - N14ClothingUniformDesertPants
+
+- type: loadout
   id: LoadoutNCRgloves
   category: Roles
-  cost: 2
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
@@ -335,70 +311,10 @@
   items:
     - N14BoxCardboardMREBoxKFilled
 
-# MARK: Ranger Vet
-
-- type: loadout
-  id: LoadoutNCRVetGun1
-  category: Roles
-  cost: 4
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
-  items:
-    - N14WeaponMarksman
-    - Magazine762Rifle
-    - Magazine762Rifle
-
-- type: loadout
-  id: LoadoutNCRVetGun2
-  category: Roles
-  cost: 4
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
-  items:
-    - N14WeaponAutoShotgun
-    - N14MagazineShotgun12
-    - N14MagazineShotgun12
-
-- type: loadout
-  id: LoadoutNCRVetGun3
-  category: Roles
-  cost: 4
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
-  items:
-    - N14WeaponAntiMateriel
-    - MagazineBox50
-
-- type: loadout
-  id: LoadoutNCRVetGun4
-  category: Roles
-  cost: 4
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
-  items:
-    - N14WeaponBrushGun
-    - MagazineBox45-70
-
 - type: loadout
   id: LoadoutNCR762
   category: Roles
-  cost: 4
+  cost: 2
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
@@ -413,7 +329,7 @@
 - type: loadout
   id: LoadoutNCR12gauge
   category: Roles
-  cost: 4
+  cost: 2
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
@@ -437,30 +353,36 @@
         - NCRRangerVeteran
   items:
     - MagazineBox45-70
+    - MagazineBox45-70
+
+# MARK: Ranger Vet
 
 - type: loadout
-  id: LoadoutNCRuniformModif
+  id: LoadoutNCRuniformBlack
   category: Roles
-  cost: 2
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
         - NCRRangerVeteran
   items:
-    - N14ClothingUniformRangerModif
+    - N14ClothingUniformRangerVeteranBlack
 
 - type: loadout
-  id: LoadoutNCRuniformBlue
+  id: LoadoutNCRuniformRed
   category: Roles
-  cost: 2
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
         - NCRRangerVeteran
   items:
-    - N14ClothingUniformRangerBlue
+    - N14ClothingUniformRangerVeteranRed
+
+# Unique items until crafting comes in
+#TODO: MAKE THESE CRAFTABLE
 
 - type: loadout
   id: LoadoutNCRarmorFox
@@ -516,3 +438,15 @@
     - N14ClothingOuterRangerPrice
     - N14ClothingHeadHatRangerHelmetPrice
     - ClothingMaskGasRangerPrice
+
+- type: loadout
+  id: LoadoutNCRHelmetModif
+  category: Roles
+  cost: 2
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRRangerVeteran
+  items:
+    - N14ClothingHeadHatRangerHelmetEliteModif
