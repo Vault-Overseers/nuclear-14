@@ -53,12 +53,12 @@ public sealed class RadioDeviceSystem : EntitySystem
         SubscribeLocalEvent<IntercomComponent, ToggleIntercomMicMessage>(OnToggleIntercomMic);
         SubscribeLocalEvent<IntercomComponent, ToggleIntercomSpeakerMessage>(OnToggleIntercomSpeaker);
         SubscribeLocalEvent<IntercomComponent, SelectIntercomChannelMessage>(OnSelectIntercomChannel);
-        // Corvax-Frontier-Start
+        // Nuclear-14-Start
         SubscribeLocalEvent<RadioMicrophoneComponent, BeforeActivatableUIOpenEvent>(OnBeforeHandheldRadioUiOpen);
         SubscribeLocalEvent<RadioMicrophoneComponent, ToggleHandheldRadioMicMessage>(OnToggleHandheldRadioMic);
         SubscribeLocalEvent<RadioMicrophoneComponent, ToggleHandheldRadioSpeakerMessage>(OnToggleHandheldRadioSpeaker);
         SubscribeLocalEvent<RadioMicrophoneComponent, SelectHandheldRadioFrequencyMessage>(OnChangeHandheldRadioFrequency);
-        // Corvax-Frontier-End
+        // Nuclear-14-End
     }
 
     public override void Update(float frameTime)
@@ -183,7 +183,7 @@ public sealed class RadioDeviceSystem : EntitySystem
 
         using (args.PushGroup(nameof(RadioMicrophoneComponent)))
         {
-            args.PushMarkup(Loc.GetString("handheld-radio-component-on-examine", ("frequency", component.Frequency)));
+            args.PushMarkup(Loc.GetString("handheld-radio-component-on-examine", ("frequency", /*Nuclear-14-start*/ component.Frequency /*Nuclear-14-end*/)));
             args.PushMarkup(Loc.GetString("handheld-radio-component-chennel-examine",
                 ("channel", proto.LocalizedName)));
         }
@@ -195,7 +195,7 @@ public sealed class RadioDeviceSystem : EntitySystem
             return; // no feedback loops please.
 
         if (_recentlySent.Add((args.Message, args.Source)))
-            _radio.SendRadioMessage(args.Source, args.Message, _protoMan.Index<RadioChannelPrototype>(component.BroadcastChannel), uid, frequency: component.Frequency);
+            _radio.SendRadioMessage(args.Source, args.Message, _protoMan.Index<RadioChannelPrototype>(component.BroadcastChannel), uid, /*Nuclear-14-start*/ frequency: component.Frequency /*Nuclear-14-end*/);
     }
 
     private void OnAttemptListen(EntityUid uid, RadioMicrophoneComponent component, ListenAttemptEvent args)
@@ -248,13 +248,13 @@ public sealed class RadioDeviceSystem : EntitySystem
         if (component.RequiresPower && !this.IsPowered(uid, EntityManager) || args.Session.AttachedEntity is not { })
             return;
 
-        if (!_protoMan.TryIndex<RadioChannelPrototype>(args.Channel, out var channel) || !component.SupportedChannels.Contains(args.Channel))
+        if (!_protoMan.TryIndex<RadioChannelPrototype>(args.Channel, out var /*Nuclear-14-start*/ channel /*Nuclear-14-end*/) || !component.SupportedChannels.Contains(args.Channel))
             return;
 
         if (TryComp<RadioMicrophoneComponent>(uid, out var mic))
         {
             mic.BroadcastChannel = args.Channel;
-            mic.Frequency = _radio.GetFrequency(uid, channel); // Corvax-Frontier
+            mic.Frequency = _radio.GetFrequency(uid, channel); // Nuclear-14
         }
         if (TryComp<RadioSpeakerComponent>(uid, out var speaker))
             speaker.Channels = new(){ args.Channel };
@@ -274,7 +274,7 @@ public sealed class RadioDeviceSystem : EntitySystem
         _ui.TrySetUiState(uid, IntercomUiKey.Key, state);
     }
 
-    // Corvax-Frontier-Start
+    // Nuclear-14-Start
     #region Handheld Radio
 
     private void OnBeforeHandheldRadioUiOpen(Entity<RadioMicrophoneComponent> microphone, ref BeforeActivatableUIOpenEvent args)
@@ -321,5 +321,5 @@ public sealed class RadioDeviceSystem : EntitySystem
     }
 
     #endregion
-    // Corvax-Frontier-End
+    // Nuclear-14-End
 }
