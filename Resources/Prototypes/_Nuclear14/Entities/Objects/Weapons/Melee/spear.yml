@@ -42,7 +42,6 @@
     animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
-    range: 1.5
   - type: DamageOtherOnHit
     damage:
       types:
@@ -53,6 +52,7 @@
     quickEquip: false
     slots:
     - back
+    - suitStorage
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -85,8 +85,14 @@
   id: N14WastelandSpear
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Melee/spear.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Melee/spear.rsi
+    sprite: Nuclear14/Objects/Weapons/Melee/spear.rsi
     netsync: false
     state: spear
   - type: MeleeWeapon
@@ -101,12 +107,18 @@
   id: N14WastelandFlagSpear
   description: A long spear with a NCR flag tied on his end, the most loyal soldiers carry these to boost the morale.
   components:
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Melee/flagspear.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
   - type: Tag
     tags:
     - Spear
   - type: Sharp
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Melee/flagspear.rsi
+    sprite: Nuclear14/Objects/Weapons/Melee/flagspear.rsi
     netsync: false
     state: spear
   - type: MeleeWeapon
@@ -121,8 +133,14 @@
   id: N14WastelandTribalSpear
   description: Strong and with a devastating attack, these spears are commonly made and used by tribals.
   components:
+  - type: Clothing
+    sprite: Nuclear14/Objects/Weapons/Melee/tribalspear.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Melee/tribalspear.rsi
+    sprite: Nuclear14/Objects/Weapons/Melee/tribalspear.rsi
     netsync: false
     state: spear
   - type: MeleeWeapon
@@ -138,6 +156,6 @@
   description: Practically a very short spear, but his strength doesnt come from melee combat.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Melee/javelin.rsi
+    sprite: Nuclear14/Objects/Weapons/Melee/javelin.rsi
     netsync: false
     state: spear
