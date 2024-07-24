@@ -32,10 +32,7 @@ public sealed class HandheldRadioBoundUserInterface : BoundUserInterface
         };
         _menu.OnFrequencyChanged += frequency =>
         {
-            if (int.TryParse(frequency.Trim(), out var intFreq) && intFreq > 0)
-                SendMessage(new SelectHandheldRadioFrequencyMessage(intFreq));
-            else
-                SendMessage(new SelectHandheldRadioFrequencyMessage(-1)); // Query the current frequency
+            SendMessage(new SelectHandheldRadioFrequencyMessage(frequency));
         };
 
         _menu.OnClose += Close;

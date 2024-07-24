@@ -50,8 +50,8 @@ public sealed class SelectHandheldRadioFrequencyMessage : BoundUserInterfaceMess
 {
     public int Frequency;
 
-    public SelectHandheldRadioFrequencyMessage(int frequency)
+    public SelectHandheldRadioFrequencyMessage(string frequency)
     {
-        Frequency = frequency;
+        int.TryParse(frequency.Trim(), out Frequency);
     }
 }
