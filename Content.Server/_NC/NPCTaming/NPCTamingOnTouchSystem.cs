@@ -120,6 +120,9 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
             _npc.SetBlackboard(uid, NPCBlackboard.FollowTarget, new EntityCoordinates(comp.Friend.Value, Vector2.Zero));
 
         SuccessPet(entity, args.User);
+
+        _popup.PopupEntity(Loc.GetString(comp.SuccessPopup), uid, args.User);
+
         args.Handled = true;
     }
 
