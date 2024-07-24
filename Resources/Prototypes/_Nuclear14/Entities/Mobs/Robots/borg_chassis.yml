@@ -1,3 +1,4 @@
+# Protectrons
 - type: entity
   parent: N14BaseRobotChassis
   id: N14RobotProtectron
@@ -39,30 +40,30 @@
     templateId: borgShort
 
 - type: entity
-  parent: N14BaseRobotChassis
+  parent: N14RobotProtectron
   id: N14RobotProtectronBuilder
   name: protectron builder
   components:
   - type: Sprite
-    sprite: _Nuclear14/Mobs/Robots/ms13robots.rsi
+    sprite: _Nuclear14/Mobs/Robots/protectron-builder.rsi
     layers:
-    - state: protectron_builder
+    - state: icon
       map: ["movement"]
-    - state: protectron_builder # change me
+    - state: icon
       map: ["enum.BorgVisualLayers.Light"]
       shader: unshaded
       visible: false
-    - state: protectron_builder # change me
+    - state: icon
       shader: unshaded
       map: ["light"]
       visible: false
   - type: SpriteMovement
     movementLayers:
       movement:
-        state: protectron_builder # change me
+        state: walking
     noMovementLayers:
       movement:
-        state: protectron_builder # change me
+        state: icon
   - type: BorgChassis
     maxModules: 4
     moduleWhitelist:
@@ -106,3 +107,123 @@
       # cell_slot:
         # name: power-cell-slot-component-slot-name-default
         # startingItem: PowerCellHyper
+        
+        
+- type: entity
+  parent: N14RobotProtectron
+  id: N14RobotProtectronFire
+  name: protectron firefighter
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/protectron-fire.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: walking
+    noMovementLayers:
+      movement:
+        state: icon
+        
+- type: entity
+  parent: N14RobotProtectron
+  id: N14RobotProtectronPolice
+  name: protectron police officer
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/protectron-police.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: walking
+    noMovementLayers:
+      movement:
+        state: icon
+        
+# Handy Gutsy
+- type: entity
+  parent: N14BaseRobotChassis
+  id: N14RobotMrHandy
+  name: mr handy
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/mrhandyclaw.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon  # change me
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon # change me
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: walking
+    noMovementLayers:
+      movement:
+        state: icon
+  - type: BorgChassis
+    maxModules: 6
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleJanitor
+    hasMindState: on
+    noMindState: off
+  # - type: Construction
+    # node: cyborg
+  - type: Speech
+    speechVerb: Robotic
+  - type: Inventory
+    templateId: borgShort
+    
+- type: entity
+  parent: N14RobotMrHandy
+  id: N14RobotMrHandySaw
+  name: mr handy
+  suffix: saw
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/mrhandysaw.rsi
+    
+- type: entity
+  parent: N14RobotMrHandy
+  id: N14RobotMrHandyGun
+  name: mr handy
+  suffix: gun
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/mrhandygun.rsi
+    
+- type: entity
+  parent: N14RobotMrHandy
+  id: N14RobotMrGutsy
+  name: mr gutsy
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/mrhandygutsy.rsi
