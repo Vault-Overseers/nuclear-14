@@ -1,8 +1,10 @@
 using Content.Shared.Whitelist;
+using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NC.NPCTaming;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 // ReSharper disable once InconsistentNaming
 public sealed partial class NPCTamingOnTouchBehaviourComponent : Component
 {
@@ -41,6 +43,39 @@ public sealed partial class NPCTamingOnTouchBehaviourComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool Follow = true;
+
+    /// <summary>
+    /// Spam avoiding
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan PetDelay = TimeSpan.FromSeconds(1.0);
+
+    [ViewVariables, AutoPausedField]
+    public TimeSpan? LastPetTime;
+
+    /// <summary>
+    /// Sound to play on taming success
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? SuccessSound;
+
+    /// <summary>
+    /// Sound to play on taming deny
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? DeniedSound;
+
+    /// <summary>
+    /// Entity to spawn on taming success, supposed only for special effects
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public EntProtoId? SuccessSpawn;
+
+    /// <summary>
+    /// Entity to spawn on taming deny, supposed only for special effects
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public EntProtoId? DeniedSpawn;
 
     /// <summary>
     /// Successfully tamed popup message
