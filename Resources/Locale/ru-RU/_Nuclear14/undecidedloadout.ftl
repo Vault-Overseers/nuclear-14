@@ -140,7 +140,7 @@ undecided-loadout-category-veteran-ranger-marksman-description =
     Ящик с личными вещами ветерана-рейнджера.
     Включает: 1 разгрузочный пояс НКР, 1 снайперскую винтовку, 3 магазина для винтовки калибра 7,62 мм,
     1 коробку патронов калибра 7,62 мм, 2 стимулятора, 1 сухпаёк и 1 боевой нож.
-	
+
 undecided-loadout-category-bos-default-name = Стандартный набор Братства Стали
 undecided-loadout-category-bos-default-description =
     Ящик со всем необходимым для члена Братства Стали.
