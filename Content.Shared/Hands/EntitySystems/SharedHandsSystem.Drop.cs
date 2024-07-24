@@ -5,15 +5,12 @@ using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
-using Robust.Shared.Network;
 
 namespace Content.Shared.Hands.EntitySystems;
 
 public abstract partial class SharedHandsSystem
 {
     [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly INetManager _net = default!;
-
     private void InitializeDrop()
     {
         SubscribeLocalEvent<HandsComponent, EntRemovedFromContainerMessage>(HandleEntityRemoved);
@@ -63,12 +60,6 @@ public abstract partial class SharedHandsSystem
     {
         if (hand.Container?.ContainedEntity is not {} held)
             return false;
-
-        if (HasComp<DeleteOnDropComponent>(held) && _net.IsServer)
-        {
-            QueueDel(held);
-            return false;
-        }
 
         if (!ContainerSystem.CanRemove(held, hand.Container))
             return false;
@@ -137,7 +128,7 @@ public abstract partial class SharedHandsSystem
             // TODO recursively check upwards for containers
 
             if (!isInContainer
-                || !ContainerSystem.TryGetContainingContainer(userXform.ParentUid, uid, out var container)
+                || !ContainerSystem.TryGetContainingContainer(userXform.ParentUid, uid, out var container, skipExistCheck: true)
                 || !ContainerSystem.Insert((entity, itemXform), container))
                 TransformSystem.AttachToGridOrMap(entity, itemXform);
             return true;
@@ -145,7 +136,7 @@ public abstract partial class SharedHandsSystem
 
         var (itemPos, itemRot) = TransformSystem.GetWorldPositionRotation(entity);
         var origin = new MapCoordinates(itemPos, itemXform.MapID);
-        var target = TransformSystem.ToMapCoordinates(targetDropLocation.Value);
+        var target = targetDropLocation.Value.ToMap(EntityManager, TransformSystem);
         TransformSystem.SetWorldPositionRotation(entity, GetFinalDropCoordinates(uid, origin, target), itemRot);
         return true;
     }

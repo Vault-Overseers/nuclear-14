@@ -22,10 +22,11 @@
     contentSize: 12000
   - type: ActivatableUI
     key: enum.PaperUiKey.Key
+    closeOnHandDeselect: false
   - type: UserInterface
     interfaces:
-      enum.PaperUiKey.Key:
-        type: PaperBoundUserInterface
+    - key: enum.PaperUiKey.Key
+      type: PaperBoundUserInterface
   - type: Tag
     tags:
       - Book
@@ -54,7 +55,7 @@
       color: "#0a2a6b"
     - state: decor_wingette
       color: "#082561"
-    - state: icon_text
+    - state: icon_text 
       color: gold
     - state: icon_planet
       color: "#42b6f5"
@@ -116,10 +117,10 @@
     - Bartender
 
 - type: entity
-  id: BookHowToCookForFortySpaceman
+  id: BookChefGaming
   parent: BaseItem
-  name: How To Cook For Forty Spacemen
-  description: A book about cooking written by a space chef.
+  name: chef gaming
+  description: A book about cooking written by a gamer chef.
   components:
   - type: Sprite
     sprite: Objects/Misc/books.rsi
@@ -366,7 +367,7 @@
   description: Each book is unique! What is hidden in this one?
   components:
   - type: RandomMetadata
-    nameSegments:
+    nameSegments: 
     - book_hint_appearance
     - book_type
   - type: RandomSprite
@@ -415,7 +416,7 @@
           icon_skull: ""
           icon_text: ""
           icon_text2: ""
-          icon_text3: ""
+          icon_text3: "" 
         overlay:
           overlay_blood: ""
           overlay_dirt: Sixteen
@@ -456,7 +457,7 @@
     - book_story_element_trait
     - "."
     storySeparator: ""
-
+    
 - type: entity
   parent: BookBase
   id: BookAtmosDistro

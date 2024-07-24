@@ -15,7 +15,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Content.Shared.Tag;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
@@ -33,14 +32,16 @@ public sealed partial class AnchorableSystem : EntitySystem
     [Dependency] private   readonly TagSystem _tagSystem = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
+    private EntityQuery<TagComponent> _tagQuery;
 
-    public readonly ProtoId<TagPrototype> Unstackable = "Unstackable";
+    public const string Unstackable = "Unstackable";
 
     public override void Initialize()
     {
         base.Initialize();
 
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
+        _tagQuery = GetEntityQuery<TagComponent>();
 
         SubscribeLocalEvent<AnchorableComponent, InteractUsingEvent>(OnInteractUsing,
             before: new[] { typeof(ItemSlotsSystem) }, after: new[] { typeof(SharedConstructionSystem) });
@@ -79,7 +80,7 @@ public sealed partial class AnchorableSystem : EntitySystem
             return;
 
         // If the used entity doesn't have a tool, return early.
-        if (!TryComp(args.Used, out ToolComponent? usedTool) || !_tool.HasQuality(args.Used, anchorable.Tool, usedTool))
+        if (!TryComp(args.Used, out ToolComponent? usedTool) || !usedTool.Qualities.Contains(anchorable.Tool))
             return;
 
         args.Handled = true;
@@ -132,7 +133,7 @@ public sealed partial class AnchorableSystem : EntitySystem
 
         if (TryComp<PullableComponent>(uid, out var pullable) && pullable.Puller != null)
         {
-            _pulling.TryStopPull(uid, pullable, ignoreGrab: true); // goobstation edit
+            _pulling.TryStopPull(uid, pullable);
         }
 
         // TODO: Anchoring snaps rn anyway!
@@ -311,7 +312,7 @@ public sealed partial class AnchorableSystem : EntitySystem
         DebugTools.Assert(!Transform(uid).Anchored);
 
         // If we are unstackable, iterate through any other entities anchored on the current square
-        return _tagSystem.HasTag(uid, Unstackable) && AnyUnstackablesAnchoredAt(location);
+        return _tagSystem.HasTag(uid, Unstackable, _tagQuery) && AnyUnstackablesAnchoredAt(location);
     }
 
     public bool AnyUnstackablesAnchoredAt(EntityCoordinates location)
@@ -326,8 +327,10 @@ public sealed partial class AnchorableSystem : EntitySystem
         while (enumerator.MoveNext(out var entity))
         {
             // If we find another unstackable here, return true.
-            if (_tagSystem.HasTag(entity.Value, Unstackable))
+            if (_tagSystem.HasTag(entity.Value, Unstackable, _tagQuery))
+            {
                 return true;
+            }
         }
 
         return false;

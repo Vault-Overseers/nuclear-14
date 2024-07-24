@@ -1,27 +1,30 @@
 using System.Linq;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Language;
+using Content.Server.Language.Events;
 using Content.Server.Speech.Components;
-using Content.Shared.EntityEffects;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Language;
 using Content.Shared.Language.Systems;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
+using Content.Server.Psionics;
+using Content.Shared.Body.Part; //Nyano - Summary: pulls in the ability for the sentient creature to become psionic.
 using Content.Shared.Humanoid;
 using Content.Shared.Language.Components; //Delta-V - Banning humanoids from becoming ghost roles.
 using Content.Shared.Language.Events;
 
-namespace Content.Server.EntityEffects.Effects;
+namespace Content.Server.Chemistry.ReagentEffects;
 
-public sealed partial class MakeSentient : EntityEffect
+public sealed partial class MakeSentient : ReagentEffect
 {
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("reagent-effect-guidebook-make-sentient", ("chance", Probability));
 
-    public override void Effect(EntityEffectBaseArgs args)
+    public override void Effect(ReagentEffectArgs args)
     {
         var entityManager = args.EntityManager;
-        var uid = args.TargetEntity;
+        var uid = args.SolutionEntity;
 
         // Let affected entities speak normally to make this effect different from, say, the "random sentience" event
         // This also works on entities that already have a mind
@@ -40,7 +43,7 @@ public sealed partial class MakeSentient : EntityEffect
         if (!knowledge.SpokenLanguages.Contains(fallback))
             knowledge.SpokenLanguages.Add(fallback);
 
-        IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>().UpdateEntityLanguages(uid);
+        IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>().UpdateEntityLanguages(uid, speaker);
 
         // Stops from adding a ghost role to things like people who already have a mind
         if (entityManager.TryGetComponent<MindContainerComponent>(uid, out var mindContainer) && mindContainer.HasMind)
@@ -65,6 +68,7 @@ public sealed partial class MakeSentient : EntityEffect
 
         ghostRole = entityManager.AddComponent<GhostRoleComponent>(uid);
         entityManager.EnsureComponent<GhostTakeoverAvailableComponent>(uid);
+        entityManager.EnsureComponent<PotentialPsionicComponent>(uid); //Nyano - Summary:. Makes the animated body able to get psionics.
 
         var entityData = entityManager.GetComponent<MetaDataComponent>(uid);
         ghostRole.RoleName = entityData.EntityName;

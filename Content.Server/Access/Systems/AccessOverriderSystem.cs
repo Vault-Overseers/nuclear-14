@@ -28,6 +28,7 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
 
     public override void Initialize()
     {
@@ -57,7 +58,8 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
 
         var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, component.DoAfter, new AccessOverriderDoAfterEvent(), uid, target: args.Target, used: uid)
         {
-            BreakOnMove = true,
+            BreakOnTargetMove = true,
+            BreakOnUserMove = true,
             BreakOnDamage = true,
             NeedHand = true,
         };
@@ -67,13 +69,16 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
 
     private void OnDoAfter(EntityUid uid, AccessOverriderComponent component, AccessOverriderDoAfterEvent args)
     {
+        if (!TryComp(args.User, out ActorComponent? actor))
+            return;
+
         if (args.Handled || args.Cancelled)
             return;
 
         if (args.Args.Target != null)
         {
             component.TargetAccessReaderId = args.Args.Target.Value;
-            _userInterface.OpenUi(uid, AccessOverriderUiKey.Key, args.User);
+            _userInterface.TryOpen(uid, AccessOverriderUiKey.Key, actor.PlayerSession);
             UpdateUserInterface(uid, component, args);
         }
 
@@ -90,7 +95,7 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
 
     private void OnWriteToTargetAccessReaderIdMessage(EntityUid uid, AccessOverriderComponent component, WriteToTargetAccessReaderIdMessage args)
     {
-        if (args.Actor is not { Valid: true } player)
+        if (args.Session.AttachedEntity is not { Valid: true } player)
             return;
 
         TryWriteToTargetAccessReaderId(uid, args.AccessList, player, component);
@@ -116,10 +121,10 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
             targetLabel = Loc.GetString("access-overrider-window-target-label") + " " + EntityManager.GetComponent<MetaDataComponent>(component.TargetAccessReaderId).EntityName;
             targetLabelColor = Color.White;
 
-            if (!_accessReader.GetMainAccessReader(accessReader, out var accessReaderEnt))
+            if (!_accessReader.GetMainAccessReader(accessReader, out var accessReaderComponent))
                 return;
 
-            var currentAccessHashsets = accessReaderEnt.Value.Comp.AccessLists;
+            var currentAccessHashsets = accessReaderComponent.AccessLists;
             currentAccess = ConvertAccessHashSetsToList(currentAccessHashsets).ToArray();
         }
 
@@ -150,19 +155,22 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
             targetLabel,
             targetLabelColor);
 
-        _userInterface.SetUiState(uid, AccessOverriderUiKey.Key, newState);
+        _userInterface.TrySetUiState(uid, AccessOverriderUiKey.Key, newState);
     }
 
     private List<ProtoId<AccessLevelPrototype>> ConvertAccessHashSetsToList(List<HashSet<ProtoId<AccessLevelPrototype>>> accessHashsets)
     {
-        var accessList = new List<ProtoId<AccessLevelPrototype>>();
+        List<ProtoId<AccessLevelPrototype>> accessList = new List<ProtoId<AccessLevelPrototype>>();
 
-        if (accessHashsets.Count <= 0)
-            return accessList;
-
-        foreach (var hashSet in accessHashsets)
+        if (accessHashsets != null && accessHashsets.Any())
         {
-            accessList.AddRange(hashSet);
+            foreach (HashSet<ProtoId<AccessLevelPrototype>> hashSet in accessHashsets)
+            {
+                foreach (ProtoId<AccessLevelPrototype> hash in hashSet.ToArray())
+                {
+                    accessList.Add(hash);
+                }
+            }
         }
 
         return accessList;
@@ -210,10 +218,10 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
             return;
         }
 
-        if (!_accessReader.GetMainAccessReader(component.TargetAccessReaderId, out var accessReaderEnt))
+        if (!_accessReader.GetMainAccessReader(component.TargetAccessReaderId, out var accessReader))
             return;
 
-        var oldTags = ConvertAccessHashSetsToList(accessReaderEnt.Value.Comp.AccessLists);
+        var oldTags = ConvertAccessHashSetsToList(accessReader.AccessLists);
         var privilegedId = component.PrivilegedIdSlot.Item;
 
         if (oldTags.SequenceEqual(newAccessList))
@@ -242,10 +250,10 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
         var removedTags = oldTags.Except(newAccessList).Select(tag => "-" + tag).ToList();
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(player):player} has modified {ToPrettyString(accessReaderEnt.Value):entity} with the following allowed access level holders: [{string.Join(", ", addedTags.Union(removedTags))}] [{string.Join(", ", newAccessList)}]");
+            $"{ToPrettyString(player):player} has modified {ToPrettyString(component.TargetAccessReaderId):entity} with the following allowed access level holders: [{string.Join(", ", addedTags.Union(removedTags))}] [{string.Join(", ", newAccessList)}]");
 
-        accessReaderEnt.Value.Comp.AccessLists = ConvertAccessListToHashSet(newAccessList);
-        Dirty(accessReaderEnt.Value);
+        accessReader.AccessLists = ConvertAccessListToHashSet(newAccessList);
+        Dirty(component.TargetAccessReaderId, accessReader);
     }
 
     /// <summary>

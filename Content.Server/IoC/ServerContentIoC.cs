@@ -5,21 +5,17 @@ using Content.Server.Administration.Notes;
 using Content.Server.Afk;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
+using Content.Server.DiscordAuth;
 using Content.Server.JoinQueue;
 using Content.Server.Database;
 using Content.Server.Discord;
-using Content.Server.DiscordAuth;
 using Content.Server.EUI;
 using Content.Server.GhostKick;
 using Content.Server.Info;
 using Content.Server.Maps;
-using Content.Server.Players.JobWhitelist;
 using Content.Server.MoMMI;
 using Content.Server.NodeContainer.NodeGroups;
-using Content.Server.Players;
-using Content.Server.Players.JobWhitelist;
 using Content.Server.Players.PlayTimeTracking;
-using Content.Server.Players.RateLimiting;
 using Content.Server.Preferences.Managers;
 using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
@@ -27,10 +23,8 @@ using Content.Server.Voting.Managers;
 using Content.Server.Worldgen.Tools;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
-using Content.Shared.Chat;
 using Content.Shared.Kitchen;
 using Content.Shared.Players.PlayTimeTracking;
-using Content.Shared.Players.RateLimiting;
 
 namespace Content.Server.IoC
 {
@@ -39,7 +33,6 @@ namespace Content.Server.IoC
         public static void Register()
         {
             IoCManager.Register<IChatManager, ChatManager>();
-            IoCManager.Register<ISharedChatManager, ChatManager>();
             IoCManager.Register<IChatSanitizationManager, ChatSanitizationManager>();
             IoCManager.Register<IMoMMILink, MoMMILink>();
             IoCManager.Register<IServerPreferencesManager, ServerPreferencesManager>();
@@ -72,9 +65,6 @@ namespace Content.Server.IoC
             IoCManager.Register<DiscordAuthManager>();
             IoCManager.Register<ISharedPlaytimeManager, PlayTimeTrackingManager>();
             IoCManager.Register<ServerApi>();
-            IoCManager.Register<JobWhitelistManager>();
-            IoCManager.Register<PlayerRateLimitManager>();
-            IoCManager.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
         }
     }
 }

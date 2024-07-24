@@ -167,32 +167,12 @@ namespace Content.Server.GameTicking
 
             var gridIds = _map.LoadMap(targetMapId, ev.GameMap.MapPath.ToString(), ev.Options);
 
-            _metaData.SetEntityName(_mapManager.GetMapEntityId(targetMapId), $"station map - {map.MapName}");
+            _metaData.SetEntityName(_mapManager.GetMapEntityId(targetMapId), "Station map");
 
             var gridUids = gridIds.ToList();
             RaiseLocalEvent(new PostGameMapLoad(map, targetMapId, gridUids, stationName));
 
             return gridUids;
-        }
-
-        public int ReadyPlayerCount()
-        {
-            var total = 0;
-            foreach (var (userId, status) in _playerGameStatuses)
-            {
-                if (LobbyEnabled && status == PlayerGameStatus.NotReadyToPlay)
-                    continue;
-
-                if (!_playerManager.TryGetSessionById(userId, out _))
-                    continue;
-
-                if (_banManager.GetRoleBans(userId) == null)
-                    continue;
-
-                total++;
-            }
-
-            return total;
         }
 
         public void StartRound(bool force = false)
@@ -232,7 +212,11 @@ namespace Content.Server.GameTicking
 #if DEBUG
                 DebugTools.Assert(_userDb.IsLoadComplete(session), $"Player was readied up but didn't have user DB data loaded yet??");
 #endif
-
+                if (_banManager.GetRoleBans(userId) == null)
+                {
+                    Logger.ErrorS("RoleBans", $"Role bans for player {session} {userId} have not been loaded yet.");
+                    continue;
+                }
                 readyPlayers.Add(session);
                 HumanoidCharacterProfile profile;
                 if (_prefsManager.TryGetCachedPreferences(userId, out var preferences))
@@ -245,8 +229,6 @@ namespace Content.Server.GameTicking
                 }
                 readyPlayerProfiles.Add(userId, profile);
             }
-
-            DebugTools.AssertEqual(readyPlayers.Count, ReadyPlayerCount());
 
             // Just in case it hasn't been loaded previously we'll try loading it.
             LoadMaps();
@@ -265,10 +247,7 @@ namespace Content.Server.GameTicking
             var origReadyPlayers = readyPlayers.ToArray();
 
             if (!StartPreset(origReadyPlayers, force))
-            {
-                _startingRound = false;
                 return;
-            }
 
             // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
             _mapManager.DoMapInitialize(DefaultMap);
@@ -332,23 +311,8 @@ namespace Content.Server.GameTicking
 
             RunLevel = GameRunLevel.PostRound;
 
-            try
-            {
-                ShowRoundEndScoreboard(text);
-            }
-            catch (Exception e)
-            {
-                Log.Error($"Error while showing round end scoreboard: {e}");
-            }
-
-            try
-            {
-                SendRoundEndDiscordMessage();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"Error while sending round end Discord message: {e}");
-            }
+            ShowRoundEndScoreboard(text);
+            SendRoundEndDiscordMessage();
         }
 
         public void ShowRoundEndScoreboard(string text = "")
@@ -581,15 +545,19 @@ namespace Content.Server.GameTicking
 
             DisallowLateJoin = false;
             _playerGameStatuses.Clear();
-            
             foreach (var session in _playerManager.Sessions)
+            {
                 _playerGameStatuses[session.UserId] = LobbyEnabled ? PlayerGameStatus.NotReadyToPlay : PlayerGameStatus.ReadyToPlay;
+            }
         }
 
         public bool DelayStart(TimeSpan time)
         {
             if (_runLevel != GameRunLevel.PreRoundLobby)
+            {
                 return false;
+            }
+
             _roundStartTime += time;
 
             RaiseNetworkEvent(new TickerLobbyCountdownEvent(_roundStartTime, Paused));
@@ -803,7 +771,7 @@ namespace Content.Server.GameTicking
     }
 
     /// <summary>
-    ///     Event raised after players were assigned jobs by the GameTicker and have been spawned in.
+    ///     Event raised after players were assigned jobs by the GameTicker.
     ///     You can give on-station people special roles by listening to this event.
     /// </summary>
     public sealed class RulePlayerJobsAssignedEvent

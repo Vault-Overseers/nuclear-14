@@ -39,11 +39,11 @@
     doAfterDelay: 10
   - type: UserInterface
     interfaces:
-      enum.MechUiKey.Key:
-        type: MechBoundUserInterface
+    - key: enum.MechUiKey.Key
+      type: MechBoundUserInterface
   - type: MeleeWeapon
     hidden: true
-    attackRate: 1.3333
+    attackRate: 0.75
     damage:
       types:
         Blunt: 25 #thwack
@@ -72,7 +72,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.45
-        density: 21390 # 15 Tonnes
+        density: 1000
         mask:
         - MobMask
         layer:
@@ -89,9 +89,9 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/mechmove03.ogg
-#  - type: GuideHelp
-#    guides:
-#    - Robotics
+  - type: GuideHelp
+    guides:
+    - Robotics
   - type: CanWalk
 
 - type: entity
@@ -205,7 +205,7 @@
       - Hamster
   - type: MeleeWeapon
     hidden: true
-    attackRate: 1.25
+    attackRate: 0.8
     damage:
       types:
         Blunt: 10 #thwack
@@ -268,7 +268,7 @@
       - VimPilot
   - type: MeleeWeapon
     hidden: true
-    attackRate: 1.25
+    attackRate: 0.8
     damage:
       types:
         Blunt: 10 #thwack

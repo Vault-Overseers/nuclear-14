@@ -72,15 +72,65 @@
     rewardMinAmount: 0
     rewardMaxAmount: 0
     possibleRewards:
-    - PrizeBall
-    - PrizeTicket10
-    - PrizeTicket10
-    - PrizeTicket10
-    - PrizeTicket10
-    - PrizeTicket10
-    - PrizeTicket30
-    - PrizeTicket30
-    - PrizeTicket60
+    - ToyMouse
+    - ToyAi
+    - ToyNuke
+    - ToyGriffin
+    - ToyHonk
+    - ToyIan
+    - ToyMarauder
+    - ToyMauler
+    - ToyGygax
+    - ToyOdysseus
+    - ToyOwlman
+    - ToyDeathRipley
+    - ToyPhazon
+    - ToyFireRipley
+    - ToyReticence
+    - ToyRipley
+    - ToySeraph
+    - ToyDurand
+    - ToySkeleton
+    - FoamCrossbow
+    - RevolverCapGun
+    - PlushieHampter
+    - PlushieLizard
+    - PlushieAtmosian
+    - PlushieSpaceLizard
+    - PlushieNuke
+    - PlushieCarp
+    - PlushieMagicarp
+    - PlushieHolocarp
+    - PlushieRainbowCarp
+    - PlushieRatvar
+    - PlushieNar
+    - PlushieSnake
+    - PlushieArachind
+    - Basketball
+    - Football
+    - PlushieRouny
+    - PlushieBee
+    - PlushieSlime
+    - BalloonNT
+    - BalloonCorgi
+    - ToySword
+    - CrayonBox
+    - BoxDonkSoftBox
+    - BoxCartridgeCap
+    - HarmonicaInstrument
+    - OcarinaInstrument
+    - RecorderInstrument
+    - GunpetInstrument
+    - BirdToyInstrument
+    - PlushieXeno
+    - BeachBall
+    - PlushieMoth
+    - PlushieHampter
+    - ToyRenault # DeltaV Toy, see Resources/Prototypes/DeltaV/Entities/Objects/Fun/toys.yml
+    - ToySiobhan # DeltaV Toy, see Resources/Prototypes/DeltaV/Entities/Objects/Fun/toys.yml
+    - PlushiePenguin
+    - PlushieHuman
+    - ClothingHeadHatCowboyRed
   - type: WiresPanel
   - type: Wires
     layoutId: Arcade
@@ -88,12 +138,11 @@
   - type: ActivatableUI
     key: enum.SpaceVillainArcadeUiKey.Key
   - type: ActivatableUIRequiresPower
-  - type: StationAiWhitelist
   - type: UserInterface
     interfaces:
-      enum.SpaceVillainArcadeUiKey.Key:
+      - key: enum.SpaceVillainArcadeUiKey.Key
         type: SpaceVillainArcadeBoundUserInterface
-      enum.WiresUiKey.Key:
+      - key: enum.WiresUiKey.Key
         type: WiresBoundUserInterface
   - type: Computer
     board: SpaceVillainArcadeComputerCircuitboard
@@ -133,12 +182,11 @@
   - type: ActivatableUI
     key: enum.BlockGameUiKey.Key
   - type: ActivatableUIRequiresPower
-  - type: StationAiWhitelist
   - type: UserInterface
     interfaces:
-      enum.BlockGameUiKey.Key:
+      - key: enum.BlockGameUiKey.Key
         type: BlockGameBoundUserInterface
-      enum.WiresUiKey.Key:
+      - key: enum.WiresUiKey.Key
         type: WiresBoundUserInterface
   - type: Computer
     board: BlockGameArcadeComputerCircuitboard

@@ -30,12 +30,10 @@
     singleUser: true
   - type: UserInterface
     interfaces:
-      enum.NavMapBeaconUiKey.Key:
-        type: NavMapBeaconBoundUserInterface
+    - key: enum.NavMapBeaconUiKey.Key
+      type: NavMapBeaconBoundUserInterface
   - type: Item
     size: Small
-  - type: Visibility
-    layer: 1
   - type: SubFloorHide
   - type: Anchorable
   - type: Construction
@@ -431,14 +429,6 @@
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-gravgen
-
-- type: entity
-  parent: DefaultStationBeaconEngineering
-  id: DefaultStationBeaconAnchor
-  suffix: Anchor
-  components:
-  - type: NavMapBeacon
-    defaultText: station-beacon-anchor
 
 - type: entity
   parent: DefaultStationBeaconEngineering

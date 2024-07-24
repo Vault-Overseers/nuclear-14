@@ -33,8 +33,6 @@
         amount: 5
   - type: Bloodstream
     bloodReagent: Sap
-    bloodRegenerationHunger: 1
-    bloodRegenerationThirst: 1 # 1 unit of sap satiates 1 hunger and thirst
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -106,28 +104,16 @@
     - Dead
   - type: LanguageKnowledge
     speaks:
-    - TauCetiBasic
+    - GalacticCommon
     - RootSpeak
     understands:
-    - TauCetiBasic
+    - GalacticCommon
     - RootSpeak
-  - type: TraitSpeedModifier
-    sprintModifier: 0.75
-    walkModifier: 0.75
-  - type: SpeedModifierImmunity
-  - type: NoSlip
-  - type: StepTriggerImmune
-    whitelist:
-      types:
-      - Shard
-  - type: FootPrints
-    leftBarePrint: "footprint-left-bare-diona"
-    rightBarePrint: "footprint-right-bare-diona"
 
 - type: entity
   parent: BaseSpeciesDummy
   id: MobDionaDummy
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   components:
   - type: Inventory
     templateId: diona

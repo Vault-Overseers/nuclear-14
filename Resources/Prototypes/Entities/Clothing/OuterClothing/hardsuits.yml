@@ -52,16 +52,20 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
-        Heat: 0.8
+        Heat: 0.2
         Radiation: 0.5
+        Caustic: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitAtmos
-  - type: GuideHelp
-    guides: [ HephaestusIndustries ]
+  - type: ReverseEngineering # Nyano
+    difficulty: 5
+    newItem: ClothingOuterHardsuitJuggernautReverseEngineered
+    recipes:
+      - ClothingOuterHardsuitJuggernautReverseEngineered
 
 #Engineering Hardsuit
 - type: entity
@@ -77,6 +81,8 @@
   - type: PressureProtection
     highPressureMultiplier: 0.04
     lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    coefficient: 0.01
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
@@ -94,10 +100,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitEngineering
-  - type: StaminaDamageResistance
-    coefficient: 0.75 # 25%
-  - type: GuideHelp
-    guides: [ HephaestusIndustries ]
 
 #Spationaut Hardsuit
 - type: entity
@@ -127,8 +129,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSpatio
-  - type: GuideHelp
-    guides: [ HephaestusIndustries ]
 
 #Salvage Hardsuit
 - type: entity
@@ -160,42 +160,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSalvage
-  - type: GuideHelp
-    guides: [ HephaestusIndustries ]
-
-#Paramedic Voidsuit
-- type: entity
-  parent: ClothingOuterHardsuitBase
-  id: ClothingOuterHardsuitVoidParamed
-  name: paramedic hardsuit
-  description: A hardsuit made for paramedics.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/paramed.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/paramed.rsi
-  - type: TemperatureProtection
-    coefficient: 0.1
-  - type: PressureProtection
-    highPressureMultiplier: 0.5
-    lowPressureMultiplier: 1000
-  - type: Armor
-    modifiers:
-      coefficients:
-        Heat: 0.90
-        Radiation: 0.75
-        Caustic: 0.5
-  - type: StealTarget
-    stealGroup: ClothingOuterHardsuitVoidParamed
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitVoidParamed
-  - type: GuideHelp
-    guides: [ ZengHuPharmaceuticals ]
-
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -227,8 +191,6 @@
     coefficient: 0.001
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMaxim
-  - type: GuideHelp
-    guides: [ HephaestusIndustries ]
 
 #Security Hardsuit
 - type: entity
@@ -259,8 +221,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurity
-  - type: StaminaDamageResistance
-    coefficient: 0.75 # 25%
 
 #Brigmedic Hardsuit
 - type: entity
@@ -288,8 +248,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
-  - type: StaminaDamageResistance
-    coefficient: 0.75 # 25%
 
 #Warden's Hardsuit
 - type: entity
@@ -320,8 +278,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWarden
-  - type: StaminaDamageResistance
-    coefficient: 0.65 # 35%
 
 #Captain's Hardsuit
 - type: entity
@@ -354,10 +310,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCap
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
-  - type: GuideHelp
-    guides: [ NanoTrasen ]
 
 #Chief Engineer's Hardsuit
 - type: entity
@@ -390,13 +342,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitEngineeringWhite
-  - type: ClothingGrantComponent
-    component:
-    - type: SupermatterImmune
-  - type: StaminaDamageResistance
-    coefficient: 0.65 # 35%
-  - type: GuideHelp
-    guides: [ HephaestusIndustries ]
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -422,15 +367,13 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMedical
-  - type: GuideHelp
-    guides: [ ZengHuPharmaceuticals ]
 
 #Research Director's Hardsuit
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitRd
   name: experimental research hardsuit
-  description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
+  description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor. Able to be compressed to small sizes.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/rd.rsi
@@ -455,9 +398,7 @@
     sprintModifier: 0.75
   - type: HeldSpeedModifier
   - type: Item
-    size: Huge
-    shape:
-    - 0,0,4,4 #5X5, can fit in a duffel bag but nothing smaller.
+    size: Normal
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -468,10 +409,6 @@
     price: 750
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitRd
-  - type: StaminaDamageResistance
-    coefficient: 0.75 # 25% as in "shock resistance" :trollface:
-  - type: GuideHelp
-    guides: [ NanoTrasen ]
 
 #Head of Security's Hardsuit
 - type: entity
@@ -503,8 +440,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityRed
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -536,8 +471,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLuxury
-  - type: GuideHelp
-    guides: [ HephaestusIndustries ]
 
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
@@ -573,14 +506,17 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndie
+  - type: ReverseEngineering # Nyano
+    difficulty: 5
+    newItem: ClothingOuterHardsuitSyndieReverseEngineered
+    recipes:
+      - ClothingOuterHardsuitSyndieReverseEngineered
   - type: Tag
     tags:
     - MonkeyWearable
     - Hardsuit
     - WhitelistChameleon
     - HidesHarpyWings
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -600,8 +536,6 @@
     - Hardsuit
     - WhitelistChameleon
     - HidesHarpyWings
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -621,8 +555,6 @@
     coefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.2
-  - type: FireProtection
-    reduction: 0.8 # perfect protection like atmos firesuit for pyro tf2 ops
   - type: Armor
     modifiers:
       coefficients:
@@ -640,8 +572,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -674,8 +604,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
@@ -708,8 +636,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCybersun
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
 
 #Wizard Hardsuit
 - type: entity
@@ -742,8 +668,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWizard
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
 
 #Ling Space Suit
 - type: entity
@@ -839,8 +763,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCap
   - type: StaticPrice
     price: 0
-  - type: StaminaDamageResistance
-    coefficient: 0.75 # 25%
 
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit
@@ -856,8 +778,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -872,8 +792,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTChaplain
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -888,8 +806,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertengineer.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTEngineer
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
 
 #ERT Medic Hardsuit
 - type: entity
@@ -904,8 +820,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedical
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
 
 #ERT Security Hardsuit
 - type: entity
@@ -924,8 +838,6 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -940,8 +852,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertjanitor.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTJanitor
-  - type: StaminaDamageResistance
-    coefficient: 0.5 # 50%
 
 #Deathsquad
 - type: entity
@@ -976,8 +886,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
-  - type: StaminaDamageResistance
-    coefficient: 0.1 # 90%
 
 #CBURN Hardsuit
 - type: entity
@@ -1043,9 +951,9 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
-  - type: Construction
-    graph: ClownHardsuit
-    node: clownHardsuit
+  #- type: Construction # DeltaV - Prevent clowns from making the hardsuit
+  #   graph: ClownHardsuit
+  #   node: clownHardsuit
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitClown
 
@@ -1060,9 +968,9 @@
     sprite: Clothing/OuterClothing/Hardsuits/mime.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/mime.rsi
-  - type: Construction
-    graph: MimeHardsuit
-    node: mimeHardsuit
+#  - type: Construction # DeltaV - Nuh uh
+#    graph: MimeHardsuit
+#    node: mimeHardsuit
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMime
 

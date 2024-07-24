@@ -4,8 +4,8 @@
   description: job-description-clown
   playTimeTracker: JobClown
   requirements:
-    - !type:CharacterOverallTimeRequirement # DeltaV - Playtime requirement
-      min: 7200 #2 hrs
+    - !type:OverallPlaytimeRequirement # DeltaV - Playtime requirement
+      time: 7200 #2 hrs
   startingGear: ClownGear
   icon: "JobIconClown"
   supervisors: job-supervisors-hop
@@ -17,16 +17,16 @@
   - !type:AddComponentSpecial
     components:
     - type: Clumsy
-      gunShootFailDamage:
+      clumsyDamage:
         types: #literally just picked semi random valus. i tested this once and tweaked it.
           Blunt: 5
           Piercing: 4
         groups:
           Burn: 3
-    - type: SleepEmitSound
-      snore: /Audio/Voice/Misc/silly_snore.ogg
-      interval: 10
-    - type: Snoring # Necessary so SleepEmitSound sound effects play
+# DeltaV - Commenting out the clown snore sound because I am not fond of it (it makes me itchy and feral). By "I", I mean Leonardo_DaBepis.
+#    - type: SleepEmitSound
+#      snore: /Audio/Voice/Misc/silly_snore.ogg
+#      interval: 10
   - !type:AddImplantSpecial
     implants: [ SadTromboneImplant ]
   setPreference: false

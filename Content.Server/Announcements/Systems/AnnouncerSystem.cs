@@ -1,5 +1,4 @@
 using Content.Server.Chat.Systems;
-using Content.Server.GameTicking;
 using Content.Shared.GameTicking;
 using Content.Shared.Announcements.Prototypes;
 using Content.Shared.Announcements.Systems;
@@ -14,7 +13,6 @@ public sealed partial class AnnouncerSystem : SharedAnnouncerSystem
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly GameTicker GameTicker = default!;
 
     /// <summary>
     ///     The currently selected announcer

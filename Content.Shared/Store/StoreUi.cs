@@ -13,7 +13,7 @@ public enum StoreUiKey : byte
 [Serializable, NetSerializable]
 public sealed class StoreUpdateState : BoundUserInterfaceState
 {
-    public readonly HashSet<ListingDataWithCostModifiers> Listings;
+    public readonly HashSet<ListingData> Listings;
 
     public readonly Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> Balance;
 
@@ -21,12 +21,26 @@ public sealed class StoreUpdateState : BoundUserInterfaceState
 
     public readonly bool AllowRefund;
 
-    public StoreUpdateState(HashSet<ListingDataWithCostModifiers> listings, Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> balance, bool showFooter, bool allowRefund)
+    public StoreUpdateState(HashSet<ListingData> listings, Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> balance, bool showFooter, bool allowRefund)
     {
         Listings = listings;
         Balance = balance;
         ShowFooter = showFooter;
         AllowRefund = allowRefund;
+    }
+}
+
+/// <summary>
+/// initializes miscellaneous data about the store.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class StoreInitializeState : BoundUserInterfaceState
+{
+    public readonly string Name;
+
+    public StoreInitializeState(string name)
+    {
+        Name = name;
     }
 }
 
@@ -37,9 +51,14 @@ public sealed class StoreRequestUpdateInterfaceMessage : BoundUserInterfaceMessa
 }
 
 [Serializable, NetSerializable]
-public sealed class StoreBuyListingMessage(ProtoId<ListingPrototype> listing) : BoundUserInterfaceMessage
+public sealed class StoreBuyListingMessage : BoundUserInterfaceMessage
 {
-    public ProtoId<ListingPrototype> Listing = listing;
+    public ListingData Listing;
+
+    public StoreBuyListingMessage(ListingData listing)
+    {
+        Listing = listing;
+    }
 }
 
 [Serializable, NetSerializable]

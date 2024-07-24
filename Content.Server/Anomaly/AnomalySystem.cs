@@ -18,6 +18,8 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Serialization.Manager;
+using System.Linq;
 
 namespace Content.Server.Anomaly;
 
@@ -40,6 +42,9 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     [Dependency] private readonly RadiationSystem _radiation = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private readonly ISerializationManager _serialization = default!;
+    [Dependency] private readonly IEntityManager _entity = default!;
 
     public const float MinParticleVariation = 0.8f;
     public const float MaxParticleVariation = 1.2f;
@@ -55,8 +60,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         SubscribeLocalEvent<AnomalyComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<AnomalyComponent, StartCollideEvent>(OnStartCollide);
 
-
-        InitializePsionics();
+        InitializePsionics(); //Nyano - Summary: stats up psionic related behavior.
         InitializeGenerator();
         InitializeScanner();
         InitializeVessel();
@@ -69,29 +73,25 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         ChangeAnomalyStability(anomaly, Random.NextFloat(anomaly.Comp.InitialStabilityRange.Item1 , anomaly.Comp.InitialStabilityRange.Item2), anomaly.Comp);
         ChangeAnomalySeverity(anomaly, Random.NextFloat(anomaly.Comp.InitialSeverityRange.Item1, anomaly.Comp.InitialSeverityRange.Item2), anomaly.Comp);
 
-        ShuffleParticlesEffect(anomaly);
+        ShuffleParticlesEffect(anomaly.Comp);
         anomaly.Comp.Continuity = _random.NextFloat(anomaly.Comp.MinContituty, anomaly.Comp.MaxContituty);
         SetBehavior(anomaly, GetRandomBehavior());
     }
 
-    public void ShuffleParticlesEffect(Entity<AnomalyComponent> anomaly)
+    public void ShuffleParticlesEffect(AnomalyComponent anomaly)
     {
         var particles = new List<AnomalousParticleType>
             { AnomalousParticleType.Delta, AnomalousParticleType.Epsilon, AnomalousParticleType.Zeta, AnomalousParticleType.Sigma };
 
-        anomaly.Comp.SeverityParticleType = Random.PickAndTake(particles);
-        anomaly.Comp.DestabilizingParticleType = Random.PickAndTake(particles);
-        anomaly.Comp.WeakeningParticleType = Random.PickAndTake(particles);
-        anomaly.Comp.TransformationParticleType = Random.PickAndTake(particles);
-        Dirty(anomaly);
+        anomaly.SeverityParticleType = Random.PickAndTake(particles);
+        anomaly.DestabilizingParticleType = Random.PickAndTake(particles);
+        anomaly.WeakeningParticleType = Random.PickAndTake(particles);
+        anomaly.TransformationParticleType = Random.PickAndTake(particles);
     }
 
     private void OnShutdown(Entity<AnomalyComponent> anomaly, ref ComponentShutdown args)
     {
-        if (anomaly.Comp.CurrentBehavior is not null)
-            RemoveBehavior(anomaly, anomaly.Comp.CurrentBehavior.Value);
-
-        EndAnomaly(anomaly, spawnCore: false);
+        EndAnomaly(anomaly);
     }
 
     private void OnStartCollide(Entity<AnomalyComponent> anomaly, ref StartCollideEvent args)
@@ -202,12 +202,14 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         if (anomaly.Comp.CurrentBehavior != null)
             RemoveBehavior(anomaly, anomaly.Comp.CurrentBehavior.Value);
 
-        anomaly.Comp.CurrentBehavior = behaviorProto;
-        var behavior = _prototype.Index(behaviorProto);
-        EntityManager.AddComponents(anomaly, behavior.Components);
-
+        //event broadcast
         var ev = new AnomalyBehaviorChangedEvent(anomaly, anomaly.Comp.CurrentBehavior, behaviorProto);
+        anomaly.Comp.CurrentBehavior = behaviorProto;
         RaiseLocalEvent(anomaly, ref ev, true);
+
+        var behavior = _prototype.Index(behaviorProto);
+
+        EntityManager.AddComponents(anomaly, behavior.Components);
     }
 
     private void RemoveBehavior(Entity<AnomalyComponent> anomaly, ProtoId<AnomalyBehaviorPrototype> behaviorProto)
@@ -215,7 +217,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         if (anomaly.Comp.CurrentBehavior == null)
             return;
 
-        var behavior = _prototype.Index(behaviorProto);
+        var behavior = _prototype.Index(anomaly.Comp.CurrentBehavior.Value);
 
         EntityManager.RemoveComponents(anomaly, behavior.Components);
     }

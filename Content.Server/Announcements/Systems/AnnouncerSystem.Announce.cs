@@ -30,9 +30,8 @@ public sealed partial class AnnouncerSystem
     /// <param name="announcementId">ID of the announcement to get information from</param>
     /// <param name="filter">Who hears the announcement audio</param>
     /// <param name="announcerOverride">Uses this announcer instead of the current global one</param>
-    public void SendAnnouncementAudio(string announcementId, Filter? filter = null, AnnouncerPrototype? announcerOverride = null)
+    public void SendAnnouncementAudio(string announcementId, Filter filter, AnnouncerPrototype? announcerOverride = null)
     {
-        filter ??= Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
         var ev = new AnnouncementSendEvent(
             announcerOverride?.ID ?? Announcer.ID,
             announcementId,
@@ -49,28 +48,19 @@ public sealed partial class AnnouncerSystem
     /// <param name="announcementId">ID of the announcement to get information from</param>
     /// <param name="locale">Text to send in the announcement</param>
     /// <param name="sender">Who to show as the announcement announcer, defaults to the current announcer's name</param>
-    /// <param name="filter">Who hears the announcement</param>
     /// <param name="colorOverride">What color the announcement should be</param>
     /// <param name="station">Station ID to send the announcement to</param>
     /// <param name="announcerOverride">Uses this announcer instead of the current global one</param>
     /// <param name="localeArgs">Locale arguments to pass to the announcement message</param>
-    public void SendAnnouncementMessage(
-        string announcementId,
-        string locale,
-        string? sender = null,
-        Filter? filter = null,
-        Color? colorOverride = null,
-        EntityUid? station = null,
-        AnnouncerPrototype? announcerOverride = null,
-        params (string, object)[] localeArgs
-        )
+    public void SendAnnouncementMessage(string announcementId, string locale, string? sender = null,
+        Color? colorOverride = null, EntityUid? station = null, AnnouncerPrototype? announcerOverride = null,
+        params (string, object)[] localeArgs)
     {
         sender ??= Loc.GetString($"announcer-{announcerOverride?.ID ?? Announcer.ID}-name");
-        filter ??= Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
 
         // If the announcement has a message override, use that instead of the message parameter
-        if (GetAnnouncementMessage(announcementId, announcerOverride?.ID ?? Announcer.ID) is { } announcementMessage)
-            locale = Loc.GetString(announcementMessage, localeArgs);
+        if (GetAnnouncementMessage(announcementId, announcerOverride?.ID ?? Announcer.ID, localeArgs) is { } announcementMessage)
+            locale = announcementMessage;
         else
             locale = Loc.GetString(locale, localeArgs);
 
@@ -78,33 +68,29 @@ public sealed partial class AnnouncerSystem
         if (string.IsNullOrEmpty(locale))
             return;
 
-        _chat.DispatchFilteredAnnouncement(filter, locale, station, sender, false, colorOverride: colorOverride);
+        // If there is a station, send the announcement to the station, otherwise send it to everyone
+        if (station == null)
+            _chat.DispatchGlobalAnnouncement(locale, sender, false, colorOverride: colorOverride);
+        else
+            _chat.DispatchStationAnnouncement(station.Value, locale, sender, false, colorOverride: colorOverride);
     }
 
     /// <summary>
     ///     Sends an announcement with a message and audio
     /// </summary>
     /// <param name="announcementId">ID of the announcement to get information from</param>
+    /// <param name="filter">Who hears the announcement audio</param>
     /// <param name="locale">Text to send in the announcement</param>
     /// <param name="sender">Who to show as the announcement announcer, defaults to the current announcer's name</param>
-    /// <param name="filter">Who hears the announcement</param>
     /// <param name="colorOverride">What color the announcement should be</param>
     /// <param name="station">Station ID to send the announcement to</param>
     /// <param name="announcerOverride">Uses this announcer instead of the current global one</param>
     /// <param name="localeArgs">Locale arguments to pass to the announcement message</param>
-    public void SendAnnouncement(
-        string announcementId,
-        string locale,
-        string? sender = null,
-        Filter? filter = null,
-        Color? colorOverride = null,
-        EntityUid? station = null,
-        AnnouncerPrototype? announcerOverride = null,
-        params (string, object)[] localeArgs
-        )
+    public void SendAnnouncement(string announcementId, Filter filter, string locale, string? sender = null,
+        Color? colorOverride = null, EntityUid? station = null, AnnouncerPrototype? announcerOverride = null,
+        params (string, object)[] localeArgs)
     {
-        filter ??= Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
         SendAnnouncementAudio(announcementId, filter, announcerOverride);
-        SendAnnouncementMessage(announcementId, locale, sender, filter, colorOverride, station, announcerOverride, localeArgs);
+        SendAnnouncementMessage(announcementId, locale, sender, colorOverride, station, announcerOverride, localeArgs);
     }
 }

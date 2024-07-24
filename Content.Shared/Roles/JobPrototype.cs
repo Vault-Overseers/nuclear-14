@@ -1,6 +1,5 @@
 using Content.Shared._NC.Roles; // Nuclear 14
 using Content.Shared.Access;
-using Content.Shared.Customization.Systems;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
@@ -45,7 +44,7 @@ namespace Content.Shared.Roles
         public string? LocalizedDescription => Description is null ? null : Loc.GetString(Description);
 
         [DataField("requirements")]
-        public List<CharacterRequirement>? Requirements;
+        public HashSet<JobRequirement>? Requirements;
 
         // Nuclear 14 start
         [DataField("jobBlockForSpecies")]
@@ -112,8 +111,8 @@ namespace Content.Shared.Roles
         [DataField("jobEntity", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
         public string? JobEntity = null;
 
-        [DataField]
-        public ProtoId<JobIconPrototype> Icon { get; private set; } = "JobIconUnknown";
+        [DataField("icon", customTypeSerializer: typeof(PrototypeIdSerializer<StatusIconPrototype>))]
+        public string Icon { get; private set; } = "JobIconUnknown";
 
         [DataField("special", serverOnly: true)]
         public JobSpecial[] Special { get; private set; } = Array.Empty<JobSpecial>();
@@ -129,9 +128,6 @@ namespace Content.Shared.Roles
 
         [DataField("extendedAccessGroups")]
         public IReadOnlyCollection<ProtoId<AccessGroupPrototype>> ExtendedAccessGroups { get; private set; } = Array.Empty<ProtoId<AccessGroupPrototype>>();
-
-        [DataField]
-        public bool Whitelisted;
     }
 
     /// <summary>

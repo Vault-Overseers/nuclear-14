@@ -1,14 +1,13 @@
 ﻿#nullable enable
 using Robust.Shared.Console;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 
 namespace Content.IntegrationTests.Tests.Minds;
 
-// [TestFixture]
+[TestFixture]
 public sealed partial class MindTests
 {
-    // [Test]
+    [Test]
     public async Task DeleteAllThenGhost()
     {
         var settings = new PoolSettings
@@ -35,11 +34,11 @@ public sealed partial class MindTests
             Console.WriteLine(pair.Client.EntMan.ToPrettyString(ent));
         }
 
-        Assert.That(pair.Client.EntMan.EntityCount, Is.AtMost(1)); // Tolerate at most one client entity
+        Assert.That(pair.Client.EntMan.EntityCount, Is.EqualTo(0));
 
         // Create a new map.
-        MapId mapId = default;
-        await pair.Server.WaitPost(() => pair.Server.System<SharedMapSystem>().CreateMap(out mapId));
+        int mapId = 1;
+        await pair.Server.WaitPost(() => conHost.ExecuteCommand($"addmap {mapId}"));
         await pair.RunTicksSync(5);
 
         // Client is not attached to anything
@@ -55,7 +54,7 @@ public sealed partial class MindTests
         Assert.That(pair.Client.EntMan.EntityExists(pair.Client.AttachedEntity));
         Assert.That(pair.Server.EntMan.EntityExists(pair.PlayerData?.Mind));
         var xform = pair.Client.Transform(pair.Client.AttachedEntity!.Value);
-        Assert.That(xform.MapID, Is.EqualTo(mapId));
+        Assert.That(xform.MapID, Is.EqualTo(new MapId(mapId)));
 
         await pair.CleanReturnAsync();
     }

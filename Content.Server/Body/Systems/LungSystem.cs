@@ -1,25 +1,19 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
-using Content.Shared.Chemistry.EntitySystems;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Atmos;
-using Content.Shared.Chemistry.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Inventory.Events;
-using Content.Shared.Inventory;
-using Content.Server.Power.EntitySystems;
-using Robust.Server.Containers;
 
 namespace Content.Server.Body.Systems;
 
 public sealed class LungSystem : EntitySystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly InternalsSystem _internals = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!; // Goobstation
-
-
+    [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
 
     public static string LungSolutionName = "Lung";
 
@@ -27,7 +21,6 @@ public sealed class LungSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<LungComponent, ComponentInit>(OnComponentInit);
-        SubscribeLocalEvent<BreathToolComponent, ComponentInit>(OnBreathToolInit); // Goobstation - Modsuits - Update on component toggle
         SubscribeLocalEvent<BreathToolComponent, GotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<BreathToolComponent, GotUnequippedEvent>(OnGotUnequipped);
         SubscribeLocalEvent<BreathToolComponent, ItemMaskToggledEvent>(OnMaskToggled);
@@ -56,36 +49,16 @@ public sealed class LungSystem : EntitySystem
 
     private void OnComponentInit(Entity<LungComponent> entity, ref ComponentInit args)
     {
-        if (_solutionContainerSystem.EnsureSolution(entity.Owner, entity.Comp.SolutionName, out var solution))
-        {
-            solution.MaxVolume = entity.Comp.MaxVolume;
-            solution.CanReact = entity.Comp.CanReact;
-        }
+        var solution = _solutionContainerSystem.EnsureSolution(entity.Owner, entity.Comp.SolutionName);
+        solution.MaxVolume = 100.0f;
+        solution.CanReact = false; // No dexalin lungs
     }
-
-    // Goobstation - Update component state on component toggle
-    private void OnBreathToolInit(Entity<BreathToolComponent> ent, ref ComponentInit args)
-    {
-        var comp = ent.Comp;
-
-        comp.IsFunctional = true;
-
-        if (!_inventory.TryGetContainingEntity(ent.Owner, out var parent)
-            || !_inventory.TryGetContainingSlot(ent.Owner, out var slot)
-            || (slot.SlotFlags & comp.AllowedSlots) == 0
-            || !TryComp(parent, out InternalsComponent? internals))
-            return;
-
-        ent.Comp.ConnectedInternalsEntity = parent;
-        _internals.ConnectBreathTool((parent.Value, internals), ent);
-    }
-
 
     private void OnMaskToggled(Entity<BreathToolComponent> ent, ref ItemMaskToggledEvent args)
     {
         if (args.IsToggled || args.IsEquip)
         {
-            _atmosphereSystem.DisconnectInternals(ent);
+            _atmos.DisconnectInternals(ent.Comp);
         }
         else
         {
@@ -104,32 +77,23 @@ public sealed class LungSystem : EntitySystem
         if (!_solutionContainerSystem.ResolveSolution(uid, lung.SolutionName, ref lung.Solution, out var solution))
             return;
 
-        GasToReagent(lung.Air, solution);
-        _solutionContainerSystem.UpdateChemicals(lung.Solution.Value);
-    }
-
-    private void GasToReagent(GasMixture gas, Solution solution)
-    {
-        foreach (var gasId in Enum.GetValues<Gas>())
+        foreach (var gas in Enum.GetValues<Gas>())
         {
-            var i = (int) gasId;
-            var moles = gas[i];
+            var i = (int) gas;
+            var moles = lung.Air[i];
             if (moles <= 0)
                 continue;
-
             var reagent = _atmosphereSystem.GasReagents[i];
-            if (reagent is null)
-                continue;
+            if (reagent is null) continue;
 
             var amount = moles * Atmospherics.BreathMolesToReagentMultiplier;
             solution.AddReagent(reagent, amount);
-        }
-    }
 
-    public Solution GasToReagent(GasMixture gas)
-    {
-        var solution = new Solution();
-        GasToReagent(gas, solution);
-        return solution;
+            // We don't remove the gas from the lung mix,
+            // that's the responsibility of whatever gas is being metabolized.
+            // Most things will just want to exhale again.
+        }
+
+        _solutionContainerSystem.UpdateChemicals(lung.Solution.Value);
     }
 }

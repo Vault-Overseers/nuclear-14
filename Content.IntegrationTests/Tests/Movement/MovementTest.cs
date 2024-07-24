@@ -1,9 +1,8 @@
 #nullable enable
 using System.Numerics;
-using Content.IntegrationTests.Tests.Interaction;
 using Robust.Shared.GameObjects;
 
-namespace Content.IntegrationTests.Tests.Movement;
+namespace Content.IntegrationTests.Tests.Interaction;
 
 /// <summary>
 /// This is a variation of <see cref="InteractionTest"/> that sets up the player with a normal human entity and a simple
@@ -24,16 +23,6 @@ public abstract class MovementTest : InteractionTest
     /// </summary>
     protected virtual bool AddWalls => true;
 
-    /// <summary>
-    ///     If true, the grid will generate gravity.
-    /// </summary>
-    protected virtual new bool AddGravity => true;
-
-    /// <summary>
-    ///     If true, the grid will generate an atmosphere.
-    /// </summary>
-    protected virtual new bool AddAtmosphere => true;
-
     [SetUp]
     public override async Task Setup()
     {
@@ -42,7 +31,7 @@ public abstract class MovementTest : InteractionTest
 
         for (var i = -Tiles; i <= Tiles; i++)
         {
-            await SetTile(Plating, SEntMan.GetNetCoordinates(pCoords.Offset(new Vector2(i, 0))), MapData.Grid);
+            await SetTile(Plating, SEntMan.GetNetCoordinates(pCoords.Offset(new Vector2(i, 0))), MapData.Grid.Comp);
         }
         AssertGridCount(1);
 
@@ -52,11 +41,8 @@ public abstract class MovementTest : InteractionTest
             await SpawnEntity("WallSolid", pCoords.Offset(new Vector2(Tiles, 0)));
         }
 
-        if (AddGravity)
-            await AddGravity();
-
-        if (AddAtmosphere)
-            await AddAtmosphere();
+        await AddGravity();
+        await AddAtmosphere();
     }
 
     /// <summary>

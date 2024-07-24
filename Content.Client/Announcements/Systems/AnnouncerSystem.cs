@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Client.Audio;
 using Content.Shared.Announcements.Events;
 using Content.Shared.Announcements.Systems;
@@ -19,8 +18,8 @@ public sealed class AnnouncerSystem : SharedAnnouncerSystem
     [Dependency] private readonly IResourceCache _cache = default!;
     [Dependency] private readonly IAudioManager _audioManager = default!;
 
-    public List<IAudioSource> AnnouncerSources { get; } = new();
-    public float AnnouncerVolume { get; private set; }
+    private IAudioSource? AnnouncerSource { get; set; }
+    private float AnnouncerVolume { get; set; }
 
 
     public override void Initialize()
@@ -29,10 +28,8 @@ public sealed class AnnouncerSystem : SharedAnnouncerSystem
 
         AnnouncerVolume = _config.GetCVar(CCVars.AnnouncerVolume) * 100f / ContentAudioSystem.AnnouncerMultiplier;
 
-        _config.OnValueChanged(CCVars.AnnouncerVolume, OnAnnouncerVolumeChanged);
-        _config.OnValueChanged(CCVars.AnnouncerDisableMultipleSounds, OnAnnouncerDisableMultipleSounds);
-
         SubscribeNetworkEvent<AnnouncementSendEvent>(OnAnnouncementReceived);
+        _config.OnValueChanged(CCVars.AnnouncerVolume, OnAnnouncerVolumeChanged);
     }
 
     public override void Shutdown()
@@ -40,7 +37,6 @@ public sealed class AnnouncerSystem : SharedAnnouncerSystem
         base.Shutdown();
 
         _config.UnsubValueChanged(CCVars.AnnouncerVolume, OnAnnouncerVolumeChanged);
-        _config.UnsubValueChanged(CCVars.AnnouncerDisableMultipleSounds, OnAnnouncerDisableMultipleSounds);
     }
 
 
@@ -48,22 +44,9 @@ public sealed class AnnouncerSystem : SharedAnnouncerSystem
     {
         AnnouncerVolume = value;
 
-        foreach (var source in AnnouncerSources)
-            source.Gain = AnnouncerVolume;
+        if (AnnouncerSource != null)
+            AnnouncerSource.Gain = AnnouncerVolume;
     }
-
-    private void OnAnnouncerDisableMultipleSounds(bool value)
-    {
-        if (!value)
-            return;
-
-        foreach (var audioSource in AnnouncerSources.ToList())
-        {
-            audioSource.Dispose();
-            AnnouncerSources.Remove(audioSource);
-        }
-    }
-
 
     private void OnAnnouncementReceived(AnnouncementSendEvent ev)
     {
@@ -73,28 +56,14 @@ public sealed class AnnouncerSystem : SharedAnnouncerSystem
             return;
 
         var source = _audioManager.CreateAudioSource(resource);
-        if (source == null)
-            return;
-
-        source.Gain = AnnouncerVolume * SharedAudioSystem.VolumeToGain(ev.AudioParams.Volume);
-        source.Global = true;
-
-        if (_config.GetCVar(CCVars.AnnouncerDisableMultipleSounds))
+        if (source != null)
         {
-            foreach (var audioSource in AnnouncerSources.ToList())
-            {
-                audioSource.Dispose();
-                AnnouncerSources.Remove(audioSource);
-            }
+            source.Gain = AnnouncerVolume * SharedAudioSystem.VolumeToGain(ev.AudioParams.Volume);
+            source.Global = true;
         }
 
-        foreach (var audioSource in AnnouncerSources.ToList().Where(audioSource => !audioSource.Playing))
-        {
-            audioSource.Dispose();
-            AnnouncerSources.Remove(audioSource);
-        }
-
-        AnnouncerSources.Add(source);
-        source.StartPlaying();
+        AnnouncerSource?.Dispose();
+        AnnouncerSource = source;
+        AnnouncerSource?.StartPlaying();
     }
 }

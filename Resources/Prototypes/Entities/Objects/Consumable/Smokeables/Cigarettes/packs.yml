@@ -7,7 +7,6 @@
   - type: Sprite
     layers:
     - state: closed
-      map: ["closeLayer"]
     - state: open
       map: ["openLayer"]
       visible: false
@@ -76,7 +75,6 @@
   - type: Sprite
     layers:
     - state: closed
-      map: ["closeLayer"]
     - state: open
       map: ["openLayer"]
       visible: false
@@ -182,7 +180,7 @@
 
 - type: entity
   id: CigPackSyndicate
-  parent: [CigPackBase, BaseSyndicateContraband]
+  parent: CigPackBase
   name: Interdyne herbals packet
   description: Premium medicinal cigarettes from the Interdyne Corporation. Not endorsed by the Terra-Gov Surgeon General.
   components:
@@ -193,7 +191,7 @@
   - type: StorageFill
     contents:
     - id: CigaretteSyndicate
-      amount: 10
+      amount: 5
 
 - type: entity
   id: CigPackMixedMedical

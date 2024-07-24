@@ -1,4 +1,4 @@
-#MARK: Base
+# Base
 - type: entity
   id: N14VendingMachineStorageBase # This is for vending machines that are storage and not actual vending machines.
   parent: BaseMachinePowered
@@ -49,12 +49,6 @@
           SheetSteel1:
             min: 1
             max: 1
-          N14ScrapElectronic1:
-           min: 1
-           max: 3
-          Scrap1:
-           min: 2
-           max: 4
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
@@ -73,9 +67,10 @@
     enabled: false
     usesApcPower: true
   - type: PointLight
-    radius: 2.5
-    energy: 1
-    color: "#b34747"
+    enabled: false
+    castShadows: false
+    radius: 2
+    energy: 1.5
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
   - type: LitOnPowered
@@ -87,33 +82,27 @@
   - type: Appearance
   - type: LanguageKnowledge
     speaks:
-    - English
-    - Chinese
+    - GalacticCommon
     - RobotTalk
     understands:
-    - English
-    - Chinese
+    - GalacticCommon
     - RobotTalk
 
-#MARK: Nuka Vending
+#
+
 - type: entity
   parent: VendingMachine
   id: N14VendingMachineNukaCola
   name: Nuka-Cola machine
-  description: A Pre-War vending machine that dispenses Nuka-Cola Corporation branded beverages.
-  suffix: vendor, normal
+  description: A Pre-War vending machine that dispenses Nuka-Cola Corporation branded beverages. 
   components:
   - type: VendingMachine
     pack: NukaInventory
-    dispenseOnHitChance: 0.25
-    dispenseOnHitThreshold: 2
     offState: off
     brokenState: broken
     normalState: normal-unshaded
-    ejectState: eject-unshaded
-    denyState: deny-unshaded
-    ejectDelay: 1.9
-    initialStockQuality: 0.05
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/VendingMachines/nukacola.rsi
     layers:
@@ -126,78 +115,59 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: WiresVisuals
   - type: PointLight
-    radius: 2.5
-    energy: 1
+    radius: 1.5
+    energy: 1.6
     color: "#b34747"
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
 
-#MARK: Nuka Vending+
-- type: entity
-  parent: N14VendingMachineNukaCola
-  id: N14VendingMachineNukaColaGenerous
-  name: Nuka-Cola machine
-  description: A Pre-War vending machine that dispenses Nuka-Cola Corporation branded beverages.
-  suffix: vendor, generous
-  components:
-  - type: VendingMachine
-    pack: NukaInventory
-    dispenseOnHitChance: 0.25
-    dispenseOnHitThreshold: 2
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-    denyState: deny-unshaded
-    ejectDelay: 1.9
-    initialStockQuality: 0.30
-
-#MARK: Nuka Irradiated
 - type: entity
   parent: N14VendingMachineNukaCola
   id: N14VendingMachineNukaColaIrradiated
   name: Nuka-Cola machine
-  suffix: vendor, irradiated
-  description: A Pre-War vending machine that dispenses Nuka-Cola Corporation branded beverages.
+  suffix: irradiated
+  description: A Pre-War vending machine that dispenses Nuka-Cola Corporation branded beverages. 
   components:
   - type: VendingMachine
     pack: NukaRadInventory
     # Needs a run down variant of the sprite
 
-#MARK: Nuka Storage
+
+# vendors as storage type
 - type: entity
   parent: N14VendingMachineStorageBase
   id: N14VendingMachineNukaColaNew
   suffix: storage, empty
   name: Nuka-Cola machine
-  description: A Pre-War vending machine that dispenses Nuka-Cola Corporation branded beverages.
+  description: A Pre-War vending machine that dispenses Nuka-Cola Corporation branded beverages. 
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/VendingMachines/nukacola.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "normal-unshaded"
+    - state: "off"
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: WiresVisuals
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b34747"
   - type: Storage
     grid:
     - 0,0,3,3
     maxItemSize: Small
   - type: UserInterface
     interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
   - type: Transform
     anchored: true
-
-#MARK: Nuka Filled
+    
 - type: entity
   parent: N14VendingMachineNukaColaNew
   id: N14VendingMachineNukaColaNewFilled
@@ -231,35 +201,37 @@
         prob: 0.05
       - id: N14DrinkNukaColaWild
         prob: 0.05
-
-#MARK: Vim Storage
+        
 - type: entity
   parent: N14VendingMachineStorageBase
   id: N14VendingMachineVim
   suffix: storage, empty
   name: Vim machine
-  description: A Pre-War vending machine that dispenses Vim branded beverages.
+  description: A Pre-War vending machine that dispenses Vim branded beverages. 
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/VendingMachines/vim.rsi
     layers:
     - state: vimmachine
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b34747"
   - type: Storage
     grid:
     - 0,0,3,3
     maxItemSize: Small
   - type: UserInterface
     interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
   - type: Transform
     anchored: true
     noRot: false
-
-#MARK: Vim Filled
+    
 - type: entity
   parent: N14VendingMachineVim
   id: N14VendingMachineVimFilled
@@ -289,15 +261,14 @@
         prob: 0.05
       - id: N14DrinkVimQuartz
         prob: 0.05
-
-
-#MARK: Cig vendors
+        
+# Cigarette vendors
 - type: entity
   parent: BaseStructure
   id: N14VendingMachineCigarette
   suffix: storage, empty
   name: cigarette vendor
-  description: A Pre-War vending machine that dispenses cigarettes.
+  description: A Pre-War vending machine that dispenses cigarettes. 
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/VendingMachines/vendors.rsi
@@ -309,19 +280,18 @@
     maxItemSize: Normal
   - type: UserInterface
     interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
   - type: Transform
     anchored: true
-
-#MARK: Cig Filled
+    
 - type: entity
   parent: N14VendingMachineCigarette
   id: N14VendingMachineCigaretteFilled
-  suffix: storage, random
+  suffix: random
   components:
   - type: StorageFill
     contents:
@@ -341,12 +311,11 @@
         prob: 0.2
       - id: N14CigarettePackSalem
         prob: 0.2
-
-#MARK: Cig Republic
+        
 - type: entity
   parent: N14VendingMachineCigarette
   id: N14VendingMachineCigaretteFilledRepublic
-  suffix: storage, republics
+  suffix: republics
   name: Republics cig vendor
   description: A pre-war cigarette vendor that's been filled with Republic cigarette packs.
   components:

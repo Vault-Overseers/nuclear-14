@@ -1,28 +1,29 @@
-using Content.Shared.Paper;
-using Content.Shared.StoryGen;
+using Content.Server.RandomMetadata;
 
 namespace Content.Server.Paper;
 
 public sealed class PaperRandomStorySystem : EntitySystem
 {
-    [Dependency] private readonly StoryGeneratorSystem _storyGen = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
+
+    [Dependency] private readonly RandomMetadataSystem _randomMeta = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PaperRandomStoryComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<PaperRandomStoryComponent, MapInitEvent>(OnMapinit);
     }
 
-    private void OnMapInit(Entity<PaperRandomStoryComponent> paperStory, ref MapInitEvent ev)
+    private void OnMapinit(Entity<PaperRandomStoryComponent> paperStory, ref MapInitEvent ev)
     {
         if (!TryComp<PaperComponent>(paperStory, out var paper))
             return;
 
-        if (!_storyGen.TryGenerateStoryFromTemplate(paperStory.Comp.Template, out var story))
+        if (paperStory.Comp.StorySegments == null)
             return;
 
-        _paper.SetContent((paperStory.Owner, paper), story);
+        var story = _randomMeta.GetRandomFromSegments(paperStory.Comp.StorySegments, paperStory.Comp.StorySeparator);
+
+        paper.Content += $"\n{story}";
     }
 }

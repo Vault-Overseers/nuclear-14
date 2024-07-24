@@ -1,33 +1,28 @@
 using System.Collections.Generic;
-using System.Linq;
 using Content.Server.Announcements.Systems;
 using Content.Server.StationEvents;
 using Content.Shared.Announcements.Prototypes;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Localization;
-using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.Announcers;
 
-/// <summary>
-///     Checks if every station event wanting the announcerSystem to send messages has a localization string
-///     If an event doesn't have startAnnouncement or endAnnouncement set to true
-///      it will be expected for that system to handle the announcements if it wants them
-/// </summary>
 [TestFixture]
 [TestOf(typeof(AnnouncerPrototype))]
 public sealed class AnnouncerLocalizationTest
 {
-    /// <inheritdoc cref="AnnouncerLocalizationTest"/>
     [Test]
     public async Task TestEventLocalization()
     {
+        // Checks if every station event wanting the announcerSystem to send messages has a localization string
+        // If an event doesn't have startAnnouncement or endAnnouncement set to true
+        //  it will be expected for that system to handle the announcements if it wants them
+
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
 
         var locale = server.ResolveDependency<ILocalizationManager>();
         var entSysMan = server.ResolveDependency<IEntitySystemManager>();
-        var proto = server.ResolveDependency<IPrototypeManager>();
         var announcer = entSysMan.GetEntitySystem<AnnouncerSystem>();
         var events = entSysMan.GetEntitySystem<EventManagerSystem>();
 
@@ -36,34 +31,29 @@ public sealed class AnnouncerLocalizationTest
             var succeeded = true;
             var why = new List<string>();
 
-            foreach (var announcerProto in proto.EnumeratePrototypes<AnnouncerPrototype>().OrderBy(a => a.ID))
+            foreach (var ev in events.AllEvents())
             {
-                foreach (var ev in events.AllEvents())
+                if (ev.Value.StartAnnouncement)
                 {
-                    if (ev.Value.StartAnnouncement)
-                    {
-                        var announcementId = announcer.GetAnnouncementId(ev.Key.ID);
-                        var eventLocaleString = announcer.GetAnnouncementMessage(announcementId, announcerProto.ID)
-                            ?? announcer.GetEventLocaleString(announcementId);
+                    var announcementId = announcer.GetAnnouncementId(ev.Key.ID);
+                    var eventLocaleString = announcer.GetEventLocaleString(announcementId);
 
-                        if (locale.GetString(eventLocaleString) == eventLocaleString)
-                        {
-                            succeeded = false;
-                            why.Add($"\"{announcerProto.ID}\", \"{announcementId}\": \"{eventLocaleString}\"");
-                        }
+                    if (locale.GetString(eventLocaleString) == eventLocaleString)
+                    {
+                        succeeded = false;
+                        why.Add($"\"{announcementId}\": \"{eventLocaleString}\"");
                     }
+                }
 
-                    if (ev.Value.EndAnnouncement)
+                if (ev.Value.EndAnnouncement)
+                {
+                    var announcementId = announcer.GetAnnouncementId(ev.Key.ID, true);
+                    var eventLocaleString = announcer.GetEventLocaleString(announcementId);
+
+                    if (locale.GetString(eventLocaleString) == eventLocaleString)
                     {
-                        var announcementId = announcer.GetAnnouncementId(ev.Key.ID, true);
-                        var eventLocaleString = announcer.GetAnnouncementMessage(announcementId, announcerProto.ID)
-                            ?? announcer.GetEventLocaleString(announcementId);
-
-                        if (locale.GetString(eventLocaleString) == eventLocaleString)
-                        {
-                            succeeded = false;
-                            why.Add($"\"{announcerProto.ID}\", \"{announcementId}\": \"{eventLocaleString}\"");
-                        }
+                        succeeded = false;
+                        why.Add($"\"{announcementId}\": \"{eventLocaleString}\"");
                     }
                 }
             }

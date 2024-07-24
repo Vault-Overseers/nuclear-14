@@ -1,17 +1,15 @@
 using Content.Shared.ActionBlocker;
-using Content.Shared.Emoting;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Movement.Pulling.Systems;
-using Content.Shared.Speech;
 using Content.Shared.Throwing;
 
 namespace Content.Shared.Administration;
 
-public abstract class SharedAdminFrozenSystem : EntitySystem
+public sealed class AdminFrozenSystem : EntitySystem
 {
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
@@ -30,16 +28,6 @@ public abstract class SharedAdminFrozenSystem : EntitySystem
         SubscribeLocalEvent<AdminFrozenComponent, PullAttemptEvent>(OnPullAttempt);
         SubscribeLocalEvent<AdminFrozenComponent, AttackAttemptEvent>(OnAttempt);
         SubscribeLocalEvent<AdminFrozenComponent, ChangeDirectionAttemptEvent>(OnAttempt);
-        SubscribeLocalEvent<AdminFrozenComponent, EmoteAttemptEvent>(OnEmoteAttempt);
-        SubscribeLocalEvent<AdminFrozenComponent, SpeakAttemptEvent>(OnSpeakAttempt);
-    }
-
-    private void OnSpeakAttempt(EntityUid uid, AdminFrozenComponent component, SpeakAttemptEvent args)
-    {
-        if (!component.Muted)
-            return;
-
-        args.Cancel();
     }
 
     private void OnAttempt(EntityUid uid, AdminFrozenComponent component, CancellableEntityEventArgs args)
@@ -73,11 +61,5 @@ public abstract class SharedAdminFrozenSystem : EntitySystem
     private void UpdateCanMove(EntityUid uid, AdminFrozenComponent component, EntityEventArgs args)
     {
         _blocker.UpdateCanMove(uid);
-    }
-
-    private void OnEmoteAttempt(EntityUid uid, AdminFrozenComponent component, EmoteAttemptEvent args)
-    {
-        if (component.Muted)
-            args.Cancel();
     }
 }

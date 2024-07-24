@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Server.Audio;
-using Content.Server.Construction;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
@@ -19,8 +18,6 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.Localizations;
-using Content.Shared.Power;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -33,7 +30,6 @@ public sealed class ThrusterSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
 
     // Essentially whenever thruster enables we update the shuttle's available impulses which are used for movement.
     // This is done for each direction available.
@@ -55,9 +51,6 @@ public sealed class ThrusterSystem : EntitySystem
 
         SubscribeLocalEvent<ThrusterComponent, ExaminedEvent>(OnThrusterExamine);
 
-        SubscribeLocalEvent<ThrusterComponent, RefreshPartsEvent>(OnRefreshParts);
-        SubscribeLocalEvent<ThrusterComponent, UpgradeExamineEvent>(OnUpgradeExamine);
-
         SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
     }
 
@@ -74,9 +67,8 @@ public sealed class ThrusterSystem : EntitySystem
                 EntityManager.TryGetComponent(uid, out TransformComponent? xform) &&
                 xform.Anchored)
             {
-                var nozzleLocalization = ContentLocalizationManager.FormatDirection(xform.LocalRotation.Opposite().ToWorldVec().GetDir()).ToLower();
                 var nozzleDir = Loc.GetString("thruster-comp-nozzle-direction",
-                    ("direction", nozzleLocalization));
+                    ("direction", xform.LocalRotation.Opposite().ToWorldVec().GetDir().ToString().ToLowerInvariant()));
 
                 args.PushMarkup(nozzleDir);
 
@@ -97,41 +89,38 @@ public sealed class ThrusterSystem : EntitySystem
 
     private void OnShuttleTileChange(EntityUid uid, ShuttleComponent component, ref TileChangedEvent args)
     {
-        foreach (var change in args.Changes)
+        // If the old tile was space but the new one isn't then disable all adjacent thrusters
+        if (args.NewTile.IsSpace(_tileDefManager) || !args.OldTile.IsSpace(_tileDefManager))
+            return;
+
+        var tilePos = args.NewTile.GridIndices;
+        var grid = Comp<MapGridComponent>(uid);
+        var xformQuery = GetEntityQuery<TransformComponent>();
+        var thrusterQuery = GetEntityQuery<ThrusterComponent>();
+
+        for (var x = -1; x <= 1; x++)
         {
-            // If the old tile was space but the new one isn't then disable all adjacent thrusters
-            if (change.NewTile.IsSpace(_tileDefManager) || !change.OldTile.IsSpace(_tileDefManager))
-                return;
-
-            var tilePos = change.GridIndices;
-            var grid = Comp<MapGridComponent>(uid);
-            var xformQuery = GetEntityQuery<TransformComponent>();
-            var thrusterQuery = GetEntityQuery<ThrusterComponent>();
-
-            for (var x = -1; x <= 1; x++)
+            for (var y = -1; y <= 1; y++)
             {
-                for (var y = -1; y <= 1; y++)
+                if (x != 0 && y != 0)
+                    continue;
+
+                var checkPos = tilePos + new Vector2i(x, y);
+                var enumerator = grid.GetAnchoredEntitiesEnumerator(checkPos);
+
+                while (enumerator.MoveNext(out var ent))
                 {
-                    if (x != 0 && y != 0)
+                    if (!thrusterQuery.TryGetComponent(ent.Value, out var thruster) || !thruster.RequireSpace)
                         continue;
 
-                    var checkPos = tilePos + new Vector2i(x, y);
-                    var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, grid, checkPos);
+                    // Work out if the thruster is facing this direction
+                    var xform = xformQuery.GetComponent(ent.Value);
+                    var direction = xform.LocalRotation.ToWorldVec();
 
-                    while (enumerator.MoveNext(out var ent))
-                    {
-                        if (!thrusterQuery.TryGetComponent(ent.Value, out var thruster) || !thruster.RequireSpace)
-                            continue;
+                    if (new Vector2i((int) direction.X, (int) direction.Y) != new Vector2i(x, y))
+                        continue;
 
-                        // Work out if the thruster is facing this direction
-                        var xform = xformQuery.GetComponent(ent.Value);
-                        var direction = xform.LocalRotation.ToWorldVec();
-
-                        if (new Vector2i((int)direction.X, (int)direction.Y) != new Vector2i(x, y))
-                            continue;
-
-                        DisableThruster(ent.Value, thruster, xform.GridUid);
-                    }
+                    DisableThruster(ent.Value, thruster, xform.GridUid);
                 }
             }
         }
@@ -139,20 +128,15 @@ public sealed class ThrusterSystem : EntitySystem
 
     private void OnActivateThruster(EntityUid uid, ThrusterComponent component, ActivateInWorldEvent args)
     {
-        if (args.Handled || !args.Complex)
-            return;
-
         component.Enabled ^= true;
 
         if (!component.Enabled)
         {
             DisableThruster(uid, component);
-            args.Handled = true;
         }
         else if (CanEnable(uid, component))
         {
             EnableThruster(uid, component);
-            args.Handled = true;
         }
     }
 
@@ -191,8 +175,8 @@ public sealed class ThrusterSystem : EntitySystem
             return;
         }
 
-        var oldDirection = (int)args.OldRotation.GetCardinalDir() / 2;
-        var direction = (int)args.NewRotation.GetCardinalDir() / 2;
+        var oldDirection = (int) args.OldRotation.GetCardinalDir() / 2;
+        var direction = (int) args.NewRotation.GetCardinalDir() / 2;
         var oldShuttleComponent = shuttleComponent;
 
         if (args.ParentChanged)
@@ -280,6 +264,11 @@ public sealed class ThrusterSystem : EntitySystem
             return;
         }
 
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower))
+        {
+            apcPower.NeedsPower = true;
+        }
+
         component.IsOn = true;
 
         if (!EntityManager.TryGetComponent(xform.GridUid, out ShuttleComponent? shuttleComponent))
@@ -290,7 +279,7 @@ public sealed class ThrusterSystem : EntitySystem
         switch (component.Type)
         {
             case ThrusterType.Linear:
-                var direction = (int)xform.LocalRotation.GetCardinalDir() / 2;
+                var direction = (int) xform.LocalRotation.GetCardinalDir() / 2;
 
                 shuttleComponent.LinearThrust[direction] += component.Thrust;
                 DebugTools.Assert(!shuttleComponent.LinearThrusters[direction].Contains(uid));
@@ -302,7 +291,7 @@ public sealed class ThrusterSystem : EntitySystem
                 {
                     var shape = new PolygonShape();
                     shape.Set(component.BurnPoly);
-                    _fixtureSystem.TryCreateFixture(uid, shape, BurnFixture, hard: false, collisionLayer: (int)CollisionGroup.FullTileMask, body: physicsComponent);
+                    _fixtureSystem.TryCreateFixture(uid, shape, BurnFixture, hard: false, collisionLayer: (int) CollisionGroup.FullTileMask, body: physicsComponent);
                 }
 
                 break;
@@ -342,7 +331,7 @@ public sealed class ThrusterSystem : EntitySystem
         foreach (var dir in new[]
                      { Direction.South, Direction.East, Direction.North, Direction.West })
         {
-            var index = (int)dir / 2;
+            var index = (int) dir / 2;
             var pop = shuttle.LinearThrusters[index];
             var totalThrust = 0f;
 
@@ -382,13 +371,18 @@ public sealed class ThrusterSystem : EntitySystem
         if (!EntityManager.TryGetComponent(gridId, out ShuttleComponent? shuttleComponent))
             return;
 
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower))
+        {
+            apcPower.NeedsPower = false;
+        }
+
         // Logger.DebugS("thruster", $"Disabled thruster {uid}");
 
         switch (component.Type)
         {
             case ThrusterType.Linear:
                 angle ??= xform.LocalRotation;
-                var direction = (int)angle.Value.GetCardinalDir() / 2;
+                var direction = (int) angle.Value.GetCardinalDir() / 2;
 
                 shuttleComponent.LinearThrust[direction] -= component.Thrust;
                 DebugTools.Assert(shuttleComponent.LinearThrusters[direction].Contains(uid));
@@ -434,7 +428,7 @@ public sealed class ThrusterSystem : EntitySystem
 
         var xform = Transform(uid);
 
-        if (!xform.Anchored || !this.IsPowered(uid, EntityManager))
+        if (!xform.Anchored ||!this.IsPowered(uid, EntityManager))
         {
             return false;
         }
@@ -451,8 +445,7 @@ public sealed class ThrusterSystem : EntitySystem
             return true;
 
         var (x, y) = xform.LocalPosition + xform.LocalRotation.Opposite().ToWorldVec();
-        var mapGrid = Comp<MapGridComponent>(xform.GridUid.Value);
-        var tile = _mapSystem.GetTileRef(xform.GridUid.Value, mapGrid, new Vector2i((int)Math.Floor(x), (int)Math.Floor(y)));
+        var tile = Comp<MapGridComponent>(xform.GridUid.Value).GetTileRef(new Vector2i((int) Math.Floor(x), (int) Math.Floor(y)));
 
         return tile.Tile.IsSpace();
     }
@@ -587,28 +580,10 @@ public sealed class ThrusterSystem : EntitySystem
         }
     }
 
-    private void OnRefreshParts(EntityUid uid, ThrusterComponent component, RefreshPartsEvent args)
-    {
-        if (component.IsOn) // safely disable thruster to prevent negative thrust
-            DisableThruster(uid, component);
-
-        var thrustRating = args.PartRatings[component.MachinePartThrust];
-
-        component.Thrust = component.BaseThrust * MathF.Pow(component.PartRatingThrustMultiplier, thrustRating - 1);
-
-        if (component.Enabled && CanEnable(uid, component))
-            EnableThruster(uid, component);
-    }
-
-    private void OnUpgradeExamine(EntityUid uid, ThrusterComponent component, UpgradeExamineEvent args)
-    {
-        args.AddPercentageUpgrade("thruster-comp-upgrade-thrust", component.Thrust / component.BaseThrust);
-    }
-
     #endregion
 
     private int GetFlagIndex(DirectionFlag flag)
     {
-        return (int)Math.Log2((int)flag);
+        return (int) Math.Log2((int) flag);
     }
 }

@@ -1,61 +1,75 @@
 using Content.Shared.Language;
-using Content.Shared.Language.Components;
 using Content.Shared.Language.Events;
 using Content.Shared.Language.Systems;
-using Robust.Client.Player;
-using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
+using Robust.Client;
 
 namespace Content.Client.Language.Systems;
 
+/// <summary>
+///   Client-side language system.
+/// </summary>
+/// <remarks>
+///   Unlike the server, the client is not aware of other entities' languages; it's only notified about the entity that it posesses.
+///   Due to that, this system stores such information in a static manner.
+/// </remarks>
 public sealed class LanguageSystem : SharedLanguageSystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IBaseClient _client = default!;
 
     /// <summary>
-    ///     Invoked when the languages of the local player entity change, for use in UI.
+    ///   The current language of the entity currently possessed by the player.
     /// </summary>
-    public event Action? OnLanguagesChanged;
+    public string CurrentLanguage { get; private set; } = default!;
+    /// <summary>
+    ///   The list of languages the currently possessed entity can speak.
+    /// </summary>
+    public List<string> SpokenLanguages { get; private set; } = new();
+    /// <summary>
+    ///   The list of languages the currently possessed entity can understand.
+    /// </summary>
+    public List<string> UnderstoodLanguages { get; private set; } = new();
 
     public override void Initialize()
     {
-        _playerManager.LocalPlayerAttached += NotifyUpdate;
-        SubscribeLocalEvent<LanguageSpeakerComponent, ComponentHandleState>(OnHandleState);
+        base.Initialize();
+
+        SubscribeNetworkEvent<LanguagesUpdatedMessage>(OnLanguagesUpdated);
+        _client.RunLevelChanged += OnRunLevelChanged;
     }
 
-    private void OnHandleState(Entity<LanguageSpeakerComponent> ent, ref ComponentHandleState args)
+    private void OnLanguagesUpdated(LanguagesUpdatedMessage message)
     {
-        if (args.Current is not LanguageSpeakerComponent.State state)
-            return;
+        CurrentLanguage = message.CurrentLanguage;
+        SpokenLanguages = message.Spoken;
+        UnderstoodLanguages = message.Understood;
+    }
 
-        ent.Comp.CurrentLanguage = state.CurrentLanguage;
-        ent.Comp.SpokenLanguages = state.SpokenLanguages;
-        ent.Comp.UnderstoodLanguages = state.UnderstoodLanguages;
-
-        if (ent.Owner == _playerManager.LocalEntity)
-            NotifyUpdate(ent);
+    private void OnRunLevelChanged(object? sender, RunLevelChangedEventArgs args)
+    {
+        // Request an update when entering a game
+        if (args.NewLevel == ClientRunLevel.InGame)
+            RequestStateUpdate();
     }
 
     /// <summary>
-    ///     Returns the LanguageSpeakerComponent of the local player entity.
-    ///     Will return null if the player does not have an entity, or if the client has not yet received the component state.
+    ///   Sends a network request to the server to update this system's state.
+    ///   The server may ignore the said request if the player is not possessing an entity.
     /// </summary>
-    public LanguageSpeakerComponent? GetLocalSpeaker()
+    public void RequestStateUpdate()
     {
-        return CompOrNull<LanguageSpeakerComponent>(_playerManager.LocalEntity);
+        RaiseNetworkEvent(new RequestLanguagesMessage());
     }
 
-    public void RequestSetLanguage(ProtoId<LanguagePrototype> language)
+    public void RequestSetLanguage(LanguagePrototype language)
     {
-        if (GetLocalSpeaker()?.CurrentLanguage?.Equals(language) == true)
+        if (language.ID == CurrentLanguage)
             return;
 
-        RaiseNetworkEvent(new LanguagesSetMessage(language));
-    }
+        RaiseNetworkEvent(new LanguagesSetMessage(language.ID));
 
-    private void NotifyUpdate(EntityUid localPlayer)
-    {
-        RaiseLocalEvent(localPlayer, new LanguagesUpdateEvent(), broadcast: true);
-        OnLanguagesChanged?.Invoke();
+        // May cause some minor desync...
+        // So to reduce the probability of desync, we replicate the change locally too
+        if (SpokenLanguages.Contains(language.ID))
+            CurrentLanguage = language.ID;
     }
 }

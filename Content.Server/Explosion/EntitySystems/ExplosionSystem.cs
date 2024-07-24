@@ -16,8 +16,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Projectiles;
 using Content.Shared.Throwing;
-using Content.Shared.Explosion.Components;
-using Content.Shared.Explosion.EntitySystems;
 using Robust.Server.GameStates;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
@@ -28,11 +26,10 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Robust.Server.GameObjects;
 
 namespace Content.Server.Explosion.EntitySystems;
 
-public sealed partial class ExplosionSystem : SharedExplosionSystem
+public sealed partial class ExplosionSystem : EntitySystem
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
@@ -53,10 +50,9 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
 
     private EntityQuery<TransformComponent> _transformQuery;
-    private EntityQuery<FlammableComponent> _flammableQuery;
+    private EntityQuery<DamageableComponent> _damageQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<ProjectileComponent> _projectileQuery;
 
@@ -96,6 +92,8 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnReset);
 
+        SubscribeLocalEvent<ExplosionResistanceComponent, ArmorExamineEvent>(OnArmorExamine);
+
         // Handled by ExplosionSystem.Processing.cs
         SubscribeLocalEvent<MapChangedEvent>(OnMapChanged);
 
@@ -106,7 +104,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         InitVisuals();
 
         _transformQuery = GetEntityQuery<TransformComponent>();
-        _flammableQuery = GetEntityQuery<FlammableComponent>();
+        _damageQuery = GetEntityQuery<DamageableComponent>();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _projectileQuery = GetEntityQuery<ProjectileComponent>();
     }
@@ -127,15 +125,6 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         base.Shutdown();
         _nodeGroupSystem.PauseUpdating = false;
         _pathfindingSystem.PauseUpdating = false;
-    }
-
-    public void SetExplosionResistance(EntityUid entityUid, float newCoefficient, ExplosionResistanceComponent? component = null) // Goobstation - Blob
-    {
-        if (!Resolve(entityUid, ref component))
-            return;
-
-        component.DamageCoefficient = newCoefficient;
-        Dirty(entityUid, component);
     }
 
     private void RelayedResistance(EntityUid uid, ExplosionResistanceComponent component,
@@ -171,7 +160,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         if (explosive.Exploded)
             return;
 
-        explosive.Exploded = !explosive.Repeatable;
+        explosive.Exploded = true;
 
         // Override the explosion intensity if optional arguments were provided.
         if (radius != null)
@@ -264,7 +253,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         var posFound = _transformSystem.TryGetMapOrGridCoordinates(uid, out var gridPos, pos);
 
-        QueueExplosion(mapPos, typeId, totalIntensity, slope, maxTileIntensity, uid, tileBreakScale, maxTileBreak, canCreateVacuum, addLog: false);
+        QueueExplosion(mapPos, typeId, totalIntensity, slope, maxTileIntensity, tileBreakScale, maxTileBreak, canCreateVacuum, addLog: false);
 
         if (!addLog)
             return;
@@ -292,7 +281,6 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         float totalIntensity,
         float slope,
         float maxTileIntensity,
-        EntityUid? cause,
         float tileBreakScale = 1f,
         int maxTileBreak = int.MaxValue,
         bool canCreateVacuum = true,
@@ -336,8 +324,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             MaxTileIntensity = maxTileIntensity,
             TileBreakScale = tileBreakScale,
             MaxTileBreak = maxTileBreak,
-            CanCreateVacuum = canCreateVacuum,
-            Cause = cause
+            CanCreateVacuum = canCreateVacuum
         };
         _explosionQueue.Enqueue(boom);
         _queuedExplosions.Add(boom);
@@ -406,8 +393,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             queued.CanCreateVacuum,
             EntityManager,
             _mapManager,
-            visualEnt,
-            queued.Cause);
+            visualEnt);
     }
 
     private void CameraShake(float range, MapCoordinates epicenter, float totalIntensity)
@@ -420,7 +406,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             if (player.AttachedEntity is not EntityUid uid)
                 continue;
 
-            var playerPos = _transformSystem.GetWorldPosition(player.AttachedEntity!.Value);
+            var playerPos = Transform(player.AttachedEntity!.Value).WorldPosition;
             var delta = epicenter.Position - playerPos;
 
             if (delta.EqualsApprox(Vector2.Zero))
@@ -431,5 +417,13 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             if (effect > 0.01f)
                 _recoilSystem.KickCamera(uid, -delta.Normalized() * effect);
         }
+    }
+
+    private void OnArmorExamine(EntityUid uid, ExplosionResistanceComponent component, ref ArmorExamineEvent args)
+    {
+        var value = MathF.Round((1f - component.DamageCoefficient) * 100, 1);
+
+        args.Msg.PushNewline();
+        args.Msg.AddMarkup(Loc.GetString(component.Examine, ("value", value)));
     }
 }

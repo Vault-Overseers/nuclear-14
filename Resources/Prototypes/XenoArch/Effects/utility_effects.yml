@@ -199,11 +199,6 @@
     makeSentient: true
     name: ghost-role-information-artifact-name
     description: ghost-role-information-artifact-description
-    rules: ghost-role-information-freeagent-rules
-    mindRoles:
-    - MindRoleGhostRoleFreeAgent
-    raffle:
-      settings: default
   - type: GhostTakeoverAvailable
   - type: MovementSpeedModifier
     baseWalkSpeed: 0.25
@@ -219,13 +214,13 @@
   permanentComponents:
   - type: UserInterface
     interfaces:
-        enum.SignalLinkerUiKey.Key:
-          type: SignalPortSelectorBoundUserInterface
+      - key: enum.SignalLinkerUiKey.Key
+        type: SignalPortSelectorBoundUserInterface
   - type: ToolTileCompatible
   - type: Tool
     qualities:
     - Screwing
-    speedModifier: 2 # Very powerful multitool to balance out the desire to sell or scrap for points
+    speed: 2 # Very powerful multitool to balance out the desire to sell or scrap for points
     useSound: /Audio/Items/drill_use.ogg
   - type: Tag
     tags:

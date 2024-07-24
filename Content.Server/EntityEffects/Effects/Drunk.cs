@@ -1,10 +1,10 @@
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Drunk;
-using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.EntityEffects.Effects;
+namespace Content.Server.Chemistry.ReagentEffects;
 
-public sealed partial class Drunk : EntityEffect
+public sealed partial class Drunk : ReagentEffect
 {
     /// <summary>
     ///     BoozePower is how long each metabolism cycle will make the drunk effect last for.
@@ -21,14 +21,13 @@ public sealed partial class Drunk : EntityEffect
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("reagent-effect-guidebook-drunk", ("chance", Probability));
 
-    public override void Effect(EntityEffectBaseArgs args)
+    public override void Effect(ReagentEffectArgs args)
     {
         var boozePower = BoozePower;
 
-        if (args is EntityEffectReagentArgs reagentArgs)
-            boozePower *= reagentArgs.Scale.Float();
-        
+        boozePower *= Math.Max(args.Scale, 1);
+
         var drunkSys = args.EntityManager.EntitySysManager.GetEntitySystem<SharedDrunkSystem>();
-        drunkSys.TryApplyDrunkenness(args.TargetEntity, boozePower, SlurSpeech);
+        drunkSys.TryApplyDrunkenness(args.SolutionEntity, boozePower, SlurSpeech);
     }
 }

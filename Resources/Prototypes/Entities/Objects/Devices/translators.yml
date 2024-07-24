@@ -1,6 +1,6 @@
 # Translator that doesn't need power to work
 - type: entity
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   id: TranslatorUnpowered
   parent: BaseItem
   name: translator
@@ -32,11 +32,10 @@
 
 # Base translator that uses a power cell. Starts with an empty slot.
 - type: entity
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   id: TranslatorPoweredBase
   parent: [ TranslatorUnpowered, PowerCellSlotMediumItem ]
   components:
-  - type: ItemToggle
   - type: PowerCellDraw
     drawRate: 1
   - type: ItemSlots
@@ -46,14 +45,14 @@
 
 # Normal translator with medium power cell in it
 - type: entity
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   id: Translator
   parent: [ PowerCellSlotMediumItem, TranslatorPoweredBase ]
   suffix: Powered
 
 # Normal translator with a high power cell and special appearance
 - type: entity
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   id: TranslatorForeigner
   parent: [ PowerCellSlotHighItem, TranslatorPoweredBase ]
   name: foreigner's translator
@@ -68,13 +67,13 @@
   components:
   - type: HandheldTranslator
     spoken:
-    - TauCetiBasic
+    - GalacticCommon
     - Canilunzt
     understood:
-    - TauCetiBasic
+    - GalacticCommon
     - Canilunzt
     requires:
-    - TauCetiBasic
+    - GalacticCommon
     - Canilunzt
 
 - type: entity
@@ -85,13 +84,13 @@
   components:
   - type: HandheldTranslator
     spoken:
-    - TauCetiBasic
+    - GalacticCommon
     - Bubblish
     understood:
-    - TauCetiBasic
+    - GalacticCommon
     - Bubblish
     requires:
-    - TauCetiBasic
+    - GalacticCommon
     - Bubblish
 
 - type: entity
@@ -102,30 +101,30 @@
   components:
   - type: HandheldTranslator
     spoken:
-    - TauCetiBasic
+    - GalacticCommon
     - Nekomimetic
     understood:
-    - TauCetiBasic
+    - GalacticCommon
     - Nekomimetic
     requires:
-    - TauCetiBasic
+    - GalacticCommon
     - Nekomimetic
 
 - type: entity
   id: DraconicTranslator
   parent: [ TranslatorPoweredBase ]
-  name: Sinta'Unathi translator
-  description: Translates speech between Sinta'Unathi and Tau-Ceti Basic, making it easier to understand your local Unathi.
+  name: Draconic translator
+  description: Translates speech between Draconic and Galactic Common, making it easier to understand your local Uniathi.
   components:
   - type: HandheldTranslator
     spoken:
-    - TauCetiBasic
+    - GalacticCommon
     - Draconic
     understood:
-    - TauCetiBasic
+    - GalacticCommon
     - Draconic
     requires:
-    - TauCetiBasic
+    - GalacticCommon
     - Draconic
 
 - type: entity
@@ -136,13 +135,13 @@
   components:
   - type: HandheldTranslator
     spoken:
-    - TauCetiBasic
+    - GalacticCommon
     - SolCommon
     understood:
-    - TauCetiBasic
+    - GalacticCommon
     - SolCommon
     requires:
-    - TauCetiBasic
+    - GalacticCommon
     - SolCommon
 
 - type: entity
@@ -153,13 +152,13 @@
   components:
   - type: HandheldTranslator
     spoken:
-    - TauCetiBasic
+    - GalacticCommon
     - RootSpeak
     understood:
-    - TauCetiBasic
+    - GalacticCommon
     - RootSpeak
     requires:
-    - TauCetiBasic
+    - GalacticCommon
     - RootSpeak
 
 - type: entity
@@ -170,13 +169,13 @@
   components:
   - type: HandheldTranslator
     spoken:
-    - TauCetiBasic
+    - GalacticCommon
     - Moffic
     understood:
-    - TauCetiBasic
+    - GalacticCommon
     - Moffic
     requires:
-    - TauCetiBasic
+    - GalacticCommon
     - Moffic
 
 - type: entity
@@ -187,13 +186,13 @@
   components:
   - type: HandheldTranslator
     spoken:
-    - TauCetiBasic
+    - GalacticCommon
     - Xeno
     understood:
-    - TauCetiBasic
+    - GalacticCommon
     - Xeno
     requires:
-    - TauCetiBasic
+    - GalacticCommon
 
 - type: entity
   id: AnimalTranslator
@@ -216,41 +215,6 @@
     - Pig
     - Crab
     - Kobold
-    - Hissing
     requires:
-    - TauCetiBasic
+    - GalacticCommon
     setLanguageOnInteract: false
-
-- type: entity
-  id: ValyrianStandardTranslator
-  parent: [ TranslatorPoweredBase ]
-  name: Valyrian Standard translator
-  description: Translates speech between Valyrian Standard and Tau-Ceti Basic. For talking to Harpies!
-  components:
-  - type: HandheldTranslator
-    spoken:
-    - TauCetiBasic
-    - ValyrianStandard
-    understood:
-    - TauCetiBasic
-    - ValyrianStandard
-    requires:
-    - TauCetiBasic
-    - ValyrianStandard
-
-- type: entity
-  id: AzazibaTranslator
-  parent: [ TranslatorPoweredBase ]
-  name: Azaziba translator
-  description: Translates speech between Unathi and Azaziba. For Unathi to speak the Archaic form of their native tongue! # Intended for Admins Only, this item is for lore reasons not obtainable.
-  components:
-  - type: HandheldTranslator
-    spoken:
-    - Draconic
-    - Azaziba
-    understood:
-    - Draconic
-    - Azaziba
-    requires:
-    - Draconic
-    - Azaziba

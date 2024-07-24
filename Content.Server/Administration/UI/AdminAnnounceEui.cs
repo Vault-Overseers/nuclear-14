@@ -55,7 +55,8 @@ namespace Content.Server.Administration.UI
                             break;
                         // TODO: Per-station announcement support
                         case AdminAnnounceType.Station:
-                            _announcer.SendAnnouncement(_announcer.GetAnnouncementId("Announce"), doAnnounce.Announcement, doAnnounce.Announcer, colorOverride:Color.Gold);
+                            _announcer.SendAnnouncement(_announcer.GetAnnouncementId("Announce"), Filter.Broadcast(),
+                                doAnnounce.Announcement, doAnnounce.Announcer, Color.Gold);
                             break;
                     }
 

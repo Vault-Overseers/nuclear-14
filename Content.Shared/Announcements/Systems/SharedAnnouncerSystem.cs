@@ -66,19 +66,13 @@ public abstract class SharedAnnouncerSystem : EntitySystem
     public string GetAnnouncementId(string announcementId, bool ended = false)
     {
         // Replace the first letter with lowercase
-        var id = OopsConcat(char.ToLowerInvariant(announcementId[0]).ToString(), announcementId[1..]);
+        var id = char.ToLowerInvariant(announcementId[0]) + announcementId[1..];
 
         // If the event has ended, add "Complete" to the end
         if (ended)
             id += "Complete";
 
         return id;
-    }
-
-    private string OopsConcat(string a, string b)
-    {
-        // This exists to prevent Roslyn being clever and compiling something that fails sandbox checks.
-        return a + b;
     }
 
 
@@ -98,7 +92,7 @@ public abstract class SharedAnnouncerSystem : EntitySystem
             announcer.Announcements.First(a => a.ID == "fallback");
 
         // Return the announcer.BaseAudioParams if the announcementType doesn't have an override
-        return announcementType.AudioParams ?? announcer.BaseAudioParams ?? null; // For some reason the formatter doesn't warn me about "?? null" being redundant, so it stays for the funnies
+        return announcementType.AudioParams ?? announcer.BaseAudioParams ?? null; // For some reason the formatter doesn't warn me about "?? null" being redundant, so it stays
     }
 
     /// <summary>
@@ -123,7 +117,9 @@ public abstract class SharedAnnouncerSystem : EntitySystem
     /// </summary>
     /// <param name="announcementId">ID of the announcement from the announcer to get information from</param>
     /// <param name="announcerId">ID of the announcer to get information from</param>
-    public string? GetAnnouncementMessage(string announcementId, string announcerId)
+    /// <param name="localeArgs">Locale arguments to pass to the overwritten announcement</param>
+    public string? GetAnnouncementMessage(string announcementId, string announcerId,
+        params (string, object)[] localeArgs)
     {
         if (!_proto.TryIndex<AnnouncerPrototype>(announcerId, out var announcer))
             return null;
@@ -134,7 +130,7 @@ public abstract class SharedAnnouncerSystem : EntitySystem
             announcer.Announcements.First(a => a.ID == "fallback");
 
         // Return the announcementType.MessageOverride if it exists, otherwise return null
-        return announcementType.MessageOverride != null ? announcementType.MessageOverride : null;
+        return announcementType.MessageOverride != null ? Loc.GetString(announcementType.MessageOverride, localeArgs) : null;
     }
 
     /// <summary>

@@ -132,19 +132,10 @@ namespace Content.Server.Atmos.Piping.EntitySystems
             var ev = new AtmosDeviceUpdateEvent(_atmosphereSystem.AtmosTime, null, null);
             foreach (var device in _joinedDevices)
             {
-                var deviceGrid = Transform(device).GridUid;
-                if (HasComp<GridAtmosphereComponent>(deviceGrid))
-                {
-                    RejoinAtmosphere(device);
-                }
+                DebugTools.Assert(!HasComp<GridAtmosphereComponent>(Transform(device).GridUid));
                 RaiseLocalEvent(device, ref ev);
                 device.Comp.LastProcess = time;
             }
-        }
-
-        public bool IsJoinedOffGrid(Entity<AtmosDeviceComponent> device)
-        {
-            return _joinedDevices.Contains(device);
         }
     }
 }

@@ -5,6 +5,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Fluids.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 
 namespace Content.IntegrationTests.Tests.Fluids
 {
@@ -20,7 +21,8 @@ namespace Content.IntegrationTests.Tests.Fluids
 
             var testMap = await pair.CreateTestMap();
 
-            var spillSystem = server.System<PuddleSystem>();
+            var entitySystemManager = server.ResolveDependency<IEntitySystemManager>();
+            var spillSystem = entitySystemManager.GetEntitySystem<PuddleSystem>();
 
             await server.WaitAssertion(() =>
             {
@@ -44,19 +46,17 @@ namespace Content.IntegrationTests.Tests.Fluids
             var server = pair.Server;
 
             var testMap = await pair.CreateTestMap();
-            var grid = testMap.Grid;
+            var grid = testMap.Grid.Comp;
 
             var entitySystemManager = server.ResolveDependency<IEntitySystemManager>();
-            var spillSystem = server.System<PuddleSystem>();
-            var mapSystem = server.System<SharedMapSystem>();
+            var spillSystem = entitySystemManager.GetEntitySystem<PuddleSystem>();
 
             // Remove all tiles
             await server.WaitPost(() =>
             {
-                var tiles = mapSystem.GetAllTiles(grid.Owner, grid.Comp);
-                foreach (var tile in tiles)
+                foreach (var tile in grid.GetAllTiles())
                 {
-                    mapSystem.SetTile(grid, tile.GridIndices, Tile.Empty);
+                    grid.SetTile(tile.GridIndices, Tile.Empty);
                 }
             });
 

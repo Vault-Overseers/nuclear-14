@@ -1,4 +1,4 @@
-using Robust.Shared.Audio;
+﻿using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.StationEvents.Components;
@@ -15,43 +15,43 @@ public sealed partial class StationEventComponent : Component
     public const float WeightHigh = 15.0f;
     public const float WeightVeryHigh = 20.0f;
 
-    [DataField]
+    [DataField("weight")]
     public float Weight = WeightNormal;
 
-    [DataField]
+    [DataField("startAnnouncement")]
     public bool StartAnnouncement;
 
-    [DataField]
+    [DataField("endAnnouncement")]
     public bool EndAnnouncement;
 
     /// <summary>
     ///     In minutes, when is the first round time this event can start
     /// </summary>
-    [DataField]
+    [DataField("earliestStart")]
     public int EarliestStart = 5;
 
     /// <summary>
     ///     In minutes, the amount of time before the same event can occur again
     /// </summary>
-    [DataField]
+    [DataField("reoccurrenceDelay")]
     public int ReoccurrenceDelay = 30;
 
     /// <summary>
     ///     How long after being added does the event start
     /// </summary>
-    [DataField]
+    [DataField("startDelay")]
     public TimeSpan StartDelay = TimeSpan.Zero;
 
     /// <summary>
     ///     How long the event lasts.
     /// </summary>
-    [DataField]
+    [DataField("duration")]
     public TimeSpan? Duration = TimeSpan.FromSeconds(1);
 
     /// <summary>
     ///     The max amount of time the event lasts.
     /// </summary>
-    [DataField]
+    [DataField("maxDuration")]
     public TimeSpan? MaxDuration;
 
     /// <summary>
@@ -60,13 +60,13 @@ public sealed partial class StationEventComponent : Component
     /// <remarks>
     ///     To avoid running deadly events with low-pop
     /// </remarks>
-    [DataField]
+    [DataField("minimumPlayers")]
     public int MinimumPlayers;
 
     /// <summary>
     ///     How many times this even can occur in a single round
     /// </summary>
-    [DataField]
+    [DataField("maxOccurrences")]
     public int? MaxOccurrences;
 
     /// <summary>

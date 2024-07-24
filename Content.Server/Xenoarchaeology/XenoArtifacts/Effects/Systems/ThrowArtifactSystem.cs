@@ -1,10 +1,9 @@
-using System.Numerics;
+﻿using System.Numerics;
 using Content.Server.Xenoarchaeology.XenoArtifacts.Effects.Components;
 using Content.Server.Xenoarchaeology.XenoArtifacts.Events;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Throwing;
-using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
@@ -17,7 +16,6 @@ public sealed class ThrowArtifactSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly TileSystem _tile = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -31,7 +29,7 @@ public sealed class ThrowArtifactSystem : EntitySystem
         if (TryComp<MapGridComponent>(xform.GridUid, out var grid))
         {
             var tiles = grid.GetTilesIntersecting(
-                Box2.CenteredAround(_transform.GetWorldPosition(xform), new Vector2(component.Range * 2, component.Range)));
+                Box2.CenteredAround(xform.WorldPosition, new Vector2(component.Range * 2, component.Range)));
 
             foreach (var tile in tiles)
             {
@@ -52,7 +50,7 @@ public sealed class ThrowArtifactSystem : EntitySystem
 
             var tempXform = Transform(ent);
 
-            var foo = _transform.GetMapCoordinates(ent, xform: tempXform).Position - _transform.GetMapCoordinates(uid, xform: xform).Position;
+            var foo = tempXform.MapPosition.Position - xform.MapPosition.Position;
             _throwing.TryThrow(ent, foo*2, component.ThrowStrength, uid, 0);
         }
     }

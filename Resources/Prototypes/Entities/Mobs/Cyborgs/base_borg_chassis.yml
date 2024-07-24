@@ -63,12 +63,12 @@
     locPrefix: silicon
   - type: UserInterface
     interfaces:
-      enum.SiliconLawsUiKey.Key:
-        type: SiliconLawBoundUserInterface
-      enum.BorgUiKey.Key:
-        type: BorgBoundUserInterface
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
+    - key: enum.SiliconLawsUiKey.Key
+      type: SiliconLawBoundUserInterface
+    - key: enum.BorgUiKey.Key
+      type: BorgBoundUserInterface
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
   - type: ActivatableUI
     key: enum.BorgUiKey.Key
   - type: SiliconLawBound
@@ -84,7 +84,6 @@
   - type: Hands
     showInHands: false
     disableExplosionRecursion: true
-  - type: ComplexInteraction
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
@@ -114,11 +113,6 @@
   - type: PowerCellSlot
     cellSlotId: cell_slot
     fitsInCharger: true
-  - type: ItemToggle
-    onUse: false # no item-borg toggling sorry
-  - type: AccessToggle
-  # TODO: refactor movement to just be based on toggle like speedboots but for the boots themselves
-  # TODO: or just have sentient speedboots be fast idk
   - type: PowerCellDraw
     drawRate: 0.6
   - type: ItemSlots
@@ -135,14 +129,11 @@
     proto: robot
   - type: Speech
     speechVerb: Robotic
-    speechSounds: Borg
+    speechSounds: Pai
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
   - type: UnblockableSpeech
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepBorg
   - type: Construction
     graph: Cyborg
     containers:
@@ -214,61 +205,29 @@
   - type: StandingState
   - type: Tag
     tags:
+    - ShoesRequiredStepTriggerImmune
     - DoorBumpOpener
-    - FootstepSound
     - CanPilot
-    - SiliconEmotes
   - type: Emoting
   - type: GuideHelp
     guides:
       - Cyborgs
-  - type: StepTriggerImmune
   - type: Eye
     visMask:
       - PsionicInvisibility
       - Normal
   - type: LanguageKnowledge
     speaks:
-    - TauCetiBasic
+    - GalacticCommon
     - RobotTalk
     understands:
-    - TauCetiBasic
+    - GalacticCommon
     - RobotTalk
-  - type: PsionicInsulation
-  - type: TwistedConstructionTarget
-    replacementProto: ConstructShell
-
-- type: entity
-  abstract: true
-  id: BaseBorgTransponder
-  components:
-  - type: BorgTransponder
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: CyborgControl
-    transmitFrequencyId: RoboticsConsole
-  - type: OnUseTimerTrigger
-    delay: 10
-    examinable: false
-    beepSound:
-      path: /Audio/Effects/Cargo/buzz_two.ogg
-      params:
-        volume: -4
-  # prevent any funnies if someone makes a cyborg item...
-  - type: AutomatedTimer
-  - type: ExplodeOnTrigger
-  # explosion does most of its damage in the center and less at the edges
-  - type: Explosive
-    explosionType: Minibomb
-    deleteAfterExplosion: false # let damage threshold gib the borg
-    totalIntensity: 30
-    intensitySlope: 20
-    maxIntensity: 20
-    canCreateVacuum: false # its for killing the borg not the station
+  - type: CanWalk
 
 - type: entity
   id: BaseBorgChassisNT
-  parent: [BaseBorgChassis, BaseBorgTransponder]
+  parent: BaseBorgChassis
   abstract: true
   components:
   - type: NpcFactionMember
@@ -280,38 +239,30 @@
     - AllAccessBorg
   - type: AccessReader
     access: [["Command"], ["Research"]]
-  - type: ShowJobIcons
-  - type: ShowMindShieldIcons
+  - type: ShowSecurityIcons
 
 - type: entity
   id: BaseBorgChassisSyndicate
   parent: BaseBorgChassis
   abstract: true
   components:
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: Access
-    tags:
-    - NuclearOperative
-    - SyndicateAgent
-  - type: AccessReader
-    access: [["SyndicateAgent"], ["NuclearOperative"]]
-  - type: SiliconLawProvider
-    laws: SyndicateStatic
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Binary
-    - Syndicate
-  - type: ActiveRadio
-    channels:
-    - Syndicate
-  - type: ShowSyndicateIcons
-  - type: MovementAlwaysTouching
-  - type: Speech
-    speechSounds: SyndieBorg
-    allowedEmotes:
-    - Laugh
-  - type: Vocal
-    sounds:
-      Unsexed: UnisexSiliconSyndicate
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Access
+      tags:
+       - NuclearOperative
+       - SyndicateAgent
+    - type: AccessReader
+      access: [["SyndicateAgent"], ["NuclearOperative"]]
+    - type: SiliconLawProvider
+      laws: SyndicateStatic
+    - type: IntrinsicRadioTransmitter
+      channels:
+        - Binary
+        - Syndicate
+    - type: ActiveRadio
+      channels:
+        - Syndicate
+    - type: ShowSyndicateIcons
+    - type: MovementAlwaysTouching

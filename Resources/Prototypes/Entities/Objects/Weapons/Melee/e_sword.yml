@@ -13,12 +13,10 @@
   - type: ItemToggleActiveSound
     activeSound:
       path: /Audio/Weapons/ebladehum.ogg
-  - type: ComponentToggler
-    components:
-    - type: Sharp
-    - type: DisarmMalus
-      malus: 0.6
+  - type: ItemToggleSharp
   - type: ItemToggleHot
+  - type: ItemToggleDisarmMalus
+    activatedDisarmMalus: 0.6
   - type: ItemToggleSize
     activatedSize: Huge
   - type: ItemToggleMeleeWeapon
@@ -37,17 +35,9 @@
         variation: 0.125
     activatedDamage:
         types:
-            Slash: 8
-            Heat: 10
+            Slash: 15
+            Heat: 15
             Structural: 20
-  - type: ItemToggleDamageOtherOnHit
-    activatedStaminaCost: 6
-  - type: ItemToggleEmbedPassiveDamage
-  - type: ItemToggleEmbeddableProjectile
-    activatedEmbedOnThrow: true
-  - type: ItemToggleThrowingAngle
-    activatedAngle: 225
-    deleteOnDeactivate: true
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_sword.rsi
     layers:
@@ -59,14 +49,10 @@
         map: [ "blade" ]
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: .8
+    attackRate: 1
     damage:
       types:
         Blunt: 4.5
-  - type: DamageOtherOnHit
-  - type: EmbeddableProjectile
-    embedOnThrow: false
-  - type: EmbedPassiveDamage
   - type: Item
     size: Small
     sprite: DeltaV/Objects/Weapons/Melee/e_sword.rsi # Delta-V
@@ -88,34 +74,12 @@
       right:
       - state: inhand-right-blade
         shader: unshaded
+  - type: DisarmMalus
+    malus: 0
   - type: Reflect
+    enabled: false
   - type: IgnitionSource
     temperature: 700
-  # Shitmed Change
-  - type: Scalpel
-    speed: 0.75
-  - type: Cautery
-    speed: 0.2
-  - type: SurgeryTool
-    startSound:
-      path: /Audio/Weapons/ebladehum.ogg
-    endSound:
-      path: /Audio/Weapons/eblade1.ogg
-      params:
-        variation: 0.250
-
-- type: entity
-  name: antique energy sword
-  parent: EnergySword
-  id: EnergySwordHoS
-  description: An elegant weapon fit for a prince, this otherwise plain silver hilt is engraved with, "My Love".
-  components:
-    - type: EnergySword
-      activatedColor: "#00CCFF"
-      colorOptions:
-       - "#00CCFF"
-    - type: StealTarget
-      stealGroup: HoSAntiqueWeapon
 
 - type: entity
   name: pen
@@ -124,6 +88,7 @@
   suffix: E-Dagger
   description: 'A dark ink pen.'
   components:
+  - type: EnergySword
   - type: ItemToggle
     soundActivate:
       path: /Audio/Weapons/ebladeon.ogg
@@ -141,19 +106,16 @@
         variation: 0.250
     activatedDamage:
         types:
-            Slash: 4
-            Heat: 8
+            Slash: 10
+            Heat: 10
     deactivatedSecret: true
   - type: ItemToggleActiveSound
     activeSound:
       path: /Audio/Weapons/ebladehum.ogg
       params:
         volume: -6
-  - type: ComponentToggler
-    components:
-    - type: Sharp
-    - type: DisarmMalus
-      malus: 0.4
+  - type: ItemToggleDisarmMalus
+    activatedDisarmMalus: 0.4
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_dagger.rsi
     layers:
@@ -170,21 +132,6 @@
     damage:
       types:
         Blunt: 1
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Piercing: 3
-    staminaCost: 3.5
-  - type: EmbeddableProjectile
-    offset: 0.3,0.0
-    removalTime: 0.0
-    embedOnThrow: true
-  - type: EmbedPassiveDamage
-    damage:
-      types:
-        Blunt: 0
-  - type: ThrowingAngle
-    angle: 315
   - type: Item
     size: Tiny
     sprite: Objects/Weapons/Melee/e_dagger.rsi
@@ -209,7 +156,6 @@
   - type: Tag
     tags:
     - Write
-    - NoPaint
   - type: DisarmMalus
     malus: 0
 
@@ -237,12 +183,15 @@
   id: EnergyCutlass
   description: An exotic energy weapon, brutal blade crackling with crudely harnessed plasma. #DeltaV - nicer description.
   components:
+  - type: EnergySword
   - type: ItemToggleMeleeWeapon
     activatedDamage:
         types:
             Slash: 10
             Heat: 12
     deactivatedSecret: true
+  - type: ItemToggleDisarmMalus
+    activatedDisarmMalus: 0.6
   - type: Sprite
     sprite: DeltaV/Objects/Weapons/Melee/e_cutlass.rsi # DeltaV
     layers:
@@ -276,10 +225,10 @@
   name: double-bladed energy sword
   parent: EnergySword
   id: EnergySwordDouble
-  description: Syndicate Command's intern thought that having only one blade on energy swords was not cool enough. This can be stored in pockets.
+  description: Syndicate Command Interns thought that having one blade on the energy sword was not enough. This can be stored in pockets.
   components:
+  - type: EnergySword
   - type: ItemToggle
-    onUse: false # wielding events control it instead
     soundActivate:
       path: /Audio/Weapons/ebladeon.ogg
       params:
@@ -296,24 +245,20 @@
         variation: 0.250
     activatedDamage:
         types:
-            Slash: 8
-            Heat: 13
+            Slash: 12
+            Heat: 12
             Structural: 15
   - type: ItemToggleActiveSound
     activeSound:
       path: /Audio/Weapons/ebladehum.ogg
       params:
         volume: 3
-  - type: ComponentToggler
-    components:
-    - type: Sharp
-    - type: DisarmMalus
-      malus: 0.7
+  - type: ItemToggleDisarmMalus
+    activatedDisarmMalus: 0.7
   - type: Wieldable
-    wieldSound: null # esword light sound instead
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: .6666
+    attackRate: 1.5
     angle: 100
     damage:
       types:
@@ -331,8 +276,7 @@
     size: Small
     sprite: Objects/Weapons/Melee/e_sword_double-inhands.rsi
   - type: Reflect
-    reflectProb: .80
-    minReflectProb: .65
+    reflectProb: .80 #DeltaV: 80% Energy Reflection but no ballistics.
     spread: 75
     reflects:
       - Energy #DeltaV: 80% Energy Reflection but no ballistics.

@@ -6,12 +6,9 @@ using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Buckle.Components;
-using Content.Shared.CCVar;
-using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Maps;
 using Content.Shared.Parallax;
-using Content.Shared.SegmentedEntity;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.StatusEffect;
@@ -36,6 +33,14 @@ public sealed partial class ShuttleSystem
      * This is a way to move a shuttle from one location to another, via an intermediate map for fanciness.
      */
 
+    public const float DefaultStartupTime = 5.5f;
+    public const float DefaultTravelTime = 20f;
+    public const float DefaultArrivalTime = 5f;
+    private const float FTLCooldown = 10f;
+    public const float FTLMassLimit = 300f;
+
+    // I'm too lazy to make CVars.
+
     private readonly SoundSpecifier _startupSound = new SoundPathSpecifier("/Audio/Effects/Shuttle/hyperspace_begin.ogg")
     {
         Params = AudioParams.Default.WithVolume(-5f),
@@ -46,12 +51,7 @@ public sealed partial class ShuttleSystem
         Params = AudioParams.Default.WithVolume(-5f),
     };
 
-    public float DefaultStartupTime;
-    public float DefaultTravelTime;
-    public float DefaultArrivalTime;
-    private float FTLCooldown;
-    public float FTLMassLimit;
-    private TimeSpan _hyperspaceKnockdownTime = TimeSpan.FromSeconds(5);
+    private readonly TimeSpan _hyperspaceKnockdownTime = TimeSpan.FromSeconds(5);
 
     /// <summary>
     /// Left-side of the station we're allowed to use
@@ -82,8 +82,6 @@ public sealed partial class ShuttleSystem
     private void InitializeFTL()
     {
         SubscribeLocalEvent<StationPostInitEvent>(OnStationPostInit);
-        SubscribeLocalEvent<FTLComponent, ComponentShutdown>(OnFtlShutdown);
-
         _bodyQuery = GetEntityQuery<BodyComponent>();
         _buckleQuery = GetEntityQuery<BuckleComponent>();
         _beaconQuery = GetEntityQuery<FTLBeaconComponent>();
@@ -91,19 +89,6 @@ public sealed partial class ShuttleSystem
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _statusQuery = GetEntityQuery<StatusEffectsComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
-
-        _cfg.OnValueChanged(CCVars.FTLStartupTime, time => DefaultStartupTime = time, true);
-        _cfg.OnValueChanged(CCVars.FTLTravelTime, time => DefaultTravelTime = time, true);
-        _cfg.OnValueChanged(CCVars.FTLArrivalTime, time => DefaultArrivalTime = time, true);
-        _cfg.OnValueChanged(CCVars.FTLCooldown, time => FTLCooldown = time, true);
-        _cfg.OnValueChanged(CCVars.FTLMassLimit, time => FTLMassLimit = time, true);
-        _cfg.OnValueChanged(CCVars.HyperspaceKnockdownTime, time => _hyperspaceKnockdownTime = TimeSpan.FromSeconds(time), true);
-    }
-
-    private void OnFtlShutdown(Entity<FTLComponent> ent, ref ComponentShutdown args)
-    {
-        Del(ent.Comp.VisualizerEntity);
-        ent.Comp.VisualizerEntity = null;
     }
 
     private void OnStationPostInit(ref StationPostInitEvent ev)
@@ -219,22 +204,16 @@ public sealed partial class ShuttleSystem
     /// </summary>
     public bool CanFTL(EntityUid shuttleUid, [NotNullWhen(false)] out string? reason)
     {
-        // Currently in FTL already
         if (HasComp<FTLComponent>(shuttleUid))
         {
             reason = Loc.GetString("shuttle-console-in-ftl");
             return false;
         }
 
-        if (TryComp<PhysicsComponent>(shuttleUid, out var shuttlePhysics))
+        if (TryComp(shuttleUid, out PhysicsComponent? shuttlePhysics) && shuttlePhysics.Mass > FTLMassLimit)
         {
-
-            // Too large to FTL
-            if (FTLMassLimit > 0 &&  shuttlePhysics.Mass > FTLMassLimit)
-            {
-                reason = Loc.GetString("shuttle-console-mass");
-                return false;
-            }
+            reason = Loc.GetString("shuttle-console-mass");
+            return false;
         }
 
         if (HasComp<PreventPilotComponent>(shuttleUid))
@@ -264,18 +243,15 @@ public sealed partial class ShuttleSystem
         ShuttleComponent component,
         EntityCoordinates coordinates,
         Angle angle,
-        float? startupTime = null,
-        float? hyperspaceTime = null,
+        float startupTime = DefaultStartupTime,
+        float hyperspaceTime = DefaultTravelTime,
         string? priorityTag = null)
     {
         if (!TrySetupFTL(shuttleUid, component, out var hyperspace))
             return;
 
-        startupTime ??= DefaultStartupTime;
-        hyperspaceTime ??= DefaultTravelTime;
-
-        hyperspace.StartupTime = startupTime.Value;
-        hyperspace.TravelTime = hyperspaceTime.Value;
+        hyperspace.StartupTime = startupTime;
+        hyperspace.TravelTime = hyperspaceTime;
         hyperspace.StateTime = StartEndTime.FromStartDuration(
             _gameTiming.CurTime,
             TimeSpan.FromSeconds(hyperspace.StartupTime));
@@ -299,19 +275,16 @@ public sealed partial class ShuttleSystem
         EntityUid shuttleUid,
         ShuttleComponent component,
         EntityUid target,
-        float? startupTime = null,
-        float? hyperspaceTime = null,
+        float startupTime = DefaultStartupTime,
+        float hyperspaceTime = DefaultTravelTime,
         string? priorityTag = null)
     {
         if (!TrySetupFTL(shuttleUid, component, out var hyperspace))
             return;
 
-        startupTime ??= DefaultStartupTime;
-        hyperspaceTime ??= DefaultTravelTime;
-
         var config = _dockSystem.GetDockingConfig(shuttleUid, target, priorityTag);
-        hyperspace.StartupTime = startupTime.Value;
-        hyperspace.TravelTime = hyperspaceTime.Value;
+        hyperspace.StartupTime = startupTime;
+        hyperspace.TravelTime = hyperspaceTime;
         hyperspace.StateTime = StartEndTime.FromStartDuration(
             _gameTiming.CurTime,
             TimeSpan.FromSeconds(hyperspace.StartupTime));
@@ -356,11 +329,7 @@ public sealed partial class ShuttleSystem
         component = AddComp<FTLComponent>(uid);
         component.State = FTLState.Starting;
         var audio = _audio.PlayPvs(_startupSound, uid);
-
-        if (audio == null)
-            return false;
-
-        audio!.Value.Component.Flags |= AudioFlags.GridAudio;
+        audio.Value.Component.Flags |= AudioFlags.GridAudio;
 
         if (_physicsQuery.TryGetComponent(uid, out var gridPhysics))
         {
@@ -439,16 +408,8 @@ public sealed partial class ShuttleSystem
         var comp = entity.Comp1;
         comp.StateTime = StartEndTime.FromCurTime(_gameTiming, DefaultArrivalTime);
         comp.State = FTLState.Arriving;
-
-        if (entity.Comp1.VisualizerProto != null)
-        {
-            comp.VisualizerEntity = SpawnAtPosition(entity.Comp1.VisualizerProto, entity.Comp1.TargetCoordinates);
-            var visuals = Comp<FtlVisualizerComponent>(comp.VisualizerEntity.Value);
-            visuals.Grid = entity.Owner;
-            Dirty(comp.VisualizerEntity.Value, visuals);
-            _transform.SetLocalRotation(comp.VisualizerEntity.Value, entity.Comp1.TargetAngle);
-            _pvs.AddGlobalOverride(comp.VisualizerEntity.Value);
-        }
+        // TODO: Arrival effects
+        // For now we'll just use the ss13 bubbles but we can do fancier.
 
         _thruster.DisableLinearThrusters(shuttle);
         _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.South);
@@ -534,11 +495,7 @@ public sealed partial class ShuttleSystem
 
         comp.TravelStream = _audio.Stop(comp.TravelStream);
         var audio = _audio.PlayPvs(_arrivalSound, uid);
-
-        if (audio == null)
-            return;
-
-        audio!.Value.Component.Flags |= AudioFlags.GridAudio;
+        audio.Value.Component.Flags |= AudioFlags.GridAudio;
         // TODO: Shitcode til engine fix
 
         if (_physicsQuery.TryGetComponent(uid, out var gridPhysics))
@@ -644,9 +601,7 @@ public sealed partial class ShuttleSystem
         var childEnumerator = xform.ChildEnumerator;
         while (childEnumerator.MoveNext(out var child))
         {
-            if (!_buckleQuery.TryGetComponent(child, out var buckle) || buckle.Buckled
-            || HasComp<SegmentedEntityComponent>(child)
-            || HasComp<SegmentedEntitySegmentComponent>(child))
+            if (!_buckleQuery.TryGetComponent(child, out var buckle) || buckle.Buckled)
                 continue;
 
             toKnock.Add(child);
@@ -908,8 +863,6 @@ public sealed partial class ShuttleSystem
 
                 if (_bodyQuery.TryGetComponent(ent, out var mob))
                 {
-                    _logger.Add(LogType.Gib, LogImpact.Extreme, $"{ToPrettyString(ent):player} got gibbed by the shuttle" +
-                                                                $" {ToPrettyString(uid)} arriving from FTL at {xform.Coordinates:coordinates}");
                     var gibs = _bobby.GibBody(ent, body: mob);
                     _immuneEnts.UnionWith(gibs);
                     continue;

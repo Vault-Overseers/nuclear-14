@@ -18,11 +18,12 @@
   - type: PaperLabelType
   - type: ActivatableUI
     key: enum.PaperUiKey.Key
+    closeOnHandDeselect: false
     requireHands: false
   - type: UserInterface
     interfaces:
-      enum.PaperUiKey.Key:
-        type: PaperBoundUserInterface
+    - key: enum.PaperUiKey.Key
+      type: PaperBoundUserInterface
   - type: Item
     size: Tiny
   - type: Tag
@@ -31,7 +32,6 @@
     - Trash
     - Paper
   - type: Appearance
-  - type: FaxableObject
   - type: PaperVisuals
   - type: Flammable
     fireSpread: true
@@ -160,16 +160,6 @@
     contentMargin: 32.0, 16.0, 32.0, 0.0
 
 - type: entity
-  name: note
-  description: A piece of white paper.
-  id: PaperWrittenPunpunNote
-  parent: PaperCaptainsThoughts
-  suffix: Punpun Note
-  components:
-    - type: Paper
-      content: I, Punpun, invoke my right to have all of my clones on the NT family vacation to the meat packaging plant one out of every 15 shifts.
-
-- type: entity
   name: cargo invoice
   parent: Paper
   id: PaperCargoInvoice
@@ -268,7 +258,7 @@
 - type: entity
   parent: Paper
   id: PaperWritten
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   components:
   - type: Paper
   - type: Sprite
@@ -280,8 +270,8 @@
     key: enum.PaperUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.PaperUiKey.Key:
-        type: PaperBoundUserInterface
+    - key: enum.PaperUiKey.Key
+      type: PaperBoundUserInterface
 
 - type: entity
   parent: Paper
@@ -332,14 +322,12 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 25
-  # Shitmed Change
-  - type: Tending
-    speed: 0.55
-  - type: SurgeryTool
-    startSound:
-      path: /Audio/_Shitmed/Medical/Surgery/retractor1.ogg
-    endSound:
-      path: /Audio/_Shitmed/Medical/Surgery/hemostat1.ogg
+
+- type: entity
+  parent: Pen
+  id: PenEmbeddable
+  abstract: true
+  components:
   - type: EmbeddableProjectile
     offset: 0.3,0.0
     removalTime: 0.0
@@ -349,17 +337,6 @@
     damage:
       types:
         Piercing: 3
-
-- type: entity
-  parent: Pen
-  id: PenEmbeddable
-  abstract: true
-  components:
-  - type: LandAtCursor
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Piercing: 5
 
 #TODO: I want the luxury pen to write a cool font like Merriweather in the future.
 
@@ -414,10 +391,6 @@
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
     state: pen_cap
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Piercing: 8
 
 - type: entity
   name: CentCom pen
@@ -736,16 +709,15 @@
           tags:
           - Write
   - type: CargoOrderConsole
-  - type: BankClient
   - type: ActivatableUI
     verbText: qm-clipboard-computer-verb-text
     key: enum.CargoConsoleUiKey.Orders
   - type: UserInterface
     interfaces:
-      enum.CargoConsoleUiKey.Orders:
-        type: CargoOrderConsoleBoundUserInterface
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
+    - key: enum.CargoConsoleUiKey.Orders
+      type: CargoOrderConsoleBoundUserInterface
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
   - type: MeleeWeapon
     wideAnimationRotation: 180
     damage:

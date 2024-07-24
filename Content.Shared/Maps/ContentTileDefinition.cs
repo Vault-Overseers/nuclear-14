@@ -1,11 +1,9 @@
 using Content.Shared.Atmos;
-using Content.Shared.Light.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Tools;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Utility;
@@ -50,12 +48,6 @@ namespace Content.Shared.Maps
         // Delta V
         [DataField("canShovel")] public bool CanShovel { get; private set; }
         //Delta V
-        
-        /// <summary>
-        /// Effective mass of this tile for grid impacts.
-        /// </summary>
-        [DataField]
-        public float Mass = 800f;
 
         /// <remarks>
         /// Legacy AF but nice to have.
@@ -102,11 +94,10 @@ namespace Content.Shared.Maps
         public float? MobFriction { get; private set; }
 
         /// <summary>
-        ///     "Average" static coefficient of friction for assuming a steel tile. This is only used as a fallback for a fallback for a fallback,
-        ///     except in the case of Space Wind. This default value is assuming an interaction interface of "Rubber on steel tile".
+        ///     No-input friction override for mob mover in <see cref="SharedMoverController"/>
         /// </summary>
-        [DataField]
-        public float? MobFrictionNoInput;
+        [DataField("mobFrictionNoInput")]
+        public float? MobFrictionNoInput { get; private set; }
 
         /// <summary>
         ///     Accel override for mob mover in <see cref="SharedMoverController"/>
@@ -131,22 +122,10 @@ namespace Content.Shared.Maps
             TileId = id;
         }
 
-        /// <summary>
-        ///     For optionally handling per-tile behavior of airflow simulation. Which is useful for ZAS-like air sim, and for MAS.
-        ///     Intentionally public because I want entities to be able to mess with this, such as ship shielding that prevents air from flowing across a shielded tile.
-        ///     For planet maps, you can instead mark the GridAtmosphere as !Simulated. Which will make the entire atmos system not run on a given grid.
-        /// </summary>
         [DataField]
-        public bool Reinforced;
+        public bool Reinforced = false;
 
         [DataField]
-        public bool SimulatedTurf = true;
-    }
-
-    [Flags]
-    public enum TileFlag : byte
-    {
-        None = 0,
-        Roof = 1 << 0,
+        public float TileRipResistance = 125f;
     }
 }

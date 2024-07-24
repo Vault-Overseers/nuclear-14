@@ -53,8 +53,9 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             grammar.Gender = sourceHumanoid.Gender;
         }
 
-        targetHumanoid.LastProfileLoaded = sourceHumanoid.LastProfileLoaded;
-        Dirty(target, targetHumanoid);
+        targetHumanoid.LastProfileLoaded = sourceHumanoid.LastProfileLoaded; // DeltaV - let paradox anomaly be cloned
+
+        Dirty(targetHumanoid);
     }
 
     /// <summary>
@@ -75,7 +76,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         humanoid.MarkingSet.Remove(prototype.MarkingCategory, marking);
 
         if (sync)
-            Dirty(uid, humanoid);
+            Dirty(humanoid);
     }
 
     /// <summary>
@@ -96,7 +97,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         }
 
         humanoid.MarkingSet.Remove(category, index);
-        Dirty(uid, humanoid);
+        Dirty(humanoid);
     }
 
     /// <summary>
@@ -125,7 +126,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         }
 
         humanoid.MarkingSet.Replace(category, index, marking);
-        Dirty(uid, humanoid);
+        Dirty(humanoid);
     }
 
     /// <summary>
@@ -152,6 +153,6 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             markings[index].SetColor(i, colors[i]);
         }
 
-        Dirty(uid, humanoid);
+        Dirty(humanoid);
     }
 }

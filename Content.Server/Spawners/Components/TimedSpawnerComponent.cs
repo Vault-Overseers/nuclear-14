@@ -9,7 +9,7 @@ namespace Content.Server.Spawners.Components;
 /// Can configure the set of entities, spawn timing, spawn chance,
 /// and min/max number of entities to spawn.
 /// </summary>
-[RegisterComponent, EntityCategory("Spawner")]
+[RegisterComponent]
 public sealed partial class TimedSpawnerComponent : Component, ISerializationHooks
 {
     /// <summary>

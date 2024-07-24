@@ -24,8 +24,6 @@
     - WhitelistChameleon
   - type: StealTarget
     stealGroup: IDCard
-  - type: NanoChatCard # DeltaV
-  - type: MiningPoints # DeltaV
 
 #IDs with layers
 
@@ -314,22 +312,6 @@
 
 - type: entity
   parent: IDCardStandard
-  id: RoboticsIDCard
-  name: robotics ID card
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: department
-      color: "#C96DBF"
-    - state: subdepartment
-      color: "#952004"
-    - state: scientist
-  - type: PresetIdCard
-    job: Roboticist
-
-- type: entity
-  parent: IDCardStandard
   id: ClownIDCard
   name: clown ID card
   components:
@@ -467,7 +449,7 @@
 - type: entity
   parent: IDCardStandard
   id: LawyerIDCard
-  name: attorney ID card # DeltaV - Changed Lawyer to Attorney
+  name: lawyer ID card
   components:
   - type: Sprite
     layers:
@@ -479,55 +461,6 @@
     - state: lawyer
   - type: PresetIdCard
     job: Lawyer
-
-- type: entity
-  parent: IDCardStandard
-  id: ChiefJusticeIDCard
-  name: chief justice ID card
-  components:
-    - type: PresetIdCard
-      job: ChiefJustice
-    - type: Sprite
-      layers:
-      - state: default
-      - state: department
-        color: "#878787"
-      - state: subdepartment
-        color: "#CB0000"
-      - state: lawyer
-
-
-- type: entity
-  parent: IDCardStandard
-  id: ClerkIDCard
-  name: clerk ID card
-  components:
-    - type: PresetIdCard
-      job: Clerk
-    - type: Sprite
-      layers:
-      - state: default
-      - state: department
-        color: "#878787"
-      - state: subdepartment
-        color: "#CB0000"
-      - state: lawyer
-
-- type: entity
-  parent: IDCardStandard
-  id: ProsecutorIDCard
-  name: presecutor ID card
-  components:
-    - type: PresetIdCard
-      job: Prosecutor
-    - type: Sprite
-      layers:
-      - state: default
-      - state: department
-        color: "#878787"
-      - state: subdepartment
-        color: "#CB0000"
-      - state: lawyer
 
 - type: entity
   parent: IDCardStandard
@@ -643,13 +576,24 @@
   - type: Sprite
     layers:
     - state: centcom
+    - state: departmenthead
+      color: "#1B67A5"
+    - state: subdepartment
+      color: "#1B67A5"
+    - state: cc
   - type: Item
     heldPrefix: blue
-  - type: PresetIdCard
-    job: CentralCommandOfficial
+  - type: IdCard
+    jobTitle: Central Commander
+    jobIcon: JobIconNanotrasen
+  - type: Access
+    groups:
+    - AllAccess
+    tags:
+    - CentralCommand
 
 - type: entity
-  parent: IDCardStandard
+  parent: CentcomIDCard
   id: ERTLeaderIDCard
   name: ERT leader ID card
   components:
@@ -661,13 +605,13 @@
     - state: subdepartment
       color: "#1B67A5"
     - state: captain
-  - type: PresetIdCard
-    job: ERTLeader
+  - type: IdCard
+    jobTitle: ERT Company Commander
   - type: Item
     heldPrefix: gold
 
 - type: entity
-  parent: IDCardStandard
+  parent: ERTLeaderIDCard
   id: ERTChaplainIDCard
   name: ERT chaplain ID card
   components:
@@ -677,15 +621,15 @@
     - state: departmenthead
       color: "#1B67A5"
     - state: subdepartment
-      color: "#1B67A5"
+      color: "#C96DBF"
     - state: chaplain
-  - type: PresetIdCard
-    job: ERTChaplain
+  - type: IdCard
+    jobTitle: ERT Soul Officer
   - type: Item
     heldPrefix: blue
 
 - type: entity
-  parent: IDCardStandard
+  parent: ERTChaplainIDCard
   id: ERTEngineerIDCard
   name: ERT engineer ID card
   components:
@@ -697,11 +641,11 @@
     - state: subdepartment
       color: "#F39F27"
     - state: stationengineer
-  - type: PresetIdCard
-    job: ERTEngineer
+  - type: IdCard
+    jobTitle: ERT Field Engineer
 
 - type: entity
-  parent: IDCardStandard
+  parent: ERTChaplainIDCard
   id: ERTJanitorIDCard
   name: ERT janitor ID card
   components:
@@ -713,11 +657,11 @@
     - state: subdepartment
       color: "#58C800"
     - state: janitor
-  - type: PresetIdCard
-    job: ERTJanitor
+  - type: IdCard
+    jobTitle: ERT Custodian
 
 - type: entity
-  parent: IDCardStandard
+  parent: ERTChaplainIDCard
   id: ERTMedicIDCard
   name: ERT medic ID card
   components:
@@ -729,11 +673,11 @@
     - state: subdepartment
       color: "#5B97BC"
     - state: medicaldoctor
-  - type: PresetIdCard
-    job: ERTMedical
+  - type: IdCard
+    jobTitle: ERT Medical Doctor
 
 - type: entity
-  parent: IDCardStandard
+  parent: ERTChaplainIDCard
   id: ERTSecurityIDCard
   name: ERT security ID card
   components:
@@ -743,10 +687,10 @@
     - state: departmenthead
       color: "#1B67A5"
     - state: subdepartment
-      color: "#1B67A5"
-    - state: cc
-  - type: PresetIdCard
-    job: ERTSecurity
+      color: "#CB0000"
+    - state: securityofficer
+  - type: IdCard
+    jobTitle: ERT Field Officer
 
 - type: entity
   parent: IDCardStandard
@@ -764,8 +708,8 @@
     - state: cc
   - type: Item
     heldPrefix: blue
-  - type: PresetIdCard
-    job: CentralCommandOfficial
+  - type: IdCard
+    jobTitle: Central Commander
   - type: Access
     tags:
     - Maintenance
@@ -801,8 +745,8 @@
     - state: death
   - type: Item
     heldPrefix: blue
-  - type: PresetIdCard
-    job: DeathSquad
+  - type: IdCard
+    jobTitle: Centcom Agent
 
 - type: entity
   name: passenger ID card
@@ -825,6 +769,60 @@
       color: "#878787"
     - state: passenger
   - type: AgentIDCard
+    icons:
+    # TODO figure out a better way of doing this.
+    # Probably by adding a bool or icon-category data-field to the icon prototype?
+    - JobIconDetective
+    - JobIconQuarterMaster
+    - JobIconBotanist
+    - JobIconBoxer
+    - JobIconAtmosphericTechnician
+    - JobIconNanotrasen
+    - JobIconPrisoner
+    - JobIconJanitor
+    - JobIconChemist
+    - JobIconStationEngineer
+    - JobIconSecurityOfficer
+    - JobIconChiefMedicalOfficer
+    - JobIconRoboticist
+    - JobIconChaplain
+    - JobIconLawyer
+    - JobIconUnknown
+    - JobIconLibrarian
+    - JobIconCargoTechnician
+    - JobIconScientist
+    - JobIconResearchAssistant
+    - JobIconGeneticist
+    - JobIconClown
+    - JobIconCaptain
+    - JobIconHeadOfPersonnel
+    - JobIconVirologist
+    - JobIconShaftMiner
+    - JobIconPassenger
+    - JobIconChiefEngineer
+    - JobIconBartender
+    - JobIconHeadOfSecurity
+    - JobIconBrigmedic
+    - JobIconMedicalDoctor
+    - JobIconParamedic
+    - JobIconChef
+    - JobIconWarden
+    - JobIconResearchDirector
+    - JobIconMime
+    - JobIconMusician
+    - JobIconReporter
+    - JobIconPsychologist
+    - JobIconMedicalIntern
+    - JobIconTechnicalAssistant
+    - JobIconServiceWorker
+    - JobIconSecurityCadet
+    - JobIconZookeeper
+    - JobIconPrisonGuard # Nyanotrasen - PrisonGuard, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Security/prisonguard.yml
+    - JobIconMailCarrier # Nyanotrasen - MailCarrier, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Cargo/mail-carrier.yml
+    - JobIconMartialArtist # Nyanotrasen - MartialArtist, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Wildcards/martialartist.yml
+    - JobIconGladiator # Nyanotrasen - Gladiator, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Wildcards/gladiator.yml
+    - JobIconForensicMantis  # Nyanotrasen - ForensicMantis, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Epistemics/forensicmantis.yml
+    - JobIconVisitor
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
@@ -836,12 +834,10 @@
     default: PassengerIDCard
   - type: UserInterface
     interfaces:
-      enum.AgentIDCardUiKey.Key:
+      - key: enum.AgentIDCardUiKey.Key
         type: AgentIDCardBoundUserInterface
-      enum.ChameleonUiKey.Key:
+      - key: enum.ChameleonUiKey.Key
         type: ChameleonBoundUserInterface
-  - type: ClothingAddFaction
-    faction: Syndicate
 
 - type: entity
   name: passenger ID card
@@ -854,8 +850,6 @@
     - Maintenance
     - SyndicateAgent
     - NuclearOperative
-  - type: ClothingAddFaction
-    faction: Syndicate
 
 - type: entity
   parent: IDCardStandard
@@ -890,8 +884,6 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
-  - type: ClothingAddFaction
-    faction: Syndicate
 
 - type: entity
   parent: IDCardStandard
@@ -910,8 +902,6 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
-  - type: ClothingAddFaction
-    faction: Syndicate
 
 - type: entity
   parent: IDCardStandard
@@ -1009,8 +999,8 @@
     - state: cc
   - type: Item
     heldPrefix: blue
-  - type: PresetIdCard
-    job: CBURN
+  - type: IdCard
+    jobTitle: Centcom Quarantine Officer
 
 - type: entity
   parent: IDCardStandard
@@ -1028,7 +1018,7 @@
     - state: clown
       color: "#7C0A0A"
   - type: IdCard
-    jobTitle: job-title-cluwne
+    jobTitle: Cluwne
   - type: Unremoveable
 
 - type: entity
@@ -1094,18 +1084,3 @@
     - state: senior
   - type: PresetIdCard
     job: SeniorOfficer
-
-- type: entity
-  parent: IDCardStandard
-  id: AdminAssistantIDCard
-  name: administrative assistant ID card
-  components:
-  - type: Sprite
-    layers:
-    - state: silver
-    - sprite: DeltaV/Objects/Misc/id_cards.rsi
-      state: idadminassistant
-  - type: Item
-    heldPrefix: silver
-  - type: PresetIdCard
-    job: AdministrativeAssistant

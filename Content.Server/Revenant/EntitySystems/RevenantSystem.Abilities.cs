@@ -15,7 +15,6 @@ using Content.Shared.Bed.Sleep;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Revenant.Components;
-using Content.Shared.Physics;
 using Content.Shared.DoAfter;
 using Content.Shared.Emag.Systems;
 using Content.Shared.FixedPoint;
@@ -28,7 +27,6 @@ using Content.Shared.Revenant.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Utility;
 using Robust.Shared.Map.Components;
-using Content.Shared.Whitelist;
 
 namespace Content.Server.Revenant.EntitySystems;
 
@@ -41,11 +39,10 @@ public sealed partial class RevenantSystem
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly GhostSystem _ghost = default!;
     [Dependency] private readonly TileSystem _tile = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
     private void InitializeAbilities()
     {
-        SubscribeLocalEvent<RevenantComponent, UserActivateInWorldEvent>(OnInteract);
+        SubscribeLocalEvent<RevenantComponent, InteractNoHandEvent>(OnInteract);
         SubscribeLocalEvent<RevenantComponent, SoulEvent>(OnSoulSearch);
         SubscribeLocalEvent<RevenantComponent, HarvestEvent>(OnHarvest);
 
@@ -55,14 +52,11 @@ public sealed partial class RevenantSystem
         SubscribeLocalEvent<RevenantComponent, RevenantMalfunctionActionEvent>(OnMalfunctionAction);
     }
 
-    private void OnInteract(EntityUid uid, RevenantComponent component, UserActivateInWorldEvent args)
+    private void OnInteract(EntityUid uid, RevenantComponent component, InteractNoHandEvent args)
     {
-        if (args.Handled)
+        if (args.Target == args.User || args.Target == null)
             return;
-
-        if (args.Target == args.User)
-            return;
-        var target = args.Target;
+        var target = args.Target.Value;
 
         if (HasComp<PoweredLightComponent>(target))
         {
@@ -83,15 +77,13 @@ public sealed partial class RevenantSystem
         {
             BeginHarvestDoAfter(uid, target, component, essence);
         }
-
-        args.Handled = true;
     }
 
     private void BeginSoulSearchDoAfter(EntityUid uid, EntityUid target, RevenantComponent revenant)
     {
         var searchDoAfter = new DoAfterArgs(EntityManager, uid, revenant.SoulSearchDuration, new SoulEvent(), uid, target: target)
         {
-            BreakOnMove = true,
+            BreakOnUserMove = true,
             BreakOnDamage = true,
             DistanceThreshold = 2
         };
@@ -143,16 +135,10 @@ public sealed partial class RevenantSystem
             return;
         }
 
-        if(_physics.GetEntitiesIntersectingBody(uid, (int) CollisionGroup.Impassable).Count > 0)
-        {
-            _popup.PopupEntity(Loc.GetString("revenant-in-solid"), uid, uid);
-            return;
-        }
-
         var doAfter = new DoAfterArgs(EntityManager, uid, revenant.HarvestDebuffs.X, new HarvestEvent(), uid, target: target)
         {
             DistanceThreshold = 2,
-            BreakOnMove = true,
+            BreakOnUserMove = true,
             BreakOnDamage = true,
             RequireCanInteract = false, // stuns itself
         };
@@ -248,11 +234,11 @@ public sealed partial class RevenantSystem
         foreach (var ent in lookup)
         {
             //break windows
-            if (tags.HasComponent(ent) && _tag.HasTag(ent, "Window"))
+            if (tags.HasComponent(ent) && _tag.HasAnyTag(ent, "Window"))
             {
                 //hardcoded damage specifiers til i die.
                 var dspec = new DamageSpecifier();
-                dspec.DamageDict.Add("Structural", 60);
+                dspec.DamageDict.Add("Structural", 15);
                 _damage.TryChangeDamage(ent, dspec, origin: uid);
             }
 
@@ -333,8 +319,10 @@ public sealed partial class RevenantSystem
 
         foreach (var ent in _lookup.GetEntitiesInRange(uid, component.MalfunctionRadius))
         {
-            if (_whitelistSystem.IsWhitelistFail(component.MalfunctionWhitelist, ent) ||
-                _whitelistSystem.IsBlacklistPass(component.MalfunctionBlacklist, ent))
+            if (component.MalfunctionWhitelist?.IsValid(ent, EntityManager) == false)
+                continue;
+
+            if (component.MalfunctionBlacklist?.IsValid(ent, EntityManager) == true)
                 continue;
 
             _emag.DoEmagEffect(uid, ent); //it does not emag itself. adorable.
