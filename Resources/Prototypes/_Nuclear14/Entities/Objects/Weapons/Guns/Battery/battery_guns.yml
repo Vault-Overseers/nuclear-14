@@ -1,5 +1,3 @@
-# Developer Note: Naming convention is N14 Weapon Plasma/Laser WeaponType Info/Name
-
 - type: entity
   id: N14BaseWeaponPowerCell
   parent: BaseItem
@@ -7,11 +5,11 @@
   components:
   - type: Sprite
   - type: Item
-    size: Large
+    size: Small
   - type: AmmoCounter
   - type: Gun
-    minAngle: 25
-    maxAngle: 60
+    minAngle: 35
+    maxAngle: 65
     angleIncrease: 4
     angleDecay: 16
     fireRate: 1
@@ -34,7 +32,7 @@
             - PowerCell
   - type: Appearance
   - type: StaticPrice
-    price: 25
+    price: 500
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -49,18 +47,9 @@
     quickEquip: false
     slots:
     - Belt
-  - type: Item
-    size: Small
-    shape:
-    - 0,0,1,0
-    - 0,1,0,1
   - type: Gun
-    availableModes:
-    - Semiauto
-    minAngle: 1
-    maxAngle: 9
-    angleIncrease: 0.5
-    angleDecay: 4
+    minAngle: 10
+    maxAngle: 20
 
 - type: entity
   id: N14BaseWeaponPowerCellMedium
@@ -68,19 +57,18 @@
   abstract: true
   components:
   - type: Item
-    size: Large
+    size: Normal
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/taser.rsi
     quickEquip: false
     slots:
     - Belt
-
 # MARK: Pistols
 - type: entity
-  name: AEP-7 laser pistol
+  name: laser pistol
   parent: N14BaseWeaponPowerCellSmall
   id: N14WeaponLaserPistol
-  description: A basic energy-based laser gun that fires concentrated beams of light.
+  description: A highly advanced laser pistol.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_pistol.rsi
@@ -92,52 +80,6 @@
       shader: unshaded
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_pistol.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: N14PowerCellSmall
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        whitelist:
-          tags:
-            - N14PowerCellSmall
-  - type: Item
-    size: Small
-    shape:
-    - 0,0,1,1
-    - 0,0,1,1
-  - type: Gun
-    fireRate: 1.5
-    soundGunshot:
-      collection: N14LaserPistolGunshot
-  - type: FollowDistance
-    backStrength: 6
-  - type: StaticPrice
-    price: 80
-  - type: Cautery
-    speed: 0.3
-
-- type: entity
-  name: makeshift laser revolver
-  parent: N14BaseWeaponPowerCellSmall
-  id: N14WeaponLaserRevolver
-  description: A basic makeshift energy-based laser revolver that fires concentrated beams of light.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_revolver.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_revolver.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -152,21 +94,8 @@
         whitelist:
           tags:
             - N14PowerCellHigh
-  - type: Item
-    size: Small
-    shape:
-    - 0,0,1,1
-    - 0,0,1,1
   - type: Gun
-    fireRate: 1.5
-    soundGunshot:
-      collection: N14LaserPistolGunshot
-  - type: FollowDistance
-    backStrength: 6
-  - type: StaticPrice
-    price: 60
-  - type: Cautery
-    speed: 0.3
+    fireRate: 1
 
 - type: entity
   name: plasma pistol
@@ -200,20 +129,14 @@
     zeroVisible: true
   - type: Gun
     soundGunshot:
-      collection: N14PlasmaPistolGunshot
+      path: /Audio/Weapons/plasma_cutter.ogg
     fireRate: 1.5
-  - type: FollowDistance
-    backStrength: 6
-  - type: StaticPrice
-    price: 80
-  - type: Cautery
-    speed: 0.2
 
 - type: entity
   name: plasma defender
   parent: N14BaseWeaponPowerCellSmall
   id: N14WeaponPlasmaDefender
-  description: A highly advanced plasma pistol with an upgraded rate of fire.
+  description: A highly advanced plasma pistol with a upgraded rate of fire.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_pistol.rsi
@@ -241,27 +164,17 @@
     zeroVisible: true
   - type: Gun
     soundGunshot:
-      collection: N14PlasmaDefenderGunshot
+      path: /Audio/Weapons/plasma_cutter.ogg
     fireRate: 2.5
-  - type: FollowDistance
-    backStrength: 6
-  - type: StaticPrice
-    price: 100
-  - type: Cautery
-    speed: 0.2
 
-# MARK: Recharger
-
+# MARK: Recharger guns
+ 
 - type: entity
   name: recharger rifle
   parent: BaseWeaponBattery
-  id: N14WeaponLaserRifleRecharger
-  description: The first model for a self-charging laser rifle, its low energy consumption and advanced internal battery lets this gun last for centuries without recharging.
+  id: N14WeaponRechargerRifle
+  description: The first model for a self charging laser rifle, its low energy consume and advance internal battery makes this gun last for centuries without recharging.
   components:
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -24
-    maxAngle: -53
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_rifle.rsi
     layers:
@@ -274,26 +187,20 @@
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_rifle.rsi
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 25
+    autoRechargeRate: 50
   - type: Gun
-    soundGunshot:
-      collection: N14RechargerRifleGunshot
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
-  - type: FollowDistance
-    backStrength: 5
-  - type: StaticPrice
-    price: 175
 
 - type: entity
   name: recharger pistol
   parent: BaseWeaponBatterySmall
-  id: N14WeaponLaserPistolRecharger
-  description: The upgraded version of the recharger rifle, compact but maintaining the same power, its low energy consumption and advanced internal battery makes this gun last for centuries without recharging.
+  id: N14WeaponRechargerPistol
+  description: The upgraded version of the recharger rifle, compact but maintaining the same power, its low energy consume and advance internal battery makes this gun last for centuries without recharging.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_pistol.rsi
@@ -307,13 +214,13 @@
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_pistol.rsi
   - type: Gun
     soundGunshot:
-      collection: N14RechargerPistolGunshot
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20
+    autoRechargeRate: 40
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -322,25 +229,19 @@
   - type: Tag
     tags:
     - Sidearm
-  - type: FollowDistance
-    backStrength: 6
-  - type: StaticPrice
-    price: 175
-  - type: Cautery
-    speed: 0.3
 
-# MARK: Fullauto
+# MARK: Fullauto Rifles 
 
 - type: entity
-  name: AER-9 auto laser rifle
+  name: laser automatic rifle
   parent: N14BaseWeaponPowerCellMedium
-  id: N14WeaponLaserRifleAuto
-  description: A sturdy pre-war laser rifle. Emits beams of concentrated light to damage targets. This one has been jury-rigged against all common sense with a rotating barrel to fire in full auto.
+  id: N14WeaponLaserAutoRifle
+  description: A highly advanced automatic laser rifle.
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -56
+    minAngle: -30
+    maxAngle: -58
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_autorifle.rsi
     layers:
@@ -371,26 +272,20 @@
             - N14PowerCellHigh
   - type: Gun
     fireRate: 4
-    soundGunshot:
-      collection: N14LaserAutoRifleGunshot
     selectedMode: FullAuto
     availableModes:
     - FullAuto
-  - type: FollowDistance
-    backStrength: 5
-  - type: StaticPrice
-    price: 225
 
 - type: entity
   name: plasma automatic rifle
   parent: N14BaseWeaponPowerCellMedium
-  id: N14WeaponPlasmaRifleAuto
+  id: N14WeaponPlasmaAutoRifle
   description: A highly advanced automatic plasma rifle.
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -56
+    minAngle: -30
+    maxAngle: -58
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_autorifle.rsi
     layers:
@@ -422,129 +317,25 @@
   - type: Gun
     fireRate: 4
     soundGunshot:
-      collection: N14PlasmaAutoRifleGunshot
+      path: /Audio/Weapons/plasma_cutter.ogg
     selectedMode: FullAuto
     availableModes:
     - FullAuto
-  - type: FollowDistance
-    backStrength: 5
-  - type: StaticPrice
-    price: 225
+
+# MARK: Semiauto Rifles
 
 - type: entity
-  name: prototype AER-14 laser rifle
-  parent: N14BaseWeaponPowerCellMedium
-  id: N14WeaponLaserRiflePrototypeAER14
-  description: A cutting-edge, pre-war laser rifle. Extremely powerful, but drains electron charge packs like nothing else.
-  components:
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -56
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle_proto.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle_proto.rsi
-    quickEquip: false
-    slots:
-    - Back
-    - suitStorage
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: N14PowerCellAdvanced
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        whitelist:
-          tags:
-            - N14PowerCellAdvanced
-  - type: Gun
-    fireRate: 4
-    soundGunshot:
-      collection: N14LaserAutoRifleGunshot
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-  - type: FollowDistance
-    backStrength: 5
-  - type: StaticPrice
-    price: 250
-
-# MARK: Semiauto
-
-- type: entity
-  name: AER-9
+  name: laser rifle
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponLaserRifle
-  description: A sturdy pre-war laser rifle. Emits beams of concentrated light to damage targets.
-  components:
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -24
-    maxAngle: -58
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
-    quickEquip: false
-    slots:
-    - Back
-    - suitStorage
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: N14PowerCellHigh
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        whitelist:
-          tags:
-            - N14PowerCellHigh
-  - type: Gun
-    fireRate: 3
-    soundGunshot:
-      collection: N14LaserAutoRifleGunshot
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-  - type: FollowDistance
-    backStrength: 5
-  - type: StaticPrice
-    price: 250
-
-- type: entity
-  name: makeshift laser rifle
-  parent: N14BaseWeaponPowerCellMedium
-  id: N14WeaponLaserRifleMakeshift
-  description: A sturdy makeshift laser rifle. Emits beams of concentrated light to damage targets.
+  description: A highly advanced laser rifle.
   components:
   - type: Wieldable
   - type: GunWieldBonus
     minAngle: -34
     maxAngle: -63
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/makeshift_laser_rifle.rsi
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -552,7 +343,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/makeshift_laser_rifle.rsi
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
     quickEquip: false
     slots:
     - Back
@@ -573,15 +364,53 @@
             - N14PowerCellHigh
   - type: Gun
     fireRate: 3
-    soundGunshot:
-      collection: N14LaserAutoRifleGunshot
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-  - type: FollowDistance
-    backStrength: 5
-  - type: StaticPrice
-    price: 50
+
+- type: entity
+  name: prototype laser rifle
+  parent: N14BaseWeaponPowerCellMedium
+  id: N14WeaponLaserProtoRifle
+  description: The last and most advanced model of laser rifle ever made.
+  components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle_proto.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle_proto.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellHigh
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellHigh
+  - type: Gun
+    fireRate: 4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
 
 - type: entity
   name: plasma rifle
@@ -591,8 +420,8 @@
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -24
-    maxAngle: -58
+    minAngle: -34
+    maxAngle: -63
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle.rsi
     layers:
@@ -624,25 +453,21 @@
   - type: Gun
     fireRate: 3
     soundGunshot:
-      collection: N14PlasmaAutoRifleGunshot
+      path: /Audio/Weapons/plasma_cutter.ogg
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-  - type: FollowDistance
-    backStrength: 5
-  - type: StaticPrice
-    price: 275
 
 - type: entity
   name: urban plasma rifle
   parent: N14BaseWeaponPowerCellMedium
-  id: N14WeaponPlasmaRifleUrban
-  description: A mass-produced pre-war plasma rifle designed for close quarters combat in urban environments.
+  id: N14WeaponUrbanPlasmaRifle
+  description: A mass produced pre war plasma rifle designed for close quarters combat in urban environments.
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -55
+    minAngle: -34
+    maxAngle: -63
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_urban.rsi
     layers:
@@ -674,27 +499,22 @@
   - type: Gun
     fireRate: 4
     soundGunshot:
-      collection: N14PlasmaAutoRifleGunshot
+      path: /Audio/Weapons/plasma_cutter.ogg
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-  - type: FollowDistance
-    backStrength: 5
-  - type: StaticPrice
-    price: 225
 
 # MARK: Shotguns
-
 - type: entity
   name: multiplas
   parent: N14BaseWeaponPowerCellMedium
-  id: N14WeaponPlasmaMultiplas
-  description: A modified urban plasma rifle, it sacrifices accuracy to instead spread the plasma into multiple projectiles.
+  id: N14WeaponMultiplas
+  description: A modified urban plasma rifle, it spreads the plasma into multiple projectiles but sacrifices accuracy.
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -56
+    minAngle: -34
+    maxAngle: -63
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/multiplas.rsi
     layers:
@@ -724,31 +544,22 @@
     steps: 5
     zeroVisible: true
   - type: Gun
-    fireRate: 6
+    fireRate: 2
     soundGunshot:
-      collection: N14MultiplasGunshot
-    selectedMode: Burst
-    availableModes:
-     - SemiAuto
-     - Burst
-  - type: FollowDistance
-    backStrength: 6
-  - type: StaticPrice
-    price: 225
+      path: /Audio/Weapons/plasma_cutter.ogg
 
-#MARK: Focused
-# (just a different looking laser rifle until we get more options)
+#MARK: Sniper (just a different looking laser rifle until we get more options)
 
 - type: entity
   name: wattz 3000 laser rifle
   parent: N14BaseWeaponPowerCellMedium
-  id: N14WeaponLaserRifleWattz3000
-  description: Wattz 3000 Laser Rifle. Uses focused micro fusion cells for more powerful lasers, and an extended barrel for additional range.
+  id: N14WeaponWattz3000
+  description: A highly advanced laser rifle.
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -24
-    maxAngle: -58
+    minAngle: -34
+    maxAngle: -63
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/wattz3000.rsi
     layers:
@@ -771,34 +582,28 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14PowerCellFocused
+        startingItem: N14PowerCellHigh
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
-            - N14PowerCellFocused
+            - N14PowerCellHigh
   - type: Gun
-    fireRate: 2
-    soundGunshot:
-      collection: N14WattzGunshot
+    fireRate: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-  - type: FollowDistance
-    backStrength: 4
-  - type: StaticPrice
-    price: 300
 
 - type: entity
   name: wattz 2000 laser rifle
   parent: N14BaseWeaponPowerCellMedium
-  id: N14WeaponLaserRifleWattz2000
-  description: Wattz 2000 Laser Rifle. Uses focused micro fusion cells for more powerful lasers, and an extended barrel for additional range.
+  id: N14WeaponWattz2000
+  description: A highly advanced laser rifle.
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -24
-    maxAngle: -58
+    minAngle: -34
+    maxAngle: -63
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/wattz2000.rsi
     layers:
@@ -821,23 +626,17 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14PowerCellFocused
+        startingItem: N14PowerCellHigh
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
-            - N14PowerCellFocused
+            - N14PowerCellHigh
   - type: Gun
-    fireRate: 1.5
-    soundGunshot:
-      collection: N14WattzGunshot
+    fireRate: 2
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-  - type: FollowDistance
-    backStrength: 4
-  - type: StaticPrice
-    price: 400
 
 #MARK: Heavy
 
@@ -845,7 +644,7 @@
   name: plasma caster
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponPlasmaCaster
-  description: A massive plasma gun with a pretty sharp barrel, this gun is fed with plasma shells.
+  description: A massive plasma gun with a pretty sharp cannon, this gun is feed with plasma shells.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_caster.rsi
@@ -878,32 +677,24 @@
           tags:
             - N14PlasmaShell
   - type: Gun
-    minAngle: 2
-    maxAngle: 12
-    angleIncrease: 4
-    angleDecay: 12
-    fireRate: 7
-    soundGunshot:
-      collection: N14PlasmaCasterGunshot
+    minAngle: 10
+    maxAngle: 16
+    fireRate: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
   - type: Appearance
   - type: MultiHandedItem
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
   - type: HeldSpeedModifier
-  - type: FollowDistance
-    backStrength: 6
-  - type: StaticPrice
-    price: 500
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
 
 - type: entity
   name: laser gatling gun
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponLaserGatling
-  description: A minigun, but laser for those who really prefer ash piles to perforated corpses.
+  description: A minigun, but laser for those who really needed an upscaling.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_gatling.rsi
@@ -936,23 +727,17 @@
           tags:
             - N14PowerCellFusion
   - type: Gun
-    minAngle: 2
+    minAngle: 4
     maxAngle: 12
     angleIncrease: 4
     angleDecay: 12
     fireRate: 8
-    soundGunshot:
-      collection: N14LaserGatlingGunshot
     selectedMode: FullAuto
     availableModes:
     - FullAuto
   - type: Appearance
   - type: MultiHandedItem
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
   - type: HeldSpeedModifier
-  - type: FollowDistance
-    backStrength: 6
-  - type: StaticPrice
-    price: 400
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
