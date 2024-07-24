@@ -7,18 +7,31 @@
     snap:
     - Wall
   components:
-  - type: StepTrigger
-    requiredTriggeredSpeed: 0
-    intersectRatio: 0.1
+  - type: FloorOccluder
   - type: Transform
     anchored: true
   - type: SyncSprite
   - type: Clickable
-  - type: Sprite #TODO: replace this sprite with a dirty one
+  - type: Sprite
     sprite: Tiles/Planet/water.rsi
     drawdepth: BelowFloor
     layers:
       - state: shoreline_water
+  - type: SolutionContainerManager
+    solutions:
+      pool:
+        maxVol: 9999999 #.inf seems to break the whole yaml file, but would definitely be preferable.
+        reagents:
+        - ReagentId: WaterIrradiated
+          Quantity: 9999999
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: WaterIrradiated
+        Quantity: 100
+  - type: DrainableSolution
+    solution: pool
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
@@ -42,11 +55,12 @@
       params:
         volume: 8
 
+
 - type: entity
   parent: N14FloorWaterDirtyEntity
   id: N14FloorWaterSewerDeep
   name: deep sewer water
-  description: A real thirst quencher.
+  description: Years of built up feces and urine and other fluids.
   components:
   - type: Sprite
     sprite: _Nuclear14/Tiles/ms13/Water.rsi
@@ -55,11 +69,12 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.2
     sprintSpeedModifier: 0.2
-      
+
 - type: entity
   parent: N14FloorWaterSewerDeep
   id: N14FloorWaterSewerMedium
   name: sewer water
+  description: Years of built up feces and urine and other fluids.
   components:
   - type: Sprite
     layers:
@@ -67,15 +82,55 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.4
     sprintSpeedModifier: 0.4
-      
+
 - type: entity
   parent: N14FloorWaterSewerDeep
   id: N14FloorWaterSewerShallow
   name: shallow sewer water
+  description: Years of built up feces and urine and other fluids.
   components:
   - type: Sprite
     layers:
       - state: sewer_shallow
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.6
+    sprintSpeedModifier: 0.6
+
+- type: entity
+  parent: N14FloorWaterSewerDeep
+  id: N14FloorWaterDeep
+  name: deep water
+  description: Endless Abyss.
+  components:
+  - type: Sprite
+    layers:
+      - state: water_deep
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.2
+    sprintSpeedModifier: 0.2
+
+- type: entity
+  parent: N14FloorWaterSewerDeep
+  id: N14FloorWaterMedium
+  name: water
+  description: Unclean water, likely highly irradiated.
+  components:
+  - type: Sprite
+    layers:
+      - state: water_medium
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.4
+    sprintSpeedModifier: 0.4
+
+- type: entity
+  parent: N14FloorWaterSewerDeep
+  id: N14FloorWaterShallow
+  name: shallow water
+  description: Unclean water, likely highly irradiated
+  components:
+  - type: Sprite
+    layers:
+      - state: water_shallow
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.6
     sprintSpeedModifier: 0.6

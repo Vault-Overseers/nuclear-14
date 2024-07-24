@@ -136,3 +136,25 @@
   - type: Battery
     maxCharge: 1200
     startingCharge: 1200
+
+- type: entity
+  name: plasma shell
+  description: A big green glowing shell, commonly used has ammo for heavy plasma weapons.
+  id: N14PlasmaShell
+  suffix: Full
+  parent: N14BasePlasmaCell
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Battery/plasma.rsi
+    layers:
+      - map: [ "enum.PowerCellVisualLayers.Base" ]
+        state: empty
+      - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+        state: o2
+        shader: unshaded
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletBigPlasma
+    fireCost: 100
