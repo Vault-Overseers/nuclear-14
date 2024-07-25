@@ -3,15 +3,25 @@
 - type: entity
   id: N14LatejoinMarkerBase
   abstract: true
+  description: right click > enter, to leave the round.
   placement:
     mode: SnapgridCenter
   components:
   - type: Transform
     anchored: true
   - type: Sprite
-    drawdepth: Overdoors
+    drawdepth: FloorObjects
     sprite: _Nuclear14/Structures/Walls/nc14/matrix.rsi
     state: matrix
+  - type: Cryostorage
+  - type: DragInsertContainer
+    containerId: storage
+  - type: ExitContainerOnMove
+    containerId: storage
+  - type: ContainerContainer
+    containers:
+      storage: !type:ContainerSlot
+  - type: InteractionOutline
 
 - type: entity
   name: latejoin spawn point

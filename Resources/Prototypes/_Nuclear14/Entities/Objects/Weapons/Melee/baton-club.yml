@@ -1,9 +1,69 @@
 - type: entity
-  name: baseball bat
-  parent: BaseBallBat
-  id: N14BaseBallBat
-  description: A robust baseball bat.
+  name: police baton
+  parent: BaseItem
+  id: N14PoliceBaton
   components:
+  - type: StaminaDamageOnHit
+    damage: 20
+  - type: StaminaDamageOnCollide
+    damage: 20
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 16
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Melee/baseball_bat.rsi
+    sprite: _Nuclear14/Objects/Weapons/Melee/policebaton.rsi
     state: icon
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/policebaton.rsi
+    quickEquip: false
+    slots:
+    - belt
+    - suitStorage
+
+- type: entity
+  name: tribal club
+  parent: BaseItem
+  id: N14TribalClub
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 24
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/tribalclub.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/tribalclub.rsi
+    quickEquip: false
+    slots:
+    - belt
+    - suitStorage
+
+- type: entity
+  name: broken pipe
+  parent: BaseItem
+  id: N14BrokenPipe
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 22
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/pipe.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/pipe.rsi
+    quickEquip: false
+    slots:
+    - belt
+    - suitStorage

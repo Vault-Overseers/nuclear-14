@@ -1,11 +1,14 @@
 using Content.Shared.DragDrop;
 using Content.Shared.Hands.Components;
+using Content.Shared.Popups;
 using Content.Shared.Strip.Components;
 
 namespace Content.Shared.Strip;
 
 public abstract class SharedStrippableSystem : EntitySystem
 {
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly ThievingSystem _thieving = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -14,7 +17,7 @@ public abstract class SharedStrippableSystem : EntitySystem
         SubscribeLocalEvent<StrippableComponent, DragDropDraggedEvent>(OnDragDrop);
     }
 
-    public (TimeSpan Time, bool Stealth) GetStripTimeModifiers(EntityUid user, EntityUid target, TimeSpan initialTime)
+    public (TimeSpan Time, ThievingStealth Stealth) GetStripTimeModifiers(EntityUid user, EntityUid target, TimeSpan initialTime)
     {
         var userEv = new BeforeStripEvent(initialTime);
         RaiseLocalEvent(user, ref userEv);
@@ -43,7 +46,8 @@ public abstract class SharedStrippableSystem : EntitySystem
         args.Handled = true;
         args.CanDrop |= uid == args.User &&
                         HasComp<StrippableComponent>(args.Dragged) &&
-                        HasComp<HandsComponent>(args.User);
+                        HasComp<HandsComponent>(args.User) &&
+                        HasComp<StrippingComponent>(args.User);
     }
 
     private void OnCanDrop(EntityUid uid, StrippableComponent component, ref CanDropDraggedEvent args)
@@ -54,5 +58,18 @@ public abstract class SharedStrippableSystem : EntitySystem
 
         if (args.CanDrop)
             args.Handled = true;
+    }
+
+    public void StripPopup(string messageId, ThievingStealth stealth, EntityUid target, EntityUid? user = null, EntityUid? item = null, string slot = "")
+    {
+        bool subtle = stealth == ThievingStealth.Subtle;
+        PopupType? popupSize = _thieving.GetPopupTypeFromStealth(stealth);
+
+        if (popupSize.HasValue) // We should always have a value if we're not hidden
+            _popup.PopupEntity(Loc.GetString(messageId,
+            ("user", subtle ? Loc.GetString("thieving-component-user") : user ?? EntityUid.Invalid),
+            ("item", subtle ? Loc.GetString("thieving-component-item") : item ?? EntityUid.Invalid),
+            ("slot", slot)),
+            target, target, popupSize.Value);
     }
 }

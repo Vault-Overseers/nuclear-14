@@ -1,6 +1,6 @@
 - type: entity
   name: microfusion cell
-  description: A small energy container the size of a palm, commonly used has ammo for any kind of laser weapon.
+  description: A microfusion cell, typically used as ammunition for large energy weapons.
   id: N14BasePowerCell
   abstract: true
   parent: BaseItem
@@ -37,6 +37,8 @@
     proto: RedMediumLaser
     fireCost: 50
 
+#MARK: MF
+
 - type: entity
   name: microfusion cell
   description: A small energy container the size of a palm, commonly used has ammo for any kind of laser weapon.
@@ -55,6 +57,94 @@
   - type: Battery
     maxCharge: 1200
     startingCharge: 1200
+
+#MARK: MF Focused
+
+- type: entity
+  name: heavy microfusion cell
+  description: A microfusion cell, typically used as ammunition for large energy weapons. Modified to expand a lot more charge at once to deal considerably more destruction per shot.
+  id: N14PowerCellFocused
+  suffix: Full
+  parent: N14BasePowerCell
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Battery/microfusionfocused.rsi
+    layers:
+      - map: [ "enum.PowerCellVisualLayers.Base" ]
+        state: empty
+      - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+        state: o2
+        shader: unshaded
+  - type: Tag
+    tags:
+      - N14PowerCellFocused
+      - N14AmmoCell
+  - type: Battery
+    maxCharge: 1200
+    startingCharge: 1200
+  - type: HitscanBatteryAmmoProvider
+    proto: RedShuttleLaser
+    fireCost: 75
+
+#MARK: EC
+
+- type: entity
+  name: energy cell
+  description: An energy cell, typically used as ammunition for small-arms energy weapons.
+  id: N14PowerCellSmall
+  suffix: Full
+  parent: N14BasePowerCell
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Battery/EC.rsi
+    layers:
+      - map: [ "enum.PowerCellVisualLayers.Base" ]
+        state: empty
+        scale: 0.6, 0.6
+      - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+        state: o2
+        shader: unshaded
+        scale: 0.6, 0.6
+  - type: Tag
+    tags:
+      - N14PowerCellSmall
+      - N14AmmoCell
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 50
+
+#MARK: ECP
+
+- type: entity
+  name: electron charge pack
+  description: An electron charge pack, typically used as ammunition for advanced energy weapons.
+  id: N14PowerCellAdvanced
+  suffix: Full
+  parent: N14BasePowerCell
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Battery/ECP.rsi
+    layers:
+      - map: [ "enum.PowerCellVisualLayers.Base" ]
+        state: empty
+      - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+        state: o2
+        shader: unshaded
+  - type: Tag
+    tags:
+      - N14PowerCellAdvanced
+      - N14AmmoCell
+  - type: Battery
+    maxCharge: 2375
+    startingCharge: 2375
+  - type: HitscanBatteryAmmoProvider
+    proto: RedHeavyLaser
+    fireCost: 125
+
+#MARK: Fusion Cell
 
 - type: entity
   name: fusion cell
@@ -78,6 +168,13 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
+  - type: Item
+    size: Normal
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 50
+
+#MARK: Plasma cartridge
 
 - type: entity
   name: plasma cartridge
@@ -136,3 +233,27 @@
   - type: Battery
     maxCharge: 1200
     startingCharge: 1200
+
+#MARK: Plasma shell
+
+- type: entity
+  name: plasma shell
+  description: A big green glowing shell, commonly used has ammo for heavy plasma weapons.
+  id: N14PlasmaShell
+  suffix: Full
+  parent: N14BasePlasmaCell
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Battery/plasma.rsi
+    layers:
+      - map: [ "enum.PowerCellVisualLayers.Base" ]
+        state: empty
+      - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+        state: o2
+        shader: unshaded
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletBigPlasma
+    fireCost: 100

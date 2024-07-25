@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  id: N14BaseStorageFill
+  id: N14BaseStorageFill # Common undecided. Nothing really.
   components:
     - type: StorageFill
       contents:
@@ -21,7 +21,6 @@
         - id: N14DrinkNukaColaBottleFull
           prob: 0.05
           amount: 1
-          maxAmount: 2
         - id: Gauze
           prob: 0.1
           amount: 1
@@ -29,19 +28,15 @@
         - id: N14SmellingSalts
           prob: 0.15
           amount: 1
-          maxAmount: 2
         - id: N14Stimpak
           prob: 0.02
           amount: 1
-          maxAmount: 2
         - id: N14Antidote
           prob: 0.05
           amount: 1
-          maxAmount: 2
         - id: N14RadAwayBloodbag
           prob: 0.3
           amount: 1
-          maxAmount: 2
         - id: N14ChemicalSyringeAntidote
           prob: 0.01
         - id: N14SuperStimpak
@@ -253,51 +248,80 @@
         - id: N14ClothingBeltCleanerFilled
           prob: 0.1
           orGroup: Clothing
-        - id: Magazine556Rifle
-          prob: 0.4
-          orGroup: Ammunition
-        - id: LongMagazine556Rifle
-          prob: 0.4
+        - id: MagazineBox556
+          prob: 0.1
           orGroup: Ammunition
         - id: Magazine762Rifle
-          prob: 0.4
+          prob: 0.2
+          orGroup: Ammunition
+        - id: MagazineBox762
+          prob: 0.05
           orGroup: Ammunition
         - id: N14MagazinePistol9mm
           prob: 0.4
+          orGroup: Ammunition
+        - id: MagazineBox9mm
+          prob: 0.2
           orGroup: Ammunition
         - id: N14MagazinePistol10mm
           prob: 0.4
           orGroup: Ammunition
         - id: N14MagazineSMG10mm
-          prob: 0.4
+          prob: 0.2
+          orGroup: Ammunition
+        - id: MagazineBox10mm
+          prob: 0.1
           orGroup: Ammunition
         - id: N14MagazinePistol12mm
-          prob: 0.4
+          prob: 0.2
           orGroup: Ammunition
         - id: N14MagazineSMG12mm
-          prob: 0.4
+          prob: 0.2
+          orGroup: Ammunition
+        - id: MagazineBox12
+          prob: 0.1
           orGroup: Ammunition
         - id: N14MagazineShotgun12
           prob: 0.2
           orGroup: Ammunition
-        - id: N14ShellShotgun12
-          prob: 1
+        - id: MagazineBox12gauge
+          prob: 0.1
           orGroup: Ammunition
-          amount: 1
-          maxAmount: 10
         - id: N14MagazineShotgun20
           prob: 0.2
           orGroup: Ammunition
-        - id: N14ShellShotgun20
-          prob: 1
+        - id: MagazineBox20gauge
+          prob: 0.1
           orGroup: Ammunition
-          amount: 1
-          maxAmount: 10
         - id: N14MagazinePistol22lr
-          prob: 0.4
+          prob: 0.2
+          orGroup: Ammunition
+        - id: MagazineBox22
+          prob: 0.1
           orGroup: Ammunition
         - id: N14MagazinePistol45
-          prob: 0.4
+          prob: 0.2
+          orGroup: Ammunition
+        - id: MagazineBox45
+          prob: 0.1
+          orGroup: Ammunition
+        - id: MagazineBox44
+          prob: 0.1
+          orGroup: Ammunition
+        - id: MagazineBox45
+          prob: 0.1
+          orGroup: Ammunition
+        - id: MagazineBox308
+          prob: 0.1
+          orGroup: Ammunition
+        - id: LongMagazine556Rifle
+          prob: 0.2
+          orGroup: Ammunition
+        - id: Magazine556Rifle
+          prob: 0.2
+          orGroup: Ammunition
+        - id: Magazine45SubMachineGun
+          prob: 0.3
           orGroup: Ammunition
         - id: N14CurrencyCap
           prob: 0.7
@@ -314,21 +338,10 @@
           orGroup: Currency
           amount: 1
           maxAmount: 25
-        - id: N14CurrencyLegionAureus
-          prob: 0.7
-          orGroup: Currency
-          amount: 1
-          maxAmount: 10
-        - id: N14CurrencyLegionDenarius
-          prob: 0.7
-          orGroup: Currency
-          amount: 1
-          maxAmount: 25
-
 
 - type: entity
   abstract: true
-  id: N14BaseLockerStorageFill
+  id: N14BaseLockerStorageFill # Locker items
   components:
     - type: StorageFill
       contents:
@@ -411,17 +424,19 @@
         - id: Gauze
           prob: 0.2
           amount: 1
-          maxAmount: 5
+          maxAmount: 2
         - id: N14Stimpak
           prob: 0.1
-          amount: 1
-          maxAmount: 3
         - id: N14RadAwayBloodbag
           prob: 0.3
-          amount: 1
-          maxAmount: 2
+        - id: Bloodpack
+          prob: 0.2
+        - id: Brutepack
+          prob: 0.2
+        - id: Ointment
+          prob: 0.2
         - id: N14BaseBallBat
-          prob: 0.5
+          prob: 0.4
           orGroup: Weapon
         - id: FireAxe
           prob: 0.04
@@ -433,7 +448,7 @@
           prob: 0.1
           orGroup: Weapon
         - id: N14Hatchet
-          prob: 0.5
+          prob: 0.3
           orGroup: Weapon
         - id: N14SledgeHammer
           prob: 0.2
@@ -448,10 +463,10 @@
           prob: 0.6
           orGroup: Weapon
         - id: N14WeaponPistol10mm
-          prob: 0.5
+          prob: 0.2
           orGroup: Weapon
         - id: N14WeaponLaserPistol
-          prob: 0.2
+          prob: 0.05
           orGroup: Weapon
         - id: N14WeaponPistol9mm
           prob: 0.6
@@ -460,19 +475,19 @@
           prob: 0.3
           orGroup: Weapon
         - id: N14WeaponPistol12mm
-          prob: 0.2
+          prob: 0.1
           orGroup: Weapon
         - id: N14WeaponRevolver9mm
-          prob: 0.5
+          prob: 0.4
           orGroup: Weapon
         - id: N14WeaponCarbine
-          prob: 0.08
+          prob: 0.04
           orGroup: Weapon
         - id: N14WeaponChineseRifle
-          prob: 0.07
+          prob: 0.02
           orGroup: Weapon
         - id: N14WeaponMarksman
-          prob: 0.1
+          prob: 0.04
           orGroup: Weapon
         - id: N14WeaponDoubleBarrelShotgun
           prob: 0.4
@@ -481,25 +496,25 @@
           prob: 0.1
           orGroup: Weapon
         - id: N14WeaponAutoShotgun
-          prob: 0.08
+          prob: 0.02
           orGroup: Weapon
         - id: N14WeaponCaravanShotgun
           prob: 0.4
           orGroup: Weapon
         - id: N14WeaponLeverShotgun
-          prob: 0.3
-          orGroup: Weapon
-        - id: N14WeaponSubMachineGun10mm
-          prob: 0.3
-          orGroup: Weapon
-        - id: N14WeaponSubMachineGun12mm
           prob: 0.2
           orGroup: Weapon
+        - id: N14WeaponSubMachineGun10mm
+          prob: 0.1
+          orGroup: Weapon
+        - id: N14WeaponSubMachineGun12mm
+          prob: 0.08
+          orGroup: Weapon
         - id: N14weapon12mmpipe
-          prob: 0.4
+          prob: 0.2
           orGroup: Weapon
         - id: N14weapon10mmpipe
-          prob: 0.5
+          prob: 0.2
           orGroup: Weapon
         - id: N14WeaponSniperHunting
           prob: 0.1
@@ -517,16 +532,7 @@
           prob: 0.2
           orGroup: Weapon
         - id: N14Weapon45SMG
-          prob: 0.2
-          orGroup: Weapon
-        - id: LongMagazine556Rifle
-          prob: 0.4
-          orGroup: Weapon
-        - id: Magazine556Rifle
-          prob: 0.4
-          orGroup: Weapon
-        - id: Magazine45SubMachineGun
-          prob: 0.2
+          prob: 0.1
           orGroup: Weapon
         - id: N14FireAxe
           prob: 0.2
@@ -535,7 +541,7 @@
           prob: 0.4
           orGroup: Weapon
         - id: N14SuperSledgeHammer
-          prob: 0.4
+          prob: 0.1
           orGroup: Weapon
         - id: N14TribalMachete
           prob: 0.4
@@ -544,37 +550,37 @@
           prob: 0.4
           orGroup: Weapon
         - id: N14ripper
-          prob: 0.3
+          prob: 0.1
           orGroup: Weapon
         - id: MagazineBox556
           prob: 0.1
           orGroup: Ammunition
         - id: Magazine762Rifle
-          prob: 0.4
+          prob: 0.2
           orGroup: Ammunition
         - id: MagazineBox762
-          prob: 0.1
+          prob: 0.05
           orGroup: Ammunition
         - id: N14MagazinePistol9mm
           prob: 0.4
           orGroup: Ammunition
         - id: MagazineBox9mm
-          prob: 0.1
+          prob: 0.2
           orGroup: Ammunition
         - id: N14MagazinePistol10mm
           prob: 0.4
           orGroup: Ammunition
         - id: N14MagazineSMG10mm
-          prob: 0.4
+          prob: 0.2
           orGroup: Ammunition
         - id: MagazineBox10mm
           prob: 0.1
           orGroup: Ammunition
         - id: N14MagazinePistol12mm
-          prob: 0.4
+          prob: 0.2
           orGroup: Ammunition
         - id: N14MagazineSMG12mm
-          prob: 0.4
+          prob: 0.2
           orGroup: Ammunition
         - id: MagazineBox12
           prob: 0.1
@@ -592,13 +598,13 @@
           prob: 0.1
           orGroup: Ammunition
         - id: N14MagazinePistol22lr
-          prob: 0.4
+          prob: 0.2
           orGroup: Ammunition
         - id: MagazineBox22
           prob: 0.1
           orGroup: Ammunition
         - id: N14MagazinePistol45
-          prob: 0.4
+          prob: 0.2
           orGroup: Ammunition
         - id: MagazineBox45
           prob: 0.1
@@ -611,6 +617,15 @@
           orGroup: Ammunition
         - id: MagazineBox308
           prob: 0.1
+          orGroup: Ammunition
+        - id: LongMagazine556Rifle
+          prob: 0.2
+          orGroup: Ammunition
+        - id: Magazine556Rifle
+          prob: 0.2
+          orGroup: Ammunition
+        - id: Magazine45SubMachineGun
+          prob: 0.3
           orGroup: Ammunition
         - id: N14ClothingOuterCoatLeatherDuster
           prob: 0.6
@@ -843,6 +858,134 @@
         - id: N14ClothingBeltCleanerFilled
           prob: 0.1
           orGroup: Clothing
+        - id: N14JunkAbraxoCleaner
+          prob: 0.1
+        - id: N14Junk8Ball
+          prob: 0.1
+        - id: N14JunkBaseball
+          prob: 0.1
+        - id: N14JunkCoffeepot
+          prob: 0.1
+        - id: N14JunkComponentBoard1
+          prob: 0.08
+        - id: N14JunkComponentBoard2
+          prob: 0.08
+        - id: N14JunkComponentBoard3
+          prob: 0.08
+        - id: N14JunkComponentBulb1
+          prob: 0.08
+        - id: N14JunkComponentBulb2
+          prob: 0.08
+        - id: N14JunkComponentBulb3
+          prob: 0.08
+        - id: N14JunkComponentBuzzer
+          prob: 0.08
+        - id: N14JunkComponentCapacitor1
+          prob: 0.08
+        - id: N14JunkComponentCapacitor2
+          prob: 0.08
+        - id: N14JunkComponentCapacitor3
+          prob: 0.08
+        - id: N14JunkComponentDiode1
+          prob: 0.08
+        - id: N14JunkComponentDiode2
+          prob: 0.08
+        - id: N14JunkComponentDiode3
+          prob: 0.08
+        - id: N14JunkComponentFuse1
+          prob: 0.08
+        - id: N14JunkComponentFuse2
+          prob: 0.08
+        - id: N14JunkComponentGearLarge
+          prob: 0.1
+        - id: N14JunkComponentGearSmall
+          prob: 0.1
+        - id: N14JunkComponentIgniter
+          prob: 0.08
+        - id: N14JunkComponentMainboard
+          prob: 0.2
+        - id: N14JunkComponentResistor1
+          prob: 0.08
+        - id: N14JunkComponentResistor2
+          prob: 0.08
+        - id: N14JunkComponentResistor3
+          prob: 0.08
+        - id: N14JunkComponentScrew
+          prob: 0.1
+        - id: N14JunkComponentSensor
+          prob: 0.08
+        - id: N14JunkComponentSensorModule
+          prob: 0.08
+        - id: N14JunkComponentSwitch
+          prob: 0.08
+        - id: N14JunkComponentTransistor1
+          prob: 0.08
+        - id: N14JunkComponentTransistor2
+          prob: 0.08
+        - id: N14JunkComponentTransistor3
+          prob: 0.05
+        - id: N14JunkCookpot
+          prob: 0.1
+        - id: N14JunkCrutch
+          prob: 0.1
+        - id: N14JunkDuctTape
+          prob: 0.1
+        - id: N14JunkGunpartsAction
+          prob: 0.05
+        - id: N14JunkGunpartsAdvancedFrame
+          prob: 0.05
+        - id: N14JunkGunpartsBarrel
+          prob: 0.05
+        - id: N14JunkGunpartsBolt
+          prob: 0.05
+        - id: N14JunkGunpartsFrame
+          prob: 0.05
+        - id: N14JunkGunpartsFramePistol
+          prob: 0.05
+        - id: N14JunkGunpartsReceiver
+          prob: 0.05
+        - id: N14JunkGunpartsRecoilComp
+          prob: 0.05
+        - id: N14JunkGunpartsRifleFrame
+          prob: 0.05
+        - id: N14JunkGunpartsRifleScope
+          prob: 0.05
+        - id: N14JunkGunpartsRifleStock
+          prob: 0.05
+        - id: N14JunkGunpartsStock
+          prob: 0.05
+        - id: N14JunkGunpartsStockWood
+          prob: 0.05
+        - id: N14JunkGunpartsTrigger
+          prob: 0.05
+        - id: N14JunkGunpartsWeaponParts1
+          prob: 0.05
+        - id: N14JunkGunpartsWeaponParts2
+          prob: 0.05
+        - id: N14JunkGunpartsWeaponParts3
+          prob: 0.05
+        - id: N14JunkIron
+          prob: 0.1
+        - id: N14JunkLunchbox
+          prob: 0.1
+        - id: N14JunkTeapot
+          prob: 0.1
+        - id: N14JunkTimer
+          prob: 0.1
+        - id: N14JunkTincan
+          prob: 0.1
+        - id: N14JunkToaster
+          prob: 0.1
+        - id: N14JunkToyNukaTruck
+          prob: 0.1
+        - id: N14JunkToyRacecar
+          prob: 0.1
+        - id: N14JunkTurpentine
+          prob: 0.1
+        - id: N14JunkVaultCanteen
+          prob: 0.1
+        - id: N14JunkWonderglue
+          prob: 0.1
         - id: N14CurrencyCap
           prob: 1
           orGroup: Currency
@@ -858,20 +1001,10 @@
           orGroup: Currency
           amount: 1
           maxAmount: 25
-        - id: N14CurrencyLegionAureus
-          prob: 1
-          orGroup: Currency
-          amount: 1
-          maxAmount: 10
-        - id: N14CurrencyLegionDenarius
-          prob: 1
-          orGroup: Currency
-          amount: 1
-          maxAmount: 25
 
 - type: entity
   abstract: true
-  id: N14BaseSmallLockerStorageFill
+  id: N14BaseSmallLockerStorageFill # Locker items, but only the small stuff
   components:
     - type: StorageFill
       contents:
@@ -895,24 +1028,16 @@
           maxAmount: 2
         - id: Gauze
           prob: 0.1
-          amount: 1
-          maxAmount: 2
         - id: N14SmellingSalts
           prob: 0.15
-          amount: 1
-          maxAmount: 2
         - id: N14Stimpak
           prob: 0.02
-          amount: 1
-          maxAmount: 2
         - id: N14RadAwayBloodbag
           prob: 0.3
-          amount: 1
-          maxAmount: 2
         - id: N14Antidote
           prob: 0.05
-          amount: 1
-          maxAmount: 2
+        - id: Bloodpack
+          prob: 0.1
         - id: N14ChemicalSyringeAntidote
           prob: 0.01
         - id: N14SuperStimpak
@@ -1115,61 +1240,209 @@
         - id: N14ClothingBootsLeather
           prob: 0.1
           orGroup: Clothing
-        - id: ClothingBeltUtility
+        - id: MagazineBox556
           prob: 0.1
-          orGroup: Clothing
-        - id: N14ClothingBeltUtilityFilled
-          prob: 0.05
-          orGroup: Clothing
-        - id: N14ClothingBeltCleanerFilled
-          prob: 0.1
-          orGroup: Clothing
-        - id: Magazine556Rifle
-          prob: 0.4
-          orGroup: Ammunition
-        - id: LongMagazine556Rifle
-          prob: 0.4
           orGroup: Ammunition
         - id: Magazine762Rifle
-          prob: 0.4
+          prob: 0.2
+          orGroup: Ammunition
+        - id: MagazineBox762
+          prob: 0.05
           orGroup: Ammunition
         - id: N14MagazinePistol9mm
           prob: 0.4
+          orGroup: Ammunition
+        - id: MagazineBox9mm
+          prob: 0.2
           orGroup: Ammunition
         - id: N14MagazinePistol10mm
           prob: 0.4
           orGroup: Ammunition
         - id: N14MagazineSMG10mm
-          prob: 0.4
+          prob: 0.2
+          orGroup: Ammunition
+        - id: MagazineBox10mm
+          prob: 0.1
           orGroup: Ammunition
         - id: N14MagazinePistol12mm
-          prob: 0.4
+          prob: 0.2
           orGroup: Ammunition
         - id: N14MagazineSMG12mm
-          prob: 0.4
+          prob: 0.2
+          orGroup: Ammunition
+        - id: MagazineBox12
+          prob: 0.1
           orGroup: Ammunition
         - id: N14MagazineShotgun12
           prob: 0.2
           orGroup: Ammunition
-        - id: N14ShellShotgun12
-          prob: 1
+        - id: MagazineBox12gauge
+          prob: 0.1
           orGroup: Ammunition
-          amount: 1
-          maxAmount: 10
         - id: N14MagazineShotgun20
           prob: 0.2
           orGroup: Ammunition
-        - id: N14ShellShotgun20
-          prob: 1
+        - id: MagazineBox20gauge
+          prob: 0.1
           orGroup: Ammunition
-          amount: 1
-          maxAmount: 10
         - id: N14MagazinePistol22lr
-          prob: 0.4
+          prob: 0.2
+          orGroup: Ammunition
+        - id: MagazineBox22
+          prob: 0.1
           orGroup: Ammunition
         - id: N14MagazinePistol45
-          prob: 0.4
+          prob: 0.2
           orGroup: Ammunition
+        - id: MagazineBox45
+          prob: 0.1
+          orGroup: Ammunition
+        - id: MagazineBox44
+          prob: 0.1
+          orGroup: Ammunition
+        - id: MagazineBox45
+          prob: 0.1
+          orGroup: Ammunition
+        - id: MagazineBox308
+          prob: 0.1
+          orGroup: Ammunition
+        - id: LongMagazine556Rifle
+          prob: 0.2
+          orGroup: Ammunition
+        - id: Magazine556Rifle
+          prob: 0.2
+          orGroup: Ammunition
+        - id: Magazine45SubMachineGun
+          prob: 0.3
+          orGroup: Ammunition
+        - id: N14JunkAbraxoCleaner
+          prob: 0.1
+        - id: N14Junk8Ball
+          prob: 0.1
+        - id: N14JunkBaseball
+          prob: 0.1
+        - id: N14JunkCoffeepot
+          prob: 0.1
+        - id: N14JunkComponentBoard1
+          prob: 0.08
+        - id: N14JunkComponentBoard2
+          prob: 0.08
+        - id: N14JunkComponentBoard3
+          prob: 0.08
+        - id: N14JunkComponentBulb1
+          prob: 0.08
+        - id: N14JunkComponentBulb2
+          prob: 0.08
+        - id: N14JunkComponentBulb3
+          prob: 0.08
+        - id: N14JunkComponentBuzzer
+          prob: 0.08
+        - id: N14JunkComponentCapacitor1
+          prob: 0.08
+        - id: N14JunkComponentCapacitor2
+          prob: 0.08
+        - id: N14JunkComponentCapacitor3
+          prob: 0.08
+        - id: N14JunkComponentDiode1
+          prob: 0.08
+        - id: N14JunkComponentDiode2
+          prob: 0.08
+        - id: N14JunkComponentDiode3
+          prob: 0.08
+        - id: N14JunkComponentFuse1
+          prob: 0.08
+        - id: N14JunkComponentFuse2
+          prob: 0.08
+        - id: N14JunkComponentGearLarge
+          prob: 0.1
+        - id: N14JunkComponentGearSmall
+          prob: 0.1
+        - id: N14JunkComponentIgniter
+          prob: 0.08
+        - id: N14JunkComponentMainboard
+          prob: 0.05
+        - id: N14JunkComponentResistor1
+          prob: 0.08
+        - id: N14JunkComponentResistor2
+          prob: 0.08
+        - id: N14JunkComponentResistor3
+          prob: 0.08
+        - id: N14JunkComponentScrew
+          prob: 0.1
+        - id: N14JunkComponentSensor
+          prob: 0.08
+        - id: N14JunkComponentSensorModule
+          prob: 0.08
+        - id: N14JunkComponentSwitch
+          prob: 0.08
+        - id: N14JunkComponentTransistor1
+          prob: 0.08
+        - id: N14JunkComponentTransistor2
+          prob: 0.08
+        - id: N14JunkComponentTransistor3
+          prob: 0.08
+        - id: N14JunkCookpot
+          prob: 0.1
+        - id: N14JunkCrutch
+          prob: 0.1
+        - id: N14JunkDuctTape
+          prob: 0.1
+        - id: N14JunkGunpartsAction
+          prob: 0.05
+        - id: N14JunkGunpartsAdvancedFrame
+          prob: 0.05
+        - id: N14JunkGunpartsBarrel
+          prob: 0.05
+        - id: N14JunkGunpartsBolt
+          prob: 0.05
+        - id: N14JunkGunpartsFrame
+          prob: 0.05
+        - id: N14JunkGunpartsFramePistol
+          prob: 0.05
+        - id: N14JunkGunpartsReceiver
+          prob: 0.05
+        - id: N14JunkGunpartsRecoilComp
+          prob: 0.05
+        - id: N14JunkGunpartsRifleFrame
+          prob: 0.05
+        - id: N14JunkGunpartsRifleScope
+          prob: 0.05
+        - id: N14JunkGunpartsRifleStock
+          prob: 0.05
+        - id: N14JunkGunpartsStock
+          prob: 0.05
+        - id: N14JunkGunpartsStockWood
+          prob: 0.05
+        - id: N14JunkGunpartsTrigger
+          prob: 0.05
+        - id: N14JunkGunpartsWeaponParts1
+          prob: 0.05
+        - id: N14JunkGunpartsWeaponParts2
+          prob: 0.05
+        - id: N14JunkGunpartsWeaponParts3
+          prob: 0.05
+        - id: N14JunkIron
+          prob: 0.1
+        - id: N14JunkLunchbox
+          prob: 0.1
+        - id: N14JunkTeapot
+          prob: 0.1
+        - id: N14JunkTimer
+          prob: 0.1
+        - id: N14JunkTincan
+          prob: 0.1
+        - id: N14JunkToaster
+          prob: 0.1
+        - id: N14JunkToyNukaTruck
+          prob: 0.1
+        - id: N14JunkToyRacecar
+          prob: 0.1
+        - id: N14JunkTurpentine
+          prob: 0.1
+        - id: N14JunkVaultCanteen
+          prob: 0.1
+        - id: N14JunkWonderglue
+          prob: 0.1
         - id: N14CurrencyCap
           prob: 0.7
           orGroup: Currency
@@ -1185,20 +1458,10 @@
           orGroup: Currency
           amount: 1
           maxAmount: 25
-        - id: N14CurrencyLegionAureus
-          prob: 0.7
-          orGroup: Currency
-          amount: 1
-          maxAmount: 10
-        - id: N14CurrencyLegionDenarius
-          prob: 0.7
-          orGroup: Currency
-          amount: 1
-          maxAmount: 25
 
 - type: entity
   abstract: true
-  id: N14StorageFillDomestic
+  id: N14StorageFillDomestic # Junk, Food and Domestical items
   components:
     - type: StorageFill
       contents:
@@ -1263,197 +1526,133 @@
         - id: N14KitchenKnife
           prob: 0.05
         - id: N14JunkAbraxoCleaner
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14Junk8Ball
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkBaseball
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkCoffeepot
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkComponentBoard1
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentBoard2
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentBoard3
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentBulb1
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentBulb2
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentBulb3
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentBuzzer
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentCapacitor1
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentCapacitor2
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentCapacitor3
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentDiode1
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentDiode2
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentDiode3
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentFuse1
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentFuse2
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentGearLarge
-          prob: 0.4
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkComponentGearSmall
-          prob: 0.4
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkComponentIgniter
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentMainboard
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkComponentResistor1
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentResistor2
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentResistor3
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentScrew
-          prob: 0.4
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkComponentSensor
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentSensorModule
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentSwitch
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentTransistor1
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentTransistor2
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkComponentTransistor3
-          prob: 0.3
-          orGroup: JunkItems
+          prob: 0.08
         - id: N14JunkCookpot
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkCrutch
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkDuctTape
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkGunpartsAction
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsAdvancedFrame
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsBarrel
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsBolt
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsFrame
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsFramePistol
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsReceiver
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsRecoilComp
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsRifleFrame
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsRifleScope
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsRifleStock
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsStock
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsStockWood
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsTrigger
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsWeaponParts1
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsWeaponParts2
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkGunpartsWeaponParts3
-          prob: 0.2
-          orGroup: JunkItems
+          prob: 0.05
         - id: N14JunkIron
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkLunchbox
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkTeapot
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkTimer
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkTincan
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkToaster
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkToyNukaTruck
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkToyRacecar
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkTurpentine
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkVaultCanteen
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14JunkWonderglue
-          prob: 0.5
-          orGroup: JunkItems
+          prob: 0.1
         - id: N14CurrencyCap
           prob: 0.9
           orGroup: Currency
@@ -1469,20 +1668,10 @@
           orGroup: Currency
           amount: 1
           maxAmount: 25
-        - id: N14CurrencyLegionAureus
-          prob: 0.7
-          orGroup: Currency
-          amount: 1
-          maxAmount: 10
-        - id: N14CurrencyLegionDenarius
-          prob: 0.7
-          orGroup: Currency
-          amount: 1
-          maxAmount: 25
 
 - type: entity
   abstract: true
-  id: N14BaseMilitaryStorageFill  # Military should have better drops for weapons / ammo
+  id: N14BaseMilitaryStorageFill  # Rare weapons, ammo and better chances at the rare loot
   components:
     - type: StorageFill
       contents:
@@ -1490,28 +1679,20 @@
           prob: 0.02
         - id: Gauze
           prob: 0.15
-          amount: 1
-          maxAmount: 10
         - id: Bloodpack
           prob: 0.15
-          amount: 1
-          maxAmount: 10
         - id: Syringe
           prob: 0.1
           amount: 1
           maxAmount: 3
         - id: N14ChemicalSyringeAntidote
           prob: 0.35
-          amount: 1
-          maxAmount: 2
         - id: N14Stimpak
           prob: 0.2
           amount: 1
-          maxAmount: 3
+          maxAmount: 2
         - id: N14RadAwayBloodbag
           prob: 0.3
-          amount: 1
-          maxAmount: 2
         - id: N14BaseBallBat
           prob: 0.04
           orGroup: Weapon
@@ -1528,22 +1709,22 @@
           prob: 0.04
           orGroup: Weapon
         - id: N14SledgeHammer
-          prob: 0.5
+          prob: 0.1
           orGroup: Weapon
         - id: N14CombatKnife
-          prob: 1
+          prob: 0.2
           orGroup: Weapon
         - id: N14Machete
-          prob: 1
+          prob: 0.2
           orGroup: Weapon
         - id: N14WeaponPipe10mm
-          prob: 0.6
+          prob: 0.4
           orGroup: Weapon
         - id: N14WeaponLaserRifle
           prob: 0.2
           orGroup: Weapon
         - id: N14WeaponPistol10mm
-          prob: 0.5
+          prob: 0.4
           orGroup: Weapon
         - id: N14WeaponLaserPistol
           prob: 0.4
@@ -1649,98 +1830,109 @@
           orGroup: Weapon
         - id: Magazine556Rifle
           prob: 0.4
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: Magazine762Rifle
           prob: 0.4
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: N14MagazinePistol9mm
           prob: 0.4
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: N14MagazinePistol10mm
           prob: 0.4
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: N14MagazineSMG10mm
           prob: 0.4
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: N14MagazinePistol12mm
           prob: 0.4
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: N14MagazineSMG12mm
           prob: 0.4
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: N14MagazineShotgun12
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: N14MagazineShotgun20
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: N14MagazinePistol22lr
           prob: 0.4
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: N14MagazinePistol45
           prob: 0.4
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: N14PowerCellHigh
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
           amount: 1
           maxAmount: 2
+        - id: N14PowerCellSmall
+          prob: 0.3
+          orGroup: Ammunition
+          amount: 1
+          maxAmount: 2
+        - id: N14PowerCellAdvanced
+          prob: 0.1
+          orGroup: Ammunition
+        - id: N14PowerCellFocused
+          prob: 0.05
+          orGroup: Ammunition
         - id: N14PlasmaCartridge
           prob: 0.1
-          orGroup: Weapon
+          orGroup: Ammunition
           amount: 1
           maxAmount: 2
         - id: N14MagazineMinigun5mm # You aint gettin this one either
           prob: 0.005
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: Magazine308Rifle
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: ClipMagazine308Rifle
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: Magazine45SubMachineGun
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: MagazineBox45
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: MagazineBox44
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: MagazineBox45
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: MagazineBox308
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: MagazineBoxAntiMateriel
           prob: 0.1
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: MagazineBox22
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: MagazineBox20gauge
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: MagazineBox12gauge
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: MagazineBox12
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: MagazineBox10mm
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: MagazineBox9mm
           prob: 0.3
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: MagazineBox762
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: MagazineBox556
           prob: 0.2
-          orGroup: Weapon
+          orGroup: Ammunition
         - id: ClothingBeltUtility
           prob: 0.1
           orGroup: Clothing
@@ -1816,7 +2008,7 @@
 
 - type: entity
   abstract: true
-  id: N14StorageFillMedical
+  id: N14StorageFillMedical # Medical items
   components:
     - type: StorageFill
       contents:
@@ -1825,11 +2017,9 @@
         - id: Gauze
           prob: 0.15
           amount: 1
-          maxAmount: 3
-          orGroup: MedicalCommon
+          maxAmount: 2
         - id: Bloodpack
           prob: 0.15
-          orGroup: MedicalCommon
         - id: N14ChemicalSyringeAntidote
           prob: 0.35
           amount: 1
@@ -1839,10 +2029,8 @@
           prob: 0.2
           amount: 1
           maxAmount: 3
-          orGroup: MedicalCommon
         - id: N14Antidote
           prob: 0.2
-          orGroup: MedicalCommon
         - id: N14ChemicalSyringeAntidote
           prob: 0.2
           amount: 1
@@ -1859,12 +2047,10 @@
           orGroup: MedicalRare
         - id: N14DoctorSyringe
           prob: 0.3
-          orGroup: MedicalCommon
         - id: N14StimpakDirty
           prob: 0.3
           amount: 1
           maxAmount: 2
-          orGroup: MedicalCommon
         - id: N14Psycho
           prob: 0.2
           orGroup: MedicalRare
@@ -1872,12 +2058,16 @@
           prob: 0.3
           amount: 1
           maxAmount: 2
-          orGroup: MedicalCommon
+        - id: Brutepack
+          prob: 0.2
+        - id: Ointment
+          prob: 0.2
+        - id: Bloodpack
+          prob: 0.3
         - id: N14SmellingSalts
           prob: 0.2
           amount: 1
           maxAmount: 2
-          orGroup: MedicalCommon
         - id: N14SuperStimpak
           prob: 0.1
           orGroup: MedicalRare
@@ -1896,15 +2086,6 @@
         - id: N14MentatsCanisterFilled
           prob: 0.2
           orGroup: MedicalRare
-        - id: N14FloraWildBrocFlowerClippingSeed
-          prob: 0.1
-          orGroup: Seeds
-        - id: N14FloraWildXanderRootClippingSeed
-          prob: 0.1
-          orGroup: Seeds
-        - id: N14FloraWildTarberryClippingSeed
-          prob: 0.1
-          orGroup: Seeds
         - id: N14FloraProduceWildCaveFungus
           prob: 0.05
           orGroup: Seeds
@@ -1914,7 +2095,7 @@
 
 - type: entity
   abstract: true
-  id: N14ClosetFridgeFill
+  id: N14ClosetFridgeFill # Fridge stuff... Drinks and such
   components:
     - type: StorageFill
       contents:
@@ -2064,7 +2245,7 @@
 
 - type: entity
   abstract: true
-  id: N14WastelandBotanyStorageFill
+  id: N14WastelandBotanyStorageFill # Seeds
   components:
     - type: StorageFill
       contents:
@@ -2113,7 +2294,7 @@
 
 - type: entity
   abstract: true
-  id: N14StorageFillCurrencyFill
+  id: N14StorageFillCurrencyFill # Wasteland currencies
   components:
     - type: StorageFill
       contents:
@@ -2153,28 +2334,10 @@
         - id:  N14CurrencyNCRDollar500
           prob: 0.05
           orGroup: Currency
-        - id:  N14CurrencyLegionAureus10
-          prob: 0.4
-          orGroup: Currency
-        - id:  N14CurrencyLegionAureus50
-          prob: 0.3
-          orGroup: Currency
-        - id:  N14CurrencyLegionAureus100
-          prob: 0.2
-          orGroup: Currency
-        - id:  N14CurrencyLegionDenarius10
-          prob: 0.4
-          orGroup: Currency
-        - id:  N14CurrencyLegionDenarius50
-          prob: 0.3
-          orGroup: Currency
-        - id:  N14CurrencyLegionDenarius100
-          prob: 0.2
-          orGroup: Currency
 
 - type: entity
   abstract: true
-  id: N14StorageFillSafePrewarFill
+  id: N14StorageFillSafePrewarFill # Prewar currencies / IDs
   components:
     - type: StorageFill
       contents:

@@ -42,6 +42,13 @@ public sealed partial class MobThresholdsComponent : Component
     /// </summary>
     [DataField("allowRevives")]
     public bool AllowRevives;
+
+    /// <summary>
+    /// Track initial trashholds to modify thresholds in runtime depending on curent special value.
+    /// </summary>
+    [DataField("initialThresholds")]
+    public SortedDictionary<FixedPoint2, MobState> BaseThresholds = new();
+
 }
 
 [Serializable, NetSerializable]
