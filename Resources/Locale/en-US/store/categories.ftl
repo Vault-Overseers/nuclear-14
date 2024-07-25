@@ -12,6 +12,7 @@ store-category-allies = Allies
 store-category-job = Job
 store-category-wearables = Wearables
 store-category-pointless = Pointless
+store-category-deception = Deception
 
 # Revenant
 store-category-abilities = Abilities

@@ -10,6 +10,7 @@ ent-N14JunkItemBaseContainer = { ent-N14JunkItemBase }
     .desc = { ent-N14JunkItemBase.desc }
 ent-N14JunkAbraxoCleaner = Очиститель "Абраксо"
     .desc = Пустая бутылка от "Абраксо". До войны в ней продавали чистящее средство. Теперь она только собирает пыль.
+    .suffix = Полный
 ent-N14Junk8Ball = шар 8
     .desc = Бильярдный шар, покрытый трещинами и ржавчиной. Наверное, когда-то он украшал стол в каком-то казино, но теперь он - просто мусор.
 ent-N14JunkBaseball = бейсбольный мяч

@@ -23,6 +23,8 @@ trait-name-Pacifist = Пацифист
 trait-description-Pacifist = Вы не можете нападать и причинять вред живым существам.
 trait-name-LightweightDrunk = Быстрое опьянение
 trait-description-LightweightDrunk = Алкоголь оказывает на вас более сильное воздействие.
+trait-name-HeavyweightDrunk = Медленное опьянение
+trait-description-HeavyweightDrunk = Алкоголь боится вас.
 trait-name-Muted = Немота
 trait-description-Muted = Вы не можете говорить
 trait-name-Paracusia = Паракузия
@@ -37,3 +39,21 @@ trait-name-SocialAnxiety = Социофобия
 trait-description-SocialAnxiety = Вы испытываете тревожность, когда говорите, что приводит к заиканию.
 trait-name-Snoring = Храп
 trait-description-Snoring = Вы храпите во время сна.
+trait-name-NormalVisionHarpy = Трихроматическая модификация
+trait-description-NormalVisionHarpy = Ваши глаза были модифицированы с помощью передовой медицины, чтобы видеть стандартные цвета: красный, зеленый и синий.
+trait-name-Southern = Диалект юга США
+trait-description-Southern = У вас другая манера речи. Работает только с английским.
+trait-name-NormalVisionVulpkanin = Трихроматическая модификация
+trait-description-NormalVisionVulpkanin = Ваши глаза были модифицированы с помощью передовой медицины, чтобы видеть стандартные цвета: красный, зеленый и синий.
+trait-name-Thieving = Клептоман
+trait-description-Thieving =
+    Вы ловки руками и талантливы в убеждении людей расстаться с их вещами.
+    Вы можете определять предметы в карманах, красть их тише и примерно на 33% быстрее.
+trait-name-ForeignerLight = Иностранец (легкий уровень)
+trait-description-ForeignerLight =
+    Вам трудно выучить основной язык этой станции, и поэтому вы не можете на нем говорить. Однако вы можете понимать, что говорят другие на этом языке.
+    Чтобы помочь вам преодолеть это препятствие, вы оснащены переводчиком, который помогает вам говорить на основном языке этой станции.
+trait-name-Foreigner = Иностранец
+trait-description-Foreigner =
+    По той или иной причине вы не говорите на основном языке этой станции.
+    Вместо этого вам выдан переводчик, которым можете пользоваться только вы.

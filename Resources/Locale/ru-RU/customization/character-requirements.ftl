@@ -12,7 +12,7 @@ character-trait-requirement =
     Вам { $inverted ->
         [true] не следует иметь
        *[other] следует иметь
-    } черту [color=lightblue]{ $trait }[/color]
+} одну из черт: [color=lightblue]{$traits}[/color]
 character-backpack-type-requirement =
     Вам { $inverted ->
         [true] не следует использовать

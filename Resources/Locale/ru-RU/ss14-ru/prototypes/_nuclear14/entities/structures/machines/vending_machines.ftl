@@ -1,3 +1,5 @@
+ent-N14VendingMachineStorageBase = Вендтнговый автомат
+    .desc = Да здравствует капитализм!
 ent-N14VendingMachineNukaCola = автомат с Ядер-Колой
     .desc = Довоенный торговый автомат, который когда-то продавал легендарную Ядер-Колу. Теперь он пуст — как и мечты о беззаботной жизни.
 ent-N14VendingMachineNukaColaIrradiated = автомат с Ядер-Колой
