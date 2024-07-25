@@ -501,7 +501,7 @@ namespace Content.Client.Preferences.UI
             // Nuclear14 Special
             #region Specials
 
-            _tabContainer.SetTabTitle(5, Loc.GetString("humanoid-profile-editor-specials-tab"));
+            _tabContainer.SetTabTitle(6, Loc.GetString("humanoid-profile-editor-specials-tab"));
             _specialPriorities = new List<SpecialPrioritySelector>();
             UpdateSpecialRequirements();
 
@@ -808,7 +808,7 @@ namespace Content.Client.Preferences.UI
             _specialPriorities.Clear();
 
             var points = _configurationManager.GetCVar(SpecialCCVars.MaxSpecial);
-            _specialPointsLabel.Text = Loc.GetString("humanoid-profile-editor-loadouts-points-label", ("points", points), ("max", points));
+            _specialPointsLabel.Text = Loc.GetString("humanoid-profile-editor-special-points-label", ("points", points), ("max", points));
             _specialPointsBar.MaxValue = points;
             _specialPointsBar.Value = points;
 
