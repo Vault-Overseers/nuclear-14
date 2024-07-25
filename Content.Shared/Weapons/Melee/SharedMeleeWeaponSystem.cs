@@ -27,8 +27,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Robust.Shared.Toolshed.Syntax;
-using ItemToggleMeleeWeaponComponent = Content.Shared.Item.ItemToggle.Components.ItemToggleMeleeWeaponComponent;
+using Content.Shared.Nuclear14.Special.Components;
 
 namespace Content.Shared.Weapons.Melee;
 
@@ -226,10 +225,37 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     {
         if (!Resolve(uid, ref component, false))
             return new DamageSpecifier();
+        // Nuclear14 adjust melee damage with your Strength
+        // 1 Strength = 0.6
+        // 5 Strength = 1
+        // 10 Strength = 1.5
+        var damage = component.Damage;
+        foreach(var entry in damage.DamageDict)
+        {
+            if (entry.Value <= 0) continue;
 
-        var ev = new GetMeleeDamageEvent(uid, new (component.Damage), new(), user);
+            float newValue = entry.Value.Float();
+            if (TryComp<SpecialComponent>(user, out var special)){
+                newValue *= 0.50f + (special.TotalStrength / 10f);
+            }
+            damage.DamageDict[entry.Key] = newValue;
+        }
+
+        var ev = new GetMeleeDamageEvent(uid, new (damage), new(), user);
         RaiseLocalEvent(uid, ref ev);
 
+        // remove multiplier after dealing damage
+        foreach(var entry in damage.DamageDict)
+        {
+            if (entry.Value <= 0) continue;
+
+            float newValue = entry.Value.Float();
+            if (TryComp<SpecialComponent>(user, out var special)){
+                newValue /= 0.50f + (special.TotalStrength / 10f);
+            }
+            damage.DamageDict[entry.Key] = newValue;
+        }
+        // Nuclear14 end
         return DamageSpecifier.ApplyModifierSets(ev.Damage, ev.Modifiers);
     }
 
