@@ -8,5 +8,5 @@ humanoid-profile-editor-special-priority-seven-button = 7
 humanoid-profile-editor-special-priority-eight-button = 8
 humanoid-profile-editor-special-priority-nine-button = 9
 humanoid-profile-editor-special-priority-ten-button = 10
-humanoid-profile-editor-specials-tab = Характеристики
-humanoid-profile-editor-special-points-label = { $points } осталось из { $max } очков характеристик
+humanoid-profile-editor-specials-tab = SPECIAL
+humanoid-profile-editor-special-points-label = Осталось { $points } из { $max } очков характеристик
