@@ -192,7 +192,7 @@ public sealed partial class ClothingSpecialModifierSystem : EntitySystem
             component,
             msg,
             Loc.GetString("clothing-special-examinable-verb-text"),
-            "/Textures/Interface/examine-star.png",
+            "/Textures/Interface/VerbIcons/outfit.svg.192dpi.png",
             Loc.GetString("clothing-special-examinable-verb-message")
         );
     }

@@ -5,8 +5,6 @@
   name: Urist McHands
   abstract: true
   components:
-  - type: Perishable
-    rotAfter: 1800 # Half an in-game day.
   - type: Hunger
     starvationDamage:
       types:
@@ -20,23 +18,17 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-      - id: FoodMeatHuman
-        amount: 5
-  - type: HumanoidAppearance
-    species: Human
-    hideLayersOnEquip:
-    - Hair
-    - Snout
+    - id: FoodMeatHuman
+      amount: 5
+  - type: PsionicInsulation
   - type: LanguageKnowledge
     speaks:
-    - English
+    - GalacticCommon
     understands:
-    - English
-  - type: FootPrints
-  - type: PsionicInsulation
-  - type: Ghoulify
+    - GalacticCommon
+  - type: Special
 
 - type: entity
   parent: BaseSpeciesDummy
   id: MobHumanDummy
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
