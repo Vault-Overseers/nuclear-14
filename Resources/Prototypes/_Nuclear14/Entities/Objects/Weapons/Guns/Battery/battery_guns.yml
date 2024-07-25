@@ -65,10 +65,10 @@
     - Belt
 # MARK: Pistols
 - type: entity
-  name: laser pistol
+  name: AEP-7 laser pistol
   parent: N14BaseWeaponPowerCellSmall
   id: N14WeaponLaserPistol
-  description: A highly advanced laser pistol.
+  description: A basic energy-based laser gun that fires concentrated beams of light.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_pistol.rsi
@@ -88,14 +88,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14PowerCellHigh
+        startingItem: N14PowerCellSmall
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
-            - N14PowerCellHigh
+            - N14PowerCellSmall
   - type: Gun
-    fireRate: 1
+    fireRate: 1.5
 
 - type: entity
   name: plasma pistol
@@ -167,8 +167,8 @@
       path: /Audio/Weapons/plasma_cutter.ogg
     fireRate: 2.5
 
-# MARK: Recharger guns
- 
+# MARK: Recharger
+
 - type: entity
   name: recharger rifle
   parent: BaseWeaponBattery
@@ -187,7 +187,7 @@
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_rifle.rsi
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 50
+    autoRechargeRate: 25
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
@@ -220,7 +220,7 @@
     fireCost: 50
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 40
+    autoRechargeRate: 20
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -230,13 +230,13 @@
     tags:
     - Sidearm
 
-# MARK: Fullauto Rifles 
+# MARK: Fullauto
 
 - type: entity
-  name: laser automatic rifle
+  name: Modified AER9 laser rifle
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponLaserAutoRifle
-  description: A highly advanced automatic laser rifle.
+  description: A sturdy pre-war laser rifle. Emits beams of concentrated light to kill targets. This one has been jury-rigged against common sense with a rotating barrel to fire in full auto.
   components:
   - type: Wieldable
   - type: GunWieldBonus
@@ -322,13 +322,57 @@
     availableModes:
     - FullAuto
 
-# MARK: Semiauto Rifles
+- type: entity
+  name: prototype AER14 laser rifle
+  parent: N14BaseWeaponPowerCellMedium
+  id: N14WeaponLaserProtoRifle
+  description: A bleeding-edge, pre-war laser rifle. Extremely powerful, but eats ECPs like nothing else.
+  components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle_proto.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle_proto.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellAdvanced
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellAdvanced
+  - type: Gun
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+
+# MARK: Semiauto
 
 - type: entity
-  name: laser rifle
+  name: AER-9
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponLaserRifle
-  description: A highly advanced laser rifle.
+  description: A sturdy pre-war laser rifle. Emits beams of concentrated light to kill targets.
   components:
   - type: Wieldable
   - type: GunWieldBonus
@@ -364,50 +408,6 @@
             - N14PowerCellHigh
   - type: Gun
     fireRate: 3
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-
-- type: entity
-  name: prototype laser rifle
-  parent: N14BaseWeaponPowerCellMedium
-  id: N14WeaponLaserProtoRifle
-  description: The last and most advanced model of laser rifle ever made.
-  components:
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -34
-    maxAngle: -63
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle_proto.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle_proto.rsi
-    quickEquip: false
-    slots:
-    - Back
-    - suitStorage
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: N14PowerCellHigh
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        whitelist:
-          tags:
-            - N14PowerCellHigh
-  - type: Gun
-    fireRate: 4
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -505,6 +505,7 @@
     - SemiAuto
 
 # MARK: Shotguns
+
 - type: entity
   name: multiplas
   parent: N14BaseWeaponPowerCellMedium
@@ -548,13 +549,14 @@
     soundGunshot:
       path: /Audio/Weapons/plasma_cutter.ogg
 
-#MARK: Sniper (just a different looking laser rifle until we get more options)
+#MARK: Focused  
+# (just a different looking laser rifle until we get more options)
 
 - type: entity
   name: wattz 3000 laser rifle
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponWattz3000
-  description: A highly advanced laser rifle.
+  description: Wattz 3000 Laser Rifle. Uses focused micro fusion cells for more powerful lasers, and an extended barrel for additional range.
   components:
   - type: Wieldable
   - type: GunWieldBonus
@@ -582,12 +584,12 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14PowerCellHigh
+        startingItem: N14PowerCellFocused
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
-            - N14PowerCellHigh
+            - N14PowerCellFocused
   - type: Gun
     fireRate: 3
     selectedMode: SemiAuto
@@ -598,7 +600,7 @@
   name: wattz 2000 laser rifle
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponWattz2000
-  description: A highly advanced laser rifle.
+  description: Wattz 2000 Laser Rifle. Uses focused micro fusion cells for more powerful lasers, and an extended barrel for additional range.
   components:
   - type: Wieldable
   - type: GunWieldBonus
@@ -626,12 +628,12 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14PowerCellHigh
+        startingItem: N14PowerCellFocused
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
-            - N14PowerCellHigh
+            - N14PowerCellFocused
   - type: Gun
     fireRate: 2
     selectedMode: SemiAuto

@@ -1,0 +1,14 @@
+ent-Strength = Сила
+    .desc = special-character-creation-description-strength
+ent-Perception = Восприятие
+    .desc = special-character-creation-description-perception
+ent-Endurance = Выносливость
+    .desc = special-character-creation-description-endurance
+ent-Charisma = Харизма
+    .desc = special-character-creation-description-charisma
+ent-Intelligence = Интеллект
+    .desc = special-character-creation-description-intelligence
+ent-Agility = Ловкость
+    .desc = special-character-creation-description-agility
+ent-Luck = Удача
+    .desc = special-character-creation-description-luck
