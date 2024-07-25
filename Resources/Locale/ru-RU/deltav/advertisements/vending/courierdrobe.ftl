@@ -4,4 +4,4 @@ advertisement-courierdrobe-3 = Носите коричневое с гордос
 advertisement-courierdrobe-4 = Эти шорты только и ждут вас!
 advertisement-courierdrobe-5 = Побег - правильное решение, особенно в нашей одежде!
 thankyou-courierdrobe-1 = А теперь иди и доставь эту почту!
-thankyou-courierdrobe-1 = Посылки сами себя не доставят!
+thankyou-courierdrobe-2 = Посылки сами себя не доставят!

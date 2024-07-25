@@ -1,6 +1,6 @@
 ent-N14MaterialBase = { ent-BaseItem }
-    .desc = Сырой материал.
-ent-N14MaterialCircuitry = circuitry
+    .desc = Довоенный материал.
+ent-N14MaterialCircuitry = электронная схема
     .suffix = Полный
     .desc = { ent-N14MaterialBase.desc }
 ent-N14MaterialCircuitry10 = { ent-N14MaterialCircuitry }

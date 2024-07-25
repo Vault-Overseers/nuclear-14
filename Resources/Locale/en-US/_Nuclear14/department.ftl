@@ -9,6 +9,7 @@ department-Wastelander = Wastelander
 department-Townsfolk = Townsfolk
 department-Followers = Followers of the Apocalypse
 department-Zetan = Zetan
+department-Rangers = Rangers
 
 # Descriptions
 department-BrotherhoodMidwest-description = Midwest branch of the Brotherhood of Steel

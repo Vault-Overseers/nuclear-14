@@ -1,3 +1,4 @@
+station-event-anomaly-spawn-announcement = Our readings have detected a dangerous interspacial anomaly. Please inform the research team of { $sighting }.
 anomaly-spawn-event-announcement = Our readings have detected a dangerous interspacial anomaly. Please inform the research team about { $sighting }.
 
 anomaly-spawn-sighting-1 = low pulsating sounds heard throughout the station

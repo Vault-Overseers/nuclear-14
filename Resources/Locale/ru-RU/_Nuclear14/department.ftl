@@ -9,7 +9,7 @@ department-Wastelander = Обитатель Пустошей
 department-Townsfolk = Горожане
 department-Followers = Последователи Апокалипсиса
 department-Zetan = Дзетанцы
-department-Ranger = Рейнджеры
+department-Rangers = Рейнджеры
 # Descriptions
 department-BrotherhoodMidwest-description = Среднезападное отделение Братства Стали.
 department-BrotherhoodWashington-description = Вашингтонское отделение Братства Стали.

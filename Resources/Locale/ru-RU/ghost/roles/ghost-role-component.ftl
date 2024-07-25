@@ -4,6 +4,16 @@ ghost-role-component-default-rules =
                                      Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
                                      Вам разрешается помнить знания об игре в целом, например, как готовить, как использовать предметы и т.д.
                                      Вам [color=red]НЕ[/color] разрешается помнить, имя, внешность и т.д. вашего предыдущего персонажа.
+# Delta V soft antag rule
+deltav-ghost-role-information-softantag-rules = Вам разрешено нападать на экипаж без провокации.
+                                                Вам разрешено сосуществовать с экипажем.
+                                                Экипажу разрешено убивать вас без предупреждения.
+
+# Delta V salvage antag rule
+deltav-ghost-role-information-salvageantag-rules =  Вы антагонист.
+                                                    Вам разрешено нападать на игроков без провокации. НЕ УНИЧТОЖАЙТЕ ИХ ТЕЛА!
+                                                    Вам разрешено нападать на шаттлы.
+                                                    Вам НЕ разрешено заходить на станцию.
 ghost-role-information-mouse-name = Мышь
 ghost-role-information-mouse-description = Голодная и озорная мышь.
 ghost-role-information-mothroach-name = Таракамоль
@@ -21,6 +31,7 @@ ghost-role-information-angry-slimes-name = Слайм
 ghost-role-information-angry-slimes-description = Всё вокруг раздражает ваши чувства, начинайте крушить!
 ghost-role-information-smile-name = Слайм Смайл
 ghost-role-information-smile-description = Самое милое создание в мире. Улыбайся, Смайл!
+ghost-role-information-smile-rules = Вы - питомец станции. Вы можете обороняться и помогать экипажу станции с обороной. Вам ЗАПРЕЩЕНО нападать на экипаж станции или уничтожать имущество станции.
 ghost-role-information-punpun-name = Пун Пун
 ghost-role-information-punpun-description = Почётный член общины обезьян, ответственный за бар, и помогающий барменам во всём, чем может.
 ghost-role-information-xeno-name = Ксено
@@ -146,6 +157,12 @@ ghost-role-information-Cak-rules = Вы - живой съедобный слад
 ghost-role-information-BreadDog-name = Хлебака
 ghost-role-information-BreadDog-description = Вы - любимое дитя шеф-повара. Вы - живая хлебная собака.
 ghost-role-information-BreadDog-rules = Вы - съедобная собака, сделанная из хлеба. Ваша задача - найти своё место в этом мире, где всё хочет вас съесть.
+ghost-role-information-Shiva-name = Шива
+ghost-role-information-Shiva-description = Шива, первый защитник станции. Помогайте службе безопасности в их работк.
+ghost-role-information-Shiva-rules = Защищайте персонал станции от любых опасностей. Не отходите далеко об брига. Старайтесь нейтрализовывать преступников не убивая их.
+ghost-role-information-exterminator-name = Экстерминатор
+ghost-role-information-exterminator-description = Вы были отправлены назад во времени, чтобы устранить цель, имеющую высокое значение для будущего.
+ghost-role-information-exterminator-rules = Вы — антагонист и можете убивать тех, кто пытается помешать вам, но устранение цели всегда является вашей главной задачей.
 ghost-role-information-space-ninja-name = Космический ниндзя
 ghost-role-information-space-ninja-description = Используйте хитрость и скрытность, чтобы устроить диверсию на станции.
 ghost-role-information-space-ninja-rules = Вы элитный наёмник Клана паука. От вас не требуется следовать поставленным целям, но ваша ЧЕСТЬ НИНДЗЯ требует хотя бы попытаться.

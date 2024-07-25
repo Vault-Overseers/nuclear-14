@@ -1,6 +1,12 @@
-command-list-langs-desc = Показать список языков, на которых ваш текущий персонаж может говорить в данный момент.
+command-list-langs-desc = Показать список языков, которыми владеет ваш персонаж в данный момент.
 command-list-langs-help = Использование: { $command }
-command-saylang-desc = Отправить сообщение на определённом языке.
-command-saylang-help = Использование: { $command } <идентификатор языка> <сообщение>. Пример: { $command } GalacticCommon "Привет, мир!"
-command-language-select-desc = Выбрать текущий язык общения вашего персонажа.
-command-language-select-help = Использование: { $command } <идентификатор языка>. Пример: { $command } GalacticCommon
+command-saylang-desc = Отправить сообщение на определенном языке. Для выбора языка используйте его название или номер в списке.
+command-saylang-help = Использование: {$command} <идентификатор языка> <сообщение>. Пример: {$command} GalacticCommon "Привет, мир!". Пример: {$command} 1 "Привет, мир!"
+command-language-select-desc = Выбрать текущий язык общения вашего существа. Используйте название языка или его номер в списке.
+command-language-select-help = Использование: {$command} <идентификатор языка>. Пример: {$command} 1. Пример: {$command} GalacticCommon
+command-language-spoken = Говорит на:
+command-language-understood = Понимает:
+command-language-current-entry = {$id}. {$language} - {$name} (текущий)
+command-language-entry = {$id}. {$language} - {$name}
+command-language-invalid-number = Номер языка должен быть от 0 до {$total}. Или используйте название языка.
+command-language-invalid-language = Язык {$id} не существует или недоступен вашему существу.

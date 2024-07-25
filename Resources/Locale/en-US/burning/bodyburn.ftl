@@ -1,1 +1,1 @@
-﻿bodyburn-text-others = {$name} burns to ash!
+bodyburn-text-others = {$name}'s body burns to ash!
