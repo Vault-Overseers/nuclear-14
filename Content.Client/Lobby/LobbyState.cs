@@ -67,8 +67,8 @@ namespace Content.Client.Lobby
 
             _characterSetup.SaveButton.OnPressed += _ =>
             {
-                _lobby.CharacterPreview.UpdateUI();
-                _characterSetup.Save();
+                // _lobby.CharacterPreview.UpdateUI();
+                // _characterSetup.Save();
                 _userInterfaceManager.GetUIController<LobbyUIController>().UpdateCharacterUI();
                 // _characterSetup.Save(); //Nuclear14 workaround to prevent saving using this button, as I can't make it disable dependent on Special points
             };

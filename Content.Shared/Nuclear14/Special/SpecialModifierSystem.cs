@@ -76,7 +76,6 @@ namespace Content.Shared.Nuclear14.Special
 
             var doAfterEventArgs = new DoAfterArgs(EntityManager, uid, 0, new RefreshSpecialModifiersDoAfterEvent(), uid, uid)
             {
-                BreakOnMove = false,
                 BreakOnDamage = false,
                 NeedHand = false,
                 RequireCanInteract = false,

@@ -43,117 +43,6 @@
                     <Button Name="CSaveButton" Text="{Loc 'humanoid-profile-editor-save-button'}" HorizontalAlignment="Center" />
                 </prefUi:HighlightedContainer>
             </BoxContainer>
-            <Control MinHeight="10" />
-            <!-- tabContainer -->
-            <TabContainer Name="CTabContainer" VerticalExpand="True">
-                <BoxContainer Orientation="Vertical">
-                    <ScrollContainer VerticalExpand="True">
-                        <!-- appearanceList -->
-                        <BoxContainer Orientation="Vertical">
-                            <BoxContainer Margin="10" Orientation="Vertical" HorizontalExpand="True">
-                                <!-- Species -->
-                                <BoxContainer HorizontalExpand="True">
-                                    <Label Text="{Loc 'humanoid-profile-editor-species-label'}" />
-                                    <Control HorizontalExpand="True"/>
-                                    <TextureButton Name="SpeciesInfoButton" Scale="0.3 0.3" VerticalAlignment="Center"></TextureButton>
-                                    <OptionButton Name="CSpeciesButton" HorizontalAlignment="Right" />
-                                </BoxContainer>
-                                <!-- Age -->
-                                <BoxContainer HorizontalExpand="True">
-                                    <Label Text="{Loc 'humanoid-profile-editor-age-label'}" />
-                                    <Control HorizontalExpand="True"/>
-                                    <LineEdit Name="CAgeEdit" MinSize="40 0" HorizontalAlignment="Right" />
-                                </BoxContainer>
-                                <!-- Sex -->
-                                <BoxContainer HorizontalExpand="True">
-                                    <Label Text="{Loc 'humanoid-profile-editor-sex-label'}" />
-                                    <Control HorizontalExpand="True"/>
-                                    <OptionButton Name="CSexButton" HorizontalAlignment="Right" />
-                                </BoxContainer>
-                                <!-- Pronouns -->
-                                <BoxContainer HorizontalExpand="True">
-                                    <Label Text="{Loc 'humanoid-profile-editor-pronouns-label'}" />
-                                    <Control HorizontalExpand="True"/>
-                                    <OptionButton Name="CPronounsButton" HorizontalAlignment="Right" />
-                                </BoxContainer>
-                                <!-- Show clothing -->
-                                <BoxContainer HorizontalExpand="True">
-                                    <Label Text="{Loc 'humanoid-profile-editor-clothing'}" />
-                                    <Control HorizontalExpand="True"/>
-                                    <Button Name="ShowClothes" Pressed="True" ToggleMode="True" Text="{Loc 'humanoid-profile-editor-clothing-show'}" HorizontalAlignment="Right" />
-                                </BoxContainer>
-                                <!-- Clothing -->
-                                <BoxContainer HorizontalExpand="True">
-                                    <Label Text="{Loc 'humanoid-profile-editor-clothing-label'}" />
-                                    <Control HorizontalExpand="True"/>
-                                    <OptionButton Name="CClothingButton" HorizontalAlignment="Right" />
-                                </BoxContainer>
-                                <!-- Backpack -->
-                                <BoxContainer HorizontalExpand="True">
-                                    <Label Text="{Loc 'humanoid-profile-editor-backpack-label'}" />
-                                    <Control HorizontalExpand="True"/>
-                                    <OptionButton Name="CBackpackButton" HorizontalAlignment="Right" />
-                                </BoxContainer>
-                                <!-- Spawn Priority -->
-                                <BoxContainer HorizontalExpand="True">
-                                    <Label Text="{Loc 'humanoid-profile-editor-spawn-priority-label'}" />
-                                    <Control HorizontalExpand="True"/>
-                                    <OptionButton Name="CSpawnPriorityButton" HorizontalAlignment="Right" />
-                                </BoxContainer>
-                            </BoxContainer>
-                            <!-- Skin -->
-                            <BoxContainer Margin="10" HorizontalExpand="True" Orientation="Vertical">
-                                <Label Text="{Loc 'humanoid-profile-editor-skin-color-label'}" />
-                                <Slider HorizontalExpand="True" Name="CSkin" MinValue="0" MaxValue="100" Value="20" />
-                                <BoxContainer Name="CRgbSkinColorContainer" Visible="False" Orientation="Vertical" HorizontalExpand="True"></BoxContainer>
-                            </BoxContainer>
-                            <!-- Hair -->
-                            <BoxContainer Margin="10" Orientation="Horizontal">
-                                <humanoid:SingleMarkingPicker Name="CHairStylePicker" Category="Hair" />
-                                <humanoid:SingleMarkingPicker Name="CFacialHairPicker" Category="FacialHair" />
-                            </BoxContainer>
-                            <!-- Eyes -->
-                            <BoxContainer Margin="10" Orientation="Vertical">
-                                <Label Text="{Loc 'humanoid-profile-editor-eyes-label'}" />
-                                <humanoid:EyeColorPicker Name="CEyeColorPicker" />
-                            </BoxContainer>
-                        </BoxContainer>
-                    </ScrollContainer>
-                </BoxContainer>
-                <BoxContainer Orientation="Vertical">
-                    <!-- Jobs -->
-                    <OptionButton Name="CPreferenceUnavailableButton" />
-                    <ScrollContainer VerticalExpand="True">
-                        <BoxContainer Name="CJobList" Orientation="Vertical" />
-                    </ScrollContainer>
-                </BoxContainer>
-                <BoxContainer Orientation="Vertical" Margin="10">
-                    <!-- Antags -->
-                    <ScrollContainer VerticalExpand="True">
-                        <BoxContainer Name="CAntagList" Orientation="Vertical" />
-                    </ScrollContainer>
-                </BoxContainer>
-                <BoxContainer Orientation="Vertical" Margin="10">
-                    <!-- Traits -->
-                    <ScrollContainer VerticalExpand="True">
-                        <BoxContainer Name="CTraitsList" Orientation="Vertical" />
-                    </ScrollContainer>
-                </BoxContainer>
-                <BoxContainer Name="CMarkingsTab" Orientation="Vertical" Margin="10">
-                    <!-- Markings -->
-                    <ScrollContainer VerticalExpand="True">
-                        <humanoid:MarkingPicker Name="CMarkings" IgnoreCategories="Hair,FacialHair" />
-                    </ScrollContainer>
-                </BoxContainer>
-                <BoxContainer Orientation="Vertical">
-                    <!-- Specials -->
-                    <Label Name="SpecialPointsLabel" HorizontalAlignment="Stretch" Align="Center" />
-                    <ProgressBar Name="SpecialPointsBar" MaxValue="1" Value="1" MinHeight="20" MaxHeight="30" Margin="0 5 0 5" />
-                    <ScrollContainer VerticalExpand="True">
-                        <BoxContainer Name="CSpecialList" Orientation="Vertical" />
-                    </ScrollContainer>
-                </BoxContainer>
-            </TabContainer>
         </BoxContainer>
         <Control MinHeight="10" />
         <!-- tabContainer -->
@@ -298,6 +187,14 @@
                 <!-- Markings -->
                 <ScrollContainer VerticalExpand="True">
                     <humanoid:MarkingPicker Name="CMarkings" IgnoreCategories="Hair,FacialHair" />
+                </ScrollContainer>
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical">
+                <!-- Specials -->
+                <Label Name="SpecialPointsLabel" HorizontalAlignment="Stretch" Align="Center" />
+                <ProgressBar Name="SpecialPointsBar" MaxValue="1" Value="1" MinHeight="20" MaxHeight="30" Margin="0 5 0 5" />
+                <ScrollContainer VerticalExpand="True">
+                    <BoxContainer Name="CSpecialList" Orientation="Vertical" />
                 </ScrollContainer>
             </BoxContainer>
         </TabContainer>

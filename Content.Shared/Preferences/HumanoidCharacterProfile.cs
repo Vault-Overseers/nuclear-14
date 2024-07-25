@@ -114,7 +114,8 @@ namespace Content.Shared.Preferences
             PreferenceUnavailableMode preferenceUnavailable,
             IReadOnlyList<string> antagPreferences,
             IReadOnlyList<string> traitPreferences,
-            IReadOnlyList<string> loadoutPreferences)
+            IReadOnlyList<string> loadoutPreferences,
+            IReadOnlyDictionary<string, SpecialPriority> specialPriorities)
             : this(name, flavortext, species, height, width, age, sex, gender, appearance, clothing, backpack, spawnPriority,
                 new Dictionary<string, JobPriority>(jobPriorities), preferenceUnavailable,
                 new List<string>(antagPreferences), new List<string>(traitPreferences),
@@ -778,7 +779,9 @@ namespace Content.Shared.Preferences
                     _jobPriorities,
                     _antagPreferences,
                     _traitPreferences,
-                    _loadoutPreferences,
+                    _loadoutPreferences
+                ),
+                HashCode.Combine(
                     _specialPriorities
                 )
             );

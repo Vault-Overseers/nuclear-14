@@ -67,7 +67,7 @@ namespace Content.IntegrationTests.Tests.Preferences
                 antagPreferences: new List<string>(),
                 traitPreferences: new List<string>(),
                 loadoutPreferences: new List<string>(),
-                specialPreferences: new Dictionary<string, SpecialPriority>
+                specialPriorities: new Dictionary<string, SpecialPriority>
                 {
                     {"Strength", SpecialPriority.Five},
                     {"Perception", SpecialPriority.Five},

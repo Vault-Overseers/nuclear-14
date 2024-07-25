@@ -243,7 +243,7 @@ namespace Content.Server.Database
                 antags.ToList(),
                 traits.ToList(),
                 loadouts.ToList(),
-                specials.ToList() // Nuclear14 Special
+                specials // Nuclear14 Special
             );
         }
 
