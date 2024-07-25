@@ -1,8 +1,92 @@
 # TODO: Generators need to make use of their other states, require fuel where necessary and be able to be turned off.
 
 - type: entity
-  parent: BaseGenerator
-  id: N14GeneratorBase
+  abstract: true
+  id: N14BaseGenerator
+  description: A high efficiency thermoelectric generator.
+  name: generator
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg # TODO: change to fusion core generator noise
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.5,0.4,0.3"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Sprite
+    sprite: Structures/Power/power.rsi
+    state: generator
+    snapCardinals: true
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: output
+    sprite: Structures/Power/power.rsi
+    state: generator
+  - type: PowerSupplier
+    supplyRate: 5000
+    supplyRampRate: 250
+    supplyRampTolerance: 250
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StructuralMetallic
+  - type: PacifismDangerousAttack
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 100
+    intensitySlope: 2
+    totalIntensity: 200
+  - type: Electrified
+    onHandInteract: false
+    onInteractUsing: false
+    onBump: false
+    requirePower: true
+    highVoltageNode: output
+
+- type: entity
+  parent: N14BaseGenerator
+  id: N14BaseGeneratorPortable
   abstract: true
   description: A generator that uses expendable fusion cores.
   name: generator
@@ -18,39 +102,16 @@
         - MachineMask
         layer:
         - MachineLayer
-  - type: AmbientOnPowered
-  - type: AmbientSound
-    range: 5
-    sound:
-      path: /Audio/Ambience/Objects/engine_hum.ogg # TODO: change to fusion core generator noise
-  - type: Sprite
-    sprite: _Nuclear14/Structures/Power/fusion_generator.rsi
-    layers:
-    - state: fusion_generator
-    - state: fusion_generator_buttons # TODO: Tie to visualiser for lit and core status?
-      shader: unshaded
-    - state: fusion_generator_core
-      shader: unshaded
-  - type: PowerSupplier
-    supplyRate: 5000
-    supplyRampRate: 250
-    supplyRampTolerance: 250
   - type: PointLight
     radius: 1
     energy: 4.5
     softness: 0.5
     color: "#B4FCF0"
-  - type: Explosive # lowered this to stop spacing on current map.
-    explosionType: Minibomb
-    totalIntensity: 200
-    intensitySlope: 2
-    maxIntensity: 200
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: StructuralMetallic
+  - type: Anchorable
+  - type: Pullable
 
 - type: entity
-  parent: N14GeneratorBase
+  parent: N14BaseGeneratorPortable
   id: N14GeneratorFusioncore
   description: A generator that uses expendable fusion cores.
   name: fusion core generator
@@ -77,7 +138,7 @@
       shader: unshaded
 
 - type: entity
-  parent: N14GeneratorBase
+  parent: N14BaseGeneratorPortable
   id: N14GeneratorFusionMini
   description: A generator that uses heavy water for fusion power.
   name: mini fusion generator
@@ -207,7 +268,7 @@
     - state: generator_uranium
 
 - type: entity
-  parent: N14GeneratorBase
+  parent: N14BaseGenerator
   id: N14GeneratorVaultTecReactor
   description: A fusion reactor built by vault-tec.
   name: vault-tec reactor
