@@ -807,7 +807,7 @@ namespace Content.Client.Preferences.UI
             _specialList.DisposeAllChildren();
             _specialPriorities.Clear();
 
-            var points = _configurationManager.GetCVar(SpecialCCVars.MaxSpecial);
+            var points = 40;
             _specialPointsLabel.Text = Loc.GetString("humanoid-profile-editor-special-points-label", ("points", points), ("max", points));
             _specialPointsBar.MaxValue = points;
             _specialPointsBar.Value = points;
@@ -1416,7 +1416,7 @@ namespace Content.Client.Preferences.UI
         // Nuclear14 Special
         private void UpdateSpecialPriorities()
         {
-            var points = _configurationManager.GetCVar(SpecialCCVars.MaxSpecial);
+            var points = 40;
             _specialPointsBar.Value = points;
             _specialPointsLabel.Text = Loc.GetString("humanoid-profile-editor-special-points-label", ("points", _specialPointsBar.Value), ("max", _specialPointsBar.MaxValue));
 
