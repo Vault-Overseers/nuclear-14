@@ -7,12 +7,6 @@ namespace Content.Shared._N14.CCVar;
 public sealed class SpecialCCVars
 {
 
-    #region Human editor
-
-    public static readonly CVarDef<int> MaxSpecial =
-            CVarDef.Create("special.max", 40);
-
-    #endregion
 
     #region Strength
 
