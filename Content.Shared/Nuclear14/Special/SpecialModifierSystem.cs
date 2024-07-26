@@ -1,11 +1,10 @@
 using Content.Shared.Examine;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.Examine;
-using Content.Shared.IdentityManagement;
 using Content.Shared.DoAfter;
 using Content.Shared.Nuclear14.Special.Components;
 using Content.Shared.Verbs;

@@ -16,3 +16,15 @@ special-appearance-component-examine-charisma = Charisma is {$value}.
 special-appearance-component-examine-intelligence = Intelligence is {$value}.
 special-appearance-component-examine-agility = Agility is {$value}.
 special-appearance-component-examine-luck = Luck is {$value}.
+
+
+# Examine in character screen
+character-info-special-label = S.P.E.C.I.A.L
+character-info-special-placeholder-text = Special values
+special-component-examine-character-strength = Strength is {$base} + {$modifier} = {$total}
+special-component-examine-character-perception = Perception is {$base} + {$modifier} = {$total}
+special-component-examine-character-endurance = Endurance is {$base} + {$modifier} = {$total}
+special-component-examine-character-charisma = Charisma is {$base} + {$modifier} = {$total}
+special-component-examine-character-intelligence = Intelligence is {$base} + {$modifier} = {$total}
+special-component-examine-character-agility = Agility is {$base} + {$modifier} = {$total}
+special-component-examine-character-luck = Luck is {$base} + {$modifier} = {$total}
