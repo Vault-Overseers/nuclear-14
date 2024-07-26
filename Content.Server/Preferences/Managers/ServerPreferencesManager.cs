@@ -13,6 +13,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.Nuclear14.Special;
 
 
 namespace Content.Server.Preferences.Managers
