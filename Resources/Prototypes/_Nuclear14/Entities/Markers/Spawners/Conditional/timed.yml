@@ -18,46 +18,6 @@
       intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
-      
-- type: entity
-  name: Pigrat Timed Spawner
-  id: N14TimedSpawnerPigrat
-  parent: MarkerBase
-  components:
-    - type: Sprite
-      layers:
-        - state: blue
-        - sprite: _Nuclear14/Mobs/Animals/pigrat.rsi
-          state: pigrat
-        - state: timed
-    - type: Timer
-    - type: TimedSpawner
-      prototypes:
-        - N14MobPigrat
-      chance: 0.65
-      intervalSeconds: 2400
-      minimumEntitiesSpawned: 1
-      maximumEntitiesSpawned: 3
-      
-- type: entity
-  name: Radhog Timed Spawner
-  id: N14TimedSpawnerRadhog
-  parent: MarkerBase
-  components:
-    - type: Sprite
-      layers:
-        - state: blue
-        - sprite: _Nuclear14/Mobs/Animals/radhog.rsi
-          state: radhog
-        - state: timed
-    - type: Timer
-    - type: TimedSpawner
-      prototypes:
-        - N14MobRadhog
-      chance: 0.65
-      intervalSeconds: 2400
-      minimumEntitiesSpawned: 1
-      maximumEntitiesSpawned: 3
 
 - type: entity
   parent: N14TimedSpawnerMolerat
@@ -94,46 +54,6 @@
     - type: TimedSpawner
       prototypes:
         - N14MobGecko
-      chance: 0.65
-      intervalSeconds: 2400
-      minimumEntitiesSpawned: 1
-      maximumEntitiesSpawned: 3
-      
-- type: entity
-  parent: N14TimedSpawnerMolerat
-  id: N14TimedSpawnerGeckoFire
-  name: Fire Gecko Timed Spawner
-  components:
-    - type: Sprite
-      layers:
-        - state: blue
-        - sprite: _Nuclear14/Mobs/Animals/firegecko.rsi
-          state: gecko
-        - state: timed
-    - type: Timer
-    - type: TimedSpawner
-      prototypes:
-        - N14MobGeckoFire
-      chance: 0.65
-      intervalSeconds: 2400
-      minimumEntitiesSpawned: 1
-      maximumEntitiesSpawned: 3
-      
-- type: entity
-  parent: N14TimedSpawnerMolerat
-  id: N14TimedSpawnerGeckoGolden
-  name: Golden Gecko Timed Spawner
-  components:
-    - type: Sprite
-      layers:
-        - state: blue
-        - sprite: _Nuclear14/Mobs/Animals/goldengecko.rsi
-          state: gecko
-        - state: timed
-    - type: Timer
-    - type: TimedSpawner
-      prototypes:
-        - N14MobGeckoGolden
       chance: 0.65
       intervalSeconds: 2400
       minimumEntitiesSpawned: 1
@@ -478,72 +398,6 @@
       prototypes:
         - N14MobChicken
       chance: 0.95
-<<<<<<< HEAD
       intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
-      
-- type: entity
-  name: Raider Ranged Psycho Timed Spawner
-  id: N14TimedSpawnerMobRaiderPsychoRanged
-  parent: N14TimedSpawnerMolerat
-  components:
-  - type: Sprite
-    layers:
-      - state: blue
-      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
-        state: raider_ranged
-      - state: timed
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-      - N14MobRaiderPsychoRanged
-    chance: 0.95
-    intervalSeconds: 2400
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 2
-
-- type: entity
-  name: Raider Psycho Boss Timed Spawner
-  id: N14TimedSpawnerMobRaiderBoss
-  parent: N14TimedSpawnerMolerat
-  components:
-  - type: Sprite
-    layers:
-      - state: blue
-      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
-        state: raiderboss
-      - state: timed
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-      - N14MobRaiderBoss
-    chance: 0.95
-    intervalSeconds: 2400
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-
-- type: entity
-  name: Raider Psycho Timed Spawner
-  id: N14TimedSpawnerMobRaiderPsycho
-  parent: N14TimedSpawnerMolerat
-  components:
-  - type: Sprite
-    layers:
-      - state: blue
-      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/RaiderPsycho.rsi
-        state: raider_melee
-      - state: timed
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-      - N14MobRaiderPsycho
-    chance: 0.95
-    intervalSeconds: 2400
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 3
-=======
-      intervalSeconds: 600
-      minimumEntitiesSpawned: 1
-      maximumEntitiesSpawned: 3
->>>>>>> c9ad305a1e (Qol 3.5 - AI Factions, Turrets, Mob reproduction & Eggs (#320))
