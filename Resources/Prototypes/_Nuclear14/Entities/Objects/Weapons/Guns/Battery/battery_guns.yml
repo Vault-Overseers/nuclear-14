@@ -89,13 +89,17 @@
       gun_magazine:
         name: Magazine
         startingItem: N14PowerCellSmall
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        insertSound: /Audio/_Nuclear14/Weapons/Guns/Battery/laserpistol/magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
             - N14PowerCellSmall
   - type: Gun
     fireRate: 1.5
+    soundGunshot:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/laserpistol/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
 
 - type: entity
   name: plasma pistol
@@ -129,7 +133,9 @@
     zeroVisible: true
   - type: Gun
     soundGunshot:
-      path: /Audio/Weapons/plasma_cutter.ogg
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/plasmapistol/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
     fireRate: 1.5
 
 - type: entity
@@ -164,7 +170,9 @@
     zeroVisible: true
   - type: Gun
     soundGunshot:
-      path: /Audio/Weapons/plasma_cutter.ogg
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/plasmapistol/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
     fireRate: 2.5
 
 # MARK: Recharger
@@ -192,6 +200,10 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+    soundGunshot:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/laserrifle/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
@@ -214,7 +226,9 @@
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_pistol.rsi
   - type: Gun
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/laserpistol/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
@@ -275,6 +289,10 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+    soundGunshot:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/laserrifle/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
 
 - type: entity
   name: plasma automatic rifle
@@ -317,7 +335,9 @@
   - type: Gun
     fireRate: 4
     soundGunshot:
-      path: /Audio/Weapons/plasma_cutter.ogg
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/plasmarifle/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -365,6 +385,10 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+    soundGunshot:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/aer14/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
 
 # MARK: Semiauto
 
@@ -411,6 +435,10 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+    soundGunshot:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/aer9/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
 
 - type: entity
   name: plasma rifle
@@ -453,7 +481,9 @@
   - type: Gun
     fireRate: 3
     soundGunshot:
-      path: /Audio/Weapons/plasma_cutter.ogg
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/plasmarifle/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -499,7 +529,9 @@
   - type: Gun
     fireRate: 4
     soundGunshot:
-      path: /Audio/Weapons/plasma_cutter.ogg
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/plasmarifle/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -547,7 +579,9 @@
   - type: Gun
     fireRate: 2
     soundGunshot:
-      path: /Audio/Weapons/plasma_cutter.ogg
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/multiplasma/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
 
 #MARK: Focused  
 # (just a different looking laser rifle until we get more options)
@@ -595,6 +629,10 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+    soundGunshot:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/wattz/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
 
 - type: entity
   name: wattz 2000 laser rifle
@@ -639,6 +677,10 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+    soundGunshot:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/wattz/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
 
 #MARK: Heavy
 
@@ -737,6 +779,10 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+    soundGunshot:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/gatling/shot.ogg
+    soundEmpty:
+      path: /Audio/_Nuclear14/Weapons/Guns/Battery/empty.ogg
   - type: Appearance
   - type: MultiHandedItem
   - type: HeldSpeedModifier
