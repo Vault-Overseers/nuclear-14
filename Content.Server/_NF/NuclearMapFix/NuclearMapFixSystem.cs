@@ -1,5 +1,10 @@
+using System.Threading;
 using Content.Server.Atmos.Components;
+using Content.Server.GameTicking;
+using Content.Server.Shuttles.Systems;
+using Content.Server.Station.Events;
 using Robust.Server.Console;
+using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server._NF.NuclearMapFix
 {
@@ -10,20 +15,22 @@ namespace Content.Server._NF.NuclearMapFix
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<NuclearMapFixComponent, ComponentStartup>(OnStartup);
+            SubscribeLocalEvent<StationPostInitEvent>(OnStartup, after: new []{typeof(ShuttleSystem)});
         }
 
-        private void OnStartup(EntityUid uid, NuclearMapFixComponent component, ComponentStartup args)
+        private void OnStartup(ref StationPostInitEvent args)
         {
-            var query = AllEntityQuery<GridAtmosphereComponent, TransformComponent>();
-
-            while (query.MoveNext(out var dummyatmos, out var comp))
+            Timer.Spawn(TimeSpan.FromSeconds(5), () =>
             {
-                var gridUid = comp.GridUid;
-                _host.AppendCommand($"fixgridatmos {gridUid}");
-                Logger.Error($"executed command on {gridUid})");
-            }
+                var query = AllEntityQuery<GridAtmosphereComponent, TransformComponent>();
 
+                while (query.MoveNext(out var dummyatmos, out var comp))
+                {
+                    var gridUid = comp.GridUid;
+                    _host.AppendCommand($"fixgridatmos {gridUid}");
+                    Logger.Error($"executed command on {gridUid})");
+                }
+            });
         }
     }
 }
