@@ -93,13 +93,13 @@ undecided-loadout-category-ranger-marksman-description =
     1 box of 7.62, 1 stimpak, 1 C ration MRE, and a combat knife.
 
 undecided-loadout-category-ranger-cqb-name = Ranger CQB Specialist Kit
-undecided-loadout-category-ranger-cqb-description = 
+undecided-loadout-category-ranger-cqb-description =
     A crate containing advance weaponry for members of the rangers.
     Includes 1 NCR pouches bandolier, 1 riot shotgun, 3 20 gauge ammo drums,
     1 box of 20 gauge, 2 combat knifes, 2 stimpaks, and a C ration MRE.
 
 undecided-loadout-category-ranger-trailman-name = Ranger Trailman Kit
-undecided-loadout-category-ranger-trailman-description = 
+undecided-loadout-category-ranger-trailman-description =
     A crate containing advance weaponry for members of the rangers.
     Includes 1 NCR pouches bandolier, 1 lever carbine, 3 .44 ammo boxes,
     2 stimpaks, 1 C ration MRE, and a combat knife.
@@ -134,3 +134,8 @@ undecided-loadout-category-veteran-ranger-marksman-description =
     A cache containing belongings of a veteran ranger.
     Includes 1 NCR belt, 1 marksman rifle, 3 7.62 marksman rifle magazines,
     1 7.62 ammo box, 2 stimpaks, 1 C ration MRE, and a combat knife.
+
+undecided-loadout-category-bos-default-name = Brotherhood Basic Issue Kit
+undecided-loadout-category-bos-default-description =
+    A crate containing everything a member of Brotherhood might need.
+    Includes 1 laser rifle, 1 laser pistol, 3 MF cells, 1 stimpak, 1 MRE

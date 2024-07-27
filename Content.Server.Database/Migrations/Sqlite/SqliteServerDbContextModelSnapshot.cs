@@ -593,6 +593,38 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("loadout", (string)null);
                 });
 
+
+            modelBuilder.Entity("Content.Server.Database.Special", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("special_id");
+
+                    b.Property<string>("SpecialName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("special_name");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("priority");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_special");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("ProfileId", "SpecialName")
+                        .IsUnique();
+
+                    b.ToTable("special", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.PlayTime", b =>
                 {
                     b.Property<int>("Id")
@@ -831,10 +863,8 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("server_id");
 
-                    b.Property<DateTime>("StartDate")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime?>("StartDate")
                         .HasColumnType("TEXT")
-                        .HasDefaultValue(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified))
                         .HasColumnName("start_date");
 
                     b.HasKey("Id")
@@ -1474,6 +1504,18 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Navigation("Profile");
                 });
+
+            modelBuilder.Entity("Content.Server.Database.Special", b =>
+            {
+                b.HasOne("Content.Server.Database.Profile", "Profile")
+                    .WithMany("Specials")
+                    .HasForeignKey("ProfileId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired()
+                    .HasConstraintName("FK_special_profile_profile_id");
+
+                    b.Navigation("Profile");
+            });
 
             modelBuilder.Entity("Content.Server.Database.Loadout", b =>
                 {

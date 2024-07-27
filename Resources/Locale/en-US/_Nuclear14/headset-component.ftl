@@ -9,3 +9,6 @@ chat-radio-vault-security = Vault Security
 chat-radio-vault-common = Vault Common
 chat-radio-caravan = Caravan Company
 chat-radio-bosmidwest = Brotherhood Midwest
+chat-radio-boswashington = Brotherhood Washington
+chat-radio-enclave = Enclave
+chat-radio-ncr = NCR

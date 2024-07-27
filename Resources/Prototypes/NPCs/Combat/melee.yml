@@ -95,12 +95,11 @@
 # Tries to melee attack our target.
 - type: htnCompound
   id: MeleeAttackTargetCompound
-  preconditions:
-    - !type:KeyExistsPrecondition
-      key: Target
   branches:
-    # Move to melee range and hit them
-    - tasks:
+    - preconditions:
+      - !type:KeyExistsPrecondition
+        key: Target
+      tasks:
         - !type:HTNPrimitiveTask
           operator: !type:MoveToOperator
             shutdownState: PlanFinished
@@ -160,11 +159,11 @@
 
 - type: htnCompound
   id: MeleeAttackOrderedTargetCompound
-  preconditions:
-    - !type:KeyExistsPrecondition
-      key: Target
   branches:
-    - tasks:
+    - preconditions:
+      - !type:KeyExistsPrecondition
+        key: Target
+      tasks:
         - !type:HTNPrimitiveTask
           operator: !type:MoveToOperator
             shutdownState: PlanFinished

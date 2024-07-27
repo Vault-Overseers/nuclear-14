@@ -16,12 +16,15 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 20
+        Blunt: 30
   - type: Item
     size: Ginormous
   - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/sledgehammer.rsi
+    quickEquip: false
     slots:
     - back
+    - suitStorage
   # - type: Tool
     # qualities:
       # - Crushing
@@ -45,4 +48,62 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 35
+        Blunt: 40
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/supersledge.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: tribal heavy club
+  parent: N14SledgeHammer
+  id: N14TribalBigClub
+  description: A heavy and big tribal club that requires considerable strenght to be wielded.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/tribalbigclub.rsi
+    state: icon
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 30
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/tribalbigclub.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: tribal decorated heavy club
+  parent: N14SledgeHammer
+  id: N14TribalBigClubDecorated
+  description: A heavy and big tribal hammer that requires considerable strenght to be wielded, animal teeths has been added to this one.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/supersledge.rsi
+    state: icon
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 25
+        Pierce: 5
+        Slash: 10
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/supersledge.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
