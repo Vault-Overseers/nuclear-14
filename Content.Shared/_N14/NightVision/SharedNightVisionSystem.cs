@@ -148,8 +148,10 @@ public abstract class SharedNightVisionSystem : EntitySystem
         if (!_timing.ApplyingState)
         {
             var nightVision = EnsureComp<NightVisionComponent>(user);
+            var greenVision = EnsureComp<GreenVisionComponent>(user);
             nightVision.State = NightVisionState.Full;
             Dirty(user, nightVision);
+            Dirty(user, greenVision);
         }
 
         _actions.SetToggled(item.Comp.Action, true);
@@ -176,6 +178,7 @@ public abstract class SharedNightVisionSystem : EntitySystem
             !nightVision.Innate)
         {
             RemCompDeferred<NightVisionComponent>(user.Value);
+            RemCompDeferred<GreenVisionComponent>(user.Value);
         }
     }
 
