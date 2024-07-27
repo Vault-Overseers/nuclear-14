@@ -6,6 +6,15 @@
   components:
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 15
+    soundHit:
+      collection: N14BladeHit
+  - type: EmitSoundOnPickup
+    sound: /Audio/_Nuclear14/Weapons/Melee/blade_pickup2.ogg
   - type: DamageOtherOnHit
     damage:
       types:
@@ -103,7 +112,9 @@
       types:
         Slash: 25
     soundHit:
-        path: /Audio/Weapons/chainsaw.ogg
+      collection: N14RipperHit
+  - type: EmitSoundOnPickup
+    sound: /Audio/_Nuclear14/Weapons/Melee/powerfist_pickup.ogg
   - type: Item
     size: Huge
     sprite: _Nuclear14/Objects/Weapons/Melee/ripper.rsi
