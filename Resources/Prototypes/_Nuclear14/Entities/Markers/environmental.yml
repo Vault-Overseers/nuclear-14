@@ -1,3 +1,4 @@
+# Radiation
 - type: entity
   name: Marker Radiation
   id: MarkerRadiation1
@@ -54,3 +55,34 @@
   components:
   - type: RadiationSource
     intensity: 10
+    
+# Invisible Walls
+- type: entity
+  name: Marker Blocker
+  id: MarkerBlocker
+  parent: MarkerBase
+  suffix: invisible wall
+  components:
+  - type: Sprite
+    layers:
+      - sprite: _Nuclear14/Markers/environment.rsi
+        state: base-blue
+        shader: unshaded
+      - sprite: _Nuclear14/Markers/environment.rsi
+        shader: unshaded
+        state: wall
+  - type: PlacementReplacement
+    key: blocker
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+  - type: Physics
+    bodyType: Static
