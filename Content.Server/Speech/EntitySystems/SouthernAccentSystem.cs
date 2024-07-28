@@ -1,14 +1,29 @@
-using System;
 using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
+
 namespace Content.Server.Speech.EntitySystems;
 
 public sealed class SouthernAccentSystem : EntitySystem
 {
+    // Регулярные выражения для замены слов с учетом регистра
+    private static readonly Regex RegexGood = new(@"(?<!\w)(хорошо)(?!\w)", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexThank = new(@"(?<!\w)(спасибо)(?!\w)", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexHello = new(@"(?<!\w)(привет)(?!\w)", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexGoodbye = new(@"(?<!\w)(пока)(?!\w)", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexHim = new(@"(?<!\w)(его)(?!\w)", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexThis = new(@"(?<!\w)(это)(?!\w)", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexWhat = new(@"(?<!\w)(что)(?!\w)", RegexOptions.IgnoreCase);
+
+    // Регулярные выражения для замены букв с учетом регистра
+    private static readonly Regex RegexReplaceR = new(@"р", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexReplaceSh = new(@"ш", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexReplaceY = new(@"ы", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexReplaceCh = new(@"ч", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexReplaceF = new(@"ф", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexReplaceTsa = new(@"тся\b", RegexOptions.IgnoreCase);
+
     [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
-    
-    private readonly Random _random = new Random();
-    
+
     public override void Initialize()
     {
         base.Initialize();
@@ -18,62 +33,45 @@ public sealed class SouthernAccentSystem : EntitySystem
     private void OnAccent(EntityUid uid, SouthernAccentComponent component, AccentGetEvent args)
     {
         var message = args.Message;
+
+        // Apply replacement rules
         message = _replacement.ApplyReplacements(message, "southern");
 
-        // Существующие замены
-        message = Regex.Replace(message, @"\bр", "л");
-        message = Regex.Replace(message, @"р", "л");
-        message = Regex.Replace(message, @"([.!?])\s*", "$1 ла ");
-        message = message.Replace("ч", "ць");
-        message = Regex.Replace(message, @"\b(([а-яА-Я]+)(ть|чь|ти))\b", "$1ся");
-        message = Regex.Replace(message, @"\bего\b", "его-го");
-        message = Regex.Replace(message, @"\bэто\b", "это-то");
-        message = message.Replace("ы", "и");
-        message = Regex.Replace(message, @"\b(\d+)\s+([а-яА-Я]+)", "$1 штука $2");
-        message = Regex.Replace(message, @"\bхорошо\b", "хао");
-        message = Regex.Replace(message, @"\bспасибо\b", "сесе");
-        message = Regex.Replace(message, @"\bздравствуйте\b", "ни хао");
-        message = Regex.Replace(message, @"\bдо свидания\b", "цзай цзянь");
-        message = Regex.Replace(message, @"\?", " ма?");
+        // Apply specific word replacements with case preservation
+        message = RegexGood.Replace(message, match => PreserveCase(match.Value, "хао"));
+        message = RegexThank.Replace(message, match => PreserveCase(match.Value, "сесе"));
+        message = RegexHello.Replace(message, match => PreserveCase(match.Value, "ни хао"));
+        message = RegexGoodbye.Replace(message, match => PreserveCase(match.Value, "цзай цзянь"));
+        message = RegexHim.Replace(message, match => PreserveCase(match.Value, "ево"));
+        message = RegexThis.Replace(message, match => PreserveCase(match.Value, "эта"));
+        message = RegexWhat.Replace(message, match => PreserveCase(match.Value, "сто"));
 
-        // Новые замены и особенности
-        // Замена "в" на "ф" в начале слов
-        message = Regex.Replace(message, @"\bв", "ф");
-
-        // Добавление "ару" после глаголов в прошедшем времени
-        message = Regex.Replace(message, @"\b([а-яА-Я]+(?:л|ла|ло|ли))\b", "$1 ару");
-
-        // Замена "что" на "сто"
-        message = Regex.Replace(message, @"\bчто\b", "сто");
-
-        // Добавление "ня" в конце некоторых слов
-        var words = message.Split(' ');
-        for (int i = 0; i < words.Length; i++)
-        {
-            if (words[i].Length > 3 && _random.Next(100) < 15)
-            {
-                words[i] += "ня";
-            }
-        }
-        message = string.Join(" ", words);
-
-        // Случайное добавление слова "чайна" перед существительными (с вероятностью 10%)
-        words = message.Split(' ');
-        for (int i = 0; i < words.Length; i++)
-        {
-            if (Regex.IsMatch(words[i], @"^[а-яА-Я]+$") && _random.Next(100) < 10)
-            {
-                words[i] = "чайна " + words[i];
-            }
-        }
-        message = string.Join(" ", words);
-
-        // Добавление "ни хао" в начало длинных предложений
-        if (message.Length > 10 && !message.StartsWith("Ни хао"))
-        {
-            message = "Ни хао! " + message;
-        }
+        // Apply character replacements with case preservation
+        message = RegexReplaceR.Replace(message, match => ReplaceWithCase(match.Value, "л"));
+        message = RegexReplaceSh.Replace(message, match => ReplaceWithCase(match.Value, "с"));
+        message = RegexReplaceY.Replace(message, match => ReplaceWithCase(match.Value, "и"));
+        message = RegexReplaceCh.Replace(message, match => ReplaceWithCase(match.Value, "ць"));
+        message = RegexReplaceF.Replace(message, match => ReplaceWithCase(match.Value, "в"));
+        message = RegexReplaceTsa.Replace(message, match => ReplaceWithCase(match.Value, "ться"));
 
         args.Message = message;
+    }
+
+    private string PreserveCase(string original, string replacement)
+    {
+        return original.ToUpper() == original
+            ? replacement.ToUpper()
+            : original.ToLower() == original
+                ? replacement.ToLower()
+                : replacement;
+    }
+
+    private string ReplaceWithCase(string original, string replacement)
+    {
+        return original.ToUpper() == original
+            ? replacement.ToUpper()
+            : original.ToLower() == original
+                ? replacement.ToLower()
+                : replacement;
     }
 }
