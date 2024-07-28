@@ -1838,6 +1838,23 @@ entities:
     - type: Transform
       pos: 80.29212,201.64035
       parent: 2
+- proto: BlastDoorExterior1
+  entities:
+  - uid: 14251
+    components:
+    - type: Transform
+      pos: 101.5,179.5
+      parent: 2
+  - uid: 14252
+    components:
+    - type: Transform
+      pos: 102.5,179.5
+      parent: 2
+  - uid: 14253
+    components:
+    - type: Transform
+      pos: 103.5,179.5
+      parent: 2
 - proto: Bloodpack
   entities:
   - uid: 10155
@@ -1886,6 +1903,14 @@ entities:
     - type: Physics
       angularDamping: 0
       linearDamping: 0
+- proto: ButtonFrameCautionSecurity
+  entities:
+  - uid: 14255
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 108.5,183.5
+      parent: 2
 - proto: CableApcExtension
   entities:
   - uid: 199
@@ -6803,7 +6828,7 @@ entities:
       pos: 85.5,145.5
       parent: 2
     - type: Warper
-      id: bosentrance
+      id: bossurface
 - proto: LadderBottomMetalDamaged
   entities:
   - uid: 1530
@@ -6814,6 +6839,15 @@ entities:
       parent: 2
     - type: Warper
       id: cabin
+- proto: LadderBottomMetalPaint2
+  entities:
+  - uid: 14250
+    components:
+    - type: Transform
+      pos: 24.5,67.5
+      parent: 2
+    - type: Warper
+      id: southwestmercer
 - proto: LadderBottomMetalRusted
   entities:
   - uid: 2726
@@ -6822,7 +6856,7 @@ entities:
       pos: 81.5,225.5
       parent: 2
     - type: Warper
-      id: stripmall
+      id: Fortuna
 - proto: LadderBottomRopeDamaged
   entities:
   - uid: 250
@@ -74218,6 +74252,14 @@ entities:
     - type: Physics
       angularDamping: 0
       linearDamping: 0
+- proto: SignalButtonExt1
+  entities:
+  - uid: 14254
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 108.5,183.5
+      parent: 2
 - proto: SignElectricalMed
   entities:
   - uid: 1864
@@ -77250,12 +77292,12 @@ entities:
   entities:
   - uid: 1491
     components:
-    - type: MetaData
-      name: BoS Bunker
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 85.5,143.5
+      pos: 85.5,144.5
       parent: 2
+    - type: WarpPoint
+      id: bosbunker
+      location: BOS Bunker
   - uid: 7729
     components:
     - type: MetaData
@@ -77269,6 +77311,17 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 25.5,67.5
       parent: 2
+    - type: WarpPoint
+      id: southwestmercersewer
+      location: South West Mercer Sewer
+  - uid: 14249
+    components:
+    - type: Transform
+      pos: 82.5,225.5
+      parent: 2
+    - type: WarpPoint
+      id: fortunasewer
+      location: Fortuna Sewer
 - proto: WashingMachine
   entities:
   - uid: 5612
