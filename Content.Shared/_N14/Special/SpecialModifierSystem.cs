@@ -1,4 +1,3 @@
-/*
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
@@ -7,10 +6,10 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.DoAfter;
-using Content.Shared._N14.Special.Components;
+using Content.Shared.Nuclear14.Special.Components;
 using Content.Shared.Verbs;
 
-namespace Content.Shared._N14.Special
+namespace Content.Shared.Nuclear14.Special
 {
     public sealed class SpecialModifierSystem : EntitySystem
     {
@@ -185,7 +184,7 @@ namespace Content.Shared._N14.Special
             if (!_doAfter.TryStartDoAfter(doAfterEventArgs))
                 return;
 
-            Dirty(uid, special);
+            Dirty(special);
         }
 
 
@@ -273,4 +272,3 @@ namespace Content.Shared._N14.Special
     {
     }
 }
-*/
