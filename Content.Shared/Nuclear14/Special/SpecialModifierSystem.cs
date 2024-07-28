@@ -1,3 +1,5 @@
+using Content.Shared.Examine;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
@@ -5,6 +7,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.DoAfter;
 using Content.Shared.Nuclear14.Special.Components;
+using Content.Shared.Verbs;
 
 namespace Content.Shared.Nuclear14.Special
 {
@@ -12,12 +15,110 @@ namespace Content.Shared.Nuclear14.Special
     {
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+        [Dependency] private readonly ExamineSystemShared _examine = default!;
 
         public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<SpecialComponent, ComponentGetState>(OnGetState);
             SubscribeLocalEvent<SpecialComponent, ComponentHandleState>(OnHandleState);
+            SubscribeLocalEvent<SpecialComponent, ExaminedEvent>(OnExamined);
+            SubscribeLocalEvent<SpecialComponent, GetVerbsEvent<ExamineVerb>>(OnGetExamineVerbs);
+
+        }
+
+        private void OnGetExamineVerbs(EntityUid uid, SpecialComponent component, GetVerbsEvent<ExamineVerb> args)
+        {
+            if (!args.CanInteract || !args.CanAccess)
+                return;
+
+            var strength = component.TotalStrength;
+            var perception = component.TotalPerception;
+            var endurance = component.TotalEndurance;
+            var charisma = component.TotalCharisma;
+            var intelligence = component.TotalIntelligence;
+            var agility = component.TotalAgility;
+            var luck = component.TotalLuck;
+
+            var msg = new FormattedMessage();
+
+            if (strength != 0)
+            {
+                msg.AddMarkup(Loc.GetString("special-appearance-component-examine-strength", ("value", strength)));
+                msg.PushNewline();
+            }
+            if (perception != 0)
+            {
+                msg.AddMarkup(Loc.GetString("special-appearance-component-examine-perception", ("value", perception)));
+                msg.PushNewline();
+            }
+            if (endurance != 0)
+            {
+                msg.AddMarkup(Loc.GetString("special-appearance-component-examine-endurance", ("value", endurance)));
+                msg.PushNewline();
+            }
+            if (charisma != 0)
+            {
+                msg.AddMarkup(Loc.GetString("special-appearance-component-examine-charisma", ("value", charisma)));
+                msg.PushNewline();
+            }
+            if (intelligence != 0)
+            {
+                msg.AddMarkup(Loc.GetString("special-appearance-component-examine-intelligence", ("value", intelligence)));
+                msg.PushNewline();
+            }
+            if (agility != 0)
+            {
+                msg.AddMarkup(Loc.GetString("special-appearance-component-examine-agility", ("value", agility)));
+                msg.PushNewline();
+            }
+            if (luck != 0)
+            {
+                msg.AddMarkup(Loc.GetString("special-appearance-component-examine-luck", ("value", luck)));
+                msg.PushNewline();
+            }
+
+            if  (strength != 0 ||
+                perception != 0 ||
+            endurance != 0 ||
+            charisma != 0 ||
+            intelligence != 0 ||
+            agility != 0 ||
+            luck != 0
+            )
+            _examine.AddDetailedExamineVerb(args,
+                component,
+                msg,
+                Loc.GetString("special-examinable-component-examine-text"),
+                "/Textures/Interface/examine-star.png",
+                Loc.GetString("special-examinable-verb-message")
+            );
+        }
+
+        private void OnExamined(EntityUid uid, SpecialComponent component, ExaminedEvent args)
+        {
+            var charisma = component.TotalCharisma;
+            var identity = Identity.Entity(uid, EntityManager);
+
+            switch(charisma){
+                case 1 or 2:
+                    args.PushText(Loc.GetString("special-appearance-component-examine-charisma-very-low", ("user", identity)));
+                    break;
+                case 3 or 4:
+                    args.PushText(Loc.GetString("special-appearance-component-examine-charisma-very-low", ("user", identity)));
+                    break;
+                case 5 or 6:
+                    args.PushText(Loc.GetString("special-appearance-component-examine-charisma-medium", ("user", identity)));
+                    break;
+                case 7 or 8:
+                    args.PushText(Loc.GetString("special-appearance-component-examine-charisma-high", ("user", identity)));
+                    break;
+                case 9 or 10:
+                    args.PushText(Loc.GetString("special-appearance-component-examine-charisma-very-high", ("user", identity)));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         private void OnGetState(EntityUid uid, SpecialComponent component, ref ComponentGetState args)
