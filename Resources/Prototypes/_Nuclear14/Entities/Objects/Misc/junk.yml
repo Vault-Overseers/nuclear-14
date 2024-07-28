@@ -15,7 +15,7 @@
 
 - type: entity
   parent: N14JunkItemBase
-  id: N14JunkItemBaseGlass # Parent anything made from glass to this
+  id: N14JunkItemBaseBreak # Breakable glass parent
   name: junk
   description: it's junk!
   abstract: true
@@ -70,7 +70,19 @@
 
 - type: entity
   parent: N14JunkItemBase
-  id: N14JunkItemBaseWood # Parent anything made from plastic to this.
+  id: N14JunkItemBaseGlass # Parent anything made from glass to this.
+  abstract: true
+  components:
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+  - type: PhysicalComposition
+  materialComposition:
+      Glass: 50
+
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkItemBaseWood # Parent anything made from wood to this.
   abstract: true
   components:
   - type: WelderRefinable
@@ -79,18 +91,6 @@
   - type: PhysicalComposition
     materialComposition:
       Wood: 50
-
-- type: entity
-  parent: N14JunkItemBase
-  id: N14JunkItemBaseGlass # Parent anything made from plastic to this.
-  abstract: true
-  components:
-  - type: WelderRefinable
-    refineResult:
-    - SheetGlass1
-  - type: PhysicalComposition
-    materialComposition:
-      Glass: 50
 
 - type: entity
   parent: N14JunkItemBase
@@ -660,7 +660,7 @@
     state: gear_small
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentIgniter
   name: igniter
   description: A small ignition device. Apply power for a spark.
