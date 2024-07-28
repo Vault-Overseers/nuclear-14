@@ -117,6 +117,30 @@
       Steel: 50
 
 - type: entity
+  parent: N14JunkItemBase
+  id: N14JunkItemBaseAluminum # Parent anything made from aluminum to this.
+  abstract: true
+  components:
+  - type: WelderRefinable
+    refineResult:
+    - IngotAluminum1
+  - type: PhysicalComposition
+    materialComposition:
+      Aluminium: 50
+
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkItemBaseLead # Parent anything made from lead to this.
+  abstract: true
+  components:
+  - type: WelderRefinable
+    refineResult:
+    - IngotLead1
+  - type: PhysicalComposition
+    materialComposition:
+      Lead: 50
+
+- type: entity
   parent: [N14JunkItemBase, DrinkBottlePlasticBaseFull]
   id: N14JunkItemBaseContainer # Parent anything made unbreakable liquid holder to this.
   abstract: true
@@ -205,7 +229,7 @@
   components:
   - type: Sprite
     state: duct_tape
-
+#MARK: TEST
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkIron
@@ -220,13 +244,87 @@
     - SheetSteel1
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: [ N14JunkItemBaseAluminum , BoxCardboard ]
   id: N14JunkLunchbox
   name: lunchbox
   description: A small vault-tec branded lunchbox.
   components:
   - type: Sprite
     state: lunchbox
+  - type: StorageFill
+    contents:
+      - id: DrinkWaterBottleFull
+        orGroup: Drink
+        prob: 0.6
+      - id: N14DrinkNukaCola
+        orGroup: Drink
+        prob: 0.4
+      - id: N14DrinkNukaColaYellow
+        orGroup: Drink
+        prob: 0.3
+      - id: N14DrinkNukaColaCherry
+        orGroup: Drink
+        prob: 0.2
+      - id: N14DrinkNukaColaGrape
+        orGroup: Drink
+        prob: 0.2
+      - id: N14DrinkNukaColaOrange
+        orGroup: Drink
+        prob: 0.2
+      - id: N14DrinkNukaColaWild
+        orGroup: Drink
+        prob: 0.1
+      - id: N14DrinkNukaColaQuartz
+        orGroup: Drink
+        prob: 0.1
+      - id: N14DrinkNukaColaVictory
+        orGroup: Drink
+        prob: 0.05
+      - id: N14DrinkNukaColaQuantum
+        orGroup: Drink
+        prob: 0.01
+      - id: N14FoodInstamash
+        orGroup: Food
+        prob: 0.03
+      - id: N14FoodFancyladssnackcakes
+        orGroup: Food
+        prob: 0.02
+      - id: N14FoodBubblegum
+        orGroup: Food
+        prob: 0.05
+      - id: N14FoodCram
+        orGroup: Food
+        prob: 0.03
+      - id: N14FoodDandyboyapples
+        orGroup: Food
+        prob: 0.02
+      - id: N14FoodDinki-Di # funny dogfood
+        orGroup: Food
+        prob: 0.03
+      - id: N14FoodPorkBeans
+        orGroup: Food
+        prob: 0.02
+      - id: N14FoodSalisburysteak
+        orGroup: Food
+        prob: 0.02
+      - id: N14FoodSugarbombs
+        orGroup: Food
+        prob: 0.03
+      - id: N14FoodYumyumdeviledeggs
+        orGroup: Food
+        prob: 0.04
+      - id: FoodBakedCookie
+        orGroup: Food
+        prob: 0.03
+      - id: FoodBakedCookieRaisin
+        orGroup: Food
+        prob: 0.03
+      - id: N14JunkToyNukaTruck
+        orGroup: Toy
+        prob: 0.06
+      - id: N14JunkToyRacecar
+        orGroup: Toy
+        prob: 0.06
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -256,7 +354,7 @@
     state: tincan
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBaseAluminum
   id: N14JunkToaster
   name: toaster
   description: A pre-war toaster. Insert bread.
@@ -265,7 +363,7 @@
     state: toaster
 
 - type: entity
-  parent: N14JunkItemBasePlastic
+  parent: N14JunkItemBaseLead
   id: N14JunkToyNukaTruck
   name: toy Nuka-Cola truck
   description: An old Nuka-Cola truck toy.
@@ -274,7 +372,7 @@
     state: toy_Nuka_truck
 
 - type: entity
-  parent: N14JunkItemBasePlastic
+  parent: N14JunkItemBaseLead
   id: N14JunkToyRacecar
   name: toy race car
   description: An old toy race car.
@@ -341,7 +439,7 @@
           Quantity: 25
 
 
-# Gun Parts
+#MARK: Gun Parts
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsAction
@@ -352,7 +450,7 @@
     state: action
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBaseAluminum
   id: N14JunkGunpartsAdvancedFrame
   name: gun frame (part)
   description: An advanced gun frame.
@@ -487,7 +585,7 @@
     state: weapon_parts_2
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBaseAluminum
   id: N14JunkGunpartsWeaponParts3
   name: energy weapon parts
   description: A collection of broken weapon parts.
@@ -496,7 +594,7 @@
     state: weapon_parts_3
 
 
-# Components
+#MARK: Components
 - type: entity
   parent: N14JunkItemBasePlastic
   id: N14JunkComponentBoard1
