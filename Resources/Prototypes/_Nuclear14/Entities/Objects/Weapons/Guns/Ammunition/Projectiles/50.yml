@@ -2,10 +2,31 @@
   noSpawn: true
   parent: BaseBullet
   id: N14Bullet50
-  name: bullet (.50 HEIAP anti-materiel)
+  name: bullet (.50 AP anti-materiel)
   components:
   - type: Projectile
     damage:
       types:
         Piercing: 60 # 20% decrease in power for AP
     ignoreResistances: true
+
+- type: entity
+  noSpawn: true
+  parent: BaseGrenadeProjectile
+  id: N14Bullet50HEIAP
+  name: bullet (.50 HEIAP anti-materiel)
+  components:
+  - type: IgniteOnCollide
+    fireStacks: 1
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 40 # medium decrease for explosion numerics
+    ignoreResistances: true
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 2
+    intensitySlope: 6
+    totalIntensity: 5
+    maxTileBreak: 1
