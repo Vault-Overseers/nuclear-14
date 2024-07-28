@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 
@@ -135,6 +136,9 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
 
     private bool _doSanitize;
 
+    // Anti-Goida
+    private static readonly Regex GoydaRegex = new(@"[ГгGg][ОоOo]+[ЙйYy][ДдDd][АаAa]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
     public void Initialize()
     {
         _configurationManager.OnValueChanged(CCVars.ChatSanitizerEnabled, x => _doSanitize = x, true);
@@ -150,6 +154,9 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         }
 
         input = input.TrimEnd();
+
+        // Apply Anti-Goida filter
+        input = GoydaRegex.Replace(input, "Я долбоёб");
 
         foreach (var (smiley, replacement) in SmileyToEmote)
         {
