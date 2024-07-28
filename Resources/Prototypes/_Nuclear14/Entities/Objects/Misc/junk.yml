@@ -1,3 +1,4 @@
+#MARK: `BaseItem`
 - type: entity
   parent: BaseItem
   id: N14JunkItemBase
@@ -64,7 +65,32 @@
     refineResult:
     - SheetGlass1
   - type: PhysicalComposition
-    Glass: 50
+  materialComposition:
+      Glass: 50
+
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkItemBaseWood # Parent anything made from plastic to this.
+  abstract: true
+  components:
+  - type: WelderRefinable
+    refineResult:
+    - MaterialWoodPlank1
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 50
+
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkItemBaseGlass # Parent anything made from plastic to this.
+  abstract: true
+  components:
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 50
 
 - type: entity
   parent: N14JunkItemBase
@@ -103,7 +129,7 @@
       Plastic: 50
 
 # TODO: Give all items in orGroup: "JunkItem" material composition they can be "welded", "wrenched" or "pried" into
-# Products and Random Bits
+#MARK: Products 'n" Bits
 - type: entity
   parent: N14JunkItemBaseContainer
   id: N14JunkAbraxoCleaner
@@ -120,10 +146,10 @@
           Quantity: 50
   - type: WelderRefinable
     refineResult:
-    - MaterialCardboard2
+    - SheetPlastic1
   - type: PhysicalComposition
     materialComposition:
-      Cardboard: 100
+      Plastic: 100
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -163,7 +189,7 @@
     state: cookpot
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseWood
   id: N14JunkCrutch
   name: crutch
   description: An old wooden crutch.
@@ -472,7 +498,7 @@
 
 # Components
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBasePlastic
   id: N14JunkComponentBoard1
   name: circuit board
   description: A silver looking circuit board.
@@ -481,7 +507,7 @@
     state: board_1
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBasePlastic
   id: N14JunkComponentBoard2
   name: circuit board
   description: A gold looking circuit board.
@@ -490,7 +516,7 @@
     state: board_2
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBasePlastic
   id: N14JunkComponentBoard3
   name: circuit board
   description: A green looking circuit board.
@@ -499,7 +525,7 @@
     state: board_3
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentBulb1
   name: bulb
   description: A tiny bulb.
@@ -508,7 +534,7 @@
     state: bulb_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentBulb2
   name: bulb
   description: A double bulb.
@@ -517,7 +543,7 @@
     state: bulb_2
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentBulb3
   name: bulb
   description: A large bulb.
@@ -526,7 +552,7 @@
     state: bulb_3
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseMetal
   id: N14JunkComponentBuzzer
   name: buzzer
   description: An electronic buzzer.
@@ -535,7 +561,7 @@
     state: buzzer
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentCapacitor1
   name: capacitor
   description: An electrolytic capacitor.
@@ -544,7 +570,7 @@
     state: capacitor_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentCapacitor2
   name: capacitor
   description: A ceramic type capacitor.
@@ -553,7 +579,7 @@
     state: capacitor_2
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentCapacitor3
   name: capacitor
   description: A paper type capacitor.
@@ -562,7 +588,7 @@
     state: capacitor_3
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentDiode1
   name: diode
   description: An old vacuum diode.
@@ -571,7 +597,7 @@
     state: diode_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentDiode2
   name: diode
   description: A more advanced zener diode.
@@ -580,7 +606,7 @@
     state: diode_2
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentDiode3
   name: diode
   description: A standard diode.
@@ -589,7 +615,7 @@
     state: diode_3
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBasePlastic
   id: N14JunkComponentMainboard
   name: mainframe board
   description: A sophisticated circuit board
@@ -598,7 +624,7 @@
     state: frame
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentFuse1
   name: fuse
   description: A large capacity, slow blow fuse.
@@ -607,7 +633,7 @@
     state: fuse_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentFuse2
   name: fuse
   description: A small capacity, fast blow fuse.
@@ -616,7 +642,7 @@
     state: fuse_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseMetal
   id: N14JunkComponentGearLarge
   name: large gear
   description: A large mechanical gear.
@@ -625,7 +651,7 @@
     state: gear_large
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseMetal
   id: N14JunkComponentGearSmall
   name: small gear
   description: A small mechanical gear.
@@ -634,7 +660,7 @@
     state: gear_small
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseMetal
   id: N14JunkComponentIgniter
   name: igniter
   description: A small ignition device. Apply power for a spark.
@@ -643,7 +669,7 @@
     state: igniter
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentResistor1
   name: resistor
   description: A low resistance resistor.
@@ -652,7 +678,7 @@
     state: resistor_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentResistor2
   name: resistor
   description: A medium resistance resistor.
@@ -661,7 +687,7 @@
     state: resistor_2
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentResistor3
   name: resistor
   description: A high resistance resistor.
@@ -670,7 +696,7 @@
     state: resistor_3
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseMetal
   id: N14JunkComponentScrew
   name: screw
   description: Aw screw it!
@@ -679,7 +705,7 @@
     state: screw
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBasePlastic
   id: N14JunkComponentSensor
   name: sensor board
   description: A sophisticated sensor board.
@@ -688,7 +714,7 @@
     state: sensor
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBasePlastic
   id: N14JunkComponentSensorModule
   name: sensor module
   description: An advanced sensor module.
@@ -697,7 +723,7 @@
     state: sensor_module
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBasePlastic
   id: N14JunkComponentSwitch
   name: sensor module
   description: An electronics switch.
@@ -706,7 +732,7 @@
     state: switch_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentTransistor1
   name: transistor
   description: A FET or not-a-FET. That is the question.
@@ -715,7 +741,7 @@
     state: transistor_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentTransistor2
   name: transistor
   description: A bipolar junction transistor.
@@ -724,7 +750,7 @@
     state: transistor_2
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentTransistor3
   name: transistor
   description: A junction FET.
