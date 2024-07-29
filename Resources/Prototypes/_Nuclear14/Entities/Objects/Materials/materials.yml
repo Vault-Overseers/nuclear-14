@@ -33,12 +33,8 @@
   - type: Tag
     tags:
       - RawMaterial
-  - type: DrainableSolution
-    solution: powder
-  - type: SolutionTransfer
-    canChangeTransferAmount: false
-  - type: DeleteOnSolutionEmpty
-    solution: powder
+  - type: Extractable
+    grindableSolutionName: powder
 
 - type: entity
   parent: Gunpowder
@@ -79,7 +75,7 @@
   - type: Appearance
   - type: SolutionContainerManager
     solutions:
-      sulfur:
+      powder:
         reagents:
         - ReagentId: Sulfur
           Quantity: 10
