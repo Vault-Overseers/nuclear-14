@@ -10,7 +10,6 @@
       - minTemperature: 305
   - node: SteakCooked
     entity: N14FoodMeatBrahminCooked
-    
 
 - type: constructionGraph
   id: MeatSteakBighorner
@@ -24,7 +23,18 @@
   - node: SteakCooked
     entity: N14FoodMeatBighornerCooked
     
-    
+- type: constructionGraph
+  id: MeatSteakGecko
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: SteakCooked
+      steps:
+      - minTemperature: 305
+  - node: SteakCooked
+    entity: N14FoodMeatGeckoCooked
+
 - type: constructionGraph
   id: MeatSteakRadstag
   start: start
@@ -36,3 +46,99 @@
       - minTemperature: 305
   - node: SteakCooked
     entity: N14FoodMeatRadstagCooked
+    
+- type: constructionGraph
+  id: MeatSteakRadscorpion
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: SteakCooked
+      steps:
+      - minTemperature: 305
+  - node: SteakCooked
+    entity: N14FoodMeatRadscorpionCooked
+
+- type: constructionGraph
+  id: MeatSteakYaoguai
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: SteakCooked
+      steps:
+      - minTemperature: 305
+  - node: SteakCooked
+    entity: N14FoodMeatYaoguaiCooked
+    
+- type: constructionGraph
+  id: MeatMorsels
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MeatCooked
+      steps:
+      - minTemperature: 305
+  - node: MeatCooked
+    entity: N14FoodMeatCooked
+    
+- type: constructionGraph
+  id: MeatMirelurkClaw
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MeatCooked
+      steps:
+      - minTemperature: 305
+  - node: MeatCooked
+    entity: N14FoodMeatMirelurkClawCooked
+    
+- type: constructionGraph
+  id: MeatRadlurkClaw
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MeatCooked
+      steps:
+      - minTemperature: 305
+  - node: MeatCooked
+    entity: N14FoodMeatRadlurkClawCooked
+    
+- type: constructionGraph
+  id: MeatIguana
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MeatCooked
+      steps:
+      - minTemperature: 305
+  - node: MeatCooked
+    entity: N14FoodMeatIguanaCooked
+    
+- type: constructionGraph
+  id: MeatRadroach
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MeatCooked
+      steps:
+      - minTemperature: 305
+  - node: MeatCooked
+    entity: N14FoodMeatRadroachFilletCooked
+    
+- type: constructionGraph
+  id: MeatRadscorpionLeg
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MeatCooked
+      steps:
+      - minTemperature: 305
+  - node: MeatCooked
+    entity: N14FoodMeatRadscorpionLegBoiled
