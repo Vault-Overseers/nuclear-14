@@ -5,14 +5,13 @@
     - node: start
       edges:
         - to: seedextractorhalf
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
           steps:
-              completed:
-                - !type:SnapToGrid
-                  southRotation: true
-              steps:
-                - material: WoodPlank
-                  amount: 4
-                  doAfter: 5
+            - material: WoodPlank
+              amount: 4
+              doAfter: 5
 
     - node: seedextractorhalf
       actions:
@@ -30,6 +29,7 @@
     - node: seedextractorpot
       actions:
       - !type:AppearanceChange
+      entity: N14SeedExtractorFrame
       edges:
         - to: seedextractorreinforced
           steps: 
@@ -40,6 +40,7 @@
     - node: seedextractorreinforced
       actions:
       - !type:AppearanceChange
+      entity: N14SeedExtractorFrame
       edges:
         - to: seedextractorunscrewed
           steps:
@@ -52,10 +53,11 @@
     - node: seedextractorunscrewed
       actions:
       - !type:AppearanceChange
+      entity: N14SeedExtractorFrame
       edges:
         - to: seedextractor
           steps:
-          - tool: screwing
+            - tool: Screwing
             doAfter: 2
 
     - node: seedextractor
