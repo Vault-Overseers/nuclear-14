@@ -8,6 +8,7 @@
     whitelist:
       tags:
         - N14Cartridge50
+        - N14Cartridge50HEIAP
     proto: N14Cartridge50
     capacity: 30
   - type: ContainerContainer
@@ -29,6 +30,19 @@
   components:
   - type: BallisticAmmoProvider
     proto: N14Cartridge50
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  parent: BaseMagazineBox50
+  id: MagazineBox50HEIAP
+  name: ammunition box (.50 anti materiel)
+  suffix: HEIAP
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge50HEIAP
   - type: Sprite
     layers:
     - state: base

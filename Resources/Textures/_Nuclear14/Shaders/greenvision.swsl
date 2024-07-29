@@ -1,0 +1,45 @@
+light_mode unshaded;
+
+// Uniforms
+uniform sampler2D SCREEN_TEXTURE; // The texture to apply the night vision effect to
+uniform highp float time;         // Time for dynamic effects such as noise
+uniform highp vec2 resolution;    // Screen resolution for calculating UV coordinates
+
+// Function to apply a vignette effect
+highp float vignette(highp vec2 uv, highp vec2 center, highp float radius) {
+    highp float dist = distance(uv, center);
+    highp float vignetteFactor = smoothstep(radius, radius - 0.1, dist-0.1);
+    return vignetteFactor;
+}
+
+// Function to apply noise effect
+highp float noise(highp vec2 uv) {
+    return fract(sin(dot(uv * 100.0, vec2(12.9898, 78.233))) * 43758.5453);
+}
+
+void fragment() {
+    // Sample the color from the SCREEN_TEXTURE at the given UV coordinates
+    highp vec4 color = zTextureSpec(SCREEN_TEXTURE, UV);
+
+    // Define a green tint matrix
+    highp mat3 greenTintMatrix = mat3(
+        vec3(0.0, 0.0, 0.0),  // Red channel
+        vec3(0.0, 0.3, 0.0),  // Green channel (zeroed out)
+        vec3(0.0, 0.0, 0.0)   // Blue channel (zeroed out)
+    );
+
+    // Apply the green tint matrix to the RGB components of the sampled color
+    highp vec3 greenTintedColor = color.rgb * greenTintMatrix;
+
+    // Add noise to the color to simulate graininess
+    highp float noiseAmount = noise(UV * resolution.xy + time) * 0.1;
+    highp vec3 noisyColor = mix(greenTintedColor, greenTintedColor + noiseAmount, 0.5);
+
+    // Apply vignette effect
+    highp vec2 center = vec2(0.5, 0.5); // Center of the screen
+    highp float vignetteFactor = vignette(UV, center, 0.5);
+    highp vec3 finalColor = noisyColor * vignetteFactor;
+
+    // Output the final color with an alpha value of 1 (fully opaque)
+    COLOR = vec4(finalColor, 1.0);
+}
