@@ -170,6 +170,10 @@
     sprite: Objects/Consumable/Food/meat.rsi
     layers:
     - state: spiderleg
+  - type: Construction
+    graph: MeatRadscorpionLeg
+    node: start
+    defaultTarget: MeatCooked
           
 - type: entity
   name: raw radchicken meat
@@ -196,13 +200,23 @@
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatGeckoCutlet
+  - type: Construction
+    graph: MeatSteakGecko
+    node: start
+    defaultTarget: SteakCooked
     
 - type: entity
   name: raw iguana bits
   parent: N14FoodMeatRadRaw
   id: N14FoodMeatIguana
   description: morsels of a poor iguana.
-    # N14TODO: New sprite for this too?
+  components:
+  - type: Sprite
+    state: morsels # replace with iguana on a stick
+  - type: Construction
+    graph: MeatIguana
+    node: start
+    defaultTarget: MeatCooked
           
 - type: entity
   name: raw squirrel bits
@@ -212,6 +226,10 @@
   components:
   - type: Sprite
     state: morsels
+  - type: Construction
+    graph: MeatMorsels
+    node: start
+    defaultTarget: MeatCooked
   
 - type: entity
   name: raw radroach fillet
@@ -221,6 +239,10 @@
   components:
   - type: Sprite
     state: radroachfillet
+  - type: Construction
+    graph: MeatRadroach
+    node: start
+    defaultTarget: MeatCooked
 
 - type: entity
   name: raw mirelurk claw
@@ -236,6 +258,10 @@
         reagents:
         - ReagentId: N14UncookedAnimalProteinsRad
           Quantity: 5
+  - type: Construction
+    graph: MeatMirelurkClaw
+    node: start
+    defaultTarget: MeatCooked
 
 - type: entity
   name: raw radlurk claw
@@ -251,6 +277,10 @@
         reagents:
         - ReagentId: N14UncookedAnimalProteinsRad
           Quantity: 5
+  - type: Construction
+    graph: MeatRadlurkClaw
+    node: start
+    defaultTarget: MeatCooked
 
 # Cooked
 - type: entity
@@ -397,6 +427,10 @@
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatGeckoCutletCooked
+  - type: Construction
+    graph: MeatSteakGecko
+    node: SteakCooked
+    defaultTarget: SteakCooked
     
 - type: entity
   name: cooked iguana bits
@@ -417,6 +451,10 @@
           Quantity: 3
         - ReagentId: N14RadParticleFood
           Quantity: 1
+  - type: Construction
+    graph: MeatIguana
+    node: MeatCooked
+    defaultTarget: MeatCooked
           
 - type: entity
   name: cooked squirrel bits
@@ -437,6 +475,10 @@
           Quantity: 2
         - ReagentId: N14RadParticleFood
           Quantity: 1
+  - type: Construction
+    graph: MeatMorsels
+    node: MeatCooked
+    defaultTarget: MeatCooked
           
 - type: entity
   name: cooked radroach fillet
@@ -457,6 +499,10 @@
           Quantity: 2
         - ReagentId: N14RadParticleFood
           Quantity: 1
+  - type: Construction
+    graph: MeatRadroach
+    node: MeatCooked
+    defaultTarget: MeatCooked
 
 - type: entity
   name: cooked mirelurk claw
@@ -477,6 +523,10 @@
           Quantity: 3
         - ReagentId: N14RadParticleFood
           Quantity: 1
+  - type: Construction
+    graph: MeatMirelurkClaw
+    node: MeatCooked
+    defaultTarget: MeatCooked
 
 - type: entity
   name: cooked radlurk claw
@@ -497,6 +547,10 @@
           Quantity: 2
         - ReagentId: N14RadParticleFood
           Quantity: 4
+  - type: Construction
+    graph: MeatRadlurkClaw
+    node: MeatCooked
+    defaultTarget: MeatCooked
 
 
 # Cooked Boiled
@@ -518,6 +572,10 @@
           Quantity: 5
         - ReagentId: Protein
           Quantity: 5
+  - type: Construction
+    graph: MeatRadscorpionLeg
+    node: MeatCooked
+    defaultTarget: MeatCooked
 
 
 # Cutlets
