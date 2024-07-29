@@ -1,8 +1,12 @@
 - type: entity
-  abstract: true
+  id: BaseMagazine50AMR
+  name: "magazine (.50 BMG)"
   parent: BaseItem
-  id: BaseMagazineBox50
+  abstract: true
   components:
+  - type: Tag
+    tags:
+      - N14Magazine50AMR
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
@@ -10,13 +14,20 @@
         - N14Cartridge50
         - N14Cartridge50HEIAP
     proto: N14Cartridge50
-    capacity: 30
+    capacity: 5
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
+  - type: Item
+    storedRotation: -90
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Boxes/50anti-material.rsi
     netsync: false
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/50/amrmag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
     steps: 2
@@ -24,26 +35,18 @@
   - type: Appearance
 
 - type: entity
-  parent: BaseMagazineBox50
-  id: MagazineBox50
-  name: ammunition box (.50 anti materiel)
+  id: N14Magazine50AMR
+  name: "magazine (.50 BMG)"
+  parent: BaseMagazine50AMR
   components:
   - type: BallisticAmmoProvider
     proto: N14Cartridge50
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
 
 - type: entity
-  parent: BaseMagazineBox50
-  id: MagazineBox50HEIAP
-  name: ammunition box (.50 anti materiel)
+  id: N14Magazine50AMRHEIAP
+  name: "magazine (.50 BMG HEIAP)"
+  parent: BaseMagazine50AMR
   suffix: HEIAP
   components:
   - type: BallisticAmmoProvider
     proto: N14Cartridge50HEIAP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
