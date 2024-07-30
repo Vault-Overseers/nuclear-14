@@ -16,3 +16,4 @@ clothing-agility-decrease-equal-examine = [color=red]понижает[/color] п
 clothing-luck-increase-equal-examine = [color=green]повышает[/color] параметр [color=yellow]Удача[/color] на [color=green]{ $luck }[/color]
 clothing-luck-decrease-equal-examine = [color=red]понижает[/color] параметр [color=yellow]Удача[/color] на [color=red]{ $luck }[/color]
 player-component-not-enough-strength-weild = Вам необходимо иметь { $number } [color=yellow]Сила[/color] чтобы носить это.
+special-lucky-evasion = увернулся от пули

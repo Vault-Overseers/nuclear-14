@@ -20,6 +20,8 @@
     angleIncrease: 4
     angleDecay: 16
     fireRate: 1.5
+    soundGunshot:
+      collection: N14SniperHuntingGunshot
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -58,7 +60,7 @@
     angleDecay: 16
     fireRate: 1.2
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+      collection: N14AntiMaterielGunshot
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -73,6 +75,7 @@
         whitelist:
           tags:
             - N14Magazine50AMR
+            - N14Magazine50AMRHEIAP
       gun_chamber:
         name: Chamber
         startingItem: N14Cartridge50
@@ -80,6 +83,7 @@
         whitelist:
           tags:
             - N14Cartridge50
+            - N14Cartridge50HEIAP
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -112,6 +116,8 @@
     angleIncrease: 4
     angleDecay: 16
     fireRate: 1.2
+    soundGunshot:
+      collection: N14AntiMaterielGunshot
 
 - type: entity
   name: lever action carbine
@@ -135,6 +141,8 @@
     angleIncrease: 4
     angleDecay: 16
     fireRate: 2
+    soundGunshot:
+      collection: N14LeverCarbineGunshot
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -156,6 +164,8 @@
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/leverrifle.rsi
   - type: Gun
     fireRate: 1.2
+    soundGunshot:
+      collection: N14LeverRifleGunshot
 
 - type: entity
   name: brush gun
@@ -172,7 +182,7 @@
   - type: Gun
     fireRate: 2
     soundGunshot:
-      path: /Audio/_Nuclear14/Weapons/Firing/brushgunfire.ogg
+      collection: N14BrushGunGunshot
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -200,6 +210,9 @@
       - N14Cartridge308Rifle
     capacity: 1
     proto: N14Cartridge308Rifle
+  - type: Gun
+    soundGunshot:
+      collection: N14PipeRifleGunshot
 
 - type: entity
   name: varmint rifle
@@ -223,6 +236,8 @@
     angleIncrease: 4
     angleDecay: 16
     fireRate: 2.2
+    soundGunshot:
+      collection: N14SniperVarmintGunshot
   - type: BallisticAmmoProvider
     whitelist:
       tags:

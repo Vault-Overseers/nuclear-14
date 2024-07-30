@@ -4,12 +4,14 @@
   name: wrecked coupe
   description: a wrecked pre-war car.
   components:
+  - type: RadiationSource
+    intensity: 2
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
+          bounds: "-1.2,-0.3,1.1,0.4"
         density: 60
         mask:
         - MachineMask
@@ -140,6 +142,8 @@
   name: wrecked muscle car
   description: a wrecked pre-war car.
   components:
+  - type: RadiationSource
+    intensity: 2
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/wrecks.rsi
     layers:
@@ -244,6 +248,8 @@
   name: wrecked sports car
   description: a wrecked pre-war car.
   components:
+  - type: RadiationSource
+    intensity: 2
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/wrecks.rsi
     layers:
@@ -348,6 +354,8 @@
   name: wrecked van
   description: a wrecked pre-war van.
   components:
+  - type: RadiationSource
+    intensity: 3
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/wrecks.rsi
     layers:
@@ -427,3 +435,17 @@
           van-tires-2: ""
           van-tires-3: ""
           missing: ""
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.4,-0.7,1.5,0.4"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Occluder
+    boundingBox: "-1,-0.7,1.5,0.4"
