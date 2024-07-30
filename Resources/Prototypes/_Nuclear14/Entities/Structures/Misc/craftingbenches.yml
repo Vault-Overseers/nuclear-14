@@ -179,6 +179,9 @@
     softness: 0.5
     color: "#f05e1b"
     offset: "0.5, 0"
+  - type: Construction
+    graph: N14WorkbenchMetal
+    node: WorkbenchMetal
   - type: MaterialStorage
     whitelist:
       tags:
@@ -263,6 +266,33 @@
       - N14Flare
       - N14FlashlightLantern
       - N14Matchbox
+
+- type: entity
+  parent: N14WorkbenchBase
+  id: N14WorkbenchMetalFrame
+  description: A workbench with metal working tools for crafting. This one is still being built!
+  name: workbench
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/workbenches.rsi
+    layers:
+    - state: workbenchframe0
+      map: [ "enum.ConstructionVisuals.Layer" ]
+    offset: 0.5, 0
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          WorkbenchMetalFrame: { state: workbenchframe0 }
+          WorkbenchMetalAluminum: { state: workbenchframe1 }
+          WorkbenchMetalScrews: { state: workbenchframe2 }
+          WorkbenchMetalUnwrenched: { state: workbenchframe3 }
+          WorkbenchMetalUnscrewed: { state: workbenchframe4}
+  - type: Construction
+    graph: N14WorkbenchMetal
+    node: WorkbenchMetalFrame
+    defaultTarget: WorkbenchMetal
 
 - type: entity
   parent: N14WorkbenchBase

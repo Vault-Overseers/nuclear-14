@@ -1,0 +1,106 @@
+- type: construction
+  name: Workbench
+  id: N14WorkbenchMetal
+  graph: N14WorkbenchMetal
+  startNode: start
+  targetNode: WorkbenchMetal
+  category: construction-category-machines
+  description: A workbench with metal working tools for crafting.
+  icon:
+    sprite: _Nuclear14/Structures/Misc/workbenches.rsi
+    state: workbench
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
+
+- type: constructionGraph
+  id: N14WorkbenchMetal
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: WorkbenchMetalFrame
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: WoodPlank
+              amount: 3
+              doAfter: 5
+
+    - node: WorkbenchMetalFrame
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchMetalFrame
+      edges:
+        - to: WorkbenchMetalAluminum
+          steps:
+            - tag: Gear
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: gear_large
+              name: Gears
+              doAfter: 1
+            - tag: Gear
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: gear_large
+              name: Gears
+              doAfter: 1
+
+    - node: WorkbenchMetalAluminum
+      actions:
+      - !type:AppearanceChange
+      entity: WorkbenchMetalFrame
+      edges:
+        - to: WorkbenchMetalScrews
+          steps: 
+            - material: Aluminum
+              amount: 3
+              doAfter: 4
+
+    - node: WorkbenchMetalScrews
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchMetalFrame
+      edges:
+        - to: WorkbenchMetalUnwrenched
+          steps:
+            - tag: Screw
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: screw
+              name: Screws
+              doAfter: 1
+            - tag: Screw
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: screw
+              name: Screws
+              doAfter: 1
+
+    - node: WorkbenchMetalUnwrenched
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchMetalFrame
+      edges:
+        - to: WorkbenchMetalUnscrewed
+          steps:
+            - tool: Welding
+              doAfter: 2
+
+    - node: WorkbenchMetalUnscrewed
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchMetalFrame
+      edges:
+        - to: WorkbenchMetal
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: WorkbenchMetal
+      entity: N14WorkbenchMetal
