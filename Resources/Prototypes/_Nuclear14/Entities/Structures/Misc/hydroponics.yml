@@ -75,6 +75,33 @@
   - type: ApcPowerReceiver
     powerLoad: 0 
     needsPower: false
+  - type: Construction
+    graph: N14SeedExtractor
+    node: seedextractor
+
+- type: entity
+  id: N14SeedExtractorFrame
+  name: seed extractor frame
+  parent: BaseStructure
+  description: Extracts seeds from produce. This one isn't finished building
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
+    layers:
+    - state: seedextractor0
+      map: [ "enum.ConstructionVisuals.Layer" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          seedextractorhalf: { state: seedextractor0 }
+          seedextractorpot: { state: seedextractor1 }
+          seedextractorreinforced: { state: seedextractor2 }
+          seedextractorunscrewed: { state: seedextractor3 }
+  - type: Construction
+    graph: N14SeedExtractor
+    node: seedextractorhalf
 
 # Soils and Planters
 - type: entity
