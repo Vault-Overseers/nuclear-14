@@ -85,10 +85,11 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: _Nuclear14/Structures/Doors/vaultdoor.rsi
+    sprite: _Nuclear14/Structures/Doors/TallDoors/vaultdoor.rsi
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
+    offset: 0.5, 0.5
   - type: Door
     crushDamage:
       types:
@@ -111,24 +112,24 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Wood
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
+  # - type: Destructible
+    # thresholds:
+    # - trigger:
+        # !type:DamageTrigger
+        # damage: 100
+      # behaviors:
+      # - !type:DoActsBehavior
+        # acts: ["Destruction"]
   - type: AnimationPlayer
   - type: Appearance
   - type: Occluder
-    boundingBox: "-2,-1,2,0.5"
+    boundingBox: "-1.5,-0.5,2.5,1"
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-2,-1,2,0.5"
+          bounds: "-1.5,-0.5,2.5,1"
         density: 10000
         mask:
         - FullTileMask
@@ -162,3 +163,52 @@
   - type: NavMapDoor
   - type: AutoLinkReceiver
     channel: Vaultdoor
+    
+- type: entity
+  parent: N14DoorMetalBlueTall
+  id: N14DoorAirlockTall
+  name: airlock
+  suffix: tall
+  description: An old bunker airlock.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Nuclear14/Structures/Doors/TallDoors/airlock.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    CanPry: false
+    bumpOpen: false
+    clickOpen: true
+    closeTimeOne: 0.6
+    closeTimeTwo: 0.8
+    openTimeOne: 1
+    openTimeTwo: 0.4
+    openingAnimationTime: 1.4
+    closingAnimationTime: 1.4
+    closedDrawDepth: Mobs
+    openDrawDepth: Mobs
+    openSound:
+      path: /Audio/Effects/door_open.ogg
+    closeSound:
+      path: /Audio/Effects/door_close.ogg
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: AnimationPlayer
+  - type: Appearance
+  - type: BlockWeather
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+  - type: RadiationBlocker
+    resistance: 10
+  - type: SpriteFade
