@@ -12,7 +12,7 @@
     sprite: _Nuclear14/Structures/Power/32x48_machines.rsi
     state: rack_on
 
-# Server / Racks / Panels
+#MARK: Servers / Racks / Panels
 - type: construction
   name: server rack
   id: N14RackElectronics
@@ -47,7 +47,7 @@
   conditions:
     - !type:TileNotBlocked
     
-# Terminals
+#MARK: Terminals
 - type: construction
   name: terminal
   id: N14Terminal
@@ -64,3 +64,23 @@
     state: rack_on
   conditions:
     - !type:TileNotBlocked
+
+#MARK: Crafting Benches
+
+- type: construction
+  name: Workbench
+  id: N14WorkbenchMetal
+  graph: N14WorkbenchMetal
+  startNode: start
+  targetNode: WorkbenchMetal
+  category: construction-category-machines
+  description: A workbench with metal working tools for crafting.
+  icon:
+    sprite: _Nuclear14/Structures/Misc/workbenches.rsi
+    state: workbench
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
