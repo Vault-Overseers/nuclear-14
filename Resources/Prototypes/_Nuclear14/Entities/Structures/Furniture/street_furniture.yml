@@ -1,27 +1,24 @@
 # Base floor sign
 - type: entity
   id: N14SignFloorBase
-  parent: BaseStructure
   name: sign
   description: It's a sign!
   abstract: true
+  placement:
+    mode: SnapgridCenter
   components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Tag
+    tags:
+      - Structure
   - type: Sprite
     snapCardinals: true
     drawdepth: Overdoors
-  - type: Transform
-    noRot: true
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0
-        density: 1000
-        mask:
-        - FullTileMask
-        layer:
-        - WallLayer
   - type: InteractionOutline
   - type: SpriteFade
   - type: Damageable
@@ -212,7 +209,6 @@
     sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetsigns.rsi
   - type: Transform
     noRot: false
-  - type: Fixtures # removes the fixture because why not. It's thin and directions would break the BB.
 
 - type: entity
   parent: N14SignStreetBase
@@ -415,18 +411,6 @@
       - On
       - Off
       - Toggle
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MidImpassable
-        - LowImpassable
 
 - type: entity
   parent: N14BaseLightStructure
@@ -459,18 +443,6 @@
     - state: on
       map: ["enum.PoweredLightLayers.Base"]
     state: on
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MidImpassable
-        - LowImpassable
     
 - type: entity
   parent: N14BaseLightStructure
@@ -504,18 +476,6 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_left.rsi
     state: off
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MidImpassable
-        - LowImpassable
       
 - type: entity
   parent: N14LightStreetLampPostPoweredEmptyRight
@@ -622,18 +582,6 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_left.rsi
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MidImpassable
-        - LowImpassable
     
 - type: entity
   parent: N14LightStreetLampPostPoweredEmptyRight

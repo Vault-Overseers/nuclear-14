@@ -12,7 +12,7 @@
     count: 6
     spread: 15
     soundEject:
-      collection: ShellEject
+      collection: N14ShellEject
   - type: Sprite
     netsync: false
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
@@ -21,6 +21,16 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: Appearance
   - type: SpentAmmoVisuals
+  - type: EmitSoundOnLand
+    sound:
+      collection: N14ShellEject
+      params:
+        volume: -1
+  - type: EmitSoundOnCollide
+    sound:
+      collection: N14ShellEject
+      params:
+        volume: -1
 
 - type: entity
   id: N14ShellShotgun12
@@ -33,3 +43,13 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgun12
+  - type: EmitSoundOnLand
+    sound:
+      collection: N14ShellEject
+      params:
+        volume: -1
+  - type: EmitSoundOnCollide
+    sound:
+      collection: N14ShellEject
+      params:
+        volume: -1
