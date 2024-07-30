@@ -1,0 +1,64 @@
+- type: constructionGraph
+  id: N14SeedExtractor
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: seedextractorhalf
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 5
+
+    - node: seedextractorhalf
+      actions:
+      - !type:AppearanceChange
+      entity: N14SeedExtractorFrame
+      edges:
+        - to: seedextractorpot
+          steps:
+          - tag: CookPot
+            icon:
+              sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+              state: cookpot
+            name: Cooking Pot
+
+    - node: seedextractorpot
+      actions:
+      - !type:AppearanceChange
+      entity: N14SeedExtractorFrame
+      edges:
+        - to: seedextractorreinforced
+          steps: 
+            - material: Steel
+              amount: 2
+              doAfter: 4
+
+    - node: seedextractorreinforced
+      actions:
+      - !type:AppearanceChange
+      entity: N14SeedExtractorFrame
+      edges:
+        - to: seedextractorunscrewed
+          steps:
+            - tag: DuctTape
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: duct_tape
+              name: Duct Tape
+
+    - node: seedextractorunscrewed
+      actions:
+      - !type:AppearanceChange
+      entity: N14SeedExtractorFrame
+      edges:
+        - to: seedextractor
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: seedextractor
+      entity: N14SeedExtractor
