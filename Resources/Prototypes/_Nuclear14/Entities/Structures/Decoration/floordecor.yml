@@ -28,6 +28,8 @@
     anchored: true
   - type: Physics
     bodyType: Static
+  - type: Clickable
+  - type: InteractionOutline
 # No fixture on this base, inherit from further down for fixture
 
 # Cave Decor
@@ -677,6 +679,37 @@
   components:
   - type: Sprite
     state: skeleton
+    
+- type: entity
+  parent: N14DecorFloorWorldBase
+  id: N14DecorBarrels
+  name: barrels
+  description: a bunch of old rusty barrels.
+  components:
+  - type: Sprite
+    layers:
+    - state: barrels1
+      map: [ "body" ]
+  - type: RandomSprite
+    available:
+      - body:
+          barrels1: ""
+          barrels2: ""
+          barrels3: ""
+          barrels4: ""
+          barrels5: ""
+          barrels6: ""
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.3
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
     
 - type: entity
   parent: N14DecorFloorWorldBase
