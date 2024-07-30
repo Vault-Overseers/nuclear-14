@@ -264,8 +264,6 @@ reagent-name-dung = dung
 reagent-desc-dung = Animal dung. Ripe for turning into compost.
 reagent-name-sulfur = sulfur
 reagent-desc-sulfur = Ground sulfur in a powdery form. You should really wear a gas mask.
-reagent-name-charcoal = charcoal
-reagent-desc-charcoal = Ground charcoal in a powdery form.
 
 
 # Other
