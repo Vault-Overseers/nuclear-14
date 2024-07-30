@@ -4,8 +4,6 @@
   name: wrecked coupe
   description: a wrecked pre-war car.
   components:
-  - type: RadiationSource
-    intensity: 2
   - type: Fixtures
     fixtures:
       fix1:
@@ -18,7 +16,6 @@
         layer:
         - MidImpassable
         - LowImpassable
-        - BulletImpassable
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -26,7 +23,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 100
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -35,12 +32,6 @@
           SheetSteel1:
             min: 1
             max: 5
-          N14ScrapSteel1:
-            min: 3
-            max: 10
-          N14ScrapLead1:
-            min: 1
-            max: 4
       - !type:EmptyAllContainersBehaviour
       - !type:PlaySoundBehavior
         sound:
@@ -141,15 +132,14 @@
           coupe-tires-2: ""
           coupe-tires-3: ""
           missing: ""
-
+          
+          
 - type: entity
   parent: N14WreckCoupe
   id: N14WreckMusclecar
   name: wrecked muscle car
   description: a wrecked pre-war car.
   components:
-  - type: RadiationSource
-    intensity: 2
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/wrecks.rsi
     layers:
@@ -246,15 +236,14 @@
           muscle-tires-2: ""
           muscle-tires-3: ""
           missing: ""
-
+          
+          
 - type: entity
   parent: N14WreckCoupe
   id: N14WreckSportscar
   name: wrecked sports car
   description: a wrecked pre-war car.
   components:
-  - type: RadiationSource
-    intensity: 2
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/wrecks.rsi
     layers:
@@ -351,15 +340,14 @@
           sport-tires-2: ""
           sport-tires-3: ""
           missing: ""
-
+          
+          
 - type: entity
   parent: N14WreckCoupe
   id: N14WreckVan
   name: wrecked van
   description: a wrecked pre-war van.
   components:
-  - type: RadiationSource
-    intensity: 3
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/wrecks.rsi
     layers:
@@ -451,6 +439,5 @@
         layer:
         - MidImpassable
         - LowImpassable
-        - BulletImpassable
   - type: Occluder
     boundingBox: "-1,-0.7,1.5,0.4"

@@ -28,8 +28,6 @@
     anchored: true
   - type: Physics
     bodyType: Static
-    canCollide: false
-  - type: Clickable
 # No fixture on this base, inherit from further down for fixture
 
 # Cave Decor
@@ -682,39 +680,51 @@
     
 - type: entity
   parent: N14DecorFloorWorldBase
-  id: N14DecorBarrels
-  name: barrels
-  description: a bunch of old rusty barrels.
+  id: N14DecorConcreteBarrier
+  name: concrete barrier
+  description: an old concrete barrier for stopping traffic.
   components:
   - type: Sprite
-    layers:
-    - state: barrels1
-      map: [ "body" ]
-  - type: RandomSprite
-    available:
-      - body:
-          barrels1: ""
-          barrels2: ""
-          barrels3: ""
-          barrels4: ""
-          barrels5: ""
-          barrels6: ""
+    state: concrete_barrier
   - type: Fixtures
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeCircle
-            radius: 0.3
+          !type:PhysShapeAabb
+            bounds: "0.3,0,-0.3,-0.1"
         density: 1000
-        mask:
-        - MachineMask
         layer:
-        - MachineLayer
-        
+        - WallLayer
+    
 - type: entity
-  parent: N14DecorFloorSkeleton
-  id: N14DecorFloorSkeletonOver
-  suffix: draws over objects
+  parent: N14DecorConcreteBarrier
+  id: N14DecorConcreteBarrierDamaged
   components:
   - type: Sprite
-    drawdepth: Mobs
+    layers:
+    - state: concrete_barrier_1
+      map: [ "body" ]
+  - type: RandomSprite
+    available:
+      - body:
+          concrete_barrier_1: ""
+          concrete_barrier_2: ""
+          concrete_barrier_3: ""
+          concrete_barrier_4: ""
+          concrete_barrier_5: ""
+          
+- type: entity
+  parent: N14DecorConcreteBarrier
+  id: N14DecorConcreteBarrierStriped
+  name: concrete barrier
+  description: an old concrete barrier for stopping traffic.
+  components:
+  - type: Sprite
+    layers:
+    - state: concrete_barrier_alt
+      map: [ "body" ]
+  - type: RandomSprite
+    available:
+      - body:
+          concrete_barrier_alt: ""
+          concrete_barrier_alt_2: ""
