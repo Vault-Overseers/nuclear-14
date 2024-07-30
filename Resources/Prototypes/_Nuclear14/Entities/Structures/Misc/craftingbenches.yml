@@ -49,6 +49,9 @@
   description: A workbench with ammo working tools for crafting.
   name: ammo workbench
   components:
+  - type: Construction
+    graph: N14WorkbenchAmmobench
+    node: WorkbenchAmmobench
   - type: Sprite
     state: ammobench
   - type: MaterialStorage
@@ -101,6 +104,34 @@
       - MagazineBox45-70
       - N14Magazine50AMR
       - MagazineBox50
+
+- type: entity
+  parent: N14WorkbenchBase
+  id: N14WorkbenchAmmobenchFrame
+  description: A workbench with ammo working tools for crafting. This one is still being built!
+  name: ammo workbench frame
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/workbenches.rsi
+    layers:
+    - state: ammobenchframe0
+      map: [ "enum.ConstructionVisuals.Layer" ]
+    offset: 0.5, 0
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          WorkbenchAmmobenchFrame: { state: ammobenchframe0 }
+          WorkbenchAmmobenchAluminum: { state: ammobenchframe1 }
+          WorkbenchAmmobenchSteel: { state: ammobenchframe2 }
+          WorkbenchAmmobenchScrews: { state: ammobenchframe3 }
+          WorkbenchAmmobenchUnwrenched: { state: ammobenchframe4 }
+          WorkbenchAmmobenchUnscrewed: { state: ammobenchframe5 }
+  - type: Construction
+    graph: N14WorkbenchAmmobench
+    node: WorkbenchAmmobenchFrame
+    defaultTarget: WorkbenchAmmobench
 
 - type: entity
   parent: N14WorkbenchBase
@@ -271,7 +302,7 @@
   parent: N14WorkbenchBase
   id: N14WorkbenchMetalFrame
   description: A workbench with metal working tools for crafting. This one is still being built!
-  name: workbench
+  name: workbench frame
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/workbenches.rsi
@@ -288,7 +319,7 @@
           WorkbenchMetalAluminum: { state: workbenchframe1 }
           WorkbenchMetalScrews: { state: workbenchframe2 }
           WorkbenchMetalUnwrenched: { state: workbenchframe3 }
-          WorkbenchMetalUnscrewed: { state: workbenchframe4}
+          WorkbenchMetalUnscrewed: { state: workbenchframe4 }
   - type: Construction
     graph: N14WorkbenchMetal
     node: WorkbenchMetalFrame
