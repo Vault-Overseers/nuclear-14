@@ -252,6 +252,7 @@ materials-gunpowder = gunpowder
 materials-lead = lead
 materials-aluminum = aluminum
 materials-sulfur = sulfur
+materials-charcoal = charcoal
 materials-raw-lead = raw lead
 materials-raw-aluminum = raw aluminum
 materials-raw-sulfur = raw sulfur
@@ -263,6 +264,8 @@ reagent-name-dung = dung
 reagent-desc-dung = Animal dung. Ripe for turning into compost.
 reagent-name-sulfur = sulfur
 reagent-desc-sulfur = Ground sulfur in a powdery form. You should really wear a gas mask.
+reagent-name-charcoal = charcoal
+reagent-desc-charcoal = Ground charcoal in a powdery form.
 
 
 # Other

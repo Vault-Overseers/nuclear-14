@@ -362,6 +362,9 @@
   description: A forge made from pieces of scrap. Looks hot.
   name: forge
   components:
+  - type: Construction
+    graph: N14WorkbenchForge
+    node: WorkbenchForge
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/forgeworkbench.rsi
     state: forge
@@ -387,3 +390,31 @@
       - SulfurPowder
       # Other
       - Charcoal
+
+- type: entity
+  parent: N14WorkbenchBase
+  id: N14WorkbenchForgeFrame
+  description: A forge made from pieces of scrap. Looks hot. This one is still being built!
+  name: forge frame
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/forgeworkbench.rsi
+    layers:
+    - state: forgeframe0
+      map: [ "enum.ConstructionVisuals.Layer" ]
+    offset: 0.5, 0
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          WorkbenchForgeFrame: { state: forgeframe0 }
+          WorkbenchForgeCookpot: { state: forgeframe1 }
+          WorkbenchForgeCookpotUnwelded: { state: forgeframe2 }
+          WorkbenchForgeCharcoal: { state: forgeframe3 }
+          WorkbenchForgeUnwelded: { state: forgeframe4 }
+          WorkbenchForgeUnwrenched: { state: forge }
+  - type: Construction
+    graph: N14WorkbenchForge
+    node: WorkbenchForgeFrame
+    defaultTarget: WorkbenchForge
