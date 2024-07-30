@@ -1,36 +1,36 @@
-- type: entity
-  id: AnomalySpawn
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    weight: 10
-    startDelay: 30
-    duration: 35
-  - type: AnomalySpawnRule
+# - type: entity
+  # id: AnomalySpawn
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # weight: 10
+    # startDelay: 30
+    # duration: 35
+  # - type: AnomalySpawnRule
 
-- type: entity
-  id: BluespaceArtifact
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    weight: 5
-    startDelay: 30
-    duration: 35
-  - type: BluespaceArtifactRule
+# - type: entity
+  # id: BluespaceArtifact
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # weight: 5
+    # startDelay: 30
+    # duration: 35
+  # - type: BluespaceArtifactRule
 
-- type: entity
-  id: BluespaceLocker
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    weight: 1
-    reoccurrenceDelay: 5
-    earliestStart: 1
-    duration: 1
-  - type: BluespaceLockerRule
+# - type: entity
+  # id: BluespaceLocker
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # weight: 1
+    # reoccurrenceDelay: 5
+    # earliestStart: 1
+    # duration: 1
+  # - type: BluespaceLockerRule
 
 - type: entity
   id: BreakerFlip
@@ -43,29 +43,29 @@
     minimumPlayers: 15
   - type: BreakerFlipRule
 
-- type: entity
-  id: BureaucraticError
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    startAnnouncement: true
-    minimumPlayers: 25
-    weight: 5
-    duration: 1
-  - type: BureaucraticErrorRule
+# - type: entity
+  # id: BureaucraticError
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # startAnnouncement: true
+    # minimumPlayers: 25
+    # weight: 5
+    # duration: 1
+  # - type: BureaucraticErrorRule
 
-- type: entity
-  id: ClericalError
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    startAnnouncement: true
-    minimumPlayers: 15
-    weight: 5
-    duration: 1
-  - type: ClericalErrorRule
+# - type: entity
+  # id: ClericalError
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # startAnnouncement: true
+    # minimumPlayers: 15
+    # weight: 5
+    # duration: 1
+  # - type: ClericalErrorRule
 
 #- type: entity
 #  parent: BaseGameRule # DeltaV - this shit is busted most of the time
@@ -78,97 +78,57 @@
 #  - type: RandomEntityStorageSpawnRule
 #    prototype: MobSkeletonCloset
 
-- type: entity
-  parent: BaseGameRule
-  id: DragonSpawn
-  noSpawn: true
-  components:
-  - type: StationEvent
-    weight: 1 # DeltaV - was 5
-    duration: 1
-    earliestStart: 45
-    reoccurrenceDelay: 60
-    minimumPlayers: 20
-  - type: RandomSpawnRule
-    prototype: SpawnPointGhostDragon
+# - type: entity
+  # parent: BaseGameRule
+  # id: DragonSpawn
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # weight: 1 # DeltaV - was 5
+    # duration: 1
+    # earliestStart: 45
+    # reoccurrenceDelay: 60
+    # minimumPlayers: 20
+  # - type: RandomSpawnRule
+    # prototype: SpawnPointGhostDragon
 
-- type: entity
-  parent: BaseGameRule
-  id: NinjaSpawn
-  noSpawn: true
-  components:
-  - type: StationEvent
-    weight: 3 # DeltaV - was 10
-    duration: 1
-    earliestStart: 45 # DeltaV - was 30
-    reoccurrenceDelay: 60
-    minimumPlayers: 40
-  - type: NinjaSpawnRule
+# - type: entity
+  # parent: BaseGameRule
+  # id: NinjaSpawn
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # weight: 3 # DeltaV - was 10
+    # duration: 1
+    # earliestStart: 45 # DeltaV - was 30
+    # reoccurrenceDelay: 60
+    # minimumPlayers: 40
+  # - type: NinjaSpawnRule
 
-- type: entity
-  parent: BaseGameRule
-  id: RevenantSpawn
-  noSpawn: true
-  components:
-  - type: StationEvent
-    weight: 7.5
-    duration: 1
-    earliestStart: 45
-    minimumPlayers: 20
-  - type: RandomSpawnRule
-    prototype: MobRevenant
+# - type: entity
+  # parent: BaseGameRule
+  # id: RevenantSpawn
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # weight: 7.5
+    # duration: 1
+    # earliestStart: 45
+    # minimumPlayers: 20
+  # - type: RandomSpawnRule
+    # prototype: MobRevenant
 
-- type: entity
-  id: FalseAlarm
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    weight: 15
-    duration: 1
-  - type: FalseAlarmRule
+# - type: entity
+  # id: FalseAlarm
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # weight: 15
+    # duration: 1
+  # - type: FalseAlarmRule
 
-- type: entity
-  id: GasLeak
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    startAnnouncement: true
-    endAnnouncement: true
-    earliestStart: 10
-    minimumPlayers: 5
-    weight: 10
-    startDelay: 20
-  - type: GasLeakRule
-
-- type: entity
-  id: KudzuGrowth
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    earliestStart: 15
-    minimumPlayers: 15
-    weight: 5
-    startDelay: 50
-    duration: 240
-  - type: KudzuGrowthRule
-
-- type: entity
-  id: MeteorSwarm
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    earliestStart: 30
-    weight: 7.5
-    minimumPlayers: 10 #Enough to hopefully have at least one engineering guy
-    startAnnouncement: true
-    endAnnouncement: true
-    duration: null #ending is handled by MeteorSwarmRule
-    startDelay: 30
-  - type: MeteorSwarmRule
+#  
 
 - type: entity
   id: MouseMigration
@@ -277,19 +237,19 @@
 #   - type: RandomSpawnRule
 #    prototype: SpawnPointGhostTerminator
 
-- type: entity
-  id: VentClog
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    startAnnouncement: true
-    earliestStart: 15
-    minimumPlayers: 15
-    weight: 5
-    startDelay: 50
-    duration: 60
-  - type: VentClogRule
+# - type: entity
+  # id: VentClog
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # startAnnouncement: true
+    # earliestStart: 15
+    # minimumPlayers: 15
+    # weight: 5
+    # startDelay: 50
+    # duration: 60
+  # - type: VentClogRule
 
 - type: entity
   id: VentCritters
@@ -312,43 +272,43 @@
     - id: MobMouse2
       prob: 0.02
 
-- type: entity
-  id: SlimesSpawn
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    startAnnouncement: true
-    startDelay: 10
-    earliestStart: 20
-    minimumPlayers: 15
-    weight: 5
-    duration: 60
-  - type: VentCrittersRule
-    entries:
-    - id: MobAdultSlimesBlueAngry
-      prob: 0.02
-    - id: MobAdultSlimesGreenAngry
-      prob: 0.02
-    - id: MobAdultSlimesYellowAngry
-      prob: 0.02
+# - type: entity
+  # id: SlimesSpawn
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # startAnnouncement: true
+    # startDelay: 10
+    # earliestStart: 20
+    # minimumPlayers: 15
+    # weight: 5
+    # duration: 60
+  # - type: VentCrittersRule
+    # entries:
+    # - id: MobAdultSlimesBlueAngry
+      # prob: 0.02
+    # - id: MobAdultSlimesGreenAngry
+      # prob: 0.02
+    # - id: MobAdultSlimesYellowAngry
+      # prob: 0.02
 
-- type: entity
-  id: SpiderSpawn
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    startAnnouncement: true
-    startDelay: 10
-    earliestStart: 20
-    minimumPlayers: 15
-    weight: 5
-    duration: 60
-  - type: VentCrittersRule
-    entries:
-    - id: MobGiantSpiderAngry
-      prob: 0.05
+# - type: entity
+  # id: SpiderSpawn
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # startAnnouncement: true
+    # startDelay: 10
+    # earliestStart: 20
+    # minimumPlayers: 15
+    # weight: 5
+    # duration: 60
+  # - type: VentCrittersRule
+    # entries:
+    # - id: MobGiantSpiderAngry
+      # prob: 0.05
 
 # - type: entity # DeltaV - Prevent normal spawning of MobClownSpider
 #  id: SpiderClownSpawn
@@ -367,35 +327,35 @@
 #    - id: MobClownSpider
 #      prob: 0.05
 
-- type: entity
-  id: ZombieOutbreak
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    earliestStart: 90 # DeltaV - was 50
-    minimumPlayers: 15
-    weight: 2.5 # DeltaV - was 5
-    duration: 1
-  - type: ZombieRule
-    minStartDelay: 0 #let them know immediately
-    maxStartDelay: 10
-    maxInitialInfected: 3 #fewer zombies
-    minInitialInfectedGrace: 300 #less time to prepare
-    maxInitialInfectedGrace: 450
+# - type: entity
+  # id: ZombieOutbreak
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # earliestStart: 90 # DeltaV - was 50
+    # minimumPlayers: 15
+    # weight: 2.5 # DeltaV - was 5
+    # duration: 1
+  # - type: ZombieRule
+    # minStartDelay: 0 #let them know immediately
+    # maxStartDelay: 10
+    # maxInitialInfected: 3 #fewer zombies
+    # minInitialInfectedGrace: 300 #less time to prepare
+    # maxInitialInfectedGrace: 450
 
-- type: entity
-  id: LoneOpsSpawn
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    earliestStart: 60
-    weight: 3
-    minimumPlayers: 20
-    reoccurrenceDelay: 30
-    duration: 1
-  - type: LoneOpsSpawnRule
+# - type: entity
+  # id: LoneOpsSpawn
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # earliestStart: 60
+    # weight: 3
+    # minimumPlayers: 20
+    # reoccurrenceDelay: 30
+    # duration: 1
+  # - type: LoneOpsSpawnRule
 
 - type: entity
   id: MassHallucinations
@@ -426,25 +386,25 @@
 #    minimumPlayers: 20
 #  - type: ImmovableRodRule
 
-- type: entity
-  noSpawn: true
-  parent: BaseGameRule
-  id: IonStorm
-  components:
-  - type: StationEvent
-    weight: 10
-    reoccurrenceDelay: 20
-    duration: 1
-  - type: IonStormRule
+# - type: entity
+  # noSpawn: true
+  # parent: BaseGameRule
+  # id: IonStorm
+  # components:
+  # - type: StationEvent
+    # weight: 10
+    # reoccurrenceDelay: 20
+    # duration: 1
+  # - type: IonStormRule
 
-- type: entity
-  id: MimicVendorRule
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-    - type: StationEvent
-      earliestStart: 0
-      minimumPlayers: 20
-      weight: 5
-    - type: MobReplacementRule
-      numberToReplace: 1
+# - type: entity
+  # id: MimicVendorRule
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+    # - type: StationEvent
+      # earliestStart: 0
+      # minimumPlayers: 20
+      # weight: 5
+    # - type: MobReplacementRule
+      # numberToReplace: 1
