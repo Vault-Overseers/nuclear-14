@@ -76,3 +76,89 @@
         # whitelist:
           # components:
           # - CPLock
+          
+- type: entity
+  parent: BaseStructure
+  id: N14DoorVault
+  name: vault Door
+  description: An old vault door.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Nuclear14/Structures/Doors/vaultdoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    crushDamage:
+      types:
+        Blunt: 1000
+    CanPry: false
+    bumpOpen: false
+    clickOpen: false
+    closeTimeOne: 1.6
+    closeTimeTwo: 3
+    openTimeOne: 3
+    openTimeTwo: 1.6
+    openingAnimationTime: 4.6
+    closingAnimationTime: 4.6
+    closedDrawDepth: Mobs
+    openDrawDepth: Mobs
+    openSound:
+      path: /Audio/Effects/door_open.ogg
+    closeSound:
+      path: /Audio/Effects/door_close.ogg
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: AnimationPlayer
+  - type: Appearance
+  - type: Occluder
+    boundingBox: "-2,-1,2,0.5"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-2,-1,2,0.5"
+        density: 10000
+        mask:
+        - FullTileMask
+        layer:
+        - AirlockLayer
+  - type: BlockWeather
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+  - type: RadiationBlocker
+    resistance: 10
+  - type: SpriteFade
+  - type: DoorSignalControl
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  # - type: DeviceLinkSink
+    # ports:
+      # - Open
+      # - Close
+      # - Toggle
+      # - AutoClose
+      # - DoorBolt
+  - type: DeviceLinkSource
+    ports:
+      - DoorStatus
+    lastSignals:
+      DoorStatus: false
+  - type: Physics
+  - type: NavMapDoor
+  - type: AutoLinkReceiver
+    channel: Vaultdoor
