@@ -69,14 +69,15 @@
   - type: Wires
     layoutId: HighSec
 
-#MARK: BoS
+#MARK: BoS Midwest
 - type: entity
   parent: N14DoorBunker
   id: N14DoorBunkerLockedBoSMidwest
   suffix: BoSMidwest, Locked
   components:
-  - type: AccessReader
-    access: [["BoSMidwest"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestGeneral ]
   - type: Wires
     layoutId: HighSec
 
@@ -85,8 +86,53 @@
   id: N14DoorBunkerGlassLockedBoSMidwest
   suffix: BoSMidwest, Locked
   components:
-  - type: AccessReader
-    access: [["BoSMidwest"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestGeneral ]
+  - type: Wires
+    layoutId: HighSec
+    
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSMidwestScribe
+  suffix: BoSMidwest, Locked, Scribe
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestScribe ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSMidwestScribe
+  suffix: BoSMidwest, Locked, Scribe
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestScribe ]
+  - type: Wires
+    layoutId: HighSec
+    
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSMidwestKnight
+  suffix: BoSMidwest, Locked, Knight
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestKnight ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSMidwestKnight
+  suffix: BoSMidwest, Locked, Knight
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestKnight ]
   - type: Wires
     layoutId: HighSec
 
@@ -95,8 +141,9 @@
   id: N14DoorBunkerLockedBoSPaladin
   suffix: BoSMidwest, Locked, Paladin
   components:
-  - type: AccessReader
-    access: [["Paladin"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestPaladin ]
   - type: Wires
     layoutId: HighSec
 
@@ -105,8 +152,9 @@
   id: N14DoorBunkerGlassLockedBoSPaladin
   suffix: BoSMidwest, Locked, Paladin
   components:
-  - type: AccessReader
-    access: [["Paladin"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestPaladin ]
   - type: Wires
     layoutId: HighSec
 
@@ -115,8 +163,9 @@
   id: N14DoorBunkerLockedBoSCommander
   suffix: BOSMidwest, Locked, Commander
   components:
-  - type: AccessReader
-    access: [["PaladinCommander"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestPaladinCommander ]
   - type: Wires
     layoutId: HighSec
 
@@ -125,8 +174,120 @@
   id: N14DoorBunkerGlassLockedBoSCommander
   suffix: BOSMidwest, Locked, Commander
   components:
-  - type: AccessReader
-    access: [["PaladinCommander"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestPaladinCommander ]
+  - type: Wires
+    layoutId: HighSec
+    
+#MARK: BoS Washington
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSWashingtonInitiate
+  suffix: BoSWashinton, Locked, Initiate
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonInitiate ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSMidwestInitiate
+  suffix: BoSWashinton, Locked, Initiate
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonInitiate ]
+  - type: Wires
+    layoutId: HighSec
+    
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSWashingtonScribe
+  suffix: BoSWashinton, Locked, Scribe
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonScribe ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSWashingtonScribe
+  suffix: BoSWashinton, Locked, Scribe
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonScribe ]
+  - type: Wires
+    layoutId: HighSec
+    
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSWashingtonKnight
+  suffix: BoSWashinton, Locked, Knight
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonKnight ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSWashingtonKnight
+  suffix: BoSWashinton, Locked, Knight
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonKnight ]
+  - type: Wires
+    layoutId: HighSec
+    
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSWashingtonPaladin
+  suffix: BoSWashinton, Locked, Paladin
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonPaladin ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSMidwestPaladin
+  suffix: BoSWashinton, Locked, Paladin
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonPaladin ]
+  - type: Wires
+    layoutId: HighSec
+    
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSWashingtonElder
+  suffix: BoSWashinton, Locked, Elder
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonElder ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSMidwestElder
+  suffix: BoSWashinton, Locked, Elder
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonElder ]
   - type: Wires
     layoutId: HighSec
 
