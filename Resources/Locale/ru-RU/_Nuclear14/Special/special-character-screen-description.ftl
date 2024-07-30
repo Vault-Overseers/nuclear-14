@@ -6,3 +6,12 @@ special-character-creation-description-charisma = При показателе м
 special-character-creation-description-intelligence = Повышает уровень медицины
 special-character-creation-description-agility = Повышает ловкость
 special-character-creation-description-luck = Даёт 1% вероятности увернуться от пули
+
+# Title of Special labels in character creation screen
+special-character-creation-strength = Сила
+special-character-creation-perception = Восприятие
+special-character-creation-endurance = Выносливость
+special-character-creation-charisma = Харизма
+special-character-creation-intelligence = Интеллект
+special-character-creation-agility = Ловкость
+special-character-creation-luck = Удача
