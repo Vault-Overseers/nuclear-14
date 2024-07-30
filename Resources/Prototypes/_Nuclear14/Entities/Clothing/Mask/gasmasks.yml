@@ -51,6 +51,14 @@
     sprite: _Nuclear14/Clothing/Mask/Gasmask/combatgasmask.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Mask/Gasmask/combatgasmask.rsi
+  - type: NightVisionItem
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.NightVisionItemVisuals.Active:
+        nightVisionItemLayer:
+          True: { state: icon_on }
+          False: { state: icon }
   - type: Armor
     modifiers:
       coefficients:
@@ -60,7 +68,7 @@
         Heat: 0.90
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasCombat
   id: ClothingMaskGasRiot
   name: NCR ranger gas mask
   description: A close-fitting tactical mask issued to all NCR Rangers as a proof of their service.
@@ -73,6 +81,12 @@
     sprite: _Nuclear14/Clothing/Mask/Gasmask/riotgasmask.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Mask/Gasmask/riotgasmask.rsi
+  - type: GenericVisualizer
+    visuals:
+      enum.NightVisionItemVisuals.Active:
+        nightVisionItemLayer:
+          True: { state: icon }
+          False: { state: icon }
   - type: Armor
     modifiers:
       coefficients:
@@ -104,7 +118,7 @@
         Heat: 0.95
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasCombat
   id: ClothingMaskGasRangerOld
   name: ranger gas mask
   description: An old combat mask, out of use around the time of the war.
@@ -129,7 +143,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasCombat
   id: ClothingMaskGasRangerDesert
   name: desert ranger gas mask
   description: An U.S Marine Corps helmet, used by the legendary Desert Rangers.
@@ -161,7 +175,6 @@
   components:
   - type: Item
     size: Tiny
-  - type: FlashImmunity
   - type: EyeProtection
   - type: Sprite
     sprite: _Nuclear14/Clothing/Mask/Gasmask/rangerweatheredgasmask.rsi
@@ -178,7 +191,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasCombat
   id: ClothingMaskGasRangerPrice
   name: spider ranger gas mask
   description: A customised riot helmet reminiscient of the more advanced riot helmets found in the Divide, sporting purple lenses over the traditional red or green and a pair of red fangs painted over the respirator. The back of the helmet has a the face of an albino spider painted over it.
@@ -226,7 +239,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasCombat
   id: ClothingMaskGasRangerElite
   name: elite riot gas mask
   description: An old gas mask seen in the divide, repurposed for higher ranking Rangers.
