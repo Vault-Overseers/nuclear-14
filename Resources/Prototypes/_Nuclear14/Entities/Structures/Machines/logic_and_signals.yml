@@ -7,6 +7,8 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/Terminals/terminal_classic.rsi
     state: computer
+  - type: WirelessNetworkConnection
+    range: 15
 
 - type: entity
   parent: N14ControlTerminalButton
@@ -25,11 +27,6 @@
   components:
   - type: AutoLinkTransmitter
     channel: Vaultdoor
-  - type: Appearance
-  - type: Lock
-  - type: LockVisuals
-  - type: AccessReader
-    access: [["VaultOverseer"]]
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/vaultdoor_controls.rsi
     layers:
@@ -38,3 +35,16 @@
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
     offset: 0, 0
+    
+- type: entity
+  parent: N14DoorVaultControls
+  id: N14DoorVaultControlsLocked
+  suffix: overseer locked
+  components:
+  - type: AutoLinkTransmitter
+    channel: Vaultdoor
+  - type: Appearance
+  - type: Lock
+  - type: LockVisuals
+  - type: AccessReader
+    access: [["VaultOverseer"]]
