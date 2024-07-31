@@ -74,7 +74,7 @@
       - !type:Drunk
       - !type:HealthChange
         conditions:
-        - !type:ReagentThresholdds.
+        - !type:ReagentThresholds.
           min: 10
         damage:
           types:
@@ -286,6 +286,38 @@
       - !type:Drunk
       - !type:EnduranceModifierReagent
         enduranceModifier: 4 # increases endurance until % resistance is introduced
+
+- type: reagent
+  id: Hydra
+  name : reagent-name-hydra
+  group: Medicine
+  desc: reagent-desc-hydra
+  physicalDesc: reagent-physical-desc-volatile
+  color: "#990099"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.25
+      effects:
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 5
+        refresh: false
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: ScrambledAccent
+      - !type:GenericStatusEffect
+        key: SlurredSpeech
+        component: TelepathicRepeater
+      - !type:Jitter
+      - !type:EnduranceModifierReagent
+        enduranceModifier: -1
+      - !type:HealthChange
+        damage:
+          groups:
+            Brute: -1
+            Burn: -1
 
 #MARK: Tribal Chems
 - type: reagent
