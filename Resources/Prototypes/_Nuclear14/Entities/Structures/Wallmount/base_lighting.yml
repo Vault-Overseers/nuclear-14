@@ -10,13 +10,12 @@
     sprite: _Nuclear14/Structures/Wallmounts/lightbulbcaged.rsi
     state: base
     drawdepth: Overdoors
-    offset: 0, 1 # 0.75 is better but breaks for east west placement
+    offset: 0, 1
   - type: PointLight
     energy: 1.0
     radius: 6
     softness: 1.1
     enabled: true
-  - type: WallMount
 
 - type: entity
   parent: PoweredSmallLightEmpty
@@ -28,11 +27,9 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Wallmounts/lightbulbcaged.rsi
     state: empty
-    offset: 0, 1
   - type: Construction
     graph: N14Lightbulb
     node: bulbLight
-  - type: WallMount
 
 - type: entity
   parent: PoweredSmallLight
@@ -42,51 +39,3 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Wallmounts/lightbulbcaged.rsi
     state: base
-    offset: 0, 1
-  - type: WallMount
-
-- type: entity
-  parent: SmallLight
-  id: N14LightSmallAlwaysonNormie
-  name: small light
-  suffix: Always ON, Use Me
-  description: "An always powered light."
-  components:
-  - type: Sprite
-    offset: 0, 0
-    sprite: _Nuclear14/Structures/Wallmounts/lightbulbcaged.rsi
-    state: base
-    drawdepth: Overdoors
-  - type: PointLight
-    energy: 1.0
-    radius: 6
-    softness: 1.1
-    enabled: true
-  - type: WallMount
-
-- type: entity
-  parent: PoweredSmallLightEmpty
-  id: N14LightSmallEmptyNormie
-  name: small light
-  suffix: Empty, Use Me
-  description: "A light fixture. Draws power and produces light when equipped with a light bulb."
-  components:
-  - type: Sprite
-    offset: 0, 0
-    sprite: _Nuclear14/Structures/Wallmounts/lightbulbcaged.rsi
-    state: empty
-  - type: Construction
-    graph: N14Lightbulb
-    node: bulbLight
-  - type: WallMount
-
-- type: entity
-  parent: PoweredSmallLight
-  id: N14LightSmallNormie
-  suffix: Mappers Use Me
-  components:
-  - type: Sprite
-    offset: 0, 0
-    sprite: _Nuclear14/Structures/Wallmounts/lightbulbcaged.rsi
-    state: base
-  - type: WallMount
