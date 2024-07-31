@@ -28,8 +28,8 @@
     key: enum.LatheUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.LatheUiKey.Key:
-        type: LatheBoundUserInterface
+    - key: enum.LatheUiKey.Key
+      type: LatheBoundUserInterface
   - type: ExtensionCableReceiver
   - type: ApcPowerReceiver
     needsPower: false
@@ -42,27 +42,6 @@
   components:
   - type: Sprite
     state: weaponbench
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-        - Scrap
-  - type: Lathe
-    idleState: icon
-    runningState: icon # change this
-    staticRecipes: # Guns or melee weapons related only.
-      # Guns
-      - BowImprovised
-      # Melee
-      - N14ScrapMachete
-      - N14WastelandSpear
-      - N14WastelandTribalJavelin
-      - N14BrassKnife
-      - N14TrainingSword
-      - N14LongSword
-      - N14Bola
 
 - type: entity
   parent: N14WorkbenchBase
@@ -162,34 +141,6 @@
   components:
   - type: Sprite
     state: armorbench
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-        - RawLeather # move it to the tanning machine
-  - type: Lathe
-    idleState: icon
-    runningState: icon # change this
-    staticRecipes:
-      # Armor
-      - N14ClothingOuterCoatLeatherDuster
-      - N14ClothingOuterCoatWinterArmored
-      - N14ClothingOuterLeatherArmor
-      - N14ClothingOuterChitinArmor
-      - N14ClothingOuterPainspike
-      - N14ClothingOuterTribalArmorHeavy
-      - N14ClothingOuterInsectArmor
-      - N14ClothingOuterMetalArmor
-      # Shield's
-      - N14InsectShield
-      - MakeshiftShield
-      - WoodenBuckler
-      # Other
-      - N14MaterialLeather
-      - ClothingBeltQuiver # In misc.yml
-      - ClothingBeltQuiverSpear
 
 - type: entity
   parent: N14WorkbenchBase
@@ -199,28 +150,6 @@
   components:
   - type: Sprite
     state: tinkerbench
-  - type: PointLight
-    color: "#fffbeb"
-    energy: 2
-    offset: 0.5, 0
-    radius: 1.5
-  - type: Lathe
-    idleState: icon
-    runningState: icon # change this
-    staticRecipes:
-      #Tools
-      - N14Multitool
-      - N14NetworkConfigurator
-      - N14PowerDrill
-      - N14HandheldGPSBasic
-      - N14TRayScanner
-      - N14GasAnalyzer
-      - N14RPED
-      - N14MiningDrill
-      - N14HandheldRadio
-      #Misc
-      - N14FlashlightLantern
-      - N14GlowstickRed
 
 - type: entity
   parent: BaseStructure
@@ -267,8 +196,8 @@
     key: enum.ChemMasterUiKey.Key
   - type: UserInterface
     interfaces:
-       enum.ChemMasterUiKey.Key:
-         type: ChemMasterBoundUserInterface
+    - key: enum.ChemMasterUiKey.Key
+      type: ChemMasterBoundUserInterface
   - type: ChemMaster
     pillDosageLimit: 20
 
@@ -306,6 +235,12 @@
   description: A workbench with metal working tools for crafting.
   name: workbench
   components:
+  - type: PointLight
+    radius: 2
+    energy: 1
+    softness: 0.5
+    color: "#f05e1b"
+    offset: "0.5, 0"
   - type: Construction
     graph: N14WorkbenchMetal
     node: WorkbenchMetal
@@ -330,14 +265,16 @@
       - N14Crowbar
       - N14Pickaxe
       - N14Shovel
+      - N14Multitool
+      - N14NetworkConfigurator
+      - N14PowerDrill
+      - N14HandheldGPSBasic
+      - N14TRayScanner
+      - N14GasAnalyzer
       - N14SprayPainter
+      - N14RPED
+      - N14MiningDrill
       - N14ClothingEyesGlassesWelding
-      - N14HydroponicsToolHoe
-      - N14HydroponicsToolHatchet
-      - HydroponicsToolSpade
-      - N14HydroponicsToolScythe
-      - N14HydroponicsToolClippers
-      - N14HandLabeler
       # Kitchen
       - N14ButchersCleaver
       - N14KitchenKnife
@@ -350,11 +287,9 @@
       - N14FoodPlateSmall
       - N14FoodPlatePlastic
       - N14FoodPlateSmallPlastic
+      - N14FoodBowlBig
       - N14FoodPlateTin
       - N14FoodKebabSkewer
-      - N14JunkCookpot
-      - N14JunkCoffeepot
-      - PlantBag
       # Janitorial
       - N14Mop
       - N14MopBucket
@@ -381,10 +316,6 @@
       - N14PillCanisterCateye
       - N14PillCanisterFixer
       - N14JetInhaler
-      - N14TurboInhaler
-      - N14HydraInhaler
-      - N14ChemicalSyringeAntidoteEmpty
-      - N14PsychoSyringe
       - N14RadAwayPhialEmpty
       # Misc
       - N14LightTube
@@ -393,12 +324,10 @@
       - N14ExteriorLightTube
       - N14LightBulb
       - N14LedLightBulb
+      - N14GlowstickRed
       - N14Flare
+      - N14FlashlightLantern
       - N14Matchbox
-      # Ammo
-      - ArrowRegular
-      # Machine Parts
-      - N14PortableGeneratorWeldingFuelMachineParts
 
 - type: entity
   parent: N14WorkbenchBase
@@ -440,10 +369,8 @@
     sprite: _Nuclear14/Structures/Misc/forgeworkbench.rsi
     state: forge
   - type: PointLight
-    offset: "-0.13, 0"
-    color: "#f05e1b"
-    radius: 3
-    energy: 3
+    energy: 2
+    offset: "-0.65, 0"
   - type: MaterialStorage
     whitelist:
       tags:
@@ -451,31 +378,19 @@
         - RawMaterial
         - Ingot
         - Ore
-        - Scrap
   - type: Lathe
     idleState: icon
     runningState: icon # change this
     staticRecipes:
       # Ores
-      - N14IngotSilver
-      - N14IngotIron
-      - N14IngotGold
-      - N14IngotCopper
       - N14SheetSteel
+      - N14SheetSteelCharcoal
+      - N14SheetPlastic
       - N14SheetGlass
-      - N14IngotLead
+      - IngotLead
       - SulfurPowder
-      # Scrap
-      - SheetPlasticScrap
-      - N14IngotBrassScrap
-      - N14IngotCopperScrap
-      - N14IngotGoldScrap
-      - N14IngotSteelScrap
-      - N14IngotIronScrap
-      - N14IngotLeadScrap
       # Other
       - Charcoal
-      - CharcoalToCoal
 
 - type: entity
   parent: N14WorkbenchBase
@@ -504,109 +419,3 @@
     graph: N14WorkbenchForge
     node: WorkbenchForgeFrame
     defaultTarget: WorkbenchForge
-
-# ID Printer
-- type: entity
-  parent: BaseLathe
-  id: N14WorkbenchIDPrinter
-  description: An ID printer.
-  name: ID Printer
-  abstract: true # Base off of this per faction.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Structures/Machines/circuit_imprinter.rsi
-    snapCardinals: true
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-  - type: Lathe
-    producingSound: /Audio/Machines/circuitprinter.ogg
-    idleState: icon
-    runningState: building
-
-- type: entity
-  parent: N14WorkbenchIDPrinter
-  id: N14WorkbenchIDPrinterTownspeople
-  description: An ID printer for printing town passports
-  suffix: townspeople
-  components:
-  - type: Lathe
-    staticRecipes:
-    - PassportTownsfolk
-    - PassportTownsfolkShopkeeper
-    - PassportTownsfolkMechanic
-    - PassportTownsfolkDoctor
-    - PassportTownsfolkDeputy
-    - PassportTownsfolkSheriff
-    - PassportTownsfolkMayor
-
-- type: entity
-  parent: N14WorkbenchIDPrinter
-  id: N14WorkbenchIDPrinterBrotherhoodMidwest
-  description: An ID printer for printing Midwest Brotherhood holotags.
-  suffix: Midwest BOS
-  components:
-  - type: Lathe
-    staticRecipes:
-    - HolotagMidwestScribe
-    - HolotagMidwestSquire
-    - HolotagMidwestKnight
-    - HolotagMidwestPaladin
-
-- type: entity
-  parent: N14WorkbenchIDPrinter
-  id: N14WorkbenchIDPrinterBrotherhoodWashington
-  description: An ID printer for printing Washington Brotherhood holotags.
-  suffix: Washington BOS
-  components:
-  - type: Lathe
-    staticRecipes:
-    - HolotagWashingtonScribe
-    - HolotagWashingtonInitiate
-    - HolotagWashingtonKnight
-    - HolotagWashingtonPaladin
-
-- type: entity
-  parent: N14WorkbenchIDPrinter
-  id: N14WorkbenchIDPrinterCaravan
-  description: An ID printer for printing caravan IDs.
-  suffix: Caravan
-  components:
-  - type: Lathe
-    staticRecipes:
-    - PassportCaravan
-    - PassportCaravanTrader
-
-- type: entity
-  parent: N14WorkbenchIDPrinter
-  id: N14WorkbenchIDPrinterNCR
-  description: An ID printer for printing NCR IDs.
-  suffix: NCR
-  components:
-  - type: Lathe
-    staticRecipes:
-    - DogtagNCR
-    - DogtagNCRNCO
-
-- type: entity
-  parent: N14WorkbenchIDPrinter
-  id: N14WorkbenchIDPrinterVault
-  description: An ID printer for printing Vault IDs.
-  suffix: Vault
-  components:
-  - type: Lathe
-    staticRecipes:
-    - IDVault
-    - IDVaultEngineer
-    - IDVaultSecurity
-    - IDVaultDoctor

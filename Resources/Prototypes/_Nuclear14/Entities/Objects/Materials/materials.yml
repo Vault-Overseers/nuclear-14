@@ -4,7 +4,7 @@
   parent: BaseItem
   id: Gunpowder
   name: gunpowder
-  suffix: Full, 100
+  suffix: Full, 30
   components:
   - type: Material
   - type: PhysicalComposition
@@ -56,7 +56,6 @@
   parent: Gunpowder
   id: SulfurPowder
   name: sulfur
-  suffix: Full, 100
   components:
   - type: PhysicalComposition
     materialComposition:
@@ -127,13 +126,23 @@
   components:
   - type: Stack
     count: 1
-    
+
+- type: entity
+  parent: N14Paper
+  id: N14Paper10
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
+
 - type: entity
   parent: Gunpowder
   id: Charcoal
   name: charcoal
   components:
-  - type: Material
+  - type: Stack
+    stackType: Charcoal
+    baseLayer: powder_lead
   - type: PhysicalComposition
     materialComposition:
       Charcoal: 100
@@ -146,12 +155,29 @@
       map: ["base"]
   - type: Item
     heldPrefix: powder_lead
+  - type: Appearance
   - type: SolutionContainerManager
     solutions:
       powder:
         reagents:
         - ReagentId: Charcoal
           Quantity: 10
+
+- type: entity
+  parent: Charcoal
+  id: Charcoal1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: Charcoal
+  id: Charcoal10
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
 
 - type: entity
   parent: BaseItem
