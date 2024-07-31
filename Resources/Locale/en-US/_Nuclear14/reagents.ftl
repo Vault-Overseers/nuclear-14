@@ -72,6 +72,8 @@ reagent-name-milk-radstag = radstag milk
 reagent-desc-milk-radstag = Protein rich radstag milk.
 reagent-name-wasteland-blood = waster blood
 reagent-desc-wasteland-blood = waster blood
+reagent-name-nightstalker-blood = nightstalker blood
+reagent-desc-nightstalker-blood = blood from a nightstalker
 
 reagent-name-fireantnectar = Fire ant nectar
 reagent-desc-fireantnectar = Crystals of fire ant nectar.

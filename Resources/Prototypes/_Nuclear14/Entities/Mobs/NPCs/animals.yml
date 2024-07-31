@@ -205,9 +205,12 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: nightstalker
       sprite: _Nuclear14/Mobs/Animals/nightstalkercub.rsi
+  - type: Bloodstream
+    bloodMaxVolume: 30
+    bloodReagent: WastelandBlood
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 4
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 4.5
   - type: Fixtures
     fixtures:
       fix1:
@@ -222,7 +225,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Dead
+      100: Critical
+      150: Dead
   - type: DamageStateVisuals
     states:
       Alive:
@@ -261,9 +265,12 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: nightstalker-1
       sprite: _Nuclear14/Mobs/Animals/nightstalker.rsi
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: WastelandBlood
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 4
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 5
   - type: Fixtures
     fixtures:
       fix1:
@@ -278,7 +285,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Dead
+      150: Critical
+      200: Dead
   - type: Butcherable
     spawned:
     - id: N14MaterialNightstalkerPelt
