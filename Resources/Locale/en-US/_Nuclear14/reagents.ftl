@@ -190,10 +190,10 @@ reagent-desc-healing-mixture = A mixture of reagents that makes you heal.
 reagent-name-dirty-stimpak = dirty stimpak
 reagent-desc-dirty-stimpak = A dirty mixture of reagents that makes you heal.
 
-reagent-name-robust-healing-mixture = robust healing mixture
+reagent-name-robust-healing-mixture = super stimpak
 reagent-desc-robust-healing-mixture = A mixture of reagents that makes you heal fast.
 
-reagent-name-ultra-robust-healing-mixture = ultra robust healing mixture
+reagent-name-ultra-robust-healing-mixture = ultra stimpak
 reagent-desc-ultra-robust-healing-mixture = A mixture of reagents that make you heal faster than you can feel it, however it comes with hefty side effects.
 
 reagent-name-damage-resist-mixture = damage resistant mixture
@@ -202,8 +202,17 @@ reagent-desc-damage-resist-mixture = A mixture of reagents that makes you resist
 reagent-name-radaway = radaway
 reagent-desc-radaway = An odd reagent that cures your radiation.
 
+reagent-name-diluted-radaway = diluted radaway
+reagent-desc-diluted-radaway = A diluted odd reagent that cures your radiation at a slower rate.
+
 reagent-name-buffout = buffout
 reagent-desc-buffout = A reagent that makes you overall more robust, for a short period of time.
+
+reagent-name-buffjet = buffjet
+reagent-desc-buffjet = A reagent that combines the power of jet with the power of buffout, highly robust.
+
+reagent-name-bufftats = bufftats
+reagent-desc-bufftats = A reagent that combines the power of mentats with the power of buffout, highly robust.
 
 reagent-name-rad-x = rad-x
 reagent-desc-rad-x = A reagent that makes you resistant to radiation.
@@ -228,14 +237,14 @@ reagent-desc-daytripper = The perfect escape for your horrible life.
 
 
 # Meta
-reagent-name-movespeedmod-mixture = movementspeed modifying mixture
+reagent-name-movespeedmod-mixture = jet
 reagent-desc-movespeedmod-mixture = A mixture of reagents that makes you move fast.
 
-reagent-name-robust-movespeedmod-mixture = robust movementspeed modifying mixture
-reagent-desc-robust-movespeedmod-mixture = A mixture of reagents that makes you move very fast.
+reagent-name-robust-movespeedmod-mixture = turbo
+reagent-desc-robust-movespeedmod-mixture = A mixture of reagents that makes you move extremely fast.
 
-reagent-name-damage-mod-mixture = damage modifying mixture
-reagent-desc-damage-mod-mixture = A mixture of reagents that makes you deal more damage.
+reagent-name-damage-mod-mixture = psycho
+reagent-desc-damage-mod-mixture = A mixture of reagents that makes you stronger for a while.
 
 # Products
 reagent-name-abraxocleaner = Abraxo Cleaner
