@@ -222,6 +222,11 @@
         - MobMask
         layer:
         - MobLayer
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Critical
+      - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -232,7 +237,7 @@
       Alive:
         Base: nightstalker
       Critical:
-        Base: nightstalker
+        Base: dead
       Dead:
         Base: dead
   - type: MeleeWeapon
@@ -282,6 +287,11 @@
         - MobMask
         layer:
         - MobLayer
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Critical
+      - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -296,7 +306,7 @@
       Alive:
         Base: nightstalker-1
       Critical:
-        Base: nightstalker-1
+        Base: dead
       Dead:
         Base: dead
   - type: MeleeWeapon
@@ -429,10 +439,16 @@
         - MobMask
         layer:
         - MobLayer
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Critical
+      - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
-      500: Dead
+      500: Critical
+      600: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       250: 0.7
@@ -448,7 +464,7 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-     collection: AlienClaw
+    collection: AlienClaw
     angle: 0
     animation: WeaponArcClaw
     damage:
@@ -513,7 +529,7 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-     collection: AlienClaw
+    collection: AlienClaw
     angle: 0
     animation: WeaponArcClaw
     damage:
@@ -523,13 +539,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      750: Dead
+      750: Critical
+      900: Dead
   - type: DamageStateVisuals
     states:
       Alive:
         Base: deathclaw
       Critical:
-        Base: deathclaw # TODO: Crit sprite
+        Base: dead # TODO: Crit sprite
       Dead:
         Base: dead
 
@@ -571,17 +588,13 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-     collection: AlienClaw
+    collection: AlienClaw
     angle: 0
     animation: WeaponArcClaw
     damage:
       types:
         Slash: 20
         Structural: 10
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      750: Dead
 
 # Passive Animals
 - type: entity
