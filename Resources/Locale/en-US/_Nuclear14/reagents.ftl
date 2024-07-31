@@ -129,6 +129,8 @@ reagent-name-extract-xander = xander extract
 reagent-desc-extract-xander = An edible root, it was obviously pulled from the ground at some point. Tastes similar to a potato, very starchy, but good to eat.
 reagent-name-extract-fungusrad = irradiated fungus extract
 reagent-desc-extract-fungusrad = An irradiated and glowing green fungus. Tastes revolting and mushy. It will gladly donate you some of it's green glow.
+reagent-name-extract-fungus = fungus extract
+reagent-desc-extract-fungus = An extract from fungus. Tastes alright, albeit mushy and is quite poisonous in it's current state.
 
 ## Teas
 reagent-name-tea-agave = agave tea
@@ -197,6 +199,9 @@ reagent-desc-robust-healing-mixture = A mixture of reagents that makes you heal 
 
 reagent-name-ultra-robust-healing-mixture = ultra stimpak
 reagent-desc-ultra-robust-healing-mixture = A mixture of reagents that make you heal faster than you can feel it, however it comes with hefty side effects.
+
+reagent-name-hydra = hydra
+reagent-desc-hydra = A mixture of fungi, scorpion tail and nightstalker blood which provides moderate healing, but is quite painful and can be addictive.
 
 reagent-name-damage-resist-mixture = damage resistant mixture
 reagent-desc-damage-resist-mixture = A mixture of reagents that makes you resistant to damage.
