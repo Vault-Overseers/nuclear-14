@@ -1,0 +1,93 @@
+- type: constructionGraph
+  id: N14WorkbenchAmmobench
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: WorkbenchAmmobenchFrame
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: WoodPlank
+              amount: 8
+              doAfter: 5
+
+    - node: WorkbenchAmmobenchFrame
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchAmmobenchFrame
+      edges:
+        - to: WorkbenchAmmobenchAluminum
+          steps:
+            - tag: Gear
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: gear_large
+              name: Gears
+              doAfter: 3
+
+    - node: WorkbenchAmmobenchAluminum
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchAmmobenchFrame
+      edges:
+        - to: WorkbenchAmmobenchSteel
+          steps: 
+            - material: Aluminum
+              amount: 2
+              doAfter: 2
+
+    - node: WorkbenchAmmobenchSteel
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchAmmobenchFrame
+      edges:
+        - to: WorkbenchAmmobenchScrews
+          steps: 
+            - material: Steel
+              amount: 4
+              doAfter: 2
+
+    - node: WorkbenchAmmobenchScrews
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchAmmobenchFrame
+      edges:
+        - to: WorkbenchAmmobenchUnwrenched
+          steps:
+            - tag: Screw
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: screw
+              name: Screws
+              doAfter: 1
+            - tag: Screw
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: screw
+              name: Screws
+              doAfter: 1
+
+    - node: WorkbenchAmmobenchUnwrenched
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchAmmobenchFrame
+      edges:
+        - to: WorkbenchAmmobenchUnscrewed
+          steps:
+            - tool: Welding
+              doAfter: 2
+
+    - node: WorkbenchAmmobenchUnscrewed
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchAmmobenchFrame
+      edges:
+        - to: WorkbenchAmmobench
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: WorkbenchAmmobench
+      entity: N14WorkbenchAmmobench

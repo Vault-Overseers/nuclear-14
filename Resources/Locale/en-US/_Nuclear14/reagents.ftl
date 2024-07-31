@@ -252,6 +252,7 @@ materials-gunpowder = gunpowder
 materials-lead = lead
 materials-aluminum = aluminum
 materials-sulfur = sulfur
+materials-charcoal = charcoal
 materials-raw-lead = raw lead
 materials-raw-aluminum = raw aluminum
 materials-raw-sulfur = raw sulfur

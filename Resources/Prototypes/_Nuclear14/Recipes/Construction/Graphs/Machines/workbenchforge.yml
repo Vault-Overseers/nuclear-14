@@ -1,0 +1,83 @@
+- type: constructionGraph
+  id: N14WorkbenchForge
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: WorkbenchForgeFrame
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Steel
+              amount: 12
+              doAfter: 5
+
+    - node: WorkbenchForgeFrame
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchForgeFrame
+      edges:
+        - to: WorkbenchForgeCookpot
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 4
+
+    - node: WorkbenchForgeCookpot
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchForgeFrame
+      edges:
+        - to: WorkbenchForgeCookpotUnwelded
+          steps:
+            - tag: CookPot
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: cookpot
+              name: Cooking Pot
+              doAfter: 2
+
+    - node: WorkbenchForgeCookpotUnwelded
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchForgeFrame
+      edges:
+        - to: WorkbenchForgeCharcoal
+          steps:
+            - tool: Welding
+              doAfter: 3
+
+    - node: WorkbenchForgeCharcoal
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchForgeFrame
+      edges:
+        - to: WorkbenchForgeUnwrenched
+          steps:
+            - material: Charcoal
+              amount: 30
+              doAfter: 2
+
+    - node: WorkbenchForgeUnwrenched
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchForgeFrame
+      edges:
+        - to: WorkbenchForgeUnwelded
+          steps:
+            - tool: Anchoring
+              doAfter: 2
+
+    - node: WorkbenchForgeUnwelded
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchForgeFrame
+      edges:
+        - to: WorkbenchForge
+          steps:
+            - tool: Welding
+              doAfter: 6
+
+    - node: WorkbenchForge
+      entity: N14WorkbenchForge

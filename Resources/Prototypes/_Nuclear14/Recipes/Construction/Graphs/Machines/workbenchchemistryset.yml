@@ -1,0 +1,109 @@
+- type: constructionGraph
+  id: N14WorkbenchChemistryset
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: WorkbenchChemistrysetFrame
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: WoodPlank
+              amount: 3
+              doAfter: 5
+
+    - node: WorkbenchChemistrysetFrame
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchChemistrysetFrame
+      edges:
+        - to: WorkbenchChemistrysetSteel
+          steps:
+            - material: Glass
+              amount: 6
+              doAfter: 4
+
+    - node: WorkbenchChemistrysetSteel
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchChemistrysetFrame
+      edges:
+        - to: WorkbenchChemistrysetGears
+          steps:
+            - material: Steel
+              amount: 4
+              doAfter: 4
+
+    - node: WorkbenchChemistrysetGears
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchChemistrysetFrame
+      edges:
+        - to: WorkbenchChemistrysetScrews
+          steps:
+            - tag: Gear
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: gear_large
+              name: Gears
+              doAfter: 1
+
+    - node: WorkbenchChemistrysetScrews
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchChemistrysetFrame
+      edges:
+        - to: WorkbenchChemistrysetUnwelded
+          steps:
+            - tag: Screw
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: screw
+              name: Screws
+              doAfter: 1
+            - tag: Screw
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: screw
+              name: Screws
+              doAfter: 1
+            - tag: Screw
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: screw
+              name: Screws
+              doAfter: 1
+
+    - node: WorkbenchChemistrysetUnwelded
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchChemistrysetFrame
+      edges:
+        - to: WorkbenchChemistrysetUnwrenched
+          steps:
+            - tool: Welding
+              doAfter: 4
+
+    - node: WorkbenchChemistrysetUnwrenched
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchChemistrysetFrame
+      edges:
+        - to: WorkbenchChemistrysetUnscrewed
+          steps:
+            - tool: Anchoring
+              doAfter: 2
+
+    - node: WorkbenchChemistrysetUnscrewed
+      actions:
+      - !type:AppearanceChange
+      entity: N14WorkbenchChemistrysetFrame
+      edges:
+        - to: WorkbenchChemistryset
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: WorkbenchChemistryset
+      entity: N14WorkbenchChemistryset
