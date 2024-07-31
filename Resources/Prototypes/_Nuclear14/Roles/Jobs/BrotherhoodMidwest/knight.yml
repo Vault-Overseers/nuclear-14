@@ -1,49 +1,39 @@
 - type: job
   id: BoSMidKnight
   setPreference: true
-  overrideConsoleVisibility: true
-  canBeAntag: false
   name: job-name-bos-mid-knight
   description: job-description-bos-mid-knight
   playTimeTracker: BoSMidKnight
   requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-      - Human
-      - Ghoul
-    - !type:CharacterDepartmentTimeRequirement
+    - !type:DepartmentTimeRequirement
       department: BrotherhoodMidwest
-      min: 18000 # 5 hours
-    - !type:CharacterLogicOrRequirement
-      requirements:
-        - !type:CharacterSpeciesRequirement
-          species:
-            - Human
-            - Ghoul
+      time: 3600 # 1 hour
   startingGear: BoSMidKnightGear
-  alwaysUseSpawner: true
   icon: "JobIconPassenger"
-  supervisors: job-supervisors-bos-mid-knight
+  canBeAntag: false
   access:
   - BoSMidwest
-  - Knight
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
-          - Wastelander
           - BrotherhoodMidwest
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSMidKnightGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSGreen
-    back: N14ClothingBackpackMilitaryFilled
-    shoes: N14ClothingBootsLeatherFilled
-    head: N14ClothingHeadHatBrotherhoodMidwestHelmet
-    outerClothing: N14ClothingOuterMBoSKnightArmor
-    pocket1: BoSMidwestKnightSet
+    back: N14ClothingBackpackMilitary
+    shoes: N14ClothingBootsCombatFilled
+    head: N14ClothingHeadHatBrotherhoodHelmetKnight
+    outerClothing: N14ClothingOuterMidwestArmor
+    pocket1: NCRBoSMidwestkits
     hands: N14ClothingHandsGlovesCombat
     id: N14IDBrotherhoodHolotagKnight
     belt: ClothingBeltMilitary
