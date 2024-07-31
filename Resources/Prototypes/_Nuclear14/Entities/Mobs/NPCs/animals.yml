@@ -1,5 +1,5 @@
 # See basemob.yml for parent entities
-#MARK: Molerat #Oh hi Mark.
+
 - type: entity
   name: molerat
   id: N14MobMolerat
@@ -30,8 +30,6 @@
     thresholds:
       0: Alive
       50: Dead
-  - type: Stamina
-    critThreshold: 60
   - type: DamageStateVisuals
     states:
       Alive:
@@ -41,13 +39,11 @@
       Dead:
         Base: dead
   - type: MeleeWeapon
-    altDisarm: false
     hidden: true
     soundHit:
         path: /Audio/Effects/bite.ogg
-    angle: 60
+    angle: 0
     animation: WeaponArcBite
-    wideAnimation: WeaponArcBite
     damage:
       groups:
         Brute: 3
@@ -66,7 +62,6 @@
     tags:
     - Molerat
 
-#MARK: Feral Dog
 - type: entity
   name: feral dog
   id: N14MobDogFeral
@@ -106,19 +101,14 @@
       Dead:
         Base: dead
   - type: MeleeWeapon
-    altDisarm: false
     hidden: true
     soundHit:
         path: /Audio/Effects/bite.ogg
-    angle: 60
+    angle: 0
     animation: WeaponArcBite
-    wideAnimation: WeaponArcBite
     damage:
       groups:
         Brute: 5
-  - type: Speech
-    speechVerb: Canine
-    speechSounds: Vulpkanin
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-birth-popup
@@ -134,7 +124,6 @@
     tags:
     - DogFeral
 
-#MARK: Gecko
 - type: entity
   name: gecko
   id: N14MobGecko
@@ -149,7 +138,7 @@
       sprite: _Nuclear14/Mobs/Animals/gecko.rsi
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 4
+    baseSprintSpeed : 3.6
   - type: Fixtures
     fixtures:
       fix1:
@@ -174,13 +163,11 @@
       Dead:
         Base: dead
   - type: MeleeWeapon
-    altDisarm: false
     hidden: true
     soundHit:
         path: /Audio/Effects/bite.ogg
-    angle: 60
+    angle: 0
     animation: WeaponArcBite
-    wideAnimation: WeaponArcBite
     damage:
       types:
         Slash: 5
@@ -206,7 +193,6 @@
     tags:
     - Gecko
 
-#MARK: Nightstalker Cub
 - type: entity
   name: nightstalker cub
   id: N14MobNightstalkerCub
@@ -221,7 +207,7 @@
       sprite: _Nuclear14/Mobs/Animals/nightstalkercub.rsi
   - type: Bloodstream
     bloodMaxVolume: 30
-    bloodReagent: NightstalkerBlood
+    bloodReagent: WastelandBlood
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
     baseSprintSpeed : 4.5
@@ -255,13 +241,11 @@
       Dead:
         Base: dead
   - type: MeleeWeapon
-    altDisarm: false
     hidden: true
     soundHit:
         path: /Audio/Effects/bite.ogg
-    angle: 60
+    angle: 0
     animation: WeaponArcBite
-    wideAnimation: WeaponArcBite
     damage:
       groups:
         Brute: 1
@@ -270,31 +254,10 @@
   - type: SolutionContainerManager
     solutions:
       melee:
-        maxVol: 2.5
         reagents:
-        - ReagentId: NightstalkerVenom
+        - ReagentId: Toxin
           Quantity: 2.5
-      udder:
-        maxVol: 5
-        reagents:
-        - ReagentId: NightstalkerVenom
-          Quantity: 5
-  - type: Speech
-    speechVerb: Canine
-    speechSounds: Vulpkanin
-  - type: Udder
-    reagentId: NightstalkerVenom
-    quantityPerUpdate: 1
-    growthDelay: 30
-    hungerUsage: 2
-  - type: SolutionRegeneration
-    solution: melee
-    generated:
-      reagents:
-      - ReagentId: NightstalkerVenom
-        Quantity: 0.1
 
-#MARK: Nightstalker
 - type: entity
   name: nightstalker
   id: N14MobNightstalker
@@ -309,7 +272,7 @@
       sprite: _Nuclear14/Mobs/Animals/nightstalker.rsi
   - type: Bloodstream
     bloodMaxVolume: 50
-    bloodReagent: NightstalkerBlood
+    bloodReagent: WastelandBlood
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
     baseSprintSpeed : 5
@@ -347,13 +310,11 @@
       Dead:
         Base: dead
   - type: MeleeWeapon
-    altDisarm: false
     hidden: true
     soundHit:
         path: /Audio/Effects/bite.ogg
-    angle: 60
+    angle: 0
     animation: WeaponArcBite
-    wideAnimation: WeaponArcBite
     damage:
       groups:
         Brute: 3
@@ -362,32 +323,9 @@
   - type: SolutionContainerManager
     solutions:
       melee:
-        maxVol: 10
         reagents:
-        - ReagentId: NightstalkerVenom
-          Quantity: 10
-      udder:
-        maxVol: 10
-        reagents:
-        - ReagentId: NightstalkerVenom
-          Quantity: 10
-  - type: Udder
-    reagentId: NightstalkerVenom
-    quantityPerUpdate: 1
-    growthDelay: 30
-    hungerUsage: 2
-  - type: SolutionRegeneration
-    solution: melee
-    generated:
-      reagents:
-      - ReagentId: NightstalkerVenom
-        Quantity: 0.25
-  - type: MeleeChemicalInjector
-    solution: melee
-    transferAmount: 1.5
-  - type: Speech
-    speechVerb: Canine
-    speechSounds: Vulpkanin
+        - ReagentId: Toxin
+          Quantity: 5
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-laid-egg-popup
@@ -406,7 +344,6 @@
     tags:
     - Nightstalker
 
-#MARK: Yao Guai
 - type: entity
   name: yao guai
   id: N14MobYaoguai
@@ -433,13 +370,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      550: Dead
-  - type: Stamina
-    critThreshold: 250
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      275: 0.7
-      450: 0.5
+      500: Dead
   - type: Butcherable
     spawned:
     - id: N14MaterialYaoguaiHide
@@ -455,13 +386,11 @@
       Dead:
         Base: dead
   - type: MeleeWeapon
-    altDisarm: false
     hidden: true
     soundHit:
         path: /Audio/Effects/bite.ogg
-    angle: 60
+    angle: 0
     animation: WeaponArcBite
-    wideAnimation: WeaponArcBite
     damage:
       types:
         Slash: 15
@@ -469,7 +398,7 @@
     range: 1.25
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 4.75
+    baseSprintSpeed : 3.6
   - type: NoSlip
   - type: Reproductive
     breedChance: 0.05
@@ -486,8 +415,7 @@
     tags:
     - Yaoguai
 
-#MARK:Scaley Animals
-#MARK: Deathclaw
+# Scaley Animals
 - type: entity
   name: deathclaw
   id: N14MobDeathclaw
@@ -521,8 +449,6 @@
       0: Alive
       500: Critical
       600: Dead
-  - type: Stamina
-    critThreshold: 250
   - type: SlowOnDamage
     speedModifierThresholds:
       250: 0.7
@@ -536,18 +462,16 @@
       Dead:
         Base: dead
   - type: MeleeWeapon
-    altDisarm: false
     hidden: true
     soundHit:
       collection: AlienClaw
-    angle: 60
+    angle: 0
     animation: WeaponArcClaw
-    wideAnimation: WeaponArcClaw
     damage:
       types:
         Slash: 15
         Structural: 5
-    range: 1.75
+    range: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed : 4
     baseSprintSpeed : 5
@@ -569,7 +493,8 @@
     prob: 0.5
     makeSentient: true
     name: deathclaw
-    description: You're a smart killer. Use tactics to hunt and stalk.
+    description: |
+      You're a smart killer. Use tactics to kill everyone.
   - type: NoSlip
   - type: Reproductive
     breedChance: 0.05
@@ -589,7 +514,6 @@
     tags:
     - Deathclaw
 
-#MARK: Albino Deathclaw
 - type: entity
   name: albino deathclaw
   id: N14MobDeathclawAlbino
@@ -603,13 +527,11 @@
       state: deathclawalbino
       sprite: _Nuclear14/Mobs/Animals/deathclawalbino.rsi
   - type: MeleeWeapon
-    altDisarm: false
     hidden: true
     soundHit:
       collection: AlienClaw
-    angle: 60
+    angle: 0
     animation: WeaponArcClaw
-    wideAnimation: WeaponArcClaw
     damage:
       types:
         Slash: 22
@@ -619,8 +541,6 @@
       0: Alive
       750: Critical
       900: Dead
-  - type: Stamina
-    critThreshold: 350
   - type: DamageStateVisuals
     states:
       Alive:
@@ -653,7 +573,6 @@
       Dead:
         Base: dead
 
-#MARK: Metal Deathclaw
 - type: entity
   name: metal deathclaw
   id: N14MobDeathclawMetal
@@ -667,20 +586,17 @@
       state: deathclawmetal
       sprite: _Nuclear14/Mobs/Animals/deathclawmetal.rsi
   - type: MeleeWeapon
-    altDisarm: false
     hidden: true
     soundHit:
       collection: AlienClaw
-    angle: 60
+    angle: 0
     animation: WeaponArcClaw
-    wideAnimation: WeaponArcClaw
     damage:
       types:
         Slash: 20
         Structural: 10
 
-#MARK: Passive Animals
-#MARK: Brahmin
+# Passive Animals
 - type: entity
   name: brahmin
   parent: MobCow
@@ -700,8 +616,6 @@
         Base: brahmin-2
       Dead:
         Base: dead
-  - type: Stamina
-    critThreshold: 200
   - type: Tag
     tags:
     - Brahmin
@@ -721,16 +635,16 @@
           Quantity: 30
   - type: Udder
     reagentId: N14MilkBrahmin
-    quantityperUpdate: 25
-    growthDelay: 60
-    hungerUsage: 10
+    targetSolution: udder
+    quantity: 25
+    updateRate: 30
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: WastelandAnimal
   - type: Timer
   - type: TimedSpawner
     prototypes:
-      - N14BrahminDung
+      - N14Dung
     chance: 0.5
     intervalSeconds: 300
     minimumEntitiesSpawned: 1
@@ -747,7 +661,6 @@
       maxAmount: 1
   - type: ReproductivePartner
 
-#MARK: Bighorner
 - type: entity
   name: bighorner
   parent: N14MobBrahmin
@@ -766,8 +679,6 @@
         Base: bighorner
       Dead:
         Base: dead
-  - type: Stamina
-    critThreshold: 200
   - type: Tag
     tags:
     - Bighorner
@@ -775,19 +686,6 @@
     spawned:
     - id: N14FoodMeatBighorner
       amount: 4
-  - type: MeleeWeapon
-    altDisarm: false
-    hidden: true
-    soundHit:
-      collection: MetalThud
-    angle: 60
-    animation: WeaponArcClaw
-    wideAnimation: WeaponArcClaw
-    damage:
-      types:
-        Blunt: 8
-        Slash: 2
-        Structural: 8
   - type: SolutionContainerManager
     solutions:
       udder:
@@ -797,13 +695,9 @@
           Quantity: 30
   - type: Udder
     reagentId: N14MilkBighorner
-    quantityperUpdate: 25
-    growthDelay: 90
-    hungerUsage: 7.5
-  - type: TimedSpawner
-    prototypes:
-      - N14Dung
-    chance: 0.5
+    targetSolution: udder
+    quantity: 25
+    updateRate: 30
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-birth-popup
@@ -816,7 +710,6 @@
       maxAmount: 1
   - type: ReproductivePartner
 
-#MARK: Radstag
 - type: entity
   name: radstag
   parent: N14MobBrahmin
@@ -835,8 +728,6 @@
         Base: radstag
       Dead:
         Base: dead
-  - type: Stamina
-    critThreshold: 200
   - type: Tag
     tags:
     - Radstag
@@ -844,19 +735,6 @@
     spawned:
     - id: N14FoodMeatRadstag
       amount: 4
-  - type: MeleeWeapon
-    altDisarm: false
-    hidden: true
-    soundHit:
-      collection: MetalThud
-    angle: 60
-    animation: WeaponArcClaw
-    wideAnimation: WeaponArcClaw
-    damage:
-      types:
-        Blunt: 6
-        Slash: 2
-        Structural: 8
   - type: SolutionContainerManager
     solutions:
       udder:
@@ -866,13 +744,9 @@
           Quantity: 30
   - type: Udder
     reagentId: N14MilkRadstag
-    quantityperUpdate: 10
-    growthDelay: 40
-    hungerUsage: 5
-  - type: TimedSpawner
-    prototypes:
-      - N14Dung
-    chance: 0.5
+    targetSolution: udder
+    quantity: 25
+    updateRate: 30
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-birth-popup
@@ -885,7 +759,6 @@
       maxAmount: 1
   - type: ReproductivePartner
 
-#MARK: Chicken
 - type: entity
   parent: MobChicken
   id: N14MobChicken
@@ -926,52 +799,3 @@
   - type: EggLayer
     eggSpawn:
     - id: N14FoodEggChicken
-
-#MARK: Iguana
-- type: entity
-  parent: N14MobBaseSimple
-  id: N14MobIguana
-  name: iguana
-  description: Little green food...I mean friend.
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: iguana
-      sprite: _Nuclear14/Mobs/Animals/iguana.rsi
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: iguana
-      Dead:
-        Base: dead
-  - type: Stamina
-    critThreshold: 20
-  # - type: Butcherable
-    # spawned:
-    # - id: N14FoodMeatRadchicken
-      # amount: 1
-      # prob: 0.95
-  - type: Damageable
-    damageContainer: Biological
-    damageModifierSet: WastelandAnimal
-  # - type: Reproductive
-    # breedChance: 0.05
-    # birthPopup: reproductive-laid-egg-popup
-    # makeOffspringInfant: false
-    # partnerWhitelist:
-      # tags:
-      # - Chicken
-    # offspring:
-    # - id: N14FoodEggChickenFertilized
-      # maxAmount: 3
-  # - type: ReproductivePartner
-  # - type: EggLayer
-    # eggSpawn:
-    # - id: N14FoodEggChicken
-  - type: Item
-    size: Small
-  - type: HTN
-    rootTask:
-      task: MouseCompound
