@@ -61,7 +61,7 @@
     sprite: _Nuclear14/Structures/Storage/Crates/crateenclave.rsi
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/Crates/crateenclave.rsi
-    # N14TODO: Will need an access locked variant.
+    # TODO: Will need an access locked variant.
 
 - type: entity
   parent: [ N14CrateEnclave, N14BaseMilitaryStorageFill ]
@@ -95,6 +95,16 @@
     sprite: _Nuclear14/Structures/Storage/Crates/medicalcrate.rsi
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/Crates/medicalcrate.rsi
+
+- type: entity
+  parent: [ N14CrateMedical, N14StorageFillMedical ]
+  id: N14LootCrateMedical
+  suffix: Loot, Medical
+
+- type: entity
+  parent: [ N14CrateMedical, N14TimedStorageFillMedical ]
+  id: N14CrateMedicalRefilling
+  suffix: Refilling, Medical
 
 - type: entity
   parent: CrateGenericSteel
@@ -365,7 +375,7 @@
     containers:
       storagebase: !type:Container
         ents: []
-    # N14TODO: Add crate deconstruction
+    # TODO: Add crate deconstruction
 
 - type: entity
   parent: N14CrateBreakBase
@@ -389,7 +399,7 @@
   suffix: plain damaged
   components:
   - type: Sprite
-    state: plain_crate-1 # N14TODO: Make this random between states -1, -2 and -3
+    state: plain_crate-1 # TODO: Make this random between states -1, -2 and -3
 
 - type: entity
   parent: N14CrateBreakBase
@@ -421,4 +431,4 @@
   suffix: damaged
   components:
   - type: Sprite
-    state: army_crate-1 # N14TODO: Make this random between states -1 and -2
+    state: army_crate-1 # TODO: Make this random between states -1 and -2

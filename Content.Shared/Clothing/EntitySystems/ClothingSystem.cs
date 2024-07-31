@@ -26,6 +26,10 @@ public abstract class ClothingSystem : EntitySystem
     [ValidatePrototypeId<TagPrototype>]
     private const string NoseTag = "HidesNose";
 
+    [ValidatePrototypeId<TagPrototype>]
+
+    private const string BeardTag = "HidesBeard";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -96,14 +100,14 @@ public abstract class ClothingSystem : EntitySystem
 
     private void ToggleVisualLayer(EntityUid equipee, HumanoidVisualLayers layer, string tag)
     {
-        InventorySystem.InventorySlotEnumerator enumerator = _invSystem.GetSlotEnumerator(equipee);
+        InventorySystem.InventorySlotEnumerator enumerator = _invSystem.GetSlotEnumerator(equipee, SlotFlags.HEAD ^ SlotFlags.MASK);
         bool shouldLayerShow = true;
 
         while (enumerator.NextItem(out EntityUid item))
         {
             if (_tagSystem.HasTag(item, tag))
             {
-                if (tag == NoseTag) //Special check needs to be made for NoseTag, due to masks being toggleable
+                if (tag == NoseTag || tag == BeardTag) // Special check for NoseTag or BeardTag, due to masks being toggleable
                 {
                     if (TryComp(item, out MaskComponent? mask) && TryComp(item, out ClothingComponent? clothing))
                     {
@@ -136,6 +140,8 @@ public abstract class ClothingSystem : EntitySystem
             ToggleVisualLayer(args.Equipee, HumanoidVisualLayers.Hair, HairTag);
         if ((new string[] { "mask", "head" }).Contains(args.Slot) && _tagSystem.HasTag(args.Equipment, NoseTag))
             ToggleVisualLayer(args.Equipee, HumanoidVisualLayers.Snout, NoseTag);
+        if ((new string[] { "mask", "head" }).Contains(args.Slot) && _tagSystem.HasTag(args.Equipment, BeardTag))
+            ToggleVisualLayer(args.Equipee, HumanoidVisualLayers.FacialHair, BeardTag);
     }
 
     protected virtual void OnGotUnequipped(EntityUid uid, ClothingComponent component, GotUnequippedEvent args)
@@ -145,6 +151,8 @@ public abstract class ClothingSystem : EntitySystem
             ToggleVisualLayer(args.Equipee, HumanoidVisualLayers.Hair, HairTag);
         if ((new string[] { "mask", "head" }).Contains(args.Slot) && _tagSystem.HasTag(args.Equipment, NoseTag))
             ToggleVisualLayer(args.Equipee, HumanoidVisualLayers.Snout, NoseTag);
+        if ((new string[] { "mask", "head" }).Contains(args.Slot) && _tagSystem.HasTag(args.Equipment, BeardTag))
+            ToggleVisualLayer(args.Equipee, HumanoidVisualLayers.FacialHair, BeardTag);
     }
 
     private void OnGetState(EntityUid uid, ClothingComponent component, ref ComponentGetState args)
@@ -163,13 +171,14 @@ public abstract class ClothingSystem : EntitySystem
         //TODO: sprites for 'pulled down' state. defaults to invisible due to no sprite with this prefix
         SetEquippedPrefix(ent, args.IsToggled ? args.equippedPrefix : null, ent);
         ToggleVisualLayer(args.Wearer, HumanoidVisualLayers.Snout, NoseTag);
+        ToggleVisualLayer(args.Wearer, HumanoidVisualLayers.FacialHair, BeardTag);
     }
 
     private void OnEquipDoAfter(Entity<ClothingComponent> ent, ref ClothingEquipDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || args.Target is not { } target)
             return;
-        args.Handled = _invSystem.TryEquip(args.User, target, ent, args.Slot, clothing: ent.Comp,  predicted: true, checkDoafter: false);
+        args.Handled = _invSystem.TryEquip(args.User, target, ent, args.Slot, clothing: ent.Comp, predicted: true, checkDoafter: false);
     }
 
     private void OnUnequipDoAfter(Entity<ClothingComponent> ent, ref ClothingUnequipDoAfterEvent args)

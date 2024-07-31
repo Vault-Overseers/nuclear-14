@@ -30,7 +30,7 @@
   - type: Sprite
     layers:
     - state: default
-    - state: idpassenger
+    - state: passenger
   - type: PresetIdCard
     job: VaultDweller
 
@@ -42,7 +42,7 @@
   - type: Sprite
     layers:
     - state: default
-    - state: idstationengineer
+    - state: stationengineer
   - type: PresetIdCard
     job: VaultEngineer
 
@@ -54,7 +54,7 @@
   - type: Sprite
     layers:
     - state: default
-    - state: idsecurityofficer
+    - state: securityofficer
   - type: PresetIdCard
     job: VaultSecurity
 
@@ -66,7 +66,7 @@
   - type: Sprite
     layers:
     - state: default
-    - state: idmedicaldoctor
+    - state: medicaldoctor
   - type: PresetIdCard
     job: VaultDoctor
 
@@ -78,7 +78,7 @@
   - type: Sprite
     layers:
     - state: default
-    - state: idmedicaldoctor
+    - state: medicaldoctor
   - type: PresetIdCard
     job: Overseer
 
@@ -148,12 +148,39 @@
   id: N14IDBrotherhoodHolotag
   name: holotag
   description: An ID holotag worn by the Brotherhood of Steel.
+  suffix: Scribe
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: bos_holotag
   - type: PresetIdCard
     job: BoSMidScribe
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodHolotagSquire
+  name: holotag
+  description: An ID holotag worn by the Brotherhood of Steel.
+  suffix: Squire
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSMidSquire
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodHolotagKnight
+  name: holotag
+  description: An ID holotag worn by the Brotherhood of Steel.
+  suffix: Knight
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSMidKnight
 
 - type: entity
   parent: N14IDPassportBlank
@@ -186,6 +213,7 @@
   id: N14IDNCRDogtag
   name: dogtag
   description: An ID dogtag worn by members of the NCR.
+  suffix: Soldier, Cadet
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -195,10 +223,36 @@
 
 - type: entity
   parent: N14IDPassportBlank
+  id: N14IDNCRDogtagMP
+  name: dogtag
+  description: An ID dogtag worn by decently ranking members of the NCR.
+  suffix: Military Police
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ncrdogtag
+  - type: PresetIdCard
+    job: NCRMP
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDNCRDogtagDoctor
+  name: dogtag
+  description: An ID dogtag worn by decently ranking members of the NCR.
+  suffix: Doctor
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ncrdogtag
+  - type: PresetIdCard
+    job: NCRDoctor
+
+- type: entity
+  parent: N14IDPassportBlank
   id: N14IDNCRDogtagNCO
   name: dogtag
   description: An ID dogtag worn by decently ranking members of the NCR.
-  suffix: NCO
+  suffix: NCO, QM
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi

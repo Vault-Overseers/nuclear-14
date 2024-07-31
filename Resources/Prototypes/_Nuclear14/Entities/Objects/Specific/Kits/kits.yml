@@ -368,7 +368,7 @@
   name: ranger trailman kit
   parent: KitBase
   id: KitTrailmanRanger
-  description: A cache containing belongings of a veteran ranger.
+  description: A crate containing advance weaponry for members of the rangers.
   components:
   - type: Sprite
     state: rifleman
@@ -391,10 +391,10 @@
 #MARK: Veteran Kits
 
 - type: entity
-  name: ranger service kit
+  name: modified ranger service kit
   parent: KitBase
   id: KitServiceRangerVeteran
-  description: A cache containing belongings of a veteran ranger.
+  description: A cache containing belongings of a seasoned ranger.
   components:
   - type: Sprite
     state: rifleman
@@ -517,3 +517,26 @@
       path: /Audio/Effects/unwrap.ogg
 
 # the knifes seem a bit redundant due to combat boots being able to hold their own knifes, will keep them for now
+
+#MARK: BoS Midwest Kits
+
+- type: entity
+  name: Brotherhood basic issue kit
+  parent: KitBase
+  id: KitDefaultBoSMidwest
+  description: A crate containing everything a member of Brotherhood might need.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserRifle
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellHigh
+        amount: 3
+      - id: N14PowerCellSmall
+        amount: 2
+      - id: N14Stimpak
+      - id: BoxMRE

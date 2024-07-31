@@ -690,13 +690,11 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeCircle
-            radius: 0.20
+          !type:PhysShapeAabb
+            bounds: "0.3,0,-0.3,-0.1"
         density: 1000
-        mask:
-        - MachineMask
         layer:
-        - MachineLayer
+        - WallLayer
     
 - type: entity
   parent: N14DecorConcreteBarrier

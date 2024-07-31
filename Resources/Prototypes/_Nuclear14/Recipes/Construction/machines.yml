@@ -12,7 +12,7 @@
     sprite: _Nuclear14/Structures/Power/32x48_machines.rsi
     state: rack_on
 
-# Server / Racks / Panels
+#MARK: Servers / Racks / Panels
 - type: construction
   name: server rack
   id: N14RackElectronics
@@ -47,7 +47,7 @@
   conditions:
     - !type:TileNotBlocked
     
-# Terminals
+#MARK: Terminals
 - type: construction
   name: terminal
   id: N14Terminal
@@ -64,3 +64,77 @@
     state: rack_on
   conditions:
     - !type:TileNotBlocked
+
+#MARK: Crafting Benches
+
+- type: construction
+  name: Workbench
+  id: N14WorkbenchMetal
+  graph: N14WorkbenchMetal
+  startNode: start
+  targetNode: WorkbenchMetal
+  category: construction-category-machines
+  description: A workbench with metal working tools for crafting.
+  icon:
+    sprite: _Nuclear14/Structures/Misc/workbenches.rsi
+    state: workbench
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
+
+- type: construction
+  name: Workbench Ammo
+  id: N14WorkbenchAmmobench
+  graph: N14WorkbenchAmmobench
+  startNode: start
+  targetNode: WorkbenchAmmobench
+  category: construction-category-machines
+  description: A workbench with metal working tools for crafting.
+  icon:
+    sprite: _Nuclear14/Structures/Misc/workbenches.rsi
+    state: ammobench
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
+
+- type: construction
+  name: Workbench Chemistry
+  id: N14WorkbenchChemistryset
+  graph: N14WorkbenchChemistryset
+  startNode: start
+  targetNode: WorkbenchChemistryset
+  category: construction-category-machines
+  description: A workbench with metal working tools for crafting.
+  icon:
+    sprite: _Nuclear14/Structures/Misc/workbenches.rsi
+    state: chemicalset
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
+
+- type: construction
+  name: Workbench Forge
+  id: N14WorkbenchForge
+  graph: N14WorkbenchForge
+  startNode: start
+  targetNode: WorkbenchForge
+  category: construction-category-machines
+  description: A forge made from pieces of scrap. Looks hot.
+  icon:
+    sprite: _Nuclear14/Structures/Misc/forgeworkbench.rsi
+    state: forgeicon
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false

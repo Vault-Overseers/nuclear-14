@@ -6,9 +6,12 @@
   components:
   - type: RadioMicrophone
     broadcastChannel: Handheld
+    toggleOnInteract: false # Nuclear-14
+    frequency: 1330 # Nuclear-14
   - type: RadioSpeaker
     channels:
     - Handheld
+    toggleOnInteract: false # Nuclear-14
   - type: Speech
     speechVerb: Robotic
   - type: Sprite
@@ -23,3 +26,11 @@
   - type: Tag
     tags:
     - Radio
+  # Nuclear-14-Start
+  - type: ActivatableUI
+    key: enum.HandheldRadioUiKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.HandheldRadioUiKey.Key
+        type: HandheldRadioBoundUserInterface
+  # Nuclear-14-End
