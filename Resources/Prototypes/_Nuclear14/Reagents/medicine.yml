@@ -130,7 +130,6 @@
       - !type:ChemVomit
         probability: 0.01
 
-# Poison
 - type: reagent
   id: Antidote
   name: reagent-name-antidote
@@ -189,9 +188,9 @@
 # Radiation
 - type: reagent
   id: RadAway
-  name: reagent-name-damage-resist-mixture
+  name: reagent-name-radaway
   group: Medicine
-  desc: reagent-desc-damage-resist-mixture
+  desc: reagent-desc-radaway
   physicalDesc: reagent-physical-desc-oily
   color: "#ff9000"
   metabolisms:
@@ -205,9 +204,9 @@
 
 - type: reagent
   id: RadAwayDiluted
-  name: reagent-name-damage-resist-mixture
+  name: reagent-name-diluted-radaway
   group: Medicine
-  desc: reagent-desc-damage-resist-mixture
+  desc: reagent-desc-diluted-radaway
   physicalDesc: reagent-physical-desc-oily
   color: "#ffbb60"
   metabolisms:
@@ -221,14 +220,14 @@
 
 - type: reagent
   id: RadX
-  name: reagent-name-rad-x
+  name: reagent-name-rad-x # Should provide a radiation resistance instead of healing it
   group: Medicine
   desc: reagent-desc-rad-x
   physicalDesc: reagent-physical-desc-soapy
   color: "#00e5ff"
   metabolisms:
     Medicine:
-      metabolismRate: 0.1 # Slow
+      metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:HealthChange
         damage:
@@ -236,18 +235,6 @@
             Radiation: -1
 
 # Other
-- type: reagent
-  id: DamageResistMixture #used in med-x. TODO: figure out how to make a reagent give you dmg resistance
-  name: reagent-name-damage-resist-mixture
-  group: Medicine
-  desc: reagent-desc-damage-resist-mixture
-  physicalDesc: reagent-physical-desc-reasonably-metallic
-  color: "#00e5ff"
-  metabolisms:
-    Medicine:
-      effects:
-      - !type:Drunk
-
 - type: reagent
   id: Fixer
   name: reagent-name-fixer
@@ -260,107 +247,19 @@
       metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:Drunk
+      # - !type:CureAddiction
 
-- type: reagent
-  id: Mentats
-  name: reagent-name-mentats
-  group: Medicine
-  desc: reagent-desc-mentats
-  physicalDesc: reagent-physical-desc-tangy
-  color: "#00e5ff"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:Drunk #TODO: when we get SPECIAL, make this increase Int, Chr, and remove this effect
-
-- type: reagent
-  id: MentatsBerry
-  name: reagent-name-mentats-berry
-  group: Medicine
-  desc: reagent-desc-mentats-berry
-  physicalDesc: reagent-physical-desc-tangy
-  color: "#2E0071"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:Drunk #TODO: when we get SPECIAL, make this increase Int, Chr, and remove this effect
-
-- type: reagent
-  id: MentatsGrape
-  name: reagent-name-mentats-grape
-  group: Medicine
-  desc: reagent-desc-mentats-grape
-  physicalDesc: reagent-physical-desc-tangy
-  color: "#9932a4"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:Drunk #TODO: when we get SPECIAL, make this increase Int, Chr, and remove this effect
-
-- type: reagent
-  id: MentatsOrange
-  name: reagent-name-mentats-orange
-  group: Medicine
-  desc: reagent-desc-mentats-orange
-  physicalDesc: reagent-physical-desc-tangy
-  color: "#ffb82e"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:Drunk #TODO: when we get SPECIAL, make this increase Int, Chr, and remove this effect
-
-- type: reagent
-  id: Buffout
-  name: reagent-name-buffout
-  group: Medicine
-  desc: reagent-desc-buffout
-  physicalDesc: reagent-physical-desc-robust
-  color: "#00e5ff"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:Drunk
-      - !type:Jitter
-
-- type: reagent
-  id: Cateye
-  name: reagent-name-cateye
-  group: Medicine
-  desc: reagent-desc-cateye
-  physicalDesc: reagent-physical-desc-sticky
-  color: "#00e5ff"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:Jitter
-
-- type: reagent
-  id: Daytripper
-  name: reagent-name-daytripper
-  group: Medicine
-  desc: reagent-desc-daytripper
-  physicalDesc: reagent-physical-desc-sticky
-  color: "#00e5ff"
-  metabolisms:
-    Poison:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:GenericStatusEffect
-        key: SeeingRainbows
-        component: SeeingRainbows
-        type: Add
-        time: 10
-        refresh: false
-    Food:
-      effects:
-      - !type:SatiateThirst
-        factor: -0.2
+# - type: reagent
+#   id: Addictol
+#   name: TBD
+#   group: Medicine
+#   desc: TBD
+#   physicalDesc: reagent-physical-desc-soothing
+#   color: "#e8fffe"
+#   metabolisms:
+#     Medicine:
+#       effects:
+#       - !type:CureAddiction
 
 - type: reagent
   id: SmellingSalts
@@ -425,36 +324,6 @@
       - !type:ChemVomit
         min: 25
       - !type:Drunk
-
-- type: reagent
-  id: MourningPoultice
-  name: reagent-name-mourning-poultice
-  group: Medicine
-  desc: reagent-desc-mourning-poultice
-  physicalDesc: reagent-physical-desc-oily
-  color: "#1d3d22"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:HealthChange
-        damage:
-          groups:
-            Toxin: 0.5
-          types:
-            Radiation: 0.5
-      - !type:GenericStatusEffect
-        key: SeeingRainbows
-        component: SeeingRainbows
-        type: Add
-        time: 5
-        refresh: false
-      - !type:GenericStatusEffect
-        key: Stutter
-        component: ScrambledAccent
-      - !type:GenericStatusEffect
-        key: SlurredSpeech
-        component: TelepathicRepeater
 
 - type: reagent
   id: UltraRobustHealingMixture
