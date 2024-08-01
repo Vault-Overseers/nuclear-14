@@ -8,9 +8,12 @@ namespace Content.Shared.Movement.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class FloorOcclusionComponent : Component
 {
-    [ViewVariables]
-    public bool Enabled => Colliding.Count > 0;
+    /// <summary>
+    /// Is the shader currently enabled.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("enabled"), AutoNetworkedField]
+    public bool Enabled;
 
-    [DataField, AutoNetworkedField]
+    [DataField("colliding")]
     public List<EntityUid> Colliding = new();
 }

@@ -10,56 +10,51 @@ public sealed class FloorOcclusionSystem : SharedFloorOcclusionSystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
-    private EntityQuery<SpriteComponent> _spriteQuery;
-
     public override void Initialize()
     {
         base.Initialize();
-
-        _spriteQuery = GetEntityQuery<SpriteComponent>();
-
         SubscribeLocalEvent<FloorOcclusionComponent, ComponentStartup>(OnOcclusionStartup);
-        SubscribeLocalEvent<FloorOcclusionComponent, ComponentShutdown>(OnOcclusionShutdown);
         SubscribeLocalEvent<FloorOcclusionComponent, AfterAutoHandleStateEvent>(OnOcclusionAuto);
     }
 
-    private void OnOcclusionAuto(Entity<FloorOcclusionComponent> ent, ref AfterAutoHandleStateEvent args)
+    private void OnOcclusionAuto(EntityUid uid, FloorOcclusionComponent component, ref AfterAutoHandleStateEvent args)
     {
-        SetShader(ent.Owner, ent.Comp.Enabled);
+        SetEnabled(uid, component, component.Enabled);
     }
 
-    private void OnOcclusionStartup(Entity<FloorOcclusionComponent> ent, ref ComponentStartup args)
+    private void OnOcclusionStartup(EntityUid uid, FloorOcclusionComponent component, ComponentStartup args)
     {
-        SetShader(ent.Owner, ent.Comp.Enabled);
+        if (component.Enabled && TryComp<SpriteComponent>(uid, out var sprite))
+            SetShader(sprite, true);
     }
 
-    private void OnOcclusionShutdown(Entity<FloorOcclusionComponent> ent, ref ComponentShutdown args)
+    protected override void SetEnabled(EntityUid uid, FloorOcclusionComponent component, bool enabled)
     {
-        SetShader(ent.Owner, false);
-    }
-
-    protected override void SetEnabled(Entity<FloorOcclusionComponent> entity)
-    {
-        SetShader(entity.Owner, entity.Comp.Enabled);
-    }
-
-    private void SetShader(Entity<SpriteComponent?> sprite, bool enabled)
-    {
-        if (!_spriteQuery.Resolve(sprite.Owner, ref sprite.Comp, false))
+        if (component.Enabled == enabled)
             return;
 
+        base.SetEnabled(uid, component, enabled);
+
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
+            return;
+
+        SetShader(sprite, enabled);
+    }
+
+    private void SetShader(SpriteComponent sprite, bool enabled)
+    {
         var shader = _proto.Index<ShaderPrototype>("HorizontalCut").Instance();
 
-        if (sprite.Comp.PostShader is not null && sprite.Comp.PostShader != shader)
+        if (sprite.PostShader is not null && sprite.PostShader != shader)
             return;
 
         if (enabled)
         {
-            sprite.Comp.PostShader = shader;
+            sprite.PostShader = shader;
         }
         else
         {
-            sprite.Comp.PostShader = null;
+            sprite.PostShader = null;
         }
     }
 }
