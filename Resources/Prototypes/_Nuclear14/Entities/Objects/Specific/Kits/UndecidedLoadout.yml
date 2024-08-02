@@ -119,6 +119,32 @@
     transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     - BoSDefaultSet
+    - BoSRangedSet
+    - BoSCarbineSet
+    - BoSScribeSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: NCRBoSMidwestCOkits
+  name: Undecided BoS CO Midwest Kit
+  description: please only take one
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - BoSDefaultSet
+    - BoSRangedSet
+    - BoSCOPlasmaSet
+    - BoSCOAssaultSet
   - type: ActivatableUI
     key: enum.UndecidedLoadoutBackpackUIKey.Key
   - type: UserInterface
@@ -334,7 +360,7 @@
   - KitMarksmanRangerVeteran
 
 #MARK: BoS Midwest Kits
-
+#default
 - type: UndecidedLoadoutBackpackSet
   id: BoSDefaultSet
   name: undecided-loadout-category-bos-default-name
@@ -344,3 +370,55 @@
     state: rifleman
   content:
   - KitDefaultBoSMidwest
+#carbine
+- type: UndecidedLoadoutBackpackSet
+  id: BoSCarbineSet
+  name: undecided-loadout-category-bos-carbine-name
+  description: undecided-loadout-category-bos-carbine-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitCarbineBoSMidwest
+#scribe/utility
+- type: UndecidedLoadoutBackpackSet
+  id: BoSScribeSet
+  name: undecided-loadout-category-bos-scribe-name
+  description: undecided-loadout-category-bos-scribe-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: medic
+  content:
+  - KitScribeBoSMidwest
+#ranged-wattz
+- type: UndecidedLoadoutBackpackSet
+  id: BoSRangedSet
+  name: undecided-loadout-category-bos-ranged-name
+  description: undecided-loadout-category-bos-ranged-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitRangedBoSMidwest
+
+#MARK: BoS Commander Special
+
+- type: UndecidedLoadoutBackpackSet
+  id: BoSCOPlasmaSet
+  name: undecided-loadout-category-bos-plasma-name
+  description: undecided-loadout-category-bos-plasma-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitCOPlasmaBoSMidwest
+
+- type: UndecidedLoadoutBackpackSet
+  id: BoSCOAssaultSet
+  name: undecided-loadout-category-bos-ballistics-name
+  description: undecided-loadout-category-bos-ballistics-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitCOAssaultBoSMidwest
