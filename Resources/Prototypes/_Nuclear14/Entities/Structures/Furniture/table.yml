@@ -45,6 +45,8 @@
     bonkDamage:
       types:
         Blunt: 4
+    bonkSound: !type:SoundCollectionSpecifier
+      collection: TrayHit
   - type: Clickable
 
 # 32x32 tables
@@ -69,25 +71,44 @@
     state: table_metal_round # N14TODO: There's a second sprite of this, need it to spawn a random one.
 
 - type: entity
+  id: N14TableDeskSchool # Base off this for wooden tables
   parent: N14FreeTableBase
-  id: N14TableDeskSchool
-  name: end table
-  description: A wooden end table.
+  name: school desk
+  description: A wooden desk for studying at.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Furniture/Tables/tables.rsi
-    state: table_wood_end
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-            bounds: "-0.15,-0.25,0.25,0.25"
-        density: 55
-        mask: # tables should collide with other tables
-        - TableMask
-        layer:
-        - TableLayer
+    sprite: _Nuclear14/Structures/Furniture/Tables/schooldesk.rsi
+    state: desk_1
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    
+- type: entity
+  parent: N14TableDeskSchool
+  id: N14TableDeskSchoolDamaged
+  name: school desk
+  suffix: damaged
+  description: A wooden desk for studying at. Looks worse for wear.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Furniture/Tables/schooldesk.rsi
+    state: desk_2
 
 - type: entity
   parent: N14TableDeskSchool
@@ -158,7 +179,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/tables.rsi
     state: table_wood_stand
-
+    
 - type: entity
   parent: N14TableWoodSquare
   id: N14TableWoodCabledrum
@@ -168,7 +189,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/tables.rsi
     state: cable_reel
-
+    
 - type: entity
   parent: N14TableWoodSquare
   id: N14TableCasinoDice
@@ -178,7 +199,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/tables.rsi
     state: dice_clean
-
+    
 - type: entity
   parent: N14TableCasinoDice
   id: N14TableCasinoDiceDirty
@@ -210,7 +231,7 @@
         - TableMask
         layer:
         - TableLayer
-
+        
 - type: entity
   parent: N14TableDeskMetal
   id: N14TableDeskMetalDirty
@@ -219,7 +240,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/64x64_furniture.rsi
     state: desk_metal
-
+    
 - type: entity
   parent: N14FreeTableBase
   id: N14TableDeskMetalSmall
@@ -227,7 +248,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/64x64_furniture.rsi
     state: desk_metal_small
-
+    
 - type: entity
   parent: N14TableDeskSchool
   id: N14TableDeskWood
@@ -249,7 +270,7 @@
         - TableMask
         layer:
         - TableLayer
-
+        
 - type: entity
   parent: N14TableDeskWood
   id: N14TableDeskWood2
@@ -258,7 +279,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/64x64_furniture.rsi
     state: desk_wood
-
+    
 - type: entity
   parent: N14TableDeskSchool
   id: N14TableDeskWoodSmall
@@ -324,82 +345,71 @@
   id: N14TableCounter
   name: wooden counter
   suffix: full
-  components:
+  components: 
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/counters.rsi
     state: wood_counter
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-            bounds: "-0.45,-0.45,0.45,0.45"
-        density: 55
-        mask: # tables should collide with other tables
-        - TableMask
-        layer:
-        - TableLayer
-
+    
 - type: entity
   parent: N14TableCounter
   id: N14TableCounterBend
   suffix: corner
-  components:
+  components: 
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/counters.rsi
     state: wood_counter_bend
-
+    
 - type: entity
   parent: N14TableCounter
   id: N14TableCounterIntersect
   suffix: intersect
-  components:
+  components: 
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/counters.rsi
     state: wood_counter_intersect
-
+    
 - type: entity
   parent: N14TableCounter
   id: N14TableCounterCross
   suffix: cross
-  components:
+  components: 
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/counters.rsi
     state: wood_counter_cross
-
+    
 - type: entity
   parent: N14TableCounter
   id: N14TableCounterCraft
   description: This counter looks like scrap.
   suffix: craft full
-  components:
+  components: 
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/counters.rsi
     state: craft_counter
-
+    
 - type: entity
   parent: N14TableCounter
   id: N14TableCounterCraftBend
   suffix: craft corner
-  components:
+  components: 
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/counters.rsi
     state: craft_counter_bend
-
+    
 - type: entity
   parent: N14TableCounter
   id: N14TableCounterCraftIntersect
   suffix: craft intersect
-  components:
+  components: 
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/counters.rsi
     state: craft_counter_intersect
-
+    
 - type: entity
   parent: N14TableCounter
   id: N14TableCounterCraftCross
   suffix: craft cross
-  components:
+  components: 
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/counters.rsi
     state: craft_counter_cross
@@ -413,30 +423,30 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/counters.rsi
     state: metal_counter
-
+    
 - type: entity
   parent: N14TableCounterMetal
   id: N14TableCounterMetalBend
   suffix: corner
-  components:
+  components: 
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/counters.rsi
     state: metal_counter_bend
-
+    
 - type: entity
   parent: N14TableCounterMetal
   id: N14TableCounterMetalIntersect
   suffix: intersect
-  components:
+  components: 
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/counters.rsi
     state: metal_counter_intersect
-
+    
 - type: entity
   parent: N14TableCounterMetal
   id: N14TableCounterMetalCross
   suffix: cross
-  components:
+  components: 
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/counters.rsi
     state: metal_counter_cross
@@ -463,10 +473,7 @@
     sprite: _Nuclear14/Structures/Furniture/Tables/metalgrate.rsi
   - type: Icon
     sprite: _Nuclear14/Structures/Furniture/Tables/metalgrate.rsi
-  - type: Construction
-    graph: N14TableMetalGrateRecipes
-    node: start
-
+    
 - type: entity
   id: N14TableWoodSettler
   parent: Table
@@ -478,8 +485,8 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Furniture/Tables/table_settler.rsi
   - type: Construction
-    graph: N14TableRecipes
-    node: start
+    graph: N14Table
+    node: N14TableWoodSettler
 
 # - type: entity
   # id: N14TableWoodenBuilt
@@ -502,6 +509,3 @@
     sprite: _Nuclear14/Structures/Furniture/Tables/barcounter.rsi
   - type: Icon
     sprite: _Nuclear14/Structures/Furniture/Tables/barcounter.rsi
-  - type: Construction
-    graph: N14TableCounterBarRecipes
-    node: start

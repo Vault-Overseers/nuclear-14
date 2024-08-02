@@ -48,9 +48,6 @@
         reagents:
         - ReagentId: N14UncookedAnimalProteinsRad
           Quantity: 5
-  - type: SliceableFood
-    count: 3
-    slice: N14FoodMeatRadCutlet
 
 - type: entity
   name: raw brahmin steak
@@ -72,7 +69,7 @@
   - type: Construction
     graph: MeatSteakBrahmin
     node: start
-    defaultTarget: SteakCooked 
+    defaultTarget: SteakCooked
 
 - type: entity
   name: raw bighorner steak
@@ -103,35 +100,6 @@
     slice: N14FoodMeatRadstagCutlet
   - type: Construction
     graph: MeatSteakRadstag
-    node: start
-    defaultTarget: SteakCooked
-
-- type: entity
-  parent: N14FoodMeatBrahmin
-  id: N14FoodMeatRadhog
-  name: raw radhog meat
-  description: A raw chunk of radhog meat.
-  components:
-  - type: Sprite
-    state: porkchop
-  - type: SliceableFood
-    count: 3
-    slice: N14FoodMeatRadhogCutlet
-  - type: Construction
-    graph: MeatSteakRadhog
-    node: start
-    defaultTarget: SteakCooked
-
-- type: entity
-  parent: N14FoodMeatBrahmin
-  id: N14FoodMeatPigrat
-  name: raw pigrat meat
-  description: Raw morsels of pigrat meat.
-  components:
-  - type: Sprite
-    state: morsels
-  - type: Construction
-    graph: MeatSteakPigrat
     node: start
     defaultTarget: SteakCooked
 
@@ -206,7 +174,7 @@
     graph: MeatRadscorpionLeg
     node: start
     defaultTarget: MeatCooked
-
+          
 - type: entity
   name: raw radchicken meat
   parent: N14FoodMeatRadRaw
@@ -229,37 +197,14 @@
   components:
   - type: Sprite
     state: silvergeckomeat
+  - type: SliceableFood
+    count: 3
+    slice: N14FoodMeatGeckoCutlet
   - type: Construction
     graph: MeatSteakGecko
     node: start
     defaultTarget: SteakCooked
-
-- type: entity
-  name: raw fire gecko meat
-  parent: N14FoodMeatRadRaw
-  id: N14FoodMeatGeckoFire
-  description: tough chunk of fire gecko meat. It glistens.
-  components:
-  - type: Sprite
-    state: icegeckomeat
-  - type: Construction
-    graph: MeatSteakGeckoFire
-    node: start
-    defaultTarget: SteakCooked
-
-- type: entity
-  name: raw golden gecko meat
-  parent: N14FoodMeatRadRaw
-  id: N14FoodMeatGeckoGolden
-  description: tough chunk of golden gecko meat. It glistens.
-  components:
-  - type: Sprite
-    state: goldengeckomeat
-  - type: Construction
-    graph: MeatSteakGeckoGolden
-    node: start
-    defaultTarget: SteakCooked
-
+    
 - type: entity
   name: raw iguana
   parent: N14FoodMeatRadRaw
@@ -273,7 +218,7 @@
     graph: MeatIguana
     node: start
     defaultTarget: MeatCooked
-
+          
 - type: entity
   name: raw squirrel bits
   parent: N14FoodMeatRadRaw
@@ -287,7 +232,7 @@
     graph: MeatMorsels
     node: start
     defaultTarget: MeatCooked
-
+  
 - type: entity
   name: raw radroach fillet
   parent: N14FoodMeatRadRaw
@@ -355,14 +300,13 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
         - ReagentId: Protein
           Quantity: 6
         - ReagentId: N14RadParticleFood
-          Quantity: 0 #currently, we are experimenting with cooked food not giving rads. Former value is 5.
+          Quantity: 3
 
 - type: entity
   name: cooked brahmin steak
@@ -376,14 +320,13 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
         - ReagentId: Protein
           Quantity: 5
         - ReagentId: N14RadParticleFood
-          Quantity: 0 #former value 3
+          Quantity: 3
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatBrahminCutletCooked
@@ -401,17 +344,6 @@
   - type: Sprite
     layers:
     - state: bighornermeat_roasted
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 8
-        - ReagentId: Protein
-          Quantity: 8
-        - ReagentId: N14RadParticleFood
-          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatBighornerCutletCooked
@@ -429,73 +361,11 @@
   - type: Sprite
     layers:
     - state: radstagmeat_roasted
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Protein
-          Quantity: 4
-        - ReagentId: N14RadParticleFood
-          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadstagCutletCooked
   - type: Construction
     graph: MeatSteakRadstag
-    node: SteakCooked
-    defaultTarget: SteakCooked
-
-- type: entity
-  name: cooked radhog meat
-  parent: N14FoodMeatBrahminCooked
-  id: N14FoodMeatRadhogCooked
-  description: A chunk of cooked radhog meat.
-  components:
-  - type: Sprite
-    state: porkchop_roasted
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Protein
-          Quantity: 4
-        - ReagentId: N14RadParticleFood
-          Quantity: 0
-  - type: SliceableFood
-    count: 3
-    slice: N14FoodMeatRadhogCutletCooked
-  - type: Construction
-    graph: MeatSteakRadhog
-    node: SteakCooked
-    defaultTarget: SteakCooked
-
-- type: entity
-  parent: N14FoodMeatBrahminCooked
-  id: N14FoodMeatPigratCooked
-  name: cooked pigrat meat
-  description: Cooked morsels of pigrat meat.
-  components:
-  - type: Sprite
-    state: morsels_roasted
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: N14RadParticleFood
-          Quantity: 0
-  - type: Construction
-    graph: MeatSteakPigrat
     node: SteakCooked
     defaultTarget: SteakCooked
 
@@ -508,17 +378,6 @@
   - type: Sprite
     layers:
     - state: brahminmeat_roasted
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Protein
-          Quantity: 10
-        - ReagentId: N14RadParticleFood
-          Quantity: 3
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatYaoguaiCutletCooked
@@ -536,17 +395,6 @@
   - type: Sprite
     layers:
     - state: radscorpionmeat_roasted
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: N14RadParticleFood
-          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadscorpionCutletCooked
@@ -559,23 +407,12 @@
   name: cooked radchicken meat
   parent: N14FoodMeatCooked
   id: N14FoodMeatRadchickenCooked
-  description: A cooked piece of radchicken. Flaky!
+  description: A cooked piece of radchicken. Best used in other recipes.
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/meat.rsi
     layers:
     - state: bird-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Protein
-          Quantity: 4
-        - ReagentId: N14RadParticleFood
-          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadchickenCutletCooked
@@ -589,72 +426,14 @@
   - type: Sprite
     layers:
     - state: silvergeckomeat_roasted
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: N14RadParticleFood
-          Quantity: 0
+  - type: SliceableFood
+    count: 3
+    slice: N14FoodMeatGeckoCutletCooked
   - type: Construction
     graph: MeatSteakGecko
     node: SteakCooked
     defaultTarget: SteakCooked
-
-- type: entity
-  name: cooked fire gecko steak
-  parent: N14FoodMeatCooked
-  id: N14FoodMeatGeckoFireCooked
-  description: Cooked, tough fire gecko meat.
-  components:
-  - type: Sprite
-    layers:
-    - state: icegeckomeat_roasted
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: N14RadParticleFood
-          Quantity: 0
-  - type: Construction
-    graph: MeatSteakGeckoFire
-    node: SteakCooked
-    defaultTarget: SteakCooked
-
-- type: entity
-  name: cooked golden gecko steak
-  parent: N14FoodMeatCooked
-  id: N14FoodMeatGeckoGoldenCooked
-  description: Cooked, tough golden gecko meat. Your molars itch uncomfortably at the thought of eating this.
-  components:
-  - type: Sprite
-    layers:
-    - state: goldengeckomeat_roasted
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: N14RadParticleFood
-          Quantity: 3 #golden geckos are normally radioactive and they're not common right now. Later we should add a special meal made of them! ^^
-  - type: Construction
-    graph: MeatSteakGeckoGolden
-    node: SteakCooked
-    defaultTarget: SteakCooked
-
+    
 - type: entity
   name: cooked iguana
   parent: N14FoodMeatCooked
@@ -678,7 +457,7 @@
     graph: MeatIguana
     node: MeatCooked
     defaultTarget: MeatCooked
-
+          
 - type: entity
   name: cooked squirrel bits
   parent: N14FoodMeatCooked
@@ -701,12 +480,12 @@
     graph: MeatMorsels
     node: MeatCooked
     defaultTarget: MeatCooked
-
+          
 - type: entity
   name: cooked radroach fillet
   parent: N14FoodMeatCooked
   id: N14FoodMeatRadroachFilletCooked
-  description: Cooked, hard radroach. Smells like indigestion.
+  description: Cooked, hard radroach.
   components:
   - type: Sprite
     layers:
@@ -720,7 +499,7 @@
         - ReagentId: Protein
           Quantity: 2
         - ReagentId: N14RadParticleFood
-          Quantity: 1 #not VERY radioactive but definitely not good for you. A desperation / poverty food?
+          Quantity: 1
   - type: Construction
     graph: MeatRadroach
     node: MeatCooked
@@ -823,15 +602,6 @@
           Quantity: 3
         - ReagentId: N14RadParticleFood
           Quantity: 1
-  - type: Temperature
-    currentTemperature: 290
-  - type: InternalTemperature
-    conductivity: 0.43
-  - type: Perishable
-    # raw meat rots in 15 minutes, get it into the freezer fast or preserve it.
-    rotAfter: 900
-    # don't want meat giving off ammonia only bodies
-    molsPerSecondPerUnitMass: 0
 
 - type: entity
   name: raw brahmin cutlet
@@ -870,18 +640,6 @@
       color: brown
 
 - type: entity
-  name: raw radhog cutlet
-  parent: N14FoodMeatRadCutlet
-  id: N14FoodMeatRadhogCutlet
-  description: A very grisly cutlet of radhog meat.
-  components:
-  - type: Sprite
-    layers:
-    - state: cutlet
-    - state: cutlet-alpha
-      color: brown
-
-- type: entity
   name: raw yao-guai cutlet
   parent: N14FoodMeatRadCutlet
   id: N14FoodMeatYaoguaiCutlet
@@ -902,6 +660,19 @@
   - type: Sprite
     state: cutlet
     color: white
+
+- type: entity
+  name: raw gecko cutlet
+  parent: N14FoodMeatRadCutlet
+  id: N14FoodMeatGeckoCutlet
+  description: Delicious dino cutlet.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet
+      color: green
+    - state: cutlet-alpha
+      color: pink
 
 - type: entity
   name: raw radscorpion cutlet
@@ -939,7 +710,7 @@
         - ReagentId: Protein
           Quantity: 2
         - ReagentId: N14RadParticleFood
-          Quantity: 0 #Ditto, changing these values to 0 seemed like the best bet for if we want to revert this later. Formerly 3 rads.
+          Quantity: 1
 
 - type: entity
   name: cooked brahmin cutlet
@@ -964,24 +735,12 @@
     - state: cutlet-cooked
     - state: cutlet-alpha
       color: brown
-
+      
 - type: entity
   name: cooked radstag cutlet
   parent: N14FoodMeatRadCutletCooked
   id: N14FoodMeatRadstagCutletCooked
   description: A very grisly cutlet of cooked radstag meat.
-  components:
-  - type: Sprite
-    layers:
-    - state: cutlet-cooked
-    - state: cutlet-alpha
-      color: brown
-
-- type: entity
-  name: cooked radhog cutlet
-  parent: N14FoodMeatRadCutletCooked
-  id: N14FoodMeatRadhogCutletCooked
-  description: A very grisly cutlet of cooked radhog meat.
   components:
   - type: Sprite
     layers:
@@ -1012,6 +771,17 @@
     color: white
 
 - type: entity
+  name: cooked gecko cutlet
+  parent: N14FoodMeatRadCutletCooked
+  id: N14FoodMeatGeckoCutletCooked
+  description: Delicious cooked dino cutlet.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet-cooked
+      color: green
+
+- type: entity
   name: cooked radscorpion cutlet
   parent: N14FoodMeatRadCutletCooked
   id: N14FoodMeatRadscorpionCutletCooked
@@ -1023,34 +793,3 @@
       color: black
     - state: cutlet-alpha
       color: red
-
-#- type: entity
-#  name: raw bacon
-  # bacon is cured so not raw = cant rot
-#  parent: FoodMeatBase
-#  id: FoodMeatBacon
-#  description: A raw piece of bacon.
-#  components:
-#  - type: Tag
-#    tags:
-#    - Raw
-#    - Meat
-#  - type: Sprite
-#    state: bacon
-#  - type: SolutionContainerManager
-#    solutions:
-#      food:
-#        reagents:
-#        - ReagentId: UncookedAnimalProteins
-#          Quantity: 2
-#        - ReagentId: Fat
-#          Quantity: 9
-#  - type: InternalTemperature
-#    conductivity: 0.44
-#    thickness: 0.004 # bacon is thin so faster to cook than a steak
-#    area: 0.0075 # ~5x15cm
-#  - type: Construction
-#    graph: Bacon
-#    node: start
-#    defaultTarget: bacon
-#seems like this 'state: bacon' needs to be linked to a N14 sprite...

@@ -5,7 +5,6 @@
   description: Just add capitalism!
   abstract: true
   components:
-  - type: StationAiWhitelist
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
@@ -61,10 +60,10 @@
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
-      enum.VendingMachineUiKey.Key:
-        type: VendingMachineBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+    - key: enum.VendingMachineUiKey.Key
+      type: VendingMachineBoundUserInterface
+    - key: enum.WiresUiKey.Key
+      type: WiresBoundUserInterface
   - type: WiresPanel
   - type: Wires
     boardName: wires-board-name-vendingmachine
@@ -87,7 +86,6 @@
   - type: Electrified
     enabled: false
     usesApcPower: true
-  - type: EtherealLight
   - type: PointLight
     enabled: false
     castShadows: false
@@ -101,18 +99,19 @@
   - type: Actions
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-mechanical
-    weight: 0.025 # fuck you in particular (it now needs 40 vending machines to be as likely as 1 interesting animal)
   - type: StaticPrice
     price: 100
   - type: Appearance
   - type: WiresVisuals
   - type: LanguageKnowledge
     speaks:
-    - TauCetiBasic
+    - GalacticCommon
     - RobotTalk
     understands:
-    - TauCetiBasic
+    - GalacticCommon
     - RobotTalk
+  - type: VendingMachine
+    soundVend: /Audio/SimpleStation14/Machines/machine_vend.ogg
 
 - type: entity
   parent: VendingMachine
@@ -214,6 +213,7 @@
   id: VendingMachineCart
   name: PTech
   description: PTech vending! Providing a ROBUST selection of PDAs, cartridges, and anything else a dull paper pusher needs!
+  noSpawn: true
   components:
   - type: VendingMachine
     pack: PTechInventory
@@ -252,6 +252,7 @@
   id: VendingMachineChefvend
   name: ChefVend
   description: An ingredient vendor for all your cheffin needs.
+  noSpawn: true
   components:
   - type: VendingMachine
     pack: ChefvendInventory
@@ -287,6 +288,7 @@
   id: VendingMachineCigs
   name: ShadyCigs Deluxe
   description: If you want to get cancer, might as well do it in style.
+  noSpawn: true
   components:
   - type: VendingMachine
     pack: CigaretteMachineInventory
@@ -323,7 +325,8 @@
   parent: VendingMachine
   id: VendingMachineClothing
   name: ClothesMate
-  description: A vending machine for dispensing the cheapest clothing Nanotrasen can buy.
+  description: A vending machine for clothing.
+  noSpawn: true
   components:
   - type: VendingMachine
     pack: ClothesMateInventory
@@ -1524,12 +1527,12 @@
   name: Salvage Vendor
   description: A dwarf's best friend!
   components:
-  #- type: VendingMachine # DeltaV: Use mining points instead of limited stock
-  #  pack: SalvageEquipmentInventory
-  #  offState: off
-  #  brokenState: broken
-  #  normalState: normal-unshaded
-  #  denyState: deny-unshaded
+  - type: VendingMachine
+    pack: SalvageEquipmentInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/mining.rsi
     layers:
@@ -1546,21 +1549,6 @@
     color: "#9dc5c9"
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-  - type: ShopVendor # DeltaV
-    pack: SalvageVendorInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    denyState: deny-unshaded
-  - type: PointsVendor # DeltaV
-  - type: UserInterface # DeltaV: Replace vending machine BUI with shop vendor
-    interfaces:
-      enum.VendingMachineUiKey.Key:
-        type: ShopVendorBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Wires # DeltaV: Use shop vendor wires layout
-    layoutId: ShopVendor
   - type: AccessReader
     access: [["Salvage"]]
   - type: GuideHelp
@@ -1921,7 +1909,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
-    access: [["Library"]]
+    access: [["Service"]]
 
 - type: entity
   parent: VendingMachine

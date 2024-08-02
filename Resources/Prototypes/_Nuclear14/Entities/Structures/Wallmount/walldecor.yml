@@ -1,23 +1,4 @@
 # see adverts for sign base
-- type: entity
-  parent: BaseSign
-  id: N14SignBase # for non directional signs otherwise remove snapCardinals: true
-  abstract: true
-  components:
-  - type: WallMount
-    arc: 360
-  - type: Sprite
-    drawdepth: Overdoors
-    sprite: _Nuclear14/Structures/Wallmounts/adverts.rsi
-    snapCardinals: true # one direction
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
 
 # Flags
 - type: entity
@@ -129,34 +110,6 @@
   components:
   - type: Sprite
     state: flag_denver
-    
-- type: entity
-  parent: N14FlagWallUS
-  id: N14FlagWallWideUSA
-  suffix: Wide USA
-  description: An old US flag.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Structures/Wallmounts/flags_32x64.rsi
-    state: usa
-
-- type: entity
-  parent: N14FlagWallWideUSA
-  id: N14FlagWallWideCommonwealth
-  suffix: Wide Commonwealth
-  description: A US commonwealth flag.
-  components:
-  - type: Sprite
-    state: commonwealth
-
-- type: entity
-  parent: N14FlagWallWideUSA
-  id: N14FlagWallWideEnclave
-  suffix: Wide Enclave
-  description: An Enclave flag.
-  components:
-  - type: Sprite
-    state: enclave
 
 # Decor
 - type: entity
