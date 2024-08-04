@@ -165,14 +165,14 @@ undecided-loadout-category-bos-scribe-medic-description =
 undecided-loadout-category-bos-scribe-field-name = Brotherhood Scribe Field Kit
 undecided-loadout-category-bos-scribe-field-description = 
     A crate containing everything a member of Brotherhood scribes.
-        For keeping the fighting forces alive.
+        For supporting your unit from the back.
     Includes 1 varmint rifle, 1 5.56 ammo box, 1 medical belt,
      1 field scribe clothing, 1 knife, 1 stimpak, 1 MRE
 
 undecided-loadout-category-bos-scribe-engineer-name = Brotherhood Scribe Engineer Kit
 undecided-loadout-category-bos-scribe-engineer-description = 
     A crate containing everything a member of Brotherhood scribes.
-        For keeping the fighting forces alive.
+        For upkeeping the base and tinkering alike.
     Includes 1 AEP-7 laser pistol, 2 MFC cells, 1 utility belt,
      1 engineer scribe clothing, 1 fire-axe, 1 stimpak, 1 MRE
 
