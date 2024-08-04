@@ -267,15 +267,15 @@
       melee:
         maxVol: 2.5
         reagents:
-        - ReagentId: Toxin
+        - ReagentId: NightstalkerVenom
           Quantity: 2.5
       udder:
         maxVol: 5
         reagents:
-        - ReagentId: Toxin
+        - ReagentId: NightstalkerVenom
           Quantity: 5
   - type: Udder
-    reagentId: Toxin
+    reagentId: NightstalkerVenom
     quantityPerUpdate: 1
     growthDelay: 30
     hungerUsage: 2
@@ -283,7 +283,7 @@
     solution: melee
     generated:
       reagents:
-      - ReagentId: Toxin
+      - ReagentId: NightstalkerVenom
         Quantity: 0.1
 
 #MARK: Nightstalker
@@ -354,17 +354,17 @@
   - type: SolutionContainerManager
     solutions:
       melee:
-        maxVol: 5
+        maxVol: 10
         reagents:
-        - ReagentId: Toxin
-          Quantity: 5
+        - ReagentId: NightstalkerVenom
+          Quantity: 10
       udder:
         maxVol: 10
         reagents:
-        - ReagentId: Toxin
+        - ReagentId: NightstalkerVenom
           Quantity: 10
   - type: Udder
-    reagentId: Toxin
+    reagentId: NightstalkerVenom
     quantityPerUpdate: 1
     growthDelay: 30
     hungerUsage: 2
@@ -372,8 +372,11 @@
     solution: melee
     generated:
       reagents:
-      - ReagentId: Toxin
-        Quantity: 0.1
+      - ReagentId: NightstalkerVenom
+        Quantity: 0.25
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 1.5
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-laid-egg-popup

@@ -332,6 +332,7 @@
         Quantity: 0.2
 
 #MARK: Cazador
+#SCARY FUCKERS, RUUUN!!
 - type: entity
   name: cazador
   parent: N14MobBaseHostileInsect
@@ -373,29 +374,28 @@
     hidden: true
     soundHit:
         path: /Audio/Effects/bite.ogg
-    angle: 60
-    animation: WeaponArcBite
-    wideAnimation: WeaponArcBite
+    angle: 30
+    animation: WeaponArcThrust
+    wideAnimation: WeaponArcThrust
     damage:
       types:
-        Piercing: 5
+        Piercing: 3
   - type: SolutionContainerManager
     solutions:
       melee:
         maxVol: 10
         reagents:
-        - ReagentId: Toxin
-          Quantity: 5
-        - ReagentId: ChloralHydrate
-          Quantity: 5
+        - ReagentId: CazadorVenom
+          Quantity: 10
   - type: SolutionRegeneration
     solution: melee
     generated:
       reagents:
-      - ReagentId: Toxin
+      - ReagentId: CazadorVenom
         Quantity: 0.25
-      - ReagentId: ChloralHydrate
-        Quantity: 0.25
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 1.5
   - type: Butcherable
     spawned:
     - id: N14FoodMeatRadRaw

@@ -163,10 +163,17 @@ reagent-name-tea-fireantnectar = fire ant nectar
 reagent-desc-tea-fireantnectar = Crystalised nectar from a fire ant. Sugary.
 
 
-# Chems
+# Venoms
 reagent-name-firetoxin = fire toxin
 reagent-desc-firetoxin = The hot stuff from firey creatures.
 
+reagent-name-nightstalker-venom = nightstalker venom
+reagent-desc-nightstalker-venom = The venom of a nightstalker. While not nearly as potent as cazador venom, it can still knock you down to your knees.
+
+reagent-name-cazador-venom = cazador venom
+reagent-desc-cazador-venom = The venom of a cazador. Quick death is near guaranteed.
+
+# Chems
 reagent-name-healing-powder = healing powder
 reagent-desc-healing-powder = A powder made from crushed plants.
 
