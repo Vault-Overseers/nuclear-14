@@ -270,15 +270,45 @@
   color: "#e1f5f4"
   metabolisms:
     Medicine:
-      metabolismRate: 5 # Effectively 5 ticks per second
+      metabolismRate: 0.2 # Slow Acting
       effects:
       - !type:HealthChange
         damage:
           groups:
-            Airloss: -10 #TODO add detail to wake up a guy if found
+            Airloss: -5
+        conditions:
+          # they gotta be in crit first
+        - !type:MobStateCondition
+          mobstate: Critical
+        - !type:ReagentThreshold
+          min: 0
+          max: 20
+        damage:
+          types:
+            Asphyxiation: -3
+            Poison: -0.5
+          groups:
+            Brute: -0.5
+            Burn: -0.5
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        damage:
+          types:
+            Asphyxiation: 1
+            Poison: 1
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 0.75
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
+        time: 0.75
+        type: Remove
       - !type:Jitter
       - !type:ChemVomit
-        probability: 0.1
+        probability: 0.05
 
 - type: reagent
   id: HealingPoultice
