@@ -141,13 +141,6 @@ undecided-loadout-category-bos-default-description =
         For soldiers and laser lovers alike.
     Includes 1 laser rifle, 1 laser pistol, 3 MF cells, 2 MFC cells, 1 stimpak, 1 MRE
 
-undecided-loadout-category-bos-ranged-name = Brotherhood Ranged Issue Kit
-undecided-loadout-category-bos-ranged-description = 
-    A crate containing everything a member of Brotherhood might need.
-        For open range fights.
-    Includes 1 wattz 2000 rifle, 1 laser pistol, 3 Focused-MF cells, 2 MFC cells,
-     1 stimpak, 1 MRE
-
 undecided-loadout-category-bos-carbine-name = Brotherhood Carbine Issue Kit
 undecided-loadout-category-bos-carbine-description = 
     A crate containing everything a member of Brotherhood might need.
@@ -176,16 +169,23 @@ undecided-loadout-category-bos-scribe-engineer-description =
     Includes 1 AEP-7 laser pistol, 2 MFC cells, 1 utility belt,
      1 engineer scribe clothing, 1 fire-axe, 1 stimpak, 1 MRE
 
-undecided-loadout-category-bos-plasma-name = Brotherhood CO Plasma Kit
+undecided-loadout-category-bos-ranged-name = Brotherhood Ranged Paladin Kit
+undecided-loadout-category-bos-ranged-description = 
+    A crate containing everything a paladin of Brotherhood might need.
+        For open range fights.
+    Includes 1 wattz 2000 rifle, 1 laser pistol, 3 Focused-MF cells, 2 MFC cells,
+     1 stimpak, 1 MRE
+
+undecided-loadout-category-bos-plasma-name = Brotherhood Plasma Paladin Kit
 undecided-loadout-category-bos-plasma-description = 
-    A crate containing everything a leader of Brotherhood might need.
+    A crate containing everything a paladin of Brotherhood might need.
         For his plasma induced rage.
     Includes 1 plasma rifle, 1 plasma pistol, 4 plasma cartridges,
      1 stimpak, 1 MRE
 
-undecided-loadout-category-bos-ballistics-name = Brotherhood CO Assault Kit
+undecided-loadout-category-bos-ballistics-name = Brotherhood Assault Paladin Kit
 undecided-loadout-category-bos-ballistics-description = 
-    A crate containing everything a leader of Brotherhood might need.
+    A crate containing everything a paladin of Brotherhood might need.
         For his insane need of bullets downrange.
     Includes 1 assault rifle, 3 5.56 magazines, 1 12.7mm pistol,
      2 12.7mm pistol magazines, 5.56 ammo box, 1 stimpak, 1 MRE
