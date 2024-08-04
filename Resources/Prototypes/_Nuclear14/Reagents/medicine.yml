@@ -272,12 +272,13 @@
     Medicine:
       metabolismRate: 0.2 # Slow Acting
       effects:
-      - !type:HealthChange
+      - !type:HealthChange # Base Airloss fixing
         damage:
-          groups:
-            Airloss: -5
+          types:
+            Asphyxiation: -5
+            Cold: -2
+      - !type:HealthChange # Conditional Epinephrine-like bonus on unconscious
         conditions:
-          # they gotta be in crit first
         - !type:MobStateCondition
           mobstate: Critical
         - !type:ReagentThreshold
@@ -290,13 +291,13 @@
           groups:
             Brute: -0.5
             Burn: -0.5
-      - !type:HealthChange
+      - !type:HealthChange # 20u threshold
         conditions:
         - !type:ReagentThreshold
           min: 20
         damage:
           types:
-            Asphyxiation: 1
+            Asphyxiation: 3
             Poison: 1
       - !type:GenericStatusEffect
         key: Stun
