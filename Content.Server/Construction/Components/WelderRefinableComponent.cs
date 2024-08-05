@@ -1,5 +1,6 @@
 using Content.Shared.Tools;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared.Storage;
 
 namespace Content.Server.Construction.Components
 {
@@ -11,12 +12,12 @@ namespace Content.Server.Construction.Components
     public sealed partial class WelderRefinableComponent : Component
     {
         [DataField("refineResult")]
-        public HashSet<string>? RefineResult = new();
+        public List<EntitySpawnEntry>? RefineResult = new();
 
         [DataField("refineTime")]
         public float RefineTime = 2f;
 
-        [DataField("qualityNeeded", customTypeSerializer:typeof(PrototypeIdSerializer<ToolQualityPrototype>))]
+        [DataField("qualityNeeded", customTypeSerializer: typeof(PrototypeIdSerializer<ToolQualityPrototype>))]
         public string QualityNeeded = "Welding";
     }
 }
