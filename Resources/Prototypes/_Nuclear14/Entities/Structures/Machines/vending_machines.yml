@@ -67,10 +67,9 @@
     enabled: false
     usesApcPower: true
   - type: PointLight
-    enabled: false
-    castShadows: false
-    radius: 2
-    energy: 1.5
+    radius: 2.5
+    energy: 1
+    color: "#b34747"
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
   - type: LitOnPowered
@@ -95,14 +94,19 @@
   id: N14VendingMachineNukaCola
   name: Nuka-Cola machine
   description: A Pre-War vending machine that dispenses Nuka-Cola Corporation branded beverages. 
+  suffix: normal stock
   components:
   - type: VendingMachine
     pack: NukaInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
     offState: off
     brokenState: broken
     normalState: normal-unshaded
-    dispenseOnHitChance: 0.25
-    dispenseOnHitThreshold: 2
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 1.9
+    initialStockQuality: 0.05
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/VendingMachines/nukacola.rsi
     layers:
@@ -115,27 +119,47 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: WiresVisuals
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
+    radius: 2.5
+    energy: 1
     color: "#b34747"
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+
+- type: entity
+  parent: N14VendingMachineNukaCola
+  id: N14VendingMachineNukaColaGenerous
+  name: Nuka-Cola machine
+  description: A Pre-War vending machine that dispenses Nuka-Cola Corporation branded beverages. 
+  suffix: generous stock
+  components:
+  - type: VendingMachine
+    pack: NukaInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 1.9
+    initialStockQuality: 0.30
 
 - type: entity
   parent: N14VendingMachineNukaCola
   id: N14VendingMachineNukaColaIrradiated
   name: Nuka-Cola machine
-  suffix: irradiated
+  suffix: old, irradiated
   description: A Pre-War vending machine that dispenses Nuka-Cola Corporation branded beverages. 
   components:
   - type: VendingMachine
     pack: NukaRadInventory
     # Needs a run down variant of the sprite
 
-
 # vendors as storage type
 - type: entity
   parent: N14VendingMachineStorageBase
   id: N14VendingMachineNukaColaNew
-  suffix: storage, empty
+  suffix: old, storage, empty
   name: Nuka-Cola machine
   description: A Pre-War vending machine that dispenses Nuka-Cola Corporation branded beverages. 
   components:
@@ -150,10 +174,6 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: WiresVisuals
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#b34747"
   - type: Storage
     grid:
     - 0,0,3,3
@@ -171,7 +191,7 @@
 - type: entity
   parent: N14VendingMachineNukaColaNew
   id: N14VendingMachineNukaColaNewFilled
-  suffix: storage, random
+  suffix: old, storage, random
   components:
   - type: StorageFill
     contents:
@@ -201,7 +221,7 @@
         prob: 0.05
       - id: N14DrinkNukaColaWild
         prob: 0.05
-        
+
 - type: entity
   parent: N14VendingMachineStorageBase
   id: N14VendingMachineVim
@@ -213,10 +233,6 @@
     sprite: _Nuclear14/Structures/Machines/VendingMachines/vim.rsi
     layers:
     - state: vimmachine
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#b34747"
   - type: Storage
     grid:
     - 0,0,3,3
