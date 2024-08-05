@@ -1,10 +1,8 @@
 # Consider making our own base mob in future so we're resilient to upstream changes.
-
-# Base Hostile
 - type: entity
   name: wasteland animal
   abstract: true
-  id: N14MobBaseHostile
+  id: N14MobBaseSimple
   parent: SimpleMobBase
   description: It's a dirty wasteland animal. Watch out for it's bite, it could be infectious.
   components:
@@ -13,9 +11,6 @@
   - type: NpcFactionMember
     factions:
     - WastelandAnimal
-  - type: HTN
-    rootTask:
-      task: SimpleDumbHostileCompound # This replaced SimpleHostileCompound and means they don't dodge between attacks.
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -62,6 +57,58 @@
   - type: Bloodstream
     bloodMaxVolume: 50
     bloodReagent: WastelandBlood
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+  - type: Puller
+    needsHands: true
+  - type: Speech
+    speechSounds: Squeak
+
+# Base Hostile
+- type: entity
+  abstract: true
+  id: N14MobBaseHostile
+  parent: N14MobBaseSimple
+  description: It's a dirty wasteland animal. Watch out for it's bite, it could be infectious.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - WastelandAnimal
+  - type: HTN
+    rootTask:
+      task: SimpleDumbHostileCompound # This replaced SimpleHostileCompound and means they don't dodge between attacks.
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: bloatfly
+      sprite: _Nuclear14/Mobs/Insects/bloatfly.rsi # Replace this with a mob error or something
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      15: Dead
+  - type: Stamina
+    critThreshold: 15
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 1
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: WastelandBlood
   - type: CombatMode
   - type: MeleeWeapon
     hidden: true
@@ -84,13 +131,6 @@
     solution: melee
   - type: ReplacementAccent
     accent: genericAggressive
-  - type: Damageable
-    damageContainer: Biological
-    damageModifierSet: WastelandAnimal
-  - type: Puller
-    needsHands: true
-  - type: Speech
-    speechSounds: Squeak
 
 
 - type: entity

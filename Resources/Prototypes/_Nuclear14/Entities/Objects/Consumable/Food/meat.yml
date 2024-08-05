@@ -206,13 +206,14 @@
     defaultTarget: SteakCooked
     
 - type: entity
-  name: raw iguana bits
+  name: raw iguana
   parent: N14FoodMeatRadRaw
   id: N14FoodMeatIguana
-  description: morsels of a poor iguana.
+  description: poor iguana on a stick.
   components:
   - type: Sprite
-    state: morsels # replace with iguana on a stick
+    sprite: _Nuclear14/Mobs/Animals/iguana.rsi
+    state: iguanaonstick
   - type: Construction
     graph: MeatIguana
     node: start
@@ -225,6 +226,7 @@
   description: morsels of a poor squirrel.
   components:
   - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/meat.rsi
     state: morsels
   - type: Construction
     graph: MeatMorsels
@@ -293,8 +295,8 @@
     tags:
     - Cooked
   - type: Sprite
-    layers:
-    - state: morsels_roasted
+    sprite: _Nuclear14/Objects/Consumable/Food/meat.rsi
+    state: morsels_roasted
   - type: SolutionContainerManager
     solutions:
       food:
@@ -433,14 +435,14 @@
     defaultTarget: SteakCooked
     
 - type: entity
-  name: cooked iguana bits
+  name: cooked iguana
   parent: N14FoodMeatCooked
   id: N14FoodMeatIguanaCooked
-  description: Cooked, pulled iguana meat.
+  description: Cooked iguana on a stick.
   components:
   - type: Sprite
-    layers:
-    - state: morsels_roasted
+    sprite: _Nuclear14/Mobs/Animals/iguana.rsi
+    state: iguanaroasted
   - type: SolutionContainerManager
     solutions:
       food:
@@ -463,8 +465,7 @@
   description: Cooked, meager squirrel meat.
   components:
   - type: Sprite
-    layers:
-    - state: morsels_roasted
+    state: morsels_roasted
   - type: SolutionContainerManager
     solutions:
       food:

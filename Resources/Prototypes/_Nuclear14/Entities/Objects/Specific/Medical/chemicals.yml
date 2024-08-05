@@ -274,6 +274,31 @@
 
 - type: entity
   parent: N14ChemicalSyringe
+  id: N14Hydra
+  name: hydra
+  description: A bottle of Supa Yum soda with several vials attached to it. Contains a mildly potent healing chemical that comes with side effects.
+  components:
+  - type: Sprite
+    layers:
+    - state: hydra
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: hydra0
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 15
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Hydra
+          Quantity: 15
+
+- type: entity
+  parent: N14ChemicalSyringe
   id: N14Psycho
   name: psycho
   description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin.
@@ -641,13 +666,15 @@
 
 - type: entity
   parent: N14HealingPowder
-  id: N14Traumapack
+  id: N14Traumapack #TODO: N14Traumapack needs new sound
   name: traumapack
   description: A backpack filled with a blend of healing chemicals that inject automatically upon the wearer being hurt.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     state: traumapack
+  - type: Item
+    size: Normal
   - type: SolutionContainerManager
     solutions:
       food:

@@ -294,6 +294,24 @@
         probability: 0.1
 
 - type: reagent
+  id: ExtractFungus
+  name: reagent-name-extract-fungus
+  group: Toxins
+  desc: reagent-desc-extract-fungus
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#4eff3b"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.2
+            Radiation: 0.1
+      - !type:ChemVomit
+        probability: 0.1
+
+- type: reagent
   id: ExtractFungusRad
   name: reagent-name-extract-fungusrad
   group: Toxins

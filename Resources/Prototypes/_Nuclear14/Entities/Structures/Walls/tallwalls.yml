@@ -1,119 +1,140 @@
 - type: entity
   parent: BaseWall
+  id: N14BaseWallTall
+  suffix: tall
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+  - type: SpriteFade
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Rock
+    
+- type: entity
+  parent: N14BaseWallTall
+  id: N14BaseWallTallMetalWeak
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: PerforatedMetallic
+    
+- type: entity
+  parent: N14BaseWallTall
+  id: N14BaseWallTallMetal
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StructuralMetallic
+    
+- type: entity
+  parent: N14BaseWallTall
+  id: N14BaseWallTallMetalStrong
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: RadiationBlocker
+    resistance: 10
+    
+- type: entity
+  parent: N14BaseWallTall
+  id: N14BaseWallTallWood
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+
+- type: entity
+  parent: N14BaseWallTall
   id: N14WallAdobeTall
   name: adobe wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/adobe.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/adobe.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Rock
   - type: IconSmooth
     key: walls
     base: talladobe
 
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTall
   id: N14WallBrickTall
   name: brick wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/brick.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/brick.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Rock
   - type: IconSmooth
     key: walls
     base: tallbrick
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTall
   id: N14WallBrickAltTall
   name: brick wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/brickalt.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/brickalt.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: FlimsyMetallic
   - type: IconSmooth
     key: walls
     base: tallbrickalt
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTall
   id: N14WallBrickGrayTall
   name: brick wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/brickgray.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/brickgray.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: FlimsyMetallic
   - type: IconSmooth
     key: walls
     base: tallbrickgray
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetalStrong
   id: N14WallBunkerTall
   name: bunker wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/bunker.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/bunker.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: StrongMetallic
   - type: IconSmooth
     key: walls
     base: tallbunker
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTall
   id: N14WallCombTall
   name: comb wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/comb.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/comb.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Rock
   - type: IconSmooth
     key: walls
     base: tallcomb
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTall
   id: N14WallConcreteTall
   name: concrete wall
   suffix: tall
@@ -132,533 +153,409 @@
     base: tallconcrete
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTall
   id: N14WallConcreteAltTall
   name: concrete wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/concretealt.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/concretealt.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Rock
   - type: IconSmooth
     key: walls
     base: tallconcretealt
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTall
   id: N14WallDungeonTall
   name: dungeon wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/dungeon.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/dungeon.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: StrongMetallic
   - type: IconSmooth
     key: walls
     base: talldungeon
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTall
   id: N14WallDungeonAltTall
   name: dungeon wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/dungeonalt.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/dungeonalt.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: StrongMetallic
   - type: IconSmooth
     key: walls
     base: talldungeonalt
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetal
   id: N14WallMetalTall
   name: metal wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/metal.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/metal.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
   - type: IconSmooth
     key: walls
     base: tallmetal
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetal
   id: N14WallPrisonTall
   name: prison wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/prison.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/prison.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Rock
   - type: IconSmooth
     key: walls
     base: tallprison
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetal
   id: N14WallReinfMetalTall
   name: reinforced metal wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/reinfmetal.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/reinfmetal.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: StrongMetallic
   - type: IconSmooth
     key: walls
     base: tallreinfmetal
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTall
   id: N14WallRockTall
   name: rock wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rock.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rock.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Rock
   - type: IconSmooth
     key: walls
     base: tallrock
+  - type: SoundOnGather
+  - type: Gatherable
+    whitelist:
+      tags:
+        - Pickaxe
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
     
 - type: entity
-  parent: BaseWall
+  parent: N14WallRockTall
   id: N14WallRockDroughtTall
   name: drought rock wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rockdrought.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rockdrought.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Rock
   - type: IconSmooth
     key: walls
     base: tallrockdrought
     
 - type: entity
-  parent: BaseWall
+  parent: N14WallRockTall
   id: N14WallRockMammothTall
   name: mammoth rock wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rockmammoth.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rockmammoth.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Rock
   - type: IconSmooth
     key: walls
     base: tallrockmammoth
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetalWeak
   id: N14WallRoughScrapTall
   name: rough scrap wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/roughscrap.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/roughscrap.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Rock
   - type: IconSmooth
     key: walls
     base: tallroughscrap
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetal
   id: N14WallIndustrialRustTall
   name: industrial rust wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rustindustrial.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rustindustrial.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
   - type: IconSmooth
     key: walls
     base: tallrustindustrial
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetal
   id: N14WallMetalRustTall
   name: metal rust wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rustmetal.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rustmetal.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
   - type: IconSmooth
     key: walls
     base: tallrustmetal
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetal
   id: N14WallReinfMetalRustTall
   name: reinforced metal rust wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rustreinfmetal.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rustreinfmetal.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
   - type: IconSmooth
     key: walls
     base: tallrustreinfmetal
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetalStrong
   id: N14WallVaultRustTall
   name: vault rust wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rustvault.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rustvault.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
   - type: IconSmooth
     key: walls
     base: tallrustvault
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetal
   id: N14WallVaultVentsRustTall
   name: vault vents rust wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rustvaultvent.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/rustvaultvent.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
   - type: IconSmooth
     key: walls
     base: tallrustvaultvent
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetalWeak
   id: N14WallScrapTall
   name: scrap wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/scrap.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/scrap.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
   - type: IconSmooth
     key: walls
     base: tallscrap
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetalWeak
   id: N14WallScrapBlueTall
   name: blue scrap wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/scrapblue.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/scrapblue.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
   - type: IconSmooth
     key: walls
     base: tallscrapblue
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetalWeak
   id: N14WallScrapRedTall
   name: red scrap wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/scrapred.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/scrapred.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
   - type: IconSmooth
     key: walls
     base: tallscrapred
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetalWeak
   id: N14WallScrapWhiteTall
   name: white scrap wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/scrapwhite.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/scrapwhite.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
   - type: IconSmooth
     key: walls
     base: tallscrapwhite
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetal
   id: N14WallSewerTall
   name: sewer wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/sewer.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/sewer.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
   - type: IconSmooth
     key: walls
     base: tallsewer
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallWood
   id: N14WallSidingTall
   name: siding wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/siding.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/siding.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Wood
   - type: IconSmooth
     key: walls
     base: tallsiding
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallWood
   id: N14WallSidingBlueTall
   name: blue siding wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/sidingblue.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/sidingblue.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Wood
   - type: IconSmooth
     key: walls
     base: tallsidingblue
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallWood
   id: N14WallSidingRedTall
   name: red siding wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/sidingred.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/sidingred.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Wood
   - type: IconSmooth
     key: walls
     base: tallsidingred
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallWood
   id: N14WallSidingGreenTall
   name: green siding wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/sidinggreen.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/sidinggreen.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Wood
   - type: IconSmooth
     key: walls
     base: tallsidinggreen
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetalStrong
   id: N14WallVaultTall
   name: vault wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/vault.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/vault.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: StrongMetallic
   - type: IconSmooth
     key: walls
     base: tallvault
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallMetal
   id: N14WallVaultVentTall
   name: vault vent wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/vaultvent.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/vaultvent.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: StrongMetallic
   - type: IconSmooth
     key: walls
     base: tallvaultvent
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallWood
   id: N14WallWoodTall
   name: wood wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/wood.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/wood.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Wood
   - type: IconSmooth
     key: walls
     base: tallwood
     
 - type: entity
-  parent: BaseWall
+  parent: N14BaseWallTallWood
   id: N14WallWoodAltTall
   name: wood wall
   suffix: tall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/tall/woodalt.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/tall/woodalt.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Wood
   - type: IconSmooth
     key: walls
     base: tallwoodalt
