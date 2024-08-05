@@ -65,11 +65,11 @@ public sealed class GunSpreadOverlay : Overlay
         Angle currentAngle;
         if (_entManager.TryGetComponent<SpecialComponent>(player, out var special))
         {
-            maxSpread += Angle.FromDegrees((40f - special.TotalPerception * 5));
-            minSpread += Angle.FromDegrees((10f - special.TotalPerception));
+            maxSpread += Angle.FromDegrees((10f - special.TotalPerception*2));
+            minSpread += Angle.FromDegrees((10f - special.TotalPerception*2));
             maxSpread *= 1.5 - special.TotalPerception / 10;
             minSpread *= 1.5 - special.TotalPerception / 10;
-            decay += Angle.FromDegrees((special.TotalPerception - 10f) / 5);
+            decay += Angle.FromDegrees((special.TotalPerception - 5f) / 5);
 
             currentAngle = new Angle(MathHelper.Clamp(gun.CurrentAngle.Theta - decay.Theta * timeSinceLastFire,
             minSpread.Theta, maxSpread.Theta));

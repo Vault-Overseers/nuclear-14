@@ -1,0 +1,51 @@
+# See Computers.yml
+- type: entity
+  parent: [ SignalButton, N14ComputerTerminalWallControls ]
+  id: N14ControlTerminalButton # See Computers.yml
+  suffix: button
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Machines/Terminals/terminal_classic.rsi
+    state: computer
+    drawdepth: Overdoors
+  - type: WirelessNetworkConnection
+    range: 15
+
+- type: entity
+  parent: N14ControlTerminalButton
+  id: N14ControlTerminalVault
+  suffix: vault door
+  components:
+  - type: AutoLinkTransmitter
+    channel: Vaultdoor
+    
+# Vault Door Controller
+- type: entity
+  parent: N14ControlTerminalButton
+  id: N14DoorVaultControls
+  name: Vault Door Controls
+  description: A handy control panel for opening the vault door.
+  components:
+  - type: AutoLinkTransmitter
+    channel: Vaultdoor
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Machines/vaultdoor_controls.rsi
+    layers:
+    - state: on
+    - state: overlay_off
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    offset: 0, 0
+    
+- type: entity
+  parent: N14DoorVaultControls
+  id: N14DoorVaultControlsLocked
+  suffix: overseer locked
+  components:
+  - type: AutoLinkTransmitter
+    channel: Vaultdoor
+  - type: Appearance
+  - type: Lock
+  - type: LockVisuals
+  - type: AccessReader
+    access: [["VaultOverseer"]]

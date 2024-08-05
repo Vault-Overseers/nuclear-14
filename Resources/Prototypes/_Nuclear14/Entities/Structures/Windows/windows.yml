@@ -336,16 +336,1039 @@
 ## Tall windows
 - type: entity
   parent: N14WindowBaseAirtight
-  id: N14WindowBrickTall
-  name: window
-  suffix: basic
+  id: N14WindowTallBase
+  abstract: true
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Windows/tallwindows.rsi
+    sprite: _Nuclear14/Structures/Windows/tallwallwindows.rsi
     noRot: true
-    layers:
-      - state: brick
-      - state: basic
+    drawdepth: Overdoors
   - type: Icon
-    sprite: _Nuclear14/Structures/Windows/tallwindows.rsi
+    sprite: _Nuclear14/Structures/Windows/tallwallwindows.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowBrickTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Appearance
+  - type: PlacementReplacement
+    key: walls
+  
+- type: entity
+  parent: BaseStructure
+  id: N14WindowTallBrokenBase
+  abstract: true
+  name: broken window
+  description: A broken window. Don't cut yourself!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Windows/tallwallwindows.rsi
+    noRot: true
+    drawdepth: Walls
+  - type: Icon
+    sprite: _Nuclear14/Structures/Windows/tallwallwindows.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      # - !type:PlaySoundBehavior
+        # sound:
+          # collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Appearance
+  - type: PlacementReplacement
+    key: walls
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+        density: 1000
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
+  - type: Climbable
+  - type: Sharp # not sure this is needed
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 2
+  - type: StepTrigger
+    intersectRatio: 0.2
+    requiredTriggeredSpeed: 0
+  - type: TriggerOnStepTrigger
+  - type: DamageUserOnTrigger
+    damage:
+      types:
+        Piercing: 5
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+  - type: CollisionWake # not sure this is needed
+    enabled: false
+  - type: Slippery
+    slipSound:
+      path: /Audio/Effects/fence_rattle1.ogg
+    launchForwardsMultiplier: 0
+    paralyzeTime: 0
+  
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowBrickTall
+  suffix: brick
+  components:
+  - type: Sprite
     state: brick
+    drawdepth: Overdoors
+  - type: Icon
+    state: brick
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowBrickTallBroken
+  suffix: brick broken
+  components:
+  - type: Sprite
+    state: brickbroken
+  - type: Icon
+    state: brickbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowBrickTallAlt
+  suffix: brick alt
+  components:
+  - type: Sprite
+    state: brickalt
+  - type: Icon
+    state: brickalt
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowBrickTallAltBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowBrickTallAltBroken
+  suffix: brick alt broken
+  components:
+  - type: Sprite
+    state: brickaltbroken
+  - type: Icon
+    state: brickaltbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowBrickGrayTall
+  suffix:  brick gray
+  components:
+  - type: Sprite
+    state: brickgray
+  - type: Icon
+    state: brickgray
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowBrickGrayTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowBrickGrayTallBroken
+  suffix: brick gray broken
+  components:
+  - type: Sprite
+    state: brickgraybroken
+  - type: Icon
+    state: brickgraybroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowConcreteTall
+  suffix: concrete
+  components:
+  - type: Sprite
+    state: concrete
+  - type: Icon
+    state: concrete
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowConcreteTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowConcreteTallBroken
+  suffix: concrete broken
+  components:
+  - type: Sprite
+    state: concretebroken
+  - type: Icon
+    state: concretebroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowConcreteTallAlt
+  suffix: concrete alt
+  components:
+  - type: Sprite
+    state: concretealt
+  - type: Icon
+    state: concretealt
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowConcreteTallAltBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowConcreteTallAltBroken
+  suffix: concrete alt broken
+  components:
+  - type: Sprite
+    state: concretealtbroken
+  - type: Icon
+    state: concretealtbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowDungeonTall
+  suffix: dungeon
+  components:
+  - type: Sprite
+    state: dungeon
+  - type: Icon
+    state: dungeon
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowDungeonTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowDungeonTallBroken
+  suffix: dungeon broken
+  components:
+  - type: Sprite
+    state: dungeonbroken
+  - type: Icon
+    state: dungeonbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowDungeonTallAlt
+  suffix: dungeon alt
+  components:
+  - type: Sprite
+    state: dungeonalt
+  - type: Icon
+    state: dungeonalt
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowDungeonTallAltBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowDungeonTallAltBroken
+  suffix: dungeon alt broken
+  components:
+  - type: Sprite
+    state: dungeonaltbroken
+  - type: Icon
+    state: dungeonaltbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowMetalTall
+  suffix: metal
+  components:
+  - type: Sprite
+    state: metal
+  - type: Icon
+    state: metal
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowMetalTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowMetalTallBroken
+  suffix: metal broken
+  components:
+  - type: Sprite
+    state: metalbroken
+  - type: Icon
+    state: metalbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowMetalReinforcedTall
+  suffix: metal reinforced
+  components:
+  - type: Sprite
+    state: reinfmetal
+  - type: Icon
+    state: reinfmetal
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowMetalReinforcedTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowMetalReinforcedTallBroken
+  suffix: metal reinforced broken
+  components:
+  - type: Sprite
+    state: reinfmetalbroken
+  - type: Icon
+    state: reinfmetalbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowScrapTall
+  suffix: scrap
+  components:
+  - type: Sprite
+    state: scrap
+  - type: Icon
+    state: scrap
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowScrapTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowScrapTallBroken
+  suffix: scrap broken
+  components:
+  - type: Sprite
+    state: scrapbroken
+  - type: Icon
+    state: scrapbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowScrapBlueTall
+  suffix: scrap blue
+  components:
+  - type: Sprite
+    state: scrapblue
+  - type: Icon
+    state: scrapblue
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowScrapBlueTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowScrapBlueTallBroken
+  suffix: scrap blue broken
+  components:
+  - type: Sprite
+    state: scrapbluebroken
+  - type: Icon
+    state: scrapbluebroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowScrapRedTall
+  suffix: scrap red
+  components:
+  - type: Sprite
+    state: scrapred
+  - type: Icon
+    state: scrapred
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowScrapRedTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowScrapRedTallBroken
+  suffix: scrap red broken
+  components:
+  - type: Sprite
+    state: scrapredbroken
+  - type: Icon
+    state: scrapredbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowScrapWhiteTall
+  suffix: scrap white
+  components:
+  - type: Sprite
+    state: scrapwhite
+  - type: Icon
+    state: scrapwhite
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowScrapWhiteTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowScrapWhiteTallBroken
+  suffix: scrap white broken
+  components:
+  - type: Sprite
+    state: scrapwhitebroken
+  - type: Icon
+    state: scrapwhitebroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowSidingTall
+  suffix: siding
+  components:
+  - type: Sprite
+    state: siding
+  - type: Icon
+    state: siding
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowSidingTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowSidingTallBroken
+  suffix: siding broken
+  components:
+  - type: Sprite
+    state: sidingbroken
+  - type: Icon
+    state: sidingbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowSidingBlueTall
+  suffix: siding blue
+  components:
+  - type: Sprite
+    state: sidingblue
+  - type: Icon
+    state: sidingblue
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowSidingBlueTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowSidingBlueTallBroken
+  suffix: siding blue broken
+  components:
+  - type: Sprite
+    state: sidingbluebroken
+  - type: Icon
+    state: sidingbluebroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowSidingGreenTall
+  suffix: siding green
+  components:
+  - type: Sprite
+    state: sidinggreen
+  - type: Icon
+    state: sidinggreen
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowSidingGreenTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowSidingGreenTallBroken
+  suffix: siding green broken
+  components:
+  - type: Sprite
+    state: sidinggreenbroken
+  - type: Icon
+    state: sidinggreenbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowSidingRedTall
+  suffix: siding red
+  components:
+  - type: Sprite
+    state: sidingred
+  - type: Icon
+    state: sidingred
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowSidingRedTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowSidingRedTallBroken
+  suffix: siding red broken
+  components:
+  - type: Sprite
+    state: sidingredbroken
+  - type: Icon
+    state: sidingredbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowVaultTall
+  suffix: vault
+  components:
+  - type: Sprite
+    state: vault
+  - type: Icon
+    state: vault
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowVaultTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowVaultTallBroken
+  suffix: vault broken
+  components:
+  - type: Sprite
+    state: vaultbroken
+  - type: Icon
+    state: vaultbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowWoodTall
+  suffix: wood
+  components:
+  - type: Sprite
+    state: wood
+  - type: Icon
+    state: wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowWoodTallBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowWoodTallBroken
+  suffix: wood broken
+  components:
+  - type: Sprite
+    state: woodbroken
+  - type: Icon
+    state: woodbroken
+    
+- type: entity
+  parent: N14WindowTallBase
+  id: N14WindowWoodTallAlt
+  suffix: wood alt
+  components:
+  - type: Sprite
+    state: woodalt
+  - type: Icon
+    state: woodalt
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14WindowWoodTallAltBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    
+- type: entity
+  parent: N14WindowTallBrokenBase
+  id: N14WindowWoodTallAltBroken
+  suffix: wood walt broken
+  components:
+  - type: Sprite
+    state: woodaltbroken
+  - type: Icon
+    state: woodaltbroken

@@ -1,44 +1,200 @@
 - type: entity
-  parent: BaseWeaponTurret
+  parent: BaseStructure
+  id: N14WeaponTurretBroken
+  name: ballistic turret
+  suffix: broken
+  description: A ballistic machine gun auto-turret.
+  components:
+    - type: Sprite
+      sprite: _Nuclear14/Structures/Machines/turrets.rsi
+      drawdepth: Mobs
+      state: turret_broken
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 450
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 2
+                  max: 4
+        
+- type: entity
+  parent: N14WeaponTurretBroken
+  id: N14WeaponTurretMobileBroken
+  components:
+    - type: Sprite
+      sprite: _Nuclear14/Structures/Machines/turrets.rsi
+      state: turret_stand_broken
+
+- type: entity
+  parent: BaseStructure
+  id: N14BaseWeaponTurret
+  name: ballistic turret
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _Nuclear14/Structures/Machines/turrets.rsi
+      drawdepth: Mobs
+      state: turret_lethal
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Actions
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 60
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+    - type: InteractionPopup
+      interactDelay: 0.2
+      successChance: 0.8
+      interactSuccessString: petting-success-generic
+      interactFailureString: petting-failure-generic
+      interactSuccessSound:
+        path: /Audio/Effects/double_beep.ogg
+    - type: CombatMode
+      toggleMouseRotator: false
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 600
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 300
+          # TODO: Construction graph
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 3
+                  max: 5
+    - type: Gun
+      fireRate: 6
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    # TODO: Power ammo provider?
+    - type: BallisticAmmoProvider
+      proto: CartridgeCaselessRifle
+      capacity: 500
+    - type: HTN
+      rootTask:
+        task: TurretCompound
+      blackboard:
+        RotateSpeed: !type:Single
+          3.141
+        SoundTargetInLOS: !type:SoundPathSpecifier
+          path: /Audio/Effects/double_beep.ogg
+    - type: MouseRotator
+      angleTolerance: 5
+      rotationSpeed: 180
+      simple4DirMode: false
+    - type: NoRotateOnInteract
+    - type: NoRotateOnMove
+    - type: Input
+      context: "human"
+
+- type: entity
+  parent: N14BaseWeaponTurret
   id: N14WeaponTurretBrotherhoodMidwestSecureArea
   suffix: BOS Midwest, Hostile
   components:
   - type: NpcFactionMember
     factions:
     - BrotherhoodMidwestSecureArea
-    
+
 - type: entity
-  parent: BaseWeaponTurret
+  parent: N14BaseWeaponTurret
   id: N14WeaponTurretBrotherhoodMidwest
   suffix: BOS Midwest
   components:
   - type: NpcFactionMember
     factions:
     - BrotherhoodMidwest
-        
+
 - type: entity
-  parent: BaseWeaponTurret
+  parent: N14BaseWeaponTurret
   id: N14WeaponTurretBrotherhoodWashingtonSecureArea
   suffix: BOS Washington, Hostile
   components:
   - type: NpcFactionMember
     factions:
     - BrotherhoodWashingtonSecureArea
-    
+
 - type: entity
-  parent: BaseWeaponTurret
+  parent: N14BaseWeaponTurret
   id: N14WeaponTurretBrotherhoodWashington
   suffix: BOS Washington
   components:
   - type: NpcFactionMember
     factions:
     - BrotherhoodWashington
-    
+
 - type: entity
   parent: BaseWeaponTurret
+  id: N14WeaponTurretVaultSecureArea
+  suffix: VaultSecureArea, Hostile
+  components:
+  - type: NpcFactionMember
+    factions:
+    - VaultSecureArea
+
+- type: entity
+  parent: N14BaseWeaponTurret
   id: N14WeaponTurretVault
   suffix: Vault, Hostile
   components:
   - type: NpcFactionMember
     factions:
     - Vault
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: N14WeaponTurretNCRSecureArea
+  suffix: NCRSecureArea, Hostile
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NCRSecureArea
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: N14WeaponTurretNCR
+  suffix: NCR, Hostile
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NCR
+

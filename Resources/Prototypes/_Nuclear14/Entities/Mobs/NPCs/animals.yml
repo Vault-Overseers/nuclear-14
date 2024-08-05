@@ -205,9 +205,12 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: nightstalker
       sprite: _Nuclear14/Mobs/Animals/nightstalkercub.rsi
+  - type: Bloodstream
+    bloodMaxVolume: 30
+    bloodReagent: WastelandBlood
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 4
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 4.5
   - type: Fixtures
     fixtures:
       fix1:
@@ -219,16 +222,22 @@
         - MobMask
         layer:
         - MobLayer
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Critical
+      - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Dead
+      100: Critical
+      150: Dead
   - type: DamageStateVisuals
     states:
       Alive:
         Base: nightstalker
       Critical:
-        Base: nightstalker
+        Base: dead
       Dead:
         Base: dead
   - type: MeleeWeapon
@@ -261,9 +270,12 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: nightstalker-1
       sprite: _Nuclear14/Mobs/Animals/nightstalker.rsi
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: WastelandBlood
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 4
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 5
   - type: Fixtures
     fixtures:
       fix1:
@@ -275,10 +287,16 @@
         - MobMask
         layer:
         - MobLayer
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Critical
+      - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Dead
+      150: Critical
+      200: Dead
   - type: Butcherable
     spawned:
     - id: N14MaterialNightstalkerPelt
@@ -288,7 +306,7 @@
       Alive:
         Base: nightstalker-1
       Critical:
-        Base: nightstalker-1
+        Base: dead
       Dead:
         Base: dead
   - type: MeleeWeapon
@@ -421,10 +439,16 @@
         - MobMask
         layer:
         - MobLayer
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Critical
+      - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
-      500: Dead
+      500: Critical
+      600: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       250: 0.7
@@ -440,7 +464,7 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     angle: 0
     animation: WeaponArcClaw
     damage:
@@ -505,7 +529,7 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     angle: 0
     animation: WeaponArcClaw
     damage:
@@ -515,13 +539,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      750: Dead
+      750: Critical
+      900: Dead
   - type: DamageStateVisuals
     states:
       Alive:
         Base: deathclaw
       Critical:
-        Base: deathclaw # TODO: Crit sprite
+        Base: dead # TODO: Crit sprite
       Dead:
         Base: dead
 
@@ -563,17 +588,13 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     angle: 0
     animation: WeaponArcClaw
     damage:
       types:
         Slash: 20
         Structural: 10
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      750: Dead
 
 # Passive Animals
 - type: entity
@@ -778,3 +799,49 @@
   - type: EggLayer
     eggSpawn:
     - id: N14FoodEggChicken
+
+- type: entity
+  parent: N14MobBaseSimple
+  id: N14MobIguana
+  name: iguana
+  description: Little green food...I mean friend.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: iguana
+      sprite: _Nuclear14/Mobs/Animals/iguana.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: iguana
+      Dead:
+        Base: dead
+  # - type: Butcherable
+    # spawned:
+    # - id: N14FoodMeatRadchicken
+      # amount: 1
+      # prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+  # - type: Reproductive
+    # breedChance: 0.05
+    # birthPopup: reproductive-laid-egg-popup
+    # makeOffspringInfant: false
+    # partnerWhitelist:
+      # tags:
+      # - Chicken
+    # offspring:
+    # - id: N14FoodEggChickenFertilized
+      # maxAmount: 3
+  # - type: ReproductivePartner
+  # - type: EggLayer
+    # eggSpawn:
+    # - id: N14FoodEggChicken
+  - type: Item
+    size: Small
+  - type: HTN
+    rootTask:
+      task: MouseCompound
