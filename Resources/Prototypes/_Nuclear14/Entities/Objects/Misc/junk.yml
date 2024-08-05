@@ -184,6 +184,9 @@
   - type: Sprite
     state: 8_ball
     scale: 0.5, 0.5
+  - type: WelderRefinable
+    refineResult:
+    - SheetPlastic1
 
 - type: entity
   parent: N14Junk8Ball
@@ -202,6 +205,12 @@
   components:
   - type: Sprite
     state: coffeepot
+  - type: WelderRefinable
+    refineResult:
+    - SheetSteel2
+    - SheetPlastic1
+    
+
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -216,6 +225,10 @@
     - JunkItem
     - Trash
     - CookPot
+  - type: WelderRefinable
+    refineResult:
+    - SheetSteel2
+
 
 - type: entity
   parent: N14JunkItemBaseWood
@@ -225,6 +238,12 @@
   components:
   - type: Sprite
     state: crutch
+ - type: WelderRefinable
+    refineResult:
+    - MaterialWoodPlank2
+    - N14JunkComponentScrew1
+    qualityNeeded:  “Screwing”
+
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -248,9 +267,11 @@
   components:
   - type: Sprite
     state: iron
-  - type: WelderRefinable
+ - type: WelderRefinable
     refineResult:
-    - SheetSteel1
+    - SheetSteel2
+    - SheetPlastic1
+    
 
 - type: entity
   parent: [ N14JunkItemBaseAluminum , BoxCardboard ]
@@ -343,6 +364,10 @@
   components:
   - type: Sprite
     state: teapot
+ - type: WelderRefinable
+    refineResult:
+    - SheetSteel2
+       
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -352,6 +377,13 @@
   components:
   - type: Sprite
     state: timer
+- type: WelderRefinable
+    refineResult:
+    - SheetSteel1
+    - SheetPlastic2
+    - N14JunkComponentGearSmall
+    qualityNeeded:  “Screwing”
+
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -363,13 +395,16 @@
     state: tincan
 
 - type: entity
-  parent: N14JunkItemBaseAluminum
+  parent: N14JunkItemBaseMetal
   id: N14JunkToaster
   name: toaster
   description: A pre-war toaster. Insert bread.
   components:
   - type: Sprite
     state: toaster
+ - type: WelderRefinable
+    refineResult:
+    - SheetSteel2
 
 - type: entity
   parent: N14JunkItemBaseLead
@@ -379,6 +414,9 @@
   components:
   - type: Sprite
     state: toy_Nuka_truck
+  - type: WelderRefinable
+    refineResult:
+    - IngotLead2
 
 - type: entity
   parent: N14JunkItemBaseLead
@@ -388,6 +426,9 @@
   components:
   - type: Sprite
     state: toy_race_car
+  - type: WelderRefinable
+    refineResult:
+    - IngotLead1
 
 - type: entity
   parent: N14JunkItemBaseContainer
@@ -612,6 +653,12 @@
   components:
   - type: Sprite
     state: board_1
+- type: WelderRefinable
+    refineResult:
+    - N14MaterialCircuitry1
+    - SheetPlastic2
+    - IngotLead1
+    qualityNeeded:  “Cutting”
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -621,6 +668,12 @@
   components:
   - type: Sprite
     state: board_2
+- type: WelderRefinable
+    refineResult:
+    - N14MaterialCircuitry1
+    - SheetPlastic2
+    - IngotLead1
+    qualityNeeded:  “Cutting”
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -630,6 +683,12 @@
   components:
   - type: Sprite
     state: board_3
+- type: WelderRefinable
+    refineResult:
+    - N14MaterialCircuitry1
+    - SheetPlastic2
+    - IngotLead1
+    qualityNeeded:  “Cutting”
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -639,6 +698,9 @@
   components:
   - type: Sprite
     state: bulb_1
+- type: WelderRefinable
+    refineResult:
+    - SheetGlass1
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -648,6 +710,9 @@
   components:
   - type: Sprite
     state: bulb_2
+- type: WelderRefinable
+    refineResult:
+    - SheetGlass2
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -657,6 +722,9 @@
   components:
   - type: Sprite
     state: bulb_3
+- type: WelderRefinable
+    refineResult:
+    - SheetGlass3
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -666,6 +734,9 @@
   components:
   - type: Sprite
     state: buzzer
+ - type: WelderRefinable
+    refineResult:
+    - SheetSteel1
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -675,6 +746,11 @@
   components:
   - type: Sprite
     state: capacitor_1
+- type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+    - N14MaterialCircuitry1
+    - IngotAluminum1
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -684,6 +760,10 @@
   components:
   - type: Sprite
     state: capacitor_2
+- type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+    - N14MaterialCircuitry1
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -693,6 +773,12 @@
   components:
   - type: Sprite
     state: capacitor_3
+ - type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+    - N14MaterialCircuitry1
+    - N14Paper1
+    qualityNeeded:  “Cutting”
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -702,6 +788,11 @@
   components:
   - type: Sprite
     state: diode_1
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass3
+    - N14MaterialCircuitry1
+
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -711,6 +802,11 @@
   components:
   - type: Sprite
     state: diode_2
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+    - N14MaterialCircuitry2
+
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -720,6 +816,11 @@
   components:
   - type: Sprite
     state: diode_3
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+    - N14MaterialCircuitry1
+
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -729,6 +830,13 @@
   components:
   - type: Sprite
     state: frame
+  - type: WelderRefinable
+    refineResult:
+    - SheetPlastic2
+    - N14MaterialCircuitry1
+    - IngotLead1
+    qualityNeeded:  “Cutting”
+
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -738,6 +846,11 @@
   components:
   - type: Sprite
     state: fuse_1
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass2
+    - N14MaterialCircuitry1
+
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -747,6 +860,11 @@
   components:
   - type: Sprite
     state: fuse_1
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+    - N14MaterialCircuitry1
+
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -761,6 +879,9 @@
     - JunkItem
     - Trash
     - Gear
+ - type: WelderRefinable
+    refineResult:
+    - SheetSteel2
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -775,6 +896,9 @@
     - JunkItem
     - Trash
     - Gear
+ - type: WelderRefinable
+    refineResult:
+    - SheetSteel1
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -784,6 +908,10 @@
   components:
   - type: Sprite
     state: igniter
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+    - N14MaterialCircuitry1
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -793,6 +921,10 @@
   components:
   - type: Sprite
     state: resistor_1
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+    - N14MaterialCircuitry1
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -802,6 +934,10 @@
   components:
   - type: Sprite
     state: resistor_2
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass2
+    - N14MaterialCircuitry1
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -811,6 +947,10 @@
   components:
   - type: Sprite
     state: resistor_3
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass3
+    - N14MaterialCircuitry1
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -825,6 +965,10 @@
     - JunkItem
     - Trash
     - Screw
+ - type: WelderRefinable
+    refineResult:
+    - SheetSteel1
+
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -834,6 +978,13 @@
   components:
   - type: Sprite
     state: sensor
+  - type: WelderRefinable
+    refineResult:
+    - SheetPlastic2
+    - N14MaterialCircuitry2
+    - IngotLead2
+    qualityNeeded:  “Cutting”
+
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -843,6 +994,11 @@
   components:
   - type: Sprite
     state: sensor_module
+  - type: WelderRefinable
+    refineResult:
+    - SheetPlastic3
+    - N14MaterialCircuitry2
+    - IngotLead2
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -852,6 +1008,11 @@
   components:
   - type: Sprite
     state: switch_1
+  - type: WelderRefinable
+    refineResult:
+    - SheetPlastic1
+    - N14MaterialCircuitry1
+    - IngotLead1
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -861,6 +1022,11 @@
   components:
   - type: Sprite
     state: transistor_1
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+    - N14MaterialCircuitry1
+    - IngotLead1
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -870,6 +1036,11 @@
   components:
   - type: Sprite
     state: transistor_2
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+    - N14MaterialCircuitry1
+    - IngotLead1
 
 - type: entity
   parent: N14JunkItemBaseGlass
@@ -879,3 +1050,8 @@
   components:
   - type: Sprite
     state: transistor_3
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+    - N14MaterialCircuitry1
+    - IngotLead1
