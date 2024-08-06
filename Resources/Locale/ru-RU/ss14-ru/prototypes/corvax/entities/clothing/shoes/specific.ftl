@@ -8,3 +8,6 @@ ent-ClothingShoesSchoolBlack = чёрные школьные туфли
     .desc = Стильные и удобные школьные туфли тёмного оттенка с чулками.
 ent-ClothingShoesSchoolWhite = белые школьные туфли
     .desc = Стильные и удобные школьные туфли светлого оттенка с чулками.
+# Corvax N14
+ent-N14ClothingShoesKaligi = калиги
+    .desc = Просторные... Сандалии?

@@ -1,0 +1,38 @@
+- type: job
+  id: CaesarLegionLegionnaireRecruit
+  setPreference: true
+  name: job-name-caesar-legion-legionnaire-recruit
+  description: job-description-caesar-legionnaire-recruit
+  playTimeTracker: CaesarLegionLegionnaireRecruit
+  startingGear: CaesarLegionLegionnaireRecruitGear
+  icon: "JobIconLegioner"
+  supervisors: job-name-caesar-legion-other
+  canBeAntag: false
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - CaesarLegion
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
+
+- type: startingGear
+  id: CaesarLegionLegionnaireRecruitGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitLegionnaire
+    mask: N14ClothingMaskBrownMask
+    eyes: N14ClothingEyesGlassesWelding
+    back: N14ClothingBackpackMilitaryFilled
+    shoes: N14ClothingShoesKaligi
+    head: N14ClothingHeadHatTribalOutcastHood
+    outerClothing: N14ClothingOuterLegionnaireRecruitArmor
+    gloves: N14ClothingHandsGlovesTribal
+    suitstorage: N14PilumSpear
+  innerClothingSkirt: N14ClothingUniformJumpsuitLegionnaire
+
+- type: playTimeTracker
+  id: CaesarLegionLegionnaireRecruit

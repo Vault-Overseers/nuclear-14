@@ -1,0 +1,12 @@
+ent-N14MobHumanCaesarLegionCenturion = Центурион
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanCaesarLegionFrumentary = Фрументарий
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanCaesarLegionDean = Декан
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanCaesarLegionnaireVeteran = Легионер-Ветеран
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanCaesarLegionnaireWarrior = Легионер-Воин
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanCaesarLegionnaireRecruit = Легионер-Рекрут
+    .desc = { ent-MobHuman.desc }

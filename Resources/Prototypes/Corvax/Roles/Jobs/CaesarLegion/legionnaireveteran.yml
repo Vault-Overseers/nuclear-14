@@ -1,0 +1,43 @@
+- type: job
+  id: CaesarLegionLegionnaireVeteran
+  setPreference: true
+  name: job-name-caesar-legion-legionnaire-veteran
+  description: job-description-caesar-legionnaire-veteran
+  playTimeTracker: CaesarLegionLegionnaireVeteran
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: CaesarLegion
+      time: 18000 # 5 hours
+  startingGear: CaesarLegionLegionnaireVeteranGear
+  icon: "JobIconLegioner"
+  supervisors: job-name-caesar-legion-other
+  canBeAntag: false
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - CaesarLegion
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
+
+- type: startingGear
+  id: CaesarLegionLegionnaireVeteranGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitLegionnaire
+    neck: ClothingNeckRedScarf
+    eyes: N14ClothingEyesGlassesWelding
+    back: N14ClothingBackpackMilitaryFilled
+    shoes: N14ClothingBootsBlack
+    head: N14ClothingHeadHatLegionnaireHelmet
+    outerClothing: N14ClothingOuterLegionnaireArmor
+    belt: N14Gladius
+    gloves: N14ClothingHandsGlovesTribal
+    suitstorage: N14LegionnaireShield
+  innerClothingSkirt: N14ClothingUniformJumpsuitLegionnaire
+
+- type: playTimeTracker
+  id: CaesarLegionLegionnaireVeteran

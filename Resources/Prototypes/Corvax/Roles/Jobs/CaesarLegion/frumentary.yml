@@ -1,0 +1,41 @@
+- type: job
+  id: CaesarLegionFrumentary
+  setPreference: true
+  name: job-name-caesar-legion-frumentary
+  description: job-description-caesar-legion-frumentary
+  playTimeTracker: CaesarLegionFrumentary
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: CaesarLegion
+      time: 43200 #12 hours
+  startingGear: CaesarLegionFrumentaryGear
+  icon: "JobIconLegioner"
+  supervisors: job-name-caesar-legion
+  canBeAntag: false
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - CaesarLegion
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
+
+- type: startingGear
+  id: CaesarLegionFrumentaryGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitLegionnaire
+    mask: N14ClothingMaskBrownMask
+    back: N14ClothingBackpackMilitaryFilled
+    shoes: N14ClothingShoesKaligi
+    head: N14ClothingHeadHatFrumentary
+    outerClothing: N14ClothingOuterLegionnaireArmor
+    belt: N14Gladius
+    gloves: N14ClothingHandsGlovesTribal
+  innerClothingSkirt: N14ClothingUniformJumpsuitLegionnaire
+
+- type: playTimeTracker
+  id: CaesarLegionFrumentary
