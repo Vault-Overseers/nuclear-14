@@ -14,7 +14,6 @@ namespace Content.Server.Construction
     public sealed class RefiningSystem : EntitySystem
     {
         [Dependency] private readonly SharedToolSystem _toolSystem = default!;
-        [Dependency] private readonly StackSystem _stackSystem = default!;
         public override void Initialize()
         {
             base.Initialize();
@@ -40,7 +39,7 @@ namespace Content.Server.Construction
             EntityManager.DeleteEntity(uid);
 
             // spawn each result after refine
-            foreach (var ent in EntitySpawnCollection.GetSpawns(component.RefineResult!))
+            foreach (var ent in EntitySpawnCollection.GetSpawns(component.RefineResult))
             {
                 Spawn(ent, resultPosition);
             }
