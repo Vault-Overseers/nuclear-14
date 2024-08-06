@@ -1,0 +1,28 @@
+- type: entity
+  parent: N14Machete
+  id: N14Gladius
+  name: gladius
+  description: The old sword of the Roman Empire. It is now in use by the Legion...
+  components:
+  - type: Clothing
+    sprite: Corvax/Objects/Weapons/Melee/gladius.rsi
+    quickEquip: false
+    slots:
+    - Belt
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Melee/gladius.rsi
+    state: icon
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 25
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 20
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Item
+    sprite: Corvax/Objects/Weapons/Melee/gladius.rsi

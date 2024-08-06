@@ -1,0 +1,44 @@
+- type: job
+  id: CaesarLegionCenturion
+  setPreference: true
+  name: job-name-caesar-legion-centurion
+  description: job-description-caesar-legion-centurion
+  playTimeTracker: CaesarLegionCenturion
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: CaesarLegion
+      time: 0 # WL-only
+    - !type:WhitelistRequirement
+  startingGear: CaesarLegionCenturionGear
+  icon: "JobIconLegioner"
+  supervisors: job-name-caesar-legion
+  canBeAntag: false
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - CaesarLegion
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
+
+- type: startingGear
+  id: CaesarLegionCenturionGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitCenturion
+    neck: ClothingNeckBlackScarf
+    eyes: N14ClothingEyesGlassesWelding
+    back: N14ClothingBackpackMilitaryFilled
+    shoes: N14ClothingBootsCombatMK2Filled
+    head: N14ClothingHeadHatCenturionHelmet
+    outerClothing: N14ClothingOuterCenturionArmor
+    belt: N14Gladius
+    gloves: N14ClothingHandsGlovesTribal
+    suitstorage: N14LegionnaireShield
+  innerClothingSkirt: N14ClothingUniformJumpsuitCenturion
+
+- type: playTimeTracker
+  id: CaesarLegionCenturion
