@@ -1,4 +1,5 @@
 using Content.Shared.Tools;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Content.Shared.Storage;
 using Robust.Shared.Prototypes;
 
