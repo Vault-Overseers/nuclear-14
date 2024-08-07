@@ -1,27 +1,23 @@
 - type: job
   id: TownSheriff
   setPreference: true
-  overrideConsoleVisibility: false
-  canBeAntag: false
   name: job-name-townsheriff
   description: job-description-townsheriff
   playTimeTracker: TownSheriff
   requirements:
-    - !type:CharacterDepartmentTimeRequirement
+    - !type:DepartmentTimeRequirement
       department: Townsfolk
-      min: 18000 # 5 hours
+      time: 18000 # 5 hours
   startingGear: TownSheriffGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk
   access:
-  - TownieLaw
-  - TownieMechanic
+  - OasisSheriff
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
-          - Wastelander
           - Townsfolk
 
 - type: startingGear
@@ -31,12 +27,11 @@
     back: N14ClothingBackpackSheriffFilled
     shoes: N14ClothingBootsCowboy
     head: N14ClothingHeadHatSheriff
-    eyes: N14ClothingEyesSunGlasses
+    eyes: N14ClothingEyesSunGlasses 
     id: N14IDBadgeTownSheriff
     outerClothing: N14ClothingOuterSheriffVest
-    belt: ClothingBeltRevolverWildWhisper
+    belt: ClothingBeltRevolverfilled
     pocket1: RadioHandheld
-    pocket2: Handcuffs
   satchel: N14ClothingBackpackSatchelSheriffFilled
   duffelbag: N14ClothingBackpackDuffelSheriffFilled
 

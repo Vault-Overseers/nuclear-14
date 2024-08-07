@@ -1,32 +1,18 @@
 - type: job
   id: TownShopkeeper
   setPreference: true
-  overrideConsoleVisibility: false
-  canBeAntag: false
   name: job-name-townshopkeeper
   description: job-description-townshopkeeper
   playTimeTracker: TownShopkeeper
-  requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-      - Human
-      - Ghoul
-    - !type:CharacterDepartmentTimeRequirement
-      department: Townsfolk
-      min: 7200 # 2 hours
   startingGear: TownShopkeeperGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk
-  access:
-  - TownieShopkeeper
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
-          - Wastelander
           - Townsfolk
-      - type: ProfessionalChef
 
 - type: startingGear
   id: TownShopkeeperGear
@@ -34,8 +20,8 @@
     jumpsuit: N14ClothingUniformJumpsuitMerchant
     back: N14ClothingBackpackShopkeeperFilled
     shoes: N14ClothingShoesBlack
-    id: N14IDShopkeeperTown
-    belt: N14WalletCash
+    id: N14IDPassportTownsfolk
+    pocket1: N14CurrencyCap50 
   innerClothingSkirt: N14ClothingUniformJumpskirtFalloutBlack
   satchel: N14ClothingBackpackSatchelWastelanderFilled
   duffelbag: N14ClothingBackpackDuffelFilled  # N14TODO: Trader bag

@@ -1,27 +1,21 @@
 - type: job
   id: TownDeputy
   setPreference: true
-  overrideConsoleVisibility: true
-  canBeAntag: false
   name: job-name-towndeputy
   description: job-description-towndeputy
   playTimeTracker: TownDeputy
   requirements:
-    - !type:CharacterDepartmentTimeRequirement
+    - !type:DepartmentTimeRequirement
       department: Townsfolk
-      min: 3600 # 1 hours
+      time: 3600 # 1 hours
   startingGear: TownDeputyGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk
-  access:
-  - TownieLaw
-  - TownieMechanic
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
-          - Wastelander
           - Townsfolk
 
 - type: startingGear
@@ -29,14 +23,13 @@
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitCowboyBrown
     head: N14ClothingHeadHatDeputy
-    eyes: N14ClothingEyesSunGlasses
+    eyes: N14ClothingEyesSunGlasses 
     back: N14ClothingBackpackDeputyFilled
     shoes: N14ClothingShoesBlack
     id: N14IDBadgeTownDeputy
     outerClothing: N14ClothingOuterPoliceVest
     belt: ClothingBeltRevolverfilled
     pocket1: RadioHandheld
-    pocket2: Handcuffs
   satchel: N14ClothingBackpackSatchelDeputyFilled
   duffelbag: N14ClothingBackpackDuffelDeputyFilled
 
