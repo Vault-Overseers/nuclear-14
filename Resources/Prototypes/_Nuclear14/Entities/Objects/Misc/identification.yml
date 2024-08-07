@@ -21,7 +21,7 @@
     tags:
     - DoorBumpOpener
 
-# Vault
+#MARK: Vault
 - type: entity
   parent: N14IDCard
   id: N14IDCardVault
@@ -66,7 +66,7 @@
   - type: PresetIdCard
     job: Overseer
 
-# Passports
+#MARK: Passports
 - type: entity
   parent: N14IDCard
   id: N14IDPassportBlank
@@ -126,7 +126,7 @@
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: doctor
 
-# Other Factions
+#MARK: Brotherhood
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDBrotherhoodHolotag
@@ -192,6 +192,47 @@
   - type: PresetIdCard
     job: BoSMidPaladinCommander
 
+#MARK: Enclave
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDEnclaveTrooper
+  name: holotag
+  description: An ID holotag worn by the Enclave.
+  suffix: Trooper
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: enclave_trooper
+  # - type: PresetIdCard
+  #   job: EnclaveTrooper
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDEnclaveOfficer
+  name: holotag
+  description: An ID holotag worn by higher ranking memebers of the Enclave.
+  suffix: Officer
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: enclave_officer
+  # - type: PresetIdCard
+  #   job: EnclaveOfficer
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDEnclaveNoncombat
+  name: holotag
+  description: An ID holotag worn by the non combative members of Enclave.
+  suffix: Scientist , Noncombat
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: enclave_noncombat
+  # - type: PresetIdCard
+  #   job: EnclaveScientist
+
+# MARK: NCR
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDNCRDogtag
@@ -257,7 +298,7 @@
   - type: PresetIdCard
     job: NCROfficer
 
-# Desert Rangers
+#MARK: Desert Rangers
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDBadgeNCRDesertRangerRecruit
@@ -283,12 +324,6 @@
     job: NCRRanger
 
 - type: entity
-  parent: N14IDBadgeNCRDesertRanger
-  id: N14IDBadgeNCRRanger
-  description: An ID badge worn by Republic Rangers.
-  suffix: NCR
-
-- type: entity
   parent: N14IDPassportBlank
   id: N14IDBadgeNCRDesertRangerElite
   name: ranger elite badge
@@ -299,12 +334,6 @@
     state: ranger_elite
   - type: PresetIdCard
     job: NCRRangerVeteran
-
-- type: entity
-  parent: N14IDBadgeNCRDesertRangerElite
-  id: N14IDBadgeNCRRangerElite
-  description: An ID badge worn by Elite Republic Rangers.
-  suffix: NCR
 
 - type: entity
   parent: N14IDPassportBlank
@@ -318,7 +347,21 @@
   - type: PresetIdCard
     job: NCRRangerVeteran
 
-# Townsfolk
+#MARK: NCR Rangers
+- type: entity
+  parent: N14IDBadgeNCRDesertRanger
+  id: N14IDBadgeNCRRanger
+  description: An ID badge worn by Republic Rangers.
+  suffix: NCR
+
+
+- type: entity
+  parent: N14IDBadgeNCRDesertRangerElite
+  id: N14IDBadgeNCRRangerElite
+  description: An ID badge worn by Elite Republic Rangers.
+  suffix: NCR
+
+#MARK: Townsfolk
 - type: entity
   parent: N14IDPassportPhoto
   id: N14IDPassportTownsfolk
@@ -361,7 +404,7 @@
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: mayor
 
-# Raiders / Tribes
+#MARK: Raiders / Tribes
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDTribeSawbonePendant

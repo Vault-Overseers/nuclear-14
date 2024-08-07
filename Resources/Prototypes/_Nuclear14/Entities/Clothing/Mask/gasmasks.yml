@@ -66,6 +66,10 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
 
 - type: entity
   parent: ClothingMaskGasCombat
@@ -81,15 +85,12 @@
     sprite: _Nuclear14/Clothing/Mask/Gasmask/riotgasmask.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Mask/Gasmask/riotgasmask.rsi
-  - type: GenericVisualizer
-    visuals:
-      enum.NightVisionItemVisuals.Active:
-        nightVisionItemLayer:
-          True: { state: icon }
-          False: { state: icon }
+  - type: Tag
+    tags:
+    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasCombat
   id: ClothingMaskGasRanger
   name: ranger gas mask
   description: The last in pre-war military gas masks technology, with extra protection.
@@ -117,9 +118,6 @@
     sprite: _Nuclear14/Clothing/Mask/Gasmask/rangeroldgasmask.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Mask/Gasmask/rangeroldgasmask.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingMaskGasCombat
@@ -142,9 +140,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: Tag
-    tags:
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingMaskGas
@@ -166,9 +161,6 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
-  - type: Tag
-    tags:
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingMaskGasCombat
@@ -191,9 +183,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: Tag
-    tags:
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingMaskGas
@@ -216,6 +205,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - HidesHair
 
 - type: entity
   parent: ClothingMaskGasCombat
@@ -238,6 +228,25 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: Tag
-    tags:
-    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingMaskGasCombat
+  id: ClothingMaskGasRangerModif
+  name: modified ranger gas mask
+  description: A thicker than average mask worn by rangers out in the field.
+  components:
+  - type: Item
+    size: Tiny
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Mask/Gasmask/rangermodifgasmask.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Mask/Gasmask/rangermodifgasmask.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9

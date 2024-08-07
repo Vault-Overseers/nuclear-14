@@ -5,7 +5,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/np13_misc.rsi
     state: dresser
-    
+
 - type: entity
   parent: BaseStructure
   id: N14GrandfatherClock
@@ -15,7 +15,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/np13_misc.rsi
     state: grand_clock
-    
+
 # Televisions
 - type: entity
   parent: BaseStructure
@@ -41,7 +41,7 @@
   components:
   - type: Sprite
     state: radking_tv
-    
+
 - type: entity
   parent: N14Television
   id: N14TelevisionRedwood
@@ -57,7 +57,7 @@
   components:
   - type: Sprite
     state: tube_tv
-    
+
 - type: entity
   parent: N14Television
   id: N14TelevisionSmall
@@ -75,7 +75,7 @@
         density: 100
         mask:
           - TabletopMachineMask
-    
+
 - type: entity
   parent: N14TelevisionSmall
   id: N14TelevisionTiny
@@ -83,7 +83,7 @@
   components:
   - type: Sprite
     state: tiny_tv
-    
+
 # Washroom
 - type: entity
   parent: N14DecorFloorBase
@@ -130,7 +130,7 @@
     range: 8
     sound:
       path: /Audio/Ambience/Objects/drain.ogg    
-    
+
 - type: entity
   parent: SeatBase
   id: N14Toilet
@@ -188,7 +188,7 @@
     autoDrain: false
   - type: DumpableSolution
     solution: drainBuffer
-    
+
 - type: entity
   parent: N14Toilet
   id: N14ToiletWater
@@ -200,7 +200,13 @@
         reagents:
         - ReagentId: Water
           Quantity: 200
-    
+  - type: SolutionRegeneration
+    solution: toilet
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 2
+
 - type: entity
   parent: N14Toilet
   id: N14ToiletDirty
@@ -214,7 +220,15 @@
           Quantity: 180
         - ReagentId: GastroToxin
           Quantity: 20
-          
+  - type: SolutionRegeneration
+    solution: toilet
+    generated:
+      reagents:
+      - ReagentId: WaterDirty
+        Quantity: 3
+      - ReagentId: GastroToxin
+        Quantity: 1
+
 - type: entity
   parent: N14Toilet
   id: N14ToiletIrradiated
@@ -228,7 +242,15 @@
           Quantity: 180
         - ReagentId: GastroToxin
           Quantity: 20
-    
+  - type: SolutionRegeneration
+    solution: toilet
+    generated:
+      reagents:
+      - ReagentId: WaterIrradiated
+        Quantity: 3
+      - ReagentId: GastroToxin
+        Quantity: 1
+
 - type: entity
   parent: N14Shower
   id: N14Sink
@@ -242,7 +264,7 @@
       drainBuffer:
         maxVol: 100
       tank:
-        maxVol: 500
+        maxVol: 200
   - type: DrainableSolution
     solution: tank
   - type: ReagentTank
@@ -250,7 +272,7 @@
     autoDrain: false
   - type: DumpableSolution
     solution: drainBuffer
-    
+
 - type: entity
   parent: N14Sink
   id: N14SinkFilledWater
@@ -263,8 +285,14 @@
       tank:
         reagents:
         - ReagentId: Water
-          Quantity: 500
-          
+          Quantity: 200
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 1
+
 - type: entity
   parent: N14Sink
   id: N14SinkFilledWaterDirty
@@ -277,8 +305,14 @@
       tank:
         reagents:
         - ReagentId: WaterDirty
-          Quantity: 500
-          
+          Quantity: 200
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: WaterDirty
+        Quantity: 1
+
 - type: entity
   parent: N14Sink
   id: N14SinkFilledWaterIrradiated
@@ -291,4 +325,10 @@
       tank:
         reagents:
         - ReagentId: WaterIrradiated
-          Quantity: 500
+          Quantity: 200
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: WaterIrradiated
+        Quantity: 1

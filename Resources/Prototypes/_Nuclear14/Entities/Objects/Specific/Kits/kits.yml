@@ -562,11 +562,39 @@
       - id: N14Stimpak
       - id: BoxMRE
 
+#MARK: BoS Scribe Kits
+#medic
 - type: entity
-  name: Brotherhood scribe utility kit
+  name: Brotherhood scribe medical kit
   parent: KitBase
-  id: KitScribeBoSMidwest
-  description: A crate containing everything a member of Brotherhood scribes might need for upkeeping the base and defense.
+  id: KitScribeMedicBoSMidwest
+  description: A crate containing everything a member of Brotherhood scribes might need for keeping the fighting forces alive.
+  components:
+  - type: Sprite
+    state: medic
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponRevolver10mm
+      - id: SpeedLoader10
+        amount: 2
+      - id: N14ClothingBeltMedicalFilled
+      - id: N14MedkitBruteFilled
+      - id: ClothingHandsGlovesChemist
+      - id: ClothingHeadBrotherhoodScribeHeadset
+      - id: N14ClothingBootsBlack
+      - id: N14ClothingOuterBosScribe
+      - id: N14CombatKnife
+      - id: N14Stimpak
+      - id: BoxMRE
+
+#field scribe
+- type: entity
+  name: Brotherhood scribe field kit
+  parent: KitBase
+  id: KitScribeFieldBoSMidwest
+  description: A crate containing everything a member of Brotherhood scribes might need for supporting your unit in the field.
   components:
   - type: Sprite
     state: rifleman
@@ -574,42 +602,67 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponRevolver10mm # sacrifice your main gun for basic crafting / medical supplies
-      - id: SpeedLoader10
-        amount: 3
-      - id: FlashlightSeclite
+      - id: N14WeaponSniperVarmint
+      - id: MagazineBox556
+      - id: N14ClothingBeltMedicalFilled
+      - id: ClothingHandsGlovesFingerless
+      - id: N14ClothingHeadHatBrotherhoodFieldCap
+      - id: N14ClothingOuterBrotherhoodFieldScribeCoat
+      - id: N14CombatKnife
+      - id: N14Stimpak
+      - id: BoxMRE
+
+#engineer scribe
+- type: entity
+  name: Brotherhood scribe engineer kit
+  parent: KitBase
+  id: KitScribeEngineerBoSMidwest
+  description: A crate containing everything a member of Brotherhood scribes might need for their general engineering needs.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
+        amount: 2
+      - id: ClothingHeadBrotherhoodScribeHeadset
+      - id: N14ClothingOuterMidwestBoSCoat
+      - id: ClothingHandsGlovesColorYellow
+      - id: N14ClothingBeltUtilityFilled
       - id: SheetSteel10
-      - id: LeadOre
-      - id: SulfurOre
-      - id: N14MedkitFilled
+      - id: SheetPlastic10
+      - id: N14FireAxe
       - id: N14Stimpak
       - id: BoxMRE
 
 #MARK: BoS Midwest CO Kits
-- type: entity
-  name: Brotherhood commander plasma kit
-  parent: KitBase
-  id: KitCOPlasmaBoSMidwest
-  description: A crate containing everything a leader of Brotherhood might need for his plasma induced rage.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponPlasmaRifle
-      - id: N14WeaponPlasmaPistol
-      - id: N14PlasmaCartridge
-        amount: 4
-      - id: N14Stimpak
-      - id: BoxMRE
+# - type: entity
+#   name: Brotherhood commander plasma kit
+#   parent: KitBase
+#   id: KitPlasmaBoSMidwest
+#   description: A crate containing everything a leader of Brotherhood might need for his plasma induced rage.
+#   components:
+#   - type: Sprite
+#     state: rifleman
+#   - type: Item
+#     size: Huge
+#   - type: SpawnItemsOnUse
+#     items:
+#       - id: N14WeaponPlasmaRifle
+#       - id: N14WeaponPlasmaPistol
+#       - id: N14PlasmaCartridge
+#         amount: 4
+#       - id: N14Stimpak
+#       - id: BoxMRE
 
 - type: entity
-  name: Brotherhood commander ballistics kit
+  name: Brotherhood paladin ballistics kit
   parent: KitBase
-  id: KitCOAssaultBoSMidwest
-  description: A crate containing everything a leader of Brotherhood might need for his insane need of bullets downrange.
+  id: KitAssaultBoSMidwest
+  description: A crate containing everything a paladin of Brotherhood might need for his insane need of bullets downrange.
   components:
   - type: Sprite
     state: rifleman
