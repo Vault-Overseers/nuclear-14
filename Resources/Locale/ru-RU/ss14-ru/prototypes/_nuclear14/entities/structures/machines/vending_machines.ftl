@@ -26,3 +26,6 @@ ent-N14VendingMachineCigaretteFilled = { ent-N14VendingMachineCigarette }
 ent-N14VendingMachineCigaretteFilledRepublic = автомат с сигаретами 'Республика'
     .desc = Довоенный автомат с сигаретами, заполненный пачками сигарет 'Республика'. Неужели кто-то еще помнит вкус свободы?
     .suffix = республика
+ent-N14VendingMachineNukaColaGenerous = автомат с Ядер-Колой
+    .desc = Довоенный торговый автомат, который когда-то продавал легендарную Ядер-Колу. Теперь он пуст — как и мечты о беззаботной жизни.
+    .suffix = Обычный
