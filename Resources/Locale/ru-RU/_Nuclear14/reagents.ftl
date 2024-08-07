@@ -163,9 +163,15 @@ reagent-name-tea-xander = зандерный чай
 reagent-desc-tea-xander = Целебный корешковый чай
 reagent-name-tea-fireantnectar = нектар огненного муравья
 reagent-desc-tea-fireantnectar = Кристаллизованный нектар огненного муравья. Сладкий.
-# Chems
+# Venoms
 reagent-name-firetoxin = огненный токсин
-reagent-desc-firetoxin = Горячий подарок от огненных созданий.
+reagent-desc-firetoxin = Жаркий привет от пламенных созданий пустоши, способный разжечь ад в ваших жилах. Будьте готовы к перегреву!
+reagent-name-nightstalker-venom = яд ночного охотника
+reagent-desc-nightstalker-venom = Яд ночного охотника из тёмных уголков пустоши. Не столь смертелен, как яд казадора, но всё равно заставит вас пасть на колени и молить о пощаде.
+reagent-name-cazador-venom = яд казадора
+reagent-desc-cazador-venom = Яд казадора — самый страшный кошмар всех, кто блуждает по пустошам. Быстрая смерть практически неизбежна. Бегите, если можете!
+
+#Chems
 reagent-name-healing-powder = целебный порошок
 reagent-desc-healing-powder = Порошок, приготовленный из измельченных растений.
 reagent-name-antidote-mixture = антидот
