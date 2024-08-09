@@ -97,6 +97,20 @@ namespace Content.Server.Database
                 .SingleOrDefault(h => h.Slot == slot);
 
             var newProfile = ConvertProfiles(humanoid, slot, oldProfile);
+
+            var sum = 0;
+            foreach(var special in newProfile.Specials)
+            {
+                sum += (int) special.Priority;
+            }
+            if(sum > 40)
+            {
+                foreach(var special in newProfile.Specials)
+                {
+                special.Priority = DbSpecialPriority.Five;
+                }
+            }
+
             if (oldProfile == null)
             {
                 var prefs = await db.DbContext
