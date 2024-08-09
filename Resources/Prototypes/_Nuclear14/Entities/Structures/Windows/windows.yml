@@ -335,16 +335,71 @@
     
 ## Tall windows
 - type: entity
-  parent: N14WindowBaseAirtight
+  parent: BaseStructure
   id: N14WindowTallBase
+  name: window frame
   abstract: true
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Windows/tallwallwindows.rsi
     noRot: true
-    drawdepth: Overdoors
+    drawdepth: Walls
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/tallwallwindows.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Appearance
+  - type: PlacementReplacement
+    key: walls
+  - type: Climbable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  
+- type: entity
+  parent: N14WindowBase
+  id: N14WindowTall
+  description: A window for seeing into places. 
+  name: window
+  components:
+  - type: Airtight
+  - type: InteractionPopup
+    interactSuccessString: comp-window-knock
+    messagePerceivedByOthers: comp-window-knock
+    interactSuccessSound:
+      path: /Audio/Effects/glass_knock.ogg
+  - type: DamageVisuals
+    thresholds: [4, 8, 12]
+    damageDivisor: 2
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Windows/tallwallwindows.rsi
+    state: window
+    drawdepth: WallTops
   - type: Destructible
     thresholds:
     - trigger:
@@ -367,74 +422,30 @@
             max: 2
       - !type:SpawnEntitiesBehavior
         spawn:
-          N14WindowBrickTallBroken:
+          N14WindowTallBroken:
             min: 1
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Appearance
-  - type: PlacementReplacement
-    key: walls
-  
+    
 - type: entity
-  parent: BaseStructure
-  id: N14WindowTallBrokenBase
-  abstract: true
-  name: broken window
-  description: A broken window. Don't cut yourself!
+  id: N14WindowTallBroken
+  name: broken glass
+  description: Broken remains of a window.
+  placement:
+    mode: SnapgridCenter
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Windows/tallwallwindows.rsi
-    noRot: true
-    drawdepth: Walls
-  - type: Icon
-    sprite: _Nuclear14/Structures/Windows/tallwallwindows.rsi
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      # - !type:PlaySoundBehavior
-        # sound:
-          # collection: GlassBreak
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: Appearance
-  - type: PlacementReplacement
-    key: walls
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,0.5"
-        mask:
-        - TableMask
-        layer:
-        - TableLayer
-        density: 1000
-  - type: RangedDamageSound
-    soundGroups:
-      Brute:
-        collection:
-          MetalBulletImpact
-    soundTypes:
-      Heat:
-        collection:
-          MetalLaserImpact
-  - type: Climbable
+    state: broken
+    drawdepth: WallTops
+  - type: CollisionWake # not sure this is needed
+    enabled: false
+  - type: Slippery
+    slipSound:
+      path: /Audio/Effects/fence_rattle1.ogg
+    launchForwardsMultiplier: 0
+    paralyzeTime: 0
   - type: Sharp # not sure this is needed
   - type: DamageOtherOnHit
     damage:
@@ -451,13 +462,35 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
-  - type: CollisionWake # not sure this is needed
-    enabled: false
-  - type: Slippery
-    slipSound:
-      path: /Audio/Effects/fence_rattle1.ogg
-    launchForwardsMultiplier: 0
-    paralyzeTime: 0
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        hard: false
+        layer:
+        - LowImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Glass
   
 - type: entity
   parent: N14WindowTallBase
@@ -466,19 +499,8 @@
   components:
   - type: Sprite
     state: brick
-    drawdepth: Overdoors
   - type: Icon
     state: brick
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowBrickTallBroken
-  suffix: brick broken
-  components:
-  - type: Sprite
-    state: brickbroken
-  - type: Icon
-    state: brickbroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -509,23 +531,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowBrickTallAltBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowBrickTallAltBroken
-  suffix: brick alt broken
-  components:
-  - type: Sprite
-    state: brickaltbroken
-  - type: Icon
-    state: brickaltbroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -556,24 +563,9 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowBrickGrayTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowBrickGrayTallBroken
-  suffix: brick gray broken
-  components:
-  - type: Sprite
-    state: brickgraybroken
-  - type: Icon
-    state: brickgraybroken
-    
+
 - type: entity
   parent: N14WindowTallBase
   id: N14WindowConcreteTall
@@ -603,23 +595,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowConcreteTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowConcreteTallBroken
-  suffix: concrete broken
-  components:
-  - type: Sprite
-    state: concretebroken
-  - type: Icon
-    state: concretebroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -650,23 +627,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowConcreteTallAltBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowConcreteTallAltBroken
-  suffix: concrete alt broken
-  components:
-  - type: Sprite
-    state: concretealtbroken
-  - type: Icon
-    state: concretealtbroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -697,23 +659,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowDungeonTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowDungeonTallBroken
-  suffix: dungeon broken
-  components:
-  - type: Sprite
-    state: dungeonbroken
-  - type: Icon
-    state: dungeonbroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -744,23 +691,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowDungeonTallAltBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowDungeonTallAltBroken
-  suffix: dungeon alt broken
-  components:
-  - type: Sprite
-    state: dungeonaltbroken
-  - type: Icon
-    state: dungeonaltbroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -791,23 +723,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowMetalTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowMetalTallBroken
-  suffix: metal broken
-  components:
-  - type: Sprite
-    state: metalbroken
-  - type: Icon
-    state: metalbroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -838,23 +755,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowMetalReinforcedTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowMetalReinforcedTallBroken
-  suffix: metal reinforced broken
-  components:
-  - type: Sprite
-    state: reinfmetalbroken
-  - type: Icon
-    state: reinfmetalbroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -885,24 +787,9 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowScrapTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowScrapTallBroken
-  suffix: scrap broken
-  components:
-  - type: Sprite
-    state: scrapbroken
-  - type: Icon
-    state: scrapbroken
-    
+
 - type: entity
   parent: N14WindowTallBase
   id: N14WindowScrapBlueTall
@@ -932,23 +819,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowScrapBlueTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowScrapBlueTallBroken
-  suffix: scrap blue broken
-  components:
-  - type: Sprite
-    state: scrapbluebroken
-  - type: Icon
-    state: scrapbluebroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -979,23 +851,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowScrapRedTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowScrapRedTallBroken
-  suffix: scrap red broken
-  components:
-  - type: Sprite
-    state: scrapredbroken
-  - type: Icon
-    state: scrapredbroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -1026,23 +883,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowScrapWhiteTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowScrapWhiteTallBroken
-  suffix: scrap white broken
-  components:
-  - type: Sprite
-    state: scrapwhitebroken
-  - type: Icon
-    state: scrapwhitebroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -1073,23 +915,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowSidingTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowSidingTallBroken
-  suffix: siding broken
-  components:
-  - type: Sprite
-    state: sidingbroken
-  - type: Icon
-    state: sidingbroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -1120,23 +947,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowSidingBlueTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowSidingBlueTallBroken
-  suffix: siding blue broken
-  components:
-  - type: Sprite
-    state: sidingbluebroken
-  - type: Icon
-    state: sidingbluebroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -1167,24 +979,9 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowSidingGreenTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowSidingGreenTallBroken
-  suffix: siding green broken
-  components:
-  - type: Sprite
-    state: sidinggreenbroken
-  - type: Icon
-    state: sidinggreenbroken
-    
+
 - type: entity
   parent: N14WindowTallBase
   id: N14WindowSidingRedTall
@@ -1214,23 +1011,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowSidingRedTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowSidingRedTallBroken
-  suffix: siding red broken
-  components:
-  - type: Sprite
-    state: sidingredbroken
-  - type: Icon
-    state: sidingredbroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -1261,23 +1043,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowVaultTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowVaultTallBroken
-  suffix: vault broken
-  components:
-  - type: Sprite
-    state: vaultbroken
-  - type: Icon
-    state: vaultbroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -1308,23 +1075,8 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowWoodTallBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowWoodTallBroken
-  suffix: wood broken
-  components:
-  - type: Sprite
-    state: woodbroken
-  - type: Icon
-    state: woodbroken
     
 - type: entity
   parent: N14WindowTallBase
@@ -1355,20 +1107,5 @@
           ShardGlass:
             min: 1
             max: 2
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14WindowWoodTallAltBroken:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    
-- type: entity
-  parent: N14WindowTallBrokenBase
-  id: N14WindowWoodTallAltBroken
-  suffix: wood walt broken
-  components:
-  - type: Sprite
-    state: woodaltbroken
-  - type: Icon
-    state: woodaltbroken
