@@ -1,13 +1,56 @@
 - type: entity
   parent: ClothingOuterBase
-  id: N14ClothingOuterCenturionArmor
-  name: сenturion armor
-  description: Armored tunic of a Legionnaire decorated with captured pieces of power armor.
+  id: N14ClothingOuterLegateArmor
+  name: legate armor
+  description: "Armor with truly good protection, for important people."
   components:
   - type: Sprite
-    sprite: Corvax/Clothing/OuterClothing/Armor/centurionarmor.rsi
+    sprite: Corvax/Clothing/OuterClothing/Armor/legatearmor.rsi
   - type: Clothing
-    sprite: Corvax/Clothing/OuterClothing/Armor/centurionarmor.rsi
+    sprite: Corvax/Clothing/OuterClothing/Armor/legatearmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.2
+        Slash: 0.2
+        Piercing: 0.2
+        Heat: 0.2
+  - type: ClothingSpecialModifier
+    strengthModifier: 10
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterHeavyCenturionArmor
+  name: сenturion heavy armor
+  description: "Heavy armor assembled from captured pieces of power armor of defeated enemies."
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/OuterClothing/Armor/centurionheavyarmor.rsi
+  - type: Clothing
+    sprite: Corvax/Clothing/OuterClothing/Armor/centurionheavyarmor.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.3
+        Heat: 0.3
+  - type: ClothingSpecialModifier
+    strengthModifier: 4
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterBaseCenturionArmor
+  name: сenturion armor
+  description: "Armor assembled from captured pieces of power armor of defeated enemies."
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/OuterClothing/Armor/centurionbasearmor.rsi
+  - type: Clothing
+    sprite: Corvax/Clothing/OuterClothing/Armor/centurionbasearmor.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -15,39 +58,208 @@
         Slash: 0.6
         Piercing: 0.4
         Heat: 0.4
+  - type: ClothingSpecialModifier
+    strengthModifier: 2
 
 - type: entity
   parent: ClothingOuterBase
-  id: N14ClothingOuterLegionnaireArmor
-  name: legionnaire armor
-  description: The armored tunic of a legionnaire.
+  id: N14ClothingOuterHeavyLegionnaireArmor
+  name: heavy legionary armor
+  description: "The heavy version of legionary armor slows down the wearer, but gives good protection from external threats."
   components:
   - type: Sprite
-    sprite: Corvax/Clothing/OuterClothing/Armor/romanarmor.rsi
+    sprite: Corvax/Clothing/OuterClothing/Armor/heavyarmor.rsi
   - type: Clothing
-    sprite: Corvax/Clothing/OuterClothing/Armor/romanarmor.rsi
+    sprite: Corvax/Clothing/OuterClothing/Armor/heavyarmor.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.55
+        Heat: 0.55
+  - type: ClothingSpecialModifier
+    strengthModifier: 1
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterLegionnaireVeteranArmor
+  name: armor of a legionnaire-veteran
+  description: "Good armor for combat, does not slow down the wearer and makes it easy to maneuver."
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/OuterClothing/Armor/veteranarmor.rsi
+  - type: Clothing
+    sprite: Corvax/Clothing/OuterClothing/Armor/veteranarmor.rsi
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.6
         Slash: 0.6
-        Piercing: 0.75
+        Piercing: 0.6
+        Heat: 0.6
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterLegionnaireMediumBulletArmor
+  name: medium legionary armor
+  description: "Medium-heavy armor with an emphasis on firearm protection."
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/OuterClothing/Armor/mediumbulletarmor.rsi
+  - type: Clothing
+    sprite: Corvax/Clothing/OuterClothing/Armor/mediumbulletarmor.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.6
+        Heat: 0.6
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterLegionnaireMediumMeleeArmor
+  name: medium legionary armor
+  description: "Medium-heavy armor with an emphasis on protection from cuts and blows."
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/OuterClothing/Armor/mediummeleearmor.rsi
+  - type: Clothing
+    sprite: Corvax/Clothing/OuterClothing/Armor/mediummeleearmor.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.7
         Heat: 0.7
 
 - type: entity
   parent: ClothingOuterBase
-  id: N14ClothingOuterLegionnaireRecruitArmor
-  name: legionnaire light armor
-  description: Not very reliable, but very light legionnaire armor.
+  id: N14ClothingOuterLegionnaireReconnaissanceArmor
+  name: reconnaissance armor
+  description: "Good durable armor that does not burden movement."
   components:
   - type: Sprite
-    sprite: Corvax/Clothing/OuterClothing/Armor/romanlightarmor.rsi
+    sprite: Corvax/Clothing/OuterClothing/Armor/reconnaissancearmor.rsi
   - type: Clothing
-    sprite: Corvax/Clothing/OuterClothing/Armor/romanlightarmor.rsi
+    sprite: Corvax/Clothing/OuterClothing/Armor/reconnaissancearmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterLegionnaireLightReconnaissanceArmor
+  name: light reconnaissance armor
+  description: "Incredibly light armor with not the best protection, but you feel faster."
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/OuterClothing/Armor/lightreconnaissancearmor.rsi
+  - type: Clothing
+    sprite: Corvax/Clothing/OuterClothing/Armor/lightreconnaissancearmor.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterLegionnaireBulletArmor
+  name: light legionnaire armor
+  description: "Light armor with a gunshot protection bias."
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/OuterClothing/Armor/lightbulletarmor.rsi
+  - type: Clothing
+    sprite: Corvax/Clothing/OuterClothing/Armor/lightbulletarmor.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.75
+        Heat: 0.75
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterLegionnaireMeleeArmor
+  name: light legionnaire armor
+  description: "Light armor with a slope to protect against bumps and cuts."
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/OuterClothing/Armor/lightmeleearmor.rsi
+  - type: Clothing
+    sprite: Corvax/Clothing/OuterClothing/Armor/lightmeleearmor.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.8
+        Heat: 0.8
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterLegionnaireBaseArmor
+  name: legionnaire armor
+  description: "The most standard and common armor."
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/OuterClothing/Armor/basearmor.rsi
+  - type: Clothing
+    sprite: Corvax/Clothing/OuterClothing/Armor/basearmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
         Heat: 0.7
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterLegionnaireRecruitArmor
+  name: light legionnaire armor
+  description: "Not very reliable, but very light legionnaire armor."
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/OuterClothing/Armor/lightarmor.rsi
+  - type: Clothing
+    sprite: Corvax/Clothing/OuterClothing/Armor/lightarmor.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.2
+    sprintModifier: 1.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9

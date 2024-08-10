@@ -1,0 +1,12 @@
+ent-LegionCenturionloadoutkits = неразобранный набор центуриона
+    .desc = Пожалуйста, выберите только 1.
+ent-LegionFrumentarialoadoutkits = неразобранный набор фрументария
+    .desc = { ent-LegionCenturionloadoutkits .desc }
+ent-LegionDeanloadoutkits = неразобранный набор декана
+    .desc = { ent-LegionCenturionloadoutkits .desc }
+ent-LegionVeteranloadoutkits = неразобранный набор легионера-ветерана
+    .desc = { ent-LegionCenturionloadoutkits .desc }
+ent-LegionWarriorloadoutkits = неразобранный набор легионера-воина
+    .desc = { ent-LegionCenturionloadoutkits .desc }
+ent-LegionRecruitloadoutkits = неразобранный набор легионера-рекрута
+    .desc = { ent-LegionCenturionloadoutkits .desc }

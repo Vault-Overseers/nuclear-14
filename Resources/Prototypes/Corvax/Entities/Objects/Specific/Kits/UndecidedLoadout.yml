@@ -1,0 +1,333 @@
+- type: entity
+  id: LegionCenturionloadoutkits
+  name: kit
+  description: "please only take one."
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - CenturionBestiarySet
+    - CenturionVenatorSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: LegionFrumentarialoadoutkits
+  name: kit
+  description: "please only take one."
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - FrumentariaSpySet
+    - FrumentariaAgentSecretPoliceSet
+    - FrumentariaSaboteurSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: LegionDeanloadoutkits
+  name: kit
+  description: "please only take one."
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - DeanGladiatorSet
+    - DeanSagitariaSet
+    - DeanBerserkerSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: LegionVeteranloadoutkits
+  name: kit
+  description: "please only take one."
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - VeteranFirearmSet
+    - VeteranBerserkerSet
+    - VeteranKebabSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: LegionWarriorloadoutkits
+  name: kit
+  description: "please only take one."
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - WarriorBaseSet
+    - WarriorSlaveOwnerSet
+    - WarriorHealerSet
+    - WarriorFirearmSet
+    - WarriorMeleeSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: LegionRecruitloadoutkits
+  name: kit
+  description: "please only take one."
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - RecruitBaseSet
+    - RecruitSpearSet
+    - RecruitMeleeSet
+    - RecruitHealerSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: UndecidedLoadoutBackpackSet
+  id: CenturionBestiarySet
+  name: undecided-loadout-category-bestiary-name
+  description: undecided-loadout-category-bestiary-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitCenturionBestiary
+
+- type: UndecidedLoadoutBackpackSet
+  id: CenturionVenatorSet
+  name: undecided-loadout-category-venator-name
+  description: undecided-loadout-category-venator-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitCenturionVenator
+
+- type: UndecidedLoadoutBackpackSet
+  id: FrumentariaSpySet
+  name: undecided-loadout-category-spy-name
+  description: undecided-loadout-category-spy-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitFrumentariaSpy
+
+- type: UndecidedLoadoutBackpackSet
+  id: FrumentariaAgentSecretPoliceSet
+  name: undecided-loadout-category-agent-secret-police-name
+  description: undecided-loadout-category-agent-secret-police-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitFrumentariaAgentSecretPolice
+
+- type: UndecidedLoadoutBackpackSet
+  id: FrumentariaSaboteurSet
+  name: undecided-loadout-category-saboteur-name
+  description: undecided-loadout-category-saboteur-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitFrumentariaSaboteur
+
+- type: UndecidedLoadoutBackpackSet
+  id: DeanGladiatorSet
+  name: undecided-loadout-category-dean-gladiator-name
+  description: undecided-loadout-category-dean-gladiator-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitDeanGladiator
+
+- type: UndecidedLoadoutBackpackSet
+  id: DeanSagitariaSet
+  name: undecided-loadout-category-dean-sagitaria-name
+  description: undecided-loadout-category-dean-sagitaria-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitDeanSagitaria
+
+- type: UndecidedLoadoutBackpackSet
+  id: DeanBerserkerSet
+  name: undecided-loadout-category-dean-berserker-name
+  description: undecided-loadout-category-dean-berserker-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitDeanBerserker
+
+- type: UndecidedLoadoutBackpackSet
+  id: VeteranFirearmSet
+  name: undecided-loadout-category-veteran-firearm-name
+  description: undecided-loadout-category-veteran-firearm-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitVeteranFirearm
+
+- type: UndecidedLoadoutBackpackSet
+  id: VeteranBerserkerSet
+  name: undecided-loadout-category-veteran-berserker-name
+  description: undecided-loadout-category-veteran-berserker-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitVeteranBerserker
+
+- type: UndecidedLoadoutBackpackSet
+  id: VeteranKebabSet
+  name: undecided-loadout-category-veteran-kebab-name
+  description: undecided-loadout-category-veteran-kebab-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitVeteranKebab
+
+- type: UndecidedLoadoutBackpackSet
+  id: WarriorBaseSet
+  name: undecided-loadout-category-warrior-base-name
+  description: undecided-loadout-category-warrior-base-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitWarriorBase
+
+- type: UndecidedLoadoutBackpackSet
+  id: WarriorSlaveOwnerSet
+  name: undecided-loadout-category-warrior-slave-owner-name
+  description: undecided-loadout-category-warrior-slave-owner-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitWarriorSlaveOwner
+
+- type: UndecidedLoadoutBackpackSet
+  id: WarriorHealerSet
+  name: undecided-loadout-category-warrior-healer-name
+  description: undecided-loadout-category-warrior-healer-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitWarriorHealer
+
+- type: UndecidedLoadoutBackpackSet
+  id: WarriorFirearmSet
+  name: undecided-loadout-category-warrior-firearm-name
+  description: undecided-loadout-category-warrior-firearm-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitWarriorFirearm
+
+- type: UndecidedLoadoutBackpackSet
+  id: WarriorMeleeSet
+  name: undecided-loadout-category-warrior-melee-name
+  description: undecided-loadout-category-warrior-melee-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitWarriorMelee
+
+- type: UndecidedLoadoutBackpackSet
+  id: RecruitBaseSet
+  name: undecided-loadout-category-recruit-base-name
+  description: undecided-loadout-category-recruit-base-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitRecruitBase
+
+- type: UndecidedLoadoutBackpackSet
+  id: RecruitSpearSet
+  name: undecided-loadout-category-recruit-spear-name
+  description: undecided-loadout-category-recruit-spear-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitRecruitSpear
+
+- type: UndecidedLoadoutBackpackSet
+  id: RecruitMeleeSet
+  name: undecided-loadout-category-recruit-melee-name
+  description: undecided-loadout-category-recruit-melee-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitRecruitMelee
+
+- type: UndecidedLoadoutBackpackSet
+  id: RecruitHealerSet
+  name: undecided-loadout-category-recruit-healer-name
+  description: undecided-loadout-category-recruit-healer-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitRecruitHealer
