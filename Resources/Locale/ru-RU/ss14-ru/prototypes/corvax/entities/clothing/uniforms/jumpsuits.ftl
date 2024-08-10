@@ -9,7 +9,7 @@ ent-ClothingUniformJumpsuitCentcomAdmiral = униформа адмирала
 # Corvax N14
 ent-N14ClothingUniformJumpsuitCaesar = туника цезаря
     .desc = Pax Romana!
-ent-N14ClothingUniformJumpsuitCenturion = туника центуриона
-    .desc = Выкрашенная в черный цвет туника легионеров.
 ent-N14ClothingUniformJumpsuitLegionnaire = туника легионера
     .desc = Туника легионеров в стандартной расцветке.
+ent-N14ClothingUniformJumpsuitLegionnaireOther = туника легионера
+    .desc = Юбка легионера...
