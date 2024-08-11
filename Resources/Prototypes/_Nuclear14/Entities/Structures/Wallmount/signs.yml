@@ -20,6 +20,10 @@
   components:
   - type: Sprite
     state: clinic
+  - type: PointLight
+    radius: 3
+    energy: 1
+    color: '#00ff00'
 
 - type: entity
   parent: N14SignBar
@@ -29,6 +33,10 @@
   components:
   - type: Sprite
     state: open
+  - type: PointLight
+    radius: 3
+    energy: 1
+    color: '#ff0000'
 
 - type: entity
   parent: N14SignOpen1
@@ -43,23 +51,24 @@
   components:
   - type: Sprite
     state: open_on
-    
+
 - type: entity
   parent: N14SignOpen1
   id: N14SignOpenOn2
   components:
   - type: Sprite
     state: open_bar_on
-    
+
 - type: entity
-  parent: N14SignBar
+  parent: N14SignBase
   id: N14SignForRent
   name: for rent sign
   description: A sign advertising a place for rent.
   components:
   - type: Sprite
+    sprite: _Nuclear14/Structures/Wallmounts/signs_32x32.rsi
     state: rent
-    
+
 - type: entity
   parent: N14SignBase
   id: N14SignNotice
@@ -69,7 +78,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Wallmounts/walldecor.rsi
     state: notice_sign
-    
+
 - type: entity
   parent: N14SignNotice
   id: N14SignDanger
@@ -99,7 +108,11 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Wallmounts/signs_64x32.rsi
     state: bazaar_on
-    
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: '#ff8000'
+
 - type: entity
   parent: N14SignBazaarOn
   id: N14SignHotel
@@ -108,7 +121,7 @@
   components:
   - type: Sprite
     state: hotel
-    
+
 - type: entity
   parent: N14SignBazaarOn
   id: N14SignPrivateProperty
@@ -117,7 +130,7 @@
   components:
   - type: Sprite
     state: private
-    
+
 - type: entity
   parent: N14SignBazaarOn
   id: N14SignOpenBig
@@ -126,7 +139,11 @@
   components:
   - type: Sprite
     state: we_open_open
-    
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: '#ff0000'
+
 - type: entity
   parent: N14SignBazaarOn
   id: N14SignWorkersOnly
@@ -135,7 +152,7 @@
   components:
   - type: Sprite
     state: workers
-    
+
 # 64x64
 # Scale these by 0.5, 0.5
 - type: entity
