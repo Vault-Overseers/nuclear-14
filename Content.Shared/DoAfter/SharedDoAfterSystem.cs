@@ -208,7 +208,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
         if (TryComp<SpecialComponent>(args.User, out var special))
         {
-            args.Delay *= 0.80f + (special.TotalAgility / 40f);
+            args.Delay /= 0.90f + (special.TotalAgility / 50f);
         }
 
         id = new DoAfterId(args.User, comp.NextId++);
