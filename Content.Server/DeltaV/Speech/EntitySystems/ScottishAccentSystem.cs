@@ -13,7 +13,6 @@ public sealed class ScottishAccentSystem : EntitySystem
     private static readonly Regex RegexCh = new(@"ч", RegexOptions.IgnoreCase);
     private static readonly Regex RegexShch = new(@"щ", RegexOptions.IgnoreCase);
     private static readonly Regex RegexZh = new(@"ж", RegexOptions.IgnoreCase);
-    private static readonly Regex RegexSh = new(@"ш", RegexOptions.IgnoreCase);
     private static readonly Regex RegexR = new(@"р", RegexOptions.IgnoreCase);
     private static readonly Regex RegexY = new(@"ы", RegexOptions.IgnoreCase);
     private static readonly Regex RegexO = new(@"о", RegexOptions.IgnoreCase);
@@ -33,10 +32,9 @@ public sealed class ScottishAccentSystem : EntitySystem
         msg = RegexCh.Replace(msg, "тш");
         msg = RegexShch.Replace(msg, "ш");
         msg = RegexZh.Replace(msg, "дж");
-        msg = RegexSh.Replace(msg, "ш");
-        msg = RegexR.Replace(msg, "р");
+        msg = RegexR.Replace(msg, "рр");
         msg = RegexY.Replace(msg, "и");
-        msg = RegexO.Replace(msg, "оу");
+        msg = RegexO.Replace(msg, "э");
 
         // Добавление случайных американизмов
         var words = msg.Split(' ');
