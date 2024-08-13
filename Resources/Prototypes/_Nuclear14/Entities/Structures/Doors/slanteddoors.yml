@@ -1,0 +1,37 @@
+- type: entity
+  parent: BaseMaterialDoorNavMap
+  id: N14DoorMetalBlueSlanted
+  name: metal Door
+  suffix: slanted
+  description: An old blue metal door.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Nuclear14/Structures/Doors/SlantedDoors/metalblue.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    bumpOpen: false
+    clickOpen: true
+    closeTimeOne: 0
+    closeTimeTwo: 0
+    openTimeOne: 0
+    openTimeTwo: 0
+    # closedDrawDepth: Mobs
+    # openDrawDepth: Mobs
+    openSound:
+      path: /Audio/Effects/door_open.ogg
+    closeSound:
+      path: /Audio/Effects/door_close.ogg
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
