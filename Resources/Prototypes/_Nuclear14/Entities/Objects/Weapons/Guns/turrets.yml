@@ -29,7 +29,7 @@
                 SheetSteel1:
                   min: 2
                   max: 4
-
+        
 - type: entity
   parent: N14WeaponTurretBroken
   id: N14WeaponTurretMobileBroken
@@ -105,14 +105,13 @@
       availableModes:
         - FullAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
-      useKey: false
     # TODO: Power ammo provider?
     - type: BallisticAmmoProvider
-      proto: N14CartridgePistol10 
+      proto: CartridgeCaselessRifle
       capacity: 500
     - type: HTN
       rootTask:
-        task: N14TurretCompound
+        task: TurretCompound
       blackboard:
         RotateSpeed: !type:Single
           3.141
@@ -120,7 +119,7 @@
           path: /Audio/Effects/double_beep.ogg
     - type: MouseRotator
       angleTolerance: 5
-      rotationSpeed: 90
+      rotationSpeed: 180
       simple4DirMode: false
     - type: NoRotateOnInteract
     - type: NoRotateOnMove
@@ -199,33 +198,6 @@
     factions:
     - NCR
 
-- type: entity
-  parent: N14BaseWeaponTurret
-  id: N14WeaponTurretCaravan
-  suffix: CaravanCompany, Hostile
-  components:
-  - type: NpcFactionMember
-    factions:
-    - CaravanCompanySecureArea
-
-- type: entity
-  parent: N14BaseWeaponTurret
-  id: N14WeaponTurretRaider
-  suffix: Raider, Hostile
-  components:
-  - type: NpcFactionMember
-    factions:
-    - Raider
-
-- type: entity
-  parent: N14BaseWeaponTurret
-  id: N14WeaponTurretRobot
-  suffix: Robot, Hostile
-  components:
-  - type: NpcFactionMember
-    factions:
-    - HostileRobot
-
 # Spawn Point Turrets
 # These are meta turrets designed to stop spawn point abuse
 - type: entity
@@ -270,14 +242,13 @@
       availableModes:
         - FullAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
-      useKey: false
     # TODO: Power ammo provider?
     - type: BallisticAmmoProvider
       proto: N14Bullet50HEIAPMeta
       capacity: 50000
     - type: HTN
       rootTask:
-        task: N14TurretCompound
+        task: TurretCompound
       blackboard:
         RotateSpeed: !type:Single
           10
@@ -292,7 +263,7 @@
   - type: NpcFactionMember
     factions:
     - BrotherhoodMidwestSecureArea
-
+    
 - type: entity
   parent: N14BaseWeaponTurretMeta
   id: N14WeaponTurretBrotherhoodWashingtonSpawnpoint
@@ -301,7 +272,7 @@
   - type: NpcFactionMember
     factions:
     - BrotherhoodWashingtonSecureArea
-
+    
 - type: entity
   parent: N14BaseWeaponTurretMeta
   id: N14WeaponTurretVaultSpawnpoint
@@ -310,7 +281,7 @@
   - type: NpcFactionMember
     factions:
     - VaultSecureArea
-
+    
 - type: entity
   parent: N14BaseWeaponTurretMeta
   id: N14WeaponTurretNCRSpawnpoint
