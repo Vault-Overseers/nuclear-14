@@ -12,10 +12,10 @@
 - type: entity
   parent: N14DoorMetalRedTall
   id: N14DoorWoodSecureLockedNCRNCOTall
-  suffix: NCR, Locked, SGT
+  suffix: NCR, Locked, NCO
   components:
   - type: AccessReader
-    access: [["NCRSGT"]]
+    access: [["NCRNCO"]]
   - type: Wires
     layoutId: AirlockSecurity
 
@@ -32,30 +32,30 @@
 - type: entity
   parent: N14DoorMetalRedTall
   id: N14DoorWoodSecureLockedNCRMPTall
-  suffix: NCR, Locked, SGT
+  suffix: NCR, Locked, MP
   components:
   - type: AccessReader
-    access: [["NCRSGT"]]
+    access: [["NCRMP"]]
   - type: Wires
     layoutId: AirlockSecurity
 
 - type: entity
   parent: N14DoorMetalBarTall
   id: N14DoorCellMetalLockedNCRMPTall
-  suffix: NCR, Locked, SGT
+  suffix: NCR, Locked, MP
   components:
   - type: AccessReader
-    access: [["NCRSGT"]]
+    access: [["NCRMP"]]
   - type: Wires
     layoutId: AirlockSecurity
 
 - type: entity
   parent: N14DoorMetalRedTall
   id: N14DoorWoodSecureLockedNCROfficerTall
-  suffix: NCR, Locked, LT
+  suffix: NCR, Locked, Officer
   components:
   - type: AccessReader
-    access: [["NCRLT"]]
+    access: [["NCROfficer"]]
   - type: Wires
     layoutId: AirlockSecurity
 
@@ -138,7 +138,7 @@
       board: [ DoorElectronicsBOSMidwestPaladinCommander ]
   - type: Wires
     layoutId: HighSec
-
+    
 #MARK: BoS Washington
 - type: entity
   parent: N14DoorAirlockTall
@@ -211,7 +211,7 @@
 
 - type: entity
   parent: N14DoorAirlockTall
-  id: N14DoorBunkerLockedBoSWashingtonPaladinTall
+  id: N14DoorBunkerLockedBoSWashingtonPaladin
   suffix: BoSWashington, Locked, PaladinTall
   components:
   - type: ContainerFill
@@ -255,38 +255,38 @@
   - type: Wires
     layoutId: HighSec
 
-#MARK: Townie
+#MARK: Oasis
 
 - type: entity
   parent: N14DoorWoodWhiteTall
   id: N14DoorWoodSecureLockedSheriffTall
-  suffix: Townie, Locked, Law
+  suffix: Oasis, Locked, Sheriff
   components:
   - type: AccessReader
-    access: [["TownieLaw"]]
+    access: [["OasisSheriff"]]
   - type: Wires
     layoutId: AirlockService
 
 - type: entity
   parent: N14DoorMetalBarTall
   id: N14DoorCellMetalLockedSheriffTall
-  suffix: Townie, Locked, Law
+  suffix: Oasis, Locked, Sheriff
   components:
   - type: AccessReader
-    access: [["TownieLaw"]]
+    access: [["OasisSheriff"]]
   - type: Wires
     layoutId: AirlockService
 
 - type: entity
   parent: N14DoorWoodWhiteTall
   id: N14DoorWoodSecureLockedMayorTall
-  suffix: Townie, Locked, Mayor
+  suffix: Oasis, Locked, Mayor
   components:
   - type: AccessReader
-    access: [["TownieMayor"]]
+    access: [["OasisMayor"]]
   - type: Wires
     layoutId: AirlockService
-
+    
 #MARK: Vault
 - type: entity
   parent: N14DoorAirlockTall
@@ -297,7 +297,7 @@
     access: [["VaultDweller"]]
   - type: Wires
     layoutId: HighSec
-
+    
 - type: entity
   parent: N14DoorAirlockTall
   id: N14DoorBunkerLockedVaultEngineerTall
@@ -307,7 +307,7 @@
     access: [["VaultEngineer"]]
   - type: Wires
     layoutId: HighSec
-
+    
 - type: entity
   parent: N14DoorAirlockTall
   id: N14DoorBunkerLockedVaultMedicalTall
@@ -317,7 +317,7 @@
     access: [["VaultMedical"]]
   - type: Wires
     layoutId: HighSec
-
+    
 - type: entity
   parent: N14DoorAirlockTall
   id: N14DoorBunkerLockedVaultSecurityTall
@@ -327,7 +327,7 @@
     access: [["VaultSecurity"]]
   - type: Wires
     layoutId: HighSec
-
+    
 - type: entity
   parent: N14DoorAirlockTall
   id: N14DoorBunkerLockedVaultGatekeeperTall
@@ -337,7 +337,7 @@
     access: [["VaultGatekeeper"]]
   - type: Wires
     layoutId: HighSec
-
+    
 - type: entity
   parent: N14DoorAirlockTall
   id: N14DoorBunkerLockedVaultOverseerTall
