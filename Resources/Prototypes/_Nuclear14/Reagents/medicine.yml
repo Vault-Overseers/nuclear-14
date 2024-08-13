@@ -15,6 +15,8 @@
             Burn: -2.0
             Brute: -2.0
             Airloss: -2.0
+      - !type:ModifyBleedAmount
+        amount: -0.5
       - !type:HealthChange # Bonus for poison
         conditions:
         - !type:ReagentThreshold
@@ -52,6 +54,8 @@
             Airloss: -1.5
           types:
             Radiation: 0.1
+      - !type:ModifyBleedAmount
+        amount: -0.5
       - !type:HealthChange # to prevent doping
         conditions:
         - !type:ReagentThreshold
@@ -87,6 +91,8 @@
           groups:
             Burn: -0.5
             Brute: -0.5
+      - !type:ModifyBleedAmount
+        amount: -0.1
       - !type:ChemVomit
         probability: 0.05
 
@@ -110,6 +116,8 @@
             Airloss: -2
           types:
             Poison: -1
+      - !type:ModifyBleedAmount
+        amount: -0.5
 
 # Poison
 - type: reagent
@@ -162,6 +170,8 @@
             Burn: -5
             Brute: -5
             Airloss: -5
+      - !type:ModifyBleedAmount
+        amount: -1
       - !type:HealthChange # Taking 2 is more or less a guaranteed death
         conditions:
         - !type:ReagentThreshold
@@ -270,15 +280,46 @@
   color: "#e1f5f4"
   metabolisms:
     Medicine:
-      metabolismRate: 5 # Effectively 5 ticks per second
+      metabolismRate: 0.2 # Slow Acting
       effects:
-      - !type:HealthChange
+      - !type:HealthChange # Base Airloss fixing
         damage:
+          types:
+            Asphyxiation: -5
+            Cold: -2
+      - !type:HealthChange # Conditional Epinephrine-like bonus on unconscious
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        - !type:ReagentThreshold
+          min: 0
+          max: 20
+        damage:
+          types:
+            Asphyxiation: -3
+            Poison: -0.5
           groups:
-            Airloss: -10 #TODO add detail to wake up a guy if found
+            Brute: -0.5
+            Burn: -0.5
+      - !type:HealthChange # 20u threshold
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        damage:
+          types:
+            Asphyxiation: 3
+            Poison: 1
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 0.75
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
+        time: 0.75
+        type: Remove
       - !type:Jitter
       - !type:ChemVomit
-        probability: 0.1
+        probability: 0.05
 
 - type: reagent
   id: HealingPoultice
@@ -297,6 +338,8 @@
             Brute: -0.5
             Burn: -0.5
             Toxin: -0.5
+      - !type:ModifyBleedAmount
+        amount: -0.5
       - !type:ChemVomit
         probability: 0.05
       - !type:Drunk
@@ -342,6 +385,8 @@
             Brute: -10
             Airloss: -10
             Toxin: 0.5
+      - !type:ModifyBleedAmount
+        amount: -2
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
