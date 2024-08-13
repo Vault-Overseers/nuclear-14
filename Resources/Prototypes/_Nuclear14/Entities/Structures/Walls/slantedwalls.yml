@@ -16,7 +16,7 @@
   components:
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: PerforatedMeslantedic
+    damageModifierSet: PerforatedMetallic
     
 - type: entity
   parent: N14BaseWallSlanted
@@ -25,7 +25,7 @@
   components:
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: StructuralMeslantedic
+    damageModifierSet: StructuralMetallic
     
 - type: entity
   parent: N14BaseWallSlanted
@@ -34,7 +34,7 @@
   components:
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: StructuralMeslantedicStrong
+    damageModifierSet: StructuralMetallicStrong
   - type: RadiationBlocker
     resistance: 10
     
@@ -555,3 +555,40 @@
   - type: IconSmooth
     key: walls
     base: slantedwoodalt
+    
+- type: entity
+  id: N14WallRebar
+  parent: BaseStructure
+  name: rebar
+  description: Some rebar ready for construction.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/girder.rsi
+    netsync: false
+    state: rebar
+    snapCardinals: true
+  - type: Damageable
+    damageModifierSet: Metallic
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
