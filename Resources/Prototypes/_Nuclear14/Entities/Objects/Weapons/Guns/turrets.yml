@@ -163,7 +163,7 @@
     - BrotherhoodWashington
 
 - type: entity
-  parent: BaseWeaponTurret
+  parent: N14BaseWeaponTurret
   id: N14WeaponTurretVaultSecureArea
   suffix: VaultSecureArea, Hostile
   components:
@@ -181,7 +181,7 @@
     - Vault
 
 - type: entity
-  parent: BaseWeaponTurret
+  parent: N14BaseWeaponTurret
   id: N14WeaponTurretNCRSecureArea
   suffix: NCRSecureArea, Hostile
   components:
@@ -190,7 +190,7 @@
     - NCRSecureArea
 
 - type: entity
-  parent: BaseWeaponTurret
+  parent: N14BaseWeaponTurret
   id: N14WeaponTurretNCR
   suffix: NCR, Hostile
   components:
@@ -198,3 +198,95 @@
     factions:
     - NCR
 
+# Spawn Point Turrets
+# These are meta turrets designed to stop spawn point abuse
+- type: entity
+  parent: BaseStructure
+  id: N14BaseWeaponTurretMeta
+  name: ballistic turret
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _Nuclear14/Structures/Machines/turrets.rsi
+      drawdepth: Mobs
+      state: turret_lethal
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Actions
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 60
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+    - type: InteractionPopup
+      interactDelay: 0.2
+      successChance: 0.8
+      interactSuccessString: petting-success-generic
+      interactFailureString: petting-failure-generic
+      interactSuccessSound:
+        path: /Audio/Effects/double_beep.ogg
+    - type: CombatMode
+      toggleMouseRotator: false
+    - type: Gun
+      fireRate: 15
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    # TODO: Power ammo provider?
+    - type: BallisticAmmoProvider
+      proto: N14Bullet50HEIAPMeta
+      capacity: 50000
+    - type: HTN
+      rootTask:
+        task: TurretCompound
+      blackboard:
+        RotateSpeed: !type:Single
+          10
+        SoundTargetInLOS: !type:SoundPathSpecifier
+          path: /Audio/Effects/double_beep.ogg
+
+- type: entity
+  parent: N14BaseWeaponTurretMeta
+  id: N14WeaponTurretBrotherhoodMidwestSpawnpoint
+  suffix: BOS Midwest, Spawnpoint
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BrotherhoodMidwestSecureArea
+    
+- type: entity
+  parent: N14BaseWeaponTurretMeta
+  id: N14WeaponTurretBrotherhoodWashingtonSpawnpoint
+  suffix: BOS Washington, Spawnpoint
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BrotherhoodWashingtonSecureArea
+    
+- type: entity
+  parent: N14BaseWeaponTurretMeta
+  id: N14WeaponTurretVaultSpawnpoint
+  suffix: Vault, Spawnpoint
+  components:
+  - type: NpcFactionMember
+    factions:
+    - VaultSecureArea
+    
+- type: entity
+  parent: N14BaseWeaponTurretMeta
+  id: N14WeaponTurretNCRSpawnpoint
+  suffix: NCR, Spawnpoint
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NCRSecureArea
