@@ -1,5 +1,5 @@
-trait-name-ScottishAccent = Шотландский акцент
-trait-description-ScottishAccent = Для людей, пришедших из клана Хайленд.
+trait-name-ScottishAccent = Американский акцент
+trait-description-ScottishAccent = Для настоящих любителей стейков.
 trait-name-UltraVision = Ультрафиолетовое зрение
 trait-description-UltraVision =
     Будь то с помощью специальных бионических глаз, случайной мутации
@@ -10,8 +10,8 @@ trait-description-DogVision =
     В любом случае, из-за этого у вас дальтонизм.
 trait-name-Uncloneable = Неклонируемый
 trait-description-Uncloneable = Невозможно клонировать.
-trait-scottish-accent-name = Шотландский акцент
-trait-scottish-accent-desc = Для людей, пришедших из клана Хайленд.
+trait-scottish-accent-name = Американский акцент
+trait-scottish-accent-desc = Для настоящих любителей стейков.
 trait-ultravision-name = Ультрафиолетовое зрение
 trait-ultravision-desc =
     Будь то с помощью специальных бионических глаз, случайной мутации
