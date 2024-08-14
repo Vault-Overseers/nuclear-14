@@ -13,9 +13,9 @@ public sealed class ScottishAccentSystem : EntitySystem
     private static readonly Regex RegexCh = new(@"ч", RegexOptions.IgnoreCase);
     private static readonly Regex RegexShch = new(@"щ", RegexOptions.IgnoreCase);
     private static readonly Regex RegexZh = new(@"ж", RegexOptions.IgnoreCase);
-    private static readonly Regex RegexR = new(@"р", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexE = new(@"у", RegexOptions.IgnoreCase);
     private static readonly Regex RegexY = new(@"ы", RegexOptions.IgnoreCase);
-    private static readonly Regex RegexO = new(@"о", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexA = new(@"а", RegexOptions.IgnoreCase);
 
     public override void Initialize()
     {
@@ -31,20 +31,20 @@ public sealed class ScottishAccentSystem : EntitySystem
 
         msg = RegexCh.Replace(msg, "тш");
         msg = RegexShch.Replace(msg, "ш");
-        msg = RegexZh.Replace(msg, "дж");
-        msg = RegexR.Replace(msg, "рр");
+        msg = RegexZh.Replace(msg, "дш");
+        msg = RegexE.Replace(msg, "'э");
         msg = RegexY.Replace(msg, "и");
-        msg = RegexO.Replace(msg, "э");
+        msg = RegexA.Replace(msg, "э");
 
         // Добавление случайных американизмов
         var words = msg.Split(' ');
         for (int i = 0; i < words.Length; i++)
         {
-            if (Random.Shared.NextDouble() < 0.02)
+            if (Random.Shared.NextDouble() < 0.01)
             {
                 words[i] += " йоу";
             }
-            else if (Random.Shared.NextDouble() < 0.02)
+            else if (Random.Shared.NextDouble() < 0.01)
             {
                 words[i] += " мэн";
             }
