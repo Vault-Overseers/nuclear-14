@@ -11,20 +11,26 @@
   startingGear: TownDeputyGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Townsfolk
 
 - type: startingGear
   id: TownDeputyGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitCowboyBrown
     head: N14ClothingHeadHatDeputy
+    eyes: N14ClothingEyesSunGlasses 
     back: N14ClothingBackpackDeputyFilled
     shoes: N14ClothingShoesBlack
     id: N14IDBadgeTownDeputy
     outerClothing: N14ClothingOuterPoliceVest
-    belt: ClothingBelt9mmfilled
+    belt: ClothingBeltRevolverfilled
     pocket1: RadioHandheld
-    pocket2: N14WeaponRevolver10mm
-    suitstorage: N14WeaponLeverCarbine
+    pocket2: Handcuffs
   satchel: N14ClothingBackpackSatchelDeputyFilled
   duffelbag: N14ClothingBackpackDuffelDeputyFilled
 

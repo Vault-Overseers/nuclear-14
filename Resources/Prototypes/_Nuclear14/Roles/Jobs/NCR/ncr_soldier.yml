@@ -13,16 +13,23 @@
   supervisors: job-supervisors-ncr-nco
   canBeAntag: false
   access:
-  - NCRCadet
-  - NCRSoldier
+  - NCR
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - NCR
 
 - type: startingGear
   id: NCRSoldierGear
   equipment:
     head: N14ClothingHeadHatNCRHelmetMetal
+    back: N14ClothingBackpackNCRFilled
     jumpsuit: N14ClothingUniformNCR
     shoes: N14ClothingBootsLeather
     id: N14IDNCRDogtag
+    pocket1: NCRtrooperloadoutkits
   innerClothingSkirt: N14ClothingUniformNCR #placeholder
   satchel: N14ClothingBackpackSatchelNCRFilled
 

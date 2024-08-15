@@ -1,5 +1,5 @@
 - type: job
-  id: TownSheriff # Renamed to "Marshal", don't touch the prototype ID
+  id: TownSheriff
   setPreference: true
   name: job-name-townsheriff
   description: job-description-townsheriff
@@ -12,7 +12,7 @@
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk
   access:
-  - TownieLaw
+  - OasisSheriff
   special:
   - !type:AddComponentSpecial
     components:
@@ -23,15 +23,18 @@
 - type: startingGear
   id: TownSheriffGear
   equipment:
-    jumpsuit: N14ClothingUniformJumpsuitTownGuardLight
-    back: N14ClothingBackpackSatchelSheriffFilled
-    shoes: N14ClothingBootsLeatherFilled
+    jumpsuit: N14ClothingUniformJumpsuitCowboyGrey
+    back: N14ClothingBackpackSheriffFilled
+    shoes: N14ClothingBootsCowboy
+    head: N14ClothingHeadHatSheriff
+    eyes: N14ClothingEyesSunGlasses 
     id: N14IDBadgeTownSheriff
-    belt: ClothingBeltMilitary
-    pocket1: TownGuardKits
-    pocket2: Handcuffs
+    outerClothing: N14ClothingOuterSheriffVest
+    belt: ClothingBeltRevolverWildWhisper
+    pocket1: RadioHandheld
+    pocket2: Handcuffs 
   satchel: N14ClothingBackpackSatchelSheriffFilled
-  duffelbag: N14ClothingBackpackSatchelSheriffFilled
+  duffelbag: N14ClothingBackpackDuffelSheriffFilled
 
 - type: playTimeTracker
   id: TownSheriff
