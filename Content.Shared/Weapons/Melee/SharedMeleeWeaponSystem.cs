@@ -226,9 +226,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         if (!Resolve(uid, ref component, false))
             return new DamageSpecifier();
         // Nuclear14 adjust melee damage with your Strength
-        // 1 Strength = 0.6
+        // 1 Strength = 0.80
         // 5 Strength = 1
-        // 10 Strength = 1.5
+        // 10 Strength = 1.25
         var damage = component.Damage;
         foreach(var entry in damage.DamageDict)
         {
@@ -236,7 +236,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
             float newValue = entry.Value.Float();
             if (TryComp<SpecialComponent>(user, out var special)){
-                newValue *= 0.50f + (special.TotalStrength / 10f);
+                newValue *= 0.75f + (special.TotalStrength / 20f);
             }
             damage.DamageDict[entry.Key] = newValue;
         }
@@ -251,7 +251,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
             float newValue = entry.Value.Float();
             if (TryComp<SpecialComponent>(user, out var special)){
-                newValue /= 0.50f + (special.TotalStrength / 10f);
+                newValue /= 0.75f + (special.TotalStrength / 20f);
             }
             damage.DamageDict[entry.Key] = newValue;
         }
