@@ -100,10 +100,7 @@ public sealed class HealingSystem : EntitySystem
 
             float newValue = entry.Value.Float();
             if (TryComp<SpecialComponent>(args.User, out var special)){
-                newValue *= 0.70f + (special.TotalIntelligence / 15f + special.TotalLuck / 50f);
-            }
-            if (TryComp<SpecialComponent>(entity.Owner, out var special2)){
-                newValue *= 0.70f + (special2.TotalEndurance / 15f + special2.TotalLuck / 50f);
+                newValue *= 0.50f + (special.TotalIntelligence / 10f);
             }
             newDic.DamageDict[entry.Key] = newValue;
         }
@@ -118,10 +115,7 @@ public sealed class HealingSystem : EntitySystem
             float newValue = entry.Value.Float();
             // todo: use log
             if (TryComp<SpecialComponent>(args.User, out var special)){
-                newValue /= 0.70f + (special.TotalIntelligence / 15f + special.TotalLuck / 50f);
-            }
-            if (TryComp<SpecialComponent>(entity.Owner, out var special2)){
-                newValue /= 0.70f + (special2.TotalEndurance / 15f + special2.TotalLuck / 50f);
+                newValue /= 0.50f + (special.TotalIntelligence / 10f);
             }
             newDic.DamageDict[entry.Key] = newValue;
         }
