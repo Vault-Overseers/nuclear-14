@@ -29,7 +29,7 @@ public sealed class MobThresholdSystem : EntitySystem
     private void OnGetState(EntityUid uid, MobThresholdsComponent component, ref ComponentGetState args)
     {
         // Nuclear14 HP depends on Endurance
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(uid, out var special))
             totalEndurance = special.TotalEndurance;
         var thresholds = new Dictionary<FixedPoint2, MobState>();
@@ -49,7 +49,7 @@ public sealed class MobThresholdSystem : EntitySystem
     private void OnHandleState(EntityUid uid, MobThresholdsComponent component, ref ComponentHandleState args)
     {
         // Nuclear14 HP depends on Endurance
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(uid, out var special))
             totalEndurance = special.TotalEndurance;
         var thresholds = new Dictionary<FixedPoint2, MobState>();
@@ -114,7 +114,7 @@ public sealed class MobThresholdSystem : EntitySystem
     {
         if (!Resolve(target, ref thresholdComponent))
             return FixedPoint2.Zero;
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(target, out var special))
             totalEndurance = special.TotalEndurance;
 
@@ -141,7 +141,7 @@ public sealed class MobThresholdSystem : EntitySystem
         [NotNullWhen(true)] out FixedPoint2? threshold,
         MobThresholdsComponent? thresholdComponent = null)
     {
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(target, out var special))
             totalEndurance = special.TotalEndurance;
 
@@ -221,7 +221,7 @@ public sealed class MobThresholdSystem : EntitySystem
             percentage = 0;
             return true;
         }
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(target, out var special))
             totalEndurance = special.TotalEndurance;
 
@@ -311,7 +311,7 @@ public sealed class MobThresholdSystem : EntitySystem
     {
         if (!Resolve(target, ref threshold))
             return;
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(target, out var special))
             totalEndurance = special.TotalEndurance;
 
@@ -365,7 +365,7 @@ public sealed class MobThresholdSystem : EntitySystem
     private void CheckThresholds(EntityUid target, MobStateComponent mobStateComponent,
         MobThresholdsComponent thresholdsComponent, DamageableComponent damageableComponent, EntityUid? origin = null)
     {
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(target, out var special))
             totalEndurance = special.TotalEndurance;
 
