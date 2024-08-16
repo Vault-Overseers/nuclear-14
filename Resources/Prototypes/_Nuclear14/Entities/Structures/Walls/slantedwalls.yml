@@ -1,13 +1,69 @@
 - type: entity
-  parent: BaseWall
+  abstract: true
+  parent: BaseStructure
+  id: BaseWallIndestructible
+  name: wall
+  description: You will struggle to break this.
+  suffix: indestructible
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
+  - type: Tag
+    tags:
+    - Wall
+  - type: Sprite
+    drawdepth: Walls
+  - type: Icon
+    state: full
+  - type: PlacementReplacement
+    key: walls
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+  - type: Occluder
+  - type: Airtight
+  - type: RadiationBlocker
+    resistance: 2
+  - type: BlockWeather
+
+- type: entity
+  parent: BaseWallIndestructible
   id: N14BaseWallSlanted
   suffix: slanted
   abstract: true
   components:
-  - type: Sprite
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Rock
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
     
 - type: entity
   parent: N14BaseWallSlanted
@@ -26,6 +82,14 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
     
 - type: entity
   parent: N14BaseWallSlanted
@@ -37,6 +101,14 @@
     damageModifierSet: StructuralMetallicStrong
   - type: RadiationBlocker
     resistance: 10
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
     
 - type: entity
   parent: N14BaseWallSlanted
@@ -46,10 +118,26 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 2
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroyHeavy
 
 - type: entity
-  parent: N14BaseWallSlanted
-  id: N14WallAdobeSlanted
+  parent: BaseWallIndestructible
+  id: N14WallAdobeSlantedIndestructible
   name: adobe wall
   components:
   - type: Sprite
@@ -61,8 +149,14 @@
     base: slantedadobe
 
 - type: entity
-  parent: N14BaseWallSlanted
-  id: N14WallBrickSlanted
+  parent: [ N14WallAdobeSlantedIndestructible, N14BaseWallSlanted ]
+  id: N14WallAdobeSlanted
+  name: adobe wall
+  suffix: slanted
+
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallBrickSlantedIndestructible
   name: brick wall
   components:
   - type: Sprite
@@ -74,10 +168,15 @@
     base: slantedbrick
     
 - type: entity
-  parent: N14BaseWallSlanted
-  id: N14WallBrickAltSlanted
+  parent: [ N14WallBrickSlantedIndestructible, N14BaseWallSlanted ]
+  id: N14WallBrickSlanted
   name: brick wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallBrickAltSlantedIndestructible
+  name: brick wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/brickalt.rsi
@@ -88,10 +187,15 @@
     base: slantedbrickalt
     
 - type: entity
-  parent: N14BaseWallSlanted
-  id: N14WallBrickGraySlanted
+  parent: [ N14WallBrickAltSlantedIndestructible, N14BaseWallSlanted ]
+  id: N14WallBrickAltSlanted
   name: brick wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallBrickGraySlantedIndestructible
+  name: brick wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/brickgray.rsi
@@ -102,10 +206,15 @@
     base: slantedbrickgray
     
 - type: entity
-  parent: N14BaseWallSlantedMetalStrong
-  id: N14WallBunkerSlanted
-  name: bunker wall
+  parent: [ N14WallBrickGraySlantedIndestructible, N14BaseWallSlanted ]
+  id: N14WallBrickGraySlanted
+  name: brick wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallBunkerSlantedIndestructible
+  name: bunker wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/bunker.rsi
@@ -116,10 +225,15 @@
     base: slantedbunker
     
 - type: entity
-  parent: N14BaseWallSlanted
-  id: N14WallCombSlanted
-  name: comb wall
+  parent: [ N14WallBunkerSlantedIndestructible, N14BaseWallSlantedMetalStrong ]
+  id: N14WallBunkerSlanted
+  name: bunker wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallCombSlantedIndestructible
+  name: comb wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/comb.rsi
@@ -130,29 +244,34 @@
     base: slantedcomb
     
 - type: entity
-  parent: N14BaseWallSlanted
-  id: N14WallConcreteSlanted
-  name: concrete wall
+  parent: [ N14WallCombSlantedIndestructible, N14BaseWallSlanted ]
+  id: N14WallCombSlanted
+  name: comb wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallConcreteSlantedIndestructible
+  name: concrete wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/concrete.rsi
-    drawdepth: Mobs
-  - type: SpriteFade
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/concrete.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Rock
   - type: IconSmooth
     key: walls
     base: slantedconcrete
     
 - type: entity
-  parent: N14BaseWallSlanted
-  id: N14WallConcreteAltSlanted
+  parent: [ N14WallCombSlantedIndestructible, N14BaseWallSlanted ]
+  id: N14WallConcreteSlanted
   name: concrete wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallConcreteAltSlantedIndestructible
+  name: concrete wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/concretealt.rsi
@@ -163,10 +282,15 @@
     base: slantedconcretealt
     
 - type: entity
-  parent: N14BaseWallSlanted
-  id: N14WallDungeonSlanted
-  name: dungeon wall
+  parent: [ N14WallConcreteAltSlantedIndestructible, N14BaseWallSlanted ]
+  id: N14WallConcreteAltSlanted
+  name: concrete wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallDungeonSlantedIndestructible
+  name: dungeon wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/dungeon.rsi
@@ -177,10 +301,15 @@
     base: slanteddungeon
     
 - type: entity
-  parent: N14BaseWallSlanted
-  id: N14WallDungeonAltSlanted
+  parent: [ N14WallDungeonSlantedIndestructible, N14BaseWallSlanted ]
+  id: N14WallDungeonSlanted
   name: dungeon wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallDungeonAltSlantedIndestructible
+  name: dungeon wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/dungeonalt.rsi
@@ -191,10 +320,15 @@
     base: slanteddungeonalt
     
 - type: entity
-  parent: N14BaseWallSlantedMetal
-  id: N14WallMetalSlanted
-  name: metal wall
+  parent: [ N14WallDungeonAltSlantedIndestructible, N14BaseWallSlanted ]
+  id: N14WallDungeonAltSlanted
+  name: dungeon wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallMetalSlantedIndestructible
+  name: metal wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/metal.rsi
@@ -205,10 +339,15 @@
     base: slantedmetal
     
 - type: entity
-  parent: N14BaseWallSlantedMetal
-  id: N14WallPrisonSlanted
-  name: prison wall
+  parent: [ N14WallMetalSlantedIndestructible, N14BaseWallSlantedMetal ]
+  id: N14WallMetalSlanted
+  name: metal wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallPrisonSlantedIndestructible
+  name: prison wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/prison.rsi
@@ -219,10 +358,15 @@
     base: slantedprison
     
 - type: entity
-  parent: N14BaseWallSlantedMetal
-  id: N14WallReinfMetalSlanted
-  name: reinforced metal wall
+  parent: [ N14WallPrisonSlantedIndestructible, N14BaseWallSlantedMetal ]
+  id: N14WallPrisonSlanted
+  name: prison wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallReinfMetalSlantedIndestructible
+  name: reinforced metal wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/reinfmetal.rsi
@@ -233,10 +377,15 @@
     base: slantedreinfmetal
     
 - type: entity
-  parent: N14BaseWallSlanted
-  id: N14WallRockSlanted
-  name: rock wall
+  parent: [ N14WallReinfMetalSlantedIndestructible, N14BaseWallSlantedMetal ]
+  id: N14WallReinfMetalSlanted
+  name: reinforced metal wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallRockSlantedIndestructible
+  name: rock wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/rock.rsi
@@ -245,6 +394,13 @@
   - type: IconSmooth
     key: walls
     base: slantedrock
+            
+- type: entity
+  parent: [ N14WallRockSlantedIndestructible, N14BaseWallSlantedMetal ]
+  id: N14WallRockSlanted
+  name: rock wall
+  suffix: slanted
+  components:
   - type: SoundOnGather
   - type: Gatherable
     whitelist:
@@ -252,7 +408,7 @@
         - Pickaxe
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: Meslantedic
+    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
       - trigger:
@@ -263,10 +419,9 @@
             acts: ["Destruction"]
     
 - type: entity
-  parent: N14WallRockSlanted
-  id: N14WallRockDroughtSlanted
+  parent: BaseWallIndestructible
+  id: N14WallRockDroughtSlantedIndestructible
   name: drought rock wall
-  suffix: slanted
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/rockdrought.rsi
@@ -277,10 +432,32 @@
     base: slantedrockdrought
     
 - type: entity
-  parent: N14WallRockSlanted
-  id: N14WallRockMammothSlanted
-  name: mammoth rock wall
+  parent: [ N14WallRockDroughtSlantedIndestructible, N14BaseWallSlantedMetal ]
+  id: N14WallRockDroughtSlanted
+  name: rock wall
   suffix: slanted
+  components:
+  - type: SoundOnGather
+  - type: Gatherable
+    whitelist:
+      tags:
+        - Pickaxe
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallRockMammothSlantedIndestructible
+  name: mammoth rock wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/rockmammoth.rsi
@@ -291,10 +468,32 @@
     base: slantedrockmammoth
     
 - type: entity
-  parent: N14BaseWallSlantedMetalWeak
-  id: N14WallRoughScrapSlanted
-  name: rough scrap wall
+  parent: [ N14WallRockMammothSlantedIndestructible, N14BaseWallSlantedMetal ]
+  id: N14WallRockMammothSlanted
+  name: rock wall
   suffix: slanted
+  components:
+  - type: SoundOnGather
+  - type: Gatherable
+    whitelist:
+      tags:
+        - Pickaxe
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallRoughScrapSlantedIndestructible
+  name: rough scrap wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/roughscrap.rsi
@@ -305,10 +504,15 @@
     base: slantedroughscrap
     
 - type: entity
-  parent: N14BaseWallSlantedMetal
-  id: N14WallIndustrialRustSlanted
-  name: industrial rust wall
+  parent: [ N14WallRoughScrapSlantedIndestructible, N14BaseWallSlantedMetalWeak ]
+  id: N14WallRoughScrapSlanted
+  name: rough scrap wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallIndustrialRustSlantedIndestructible
+  name: industrial rust wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/rustindustrial.rsi
@@ -319,10 +523,15 @@
     base: slantedrustindustrial
     
 - type: entity
-  parent: N14BaseWallSlantedMetal
-  id: N14WallMetalRustSlanted
-  name: metal rust wall
+  parent: [ N14WallIndustrialRustSlantedIndestructible, N14BaseWallSlantedMetal ]
+  id: N14WallIndustrialRustSlanted
+  name: industrial rust wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallMetalRustSlantedIndestructible
+  name: metal rust wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/rustmetal.rsi
@@ -333,10 +542,15 @@
     base: slantedrustmetal
     
 - type: entity
-  parent: N14BaseWallSlantedMetal
-  id: N14WallReinfMetalRustSlanted
-  name: reinforced metal rust wall
+  parent: [ N14WallMetalRustSlantedIndestructible, N14BaseWallSlantedMetal ]
+  id: N14WallMetalRustSlantedSlanted
+  name: metal rust wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallReinfMetalRustSlantedIndestructible
+  name: reinforced metal rust wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/rustreinfmetal.rsi
@@ -347,10 +561,15 @@
     base: slantedrustreinfmetal
     
 - type: entity
-  parent: N14BaseWallSlantedMetalStrong
-  id: N14WallVaultRustSlanted
-  name: vault rust wall
+  parent: [ N14WallReinfMetalRustSlantedIndestructible, N14BaseWallSlantedMetal ]
+  id: N14WallReinfMetalRustSlanted
+  name: reinforced metal rust wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallVaultRustSlantedIndestructible
+  name: vault rust wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/rustvault.rsi
@@ -361,10 +580,15 @@
     base: slantedrustvault
     
 - type: entity
-  parent: N14BaseWallSlantedMetal
-  id: N14WallVaultVentsRustSlanted
-  name: vault vents rust wall
+  parent: [ N14WallVaultRustSlantedIndestructible, N14BaseWallSlantedMetalStrong ]
+  id: N14WallVaultRustSlanted
+  name: vault rust wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallVaultVentsRustSlantedIndestructible
+  name: vault vents rust wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/rustvaultvent.rsi
@@ -375,66 +599,91 @@
     base: slantedrustvaultvent
     
 - type: entity
-  parent: N14BaseWallSlantedMetalWeak
+  parent: [ N14WallVaultVentsRustSlantedIndestructible, N14BaseWallSlantedMetal ]
+  id: N14WallVaultVentsRustSlanted
+  name: vault vents rust wall
+  suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallScrapSlantedIndestructible
+  name: scrap wall
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrap.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrap.rsi
+  - type: IconSmooth
+    key: walls
+    base: slantedscrap
+    
+- type: entity
+  parent: [ N14WallScrapSlantedIndestructible, N14BaseWallSlantedMetalWeak ]
   id: N14WallScrapSlanted
   name: scrap wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallScrapBlueSlantedIndestructible
+  name: blue scrap wall
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrap.rsi
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapblue.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrap.rsi
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapblue.rsi
   - type: IconSmooth
     key: walls
     base: slantedscrap
     
 - type: entity
-  parent: N14BaseWallSlantedMetalWeak
+  parent: [ N14WallScrapBlueSlantedIndestructible, N14BaseWallSlantedMetalWeak ]
   id: N14WallScrapBlueSlanted
   name: blue scrap wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallScrapRedSlantedIndestructible
+  name: red scrap wall
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapblue.rsi
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapred.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapblue.rsi
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapred.rsi
   - type: IconSmooth
     key: walls
     base: slantedscrap
     
 - type: entity
-  parent: N14BaseWallSlantedMetalWeak
+  parent: [ N14WallScrapRedSlantedIndestructible, N14BaseWallSlantedMetalWeak ]
   id: N14WallScrapRedSlanted
   name: red scrap wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallScrapWhiteSlantedIndestructible
+  name: white scrap wall
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapred.rsi
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapwhite.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapred.rsi
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapwhite.rsi
   - type: IconSmooth
     key: walls
     base: slantedscrap
     
 - type: entity
-  parent: N14BaseWallSlantedMetalWeak
+  parent: [ N14WallScrapWhiteSlantedIndestructible, N14BaseWallSlantedMetalWeak ]
   id: N14WallScrapWhiteSlanted
   name: white scrap wall
   suffix: slanted
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapwhite.rsi
-  - type: Icon
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapwhite.rsi
-  - type: IconSmooth
-    key: walls
-    base: slantedscrap
     
 - type: entity
-  parent: N14BaseWallSlantedMetal
-  id: N14WallSewerSlanted
+  parent: BaseWallIndestructible
+  id: N14WallSewerSlantedIndestructible
   name: sewer wall
-  suffix: slanted
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/sewer.rsi
@@ -445,66 +694,91 @@
     base: slantedsewer
     
 - type: entity
-  parent: N14BaseWallSlantedWood
+  parent: [ N14WallSewerSlantedIndestructible, N14BaseWallSlantedMetal ]
+  id: N14WallSewerSlanted
+  name: sewer wall
+  suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallSidingSlantedIndestructible
+  name: siding wall
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/siding.rsi
+  - type: Icon
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/siding.rsi
+  - type: IconSmooth
+    key: walls
+    base: slantedsiding
+    
+- type: entity
+  parent: [ N14WallSidingSlantedIndestructible, N14BaseWallSlantedWood ]
   id: N14WallSidingSlanted
   name: siding wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallSidingBlueSlantedIndestructible
+  name: blue siding wall
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/siding.rsi
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/sidingblue.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/siding.rsi
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/sidingblue.rsi
   - type: IconSmooth
     key: walls
     base: slantedsiding
-    
+
 - type: entity
-  parent: N14BaseWallSlantedWood
+  parent: [ N14WallSidingBlueSlantedIndestructible, N14BaseWallSlantedWood ]
   id: N14WallSidingBlueSlanted
   name: blue siding wall
   suffix: slanted
+
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallSidingRedSlantedIndestructible
+  name: red siding wall
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/sidingblue.rsi
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/sidingred.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/sidingblue.rsi
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/sidingred.rsi
   - type: IconSmooth
     key: walls
     base: slantedsiding
     
 - type: entity
-  parent: N14BaseWallSlantedWood
+  parent: [ N14WallSidingRedSlantedIndestructible, N14BaseWallSlantedWood ]
   id: N14WallSidingRedSlanted
   name: red siding wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallSidingGreenSlantedIndestructible
+  name: green siding wall
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/sidingred.rsi
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/sidinggreen.rsi
   - type: Icon
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/sidingred.rsi
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/sidinggreen.rsi
   - type: IconSmooth
     key: walls
     base: slantedsiding
     
 - type: entity
-  parent: N14BaseWallSlantedWood
+  parent: [ N14WallSidingGreenSlantedIndestructible, N14BaseWallSlantedWood ]
   id: N14WallSidingGreenSlanted
   name: green siding wall
   suffix: slanted
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/sidinggreen.rsi
-  - type: Icon
-    sprite: _Nuclear14/Structures/Walls/ms13/slanted/sidinggreen.rsi
-  - type: IconSmooth
-    key: walls
-    base: slantedsiding
     
 - type: entity
-  parent: N14BaseWallSlantedMetalStrong
-  id: N14WallVaultSlanted
+  parent: BaseWallIndestructible
+  id: N14WallVaultSlantedIndestructible
   name: vault wall
-  suffix: slanted
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/vault.rsi
@@ -515,10 +789,15 @@
     base: slantedvault
     
 - type: entity
-  parent: N14BaseWallSlantedMetal
-  id: N14WallVaultVentSlanted
-  name: vault vent wall
+  parent: [ N14WallVaultSlantedIndestructible, N14BaseWallSlantedMetalStrong ]
+  id: N14WallVaultSlanted
+  name: vault wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallVaultVentSlantedIndestructible
+  name: vault vent wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/vaultvent.rsi
@@ -529,10 +808,15 @@
     base: slantedvaultvent
     
 - type: entity
-  parent: N14BaseWallSlantedWood
-  id: N14WallWoodSlanted
-  name: wood wall
+  parent: [ N14WallVaultVentSlantedIndestructible, N14BaseWallSlantedMetal ]
+  id: N14WallVaultVentSlanted
+  name: vault vent wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallWoodSlantedIndestructible
+  name: wood wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/wood.rsi
@@ -543,10 +827,15 @@
     base: slantedwood
     
 - type: entity
-  parent: N14BaseWallSlantedWood
-  id: N14WallWoodAltSlanted
+  parent: [ N14WallWoodSlantedIndestructible, N14BaseWallSlantedWood ]
+  id: N14WallWoodSlanted
   name: wood wall
   suffix: slanted
+    
+- type: entity
+  parent: BaseWallIndestructible
+  id: N14WallWoodAltSlantedIndestructible
+  name: wood wall
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/ms13/slanted/woodalt.rsi
@@ -555,6 +844,12 @@
   - type: IconSmooth
     key: walls
     base: slantedwood
+    
+- type: entity
+  parent: [ N14WallWoodAltSlantedIndestructible, N14BaseWallSlantedWood ]
+  id: N14WallWoodAltSlanted
+  name: wood wall
+  suffix: slanted
     
 - type: entity
   id: N14WallRebar
