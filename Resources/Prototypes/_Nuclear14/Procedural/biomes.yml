@@ -115,4 +115,38 @@
       allowedTiles:
         - FloorCave
       entities:
-        - RandomBasaltRockSpawner
+        - Random
+
+# Wasteland
+- type: biomeTemplate
+  id: WastelandTest
+  layers:
+    - !type:BiomeTileLayer
+      threshold: -1.0
+      tile: FloorWasteland
+    - !type:BiomeTileLayer 
+      tile: FloorDirt
+      threshold: 0
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        fractalType: Ridged
+        frequency: 0.05
+        octaves: 3
+        lacunarity: 1.8
+        gain: 0.7
+        domainWarpType: OpenSimplex2
+        domainWarpAmp: 120
+    - !type:BiomeTileLayer
+      tile: FloorDirtNew
+      threshold: 0.45
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        fractalType: Ridged
+        frequency: 0.05
+        octaves: 3
+        lacunarity: 1.8
+        gain: 0.7
+        domainWarpType: OpenSimplex2
+        domainWarpAmp: 120

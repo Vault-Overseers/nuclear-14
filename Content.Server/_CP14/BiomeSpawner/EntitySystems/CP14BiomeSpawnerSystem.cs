@@ -27,10 +27,18 @@ public sealed class CP14BiomeSpawnerSystem : EntitySystem
     [Dependency] private readonly DecalSystem _decals = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+	
+	private int _seed = 27;
 
     public override void Initialize()
     {
+        SubscribeLocalEvent<RoundStartAttemptEvent>(OnRoundStartAttempt);
         SubscribeLocalEvent<CP14BiomeSpawnerComponent, MapInitEvent>(OnMapInit);
+    }
+
+    private void OnRoundStartAttempt(RoundStartAttemptEvent ev)
+    {
+        _seed = _random.Next(100000);
     }
 
     private void OnMapInit(Entity<CP14BiomeSpawnerComponent> ent, ref MapInitEvent args)
@@ -49,9 +57,8 @@ public sealed class CP14BiomeSpawnerSystem : EntitySystem
         if (!TryComp<MapGridComponent>(gridUid, out var map))
             return;
 
-        var seed = _random.Next(100000);
         var vec = _transform.GetGridOrMapTilePosition(ent);
-        if (!_biome.TryGetTile(vec, biome.Layers, seed, map, out var tile))
+        if (!_biome.TryGetTile(vec, biome.Layers, _seed, map, out var tile))
             return;
 
         // Set new tile
@@ -66,7 +73,7 @@ public sealed class CP14BiomeSpawnerSystem : EntitySystem
         }
 
         //Add decals
-        if (_biome.TryGetDecals(vec, biome.Layers, seed, map, out var decals))
+        if (_biome.TryGetDecals(vec, biome.Layers, _seed, map, out var decals))
         {
             foreach (var decal in decals)
             {
@@ -82,7 +89,7 @@ public sealed class CP14BiomeSpawnerSystem : EntitySystem
             QueueDel(entToRemove);
         }
 
-        if (_biome.TryGetEntity(vec, biome.Layers, tile.Value, seed, map, out var entityProto))
+        if (_biome.TryGetEntity(vec, biome.Layers, tile.Value, _seed, map, out var entityProto))
             Spawn(entityProto, new EntityCoordinates(gridUid, tileCenterVec));
     }
 }
