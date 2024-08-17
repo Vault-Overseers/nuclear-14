@@ -25,48 +25,48 @@ public sealed class CP14BiomeSpawnerSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly SharedMapSystem _maps = default!;
     [Dependency] private readonly DecalSystem _decals = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
-        base.Initialize();
         SubscribeLocalEvent<CP14BiomeSpawnerComponent, MapInitEvent>(OnMapInit);
     }
 
-    private void OnMapInit(Entity<CP14BiomeSpawnerComponent> spawner, ref MapInitEvent args)
+    private void OnMapInit(Entity<CP14BiomeSpawnerComponent> ent, ref MapInitEvent args)
     {
-        SpawnBiome(spawner);
-        QueueDel(spawner);
+        SpawnBiome(ent);
+        QueueDel(ent);
     }
 
-    private void SpawnBiome(Entity<CP14BiomeSpawnerComponent> spawner)
+    private void SpawnBiome(Entity<CP14BiomeSpawnerComponent> ent)
     {
-        var biome = _proto.Index(spawner.Comp.Biome);
-        var parent = _transform.GetParent(spawner);
-        if (parent == null)
+        var biome = _proto.Index(ent.Comp.Biome);
+        var spawnerTransform = Transform(ent);
+        if (spawnerTransform.GridUid == null)
             return;
-
-        var gridUid = parent.Owner;
+        var gridUid = spawnerTransform.GridUid.Value;
         if (!TryComp<MapGridComponent>(gridUid, out var map))
             return;
 
-        var v2i = _transform.GetGridOrMapTilePosition(spawner);
-        if (!_biome.TryGetTile(v2i, biome.Layers, _random.Next(), map, out var tile))
+        var seed = _random.Next(100000);
+        var vec = _transform.GetGridOrMapTilePosition(ent);
+        if (!_biome.TryGetTile(vec, biome.Layers, seed, map, out var tile))
             return;
 
         // Set new tile
-        _maps.SetTile(gridUid, map, v2i, tile.Value);
+        _maps.SetTile(gridUid, map, vec, tile.Value);
+        var tileCenterVec = vec + map.TileSizeHalfVector;
 
         // Remove old decals
-        var oldDecals = _decals.GetDecalsInRange(gridUid, v2i + new Vector2(0.5f, 0.5f));
+        var oldDecals = _decals.GetDecalsInRange(gridUid, tileCenterVec);
         foreach (var (id, _) in oldDecals)
         {
             _decals.RemoveDecal(gridUid, id);
         }
 
         //Add decals
-        if (_biome.TryGetDecals(v2i, biome.Layers, _random.Next(), map, out var decals))
+        if (_biome.TryGetDecals(vec, biome.Layers, seed, map, out var decals))
         {
             foreach (var decal in decals)
             {
@@ -74,12 +74,15 @@ public sealed class CP14BiomeSpawnerSystem : EntitySystem
             }
         }
 
-        //TODO maybe need remove anchored entities here
-
-        //Add entities
-        if (_biome.TryGetEntity(v2i, biome.Layers, tile.Value, _random.Next(), map, out var entityProto))
+        // Remove entities
+        var oldEntities = _lookup.GetEntitiesInRange(spawnerTransform.Coordinates, 0.48f);
+        // TODO: Replace this with GetEntitiesInBox2
+        foreach (var entToRemove in oldEntities.Concat(new[] { ent.Owner })) // Do not remove self
         {
-            var ent = _entManager.SpawnEntity(entityProto, new EntityCoordinates(gridUid, v2i + map.TileSizeHalfVector));
+            QueueDel(entToRemove);
         }
+
+        if (_biome.TryGetEntity(vec, biome.Layers, tile.Value, seed, map, out var entityProto))
+            Spawn(entityProto, new EntityCoordinates(gridUid, tileCenterVec));
     }
 }
