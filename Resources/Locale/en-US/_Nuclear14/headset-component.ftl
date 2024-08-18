@@ -1,4 +1,5 @@
 # See en-US/headset/headset-component.ftl for upstream radio channels.
+announcer-Fallout-name = Wasteland
 
 chat-radio-wasteland-common = Wasteland Common
 chat-radio-vault-command = Vault Command
