@@ -1,0 +1,42 @@
+- type: entity
+  id: StairsBase
+  name: stairs
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/ladderss13.rsi
+    noRot: true
+    netsync: false
+    offset: 0, 0.25
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    canCollide: False
+    bodyStatus: OnGround
+    bodyType: Static
+  - type: Tag
+    tags:
+      - Structure
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: Sprite
+    sprite: /Textures/Structures/stairs.rsi
+    drawdepth: FloorTiles
+    layers:
+    - state: stairs_dark
+  - type: Portal
+    canTeleportToOtherMaps: true
+    randomTeleport: false
+  - type: PortalAutoLink
