@@ -12,3 +12,4 @@ chat-radio-bosmidwest = СБС
 chat-radio-boswashington = ВБС
 chat-radio-enclave = Анклав
 chat-radio-ncr = НКР
+announcer-Fallout-name = Пустошь
