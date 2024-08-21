@@ -64,6 +64,70 @@
     tags:
     - Molerat
 
+- type: entity
+  name: pigrat
+  id: N14MobPigrat
+  parent: N14MobBaseHostile
+  description: Part pig, part rat, full pest. Watch out for the teeth.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: pigrat
+      sprite: _Nuclear14/Mobs/Animals/pigrat.rsi
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: pigrat
+      Critical:
+        Base: pigrat
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 3
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Pigrat
+    offspring:
+    - id: N14MobPigrat
+      maxAmount: 1
+  - type: ReproductivePartner
+  - type: Tag
+    tags:
+    - Pigrat
+
 #MARK: Feral Dog
 - type: entity
   name: feral dog
@@ -848,6 +912,69 @@
       - Radstag
     offspring:
     - id: N14MobRadstag
+      maxAmount: 1
+  - type: ReproductivePartner
+
+#MARK: Radhog
+- type: entity
+  name: radhog
+  parent: N14MobBrahmin
+  id: N14MobRahdog
+  description: Radiated bacon on angry hooves.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: radhog
+      sprite: _Nuclear14/Mobs/Animals/radhog.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: radhog
+      Dead:
+        Base: dead
+  - type: Tag
+    tags:
+    - Radhog
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadstag
+      amount: 4
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    angle: 60
+    animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 6
+        Slash: 2
+        Structural: 8
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 150
+        reagents:
+        - ReagentId: N14MilkRadstag
+          Quantity: 30
+  - type: Udder
+    reagentId: N14MilkRadstag
+    quantityperUpdate: 10
+    growthDelay: 40
+    hungerUsage: 5
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Radhog
+    offspring:
+    - id: N14MobRadhog
       maxAmount: 1
   - type: ReproductivePartner
 
