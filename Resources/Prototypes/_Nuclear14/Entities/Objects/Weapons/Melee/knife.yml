@@ -17,6 +17,8 @@
         Slash: 12
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      collection: N14KnifeSwing
   - type: Sprite
   - type: Item
     size: Small
@@ -39,8 +41,16 @@
     sprite: _Nuclear14/Objects/Weapons/Melee/kitchen_knife.rsi
     size: Small
     state: icon
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 16
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/kitchen_knife.rsi
+  - type: DisarmMalus
+    malus: 0.225
 
 - type: entity
   name: butcher's cleaver
@@ -56,12 +66,20 @@
     size: 4
     state: butch
   - type: MeleeWeapon
-    attackRate: 1.5
+    attackRate: 1
     damage:
       types:
-        Slash: 10
+        Slash: 16
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 20
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/cleaver.rsi
+  - type: DisarmMalus
+    malus: 0.225
 
 - type: entity
   name: combat knife
@@ -80,6 +98,8 @@
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 1.5
+    soundSwing:
+      collection: N14KnifeSwing
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
   - type: DamageOtherOnHit
@@ -88,5 +108,35 @@
         Slash: 16
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/combat_knife.rsi
+  - type: DisarmMalus
+    malus: 0.225
+
+- type: entity
+  name: tribal knife
+  parent: N14BaseKnife
+  id: N14TribalKnife
+  description: A deadly knife intended for melee confrontations, this one is handmade by tribals.
+  components:
+  - type: Tag
+    tags:
+    - CombatKnife
+    - Knife
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/tribalknife.rsi
+    size: 2
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    soundSwing:
+      collection: N14KnifeSwing
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 16
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Melee/tribalknife.rsi
   - type: DisarmMalus
     malus: 0.225

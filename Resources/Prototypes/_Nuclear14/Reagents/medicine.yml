@@ -15,6 +15,8 @@
             Burn: -2.0
             Brute: -2.0
             Airloss: -2.0
+      - !type:ModifyBleedAmount
+        amount: -0.5
       - !type:HealthChange # Bonus for poison
         conditions:
         - !type:ReagentThreshold
@@ -52,6 +54,8 @@
             Airloss: -1.5
           types:
             Radiation: 0.1
+      - !type:ModifyBleedAmount
+        amount: -0.5
       - !type:HealthChange # to prevent doping
         conditions:
         - !type:ReagentThreshold
@@ -87,6 +91,8 @@
           groups:
             Burn: -0.5
             Brute: -0.5
+      - !type:ModifyBleedAmount
+        amount: -0.1
       - !type:ChemVomit
         probability: 0.05
 
@@ -110,6 +116,8 @@
             Airloss: -2
           types:
             Poison: -1
+      - !type:ModifyBleedAmount
+        amount: -0.5
 
 # Poison
 - type: reagent
@@ -130,7 +138,6 @@
       - !type:ChemVomit
         probability: 0.01
 
-# Poison
 - type: reagent
   id: Antidote
   name: reagent-name-antidote
@@ -163,6 +170,8 @@
             Burn: -5
             Brute: -5
             Airloss: -5
+      - !type:ModifyBleedAmount
+        amount: -1
       - !type:HealthChange # Taking 2 is more or less a guaranteed death
         conditions:
         - !type:ReagentThreshold
@@ -189,9 +198,9 @@
 # Radiation
 - type: reagent
   id: RadAway
-  name: reagent-name-damage-resist-mixture
+  name: reagent-name-radaway
   group: Chems
-  desc: reagent-desc-damage-resist-mixture
+  desc: reagent-desc-radaway
   physicalDesc: reagent-physical-desc-oily
   color: "#ff9000"
   metabolisms:
@@ -205,9 +214,9 @@
 
 - type: reagent
   id: RadAwayDiluted
-  name: reagent-name-damage-resist-mixture
-  group: Medicine
-  desc: reagent-desc-damage-resist-mixture
+  name: reagent-name-diluted-radaway
+  group: Chems
+  desc: reagent-desc-diluted-radaway
   physicalDesc: reagent-physical-desc-oily
   color: "#ffbb60"
   metabolisms:
@@ -221,14 +230,14 @@
 
 - type: reagent
   id: RadX
-  name: reagent-name-rad-x
+  name: reagent-name-rad-x # Should provide a radiation resistance instead of healing it
   group: Chems
   desc: reagent-desc-rad-x
   physicalDesc: reagent-physical-desc-soapy
   color: "#00e5ff"
   metabolisms:
     Medicine:
-      metabolismRate: 0.1 # Slow
+      metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:HealthChange
         damage:
@@ -236,18 +245,6 @@
             Radiation: -1
 
 # Other
-- type: reagent
-  id: DamageResistMixture #used in med-x. TODO: figure out how to make a reagent give you dmg resistance
-  name: reagent-name-damage-resist-mixture
-  group: Chems
-  desc: reagent-desc-damage-resist-mixture
-  physicalDesc: reagent-physical-desc-reasonably-metallic
-  color: "#00e5ff"
-  metabolisms:
-    Medicine:
-      effects:
-      - !type:Drunk
-
 - type: reagent
   id: Fixer
   name: reagent-name-fixer
@@ -260,131 +257,74 @@
       metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
       - !type:Drunk
+      # - !type:CureAddiction
 
-- type: reagent
-  id: Mentats
-  name: reagent-name-mentats
-  group: Chems
-  desc: reagent-desc-mentats
-  physicalDesc: reagent-physical-desc-tangy
-  color: "#00e5ff"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:Drunk #TODO: when we get SPECIAL, make this increase Int, Chr, and remove this effect
-
-- type: reagent
-  id: MentatsBerry
-  name: reagent-name-mentats-berry
-  group: Chems
-  desc: reagent-desc-mentats-berry
-  physicalDesc: reagent-physical-desc-tangy
-  color: "#2E0071"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:Drunk #TODO: when we get SPECIAL, make this increase Int, Chr, and remove this effect
-
-- type: reagent
-  id: MentatsGrape
-  name: reagent-name-mentats-grape
-  group: Chems
-  desc: reagent-desc-mentats-grape
-  physicalDesc: reagent-physical-desc-tangy
-  color: "#9932a4"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:Drunk #TODO: when we get SPECIAL, make this increase Int, Chr, and remove this effect
-
-- type: reagent
-  id: MentatsOrange
-  name: reagent-name-mentats-orange
-  group: Chems
-  desc: reagent-desc-mentats-orange
-  physicalDesc: reagent-physical-desc-tangy
-  color: "#ffb82e"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:Drunk #TODO: when we get SPECIAL, make this increase Int, Chr, and remove this effect
-
-- type: reagent
-  id: Buffout
-  name: reagent-name-buffout
-  group: Chems
-  desc: reagent-desc-buffout
-  physicalDesc: reagent-physical-desc-robust
-  color: "#00e5ff"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:Drunk
-      - !type:Jitter
-
-- type: reagent
-  id: Cateye
-  name: reagent-name-cateye
-  group: Chems
-  desc: reagent-desc-cateye
-  physicalDesc: reagent-physical-desc-sticky
-  color: "#00e5ff"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:Jitter
-
-- type: reagent
-  id: Daytripper
-  name: reagent-name-daytripper
-  group: Chems
-  desc: reagent-desc-daytripper
-  physicalDesc: reagent-physical-desc-sticky
-  color: "#00e5ff"
-  metabolisms:
-    Poison:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:GenericStatusEffect
-        key: SeeingRainbows
-        component: SeeingRainbows
-        type: Add
-        time: 10
-        refresh: false
-    Food:
-      effects:
-      - !type:SatiateThirst
-        factor: -0.2
+# - type: reagent
+#   id: Addictol
+#   name: TBD
+#   group: Medicine
+#   desc: TBD
+#   physicalDesc: reagent-physical-desc-soothing
+#   color: "#e8fffe"
+#   metabolisms:
+#     Medicine:
+#       effects:
+#       - !type:CureAddiction
 
 - type: reagent
   id: SmellingSalts
   name: reagent-name-smelling-salts
-  group: Medicine
+  group: Chems
   desc: reagent-desc-smelling-salts
   physicalDesc: reagent-physical-desc-strong-smelling
   color: "#e1f5f4"
   metabolisms:
     Medicine:
-      metabolismRate: 5 # Effectively 5 ticks per second
+      metabolismRate: 0.2 # Slow Acting
       effects:
-      - !type:HealthChange
+      - !type:HealthChange # Base Airloss fixing
         damage:
+          types:
+            Asphyxiation: -5
+            Cold: -2
+      - !type:HealthChange # Conditional Epinephrine-like bonus on unconscious
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        - !type:ReagentThreshold
+          min: 0
+          max: 20
+        damage:
+          types:
+            Asphyxiation: -3
+            Poison: -0.5
           groups:
-            Airloss: -10 #TODO add detail to wake up a guy if found
+            Brute: -0.5
+            Burn: -0.5
+      - !type:HealthChange # 20u threshold
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        damage:
+          types:
+            Asphyxiation: 3
+            Poison: 1
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 0.75
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
+        time: 0.75
+        type: Remove
       - !type:Jitter
       - !type:ChemVomit
-        probability: 0.1
+        probability: 0.05
 
 - type: reagent
   id: HealingPoultice
   name: reagent-name-healing-poultice
-  group: Medicine
+  group: Chems
   desc: reagent-desc-healing-poultice
   physicalDesc: reagent-physical-desc-soothing
   color: "#24b530"
@@ -398,6 +338,8 @@
             Brute: -0.5
             Burn: -0.5
             Toxin: -0.5
+      - !type:ModifyBleedAmount
+        amount: -0.5
       - !type:ChemVomit
         probability: 0.05
       - !type:Drunk
@@ -408,7 +350,7 @@
 - type: reagent
   id: Bitterdrink
   name: reagent-name-bitterdrink
-  group: Medicine
+  group: Chems
   desc: reagent-desc-bitterdrink
   physicalDesc: reagent-physical-desc-sticky
   color: "#ba67f5"
@@ -427,39 +369,9 @@
       - !type:Drunk
 
 - type: reagent
-  id: MourningPoultice
-  name: reagent-name-mourning-poultice
-  group: Medicine
-  desc: reagent-desc-mourning-poultice
-  physicalDesc: reagent-physical-desc-oily
-  color: "#1d3d22"
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
-      effects:
-      - !type:HealthChange
-        damage:
-          groups:
-            Toxin: 0.5
-          types:
-            Radiation: 0.5
-      - !type:GenericStatusEffect
-        key: SeeingRainbows
-        component: SeeingRainbows
-        type: Add
-        time: 5
-        refresh: false
-      - !type:GenericStatusEffect
-        key: Stutter
-        component: ScrambledAccent
-      - !type:GenericStatusEffect
-        key: SlurredSpeech
-        component: TelepathicRepeater
-
-- type: reagent
   id: UltraRobustHealingMixture
   name: reagent-name-ultra-robust-healing-mixture
-  group: Medicine
+  group: Chems
   desc: reagent-desc-ultra-robust-healing-mixture
   physicalDesc: reagent-physical-desc-overpowering
   color: "#ff0000"
@@ -473,6 +385,8 @@
             Brute: -10
             Airloss: -10
             Toxin: 0.5
+      - !type:ModifyBleedAmount
+        amount: -2
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold

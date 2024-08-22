@@ -11,6 +11,7 @@ using Content.Shared.Language;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech;
+using Content.Shared.Ghost; // Nuclear-14
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -53,6 +54,18 @@ public sealed class RadioSystem : EntitySystem
         }
     }
 
+    //Nuclear-14
+    /// <summary>
+    /// Gets the message frequency, if there is no such frequency, returns the standard channel frequency.
+    /// </summary>
+    public int GetFrequency(EntityUid source, RadioChannelPrototype channel)
+    {
+        if (TryComp<RadioMicrophoneComponent>(source, out var radioMicrophone))
+            return radioMicrophone.Frequency;
+
+        return channel.Frequency;
+    }
+
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
         if (TryComp(uid, out ActorComponent? actor))
@@ -60,7 +73,7 @@ public sealed class RadioSystem : EntitySystem
             // Einstein-Engines - languages mechanic
             var listener = component.Owner;
             var msg = args.OriginalChatMsg;
-            if (listener != null && !_language.CanUnderstand(listener, args.Language))
+            if (listener != null && !_language.CanUnderstand(listener, args.Language.ID))
                 msg = args.LanguageObfuscatedChatMsg;
 
             _netMan.ServerSendMessage(new MsgChatMessage { Message = msg}, actor.PlayerSession.Channel);
@@ -80,7 +93,7 @@ public sealed class RadioSystem : EntitySystem
     /// </summary>
     /// <param name="messageSource">Entity that spoke the message</param>
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
-    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, LanguagePrototype? language = null, bool escapeMarkup = true)
+    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, LanguagePrototype? language = null, /*Nuclear-14-Start*/ int? frequency = null /*Nuclear-14-End*/, bool escapeMarkup = true)
     {
         if (language == null)
             language = _language.GetLanguage(messageSource);
@@ -115,12 +128,12 @@ public sealed class RadioSystem : EntitySystem
             ? FormattedMessage.EscapeText(message)
             : message;
 
-        var wrappedMessage = WrapRadioMessage(messageSource, channel, name, content);
+        var wrappedMessage = WrapRadioMessage(messageSource, channel, name, content, language);
         var msg = new ChatMessage(ChatChannel.Radio, content, wrappedMessage, NetEntity.Invalid, null);
 
         // ... you guess it
         var obfuscated = _language.ObfuscateSpeech(content, language);
-        var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, name, obfuscated);
+        var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, name, obfuscated, language);
         var notUdsMsg = new ChatMessage(ChatChannel.Radio, obfuscated, obfuscatedWrapped, NetEntity.Invalid, null);
 
         var ev = new RadioReceiveEvent(messageSource, channel, msg, notUdsMsg, language);
@@ -136,6 +149,12 @@ public sealed class RadioSystem : EntitySystem
 
         var speakerQuery = GetEntityQuery<RadioSpeakerComponent>();
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
+
+        /*Nuclear-14-Start*/
+        if (frequency == null)
+            frequency = GetFrequency(messageSource, channel);
+        /*Nuclear-14-End*/
+
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
             if (!radio.ReceiveAllChannels)
@@ -144,6 +163,10 @@ public sealed class RadioSystem : EntitySystem
                                                              !intercom.SupportedChannels.Contains(channel.ID)))
                     continue;
             }
+
+            // Nuclear-14
+            if (!HasComp<GhostComponent>(receiver) && GetFrequency(receiver, channel) != frequency)
+                continue;
 
             if (!channel.LongRange && transform.MapID != sourceMapId && !radio.GlobalReceive)
                 continue;
@@ -173,17 +196,18 @@ public sealed class RadioSystem : EntitySystem
         _messages.Remove(message);
     }
 
-    private string WrapRadioMessage(EntityUid source, RadioChannelPrototype channel, string name, string message)
+    private string WrapRadioMessage(EntityUid source, RadioChannelPrototype channel, string name, string message, LanguagePrototype language)
     {
         var speech = _chat.GetSpeechVerb(source, message);
         return Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("color", channel.Color),
-            ("fontType", speech.FontId),
-            ("fontSize", speech.FontSize),
+            ("languageColor", language.Color ?? channel.Color),
+            ("fontType", language.FontId ?? speech.FontId),
+            ("fontSize", language.FontSize ?? speech.FontSize),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("channel", $"\\[{channel.LocalizedName}\\]"),
             ("name", name),
-            ("message", FormattedMessage.EscapeText(message)));
+            ("message", message));
     }
 
     /// <inheritdoc cref="TelecomServerComponent"/>

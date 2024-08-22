@@ -1,5 +1,6 @@
 # See basemob.yml for parent entities
 
+#MARK: Bloatfly
 - type: entity
   name: bloatfly
   parent: N14MobBaseHostileInsect
@@ -41,6 +42,8 @@
   - type: BallisticAmmoProvider
     proto: N14BulletAcid
     capacity: 100
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
   - type: Gun
     fireRate: 0.5
     selectedMode: FullAuto
@@ -56,7 +59,7 @@
       amount: 1
       prob: 0.75
 
-
+#MARK: Giant Ant
 - type: entity
   name: giant ant
   parent: N14MobBaseHostileInsect
@@ -106,15 +109,18 @@
     heatDamageThreshold: 500
     coldDamageThreshold: 0
   - type: MeleeWeapon
+    altDisarm: false
     hidden: true
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
-    angle: 0
+    angle: 60
     animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
     damage:
       groups:
         Brute: 5
 
+#MARK: Giant Fire Ant
 - type: entity
   name: giant fire ant
   parent: N14MobGiantAnt
@@ -141,6 +147,12 @@
         reagents:
         - ReagentId: FireToxin
           Quantity: 10
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: FireToxin
+        Quantity: 0.1
   - type: Butcherable
     spawned:
     - id: N14MaterialAntChitin
@@ -151,6 +163,7 @@
       amount: 1
       prob: 0.75
 
+#MARK: Radroach
 - type: entity
   name: radroach
   id: N14MobRadroach
@@ -191,11 +204,13 @@
       Dead:
         Base: dead
   - type: MeleeWeapon
+    altDisarm: false
     hidden: true
     soundHit:
         path: /Audio/Effects/bite.ogg
-    angle: 0
+    angle: 60
     animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
     damage:
       groups:
         Brute: 2
@@ -204,6 +219,7 @@
     - id: N14FoodMeatRadroachFillet
       amount: 1
 
+#MARK: Radscorpion
 - type: entity
   name: radscorpion
   parent: N14MobBaseHostileInsect
@@ -259,21 +275,36 @@
     heatDamageThreshold: 500
     coldDamageThreshold: 0
   - type: MeleeWeapon
+    altDisarm: false
     hidden: true
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
-    angle: 0
+    angle: 60
     animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
     damage:
       types:
-        Piercing: 5
+        Slash: 2
+        Piercing: 8
   - type: SolutionContainerManager
     solutions:
       melee:
+        maxVol: 10
         reagents:
         - ReagentId: Toxin
-          Quantity: 3
+          Quantity: 5
+        - ReagentId: Radium
+          Quantity: 5
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 0.1
+      - ReagentId: Radium
+        Quantity: 0.1
 
+#MARK: Barkscorpion
 - type: entity
   name: barkscorpion
   parent: N14MobRadscorpion
@@ -286,7 +317,22 @@
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: radscorpion
       sprite: _Nuclear14/Mobs/Insects/radscorpionbark.rsi
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 10
+        reagents:
+        - ReagentId: Toxin
+          Quantity: 10
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 0.2
 
+#MARK: Cazador
+#SCARY FUCKERS, RUUUN!!
 - type: entity
   name: cazador
   parent: N14MobBaseHostileInsect
@@ -324,20 +370,32 @@
   - type: Bloodstream
     bloodMaxVolume: 50
   - type: MeleeWeapon
+    altDisarm: false
     hidden: true
     soundHit:
         path: /Audio/Effects/bite.ogg
-    angle: 0
-    animation: WeaponArcBite
+    angle: 30
+    animation: WeaponArcThrust
+    wideAnimation: WeaponArcThrust
     damage:
       types:
-        Piercing: 5
+        Piercing: 3
   - type: SolutionContainerManager
     solutions:
       melee:
+        maxVol: 10
         reagents:
-        - ReagentId: Toxin
-          Quantity: 5
+        - ReagentId: CazadorVenom
+          Quantity: 10
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: CazadorVenom
+        Quantity: 0.25
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 1.5
   - type: Butcherable
     spawned:
     - id: N14FoodMeatRadRaw

@@ -6,7 +6,9 @@ using Content.Server.Popups;
 using Content.Shared.Damage;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -20,11 +22,13 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<NPCTamingOnTouchBehaviourComponent, ActivateInWorldEvent>(OnPetTry);
         SubscribeLocalEvent<TamedNpcFriendComponent, DamageChangedEvent>(OnFriendDamaged);
     }
@@ -32,6 +36,9 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
     private void OnFriendDamaged(Entity<TamedNpcFriendComponent> entity, ref DamageChangedEvent args)
     {
         if (!args.DamageIncreased)
+            return;
+
+        if (TerminatingOrDeleted(entity))
             return;
 
         if (args.Origin is not { } origin)
@@ -57,37 +64,45 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
     {
         var (uid, comp) = entity;
 
+        if (_timing.CurTime < comp.LastPetTime + comp.PetDelay)
+            return;
+
+        comp.LastPetTime = _timing.CurTime;
+
+        if (TerminatingOrDeleted(args.User) || TerminatingOrDeleted(uid))
+            return;
+
         if (comp.Friend == args.User)
             return;
 
         // if persistent and we already have a friend - do nothing
         if (comp is { Persistent: true, Friend: not null })
         {
-            _popup.PopupEntity(Loc.GetString(comp.DeniedPopup), uid, args.User);
+            DenyPet(entity, args.User);
             return;
         }
 
-        if (comp.Whitelist != null && !comp.Whitelist.IsValid(uid))
+        if (comp.Whitelist != null && !comp.Whitelist.IsValid(args.User))
         {
-            _popup.PopupEntity(Loc.GetString(comp.DeniedPopup), uid, args.User);
+            DenyPet(entity, args.User);
             return;
         }
 
         // check if this player already tried to tame a pet
         if (comp.OneTry && comp.TriedPlayers.Contains(args.User))
         {
-            _popup.PopupEntity(Loc.GetString(comp.DeniedPopup), uid, args.User);
+            DenyPet(entity, args.User);
             return;
         }
 
         // prob tame chance
         if (!_random.Prob(comp.TameChance))
         {
+            DenyPet(entity, args.User);
             if (!comp.OneTry)
                 return;
 
             comp.TriedPlayers.Add(args.User);
-            _popup.PopupEntity(Loc.GetString(comp.DeniedPopup), uid, args.User);
             return;
         }
 
@@ -104,7 +119,11 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
         if (comp.Follow && comp.Friend is not null)
             _npc.SetBlackboard(uid, NPCBlackboard.FollowTarget, new EntityCoordinates(comp.Friend.Value, Vector2.Zero));
 
+        SuccessPet(entity, args.User);
+
         _popup.PopupEntity(Loc.GetString(comp.SuccessPopup), uid, args.User);
+
+        args.Handled = true;
     }
 
     public void AddFriend(EntityUid owner, EntityUid friend, NPCTamingOnTouchBehaviourComponent? component = null)
@@ -159,5 +178,31 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
                 _npcFaction.DeAggroEntity(uid, memory.Key, factionException);
             }
         }
+    }
+
+    private void DenyPet(Entity<NPCTamingOnTouchBehaviourComponent> target, EntityUid performer)
+    {
+        var (uid, comp) = target;
+
+        _popup.PopupEntity(Loc.GetString(comp.DeniedPopup), uid, performer);
+
+        if (comp.DeniedSound is not null)
+            _audioSystem.PlayEntity(comp.DeniedSound, Filter.Entities(performer, uid), uid, true);
+
+        if (comp.DeniedSpawn is not null)
+            Spawn(comp.DeniedSpawn.Value, _transform.GetMapCoordinates(uid));
+    }
+
+    private void SuccessPet(Entity<NPCTamingOnTouchBehaviourComponent> target, EntityUid performer)
+    {
+        var (uid, comp) = target;
+
+        _popup.PopupEntity(Loc.GetString(comp.SuccessPopup), uid, performer);
+
+        if (comp.SuccessSound is not null)
+            _audioSystem.PlayEntity(comp.SuccessSound, Filter.Entities(performer, uid), uid, true);
+
+        if (comp.SuccessSpawn is not null)
+            Spawn(comp.SuccessSpawn.Value, _transform.GetMapCoordinates(uid));
     }
 }

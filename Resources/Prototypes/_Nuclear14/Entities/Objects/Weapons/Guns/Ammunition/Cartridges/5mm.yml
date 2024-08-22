@@ -5,7 +5,19 @@
   components:
   - type: CartridgeAmmo
     proto: N14Bullet5mm
+    soundEject:
+      collection: N14PistolCasingEject
   - type: Tag
     tags:
       - Cartridge
       - N14CartridgePistol5
+  - type: EmitSoundOnLand
+    sound:
+      collection: N14PistolCasingEject
+      params:
+        volume: -1
+  - type: EmitSoundOnCollide
+    sound:
+      collection: N14PistolCasingEject
+      params:
+        volume: -1

@@ -49,3 +49,60 @@
     collection: FootstepBlood
     params:
       volume: 6
+
+- type: reagent
+  id: NightstalkerBlood
+  name: reagent-name-nightstalker-blood
+  group: Biological
+  desc: reagent-desc-nightstalker-blood
+  flavor: metallic
+  color: "#bf1029"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/bloodglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  recognizable: true
+  physicalDesc: reagent-physical-desc-necrotic
+  slippery: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 0.5
+        conditions:
+          - !type:OrganType
+            type: Human
+            shouldHave: false
+    Food:
+      effects:
+        - !type:AdjustReagent
+          reagent: N14UncookedAnimalProteinsRad
+          amount: 0.5
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Bloodsucker
+        damage:
+          groups:
+            Brute: -3
+            Burn: -1.25
+            Toxin: -0.5 # to negate toxin damage
+          types: 
+            Radiation: 0.2
+      - !type:ChemVomit
+        probability: 0.25
+  plantMetabolism:
+    - !type:PlantAdjustWater
+      amount: 0.25
+  footstepSound:
+    collection: FootstepBlood
+    params:
+      volume: 6

@@ -29,6 +29,10 @@ namespace Content.Shared.Mind
         [DataField, AutoNetworkedField]
         public List<EntityUid> Objectives = new();
 
+        //Nuclear14 Special
+        [DataField, AutoNetworkedField]
+        public List<string> _specials = new();
+
         /// <summary>
         ///     The session ID of the player owning this mind.
         /// </summary>
@@ -105,5 +109,24 @@ namespace Content.Shared.Mind
         [ViewVariables, Access(typeof(SharedMindSystem), typeof(SharedGameTicker))]
         // TODO remove this after moving IPlayerManager functions to shared
         public ICommonSession? Session { get; set; }
+
+        //Nuclear14 Special
+        [ViewVariables]
+        public IEnumerable<string> AllSpecials => _specials;
+
+        public void AddSpecial(string special)
+        {
+            if (_specials.Contains(special))
+            {
+                return;
+            }
+            _specials.Add(special);
+        }
+        public void ClearSpecial()
+        {
+            _specials = new();
+        }
+        //Nuclear14 end
+
     }
 }

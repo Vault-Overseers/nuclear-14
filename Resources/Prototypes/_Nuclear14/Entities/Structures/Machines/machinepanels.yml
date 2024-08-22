@@ -11,7 +11,7 @@
     sprite: _Nuclear14/Structures/Power/32x48_machines.rsi
     state: rackempty
     offset: 0, 1
-    drawDepth: Overdoors
+    drawdepth: Overdoors
   - type: Transform
     anchored: true
     noRot: true
@@ -132,7 +132,10 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-
+  - type: Sprite
+    offset: 0, 1
+    drawdepth: Overdoors
+    
 - type: entity
   parent: N14BaseMachine
   id: N14BaseMachinePowered
@@ -237,6 +240,58 @@
         - MachineMask
         layer:
         - MachineLayer
+        
+- type: entity
+  parent: N14BaseMachine
+  id: N14MachineModularMachinebox
+  name: machine box
+  description: An old box forming part of a machine.
+  placement:
+    mode: AlignWall
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Machines/ms13_modular.rsi
+    snapCardinals: false
+    # offset: 0, 1
+    state: box
+  - type: Transform
+    noRot: false
+    anchored: false
+    
+- type: entity
+  parent: N14MachineModularMachinebox
+  id: N14MachineModularMachineDials
+  name: machine dials
+  description: An old box with dials forming part of a machine.
+  components:
+  - type: Sprite
+    state: dials
+    
+- type: entity
+  parent: N14MachineModularMachineDials
+  id: N14MachineModularMachineDialsTall
+  suffix: tall
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Machines/ms13_modulartall.rsi
+    
+- type: entity
+  parent: N14MachineModularMachineDialsTall
+  id: N14MachineModularMachineConsoleTall
+  name: machine console
+  description: An old console from a machine.
+  components:
+  - type: Sprite
+    state: console
+    
+- type: entity
+  parent: N14MachineModularMachineDialsTall
+  id: N14MachineModularMachineScreenTall
+  name: machine screen
+  description: An old screen for a machine.
+  components:
+  - type: Sprite
+    state: screen
 
 # Panels in use
 ## Base

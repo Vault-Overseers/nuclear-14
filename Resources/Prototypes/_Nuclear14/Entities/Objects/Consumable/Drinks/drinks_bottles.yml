@@ -8,11 +8,17 @@
     solutions:
       drink:
         maxVol: 50
+        
+- type: entity
+  parent: DrinkBottleBaseFull50
+  id: DrinkBottleBaseEmpty50
+  abstract: true
+  suffix: empty
 
 # Milk
 # Empty Bottle
 - type: entity
-  parent: DrinkBottleBaseFull50
+  parent: DrinkBottleBaseEmpty50
   id: N14DrinkBottleMilkEmpty
   name: milk bottle
   description: Looks good at holding milky substances.
@@ -21,7 +27,7 @@
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi # N14TODO:SPRITE: Change this
 
 - type: entity
-  parent: N14DrinkBottleMilkEmpty
+  parent: DrinkBottleBaseFull50
   id: N14DrinkMilkBrahmin
   name: brahmin milk
   description: The glass bottle of brahmin milk.
@@ -66,7 +72,7 @@
 
 # Soda
 - type: entity
-  parent: DrinkBottleGlassBaseFull
+  parent: DrinkBottleBaseFull50
   id: N14DrinkNukaColaBottleFull
   name: Nuka Cola bottle
   description: The leading cola since 2044.
@@ -82,7 +88,7 @@
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi
 
 - type: entity
-  parent: DrinkBottleGlassBaseFull
+  parent: DrinkBottleBaseFull50
   id: N14DrinkIrradiatedNukaColaBottleFull
   name: irratiated Nuka Cola bottle
   description: The leading cola since 2044. Looks a bit... weird.
@@ -99,7 +105,7 @@
     
 # New Soda
 - type: entity
-  parent: DrinkBottleGlassBaseFull
+  parent: DrinkBottleBaseEmpty50
   id: N14DrinkNukaColaEmpty
   name: Nuka Cola bottle
   description: The leading cola since 2044.
@@ -139,6 +145,24 @@
     
 - type: entity
   parent: N14DrinkNukaColaEmpty
+  id: N14DrinkNukaCola
+  name: Nuka Cola
+  description: The leading cola since 2044.
+  suffix: full
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: cola
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola
+          Quantity: 50
+    
+- type: entity
+  parent: N14DrinkNukaCola
   id: N14DrinkNukaColaCherry
   name: Nuka Cola Cherry
   description: The leading cola since 2044. Cherry flavor.
@@ -155,24 +179,7 @@
           Quantity: 50
           
 - type: entity
-  parent: N14DrinkNukaColaEmpty
-  id: N14DrinkNukaCola
-  name: Nuka Cola
-  description: The leading cola since 2044.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
-    state: cola
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 50
-        reagents:
-        - ReagentId: NukaCola
-          Quantity: 50
-          
-- type: entity
-  parent: N14DrinkNukaColaEmpty
+  parent: N14DrinkNukaCola
   id: N14DrinkNukaColaGrape
   name: Nuka Cola Grape
   description: The leading cola since 2044. Grape flavor.
@@ -189,7 +196,7 @@
           Quantity: 50
           
 - type: entity
-  parent: N14DrinkNukaColaEmpty
+  parent: N14DrinkNukaCola
   id: N14DrinkNukaColaOrange
   name: Nuka Cola Orange
   description: The leading cola since 2044. Orange flavor.
@@ -206,7 +213,7 @@
           Quantity: 50
           
 - type: entity
-  parent: N14DrinkNukaColaEmpty
+  parent: N14DrinkNukaCola
   id: N14DrinkNukaColaYellow
   name: Nuka Cola Yellow
   description: A rare flavor of Nuka-Cola from crazy naked Roshambo.
@@ -223,7 +230,7 @@
           Quantity: 50
           
 - type: entity
-  parent: N14DrinkNukaColaEmpty
+  parent: N14DrinkNukaCola
   id: N14DrinkNukaColaQuantum
   name: Nuka Cola Quantum
   description: The leading cola since 2044.
@@ -241,7 +248,7 @@
           Quantity: 50
           
 - type: entity
-  parent: N14DrinkNukaColaEmpty
+  parent: N14DrinkNukaCola
   id: N14DrinkNukaColaQuartz
   name: Nuka Cola Quartz
   description: The leading cola since 2044.
@@ -263,7 +270,7 @@
     energy: 0.2
           
 - type: entity
-  parent: N14DrinkNukaColaEmpty
+  parent: N14DrinkNukaCola
   id: N14DrinkNukaColaVictory
   name: Nuka Cola Victory
   description: The leading cola since 2044.
@@ -280,7 +287,7 @@
           Quantity: 50
           
 - type: entity
-  parent: N14DrinkNukaColaEmpty
+  parent: N14DrinkNukaCola
   id: N14DrinkNukaColaWild
   name: Nuka Cola Wild
   description: The leading cola since 2044.
@@ -298,7 +305,7 @@
           
 # Vim
 - type: entity
-  parent: N14DrinkNukaColaEmpty
+  parent: N14DrinkNukaCola
   id: N14DrinkVim
   name: Vim!
   description: Pure Maine spring water and other extracts and syrups.
@@ -315,7 +322,7 @@
           Quantity: 50
           
 - type: entity
-  parent: N14DrinkNukaColaEmpty
+  parent: N14DrinkVim
   id: N14DrinkVimCaptainsBlend
   name: Vim! Captain's Blend
   description: A taste of Maine in a bottle. Fishy.
@@ -332,7 +339,7 @@
           Quantity: 50
           
 - type: entity
-  parent: N14DrinkNukaColaEmpty
+  parent: N14DrinkVim
   id: N14DrinkVimRefresh
   name: Vim! Refresh
   description: Apple and lime flavor with oddly no rads.
@@ -349,7 +356,7 @@
           Quantity: 50
           
 - type: entity
-  parent: N14DrinkNukaColaEmpty
+  parent: N14DrinkVim
   id: N14DrinkVimQuartz
   name: Vim! Quartz
   description: Bubblegum flavored Vim! with extra oomph.
@@ -373,7 +380,7 @@
 #N14Bourbon
 
 - type: entity
-  parent: DrinkBottleGlassBaseFull
+  parent: DrinkBottleBaseFull50
   id: N14DrinkGammagulpBeer
   name: Gamma Gulp Beer
   description: One of Gecko's biggest exports. A mild, radioactive alcohol.
@@ -395,7 +402,7 @@
 #N14Pilsner
 
 - type: entity
-  parent: DrinkBottleGlassBaseFull
+  parent: DrinkBottleBaseFull50
   id: N14DrinkRoentgenRum
   name: Roentgen Rum
   description: One of Gecko's biggest exports. A strong, tingly alcohol.
@@ -417,7 +424,7 @@
 #N14Vodka
 
 - type: entity
-  parent: DrinkBottleGlassBaseFull
+  parent: DrinkBottleBaseFull50
   id: N14DrinkWhisky
   name: whiskey
   description: A bottle of standard looking whiskey
@@ -436,7 +443,7 @@
 #N14WhiskeyRare
 
 - type: entity
-  parent: DrinkBottleGlassBaseFull
+  parent: DrinkBottleBaseFull50
   id: N14DrinkWine
   name: wine
   description: Nappa Valley Wine.

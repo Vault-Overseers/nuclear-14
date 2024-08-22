@@ -23,7 +23,8 @@
     node: tubeLight
   - type: Sprite
     sprite: Structures/Wallmounts/Lighting/light_tube.rsi
-    drawdepth: WallMountedItems
+    drawdepth: Overdoors
+    offset: 0, 1
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
       state: base
@@ -40,6 +41,10 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: RCDDeconstructable
+    cost: 4
+    delay: 2
+    fx: EffectRCDDeconstruct2  
   - type: Destructible
     thresholds:
     - trigger:
@@ -66,11 +71,12 @@
       - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
+  - type: WallMount
   placement:
     mode: SnapgridCenter
     snap:
     - Wallmount
-
+    
 - type: entity
   name: light
   description: "A light fixture. Draws power and produces light when equipped with a light tube."

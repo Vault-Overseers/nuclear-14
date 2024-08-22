@@ -15,7 +15,7 @@
       coefficients:
         Blunt: 0.95
         Slash: 0.95
-        Heat: 0.85
+        Heat: 0.9
 
 - type: entity
   parent: ClothingMaskGas
@@ -32,8 +32,8 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.90
-        Slash: 0.90
+        Blunt: 0.9
+        Slash: 0.9
 
 # NCR Rangers, Vets
 
@@ -51,16 +51,27 @@
     sprite: _Nuclear14/Clothing/Mask/Gasmask/combatgasmask.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Mask/Gasmask/combatgasmask.rsi
+  - type: NightVisionItem
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.NightVisionItemVisuals.Active:
+        nightVisionItemLayer:
+          True: { state: icon_on }
+          False: { state: icon }
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.95
         Slash: 0.95
-        Piercing: 0.90
-        Heat: 0.90
+        Piercing: 0.95
+        Heat: 0.95
+  - type: Tag
+    tags:
+    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasCombat
   id: ClothingMaskGasRiot
   name: NCR ranger gas mask
   description: A close-fitting tactical mask issued to all NCR Rangers as a proof of their service.
@@ -73,16 +84,12 @@
     sprite: _Nuclear14/Clothing/Mask/Gasmask/riotgasmask.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Mask/Gasmask/riotgasmask.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.90
-        Slash: 0.90
-        Piercing: 0.95
-        Heat: 0.95
+  - type: Tag
+    tags:
+    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasCombat
   id: ClothingMaskGasRanger
   name: ranger gas mask
   description: The last in pre-war military gas masks technology, with extra protection.
@@ -95,16 +102,9 @@
     sprite: _Nuclear14/Clothing/Mask/Gasmask/rangergasmask.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Mask/Gasmask/rangergasmask.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.90
-        Slash: 0.90
-        Piercing: 0.95
-        Heat: 0.95
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasCombat
   id: ClothingMaskGasRangerOld
   name: ranger gas mask
   description: An old combat mask, out of use around the time of the war.
@@ -117,19 +117,9 @@
     sprite: _Nuclear14/Clothing/Mask/Gasmask/rangeroldgasmask.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Mask/Gasmask/rangeroldgasmask.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.90
-        Slash: 0.90
-        Piercing: 0.90
-        Heat: 0.95
-  - type: Tag
-    tags:
-    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasCombat
   id: ClothingMaskGasRangerDesert
   name: desert ranger gas mask
   description: An U.S Marine Corps helmet, used by the legendary Desert Rangers.
@@ -145,13 +135,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.90
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.90
-  - type: Tag
-    tags:
-    - WhitelistChameleon
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
 
 - type: entity
   parent: ClothingMaskGas
@@ -161,7 +148,6 @@
   components:
   - type: Item
     size: Tiny
-  - type: FlashImmunity
   - type: EyeProtection
   - type: Sprite
     sprite: _Nuclear14/Clothing/Mask/Gasmask/rangerweatheredgasmask.rsi
@@ -172,13 +158,11 @@
       coefficients:
         Blunt: 0.95
         Slash: 0.95
-        Piercing: 0.90
-  - type: Tag
-    tags:
-    - WhitelistChameleon
+        Piercing: 0.95
+        Heat: 0.95
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasCombat
   id: ClothingMaskGasRangerPrice
   name: spider ranger gas mask
   description: A customised riot helmet reminiscient of the more advanced riot helmets found in the Divide, sporting purple lenses over the traditional red or green and a pair of red fangs painted over the respirator. The back of the helmet has a the face of an albino spider painted over it.
@@ -194,13 +178,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.90
-        Slash: 0.90
-        Piercing: 0.90
-        Heat: 0.95
-  - type: Tag
-    tags:
-    - WhitelistChameleon
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
 
 - type: entity
   parent: ClothingMaskGas
@@ -220,13 +201,13 @@
       coefficients:
         Blunt: 0.95
         Slash: 0.95
-        Piercing: 0.95
   - type: Tag
     tags:
     - WhitelistChameleon
+    - HidesHair
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskGasCombat
   id: ClothingMaskGasRangerElite
   name: elite riot gas mask
   description: An old gas mask seen in the divide, repurposed for higher ranking Rangers.
@@ -242,10 +223,29 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.80
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
         Heat: 0.9
-  - type: Tag
-    tags:
-    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingMaskGasCombat
+  id: ClothingMaskGasRangerModif
+  name: modified ranger gas mask
+  description: A thicker than average mask worn by rangers out in the field.
+  components:
+  - type: Item
+    size: Tiny
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Mask/Gasmask/rangermodifgasmask.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Mask/Gasmask/rangermodifgasmask.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9

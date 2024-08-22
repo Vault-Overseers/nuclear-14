@@ -11,4 +11,4 @@ humanoid-profile-editor-special-priority-ten-button = 10
 
 humanoid-profile-editor-specials-tab = Special
 
-humanoid-profile-editor-special-points-label = {$points} left of {$max} points
+humanoid-profile-editor-special-points-label = {$points} left of {$max} SPECIAL points

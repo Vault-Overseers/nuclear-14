@@ -18,12 +18,16 @@
   - type: GunRequiresWield
   - type: Gun
     fireRate: 6
+    soundGunshot:
+      collection: N14DoubleBarrelShotgunGunshot
   - type: BallisticAmmoProvider
     whitelist:
       tags:
       - N14ShellShotgun12
     capacity: 2
     proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
 
 - type: entity
   name: shotgun
@@ -33,6 +37,8 @@
   components:
   - type: Gun
     fireRate: 1
+    soundGunshot:
+      collection: N14ShotgunGunshot
   - type: GunRequiresWield
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/pump.rsi
@@ -50,6 +56,8 @@
       - N14ShellShotgun12
     capacity: 6
     proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
   - type: Wieldable
 
 - type: entity
@@ -87,7 +95,7 @@
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+      collection: N14AutoShotgunGunshot
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: ItemSlots
@@ -131,12 +139,16 @@
   - type: Wieldable
   - type: Gun
     fireRate: 6
+    soundGunshot:
+      collection: N14CaravanShotgunGunshot
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
     whitelist:
       tags:
       - N14ShellShotgun20
     capacity: 2
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
     proto: N14ShellShotgun20
 
 - type: entity
@@ -161,6 +173,8 @@
       - N14ShellShotgun20
     capacity: 8
     proto: N14ShellShotgun20
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
   - type: Wieldable
   - type: GunRequiresWield
   - type: Gun
@@ -169,6 +183,8 @@
     angleIncrease: 4
     angleDecay: 16  
     fireRate: 1
+    soundGunshot:
+      collection: N14LeverShotgunGunshot
 
 - type: entity
   name: riot shotgun
@@ -205,7 +221,7 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+      collection: N14RiotShotgunGunshot
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: ItemSlots
