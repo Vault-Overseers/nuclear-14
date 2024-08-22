@@ -125,7 +125,7 @@ namespace Content.Shared.Damage
         ///     Only applies resistance to a damage type if it is dealing damage, not healing.
         ///     This will never convert damage into healing.
         /// </remarks>
-        public static DamageSpecifier ApplyModifierSet(DamageSpecifier damageSpec, DamageModifierSet modifierSet)
+        public static DamageSpecifier ApplyModifierSet(DamageSpecifier damageSpec, DamageModifierSet modifierSet, float ignoreResistances)
         {
             // Make a copy of the given data. Don't modify the one passed to this function. I did this before, and weapons became
             // duller as you hit walls. Neat, but not FixedPoint2ended. And confusing, when you realize your fists don't work no
@@ -147,12 +147,12 @@ namespace Content.Shared.Damage
                 float newValue = value.Float();
 
                 if (modifierSet.FlatReduction.TryGetValue(key, out var reduction))
-                    newValue = Math.Max(0f, newValue - reduction); // flat reductions can't heal you
+                    newValue = Math.Max(0f, newValue - reduction / 100 * ignoreResistances); // flat reductions can't heal you
 
                 if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
                     newValue *= coefficient; // coefficients can heal you, e.g. cauterizing bleeding
 
-                if(newValue != 0)
+                if (newValue != 0)
                     newDamage.DamageDict[key] = FixedPoint2.New(newValue);
             }
 
@@ -165,7 +165,7 @@ namespace Content.Shared.Damage
         /// <param name="damageSpec"></param>
         /// <param name="modifierSets"></param>
         /// <returns></returns>
-        public static DamageSpecifier ApplyModifierSets(DamageSpecifier damageSpec, IEnumerable<DamageModifierSet> modifierSets)
+        public static DamageSpecifier ApplyModifierSets(DamageSpecifier damageSpec, IEnumerable<DamageModifierSet> modifierSets, float ignoreResistances)
         {
             bool any = false;
             DamageSpecifier newDamage = damageSpec;
@@ -173,7 +173,7 @@ namespace Content.Shared.Damage
             {
                 // This creates a new damageSpec for each modifier when we really onlt need to create one.
                 // This is quite inefficient, but hopefully this shouldn't ever be called frequently.
-                newDamage = ApplyModifierSet(newDamage, set);
+                newDamage = ApplyModifierSet(newDamage, set, ignoreResistances);
                 any = true;
             }
 

@@ -9,7 +9,7 @@ public sealed partial class DamageOnHitComponent : Component
 {
     [DataField("ignoreResistances")]
     [ViewVariables(VVAccess.ReadWrite)]
-    public bool IgnoreResistances = true;
+    public float IgnoreResistances = 0f;
 
     [DataField("damage", required: true)]
     [ViewVariables(VVAccess.ReadWrite)]

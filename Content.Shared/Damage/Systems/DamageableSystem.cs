@@ -124,7 +124,7 @@ namespace Content.Shared.Damage
         ///     Returns a <see cref="DamageSpecifier"/> with information about the actual damage changes. This will be
         ///     null if the user had no applicable components that can take damage.
         /// </returns>
-        public DamageSpecifier? TryChangeDamage(EntityUid? uid, DamageSpecifier damage, bool ignoreResistances = false,
+        public DamageSpecifier? TryChangeDamage(EntityUid? uid, DamageSpecifier damage, float ignoreResistances = 0f,
             bool interruptsDoAfters = true, DamageableComponent? damageable = null, EntityUid? origin = null)
         {
             if (!uid.HasValue || !_damageableQuery.Resolve(uid.Value, ref damageable, false))
@@ -145,14 +145,14 @@ namespace Content.Shared.Damage
                 return null;
 
             // Apply resistances
-            if (!ignoreResistances)
+            if (true) // DONT FUCKUNG FORGET
             {
                 if (damageable.DamageModifierSetId != null &&
                     _prototypeManager.TryIndex<DamageModifierSetPrototype>(damageable.DamageModifierSetId, out var modifierSet))
                 {
                     // TODO DAMAGE PERFORMANCE
                     // use a local private field instead of creating a new dictionary here..
-                    damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
+                    damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet, ignoreResistances);
                 }
 
                 var ev = new DamageModifyEvent(damage, origin);
