@@ -1,0 +1,247 @@
+- type: entity
+  name: double-barrel shotgun
+  parent: BaseWeaponShotgun
+  id: N14WeaponDoubleBarrelShotgun
+  description: An immortal classic, uses 12 gauge shells.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      collection: N14DoubleBarrelShotgunGunshot
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun12
+    capacity: 2
+    proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+
+- type: entity
+  name: shotgun
+  parent: BaseWeaponShotgun
+  id: N14WeaponShotgun
+  description: A pump action shotgun.
+  components:
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      collection: N14ShotgunGunshot
+  - type: GunRequiresWield
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/pump.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun12
+    capacity: 6
+    proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+  - type: Wieldable
+
+- type: entity
+  name: combat shotgun
+  parent: BaseItem
+  id: N14WeaponAutoShotgun
+  description: It's a magazine-fed automatic shotgun designed for close quarters combat, uses 12 gauge shells.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/combat_shotgun.rsi
+    netsync: false
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/combat_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/combat_shotgun.rsi
+    size: Large
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: Gun
+    minAngle: 23
+    maxAngle: 104
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      collection: N14AutoShotgunGunshot
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazineShotgun12
+        priority: 2
+        whitelist:
+          tags:
+          - N14MagazineShotgun12
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: caravan shotgun
+  parent: BaseWeaponShotgun
+  id: N14WeaponCaravanShotgun
+  description: The perfect shotgun for a long journey. works well for hunting brahmins, geckos and fiends, uses 20 gauge shells.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/caravan_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/caravan_shotgun.rsi
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/caravan_shotgun.rsi
+  - type: Wieldable
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      collection: N14CaravanShotgunGunshot
+  - type: GunRequiresWield
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun20
+    capacity: 2
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+    proto: N14ShellShotgun20
+
+- type: entity
+  name: lever action shotgun
+  parent: BaseWeaponShotgun
+  id: N14WeaponLeverShotgun
+  description: The perfect gun for a cowboy, it uses 20 gauge shells.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/lever_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/lever_shotgun.rsi
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/lever_shotgun.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun20
+    capacity: 8
+    proto: N14ShellShotgun20
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: Gun
+    minAngle: 23
+    maxAngle: 104
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 1
+    soundGunshot:
+      collection: N14LeverShotgunGunshot
+
+- type: entity
+  name: riot shotgun
+  parent: BaseItem
+  id: N14WeaponRiotShotgun
+  description: A compact semi automatic shotgun used by pre-war police forces, chambered in 20 gauge shells.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/riot_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/riot_shotgun.rsi
+    netsync: false
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Ginormous
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/riot_shotgun.rsi
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: Gun
+    minAngle: 23
+    maxAngle: 104
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: N14RiotShotgunGunshot
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazineShotgun20
+        priority: 2
+        whitelist:
+          tags:
+          - N14MagazineShotgun20
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

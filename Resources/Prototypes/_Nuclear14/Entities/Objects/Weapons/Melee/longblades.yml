@@ -1,0 +1,113 @@
+- type: entity
+  name: machete
+  parent: Machete
+  id: N14Machete
+  description: A large, vicious looking blade.
+  components:
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 20
+    soundSwing:
+      collection: N14BladeMediumSwing
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/machete.rsi
+    quickEquip: false
+    slots:
+    - Belt
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/machete.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: _Nuclear14/Objects/Weapons/Melee/machete.rsi
+
+- type: entity
+  name: tribal machete
+  parent: N14Machete
+  id: N14TribalMachete
+  description: A tribal machete, made from the materials given by nature, this long blade has the perfect balance between tool and weapon.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/tribal_machete.rsi
+    quickEquip: false
+    slots:
+    - Belt
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/tribal_machete.rsi
+    state: icon
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 21
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 16
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Melee/tribal_machete.rsi
+
+- type: entity
+  name: scrap machete
+  parent: N14Machete
+  id: N14ScrapMachete
+  description: A makeshift long blade machete, not the sharpest blade but it can still cut some meat.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/scrap_machete.rsi
+    quickEquip: false
+    slots:
+    - Belt
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/scrap_machete.rsi
+    state: icon
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 21
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 16
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Item
+    sprite: Nuclear14/Objects/Weapons/Melee/scrap_machete.rsi
+
+- type: entity
+  name: ripper
+  parent: N14Machete
+  id: N14ripper
+  description: A light one handed chainsaw, originally designed for the pre-war army sappers to clean selvatic and wooded paths, it also works well against meat.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/ripper.rsi
+    quickEquip: false
+    slots:
+    - Belt
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/ripper.rsi
+    state: icon
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 30
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 25
+    soundHit:
+      path: /Audio/Weapons/chainsaw.ogg
+    soundSwing:
+      path: /Audio/_Nuclear14/Weapons/Melee/Swing/ripper.ogg
+  - type: Item
+    size: Huge
+    sprite: _Nuclear14/Objects/Weapons/Melee/ripper.rsi
