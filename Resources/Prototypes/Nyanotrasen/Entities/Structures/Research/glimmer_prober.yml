@@ -4,16 +4,8 @@
   name: glimmer prober
   description: Probes the noösphere to generate research points. Might be worth turning off if glimmer is a problem.
   components:
-  - type: Psionic
-    removable: false
-    roller: false
-    assayFeedback:
-      - prober-feedback
-  - type: InnatePsionicPowers
-    powersToAdd:
-      - TelepathyPower
+  #- type: Psionic
   - type: GlimmerSource
-    researchPointGeneration: 20
   - type: Construction
     graph: GlimmerDevices
     node: glimmerProber
@@ -69,27 +61,28 @@
     damageContainer: Inorganic
     damageModifierSet: ShockAbsorber
   - type: CargoSellBlacklist
+  # - type: GuideHelp
+    # guides:
+    # - Psionics
   - type: AmbientSound
     range: 6
     volume: -6
-    sound: /Audio/Ambience/Objects/prober_hum_low.ogg
+    sound: /Audio/Nyanotrasen/Ambience/Objects/prober_hum_low.ogg
   - type: AmbientOnPowered
   - type: GlimmerSound
     glimmerTier:
       Minimal:
-        path: /Audio/Ambience/Objects/prober_hum_low.ogg
+        path: /Audio/Nyanotrasen/Ambience/Objects/prober_hum_low.ogg
       Low:
-        path: /Audio/Ambience/Objects/prober_hum_low.ogg
+        path: /Audio/Nyanotrasen/Ambience/Objects/prober_hum_low.ogg
       Moderate:
-        path: /Audio/Ambience/Objects/prober_hum_moderate.ogg
+        path: /Audio/Nyanotrasen/Ambience/Objects/prober_hum_moderate.ogg
       High:
-        path: /Audio/Ambience/Objects/prober_hum_high.ogg
+        path: /Audio/Nyanotrasen/Ambience/Objects/prober_hum_high.ogg
       Dangerous:
-        path: /Audio/Ambience/Objects/prober_hum_dangerous.ogg
+        path: /Audio/Nyanotrasen/Ambience/Objects/prober_hum_dangerous.ogg
       Critical:
-        path: /Audio/Ambience/Objects/prober_hum_dangerous.ogg
-  - type: GuideHelp
-    guides: [ Glimmer ]
+        path: /Audio/Nyanotrasen/Ambience/Objects/prober_hum_dangerous.ogg
 
 - type: entity
   parent: BaseMachinePowered
@@ -97,13 +90,9 @@
   name: glimmer drain
   description: Uses electricity to try and sort out the noösphere, reducing its level of entropy.
   components:
-  - type: Psionic
-    removable: false
-    roller: false
-    assayFeedback:
-      - drain-feedback
+  #- type: Psionic
   - type: GlimmerSource
-    glimmerPerSecond: -1.0
+    addToGlimmer: false
   - type: Construction
     graph: GlimmerDevices
     node: glimmerDrain
@@ -125,11 +114,12 @@
           False: {visible: false}
   - type: PowerSwitch
   - type: CargoSellBlacklist
+  # - type: GuideHelp
+    # guides:
+    # - Psionics
   - type: NpcFactionMember
     factions:
     - PsionicInterloper # :^)
-  - type: GuideHelp
-    guides: [ Glimmer ]
 
 - type: entity
   id: GlimmerDeviceFrame
@@ -180,5 +170,3 @@
       - state: base
       - state: intermediate
     - type: CargoSellBlacklist
-    - type: GuideHelp
-      guides: [ Glimmer ]

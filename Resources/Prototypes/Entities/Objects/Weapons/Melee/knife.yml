@@ -7,45 +7,24 @@
     tags:
     - Knife
   - type: Sharp
-  - type: Execution
-    doAfterDuration: 4.0
   - type: Utensil
     types:
-    - Knife
+      - Knife
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: .8
-    range: 1.5
     damage:
       types:
-        Slash: 8
-    heavyRateModifier: 1.25
-    heavyDamageBaseModifier: 1.2
-    maxTargets: 3
-    angle: 40
+        Slash: 10
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
-  - type: DamageOtherOnHit
-    staminaCost: 5
-  - type: EmbeddableProjectile
-    sound: /Audio/Weapons/star_hit.ogg
-  - type: EmbedPassiveDamage
   - type: Sprite
   - type: Item
     size: Small
   - type: Tool
     qualities:
-    - Slicing
+      - Slicing
     useSound:
       path: /Audio/Items/Culinary/chop.ogg
-  # Shitmed Change
-  - type: Scalpel
-    speed: 0.65
-  - type: SurgeryTool
-    startSound:
-      path: /Audio/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/Medical/Surgery/scalpel2.ogg
 
 - type: entity
   name: kitchen knife
@@ -60,14 +39,11 @@
   - type: Sprite
     sprite: Objects/Weapons/Melee/kitchen_knife.rsi
     state: icon
-  - type: ThrowingAngle
-    angle: 225
   - type: Item
     sprite: Objects/Weapons/Melee/kitchen_knife.rsi
-  - type: GuideHelp
-    guides:
-    - Chef
-    - FoodRecipes
+  # - type: GuideHelp
+    # guides:
+    # - Chef
 
 - type: entity
   name: butcher's cleaver
@@ -84,31 +60,20 @@
     state: butch
   - type: MeleeWeapon
     wideAnimationRotation: -115
-    attackRate: 1
+    attackRate: 1.5
     damage:
       types:
-        Slash: 8
-        Blunt: 1
-  - type: DamageOtherOnHit
-    staminaCost: 2.5
-  - type: ThrowingAngle
-    angle: 245
+        Slash: 13
   - type: Item
     size: Normal
     sprite: Objects/Weapons/Melee/cleaver.rsi
-  - type: GuideHelp
-    guides:
-    - Chef
-    - FoodRecipes
-  # Shitmed Change
-  - type: Scalpel
-    speed: 0.3
-  - type: BoneSaw
-    speed: 0.5
+  # - type: GuideHelp
+    # guides:
+    # - Chef
 
 - type: entity
   name: combat knife
-  parent: [BaseKnife, BaseRestrictedContraband]
+  parent: BaseKnife
   id: CombatKnife
   description: A deadly knife intended for melee confrontations.
   components:
@@ -121,19 +86,16 @@
     state: icon
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: 0.8
+    attackRate: 1.5
     damage:
       types:
         Slash: 12
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
-  - type: LandAtCursor
   - type: DamageOtherOnHit
     damage:
       types:
-        Slash: 9
-  - type: ThrowingAngle
-    angle: 225
+        Slash: 10
   - type: Item
     sprite: Objects/Weapons/Melee/combat_knife.rsi
   - type: DisarmMalus
@@ -141,28 +103,19 @@
 
 - type: entity
   name: survival knife
-  parent: [CombatKnife, BaseSecurityCargoContraband]
+  parent: CombatKnife
   id: SurvivalKnife
   description: Weapon of first and last resort for combatting space carp.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/survival_knife.rsi
     state: icon
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    attackRate: .8
-    damage:
-      types:
-        Slash: 8
-  - type: ThrowingAngle
-    angle: 225
   - type: Item
     sprite: Objects/Weapons/Melee/survival_knife.rsi
-  - type: AttachmentBayonet # Lavaland Change
 
 - type: entity
   name: kukri knife
-  parent: [CombatKnife, BaseMinorContraband]
+  parent: CombatKnife
   id: KukriKnife
   description: Professionals have standards. Be polite. Be efficient. Have a plan to kill everyone you meet.
   components:
@@ -171,12 +124,9 @@
     state: icon
   - type: MeleeWeapon
     attackRate: 1.0
-    range: 1.75
     damage:
       types:
-        Slash: 10
-  - type: ThrowingAngle
-    angle: 225
+        Slash: 15
   - type: Item
     sprite: Objects/Weapons/Melee/kukri_knife.rsi
 
@@ -192,15 +142,14 @@
     node: icon
   - type: MeleeWeapon
     wideAnimationRotation: 90
-    attackRate: .83
+    attackRate: 1.2
     damage:
       types:
         Slash: 5
   - type: DamageOtherOnHit
-    staminaCost: 5
-  - type: LandAtCursor
-  - type: EmbeddableProjectile
-  - type: EmbedPassiveDamage
+    damage:
+      types:
+        Slash: 10
   - type: Sprite
     sprite: Clothing/Head/Hats/greyflatcap.rsi
   - type: Clothing
@@ -221,7 +170,7 @@
 
 - type: entity
   name: shiv
-  parent: [BaseKnife, BaseMinorContraband]
+  parent: BaseKnife
   id: Shiv
   description: A crude weapon fashioned from a piece of cloth and a glass shard.
   components:
@@ -237,13 +186,10 @@
     sprite: Objects/Weapons/Melee/shiv.rsi
     state: icon
   - type: MeleeWeapon
-    attackRate: .57
-    range: 1.4
+    attackRate: 1.5
     damage:
       types:
         Slash: 5.5
-  - type: ThrowingAngle
-    angle: 200
   - type: Item
     sprite: Objects/Weapons/Melee/shiv.rsi
   - type: DisarmMalus
@@ -259,6 +205,7 @@
     graph: ReinforcedShiv
     node: icon
   - type: MeleeWeapon
+    attackRate: 1.5
     damage:
       types:
         Slash: 7 #each "tier" grants an additional 2 damage
@@ -277,9 +224,10 @@
     graph: PlasmaShiv
     node: icon
   - type: MeleeWeapon
+    attackRate: 1.5
     damage:
       types:
-        Slash: 8.5
+        Slash: 9
   - type: Item
     sprite: Objects/Weapons/Melee/plasma_shiv.rsi
   - type: Sprite
@@ -295,9 +243,10 @@
     graph: UraniumShiv
     node: icon
   - type: MeleeWeapon
+    attackRate: 1.5
     damage:
       types:
-        Slash: 6.5
+        Slash: 7
         Radiation: 4
   - type: Item
     sprite: Objects/Weapons/Melee/uranium_shiv.rsi
@@ -306,7 +255,7 @@
 
 - type: entity
   name: throwing knife
-  parent: [BaseKnife, BaseSyndicateContraband]
+  parent: BaseKnife
   id: ThrowingKnife
   description: This bloodred knife is very aerodynamic and easy to throw, but good luck trying to fight someone hand-to-hand.
   components:
@@ -314,18 +263,18 @@
     tags:
     - CombatKnife
     - Knife
+    - CannonRestrict
   - type: Sprite
     sprite: Objects/Weapons/Melee/throwing_knife.rsi
     state: icon
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: .5
+    attackRate: 2
     damage:
       types:
         Slash: 5
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
-  - type: LandAtCursor
   - type: DamageOtherOnHit
     ignoreResistances: true
     damage:

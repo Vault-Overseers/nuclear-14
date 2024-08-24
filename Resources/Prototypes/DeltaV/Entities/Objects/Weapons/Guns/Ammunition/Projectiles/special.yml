@@ -2,7 +2,7 @@
   id: BulletSpecial
   name: bullet (.38 special)
   parent: BaseBullet
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -13,7 +13,7 @@
   id: BulletSpecialPractice
   name: bullet (.38 special practice)
   parent: BaseBulletPractice
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -21,10 +21,23 @@
         Blunt: 1
 
 - type: entity
+  id: BulletSpecialRubber
+  name: bullet (.38 special rubber)
+  parent: BaseBulletRubber
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+  - type: StaminaDamageOnCollide
+    damage: 30
+
+- type: entity
   id: BulletSpecialIncendiary
   name: bullet (.38 special incendiary)
   parent: BaseBulletIncendiary
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -36,7 +49,7 @@
   id: BulletSpecialUranium
   name: bullet (.38 special uranium)
   parent: BaseBulletUranium
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -48,7 +61,7 @@
   id: BulletSpecialHoly
   name: bullet (.38 special holy)
   parent: BaseBullet
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -60,7 +73,7 @@
   id: BulletSpecialMindbreaker
   name: bullet (.38 special mindbreaker)
   parent: BaseBulletPractice
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -76,6 +89,9 @@
     solution: ammo
   - type: SolutionInjectOnProjectileHit
     transferAmount: 9
-    solution: ammo
+    blockSlots: NONE #shouldn't be blocked by a mask
   - type: InjectableSolution
     solution: ammo
+  # - type: GuideHelp
+    # guides:
+    # - Psionics
