@@ -301,3 +301,48 @@
   - type: ConditionalSpawner
     prototypes:
       - N14MobCazador
+          
+- type: entity
+  name: Raider Ranged Psycho Spawner
+  id: N14SpawnMobRaiderPsychoRanged
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raider_ranged
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobRaiderPsychoRanged
+      
+- type: entity
+  name: Raider Psycho Boss Spawner
+  id: N14SpawnMobRaiderBoss
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raiderboss
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobRaiderPsycho
+      
+- type: entity
+  name: Raider Psycho Spawner
+  id: N14SpawnMobRaiderPsycho
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/RaiderPsycho.rsi
+        state: raider_melee
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobRaiderPsycho
