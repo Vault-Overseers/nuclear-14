@@ -13,3 +13,5 @@ ent-N14ClothingUniformJumpsuitLegionnaire = туника легионера
     .desc = Туника легионеров в стандартной расцветке.
 ent-N14ClothingUniformJumpsuitLegionnaireOther = туника легионера
     .desc = Юбка легионера...
+ent-N14ClothingUniformJumpsuitSheriff = форма шерифа
+    .desc = Удобная одежда со значком регионального шерифа.
