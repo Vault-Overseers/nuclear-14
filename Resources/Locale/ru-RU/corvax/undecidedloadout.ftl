@@ -1,4 +1,3 @@
-
 # Corvax N14 Комплекты
 
 undecided-loadout-category-bestiary-name = Набор центуриона-бестиария

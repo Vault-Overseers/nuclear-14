@@ -1,3 +1,5 @@
+# Legion kits
+
 - type: entity
   id: LegionCenturionloadoutkits
   name: kit
@@ -127,6 +129,75 @@
     - RecruitSpearSet
     - RecruitMeleeSet
     - RecruitHealerSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+#Washington kits
+
+- type: entity
+  id: BoSWashingtonStandartKits
+  name: Undecided BoS Washington Kit
+  description: please only take one
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - BoSDefaultSet
+    - BoSRangedSet
+    - BoSPlasmaSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: BoSWashingtonScribeKits
+  name: Undecided BoS Washington Kit
+  description: please only take one
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - BoSScribeMedicalSet
+    - BoSScribeFieldSet
+    - BoSScribeEngineerSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: BoSWashingtonCommandKits
+  name: Undecided BoS Washington Kit
+  description: please only take one
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - BoSDefaultSet
+    - BoSRangedSet
+    - BoSPlasmaSet
+    - BoSAssaultSet
   - type: ActivatableUI
     key: enum.UndecidedLoadoutBackpackUIKey.Key
   - type: UserInterface
