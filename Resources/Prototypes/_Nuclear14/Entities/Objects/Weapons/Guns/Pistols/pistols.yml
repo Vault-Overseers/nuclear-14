@@ -28,14 +28,14 @@
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: ChamberMagazineAmmoProvider
     soundRack:
-      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Pistols/pistol_cock.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistol
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/Pistols/pistol_magin.ogg
+        ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/Pistols/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:
@@ -63,7 +63,7 @@
   name: 9mm Pistol
   parent: N14BaseWeaponPistol
   id: N14WeaponPistol9mm
-  description: A cheap, ubiquitous sidearm, chambered in 9 mm.
+  description: A cheap, ubiquitous sidearm, chambered in 9mm.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/9mm.rsi
@@ -77,7 +77,7 @@
   - type: Gun
     fireRate: 5
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      collection: N14Pistol9mmGunshot
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -112,7 +112,7 @@
   - type: Gun
     fireRate: 4
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      collection: N14Pistol10mmGunshot
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -147,7 +147,7 @@
   - type: Gun
     fireRate: 4
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+      collection: N14PistolColtGunshot
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -189,7 +189,7 @@
   - type: Gun
     fireRate: 3
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+      collection: N14Pistol12mmGunshot
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -217,7 +217,7 @@
   name: 10mm pipe pistol
   parent: N14BaseWeaponPistol
   id: N14WeaponPipe10mm
-  description: a light 10mm makeshift pistol, the grip is incredibly uncomfortable.
+  description: a light makeshift 10mm pistol, the grip is incredibly uncomfortable.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/10mmPIPEpistol.rsi
@@ -231,7 +231,7 @@
   - type: Gun
     fireRate: 4
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      collection: N14Pistol10mmGunshot
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -252,7 +252,7 @@
   name: chinese pistol
   parent: BaseWeaponSniper
   id: N14WeaponPistolChinese
-  description: A elegant and long barrel pistol with a integrated magazine, chambered in 9 mm.
+  description: An elegant long barrel pistol with an integrated magazine, chambered in 9mm.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/chinesepistol.rsi
@@ -269,7 +269,7 @@
   - type: Gun
     fireRate: 6
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      collection: N14PistolChineseGunshot
     selectedMode: Semiauto
     availableModes:
     - Semiauto
@@ -293,7 +293,7 @@
   name: the spy
   parent: BaseWeaponSniper
   id: N14WeaponPistolSpy
-  description: A modified version of the common chinese pistols. with a integrated silencer, extended mag and fully automatic conversion this gun was designed with passion, chambered in 9 mm.
+  description: A modified version of the common chinese pistol with a integrated silencer, extended mag and full-auto conversion. This gun was designed with passion, chambered in 9mm.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/thespy.rsi
@@ -310,9 +310,7 @@
   - type: Gun
     fireRate: 6
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
-      params:
-        volume: -10
+      collection: N14PistolSpyGunshot
     selectedMode: Fullauto
     availableModes:
     - Fullauto
@@ -350,9 +348,7 @@
   - type: Gun
     fireRate: 4
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
-      params:
-        volume: -12
+      collection: N14PistolSpyGunshot
   - type: ItemSlots
     slots:
       gun_magazine:

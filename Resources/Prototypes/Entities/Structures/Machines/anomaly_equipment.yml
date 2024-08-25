@@ -37,9 +37,6 @@
     color: "#fca3c0"
   - type: Appearance
   - type: WiresPanel
-  - type: Wires
-    boardName: wires-board-name-vessel
-    layoutId: Vessel
   - type: AmbientSound
     enabled: false
     range: 3
@@ -87,9 +84,9 @@
         sound:
           collection: MetalGlassBreak
       - !type:ExplodeBehavior
-  - type: GuideHelp
-    guides:
-    - ScannersAndVessels
+  # - type: GuideHelp
+    # guides:
+    # - ScannersAndVessels
 
 - type: entity
   id: MachineAnomalyVesselExperimental
@@ -160,6 +157,7 @@
     board: APECircuitboard
   - type: Lock
     locked: false
+  - type: LockedWiresPanel
   - type: AccessReader
     access: [[ "Research" ]]
   - type: Emitter
@@ -171,19 +169,22 @@
     - AnomalousParticleDelta
     - AnomalousParticleEpsilon
     - AnomalousParticleZeta
+    - AnomalousParticleSigma
     setTypePorts:
       SetParticleDelta: AnomalousParticleDelta
       SetParticleEpsilon: AnomalousParticleEpsilon
       SetParticleZeta: AnomalousParticleZeta
+      SetParticleSigma: AnomalousParticleSigma
     fireBurstSize: 1
     fireBurstDelayMin: 2
     fireBurstDelayMax: 6
   - type: ApcPowerReceiver
     powerLoad: 100
-  - type: GuideHelp
-    guides:
-    - APE
+  # - type: GuideHelp
+    # guides:
+    # - APE
   - type: Gun
+    projectileSpeed: 4
     fireRate: 10 #just has to be fast enough to keep up with upgrades
     showExamineText: false
     selectedMode: SemiAuto
@@ -194,9 +195,6 @@
   - type: Appearance
   - type: WiresPanel
   - type: WiresVisuals
-  - type: Wires
-    boardName: wires-board-name-ape
-    layoutId: Ape
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
@@ -204,6 +202,7 @@
           True: { visible: true }
           False: { visible: false }
   - type: LockVisuals
+  - type: LockedAnchorable
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
@@ -217,6 +216,7 @@
       - SetParticleDelta
       - SetParticleEpsilon
       - SetParticleZeta
+      - SetParticleSigma
 
 - type: entity
   id: MachineAnomalyGenerator
@@ -284,9 +284,6 @@
     fuelCost: 10
     doAfterDelay: 5
   - type: WiresPanel
-  - type: Wires
-    boardName: wires-board-name-anomalygenerator
-    layoutId: AnomalyGenerator
   - type: Destructible
     thresholds:
     - trigger:
@@ -322,6 +319,6 @@
     price: 5000
   - type: AccessReader
     access: [["Research"]]
-  - type: GuideHelp
-    guides:
-    - AnomalousResearch
+  # - type: GuideHelp
+    # guides:
+    # - AnomalousResearch

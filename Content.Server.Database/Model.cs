@@ -75,6 +75,15 @@ namespace Content.Server.Database
                 .HasIndex(j => new { j.ProfileId, j.JobName })
                 .IsUnique();
 
+            // Nuclear14 Special
+            modelBuilder.Entity<Special>()
+                .HasIndex(j => j.ProfileId);
+
+            modelBuilder.Entity<Special>()
+                .HasIndex(j => new { j.ProfileId, j.SpecialName })
+                .IsUnique();
+            // Nuclear14 end
+
             modelBuilder.Entity<AssignedUserId>()
                 .HasIndex(p => p.UserName)
                 .IsUnique();
@@ -121,10 +130,6 @@ namespace Content.Server.Database
 
             modelBuilder.Entity<Round>()
                 .HasIndex(round => round.StartDate);
-
-            modelBuilder.Entity<Round>()
-                .Property(round => round.StartDate)
-                .HasDefaultValue(default(DateTime));
 
             modelBuilder.Entity<AdminLogPlayer>()
                 .HasKey(logPlayer => new {logPlayer.RoundId, logPlayer.LogId, logPlayer.PlayerUserId});
@@ -351,6 +356,7 @@ namespace Content.Server.Database
         public string Backpack { get; set; } = null!;
         public int SpawnPriority { get; set; } = 0;
         public List<Job> Jobs { get; } = new();
+        public List<Special> Specials { get; } = new(); // Nuclear14 Special
         public List<Antag> Antags { get; } = new();
         public List<Trait> Traits { get; } = new();
         public List<Loadout> Loadouts { get; } = new();
@@ -379,6 +385,33 @@ namespace Content.Server.Database
         Medium = 2,
         High = 3
     }
+
+    // Nuclear14 Special
+    public class Special
+    {
+        public int Id { get; set; }
+        public Profile Profile { get; set; } = null!;
+        public int ProfileId { get; set; }
+        public string SpecialName { get; set; } = null!;
+        public DbSpecialPriority Priority { get; set; }
+    }
+
+    public enum DbSpecialPriority
+    {
+        // These enum values HAVE to match the ones in SpecialPriority in Content.Shared
+        Zero = 0,
+        One = 1,
+        Two = 2,
+        Three = 3,
+        Four = 4,
+        Five = 5,
+        Six = 6,
+        Seven = 7,
+        Eight = 8,
+        Nine = 9,
+        Ten = 10
+    }
+    // Nuclear14 end
 
     public class Antag
     {
@@ -510,7 +543,7 @@ namespace Content.Server.Database
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
         public List<Player> Players { get; set; } = default!;
 
@@ -895,8 +928,35 @@ namespace Content.Server.Database
         public byte[] Data { get; set; } = default!;
     }
 
+    // Note: this interface isn't used by the game, but it *is* used by SS14.Admin.
+    // Don't remove! Or face the consequences!
+    public interface IAdminRemarksCommon
+    {
+        public int Id { get; }
+
+        public int? RoundId { get; }
+        public Round? Round { get; }
+
+        public Guid? PlayerUserId { get; }
+        public Player? Player { get; }
+        public TimeSpan PlaytimeAtNote { get; }
+
+        public string Message { get; }
+
+        public Player? CreatedBy { get; }
+
+        public DateTime CreatedAt { get; }
+
+        public Player? LastEditedBy { get; }
+
+        public DateTime? LastEditedAt { get; }
+        public DateTime? ExpirationTime { get; }
+
+        public bool Deleted { get; }
+    }
+
     [Index(nameof(PlayerUserId))]
-    public class AdminNote
+    public class AdminNote : IAdminRemarksCommon
     {
         [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int Id { get; set; }
 
@@ -930,7 +990,7 @@ namespace Content.Server.Database
     }
 
     [Index(nameof(PlayerUserId))]
-    public class AdminWatchlist
+    public class AdminWatchlist : IAdminRemarksCommon
     {
         [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int Id { get; set; }
 
@@ -961,7 +1021,7 @@ namespace Content.Server.Database
     }
 
     [Index(nameof(PlayerUserId))]
-    public class AdminMessage
+    public class AdminMessage : IAdminRemarksCommon
     {
         [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int Id { get; set; }
 

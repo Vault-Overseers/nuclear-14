@@ -118,7 +118,8 @@ public abstract class SharedBiomeSystem : EntitySystem
             // Check if the tile is from meta layer, otherwise fall back to default layers.
             if (layer is BiomeMetaLayer meta)
             {
-                if (TryGetBiomeTile(indices, ProtoManager.Index<BiomeTemplatePrototype>(meta.Template).Layers, seed, grid, out tile))
+                if (TryGetTile(indices, ProtoManager.Index<BiomeTemplatePrototype>(meta.Template).Layers, seed, grid, out tile))
+                    //CP14 bandage - replaced from TryGetBiomeTile (not working for biomespawner)
                 {
                     return true;
                 }
@@ -183,7 +184,7 @@ public abstract class SharedBiomeSystem : EntitySystem
     }
 
 
-    private bool TryGetEntity(Vector2i indices, List<IBiomeLayer> layers, Tile tileRef, int seed, MapGridComponent grid,
+    public bool TryGetEntity(Vector2i indices, List<IBiomeLayer> layers, Tile tileRef, int seed, MapGridComponent grid,
         [NotNullWhen(true)] out string? entity)
     {
         var tileId = TileDefManager[tileRef.TypeId].ID;

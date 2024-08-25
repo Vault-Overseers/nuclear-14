@@ -1,7 +1,7 @@
 - type: entity
   name: police baton
   parent: BaseItem
-  id: N14BasePoliceBaton
+  id: N14PoliceBaton
   components:
   - type: StaminaDamageOnHit
     damage: 20
@@ -11,11 +11,14 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 16
+        Blunt: 8
+    soundSwing:
+      collection: N14BaseballBatSwing
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/policebaton.rsi
+    state: icon
   - type: Item
-    size: Large
+    size: Normal 
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Melee/policebaton.rsi
     quickEquip: false
@@ -26,15 +29,18 @@
 - type: entity
   name: tribal club
   parent: BaseItem
-  id: N14BaseTribalClub
+  id: N14TribalClub
   components:
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
       types:
         Blunt: 24
+    soundSwing:
+      collection: N14LargeSwing
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/tribalclub.rsi
+    state: icon
   - type: Item
     size: Large
   - type: Clothing
@@ -47,15 +53,18 @@
 - type: entity
   name: broken pipe
   parent: BaseItem
-  id: N14BaseBrokenPipe
+  id: N14BrokenPipe
   components:
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
       types:
         Blunt: 22
+    soundSwing:
+      collection: N14LargeSwing
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/pipe.rsi
+    state: icon
   - type: Item
     size: Large
   - type: Clothing

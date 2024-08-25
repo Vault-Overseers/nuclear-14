@@ -66,6 +66,16 @@
   suffix: Loot,Domestic,Random
 
 - type: entity
+  parent: [ N14ClosetGrey1, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetGrey1RefillingGeneric
+  suffix: Refilling,Generic,Random
+
+- type: entity
+  parent: [ N14ClosetGrey1, N14BaseLockerStorageFill ]
+  id: N14LootGenericClosetGrey1
+  suffix: Loot,Generic,Random
+
+- type: entity
   id: N14ClosetGrey2
   parent: N14ClosetBaseW
   components:
@@ -81,6 +91,16 @@
   parent: [ N14ClosetGrey2, N14StorageFillDomestic ]
   id: N14LootClosetGrey2
   suffix: Loot,Domestic,Random
+
+- type: entity
+  parent: [ N14ClosetGrey2, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetGrey2RefillingGeneric
+  suffix: Refilling,Generic,Random
+
+- type: entity
+  parent: [ N14ClosetGrey2, N14BaseLockerStorageFill ]
+  id: N14LootGenericClosetGrey2
+  suffix: Loot,Generic,Random
 
 - type: entity
   parent: N14ClosetBaseW
@@ -102,6 +122,16 @@
   suffix: Loot,Domestic,Random
 
 - type: entity
+  parent: [ N14ClosetRusty, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetRustyRefillingGeneric
+  suffix: Refilling,Generic,Random
+
+- type: entity
+  parent: [ N14ClosetRusty, N14BaseLockerStorageFill ]
+  id: N14LootGenericClosetRusty
+  suffix: Loot,Generic,Random
+
+- type: entity
   parent: N14ClosetBaseW
   id: N14ClosetGunCabinet
   name: gun cabinet
@@ -116,9 +146,9 @@
   suffix: Refilling,Military,Random
 
 - type: entity
-  parent: [ N14ClosetGunCabinet, N14StorageFillDomestic ]
+  parent: [ N14ClosetGunCabinet, N14BaseMilitaryStorageFill ]
   id: N14LootClosetGunCabinet
-  suffix: Loot,Domestic,Random
+  suffix: Loot,Military,Random
 
 - type: entity
   parent: N14ClosetBaseW
@@ -166,6 +196,16 @@
   parent: [ N14ClosetDouble, N14StorageFillDomestic ]
   id: N14LootClosetDouble
   suffix: Loot,Domestic,Random
+
+- type: entity
+  parent: [ N14ClosetDouble, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetDoubleRefillingGeneric
+  suffix: Refilling,Generic,Random
+
+- type: entity
+  parent: [ N14ClosetDouble, N14BaseLockerStorageFill ]
+  id: N14LootGenericClosetDouble
+  suffix: Loot,Generic,Random
 
 # Wooden Closets
 
@@ -225,6 +265,21 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/Closets/closetgeneric.rsi
+
+- type: entity
+  parent: [ N14ClosetGeneric, N14BaseLockerStorageFill ]
+  id: N14LootClosetGeneric
+  suffix: Loot,Generic,Random
+
+- type: entity
+  parent: [ N14ClosetGeneric, N14BaseMilitaryStorageFill ]
+  id: N14LootMilitaryClosetGeneric
+  suffix: Loot,Military,Random
+
+- type: entity
+  parent: [ N14ClosetGeneric, N14BaseMilitaryTimedStorageFill ]
+  id: N14ClosetGenericRefillingMilitary
+  suffix: Refilling,Military,Random
 
 # Wallmounted Closets
 - type: entity

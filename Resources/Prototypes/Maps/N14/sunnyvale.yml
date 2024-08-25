@@ -1,7 +1,7 @@
 - type: gameMap
   id: Sunnyvale
   mapName: 'Sunnyvale'
-  mapPath: /Maps/N14/sunnyvale2.yml
+  mapPath: /Maps/N14/SunnyvaleSurface.yml
   minPlayers: 0
   stations:
     Sunnyvale:
@@ -9,6 +9,9 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Sunnyvale'
+        - type: CP14StationAdditionalMap
+          mapPaths:
+          - /Maps/N14/SunnyvaleUnderground.yml
         - type: StationJobs
           overflowJobs:
             - Wastelander
@@ -53,3 +56,8 @@
             BoSMidKnight: [ 2, 3 ]
             BoSMidScribe: [ 1, 2 ]
             BoSMidSquire: [ 2, 2 ]
+            Overseer: [ 1, 1 ]
+            VaultDoctor: [ 1, 1 ]
+            VaultDweller: [ 3, 3 ]
+            VaultEngineer: [ 1, 1 ]
+            VaultSecurity: [ 1, 1 ]

@@ -9,10 +9,12 @@ using Content.Shared.Roles;
 using Content.Shared.Traits;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared.Nuclear14.Special;
 
 namespace Content.Shared.Preferences
 {
@@ -27,6 +29,7 @@ namespace Content.Shared.Preferences
         public const int MaxDescLength = 512;
 
         private readonly Dictionary<string, JobPriority> _jobPriorities;
+        private readonly Dictionary<string, SpecialPriority> _specialPriorities;
         private readonly List<string> _antagPreferences;
         private readonly List<string> _traitPreferences;
         private readonly List<string> _loadoutPreferences;
@@ -48,7 +51,8 @@ namespace Content.Shared.Preferences
             PreferenceUnavailableMode preferenceUnavailable,
             List<string> antagPreferences,
             List<string> traitPreferences,
-            List<string> loadoutPreferences)
+            List<string> loadoutPreferences,
+            Dictionary<string, SpecialPriority> specialPriorities)
         {
             Name = name;
             FlavorText = flavortext;
@@ -67,6 +71,7 @@ namespace Content.Shared.Preferences
             _antagPreferences = antagPreferences;
             _traitPreferences = traitPreferences;
             _loadoutPreferences = loadoutPreferences;
+            _specialPriorities = specialPriorities;
         }
 
         /// <summary>Copy constructor but with overridable references (to prevent useless copies)</summary>
@@ -75,10 +80,11 @@ namespace Content.Shared.Preferences
             Dictionary<string, JobPriority> jobPriorities,
             List<string> antagPreferences,
             List<string> traitPreferences,
-            List<string> loadoutPreferences)
+            List<string> loadoutPreferences,
+            Dictionary<string, SpecialPriority> specialPriorities)
             : this(other.Name, other.FlavorText, other.Species, other.Height, other.Width, other.Age, other.Sex, other.Gender, other.Appearance,
                 other.Clothing, other.Backpack, other.SpawnPriority, jobPriorities, other.PreferenceUnavailable,
-                antagPreferences, traitPreferences, loadoutPreferences)
+                antagPreferences, traitPreferences, loadoutPreferences, specialPriorities)
         {
         }
 
@@ -86,7 +92,8 @@ namespace Content.Shared.Preferences
         private HumanoidCharacterProfile(HumanoidCharacterProfile other)
             : this(other, new Dictionary<string, JobPriority>(other.JobPriorities),
                 new List<string>(other.AntagPreferences), new List<string>(other.TraitPreferences),
-                new List<string>(other.LoadoutPreferences))
+                new List<string>(other.LoadoutPreferences),
+                new Dictionary<string, SpecialPriority>(other.SpecialPriorities))
         {
         }
 
@@ -107,11 +114,13 @@ namespace Content.Shared.Preferences
             PreferenceUnavailableMode preferenceUnavailable,
             IReadOnlyList<string> antagPreferences,
             IReadOnlyList<string> traitPreferences,
-            IReadOnlyList<string> loadoutPreferences)
+            IReadOnlyList<string> loadoutPreferences,
+            IReadOnlyDictionary<string, SpecialPriority> specialPriorities)
             : this(name, flavortext, species, height, width, age, sex, gender, appearance, clothing, backpack, spawnPriority,
                 new Dictionary<string, JobPriority>(jobPriorities), preferenceUnavailable,
                 new List<string>(antagPreferences), new List<string>(traitPreferences),
-                new List<string>(loadoutPreferences))
+                new List<string>(loadoutPreferences),
+                new Dictionary<string, SpecialPriority>(specialPriorities))
         {
         }
 
@@ -140,7 +149,18 @@ namespace Content.Shared.Preferences
             PreferenceUnavailableMode.SpawnAsOverflow,
             new List<string>(),
             new List<string>(),
-            new List<string>())
+            new List<string>(),
+            new Dictionary<string, SpecialPriority>
+            {
+                {"Strength", SpecialPriority.Five},
+                {"Perception", SpecialPriority.Five},
+                {"Endurance", SpecialPriority.Five},
+                {"Charisma", SpecialPriority.Five},
+                {"Intelligence", SpecialPriority.Five},
+                {"Agility", SpecialPriority.Five},
+                {"Luck", SpecialPriority.Five}
+            }
+            )
         {
         }
 
@@ -171,7 +191,18 @@ namespace Content.Shared.Preferences
                 PreferenceUnavailableMode.SpawnAsOverflow,
                 new List<string>(),
                 new List<string>(),
-                new List<string>());
+                new List<string>(),
+                new Dictionary<string, SpecialPriority>
+                {
+                    {"Strength", SpecialPriority.Five},
+                    {"Perception", SpecialPriority.Five},
+                    {"Endurance", SpecialPriority.Five},
+                    {"Charisma", SpecialPriority.Five},
+                    {"Intelligence", SpecialPriority.Five},
+                    {"Agility", SpecialPriority.Five},
+                    {"Luck", SpecialPriority.Five}
+                }
+                );
         }
 
         // TODO: This should eventually not be a visual change only.
@@ -226,7 +257,17 @@ namespace Content.Shared.Preferences
                 new Dictionary<string, JobPriority>
                 {
                     {SharedGameTicker.FallbackOverflowJob, JobPriority.High},
-                }, PreferenceUnavailableMode.StayInLobby, new List<string>(), new List<string>(), new List<string>());
+                }, PreferenceUnavailableMode.StayInLobby, new List<string>(), new List<string>(), new List<string>(),
+                new Dictionary<string, SpecialPriority>
+                {
+                    {"Strength", SpecialPriority.Five},
+                    {"Perception", SpecialPriority.Five},
+                    {"Endurance", SpecialPriority.Five},
+                    {"Charisma", SpecialPriority.Five},
+                    {"Intelligence", SpecialPriority.Five},
+                    {"Agility", SpecialPriority.Five},
+                    {"Luck", SpecialPriority.Five}
+                });
         }
 
         public string Name { get; private set; }
@@ -257,6 +298,7 @@ namespace Content.Shared.Preferences
         public BackpackPreference Backpack { get; private set; }
         public SpawnPriorityPreference SpawnPriority { get; private set; }
         public IReadOnlyDictionary<string, JobPriority> JobPriorities => _jobPriorities;
+        public IReadOnlyDictionary<string, SpecialPriority> SpecialPriorities => _specialPriorities;
         public IReadOnlyList<string> AntagPreferences => _antagPreferences;
         public IReadOnlyList<string> TraitPreferences => _traitPreferences;
         public IReadOnlyList<string> LoadoutPreferences => _loadoutPreferences;
@@ -322,7 +364,11 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile WithJobPriorities(IEnumerable<KeyValuePair<string, JobPriority>> jobPriorities)
         {
             return new(this, new Dictionary<string, JobPriority>(jobPriorities), _antagPreferences, _traitPreferences,
-                _loadoutPreferences);
+                _loadoutPreferences, _specialPriorities);
+        }
+        public HumanoidCharacterProfile WithSpecialPriorities(IEnumerable<KeyValuePair<string, SpecialPriority>> specialPriorities)
+        {
+            return new(this, _jobPriorities, _antagPreferences, _traitPreferences, _loadoutPreferences, new Dictionary<string, SpecialPriority>(specialPriorities));
         }
 
         public HumanoidCharacterProfile WithJobPriority(string jobId, JobPriority priority)
@@ -336,9 +382,21 @@ namespace Content.Shared.Preferences
             {
                 dictionary[jobId] = priority;
             }
-            return new(this, dictionary, _antagPreferences, _traitPreferences, _loadoutPreferences);
+            return new(this, dictionary, _antagPreferences, _traitPreferences, _loadoutPreferences, _specialPriorities);
         }
-
+        public HumanoidCharacterProfile WithSpecialPriority(string specialId, SpecialPriority priority)
+        {
+            var dictionary = new Dictionary<string, SpecialPriority>(_specialPriorities);
+            if (priority == SpecialPriority.Zero)
+            {
+                dictionary.Remove(specialId);
+            }
+            else
+            {
+            dictionary[specialId] = priority;
+            }
+            return new(this, _jobPriorities, _antagPreferences, _traitPreferences, _loadoutPreferences, dictionary);
+        }
         public HumanoidCharacterProfile WithPreferenceUnavailable(PreferenceUnavailableMode mode)
         {
             return new(this) { PreferenceUnavailable = mode };
@@ -347,7 +405,7 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile WithAntagPreferences(IEnumerable<string> antagPreferences)
         {
             return new(this, _jobPriorities, new List<string>(antagPreferences), _traitPreferences,
-                _loadoutPreferences);
+                _loadoutPreferences, _specialPriorities);
         }
 
         public HumanoidCharacterProfile WithAntagPreference(string antagId, bool pref)
@@ -367,7 +425,7 @@ namespace Content.Shared.Preferences
                     list.Remove(antagId);
                 }
             }
-            return new(this, _jobPriorities, list, _traitPreferences, _loadoutPreferences);
+            return new(this, _jobPriorities, list, _traitPreferences, _loadoutPreferences, _specialPriorities);
         }
 
         public HumanoidCharacterProfile WithTraitPreference(string traitId, bool pref)
@@ -389,7 +447,7 @@ namespace Content.Shared.Preferences
                     list.Remove(traitId);
                 }
             }
-            return new(this, _jobPriorities, _antagPreferences, list, _loadoutPreferences);
+            return new(this, _jobPriorities, _antagPreferences, list, _loadoutPreferences, _specialPriorities);
         }
 
         public HumanoidCharacterProfile WithLoadoutPreference(string loadoutId, bool pref)
@@ -410,7 +468,7 @@ namespace Content.Shared.Preferences
                     list.Remove(loadoutId);
                 }
             }
-            return new(this, _jobPriorities, _antagPreferences, _traitPreferences, list);
+            return new(this, _jobPriorities, _antagPreferences, _traitPreferences, list, _specialPriorities);
         }
 
         public string Summary =>
@@ -437,13 +495,18 @@ namespace Content.Shared.Preferences
                 || !_jobPriorities.SequenceEqual(other._jobPriorities)
                 || !_antagPreferences.SequenceEqual(other._antagPreferences)
                 || !_traitPreferences.SequenceEqual(other._traitPreferences)
-                || !_loadoutPreferences.SequenceEqual(other._loadoutPreferences))
+                || !_loadoutPreferences.SequenceEqual(other._loadoutPreferences)
+                || !_specialPriorities.SequenceEqual(other._specialPriorities)
+                )
                 return false;
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
-        public void EnsureValid(IConfigurationManager configManager, IPrototypeManager prototypeManager)
+        public void EnsureValid(ICommonSession session, IDependencyCollection collection)
         {
+            var configManager = collection.Resolve<IConfigurationManager>();
+            var prototypeManager = collection.Resolve<IPrototypeManager>();
+
             if (!prototypeManager.TryIndex<SpeciesPrototype>(Species, out var speciesPrototype) || speciesPrototype.RoundStart == false)
             {
                 Species = SharedHumanoidAppearanceSystem.DefaultSpecies;
@@ -576,6 +639,23 @@ namespace Content.Shared.Preferences
                     _ => false
                 }));
 
+            var specialPriorities = new Dictionary<string, SpecialPriority>(SpecialPriorities
+                .Where(p => prototypeManager.HasIndex<SpecialPrototype>(p.Key) && p.Value switch
+                {
+                    SpecialPriority.Zero => false, // Drop never since that's assumed default.
+                    SpecialPriority.One => true,
+                    SpecialPriority.Two => true,
+                    SpecialPriority.Three => true,
+                    SpecialPriority.Four => true,
+                    SpecialPriority.Five => true,
+                    SpecialPriority.Six => true,
+                    SpecialPriority.Seven => true,
+                    SpecialPriority.Eight => true,
+                    SpecialPriority.Nine => true,
+                    SpecialPriority.Ten => true,
+                    _ => false
+                }));
+
             var antags = AntagPreferences
                 .Where(id => prototypeManager.TryIndex<AntagPrototype>(id, out var antag) && antag.SetPreference)
                 .ToList();
@@ -639,6 +719,13 @@ namespace Content.Shared.Preferences
                 _jobPriorities.Add(job, priority);
             }
 
+            _specialPriorities.Clear();
+
+            foreach (var (special, priority) in specialPriorities)
+            {
+                _specialPriorities.Add(special, priority);
+            }
+
             PreferenceUnavailable = prefsUnavailableMode;
 
             _antagPreferences.Clear();
@@ -651,10 +738,10 @@ namespace Content.Shared.Preferences
             _loadoutPreferences.AddRange(loadouts);
         }
 
-        public ICharacterProfile Validated(IConfigurationManager configManager, IPrototypeManager prototypeManager)
+        public ICharacterProfile Validated(ICommonSession session, IDependencyCollection collection)
         {
             var profile = new HumanoidCharacterProfile(this);
-            profile.EnsureValid(configManager, prototypeManager);
+            profile.EnsureValid(session, collection);
             return profile;
         }
 
@@ -693,6 +780,9 @@ namespace Content.Shared.Preferences
                     _antagPreferences,
                     _traitPreferences,
                     _loadoutPreferences
+                ),
+                HashCode.Combine(
+                    _specialPriorities
                 )
             );
         }

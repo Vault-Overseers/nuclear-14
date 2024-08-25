@@ -4,6 +4,8 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
+using Content.Shared.Nuclear14.Special.Components;
+using Content.Shared.Nuclear14.CCVar;
 using Content.Shared.Popups;
 using Content.Shared.Timing;
 using Content.Shared.Verbs;
@@ -15,6 +17,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable.Components;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 
 namespace Content.Shared.Wieldable;
@@ -22,6 +25,7 @@ namespace Content.Shared.Wieldable;
 public sealed class WieldableSystem : EntitySystem
 {
     [Dependency] private readonly SharedVirtualItemSystem _virtualItemSystem = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedItemSystem _itemSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
@@ -34,7 +38,7 @@ public sealed class WieldableSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<WieldableComponent, UseInHandEvent>(OnUseInHand);
+        SubscribeLocalEvent<WieldableComponent, UseInHandEvent>(OnUseInHand, before: [typeof(SharedGunSystem)]);
         SubscribeLocalEvent<WieldableComponent, ItemUnwieldedEvent>(OnItemUnwielded);
         SubscribeLocalEvent<WieldableComponent, GotUnequippedHandEvent>(OnItemLeaveHand);
         SubscribeLocalEvent<WieldableComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
@@ -90,6 +94,8 @@ public sealed class WieldableSystem : EntitySystem
         {
             args.MinAngle += bonus.Comp.MinAngle;
             args.MaxAngle += bonus.Comp.MaxAngle;
+            args.AngleDecay += bonus.Comp.AngleDecay;
+            args.AngleIncrease += bonus.Comp.AngleIncrease;
         }
     }
 
@@ -156,6 +162,23 @@ public sealed class WieldableSystem : EntitySystem
             return false;
         }
 
+        // Nuclear14 - Strength is needed to weild
+        if (!EntityManager.TryGetComponent<SpecialComponent>(user, out var special))
+        {
+            if(!quiet)
+                _popupSystem.PopupClient(Loc.GetString("player-component-no-special"), user, user);
+            return false;
+        }
+
+        var strNeeded = _config.GetCVar<int>(SpecialCCVars.StrengthWeild);
+        if(special.TotalStrength < strNeeded)
+        {
+            var message = Loc.GetString("player-component-not-enough-strength-weild",
+                ("number", strNeeded), ("item", uid));
+            _popupSystem.PopupClient(message, user, user);
+            return false;
+        }
+        // Nuclear14 end
         // Seems legit.
         return true;
     }
@@ -195,8 +218,9 @@ public sealed class WieldableSystem : EntitySystem
             && !_delay.TryResetDelay((used, useDelay), true))
             return false;
 
-        _popupSystem.PopupClient(Loc.GetString("wieldable-component-successful-wield", ("item", used)), user, user);
-        _popupSystem.PopupEntity(Loc.GetString("wieldable-component-successful-wield-other", ("user", user), ("item", used)), user, Filter.PvsExcept(user), true);
+        var selfMessage = Loc.GetString("wieldable-component-successful-wield", ("item", used));
+        var othersMessage = Loc.GetString("wieldable-component-successful-wield-other", ("user", user), ("item", used));
+        _popupSystem.PopupPredicted(selfMessage, othersMessage, user, user);
 
         var targEv = new ItemWieldedEvent();
         RaiseLocalEvent(used, ref targEv);
@@ -239,10 +263,9 @@ public sealed class WieldableSystem : EntitySystem
             if (component.UnwieldSound != null)
                 _audioSystem.PlayPredicted(component.UnwieldSound, uid, args.User);
 
-            _popupSystem.PopupClient(Loc.GetString("wieldable-component-failed-wield",
-                ("item", uid)), args.User.Value, args.User.Value);
-            _popupSystem.PopupEntity(Loc.GetString("wieldable-component-failed-wield-other",
-                ("user", args.User.Value), ("item", uid)), args.User.Value, Filter.PvsExcept(args.User.Value), true);
+            var selfMessage = Loc.GetString("wieldable-component-failed-wield", ("item", uid));
+            var othersMessage = Loc.GetString("wieldable-component-failed-wield-other", ("user", args.User.Value), ("item", uid));
+            _popupSystem.PopupPredicted(selfMessage, othersMessage, args.User.Value, args.User.Value);
         }
 
         _appearance.SetData(uid, WieldableVisuals.Wielded, false);
