@@ -38,6 +38,12 @@
     speechVerb: Robotic
   - type: Inventory
     templateId: borgShort
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Friendly Protectron
+    description: |
+      Do as your masters say with a literal but reasonable level of logic.
 
 - type: entity
   parent: N14RobotProtectron
@@ -91,6 +97,12 @@
     # access: [["Cargo"], ["Salvage"], ["Command"], ["Research"]]
   - type: Inventory
     templateId: borgTall
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Friendly Protectron Builder
+    description: |
+      Do as your masters say with a literal but reasonable level of logic.
     
     
 # this is how you give it modules and a cell, need variants for each that are empty and filled
@@ -134,6 +146,12 @@
     noMovementLayers:
       movement:
         state: icon
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Friendly Protectron Firefighter
+    description: |
+      Do as your masters say with a literal but reasonable level of logic.
         
 - type: entity
   parent: N14RobotProtectron
@@ -160,6 +178,12 @@
     noMovementLayers:
       movement:
         state: icon
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Friendly Protectron Police
+    description: |
+      Do as your masters say with a literal but reasonable level of logic.
         
 # Handy Gutsy
 - type: entity
@@ -201,6 +225,12 @@
     speechVerb: Robotic
   - type: Inventory
     templateId: borgShort
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Friendly Mr Handy
+    description: |
+      Do as your masters say with a good amount of logic.
     
 - type: entity
   parent: N14RobotMrHandy
@@ -227,3 +257,79 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/mrhandygutsy.rsi
+    
+# Faction Specific Robots
+## Vault
+- type: entity
+  parent: N14RobotMrHandy
+  id: N14RobotMrHandyVault
+  suffix: player, vault
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Vault
+    
+- type: entity
+  parent: N14RobotMrHandySaw
+  id: N14RobotMrHandySawVault
+  suffix: player, vault, saw
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Vault
+    
+## BOS Midwest
+- type: entity
+  parent: N14RobotMrHandy
+  id: N14RobotMrHandyBOSMidwest
+  suffix: player, BOS Midwest
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BrotherhoodMidwest
+    
+- type: entity
+  parent: N14RobotMrHandySaw
+  id: N14RobotMrHandySawBOSMidwest
+  suffix: player, BOS Midwest, saw
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BrotherhoodMidwest
+    
+- type: entity
+  parent: N14RobotMrGutsy
+  id: N14RobotMrGutsyBOSMidwest
+  suffix: player, BOS Midwest, gutsy
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BrotherhoodMidwest
+    
+## BOS Washington
+- type: entity
+  parent: N14RobotMrHandy
+  id: N14RobotMrHandyBOSWashington
+  suffix: player, BOS Washington
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BrotherhoodWashington
+    
+- type: entity
+  parent: N14RobotMrHandySaw
+  id: N14RobotMrHandySawBOSWashington
+  suffix: player, BOS Washington, saw
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BrotherhoodWashington
+    
+- type: entity
+  parent: N14RobotMrGutsy
+  id: N14RobotMrGutsyBOSWashington
+  suffix: player, BOS Washington, gutsy
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BrotherhoodWashington
