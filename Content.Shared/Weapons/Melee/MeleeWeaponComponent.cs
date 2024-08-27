@@ -68,6 +68,13 @@ public sealed partial class MeleeWeaponComponent : Component
     public bool AutoAttack;
 
     /// <summary>
+    ///     N14: Allows you to ignore armor protection
+    /// </summary>
+    [DataField("ignoreCoefficients")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float IgnoreCoefficients = 0f;
+
+    /// <summary>
     /// Base damage for this weapon. Can be modified via heavy damage or other means.
     /// </summary>
     [DataField(required: true)]
