@@ -32,7 +32,9 @@ namespace Content.Server.Damage.Systems
 
         private void OnDoHit(EntityUid uid, DamageOtherOnHitComponent component, ThrowDoHitEvent args)
         {
-            var dmg = _damageable.TryChangeDamage(args.Target, component.Damage, component.IgnoreResistances, origin: args.Component.Thrower);
+            var dmg = _damageable.TryChangeDamage(args.Target, component.Damage, component.IgnoreResistances,
+                origin: args.Component.Thrower, ignoreCoefficients: component.IgnoreCoefficients);
+            _adminLogger.Add(LogType.ThrowHit, $"FUCK_FUCK {component.IgnoreCoefficients}");
 
             // Log damage only for mobs. Useful for when people throw spears at each other, but also avoids log-spam when explosions send glass shards flying.
             if (dmg != null && HasComp<MobStateComponent>(args.Target))

@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;
@@ -12,6 +13,8 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using YamlDotNet.Core.Tokens;
+
 
 namespace Content.Shared.Damage
 {
@@ -21,6 +24,7 @@ namespace Content.Shared.Damage
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly INetManager _netMan = default!;
         [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+        [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
 
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;
@@ -125,7 +129,8 @@ namespace Content.Shared.Damage
         ///     null if the user had no applicable components that can take damage.
         /// </returns>
         public DamageSpecifier? TryChangeDamage(EntityUid? uid, DamageSpecifier damage, bool ignoreResistances = false,
-            bool interruptsDoAfters = true, DamageableComponent? damageable = null, EntityUid? origin = null)
+            bool interruptsDoAfters = true, DamageableComponent? damageable = null,
+            EntityUid? origin = null, float ignoreCoefficients = 0f)
         {
             if (!uid.HasValue || !_damageableQuery.Resolve(uid.Value, ref damageable, false))
             {
@@ -144,7 +149,6 @@ namespace Content.Shared.Damage
             if (before.Cancelled)
                 return null;
 
-            // Apply resistances
             if (!ignoreResistances)
             {
                 if (damageable.DamageModifierSetId != null &&
@@ -152,12 +156,17 @@ namespace Content.Shared.Damage
                 {
                     // TODO DAMAGE PERFORMANCE
                     // use a local private field instead of creating a new dictionary here..
-                    damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
+                    damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet, ignoreCoefficients);
+
                 }
 
-                var ev = new DamageModifyEvent(damage, origin);
+                var ev = new DamageModifyEvent(damage, origin, ignoreCoefficients);
                 RaiseLocalEvent(uid.Value, ev);
                 damage = ev.Damage;
+                foreach (var (key, value) in damage.DamageDict)
+                {
+                    _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"in final DM {key} is {value}");
+                }
 
                 if (damage.Empty)
                 {
@@ -300,15 +309,17 @@ namespace Content.Shared.Damage
         // Whenever locational damage is a thing, this should just check only that bit of armour.
         public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET;
 
+        public float IgnoreCoefficients;
         public readonly DamageSpecifier OriginalDamage;
         public DamageSpecifier Damage;
         public EntityUid? Origin;
 
-        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null)
+        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null, float ignoreCoefficients = 0f)
         {
             OriginalDamage = damage;
             Damage = damage;
             Origin = origin;
+            IgnoreCoefficients = ignoreCoefficients;
         }
     }
 

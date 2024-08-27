@@ -11,6 +11,10 @@ namespace Content.Server.Damage.Components
         [ViewVariables(VVAccess.ReadWrite)]
         public bool IgnoreResistances = false;
 
+        [DataField("ignoreCoefficients")]
+        [ViewVariables(VVAccess.ReadWrite)]
+        public float IgnoreCoefficients = 0f;
+
         [DataField("damage", required: true)]
         [ViewVariables(VVAccess.ReadWrite)]
         public DamageSpecifier Damage = default!;
