@@ -163,10 +163,7 @@ namespace Content.Shared.Damage
                 var ev = new DamageModifyEvent(damage, origin, ignoreCoefficients);
                 RaiseLocalEvent(uid.Value, ev);
                 damage = ev.Damage;
-                foreach (var (key, value) in damage.DamageDict)
-                {
-                    _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"in final DM {key} is {value}");
-                }
+
 
                 if (damage.Empty)
                 {
