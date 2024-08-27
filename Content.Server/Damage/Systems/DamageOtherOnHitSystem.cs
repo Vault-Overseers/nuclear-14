@@ -60,7 +60,7 @@ namespace Content.Server.Damage.Systems
 
         private void OnDamageExamine(EntityUid uid, DamageOtherOnHitComponent component, ref DamageExamineEvent args)
         {
-            _damageExamine.AddDamageExamine(args.Message, component.Damage, Loc.GetString("damage-throw"));
+            _damageExamine.AddDamageExamine(args.Message, component.Damage, Loc.GetString("damage-throw"), component.IgnoreCoefficients);
         }
     }
 }

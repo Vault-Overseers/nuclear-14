@@ -35,9 +35,10 @@ public sealed class DamageExamineSystem : EntitySystem
         }
     }
 
-    public void AddDamageExamine(FormattedMessage message, DamageSpecifier damageSpecifier, string? type = null)
+    public void AddDamageExamine(FormattedMessage message, DamageSpecifier damageSpecifier, string? type = null,
+        float ignoreCoefficients = 0f)
     {
-        var markup = GetDamageExamine(damageSpecifier, type);
+        var markup = GetDamageExamine(damageSpecifier, type, ignoreCoefficients);
         if (!message.IsEmpty)
         {
             message.PushNewline();
@@ -48,16 +49,28 @@ public sealed class DamageExamineSystem : EntitySystem
     /// <summary>
     /// Retrieves the damage examine values.
     /// </summary>
-    private FormattedMessage GetDamageExamine(DamageSpecifier damageSpecifier, string? type = null)
+    private FormattedMessage GetDamageExamine(DamageSpecifier damageSpecifier, string? type = null,
+        float ignoreCoefficients = 0f)
     {
         var msg = new FormattedMessage();
 
         if (string.IsNullOrEmpty(type))
         {
+            if (ignoreCoefficients != 0f)
+            {
+                msg.PushNewline();
+                msg.AddMarkup(Loc.GetString("damage-examine-armor-piercing", ("ignore", MathF.Round((1f - ignoreCoefficients) * 100, 1))));
+            }
             msg.AddMarkup(Loc.GetString("damage-examine"));
         }
         else
         {
+            if (ignoreCoefficients != 0f)
+            {
+                msg.PushNewline();
+                msg.AddMarkup(Loc.GetString("damage-examine-type-armor-piercing", ("type", type),
+                    ("ignore", MathF.Round((1f - ignoreCoefficients) * 100, 1))));
+            }
             msg.AddMarkup(Loc.GetString("damage-examine-type", ("type", type)));
         }
 
