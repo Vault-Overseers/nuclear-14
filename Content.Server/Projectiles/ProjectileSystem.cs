@@ -66,7 +66,8 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         }
         // Nuclear14 end
 
-        var modifiedDamage = _damageableSystem.TryChangeDamage(target, ev.Damage, component.IgnoreResistances, origin: component.Shooter);
+        var modifiedDamage = _damageableSystem.TryChangeDamage(target, ev.Damage, component.IgnoreResistances,
+            origin: component.Shooter, ignoreCoefficients: component.IgnoreCoefficients);
         var deleted = Deleted(target);
 
         if (modifiedDamage is not null && EntityManager.EntityExists(component.Shooter))

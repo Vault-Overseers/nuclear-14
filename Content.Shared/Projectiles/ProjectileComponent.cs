@@ -33,9 +33,17 @@ public sealed partial class ProjectileComponent : Component
     public bool IgnoreShooter = true;
 
     /// <summary>
+    ///     N14: Allows you to ignore armor protection
+    /// </summary>
+    [DataField("ignoreCoefficients")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float IgnoreCoefficients = 0f;
+
+    /// <summary>
     ///     The amount of damage the projectile will do.
     /// </summary>
-    [DataField(required: true)] [ViewVariables(VVAccess.ReadWrite)]
+    [DataField(required: true)]
+    [ViewVariables(VVAccess.ReadWrite)]
     public DamageSpecifier Damage = new();
 
     /// <summary>
