@@ -36,6 +36,7 @@
     - FrumentariaSpySet
     - FrumentariaNCRSpySet
     - FrumentariaBoSSpySet
+    - FrumentariaWashingtonBoSSpySet
     - FrumentariaAgentSecretPoliceSet
     - FrumentariaSaboteurSet
   - type: ActivatableUI
@@ -150,9 +151,10 @@
   - type: UndecidedLoadoutBackpack
     transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
-    - BoSDefaultSet
-    - BoSRangedSet
-    - BoSPlasmaSet
+    - BaseWashingtonBoSSet
+    - WattzWashingtonBoSSet
+    - AutoWashingtonBoSSet
+    - ProtoWashingtonBoSSet
   - type: ActivatableUI
     key: enum.UndecidedLoadoutBackpackUIKey.Key
   - type: UserInterface
@@ -172,9 +174,8 @@
   - type: UndecidedLoadoutBackpack
     transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
-    - BoSScribeMedicalSet
-    - BoSScribeFieldSet
-    - BoSScribeEngineerSet
+    - ScribeMedicWashingtonBoSSet
+    - ScribeEngineerWashingtonBoSSet
   - type: ActivatableUI
     key: enum.UndecidedLoadoutBackpackUIKey.Key
   - type: UserInterface
@@ -194,16 +195,21 @@
   - type: UndecidedLoadoutBackpack
     transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
-    - BoSDefaultSet
-    - BoSRangedSet
-    - BoSPlasmaSet
-    - BoSAssaultSet
+    - CommandBaseWashingtonBoSSet
+    - CommandMultiWashingtonBoSSet
+    - CommandCasterWashingtonBoSSet
+    - CommandWattzWashingtonBoSSet
+    - CommandGatlingWashingtonBoSSet
   - type: ActivatableUI
     key: enum.UndecidedLoadoutBackpackUIKey.Key
   - type: UserInterface
     interfaces:
       - key: enum.UndecidedLoadoutBackpackUIKey.Key
         type: UndecidedLoadoutBackpackBoundUserInterface
+
+### Sets
+
+# Legion
 
 - type: UndecidedLoadoutBackpackSet
   id: CenturionBestiarySet
@@ -254,6 +260,16 @@
     state: base
   content:
   - KitFrumentariaBoSSpy
+
+- type: UndecidedLoadoutBackpackSet
+  id: FrumentariaWashingtonBoSSpySet
+  name: undecided-loadout-category-spy-washington-bos-name
+  description: undecided-loadout-category-spy-washington-bos-description
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitFrumentariaWashingtonBoSSpy
 
 - type: UndecidedLoadoutBackpackSet
   id: FrumentariaAgentSecretPoliceSet
@@ -424,3 +440,115 @@
     state: base
   content:
   - KitRecruitHealer
+
+# Washington BoS
+
+- type: UndecidedLoadoutBackpackSet
+  id: BaseWashingtonBoSSet
+  name: undecided-loadout-category-washington-base-name
+  description: undecided-loadout-category-washington-base-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitBaseWashingtonBoS
+
+- type: UndecidedLoadoutBackpackSet
+  id: WattzWashingtonBoSSet
+  name: undecided-loadout-category-washington-wattz-name
+  description: undecided-loadout-category-washington-wattz-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitWattzWashingtonBoS
+
+- type: UndecidedLoadoutBackpackSet
+  id: AutoWashingtonBoSSet
+  name: undecided-loadout-category-washington-auto-name
+  description: undecided-loadout-category-washington-auto-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitAutoWashingtonBoS
+
+- type: UndecidedLoadoutBackpackSet
+  id: ProtoWashingtonBoSSet
+  name: undecided-loadout-category-washington-proto-name
+  description: undecided-loadout-category-washington-proto-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitProtoWashingtonBoS
+
+- type: UndecidedLoadoutBackpackSet
+  id: CommandBaseWashingtonBoSSet
+  name: undecided-loadout-category-washington-command-base-name
+  description: undecided-loadout-category-washington-command-base-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitCommandBaseWashingtonBoS
+
+- type: UndecidedLoadoutBackpackSet
+  id: CommandMultiWashingtonBoSSet
+  name: undecided-loadout-category-washington-command-multi-name
+  description: undecided-loadout-category-washington-command-multi-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitCommandMultiWashingtonBoS
+
+- type: UndecidedLoadoutBackpackSet
+  id: CommandCasterWashingtonBoSSet
+  name: undecided-loadout-category-washington-command-caster-name
+  description: undecided-loadout-category-washington-command-caster-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitCommandCasterWashingtonBoS
+
+- type: UndecidedLoadoutBackpackSet
+  id: CommandWattzWashingtonBoSSet
+  name: undecided-loadout-category-washington-command-wattz-name
+  description: undecided-loadout-category-washington-command-wattz-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitCommandWattzWashingtonBoS
+
+- type: UndecidedLoadoutBackpackSet
+  id: CommandGatlingWashingtonBoSSet
+  name: undecided-loadout-category-washington-command-gatling-name
+  description: undecided-loadout-category-washington-command-gatling-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitCommandGatlingWashingtonBoS
+
+- type: UndecidedLoadoutBackpackSet
+  id: ScribeEngineerWashingtonBoSSet
+  name: undecided-loadout-category-washington-scribe-engineer-name
+  description: undecided-loadout-category-washington-scribe-engineer-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitScribeEngineerWashingtonBoS
+
+- type: UndecidedLoadoutBackpackSet
+  id: ScribeMedicWashingtonBoSSet
+  name: undecided-loadout-category-washington-scribe-medic-name
+  description: undecided-loadout-category-washington-scribe-medic-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: medic
+  content:
+  - KitScribeMedicWashingtonBoS

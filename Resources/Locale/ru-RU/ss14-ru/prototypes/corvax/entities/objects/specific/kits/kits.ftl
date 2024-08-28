@@ -1,4 +1,6 @@
 # Corvax N14
+
+# Legion
 ent-KitCenturionBestiary = набор центуриона-бестиария
     .desc = Набор снаряжения Легиона.
 ent-KitCenturionVenator = набор центуриона-венатора
@@ -13,7 +15,9 @@ ent-KitFrumentariaSpy = набор фрументария-шпиона
     .desc = { ent-KitCenturionBestiary.desc }
 ent-KitFrumentariaNCRSpy = набор фрументария-шпиона НКР
     .desc = { ent-KitCenturionBestiary.desc }
-ent-KitFrumentariaBoSSpy = набор фрументария-шпиона СБС
+ent-KitFrumentariaBoSSpy = набор фрументария-шпиона СЗБС
+    .desc = { ent-KitCenturionBestiary.desc }
+ent-KitFrumentariaWashingtonBoSSpy = набор фрументария-шпиона ВБС
     .desc = { ent-KitCenturionBestiary.desc }
 ent-KitFrumentariaAgentSecretPolice = набор фрументария-агета тайной полиции
     .desc = { ent-KitCenturionBestiary.desc }
@@ -43,3 +47,29 @@ ent-KitRecruitMelee = рукопашный набор легионера-рек�
     .desc = { ent-KitCenturionBestiary.desc }
 ent-KitRecruitHealer = набор легионера-рекрута лекаря
     .desc = { ent-KitCenturionBestiary.desc }
+
+# Washington Bos
+ent-KitBaseWashingtonBoS = стандартный набор Вашингтонского Братства Стали
+    .desc = Набор снаряжения Вашингтонского Братства Стали
+ent-KitBaseWashingtonBoS = плазменный набор Вашингтонского Братства Стали
+    .desc = { ent-KitBaseWashingtonBoS.desc }
+ent-KitWattzWashingtonBoS = плазменный набор Вашингтонского Братства Стали
+    .desc = { ent-KitBaseWashingtonBoS.desc }
+ent-KitAutoWashingtonBoS = автоматический набор Вашингтонского Братства Стали
+    .desc = { ent-KitBaseWashingtonBoS.desc }
+ent-KitProtoWashingtonBoS = прототипный набор Вашингтонского Братства Стали
+    .desc = { ent-KitBaseWashingtonBoS.desc }
+ent-KitCommandBaseWashingtonBoS = стандартный набор Вашингтонского Братства Стали
+    .desc = { ent-KitBaseWashingtonBoS.desc }
+ent-KitCommandMultiWashingtonBoS = мультиплазменный набор Вашингтонского Братства Стали
+    .desc = { ent-KitBaseWashingtonBoS.desc }
+ent-KitCommandCasterWashingtonBoS = ударный набор Вашингтонского Братства Стали
+    .desc = { ent-KitBaseWashingtonBoS.desc }
+ent-KitCommandWattzWashingtonBoS = плазменный набор Вашингтонского Братства Стали
+    .desc = { ent-KitBaseWashingtonBoS.desc }
+ent-KitCommandGatlingWashingtonBoS = гатлинг набор Вашингтонского Братства Стали
+    .desc = { ent-KitBaseWashingtonBoS.desc }
+ent-KitScribeEngineerWashingtonBoS = инженерный набор скриптера Вашингтонского Братства Стали
+    .desc = { ent-KitBaseWashingtonBoS.desc }
+ent-KitScribeMedicWashingtonBoS = мадицинкий набор скриптера Вашингтонского Братства Стали
+    .desc = { ent-KitBaseWashingtonBoS.desc }

@@ -1,5 +1,6 @@
 # Corvax N14 Комплекты
 
+# Legion
 undecided-loadout-category-bestiary-name = Набор центуриона-бестиария
 undecided-loadout-category-bestiary-description =
     Ящик со всем необходимым для главенства над центурией.
@@ -24,11 +25,17 @@ undecided-loadout-category-ncr-spy-description =
     Включает: 1 набор маскировочной одежды, 1 боевую винтовку, 2 магазина 5.56mm,
     1 пистолет с глушителем, 2 магазина 22lr под пистолет, 1 боевой нож, 1 стандартный набор пропитания.
 
-undecided-loadout-category-spy-bos-name = Набор фрументария-шпиона СБС
+undecided-loadout-category-spy-bos-name = Набор фрументария-шпиона СЗБС
 undecided-loadout-category-spy-bos-description =
     Ящик со всем необходимым для организации тайного шпионажа выглядя как оруженосец Среднезападного Братства Стали.
     Включает: 1 набор маскировочной одежды, 1 карабин, 3 магазина 5.56mm,
     1 пистолет с глушителем, 2 магазина 22lr под пистолет, 1 сухой паёк.
+
+undecided-loadout-category-spy-washington-bos-name = Набор фрументария-шпиона ВБС
+undecided-loadout-category-spy-washington-bos-description =
+    Ящик со всем необходимым для организации тайного шпионажа выглядя как оруженосец Среднезападного Братства Стали.
+    Включает: 1 набор маскировочной одежды, 1 пистолет с глушителем, 4 магазина 22lr под пистолет,
+    1 сухой паёк.
 
 undecided-loadout-category-agent-secret-police-name = Набор фрументария-агента тайной полиции
 undecided-loadout-category-agent-secret-police-description =
@@ -132,3 +139,70 @@ undecided-loadout-category-recruit-healer-description =
     Ящик со всем необходимым для ведения рукопашного боя.
     Включает: 1 легкая легионерская броня, 1 мачете, 4 целебных порошоков,
     4 целебных припарки, 1 набор от ушибов, 1 мазь от ожогов, 1 стандартный набор пропитания.
+
+# Washington BoS
+undecided-loadout-category-washington-base-name = Стандартный набор Вашингтонского Братства Стали
+undecided-loadout-category-washington-base-description =
+    Ящик со всем необходимым для члена Братства Стали.
+    Включает: 1 автоматическую плазменную винтовку, 1 лазерный пистолет, 3 батарейки для винтовки,
+    2 батарейки для пистолета, стимулятор и сухпаёк.
+
+undecided-loadout-category-washington-wattz-name = Плазменный набор Вашингтонского Братства Стали
+undecided-loadout-category-washington-wattz-description =
+    Ящик со всем необходимым для члена Братства Стали.
+    Включает: 1 лазерную винтовку "Wattz 2000", 1 лазерный пистолет, 2 батареи для винтовки,
+    2 батарейки для пистолета, стимулятор и сухпаёк.
+
+undecided-loadout-category-washington-auto-name = Автоматический набор Вашингтонского Братства Стали
+undecided-loadout-category-washington-auto-description =
+    Ящик со всем необходимым для члена Братства Стали.
+    Включает: 1 винтовку с подзарядкой, 1 лазерный пистолет, 2 батарейки для пистолета,
+    стимулятор и сухпаёк.
+
+undecided-loadout-category-washington-proto-name = Прототипный набор Вашингтонского Братства Стали
+undecided-loadout-category-washington-proto-description =
+    Ящик со всем необходимым для члена Братства Стали.
+    Включает: 1 прототип лазерной винтовки AER14, 1 лазерный пистолет, 3 аккумулятора для винтовки,
+    2 батарейки для пистолета, стимулятор и сухпаёк.
+
+undecided-loadout-category-washington-command-base-name = Стандартный командный набор Вашингтонского Братства Стали
+undecided-loadout-category-washington-command-base-description =
+    Ящик со всем необходимым для командования Братства Стали.
+    Включает: 1 автоматическую лазерная винтовка AER9, 1 лазерный пистолет, 3 батареи для винтовки,
+    2 батарейки для пистолета, стимулятор и сухпаёк.
+
+undecided-loadout-category-washington-command-multi-name = Мультиплазменный командный набор Вашингтонского Братства Стали
+undecided-loadout-category-washington-command-multi-description =
+    Ящик со всем необходимым для командования Братства Стали.
+    Включает: 1 мультиплазменную винтовку, 1 лазерный пистолет, 3 батареи для винтовки,
+    2 батарейки для пистолета, стимулятор и сухпаёк.
+
+undecided-loadout-category-washington-command-caster-name = Ударный командный набор Вашингтонского Братства Стали
+undecided-loadout-category-washington-command-caster-description =
+    Ящик со всем необходимым для командования Братства Стали.
+    Включает: 1 плазмамёт, 1 лазерный пистолет, 3 батареи для плазмамёта,
+    2 батарейки для пистолета, стимулятор и сухпаёк.
+
+undecided-loadout-category-washington-command-wattz-name = Плазменный командный набор Вашингтонского Братства Стали
+undecided-loadout-category-washington-command-wattz-description =
+    Ящик со всем необходимым для командования Братства Стали.
+    Включает: 1 лазерную винтовку "Wattz 3000", 1 лазерный пистолет, 3 батареи для винтовки,
+    2 батарейки для пистолета, стимулятор и сухпаёк.
+
+undecided-loadout-category-washington-command-gatling-name = Гатлинг командный набор Вашингтонского Братства Стали
+undecided-loadout-category-washington-command-gatling-description =
+    Ящик со всем необходимым для командования Братства Стали.
+    Включает: 1 гатлинг-лазер, 1 лазерный пистолет, 1 ядерную батарею,
+    2 батарейки для пистолета, стимулятор и сухпаёк.
+
+undecided-loadout-category-washington-scribe-engineer-name = Инженерный набор Скриптера Братства Стали
+undecided-loadout-category-washington-scribe-engineer-description = 
+    Ящик со снаряжением, необходимым для поддержания базы и технических работ.
+    Включает: 1 автоматическую лазерную винтовка AER9, 1 лазерный пистолет, 3 батареи для винтовки,
+    2 батарейки для пистолета, 1 утилитарный пояс, инженерное снаряжение, стимулятор и сухпаёк.
+
+undecided-loadout-category-washington-scribe-medic-name = Медицинский набор Скриптера Братства Стали
+undecided-loadout-category-washington-scribe-medic-description = 
+    Ящик со снаряжением, необходимым для выживания бойцов Братства.
+    Включает: 1 пистолет с подзарядкой, медицинский пояс, набор для лечения огнестрельных ранений,
+    медицинскую форму скриптера, нож, стимулятор и сухпаёк.

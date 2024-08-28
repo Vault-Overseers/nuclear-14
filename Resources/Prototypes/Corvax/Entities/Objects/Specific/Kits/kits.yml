@@ -1,3 +1,5 @@
+# Legion kits
+
 - type: entity
   name: centurion-bestiary kit
   parent: KitBase
@@ -171,7 +173,7 @@
       - id: N14ClothingOuterNCRVest
       - id: N14ClothingBootsLeather
       - id: N14ClothingBackpackNCR
-      - id: N14IDNCRDogtag
+      - id: N14IDNCRDogtagAgent
       - id: N14WeaponService
       - id: Magazine556Rifle
         amount: 2
@@ -204,13 +206,39 @@
       - id: N14ClothingOuterMidwestArmor
       - id: N14ClothingBootsCombatFilled
       - id: ClothingBeltMilitary
-      - id: N14IDBrotherhoodHolotagSquire
+      - id: N14IDBrotherhoodHolotagAgent
       - id: N14WeaponOldCarbine
       - id: Magazine556Rifle
         amount: 3
       - id: N14WeaponPistol22lr
       - id: N14MagazinePistol22lr
         amount: 2
+      - id: BoxMRE
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: frumentaria-spy-bos kit
+  parent: KitBase
+  id: KitFrumentariaWashingtonBoSSpy
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingUniformJumpsuitBOSRed
+      - id: N14ClothingHeadHatBrotherhoodHelmet
+      - id: N14ClothingOuterCombatArmorBOS
+      - id: N14ClothingBootsCombatFilled
+      - id: ClothingBeltBoSWebbing
+      - id: N14IDWashingtonBrotherhoodHolotagAgent
+      - id: N14WeaponPistol22lr
+      - id: N14MagazinePistol22lr
+        amount: 4
       - id: BoxMRE
     sound:
       path: /Audio/Effects/unwrap.ogg
@@ -569,5 +597,262 @@
         amount: 2
       - id: DrinkWaterBottleFull
       - id: FoodCondimentPacketMustard
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+# Washington BoS kits
+
+- type: entity
+  name: washingtonbos-base kit
+  parent: KitBase
+  id: KitBaseWashingtonBoS
+  description: "A set of Washington BoS equipment."
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
+        amount: 2
+      - id: N14WeaponPlasmaAutoRifle
+      - id: N14PlasmaCartridge
+        amount: 3
+      - id: N14Stimpak
+      - id: BoxMRE
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: washingtonbos-wattz kit
+  parent: KitBase
+  id: KitWattzWashingtonBoS
+  description: "A set of Washington BoS equipment."
+  components:
+  - type: Sprite
+    state: marksman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
+        amount: 2
+      - id: N14WeaponWattz2000
+      - id: N14PowerCellFocused
+        amount: 2
+      - id: N14Stimpak
+      - id: BoxMRE
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: washingtonbos-auto kit
+  parent: KitBase
+  id: KitAutoWashingtonBoS
+  description: "A set of Washington BoS equipment."
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
+        amount: 2
+      - id: N14WeaponRechargerRifle
+      - id: N14Stimpak
+      - id: BoxMRE
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: washingtonbos-proto kit
+  parent: KitBase
+  id: KitProtoWashingtonBoS
+  description: "A set of Washington BoS equipment."
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
+        amount: 2
+      - id: N14WeaponLaserProtoRifle
+      - id: N14PowerCellAdvanced
+        amount: 3
+      - id: N14Stimpak
+      - id: BoxMRE
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: washingtonbos-command-base kit
+  parent: KitBase
+  id: KitCommandBaseWashingtonBoS
+  description: "A set of Washington BoS equipment."
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
+        amount: 2
+      - id: N14WeaponLaserAutoRifle
+      - id: N14PowerCellHigh
+        amount: 3
+      - id: N14Stimpak
+      - id: BoxMRE
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: washingtonbos-command-multi kit
+  parent: KitBase
+  id: KitCommandMultiWashingtonBoS
+  description: "A set of Washington BoS equipment."
+  components:
+  - type: Sprite
+    state: marksman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
+        amount: 2
+      - id: N14WeaponMultiplas
+      - id: N14PlasmaCartridge
+        amount: 3
+      - id: N14Stimpak
+      - id: BoxMRE
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: washingtonbos-command-caster kit
+  parent: KitBase
+  id: KitCommandCasterWashingtonBoS
+  description: "A set of Washington BoS equipment."
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
+        amount: 2
+      - id: N14WeaponPlasmaCaster
+      - id: N14PlasmaShell
+        amount: 3
+      - id: N14Stimpak
+      - id: BoxMRE
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: washingtonbos-command-wattz kit
+  parent: KitBase
+  id: KitCommandWattzWashingtonBoS
+  description: "A set of Washington BoS equipment."
+  components:
+  - type: Sprite
+    state: marksman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
+        amount: 2
+      - id: N14WeaponWattz3000
+      - id: N14PowerCellFocused
+        amount: 3
+      - id: N14Stimpak
+      - id: BoxMRE
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: washingtonbos-command-gatling kit
+  parent: KitBase
+  id: KitCommandGatlingWashingtonBoS
+  description: "A set of Washington BoS equipment."
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
+        amount: 2
+      - id: N14WeaponLaserGatling
+      - id: N14PowerCellFusion
+      - id: N14Stimpak
+      - id: BoxMRE
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: washingtonbos-scribe-engineer kit
+  parent: KitBase
+  id: KitScribeEngineerWashingtonBoS
+  description: "A set of Washington BoS equipment."
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: SheetSteel10
+      - id: SheetPlastic10
+      - id: ClothingHandsGlovesColorYellow
+      - id: N14ClothingBeltUtilityFilled
+      - id: ClothingHeadBrotherhoodScribeHeadset
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
+        amount: 2
+      - id: N14WeaponLaserAutoRifle
+      - id: N14PowerCellHigh
+        amount: 3
+      - id: N14Stimpak
+      - id: BoxMRE
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: washingtonbos-scribe-medic kit
+  parent: KitBase
+  id: KitScribeMedicWashingtonBoS
+  description: "A set of Washington BoS equipment."
+  components:
+  - type: Sprite
+    state: medic
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14MedkitBruteFilled
+      - id: N14CombatKnife
+      - id: N14ClothingBeltMedicalFilled
+      - id: ClothingHeadBrotherhoodScribeHeadset
+      - id: N14WeaponRechargerPistol
+      - id: ClothingHandsGlovesChemist
+      - id: N14Stimpak
+      - id: BoxMRE
     sound:
       path: /Audio/Effects/unwrap.ogg

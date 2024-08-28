@@ -1,3 +1,4 @@
+# Legion
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDLegionaryBadge
@@ -47,3 +48,124 @@
   - type: Sprite
     sprite: Corvax/Objects/Misc/identification.rsi
     state: medal-gold
+
+### Frumentaria
+
+- type: entity
+  id: AgentPreset
+  abstract: true
+  components:
+  - type: AgentIDCard
+  - type: ActivatableUI
+    key: enum.AgentIDCardUiKey.Key
+    inHandsOnly: true
+  - type: UserInterface
+    interfaces:
+      - key: enum.AgentIDCardUiKey.Key
+        type: AgentIDCardBoundUserInterface
+
+- type: entity
+  parent: [ N14IDPassportBlank, AgentPreset ]
+  id: N14IDNCRDogtagAgent
+  name: dogtag
+  description: An ID dogtag worn by members of the NCR.
+  suffix: Soldier, Cadet, Agent
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ncrdogtag
+  - type: PresetIdCard
+    job: NCRSoldier
+
+- type: entity
+  parent: [ N14IDPassportBlank, AgentPreset ]
+  id: N14IDBrotherhoodHolotagAgent
+  name: holotag
+  description: An ID holotag worn by the Brotherhood of Steel.
+  suffix: Squire, Agent
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSMidSquire
+
+- type: entity
+  parent: [ N14IDPassportBlank, AgentPreset ]
+  id: N14IDWashingtonBrotherhoodHolotagAgent
+  name: holotag
+  description: An ID holotag worn by the Brotherhood of Steel.
+  suffix: Recruit, Agent
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonRecruit
+
+# Washington BoS
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDWashingtonBrotherhoodHolotagRecruit
+  name: holotag
+  description: An ID holotag worn by the Brotherhood of Steel.
+  suffix: Recruit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonRecruit
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDWashingtonBrotherhoodHolotagSoldier
+  name: holotag
+  description: An ID holotag worn by the Brotherhood of Steel.
+  suffix: Soldier
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonSoldier
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDWashingtonBrotherhoodHolotagResearcher
+  name: holotag
+  description: An ID holotag worn by the Brotherhood of Steel.
+  suffix: Researcher
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonResearcher
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDWashingtonBrotherhoodHolotagCaptain
+  name: holotag
+  description: An ID holotag worn by the Brotherhood of Steel.
+  suffix: Captain
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonCaptain
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDWashingtonBrotherhoodHolotagCommander
+  name: holotag
+  description: An ID holotag worn by the Brotherhood of Steel.
+  suffix: Commander
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonCommander
