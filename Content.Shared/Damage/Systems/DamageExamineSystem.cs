@@ -36,9 +36,18 @@ public sealed class DamageExamineSystem : EntitySystem
     }
 
     public void AddDamageExamine(FormattedMessage message, DamageSpecifier damageSpecifier, string? type = null,
-        float ignoreCoefficients = 0f)
+        float ignoreCoefficients = 0f, bool isGunDamage = false)
     {
-        var markup = GetDamageExamine(damageSpecifier, type, ignoreCoefficients);
+        var markup = new FormattedMessage();
+        if (isGunDamage)
+        {
+            markup = GetGunDamageExamine(damageSpecifier, type);
+        }
+        else
+        {
+            markup = GetDamageExamine(damageSpecifier, type, ignoreCoefficients);
+        }
+
         if (!message.IsEmpty)
         {
             message.PushNewline();
@@ -80,6 +89,26 @@ public sealed class DamageExamineSystem : EntitySystem
             {
                 msg.PushNewline();
                 msg.AddMarkup(Loc.GetString("damage-value", ("type", damage.Key), ("amount", damage.Value)));
+            }
+        }
+
+        return msg;
+    }
+    private FormattedMessage GetGunDamageExamine(DamageSpecifier damageSpecifier, string? type = null)
+    {
+        var msg = new FormattedMessage();
+
+        msg.AddMarkup(Loc.GetString("damage-gun-examine"));
+
+        foreach (var damage in damageSpecifier.DamageDict)
+        {
+            if (damage.Value != FixedPoint2.Zero)
+            {
+                msg.PushNewline();
+                if (damage.Value > 0)
+                    msg.AddMarkup(Loc.GetString("damage-gun-examine-enhances", ("type", damage.Key), ("amount", damage.Value)));
+                if (damage.Value < 0)
+                    msg.AddMarkup(Loc.GetString("damage-gun-examine-weakens", ("type", damage.Key), ("amount", damage.Value)));
             }
         }
 

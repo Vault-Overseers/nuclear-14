@@ -27,6 +27,8 @@ using Robust.Shared.Utility;
 using Content.Shared.Nuclear14.Special.Components;
 using Content.Shared.Popups;
 using FastAccessors;
+using Content.Server.Damage.Components;
+using Content.Shared.Damage.Events;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -298,9 +300,7 @@ public sealed partial class GunSystem : SharedGunSystem
             ThrowingSystem.TryThrow(uid, mapDirection, gun.ProjectileSpeedModified, user);
             return;
         }
-        if (gun.Damage != null)
-            ShootProjectile(uid, mapDirection, gunVelocity, gunUid, user, gun.ProjectileSpeedModified, gun.Damage);
-        else ShootProjectile(uid, mapDirection, gunVelocity, gunUid, user, gun.ProjectileSpeedModified);
+        ShootProjectile(uid, mapDirection, gunVelocity, gunUid, user, gun.ProjectileSpeedModified, gun.Damage);
     }
 
     /// <summary>
@@ -331,8 +331,8 @@ public sealed partial class GunSystem : SharedGunSystem
         Angle newTheta;
         if (TryComp<SpecialComponent>(shooter, out var special))
         {
-            maxAngle += Angle.FromDegrees((10f - special.TotalPerception*2));
-            minAngle += Angle.FromDegrees((10f - special.TotalPerception*2));
+            maxAngle += Angle.FromDegrees((10f - special.TotalPerception * 2));
+            minAngle += Angle.FromDegrees((10f - special.TotalPerception * 2));
             maxAngle *= 1.5 - special.TotalPerception / 10;
             minAngle *= 1.5 - special.TotalPerception / 10;
             decay += Angle.FromDegrees((special.TotalPerception - 5f) / 10);
@@ -460,6 +460,6 @@ public sealed partial class GunSystem : SharedGunSystem
             }, Filter.Pvs(fromCoordinates, entityMan: EntityManager));
         }
     }
+}
 
     #endregion
-}

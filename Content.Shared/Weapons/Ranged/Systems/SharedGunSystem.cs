@@ -7,6 +7,8 @@ using Content.Shared.Audio;
 using Content.Shared.CombatMode;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Events;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Gravity;
@@ -49,6 +51,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly ISharedAdminLogManager Logs = default!;
     [Dependency] protected readonly DamageableSystem Damageable = default!;
     [Dependency] protected readonly ExamineSystemShared Examine = default!;
+    [Dependency] private   readonly DamageExamineSystem _damageExamine = default!;
     [Dependency] private   readonly ItemSlotsSystem _slots = default!;
     [Dependency] private   readonly RechargeBasicEntityAmmoSystem _recharge = default!;
     [Dependency] protected readonly SharedActionsSystem Actions = default!;
@@ -94,6 +97,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Interactions
         SubscribeLocalEvent<GunComponent, GetVerbsEvent<AlternativeVerb>>(OnAltVerb);
         SubscribeLocalEvent<GunComponent, ExaminedEvent>(OnExamine);
+        SubscribeLocalEvent<GunComponent, DamageExamineEvent>(OnDamageExamine);
         SubscribeLocalEvent<GunComponent, CycleModeEvent>(OnCycleMode);
         SubscribeLocalEvent<GunComponent, HandSelectedEvent>(OnGunSelected);
         SubscribeLocalEvent<GunComponent, MapInitEvent>(OnMapInit);
@@ -411,24 +415,20 @@ public abstract partial class SharedGunSystem : EntitySystem
         Projectiles.SetShooter(uid, projectile, user ?? gunUid);
         projectile.Weapon = gunUid;
 
-        if (gunDamage != null)
+        foreach (var (key, value) in gunDamage.DamageDict)
         {
+            if (value == 0)
+                continue;
 
-            foreach (var (key, value) in gunDamage.DamageDict)
+            if (value < 0)
             {
-                if (value == 0)
-                    continue;
+                projectile.Damage.DamageDict[key] -= value;
+                continue;
+            }
 
-                if (value < 0)
-                {
-                    projectile.Damage.DamageDict[key] -= value;
-                    continue;
-                }
-
-                if (value > 0)
-                {
-                    projectile.Damage.DamageDict[key] += value;
-                }
+            if (value > 0)
+            {
+                projectile.Damage.DamageDict[key] += value;
             }
         }
 

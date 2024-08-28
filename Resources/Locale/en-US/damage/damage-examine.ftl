@@ -12,3 +12,7 @@ damage-examine-type-armor-piercing = [color=yellow]Armor-piercing[/color] for [c
 damage-examine = It does the following damage:
 damage-examine-type = It does the following [color=cyan]{$type}[/color] damage:
 damage-value = - [color=red]{$amount}[/color] units of [color=yellow]{$type}[/color].
+
+damage-gun-examine = It modifies damage as follows:
+damage-gun-examine-enhances = - [color=yellow]{$type}[/color] [color=green]enhances[/color] of [color=red]{$amount}[/color] units.
+damage-gun-examine-weakens = - [color=yellow]{$type}[/color] [color=cyan]weakens[/color] of [color=red]{$amount}[/color] units.

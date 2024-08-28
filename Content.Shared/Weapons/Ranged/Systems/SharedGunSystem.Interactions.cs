@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Damage.Events;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
 using Content.Shared.Verbs;
@@ -21,6 +22,16 @@ public abstract partial class SharedGunSystem
             args.PushMarkup(Loc.GetString("gun-fire-rate-examine", ("color", FireRateExamineColor),
                 ("fireRate", $"{component.FireRateModified:0.0}")));
         }
+    }
+
+    private void OnDamageExamine(EntityUid uid, GunComponent component, ref DamageExamineEvent args)
+    {
+        var damage = component.Damage;
+
+        if (damage == null)
+            return;
+
+        _damageExamine.AddDamageExamine(args.Message, damage, Loc.GetString("damage-projectile"), isGunDamage: true);
     }
 
     private string GetLocSelector(SelectiveFire mode)

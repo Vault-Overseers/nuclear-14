@@ -145,7 +145,7 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField("damage")]
     [ViewVariables(VVAccess.ReadWrite)]
-    public DamageSpecifier Damage = null;
+    public DamageSpecifier Damage = new();
 
     /// <summary>
     /// Who the gun is being requested to shoot at directly.
