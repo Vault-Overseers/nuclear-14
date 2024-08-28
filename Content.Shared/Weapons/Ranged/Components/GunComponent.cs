@@ -141,6 +141,13 @@ public sealed partial class GunComponent : Component
     public EntityCoordinates? ShootCoordinates = null;
 
     /// <summary>
+    ///     N14: Decreases or increases projectile damage by the specified value
+    /// </summary>
+    [DataField("damage")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public DamageSpecifier Damage = null;
+
+    /// <summary>
     /// Who the gun is being requested to shoot at directly.
     /// </summary>
     [ViewVariables]

@@ -8,6 +8,7 @@ using Content.Shared.CombatMode;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
+using Content.Shared.FixedPoint;
 using Content.Shared.Gravity;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
@@ -395,7 +396,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         EntityUid? user = null,
         bool throwItems = false);
 
-    public void ShootProjectile(EntityUid uid, Vector2 direction, Vector2 gunVelocity, EntityUid gunUid, EntityUid? user = null, float speed = 20f)
+    public void ShootProjectile(EntityUid uid, Vector2 direction, Vector2 gunVelocity, EntityUid gunUid, EntityUid? user = null,
+        float speed = 20f, DamageSpecifier gunDamage = default!)
     {
         var physics = EnsureComp<PhysicsComponent>(uid);
         Physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
@@ -408,6 +410,27 @@ public abstract partial class SharedGunSystem : EntitySystem
         var projectile = EnsureComp<ProjectileComponent>(uid);
         Projectiles.SetShooter(uid, projectile, user ?? gunUid);
         projectile.Weapon = gunUid;
+
+        if (gunDamage != null)
+        {
+
+            foreach (var (key, value) in gunDamage.DamageDict)
+            {
+                if (value == 0)
+                    continue;
+
+                if (value < 0)
+                {
+                    projectile.Damage.DamageDict[key] -= value;
+                    continue;
+                }
+
+                if (value > 0)
+                {
+                    projectile.Damage.DamageDict[key] += value;
+                }
+            }
+        }
 
         TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle());
     }
