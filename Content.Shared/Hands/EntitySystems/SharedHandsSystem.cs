@@ -155,6 +155,28 @@ public abstract partial class SharedHandsSystem
         }
     }
 
+    public bool TryGetActiveHand(Entity<HandsComponent?> entity, [NotNullWhen(true)] out Hand? hand)
+    {
+        if (!Resolve(entity, ref entity.Comp, false))
+        {
+            hand = null;
+            return false;
+        }
+
+        hand = entity.Comp.ActiveHand;
+        return hand != null;
+    }
+    public bool TryGetActiveItem(Entity<HandsComponent?> entity, [NotNullWhen(true)] out EntityUid? item)
+    {
+        if (!TryGetActiveHand(entity, out var hand))
+        {
+            item = null;
+            return false;
+        }
+
+        item = hand.HeldEntity;
+        return item != null;
+    }
     /// <summary>
     ///     Enumerate over held items, starting with the item in the currently active hand (if there is one).
     /// </summary>

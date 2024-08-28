@@ -105,6 +105,12 @@ public sealed partial class DoAfterArgs
     public bool BreakOnWeightlessMove;
 
     /// <summary>
+    ///     If do_after stops when the user or target moves
+    /// </summary>
+    [DataField]
+    public bool BreakOnMove;
+
+    /// <summary>
     ///     If do_after stops when the target moves (if there is a target)
     /// </summary>
     [DataField("breakOnTargetMove")]
