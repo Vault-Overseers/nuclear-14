@@ -23,6 +23,12 @@ public sealed partial class WieldableComponent : Component
     [DataField("freeHandsRequired")]
     public int FreeHandsRequired = 1;
 
+    /// <summary>
+    ///     N14: How much SPECIAL strength is needed to take hold with two hands
+    /// </summary>
+    [DataField("strengthWieldRequired")]
+    public int StrengthWieldRequired = 3;
+
     [AutoNetworkedField, DataField("wielded")]
     public bool Wielded = false;
 
