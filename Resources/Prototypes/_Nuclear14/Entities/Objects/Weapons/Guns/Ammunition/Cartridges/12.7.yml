@@ -7,6 +7,12 @@
     proto: N14Bullet127
     soundEject:
       collection: N14PistolCasingEject
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+
   - type: Tag
     tags:
       - Cartridge
@@ -21,3 +27,18 @@
       collection: N14PistolCasingEject
       params:
         volume: -1
+
+- type: entity
+  id: N14CartridgePistol127EX
+  name: cartridge (EX 12.7mm)
+  parent: N14CartridgePistol127
+  components:
+  - type: CartridgeAmmo
+    proto: N14Bullet127EX
+    soundEject:
+      collection: N14PistolCasingEject
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: expanding
+      map: ["enum.AmmoVisualLayers.Base"]

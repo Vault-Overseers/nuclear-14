@@ -12,7 +12,7 @@
     soundEject:
       collection: N14RifleCasingEject
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
     layers:
     - state: base
       map: ["enum.AmmoVisualLayers.Base"]
@@ -32,10 +32,39 @@
         volume: -1
 
 - type: entity
+  parent: N14Cartridge50
+  id: N14Cartridge50AP
+  name: cartridge (.50 AP anti-materiel)
+  components:
+  - type: CartridgeAmmo
+    proto: N14Bullet50AP
+    soundEject:
+      collection: N14RifleCasingEject
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    layers:
+    - state: armor-piercing
+      map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  parent: N14Cartridge50
+  id: N14Cartridge5IN
+  name: cartridge (.50 IN anti-materiel)
+  components:
+  - type: CartridgeAmmo
+    proto: N14Bullet50IN
+    soundEject:
+      collection: N14RifleCasingEject
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    layers:
+    - state: incendiary
+      map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
   parent: BaseCartridge
   id: N14Cartridge50HEIAP
-  name: cartridge (.50 anti-materiel)
-  suffix: HEIAP
+  name: cartridge (.50 HEIAP anti-materiel)
   components:
   - type: Tag
     tags:
@@ -46,9 +75,9 @@
     soundEject:
       collection: N14RifleCasingEject
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
     layers:
-    - state: base
+    - state: explosive
       map: ["enum.AmmoVisualLayers.Base"]
   - type: Appearance
   - type: SpentAmmoVisuals

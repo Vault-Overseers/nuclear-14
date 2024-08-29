@@ -7,6 +7,11 @@
     proto: N14Bullet308
     soundEject:
       collection: N14RifleCasingEject
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Casings/medium_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
   - type: Tag
     tags:
       - Cartridge
@@ -21,3 +26,33 @@
       collection: N14RifleCasingEject
       params:
         volume: -1
+
+- type: entity
+  id: N14Cartridge308RifleAP
+  name: cartridge (AP .308)
+  parent: N14Cartridge308Rifle
+  components:
+  - type: CartridgeAmmo
+    proto: N14Bullet308AP
+    soundEject:
+      collection: N14RifleCasingEject
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Casings/medium_casing.rsi
+    layers:
+    - state: armor-piercing
+      map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  id: N14Cartridge308RifleEX
+  name: cartridge (EX .308)
+  parent: N14Cartridge308Rifle
+  components:
+  - type: CartridgeAmmo
+    proto: N14Bullet308EX
+    soundEject:
+      collection: N14RifleCasingEject
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Casings/medium_casing.rsi
+    layers:
+    - state: expanding
+      map: ["enum.AmmoVisualLayers.Base"]

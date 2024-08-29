@@ -11,6 +11,11 @@
     tags:
       - Cartridge
       - N14Cartridge762Rifle
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Casings/medium_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
   - type: EmitSoundOnLand
     sound:
       collection: N14RifleCasingEject
@@ -21,3 +26,33 @@
       collection: N14RifleCasingEject
       params:
         volume: -1
+
+- type: entity
+  id: N14Cartridge762RifleAP
+  name: cartridge (AP 7.62mm)
+  parent: N14Cartridge762Rifle
+  components:
+  - type: CartridgeAmmo
+    proto: N14Bullet762
+    soundEject:
+      collection: N14RifleCasingEject
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Casings/medium_casing.rsi
+    layers:
+    - state: armor-piercing
+      map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  id: N14Cartridge762RifleEX
+  name: cartridge (EX 7.62mm)
+  parent: N14Cartridge762Rifle
+  components:
+  - type: CartridgeAmmo
+    proto: N14Bullet762
+    soundEject:
+      collection: N14RifleCasingEject
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Casings/medium_casing.rsi
+    layers:
+    - state: expanding
+      map: ["enum.AmmoVisualLayers.Base"]
