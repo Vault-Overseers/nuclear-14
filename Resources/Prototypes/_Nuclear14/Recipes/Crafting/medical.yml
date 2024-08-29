@@ -58,6 +58,36 @@
     - node: healingpowder
       entity: N14HealingPowder
 
+
+# Healing poultice
+- type: construction
+  name: healing poultice
+  id: N14HealingPoultice
+  graph: N14HealingPoultice
+  startNode: start
+  targetNode: healingpoultice
+  category: construction-category-medical
+  description: A bag of poultice to help heal common wounds and light poisoning.
+  hide: false
+  icon: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+  state: healingpoultice
+  objectType: Item
+
+- type: constructionGraph
+  id: N14HealingPoultice
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: healingpoultice
+          steps:
+            - material: BrocFlower
+            - material: XanderRoot # TODO: Same as healing powder for XanderRoot
+            - material: WildBananaYucca
+
+    - node: healingpoultice
+             entity: N14HealingPoultice
+
 # Stimpaks
 - type: construction
   name: stimpak
