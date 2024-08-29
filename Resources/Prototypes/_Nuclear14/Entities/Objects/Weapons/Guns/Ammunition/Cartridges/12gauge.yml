@@ -10,7 +10,7 @@
     - N14ShellShotgun12
   - type: CartridgeAmmo
     count: 6
-    spread: 15
+    spread: 8
     soundEject:
       collection: N14ShellEject
   - type: Sprite
@@ -53,3 +53,67 @@
       collection: N14ShellEject
       params:
         volume: -1
+
+- type: entity
+  id: N14ShellShotgun12Bullet
+  name: shell (12 gauge bullet)
+  parent: N14ShellShotgun12
+  components:
+  - type: Sprite
+    layers:
+      - state: blank
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgun12Bullet
+    count: 6
+    spread: 15
+    soundEject:
+      collection: N14ShellEject
+
+- type: entity
+  id: N14ShellShotgun12ST
+  name: shell (12 gauge staying)
+  parent: N14ShellShotgun12
+  components:
+  - type: Sprite
+    layers:
+      - state: beanbag
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgun12ST
+    count: 6
+    spread: 10
+    soundEject:
+      collection: N14ShellEject
+
+- type: entity
+  id: N14ShellShotgun12HP
+  name: shell (12 gauge high power)
+  parent: N14ShellShotgun12
+  components:
+  - type: Sprite
+    layers:
+      - state: slug
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgun12HP
+    count: 5
+    spread: 8
+    soundEject:
+      collection: N14ShellEject
+
+- type: entity
+  id: N14ShellShotgun12IN
+  name: shell (12 gauge incendiary)
+  parent: N14ShellShotgun12
+  components:
+  - type: Sprite
+    layers:
+      - state: incendiary
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgun12IN
+    count: 5
+    spread: 10
+    soundEject:
+      collection: N14ShellEject

@@ -11,6 +11,7 @@
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/hunting.rsi
   - type: Wieldable
+    strengthWieldRequired: 5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -104
@@ -28,6 +29,9 @@
       - N14Cartridge308Rifle
     capacity: 10
     proto: N14Cartridge308Rifle
+  - type: Scope
+    zoom: 0.9
+    requireWielding: true
 
 - type: entity
   name: Anti-Materiel rifle
@@ -50,6 +54,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
   - type: Wieldable
+    strengthWieldRequired: 7
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -104
@@ -89,6 +94,9 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: Scope
+    zoom: 1.2
+    requireWielding: true
 
 - type: entity
   name: .50 NCR rifle
@@ -107,6 +115,7 @@
     capacity: 1
     proto: N14Cartridge50
   - type: Wieldable
+    strengthWieldRequired: 7
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -104
@@ -119,7 +128,7 @@
     soundGunshot:
       collection: N14AntiMaterielGunshot
   - type: Scope
-    zoom: 1.25
+    zoom: 1.3
     requireWielding: true
 
 - type: entity
@@ -135,6 +144,7 @@
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/levercarbine.rsi
   - type: Wieldable
+    strengthWieldRequired: 5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -104
@@ -152,6 +162,9 @@
       - N14Cartridge44Magnum
     capacity: 14
     proto: N14Cartridge44Magnum
+  - type: Scope
+    zoom: 0.8
+    requireWielding: true
 
 - type: entity
   name: lever action rifle
@@ -166,9 +179,11 @@
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/leverrifle.rsi
   - type: Gun
-    fireRate: 1.2
+    fireRate: 1.1
     soundGunshot:
       collection: N14LeverRifleGunshot
+  - type: Wieldable
+    strengthWieldRequired: 5
 
 - type: entity
   name: brush gun
@@ -182,6 +197,8 @@
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/brushgun.rsi
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/brushgun.rsi
+  - type: Wieldable
+    strengthWieldRequired: 5
   - type: Gun
     fireRate: 2
     soundGunshot:
@@ -193,6 +210,9 @@
       - SpeedLoaderInternal
     capacity: 10
     proto: N14Cartridge45-70
+  - type: Scope
+    zoom: 0.7
+    requireWielding: true
 
 - type: entity
   name: pipe rifle
@@ -207,6 +227,7 @@
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/piperifle.rsi
   - type: Wieldable
+    strengthWieldRequired: 5
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -216,6 +237,9 @@
   - type: Gun
     soundGunshot:
       collection: N14PipeRifleGunshot
+  - type: Scope
+    zoom: 1.1
+    requireWielding: true
 
 - type: entity
   name: varmint rifle
@@ -230,6 +254,7 @@
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/varmint.rsi
   - type: Wieldable
+    strengthWieldRequired: 5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -104
@@ -247,3 +272,6 @@
       - N14Cartridge556Rifle
     capacity: 15
     proto: N14Cartridge556Rifle
+  - type: Scope
+    zoom: 0.7
+    requireWielding: true

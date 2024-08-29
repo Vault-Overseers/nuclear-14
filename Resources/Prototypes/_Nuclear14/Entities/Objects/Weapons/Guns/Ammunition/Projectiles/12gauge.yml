@@ -10,4 +10,57 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10
+        Piercing: 9
+    ignoreCoefficients: 0.15
+
+- type: entity
+  id: PelletShotgun12Bullet
+  name: pellet (12 gauge bullet)
+  parent: PelletShotgun12
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 6
+    ignoreCoefficients: 0.1
+
+- type: entity
+  id: PelletShotgun12Staying
+  name: pellet (12 gauge staying)
+  parent: PelletShotgun12
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 3
+    ignoreCoefficients: 0
+  - type: StaminaDamageOnCollide
+    damage: 20
+
+- type: entity
+  id: PelletShotgun12HP
+  name: pellet (12 gauge staying)
+  parent: PelletShotgun12
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 13
+    ignoreCoefficients: 0.05
+
+- type: entity
+  id: PelletShotgun12IN
+  name: pellet (12 gauge incendiary)
+  parent: PelletShotgun12
+  noSpawn: true
+  components:
+  - type: IgniteOnCollide
+    fireStacks: 0.3
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+    ignoreCoefficients: 0

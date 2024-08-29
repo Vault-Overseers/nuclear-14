@@ -10,7 +10,7 @@
     - N14ShellShotgun20
   - type: CartridgeAmmo
     count: 6
-    spread: 15
+    spread: 6
     soundEject:
       collection: N14ShellEject
   - type: Sprite
@@ -53,3 +53,35 @@
       collection: N14ShellEject
       params:
         volume: -1
+
+- type: entity
+  id: N14ShellShotgun20Bullet
+  name: shell (20 gauge bullet)
+  parent: N14ShellShotgun20
+  components:
+  - type: Sprite
+    layers:
+      - state: blank
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgun20Bullet
+    count: 6
+    spread: 15
+    soundEject:
+      collection: N14ShellEject
+
+- type: entity
+  id: N14ShellShotgun20HP
+  name: shell (20 gauge high power)
+  parent: N14ShellShotgun20
+  components:
+  - type: Sprite
+    layers:
+      - state: slug
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgun20HP
+    count: 5
+    spread: 6
+    soundEject:
+      collection: N14ShellEject
