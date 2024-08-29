@@ -170,7 +170,7 @@ public sealed class WieldableSystem : EntitySystem
             return false;
         }
 
-        var strNeeded = component.StrengthWieldRequired);
+        var strNeeded = component.StrengthWieldRequired;
         if (special.TotalStrength < strNeeded)
         {
             var message = Loc.GetString("player-component-not-enough-strength-weild",
