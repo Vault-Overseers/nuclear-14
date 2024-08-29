@@ -53,11 +53,39 @@
         - to: healingpowder
           steps:
             - material: BrocFlower
-            - material: XanderRoot # TODO: Find out if we can add a tool step for crushing. Tests fail for now with it in. Slap crafting doesn't like tool steps.
+            - material: XanderRoot # TODO: Find out if we can add a tool step for crushing. Tests fail for now with it in. Slap crafting doesn't like tool steps. Also for healing poultice to, if ya can!
 
     - node: healingpowder
       entity: N14HealingPowder
 
+
+# Healing poultice
+- type: construction
+  name: healing poultice
+  id: N14HealingPoultice
+  graph: N14HealingPoultice
+  startNode: start
+  targetNode: healingpoultice
+  category: construction-category-medical
+  description: A bag of poultice to help heal common wounds and light poisoning.
+  hide: false
+  icon: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+  state: healingpoultice
+  objectType: Item
+
+- type: constructionGraph
+  id: N14HealingPoultice
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: healingpoultice
+          steps:
+            - material: BrocFlower
+            - material: XanderRoot
+            - material: WildBananaYucca
+
+            
 # Stimpaks
 - type: construction
   name: stimpak
