@@ -37,7 +37,8 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Piercing: 12
+        Piercing: 20
+    ignoreCoefficietns: 0.4
     angle: 0
     animation: WeaponArcThrust
     soundHit:
@@ -45,7 +46,8 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Piercing: 26
+        Piercing: 30
+    ignoreCoefficients: 0.5
   - type: Item
     size: Large
   - type: Clothing
@@ -98,7 +100,7 @@
     damage:
       types:
         Piercing: 20
-
+    ignoreCoefficients: 0.4
 
 - type: entity
   name: NCR battle flag
@@ -124,7 +126,7 @@
     damage:
       types:
         Piercing: 20
-    ignoreCoefficients: 0.5
+    ignoreCoefficients: 0.4
 
 
 - type: entity
@@ -143,11 +145,18 @@
     sprite: _Nuclear14/Objects/Weapons/Melee/tribalspear.rsi
     netsync: false
     state: spear
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 30
+        Piercing: 7
+    ignoreCoefficients: 0.5
   - type: MeleeWeapon
     damage:
       types:
-        Piercing: 18
+        Piercing: 15
         Slash: 8
+    ignoreCoefficients: 0.5
 
 - type: entity
   name: javelin
