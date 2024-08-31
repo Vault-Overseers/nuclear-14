@@ -1,0 +1,126 @@
+- type: entity
+  abstract: true
+  parent: BasePDA
+  id: N14BasePipboy
+  name: Pip-boy 2000
+  description: a RobCo Industries PIPBoy 2000 Personal Information Processor. What a mouthful.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/pipboy.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+    scale: 0.75, 0.75
+  - type: Icon
+    sprite: _Nuclear14/Objects/Misc/pipboy.rsi
+    state: pda
+  - type: PdaBorderColor
+    borderColor: "#717059"
+  - type: Pda
+    state: pda
+    paiSlot:
+      priority: -2
+      whitelist:
+        components:
+        - PAI
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+    idSlot:
+      name: access-id-card-component-default
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        tags:
+        - IdCardVault
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14Pipboy
+
+#MARK: Vault
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultPDA
+  suffix: Vault
+  components:
+  - type: Pda
+    id: N14IDCardVault
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultEngineerPDA
+  suffix: Vault, Engineer
+  components:
+  - type: Pda
+    id: N14IDCardVaultEngineer
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultDoctorPDA
+  suffix: Vault, Doctor
+  components:
+  - type: Pda
+    id: N14IDCardVaultDoctor
+  - type: HealthAnalyzer
+    scanDelay: 1.4
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultSecurityPDA
+  suffix: Vault, Security
+  components:
+  - type: Pda
+    id: N14IDCardVaultSecurity
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultChefPDA
+  description: Covered in grease and flour.
+  suffix: Vault, Chef
+  components:
+  - type: Pda
+    id: ChefIDCard
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultBotanistPDA
+  name: botanist PDA
+  description: Has an earthy scent.
+  suffix: Vault, Botanist
+  components:
+  - type: Pda
+    id: BotanistIDCard
+  - type: PdaBorderColor
+    borderColor: "#44843c"
+    accentVColor: "#00cc35"
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14VaultOverseerPDA
+  suffix: Vault, Overseer
+  components:
+  - type: Pda
+    id: N14IDCardVaultOverseer
+    penSlot:
+      startingItem: PenCap
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: PdaBorderColor
+    borderColor: "#7C5D00"
