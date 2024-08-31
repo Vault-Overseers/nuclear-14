@@ -21,10 +21,9 @@
     maxItemSize: Tiny
     quickInsert: true
     areaInsert: true
-    # whitelist:
-      # components:
-        # - Produce
-        # - Seed
+    whitelist:
+      tags:
+      - Currency
   - type: Dumpable
   - type: Construction
     graph: N14Wallet
@@ -39,6 +38,9 @@
   components:
   - type: StaticPrice
     price: 0
+  - type: Tag
+    tags:
+      - Currency
   - type: Stack
     stackType: Caps
     count: 1
