@@ -48,8 +48,16 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 200
+        damage: 500
       behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Occluder
@@ -74,8 +82,16 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 250
       behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 1
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Construction
@@ -94,7 +110,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorMakeshift
   id: N14DoorWoodHousePainted
@@ -140,7 +156,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorMakeshift
   id: N14DoorWoodInterior
@@ -167,7 +183,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: BaseMaterialDoor
   id: N14DoorRoomRepaired
@@ -181,7 +197,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorMakeshift
   id: N14DoorWoodSecure
@@ -201,7 +217,7 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-      
+
 - type: entity
   parent: N14DoorWoodSecure
   id: N14DoorWoodSecureNCR
@@ -262,7 +278,7 @@
     enabled: false
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: PerforatedMetallic
+    damageModifierSet: Metallic
 
 - type: entity
   parent: N14DoorCellMetal
@@ -287,7 +303,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorMetalReinforced
   id: N14DoorMetalSecure
@@ -299,7 +315,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorCellMetal
   id: N14DoorSpikedGate
@@ -442,7 +458,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorGlassBroken
   id: N14DoorGlassStoreBroken
@@ -454,7 +470,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 # Other
 - type: entity
   parent: BaseMaterialDoor
@@ -499,7 +515,7 @@
           MaterialCloth1:
             min: 0
             max: 2
-      
+
 - type: entity
   parent: N14DoorTentflap
   id: N14DoorTentLeatherflap
@@ -512,7 +528,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorTentflap
   id: N14DoorTentClothflap
