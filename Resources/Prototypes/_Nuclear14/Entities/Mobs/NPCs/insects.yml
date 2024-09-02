@@ -5,7 +5,7 @@
   name: bloatfly
   parent: N14MobBaseHostileInsect
   id: N14MobBloatfly
-  description: A mutated floating bug with an infectious bite and parasitic stinger capable of launching larvae.
+  description: A mutated floating bug with an infectious bite.
   components:
   - type: HTN
     rootTask:
@@ -36,7 +36,7 @@
       Dead:
         Base: dead
   - type: Stamina
-    critThreshold: 99
+    critThreshold: 20
   - type: Bloodstream
     bloodMaxVolume: 50
   - type: ReplacementAccent
@@ -47,17 +47,13 @@
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 1
   - type: Gun
-    minAngle: 5
-    maxAngle: 15
-    angleIncrease: 2
-    angleDecay: 4
     fireRate: 0.5
     selectedMode: FullAuto
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
     useKey: false
   - type: Butcherable
     spawned:
-    - id: N14MaterialAntChitin1
+    - id: N14MaterialAntChitin
       amount: 1
     - id: N14FoodMeatRadRaw
       amount: 1
@@ -104,8 +100,8 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: N14MaterialAntChitin1
-      amount: 2
+    - id: N14MaterialAntChitin
+      amount: 1
     - id: N14FoodMeatRadRaw
       amount: 3
   - type: Bloodstream
@@ -130,7 +126,7 @@
   name: giant fire ant
   parent: N14MobGiantAnt
   id: N14MobGiantFireAnt
-  description: It's an ant...but giant and red. Watch for the nippers and bring some ointment.
+  description: It's an ant...but giant and red. Watch for the nippers.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -173,7 +169,7 @@
   name: radroach
   id: N14MobRadroach
   parent: N14MobBaseHostileInsect
-  description: Stinking roaches survived the bombs.
+  description: stinking roaches survived the bombs.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -314,7 +310,7 @@
   name: barkscorpion
   parent: N14MobRadscorpion
   id: N14MobRadscorpionBark
-  description: It's a giant barkscorpion! Stingy sting.
+  description: It's a giant bark radscorpion! Stingy sting.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -342,7 +338,7 @@
   name: cazador
   parent: N14MobBaseHostileInsect
   id: N14MobCazador
-  description: Pure hate with a stinger and wings. Don't get close.
+  description: Pure hate with a stinger and wings.
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 2

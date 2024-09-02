@@ -92,9 +92,6 @@
           MaterialWoodPlank:
             min: 1
             max: 1
-          N14ScrapBrass1:
-            min: 2
-            max: 2
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Construction
@@ -205,7 +202,7 @@
   parent: N14DoorMakeshift
   id: N14DoorWoodSecure
   name: secure door
-  description: It's a secure door, made out of wood.
+  description: It's a secure door, made out of wood. Hope you brought bobby pins.
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Doors/FalloutDoors/securedoor.rsi
@@ -220,17 +217,13 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: AccessReader
-  - type: Construction
-    graph: N14DoorGraph
-    node: woodDoorlocked
 
 - type: entity
   parent: N14DoorWoodSecure
   id: N14DoorWoodSecureNCR
   name: secure door
   suffix: NCR
-  description: A secure door made from wood and bearing an NCR emblem.
+  description: A secure door made from wood and bearing an NCR embled.
   components:
   - type: Sprite
     netsync: false
@@ -238,10 +231,6 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-  - type: AccessReader
-  - type: Construction
-    graph: N14DoorGraph
-    node: woodDoorSecureNCR
 
 # Metal Doors
 - type: entity
