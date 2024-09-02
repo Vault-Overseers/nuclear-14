@@ -1,4 +1,6 @@
 using System.Numerics;
+using Content.Shared._NC.CameraFollow.Components;
+using Content.Shared.Actions;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
@@ -29,6 +31,7 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
     protected const float KickMagnitudeMax = 1f;
 
     [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!; // NC changes
 
     /// <summary>
     ///     Applies explosion/recoil/etc kickback to the view of the entity.
@@ -37,21 +40,26 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
     ///     If the entity is missing <see cref="CameraRecoilComponent" /> and/or <see cref="EyeComponent" />,
     ///     this call will have no effect. It is safe to call this function on any entity.
     /// </remarks>
+    public override void Initialize()
+    {
+        SubscribeLocalEvent<CameraFollowComponent, ComponentInit>(OnCameraFollowInit);
+    }
     public abstract void KickCamera(EntityUid euid, Vector2 kickback, CameraRecoilComponent? component = null);
 
-    public override void FrameUpdate(float frameTime)
+    public override void Update(float frameTime)
     {
         base.FrameUpdate(frameTime);
 
-        var query = AllEntityQuery<EyeComponent, CameraRecoilComponent>();
+        var query = AllEntityQuery<EyeComponent, CameraRecoilComponent, CameraFollowComponent>();
 
-        while (query.MoveNext(out var uid, out var eye, out var recoil))
+        while (query.MoveNext(out var uid, out var eye, out var recoil, out var follow))
         {
             var magnitude = recoil.CurrentKick.Length();
             if (magnitude <= 0.005f)
             {
                 recoil.CurrentKick = Vector2.Zero;
-                _eye.SetOffset(uid, recoil.BaseOffset + recoil.CurrentKick, eye);
+                var offset = recoil.BaseOffset + recoil.CurrentKick + follow.Offset; // NC-Changes
+                _eye.SetOffset(uid, offset, eye); // NC-Changes
             }
             else // Continually restore camera to 0.
             {
@@ -66,10 +74,21 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
 
                 recoil.CurrentKick = new Vector2(x, y);
 
-                _eye.SetOffset(uid, recoil.BaseOffset + recoil.CurrentKick, eye);
+                var offset = recoil.BaseOffset + recoil.CurrentKick + follow.Offset; // NC-Changes
+                _eye.SetOffset(uid, offset, eye);
             }
         }
     }
+
+    private void OnCameraFollowInit(EntityUid uid, CameraFollowComponent component, ComponentInit args) // NC-Start
+    {
+        _actionsSystem.AddAction(uid, ref component.ActionEntity, component.Action);
+    }
+
+    private void OnCameraFollowRemove(EntityUid uid, CameraFollowComponent component, ComponentRemove args)
+    {
+        _actionsSystem.RemoveAction(uid, component.ActionEntity);
+    } // NC-Changes-End
 }
 
 [Serializable]
