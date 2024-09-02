@@ -1,279 +1,331 @@
-#MARK: NCR
-
 - type: loadout
-  id: LoadoutNCRKitRifleman
+  id: LoadoutNCRPinRecruit
   category: Roles
-  cost: 8
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
         - NCRCadet
+  items:
+    - ClothingNeckPinNCRRecruit
+
+- type: loadout
+  id: LoadoutNCRPinPrivate
+  category: Roles
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
         - NCRSoldier
-        - NCRNCO
-        - NCROfficer
-        - Survivor
+        - NCRMP
   items:
-    - KitRifleman
+    - ClothingNeckPinNCRPrivate
 
 - type: loadout
-  id: LoadoutNCRKitMorale
+  id: LoadoutNCRPinPrivate1st
   category: Roles
-  cost: 8
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NCRCadet
         - NCRSoldier
-        - NCRNCO
-        - NCROfficer
-        - Survivor
+        - NCRMP
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRSoldier
+      min: 72000 # 20 hours veterancy unlock
   items:
-    - KitMorale
+    - ClothingNeckPinNCRPrivate1st
 
 - type: loadout
-  id: LoadoutNCRKitGunner
+  id: LoadoutNCRPinCorporal
   category: Roles
-  cost: 8
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NCRCadet
         - NCRSoldier
-        - NCRNCO
-        - NCROfficer
-        - Survivor
+        - NCRMP
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRSoldier
+      min: 144000 # 40 hours veterancy unlock
   items:
-    - KitGunner
+    - ClothingNeckPinNCRCorporal
 
 - type: loadout
-  id: LoadoutNCRKitMarksman
+  id: LoadoutNCRPinSpecialist
   category: Roles
-  cost: 8
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NCRCadet
         - NCRSoldier
-        - NCRNCO
-        - NCROfficer
-        - Survivor
+        - NCRMP
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRSoldier
+      min: 216000 # 60 hours veterancy unlock
   items:
-    - KitMarksman
+    - ClothingNeckPinNCRSpecialist
 
 - type: loadout
-  id: LoadoutNCRKitPointman
+  id: LoadoutNCRMPPinPrivate
   category: Roles
-  cost: 8
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NCRCadet
-        - NCRSoldier
-        - NCRNCO
-        - NCROfficer
-        - Survivor
+        - NCRMP
   items:
-    - KitPointman
+    - ClothingNeckPinNCRPrivate
 
 - type: loadout
-  id: LoadoutNCRKitMedic
+  id: LoadoutNCRMPPinPrivate1st
   category: Roles
-  cost: 8
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NCRCadet
-        - NCRSoldier
-        - NCRNCO
-        - NCROfficer
-        - Survivor
+        - NCRMP
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRMP
+      min: 72000 # 20 hours veterancy unlock
   items:
-    - KitMedic
+    - ClothingNeckPinNCRPrivate1st
 
 - type: loadout
-  id: LoadoutNCRKitSpecialRifleman
+  id: LoadoutNCRMPPinCorporal
   category: Roles
-  cost: 8
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NCRNCO
-        - NCROfficer
-        - Survivor
+        - NCRMP
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRMP
+      min: 144000 # 40 hours veterancy unlock
   items:
-    - KitSpecialRifleman
+    - ClothingNeckPinNCRCorporal
 
 - type: loadout
-  id: LoadoutNCRKitSpecialAssault
+  id: LoadoutNCRMPPinSpecialist
   category: Roles
-  cost: 8
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NCRNCO
-        - NCROfficer
-        - Survivor
+        - NCRMP
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRMP
+      min: 216000 # 60 hours veterancy unlock
   items:
-    - KitSpecialAssault
+    - ClothingNeckPinNCRSpecialist
 
 - type: loadout
-  id: LoadoutNCRKitSpecialGunner
+  id: LoadoutNCRPinSergeant
   category: Roles
-  cost: 8
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRNCO
-        - NCROfficer
-        - Survivor
-  items:
-    - KitSpecialGunner
-
-- type: loadout
-  id: LoadoutNCRKitSpecialPointman
-  category: Roles
-  cost: 8
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
         - NCRNCO
+        - NCRQM
+  items:
+    - ClothingNeckPinNCRSergeant
+
+- type: loadout
+  id: LoadoutNCRPinSergeant1st
+  category: Roles
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRNCO
+        - NCRQM
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRNCO
+      min: 72000 # 20 hours veterancy unlock
+  items:
+    - ClothingNeckPinNCRSergeant1st
+
+- type: loadout
+  id: LoadoutNCRPinMasterSergeant
+  category: Roles
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRNCO
+        - NCRQM
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRNCO
+      min: 144000 # 40 hours veterancy unlock
+  items:
+    - ClothingNeckPinNCRMasterSergeant
+
+- type: loadout
+  id: LoadoutNCRPinSergeantMajor
+  category: Roles
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRNCO
+        - NCRQM
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRNCO
+      min: 216000 # 60 hours veterancy unlock
+  items:
+    - ClothingNeckPinNCRSergeantMajor
+
+- type: loadout
+  id: LoadoutNCRQMPinSergeant
+  category: Roles
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRQM
+  items:
+    - ClothingNeckPinNCRSergeant
+
+- type: loadout
+  id: LoadoutNCRQMPinSergeant1st
+  category: Roles
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRQM
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRQM
+      min: 72000 # 20 hours veterancy unlock
+  items:
+    - ClothingNeckPinNCRSergeant1st
+
+- type: loadout
+  id: LoadoutNCRQMPinMasterSergeant
+  category: Roles
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRQM
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRQM
+      min: 144000 # 40 hours veterancy unlock
+  items:
+    - ClothingNeckPinNCRMasterSergeant
+
+- type: loadout
+  id: LoadoutNCRQMPinSergeantMajor
+  category: Roles
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRQM
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRQM
+      min: 216000 # 60 hours veterancy unlock
+  items:
+    - ClothingNeckPinNCRSergeantMajor
+
+- type: loadout
+  id: LoadoutNCRPinSecondLieutenant
+  category: Roles
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
         - NCROfficer
-        - Survivor
   items:
-    - KitSpecialPointman
-
-#MARK: Republic Rangers
+    - ClothingNeckPinNCRSecondLieutenant
 
 - type: loadout
-  id: LoadoutRangerKitService
+  id: LoadoutNCRPinFirstlLieutenant
   category: Roles
-  cost: 8
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NCRRanger
+        - NCROfficer
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCROfficer
+      min: 72000 # 20 hours veterancy unlock
   items:
-    - KitServiceRanger
+    - ClothingNeckPinNCRFirstlLieutenant
 
 - type: loadout
-  id: LoadoutRangerKitRifleman
+  id: LoadoutNCRPinCaptain
   category: Roles
-  cost: 10
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NCRRanger
+        - NCROfficer
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCROfficer
+      min: 144000 # 40 hours veterancy unlock
   items:
-    - KitRiflemanRanger
+    - ClothingNeckPinNCRCaptain
 
 - type: loadout
-  id: LoadoutRangerKitMarksman
+  id: LoadoutNCRPinMajor
   category: Roles
-  cost: 10
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NCRRanger
+        - NCROfficer
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCROfficer
+      min: 216000 # 60 hours veterancy unlock
   items:
-    - KitMarksmanRanger
+    - ClothingNeckPinNCRMajor
 
 - type: loadout
-  id: LoadoutRangerKitCQB
+  id: LoadoutNCRPinDoctor
   category: Roles
-  cost: 8
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NCRRanger
-        - NCRRangerVeteran
+        - NCRDoctor
   items:
-    - KitCQBRanger
+    - ClothingNeckPinNCRDoctor
 
 - type: loadout
-  id: LoadoutVeteranRangerKitTrailman
+  id: LoadoutNCRPinChiefPhysician
   category: Roles
-  cost: 8
+  cost: 1
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NCRRanger
-        - NCRRangerVeteran
+        - NCROfficer
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCROfficer
+      min: 72000 # 20 hours veterancy unlock
   items:
-    - KitTrailmanRanger
-
-- type: loadout
-  id: LoadoutVeteranRangerKitService
-  category: Roles
-  cost: 8
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
-  items:
-    - KitServiceRangerVeteran
-
-- type: loadout
-  id: LoadoutVeteranRangerKitRifleman
-  category: Roles
-  cost: 8
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRangerVeteran
-  items:
-    - KitRiflemanRangerVeteran
-
-- type: loadout
-  id: LoadoutVeteranRangerKitHeavySniper
-  category: Roles
-  cost: 10
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRangerVeteran
-  items:
-    - KitHeavySniperRangerVeteran
-
-- type: loadout
-  id: LoadoutVeteranRangerKitAssault
-  category: Roles
-  cost: 8
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRangerVeteran
-  items:
-    - KitAssaultRangerVeteran
-
-- type: loadout
-  id: LoadoutVeteranRangerKitMarksman
-  category: Roles
-  cost: 8
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRangerVeteran
-  items:
-    - KitMarksmanRangerVeteran
-
+    - ClothingNeckPinNCRChiefPhysician
