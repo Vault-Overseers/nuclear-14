@@ -1,0 +1,28 @@
+﻿- type: constructionGraph
+  id: N14WindowPane
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: Window
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Glass
+              amount: 2
+              doAfter: 2
+              
+    - node: Window
+      entity: N14WindowSlanted
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 10

@@ -12,6 +12,17 @@
             - material: WoodPlank
               amount: 2
               doAfter: 1
+              
+        - to: logWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: N14Timber
+              amount: 2
+              doAfter: 2
 
     - node: Frame
       entity: N14WallWoodFrame
@@ -28,8 +39,8 @@
           steps:
             - tool: Screwing
               doAfter: 2
-
-        - to: logWall
+              
+        - to: WoodWall
           completed:
             - !type:SnapToGrid
               southRotation: true
@@ -42,6 +53,18 @@
 
     - node: logWall
       entity: N14WallWoodLog
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 10
+              
+    - node: WoodWall
+      entity: N14WallWoodSlanted
       edges:
         - to: Frame
           completed:

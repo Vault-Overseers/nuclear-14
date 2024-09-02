@@ -7,7 +7,7 @@
   startNode: start
   targetNode: logWall
   category: construction-category-structures
-  description: Keeps the air in and the greytide out.
+  description: Home from home.
   icon:
     sprite: _Nuclear14/Structures/Walls/nc14/woodlog.rsi
     state: full
@@ -22,7 +22,7 @@
 # # Doors
 - type: construction
   name: wooden door
-  id: N14WoodDoor
+  id: N14DoorWood
   graph: N14DoorGraph
   startNode: start
   targetNode: woodDoorMakeshift
@@ -38,63 +38,190 @@
   conditions:
     - !type:TileNotBlocked
 
-# see upstream construction graphs for barricades and fences
+# Slanted Structures
+## Walls
+- type: construction
+  name: wooden wall
+  id: N14WallWoodSlanted
+  graph: N14WoodWall
+  startNode: start
+  targetNode: WoodWall
+  category: construction-category-structures
+  description: A nice hand built wall.
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/wood.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+    
+## Half Walls
+- type: construction
+  name: wooden half wall
+  id: N14WallWoodHalfSlanted
+  graph: N14HalfWall
+  startNode: start
+  targetNode: Wood
+  category: construction-category-structures
+  description: A nice half wall for placing a window pane on.
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/half/wood.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
 
-
-# #lighting
-# - type: construction
-  # name: wall light
-  # id: LightTubeFixture
-  # graph: LightFixture
-  # startNode: start
-  # targetNode: tubeLight
-  # category: construction-category-structures
-  # description: A wall light fixture. Use light tubes.
-  # icon:
-    # sprite: Structures/Wallmounts/Lighting/light_tube.rsi
-    # state: base
-  # objectType: Structure
-  # placementMode: SnapgridCenter
-  # canRotate: true
-  # canBuildInImpassable: false
-  # conditions:
-  # # Need an *additional* condition here that forces there to be a wall in the opposite direction to the one used for placement.
-  # # Also see below. Didn't add it b/c construction ECS work going on. Cheers, - 20kdc
-    # - !type:TileNotBlocked
-
-# - type: construction
-  # name: small wall light
-  # id: LightSmallFixture
-  # graph: LightFixture
-  # startNode: start
-  # targetNode: bulbLight
-  # category: construction-category-structures
-  # description: A wall light fixture. Use light bulbs.
-  # icon:
-    # sprite: Structures/Wallmounts/Lighting/light_small.rsi
-    # state: base
-  # objectType: Structure
-  # placementMode: SnapgridCenter
-  # canRotate: true
-  # canBuildInImpassable: false
-  # conditions:
-  # # Same here. - 20kdc
-    # - !type:TileNotBlocked
-
-# - type: construction
-  # name: ground light post
-  # id: LightGroundFixture
-  # graph: LightFixture
-  # startNode: start
-  # targetNode: groundLight
-  # category: construction-category-structures
-  # description: A ground light fixture. Use light bulbs.
-  # icon:
-    # sprite: Structures/Lighting/LightPosts/small_light_post.rsi
-    # state: base
-  # objectType: Structure
-  # placementMode: SnapgridCenter
-  # canRotate: false
-  # canBuildInImpassable: false
-  # conditions:
-    # - !type:TileNotBlocked
+## Doors
+- type: construction
+  name: metal door blue
+  id: N14DoorMetalBlue
+  graph: N14DoorGraph
+  startNode: start
+  targetNode: MetalBlue
+  category: construction-category-structures
+  description: A metal door good for keeping things out.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/SlantedDoors/metalblue.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+    
+- type: construction
+  name: metal door blue
+  id: N14DoorMetalBlueAlt
+  graph: N14DoorGraph
+  startNode: start
+  targetNode: MetalBlueAlt
+  category: construction-category-structures
+  description: A metal door good for keeping things out.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/SlantedDoors/metalbluealt.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+    
+- type: construction
+  name: metal door red
+  id: N14DoorMetalRed
+  graph: N14DoorGraph
+  startNode: start
+  targetNode: MetalRed
+  category: construction-category-structures
+  description: A metal door good for keeping things out.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/SlantedDoors/metalred.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+    
+- type: construction
+  name: metal door blue windowed
+  id: N14DoorMetalBlueWindow
+  graph: N14DoorGraph
+  startNode: start
+  targetNode: MetalBlueWindow
+  category: construction-category-structures
+  description: A metal door good for keeping things out.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/SlantedDoors/metalbluewindow.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+    
+- type: construction
+  name: metal bar door
+  id: N14DoorMetalBar
+  graph: N14DoorGraph
+  startNode: start
+  targetNode: MetalBar
+  category: construction-category-structures
+  description: A metal door good for keeping things out.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/SlantedDoors/metal_bar.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+    
+- type: construction
+  name: metal fence door
+  id: N14DoorMetalFence
+  graph: N14DoorGraph
+  startNode: start
+  targetNode: MetalFence
+  category: construction-category-structures
+  description: A metal door good for keeping things out.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/SlantedDoors/fence.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+    
+- type: construction
+  name: wooden door
+  id: N14DoorWooden
+  graph: N14DoorGraph
+  startNode: start
+  targetNode: WoodDoor
+  category: construction-category-structures
+  description: A wooden door good for keeping things out.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/SlantedDoors/wood.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+    
+## Windows
+- type: construction
+  name: window pane
+  id: N14Window
+  graph: N14WindowPane
+  startNode: start
+  targetNode: Window
+  category: construction-category-structures
+  description: A window pane for seeing through things.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  canRotate: false
+  icon:
+    sprite: _Nuclear14/Structures/Windows/slanted/slantedwindow.rsi
+    state: full
+  conditions:
+    - !type:TileNotBlocked
