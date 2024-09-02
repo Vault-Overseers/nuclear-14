@@ -9,7 +9,7 @@ clipping-wild-banana-yucca-display-name = wild banana yucca clipping
 
 clipping-wild-barrel-cactus-name = wild barrel cactus clipping
 clipping-wild-barrel-cactus-noun = wild barrel cactus clippings
-clipping-wild-barrel-cactus-display-name = wild barrel cactus clipping
+clipping-wild-barrel-cactus-display-name = wild barrel cactus
 
 clipping-wild-blackberry-name = wild blackberry clipping
 clipping-wild-blackberry-noun = wild blackberry clippings
@@ -69,11 +69,20 @@ clipping-pricky-pear-display-name = pricky pear clipping
 
 clipping-wild-razorgrain-name = wild razorgrain clipping
 clipping-wild-razorgrain-noun = wild razorgrain clippings
-clipping-wild-razorgrain-display-name = wild razorgrain clippings
+clipping-wild-razorgrain-display-name = wild razorgrain clipping
 
-clipping-razorgrain-name = razorgrain clipping
-clipping-razorgrain-noun = razorgrain clippings
-clipping-razorgrain-display-name = razorgrain clipping
+clipping-starlight-name = starlight berry clipping
+clipping-starlight-seeds = starlight berry clipping
+clipping-starlight-display-name = starlight berry clipping
+
+
+clipping-starlight-name = starlight berry clipping
+clipping-starlight-seeds = starlight berry clipping
+clipping-starlight-display-name = starlight berries clipping
+
+clipping-tarberry-name = tarberry clipping
+clipping-tarberry-seeds = tarberry clipping
+clipping-tarberry-display-name = tarberries clipping
 
 clipping-wild-tato-name = wild tato clipping
 clipping-wild-tato-noun = wild tato clippings

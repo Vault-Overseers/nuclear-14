@@ -29,13 +29,13 @@ public sealed class MobThresholdSystem : EntitySystem
     private void OnGetState(EntityUid uid, MobThresholdsComponent component, ref ComponentGetState args)
     {
         // Nuclear14 HP depends on Endurance
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(uid, out var special))
             totalEndurance = special.TotalEndurance;
         var thresholds = new Dictionary<FixedPoint2, MobState>();
         foreach (var (key, value) in component.BaseThresholds)
         {
-            thresholds.Add(key + FixedPoint2.New(totalEndurance * 5), value);
+            thresholds.Add(key + FixedPoint2.New((totalEndurance - 5) * 4), value);
         }
         args.State = new MobThresholdsComponentState(thresholds,
             component.TriggersAlerts,
@@ -49,13 +49,13 @@ public sealed class MobThresholdSystem : EntitySystem
     private void OnHandleState(EntityUid uid, MobThresholdsComponent component, ref ComponentHandleState args)
     {
         // Nuclear14 HP depends on Endurance
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(uid, out var special))
             totalEndurance = special.TotalEndurance;
         var thresholds = new Dictionary<FixedPoint2, MobState>();
         foreach (var (key, value) in component.BaseThresholds)
         {
-            thresholds.Add(key + FixedPoint2.New(totalEndurance * 5), value);
+            thresholds.Add(key + FixedPoint2.New((totalEndurance - 5) * 4), value);
         }
 
         if (args.Current is not MobThresholdsComponentState state)
@@ -114,7 +114,7 @@ public sealed class MobThresholdSystem : EntitySystem
     {
         if (!Resolve(target, ref thresholdComponent))
             return FixedPoint2.Zero;
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(target, out var special))
             totalEndurance = special.TotalEndurance;
 
@@ -122,7 +122,7 @@ public sealed class MobThresholdSystem : EntitySystem
         {
             if (pair.Value == mobState)
             {
-                return pair.Key + FixedPoint2.New(totalEndurance * 5);
+                return pair.Key + FixedPoint2.New((totalEndurance - 5) * 4);
             }
         }
 
@@ -141,7 +141,7 @@ public sealed class MobThresholdSystem : EntitySystem
         [NotNullWhen(true)] out FixedPoint2? threshold,
         MobThresholdsComponent? thresholdComponent = null)
     {
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(target, out var special))
             totalEndurance = special.TotalEndurance;
 
@@ -153,7 +153,7 @@ public sealed class MobThresholdSystem : EntitySystem
         {
             if (pair.Value == mobState)
             {
-                threshold = pair.Key + FixedPoint2.New(totalEndurance * 5);
+                threshold = pair.Key + FixedPoint2.New((totalEndurance - 5) * 4);
                 return true;
             }
         }
@@ -221,11 +221,11 @@ public sealed class MobThresholdSystem : EntitySystem
             percentage = 0;
             return true;
         }
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(target, out var special))
             totalEndurance = special.TotalEndurance;
 
-        percentage = FixedPoint2.Min(1.0f, damage / (threshold.Value + FixedPoint2.New(totalEndurance * 5)));
+        percentage = FixedPoint2.Min(1.0f, damage / (threshold.Value + FixedPoint2.New((totalEndurance - 5) * 4)));
         return true;
     }
 
@@ -311,7 +311,7 @@ public sealed class MobThresholdSystem : EntitySystem
     {
         if (!Resolve(target, ref threshold))
             return;
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(target, out var special))
             totalEndurance = special.TotalEndurance;
 
@@ -323,7 +323,7 @@ public sealed class MobThresholdSystem : EntitySystem
                 continue;
             threshold.Thresholds.Remove(damageThreshold);
         }
-        threshold.Thresholds[damage + FixedPoint2.New(totalEndurance * 5)] = mobState;
+        threshold.Thresholds[damage + FixedPoint2.New((totalEndurance - 5) * 4)] = mobState;
         Dirty(target, threshold);
         VerifyThresholds(target, threshold);
     }
@@ -365,13 +365,13 @@ public sealed class MobThresholdSystem : EntitySystem
     private void CheckThresholds(EntityUid target, MobStateComponent mobStateComponent,
         MobThresholdsComponent thresholdsComponent, DamageableComponent damageableComponent, EntityUid? origin = null)
     {
-        var totalEndurance = 0;
+        var totalEndurance = 5;
         if (TryComp<SpecialComponent>(target, out var special))
             totalEndurance = special.TotalEndurance;
 
         foreach (var (threshold, mobState) in thresholdsComponent.Thresholds.Reverse())
         {
-            if (damageableComponent.TotalDamage < threshold + FixedPoint2.New(totalEndurance * 5))
+            if (damageableComponent.TotalDamage < threshold + FixedPoint2.New((totalEndurance - 5) * 4))
                 continue;
 
             TriggerThreshold(target, mobState, mobStateComponent, thresholdsComponent, origin);

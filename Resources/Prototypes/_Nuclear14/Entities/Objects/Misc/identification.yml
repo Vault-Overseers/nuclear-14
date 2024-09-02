@@ -33,6 +33,10 @@
     - state: keycard_vault
   - type: PresetIdCard
     job: VaultDweller
+  - type: Tag
+    tags:
+    - IdCardVault
+    - DoorBumpOpener
 
 - type: entity
   parent: N14IDCardVault
@@ -327,7 +331,7 @@
   parent: N14IDPassportBlank
   id: N14IDBadgeNCRDesertRangerElite
   name: ranger elite badge
-  description: An ID badge worn by Elite Desert Ranger.
+  description: An ID badge worn by Elite Desert Rangers.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -388,7 +392,7 @@
   parent: N14IDPassportBlank
   id: N14IDBadgeTownSheriff
   name: town sheriff badge
-  description: An ID badge worn by a town sheriff.
+  description: An ID badge worn by the town sheriff.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -398,7 +402,7 @@
   parent: N14IDPassportBlank
   id: N14IDBadgeTownMayor
   name: town mayor badge
-  description: An ID badge worn by a town mayor.
+  description: An ID badge worn by the town mayor.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -535,7 +539,7 @@
   - type: Access
     tags:
     - DungeonBunkerA1
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessBunkerA2
@@ -547,7 +551,7 @@
   - type: Access
     tags:
     - DungeonBunkerA2
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessBunkerA3
@@ -559,7 +563,7 @@
   - type: Access
     tags:
     - DungeonBunkerA3
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessBunkerAA
@@ -571,7 +575,7 @@
   - type: Access
     groups:
     - DungeonBunkerAA
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessEnclave
@@ -583,7 +587,7 @@
   - type: Access
     tags:
     - Enclave
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessEnclaveVault
@@ -595,7 +599,7 @@
   - type: Access
     groups:
     - EnclaveVault
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessVault
@@ -604,7 +608,7 @@
   components:
   - type: Sprite
     state: keycard_vault
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessBlue
@@ -616,7 +620,7 @@
   - type: Access
     tags:
     - DungeonBlue
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessYellow
@@ -628,7 +632,7 @@
   - type: Access
     tags:
     - DungeonYellow
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessRed
@@ -640,7 +644,7 @@
   - type: Access
     tags:
     - DungeonRed
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessCommon
@@ -652,7 +656,7 @@
   - type: Access
     tags:
     - DungeonCommon
-    
+
 #MARK: Holotapes
 - type: entity
   parent: BaseItem
@@ -664,7 +668,7 @@
     sprite: _Nuclear14/Objects/Misc/tapes_cards.rsi
     state: holotape_black
     scale: 0.75, 0.75
-    
+
 - type: entity
   parent: N14Holotape
   id: N14HolotapeBlue
@@ -672,7 +676,7 @@
   components:
   - type: Sprite
     state: holotape_blue
-    
+
 - type: entity
   parent: N14Holotape
   id: N14HolotapeEnclave
@@ -680,7 +684,7 @@
   components:
   - type: Sprite
     state: holotape_enclave
-    
+
 - type: entity
   parent: N14Holotape
   id: N14HolotapeGreen
@@ -688,7 +692,7 @@
   components:
   - type: Sprite
     state: holotape_green
-    
+
 - type: entity
   parent: N14Holotape
   id: N14HolotapeRed
@@ -696,7 +700,7 @@
   components:
   - type: Sprite
     state: holotape_red
-    
+
 - type: entity
   parent: N14Holotape
   id: N14HolotapeYellow
@@ -711,19 +715,19 @@
   id: N14HolotapeQuestFusionplans # BoS / Town find objective
   name: fusion plans holotape
   description: A holotape containing plans for optimising fusion reactors.
-  
+
 - type: entity
   parent: N14HolotapeEnclave
   id: N14HolotapeQuestEnclaveplans # Enclave secure objective / NCR, BoS Find Objective
   name: enclave plans holotape
   description: A holotape containing plans for restoring America.
-  
+
 - type: entity
   parent: N14HolotapeGreen
   id: N14HolotapeQuestGECK
   name: GECK location holotape # Vault secure objective / Enclave, NCR, BoS Find Objective
   description: A holotape containing details on remaining G.E.C.K's.
-  
+
 - type: entity
   parent: N14HolotapeRed
   id: N14HolotapeQuestNCRplans
