@@ -22,7 +22,7 @@
   - type: IconSmooth
     key: wallsstore
     base: store
-    
+
 - type: entity
   parent: N14WallStore
   id: N14WallSuperstore
@@ -32,7 +32,7 @@
     sprite: _Nuclear14/Structures/Walls/nc14/superstore.rsi
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/nc14/superstore.rsi
-    
+
 - type: entity
   parent: N14WallStore
   id: N14WallRuins
@@ -46,7 +46,7 @@
   - type: IconSmooth
     key: wallsruins
     base: ruin
-    
+
 - type: entity
   parent: N14WallStore
   id: N14WallBrick
@@ -59,7 +59,7 @@
   - type: IconSmooth
     key: wallsbrick
     base: brick
-    
+
 - type: entity
   parent: N14WallStore
   id: N14WallConcreteLight
@@ -70,7 +70,7 @@
     sprite: _Nuclear14/Structures/Walls/nc14/concrete.rsi
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/nc14/concrete.rsi
-    
+
 - type: entity
   parent: N14WallConcreteLight
   id: N14WallConcreteDark
@@ -80,7 +80,7 @@
     sprite: _Nuclear14/Structures/Walls/nc14/concretedark.rsi
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/nc14/concretedark.rsi
-    
+
 # Metal walls
 - type: entity
   parent: BaseWall
@@ -107,7 +107,7 @@
   - type: IconSmooth
     key: wallsenclave
     base: enclave
-    
+
 # Wood walls
 - type: entity
   id: N14WallWoodFrame
@@ -121,6 +121,22 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/nc14/woodlog.rsi
     state: girder
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroyHeavy
 
 - type: entity
   parent: BaseWall
@@ -138,7 +154,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 200
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -147,13 +163,13 @@
         spawn:
           MaterialWoodPlank:
             min: 1
-            max: 2
+            max: 3
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: IconSmooth
     key: wallswood
     base: wood
-    
+
 - type: entity
   parent: BaseStructureDynamic
   id: N14WallWoodWhiteFrame
@@ -198,7 +214,7 @@
             max: 1
       - !type:DoActsBehavior
         acts: ["Destruction"]
-        
+
 - type: entity
   parent: N14WallWoodWhite
   id: N14WallWoodDark
@@ -207,7 +223,7 @@
     sprite: _Nuclear14/Structures/Walls/nc14/wooddark.rsi
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/nc14/wooddark.rsi
-    
+
 - type: entity
   parent: N14WallWoodWhiteFrame
   id: N14WallWoodDarkFrame
@@ -215,7 +231,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/nc14/wooddark.rsi
     state: girder
-    
+
 - type: entity
   parent: N14WallWoodWhite
   id: N14WallWoodLog
@@ -232,7 +248,7 @@
   - type: Construction
     graph: N14WoodWall
     node: logWall
-    
+
 # Tent Walls
 - type: entity
   parent: BaseWall
@@ -261,3 +277,31 @@
   - type: IconSmooth
     key: tent
     base: tent
+
+- type: entity
+  id: N14BlastDoorExteriorIndestructible
+  parent: BlastDoor
+  suffix: Indestructible, Closed
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10000 # pseudo indestructible
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: BlastDoorExteriorIndestructibleOpen
+  parent: BlastDoorOpen
+  suffix: Indestructible, Open
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
