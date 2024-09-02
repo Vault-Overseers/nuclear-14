@@ -2,7 +2,7 @@
 
 - type: entity
   parent: BaseItem
-  id: BaseFoodCondiment
+  id: N14BaseFoodCondiment
   abstract: true
   components:
   - type: DrawableSolution
@@ -22,8 +22,8 @@
 # Packets
 
 - type: entity
-  parent: BaseFoodCondiment
-  id: BaseFoodCondimentPacket
+  parent: N14BaseFoodCondiment
+  id: N14BaseFoodCondimentPacket
   name: condiment packet
   abstract: true
   description: A small plastic pack with condiments to put on your food.
@@ -71,11 +71,10 @@
       - Packet
 
 - type: entity
-  parent: BaseFoodCondimentPacket
-  id: FoodCondimentPacketAstrotame
-  name: Astrotame
+  parent: N14BaseFoodCondimentPacket
+  id: N14FoodCondimentPacketAspertame
+  name: Aspertame
   description: The sweetness of a thousand sugars but none of the calories.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -100,11 +99,10 @@
     fillBaseName: packet-trans-
 
 - type: entity
-  parent: BaseFoodCondimentPacket
-  id: FoodCondimentPacketBbq
+  parent: N14BaseFoodCondimentPacket
+  id: N14FoodCondimentPacketBbq
   name: BBQ sauce
   description: Hand wipes not included.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -121,11 +119,10 @@
     fillBaseName: packet-trans-
 
 - type: entity
-  parent: BaseFoodCondimentPacket
-  id: FoodCondimentPacketCornoil
+  parent: N14BaseFoodCondimentPacket
+  id: N14FoodCondimentPacketCornoil
   name: corn oil
   description: Corn oil. A delicious oil used in cooking. Made from corn.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -142,53 +139,10 @@
     fillBaseName: packet-trans-
 
 - type: entity
-  parent: BaseFoodCondimentPacket
-  id: FoodCondimentPacketFrostoil
-  name: coldsauce
-  description: Coldsauce. Leaves the tongue numb in its passage.
-  noSpawn: true
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Frostoil
-          Quantity: 10
-  - type: Icon
-    state: packet-frostoil
-  - type: Appearance
-  - type: SolutionContainerVisuals
-    maxFillLevels: 2
-    fillBaseName: packet-trans-
-
-- type: entity
-  parent: BaseFoodCondimentPacket
-  id: FoodCondimentPacketHorseradish
-  name: horseradish sauce
-  description: A packet of smelly horseradish sauce.
-  noSpawn: true
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: HorseradishSauce
-          Quantity: 10
-  - type: Icon
-    state: packet-greygoo
-  - type: Appearance
-  - type: SolutionContainerVisuals
-    maxFillLevels: 2
-    fillBaseName: packet-solid-
-
-- type: entity
-  parent: BaseFoodCondimentPacket
-  id: FoodCondimentPacketHotsauce
+  parent: N14BaseFoodCondimentPacket
+  id: N14FoodCondimentPacketHotsauce
   name: hotsauce
   description: You can almost TASTE the stomach ulcers now!
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -205,11 +159,10 @@
     fillBaseName: packet-trans-
 
 - type: entity
-  parent: BaseFoodCondimentPacket
-  id: FoodCondimentPacketKetchup
+  parent: N14BaseFoodCondimentPacket
+  id: N14FoodCondimentPacketKetchup
   name: ketchup
   description: You feel more American already.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -226,11 +179,10 @@
     fillBaseName: packet-solid-
 
 - type: entity
-  parent: BaseFoodCondimentPacket
-  id: FoodCondimentPacketMustard
+  parent: N14BaseFoodCondimentPacket
+  id: N14FoodCondimentPacketMustard
   name: mustard
   description: A condiment made from the ground-up seeds of the Mustard plant.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -246,11 +198,10 @@
     fillBaseName: packet-solid-
 
 - type: entity
-  parent: BaseFoodCondimentPacket
-  id: FoodCondimentPacketPepper
+  parent: N14BaseFoodCondimentPacket
+  id: N14FoodCondimentPacketPepper
   name: black pepper
   description: Often used to flavor food or make people sneeze.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -266,11 +217,10 @@
     fillBaseName: packet-solid-
 
 - type: entity
-  parent: BaseFoodCondimentPacket
-  id: FoodCondimentPacketSalt
+  parent: N14BaseFoodCondimentPacket
+  id: N14FoodCondimentPacketSalt
   name: salt
   description: Salt. From space oceans, presumably.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -295,11 +245,10 @@
     fillBaseName: packet-solid-
 
 - type: entity
-  parent: BaseFoodCondimentPacket
-  id: FoodCondimentPacketSoy
+  parent: N14BaseFoodCondimentPacket
+  id: N14FoodCondimentPacketSoy
   name: soy sauce
   description: A salty soy-based flavoring.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -315,11 +264,10 @@
     fillBaseName: packet-solid-
 
 - type: entity
-  parent: BaseFoodCondimentPacket
-  id: FoodCondimentPacketSugar
+  parent: N14BaseFoodCondimentPacket
+  id: N14FoodCondimentPacketSugar
   name: sugar
   description: Tasty spacey sugar!
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -337,8 +285,8 @@
 # Bottles
 
 - type: entity
-  parent: BaseFoodCondiment
-  id: BaseFoodCondimentBottle
+  parent: N14BaseFoodCondiment
+  id: N14BaseFoodCondimentBottle
   abstract: true
   name: condiment bottle
   description: A thin glass bottle used to store condiments.
@@ -378,38 +326,10 @@
       Glass: 50
 
 - type: entity
-  parent: BaseFoodCondimentBottle
-  id: FoodCondimentBottleColdsauce
-  name: coldsauce bottle
-  description: Leaves the tongue numb in its passage.
-  noSpawn: true
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Frostoil
-          Quantity: 30
-  - type: Sprite
-    layers:
-    - state: bottle-empty
-      map: ["enum.OpenableVisuals.Layer"]
-    - state: label-c
-    - state: bottle-alpha-6
-      map: ["enum.SolutionContainerLayers.Fill"]
-      visible: true
-  - type: Icon
-    state: bottle-coldsauce
-  - type: Tag
-    tags:
-      - Coldsauce
-
-- type: entity
-  parent: BaseFoodCondimentBottle
-  id: FoodCondimentBottleEnzyme
+  parent: N14BaseFoodCondimentBottle
+  id: N14FoodCondimentBottleEnzyme
   name: universal enzyme
   description: Used in cooking various dishes.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -432,11 +352,10 @@
       - Enzyme
 
 - type: entity
-  parent: BaseFoodCondimentBottle
-  id: FoodCondimentBottleVinegar
+  parent: N14BaseFoodCondimentBottle
+  id: N14FoodCondimentBottleVinegar
   name: vinegar bottle
   description: Used in cooking to enhance flavor.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -456,11 +375,10 @@
     state: bottle-vinegar
 
 - type: entity
-  parent: BaseFoodCondimentBottle
-  id: FoodCondimentBottleHotsauce
+  parent: N14BaseFoodCondimentBottle
+  id: N14FoodCondimentBottleHotsauce
   name: hotsauce bottle
   description: You can almost TASTE the stomach ulcers now!
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -483,11 +401,10 @@
       - Hotsauce
 
 - type: entity
-  parent: BaseFoodCondimentBottle
-  id: FoodCondimentBottleKetchup
+  parent: N14BaseFoodCondimentBottle
+  id: N14FoodCondimentBottleKetchup
   name: ketchup bottle
   description: You feel more American already.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -510,11 +427,10 @@
       - Ketchup
 
 - type: entity
-  parent: BaseFoodCondimentBottle
-  id: FoodCondimentBottleBBQ
+  parent: N14BaseFoodCondimentBottle
+  id: N14FoodCondimentBottleBBQ
   name: BBQ sauce bottle
   description: Hand wipes not included.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -540,8 +456,8 @@
 # Shakers
 
 - type: entity
-  parent: BaseFoodCondiment
-  id: BaseFoodShaker
+  parent: N14BaseFoodCondiment
+  id: N14BaseFoodShaker
   abstract: true
   name: empty shaker
   description: A shaker used to store and dispense spices.
@@ -582,11 +498,10 @@
     solution: food
 
 - type: entity
-  parent: BaseFoodShaker
-  id: FoodShakerSalt
+  parent: N14BaseFoodShaker
+  id: N14FoodShakerSalt
   name: salt shaker
   description: Salt. From space oceans, presumably.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
@@ -604,10 +519,9 @@
 
 - type: entity
   parent: BaseFoodShaker
-  id: FoodShakerPepper
+  id: N14FoodShakerPepper
   name: pepper shaker
   description: Often used to flavor food or make people sneeze.
-  noSpawn: true
   components:
   - type: SolutionContainerManager
     solutions:
