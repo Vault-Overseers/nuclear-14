@@ -23,6 +23,26 @@
     state: pda
   - type: PdaBorderColor
     borderColor: "#717059"
+  - type: Pda
+    state: pda
+    paiSlot:
+      priority: -2
+      whitelist:
+        components:
+        - PAI
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+    idSlot:
+      name: access-id-card-component-default
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        tags:
+        - IdCardVault
 
 - type: entity
   parent: N14BasePipboy
