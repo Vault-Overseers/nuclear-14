@@ -1,0 +1,91 @@
+# Scroll down for rules and sound collections
+# Ambient Music
+- type: ambientMusic
+  id: Wasteland
+  sound:
+    params:
+      volume: -12
+    collection: AmbienceWasteland
+  rules: NearWasteland
+  priority: 2
+
+#- type: ambientMusic
+#  id: Supermarket
+#  sound:
+#    params:
+#      volume: -12
+#    collection: AmbienceSupermarket
+#  rules: NearSupermarket
+#  priority: 2
+
+# Rules
+- type: rules
+  id: NearWasteland
+  rules:
+    - !type:NearbyTilesPercentRule
+      percent: 0.25
+      tiles:
+        - FloorWasteland
+      range: 3
+
+- type: rules
+  id: NearSupermarket
+  rules:
+    - !type:NearbyTilesPercentRule
+      percent: 0.25
+      tiles:
+        - FloorSteelCheckerLight
+      range: 3
+
+# Sound Collections
+- type: soundCollection
+  id: AmbienceWasteland
+  files:
+    - /Audio/_Nuclear14/Ambience/01-Radiation_Storm.ogg
+    - /Audio/_Nuclear14/Ambience/02-Industrial_Junk.ogg
+    - /Audio/_Nuclear14/Ambience/03-Khans_Of_The_New_California.ogg
+    - /Audio/_Nuclear14/Ambience/04-Metallic_Monks.ogg # epic, maybe change to roads or towns
+    - /Audio/_Nuclear14/Ambience/05-Followers_Credo.ogg
+    - /Audio/_Nuclear14/Ambience/06-Vats_Of_Goo.ogg
+    - /Audio/_Nuclear14/Ambience/07-A_Traders_Life.ogg
+    - /Audio/_Nuclear14/Ambience/08-Moribund_World.ogg
+    - /Audio/_Nuclear14/Ambience/09-The_Vault_Of_The_Future.ogg
+    - /Audio/_Nuclear14/Ambience/10-Second_Chance.ogg
+    - /Audio/_Nuclear14/Ambience/11-City_Of_The_Dead.ogg
+    - /Audio/_Nuclear14/Ambience/12-Underground_Trouble.ogg
+    - /Audio/_Nuclear14/Ambience/13-City_Of_Lost_Angels.ogg
+    - /Audio/_Nuclear14/Ambience/14-Flame_Of_The_Ancient_World.ogg
+    - /Audio/_Nuclear14/Ambience/15-Many_Contrasts.ogg
+    - /Audio/_Nuclear14/Ambience/16-Gold_Slouch.ogg
+#    - /Audio/_Nuclear14/Ambience/17-My_Chrysalis_Highwayman.ogg     car travel song, maybe change to road tiles
+    - /Audio/_Nuclear14/Ambience/18-Beyond_The_Canyon.ogg
+    - /Audio/_Nuclear14/Ambience/19-Biggest_Little_City_In_The_World.ogg
+    - /Audio/_Nuclear14/Ambience/20-Dream_Town.ogg # another one for towns
+    - /Audio/_Nuclear14/Ambience/21-California_Revisited.ogg
+    - /Audio/_Nuclear14/Ambience/22-All-Clear_Signal.ogg
+    - /Audio/_Nuclear14/Ambience/23-Acolytes_Of_The_New_God.ogg
+    - /Audio/_Nuclear14/Ambience/24-Desert_Wind.ogg
+    
+- type: soundCollection
+  id: AmbienceBrotherhood
+  files:
+    - /Audio/_Nuclear14/Ambience/04-Metallic_Monks.ogg 
+    
+- type: soundCollection
+  id: AmbienceEyebot
+  files:
+    - /Audio/_Nuclear14/Music/MUS_Patriotic_America.ogg 
+    - /Audio/_Nuclear14/Music/MUS_Patriotic_BattleHymn.ogg
+    - /Audio/_Nuclear14/Music/MUS_Patriotic_BattleHymn_mono.ogg
+    - /Audio/_Nuclear14/Music/MUS_Patriotic_Dixie.ogg
+    - /Audio/_Nuclear14/Music/MUS_Patriotic_Montezuma.ogg
+    - /Audio/_Nuclear14/Music/MUS_Patriotic_Presidential.ogg
+    - /Audio/_Nuclear14/Music/MUS_Patriotic_Stars.ogg
+    - /Audio/_Nuclear14/Music/MUS_Patriotic_Washington.ogg
+    - /Audio/_Nuclear14/Music/MUS_Patriotic_Yankee.ogg
+
+#- type: soundCollection
+#  id: AmbienceSupermarket
+#  files:
+#    - /Audio/Ambience/ambimaint1.ogg
+#

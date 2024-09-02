@@ -5,6 +5,7 @@
   description: A machine designed to serve humankind.
   save: false
   abstract: true
+  suffix: player
   components:
   - type: Reactive
     groups:
@@ -204,4 +205,30 @@
   - type: Emoting
   # - type: GuideHelp
     # guides:
-      # - Cyborgs
+  - type: Eye
+    visMask:
+      - PsionicInvisibility
+      - Normal
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - RobotTalk
+    understands:
+    - GalacticCommon
+    - RobotTalk
+  - type: CanWalk
+  - type: NpcFactionMember
+    factions:
+    - Wastelander
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModuleService
+        - BorgModuleMusique
+        - BorgModuleGardening
+        - BorgModuleHarvesting
+        - BorgModuleFireExtinguisher
+        - BorgModuleRadiationDetection
+        - BorgModuleTool
