@@ -1,3 +1,18 @@
+# this is how you give it modules and a cell, need variants for each that are empty and filled
+  # - type: ContainerFill
+    # containers:
+      # borg_brain:
+        # - PositronicBrain
+      # borg_module:
+        # - BorgModuleOperative
+        # - BorgModuleL6C
+        # - BorgModuleEsword
+  # - type: ItemSlots
+    # slots:
+      # cell_slot:
+        # name: power-cell-slot-component-slot-name-default
+        # startingItem: PowerCellHyper
+
 # Protectrons
 - type: entity
   parent: N14BaseRobotChassis
@@ -25,11 +40,16 @@
       movement:
         state: icon
   - type: BorgChassis
-    maxModules: 6
+    maxModules: 10
     moduleWhitelist:
       tags:
       - BorgModuleGeneric
       - BorgModuleJanitor
+      - BorgModuleEngineering
+      - BorgModuleMedical
+      - BorgModuleService
+      - BorgModuleSyndicate
+      - BorgModuleSyndicateAssault
     hasMindState: on
     noMindState: off
   # - type: Construction
@@ -81,20 +101,6 @@
     noMindState: protectron_common_off
   # - type: Construction
     # node: mining
-  # - type: IntrinsicRadioTransmitter
-    # channels:
-    # - Supply
-    # - Binary
-    # - Common
-    # - Science
-  # - type: ActiveRadio
-    # channels:
-    # - Supply
-    # - Binary
-    # - Common
-    # - Science
-  # - type: AccessReader
-    # access: [["Cargo"], ["Salvage"], ["Command"], ["Research"]]
   - type: Inventory
     templateId: borgTall
   - type: GhostRole
@@ -104,23 +110,7 @@
     description: |
       Do as your masters say with a literal but reasonable level of logic.
     
-    
-# this is how you give it modules and a cell, need variants for each that are empty and filled
-  # - type: ContainerFill
-    # containers:
-      # borg_brain:
-        # - PositronicBrain
-      # borg_module:
-        # - BorgModuleOperative
-        # - BorgModuleL6C
-        # - BorgModuleEsword
-  # - type: ItemSlots
-    # slots:
-      # cell_slot:
-        # name: power-cell-slot-component-slot-name-default
-        # startingItem: PowerCellHyper
-        
-        
+
 - type: entity
   parent: N14RobotProtectron
   id: N14RobotProtectronFire
@@ -211,14 +201,6 @@
     noMovementLayers:
       movement:
         state: icon
-  - type: BorgChassis
-    maxModules: 6
-    moduleWhitelist:
-      tags:
-      - BorgModuleGeneric
-      - BorgModuleJanitor
-    hasMindState: on
-    noMindState: off
   # - type: Construction
     # node: cyborg
   - type: Speech
@@ -257,6 +239,13 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/mrhandygutsy.rsi
+  - type: BorgChassis
+    maxModules: 6
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+    hasMindState: on
+    noMindState: off
     
 # Faction Specific Robots
 ## Vault
@@ -268,6 +257,28 @@
   - type: NpcFactionMember
     factions:
     - Vault
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - VaultCommon
+    - VaultCommand
+    - VaultEngineering
+    - VaultMedical
+    - VaultScience
+    - VaultSecurity
+  - type: ActiveRadio
+    channels:
+    - VaultCommon
+    - VaultCommand
+    - VaultEngineering
+    - VaultMedical
+    - VaultScience
+    - VaultSecurity
+  # - type: AccessReader
+    # access: [["VaultOverseer"]
+  - type: Access
+    enabled: false
+    groups:
+    - VaultOverseer
     
 - type: entity
   parent: N14RobotMrHandySaw
@@ -277,59 +288,123 @@
   - type: NpcFactionMember
     factions:
     - Vault
+  # - type: IntrinsicRadioTransmitter
+    # channels:
+    # - VaultCommon
+    # - VaultCommand
+    # - VaultEngineering
+    # - VaultMedical
+    # - VaultScience
+    # - VaultSecurity
+  # - type: ActiveRadio
+    # channels:
+    # - VaultCommon
+    # - VaultCommand
+    # - VaultEngineering
+    # - VaultMedical
+    # - VaultScience
+    # - VaultSecurity
+  # - type: AccessReader
+    # access: [["VaultOverseer"]
+  - type: Access
+    enabled: false
+    groups:
+    - VaultOverseer
     
 ## BOS Midwest
 - type: entity
-  parent: N14RobotMrHandy
+  id: N14RobotBOSMidwestBase # for inheritance only
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BrotherhoodMidwest
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - BrotherhoodMidwest
+  - type: ActiveRadio
+    channels:
+    - BrotherhoodMidwest
+  # - type: AccessReader
+    # access: [["BOSMidwest"]
+  # - type: ContainerFill
+    # containers:
+      # borg_brain:
+        # - PositronicBrain
+      # borg_module:
+        # - BorgModuleService
+        # - BorgModuleMusique
+        # - BorgModuleGardening
+        # - BorgModuleHarvesting
+        # - BorgModuleFireExtinguisher
+        # - BorgModuleRadiationDetection
+        # - BorgModuleTool
+        # - BorgModuleSyndicateWeapon
+  - type: Access
+    enabled: false
+    groups:
+    - BOSMidwest
+    
+- type: entity
+  parent: [N14RobotMrHandy, N14RobotBOSMidwestBase]
   id: N14RobotMrHandyBOSMidwest
   suffix: player, BOS Midwest
-  components:
-  - type: NpcFactionMember
-    factions:
-    - BrotherhoodMidwest
     
 - type: entity
-  parent: N14RobotMrHandySaw
+  parent: [N14RobotMrHandySaw, N14RobotBOSMidwestBase]
   id: N14RobotMrHandySawBOSMidwest
   suffix: player, BOS Midwest, saw
-  components:
-  - type: NpcFactionMember
-    factions:
-    - BrotherhoodMidwest
     
 - type: entity
-  parent: N14RobotMrGutsy
+  parent: [N14RobotMrGutsy, N14RobotBOSMidwestBase]
   id: N14RobotMrGutsyBOSMidwest
   suffix: player, BOS Midwest, gutsy
-  components:
-  - type: NpcFactionMember
-    factions:
-    - BrotherhoodMidwest
     
 ## BOS Washington
 - type: entity
-  parent: N14RobotMrHandy
+  id: N14RobotBOSWashingtonBase # for inheritance only
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BrotherhoodWashington
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - BrotherhoodWashington
+  - type: ActiveRadio
+    channels:
+    - BrotherhoodWashington
+  # - type: AccessReader
+    # access: [["BOSWashington"]
+  # - type: ContainerFill
+    # containers:
+      # borg_brain:
+        # - PositronicBrain
+      # borg_module:
+        # - BorgModuleService
+        # - BorgModuleMusique
+        # - BorgModuleGardening
+        # - BorgModuleHarvesting
+        # - BorgModuleFireExtinguisher
+        # - BorgModuleRadiationDetection
+        # - BorgModuleTool
+        # - BorgModuleSyndicateWeapon
+  - type: Access
+    enabled: false
+    groups:
+    - BOSWashington
+    
+- type: entity
+  parent: [N14RobotMrHandy, N14RobotBOSWashingtonBase]
   id: N14RobotMrHandyBOSWashington
   suffix: player, BOS Washington
-  components:
-  - type: NpcFactionMember
-    factions:
-    - BrotherhoodWashington
     
 - type: entity
-  parent: N14RobotMrHandySaw
+  parent: [N14RobotMrHandySaw, N14RobotBOSWashingtonBase]
   id: N14RobotMrHandySawBOSWashington
   suffix: player, BOS Washington, saw
-  components:
-  - type: NpcFactionMember
-    factions:
-    - BrotherhoodWashington
     
 - type: entity
-  parent: N14RobotMrGutsy
+  parent: [N14RobotMrGutsy, N14RobotBOSWashingtonBase]
   id: N14RobotMrGutsyBOSWashington
   suffix: player, BOS Washington, gutsy
-  components:
-  - type: NpcFactionMember
-    factions:
-    - BrotherhoodWashington
