@@ -55,3 +55,37 @@
           types:
             Radiation: 1 # You really shouldn't drink this.
             Poison: 0.1
+
+- type: reagent
+  id: WaterSalt
+  name: reagent-name-water-salt
+  parent: BaseDrink
+  desc: reagent-desc-water-salt
+  slippery: true
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: salty
+  color: "#75b1f0"
+  recognizable: true
+  boilingPoint: 100.0
+  meltingPoint: 0.0
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: -0.5
+      - !type:AdjustReagent
+        reagent: TableSalt
+        amount: 0.05
+  plantMetabolism:
+  - !type:PlantAdjustWater
+    amount: -3
+  - !type:PlantAdjustNutrition
+    amount: -0.3
+  - !type:PlantAdjustToxins
+    amount: 8
+  - !type:PlantAdjustWeeds
+    amount: -2
+  - !type:PlantAdjustPests
+    amount: -1
+  - !type:PlantAdjustHealth
+    amount: -2
