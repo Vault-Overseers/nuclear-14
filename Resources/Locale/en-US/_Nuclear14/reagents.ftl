@@ -12,6 +12,8 @@ reagent-name-water-irradiated = irradiated water
 reagent-desc-water-irradiated = That'll put arms on your chest.
 reagent-name-water-filtered = filtered water
 reagent-desc-water-filtered = almost as good as it gets.
+reagent-name-water-salt = salt water
+reagent-desc-water-salt = salty water. Maybe I can boil it for salt. 
 
 ## Soda
 reagent-name-nuka-cola = Nuka-Cola
