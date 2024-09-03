@@ -1,3 +1,5 @@
+using Content.Server._NC.Discord;
+using Content.Server._NC.Sponsors;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -5,7 +7,6 @@ using Content.Server.Administration.Notes;
 using Content.Server.Afk;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
-using Content.Server.DiscordAuth;
 using Content.Server.JoinQueue;
 using Content.Server.Database;
 using Content.Server.Discord;
@@ -25,6 +26,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Kitchen;
 using Content.Shared.Players.PlayTimeTracking;
+using Robust.Shared.Network;
 
 namespace Content.Server.IoC
 {
@@ -61,8 +63,9 @@ namespace Content.Server.IoC
             IoCManager.Register<PoissonDiskSampler>();
             IoCManager.Register<DiscordWebhook>();
             IoCManager.Register<ServerDbEntryManager>();
-            IoCManager.Register<JoinQueueManager>();
             IoCManager.Register<DiscordAuthManager>();
+            IoCManager.Register<SponsorsManager>();
+            IoCManager.Register<JoinQueueManager>();
             IoCManager.Register<ISharedPlaytimeManager, PlayTimeTrackingManager>();
             IoCManager.Register<ServerApi>();
         }

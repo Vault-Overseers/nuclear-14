@@ -1,10 +1,13 @@
+using System.Linq;
 using Content.Server.Database;
+using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.GameWindow;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
 using JetBrains.Annotations;
+using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -20,6 +23,7 @@ namespace Content.Server.GameTicking
     {
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IServerDbManager _dbManager = default!;
+        [Dependency] private readonly ActorSystem _actor = default!;
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
 
         private void InitializePlayer()
@@ -58,6 +62,10 @@ namespace Content.Server.GameTicking
                         data.Whitelisted = await _db.GetWhitelistStatusAsync(session.UserId); // Nyanotrasen - Whitelist
                         session.Data.ContentDataUncast = data;
                     }
+
+                    // Make the player actually join the game.
+                    // timer time must be > tick length
+                    // Timer.Spawn(0, () => _playerManager.JoinGame(args.Session)); //Commented for ss14-corvax auth (by Jerry)
 
                     var record = await _dbManager.GetPlayerRecordByUserId(args.Session.UserId);
                     var firstConnection = record != null &&
@@ -197,7 +205,7 @@ namespace Content.Server.GameTicking
 
     public sealed class PlayerJoinedLobbyEvent : EntityEventArgs
     {
-        public readonly ICommonSession PlayerSession;
+        public ICommonSession PlayerSession;
 
         public PlayerJoinedLobbyEvent(ICommonSession playerSession)
         {

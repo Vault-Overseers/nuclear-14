@@ -1,6 +1,6 @@
 using System.Linq;
 using Content.Server.Connection;
-using Content.Server.DiscordAuth;
+using Content.Server._NC.Discord;
 using Content.Shared.CCVar;
 using Content.Shared.JoinQueue;
 using Prometheus;

@@ -5,8 +5,8 @@ using Content.Server.Administration.Managers;
 using Content.Server.Afk;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
-using Content.Server.DiscordAuth;
-using Content.Server.JoinQueue;
+using Content.Server._NC.Discord;
+using Content.Server._NC.Sponsors;
 using Content.Server.Database;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
@@ -14,6 +14,7 @@ using Content.Server.GhostKick;
 using Content.Server.GuideGenerator;
 using Content.Server.Info;
 using Content.Server.IoC;
+using Content.Server.JoinQueue;
 using Content.Server.Maps;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.Players.PlayTimeTracking;
@@ -28,6 +29,7 @@ using Robust.Server;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -45,6 +47,7 @@ namespace Content.Server.Entry
         private PlayTimeTrackingManager? _playTimeTracking;
         private IEntitySystemManager? _sysMan;
         private IServerDbManager? _dbManager;
+        [Dependency] private readonly DiscordAuthManager _discordAuthManager = default!;
 
         /// <inheritdoc />
         public override void Init()
@@ -66,10 +69,10 @@ namespace Content.Server.Entry
             factory.DoAutoRegistrations();
             factory.IgnoreMissingComponents("Visuals");
 
-            factory.RegisterIgnore(IgnoredComponents.List);
 
-            prototypes.RegisterIgnore("parallax");
+            factory.RegisterIgnore(IgnoredComponents.List);
             prototypes.RegisterIgnore("guideEntry");
+            prototypes.RegisterIgnore("parallax");
 
             ServerContentIoC.Register();
 
@@ -104,9 +107,10 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<ContentNetworkResourceManager>().Initialize();
                 IoCManager.Resolve<GhostKickManager>().Initialize();
                 IoCManager.Resolve<ServerInfoManager>().Initialize();
-                IoCManager.Resolve<JoinQueueManager>().Initialize();
                 IoCManager.Resolve<DiscordAuthManager>().Initialize();
                 IoCManager.Resolve<ServerApi>().Initialize();
+                IoCManager.Resolve<SponsorsManager>().Initialize();
+                IoCManager.Resolve<JoinQueueManager>().Initialize();
 
                 _voteManager.Initialize();
                 _updateManager.Initialize();
