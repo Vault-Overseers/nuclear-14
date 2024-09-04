@@ -159,7 +159,7 @@ public sealed class WeatherSystem : SharedWeatherSystem
                 continue;
 
             // New weather
-            StartWeather(component, ProtoMan.Index<WeatherPrototype>(proto), weather.EndTime);
+            StartWeather(uid, component, ProtoMan.Index<WeatherPrototype>(proto), weather.EndTime);
         }
     }
 }

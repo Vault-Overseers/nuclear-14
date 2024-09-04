@@ -194,11 +194,14 @@ public abstract class SharedWeatherSystem : EntitySystem
 
         foreach (var (eProto, weather) in weatherComp.Weather)
         {
+            // if we turn off the weather, we don't want endTime = null
+            if (proto == null)
+                endTime ??= Timing.CurTime + WeatherComponent.ShutdownTime;
+
             // Reset cooldown if it's an existing one.
-            if (proto == null || eProto == proto.ID)
+            if (proto is not null && eProto == proto.ID)
             {
                 weather.EndTime = endTime;
-
                 if (weather.State == WeatherState.Ending)
                     weather.State = WeatherState.Running;
 
@@ -225,7 +228,7 @@ public abstract class SharedWeatherSystem : EntitySystem
     /// </summary>
     protected virtual void Run(EntityUid uid, WeatherData weather, WeatherPrototype weatherProto, float frameTime) {}
 
-    protected void StartWeather(WeatherComponent component, WeatherPrototype weather, TimeSpan? endTime)
+    protected void StartWeather(EntityUid uid, WeatherComponent component, WeatherPrototype weather, TimeSpan? endTime)
     {
         if (component.Weather.ContainsKey(weather.ID))
             return;
