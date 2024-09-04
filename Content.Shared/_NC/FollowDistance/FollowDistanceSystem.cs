@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Shared._NC.CameraFollow.Components;
 using Content.Shared._NC.CameraFollow.Events;
 using Content.Shared._NC.FollowDistance.Components;
@@ -14,7 +13,7 @@ public sealed class FollowDistanceSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedEyeSystem _eye = default!;
-    [Dependency] private readonly Actions.SharedActionsSystem _actionsSystem = default!; 
+    [Dependency] private readonly Actions.SharedActionsSystem _actionsSystem = default!;
     private EntityQuery<CameraRecoilComponent> _activeRecoil;
     private EntityQuery<EyeComponent> _activeEye;
     private EntityQuery<CameraFollowComponent> _activeCamera;
@@ -41,34 +40,36 @@ public sealed class FollowDistanceSystem : EntitySystem
         if(plr == null || !_activeCamera.TryComp(plr, out var cameraFollowComponent))
             return;
         cameraFollowComponent.Offset = msg.Offset;
+        Dirty(plr.Value, cameraFollowComponent);
     }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-        if (_net.IsServer)
-            UpdateEyes(frameTime);
-    }
-
-    private void UpdateEyes(float frameTime)
-    {
-        var query = AllEntityQuery<CameraRecoilComponent, EyeComponent, CameraFollowComponent>();
-
-        while (query.MoveNext(out var uid, out var recoil, out var eye, out var follow))
-        {
-            if(!follow.Enabled)
-                continue;
-
-            var offset = recoil.BaseOffset + recoil.CurrentKick + follow.Offset;
-            if (Math.Abs(follow.Offset.X) > Math.Abs(follow.MaxDistance.X) ||
-                Math.Abs(follow.Offset.Y) > Math.Abs(follow.MaxDistance.Y))
-            {
-                follow.Offset = Vector2.Lerp(offset, follow.MaxDistance, 0);
-                Dirty(uid,follow);
-            }
-            _eye.SetOffset(uid, offset, eye);
-        }
-    }
+    // TODO: I don't really know why Backmen made this Update here.
+    // public override void Update(float frameTime)
+    // {
+    //     base.Update(frameTime);
+    //     if (_net.IsServer)
+    //         UpdateEyes(frameTime);
+    // }
+    //
+    // private void UpdateEyes(float frameTime)
+    // {
+    //     var query = AllEntityQuery<CameraRecoilComponent, EyeComponent, CameraFollowComponent>();
+    //
+    //     while (query.MoveNext(out var uid, out var recoil, out var eye, out var follow))
+    //     {
+    //         if(!follow.Enabled)
+    //             continue;
+    //
+    //          var offset = recoil.BaseOffset + recoil.CurrentKick + follow.Offset;
+    //          if (Math.Abs(follow.Offset.X) > Math.Abs(follow.MaxDistance.X) ||
+    //              Math.Abs(follow.Offset.Y) > Math.Abs(follow.MaxDistance.Y))
+    //          {
+    //              follow.Offset = Vector2.Lerp(offset, follow.MaxDistance, 0);
+    //              Dirty(uid,follow);
+    //          }
+    //
+    //          _eye.SetOffset(uid, offset, eye);
+    //     }
+    // }
 
     private void OnCameraRecoilGetEyeOffset(Entity<CameraFollowComponent> ent, ref GetEyeOffsetEvent arg)
     {
@@ -78,7 +79,7 @@ public sealed class FollowDistanceSystem : EntitySystem
         arg.Offset = recoil.BaseOffset + recoil.CurrentKick + ent.Comp.Offset;
     }
 
-    private void OnCameraFollowInit(EntityUid uid, CameraFollowComponent component, MapInitEvent args) 
+    private void OnCameraFollowInit(EntityUid uid, CameraFollowComponent component, MapInitEvent args)
     {
         _actionsSystem.AddAction(uid, ref component.ActionEntity, component.Action);
     }

@@ -28,7 +28,7 @@ public sealed partial class CameraFollowComponent : Component
 
     // Max distance controller btw
     // I think its broken cause it looks weird
-    [DataField("backStrength")]
+    [DataField("backStrength"), AutoNetworkedField]
     public float BackStrength = 10f;
 
     [DataField("defaultBackStrength")]
