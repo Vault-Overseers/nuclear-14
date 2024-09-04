@@ -1,6 +1,6 @@
 using System.Numerics;
-using Content.Shared._NC.CameraFollow.Components;
-using Content.Shared.Actions;
+using Content.Shared._NC.CameraFollow.Components; // NC changes
+using Content.Shared.Actions; // NC changes
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
@@ -40,19 +40,22 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
     ///     If the entity is missing <see cref="CameraRecoilComponent" /> and/or <see cref="EyeComponent" />,
     ///     this call will have no effect. It is safe to call this function on any entity.
     /// </remarks>
+
+    /// NC changes start
     public override void Initialize()
     {
         SubscribeLocalEvent<CameraFollowComponent, ComponentInit>(OnCameraFollowInit);
     }
+    /// NC changes end
     public abstract void KickCamera(EntityUid euid, Vector2 kickback, CameraRecoilComponent? component = null);
 
-    public override void Update(float frameTime)
+    public override void Update(float frameTime) // NC changes
     {
         base.FrameUpdate(frameTime);
 
-        var query = AllEntityQuery<EyeComponent, CameraRecoilComponent, CameraFollowComponent>();
+        var query = AllEntityQuery<EyeComponent, CameraRecoilComponent, CameraFollowComponent>(); // NC changes
 
-        while (query.MoveNext(out var uid, out var eye, out var recoil, out var follow))
+        while (query.MoveNext(out var uid, out var eye, out var recoil, out var follow)) // NC changes
         {
             var magnitude = recoil.CurrentKick.Length();
             if (magnitude <= 0.005f)
@@ -75,12 +78,13 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
                 recoil.CurrentKick = new Vector2(x, y);
 
                 var offset = recoil.BaseOffset + recoil.CurrentKick + (follow.Enabled ? follow.Offset : Vector2.Zero); // NC-Changes
-                _eye.SetOffset(uid, offset, eye);
+                _eye.SetOffset(uid, offset, eye); // NC changes
             }
         }
     }
 
-    private void OnCameraFollowInit(EntityUid uid, CameraFollowComponent component, ComponentInit args) // NC-Start
+    /// NC changes start
+    private void OnCameraFollowInit(EntityUid uid, CameraFollowComponent component, ComponentInit args)
     {
         _actionsSystem.AddAction(uid, ref component.ActionEntity, component.Action);
     }
@@ -88,7 +92,8 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
     private void OnCameraFollowRemove(EntityUid uid, CameraFollowComponent component, ComponentRemove args)
     {
         _actionsSystem.RemoveAction(uid, component.ActionEntity);
-    } // NC-Changes-End
+    }
+    /// NC changes end
 }
 
 [Serializable]

@@ -1,3 +1,6 @@
+// License granted by JerryImMouse to Corvax Forge.
+// Non-exclusive, non-transferable, perpetual license to use, distribute, and modify.
+// All other rights reserved by JerryImMouse.
 using Content.Shared._NC.CameraFollow.Components;
 using Content.Shared._NC.CameraFollow.Events;
 using Content.Shared._NC.FollowDistance.Components;
@@ -42,34 +45,6 @@ public sealed class FollowDistanceSystem : EntitySystem
         cameraFollowComponent.Offset = msg.Offset;
         Dirty(plr.Value, cameraFollowComponent);
     }
-    // TODO: I don't really know why Backmen made this Update here.
-    // public override void Update(float frameTime)
-    // {
-    //     base.Update(frameTime);
-    //     if (_net.IsServer)
-    //         UpdateEyes(frameTime);
-    // }
-    //
-    // private void UpdateEyes(float frameTime)
-    // {
-    //     var query = AllEntityQuery<CameraRecoilComponent, EyeComponent, CameraFollowComponent>();
-    //
-    //     while (query.MoveNext(out var uid, out var recoil, out var eye, out var follow))
-    //     {
-    //         if(!follow.Enabled)
-    //             continue;
-    //
-    //          var offset = recoil.BaseOffset + recoil.CurrentKick + follow.Offset;
-    //          if (Math.Abs(follow.Offset.X) > Math.Abs(follow.MaxDistance.X) ||
-    //              Math.Abs(follow.Offset.Y) > Math.Abs(follow.MaxDistance.Y))
-    //          {
-    //              follow.Offset = Vector2.Lerp(offset, follow.MaxDistance, 0);
-    //              Dirty(uid,follow);
-    //          }
-    //
-    //          _eye.SetOffset(uid, offset, eye);
-    //     }
-    // }
 
     private void OnCameraRecoilGetEyeOffset(Entity<CameraFollowComponent> ent, ref GetEyeOffsetEvent arg)
     {

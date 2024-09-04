@@ -1,3 +1,6 @@
+// License granted by JerryImMouse to Corvax Forge.
+// Non-exclusive, non-transferable, perpetual license to use, distribute, and modify.
+// All other rights reserved by JerryImMouse.
 using System.Numerics;
 using Content.Shared.Actions;
 using Content.Shared._NC.CameraFollow.EntitySystems;
