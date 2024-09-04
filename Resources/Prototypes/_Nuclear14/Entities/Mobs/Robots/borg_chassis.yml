@@ -1,3 +1,19 @@
+# this is how you give it modules and a cell, need variants for each that are empty and filled
+  # - type: ContainerFill
+    # containers:
+      # borg_brain:
+        # - PositronicBrain
+      # borg_module:
+        # - BorgModuleOperative
+        # - BorgModuleL6C
+        # - BorgModuleEsword
+  # - type: ItemSlots
+    # slots:
+      # cell_slot:
+        # name: power-cell-slot-component-slot-name-default
+        # startingItem: PowerCellHyper
+
+# Protectrons
 - type: entity
   parent: N14BaseRobotChassis
   id: N14RobotProtectron
@@ -23,46 +39,44 @@
     noMovementLayers:
       movement:
         state: icon
-  - type: BorgChassis
-    maxModules: 6
-    moduleWhitelist:
-      tags:
-      - BorgModuleGeneric
-      - BorgModuleJanitor
-    hasMindState: on
-    noMindState: off
   # - type: Construction
     # node: cyborg
   - type: Speech
     speechVerb: Robotic
   - type: Inventory
     templateId: borgShort
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Friendly Protectron
+    description: |
+      Do as your masters say with a literal but reasonable level of logic.
 
 - type: entity
-  parent: N14BaseRobotChassis
+  parent: N14RobotProtectron
   id: N14RobotProtectronBuilder
   name: protectron builder
   components:
   - type: Sprite
-    sprite: _Nuclear14/Mobs/Robots/ms13robots.rsi
+    sprite: _Nuclear14/Mobs/Robots/protectron-builder.rsi
     layers:
-    - state: protectron_builder
+    - state: icon
       map: ["movement"]
-    - state: protectron_builder # change me
+    - state: icon
       map: ["enum.BorgVisualLayers.Light"]
       shader: unshaded
       visible: false
-    - state: protectron_builder # change me
+    - state: icon
       shader: unshaded
       map: ["light"]
       visible: false
   - type: SpriteMovement
     movementLayers:
       movement:
-        state: protectron_builder # change me
+        state: walking
     noMovementLayers:
       movement:
-        state: protectron_builder # change me
+        state: icon
   - type: BorgChassis
     maxModules: 4
     moduleWhitelist:
@@ -70,39 +84,314 @@
       - BorgModuleGeneric
       - BorgModuleCargo
       - BorgModuleEngineering
-    hasMindState: protectron_common_on
-    noMindState: protectron_common_off
+    hasMindState: on
+    noMindState: off
   # - type: Construction
     # node: mining
-  # - type: IntrinsicRadioTransmitter
-    # channels:
-    # - Supply
-    # - Binary
-    # - Common
-    # - Science
-  # - type: ActiveRadio
-    # channels:
-    # - Supply
-    # - Binary
-    # - Common
-    # - Science
-  # - type: AccessReader
-    # access: [["Cargo"], ["Salvage"], ["Command"], ["Research"]]
   - type: Inventory
     templateId: borgTall
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Friendly Protectron Builder
+    description: |
+      Do as your masters say with a literal but reasonable level of logic.
     
+
+- type: entity
+  parent: N14RobotProtectron
+  id: N14RobotProtectronFire
+  name: protectron firefighter
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/protectron-fire.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: walking
+    noMovementLayers:
+      movement:
+        state: icon
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Friendly Protectron Firefighter
+    description: |
+      Do as your masters say with a literal but reasonable level of logic.
+        
+- type: entity
+  parent: N14RobotProtectron
+  id: N14RobotProtectronPolice
+  name: protectron police officer
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/protectron-police.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: walking
+    noMovementLayers:
+      movement:
+        state: icon
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Friendly Protectron Police
+    description: |
+      Do as your masters say with a literal but reasonable level of logic.
+        
+# Handy Gutsy
+- type: entity
+  parent: N14BaseRobotChassis
+  id: N14RobotMrHandy
+  name: mr handy
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/mrhandyclaw.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon  # change me
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon # change me
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: walking
+    noMovementLayers:
+      movement:
+        state: icon
+  # - type: Construction
+    # node: cyborg
+  - type: Speech
+    speechVerb: Robotic
+  - type: Inventory
+    templateId: borgShort
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Friendly Mr Handy
+    description: |
+      Do as your masters say with a good amount of logic.
     
-# this is how you give it modules and a cell, need variants for each that are empty and filled
+- type: entity
+  parent: N14RobotMrHandy
+  id: N14RobotMrHandySaw
+  name: mr handy
+  suffix: saw
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/mrhandysaw.rsi
+    
+- type: entity
+  parent: N14RobotMrHandy
+  id: N14RobotMrHandyGun
+  name: mr handy
+  suffix: gun
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/mrhandygun.rsi
+    
+- type: entity
+  parent: N14RobotMrHandy
+  id: N14RobotMrGutsy
+  name: mr gutsy
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/mrhandygutsy.rsi
+  - type: BorgChassis
+    maxModules: 6
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+    hasMindState: on
+    noMindState: off
+    
+# Faction Specific Robots
+## Vault
+- type: entity
+  parent: N14RobotMrHandy
+  id: N14RobotMrHandyVault
+  suffix: player, vault
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Vault
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - VaultCommon
+    - VaultCommand
+    - VaultEngineering
+    - VaultMedical
+    - VaultScience
+    - VaultSecurity
+  - type: ActiveRadio
+    channels:
+    - VaultCommon
+    - VaultCommand
+    - VaultEngineering
+    - VaultMedical
+    - VaultScience
+    - VaultSecurity
+  # - type: AccessReader
+    # access: [["VaultOverseer"]
+  - type: Access
+    enabled: false
+    groups:
+    - VaultOverseer
+    
+- type: entity
+  parent: N14RobotMrHandySaw
+  id: N14RobotMrHandySawVault
+  suffix: player, vault, saw
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Vault
+  # - type: IntrinsicRadioTransmitter
+    # channels:
+    # - VaultCommon
+    # - VaultCommand
+    # - VaultEngineering
+    # - VaultMedical
+    # - VaultScience
+    # - VaultSecurity
+  # - type: ActiveRadio
+    # channels:
+    # - VaultCommon
+    # - VaultCommand
+    # - VaultEngineering
+    # - VaultMedical
+    # - VaultScience
+    # - VaultSecurity
+  # - type: AccessReader
+    # access: [["VaultOverseer"]
+  - type: Access
+    enabled: false
+    groups:
+    - VaultOverseer
+    
+## BOS Midwest
+- type: entity
+  id: N14RobotBOSMidwestBase # for inheritance only
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BrotherhoodMidwest
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - BrotherhoodMidwest
+  - type: ActiveRadio
+    channels:
+    - BrotherhoodMidwest
+  # - type: AccessReader
+    # access: [["BOSMidwest"]
   # - type: ContainerFill
     # containers:
       # borg_brain:
         # - PositronicBrain
       # borg_module:
-        # - BorgModuleOperative
-        # - BorgModuleL6C
-        # - BorgModuleEsword
-  # - type: ItemSlots
-    # slots:
-      # cell_slot:
-        # name: power-cell-slot-component-slot-name-default
-        # startingItem: PowerCellHyper
+        # - BorgModuleService
+        # - BorgModuleMusique
+        # - BorgModuleGardening
+        # - BorgModuleHarvesting
+        # - BorgModuleFireExtinguisher
+        # - BorgModuleRadiationDetection
+        # - BorgModuleTool
+        # - BorgModuleSyndicateWeapon
+  - type: Access
+    enabled: false
+    groups:
+    - BOSMidwest
+    
+- type: entity
+  parent: [N14RobotMrHandy, N14RobotBOSMidwestBase]
+  id: N14RobotMrHandyBOSMidwest
+  suffix: player, BOS Midwest
+    
+- type: entity
+  parent: [N14RobotMrHandySaw, N14RobotBOSMidwestBase]
+  id: N14RobotMrHandySawBOSMidwest
+  suffix: player, BOS Midwest, saw
+    
+- type: entity
+  parent: [N14RobotMrGutsy, N14RobotBOSMidwestBase]
+  id: N14RobotMrGutsyBOSMidwest
+  suffix: player, BOS Midwest, gutsy
+    
+## BOS Washington
+- type: entity
+  id: N14RobotBOSWashingtonBase # for inheritance only
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BrotherhoodWashington
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - BrotherhoodWashington
+  - type: ActiveRadio
+    channels:
+    - BrotherhoodWashington
+  # - type: AccessReader
+    # access: [["BOSWashington"]
+  # - type: ContainerFill
+    # containers:
+      # borg_brain:
+        # - PositronicBrain
+      # borg_module:
+        # - BorgModuleService
+        # - BorgModuleMusique
+        # - BorgModuleGardening
+        # - BorgModuleHarvesting
+        # - BorgModuleFireExtinguisher
+        # - BorgModuleRadiationDetection
+        # - BorgModuleTool
+        # - BorgModuleSyndicateWeapon
+  - type: Access
+    enabled: false
+    groups:
+    - BOSWashington
+    
+- type: entity
+  parent: [N14RobotMrHandy, N14RobotBOSWashingtonBase]
+  id: N14RobotMrHandyBOSWashington
+  suffix: player, BOS Washington
+    
+- type: entity
+  parent: [N14RobotMrHandySaw, N14RobotBOSWashingtonBase]
+  id: N14RobotMrHandySawBOSWashington
+  suffix: player, BOS Washington, saw
+    
+- type: entity
+  parent: [N14RobotMrGutsy, N14RobotBOSWashingtonBase]
+  id: N14RobotMrGutsyBOSWashington
+  suffix: player, BOS Washington, gutsy

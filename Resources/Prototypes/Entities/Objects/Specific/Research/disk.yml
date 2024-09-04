@@ -3,14 +3,15 @@
   id: ResearchDisk
   name: research point disk (1000)
   description: A disk for the R&D server containing 1000 points.
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Specific/Research/researchdisk.rsi
     state: icon
   - type: ResearchDisk
-  - type: GuideHelp
-    guides:
-    - Science
+#  - type: GuideHelp
+#    guides:
+#    - Science
   - type: EmitSoundOnPickup
     sound: /Audio/SimpleStation14/Items/Handling/disk_pickup.ogg
   - type: EmitSoundOnDrop
@@ -23,6 +24,7 @@
   id: ResearchDisk5000
   name: research point disk (5000)
   description: A disk for the R&D server containing 5000 points.
+  noSpawn: true
   components:
   - type: ResearchDisk
     points: 5000
@@ -32,6 +34,7 @@
   id: ResearchDisk10000
   name: research point disk (10000)
   description: A disk for the R&D server containing 10000 points.
+  noSpawn: true
   components:
   - type: ResearchDisk
     points: 10000
@@ -42,6 +45,7 @@
   name: research point disk
   suffix: DEBUG, DO NOT MAP
   description: A disk for the R&D server containing all the points you could ever need.
+  noSpawn: true
   components:
   - type: ResearchDisk
     unlockAllTech: true
@@ -51,6 +55,7 @@
   id: TechnologyDisk
   name: technology disk
   description: A disk for the R&D server containing research technology.
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Misc/module.rsi
@@ -72,6 +77,7 @@
   parent: TechnologyDisk
   id: TechnologyDiskRare
   suffix: rare.
+  noSpawn: true
   components:
   - type: TechnologyDisk
     tierWeightPrototype: RareTechDiskTierWeights

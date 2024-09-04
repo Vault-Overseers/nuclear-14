@@ -28,6 +28,8 @@
     proto: N14ShellShotgun12
     soundInsert:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: shotgun
@@ -59,6 +61,8 @@
     soundInsert:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
   - type: Wieldable
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: combat shotgun
@@ -89,7 +93,7 @@
     minAngle: 23
     maxAngle: 104
     angleIncrease: 4
-    angleDecay: 16  
+    angleDecay: 16
     fireRate: 2
     selectedMode: FullAuto
     availableModes:
@@ -119,12 +123,14 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: caravan shotgun
   parent: BaseWeaponShotgun
   id: N14WeaponCaravanShotgun
-  description: The perfect shotgun for a long jorney. works well for hunting brahmins, geckos and fiends, uses 20 gauge shells.
+  description: The perfect shotgun for a long journey. works well for hunting brahmins, geckos and fiends, uses 20 gauge shells.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/caravan_shotgun.rsi
@@ -150,6 +156,8 @@
     soundInsert:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
     proto: N14ShellShotgun20
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: lever action shotgun
@@ -181,16 +189,18 @@
     minAngle: 23
     maxAngle: 104
     angleIncrease: 4
-    angleDecay: 16  
+    angleDecay: 16
     fireRate: 1
     soundGunshot:
       collection: N14LeverShotgunGunshot
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: riot shotgun
   parent: BaseItem
   id: N14WeaponRiotShotgun
-  description: A compact semi automatic shotgun used by the police forces of the pre war, chambered in 20 gauge shells.
+  description: A compact semi automatic shotgun used by pre-war police forces, chambered in 20 gauge shells.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/riot_shotgun.rsi
@@ -215,7 +225,7 @@
     minAngle: 23
     maxAngle: 104
     angleIncrease: 4
-    angleDecay: 16  
+    angleDecay: 16
     fireRate: 2
     selectedMode: SemiAuto
     availableModes:
@@ -245,3 +255,5 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: FollowDistance
+    backStrength: 5
