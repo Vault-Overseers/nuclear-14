@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Numerics;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.Maps;
@@ -27,7 +29,6 @@ public sealed class WeatherSystem : SharedWeatherSystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
