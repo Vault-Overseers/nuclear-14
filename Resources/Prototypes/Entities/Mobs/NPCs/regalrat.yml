@@ -112,13 +112,21 @@
     nameSegments:
     - RegalRatNameKingdom
     - RegalRatNameTitle
-  - type: GuideHelp
-    guides:
-    - MinorAntagonists
+  # - type: GuideHelp
+    # guides:
+    # - MinorAntagonists
   - type: Grammar
     attributes:
       gender: male
   - type: PotentialPsionic # Nyano
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Mouse
+    understands:
+    - GalacticCommon
+    - Mouse
+  - type: CanWalk
 
 - type: entity
   id: MobRatKingBuff
@@ -152,9 +160,9 @@
     speedModifierThresholds:
       200: 0.7
       250: 0.5
-  - type: GuideHelp
-    guides:
-    - MinorAntagonists
+  # - type: GuideHelp
+    # guides:
+    # - MinorAntagonists
 
 - type: entity
   name: Rat Servant
@@ -163,6 +171,8 @@
   description: He's da mini rat. He don't make da roolz.
   noSpawn: true #Must be configured to a King or the AI breaks.
   components:
+  - type: Carriable
+    freeHandsRequired: 1
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
@@ -282,13 +292,22 @@
     isBoss: false
   - type: Speech
     speechVerb: SmallMob
-  - type: GuideHelp
-    guides:
-    - MinorAntagonists
+  # - type: GuideHelp
+    # guides:
+    # - MinorAntagonists
   - type: FelinidFood # Nyanotrasen - Felinid, ability to eat rat, see Content.Server/Nyanotrasen/Abilities/Felinid/FelinidSystem.cs
   - type: Food
   - type: Item
     size: Tiny # Delta V - Make them eatable and pickable.
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - GalacticCommon
+    - Mouse
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Mouse_burning
 
 - type: weightedRandomEntity
   id: RatKingLoot

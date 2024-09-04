@@ -1,0 +1,308 @@
+# Snow
+- type: biomeTemplate
+  id: Wastes # Similar to snow.... but wasted
+  layers:
+    # Sparse vegetation
+    - !type:BiomeDecalLayer
+      allowedTiles:
+        - FloorWasteland
+        - FloorDirtNew
+      divisions: 2
+      threshold: -0.50
+      noise:
+        seed: 0
+        noiseType: Cellular
+        frequency: 2
+      decals:
+        - grasssnowa1
+        - grasssnowa2
+        - grasssnowa3
+        - grasssnowb1
+        - grasssnowb2
+        - grasssnowb3
+        - grasssnowc1
+        - grasssnowc2
+        - grasssnowc3
+        - Drought1
+        - Drought2
+        - Drought3
+        - Drought4
+        - Drought5
+        - Drought6
+        - Drought7
+        - Drought8
+        - Drought9
+        - Drought10
+        - Drought11
+        - Drought12
+        - Drought13
+        - Drought14
+        - Drought15
+        - Drought16
+        - Drought17
+        - Drought18
+        - Drought19
+        - Drought20
+        - Drought21
+        - Drought22
+        - Drought23
+        - Drought24
+        - Drought25
+        - Drought26
+        - Drought27
+        - Drought28
+        - Drought29
+        - Drought30
+        - Drought32
+      color: '#efb34194'
+    # Dense, bland grass
+    - !type:BiomeDecalLayer
+      allowedTiles:
+        - FloorWasteland
+        - FloorDirtNew
+      divisions: 1
+      threshold: -0.15
+      noise:
+        seed: 0
+        noiseType: Cellular
+        frequency: 1
+        fractalType: FBm
+        octaves: 5
+        lacunarity: 2
+        gain: 1
+        cellularDistanceFunction: Euclidean
+        cellularReturnType: Distance2
+      decals:
+        - grasssnow
+        - grasssnow01
+        - grasssnow02
+        - grasssnow03
+        - grasssnow04
+        - grasssnow05
+        - grasssnow06
+        - grasssnow07
+        - grasssnow08
+        - grasssnow09
+        - grasssnow10
+        - grasssnow11
+        - grasssnow12
+        - grasssnow13
+      color: '#efb34194'
+    # Little bit of coloured grass
+    - !type:BiomeDecalLayer
+      allowedTiles:
+        - FloorWasteland
+        - FloorDirtNew
+      divisions: 1
+      threshold: -0.0
+      noise:
+        seed: 0
+        noiseType: Cellular
+        frequency: 2
+        fractalType: None
+        cellularDistanceFunction: Euclidean
+        cellularReturnType: Distance2
+      decals:
+        - bushsnowa1
+        - bushsnowa2
+        - bushsnowa3
+        - bushsnowb3
+        - bushsnowb2
+        - bushsnowb3
+      color: '#efb34194'
+    # Tall grass, dead plants and branches
+    - !type:BiomeDecalLayer
+      allowedTiles:
+        - FloorWasteland
+        - FloorDirtNew
+      divisions: 1
+      threshold: -0.0
+      noise:
+        seed: 0
+        noiseType: Cellular
+        frequency: 2
+        fractalType: None
+        cellularDistanceFunction: Euclidean
+        cellularReturnType: Distance2
+      decals:
+        - FloraBranchBrushwood
+        - FloraBranchBrushwoodAlt
+        - FloraTallGrass1
+        - FloraTallGrass2
+        - FloraTallGrass3
+        - FloraTallGrass4
+        - FloraTallGrass5
+        - FloraTallGrass6
+        - FloraTallGrass7
+        - FloraTallGrass8
+        - FloraDeadBroc
+        - FloraDeadXander
+        - FloraDeadMutfruit
+        - FloraDeadFerocactus
+        - FloraDeadAgave
+    # Little bit of basalt
+    - !type:BiomeDecalLayer
+      allowedTiles:
+        - FloorWasteland
+      divisions: 1
+      threshold: 0.25
+      noise:
+        seed: 0
+        noiseType: Cellular
+        frequency: 2
+        fractalType: None
+        cellularDistanceFunction: Euclidean
+        cellularReturnType: Distance2
+      decals:
+        - Basalt1
+        - Basalt2
+        - Basalt3
+        - Basalt5
+        - Basalt6
+        - Basalt7
+        - Basalt8
+    # Trees and gatherable plants combined for now
+    - !type:BiomeEntityLayer
+      threshold: 0.7
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        frequency: 2
+      allowedTiles:
+        - FloorWasteland
+      entities:
+        - FloraTreeStump
+        - FloraRockSolid01
+        - FloraRockSolid02
+        - FloraRockSolid03
+        - N14FloraDesertTree1
+        - N14FloraDesertTree2
+        - N14FloraDesertTree3
+        - N14FloraDesertTree4
+        - FloraTreeStump
+        - FloraRockSolid01
+        - FloraRockSolid02
+        - FloraRockSolid03
+        - N14FloraDesertTree1
+        - N14FloraDesertTree2
+        - N14FloraDesertTree3
+        - N14FloraDesertTree4
+        - N14WastelandFloraWildAgave
+        - N14WastelandFloraWildBananaYucca
+        - N14WastelandFloraWildBarrelCactus
+        - N14WastelandFloraWildBarrelCactus
+        - N14WastelandFloraWildBuffaloGourd
+        - N14WastelandFloraWildBroc
+        - N14WastelandFloraWildCotton
+        - N14WastelandFloraWildCoyote
+        - N14WastelandFloraWildMesquite
+        - N14WastelandFloraWildMutfruit
+        - N14WastelandFloraWildPinyon
+        - N14WastelandFloraWildPricklypear
+        - N14WastelandFloraWildRazorgrain
+        - N14WastelandFloraWildTato
+        - N14WastelandFloraWildXander
+        - SpawnPointWave
+        - N14FloraLog1
+        - N14FloraLog3
+    - !type:BiomeEntityLayer
+      threshold: 0.7
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        frequency: 2
+      allowedTiles:
+        - FloorDirtNew
+      entities:
+        - N14FloraTreeBald
+        - N14FloraTreePine
+        - N14FloraTreeDead1
+        - N14FloraTreeDead2
+        - N14WastelandFloraWildTato
+        - N14WastelandFloraWildXander
+        - N14WastelandFloraWildBuffaloGourd
+        - N14WastelandFloraWildBroc
+        - N14WastelandFloraWildCotton
+        - N14WastelandFloraWildMutfruit
+        - N14WastelandFloraWildPinyon
+        - FloraTreeStump
+        - FloraRockSolid01
+        - FloraRockSolid02
+        - FloraRockSolid03
+        - N14FloraLog1
+        - N14FloraLog3
+    - !type:BiomeEntityLayer
+      threshold: 0.5
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        frequency: 4
+      allowedTiles:
+        - FloorDirtNew
+      entities:
+        - N14FloraTreeBald
+        - N14FloraTreePine
+        - N14FloraTreeDead1
+        - N14FloraTreeDead2
+    # Loot Things. Split later into junk lootable/growing gatherable
+    # - !type:BiomeEntityLayer
+      # threshold: 0.8
+      # noise:
+        # seed: 2
+        # noiseType: OpenSimplex2
+        # fractalType: FBm
+        # frequency: 1
+      # allowedTiles:
+        # - FloorWasteland
+      # entities:
+        # - N14JunkPile1Refilling1
+        # - N14JunkPile1Refilling2
+        # - N14JunkPile1Refilling3
+        # - N14JunkPile1Refilling4
+        # - N14JunkPile1Refilling5
+        # - N14JunkPile1Refilling6
+        # - N14JunkPile1Refilling7
+        # - N14JunkPile1Refilling8
+        # - N14JunkPile1Refilling9
+        # - N14JunkPile1Refilling10
+        # - N14JunkPile1Refilling11
+        # - N14JunkPile1Refilling12
+    # Rock formations
+    # - !type:BiomeEntityLayer
+      # allowedTiles:
+        # - FloorWasteland
+      # threshold: -0.15
+      # noise:
+        # seed: 0
+        # noiseType: Cellular
+        # frequency: 0.025
+        # lacunarity: 2
+        # fractalType: FBm
+        # octaves: 5
+        # gain: 1
+        # cellularDistanceFunction: Euclidean
+        # cellularReturnType: Distance2
+      # entities:
+        # - WallRock
+    - !type:BiomeDummyLayer
+      id: Loot
+    - !type:BiomeTileLayer
+      threshold: -1.0
+      tile: FloorWasteland
+    - !type:BiomeTileLayer
+      threshold: 0.6
+      tile: FloorDirtNew
+      noise:
+        seed: 0
+        frequency: 0.02
+        fractalType: None
+    - !type:BiomeTileLayer
+      threshold: 0.9
+      tile: WaterRiver
+      noise:
+        seed: 0
+        frequency: 0.02
+        fractalType: None

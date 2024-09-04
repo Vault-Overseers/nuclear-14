@@ -1,0 +1,69 @@
+- type: entity
+  id: BaseGrenadeProjectile
+  name: grenade
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 6
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 2 # max 30 per tile
+    intensitySlope: 1
+    totalIntensity: 1 # 60 total damage to distribute over tiles
+    maxTileBreak: 1
+
+- type: entity
+  id: GrenadeProjectile
+  name: grenade
+  parent: BaseGrenadeProjectile
+  noSpawn: true
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 4 # max 30 per tile
+    intensitySlope: 5
+    totalIntensity: 6 # 60 total damage to distribute over tiles
+    maxTileBreak: 0
+
+
+- type: entity
+  id: FireGrenadeProjectile
+  name: fire grenade
+  parent: BaseGrenadeProjectile
+  noSpawn: true
+  components:
+  - type: IgniteOnCollide
+    fireStacks: 10
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 3 # max 30 per tile
+    intensitySlope: 3
+    totalIntensity: 4 # 60 total damage to distribute over tiles
+    maxTileBreak: 0
+
+#Missiles
+
+- type: entity
+  id: N14ProjectileMissile
+  name: Missile
+  parent: BaseBulletTrigger
+  noSpawn: true
+  description: An explosive missile.
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 8
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 6 # max 30 per tile
+    intensitySlope: 6
+    totalIntensity: 10 # 60 total damage to distribute over tiles
+    maxTileBreak: 5

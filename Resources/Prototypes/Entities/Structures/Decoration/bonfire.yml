@@ -3,6 +3,7 @@
   parent: BaseStructure
   name: bonfire
   description: What can be better then late evening under the sky with guitar and friends.
+  noSpawn: true
   components:
   - type: Sprite
     noRot: true
@@ -23,23 +24,21 @@
           !type:DamageTrigger
           damage: 50
         behaviors:
-          - !type:DoActsBehavior
-        acts: [ "Destruction" ]
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
   - type: AmbientSound
     volume: -5
     range: 5
     sound:
       path: /Audio/Ambience/Objects/fireplace.ogg
   - type: AlwaysHot
-  - type: Tag
-    tags:
-      - NoPaint
 
 - type: entity
   id: LegionnaireBonfire
   parent: Bonfire
   name: legionnaire bonfire
   description: There, in the land of lava and ash, place to to cook marshmallow and potato.
+  noSpawn: true
   components:
   - type: Sprite
     layers:

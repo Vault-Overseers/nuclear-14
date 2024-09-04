@@ -1,0 +1,33 @@
+- type: job
+  id: NCRCadet
+  setPreference: true
+  name: job-name-ncr-cadet
+  description: job-description-ncr-cadet
+  playTimeTracker: NCRCadet
+  startingGear: NCRCadetGear
+  icon: "JobIconSecurityCadet"
+  supervisors: job-supervisors-ncr-nco
+  canBeAntag: false
+  access:
+  - NCR
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - NCR
+
+- type: startingGear
+  id: NCRCadetGear
+  equipment:
+    head: N14ClothingHeadHatNCRSidecap
+    back: N14ClothingBackpackNCRFilled
+    jumpsuit: N14ClothingUniformNCR
+    shoes: N14ClothingBootsLeather
+    pocket1: NCRtrooperloadoutkits
+    id: N14IDNCRDogtag
+  innerClothingSkirt: N14ClothingUniformNCR #placeholder
+  satchel: N14ClothingBackpackSatchelNCRFilled
+
+- type: playTimeTracker
+  id: NCRCadet

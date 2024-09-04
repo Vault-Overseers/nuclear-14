@@ -1,0 +1,37 @@
+- type: job
+  id: NCRSoldier
+  setPreference: true
+  name: job-name-ncr-soldier
+  description: job-description-ncr-soldier
+  playTimeTracker: NCRSoldier
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: NCR
+      time: 3600 # 1 hour
+  startingGear: NCRSoldierGear
+  icon: "JobIconWarden"
+  supervisors: job-supervisors-ncr-nco
+  canBeAntag: false
+  access:
+  - NCR
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - NCR
+
+- type: startingGear
+  id: NCRSoldierGear
+  equipment:
+    head: N14ClothingHeadHatNCRHelmetMetal
+    back: N14ClothingBackpackNCRFilled
+    jumpsuit: N14ClothingUniformNCR
+    shoes: N14ClothingBootsLeather
+    id: N14IDNCRDogtag
+    pocket1: NCRtrooperloadoutkits
+  innerClothingSkirt: N14ClothingUniformNCR #placeholder
+  satchel: N14ClothingBackpackSatchelNCRFilled
+
+- type: playTimeTracker
+  id: NCRSoldier

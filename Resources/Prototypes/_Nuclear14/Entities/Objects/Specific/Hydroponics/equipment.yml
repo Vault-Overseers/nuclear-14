@@ -1,0 +1,123 @@
+# Compost / Soil / Fertiliser
+
+- type: entity
+  parent: BaseStorageItem
+  id: N14Sack
+  name: sack
+  description: A woven sack for storing things.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/Sacks/daesack.rsi
+    state: icon
+    netsync: true
+    scale: 0.75, 0.75
+  - type: Item
+    size: Huge
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,7,4
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+  - type: Construction
+    graph: N14Sack
+    node: sack
+  - type: Tag
+    tags:
+    - ComposterCompatible
+      
+- type: entity
+  parent: N14Sack
+  id: N14Sack4
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/Sacks/daesack4.rsi
+    state: icon
+      
+- type: entity
+  parent: N14Sack
+  id: N14Sack5
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/Sacks/daesack5.rsi
+    state: icon
+      
+- type: entity
+  parent: BaseItem
+  id: N14SackCompost
+  name: compost sack
+  description: A sack for storing compost or dung
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/Sacks/daesack3.rsi
+    state: icon
+    netsync: true
+    scale: 0.75, 0.75
+  - type: Item
+    size: Huge
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 300
+  - type: DrainableSolution
+    solution: sack
+  - type: ExaminableSolution
+    solution: sack
+  - type: DrawableSolution
+    solution: sack
+  - type: RefillableSolution
+    solution: sack
+  - type: SolutionContainerManager
+    solutions:
+      sack:
+        maxVol: 100
+        canMix: true
+  - type: Construction
+    graph: N14SackCompost
+    node: sack
+  - type: Tag
+    tags:
+    - ComposterCompatible
+        
+- type: entity
+  parent: N14SackCompost
+  id: N14SackCompostFull
+  suffix: full
+  # components:
+  # - type: SolutionContainerManager
+    # solutions:
+      # sack:
+        # maxVol: 100
+        # reagents:
+        # - ReagentId: Fertilizer
+          # Quantity: 100
+      
+- type: entity
+  parent: N14SackCompost
+  id: N14SackFertilizer
+  name: fertilizer sack
+  description: A sack for storing fertilizer.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/Sacks/daesack2.rsi
+    state: icon
+    netsync: true
+    scale: 0.75, 0.75
+  - type: Construction
+    graph: N14SackFertilizer
+    node: sack
+    
+- type: entity
+  parent: N14SackFertilizer
+  id: N14SackFertilizerFull
+  suffix: full
+  name: fertilizer sack
+  description: A sack for storing fertilizer.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      sack:
+        maxVol: 100
+        reagents:
+        - ReagentId: Fertilizer
+          Quantity: 100

@@ -1,0 +1,38 @@
+- type: job
+  id: VaultEngineer
+  name: job-name-vault-engineer
+  description: job-description-vault-engineer
+  playTimeTracker: VaultEngineer
+  startingGear: VaultEngineerGear
+  alwaysUseSpawner: true
+  icon: "JobIconStationEngineer"
+  supervisors: job-supervisors-overseer
+  access:
+  - VaultDweller
+  - VaultEngineer
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Vault
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
+
+- type: startingGear
+  id: VaultEngineerGear
+  equipment:
+    head: ClothingHeadHatHardhatYellow
+    jumpsuit: N14ClothingUniformJumpsuitVault14
+    back: N14ClothingBackpackVaultDwellerFilled
+    shoes: N14ClothingBootsBlack
+    outerClothing: ClothingOuterVestHazard
+    id: N14VaultEngineerPDA
+    belt: N14ClothingBeltUtilityFilled
+    ears: N14ClothingHeadsetVaultEngineering
+
+- type: playTimeTracker
+  id: VaultEngineer

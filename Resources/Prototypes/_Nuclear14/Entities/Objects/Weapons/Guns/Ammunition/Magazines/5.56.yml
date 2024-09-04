@@ -1,0 +1,70 @@
+- type: entity
+  id: BaseMagazine556Rifle
+  name: "magazine (5.56mm)"
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Magazine556Rifle
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14Cartridge556Rifle
+    proto: N14Cartridge556Rifle
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/5.56/mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: Magazine556Rifle
+  name: "magazine (5.56mm)"
+  parent: BaseMagazine556Rifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge556Rifle
+
+- type: entity
+  id: LongMagazine556Rifle
+  name: "carbine magazine (5.56mm)"
+  parent: BaseMagazine556Rifle
+  components:
+  - type: Tag
+    tags:
+      - LongMagazine556Rifle
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge556Rifle
+    capacity: 35
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/5.56/mag2.rsi
+
+- type: entity
+  id: LMGMagazine556Rifle
+  name: "LMG magazine (5.56mm)"
+  parent: BaseMagazine556Rifle
+  components:
+  - type: Tag
+    tags:
+      - N14LMGMagazine556Rifle
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge556Rifle
+    capacity: 55
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/5.56/maglmg.rsi

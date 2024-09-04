@@ -1,0 +1,969 @@
+# See basemob.yml for parent entities
+#MARK: Molerat #Oh hi Mark.
+- type: entity
+  name: molerat
+  id: N14MobMolerat
+  parent: N14MobBaseHostile
+  description: Part mole, part rat, full pest. Watch out for the teeth.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: molerat
+      sprite: _Nuclear14/Mobs/Animals/molerat.rsi
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: Stamina
+    critThreshold: 60
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: molerat
+      Critical:
+        Base: molerat
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 3
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Molerat
+    offspring:
+    - id: N14MobMolerat
+      maxAmount: 1
+  - type: ReproductivePartner
+  - type: Tag
+    tags:
+    - Molerat
+
+#MARK: Feral Dog
+- type: entity
+  name: feral dog
+  id: N14MobDogFeral
+  parent: N14MobBaseHostile
+  description: A rabid dog. Not so friendly friend.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: dogferal-1
+      sprite: _Nuclear14/Mobs/Animals/dogferal.rsi
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5
+    baseSprintSpeed : 6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dogferal-1
+      Critical:
+        Base: dogferal-1
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 5
+  - type: Speech
+    speechVerb: Canine
+    speechSounds: Vulpkanin
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - DogFeral
+    offspring:
+    - id: N14MobDogFeral
+      maxAmount: 1
+  - type: ReproductivePartner
+  - type: Tag
+    tags:
+    - DogFeral
+
+#MARK: Gecko
+- type: entity
+  name: gecko
+  id: N14MobGecko
+  parent: N14MobBaseHostileScaley
+  description: Looks like a dinosaur. The bite is worse than the claws.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: gecko
+      sprite: _Nuclear14/Mobs/Animals/gecko.rsi
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.3
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: gecko
+      Critical:
+        Base: gecko
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      types:
+        Slash: 5
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatGecko
+      amount: 3
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-laid-egg-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Gecko
+    offspring:
+    - id: N14FoodEggGeckoFertilized
+      maxAmount: 3
+  - type: ReproductivePartner
+  - type: EggLayer
+    eggSpawn:
+    - id: N14FoodEggGecko
+  - type: Tag
+    tags:
+    - Gecko
+
+#MARK: Nightstalker Cub
+- type: entity
+  name: nightstalker cub
+  id: N14MobNightstalkerCub
+  parent: N14MobBaseHostile
+  description: Is it a coyote? Why does it have a rattler...This one is small
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: nightstalker
+      sprite: _Nuclear14/Mobs/Animals/nightstalkercub.rsi
+  - type: Bloodstream
+    bloodMaxVolume: 30
+    bloodReagent: WastelandBlood
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 4.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.3
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Critical
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      150: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: nightstalker
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 1
+      types:
+        Piercing: 4
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 2.5
+        reagents:
+        - ReagentId: NightstalkerVenom
+          Quantity: 2.5
+      udder:
+        maxVol: 5
+        reagents:
+        - ReagentId: NightstalkerVenom
+          Quantity: 5
+  - type: Speech
+    speechVerb: Canine
+    speechSounds: Vulpkanin
+  - type: Udder
+    reagentId: NightstalkerVenom
+    quantityPerUpdate: 1
+    growthDelay: 30
+    hungerUsage: 2
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: NightstalkerVenom
+        Quantity: 0.1
+
+#MARK: Nightstalker
+- type: entity
+  name: nightstalker
+  id: N14MobNightstalker
+  parent: N14MobBaseHostile
+  description: Is it a coyote? Why does it have a rattler...
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: nightstalker-1
+      sprite: _Nuclear14/Mobs/Animals/nightstalker.rsi
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: WastelandBlood
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Critical
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Critical
+      200: Dead
+  - type: Butcherable
+    spawned:
+    - id: N14MaterialNightstalkerPelt
+      amount: 1
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: nightstalker-1
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 3
+      types:
+        Piercing: 5
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 10
+        reagents:
+        - ReagentId: NightstalkerVenom
+          Quantity: 10
+      udder:
+        maxVol: 10
+        reagents:
+        - ReagentId: NightstalkerVenom
+          Quantity: 10
+  - type: Udder
+    reagentId: NightstalkerVenom
+    quantityPerUpdate: 1
+    growthDelay: 30
+    hungerUsage: 2
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: NightstalkerVenom
+        Quantity: 0.25
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 1.5
+  - type: Speech
+    speechVerb: Canine
+    speechSounds: Vulpkanin
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-laid-egg-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Nightstalker
+    offspring:
+    - id: N14FoodEggNightstalkerFertilized
+      maxAmount: 3
+  - type: ReproductivePartner
+  - type: EggLayer
+    eggSpawn:
+    - id: N14FoodEggNightstalker
+  - type: Tag
+    tags:
+    - Nightstalker
+
+#MARK: Yao Guai
+- type: entity
+  name: yao guai
+  id: N14MobYaoguai
+  parent: N14MobBaseHostile
+  description: An angry bear...but uglier, meaner and with bigger claws.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: yaoguai
+      sprite: _Nuclear14/Mobs/Animals/yaoguai.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.49
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      550: Dead
+  - type: Stamina
+    critThreshold: 250
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      275: 0.7
+      450: 0.5
+  - type: Butcherable
+    spawned:
+    - id: N14MaterialYaoguaiHide
+      amount: 1
+    - id: N14FoodMeatYaoguai
+      amount: 2
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: yaoguai
+      Critical:
+        Base: yaoguai
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      types:
+        Slash: 15
+        Structural: 5
+    range: 1.25
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4.75
+  - type: NoSlip
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Yaoguai
+    offspring:
+    - id: N14MobYaoguai
+      maxAmount: 1
+  - type: ReproductivePartner
+  - type: Tag
+    tags:
+    - Yaoguai
+
+#MARK:Scaley Animals
+#MARK: Deathclaw
+- type: entity
+  name: deathclaw
+  id: N14MobDeathclaw
+  parent: N14MobBaseHostileScaley
+  description: Look at those claws.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: deathclaw
+      sprite: _Nuclear14/Mobs/Animals/deathclaw.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.4 # TODO: Test this can fit through doors
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Critical
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Critical
+      600: Dead
+  - type: Stamina
+    critThreshold: 250
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      250: 0.7
+      400: 0.5
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: deathclaw
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+      collection: AlienClaw
+    angle: 60
+    animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 15
+        Structural: 5
+    range: 1.75
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 5
+  - type: Hands
+  - type: Puller
+  - type: Tool
+    speed: 1.5
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Insulated
+  - type: GhostRole
+    prob: 0.5
+    makeSentient: true
+    name: deathclaw
+    description: You're a smart killer. Use tactics to hunt and stalk.
+  - type: NoSlip
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-laid-egg-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Deathclaw
+    offspring:
+    - id: N14FoodEggDeathclawFertilized
+      maxAmount: 1
+  - type: ReproductivePartner
+  - type: EggLayer
+    eggSpawn:
+    - id: N14FoodEggDeathclaw
+  - type: Tag
+    tags:
+    - Deathclaw
+
+#MARK: Albino Deathclaw
+- type: entity
+  name: albino deathclaw
+  id: N14MobDeathclawAlbino
+  parent: N14MobDeathclaw
+  description: Look at those white claws.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: deathclawalbino
+      sprite: _Nuclear14/Mobs/Animals/deathclawalbino.rsi
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+      collection: AlienClaw
+    angle: 60
+    animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 22
+        Structural: 10
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      750: Critical
+      900: Dead
+  - type: Stamina
+    critThreshold: 350
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: deathclaw
+      Critical:
+        Base: dead # TODO: Crit sprite
+      Dead:
+        Base: dead
+
+- type: entity
+  name: deathclaw maid
+  id: N14MobDeathclawMaid
+  parent: N14MobDeathclaw
+  description: They put maid outfit on that thing?!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: maidclaw
+      sprite: _Nuclear14/Mobs/Animals/maidclaw.rsi
+  - type: Reproductive
+    breedChance: 0.15
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: maidclaw
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+
+#MARK: Metal Deathclaw
+- type: entity
+  name: metal deathclaw
+  id: N14MobDeathclawMetal
+  parent: N14MobDeathclawAlbino
+  description: They put armor on that thing?!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: deathclawmetal
+      sprite: _Nuclear14/Mobs/Animals/deathclawmetal.rsi
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+      collection: AlienClaw
+    angle: 60
+    animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 20
+        Structural: 10
+
+#MARK: Passive Animals
+#MARK: Brahmin
+- type: entity
+  name: brahmin
+  parent: MobCow
+  id: N14MobBrahmin
+  description: Moo? Wonder if I can eat that.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    scale: 1.5, 1.5
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: brahmin-2
+      sprite: _Nuclear14/Mobs/Animals/brahmin.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: brahmin-2
+      Dead:
+        Base: dead
+  - type: Stamina
+    critThreshold: 200
+  - type: Tag
+    tags:
+    - Brahmin
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatBrahmin
+      amount: 4
+    - id: N14MaterialBrahminHide
+      amount: 1
+      prob: 0.95
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 250
+        reagents:
+        - ReagentId: N14MilkBrahmin
+          Quantity: 30
+  - type: Udder
+    reagentId: N14MilkBrahmin
+    quantityperUpdate: 25
+    growthDelay: 60
+    hungerUsage: 10
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - N14Dung
+    chance: 0.5
+    intervalSeconds: 300
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Brahmin
+    offspring:
+    - id: N14MobBrahmin
+      maxAmount: 1
+  - type: ReproductivePartner
+
+#MARK: Bighorner
+- type: entity
+  name: bighorner
+  parent: N14MobBrahmin
+  id: N14MobBighorner
+  description: Fluffy but with horns.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: bighorner
+      sprite: _Nuclear14/Mobs/Animals/bighorner.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: bighorner
+      Dead:
+        Base: dead
+  - type: Stamina
+    critThreshold: 200
+  - type: Tag
+    tags:
+    - Bighorner
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatBighorner
+      amount: 4
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    angle: 60
+    animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 8
+        Slash: 2
+        Structural: 8
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 250
+        reagents:
+        - ReagentId: N14MilkBighorner
+          Quantity: 30
+  - type: Udder
+    reagentId: N14MilkBighorner
+    quantityperUpdate: 25
+    growthDelay: 90
+    hungerUsage: 7.5
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Bighorner
+    offspring:
+    - id: N14MobBighorner
+      maxAmount: 1
+  - type: ReproductivePartner
+
+#MARK: Radstag
+- type: entity
+  name: radstag
+  parent: N14MobBrahmin
+  id: N14MobRadstag
+  description: Stag? Raaaad
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: radstag
+      sprite: _Nuclear14/Mobs/Animals/radstag.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: radstag
+      Dead:
+        Base: dead
+  - type: Stamina
+    critThreshold: 200
+  - type: Tag
+    tags:
+    - Radstag
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadstag
+      amount: 4
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    angle: 60
+    animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 6
+        Slash: 2
+        Structural: 8
+  - type: SolutionContainerManager
+    solutions:
+      udder:
+        maxVol: 150
+        reagents:
+        - ReagentId: N14MilkRadstag
+          Quantity: 30
+  - type: Udder
+    reagentId: N14MilkRadstag
+    quantityperUpdate: 10
+    growthDelay: 40
+    hungerUsage: 5
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Radstag
+    offspring:
+    - id: N14MobRadstag
+      maxAmount: 1
+  - type: ReproductivePartner
+
+#MARK: Chicken
+- type: entity
+  parent: MobChicken
+  id: N14MobChicken
+  name: chicken
+  description: Cluck cluck.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: chicken
+      sprite: _Nuclear14/Mobs/Animals/chicken.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: chicken
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadchicken
+      amount: 1
+      prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-laid-egg-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Chicken
+    offspring:
+    - id: N14FoodEggChickenFertilized
+      maxAmount: 3
+  - type: ReproductivePartner
+  - type: EggLayer
+    eggSpawn:
+    - id: N14FoodEggChicken
+
+#MARK: Iguana
+- type: entity
+  parent: N14MobBaseSimple
+  id: N14MobIguana
+  name: iguana
+  description: Little green food...I mean friend.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: iguana
+      sprite: _Nuclear14/Mobs/Animals/iguana.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: iguana
+      Dead:
+        Base: dead
+  - type: Stamina
+    critThreshold: 20
+  # - type: Butcherable
+    # spawned:
+    # - id: N14FoodMeatRadchicken
+      # amount: 1
+      # prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+  # - type: Reproductive
+    # breedChance: 0.05
+    # birthPopup: reproductive-laid-egg-popup
+    # makeOffspringInfant: false
+    # partnerWhitelist:
+      # tags:
+      # - Chicken
+    # offspring:
+    # - id: N14FoodEggChickenFertilized
+      # maxAmount: 3
+  # - type: ReproductivePartner
+  # - type: EggLayer
+    # eggSpawn:
+    # - id: N14FoodEggChicken
+  - type: Item
+    size: Small
+  - type: HTN
+    rootTask:
+      task: MouseCompound

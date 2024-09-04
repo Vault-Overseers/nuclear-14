@@ -1,0 +1,23 @@
+- type: entity
+  id: N14CartridgePistol127
+  name: cartridge (12.7mm)
+  parent: BaseCartridgePistol
+  components:
+  - type: CartridgeAmmo
+    proto: N14Bullet127
+    soundEject:
+      collection: N14PistolCasingEject
+  - type: Tag
+    tags:
+      - Cartridge
+      - N14CartridgePistol127
+  - type: EmitSoundOnLand
+    sound:
+      collection: N14PistolCasingEject
+      params:
+        volume: -1
+  - type: EmitSoundOnCollide
+    sound:
+      collection: N14PistolCasingEject
+      params:
+        volume: -1

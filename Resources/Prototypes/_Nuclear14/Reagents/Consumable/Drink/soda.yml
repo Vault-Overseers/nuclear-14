@@ -1,0 +1,182 @@
+- type: reagent
+  parent: BaseSoda
+  id: NukaCola
+  name: reagent-name-nuka-cola
+  desc: reagent-desc-nuka-cola
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#362d1d"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.1
+
+- type: reagent
+  parent: BaseSoda
+  id: IrradiatedNukaCola
+  name: reagent-name-irradiated-nuka-cola
+  desc: reagent-desc-irradiated-nuka-cola
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#4a4a32"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 0.1
+            
+- type: reagent
+  parent: IrradiatedNukaCola
+  id: NukaColaQuantum
+  name: reagent-name-nuka-cola-quantum
+  desc: reagent-desc-nuka-cola-quantum
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#ACE5F2"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 0.1
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -1.0
+            Brute: -1.0
+            Airloss: -1.0
+            
+- type: reagent
+  parent: NukaColaQuantum
+  id: NukaColaQuartz
+  name: reagent-name-nuka-cola-quartz
+  desc: reagent-desc-nuka-cola-quartz
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#ACE5F2"
+            
+- type: reagent
+  parent: IrradiatedNukaCola
+  id: NukaColaClear
+  name: reagent-name-nuka-cola-clear
+  desc: reagent-desc-nuka-cola-clear
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#EEF9FC"
+
+- type: reagent
+  parent: IrradiatedNukaCola
+  id: NukaColaCherry
+  name: reagent-name-nuka-cola-cherry
+  desc: reagent-desc-nuka-cola-cherry
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#C02500"
+  
+- type: reagent
+  parent: IrradiatedNukaCola
+  id: NukaColaGrape
+  name: reagent-name-nuka-cola-grape
+  desc: reagent-desc-nuka-cola-grape
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#543AC1"
+
+- type: reagent
+  parent: IrradiatedNukaCola
+  id: NukaColaOrange
+  name: reagent-name-nuka-cola-orange
+  desc: reagent-desc-nuka-cola-orange
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#ff3c0e"
+
+- type: reagent
+  parent: IrradiatedNukaCola
+  id: NukaColaVictory
+  name: reagent-name-nuka-cola-victory
+  desc: reagent-desc-nuka-cola-victory
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#FF3E0E"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: -2
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 0.1
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -1.0
+            Brute: -1.0
+            Airloss: -1.0
+
+- type: reagent
+  parent: IrradiatedNukaCola
+  id: NukaColaYellow
+  name: reagent-name-nuka-cola-yellow
+  desc: reagent-desc-nuka-cola-yellow
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#EEF9FC"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 1
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 0.1
+      - !type:ChemVomit
+        probability: 0.25
+
+# Vim
+- type: reagent
+  parent: IrradiatedNukaCola
+  id: Vim
+  name: reagent-name-vim
+  desc: reagent-desc-vim
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#362d1d"
+  
+- type: reagent
+  parent: NukaColaQuantum
+  id: VimCaptainsblend
+  name: reagent-name-vim-captainsblend
+  desc: reagent-desc-vim-captainsblend
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#ACE5F2"
+  
+- type: reagent
+  parent: NukaCola
+  id: VimRefresh
+  name: reagent-name-vim-refresh
+  desc: reagent-desc-vim-refresh
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#C2F2AC"
+  
+- type: reagent
+  parent: NukaColaQuantum
+  id: VimQuartz
+  name: reagent-name-vim-quartz
+  desc: reagent-desc-vim-quartz
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#E5F2AC"

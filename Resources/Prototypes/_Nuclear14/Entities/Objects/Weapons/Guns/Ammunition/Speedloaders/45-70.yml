@@ -1,0 +1,82 @@
+- type: entity
+  id: N14BaseSpeedLoader45-70
+  name: "speed loader (45-70 gov)"
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - SpeedLoader45-70
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - N14Cartridge45-70
+    capacity: 6
+  - type: Sprite
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  id: SpeedLoader45-70
+  name: "speed loader (45-70 gov)"
+  parent: N14BaseSpeedLoader45-70
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge45-70
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Speedloaders/45_70loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-6
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: base
+    steps: 7
+    zeroVisible: false
+  - type: Appearance
+
+#TODO: Move this to a proper place, upstream it made by 'Cojoke' from Wizden
+- type: entity
+  id: BaseSpeedLoaderInternal4570
+  name: "speed loader internal"
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - SpeedLoaderInternal
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14Cartridge45-70
+    capacity: 10
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Speedloaders/45_70loadertube.rsi
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  id: SpeedLoader45-70Tube
+  name: "speed loader tube (45-70 gov)"
+  parent: BaseSpeedLoaderInternal4570
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge45-70
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-10
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: base
+    steps: 11
+    zeroVisible: false
+  - type: Appearance

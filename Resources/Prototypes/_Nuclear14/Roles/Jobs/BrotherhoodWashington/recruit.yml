@@ -1,0 +1,37 @@
+- type: job
+  id: BoSWashingtonRecruit
+  setPreference: true
+  name: job-name-bos-washington-recruit
+  description: job-description-bos-washington-recruit
+  playTimeTracker: BoSWashingtonRecruit
+  startingGear: BoSWashingtonRecruitGear
+  alwaysUseSpawner: true
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-bos-washington-recruit
+  canBeAntag: false
+  access:
+  - WashingtonInitiate
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodWashington
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
+
+- type: startingGear
+  id: BoSWashingtonRecruitGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitBOSRed
+    back: N14ClothingBackpackMilitary
+    shoes: N14ClothingBootsCombatFilled
+    id: N14IDBrotherhoodHolotag
+    outerClothing: N14ClothingOuterCombatArmorBOS
+    belt: ClothingBeltBoSWebbing
+
+- type: playTimeTracker
+  id: BoSWashingtonRecruit

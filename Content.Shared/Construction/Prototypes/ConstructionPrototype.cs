@@ -1,4 +1,4 @@
-﻿using Content.Shared.Construction.Conditions;
+using Content.Shared.Construction.Conditions;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -15,7 +15,7 @@ public sealed partial class ConstructionPrototype : IPrototype
     ///     Hide from the construction list
     /// </summary>
     [DataField("hide")]
-    public bool Hide = false;
+    public bool Hide = true;
 
     /// <summary>
     ///     Friendly name displayed in the construction GUI.

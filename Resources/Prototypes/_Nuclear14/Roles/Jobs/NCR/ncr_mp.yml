@@ -1,0 +1,40 @@
+- type: job
+  id: NCRMP
+  setPreference: true
+  name: job-name-ncr-mp
+  description: job-description-ncr-mp
+  playTimeTracker: NCRMP
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: NCR
+      time: 14400 # 4 hours
+  startingGear: NCRMPGear
+  icon: "JobIconSecurityOfficer"
+  supervisors: job-supervisors-ncr
+  canBeAntag: false
+  access:
+  - NCR
+  - NCRMP
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - NCR
+
+- type: startingGear
+  id: NCRMPGear
+  equipment:
+    head: N14ClothingHeadHatNCRHelmetMetalMilitaryPolice
+    back: N14ClothingBackpackNCRFilled
+    jumpsuit: N14ClothingMPUniformNCR
+    shoes: N14ClothingBootsLeather
+    belt: N14PoliceBaton
+    outerClothing: N14ClothingOuterNCRLightPouchedVest
+    pocket1: Handcuffs
+    id: N14IDNCRDogtagMP
+  innerClothingSkirt: N14ClothingMPUniformNCR #placeholder
+  satchel: N14ClothingBackpackSatchelNCRFilled
+
+- type: playTimeTracker
+  id: NCRMP

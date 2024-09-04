@@ -1,0 +1,45 @@
+- type: job
+  id: Overseer
+  name: job-name-overseer
+  description: job-description-overseer
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Vault
+      time: 36000 # 10 hours
+  playTimeTracker: Overseer
+  weight: 20
+  startingGear: OverseerGear
+  alwaysUseSpawner: true
+  icon: "JobIconCaptain"
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  canBeAntag: false
+  supervisors: job-supervisors-vault-overseer
+  accessGroups:
+  - VaultOverseer
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Vault
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
+
+- type: startingGear
+  id: OverseerGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitVault14
+    back: N14ClothingBackpackVaultOverseerFilled
+    shoes: N14ClothingBootsBlack
+    eyes: ClothingEyesGlassesSunglasses
+    id: N14VaultOverseerPDA
+    ears: N14ClothingHeadsetVaultCommand
+    pocket1: N14WeaponPistol10mm
+  innerClothingSkirt: N14ClothingUniformJumpsuitVault14
+
+- type: playTimeTracker
+  id: Overseer

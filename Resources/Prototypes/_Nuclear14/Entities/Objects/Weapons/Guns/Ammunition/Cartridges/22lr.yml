@@ -1,0 +1,23 @@
+- type: entity
+  id: N14CartridgePistol22
+  name: cartridge (.22lr)
+  parent: BaseCartridgePistol
+  components:
+  - type: CartridgeAmmo
+    proto: N14Bullet22
+    soundEject:
+      collection: N14PistolCasingEject
+  - type: Tag
+    tags:
+      - Cartridge
+      - N14CartridgePistol22
+  - type: EmitSoundOnLand
+    sound:
+      collection: N14PistolCasingEject
+      params:
+        volume: -1
+  - type: EmitSoundOnCollide
+    sound:
+      collection: N14PistolCasingEject
+      params:
+        volume: -1

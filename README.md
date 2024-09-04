@@ -1,5 +1,9 @@
-# Einstein Engines
+# Nuclear 14
+Nuclear 14 is the original Fallout fork on Space Station 14 created by Peptide90 in 2022 and a collection of other valuable contributors. It uses assets from various Fallout13 (F13)(SS13) forks as well as brand new assets created by our community. The location and theme of Nuclear14 differs from F13 for a variety of reasons but mostly to give people something new to experience rather than rehashing the old again. Thanks to the SS14 engine and our Upstream repository, Einstein Engines, we bring something highly modular to the community to enjoy. The codebase has been licensed as AGPLv3 so that the fork and its developments can be enjoyed by all.
 
+The SS13 remake curse and F13 curse have been broken, come check out the community on [discord here](https://discord.gg/4gGSWyNbQF) and consider contributing. Links to the official servers can be found on the discord too or via the launcher at ss14://game.nuclear14.com:1212
+
+# Einstein Engines
 <p align="center"><img src="https://raw.githubusercontent.com/Simple-Station/Einstein-Engines/master/Resources/Textures/Logo/splashlogo.png" width="512px" /></p>
 
 ---
@@ -12,14 +16,6 @@ Space Station 14 is inspired heavily by Space Station 13 and runs on [Robust Too
 
 As a hard fork, any code sourced from a different upstream cannot ever be merged directly here, and must instead be ported.
 All code present in this repository is subject to change as desired by the council of maintainers.
-
-## Official Server Policy
-
-**No official servers will ever be made for Einstein-Engines**.
-
-In order to prevent a potential conflict of interest, we will never open any server directly using the Einstein Engines codebase itself.
-Any server claiming to be an official representation of this fork is not endorsed in any way by this organization.
-We however would like to invite anyone wishing to create a server to make a fork of Einstein Engines.
 
 ## Links
 
@@ -41,27 +37,24 @@ We provide some scripts shown below to make the job easier.
 ### Build dependencies
 
 > - Git
-> - DOTNET SDK 7.0 or higher
-> - python 3.7 or higher
+> - .NET SDK 8.0.100
 
 
 ### Windows
 
 > 1. Clone this repository
-> 2. Run `RUN_THIS.py` to init submodules and download the engine, or run `git submodule update --init --recursive` in a terminal
-> 3. Run the `Scripts/bat/run1buildDebug.bat`
-> 4. Run the `Scripts/bat/run2configDev.bat` if you need other configurations run other config scripts
-> 5. Run both the `Scripts/bat/run3server.bat` and `Scripts/bat/run4client.bat`
-> 6. Connect to localhost and play
+> 2. Run `git submodule update --init --recursive` in a terminal to download the engine
+> 3. Run `Scripts/bat/buildAllDebug.bat` after making any changes to the source
+> 4. Run `Scripts/bat/runQuickAll.bat` to launch the client and the server
+> 5. Connect to localhost in the client and play
 
 ### Linux
 
 > 1. Clone this repository
-> 2. Run `RUN_THIS.py` to init submodules and download the engine, or run `git submodule update --init --recursive` in a terminal
-> 3. Run the `Scripts/sh/run1buildDebug.sh`
-> 4. Run the `Scripts/sh/run2configDev.sh` if you need other configurations run other config scripts
-> 5. Run both the `Scripts/sh/run3server.bat` and `scripts/sh/run4client.sh`
-> 6. Connect to localhost and play
+> 2. Run `git submodule update --init --recursive` in a terminal to download the engine
+> 3. Run `Scripts/bat/buildAllDebug.sh` after making any changes to the source
+> 4. Run `Scripts/bat/runQuickAll.sh` to launch the client and the server
+> 5. Connect to localhost in the client and play
 
 ### MacOS
 
@@ -70,12 +63,12 @@ We provide some scripts shown below to make the job easier.
 ## License
 
 Content contributed to this repository after commit 87c70a89a67d0521a56388e6b1c3f2cb947943e4 (`17 February 2024 23:00:00 UTC`) is licensed under the GNU Affero General Public License version 3.0 unless otherwise stated.
-See [LICENSE-AGPLv3](https://github.com/Simple-Station/Einstein-Engines/blob/master/LICENSE-AGPLv3.txt).
+See [LICENSE-AGPLv3](./LICENSE-AGPLv3.txt).
 
 Content contributed to this repository before commit 87c70a89a67d0521a56388e6b1c3f2cb947943e4 (`17 February 2024 23:00:00 UTC`) is licensed under the MIT license unless otherwise stated.
-See [LICENSE-MIT](https://github.com/Simple-Station/Einstein-Engines/blob/master/LICENSE-MIT.txt).
+See [LICENSE-MIT](./LICENSE-MIT.txt).
 
 Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and the copyright in the metadata file.
-[Example](https://github.com/Simple-Station/Einstein-Engines/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
+[Example](./Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
 
 Note that some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.

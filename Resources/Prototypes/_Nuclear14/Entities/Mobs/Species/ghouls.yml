@@ -1,0 +1,192 @@
+- type: entity
+  save: false
+  name: ghoul
+  id: N14BaseMobGhoul
+  parent: BaseMobHuman
+  noSpawn: true
+  components:
+  - type: HumanoidAppearance
+    species: Ghoul
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/Ghoul/parts.rsi
+    state: full
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Species/Ghoul/parts.rsi
+    netsync: false
+    noRot: true
+    drawdepth: Mobs
+    layers:
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - shader: StencilClear
+        sprite: _Nuclear14/Mobs/Species/Ghoul/parts.rsi
+        state: l_leg
+      - shader: StencilMask
+        map: [ "enum.HumanoidVisualLayers.StencilMask" ]
+        sprite: Mobs/Customization/masking_helpers.rsi
+        state: female_full
+        visible: false
+      - map: [ "jumpsuit" ]
+      - map: [ "enum.HumanoidVisualLayers.LHand" ]
+      - map: [ "enum.HumanoidVisualLayers.RHand" ]
+      - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+      - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+      - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - map: [ "id" ]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "ears" ]
+      - map: [ "outerClothing" ]
+      - map: [ "eyes" ]
+      - map: [ "belt" ]
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Ghoul
+  - type: PassiveDamage # Ghoul passive regen. Assuming one damage type, comes out to about 100 damage in 5 minutes. Not enough to really affect during combat, but sure makes them need a lot less stimpaks.
+    allowedStates:
+    - Alive
+    damageCap: 100
+    damage:
+      types:
+        Heat: -1
+        Radiation: 0.06 # a little less than ~50 rads per hour. Chem dependant
+      groups:
+        Brute: -1
+        Toxin: -0.1
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      150: Dead
+  - type: Special
+
+- type: entity
+  save: false
+  parent: MobHumanDummy
+  id: N14MobGhoulDummy
+  noSpawn: true
+  components:
+  - type: HumanoidAppearance
+    species: Ghoul
+
+
+# Glowing
+- type: entity
+  save: false
+  name: ghoul
+  id: N14BaseMobGhoulGlowing
+  parent: BaseMobHuman
+  noSpawn: true
+  components:
+  - type: HumanoidAppearance
+    species: GhoulGlowing
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
+    state: full
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
+    netsync: false
+    noRot: true
+    drawdepth: Mobs
+    layers:
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - shader: StencilClear
+        sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
+        state: l_leg
+      - shader: StencilMask
+        map: [ "enum.HumanoidVisualLayers.StencilMask" ]
+        sprite: Mobs/Customization/masking_helpers.rsi
+        state: female_full
+        visible: false
+      - map: [ "jumpsuit" ]
+      - map: [ "enum.HumanoidVisualLayers.LHand" ]
+      - map: [ "enum.HumanoidVisualLayers.RHand" ]
+      - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+      - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+      - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - map: [ "id" ]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "ears" ]
+      - map: [ "outerClothing" ]
+      - map: [ "eyes" ]
+      - map: [ "belt" ]
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: GhoulGlowing
+  - type: PassiveDamage #Little more regen, +25% more.
+    allowedStates:
+    - Alive
+    damageCap: 100
+    damage:
+      types:
+        Heat: -1.25
+        Radiation: 0.08
+      groups:
+        Brute: -1.25
+        Toxin: -0.125
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      150: Dead
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#4CBB17FF"
+  - type: RadiationSource
+    intensity: 0.5
+    slope: 0.25
+  - type: Special
+
+- type: entity
+  save: false
+  parent: MobHumanDummy
+  id: N14MobGhoulGlowingDummy
+  noSpawn: true
+  components:
+  - type: HumanoidAppearance
+    species: GhoulGlowing
