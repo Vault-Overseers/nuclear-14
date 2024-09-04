@@ -58,7 +58,7 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
             if (magnitude <= 0.005f)
             {
                 recoil.CurrentKick = Vector2.Zero;
-                var offset = recoil.BaseOffset + recoil.CurrentKick + follow.Offset; // NC-Changes
+                var offset = recoil.BaseOffset + recoil.CurrentKick + (follow.Enabled ? follow.Offset : Vector2.Zero); // NC-Changes
                 _eye.SetOffset(uid, offset, eye); // NC-Changes
             }
             else // Continually restore camera to 0.
@@ -74,7 +74,7 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
 
                 recoil.CurrentKick = new Vector2(x, y);
 
-                var offset = recoil.BaseOffset + recoil.CurrentKick + follow.Offset; // NC-Changes
+                var offset = recoil.BaseOffset + recoil.CurrentKick + (follow.Enabled ? follow.Offset : Vector2.Zero); // NC-Changes
                 _eye.SetOffset(uid, offset, eye);
             }
         }
