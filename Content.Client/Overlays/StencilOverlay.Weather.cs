@@ -12,6 +12,8 @@ public sealed partial class StencilOverlay
 
     private void DrawWeather(in OverlayDrawArgs args, WeatherPrototype weatherProto, float alpha, Matrix3x2 invMatrix)
     {
+        if (weatherProto.Sprite == null)
+            return;
         var worldHandle = args.WorldHandle;
         var mapId = args.MapId;
         var worldAABB = args.WorldAABB;
