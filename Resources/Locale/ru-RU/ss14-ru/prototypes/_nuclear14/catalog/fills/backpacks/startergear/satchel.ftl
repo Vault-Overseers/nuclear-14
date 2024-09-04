@@ -18,3 +18,5 @@ ent-N14ClothingBackpackSatchelSheriffFilled = { ent-N14ClothingBackpackSatchelMi
     .desc = { ent-N14ClothingBackpackSatchelMilitary.desc }
 ent-N14ClothingBackpackSatchelTribalFilled = { ent-N14ClothingBackpackSatchelTribal }
     .desc = { ent-N14ClothingBackpackSatchelTribal.desc }
+ent- N14ClothingBackpackSatchelTribalHealerFilled = { ent-N14ClothingBackpackSatchelTrekker }
+    .desc = { ent-N14ClothingBackpackSatchelTrekker.desc }

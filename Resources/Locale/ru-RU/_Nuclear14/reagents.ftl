@@ -10,6 +10,8 @@ reagent-name-water-irradiated = радиоактивная вода
 reagent-desc-water-irradiated = Имеет побочные эффекты в виде отрастания лишних конечностей.
 reagent-name-water-filtered = фильтрованная вода
 reagent-desc-water-filtered = Лучшее из того, чего вы можете добиться.
+reagent-name-water-salt = солёная вода
+reagent-desc-water-salt = Солёная вода. Подойдёт для выварки соли.
 
 ## Soda
 

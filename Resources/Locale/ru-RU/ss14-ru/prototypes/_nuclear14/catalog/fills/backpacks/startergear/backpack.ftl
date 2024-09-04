@@ -30,3 +30,5 @@ ent-N14ClothingBackpackVaultOverseerFilled = { ent-N14ClothingBackpackVaultBlue 
     .desc = { ent-N14ClothingBackpackVaultBlue.desc }
 ent-N14ClothingBackpackVaultSecurityFilled = { ent-N14ClothingBackpackVaultBlue }
     .desc = { ent-N14ClothingBackpackVaultBlue.desc }
+ent-N14ClothingBackpackTribalHealerFilled = { ent-N14ClothingBackpackTrekker }
+    .desc = { ent-N14ClothingBackpackTrekker.desc }

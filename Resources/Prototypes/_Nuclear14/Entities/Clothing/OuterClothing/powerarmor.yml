@@ -9,8 +9,8 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t45.rsi
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: TemperatureProtection
     coefficient: 0.6
   - type: Armor
@@ -18,15 +18,18 @@
       coefficients:
         Blunt: 0.4
         Slash: 0.4
-        Piercing: 0.45
-        Heat: 0.5
-        Radiation: 0.7
+        Piercing: 0.5
+        Heat: 0.55
+        Radiation: 0.4
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorT45
   - type: ClothingSpecialModifier
-    strengthModifier: 10 
+    strengthModifier: 10
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 150
 # Maybe someday...
 #  - type: FootstepModifier
 #    footstepSoundCollection:
@@ -50,15 +53,18 @@
       coefficients:
         Blunt: 0.4
         Slash: 0.3
-        Piercing: 0.4
-        Heat: 0.4
-        Radiation: 0.5
+        Piercing: 0.45
+        Heat: 0.45
+        Radiation: 0.3
   - type: TemperatureProtection
     coefficient: 0.55
   - type: ExplosionResistance
     damageCoefficient: 0.4
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorT51
+  - type: Reflect
+    reflectProb: 0.2
+    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -71,22 +77,25 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t60.rsi
   - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
+    walkModifier: 0.90
+    sprintModifier: 0.90
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.35
         Slash: 0.3
-        Piercing: 0.45
-        Heat: 0.35
-        Radiation: 0.6
+        Piercing: 0.5
+        Heat: 0.4
+        Radiation: 0.3
   - type: TemperatureProtection
     coefficient: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.35
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorT60
+  - type: Reflect
+    reflectProb: 0.2
+    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT60
@@ -104,6 +113,9 @@
     damageCoefficient: 0.35
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorT60
+  - type: Reflect
+    reflectProb: 0.2
+    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -123,15 +135,18 @@
       coefficients:
         Blunt: 0.3
         Slash: 0.25
-        Piercing: 0.4
-        Heat: 0.35
-        Radiation: 0.4
+        Piercing: 0.45
+        Heat: 0.4
+        Radiation: 0.1
   - type: TemperatureProtection
     coefficient: 0.2
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorX01
+  - type: Reflect
+    reflectProb: 0.2
+    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorAdvanced1
@@ -151,15 +166,18 @@
       coefficients:
         Blunt: 0.5
         Slash: 0.30
-        Piercing: 0.3
-        Heat: 0.40
-        Radiation: 0.4
+        Piercing: 0.35
+        Heat: 0.45
+        Radiation: 0.1
   - type: TemperatureProtection
     coefficient: 0.25
   - type: ExplosionResistance
     damageCoefficient: 0.25
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorX02
+  - type: Reflect
+    reflectProb: 0.2
+    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorAdvanced1
@@ -176,18 +194,21 @@
       coefficients:
         Blunt: 0.2
         Slash: 0.2
-        Piercing: 0.3
-        Heat: 0.2
-        Radiation: 0.3
+        Piercing: 0.35
+        Heat: 0.25
+        Radiation: 0.1
   - type: TemperatureProtection
     coefficient: 0.1
   - type: ExplosionResistance
     damageCoefficient: 0.15
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorHellfire
+  - type: Reflect
+    reflectProb: 0.2
+    spread: 150
 
 - type: entity
-  parent: ClothingOuterEVASuitBase
+  parent: N14ClothingOuterPowerArmorT45
   id: N14ClothingOuterPowerArmorRaider
   name: raider power armor
   description: Terrifying, AND robust. Everything a Raider needs in a power armor suit.
@@ -197,23 +218,26 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/raider.rsi
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.6
         Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.6
-        Radiation: 0.9
+        Piercing: 0.55
+        Heat: 0.65
+        Radiation: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: ClothingSpecialModifier
-    strengthModifier: 10 
+    strengthModifier: 10
   - type: FootstepModifier
     footstepSoundCollection:
       collection: N14FootstepPowerArmor
+  - type: Reflect
+    reflectProb: 0.10
+    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -233,15 +257,18 @@
       coefficients:
         Blunt: 0.35
         Slash: 0.25
-        Piercing: 0.3
-        Heat: 0.35
-        Radiation: 0.5
+        Piercing: 0.35
+        Heat: 0.4
+        Radiation: 0.3
   - type: TemperatureProtection
     coefficient: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorT51BC
+  - type: Reflect
+    reflectProb: 0.2
+    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -256,5 +283,8 @@
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorT45NCR
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: Reflect
+    reflectProb: 0.10
+    spread: 150

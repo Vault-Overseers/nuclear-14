@@ -29,7 +29,7 @@
   name: tribal machete
   parent: N14Machete
   id: N14TribalMachete
-  description: A tribal machete, made from the materials giben by the nature, this long blade has the perfect balance between tool and weapon.
+  description: A tribal machete, made from the materials given by nature, this long blade has the perfect balance between tool and weapon.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Melee/tribal_machete.rsi
@@ -57,7 +57,7 @@
   name: scrap machete
   parent: N14Machete
   id: N14ScrapMachete
-  description: A makeshift long blade machete, not the most sharp blade but it can still cut some meat.
+  description: A makeshift long blade machete, not the sharpest blade but it can still cut some meat.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Melee/scrap_machete.rsi
@@ -85,7 +85,7 @@
   name: ripper
   parent: N14Machete
   id: N14ripper
-  description: A light one handed wield chainsaw, originally designed by the pre-war army sappers to clean selvatic and wooded paths, it also works well against meat.
+  description: A light one handed chainsaw, originally designed for the pre-war army sappers to clean selvatic and wooded paths, it also works well against meat.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Melee/ripper.rsi
@@ -96,14 +96,24 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/ripper.rsi
     state: icon
+  - type: EmbeddableProjectile
+    sound: /Audio/_Nuclear14/Weapons/Melee/Swing/ripper.ogg
   - type: DamageOtherOnHit
     damage:
       types:
-        Slash: 30
+        Slash: 15
+        Pierce: 15
+  - type: Sharp
   - type: MeleeWeapon
+    autoAttack: true
+    angle: 0
+    wideAnimationRotation: -135
+    attackRate: 4
     damage:
       types:
-        Slash: 25
+        Slash: 3
+        Piercing: 3
+        Structural: 4
     soundHit:
       path: /Audio/Weapons/chainsaw.ogg
     soundSwing:
@@ -111,3 +121,19 @@
   - type: Item
     size: Huge
     sprite: _Nuclear14/Objects/Weapons/Melee/ripper.rsi
+  - type: DisarmMalus
+  - type: RefillableSolution
+    solution: Welder
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 300
+        maxVol: 300
+  - type: UseDelay
+    delay: 1
+  - type: Tool
+    qualities:
+      - Sawing
+    speed: 3.0

@@ -9,8 +9,8 @@ public sealed partial class WeatherPrototype : IPrototype
 {
     [IdDataField] public string ID { get; } = default!;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("sprite", required: true)]
-    public SpriteSpecifier Sprite = default!;
+    [ViewVariables(VVAccess.ReadWrite), DataField("sprite")]
+    public SpriteSpecifier? Sprite;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("color")]
     public Color? Color;
@@ -20,4 +20,47 @@ public sealed partial class WeatherPrototype : IPrototype
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("sound")]
     public SoundSpecifier? Sound;
+
+    /// <summary>
+    /// Weather temperature applied to floors.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("temperature")]
+    public float Temperature = 308.15f;
+
+    /// <summary>
+    /// Locale id of the weather announcement message.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("message")]
+    public LocId Message = string.Empty;
+
+    /// <summary>
+    /// Locale id of the announcement's sender, defaults to Inner Feeling.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("sender")]
+    public LocId? Sender;
+
+    /// <summary>
+    /// Whenever to show message about new weather or not.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("showMessage")]
+    public Boolean ShowMessage = false;
+
+    /// <summary>
+    /// If weather should deal radiation damage.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("radioactive")]
+    public Boolean Radioactive = false;
+
+    /// <summary>
+    /// How many rads damage per second
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("rads")]
+    public float RadsPerSecond = 1;
+
+    /// <summary>
+    /// How long is the weather, in seconds
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("duration")]
+    public float Duration = 300;
+
 }
