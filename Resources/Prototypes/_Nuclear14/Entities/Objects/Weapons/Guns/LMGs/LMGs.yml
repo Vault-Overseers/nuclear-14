@@ -1,7 +1,7 @@
 - type: entity
   name: automatic rifle
   parent: BaseWeaponRifle
-  id: N14WeaponLMGAutoRifle
+  id: N14WeaponAutoRifle
   description: A high caliber, long, and heavy machine gun of the pre-war, chambered in the powerful 308.
   components:
   - type: Clothing
@@ -14,7 +14,6 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item
-    size: Huge
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/autorifle.rsi
   - type: Wieldable
   - type: GunWieldBonus
@@ -50,8 +49,8 @@
           tags:
             - N14Cartridge308Rifle
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.8
+    sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: MagazineVisuals
     magState: mag
@@ -77,7 +76,6 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item
-    size: Huge 
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/lmg.rsi
   - type: Wieldable
   - type: GunWieldBonus
@@ -113,68 +111,9 @@
           tags:
             - N14Cartridge556Rifle
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: HeldSpeedModifier
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: FollowDistance
-    backStrength: 6
-
-- type: entity
-  name: bren machine gun
-  parent: BaseWeaponRifle
-  id: N14WeaponLMGBren
-  description: A high caliber, long, and heavy machine gun mass produced by the RCMP, chambered in the powerful 308.
-  components:
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/bren.rsi
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/bren.rsi
-    layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-0
-        map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    size: Huge
-    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/bren.rsi
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -22
-    maxAngle: -59
-  - type: Gun
-    minAngle: 24
-    maxAngle: 60
-    angleIncrease: 4
-    angleDecay: 16
-    fireRate: 4
-    soundGunshot:
-      collection: N14AutoRifleGunshot
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: Magazine308RifleLong
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - N14Magazine308RifleLong
-      gun_chamber:
-        name: Chamber
-        startingItem: N14Cartridge308Rifle
-        priority: 1
-        whitelist:
-          tags:
-            - N14Cartridge308Rifle
   - type: MagazineVisuals
     magState: mag
     steps: 1

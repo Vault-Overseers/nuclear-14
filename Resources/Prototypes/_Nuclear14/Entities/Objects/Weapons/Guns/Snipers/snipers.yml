@@ -20,18 +20,22 @@
     angleIncrease: 4
     angleDecay: 16
     fireRate: 1.5
+    soundGunshot:
+      collection: N14SniperHuntingGunshot
   - type: BallisticAmmoProvider
     whitelist:
       tags:
       - N14Cartridge308Rifle
     capacity: 10
     proto: N14Cartridge308Rifle
+  - type: FollowDistance
+    backStrength: 3
 
 - type: entity
   name: Anti-Materiel rifle
   parent: BaseWeaponRifle
   id: N14WeaponAntiMateriel
-  description: A anti materiel rifle with a ergonomic, metallic skeleton design. only seeing at it you can tell it will rip some limbs apart. Uses .50 anti-material ammo.
+  description: An anti materiel rifle with a ergonomic, metallic skeleton design. Only looking at it can you tell it'll rip some limbs apart. Uses .50 anti-material ammo.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/antimateriel.rsi
@@ -58,7 +62,7 @@
     angleDecay: 16
     fireRate: 1.2
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+      collection: N14AntiMaterielGunshot
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -73,6 +77,7 @@
         whitelist:
           tags:
             - N14Magazine50AMR
+            - N14Magazine50AMRHEIAP
       gun_chamber:
         name: Chamber
         startingItem: N14Cartridge50
@@ -80,17 +85,20 @@
         whitelist:
           tags:
             - N14Cartridge50
+            - N14Cartridge50HEIAP
   - type: MagazineVisuals
     magState: mag
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: FollowDistance
+    backStrength: 3
 
 - type: entity
   name: .50 NCR rifle
   parent: BaseWeaponSniper
   id: N14Weapon50NcrRifle
-  description: A try by the NCR to make .50 ammo a standart on normal infantry, very cheap but it will deal a lot of damage. Uses .50 anti-material ammo.
+  description: An attempt by the NCR to make .50 ammo standard for normal infantry, very cheap but deals a lot of damage. Uses .50 anti-material ammo.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/50ncrrifle.rsi
@@ -112,12 +120,16 @@
     angleIncrease: 4
     angleDecay: 16
     fireRate: 1.2
+    soundGunshot:
+      collection: N14AntiMaterielGunshot
+  - type: FollowDistance
+    backStrength: 3
 
 - type: entity
   name: lever action carbine
   parent: N14WeaponSniperHunting
   id: N14WeaponLeverCarbine
-  description: A lever action short carbine. Uses .44 ammo.
+  description: A short lever action carbine. Uses .44 ammo.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/levercarbine.rsi
@@ -135,12 +147,16 @@
     angleIncrease: 4
     angleDecay: 16
     fireRate: 2
+    soundGunshot:
+      collection: N14LeverCarbineGunshot
   - type: BallisticAmmoProvider
     whitelist:
       tags:
       - N14Cartridge44Magnum
     capacity: 14
     proto: N14Cartridge44Magnum
+  - type: FollowDistance
+    backStrength: 3
 
 - type: entity
   name: lever action rifle
@@ -156,12 +172,16 @@
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/leverrifle.rsi
   - type: Gun
     fireRate: 1.2
+    soundGunshot:
+      collection: N14LeverRifleGunshot
+  - type: FollowDistance
+    backStrength: 3
 
 - type: entity
   name: brush gun
   parent: N14WeaponSniperHunting
   id: N14WeaponBrushGun
-  description: A powerfull lever action carbine. Uses .45-70 gov't ammo.
+  description: A powerful lever action carbine. Uses .45-70 gov't ammo.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/brushgun.rsi
@@ -172,7 +192,7 @@
   - type: Gun
     fireRate: 2
     soundGunshot:
-      path: /Audio/_Nuclear14/Weapons/Firing/brushgunfire.ogg
+      collection: N14BrushGunGunshot
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -180,12 +200,14 @@
       - SpeedLoaderInternal
     capacity: 10
     proto: N14Cartridge45-70
+  - type: FollowDistance
+    backStrength: 3
 
 - type: entity
   name: pipe rifle
   parent: N14WeaponSniperHunting
   id: N14WeaponPipeRifle
-  description: A piece of metal pipe with a wooden stock, works has a gun and uses .308 ammo.
+  description: A piece of metal pipe with a wooden stock, works as a gun and uses .308 ammo.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/piperifle.rsi
@@ -200,12 +222,17 @@
       - N14Cartridge308Rifle
     capacity: 1
     proto: N14Cartridge308Rifle
+  - type: Gun
+    soundGunshot:
+      collection: N14PipeRifleGunshot
+  - type: FollowDistance
+    backStrength: 3
 
 - type: entity
   name: varmint rifle
   parent: BaseWeaponSniper
   id: N14WeaponSniperVarmint
-  description: A pre-war low power bolt action rifle, originally designed to hunt small animals this gun works fine with anything not bigger than a human. Uses 5.56 ammo.
+  description: A pre-war low power bolt action rifle, originally designed to hunt small animals. This gun works fine on anything no bigger than a human. Uses 5.56 ammo.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/varmint.rsi
@@ -223,9 +250,13 @@
     angleIncrease: 4
     angleDecay: 16
     fireRate: 2.2
+    soundGunshot:
+      collection: N14SniperVarmintGunshot
   - type: BallisticAmmoProvider
     whitelist:
       tags:
       - N14Cartridge556Rifle
     capacity: 15
     proto: N14Cartridge556Rifle
+  - type: FollowDistance
+    backStrength: 3
