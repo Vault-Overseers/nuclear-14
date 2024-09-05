@@ -11,6 +11,8 @@ public static class CCCVars
 
     public static readonly CVarDef<string> DiscordApiUrl =
         CVarDef.Create("jerry.discord_api_url", "https://stalkers14.xyz/frontier/api", CVar.CONFIDENTIAL | CVar.SERVERONLY);
+    public static readonly CVarDef<bool> DiscordAuthEnabled =
+        CVarDef.Create("jerry.discord_auth_enabled", false, CVar.CONFIDENTIAL | CVar.SERVERONLY);
 
     /*
      * Sponsors
