@@ -1,27 +1,77 @@
-﻿- type: constructionGraph
-  id: N14Table
+- type: constructionGraph
+  id: N14TableCounterBarRecipes
   start: start
   graph:
     - node: start
-      actions:
-        - !type:DeleteEntity {}
       edges:
-        - to: N14TableWoodSettler
+        - to: TableCounterBar
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
           steps:
             - material: WoodPlank
               amount: 2
-              doAfter: 1
-            - tool: Screwing
-              doAfter: 3
+              doAfter: 2
+              
+    - node: TableCounterBar
+      entity: N14TableCounterBar
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: N14TableCounterBar
+              amount: 1
+              
+- type: constructionGraph
+  id: N14TableMetalGrateRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: TableMetalGrate
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+              
+    - node: TableMetalGrate
+      entity: N14TableMetalGrate
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: N14TableMetalGrate
+              amount: 1
 
-    - node: N14TableWoodSettler
+- type: constructionGraph
+  id: N14TableRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: TableWoodSettler
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2
+              
+    - node: TableWoodSettler
       entity: N14TableWoodSettler
       edges:
         - to: start
           completed:
-            - !type:SpawnPrototype
-              prototype: MaterialWoodPlank1
-              amount: 2
-          steps:
-            - tool: Prying
-              doAfter: 3
+            - !type:GivePrototype
+              prototype: N14TableWoodSettler
+              amount: 1
