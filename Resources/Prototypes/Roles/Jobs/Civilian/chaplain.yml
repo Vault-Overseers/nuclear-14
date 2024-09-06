@@ -3,10 +3,11 @@
   name: job-name-chaplain
   description: job-description-chaplain
   playTimeTracker: JobChaplain
+  setPreference: false
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Epistemics # DeltaV - Epistemics Department replacing Science
-      time: 14400 #DeltaV 4 hours
+      min: 14400 #DeltaV 4 hours
   startingGear: ChaplainGear
   icon: "JobIconChaplain"
   supervisors: job-supervisors-rd
@@ -18,11 +19,11 @@
   - !type:AddComponentSpecial
     components:
     - type: BibleUser #Lets them heal with bibles
-  #- !type:AddComponentSpecial
-  #  components:
-  #  - type: PsionicBonusChance #Nyano - Summary: makes it more likely to become psionic.
-  #    multiplier: 3
-  setPreference: false
+    - type: Psionic
+      powerRollMultiplier: 3
+    - type: InnatePsionicPowers
+      powersToAdd:
+        - TelepathyPower
 
 - type: startingGear
   id: ChaplainGear

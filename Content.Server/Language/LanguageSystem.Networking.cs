@@ -6,7 +6,6 @@ using Content.Shared.Language.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Player;
-using LanguagesUpdateEvent = Content.Server.Language.Events.LanguagesUpdateEvent;
 
 namespace Content.Server.Language;
 

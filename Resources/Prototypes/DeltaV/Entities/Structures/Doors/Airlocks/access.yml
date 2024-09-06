@@ -5,8 +5,10 @@
   suffix: Mantis, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Mantis"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMantis ]
+
 
 - type: entity
   parent: AirlockScienceGlass
@@ -14,8 +16,91 @@
   suffix: Mantis, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Mantis"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMantis ]
+
+- type: entity
+  parent: AirlockCommand
+  id: AirlockChiefJusticeLocked
+  suffix: Chief Justice, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChiefJustice ]
+
+- type: entity
+  parent: AirlockCommandGlass
+  id: AirlockChiefJusticeGlassLocked
+  suffix: ChiefJustice, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChiefJustice ]
+
+- type: entity
+  parent: AirlockJustice
+  id: AirlockJusticeLocked
+  suffix: Justice, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsJustice ]
+
+- type: entity
+  parent: AirlockJusticeGlass
+  id: AirlockJusticeGlassLocked
+  suffix: Justice, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsJustice ]
+
+- type: entity
+  parent: AirlockJustice
+  id: AirlockProsecutorLocked
+  suffix: Prosecutor, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsProsecutor ]
+
+- type: entity
+  parent: AirlockJusticeGlass
+  id: AirlockProsecutorGlassLocked
+  suffix: Prosecutor, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsProsecutor ]
+
+# Maintenance
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintChiefJusticeLocked
+  suffix: ChiefJustice, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChiefJustice ]
+
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintJusticeLocked
+  suffix: Justice, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsJustice ]
+
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintProsecutorLocked
+  suffix: Prosecutor, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsProsecutor ]
 
 - type: entity
   parent: AirlockSecurity
@@ -23,8 +108,9 @@
   suffix: Corpsman, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Corpsman"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCorpsman ]
 
 - type: entity
   parent: AirlockSecurityGlass
@@ -32,8 +118,9 @@
   suffix: Corpsman, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Corpsman"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCorpsman ]
 
 - type: entity
   parent: AirlockGlassShuttle
@@ -50,8 +137,9 @@
   suffix: Boxer, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Boxer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBoxer ]
 
 - type: entity
   parent: Airlock
@@ -59,8 +147,9 @@
   suffix: Clown, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Clown"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsClown ]
 
 - type: entity
   parent: Airlock
@@ -68,8 +157,9 @@
   suffix: Mime, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Mime"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMime ]
 
 - type: entity
   parent: Airlock
@@ -77,8 +167,9 @@
   suffix: Musician, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Musician"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMusician ]
 
 - type: entity
   parent: Airlock
@@ -86,8 +177,9 @@
   suffix: Reporter, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Reporter"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsReporter ]
 
 - type: entity
   parent: Airlock
@@ -95,8 +187,9 @@
   suffix: Library, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Library"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLibrary ]
 
 - type: entity
   parent: Airlock
@@ -104,8 +197,9 @@
   suffix: Zookeeper, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Zookeeper"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsZookeeper ]
 
 - type: entity
   parent: AirlockExternal
@@ -113,8 +207,9 @@
   suffix: External, Salvage, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Salvage"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvage ]
 
 - type: entity
   parent: AirlockMedical
@@ -122,8 +217,9 @@
   suffix: Psychologist, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Psychologist"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPsychologist ]
 
 # Glass Airlocks
 - type: entity
@@ -132,8 +228,9 @@
   suffix: Boxer, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Boxer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBoxer ]
 
 - type: entity
   parent: AirlockGlass
@@ -141,8 +238,9 @@
   suffix: Clown, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Clown"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsClown ]
 
 - type: entity
   parent: AirlockGlass
@@ -150,8 +248,9 @@
   suffix: Mime, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Mime"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMime ]
 
 - type: entity
   parent: AirlockGlass
@@ -159,8 +258,9 @@
   suffix: Musician, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Musician"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMusician ]
 
 - type: entity
   parent: AirlockGlass
@@ -168,8 +268,9 @@
   suffix: Reporter, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Reporter"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsReporter ]
 
 - type: entity
   parent: AirlockGlass
@@ -177,8 +278,9 @@
   suffix: Library, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Library"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLibrary ]
 
 - type: entity
   parent: AirlockGlass
@@ -186,8 +288,9 @@
   suffix: Zookeeper, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Zookeeper"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsZookeeper ]
 
 - type: entity
   parent: AirlockExternalGlass
@@ -195,8 +298,9 @@
   suffix: External, Glass, Salvage, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Salvage"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvage ]
 
 - type: entity
   parent: AirlockMedicalGlass
@@ -204,8 +308,9 @@
   suffix: Psychologist, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Psychologist"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPsychologist ]
 
 # Maintenance Hatches
 - type: entity
@@ -214,8 +319,9 @@
   suffix: Boxer, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Boxer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBoxer ]
 
 - type: entity
   parent: AirlockMaint
@@ -223,8 +329,9 @@
   suffix: Clown, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Clown"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsClown ]
 
 - type: entity
   parent: AirlockMaint
@@ -232,8 +339,9 @@
   suffix: Mime, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Mime"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMime ]
 
 - type: entity
   parent: AirlockMaint
@@ -241,8 +349,9 @@
   suffix: Musician, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Musician"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMusician ]
 
 - type: entity
   parent: AirlockMaint
@@ -250,8 +359,9 @@
   suffix: Reporter, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Reporter"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsReporter ]
 
 - type: entity
   parent: AirlockMaint
@@ -259,8 +369,9 @@
   suffix: Library, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Library"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLibrary ]
 
 - type: entity
   parent: AirlockMaint
@@ -268,8 +379,9 @@
   suffix: Zookeeper, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Zookeeper"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsZookeeper ]
 
 - type: entity
   parent: AirlockMaint
@@ -277,8 +389,9 @@
   suffix: Psychologist, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Psychologist"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPsychologist ]
 
 - type: entity
   parent: AirlockMaint
@@ -286,5 +399,6 @@
   suffix: Security/Lawyer, Locked
   noSpawn: true
   components:
-  - type: AccessReader
-    access: [["Security"], ["Lawyer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurityLawyer ]

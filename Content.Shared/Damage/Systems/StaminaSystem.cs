@@ -7,6 +7,7 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Database;
 using Content.Shared.Effects;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Rejuvenate;
@@ -36,6 +37,7 @@ public sealed partial class StaminaSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
 
     /// <summary>
     /// How much of a buffer is there between the stun duration and when stuns can be re-applied.
@@ -47,6 +49,7 @@ public sealed partial class StaminaSystem : EntitySystem
         base.Initialize();
 
         InitializeModifier();
+        InitializeSlowdown();
 
         SubscribeLocalEvent<StaminaComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<StaminaComponent, ComponentShutdown>(OnShutdown);
@@ -116,14 +119,11 @@ public sealed partial class StaminaSystem : EntitySystem
 
     private void OnDisarmed(EntityUid uid, StaminaComponent component, DisarmedEvent args)
     {
-        if (args.Handled || !_random.Prob(args.PushProbability))
+        // Note: we do not run _random.Prob here because SharedWeaponSystem already runs it.
+        if (args.Handled || component.Critical)
             return;
 
-        if (component.Critical)
-            return;
-
-        var damage = args.PushProbability * component.CritThreshold;
-        TakeStaminaDamage(uid, damage, component, source: args.Source);
+        TakeStaminaDamage(uid, args.StaminaDamage, component, source: args.Source);
 
         // We need a better method of getting if the entity is going to resist stam damage, both this and the lines in the foreach at the end of OnHit() are awful
         if (!component.Critical)
@@ -166,20 +166,20 @@ public sealed partial class StaminaSystem : EntitySystem
             toHit.Add((ent, stam));
         }
 
-        var hitEvent = new StaminaMeleeHitEvent(toHit);
-        RaiseLocalEvent(uid, hitEvent);
-
-        if (hitEvent.Handled)
-            return;
-
-        var damage = component.Damage;
-
-        damage *= hitEvent.Multiplier;
-
-        damage += hitEvent.FlatModifier;
-
         foreach (var (ent, comp) in toHit)
         {
+            var hitEvent = new TakeStaminaDamageEvent(ent);
+            RaiseLocalEvent(uid, hitEvent);
+
+            if (hitEvent.Handled)
+                return;
+
+            var damage = component.Damage;
+
+            damage *= hitEvent.Multiplier;
+
+            damage += hitEvent.FlatModifier;
+
             TakeStaminaDamage(ent, damage / toHit.Count, comp, source: args.User, with: args.Weapon, sound: component.Sound);
         }
     }
@@ -204,12 +204,27 @@ public sealed partial class StaminaSystem : EntitySystem
 
     private void OnCollide(EntityUid uid, StaminaDamageOnCollideComponent component, EntityUid target)
     {
+        if (!TryComp<StaminaComponent>(target, out var stamComp))
+            return;
+
         var ev = new StaminaDamageOnHitAttemptEvent();
         RaiseLocalEvent(uid, ref ev);
         if (ev.Cancelled)
             return;
 
-        TakeStaminaDamage(target, component.Damage, source: uid, sound: component.Sound);
+        var hitEvent = new TakeStaminaDamageEvent(target);
+        RaiseLocalEvent(target, hitEvent);
+
+        if (hitEvent.Handled)
+            return;
+
+        var damage = component.Damage;
+
+        damage *= hitEvent.Multiplier;
+
+        damage += hitEvent.FlatModifier;
+
+        TakeStaminaDamage(target, damage, source: uid, sound: component.Sound);
     }
 
     private void SetStaminaAlert(EntityUid uid, StaminaComponent? component = null)
@@ -245,7 +260,8 @@ public sealed partial class StaminaSystem : EntitySystem
     public void TakeStaminaDamage(EntityUid uid, float value, StaminaComponent? component = null,
         EntityUid? source = null, EntityUid? with = null, bool visual = true, SoundSpecifier? sound = null)
     {
-        if (!Resolve(uid, ref component, false))
+        if (!Resolve(uid, ref component, false)
+            || value == 0)
             return;
 
         var ev = new BeforeStaminaDamageEvent(value);
@@ -269,15 +285,7 @@ public sealed partial class StaminaSystem : EntitySystem
                 component.NextUpdate = nextUpdate;
         }
 
-        var slowdownThreshold = component.CritThreshold / 2f;
-
-        // If we go above n% then apply slowdown
-        if (oldDamage < slowdownThreshold &&
-            component.StaminaDamage > slowdownThreshold)
-        {
-            _stunSystem.TrySlowdown(uid, TimeSpan.FromSeconds(3), true, 0.8f, 0.8f);
-        }
-
+        _movementSpeed.RefreshMovementSpeedModifiers(uid);
         SetStaminaAlert(uid, component);
 
         if (!component.Critical)
@@ -362,11 +370,8 @@ public sealed partial class StaminaSystem : EntitySystem
 
     private void EnterStamCrit(EntityUid uid, StaminaComponent? component = null)
     {
-        if (!Resolve(uid, ref component) ||
-            component.Critical)
-        {
+        if (!Resolve(uid, ref component) || component.Critical)
             return;
-        }
 
         // To make the difference between a stun and a stamcrit clear
         // TODO: Mask?
@@ -385,17 +390,14 @@ public sealed partial class StaminaSystem : EntitySystem
 
     private void ExitStamCrit(EntityUid uid, StaminaComponent? component = null)
     {
-        if (!Resolve(uid, ref component) ||
-            !component.Critical)
-        {
+        if (!Resolve(uid, ref component) || !component.Critical)
             return;
-        }
 
         component.Critical = false;
-        component.StaminaDamage = 0f;
+        component.StaminaDamage = component.CritThreshold - float.Epsilon; // Yea, standing up after fainting from fatigue... not exactly easy
         component.NextUpdate = _timing.CurTime;
+        _movementSpeed.RefreshMovementSpeedModifiers(uid);
         SetStaminaAlert(uid, component);
-        RemComp<ActiveStaminaComponent>(uid);
         Dirty(component);
         _adminLogger.Add(LogType.Stamina, LogImpact.Low, $"{ToPrettyString(uid):user} recovered from stamina crit");
     }

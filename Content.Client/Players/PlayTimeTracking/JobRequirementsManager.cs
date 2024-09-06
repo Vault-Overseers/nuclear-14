@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text; // Nuclear 14
 using Content.Shared.CCVar;
+using Content.Shared.Customization.Systems;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
@@ -21,9 +22,6 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 {
     [Dependency] private readonly IBaseClient _client = default!;
     [Dependency] private readonly IClientNetManager _net = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
 	[Dependency] private readonly IClientPreferencesManager _clientPreferences = default!; // Nuclear 14
 
@@ -139,26 +137,6 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
     }
         // Nuclear 14 end
 
-    public bool CheckRoleTime(HashSet<JobRequirement>? requirements, [NotNullWhen(false)] out FormattedMessage? reason, string? localePrefix = "role-timer-")
-    {
-        reason = null;
-
-        if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
-            return true;
-
-        var reasons = new List<string>();
-        foreach (var requirement in requirements)
-        {
-            if (JobRequirements.TryRequirementMet(requirement, _roles, out var jobReason, _entManager, _prototypes, _whitelisted, localePrefix))
-                continue;
-
-            reasons.Add(jobReason.ToMarkup());
-        }
-
-        reason = reasons.Count == 0 ? null : FormattedMessage.FromMarkup(string.Join('\n', reasons));
-        return reason == null;
-    }
-
     public TimeSpan FetchOverallPlaytime()
     {
         return _roles.TryGetValue("Overall", out var overallPlaytime) ? overallPlaytime : TimeSpan.Zero;
@@ -179,12 +157,13 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 
     public Dictionary<string, TimeSpan> GetPlayTimes()
     {
-        var dict = new Dictionary<string, TimeSpan>();
-
+        var dict = FetchPlaytimeByRoles();
         dict.Add(PlayTimeTrackingShared.TrackerOverall, FetchOverallPlaytime());
-        foreach (var role in FetchPlaytimeByRoles())
-            dict.Add(role.Key, role.Value);
-
         return dict;
+    }
+
+    public Dictionary<string, TimeSpan> GetRawPlayTimeTrackers()
+    {
+        return _roles;
     }
 }
