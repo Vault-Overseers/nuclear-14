@@ -5,6 +5,7 @@
   description: A machine designed to serve humankind.
   save: false
   abstract: true
+  suffix: player
   components:
   - type: Reactive
     groups:
@@ -94,6 +95,18 @@
     doAfterDelay: 10
     allowSelfRepair: false
   - type: BorgChassis
+    maxModules: 10
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleJanitor
+      - BorgModuleEngineering
+      - BorgModuleMedical
+      - BorgModuleService
+      - BorgModuleSyndicate
+      - BorgModuleSyndicateAssault
+    hasMindState: on
+    noMindState: off
   - type: WiresPanel
   - type: ActivatableUIRequiresPanel
   - type: NameIdentifier
@@ -113,6 +126,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
   - type: Body
   - type: StatusEffects
     allowed:
@@ -200,4 +214,30 @@
   - type: Emoting
   # - type: GuideHelp
     # guides:
-      # - Cyborgs
+  - type: Eye
+    visMask:
+      - PsionicInvisibility
+      - Normal
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - RobotTalk
+    understands:
+    - GalacticCommon
+    - RobotTalk
+  - type: CanWalk
+  - type: NpcFactionMember
+    factions:
+    - Wastelander
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModuleService
+        - BorgModuleMusique
+        - BorgModuleGardening
+        - BorgModuleHarvesting
+        - BorgModuleFireExtinguisher
+        - BorgModuleRadiationDetection
+        - BorgModuleTool

@@ -11,16 +11,12 @@
   - type: MobMover
   - type: NpcFactionMember
     factions:
-    - SimpleHostile # N14:TODO: Change this to a robot enemy faction
+    - HostileRobot
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
   - type: Sprite
     drawdepth: Mobs
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      sprite: _Nuclear14/Mobs/Robots/ms13robots.rsi
-      state: assaultron
   - type: Physics
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
@@ -31,11 +27,11 @@
         shape:
           !type:PhysShapeCircle
             radius: 0.20
-        density: 20
+        density: 150
         mask:
-        - SmallMobMask
+        - MobMask
         layer:
-        - SmallMobLayer
+        - MobLayer
   - type: MobState
     allowedStates:
       - Alive
@@ -57,15 +53,6 @@
   # - type: Bloodstream
     # bloodMaxVolume: 50
   - type: CombatMode
-  - type: MeleeWeapon
-    hidden: true
-    soundHit:
-        path: /Audio/Effects/metal_thud1.ogg
-    angle: 0
-    animation: WeaponArcPunch
-    damage:
-      groups:
-        Brute: 5
   - type: GhostTakeoverAvailable
   - type: GhostRole
     prob: 0.33
@@ -80,10 +67,30 @@
     damageModifierSet: WastelandAnimal
   - type: Puller
     needsHands: true
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Pai
 # TODO: Make them shout things at people using advertise.
 
 - type: entity
+  abstract: true
   parent: N14MobRobotHostile
+  id: N14MobRobotHostileMelee
+  components:
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/metal_thud1.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      groups:
+        Brute: 5
+
+- type: entity
+  parent: N14MobRobotHostileMelee
   id: N14MobRobotAssaultronHostile
   name: Assaultron
   description: Horrifying.
@@ -94,14 +101,16 @@
   - type: GhostRole
     prob: 1
     makeSentient: true
-    name: assaultron
+    name: Assaultron
     description: |
-      Wreak havoc and kill all humans!
+      Protect your area and remove any trespassers.
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/assaultron.rsi
     layers:
     - state: icon
       map: ["movement"]
+    # - state: icon
+      # map: [ "enum.DamageStateVisualLayers.Base" ]
     - state: icon  # change me
       map: ["enum.BorgVisualLayers.Light"]
       shader: unshaded
@@ -119,7 +128,7 @@
         state: icon
     
 - type: entity
-  parent: N14MobRobotHostile
+  parent: N14MobRobotHostileMelee
   id: N14MobRobotProtectronHostile
   name: Protectron
   description: A common protectron looking for a fight.
@@ -152,13 +161,96 @@
     makeSentient: true
     name: protectron
     description: |
-      Wreak havoc and kill all humans!
+      Protect your area and remove any trespassers.
+  - type: HTN
+    rootTask:
+      task: SimpleDumbHostileCompound
       
 - type: entity
-  parent: N14MobRobotHostile
+  parent: N14MobRobotProtectronHostile
+  id: N14MobRobotProtectronBuilderHostile
+  name: Protectron
+  description: A protectron builder looking for a fight.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/protectron-builder.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon  # change me
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon # change me
+      shader: unshaded
+      map: ["light"]
+      visible: false
+      
+- type: entity
+  parent: N14MobRobotProtectronHostile
+  id: N14MobRobotProtectronFireHostile
+  name: Protectron
+  description: A protectron firefighter looking for a fight.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/protectron-fire.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon  # change me
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon # change me
+      shader: unshaded
+      map: ["light"]
+      visible: false
+      
+- type: entity
+  parent: N14MobRobotProtectronHostile
+  id: N14MobRobotProtectronPoliceHostile
+  name: Protectron
+  description: A protectron police bot looking for a fight.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/protectron-police.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon  # change me
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon # change me
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
+    fireRate: 1
+    soundGunshot:
+      collection: N14RechargerRifleGunshot
+    useKey: false
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+  - type: BasicEntityAmmoProvider
+    proto: BulletLaser
+    capacity: 12
+    count: 12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+      
+- type: entity
+  parent: N14MobRobotHostileMelee
   id: N14MobRobotMrHandyClaw
   name: Mr Handy
   description: A domestic Mr Handy model with a claw attachment.
+  suffix: hostile, claw
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 1
@@ -186,11 +278,227 @@
   - type: GhostRole
     prob: 1
     makeSentient: true
-    name: protectron
+    name: Mr Handy
     description: |
-      Wreak havoc and kill all humans!
+      Protect your area and remove any trespassers.
+  # - type: AmbientSound
+    # range: 6
+    # volume: -3
+    # sound: /Audio/DeltaV/Glimmer_Creatures/mite.ogg
+  # - type: AmbientOnPowered
+  
+- type: entity
+  parent: N14MobRobotMrHandyClaw
+  id: N14MobRobotMrHandySaw
+  description: A domestic Mr Handy model with a saw attachment.
+  suffix: hostile, saw
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/mrhandysaw.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon  # change me
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon # change me
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  
+- type: entity
+  parent: N14MobRobotHostile
+  id: N14MobRobotMrHandyGun
+  name: Mr Handy
+  description: A domestic Mr Handy model with a gun attachment.
+  suffix: hostile, gun
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 1
+    baseSprintSpeed : 2
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/mrhandygun.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon  # change me
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon # change me
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Mr Handy
+    description: |
+      Protect your area and remove any trespassers.
+  - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
+    fireRate: 1
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+    useKey: false
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+  - type: BasicEntityAmmoProvider
+    proto: N14CartridgePistol9
+    capacity: 12
+    count: 12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Loadout
+    prototypes:
+      - RaiderPistolGear
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+      
+- type: entity
+  parent: N14MobRobotHostile
+  id: N14MobRobotMrHandyGutsy
+  name: Mr Gutsy
+  description: A military Mr Gutsy model with a plasma attachment.
+  suffix: hostile, plasma
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 1
+    baseSprintSpeed : 2
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/mrhandygutsy.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon  # change me
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon # change me
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Mr Gutsy
+    description: |
+      Protect your area and remove any trespassers.
+  - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
+    fireRate: 0.5
+    soundGunshot:
+      collection: N14PlasmaPistolGunshot
+    useKey: false
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+  - type: BasicEntityAmmoProvider
+    proto: BulletPlasma
+    capacity: 12
+    count: 12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+      
+- type: entity
+  parent: N14MobRobotHostile
+  id: N14MobRobotRobobrain
+  name: Robobrain
+  description: A military Robobrain fitted out with a laser weapon.
+  suffix: hostile, laser
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 1
+    baseSprintSpeed : 2
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/robobrain.rsi
+    layers:
+    - state: icon
+      map: ["movement"]
+    - state: icon  # change me
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon # change me
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Robobrain
+    description: |
+      Protect your area and remove any trespassers.
+  - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
+    fireRate: 1
+    soundGunshot:
+      collection: N14RechargerRifleGunshot
+    useKey: false
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+  - type: BasicEntityAmmoProvider
+    proto: BulletLaser
+    capacity: 12
+    count: 12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+      
+- type: entity
+  parent: N14MobRobotHostile
+  id: N14MobRobotEyebot
+  name: Eyebot
+  description: A military Eyebot playing a catchy tune.
+  suffix: hostile, laser
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 1
+    baseSprintSpeed : 2
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/eyebot.rsi
+    layers:
+    - state: icon
+    - state: shadow_eyebot
+    state: icon
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Eyebot
+    description: |
+      Protect your area and remove any trespassers.
+  - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
+    fireRate: 0.5
+    soundGunshot:
+      collection: N14RechargerRifleGunshot
+    useKey: false
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+  - type: BasicEntityAmmoProvider
+    proto: BulletLaser
+    capacity: 12
+    count: 12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
   - type: AmbientSound
     range: 6
     volume: -3
-    sound: /Audio/DeltaV/Glimmer_Creatures/mite.ogg
-  - type: AmbientOnPowered
+    sound:
+      collection: AmbienceEyebot
