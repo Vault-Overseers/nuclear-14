@@ -1,5 +1,5 @@
 # See basemob.yml for parent entities
-#MARK: Molerat
+#MARK: Molerat #Oh hi Mark.
 - type: entity
   name: molerat
   id: N14MobMolerat
@@ -30,6 +30,8 @@
     thresholds:
       0: Alive
       50: Dead
+  - type: Stamina
+    critThreshold: 60
   - type: DamageStateVisuals
     states:
       Alive:
@@ -114,6 +116,9 @@
     damage:
       groups:
         Brute: 5
+  - type: Speech
+    speechVerb: Canine
+    speechSounds: Vulpkanin
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-birth-popup
@@ -144,7 +149,7 @@
       sprite: _Nuclear14/Mobs/Animals/gecko.rsi
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 3.6
+    baseSprintSpeed : 4
   - type: Fixtures
     fixtures:
       fix1:
@@ -274,6 +279,9 @@
         reagents:
         - ReagentId: NightstalkerVenom
           Quantity: 5
+  - type: Speech
+    speechVerb: Canine
+    speechSounds: Vulpkanin
   - type: Udder
     reagentId: NightstalkerVenom
     quantityPerUpdate: 1
@@ -377,6 +385,9 @@
   - type: MeleeChemicalInjector
     solution: melee
     transferAmount: 1.5
+  - type: Speech
+    speechVerb: Canine
+    speechSounds: Vulpkanin
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-laid-egg-popup
@@ -422,7 +433,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      500: Dead
+      550: Dead
+  - type: Stamina
+    critThreshold: 250
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      275: 0.7
+      450: 0.5
   - type: Butcherable
     spawned:
     - id: N14MaterialYaoguaiHide
@@ -452,7 +469,7 @@
     range: 1.25
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 3.6
+    baseSprintSpeed : 4.75
   - type: NoSlip
   - type: Reproductive
     breedChance: 0.05
@@ -504,6 +521,8 @@
       0: Alive
       500: Critical
       600: Dead
+  - type: Stamina
+    critThreshold: 250
   - type: SlowOnDamage
     speedModifierThresholds:
       250: 0.7
@@ -528,7 +547,7 @@
       types:
         Slash: 15
         Structural: 5
-    range: 1.5
+    range: 1.75
   - type: MovementSpeedModifier
     baseWalkSpeed : 4
     baseSprintSpeed : 5
@@ -550,8 +569,7 @@
     prob: 0.5
     makeSentient: true
     name: deathclaw
-    description: |
-      You're a smart killer. Use tactics to kill everyone.
+    description: You're a smart killer. Use tactics to hunt and stalk.
   - type: NoSlip
   - type: Reproductive
     breedChance: 0.05
@@ -601,6 +619,8 @@
       0: Alive
       750: Critical
       900: Dead
+  - type: Stamina
+    critThreshold: 350
   - type: DamageStateVisuals
     states:
       Alive:
@@ -680,6 +700,8 @@
         Base: brahmin-2
       Dead:
         Base: dead
+  - type: Stamina
+    critThreshold: 200
   - type: Tag
     tags:
     - Brahmin
@@ -744,6 +766,8 @@
         Base: bighorner
       Dead:
         Base: dead
+  - type: Stamina
+    critThreshold: 200
   - type: Tag
     tags:
     - Bighorner
@@ -807,6 +831,8 @@
         Base: radstag
       Dead:
         Base: dead
+  - type: Stamina
+    critThreshold: 200
   - type: Tag
     tags:
     - Radstag
@@ -912,6 +938,8 @@
         Base: iguana
       Dead:
         Base: dead
+  - type: Stamina
+    critThreshold: 20
   # - type: Butcherable
     # spawned:
     # - id: N14FoodMeatRadchicken

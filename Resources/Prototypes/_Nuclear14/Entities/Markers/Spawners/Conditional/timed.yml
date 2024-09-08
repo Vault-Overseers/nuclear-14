@@ -401,3 +401,63 @@
       intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
+      
+- type: entity
+  name: Raider Ranged Psycho Timed Spawner
+  id: N14TimedSpawnerMobRaiderPsychoRanged
+  parent: N14TimedSpawnerMolerat
+  components:
+  - type: Sprite
+    layers:
+      - state: blue
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raider_ranged
+      - state: timed
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - N14MobRaiderPsychoRanged
+    chance: 0.95
+    intervalSeconds: 2400
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+
+- type: entity
+  name: Raider Psycho Boss Timed Spawner
+  id: N14TimedSpawnerMobRaiderBoss
+  parent: N14TimedSpawnerMolerat
+  components:
+  - type: Sprite
+    layers:
+      - state: blue
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raiderboss
+      - state: timed
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - N14MobRaiderBoss
+    chance: 0.95
+    intervalSeconds: 2400
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Raider Psycho Timed Spawner
+  id: N14TimedSpawnerMobRaiderPsycho
+  parent: N14TimedSpawnerMolerat
+  components:
+  - type: Sprite
+    layers:
+      - state: blue
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/RaiderPsycho.rsi
+        state: raider_melee
+      - state: timed
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - N14MobRaiderPsycho
+    chance: 0.95
+    intervalSeconds: 2400
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 3

@@ -98,6 +98,8 @@
     fireRate: 1.5
     soundGunshot:
       collection: N14LaserPistolGunshot
+  - type: FollowDistance
+    backStrength: 6
 
 - type: entity
   name: plasma pistol
@@ -133,6 +135,8 @@
     soundGunshot:
       collection: N14PlasmaPistolGunshot
     fireRate: 1.5
+  - type: FollowDistance
+    backStrength: 6
 
 - type: entity
   name: plasma defender
@@ -168,6 +172,8 @@
     soundGunshot:
       collection: N14PlasmaDefenderGunshot
     fireRate: 2.5
+  - type: FollowDistance
+    backStrength: 6
 
 # MARK: Recharger
 
@@ -199,6 +205,8 @@
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: recharger pistol
@@ -233,6 +241,8 @@
   - type: Tag
     tags:
     - Sidearm
+  - type: FollowDistance
+    backStrength: 6
 
 # MARK: Fullauto
 
@@ -281,6 +291,8 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: plasma automatic rifle
@@ -327,6 +339,8 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: prototype AER-14 laser rifle
@@ -373,6 +387,8 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+  - type: FollowDistance
+    backStrength: 5
 
 # MARK: Semiauto
 
@@ -421,6 +437,8 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: plasma rifle
@@ -467,6 +485,8 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: urban plasma rifle
@@ -513,6 +533,8 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: FollowDistance
+    backStrength: 5
 
 # MARK: Shotguns
 
@@ -555,9 +577,15 @@
     steps: 5
     zeroVisible: true
   - type: Gun
-    fireRate: 2
+    fireRate: 6
     soundGunshot:
       collection: N14MultiplasGunshot
+    selectedMode: Burst
+    availableModes:
+     - SemiAuto
+     - Burst
+  - type: FollowDistance
+    backStrength: 6
 
 #MARK: Focused
 # (just a different looking laser rifle until we get more options)
@@ -607,6 +635,8 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: FollowDistance
+    backStrength: 4
 
 - type: entity
   name: wattz 2000 laser rifle
@@ -653,6 +683,8 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: FollowDistance
+    backStrength: 4
 
 #MARK: Heavy
 
@@ -707,6 +739,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+  - type: FollowDistance
+    backStrength: 6
 
 - type: entity
   name: laser gatling gun
@@ -761,3 +795,5 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
+  - type: FollowDistance
+    backStrength: 6

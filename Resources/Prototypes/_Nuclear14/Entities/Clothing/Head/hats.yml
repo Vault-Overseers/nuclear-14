@@ -56,7 +56,7 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHats/rangerhatgrey.rsi
   - type: ClothingSpecialModifier
-    charismaModifier: 1
+    perceptionModifier: 1
 
 - type: entity
   parent: ClothingHeadBase
@@ -69,7 +69,7 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHats/rangerhatgreybanded.rsi
   - type: ClothingSpecialModifier
-    charismaModifier: 1
+    perceptionModifier: 1
 
 - type: entity
   parent: ClothingHeadBase
@@ -82,7 +82,7 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHats/rangerhatcowboy.rsi
   - type: ClothingSpecialModifier
-    charismaModifier: 1
+    perceptionModifier: 1
 
 - type: entity
   parent: ClothingHeadBase
@@ -94,6 +94,8 @@
     sprite: _Nuclear14/Clothing/Head/FalloutHats/headscarf.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHats/headscarf.rsi
+  - type: ClothingSpecialModifier
+    perceptionModifier: 1
 
 # Army
 - type: entity
@@ -345,6 +347,7 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHats/rangerhat.rsi
   - type: ClothingSpecialModifier
+    perceptionModifier: 1
     charismaModifier: 1
 
 - type: entity
@@ -358,6 +361,7 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHats/rangerhatB.rsi
   - type: ClothingSpecialModifier
+    perceptionModifier: 1
     charismaModifier: 1
 
 # Tribal
@@ -371,6 +375,13 @@
     sprite: _Nuclear14/Clothing/Head/FalloutHats/tribalhoodoutcast.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHats/tribalhoodoutcast.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.9
 
 # Vault
 - type: entity
@@ -387,9 +398,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
+        Blunt: 0.9
+        Slash: 0.9
         Piercing: 0.9
+        Heat: 0.9
 
 # Craftable
 - type: entity
@@ -407,7 +419,8 @@
       coefficients:
         Blunt: 0.9
         Slash: 0.9
-        Heat: 0.9
+        Piercing: 0.95
+        Heat: 0.95
   - type: ClothingSpecialModifier
     strengthModifier: 1
 
@@ -425,7 +438,9 @@
     modifiers:
       coefficients:
         Blunt: 0.9
-        Slash: 0.8
-        Heat: 0.8
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.95
+        Poison: 0.8
   - type: ClothingSpecialModifier
-    strengthModifier: 1
+    enduranceModifier: 1

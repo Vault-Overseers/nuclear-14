@@ -12,6 +12,8 @@ public sealed partial class StencilOverlay
 
     private void DrawWeather(in OverlayDrawArgs args, WeatherPrototype weatherProto, float alpha, Matrix3 invMatrix)
     {
+        if (weatherProto.Sprite == null)
+            return;
         var worldHandle = args.WorldHandle;
         var mapId = args.MapId;
         var worldAABB = args.WorldAABB;
@@ -38,7 +40,7 @@ public sealed partial class StencilOverlay
                 foreach (var tile in grid.Comp.GetTilesIntersecting(worldAABB))
                 {
                     // Ignored tiles for stencil
-                    if (_weather.CanWeatherAffect(grid, tile))
+                    if (_weather.CanWeatherAffect(grid.Owner, grid, tile))
                     {
                         continue;
                     }
