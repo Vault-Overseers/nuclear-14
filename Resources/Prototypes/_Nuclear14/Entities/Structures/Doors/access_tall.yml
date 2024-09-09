@@ -1,7 +1,7 @@
 #MARK: NCR
 - type: entity
-  parent: N14DoorWoodSecureNCR
-  id: N14DoorWoodSecureLockedNCR
+  parent: N14DoorMetalRedTall
+  id: N14DoorWoodSecureLockedNCRTall
   suffix: NCR, Locked
   components:
   - type: AccessReader
@@ -10,8 +10,8 @@
     layoutId: AirlockSecurity
 
 - type: entity
-  parent: N14DoorWoodSecureNCR
-  id: N14DoorWoodSecureLockedNCRNCO
+  parent: N14DoorMetalRedTall
+  id: N14DoorWoodSecureLockedNCRNCOTall
   suffix: NCR, Locked, NCO
   components:
   - type: AccessReader
@@ -20,8 +20,8 @@
     layoutId: AirlockSecurity
 
 - type: entity
-  parent: N14DoorWoodSecureNCR
-  id: N14DoorWoodSecureLockedNCRMedic
+  parent: N14DoorMetalRedTall
+  id: N14DoorWoodSecureLockedNCRMedicTall
   suffix: NCR, Locked, Medic
   components:
   - type: AccessReader
@@ -30,8 +30,8 @@
     layoutId: AirlockSecurity
 
 - type: entity
-  parent: N14DoorWoodSecureNCR
-  id: N14DoorWoodSecureLockedNCRMP
+  parent: N14DoorMetalRedTall
+  id: N14DoorWoodSecureLockedNCRMPTall
   suffix: NCR, Locked, MP
   components:
   - type: AccessReader
@@ -40,8 +40,8 @@
     layoutId: AirlockSecurity
 
 - type: entity
-  parent: N14DoorCellMetal
-  id: N14DoorCellMetalLockedNCRMP
+  parent: N14DoorMetalBarTall
+  id: N14DoorCellMetalLockedNCRMPTall
   suffix: NCR, Locked, MP
   components:
   - type: AccessReader
@@ -50,8 +50,8 @@
     layoutId: AirlockSecurity
 
 - type: entity
-  parent: N14DoorWoodSecureNCR
-  id: N14DoorWoodSecureLockedNCROfficer
+  parent: N14DoorMetalRedTall
+  id: N14DoorWoodSecureLockedNCROfficerTall
   suffix: NCR, Locked, Officer
   components:
   - type: AccessReader
@@ -60,8 +60,8 @@
     layoutId: AirlockSecurity
 
 - type: entity
-  parent: N14DoorWoodSecureNCR
-  id: N14DoorWoodSecureLockedNCRRanger
+  parent: N14DoorMetalRedTall
+  id: N14DoorWoodSecureLockedNCRRangerTall
   suffix: NCR, Locked, Ranger
   components:
   - type: AccessReader
@@ -71,8 +71,8 @@
 
 #MARK: BoS Midwest
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedBoSMidwest
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedBoSMidwestTall
   suffix: BoSMidwest, Locked
   components:
   - type: ContainerFill
@@ -82,9 +82,10 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunkerGlass
-  id: N14DoorBunkerGlassLockedBoSMidwest
+  parent: N14DoorBunkerGlass # needs replaced
+  id: N14DoorBunkerGlassLockedBoSMidwestTall
   suffix: BoSMidwest, Locked
+  noSpawn: true
   components:
   - type: ContainerFill
     containers:
@@ -93,52 +94,8 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedBoSMidwestScribe
-  suffix: BoSMidwest, Locked, Scribe
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBOSMidwestScribe ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorBunkerGlass
-  id: N14DoorBunkerGlassLockedBoSMidwestScribe
-  suffix: BoSMidwest, Locked, Scribe
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBOSMidwestScribe ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedBoSMidwestKnight
-  suffix: BoSMidwest, Locked, Knight
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBOSMidwestKnight ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorBunkerGlass
-  id: N14DoorBunkerGlassLockedBoSMidwestKnight
-  suffix: BoSMidwest, Locked, Knight
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBOSMidwestKnight ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedBoSPaladin
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedBoSPaladinTall
   suffix: BoSMidwest, Locked, Paladin
   components:
   - type: ContainerFill
@@ -148,9 +105,10 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunkerGlass
-  id: N14DoorBunkerGlassLockedBoSPaladin
+  parent: N14DoorBunkerGlass # needs replaced
+  id: N14DoorBunkerGlassLockedBoSPaladinTall
   suffix: BoSMidwest, Locked, Paladin
+  noSpawn: true
   components:
   - type: ContainerFill
     containers:
@@ -159,8 +117,8 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedBoSCommander
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedBoSCommanderTall
   suffix: BOSMidwest, Locked, Commander
   components:
   - type: ContainerFill
@@ -170,9 +128,10 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunkerGlass
-  id: N14DoorBunkerGlassLockedBoSCommander
+  parent: N14DoorBunkerGlass # needs replaced
+  id: N14DoorBunkerGlassLockedBoSCommanderTall
   suffix: BOSMidwest, Locked, Commander
+  noSpawn: true
   components:
   - type: ContainerFill
     containers:
@@ -182,9 +141,9 @@
 
 #MARK: BoS Washington
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedBoSWashington
-  suffix: BoSWashinton, Locked
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedBoSWashingtonTall
+  suffix: BoSWashington, Locked
   components:
   - type: ContainerFill
     containers:
@@ -193,9 +152,10 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunkerGlass
-  id: N14DoorBunkerGlassLockedBoSWashington
-  suffix: BoSWashinton, Locked
+  parent: N14DoorBunkerGlass # needs replaced
+  id: N14DoorBunkerGlassLockedBoSWashingtonTall
+  suffix: BoSWashington, Locked
+  noSpawn: true
   components:
   - type: ContainerFill
     containers:
@@ -204,9 +164,9 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedBoSWashingtonScribe
-  suffix: BoSWashinton, Locked, Scribe
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedBoSWashingtonScribeTall
+  suffix: BoSWashington, Locked, Scribe
   components:
   - type: ContainerFill
     containers:
@@ -215,9 +175,10 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunkerGlass
-  id: N14DoorBunkerGlassLockedBoSWashingtonScribe
-  suffix: BoSWashinton, Locked, Scribe
+  parent: N14DoorBunkerGlass # needs replaced
+  id: N14DoorBunkerGlassLockedBoSWashingtonScribeTall
+  suffix: BoSWashington, Locked, Scribe
+  noSpawn: true
   components:
   - type: ContainerFill
     containers:
@@ -226,9 +187,9 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedBoSWashingtonKnight
-  suffix: BoSWashinton, Locked, Knight
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedBoSWashingtonKnightTall
+  suffix: BoSWashington, Locked, Knight
   components:
   - type: ContainerFill
     containers:
@@ -237,9 +198,10 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunkerGlass
-  id: N14DoorBunkerGlassLockedBoSWashingtonKnight
-  suffix: BoSWashinton, Locked, Knight
+  parent: N14DoorBunkerGlass # needs replaced
+  id: N14DoorBunkerGlassLockedBoSWashingtonKnightTall
+  suffix: BoSWashington, Locked, Knight
+  noSpawn: true
   components:
   - type: ContainerFill
     containers:
@@ -248,9 +210,9 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedBoSWashingtonPaladin
-  suffix: BoSWashinton, Locked, Paladin
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedBoSWashingtonPaladinTall
+  suffix: BoSWashington, Locked, PaladinTall
   components:
   - type: ContainerFill
     containers:
@@ -259,9 +221,10 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunkerGlass
-  id: N14DoorBunkerGlassLockedBoSMidwestPaladin
-  suffix: BoSWashinton, Locked, Paladin
+  parent: N14DoorBunkerGlass # needs replaced
+  id: N14DoorBunkerGlassLockedBoSWashingtonPaladinTall
+  suffix: BoSWashington, Locked, Paladin
+  noSpawn: true
   components:
   - type: ContainerFill
     containers:
@@ -270,9 +233,9 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedBoSWashingtonElder
-  suffix: BoSWashinton, Locked, Elder
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedBoSWashingtonElderTall
+  suffix: BOSWashington, Locked, Elder
   components:
   - type: ContainerFill
     containers:
@@ -281,9 +244,10 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunkerGlass
-  id: N14DoorBunkerGlassLockedBoSMidwestElder
-  suffix: BoSWashinton, Locked, Elder
+  parent: N14DoorBunkerGlass # needs replaced
+  id: N14DoorBunkerGlassLockedBoSWashingtonElderTall
+  suffix: BOSWashington, Locked, Elder
+  noSpawn: true
   components:
   - type: ContainerFill
     containers:
@@ -294,9 +258,9 @@
 #MARK: Townie
 
 - type: entity
-  parent: N14DoorWoodSecure
-  id: N14DoorWoodSecureLockedSheriff
-  suffix: Townie, Locked, Sheriff
+  parent: N14DoorWoodWhiteTall
+  id: N14DoorWoodSecureLockedSheriffTall
+  suffix: Townie, Locked, Law
   components:
   - type: AccessReader
     access: [["TownieLaw"]]
@@ -304,9 +268,9 @@
     layoutId: AirlockService
 
 - type: entity
-  parent: N14DoorCellMetal
-  id: N14DoorCellMetalLockedSheriff
-  suffix: Townie, Locked, Sheriff
+  parent: N14DoorMetalBarTall
+  id: N14DoorCellMetalLockedSheriffTall
+  suffix: Townie, Locked, Law
   components:
   - type: AccessReader
     access: [["TownieLaw"]]
@@ -314,8 +278,8 @@
     layoutId: AirlockService
 
 - type: entity
-  parent: N14DoorWoodSecure
-  id: N14DoorWoodSecureLockedMayor
+  parent: N14DoorWoodWhiteTall
+  id: N14DoorWoodSecureLockedMayorTall
   suffix: Townie, Locked, Mayor
   components:
   - type: AccessReader
@@ -325,8 +289,8 @@
 
 #MARK: Vault
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedVaultDweller
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedVaultDwellerTall
   suffix: Vault Dweller, Locked
   components:
   - type: AccessReader
@@ -335,8 +299,8 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedVaultEngineer
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedVaultEngineerTall
   suffix: Vault Engineer, Locked
   components:
   - type: AccessReader
@@ -345,8 +309,8 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedVaultMedical
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedVaultMedicalTall
   suffix: Vault Medical, Locked
   components:
   - type: AccessReader
@@ -355,8 +319,8 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedVaultSecurity
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedVaultSecurityTall
   suffix: Vault Security, Locked
   components:
   - type: AccessReader
@@ -365,8 +329,8 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedVaultGatekeeper
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedVaultGatekeeperTall
   suffix: Vault Gatekeeper, Locked
   components:
   - type: AccessReader
@@ -375,8 +339,8 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
-  id: N14DoorBunkerLockedVaultOverseer
+  parent: N14DoorAirlockTall
+  id: N14DoorBunkerLockedVaultOverseerTall
   suffix: Vault Overseer, Locked
   components:
   - type: AccessReader
@@ -388,8 +352,8 @@
 
 #IronKey
 - type: entity
-  parent: N14DoorWoodSecure
-  id: N14DoorWoodSecureLockedIron
+  parent: N14DoorWoodGreenTall
+  id: N14DoorWoodSecureLockedIronTall
   suffix: Locked, IronKey
   components:
   - type: AccessReader
@@ -398,8 +362,8 @@
     layoutId: AirlockCargo
 
 - type: entity
-  parent: N14DoorMetalSecure
-  id: N14DoorMetalSecureLockedIron
+  parent: N14DoorWoodGreenTall
+  id: N14DoorMetalSecureLockedIronTall
   suffix: Locked, IronKey
   components:
   - type: AccessReader
@@ -408,8 +372,8 @@
     layoutId: AirlockCargo
 
 - type: entity
-  parent: N14DoorCellMetal
-  id: N14DoorCellMetalLockedIron
+  parent: N14DoorMetalBarTall
+  id: N14DoorCellMetalLockedIronTall
   suffix: Locked, IronKey
   components:
   - type: AccessReader
@@ -419,8 +383,8 @@
 
 #BronzeKey
 - type: entity
-  parent: N14DoorWoodSecure
-  id: N14DoorWoodSecureLockedBronze
+  parent: N14DoorWoodBlueTall
+  id: N14DoorWoodSecureLockedBronzeTall
   suffix: Locked, BronzeKey
   components:
   - type: AccessReader
@@ -429,8 +393,8 @@
     layoutId: AirlockCargo
 
 - type: entity
-  parent: N14DoorMetalSecure
-  id: N14DoorMetalSecureLockedBronze
+  parent: N14DoorWoodBlueTall
+  id: N14DoorMetalSecureLockedBronzeTall
   suffix: Locked, BronzeKey
   components:
   - type: AccessReader
@@ -439,8 +403,8 @@
     layoutId: AirlockCargo
 
 - type: entity
-  parent: N14DoorCellMetal
-  id: N14DoorCellMetalLockedBronze
+  parent: N14DoorMetalBarTall
+  id: N14DoorCellMetalLockedBronzeTall
   suffix: Locked, BronzeKey
   components:
   - type: AccessReader
@@ -450,8 +414,8 @@
 
 #BrassKey
 - type: entity
-  parent: N14DoorWoodSecure
-  id: N14DoorWoodSecureLockedBrass
+  parent: N14DoorWoodTall
+  id: N14DoorWoodSecureLockedBrassTall
   suffix: Locked, BrassKey
   components:
   - type: AccessReader
@@ -460,8 +424,8 @@
     layoutId: AirlockCargo
 
 - type: entity
-  parent: N14DoorMetalSecure
-  id: N14DoorMetalSecureLockedBrass
+  parent: N14DoorWoodTall
+  id: N14DoorMetalSecureLockedBrassTall
   suffix: Locked, BrassKey
   components:
   - type: AccessReader
@@ -470,8 +434,8 @@
     layoutId: AirlockCargo
 
 - type: entity
-  parent: N14DoorCellMetal
-  id: N14DoorCellMetalLockedBrass
+  parent: N14DoorMetalBarTall
+  id: N14DoorCellMetalLockedBrassTall
   suffix: Locked, BrassKey
   components:
   - type: AccessReader
@@ -481,8 +445,8 @@
 
 #SilverKey
 - type: entity
-  parent: N14DoorWoodSecure
-  id: N14DoorWoodSecureLockedSilver
+  parent: N14DoorMetalBlueAltTall
+  id: N14DoorWoodSecureLockedSilverTall
   suffix: Locked, SilverKey
   components:
   - type: AccessReader
@@ -491,8 +455,8 @@
     layoutId: AirlockCargo
 
 - type: entity
-  parent: N14DoorMetalSecure
-  id: N14DoorMetalSecureLockedSilver
+  parent: N14DoorMetalBlueAltTall
+  id: N14DoorMetalSecureLockedSilverTall
   suffix: Locked, SilverKey
   components:
   - type: AccessReader
@@ -501,8 +465,8 @@
     layoutId: AirlockCargo
 
 - type: entity
-  parent: N14DoorCellMetal
-  id: N14DoorCellMetalLockedSilver
+  parent: N14DoorMetalBarTall
+  id: N14DoorCellMetalLockedSilverTall
   suffix: Locked, SilverKey
   components:
   - type: AccessReader
