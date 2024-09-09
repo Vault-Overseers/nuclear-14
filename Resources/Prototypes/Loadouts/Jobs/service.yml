@@ -1,7 +1,7 @@
 ## Clown
 - type: loadout
   id: LoadoutServiceClownOutfitJester
-  category: Jobs
+  category: JobsAUncategorized
   cost: 3
   exclusive: true
   requirements:
@@ -15,7 +15,7 @@
 
 - type: loadout
   id: LoadoutServiceClownOutfitJesterAlt
-  category: Jobs
+  category: JobsAUncategorized
   cost: 3
   exclusive: true
   requirements:
@@ -27,10 +27,186 @@
     - ClothingHeadHatJesterAlt
     - ClothingShoesJester
 
-## Bartender
+- type: loadout
+  id: LoadoutServiceClownOuterWinter
+  category: JobsAUncategorized
+  cost: 2
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - Clown
+  items:
+    - ClothingOuterWinterClown
+
+- type: loadout
+  id: LoadoutServiceClownOuterClownPriest
+  category: JobsAUncategorized
+  cost: 2
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - Clown
+  items:
+    - ClothingOuterClownPriest
+
+- type: loadout
+  id: LoadoutServiceClownBootsWinter
+  category: JobsAUncategorized
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - Clown
+  items:
+    - ClothingShoesBootsWinterClown
+
+- type: loadout
+  id: LoadoutServiceClownMaskSexy
+  category: JobsAUncategorized
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - Clown
+  items:
+    - ClothingMaskSexyClown
+
+- type: loadout
+  id: LoadoutServiceClownBedsheetClown
+  category: JobsAUncategorized
+  cost: 2
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - Clown
+  items:
+    - BedsheetClown
+
+- type: loadout
+  id: LoadoutServiceClownCowToolboxFilled
+  category: JobsAUncategorized
+  cost: 3
+  requirements:
+    - !type:CharacterLogicXorRequirement
+      requirements:
+        - !type:CharacterLogicAndRequirement
+          requirements:
+            - !type:CharacterSexRequirement
+              sex: Male
+            - !type:CharacterSpeciesRequirement
+              species:
+                - Felinid
+            - !type:CharacterHeightRequirement
+              min: 110
+              max: 122
+            - !type:CharacterGenderRequirement
+              gender: Female
+            - !type:CharacterTraitRequirement
+              traits:
+                - HeavyweightDrunk
+        - !type:CharacterLogicAndRequirement
+          requirements:
+            - !type:CharacterSpeciesRequirement
+              species:
+                - Harpy
+            - !type:CharacterHeightRequirement
+              min: 170
+            - !type:CharacterWeightRequirement
+              min: 20
+            - !type:CharacterSexRequirement
+              sex: Male
+            - !type:CharacterJobRequirement
+              inverted: true
+              jobs:
+                - Clown
+        - !type:CharacterJobRequirement
+          jobs:
+            - Clown
+  items:
+    - CowToolboxFilled
+
+# Mime
+- type: loadout
+  id: LoadoutServiceMimeOuterWinter
+  category: JobsAUncategorized
+  cost: 2
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - Mime
+  items:
+    - ClothingOuterWinterMime
+
+- type: loadout
+  id: LoadoutServiceMimeMaskSad
+  category: JobsAUncategorized
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - Mime
+  items:
+    - ClothingMaskSadMime
+
+- type: loadout
+  id: LoadoutServiceMimeMaskScared
+  category: JobsAUncategorized
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - Mime
+  items:
+    - ClothingMaskScaredMime
+
+- type: loadout
+  id: LoadoutServiceMimeMaskSexy
+  category: JobsAUncategorized
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - Mime
+  items:
+    - ClothingMaskSexyMime
+
+- type: loadout
+  id: LoadoutServiceMimeShoesBootsWinter
+  category: JobsAUncategorized
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - Mime
+  items:
+    - ClothingShoesBootsWinterMime
+
+- type: loadout
+  id: LoadoutServiceMimeBedsheetMime
+  category: JobsAUncategorized
+  cost: 2
+  exclusive: true
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - Mime
+  items:
+    - BedsheetMime
+
+# Bartender
 - type: loadout
   id: LoadoutServiceBartenderUniformPurple
-  category: Jobs
+  category: JobsAUncategorized
   cost: 2
   exclusive: true
   requirements:
@@ -43,12 +219,12 @@
 ## Botanist
 - type: loadout
   id: LoadoutServiceBotanistUniformOveralls
-  category: Jobs
+  category: JobsAUncategorized
   cost: 2
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
-     jobs:
+      jobs:
         - Botanist
   items:
     - ClothingUniformOveralls
@@ -56,19 +232,19 @@
 ## Lawyer
 - type: loadout
   id: LoadoutServiceLawyerUniformBlueSuit
-  category: Jobs
+  category: JobsAUncategorized
   cost: 2
   exclusive: true
   requirements:
     - !type:CharacterJobRequirement
-     jobs:
+      jobs:
         - Lawyer
   items:
     - ClothingUniformJumpsuitLawyerBlue
 
 - type: loadout
   id: LoadoutServiceLawyerUniformBlueSkirt
-  category: Jobs
+  category: JobsAUncategorized
   cost: 2
   exclusive: true
   requirements:
@@ -80,7 +256,7 @@
 
 - type: loadout
   id: LoadoutServiceLawyerUniformRedSuit
-  category: Jobs
+  category: JobsAUncategorized
   cost: 2
   exclusive: true
   requirements:
@@ -92,7 +268,7 @@
 
 - type: loadout
   id: LoadoutServiceLawyerUniformRedSkirt
-  category: Jobs
+  category: JobsAUncategorized
   cost: 2
   exclusive: true
   requirements:
@@ -104,7 +280,7 @@
 
 - type: loadout
   id: LoadoutServiceLawyerUniformPurpleSuit
-  category: Jobs
+  category: JobsAUncategorized
   cost: 2
   exclusive: true
   requirements:
@@ -116,7 +292,7 @@
 
 - type: loadout
   id: LoadoutServiceLawyerUniformPurpleSkirt
-  category: Jobs
+  category: JobsAUncategorized
   cost: 2
   exclusive: true
   requirements:
@@ -128,7 +304,7 @@
 
 - type: loadout
   id: LoadoutServiceLawyerUniformGoodSuit
-  category: Jobs
+  category: JobsAUncategorized
   cost: 2
   exclusive: true
   requirements:
@@ -140,7 +316,7 @@
 
 - type: loadout
   id: LoadoutServiceLawyerUniformGoodSkirt
-  category: Jobs
+  category: JobsAUncategorized
   cost: 2
   exclusive: true
   requirements:
@@ -152,7 +328,7 @@
 
 - type: loadout
   id: LoadoutServiceReporterUniformJournalist
-  category: Jobs
+  category: JobsAUncategorized
   cost: 2
   exclusive: true
   requirements:
@@ -165,7 +341,7 @@
 ## Reporter
 - type: loadout
   id: LoadoutServiceReporterUniformDetectivesuit
-  category: Jobs
+  category: JobsAUncategorized
   cost: 2
   exclusive: true
   requirements:
@@ -177,7 +353,7 @@
 
 - type: loadout
   id: LoadoutServiceReporterUniformDetectiveskirt
-  category: Jobs
+  category: JobsAUncategorized
   cost: 2
   exclusive: true
   requirements:
@@ -190,7 +366,7 @@
 ## Musician
 - type: loadout
   id: LoadoutItemSynthesizerInstrument
-  category: Jobs
+  category: JobsAUncategorized
   cost: 8
   requirements:
     - !type:CharacterJobRequirement
