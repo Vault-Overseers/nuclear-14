@@ -83,60 +83,6 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         Updated?.Invoke();
     }
 
-    public bool IsAllowed(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
-    {
-        var reasonBuilder = new StringBuilder(); // Nuclear 14
-        reason = null;
-
-        if (_roleBans.Contains($"Job:{job.ID}"))
-        {
-            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-ban"));
-            return false;
-        }
-
-        var player = _playerManager.LocalSession;
-        if (player == null)
-            return true;
-
-        // Nuclear 14 start
-        if (job.JobBlockForSpecies != null)
-        {
-            if (_clientPreferences?.Preferences == null)
-                return true;
-
-            var nameSpecie = ((HumanoidCharacterProfile)_clientPreferences.Preferences.SelectedCharacter!).Species;
-            var first = true;
-
-            foreach (var jobBlockForSpecie in job.JobBlockForSpecies)
-            {
-                string? speciesReason;
-                if (JobBlockForSpecies.TryRequirementMet(jobBlockForSpecie, nameSpecie, out speciesReason))
-                    continue;
-
-                if (!first)
-                    reasonBuilder.Append('\n');
-                first = false;
-                reasonBuilder.AppendLine(speciesReason);
-            }
-        }
-
-        if (!CheckRoleTime(job.Requirements, out var timeReason))
-        {
-            if (reasonBuilder.Length > 0)
-                reasonBuilder.Append('\n');
-            reasonBuilder.Append(timeReason!.ToMarkup());
-        }
-
-        if (reasonBuilder.Length > 0)
-        {
-            reason = FormattedMessage.FromMarkup(reasonBuilder.ToString());
-            return false;
-        }
-
-        return true;
-    }
-        // Nuclear 14 end
-
     public TimeSpan FetchOverallPlaytime()
     {
         return _roles.TryGetValue("Overall", out var overallPlaytime) ? overallPlaytime : TimeSpan.Zero;

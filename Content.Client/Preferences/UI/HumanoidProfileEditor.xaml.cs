@@ -41,6 +41,8 @@ using static Content.Client.Stylesheets.StyleBase;
 using Direction = Robust.Shared.Maths.Direction;
 using Content.Shared.Nuclear14.Special;
 using Content.Shared.Nuclear14.CCVar;
+using Content.Shared.StatusIcon;
+using Content.Client.Stylesheets;
 
 namespace Content.Client.Preferences.UI
 {
@@ -1440,7 +1442,7 @@ namespace Content.Client.Preferences.UI
             {
                 prioritySelector.UnlockRequirements(); // Nuclear 14
                 var jobId = prioritySelector.Proto.ID;
-				
+
                 // Nuclear 14 start
                 if (!_requirements.IsAllowed(prioritySelector.Proto, out var reason))
                 {
