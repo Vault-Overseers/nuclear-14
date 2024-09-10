@@ -1,0 +1,61 @@
+#MARK: Pistol
+- type: constructionGraph
+  id: N14WeaponPistol22lr
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: WeaponPistol22lr
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - tag: PistolFrame
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: pistolframe
+              name: pistol frame(part)
+              doAfter: 3
+            - tag: Trigger
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: trigger
+              name: trigger(part)
+              doAfter: 1
+            - tag: Bolt
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: bolt
+              name: gun bolt(part)
+              doAfter: 2
+            - tag: DuctTape
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: duct_tape
+              name: duct tape
+              doAfter: 3
+            - tag: Screw
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: screw
+              name: screw
+              doAfter: 1
+            - tag: Barrel
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: barrel
+              name: gun barrel (part)
+              doAfter: 1
+
+    - node: WeaponPistol22lr
+      entity: N14WeaponPistol22lr
+
+#MARK: Rifle
+
+#MARK: ShotGun
+
+#MARK: LaserPistol
+
+#MARK: LaserRifle
+
+#MARK: Primitive
