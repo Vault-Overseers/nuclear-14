@@ -13,11 +13,7 @@
     factions:
     - WastelandAnimal
   - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: bloatfly
-      sprite: _Nuclear14/Mobs/Insects/bloatfly.rsi # Replace this with a mob error or something
+    drawdepth: Mobs # Replace this with a mob error or something
   - type: Physics
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
@@ -155,6 +151,45 @@
   - type: NpcFactionMember
     factions:
     - WastelandInsect
+    
+#MARK: Base Humanoid
+- type: entity
+  name: raider
+  abstract: true
+  id: N14MobBaseHostileRaider
+  parent: N14MobBaseHostile
+  components:
+  - type: Damageable
+    damageContainer: Biological
+  - type: NoSlip
+  - type: NpcFactionMember
+    factions:
+    - Raider
+    
+- type: entity
+  name: feral
+  abstract: true
+  id: N14MobBaseHostileFeral
+  parent: [N14BaseMobGhoul, N14MobBaseHostile]
+  components:
+  - type: Damageable
+    damageContainer: Biological
+  - type: NoSlip
+  - type: NpcFactionMember
+    factions:
+    - Feral
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavInteract: !type:Bool
+        true
+      NavClimb: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
 
 # Wave Defence Base Hostile
 #MARK: WAVE
