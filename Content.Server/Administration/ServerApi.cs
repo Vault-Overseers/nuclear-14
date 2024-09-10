@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Immutable;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
+using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
@@ -14,14 +16,18 @@ using Content.Server.Maps;
 using Content.Server.RoundEnd;
 using Content.Shared.Administration.Managers;
 using Content.Shared.CCVar;
+using Content.Shared.Database;
+using Content.Shared.PDA;
 using Content.Shared.Prototypes;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Asynchronous;
 using Robust.Shared.Configuration;
+using Robust.Shared.Console;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Server.Database;
 
 namespace Content.Server.Administration;
 
@@ -40,7 +46,6 @@ public sealed partial class ServerApi : IPostInjectInit
         CCVars.PanicBunkerCountDeadminnedAdmins.Name,
         CCVars.PanicBunkerShowReason.Name,
         CCVars.PanicBunkerMinAccountAge.Name,
-        CCVars.PanicBunkerMinOverallHours.Name,
         CCVars.PanicBunkerCustomReason.Name,
     ];
 
@@ -57,6 +62,10 @@ public sealed partial class ServerApi : IPostInjectInit
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private readonly IBanManager _bans = default!;
+    [Dependency] private readonly IPlayerLocator _locator = default!;
+    [Dependency] private readonly IConsoleHost _shell = default!;
+    [Dependency] private readonly IServerDbManager _db = default!;
 
     private string _token = string.Empty;
     private ISawmill _sawmill = default!;
@@ -75,6 +84,8 @@ public sealed partial class ServerApi : IPostInjectInit
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/round/end", ActionRoundEnd);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/round/restartnow", ActionRoundRestartNow);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/kick", ActionKick);
+        RegisterActorHandler(HttpMethod.Post, "/admin/actions/ban", ActionBan);
+        RegisterActorHandler(HttpMethod.Post, "/admin/actions/shutdown", ShutdownAction);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/add_game_rule", ActionAddGameRule);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/end_game_rule", ActionEndGameRule);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/force_preset", ActionForcePreset);
@@ -331,10 +342,50 @@ public sealed partial class ServerApi : IPostInjectInit
             reason += " (kicked by admin)";
 
             _netManager.DisconnectChannel(player.Channel, reason);
+
             await RespondOk(context);
 
             _sawmill.Info($"Kicked player {player.Name} ({player.UserId}) for {reason} by {FormatLogActor(actor)}");
         });
+    }
+
+    private async Task ActionBan(IStatusHandlerContext context, Actor actor)
+    {
+        var body = await ReadJson<BanActionBody>(context);
+        if (body == null)
+            return;
+
+        await RunOnMainThread(async () =>
+        {
+            var data = await _locator.LookupIdByNameOrIdAsync($"{body.TargetUsername}");
+
+            if (data == null)
+            {
+                await context.RespondErrorAsync(HttpStatusCode.BadRequest);
+                return;
+            }
+
+            var targetHWid = data.LastHWId;
+            var targetId = data.UserId;
+            var targetUsername = data.Username;
+            var reason = body.Reason ?? "No reason supplied";
+            reason += " (banned by admin)";
+
+            if (body.Reason != null)
+                _bans.CreateServerBan(targetId, targetUsername, new NetUserId(actor.Guid),null, targetHWid, (uint)body.Minutes, (NoteSeverity)body.Severity, body.Reason);
+            else
+                _bans.CreateServerBan(targetId, targetUsername, new NetUserId(actor.Guid),null, targetHWid, (uint)body.Minutes, (NoteSeverity)body.Severity, "No reason");
+
+            await RespondOk(context);
+
+            _sawmill.Info($"Banned player {data.Username} ({data.UserId}) for {reason} by {FormatLogActor(actor)} to {body.Minutes}");
+        });
+    }
+
+    private async Task ShutdownAction(IStatusHandlerContext context, Actor actor)
+    {
+        _shell.ExecuteCommand("shutdown");
+        await RespondOk(context);
     }
 
     private async Task ActionRoundStart(IStatusHandlerContext context, Actor actor)
@@ -542,8 +593,10 @@ public sealed partial class ServerApi : IPostInjectInit
         }
 
         var authScheme = authHeaderValue[..spaceIndex];
-        var authValue = authHeaderValue[spaceIndex..].Trim();
 
+        var authValue = authHeaderValue[spaceIndex..].Trim();
+        _sawmill.Info(authScheme.Normalize());
+        _sawmill.Info(authValue.Normalize());
         if (authScheme != SS14TokenScheme)
         {
             await RespondBadRequest(context, "Invalid Authorization scheme");
@@ -612,6 +665,14 @@ public sealed partial class ServerApi : IPostInjectInit
     private sealed class KickActionBody
     {
         public required Guid Guid { get; init; }
+        public string? Reason { get; init; }
+    }
+
+    private sealed class BanActionBody
+    {
+        public int Minutes { get; init; }
+        public int Severity { get; init; }
+        public string? TargetUsername { get; init; }
         public string? Reason { get; init; }
     }
 
