@@ -1,45 +1,44 @@
-# Commented out for balance. (People loot the whole map with these)
-#
-# Sacks
-#- type: construction
-#  name: sack
-#  id: N14Sack
-#  graph: N14Sack
-#  startNode: start
-#  targetNode: sack
-#  category: construction-category-storage
-#  description: A sack for storing things.
-#  hide: false
-#  icon:
-#    sprite: _Nuclear14/Objects/Misc/Sacks/daesack.rsi
-#    state: icon
-#  objectType: Item
 
-#- type: constructionGraph
-#  id: N14Sack
-#  start: start
-#  graph:
-#    - node: start
-#      edges:
-#        - to: sack
-#          steps:
-#            - material: Cloth
-#              amount: 3
-#              doAfter: 3
-#
-#    - node: sack
-#      entity: N14Sack
-#      edges:
-#        - to: start
-#          steps:
-#            - tool: Cutting
-#              doAfter: 3
-#          completed:
-#            - !type:SpawnPrototype
-#              prototype: MaterialCloth1
-#              amount: 2
-#            - !type:EmptyAllContainers
-#            - !type:DeleteEntity
+  #Sacks
+- type: construction
+  name: sack
+  id: N14Sack
+  graph: N14Sack
+  startNode: start
+  targetNode: sack
+  category: construction-category-storage
+  description: A sack for storing things.
+  hide: true
+  icon:
+    sprite: _Nuclear14/Objects/Misc/Sacks/daesack.rsi
+    state: icon
+  objectType: Item
+
+- type: constructionGraph
+  id: N14Sack
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: sack
+          steps:
+            - material: Cloth
+              amount: 3
+              doAfter: 3
+
+    - node: sack
+      entity: N14Sack
+      edges:
+        - to: start
+          steps:
+            - tool: Cutting
+              doAfter: 3
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+            - !type:EmptyAllContainers
+                        - !type:DeleteEntity
 
 - type: construction
   name: sack compost
