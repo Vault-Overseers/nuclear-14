@@ -1,3 +1,5 @@
+#MARK: Tools
+
 - type: entity
   name: wirecutters
   parent: Wirecutter
@@ -64,20 +66,99 @@
   - type: Item
     sprite: _Nuclear14/Objects/Tools/multitool.rsi
     storedRotation: -90
-      
+
 - type: entity
   name: shovel
-  parent: Shovel
+  parent: BaseItem
   id: N14Shovel
-  description: A large tool for digging and moving dirt.
-  # components:
-  # - type: Tool
-    # qualities:
-      # - Shoveling
-    # useSound:
-      # path: /Audio/Items/crowbar.ogg
-      
-# Saws
+  description: A hefty tool made too dig graves, or dig out brahmin pens.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/shovel.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 5
+    soundSwing:
+      collection: N14LargeSwing
+    sprite: _Nuclear14/Objects/Weapons/Melee/shovel.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Wood: 50
+  - type: Tool
+    qualities:
+      - Digging
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 16
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/shovel.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Item
+    size: Large
+    useSound:
+      path: /Audio/Nyanotrasen/Items/shovel_dig.ogg
+  - type: EarthDigging
+  - type: Shovel
+
+- type: entity
+  name: zappy shovel
+  parent: BaseItem
+  id: N14ZappyShovel
+  description: A shovel electrified with a battery and wires too make it more deadly in combat.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/shovel_zappy.rsi
+    state: icon
+  - type: StaminaDamageOnHit
+    damage: 25
+  - type: StaminaDamageOnCollide
+    damage: 25
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 4
+        Shock: 1
+    soundSwing:
+      collection: N14LargeSwing
+    sprite: _Nuclear14/Objects/Weapons/Melee/shovel_zappy.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Wood: 50
+  - type: Tool
+    qualities:
+      - Digging
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 14
+        Shock: 8
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/shovel_zappy.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Item
+    size: Large
+    useSound:
+      path: /Audio/Nyanotrasen/Items/shovel_dig.ogg
+  - type: EarthDigging
+  - type: Shovel
+
+
+#MARK: Saws
 
 - type: entity
   name: saw
