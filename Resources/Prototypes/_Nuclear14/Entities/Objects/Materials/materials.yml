@@ -1,12 +1,39 @@
 # See specific/hydroponics for fertilizer.
 
+# Base
 - type: entity
-  parent: BaseItem
+  abstract: true
+  parent: MaterialBase
+  id: N14MaterialBase
+  suffix: Full, 30
+  description: A raw material.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/materials.rsi
+  - type: Material
+  - type: Appearance
+
+- type: entity
+  parent: N14MaterialBase
+  id: N14MaterialBasePowder
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: powder_lead
+  - type: ExaminableSolution
+    solution: powder
+  - type: Extractable
+    grindableSolutionName: powder
+
+# Other
+# Gunpowder
+- type: entity
+  parent: N14MaterialBasePowder
   id: Gunpowder
   name: gunpowder
-  suffix: Full, 30
+  description: Explosive.
   components:
-  - type: Material
   - type: PhysicalComposition
     materialComposition:
       Gunpowder: 100
@@ -21,28 +48,12 @@
       map: ["base"]
   - type: Item
     heldPrefix: powder_lead
-  - type: Appearance
   - type: SolutionContainerManager
     solutions:
       powder:
         reagents:
         - ReagentId: Gunpowder
           Quantity: 10
-  - type: ExaminableSolution
-    solution: powder
-  - type: Tag
-    tags:
-      - RawMaterial
-  - type: Extractable
-    grindableSolutionName: powder
-
-- type: entity
-  parent: Gunpowder
-  id: Gunpowder1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
 
 - type: entity
   parent: Gunpowder
@@ -54,6 +65,15 @@
 
 - type: entity
   parent: Gunpowder
+  id: Gunpowder1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+# Sulfur
+- type: entity
+  parent: N14MaterialBasePowder
   id: SulfurPowder
   name: sulfur
   components:
@@ -71,22 +91,12 @@
       map: ["base"]
   - type: Item
     heldPrefix: powder_brass
-  - type: Appearance
   - type: SolutionContainerManager
     solutions:
       powder:
         reagents:
         - ReagentId: Sulfur
           Quantity: 10
-
-
-- type: entity
-  parent: SulfurPowder
-  id: SulfurPowder1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
 
 - type: entity
   parent: SulfurPowder
@@ -97,10 +107,19 @@
     count: 10
 
 - type: entity
-  parent: SheetPaper
+  parent: SulfurPowder
+  id: SulfurPowder1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+# Sheet paper
+- type: entity
+  parent: SheetOtherBase
   id: N14Paper
   name: paper
-  suffix: 10
+  suffix: Full, 10
   components:
   - type: Stack
     stackType: N14Paper
@@ -108,6 +127,7 @@
     baseLayer: base
     layerStates:
     - paper
+  - type: Material
   - type: Sprite
     sprite: /Textures/_Nuclear14/Objects/Misc/clutter.rsi
     state: paper
@@ -119,14 +139,17 @@
   - type: Construction
     graph: N14Paper
     node: paper
-
-- type: entity
-  parent: N14Paper
-  id: N14Paper1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
+  - type: PhysicalComposition
+    materialComposition:
+      Paper: 100
+  - type: Extractable
+    grindableSolutionName: paper
+  - type: SolutionContainerManager
+    solutions:
+      paper:
+        reagents:
+        - ReagentId: Cellulose
+          Quantity: 3
 
 - type: entity
   parent: N14Paper
@@ -137,7 +160,16 @@
     count: 10
 
 - type: entity
-  parent: Gunpowder
+  parent: N14Paper
+  id: N14Paper1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+# Charcoal
+- type: entity
+  parent: N14MaterialBasePowder
   id: Charcoal
   name: charcoal
   components:
@@ -166,14 +198,6 @@
 
 - type: entity
   parent: Charcoal
-  id: Charcoal1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-- type: entity
-  parent: Charcoal
   id: Charcoal10
   suffix: 10
   components:
@@ -181,73 +205,112 @@
     count: 10
 
 - type: entity
-  parent: BaseItem
-  id: N14Dung
-  name: dung pile
-  description: flip those cowpats for free fertilizer!
+  parent: Charcoal
+  id: Charcoal1
+  suffix: Single
   components:
-  - type: Sprite
-    sprite: /Textures/_Nuclear14/Objects/Misc/crafting_material.rsi
-    noRot: true
-    layers:
-      - state: dung
-      - state: dung-flies
-# N14:TODO: Add creampie ing but worse and it makes you throw up.
-  - type: SolutionContainerManager
-    solutions:
-      dung:
-        maxVol: 25
-        reagents:
-        - ReagentId: Dung
-          Quantity: 25
-  - type: DrainableSolution
-    solution: dung
-  - type: SolutionTransfer
-    canChangeTransferAmount: false
-  - type: DeleteOnSolutionEmpty
-    solution: dung
-  - type: TimedDespawn
-    lifetime: 300
-
-- type: entity
-  parent: N14Dung
-  id: N14BrahminDung
-  name: brahmin dung
-  description: A dung pile more acrid and vile than the rest, rancher's gold.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      dung:
-        maxVol: 25
-        reagents:
-        - ReagentId: Dung
-          Quantity: 15
-        - ReagentId: Ammonia
-          Quantity: 10
-
-- type: entity
-  parent: BaseItem
-  id: N14CompostRotted
-  name: compost
-  description: Rotting remains, like a compost. Good for fertilizing.
-  components:
-  - type: Sprite
-    sprite: /Textures/_Nuclear14/Objects/Misc/crafting_material.rsi
-    state: compost
-  - type: SolutionContainerManager
-    solutions:
-      compost:
-        maxVol: 25
-        reagents:
-        - ReagentId: Fertilizer
-          Quantity: 25
-  - type: DrainableSolution
-    solution: compost
-  - type: SolutionTransfer
-    canChangeTransferAmount: false
-  - type: DeleteOnSolutionEmpty
-    solution: compost
-  - type: Material
   - type: Stack
-    stackType: Compost
     count: 1
+
+# Circuitry
+- type: entity
+  parent: N14MaterialBase
+  id: N14MaterialCircuitry
+  name: circuitry
+  suffix: Full
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Circuitry: 100
+  - type: Stack
+    stackType: Circuitry
+    baseLayer: base
+    layerStates:
+    - circuits
+    - circuits_2
+    - circuits_3
+    count: 15
+  - type: Sprite
+    state: circuits_3
+    layers:
+    - state: circuits_3
+      map: ["base"]
+  - type: Appearance
+    
+- type: entity
+  parent: N14MaterialCircuitry
+  id: N14MaterialCircuitry10
+  suffix: 10
+  components:
+  - type: Sprite
+    state: circuits_2
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: N14MaterialCircuitry
+  id: N14MaterialCircuitry1
+  suffix: Single
+  components:
+  - type: Sprite
+    state: circuits
+  - type: Stack
+    count: 1
+
+# Organic
+# Leather
+- type: entity
+  parent: N14MaterialBase
+  id: N14MaterialLeather
+  name: leather
+  description: A piece of leather, just non-special leather.
+  suffix: Full, 15
+  components:
+  - type: Sprite
+    state: leather # Summon client sprite exception "layer 'layer' does not excist". If layer == 'base' => prototype break's.
+    layers:
+    - state: leather
+      map: ["base"]
+  - type: Stack
+    stackType: Leather
+    count: 15
+    baseLayer: base
+    # layerStates:
+    # - leather_1
+    # - leather_2
+    # - leather_3
+  - type: PhysicalComposition
+    materialComposition:
+      Leather: 100
+  - type: Appearance
+
+- type: entity
+  parent: N14MaterialLeather
+  id: N14MaterialLeather1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+# Ant-chitin: to future
+- type: entity
+  parent: BaseItem
+  id: N14MaterialAntChitin
+  name: ant chitin
+  description: A strong and resistent piece of ant "skin".
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
+    state: chitin
+
+# Exoskeleton: to future
+- type: entity
+  parent: BaseItem
+  id: N14MaterialExoskeleton
+  name: radscorpion exoskeleton piece
+  description: A strong and resistent piece of radscorpion exoskeleton.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
+    state: rad_exo
