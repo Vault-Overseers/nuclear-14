@@ -1443,15 +1443,6 @@ namespace Content.Client.Preferences.UI
                 prioritySelector.UnlockRequirements(); // Nuclear 14
                 var jobId = prioritySelector.Proto.ID;
 
-                // Nuclear 14 start
-                if (!_requirements.IsAllowed(prioritySelector.Proto, out var reason))
-                {
-                    prioritySelector.LockRequirements(reason);
-                    if (Profile != null)
-                    {
-                        Profile = Profile.WithJobPriority(jobId, JobPriority.Never);
-                    }
-                }
 				// Nuclear 14 start
 
                 var priority = Profile?.JobPriorities.GetValueOrDefault(jobId, JobPriority.Never) ?? JobPriority.Never;
