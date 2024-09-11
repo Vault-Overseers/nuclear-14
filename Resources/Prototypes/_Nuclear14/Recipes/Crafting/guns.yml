@@ -1,8 +1,23 @@
 #MARK: Pistol
+- type: entity
+  name: 22lr Pistol
+  parent: N14WeaponPistol22lr
+  id: N14WeaponPistol22lrEmpty
+  description: A simple and silenced pistol, chambered in 22lr.
+  suffix: Empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Construction
+    graph: N14WeaponPistol22lrEmpty
+    node: WeaponPistol22lr
+  - type: FollowDistance
+    backStrength: 5
+
 - type: construction
   name: 22lr Pistol
-  id: N14WeaponPistol22lr
-  graph: N14WeaponPistol22lr
+  id: N14WeaponPistol22lrEmpty
+  graph: N14WeaponPistol22lrEmpty
   startNode: start
   targetNode: WeaponPistol22lr
   category: construction-category-weapons
@@ -12,6 +27,21 @@
   icon:
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/22lr.rsi
     state: icon
+
+- type: entity
+  name: 12.7mm autopipe
+  parent: N14weapon12mmpipe
+  id: N14weapon12mmpipeEmpty
+  description: a makeshift 12mm SMG, looks like is gonna explode the second it shoots.
+  suffix: Empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Construction
+    graph: N14WeaponPistol22lrEmpty
+    node: Weapon12mmpipe
+  - type: FollowDistance
+    backStrength: 5
 
 - type: construction
   name: 12.7mm autopipe
@@ -26,6 +56,21 @@
   icon:
     sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
     state: icon
+
+- type: entity
+  name: 10mm revolver
+  parent: N14WeaponRevolver10mm
+  id: N14WeaponRevolver10mmEmpty
+  description: The first prototype for the semiauto 10mm pistol, Uses 10mm ammo.
+  suffix: Empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Construction
+    graph: N14WeaponRevolver10mmEmpty
+    node: WeaponRevolver10mm
+  - type: FollowDistance
+    backStrength: 5
 
 - type: construction
   name: 10mm revolver
