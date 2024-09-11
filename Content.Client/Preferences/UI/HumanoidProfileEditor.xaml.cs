@@ -1508,9 +1508,9 @@ namespace Content.Client.Preferences.UI
 
                 _optionButton = new RadioOptions<int>(RadioOptionsLayout.Horizontal)
                 {
-                    FirstButtonStyle = StyleBase.ButtonOpenRight,
-                    ButtonStyle = StyleBase.ButtonOpenBoth,
-                    LastButtonStyle = StyleBase.ButtonOpenLeft
+                    FirstButtonStyle = ButtonOpenRight,
+                    ButtonStyle = ButtonOpenBoth,
+                    LastButtonStyle = ButtonOpenLeft
                 };
                 //Override default radio option button width
                 _optionButton.GenerateItem = GenerateButton;
