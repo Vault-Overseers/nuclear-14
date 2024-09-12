@@ -154,6 +154,13 @@
   components:
   - type: Sprite
     state: armorbench
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+        - RawLeather # move it to the tanning machine
   - type: Lathe
     idleState: icon
     runningState: icon # change this
@@ -171,6 +178,8 @@
       - N14InsectShield
       - MakeshiftShield
       - WoodenBuckler
+      # Other
+      - N14MaterialLeather
 
 - type: entity
   parent: N14WorkbenchBase

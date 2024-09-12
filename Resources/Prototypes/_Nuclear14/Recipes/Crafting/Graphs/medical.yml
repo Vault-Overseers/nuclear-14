@@ -1,0 +1,158 @@
+# Mortar and pestle
+- type: constructionGraph
+  id: N14MortarPestle
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: mortarpestle
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 5
+
+    - node: mortarpestle
+      entity: N14MortarpestleGrinder
+
+
+# Healing Powder
+- type: constructionGraph
+  id: N14HealingPowder
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: healingpowder
+          steps:
+            - material: BrocFlower
+            - material: XanderRoot # TODO: Find out if we can add a tool step for crushing. Tests fail for now with it in. Slap crafting doesn't like tool steps.
+
+    - node: healingpowder
+      entity: N14HealingPowder
+
+# Stimpaks
+- type: constructionGraph
+  id: N14Stimpak
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: stimpak
+          steps:
+          - material: BrocFlower
+          - material: XanderRoot
+          - tag: Syringe
+            name: a syringe
+            icon:
+              sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+              state: stimpak
+            doAfter: 1
+          - material: Bloodpack
+            doAfter: 1
+
+    - node: stimpak
+      entity: N14Stimpak
+
+# RadAway Inhaler
+- type: constructionGraph
+  id: N14RadAwayInhaler
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: empty
+      steps:
+        - tag: Jet
+          name: jet
+          icon:
+            sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+            state: jet
+        - material: Glass
+          amount: 1
+          doAfter: 3
+  - node: empty
+    entity: N14RadAwayInhalerTrash
+    edges:
+    - to: refill
+      steps:
+        - tag: Phial
+          name: RadAway Phial
+          icon:
+            sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
+            state: radawayphial_icon
+          doAfter: 2
+  - node: refill
+    entity: N14RadAwayInhaler
+    edges:
+    - to: empty
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+# RadAway Phial
+- type: constructionGraph
+  id: N14RadAwayPhial
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: fill
+      conditions:
+      - !type:MinSolution
+        solution: beaker
+        reagent:
+          ReagentId: RadAway
+        quantity: 30
+      steps:
+      - tool: Screwing
+        doAfter: 1
+  - node: fill
+    entity: N14RadAwayPhial
+
+#TODO: Crashes game, needs a C# script to support it
+
+# - type: constructionGraph
+#   id: N14RadAwayPhialRefill
+#  start: start
+#  graph:
+#   - node: start
+#     edges:
+#     - to: phial
+#       steps:
+#         - material: CaveFungusRad
+#         - material: Plastic
+#           doAfter: 3
+#   - node: phial
+#     entity: N14RadAwayPhialEmpty
+#     edges:
+#     - to: refill
+#       conditions:
+#       - !type:MinSolution
+#         solution: beaker
+#         reagent:
+#           ReagentId: Antiseptic
+#         quantity: 20
+#       - !type:MinSolution
+#         solution: beaker
+#         reagent:
+#           ReagentId: Water
+#         quantity: 10
+#       steps:
+#       - tool: Screwing
+#         doAfter: 1
+#   - node: fill
+#     entity: N14RadAwayPhial
+
+# Jet
+- type: constructionGraph
+  id: N14JetInhaler
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: jet
+          steps:
+          - material: Plastic
+
+    - node: jet
+      entity: N14JetInhaler

@@ -281,6 +281,7 @@ materials-sulfur = sulfur
 materials-charcoal = charcoal
 materials-antchitin = chitin
 materials-raw-lead = raw lead
+materials-raw-leather = raw leather
 materials-raw-aluminum = raw aluminum
 materials-raw-sulfur = raw sulfur
 

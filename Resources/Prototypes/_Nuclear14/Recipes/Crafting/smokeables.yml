@@ -11,19 +11,6 @@
   objectType: Item
   hide: false
 
-- type: constructionGraph
-  id: N14RollingPaper
-  start: start
-  graph:
-    - node: start
-      edges:
-        - to: rollingpaper
-          steps:
-            - material: N14Paper
-              doAfter: 2
-    - node: rollingpaper
-      entity: N14RollingPaper
-
 # Rollie
 - type: construction
   name: cigarette
@@ -36,17 +23,3 @@
   icon: { sprite: _Nuclear14/Objects/Consumable/Smokeables/Cigarettes/rollie.rsi, state: unlit-icon }
   objectType: Item
   hide: false
-
-- type: constructionGraph
-  id: N14Cigarette
-  start: start
-  graph:
-    - node: start
-      edges:
-        - to: cigarette
-          steps:
-            - material: N14RollingPaper
-            - material: CoyoteTobacco
-              doAfter: 2
-    - node: cigarette
-      entity: N14CigaretteRollie

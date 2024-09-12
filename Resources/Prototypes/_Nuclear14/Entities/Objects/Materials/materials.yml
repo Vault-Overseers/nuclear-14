@@ -1,6 +1,6 @@
 # See specific/hydroponics for fertilizer.
 
-# Base
+#MARK: Base
 - type: entity
   abstract: true
   parent: MaterialBase
@@ -27,7 +27,7 @@
     grindableSolutionName: powder
 
 # Other
-# Gunpowder
+#MARK: Gunpowder
 - type: entity
   parent: N14MaterialBasePowder
   id: Gunpowder
@@ -71,7 +71,7 @@
   - type: Stack
     count: 1
 
-# Sulfur
+#MARK: Sulfur
 - type: entity
   parent: N14MaterialBasePowder
   id: SulfurPowder
@@ -114,7 +114,7 @@
   - type: Stack
     count: 1
 
-# Sheet paper
+#MARK: Sheet paper
 - type: entity
   parent: SheetOtherBase
   id: N14Paper
@@ -167,7 +167,7 @@
   - type: Stack
     count: 1
 
-# Charcoal
+#MARK: Charcoal
 - type: entity
   parent: N14MaterialBasePowder
   id: Charcoal
@@ -212,7 +212,7 @@
   - type: Stack
     count: 1
 
-# Circuitry
+#MARK: Circuitry
 - type: entity
   parent: N14MaterialBase
   id: N14MaterialCircuitry
@@ -259,7 +259,7 @@
     count: 1
 
 # Organic
-# Leather
+#MARK: Leather
 - type: entity
   parent: N14MaterialBase
   id: N14MaterialLeather
@@ -268,7 +268,7 @@
   suffix: Full, 15
   components:
   - type: Sprite
-    state: leather
+    state: leather_3
     layers:
     - state: leather_3
       map: ["base"]
@@ -292,7 +292,39 @@
   - type: Stack
     count: 1
 
-# Ant-chitin
+#MARK: Raw leather
+- type: entity
+  parent: N14MaterialBase
+  id: N14MaterialRawLeather
+  name: raw leather
+  description: A piece of raw, unusable skin. Nothing special.
+  suffix: Full, 15
+  components:
+  - type: Sprite
+    state: raw_leather_2
+    layers:
+    - state: raw_leather_2
+      map: ["base"]
+  - type: Stack
+    stackType: RawLeather
+    count: 15
+    baseLayer: base
+    layerStates:
+    - raw_leather_1
+    - raw_leather_2
+  - type: PhysicalComposition
+    materialComposition:
+      RawLeather: 100
+
+- type: entity
+  parent: N14MaterialRawLeather
+  id: N14MaterialRawLeather1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+#MARK: Ant-chitin
 - type: entity
   parent: N14MaterialBase
   id: N14MaterialAntChitin
@@ -338,7 +370,7 @@
 #     sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
 #     state: chitin
 
-# Exoskeleton
+#MARK: Exoskeleton
 - type: entity
   parent: BaseItem
   id: N14MaterialExoskeleton
