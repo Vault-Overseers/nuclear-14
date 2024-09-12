@@ -1,18 +1,42 @@
 #MARK: Pistol
 - type: entity
   name: 22lr Pistol
-  parent: N14WeaponPistol22lr
+  parent: N14BaseWeaponPistol
   id: N14WeaponPistol22lrEmpty
   description: A simple and silenced pistol, chambered in 22lr.
   suffix: Empty
   components:
-  - type: BallisticAmmoProvider
-    proto: null
   - type: Construction
     graph: N14WeaponPistol22lrEmpty
-    node: WeaponPistol22lr
+    node: start
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/22lr.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/22lr.rsi
+  - type: Gun
+    fireRate: 4
+    soundGunshot:
+      collection: N14PistolSpyGunshot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        whitelist:
+          tags:
+            - N14MagazinePistol22lr
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol22
   - type: FollowDistance
-    backStrength: 5
+    backStrength: 6
 
 - type: construction
   name: 22lr Pistol
@@ -30,23 +54,75 @@
 
 - type: entity
   name: 12.7mm autopipe
-  parent: N14weapon12mmpipe
+  parent: BaseWeaponSubMachineGun
   id: N14weapon12mmpipeEmpty
   description: a makeshift 12mm SMG, looks like is gonna explode the second it shoots.
   suffix: Empty
   components:
-  - type: BallisticAmmoProvider
-    proto: null
   - type: Construction
     graph: N14WeaponPistol22lrEmpty
-    node: Weapon12mmpipe
+    node: start
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
+  - type: Gun
+    fireRate: 4
+    soundGunshot:
+      collection: N14Pistol12mmGunshot
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 56
+    angleIncrease: 4
+    angleDecay: 16
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -15
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
+        ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14MagazineSMG12mm
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol127
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
   - type: FollowDistance
-    backStrength: 5
+    backStrength: 6
 
 - type: construction
   name: 12.7mm autopipe
-  id: N14weapon12mmpipe
-  graph: N14weapon12mmpipe
+  id: N14weapon12mmpipeEmpty
+  graph: N14weapon12mmpipeEmpty
   startNode: start
   targetNode: Weapon12mmpipe
   category: construction-category-weapons
@@ -59,23 +135,47 @@
 
 - type: entity
   name: 10mm revolver
-  parent: N14WeaponRevolver10mm
+  parent: BaseWeaponRevolver
   id: N14WeaponRevolver10mmEmpty
   description: The first prototype for the semiauto 10mm pistol, Uses 10mm ammo.
   suffix: Empty
   components:
-  - type: BallisticAmmoProvider
-    proto: null
   - type: Construction
     graph: N14WeaponRevolver10mmEmpty
-    node: WeaponRevolver10mm
+    node: start
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/10mmrevolver.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/10mmrevolver.rsi
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - N14CartridgePistol10
+        - SpeedLoader10
+  - type: Gun
+    soundGunshot:
+      collection: N14Revolver10mmGunshot
   - type: FollowDistance
-    backStrength: 5
+    backStrength: 6
+
+- type: entity
+  name: incomplete 10mm revolver
+  parent: BaseItem
+  id: IncompleteN14WeaponRevolver10mm
+  description: 10mm revolver
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+    state: pistolframe
+  - type: Item
+  - type: Construction
+    graph: N14WeaponRevolver10mmEmpty
+    node: IncompleteWeaponRevolver10mm
 
 - type: construction
   name: 10mm revolver
-  id: N14WeaponRevolver10mm
-  graph: N14WeaponRevolver10mm
+  id: N14WeaponRevolver10mmEmpty
+  graph: N14WeaponRevolver10mmEmpty
   startNode: start
   targetNode: WeaponRevolver10mm
   category: construction-category-weapons
@@ -85,6 +185,10 @@
   icon:
     sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/10mmrevolver.rsi
     state: icon
+  components:
+   - type: Sprite
+     sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/10mmrevolver.rsi
+     state: Full
 
 #MARK: Rifle
 

@@ -107,34 +107,77 @@
   graph:
     - node: start
       edges:
-       - to: WeaponRevolver10mm
+       - to: IncompleteWeaponRevolver10mm
+         completed:
+           - !type:SnapToGrid
          steps:
             - tag: PistolFrame
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: pistolframe
               name: pistol frame(part)
+              doAfter: 2
+
+    - node: IncompleteWeaponRevolver10mm
+      actions:
+      - !type:AppearanceChange
+      entity: IncompleteN14WeaponRevolver10mm
+      edges:
+       - to: WeaponRevolver10mmFrame1
+         steps:
             - tag: Trigger
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: trigger
               name: trigger(part)
+              doAfter: 2
             - tag: Receiver
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: receiver
               name: receiver(part)
+              doAfter: 2
             - tag: Screw
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: screw
               name: screw
+              doAfter: 2
             - tag: GearSmall
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: gear_small
               name: small gear
-              doAfter: 12
+              doAfter: 2
+
+    - node: WeaponRevolver10mmFrame1
+      edges:
+       - to: WeaponRevolver10mmWelding
+         steps:
+         - material: Gunpowder
+           amount: 1
+           doAfter: 1
+         - material: Steel
+           amount: 1
+           doAfter: 1
+
+    - node: WeaponRevolver10mmWelding
+      actions:
+      - !type:AppearanceChange
+      edges:
+        - to: WeaponRevolver10mmScrewed
+          steps:
+            - tool: Welding
+              doAfter: 4
+
+    - node: WeaponRevolver10mmScrewed
+      actions:
+      - !type:AppearanceChange
+      edges:
+        - to: WeaponRevolver10mm
+          steps:
+            - tool: Screwing
+              doAfter: 2
 
     - node: WeaponRevolver10mm
       entity: N14WeaponRevolver10mmEmpty
