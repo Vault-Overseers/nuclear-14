@@ -268,7 +268,7 @@
   suffix: Full, 15
   components:
   - type: Sprite
-    state: leather # Summon client sprite exception "layer 'layer' does not excist". If layer == 'base' => prototype break's.
+    state: leather
     layers:
     - state: leather_3
       map: ["base"]
@@ -283,7 +283,6 @@
   - type: PhysicalComposition
     materialComposition:
       Leather: 100
-  - type: Appearance
 
 - type: entity
   parent: N14MaterialLeather
@@ -293,18 +292,53 @@
   - type: Stack
     count: 1
 
-# Ant-chitin: to future
+# Ant-chitin
 - type: entity
-  parent: BaseItem
+  parent: N14MaterialBase
   id: N14MaterialAntChitin
   name: ant chitin
   description: A strong and resistent piece of ant "skin".
+  suffix: Full, 3
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
-    state: chitin
+    state: chitin_3
+    layers:
+    - state: chitin_3
+      map: ["base"]
+  - type: Stack
+    stackType: AntChitin
+    count: 6
+    baseLayer: base
+    layerStates:
+    - chitin_1
+    - chitin_2
+    - chitin_3
+  - type: PhysicalComposition
+    materialComposition:
+      AntChitin: 100
+  - type: Item
+    size: Small
 
-# Exoskeleton: to future
+- type: entity
+  parent: N14MaterialAntChitin
+  id: N14MaterialAntChitin1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1 
+
+# - type: entity
+#   parent: BaseItem
+#   id: N14MaterialAntChitin
+#   name: ant chitin
+#   description: A strong and resistent piece of ant "skin".
+#   components:
+#   - type: Sprite
+#     sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
+#     state: chitin
+
+# Exoskeleton
 - type: entity
   parent: BaseItem
   id: N14MaterialExoskeleton
@@ -314,3 +348,34 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
     state: rad_exo
+
+# - type: entity
+#   parent: N14MaterialBase
+#   id: N14MaterialExoskeleton
+#   name: radscorpion exoskeleton piece
+#   description: A strong and resistent piece of radscorpion exoskeleton.
+#   suffix: ""
+#   components:
+#   - type: Sprite
+#     sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
+#     state: rad_exo
+#     # layers:
+#     # - state: rad_exo
+#     #   map: ["base"]
+#   # - type: Stack
+#   #   stackType: Exoskeleton
+#   #   count: 3
+#   #   baseLayer: base
+#   - type: PhysicalComposition
+#     materialComposition:
+#       Exoskeleton: 100
+#   - type: Item
+#     size: Small
+
+# - type: entity
+#   parent: N14MaterialExoskeleton
+#   id: N14MaterialExoskeleton1
+#   suffix: Single
+#   components:
+#   - type: Stack
+#     count: 1
