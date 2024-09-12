@@ -38,6 +38,20 @@
   - type: FollowDistance
     backStrength: 6
 
+- type: entity
+  name: incomplete 22lr Pistol
+  parent: BaseItem
+  id: IncompleteN14WeaponPistol22lrEmpty
+  description: 22lr Pistol
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+    state: pistolframe
+  - type: Item
+  - type: Construction
+    graph: N14WeaponPistol22lrEmpty
+    node: IncompleteWeaponPistol22lrEmpty
+
 - type: construction
   name: 22lr Pistol
   id: N14WeaponPistol22lrEmpty
@@ -119,6 +133,20 @@
   - type: FollowDistance
     backStrength: 6
 
+- type: entity
+  name: incomplete 12.7mm autopipe
+  parent: BaseItem
+  id: IncompleteN14weapon12mmpipeEmpty
+  description: 12.7mm autopipe
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+    state: pistolframe
+  - type: Item
+  - type: Construction
+    graph: N14weapon12mmpipeEmpty
+    node: IncompleteWeapon12mmpipeEmpty
+
 - type: construction
   name: 12.7mm autopipe
   id: N14weapon12mmpipeEmpty
@@ -148,10 +176,14 @@
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/10mmrevolver.rsi
   - type: RevolverAmmoProvider
+    proto: null
+    apacity: 6
+    chambers: [ null, null, null, null, null, null ]
+    ammoSlots: [ null, null, null, null, null, null ]
     whitelist:
       tags:
-        - N14CartridgePistol10
-        - SpeedLoader10
+      - N14CartridgePistol10
+      - SpeedLoader10
   - type: Gun
     soundGunshot:
       collection: N14Revolver10mmGunshot

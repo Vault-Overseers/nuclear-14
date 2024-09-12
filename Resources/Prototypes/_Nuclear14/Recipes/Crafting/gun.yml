@@ -5,39 +5,64 @@
   graph:
     - node: start
       edges:
-        - to: WeaponPistol22lr
+        - to: IncompleteWeaponPistol22lrEmpty
+          completed:
+            - !type:SnapToGrid
           steps:
             - tag: PistolFrame
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: pistolframe
               name: pistol frame(part)
+              doAfter: 2
+
+    - node: IncompleteWeaponPistol22lrEmpty
+      actions:
+      - !type:AppearanceChange
+      entity: IncompleteN14WeaponPistol22lrEmpty
+      edges:
+       - to: WeaponPistol22lrScrewing
+         steps:
             - tag: Trigger
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: trigger
               name: trigger(part)
+              doAfter: 2
             - tag: Bolt
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: bolt
               name: gun bolt(part)
+              doAfter: 2
             - tag: DuctTape
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: duct_tape
               name: duct tape
+              doAfter: 2
             - tag: Screw
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: screw
               name: screw
+              doAfter: 2
             - tag: Barrel
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: barrel
               name: gun barrel (part)
-              doAfter: 15
+              doAfter: 2
+
+    - node: WeaponPistol22lrScrewing
+      actions:
+      - !type:AppearanceChange
+      edges:
+        - to: WeaponPistol22lr
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
 
     - node: WeaponPistol22lr
       entity: N14WeaponPistol22lrEmpty
@@ -48,55 +73,82 @@
   graph:
     - node: start
       edges:
-       - to: Weapon12mmpipe
+       - to: IncompleteWeapon12mmpipeEmpty
+         completed:
+           - !type:SnapToGrid
          steps:
             - tag: PistolFrame
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: pistolframe
               name: pistol frame(part)
+              doAfter: 2
+
+    - node: IncompleteWeapon12mmpipeEmpty
+      actions:
+      - !type:AppearanceChange
+      entity: IncompleteN14weapon12mmpipeEmpty
+      edges:
+       - to: Weapon12mmPipeScrewing
+         steps:
             - tag: Trigger
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: trigger
               name: trigger(part)
+              doAfter: 2
             - tag: Bolt
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: bolt
               name: gun bolt(part)
+              doAfter: 2
             - tag: Action
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: action
               name: gun action (part)
+              doAfter: 2
             - tag: Receiver
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: receiver
               name: receiver(part)
+              doAfter: 2
             - tag: Screw
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: screw
               name: screw
               amount: 3
+              doAfter: 2
             - tag: DuctTape
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: duct_tape
               name: duct tape
+              doAfter: 2
             - tag: WonderGlue
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: wonderglue
               name: Wonderglue
+              doAfter: 2
             - tag: RecoilComp
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: recoilcomp
               name: recoil compensator(part)
-              doAfter: 17
+              doAfter: 2
+
+    - node: Weapon12mmPipeScrewing
+      actions:
+      - !type:AppearanceChange
+      edges:
+        - to: Weapon12mmpipe
+          steps:
+            - tool: Screwing
+              doAfter: 2
 
     - node: Weapon12mmpipe
       entity: N14weapon12mmpipeEmpty
@@ -154,9 +206,6 @@
       edges:
        - to: WeaponRevolver10mmWelding
          steps:
-         - material: Gunpowder
-           amount: 1
-           doAfter: 1
          - material: Steel
            amount: 1
            doAfter: 1
