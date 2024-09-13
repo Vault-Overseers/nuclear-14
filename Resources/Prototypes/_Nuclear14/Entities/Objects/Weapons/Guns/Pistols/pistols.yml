@@ -261,6 +261,32 @@
     backStrength: 6
 
 - type: entity
+  parent: N14WeaponPipe10mm
+  id: N14WeaponPipe10mmEmpty
+  suffix: Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+      visible: false
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        whitelist:
+          tags:
+            - N14MagazinePistol10mm
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol10
+
+- type: entity
   name: chinese pistol
   parent: BaseWeaponSniper
   id: N14WeaponPistolChinese
