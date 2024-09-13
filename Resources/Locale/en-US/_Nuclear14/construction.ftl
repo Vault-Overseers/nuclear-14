@@ -9,6 +9,7 @@ lathe-category-cleaning = Cleaning
 lathe-category-kitchen = Kitchen
 lathe-category-misc = Misc
 lathe-category-shields = Shields
+lathe-category-weapons-melee = Melee
 lathe-category-weapons-pistols = Pistols
 lathe-category-weapons-rifles = Rifles
 lathe-category-weapons-smgs = Smgs
