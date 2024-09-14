@@ -1,0 +1,12 @@
+- type: constructionGraph
+  id: ShotgunSawed
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: shotgunsawed
+          steps:
+            - tool: Sawing
+              doAfter: 2
+    - node: shotgunsawed
+      entity: N14WeaponSawedOffShotgunEmpty

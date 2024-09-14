@@ -106,13 +106,83 @@
       - key: enum.UndecidedLoadoutBackpackUIKey.Key
         type: UndecidedLoadoutBackpackBoundUserInterface
 
+#MARK: Knights
+- type: entity
+  id: NCRBoSMidwestkits
+  name: Undecided BoS Midwest Kit
+  description: please only take one
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - BoSDefaultSet
+    - BoSCarbineSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+#MARK: Scribes
+- type: entity
+  id: NCRBoSMidwestScribekits
+  name: Undecided BoS Scribe Midwest Kit
+  description: please only take one
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - BoSScribeMedicalSet
+    - BoSScribeFieldSet
+    - BoSScribeEngineerSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+#MARK: Paladins
+- type: entity
+  id: NCRBoSMidwestPaladinkits
+  name: Undecided BoS Paladin Midwest Kit
+  description: please only take one
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - BoSDefaultSet
+    - BoSRangedSet
+    - BoSLaserSet 
+    # - BoSPlasmaSet
+    - BoSAssaultSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
 #MARK: Trooper Kits
 
 - type: UndecidedLoadoutBackpackSet
   id: RiflemanSet
   name: undecided-loadout-category-rifleman-name
   description: undecided-loadout-category-rifleman-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
@@ -122,17 +192,17 @@
   id: GunnerSet
   name: undecided-loadout-category-gunner-name
   description: undecided-loadout-category-gunner-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: gunner
   content:
-  - KitRifleman
+  - KitGunner
 
 - type: UndecidedLoadoutBackpackSet
   id: MarksmanSet
   name: undecided-loadout-category-marksman-name
   description: undecided-loadout-category-marksman-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
@@ -142,7 +212,7 @@
   id: PointmanSet
   name: undecided-loadout-category-pointman-name
   description: undecided-loadout-category-pointman-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: pointman
   content:
@@ -152,7 +222,7 @@
   id: MoraleSet
   name: undecided-loadout-category-morale-name
   description: undecided-loadout-category-morale-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: pointman
   content:
@@ -162,7 +232,7 @@
   id: MedicSet
   name: undecided-loadout-category-medic-name
   description: undecided-loadout-category-medic-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: medic
   content:
@@ -174,7 +244,7 @@
   id: SpecialRiflemanSet
   name: undecided-loadout-category-special-rifleman-name
   description: undecided-loadout-category-special-rifleman-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
@@ -184,7 +254,7 @@
   id: SpecialAssaultSet
   name: undecided-loadout-category-special-assault-name
   description: undecided-loadout-category-special-assault-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
@@ -194,7 +264,7 @@
   id: SpecialGunnerSet
   name: undecided-loadout-category-special-gunner-name
   description: undecided-loadout-category-special-gunner-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
@@ -204,7 +274,7 @@
   id: SpecialPointmanSet
   name: undecided-loadout-category-special-pointman-name
   description: undecided-loadout-category-special-pointman-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: pointman
   content:
@@ -215,7 +285,7 @@
   id: RangerServiceSet
   name: undecided-loadout-category-ranger-service-name
   description: undecided-loadout-category-ranger-service-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
@@ -225,7 +295,7 @@
   id: RangerRiflemanSet
   name: undecided-loadout-category-ranger-rifleman-name
   description: undecided-loadout-category-ranger-rifleman-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
@@ -235,7 +305,7 @@
   id: RangerMarksmanSet
   name: undecided-loadout-category-ranger-marksman-name
   description: undecided-loadout-category-ranger-marksman-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
@@ -245,7 +315,7 @@
   id: RangerCQBSet
   name: undecided-loadout-category-ranger-cqb-name
   description: undecided-loadout-category-ranger-cqb-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
@@ -255,7 +325,7 @@
   id: RangerTrailmanSet
   name: undecided-loadout-category-ranger-trailman-name
   description: undecided-loadout-category-ranger-trailman-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
@@ -267,7 +337,7 @@
   id: VeteranRangerServiceSet
   name: undecided-loadout-category-veteran-ranger-service-name
   description: undecided-loadout-category-veteran-ranger-service-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
@@ -277,7 +347,7 @@
   id: VeteranRangerRiflemanSet
   name: undecided-loadout-category-veteran-ranger-precision-rifle-name
   description: undecided-loadout-category-veteran-ranger-precision-rifle-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
@@ -287,7 +357,7 @@
   id: VeteranRangerHeavySniperSet
   name: undecided-loadout-category-veteran-ranger-heavy-sniper-name
   description: undecided-loadout-category-veteran-ranger-heavy-sniper-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
@@ -297,7 +367,7 @@
   id: VeteranRangerAssaultSet
   name: undecided-loadout-category-veteran-ranger-assault-name
   description: undecided-loadout-category-veteran-ranger-assault-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
@@ -307,8 +377,111 @@
   id: VeteranRangerMarksmanSet
   name: undecided-loadout-category-veteran-ranger-marksman-name
   description: undecided-loadout-category-veteran-ranger-marksman-description
-  sprite: 
+  sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
   - KitMarksmanRangerVeteran
+
+#MARK: BoS Midwest Kits
+#default
+- type: UndecidedLoadoutBackpackSet
+  id: BoSDefaultSet
+  name: undecided-loadout-category-bos-default-name
+  description: undecided-loadout-category-bos-default-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitDefaultBoSMidwest
+
+#laser
+- type: UndecidedLoadoutBackpackSet
+  id: BoSLaserSet
+  name: undecided-loadout-category-bos-laser-name
+  description: undecided-loadout-category-bos-laser-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitLaserBoSMidwest
+
+#carbine
+- type: UndecidedLoadoutBackpackSet
+  id: BoSCarbineSet
+  name: undecided-loadout-category-bos-carbine-name
+  description: undecided-loadout-category-bos-carbine-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitCarbineBoSMidwest
+
+#ranged-wattz
+- type: UndecidedLoadoutBackpackSet
+  id: BoSRangedSet
+  name: undecided-loadout-category-bos-ranged-name
+  description: undecided-loadout-category-bos-ranged-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitRangedBoSMidwest
+
+#MARK: Scribes
+#medic
+- type: UndecidedLoadoutBackpackSet
+  id: BoSScribeMedicalSet
+  name: undecided-loadout-category-bos-scribe-medic-name
+  description: undecided-loadout-category-bos-scribe-medic-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: medic
+  content:
+  - KitScribeMedicBoSMidwest
+
+#field scribe
+- type: UndecidedLoadoutBackpackSet
+  id: BoSScribeFieldSet
+  name: undecided-loadout-category-bos-scribe-field-name
+  description: undecided-loadout-category-bos-scribe-field-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitScribeFieldBoSMidwest
+
+#engineer
+- type: UndecidedLoadoutBackpackSet
+  id: BoSScribeEngineerSet
+  name: undecided-loadout-category-bos-scribe-engineer-name
+  description: undecided-loadout-category-bos-scribe-engineer-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitScribeEngineerBoSMidwest
+
+#MARK: BoS Commander Special
+
+#PlasmaRifle
+# - type: UndecidedLoadoutBackpackSet
+#   id: BoSPlasmaSet
+#   name: undecided-loadout-category-bos-plasma-name
+#   description: undecided-loadout-category-bos-plasma-description
+#   sprite:
+#     sprite: _Nuclear14/Objects/Misc/kits.rsi
+#     state: rifleman
+#   content:
+#   - KitPlasmaBoSMidwest
+
+#AssaultRifle
+- type: UndecidedLoadoutBackpackSet
+  id: BoSAssaultSet
+  name: undecided-loadout-category-bos-ballistics-name
+  description: undecided-loadout-category-bos-ballistics-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitAssaultBoSMidwest
