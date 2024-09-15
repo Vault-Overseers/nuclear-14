@@ -12,28 +12,3 @@
     sprite: _Nuclear14/Structures/Furniture/bedsandchairs.rsi
     state: bedroll_rolled
   objectType: Item
-  
-- type: constructionGraph
-  id: N14BedrollItem
-  start: start
-  graph:
-    - node: start
-      edges:
-        - to: bedroll
-          steps:
-            - material: Cloth 
-              amount: 3
-              doAfter: 3
-           
-    - node: bedroll
-      entity: N14BedrollItem
-      edges:
-        - to: start
-          steps:
-            - tool: Cutting
-              doAfter: 3
-          completed:
-            - !type:SpawnPrototype
-              prototype: MaterialCloth1
-              amount: 2
-            - !type:DeleteEntity

@@ -64,7 +64,6 @@
     sprite: _Nuclear14/Clothing/Neck/tribal.rsi
 
 # Neutral
-
 - type: entity
   parent: ClothingNeckBase
   id: N14ClothingNeckCloakLeather
@@ -81,6 +80,14 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+  - type: Construction
+    graph: LeatherCloakGraph
+    node: cloak
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: N14MaterialLeather1
+      amount: 2
 
 - type: entity
   parent: ClothingNeckBase
@@ -90,3 +97,11 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Neck/yaoguai.rsi
+  - type: Construction
+    graph: YaoguaiCloakGraph
+    node: cloak
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: N14MaterialYaoguaiHide
+      amount: 1
