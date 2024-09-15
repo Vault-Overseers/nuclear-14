@@ -2,7 +2,7 @@
   parent: ClothingNeckBase
   id: N14ClothingNeckMantleBrotherhoodWashington
   name: Washington Brotherhood mantle
-  description: A red and black mantle, worn by high-ranking of the Washington Brotherhood of Steel. It represents a high status.
+  description: A red with black mantle, wore by high ranks of the washington BoS army it represents a high status.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Neck/WBoSmantle.rsi
@@ -13,7 +13,7 @@
   parent: ClothingNeckBase
   id: N14ClothingNeckMantleNCR
   name: NCR squad leader mantle
-  description: A tiny piece of cloth bound with a rope, commonly used between Sergeants from the NCR army.
+  description: A tiny piece of cloth holded with a rope, commonly used between sergeants from the NCR army.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Neck/NCRmantle.rsi
@@ -24,7 +24,7 @@
   parent: ClothingNeckBase
   id: N14ClothingNeckMantleLeather
   name: leather mantle
-  description: A comfortable brown leather mantle.
+  description: A comfortable brown long mantle.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Neck/leathermantle.rsi
@@ -32,11 +32,12 @@
     sprite: _Nuclear14/Clothing/Neck/leathermantle.rsi
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHatHoodLeatherCloak
-    requiredSlot: neck
+    requiredSlot:
+    - neck
     slot: head
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:Container
+      toggleable-clothing: !type:ContainerSlot {}
   - type: Construction
     graph: LeatherMantleGraph
     node: mantle
@@ -45,16 +46,3 @@
     spawned:
     - id: N14MaterialLeather1
       amount: 2
-
-- type: entity
-  parent: ClothingNeckBase
-  id: N14ClothingNeckTownGuardMantle
-  name: army rain mantle
-  description: A piece of clothing meant to keep the soldiers somewhat dry before the Great War.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Clothing/Neck/townrainmantle.rsi
-  - type: Clothing
-    sprite: _Nuclear14/Clothing/Neck/townrainmantle.rsi
-  - type: StaticPrice
-    price: 50
