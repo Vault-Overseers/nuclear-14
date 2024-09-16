@@ -22759,6 +22759,16 @@ entities:
       angularDamping: 0
       linearDamping: 0
       canCollide: False
+- proto: MagazineBox45-70
+  entities:
+  - uid: 2710
+    components:
+    - type: Transform
+      parent: 2611
+    - type: Physics
+      angularDamping: 0
+      linearDamping: 0
+      canCollide: False
 - proto: MagazineBox556
   entities:
   - uid: 24564
@@ -23279,21 +23289,29 @@ entities:
       parent: 2
 - proto: N14BarricadeSandbagSingle
   entities:
-  - uid: 2710
-    components:
-    - type: Transform
-      pos: -80.5,-64.5
-      parent: 2
   - uid: 2711
     components:
     - type: Transform
-      pos: -79.5,-64.5
+      rot: -1.5707963267948966 rad
+      pos: -81.5,-66.5
+      parent: 2
+  - uid: 4529
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -76.5,-65.5
       parent: 2
   - uid: 17320
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 42.5,124.5
+      parent: 2
+  - uid: 21374
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -76.5,-66.5
       parent: 2
 - proto: N14BarricadeWindow
   entities:
@@ -25595,19 +25613,13 @@ entities:
       parent: 2
 - proto: N14CurrencyCap
   entities:
-  - uid: 2990
-    components:
-    - type: Transform
-      pos: -79.29601,-64.28845
-      parent: 2
-    - type: Physics
-      angularDamping: 0
-      linearDamping: 0
   - uid: 2991
     components:
     - type: Transform
-      pos: -79.15539,-64.24158
+      pos: -80.28125,-64.41842
       parent: 2
+    - type: Stack
+      count: 12
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -25623,11 +25635,6 @@ entities:
       parent: 2
 - proto: N14CurrencyCap10
   entities:
-  - uid: 2992
-    components:
-    - type: Transform
-      pos: -79.23117,-64.44908
-      parent: 2
   - uid: 24716
     components:
     - type: Transform
@@ -27086,13 +27093,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -124.5,-21.5
       parent: 2
-- proto: N14DoorMetalSecureLockedSilver
-  entities:
-  - uid: 3088
-    components:
-    - type: Transform
-      pos: -77.5,-78.5
-      parent: 2
 - proto: N14DoorVault
   entities:
   - uid: 3089
@@ -27146,6 +27146,11 @@ entities:
         - Pressed: Toggle
 - proto: N14DoorWoodHouseWhiteClean
   entities:
+  - uid: 2992
+    components:
+    - type: Transform
+      pos: -77.5,-78.5
+      parent: 2
   - uid: 3093
     components:
     - type: Transform
@@ -33071,13 +33076,34 @@ entities:
     - type: Transform
       pos: 25.5,71.5
       parent: 2
-- proto: N14IDKeySilver
+- proto: N14IDCardVaultOverseer
   entities:
-  - uid: 3945
+  - uid: 21361
     components:
+    - type: MetaData
+      name: Lia Fletcher's ID card (Vault Manager)
     - type: Transform
-      pos: -78.5,-79.5
+      pos: -5.0724373,14.716055
       parent: 2
+    - type: PresetIdCard
+      name: Lia Fletcher
+    - type: Access
+      tags:
+      - VaultOverseer
+      - VaultGatekeeper
+      - VaultSecurity
+      - VaultEngineer
+      - VaultMedical
+      - VaultDweller
+    - type: IdCard
+      jobDepartments:
+      - department-Vault
+      jobIcon: JobIconCaptain
+      jobTitle: Vault Manager
+      fullName: Lia Fletcher
+    - type: Physics
+      angularDamping: 0
+      linearDamping: 0
 - proto: N14Jet
   entities:
   - uid: 2272
@@ -33403,15 +33429,11 @@ entities:
   - uid: 3957
     components:
     - type: Transform
-      pos: -80.37486,-64.20388
+      pos: -78.921875,-59.371544
       parent: 2
-- proto: N14JunkGunpartsRifleStock
-  entities:
-  - uid: 3958
-    components:
-    - type: Transform
-      pos: -79.399864,-59.38513
-      parent: 2
+    - type: Physics
+      angularDamping: 0
+      linearDamping: 0
 - proto: N14JunkJukebox
   entities:
   - uid: 3959
@@ -35647,6 +35669,16 @@ entities:
       angularDamping: 0
       linearDamping: 0
       canCollide: False
+- proto: N14ripper
+  entities:
+  - uid: 24756
+    components:
+    - type: Transform
+      pos: -81.47254,-59.37133
+      parent: 2
+    - type: Physics
+      angularDamping: 0
+      linearDamping: 0
 - proto: N14RugBlue
   entities:
   - uid: 4250
@@ -37436,6 +37468,9 @@ entities:
         2622:
           position: 7,0
           _rotation: South
+        2710:
+          position: 6,0
+          _rotation: South
     - type: ContainerContainer
       containers:
         storagebase: !type:Container
@@ -37453,6 +37488,7 @@ entities:
           - 2617
           - 2622
           - 2615
+          - 2710
   - uid: 2650
     components:
     - type: Transform
@@ -39127,11 +39163,6 @@ entities:
     components:
     - type: Transform
       pos: -43.5,27.5
-      parent: 2
-  - uid: 4529
-    components:
-    - type: Transform
-      pos: -80.5,-64.5
       parent: 2
   - uid: 4530
     components:
@@ -124503,6 +124534,20 @@ entities:
     - type: Transform
       pos: -4.5550575,14.651476
       parent: 2
+- proto: N14WeaponSniperHunting
+  entities:
+  - uid: 24755
+    components:
+    - type: Transform
+      pos: -80.76942,-60.824455
+      parent: 2
+- proto: N14WeaponSniperVarmint
+  entities:
+  - uid: 3088
+    components:
+    - type: Transform
+      pos: -80.94129,-60.77758
+      parent: 2
 - proto: N14WeaponSubMachineGun10mm
   entities:
   - uid: 21357
@@ -124554,11 +124599,6 @@ entities:
       linearDamping: 0
 - proto: N14WorkbenchAmmobench
   entities:
-  - uid: 21361
-    components:
-    - type: Transform
-      pos: -79.5,-59.5
-      parent: 2
   - uid: 21362
     components:
     - type: Transform
@@ -124571,6 +124611,11 @@ entities:
       parent: 2
 - proto: N14WorkbenchArmorbench
   entities:
+  - uid: 3945
+    components:
+    - type: Transform
+      pos: -77.5,-59.5
+      parent: 2
   - uid: 21368
     components:
     - type: Transform
@@ -124613,15 +124658,15 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -141.5,-71.5
       parent: 2
+  - uid: 2990
+    components:
+    - type: Transform
+      pos: -80.5,-64.5
+      parent: 2
   - uid: 21372
     components:
     - type: Transform
       pos: -9.5,39.5
-      parent: 2
-  - uid: 21374
-    components:
-    - type: Transform
-      pos: -77.5,-59.5
       parent: 2
   - uid: 23478
     components:
@@ -124646,6 +124691,13 @@ entities:
     components:
     - type: Transform
       pos: 29.5,92.5
+      parent: 2
+- proto: N14WorkbenchWeaponbench
+  entities:
+  - uid: 3958
+    components:
+    - type: Transform
+      pos: -79.5,-59.5
       parent: 2
 - proto: N14Wrench
   entities:
@@ -126213,6 +126265,8 @@ entities:
     components:
     - type: Transform
       parent: 2611
+    - type: Stack
+      count: 11
     - type: Physics
       angularDamping: 0
       linearDamping: 0
