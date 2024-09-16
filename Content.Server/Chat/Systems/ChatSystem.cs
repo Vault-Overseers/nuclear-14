@@ -399,8 +399,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         string? nameOverride,
         LanguagePrototype language,
         bool hideLog = false,
-        bool ignoreActionBlocker = false,
-        LanguagePrototype? languageOverride = null
+        bool ignoreActionBlocker = false
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -429,8 +428,6 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (nameEv.SpeechVerb != null && _prototypeManager.TryIndex<SpeechVerbPrototype>(nameEv.SpeechVerb, out var proto))
                 speech = proto;
         }
-
-        var language = languageOverride ?? _language.GetLanguage(source);
 
         name = FormattedMessage.EscapeText(name);
         // The chat message wrapped in a "x says y" string
@@ -476,8 +473,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         string? nameOverride,
         LanguagePrototype language,
         bool hideLog = false,
-        bool ignoreActionBlocker = false,
-        LanguagePrototype? languageOverride = null
+        bool ignoreActionBlocker = false
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -579,9 +575,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool hideLog = false,
         bool checkEmote = true,
         bool ignoreActionBlocker = false,
-        NetUserId? author = null,
-        LanguagePrototype? languageOverride = null,
-        bool? signLanguage = false
+        NetUserId? author = null
         )
     {
         if (!_actionBlocker.CanEmote(source) && !ignoreActionBlocker)
@@ -591,28 +585,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         var ent = Identity.Entity(source, EntityManager);
         string name = FormattedMessage.EscapeText(nameOverride ?? Name(ent));
 
-        var language = languageOverride ?? _language.GetLanguage(source);
-
         // Emotes use Identity.Name, since it doesn't actually involve your voice at all.
-        var wrappedMessage = "";
-        var obfuscatedWrappedMessage = "";
-        if (signLanguage == true)
-        {
-            wrappedMessage = Loc.GetString("entity-signlanguage-message",
-                ("entityName", name),
-                ("message", FormattedMessage.EscapeText(action)));
-
-            obfuscatedWrappedMessage = Loc.GetString(_language.ObfuscateSpeech(action, language),
-                ("entityName", name));
-        }
-        else
-        {
-            wrappedMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
-                ("entityName", name),
-                ("entity", ent),
-                ("message", FormattedMessage.RemoveMarkup(action)));
-
-        }
+        var wrappedMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
+            ("entityName", name),
+            ("entity", ent),
+            ("message", FormattedMessage.RemoveMarkup(action)));
 
         if (checkEmote)
             TryEmoteChatInput(source, action);
