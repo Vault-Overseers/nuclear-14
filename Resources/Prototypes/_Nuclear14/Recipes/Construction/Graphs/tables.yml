@@ -1,27 +1,59 @@
-﻿- type: constructionGraph
-  id: N14Table
+- type: constructionGraph
+  id: N14TableCounterBarRecipes
   start: start
   graph:
     - node: start
-      actions:
-        - !type:DeleteEntity {}
       edges:
-        - to: N14TableWoodSettler
+        - to: TableCounterBar
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
           steps:
             - material: WoodPlank
               amount: 2
-              doAfter: 1
-            - tool: Screwing
-              doAfter: 3
+              doAfter: 2
 
-    - node: N14TableWoodSettler
-      entity: N14TableWoodSettler
+    - node: TableCounterBar
+      entity: N14TableCounterBar
+
+- type: constructionGraph
+  id: N14TableMetalGrateRecipes
+  start: start
+  graph:
+    - node: start
       edges:
-        - to: start
+        - to: TableMetalGrate
           completed:
-            - !type:SpawnPrototype
-              prototype: MaterialWoodPlank1
-              amount: 2
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
           steps:
-            - tool: Prying
-              doAfter: 3
+            - material: Steel
+              amount: 2
+              doAfter: 2
+
+    - node: TableMetalGrate
+      entity: N14TableMetalGrate
+
+- type: constructionGraph
+  id: N14TableRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: TableWoodSettler
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2
+
+    - node: TableWoodSettler
+      entity: N14TableWoodSettler

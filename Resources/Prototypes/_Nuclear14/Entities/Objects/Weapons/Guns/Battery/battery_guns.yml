@@ -9,7 +9,7 @@
   - type: AmmoCounter
   - type: Gun
     minAngle: 35
-    maxAngle: 65
+    maxAngle: 70
     angleIncrease: 4
     angleDecay: 16
     fireRate: 1
@@ -48,8 +48,12 @@
     slots:
     - Belt
   - type: Gun
-    minAngle: 10
-    maxAngle: 20
+    availableModes:
+    - Semiauto
+    minAngle: 1
+    maxAngle: 9
+    angleIncrease: 0.5
+    angleDecay: 4
 
 - type: entity
   id: N14BaseWeaponPowerCellMedium
@@ -63,6 +67,7 @@
     quickEquip: false
     slots:
     - Belt
+
 # MARK: Pistols
 - type: entity
   name: AEP-7 laser pistol
@@ -183,6 +188,10 @@
   id: N14WeaponRechargerRifle
   description: The first model for a self charging laser rifle, its low energy consumption and advanced internal battery lets this gun last for centuries without recharging.
   components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_rifle.rsi
     layers:
