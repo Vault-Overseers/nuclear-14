@@ -1,0 +1,26 @@
+- type: constructionGraph
+  id: N14Cardboard
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: cardboard
+          steps:
+            - material: N14Paper
+              amount: 2
+              doAfter: 2
+    - node: cardboard
+      entity: MaterialCardboard1
+
+- type: constructionGraph
+  id: N14Paper
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: paper
+          steps:
+            - material: WoodPlank
+              doAfter: 2
+    - node: paper
+      entity: N14Paper

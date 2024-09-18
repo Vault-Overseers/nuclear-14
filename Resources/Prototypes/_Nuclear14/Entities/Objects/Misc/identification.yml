@@ -130,7 +130,7 @@
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: doctor
 
-#MARK: Brotherhood
+#MARK: Brotherhood Midwest
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDBrotherhoodHolotag
@@ -195,6 +195,72 @@
     state: bos_holotag
   - type: PresetIdCard
     job: BoSMidPaladinCommander
+
+#MARK: Brotherhood Washington
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodWashingtonHolotagResearcher
+  name: holotag
+  description: An ID holotag worn by a Researcher in the Washington Brotherhood of Steel.
+  suffix: Scribe
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonResearcher
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodWashingtonHolotagRecruit
+  name: holotag
+  description: An ID holotag worn by a Recruit in the Washington Brotherhood of Steel.
+  suffix: Squire
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonRecruit
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodWashingtonHolotagSoldier
+  name: holotag
+  description: An ID holotag worn by a Soldier in the Washington Brotherhood of Steel.
+  suffix: Knight
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonSoldier
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodWashingtonHolotagCaptain
+  name: holotag
+  description: An ID holotag worn by a Captain in the Washington Brotherhood of Steel.
+  suffix: Paladin
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonCaptain
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodWashingtonHolotagCommander
+  name: holotag
+  description: An ID holotag worn by the Commander of the Washington Brotherhood of Steel.
+  suffix: Commander, Washington
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonCommander
 
 #MARK: Enclave
 - type: entity
@@ -373,10 +439,28 @@
   description: A passport used by townsfolk as ID.
 
 - type: entity
+  parent: N14IDPassportVIP
+  id: N14IDShopkeeperTown
+  name: Shopkeepers ID
+  description: A flashy ID card worn by the town shopkeeper
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport_presidential
+  - type: PresetIdCard
+    job: TownShopkeeper
+
+- type: entity
   parent: N14IDDoctor
   id: N14IDDoctorTown
   name: doctors ID
   description: An ID card worn by the town doctor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: doctor
+  - type: PresetIdCard
+    job: TownDoctor
 
 - type: entity
   parent: N14IDPassportBlank
@@ -387,6 +471,8 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: deputy
+  - type: PresetIdCard
+    job: TownDeputy
 
 - type: entity
   parent: N14IDPassportBlank
@@ -397,6 +483,8 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: sheriff
+  - type: PresetIdCard
+    job: TownSheriff
 
 - type: entity
   parent: N14IDPassportBlank
@@ -407,6 +495,8 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: mayor
+  - type: PresetIdCard
+    job: TownMayor
 
 #MARK: Raiders / Tribes
 - type: entity

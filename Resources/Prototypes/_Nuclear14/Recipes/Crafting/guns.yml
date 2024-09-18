@@ -1,0 +1,321 @@
+#MARK: Pistol
+- type: entity
+  name: 12.7mm autopipe
+  parent: BaseWeaponSubMachineGun
+  id: N14weapon12mmpipeEmpty
+  description: a makeshift 12mm SMG, looks like is gonna explode the second it shoots.
+  suffix: Empty
+  components:
+  - type: Construction
+    graph: N14weapon12mmpipeEmpty
+    node: start
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
+  - type: Gun
+    fireRate: 4
+    soundGunshot:
+      collection: N14Pistol12mmGunshot
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 56
+    angleIncrease: 4
+    angleDecay: 16
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -15
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
+        ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14MagazineSMG12mm
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol127
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
+  name: incomplete 12.7mm autopipe
+  parent: BaseItem
+  id: IncompleteN14weapon12mmpipeEmpty
+  description: 12.7mm autopipe
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+    state: pistolframe
+  - type: Item
+  - type: Construction
+    graph: N14weapon12mmpipeEmpty
+    node: IncompleteWeapon12mmpipeEmpty
+
+- type: construction
+  name: 12.7mm autopipe
+  id: N14weapon12mmpipeEmpty
+  graph: N14weapon12mmpipeEmpty
+  startNode: start
+  targetNode: Weapon12mmpipe
+  category: construction-category-weapons
+  description: a makeshift 12mm SMG, looks like is gonna explode the second it shoots.
+  objectType: Item
+  hide: false
+  icon:
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
+    state: icon
+
+- type: entity
+  name: 10mm revolver
+  parent: BaseWeaponRevolver
+  id: N14WeaponRevolver10mmEmpty
+  description: The first prototype for the semiauto 10mm pistol, Uses 10mm ammo.
+  suffix: Empty
+  components:
+  - type: Construction
+    graph: N14WeaponRevolver10mmEmpty
+    node: start
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/10mmrevolver.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/10mmrevolver.rsi
+  - type: RevolverAmmoProvider
+    proto: null
+    chambers: [ null, null, null, null, null, null ]
+    whitelist:
+      tags:
+      - N14CartridgePistol10
+      - SpeedLoader10
+  - type: Gun
+    soundGunshot:
+      collection: N14Revolver10mmGunshot
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
+  name: incomplete 10mm revolver
+  parent: BaseItem
+  id: IncompleteN14WeaponRevolver10mm
+  description: 10mm revolver
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+    state: pistolframe
+  - type: Item
+  - type: Construction
+    graph: N14WeaponRevolver10mmEmpty
+    node: IncompleteWeaponRevolver10mm
+
+- type: construction
+  name: 10mm revolver
+  id: N14WeaponRevolver10mmEmpty
+  graph: N14WeaponRevolver10mmEmpty
+  startNode: start
+  targetNode: WeaponRevolver10mm
+  category: construction-category-weapons
+  description: The first prototype for the semiauto 10mm pistol, Uses 10mm ammo.
+  objectType: Item
+  hide: false
+  icon:
+    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/10mmrevolver.rsi
+    state: icon
+
+- type: entity
+  name: 10mm pipe pistol
+  parent: N14BaseWeaponPistol
+  id: N14WeaponPipe10mmEmpty
+  description: a light makeshift 10mm pistol, the grip is incredibly uncomfortable.
+  suffix: Empty
+  components:
+  - type: Construction
+    graph: N14WeaponPipe10mmEmpty
+    node: start
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/10mmPIPEpistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/10mmPIPEpistol.rsi
+  - type: Gun
+    fireRate: 4
+    soundGunshot:
+      collection: N14Pistol10mmGunshot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        whitelist:
+          tags:
+            - N14MagazinePistol10mm
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol10
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
+  name: incomplete 10mm pipe pistol
+  parent: BaseItem
+  id: IncompleteN14WeaponPipe10mm
+  description: 10mm pipe pistol
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+    state: pistolframe
+  - type: Item
+  - type: Construction
+    graph: N14WeaponPipe10mmEmpty
+    node: IncompleteWeaponPipe10mm
+
+- type: construction
+  name: 10mm pipe pistol
+  id: N14WeaponPipe10mmEmpty
+  graph: N14WeaponPipe10mmEmpty
+  startNode: start
+  targetNode: WeaponPipe10mm
+  category: construction-category-weapons
+  description: a light makeshift 10mm pistol, the grip is incredibly uncomfortable.
+  objectType: Item
+  hide: false
+  icon:
+    sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/10mmPIPEpistol.rsi
+    state: icon
+
+- type: entity
+  name: 10mm autopipe
+  parent: BaseWeaponSubMachineGun
+  id: N14weapon10mmpipeEmpty
+  description: a makeshift 10mm SMG, if you shake it you could hear the loose parts inside of the gun.
+  suffix: Empty
+  components:
+  - type: Construction
+    graph: N14weapon10mmpipeEmpty
+    node: start
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      collection: N14Pistol10mmGunshot
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 56
+    angleIncrease: 4
+    angleDecay: 16
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -15
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
+        ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
+        whitelist:
+          tags:
+            - N14MagazineSMG10mm
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol10
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
+  name: incomplete 10mm autopipe
+  parent: BaseItem
+  id: IncompleteN14Weapon10mmPipe
+  description: 10mm autopipe
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+    state: pistolframe
+  - type: Item
+  - type: Construction
+    graph: N14weapon10mmpipeEmpty
+    node: Incomplete14WeaponPipe10mm
+
+- type: construction
+  name: 10mm autopipe
+  id: N14weapon10mmpipeEmpty
+  graph: N14weapon10mmpipeEmpty
+  startNode: start
+  targetNode: Weapon10mmPipe
+  category: construction-category-weapons
+  description: a makeshift 10mm SMG, if you shake it you could hear the loose parts inside of the gun.
+  objectType: Item
+  hide: false
+  icon:
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
+    state: icon
+
+#MARK: Rifle
+
+#MARK: ShotGun
+
+#MARK: LaserPistol
+
+#MARK: LaserRifle
+
+#MARK: Primitive
