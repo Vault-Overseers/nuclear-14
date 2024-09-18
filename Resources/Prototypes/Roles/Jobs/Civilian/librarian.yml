@@ -4,8 +4,18 @@
   description: job-description-librarian
   playTimeTracker: JobLibrarian
   requirements:
-    - !type:OverallPlaytimeRequirement #DeltaV
-      time: 3600 # 1 hr
+    - !type:CharacterDepartmentTimeRequirement
+      department: Epistemics
+      min: 14400
+    # - !type:CharacterLogicOrRequirement
+      # requirements:
+        # - !type:CharacterSpeciesRequirement
+          # inverted: true
+          # species:
+            # - IPC
+        # - !type:CharacterTraitRequirement
+          # traits:
+            # - AnomalousPositronics
   startingGear: LibrarianGear
   icon: "JobIconLibrarian"
   supervisors: job-supervisors-hop
@@ -22,9 +32,9 @@
     back: ClothingBackpackLibrarianFilled
     shoes: ClothingShoesBootsLaceup
     id: LibrarianPDA
-    ears: ClothingHeadsetService
+    ears: ClothingHeadsetScience
     pocket1: d10Dice
-    pocket2: HandLabeler # for making named bestsellers
+    pocket2: HandLabeler
   innerClothingSkirt: ClothingUniformJumpskirtLibrarian
   satchel: ClothingBackpackSatchelLibrarianFilled
   duffelbag: ClothingBackpackDuffelLibrarianFilled
