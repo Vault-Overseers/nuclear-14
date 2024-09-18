@@ -1,7 +1,8 @@
-using Content.Server.Announcements.Systems;
+﻿using Content.Server.GameTicking.Components;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Server.StationEvents.Components;
-using Content.Shared.GameTicking.Components;
 using Robust.Shared.Random;
+using Content.Server.Announcements.Systems;
 using Robust.Shared.Player;
 
 namespace Content.Server.StationEvents.Events;
@@ -14,14 +15,14 @@ public sealed class BluespaceArtifactRule : StationEventSystem<BluespaceArtifact
     {
         base.Added(uid, component, gameRule, args);
 
-        if (!TryComp<StationEventComponent>(uid, out var stationEvent))
-            return;
-
         _announcer.SendAnnouncement(
             _announcer.GetAnnouncementId(args.RuleId),
+            Filter.Broadcast(),
             "bluespace-artifact-event-announcement",
-            colorOverride: stationEvent.StartAnnouncementColor,
-            localeArgs: [("sighting", Loc.GetString(RobustRandom.Pick(component.PossibleSighting))), ]
+            null,
+            Color.FromHex("#18abf5"),
+            null, null,
+            ("sighting", Loc.GetString(RobustRandom.Pick(component.PossibleSighting)))
         );
     }
 

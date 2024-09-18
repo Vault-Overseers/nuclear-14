@@ -203,7 +203,7 @@ public sealed class ApcSystem : EntitySystem
 
         return ApcExternalPowerState.Good;
     }
-
+    
     private void OnEmpPulse(EntityUid uid, ApcComponent component, ref EmpPulseEvent args)
     {
         EnsureComp<EmpDisabledComponent>(uid, out var emp); //event calls before EmpDisabledComponent is added, ensure it to force sprite update

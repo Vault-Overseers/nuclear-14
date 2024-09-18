@@ -5,7 +5,6 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Objectives;
 using Content.Shared.Chat;
 using Content.Shared.Mind;
-using Content.Shared.Preferences;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Enums;
@@ -147,7 +146,7 @@ public sealed partial class AntagSelectionSystem
     }
 
     /// <remarks>
-    /// Helper to get just the mind entities and not names.
+    /// Helper specifically for <see cref="ObjectivesTextGetInfoEvent"/>
     /// </remarks>
     public List<EntityUid> GetAntagMindEntityUids(Entity<AntagSelectionComponent?> ent)
     {
@@ -155,36 +154,6 @@ public sealed partial class AntagSelectionSystem
             return new();
 
         return ent.Comp.SelectedMinds.Select(p => p.Item1).ToList();
-    }
-
-    /// <summary>
-    /// Checks if a given session has the primary antag preferences for a given definition
-    /// </summary>
-    public bool HasPrimaryAntagPreference(ICommonSession? session, AntagSelectionDefinition def)
-    {
-        if (session == null)
-            return true;
-
-        if (def.PrefRoles.Count == 0)
-            return false;
-
-        var pref = (HumanoidCharacterProfile) _pref.GetPreferences(session.UserId).SelectedCharacter;
-        return pref.AntagPreferences.Any(p => def.PrefRoles.Contains(p));
-    }
-
-    /// <summary>
-    /// Checks if a given session has the fallback antag preferences for a given definition
-    /// </summary>
-    public bool HasFallbackAntagPreference(ICommonSession? session, AntagSelectionDefinition def)
-    {
-        if (session == null)
-            return true;
-
-        if (def.FallbackRoles.Count == 0)
-            return false;
-
-        var pref = (HumanoidCharacterProfile) _pref.GetPreferences(session.UserId).SelectedCharacter;
-        return pref.AntagPreferences.Any(p => def.FallbackRoles.Contains(p));
     }
 
     /// <summary>

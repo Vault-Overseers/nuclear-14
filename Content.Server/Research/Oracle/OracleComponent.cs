@@ -12,7 +12,7 @@ public sealed partial class OracleComponent : Component
     public ProtoId<WeightedRandomPrototype> DemandTypes;
 
     [DataField]
-    public List<EntProtoId> BlacklistedDemands = new();
+    public List<ProtoId<EntityPrototype>> BlacklistedDemands = new();
 
     [DataField(required: true)]
     public List<ProtoId<WeightedRandomEntityPrototype>> RewardEntities;

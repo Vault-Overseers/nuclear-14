@@ -6,5 +6,7 @@ namespace Content.Shared.Silicon;
 [Serializable, NetSerializable]
 public sealed partial class BatteryDrinkerDoAfterEvent : SimpleDoAfterEvent
 {
-    public BatteryDrinkerDoAfterEvent() { }
+    public BatteryDrinkerDoAfterEvent()
+    {
+    }
 }

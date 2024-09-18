@@ -15,22 +15,27 @@ public sealed partial class EncryptionKeyHolderComponent : Component
     /// <summary>
     ///     Whether or not encryption keys can be removed from the headset.
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("keysUnlocked")]
     public bool KeysUnlocked = true;
 
     /// <summary>
     ///     The tool required to extract the encryption keys from the headset.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<ToolQualityPrototype>))]
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("keysExtractionMethod", customTypeSerializer: typeof(PrototypeIdSerializer<ToolQualityPrototype>))]
     public string KeysExtractionMethod = "Screwing";
 
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("keySlots")]
     public int KeySlots = 2;
 
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("keyExtractionSound")]
     public SoundSpecifier KeyExtractionSound = new SoundPathSpecifier("/Audio/Items/pistol_magout.ogg");
 
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("keyInsertionSound")]
     public SoundSpecifier KeyInsertionSound = new SoundPathSpecifier("/Audio/Items/pistol_magin.ogg");
 
     [ViewVariables]
@@ -40,7 +45,8 @@ public sealed partial class EncryptionKeyHolderComponent : Component
     /// <summary>
     ///     Whether or not the headset can be examined to see the encryption keys while the keys aren't accessible.
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("examineWhileLocked")]
     public bool ExamineWhileLocked = true;
 
     /// <summary>

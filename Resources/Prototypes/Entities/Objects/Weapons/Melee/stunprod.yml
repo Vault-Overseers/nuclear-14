@@ -1,6 +1,6 @@
 - type: entity
   name: stun prod
-  parent: [BaseItem, BaseMinorContraband]
+  parent: BaseItem
   id: Stunprod
   description: A stun prod for illegal incapacitation.
   components:
@@ -25,29 +25,29 @@
   - type: ItemToggleMeleeWeapon
     activatedDamage:
       types:
-        Shock: 5
-  - type: ItemToggleDamageOtherOnHit
+        Blunt: 0
   - type: Stunbaton
-    energyPerUse: 120
+    energyPerUse: 70
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: 1.1
-    range: 1.6
+    attackRate: 0.8
+    range: 1.4
     damage:
       types:
         Blunt: 7.5
     bluntStaminaDamageFactor: 2.0
-    heavyRateModifier: 1.25
+    heavyRateModifier: 0.8
     heavyDamageBaseModifier: 1.2
+    heavyStaminaCost: 5
+    maxTargets: 3
+    angle: 60
     animation: WeaponArcThrust
-  - type: DamageOtherOnHit
   - type: StaminaDamageOnHit
     damage: 22
     sound: /Audio/Weapons/egloves.ogg
   - type: StaminaDamageOnCollide
     damage: 22
     sound: /Audio/Weapons/egloves.ogg
-  - type: LandAtCursor # it deals stamina damage when thrown
   - type: Battery
     maxCharge: 360
     startingCharge: 360

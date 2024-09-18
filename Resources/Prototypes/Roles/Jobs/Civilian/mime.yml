@@ -3,60 +3,46 @@
   name: job-name-mime
   description: job-description-mime
   playTimeTracker: JobMime
+  requirements:
+    - !type:CharacterOverallTimeRequirement
+      min: 7200 # DeltaV - 2 hours
   startingGear: MimeGear
   icon: "JobIconMime"
   supervisors: job-supervisors-hop
   access:
   - Theatre
   - Maintenance
-  - Mime
+  - Mime # DeltaV - Add Mime access
   special:
   - !type:AddComponentSpecial
     components:
     - type: MimePowers
     - type: FrenchAccent
+  setPreference: false
 
 - type: startingGear
   id: MimeGear
-  subGear:
-  - MimePlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitMime
-    back: ClothingBackpackMime
+    back: ClothingBackpackMimeFilled
     head: ClothingHeadHatBeret
-    belt: ClothingBeltSuspendersRed
+    belt: ClothingBeltSuspenders
     gloves: ClothingHandsGlovesLatex
     shoes: ClothingShoesColorWhite
     pocket1: CrayonMime
+    pocket2: Paper
     mask: ClothingMaskMime
     id: MimePDA
     ears: ClothingHeadsetService
-  storage:
-    back:
-    - RubberStampMime
-
-- type: startingGear
-  id: MimePlasmamanGear
-  parent: BasePlasmamanMaskGear
-  equipment:
-    jumpsuit: ClothingUniformEnvirosuitMime
-    head: ClothingHeadEnvirohelmMime
-    gloves: ClothingHandsGlovesEnviroglovesWhite
-    mask: ClothingMaskMime # Parent sets mask to breath mask so set it again here
-
-- type: startingGear
-  id: MimePlasmamanGear
-  parent: BasePlasmamanGear
-  equipment:
-    jumpsuit: ClothingUniformEnvirosuitMime
-    head: ClothingHeadEnvirohelmMime
-    gloves: ClothingHandsGlovesEnviroglovesWhite
-    mask: ClothingMaskMime # Parent sets mask to breath mask so set it again here
+  innerClothingSkirt: ClothingUniformJumpskirtMime
+  satchel: ClothingBackpackSatchelMimeFilled
+  duffelbag: ClothingBackpackDuffelMimeFilled
 
 - type: entity
   id: ActionMimeInvisibleWall
   name: Create Invisible Wall
   description: Create an invisible wall in front of you, if placeable there.
+  noSpawn: true
   components:
   - type: InstantAction
     priority: -1

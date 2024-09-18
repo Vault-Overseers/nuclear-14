@@ -1,12 +1,8 @@
 using System.Linq;
-using Content.Server.Administration;
-using Content.Server.Administration.Managers;
 using Content.Server.Afk;
 using Content.Server.Afk.Events;
 using Content.Server.GameTicking;
-using Content.Server.GameTicking.Events;
 using Content.Server.Mind;
-using Content.Server.Station.Events;
 using Content.Server.Preferences.Managers;
 using Content.Shared.CCVar;
 using Content.Shared.Customization.Systems;
@@ -17,6 +13,7 @@ using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
@@ -31,16 +28,16 @@ namespace Content.Server.Players.PlayTimeTracking;
 /// </summary>
 public sealed class PlayTimeTrackingSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly IAfkManager _afk = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly MindSystem _minds = default!;
     [Dependency] private readonly PlayTimeTrackingManager _tracking = default!;
     [Dependency] private readonly CharacterRequirementsSystem _characterRequirements = default!;
     [Dependency] private readonly IServerPreferencesManager _prefs = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
+
 
     public override void Initialize()
     {
@@ -51,16 +48,12 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundEnd);
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
-        SubscribeLocalEvent<RoleAddedEvent>(OnRoleEvent);
-        SubscribeLocalEvent<RoleRemovedEvent>(OnRoleEvent);
+        SubscribeLocalEvent<RoleAddedEvent>(OnRoleAdd);
+        SubscribeLocalEvent<RoleRemovedEvent>(OnRoleRemove);
         SubscribeLocalEvent<AFKEvent>(OnAFK);
         SubscribeLocalEvent<UnAFKEvent>(OnUnAFK);
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
-        SubscribeLocalEvent<StationJobsGetCandidatesEvent>(OnStationJobsGetCandidates);
-        SubscribeLocalEvent<IsJobAllowedEvent>(OnIsJobAllowed);
-        SubscribeLocalEvent<GetDisallowedJobsEvent>(OnGetDisallowedJobs);
-        _adminManager.OnPermsChanged += AdminPermsChanged;
     }
 
     public override void Shutdown()
@@ -68,20 +61,12 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         base.Shutdown();
 
         _tracking.CalcTrackers -= CalcTrackers;
-        _adminManager.OnPermsChanged -= AdminPermsChanged;
     }
 
     private void CalcTrackers(ICommonSession player, HashSet<string> trackers)
     {
         if (_afk.IsAfk(player))
             return;
-
-        if (_adminManager.IsAdmin(player))
-        {
-            trackers.Add(PlayTimeTrackingShared.TrackerAdmin);
-            trackers.Add(PlayTimeTrackingShared.TrackerOverall);
-            return;
-        }
 
         if (!IsPlayerAlive(player))
             return;
@@ -104,7 +89,10 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
 
     public IEnumerable<string> GetTimedRoles(EntityUid mindId)
     {
-        foreach (var role in _roles.MindGetAllRoleInfo(mindId))
+        var ev = new MindGetAllRolesEvent(new List<RoleInfo>());
+        RaiseLocalEvent(mindId, ref ev);
+
+        foreach (var role in ev.Roles)
         {
             if (string.IsNullOrWhiteSpace(role.PlayTimeTrackerId))
                 continue;
@@ -123,7 +111,13 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         return GetTimedRoles(contentData.Mind.Value);
     }
 
-    private void OnRoleEvent(RoleEvent ev)
+    private void OnRoleRemove(RoleRemovedEvent ev)
+    {
+        if (_minds.TryGetSession(ev.Mind, out var session))
+            _tracking.QueueRefreshTrackers(session);
+    }
+
+    private void OnRoleAdd(RoleAddedEvent ev)
     {
         if (_minds.TryGetSession(ev.Mind, out var session))
             _tracking.QueueRefreshTrackers(session);
@@ -142,11 +136,6 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     private void OnAFK(ref AFKEvent ev)
     {
         _tracking.QueueRefreshTrackers(ev.Session);
-    }
-
-    private void AdminPermsChanged(AdminPermsChangedEventArgs admin)
-    {
-        _tracking.QueueRefreshTrackers(admin.Player);
     }
 
     private void OnPlayerAttached(PlayerAttachedEvent ev)
@@ -168,22 +157,6 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         _tracking.QueueRefreshTrackers(actor.PlayerSession);
     }
 
-    private void OnStationJobsGetCandidates(ref StationJobsGetCandidatesEvent ev)
-    {
-        RemoveDisallowedJobs(ev.Player, ev.Jobs);
-    }
-
-    private void OnIsJobAllowed(ref IsJobAllowedEvent ev)
-    {
-        if (!IsAllowed(ev.Player, ev.JobId))
-            ev.Cancelled = true;
-    }
-
-    private void OnGetDisallowedJobs(ref GetDisallowedJobsEvent ev)
-    {
-        ev.Jobs.UnionWith(GetDisallowedJobs(ev.Player));
-    }
-
     private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent ev)
     {
         _tracking.QueueRefreshTrackers(ev.PlayerSession);
@@ -194,11 +167,9 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
 
     public bool IsAllowed(ICommonSession player, string role)
     {
-        if (!_prototypes.TryIndex<JobPrototype>(role, out var job) || !_cfg.GetCVar(CCVars.GameRoleTimers))
-            return true;
-
-        var requirements = _roles.GetJobRequirement(job);
-        if (requirements == null)
+        if (!_prototypes.TryIndex<JobPrototype>(role, out var job) ||
+            job.Requirements == null ||
+            !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
 
         if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
@@ -210,7 +181,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         var isWhitelisted = player.ContentData()?.Whitelisted ?? false; // DeltaV - Whitelist requirement
 
         return _characterRequirements.CheckRequirementsValid(
-            requirements,
+            job.Requirements,
             job,
             (HumanoidCharacterProfile) _prefs.GetPreferences(player.UserId).SelectedCharacter,
             playTimes,
@@ -218,13 +189,13 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             job,
             EntityManager,
             _prototypes,
-            _cfg,
+            _config,
             out _);
     }
 
-    public HashSet<ProtoId<JobPrototype>> GetDisallowedJobs(ICommonSession player)
+    public HashSet<string> GetDisallowedJobs(ICommonSession player)
     {
-        var roles = new HashSet<ProtoId<JobPrototype>>();
+        var roles = new HashSet<string>();
         if (!_cfg.GetCVar(CCVars.GameRoleTimers))
             return roles;
 
@@ -238,28 +209,32 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
 
         foreach (var job in _prototypes.EnumeratePrototypes<JobPrototype>())
         {
-            var requirements = _roles.GetJobRequirement(job);
-            if (requirements == null
-                || _characterRequirements.CheckRequirementsValid(
-                requirements,
-                job,
-                (HumanoidCharacterProfile) _prefs.GetPreferences(player.UserId).SelectedCharacter,
-                playTimes,
-                isWhitelisted,
-                job,
-                EntityManager,
-                _prototypes,
-                _cfg,
-                out _))
-                continue;
+            if (job.Requirements != null)
+            {
+                if (_characterRequirements.CheckRequirementsValid(
+                        job.Requirements,
+                        job,
+                        (HumanoidCharacterProfile) _prefs.GetPreferences(player.UserId).SelectedCharacter,
+                        playTimes,
+                        isWhitelisted,
+                        job,
+                        EntityManager,
+                        _prototypes,
+                        _config,
+                        out _))
+                    continue;
+
+                goto NoRole;
+            }
 
             roles.Add(job.ID);
+            NoRole:;
         }
 
         return roles;
     }
 
-    public void RemoveDisallowedJobs(NetUserId userId, List<ProtoId<JobPrototype>> jobs)
+    public void RemoveDisallowedJobs(NetUserId userId, ref List<string> jobs)
     {
         if (!_cfg.GetCVar(CCVars.GameRoleTimers))
             return;
@@ -278,14 +253,13 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         {
             var job = jobs[i];
 
-            if (!_prototypes.TryIndex(job, out var jobber))
+            if (!_prototypes.TryIndex<JobPrototype>(job, out var jobber) ||
+                jobber.Requirements == null ||
+                jobber.Requirements.Count == 0)
                 continue;
 
-            var requirements = _roles.GetJobRequirement(jobber);
-            if (requirements == null ||
-                requirements.Count == 0 ||
-                _characterRequirements.CheckRequirementsValid(
-                requirements,
+            if (!_characterRequirements.CheckRequirementsValid(
+                jobber.Requirements,
                 jobber,
                 (HumanoidCharacterProfile) _prefs.GetPreferences(userId).SelectedCharacter,
                 _tracking.GetPlayTimes(_playerManager.GetSessionById(userId)),
@@ -293,12 +267,12 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
                 jobber,
                 EntityManager,
                 _prototypes,
-                _cfg,
+                _config,
                 out _))
-                continue;
-
-            jobs.RemoveSwap(i);
-            i--;
+            {
+                jobs.RemoveSwap(i);
+                i--;
+            }
         }
     }
 

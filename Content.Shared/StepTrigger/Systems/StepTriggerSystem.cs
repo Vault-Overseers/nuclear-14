@@ -1,7 +1,5 @@
 using Content.Shared.Gravity;
 using Content.Shared.StepTrigger.Components;
-using Content.Shared.Traits.Assorted.Components;
-using Content.Shared.Whitelist;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -14,7 +12,6 @@ public sealed class StepTriggerSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
     public override void Initialize()
     {
@@ -65,7 +62,7 @@ public sealed class StepTriggerSystem : EntitySystem
                 if (ent == uid)
                     continue;
 
-                if (_whitelistSystem.IsBlacklistPass(component.Blacklist, ent.Value))
+                if (component.Blacklist.IsValid(ent.Value, EntityManager))
                     return false;
             }
         }
@@ -98,11 +95,7 @@ public sealed class StepTriggerSystem : EntitySystem
         // this is hard to explain
         var intersect = Box2.Area(otherAabb.Intersect(ourAabb));
         var ratio = Math.Max(intersect / Box2.Area(otherAabb), intersect / Box2.Area(ourAabb));
-        var requiredTriggeredSpeed = component.RequiredTriggeredSpeed;
-        if (TryComp<TraitSpeedModifierComponent>(otherUid, out var speedModifier))
-            requiredTriggeredSpeed *= speedModifier.RequiredTriggeredSpeedModifier;
-
-        if (otherPhysics.LinearVelocity.Length() < requiredTriggeredSpeed
+        if (otherPhysics.LinearVelocity.Length() < component.RequiredTriggeredSpeed
             || component.CurrentlySteppedOn.Contains(otherUid)
             || ratio < component.IntersectRatio
             || !CanTrigger(uid, otherUid, component))
@@ -125,7 +118,9 @@ public sealed class StepTriggerSystem : EntitySystem
 
     private bool CanTrigger(EntityUid uid, EntityUid otherUid, StepTriggerComponent component)
     {
-        if (!component.Active || component.CurrentlySteppedOn.Contains(otherUid))
+        if (HasComp<StepTriggerImmuneComponent>(otherUid)
+            || !component.Active
+            || component.CurrentlySteppedOn.Contains(otherUid))
             return false;
 
         // Can't trigger if we don't ignore weightless entities
@@ -135,7 +130,7 @@ public sealed class StepTriggerSystem : EntitySystem
             (physics.BodyStatus == BodyStatus.InAir || _gravity.IsWeightless(otherUid, physics)))
             return false;
 
-        var msg = new StepTriggerAttemptEvent { Source = (uid, component), Tripper = otherUid };
+        var msg = new StepTriggerAttemptEvent { Source = uid, Tripper = otherUid };
         RaiseLocalEvent(uid, ref msg);
 
         return msg.Continue && !msg.Cancelled;
@@ -219,7 +214,7 @@ public sealed class StepTriggerSystem : EntitySystem
 ///     Allows for entities to end the steptrigger early via args.Cancelled.
 /// </summary>
 [ByRefEvent]
-public record struct StepTriggerAttemptEvent(Entity<StepTriggerComponent> Source, EntityUid Tripper, bool Continue, bool Cancelled);
+public record struct StepTriggerAttemptEvent(EntityUid Source, EntityUid Tripper, bool Continue, bool Cancelled);
 
 /// <summary>
 ///     Raised when an entity stands on a steptrigger initially (assuming it has both on and off states).

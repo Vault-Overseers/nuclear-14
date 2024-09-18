@@ -38,7 +38,6 @@
       key_slots:
       - EncryptionKeySyndie
       - EncryptionKeyStationMaster
-      - EncryptionKeyBinarySyndicate
   - type: Sprite
     sprite: DeltaV/Clothing/Ears/Headsets/syndicate_listening.rsi
   - type: Clothing
@@ -54,6 +53,7 @@
     containers:
       key_slots:
       - EncryptionKeyJustice
+      - EncryptionKeyPrison
       - EncryptionKeySecurity
       - EncryptionKeyCommon
   - type: Sprite
@@ -72,6 +72,7 @@
     containers:
       key_slots:
       - EncryptionKeyJustice
+      - EncryptionKeyPrison
       - EncryptionKeySecurity
       - EncryptionKeyCommon
       - EncryptionKeyCommand
@@ -114,28 +115,3 @@
   - type: Clothing
     sprite: Clothing/Ears/Headsets/security.rsi
     
-- type: entity
-  parent: ClothingHeadset
-  id: ClothingHeadsetAdminAssist
-  name: adminstrative assistant headset
-  description: A headset used by the administrative assistant.
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyCommand
-      - EncryptionKeyCommon
-  - type: Sprite
-    sprite: DeltaV/Clothing/Ears/Headsets/adminassistant.rsi
-  - type: Clothing
-    sprite: DeltaV/Clothing/Ears/Headsets/adminassistant.rsi
-
-- type: entity
-  parent: ClothingHeadsetAdminAssist
-  id: ClothingHeadsetAltAdminAssist
-  name: adminstrative assistant over-ear headset
-  components:
-  - type: Sprite
-    state: icon_alt
-  - type: Clothing
-    equippedPrefix: alt

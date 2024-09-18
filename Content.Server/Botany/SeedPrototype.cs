@@ -200,6 +200,11 @@ public partial class SeedData
     /// </summary>
     [DataField] public bool Teleporting;
 
+    /// <summary>
+    ///     If true, teleports both fruit and player if slippable.
+    /// </summary>
+    [DataField] public bool Teleporting;
+
     // No, I'm not removing these.
     // if you re-add these, make sure that they get cloned.
     //public PlantSpread Spread { get; set; }

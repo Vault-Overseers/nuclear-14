@@ -7,7 +7,6 @@ using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.UnitTesting;
 
@@ -35,9 +34,9 @@ public sealed partial class TestPair
             mapData.GridCoords = new EntityCoordinates(mapData.Grid, 0, 0);
             var plating = tileDefinitionManager[tile];
             var platingTile = new Tile(plating.TileId);
-            Server.System<SharedMapSystem>().SetTile(mapData.Grid.Owner, mapData.Grid.Comp, mapData.GridCoords, platingTile);
+            mapData.Grid.Comp.SetTile(mapData.GridCoords, platingTile);
             mapData.MapCoords = new MapCoordinates(0, 0, mapData.MapId);
-            mapData.Tile = Server.System<SharedMapSystem>().GetAllTiles(mapData.Grid.Owner, mapData.Grid.Comp).First();
+            mapData.Tile = mapData.Grid.Comp.GetAllTiles().First();
         });
 
         TestMap = mapData;
@@ -134,73 +133,27 @@ public sealed partial class TestPair
     }
 
     /// <summary>
-    /// Set a user's antag preferences. Modified preferences are automatically reset at the end of the test.
+    /// Helper method for enabling or disabling a antag role
     /// </summary>
-    public async Task SetAntagPreference(ProtoId<AntagPrototype> id, bool value, NetUserId? user = null)
+    public async Task SetAntagPref(ProtoId<AntagPrototype> id, bool value)
     {
-        user ??= Client.User!.Value;
-        if (user is not {} userId)
-            return;
-
         var prefMan = Server.ResolveDependency<IServerPreferencesManager>();
-        var prefs = prefMan.GetPreferences(userId);
 
-        // Automatic preference resetting only resets slot 0.
-        Assert.That(prefs.SelectedCharacterIndex, Is.EqualTo(0));
+        var prefs = prefMan.GetPreferences(Client.User!.Value);
+        // what even is the point of ICharacterProfile if we always cast it to HumanoidCharacterProfile to make it usable?
+        var profile = (HumanoidCharacterProfile) prefs.SelectedCharacter;
 
-        var profile = (HumanoidCharacterProfile) prefs.Characters[0];
+        Assert.That(profile.AntagPreferences.Any(preference => preference == id), Is.EqualTo(!value));
         var newProfile = profile.WithAntagPreference(id, value);
-        _modifiedProfiles.Add(userId);
-        await Server.WaitPost(() => prefMan.SetProfile(userId, 0, newProfile).Wait());
-    }
 
-    /// <summary>
-    /// Set a user's job preferences.  Modified preferences are automatically reset at the end of the test.
-    /// </summary>
-    public async Task SetJobPriority(ProtoId<JobPrototype> id, JobPriority value, NetUserId? user = null)
-    {
-        user ??= Client.User!.Value;
-        if (user is { } userId)
-            await SetJobPriorities(userId, (id, value));
-    }
-
-    /// <inheritdoc cref="SetJobPriority"/>
-    public async Task SetJobPriorities(params (ProtoId<JobPrototype>, JobPriority)[] priorities)
-        => await SetJobPriorities(Client.User!.Value, priorities);
-
-    /// <inheritdoc cref="SetJobPriority"/>
-    public async Task SetJobPriorities(NetUserId user, params (ProtoId<JobPrototype>, JobPriority)[] priorities)
-    {
-        var highCount = priorities.Count(x => x.Item2 == JobPriority.High);
-        Assert.That(highCount, Is.LessThanOrEqualTo(1), "Cannot have more than one high priority job");
-
-        var prefMan = Server.ResolveDependency<IServerPreferencesManager>();
-        var prefs = prefMan.GetPreferences(user);
-        var profile = (HumanoidCharacterProfile) prefs.Characters[0];
-        var dictionary = new Dictionary<ProtoId<JobPrototype>, JobPriority>(profile.JobPriorities);
-
-        // Automatic preference resetting only resets slot 0.
-        Assert.That(prefs.SelectedCharacterIndex, Is.EqualTo(0));
-
-        if (highCount != 0)
+        await Server.WaitPost(() =>
         {
-            foreach (var (key, priority) in dictionary)
-            {
-                if (priority == JobPriority.High)
-                    dictionary[key] = JobPriority.Medium;
-            }
-        }
+            prefMan.SetProfile(Client.User.Value, prefs.SelectedCharacterIndex, newProfile).Wait();
+        });
 
-        foreach (var (job, priority) in priorities)
-        {
-            if (priority == JobPriority.Never)
-                dictionary.Remove(job);
-            else
-                dictionary[job] = priority;
-        }
-
-        var newProfile = profile.WithJobPriorities(dictionary);
-        _modifiedProfiles.Add(user);
-        await Server.WaitPost(() => prefMan.SetProfile(user, 0, newProfile).Wait());
+        // And why the fuck does it always create a new preference and profile object instead of just reusing them?
+        var newPrefs = prefMan.GetPreferences(Client.User.Value);
+        var newProf = (HumanoidCharacterProfile) newPrefs.SelectedCharacter;
+        Assert.That(newProf.AntagPreferences.Any(preference => preference == id), Is.EqualTo(value));
     }
 }

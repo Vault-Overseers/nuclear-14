@@ -26,17 +26,13 @@
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#cd7314"
-      Burn:
-        sprite: Mobs/Effects/burn_damage.rsi
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatPlant
-      amount: 5
+      - id: FoodMeatPlant
+        amount: 5
   - type: Bloodstream
     bloodReagent: Sap
-    bloodRegenerationHunger: 1
-    bloodRegenerationThirst: 1 # 1 unit of sap satiates 1 hunger and thirst
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -54,9 +50,9 @@
         scaleByQuantity: true
         damage:
           types:
-            Blunt: 0.1
-            Slash: 0.1
-            Piercing: 0.15
+            Blunt: 2
+            Slash: 2
+            Piercing: 3
       - !type:PopupMessage
         type: Local
         visualType: Large
@@ -69,7 +65,7 @@
         scaleByQuantity: true
         damage:
           types:
-            Poison: 0.25
+            Poison: 5
       - !type:PopupMessage
         type: Local
         visualType: Large
@@ -84,9 +80,11 @@
         density: 300 #weighs more than humans because wood
         restitution: 0.0
         mask:
-        - MobMask
+          - MobMask
         layer:
-        - MobLayer
+          - MobLayer
+  - type: Inventory
+    templateId: diona
   - type: Speech
     speechVerb: Plant
   - type: Vocal
@@ -106,44 +104,23 @@
     - Dead
   - type: LanguageKnowledge
     speaks:
-    - TauCetiBasic
+    - GalacticCommon
     - RootSpeak
     understands:
-    - TauCetiBasic
+    - GalacticCommon
     - RootSpeak
   - type: TraitSpeedModifier
     sprintModifier: 0.75
     walkModifier: 0.75
   - type: SpeedModifierImmunity
   - type: NoSlip
-  - type: ProtectedFromStepTriggers
-    whitelist:
-      types:
-      - Shard
-  - type: FootPrints
-    leftBarePrint: "footprint-left-bare-diona"
-    rightBarePrint: "footprint-right-bare-diona"
-  - type: Inventory
-    templateId: diona
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
 
 - type: entity
   parent: BaseSpeciesDummy
   id: MobDionaDummy
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   components:
-  - type: HumanoidAppearance
-    species: Diona
   - type: Inventory
     templateId: diona
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
+  - type: HumanoidAppearance
+    species: Diona

@@ -2,15 +2,15 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.CrewManifest;
 using Content.Client.GameTicking.Managers;
-using Content.Client.Lobby;
 using Content.Client.UserInterface.Controls;
 using Content.Client.Players.PlayTimeTracking;
-using Content.Client.Roles;
+using Content.Client.Preferences;
 using Content.Shared.CCVar;
 using Content.Shared.Customization.Systems;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
+using Microsoft.Win32.SafeHandles;
 using Robust.Client.Console;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
@@ -39,7 +39,6 @@ namespace Content.Client.LateJoin
         private readonly SpriteSystem _sprites;
         private readonly CrewManifestSystem _crewManifest;
         private readonly CharacterRequirementsSystem _characterRequirements;
-        private readonly RoleSystem _roleSystem;
 
         private readonly Dictionary<NetEntity, Dictionary<string, List<JobButton>>> _jobButtons = new();
         private readonly Dictionary<NetEntity, Dictionary<string, BoxContainer>> _jobCategories = new();
@@ -55,7 +54,6 @@ namespace Content.Client.LateJoin
             _crewManifest = _entitySystem.GetEntitySystem<CrewManifestSystem>();
             _gameTicker = _entitySystem.GetEntitySystem<ClientGameTicker>();
             _characterRequirements = _entitySystem.GetEntitySystem<CharacterRequirementsSystem>();
-            _roleSystem = _entitySystem.GetEntitySystem<RoleSystem>();
 
             Title = Loc.GetString("late-join-gui-title");
 
@@ -73,7 +71,7 @@ namespace Content.Client.LateJoin
             SelectedId += x =>
             {
                 var (station, jobId) = x;
-                Logger.GetSawmill("latejoin").Info($"Late joining as ID: {jobId}");
+                Logger.InfoS("latejoin", $"Late joining as ID: {jobId}");
                 _consoleHost.ExecuteCommand($"joingame {CommandParsing.Escape(jobId)} {station}");
                 Close();
             };
@@ -89,7 +87,7 @@ namespace Content.Client.LateJoin
             _jobCategories.Clear();
 
             if (!_gameTicker.DisallowedLateJoin && _gameTicker.StationNames.Count == 0)
-                Logger.GetSawmill("latejoin.ui").Warning("No stations exist, nothing to display in late-join GUI");
+                Logger.Warning("No stations exist, nothing to display in late-join GUI");
 
             foreach (var (id, name) in _gameTicker.StationNames)
             {
@@ -254,7 +252,7 @@ namespace Content.Client.LateJoin
                             VerticalAlignment = VAlignment.Center
                         };
 
-                        var jobIcon = _prototypeManager.Index(prototype.Icon);
+                        var jobIcon = _prototypeManager.Index<StatusIconPrototype>(prototype.Icon);
                         icon.Texture = _sprites.Frame0(jobIcon.Icon);
                         jobSelector.AddChild(icon);
 
@@ -264,25 +262,8 @@ namespace Content.Client.LateJoin
 
                         jobButton.OnPressed += _ => SelectedId.Invoke((id, jobButton.JobId));
 
-                        if (!_jobRequirements.CheckJobWhitelist(prototype, out var reason))
-                        {
-                            jobButton.Disabled = true;
-
-                            var tooltip = new Tooltip();
-                            tooltip.SetMessage(reason);
-                            jobButton.TooltipSupplier = _ => tooltip;
-
-                            jobSelector.AddChild(new TextureRect
-                            {
-                                TextureScale = new Vector2(0.4f, 0.4f),
-                                Stretch = TextureRect.StretchMode.KeepCentered,
-                                Texture = _sprites.Frame0(new SpriteSpecifier.Texture(new ("/Textures/Interface/Nano/lock.svg.192dpi.png"))),
-                                HorizontalExpand = true,
-                                HorizontalAlignment = HAlignment.Right,
-                            });
-                        }
-                        else if (!_characterRequirements.CheckRequirementsValid(
-                                _roleSystem.GetJobRequirement(prototype) ?? new(),
+                        if (!_characterRequirements.CheckRequirementsValid(
+                                prototype.Requirements ?? new(),
                                 prototype,
                                 (HumanoidCharacterProfile) (_prefs.Preferences?.SelectedCharacter
                                                             ?? HumanoidCharacterProfile.DefaultWithSpecies()),
@@ -328,7 +309,7 @@ namespace Content.Client.LateJoin
             }
         }
 
-        private void JobsAvailableUpdated(IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> updatedJobs)
+        private void JobsAvailableUpdated(IReadOnlyDictionary<NetEntity, Dictionary<string, uint?>> updatedJobs)
         {
             foreach (var stationEntries in updatedJobs)
             {
@@ -375,10 +356,10 @@ namespace Content.Client.LateJoin
         public Label JobLabel { get; }
         public string JobId { get; }
         public string JobLocalisedName { get; }
-        public int? Amount { get; private set; }
+        public uint? Amount { get; private set; }
         private bool _initialised = false;
 
-        public JobButton(Label jobLabel, ProtoId<JobPrototype> jobId, string jobLocalisedName, int? amount)
+        public JobButton(Label jobLabel, string jobId, string jobLocalisedName, uint? amount)
         {
             JobLabel = jobLabel;
             JobId = jobId;
@@ -388,7 +369,7 @@ namespace Content.Client.LateJoin
             _initialised = true;
         }
 
-        public void RefreshLabel(int? amount)
+        public void RefreshLabel(uint? amount)
         {
             if (Amount == amount && _initialised)
             {

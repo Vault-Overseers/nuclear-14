@@ -7,49 +7,34 @@
     - !type:CharacterDepartmentTimeRequirement
       department: Epistemics
       min: 14400
-    - !type:CharacterLogicOrRequirement
-      requirements:
-        - !type:CharacterSpeciesRequirement
-          inverted: true
-          species:
-            - IPC
-        - !type:CharacterTraitRequirement
-          traits:
-            - AnomalousPositronics
-    - !type:CharacterTraitRequirement
-      inverted: true
-      traits:
-        - ShadowkinBlackeye
+    # - !type:CharacterLogicOrRequirement
+      # requirements:
+        # - !type:CharacterSpeciesRequirement
+          # inverted: true
+          # species:
+            # - IPC
+        # - !type:CharacterTraitRequirement
+          # traits:
+            # - AnomalousPositronics
   startingGear: LibrarianGear
   icon: "JobIconLibrarian"
-  supervisors: job-supervisors-rd
+  supervisors: job-supervisors-hop
   access:
-  - Research
+  - Service
   - Maintenance
   - Library # DeltaV - Add Library access
   setPreference: false
 
 - type: startingGear
   id: LibrarianGear
-  subGear:
-  - LibrarianPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitLibrarian
     back: ClothingBackpackLibrarianFilled
     shoes: ClothingShoesBootsLaceup
-    outerClothing: ClothingOuterCoatRnd
     id: LibrarianPDA
     ears: ClothingHeadsetScience
-    pocket1: BookPsionicsGuidebook
+    pocket1: d10Dice
     pocket2: HandLabeler
   innerClothingSkirt: ClothingUniformJumpskirtLibrarian
   satchel: ClothingBackpackSatchelLibrarianFilled
   duffelbag: ClothingBackpackDuffelLibrarianFilled
-
-- type: startingGear
-  id: LibrarianPlasmamanGear
-  parent: BasePlasmamanGear
-  equipment:
-    jumpsuit: ClothingUniformEnvirosuitAncientVoid
-    head: ClothingHeadEnvirohelmAncientVoid
-    gloves: ClothingHandsGlovesEnviroglovesPrototype

@@ -18,7 +18,6 @@
     tags:
       - ForceFixRotations
       - Window
-      - WeldbotFixableStructure
   - type: Sprite
     drawdepth: WallTops
     sprite: Structures/Windows/window.rsi
@@ -115,8 +114,7 @@
   - type: Tag
     tags:
       - Window
-      - Directional
-      - WeldbotFixableStructure
+      - Directional #Delta V - Summary: Allows the tilewindow mapping command to work.
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -142,7 +140,7 @@
         - GlassLayer
   - type: Repairable
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Glass
   - type: ExaminableDamage
     messages: WindowMessages
@@ -190,7 +188,7 @@
     damageOverlay:
       sprite: Structures/Windows/cracks_directional.rsi
   - type: StaticPrice
-    price: 15
+    price: 10
   - type: InteractionVerbs
     allowedVerbs:
     - KnockOn

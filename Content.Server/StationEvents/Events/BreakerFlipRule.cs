@@ -1,10 +1,11 @@
-using Content.Server.Announcements.Systems;
+﻿using Content.Server.GameTicking.Components;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Station.Components;
 using Content.Server.StationEvents.Components;
-using Content.Shared.GameTicking.Components;
-using Content.Shared.Station.Components;
 using JetBrains.Annotations;
+using Content.Server.Announcements.Systems;
 using Robust.Shared.Player;
 
 namespace Content.Server.StationEvents.Events;
@@ -19,14 +20,14 @@ public sealed class BreakerFlipRule : StationEventSystem<BreakerFlipRuleComponen
     {
         base.Added(uid, component, gameRule, args);
 
-        if (!TryComp<StationEventComponent>(uid, out var stationEvent))
-            return;
-
         _announcer.SendAnnouncement(
             _announcer.GetAnnouncementId(args.RuleId),
+            Filter.Broadcast(),
             "station-event-breaker-flip-announcement",
-            colorOverride: stationEvent.StartAnnouncementColor,
-            localeArgs: [("data", Loc.GetString($"random-sentience-event-data-{RobustRandom.Next(1, 6)}")), ]
+            null,
+            Color.Gold,
+            null, null,
+            ("data", Loc.GetString($"random-sentience-event-data-{RobustRandom.Next(1, 6)}"))
         );
     }
 

@@ -2,25 +2,22 @@ using System.Linq;
 using Content.Server.Antag.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
-using Content.Server.Objectives;
 using Content.Server.Preferences.Managers;
 using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
-using Content.Server.Station.Systems;
 using Content.Server.Shuttles.Components;
+using Content.Server.Station.Systems;
 using Content.Shared.Antag;
 using Content.Shared.GameTicking;
-using Content.Shared.GameTicking.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
-using Content.Shared.Mind;
 using Content.Shared.Players;
-using Content.Shared.Roles;
-using Content.Shared.Whitelist;
+using Content.Shared.Preferences;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
@@ -34,17 +31,16 @@ namespace Content.Server.Antag;
 
 public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelectionComponent>
 {
-    [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IChatManager _chat = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IServerPreferencesManager _pref = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly GhostRoleSystem _ghostRole = default!;
     [Dependency] private readonly JobSystem _jobs = default!;
     [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IServerPreferencesManager _pref = default!;
     [Dependency] private readonly RoleSystem _role = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
     // arbitrary random number to give late joining some mild interest.
     public const float LateJoinRandomChance = 0.5f;
@@ -55,8 +51,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         base.Initialize();
 
         SubscribeLocalEvent<GhostRoleAntagSpawnerComponent, TakeGhostRoleEvent>(OnTakeGhostRole);
-
-        SubscribeLocalEvent<AntagSelectionComponent, ObjectivesTextGetInfoEvent>(OnObjectivesTextGetInfo);
 
         SubscribeLocalEvent<RulePlayerSpawningEvent>(OnPlayerSpawning);
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnJobsAssigned);
@@ -124,15 +118,12 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         // something to figure out later.
 
         var query = QueryActiveRules();
-        var rules = new List<(EntityUid, AntagSelectionComponent)>();
         while (query.MoveNext(out var uid, out _, out var antag, out _))
         {
-            rules.Add((uid, antag));
-        }
-        RobustRandom.Shuffle(rules);
-
-        foreach (var (uid, antag) in rules)
-        {
+            // TODO ANTAG
+            // what why aasdiuhasdopiuasdfhksad
+            // stop this insanity please
+            // probability of antag assignment shouldn't depend on the order in which rules are returned by the query.
             if (!RobustRandom.Prob(LateJoinRandomChance))
                 continue;
 
@@ -181,26 +172,23 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             return;
 
         var players = _playerManager.Sessions
-            .Where(x => GameTicker.PlayerGameStatuses.TryGetValue(x.UserId, out var status) && status == PlayerGameStatus.JoinedGame)
+            .Where(x => GameTicker.PlayerGameStatuses[x.UserId] == PlayerGameStatus.JoinedGame)
             .ToList();
 
-        ChooseAntags((uid, component), players, midround: true);
+        ChooseAntags((uid, component), players);
     }
 
     /// <summary>
     /// Chooses antagonists from the given selection of players
     /// </summary>
-    /// <param name="ent">The antagonist rule entity</param>
-    /// <param name="pool">The players to choose from</param>
-    /// <param name="midround">Disable picking players for pre-spawn antags in the middle of a round</param>
-    public void ChooseAntags(Entity<AntagSelectionComponent> ent, IList<ICommonSession> pool, bool midround = false)
+    public void ChooseAntags(Entity<AntagSelectionComponent> ent, IList<ICommonSession> pool)
     {
         if (ent.Comp.SelectionsComplete)
             return;
 
         foreach (var def in ent.Comp.Definitions)
         {
-            ChooseAntags(ent, pool, def, midround: midround);
+            ChooseAntags(ent, pool, def);
         }
 
         ent.Comp.SelectionsComplete = true;
@@ -209,46 +197,21 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     /// <summary>
     /// Chooses antagonists from the given selection of players for the given antag definition.
     /// </summary>
-    /// <param name="ent">The antagonist rule entity</param>
-    /// <param name="pool">The players to choose from</param>
-    /// <param name="def">The antagonist selection parameters and criteria</param>
-    /// <param name="midround">Disable picking players for pre-spawn antags in the middle of a round</param>
-    public void ChooseAntags(Entity<AntagSelectionComponent> ent,
-        IList<ICommonSession> pool,
-        AntagSelectionDefinition def,
-        bool midround = false)
+    public void ChooseAntags(Entity<AntagSelectionComponent> ent, IList<ICommonSession> pool, AntagSelectionDefinition def)
     {
         var playerPool = GetPlayerPool(ent, pool, def);
         var count = GetTargetAntagCount(ent, GetTotalPlayerCount(pool), def);
 
-        // if there is both a spawner and players getting picked, let it fall back to a spawner.
-        var noSpawner = def.SpawnerPrototype == null;
-        var picking = def.PickPlayer;
-        if (midround && ent.Comp.SelectionTime == AntagSelectionTime.PrePlayerSpawn)
-        {
-            // prevent antag selection from happening if the round is on-going, requiring a spawner if used midround.
-            // this is so rules like nukies, if added by an admin midround, dont make random living people nukies
-            Log.Info($"Antags for rule {ent:?} get picked pre-spawn so only spawners will be made.");
-            DebugTools.Assert(def.SpawnerPrototype != null, $"Rule {MetaData(ent).EntityPrototype} had no spawner for pre-spawn rule added mid-round!");
-            picking = false;
-        }
-
         for (var i = 0; i < count; i++)
         {
-            var session = (ICommonSession?)null;
-            if (picking)
+            var session = (ICommonSession?) null;
+            if (def.PickPlayer)
             {
-                if (!playerPool.TryPickAndTake(RobustRandom, out session) && noSpawner)
-                {
-                    Log.Warning($"Couldn't pick a player for {ToPrettyString(ent):rule}, no longer choosing antags for this definition");
+                if (!playerPool.TryPickAndTake(RobustRandom, out session))
                     break;
-                }
 
-                if (session != null && ent.Comp.SelectedSessions.Contains(session))
-                {
-                    Log.Warning($"Somehow picked {session} for an antag when this rule already selected them previously");
+                if (ent.Comp.SelectedSessions.Contains(session))
                     continue;
-                }
             }
 
             MakeAntag(ent, session, def);
@@ -258,13 +221,13 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     /// <summary>
     /// Tries to makes a given player into the specified antagonist.
     /// </summary>
-    public bool TryMakeAntag(Entity<AntagSelectionComponent> ent, ICommonSession? session, AntagSelectionDefinition def, bool ignoreSpawner = false, bool checkPref = true)
+    public bool TryMakeAntag(Entity<AntagSelectionComponent> ent, ICommonSession? session, AntagSelectionDefinition def, bool ignoreSpawner = false)
     {
-        if (checkPref && !HasPrimaryAntagPreference(session, def))
+        if (!IsSessionValid(ent, session, def) ||
+            !IsEntityValid(session?.AttachedEntity, def))
+        {
             return false;
-
-        if (!IsSessionValid(ent, session, def) || !IsEntityValid(session?.AttachedEntity, def))
-            return false;
+        }
 
         MakeAntag(ent, session, def, ignoreSpawner);
         return true;
@@ -275,7 +238,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     /// </summary>
     public void MakeAntag(Entity<AntagSelectionComponent> ent, ICommonSession? session, AntagSelectionDefinition def, bool ignoreSpawner = false)
     {
-        EntityUid? antagEnt = null;
+        var antagEnt = (EntityUid?) null;
         var isSpawner = false;
 
         if (session != null)
@@ -296,16 +259,17 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         {
             var getEntEv = new AntagSelectEntityEvent(session, ent);
             RaiseLocalEvent(ent, ref getEntEv, true);
+
+            if (!getEntEv.Handled)
+            {
+                throw new InvalidOperationException($"Attempted to make {session} antagonist in gamerule {ToPrettyString(ent)} but there was no valid entity for player.");
+            }
+
             antagEnt = getEntEv.Entity;
         }
 
         if (antagEnt is not { } player)
-        {
-            Log.Error($"Attempted to make {session} antagonist in gamerule {ToPrettyString(ent)} but there was no valid entity for player.");
-            if (session != null)
-                ent.Comp.SelectedSessions.Remove(session);
             return;
-        }
 
         var getPosEv = new AntagSelectLocationEvent(session, ent);
         RaiseLocalEvent(ent, ref getPosEv, true);
@@ -316,15 +280,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             _transform.SetMapCoordinates((player, playerXform), pos);
         }
 
-        // If we want to just do a ghost role spawner, set up data here and then return early.
-        // This could probably be an event in the future if we want to be more refined about it.
         if (isSpawner)
         {
             if (!TryComp<GhostRoleAntagSpawnerComponent>(player, out var spawnerComp))
             {
-                Log.Error($"Antag spawner {player} does not have a GhostRoleAntagSpawnerComponent.");
-                if (session != null)
-                    ent.Comp.SelectedSessions.Remove(session);
+                Log.Error("Antag spawner with GhostRoleAntagSpawnerComponent.");
                 return;
             }
 
@@ -339,17 +299,14 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (session != null)
         {
             var curMind = session.GetMind();
-
-            if (curMind == null ||
-                !TryComp<MindComponent>(curMind.Value, out var mindComp) ||
-                mindComp.OwnedEntity != antagEnt)
+            if (curMind == null)
             {
                 curMind = _mind.CreateMind(session.UserId, Name(antagEnt.Value));
                 _mind.SetUserId(curMind.Value, session.UserId);
             }
 
             _mind.TransferTo(curMind.Value, antagEnt, ghostCheckOverride: true);
-            _role.MindAddRoles(curMind.Value, def.MindRoles, null, true);
+            _role.MindAddRoles(curMind.Value, def.MindComponents);
             ent.Comp.SelectedMinds.Add((curMind.Value, Name(player)));
             SendBriefing(session, def.Briefing);
         }
@@ -367,14 +324,16 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         var fallbackList = new List<ICommonSession>();
         foreach (var session in sessions)
         {
-            if (!IsSessionValid(ent, session, def) || !IsEntityValid(session.AttachedEntity, def))
+            if (!IsSessionValid(ent, session, def) ||
+                !IsEntityValid(session.AttachedEntity, def))
                 continue;
 
-            if (HasPrimaryAntagPreference(session, def))
+            var pref = (HumanoidCharacterProfile) _pref.GetPreferences(session.UserId).SelectedCharacter;
+            if (def.PrefRoles.Count != 0 && pref.AntagPreferences.Any(p => def.PrefRoles.Contains(p)))
             {
                 preferredList.Add(session);
             }
-            else if (HasFallbackAntagPreference(session, def))
+            else if (def.FallbackRoles.Count != 0 && pref.AntagPreferences.Any(p => def.FallbackRoles.Contains(p)))
             {
                 fallbackList.Add(session);
             }
@@ -388,9 +347,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     /// </summary>
     public bool IsSessionValid(Entity<AntagSelectionComponent> ent, ICommonSession? session, AntagSelectionDefinition def, EntityUid? mind = null)
     {
-        // TODO ROLE TIMERS
-        // Check if antag role requirements are met
-
         if (session == null)
             return true;
 
@@ -448,26 +404,17 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         if (def.Whitelist != null)
         {
-            if (!_whitelist.IsValid(def.Whitelist, entity.Value))
+            if (!def.Whitelist.IsValid(entity.Value, EntityManager))
                 return false;
         }
 
         if (def.Blacklist != null)
         {
-            if (_whitelist.IsValid(def.Blacklist, entity.Value))
+            if (def.Blacklist.IsValid(entity.Value, EntityManager))
                 return false;
         }
 
         return true;
-    }
-
-    private void OnObjectivesTextGetInfo(Entity<AntagSelectionComponent> ent, ref ObjectivesTextGetInfoEvent args)
-    {
-        if (ent.Comp.AgentName is not { } name)
-            return;
-
-        args.Minds = ent.Comp.SelectedMinds;
-        args.AgentName = Loc.GetString(name);
     }
 }
 

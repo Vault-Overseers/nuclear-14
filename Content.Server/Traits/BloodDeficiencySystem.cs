@@ -1,24 +1,23 @@
+using Content.Server.Body.Systems;
 using Content.Server.Body.Components;
-using Content.Server.Body.Events;
-using Content.Server.Traits.Assorted;
-using Content.Shared.FixedPoint;
+using Content.Shared.Damage;
 
-namespace Content.Server.Traits;
+namespace Content.Server.Traits.Assorted;
 
 public sealed class BloodDeficiencySystem : EntitySystem
 {
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<BloodDeficiencyComponent, NaturalBloodRegenerationAttemptEvent>(OnBloodRegen);
+        SubscribeLocalEvent<BloodDeficiencyComponent, ComponentStartup>(OnStartup);
     }
 
-    private void OnBloodRegen(Entity<BloodDeficiencyComponent> ent, ref NaturalBloodRegenerationAttemptEvent args)
+    private void OnStartup(EntityUid uid, BloodDeficiencyComponent component, ComponentStartup args)
     {
-        if (!ent.Comp.Active || !TryComp<BloodstreamComponent>(ent.Owner, out var bloodstream))
+        if (!TryComp<BloodstreamComponent>(uid, out var bloodstream))
             return;
 
-        args.Amount = FixedPoint2.Min(args.Amount, 0) // If the blood regen amount already was negative, we keep it.
-                      - bloodstream.BloodMaxVolume * ent.Comp.BloodLossPercentage;
+        bloodstream.HasBloodDeficiency = true;
+        bloodstream.BloodDeficiencyLossPercentage = component.BloodLossPercentage;
     }
 }

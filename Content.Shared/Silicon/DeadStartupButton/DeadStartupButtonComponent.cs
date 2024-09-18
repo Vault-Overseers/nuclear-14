@@ -3,26 +3,26 @@ using Robust.Shared.Audio;
 namespace Content.Shared.Silicon.DeadStartupButton;
 
 /// <summary>
-///     This is used for Silicon entities such as IPCs, Cyborgs, Androids, anything "living" with a button people can touch.
+/// This is used for...
 /// </summary>
 [RegisterComponent]
 public sealed partial class DeadStartupButtonComponent : Component
 {
-    [DataField]
+    [DataField("verbText")]
     public string VerbText = "dead-startup-button-verb";
 
-    [DataField]
+    [DataField("sound")]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Effects/Arcade/newgame.ogg");
 
-    [DataField]
+    [DataField("buttonSound")]
     public SoundSpecifier ButtonSound = new SoundPathSpecifier("/Audio/Machines/button.ogg");
 
-    [DataField]
+    [DataField("doAfterInterval"), ViewVariables(VVAccess.ReadWrite)]
     public float DoAfterInterval = 1f;
 
-    [DataField]
+    [DataField("buzzSound")]
     public SoundSpecifier BuzzSound = new SoundCollectionSpecifier("buzzes");
 
-    [DataField]
+    [DataField("verbPriority"), ViewVariables(VVAccess.ReadWrite)]
     public int VerbPriority = 1;
 }

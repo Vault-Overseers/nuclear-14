@@ -1,4 +1,4 @@
-using Content.Shared.GameTicking.Components;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Popups;
 using Content.Server.Psionics;
@@ -36,9 +36,9 @@ internal sealed class NoosphericZapRule : StationEventSystem<NoosphericZapRuleCo
             _stunSystem.TryParalyze(psion, TimeSpan.FromSeconds(component.StunDuration), false);
             _statusEffectsSystem.TryAddStatusEffect(psion, "Stutter", TimeSpan.FromSeconds(component.StutterDuration), false, "StutteringAccent");
 
-            if (!psionicComponent.CanReroll)
+            if (psionicComponent.CanReroll)
             {
-                psionicComponent.CanReroll = true;
+                psionicComponent.CanReroll = false;
                 _popupSystem.PopupEntity(Loc.GetString("noospheric-zap-seize-potential-regained"), psion, psion, Shared.Popups.PopupType.LargeCaution);
             }
             else

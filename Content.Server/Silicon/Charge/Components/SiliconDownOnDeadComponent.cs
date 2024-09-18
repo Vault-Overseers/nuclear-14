@@ -1,3 +1,5 @@
+using System.Threading;
+
 namespace Content.Server.Silicon.Death;
 
 /// <summary>
@@ -13,5 +15,5 @@ public sealed partial class SiliconDownOnDeadComponent : Component
     ///     Is this Silicon currently dead?
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public bool Dead;
+    public bool Dead { get; set; } = false;
 }

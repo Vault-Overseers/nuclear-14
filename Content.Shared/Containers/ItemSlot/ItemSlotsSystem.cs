@@ -39,6 +39,8 @@ namespace Content.Shared.Containers.ItemSlots
 
         private bool _defaultQuickSwap;
 
+        private bool _defaultQuickSwap;
+
         public override void Initialize()
         {
             base.Initialize();

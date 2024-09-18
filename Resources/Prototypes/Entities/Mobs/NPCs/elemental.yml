@@ -44,6 +44,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+    - ShoesRequiredStepTriggerImmune
   - type: MobState
     allowedStates:
       - Alive
@@ -72,9 +73,6 @@
   - type: InputMover
   - type: MobMover
   - type: ZombieImmune
-  - type: ClothingRequiredStepTriggerImmune
-    slots: All
-  - type: Dispellable
 
 - type: entity
   abstract: true
@@ -105,9 +103,6 @@
     damageContainer: StructuralInorganic
   - type: Psionic
     removable: false
-    roller: false
-    assayFeedback:
-      - orecrab-feedback
   - type: InnatePsionicPowers
     powersToAdd:
       - TelepathyPower
@@ -241,8 +236,6 @@
   - type: GhostRole
     prob: 0
     description: ghost-role-information-angry-slimes-description
-    raffle:
-      settings: short
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -264,13 +257,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Dead
+      150: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      20: 0.4
+      50: 0.4
   - type: Bloodstream
     bloodReagent: Water
-    chemicalMaxVolume: 50
+    chemicalMaxVolume: 100
   - type: StatusEffects
     allowed:
     - SlowedDown
@@ -281,10 +274,10 @@
     animation: WeaponArcBite
     damage:
       types:
-        Slash: 3
+        Slash: 8
   - type: MeleeChemicalInjector
     solution: bloodstream
-    transferAmount: 2
+    transferAmount: 5
   - type: DamageStateVisuals
     rotate: true
     states:
@@ -306,10 +299,7 @@
   - type: DrainableSolution
     solution: bloodstream
   - type: Psionic
-    roller: false
     removable: false
-    assayFeedback:
-      - reagent-slime-feedback
   - type: InnatePsionicPowers
     powersToAdd:
       - TelepathyPower
@@ -339,19 +329,6 @@
         - ReagentSlimeNorepinephricAcid
         - ReagentSlimeEphedrine
         - ReagentSlimeRobustHarvest
-        - ReagentSlimeIchor
-        - ReagentSlimeBleach
-        - ReagentSlimeSoap
-        - ReagentSlimeSpacelube
-        - ReagentSlimeBuzzachloricbees
-        - ReagentSlimeWehjuice
-        - ReagentCognizine
-        - ReagentSlimeNecrosol
-        - ReagentSlimeSpaceDrugs
-        - ReagentSlimeUnstableMutagen
-        - ReagentSlimeLead
-        - ReagentSlimechlorinetriflouride
-        - ReagentSlimePotassium
         - ReagentSlimeLotophagoiOil
       chance: 1
 

@@ -8,7 +8,6 @@
     - category: Mood
     - category: Stamina
     - alertType: SuitPower
-    - alertType: ModsuitPower # Goobstation - Modsuits
     - category: Internals
     - alertType: Fire
     - alertType: Handcuffed
@@ -27,11 +26,10 @@
     - alertType: Magboots
     - alertType: Pacified
     - alertType: Offer
-    - alertType: Deflecting
 
 - type: entity
   id: AlertSpriteView
-  categories: [ HideSpawnMenu ]
+  categories: [ hideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -54,24 +52,6 @@
       state: not_enough_nitro
   name: alerts-low-nitrogen-name
   description: alerts-low-nitrogen-desc
-
-- type: alert
-  id: LowPlasma
-  category: Breathing
-  icons:
-    - sprite: /Textures/Interface/Alerts/breathing.rsi
-      state: not_enough_tox
-  name: alerts-low-plasma-name
-  description: alerts-low-plasma-desc
-
-- type: alert
-  id: HighOxygen
-  category: Breathing
-  icons:
-    - sprite: /Textures/Interface/Alerts/breathing.rsi
-      state: too_much_oxy
-  name: alerts-high-oxygen-name
-  description: alerts-high-oxygen-desc
 
 - type: alert
   id: Toxins
@@ -210,7 +190,6 @@
 - type: alert
   id: HumanHealth
   category: Health
-  onClick: !type:CheckHealth { }
   icons:
   - sprite: /Textures/Interface/Alerts/human_alive.rsi
     state: health0
@@ -629,11 +608,3 @@
       state: mood_happiness_bad
   name: alerts-mood-dead-name
   description: alerts-mood-dead-desc
-
-- type: alert
-  id: Deflecting
-  icons:
-  - sprite: /Textures/Interface/Alerts/deflecting.rsi
-    state: deflecting0
-  name: alerts-deflecting-name
-  description: alerts-deflecting-desc

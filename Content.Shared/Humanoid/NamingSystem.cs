@@ -9,7 +9,7 @@ namespace Content.Shared.Humanoid
     /// <summary>
     /// Figure out how to name a humanoid with these extensions.
     /// </summary>
-    public sealed partial class NamingSystem : EntitySystem
+    public sealed class NamingSystem : EntitySystem
     {
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -43,9 +43,6 @@ namespace Content.Shared.Humanoid
                 case SpeciesNaming.FirstDashLast:
                     return Loc.GetString("namepreset-firstdashlast",
                         ("first", GetFirstName(speciesProto, gender)), ("last", GetLastName(speciesProto)));
-                case SpeciesNaming.FirstRoman:
-                    return Loc.GetString("namepreset-firstlast",
-                        ("first", GetFirstName(speciesProto, gender)), ("last", GenerateRomanNumeral()));
                 case SpeciesNaming.FirstLast:
                 default:
                     return Loc.GetString("namepreset-firstlast",

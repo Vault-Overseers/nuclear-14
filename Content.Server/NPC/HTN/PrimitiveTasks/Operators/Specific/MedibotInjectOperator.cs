@@ -1,13 +1,12 @@
 using Content.Server.Chat.Systems;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.NPC.Components;
 using Content.Shared.Chat;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Emag.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
-using Content.Shared.Silicon.Components;
 using Content.Shared.Silicons.Bots;
 using Robust.Shared.Audio.Systems;
 
@@ -21,7 +20,7 @@ public sealed partial class MedibotInjectOperator : HTNOperator
     private SharedAudioSystem _audio = default!;
     private SharedInteractionSystem _interaction = default!;
     private SharedPopupSystem _popup = default!;
-    private SharedSolutionContainerSystem _solutionContainer = default!;
+    private SolutionContainerSystem _solutionContainer = default!;
 
     /// <summary>
     /// Target entity to inject.
@@ -37,7 +36,7 @@ public sealed partial class MedibotInjectOperator : HTNOperator
         _audio = sysManager.GetEntitySystem<SharedAudioSystem>();
         _interaction = sysManager.GetEntitySystem<SharedInteractionSystem>();
         _popup = sysManager.GetEntitySystem<SharedPopupSystem>();
-        _solutionContainer = sysManager.GetEntitySystem<SharedSolutionContainerSystem>();
+        _solutionContainer = sysManager.GetEntitySystem<SolutionContainerSystem>();
     }
 
     public override void TaskShutdown(NPCBlackboard blackboard, HTNOperatorStatus status)
@@ -54,11 +53,9 @@ public sealed partial class MedibotInjectOperator : HTNOperator
         if (!blackboard.TryGetValue<EntityUid>(TargetKey, out var target, _entMan) || _entMan.Deleted(target))
             return HTNOperatorStatus.Failed;
 
-        if (_entMan.HasComponent<SiliconComponent>(target))
-            return HTNOperatorStatus.Failed;
-
         if (!_entMan.TryGetComponent<MedibotComponent>(owner, out var botComp))
             return HTNOperatorStatus.Failed;
+
 
         if (!_entMan.TryGetComponent<DamageableComponent>(target, out var damage))
             return HTNOperatorStatus.Failed;

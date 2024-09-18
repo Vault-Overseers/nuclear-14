@@ -12,87 +12,110 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 
-namespace Content.Server.Silicon.BlindHealing;
-
-public sealed class BlindHealingSystem : SharedBlindHealingSystem
+namespace Content.Server.Silicon.BlindHealing
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly BlindableSystem _blindableSystem = default!;
-    [Dependency] private readonly StackSystem _stackSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-
-    public override void Initialize()
+    public sealed class BlindHealingSystem : SharedBlindHealingSystem
     {
-        SubscribeLocalEvent<BlindHealingComponent, UseInHandEvent>(OnUse);
-        SubscribeLocalEvent<BlindHealingComponent, AfterInteractEvent>(OnInteract);
-        SubscribeLocalEvent<BlindHealingComponent, HealingDoAfterEvent>(OnHealingFinished);
-    }
+        [Dependency] private readonly SharedPopupSystem _popup = default!;
+        [Dependency] private readonly IAdminLogManager _adminLogger= default!;
+        [Dependency] private readonly BlindableSystem _blindableSystem = default!;
+        [Dependency] private readonly StackSystem _stackSystem = default!;
+        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
 
-    private void OnHealingFinished(EntityUid uid, BlindHealingComponent component, HealingDoAfterEvent args)
-    {
-        if (args.Cancelled || args.Target == null
-            || !TryComp<BlindableComponent>(args.Target, out var blindComp)
-            || blindComp is { EyeDamage: 0 })
-            return;
+        public override void Initialize()
+        {
+            SubscribeLocalEvent<BlindHealingComponent, UseInHandEvent>(OnUse);
+            SubscribeLocalEvent<BlindHealingComponent, AfterInteractEvent>(OnInteract);
+            SubscribeLocalEvent<BlindHealingComponent, HealingDoAfterEvent>(OnHealingFinished);
+        }
 
-        if (TryComp<StackComponent>(uid, out var stackComponent)
-            && TryComp<StackPriceComponent>(uid, out var stackPrice))
-            _stackSystem.SetCount(uid, (int) (_stackSystem.GetCount(uid, stackComponent) - stackPrice.Price), stackComponent);
+        private void OnHealingFinished(EntityUid uid, BlindHealingComponent component, HealingDoAfterEvent args)
+        {
+            Log.Info("event started!");
 
-        _blindableSystem.AdjustEyeDamage((args.Target.Value, blindComp), -blindComp.EyeDamage);
+            if (args.Cancelled || args.Target == null)
+                return;
 
-        _adminLogger.Add(LogType.Healed, $"{ToPrettyString(args.User):user} repaired {ToPrettyString(uid):target}'s vision");
+            EntityUid target = (EntityUid) args.Target;
 
-        var str = Loc.GetString("comp-repairable-repair",
-            ("target", uid),
-            ("tool", args.Used!));
-        _popup.PopupEntity(str, uid, args.User);
+            if(!EntityManager.TryGetComponent(target, out BlindableComponent? blindcomp)
+                || blindcomp is { EyeDamage: 0 })
+                return;
 
-    }
-
-    private bool TryHealBlindness(EntityUid uid, EntityUid user, EntityUid target, float delay)
-    {
-        var doAfterEventArgs =
-            new DoAfterArgs(EntityManager, user, delay, new HealingDoAfterEvent(), uid, target: target, used: uid)
+            if(EntityManager.TryGetComponent(uid, out StackComponent? stackComponent))
             {
-                NeedHand = true,
-                BreakOnMove = true,
-                BreakOnWeightlessMove = false,
-            };
+                double price = 1;
+                if (EntityManager.TryGetComponent(uid, out StackPriceComponent? stackPrice))
+                    price = stackPrice.Price;
+                _stackSystem.SetCount(uid, (int) (_stackSystem.GetCount(uid, stackComponent) - price), stackComponent);
 
-        _doAfter.TryStartDoAfter(doAfterEventArgs);
-        return true;
-    }
+            }
 
-    private void OnInteract(EntityUid uid, BlindHealingComponent component, ref AfterInteractEvent args)
-    {
+            _blindableSystem.AdjustEyeDamage((target, blindcomp), -blindcomp!.EyeDamage);
 
-        if (args.Handled
-            || !TryComp<DamageableComponent>(args.User, out var damageable)
-            || damageable.DamageContainerID != null && !component.DamageContainers.Contains(damageable.DamageContainerID)
-            || !TryComp<BlindableComponent>(args.User, out var blindcomp)
-            || blindcomp.EyeDamage == 0
-            || args.User == args.Target && !component.AllowSelfHeal)
-            return;
+            _adminLogger.Add(LogType.Healed, $"{ToPrettyString(args.User):user} repaired {ToPrettyString(uid):target}'s vision");
 
-        TryHealBlindness(uid, args.User, args.User,
-            args.User == args.Target
-                ? component.DoAfterDelay * component.SelfHealPenalty
-                : component.DoAfterDelay);
-    }
+            var str = Loc.GetString("comp-repairable-repair",
+                ("target", uid),
+                ("tool", args.Used!));
+            _popup.PopupEntity(str, uid, args.User);
 
-    private void OnUse(EntityUid uid, BlindHealingComponent component, ref UseInHandEvent args)
-    {
-        if (args.Handled
-            || !TryComp<DamageableComponent>(args.User, out var damageable)
-            || damageable.DamageContainerID != null && !component.DamageContainers.Contains(damageable.DamageContainerID)
-            || !TryComp<BlindableComponent>(args.User, out var blindcomp)
-            || blindcomp.EyeDamage == 0
-            || !component.AllowSelfHeal)
-            return;
+        }
 
-        TryHealBlindness(uid, args.User, args.User,
-            component.DoAfterDelay * component.SelfHealPenalty);
+        private bool TryHealBlindness(EntityUid uid, EntityUid user, EntityUid target, float delay)
+        {
+            var doAfterEventArgs =
+                new DoAfterArgs(EntityManager, user, delay, new HealingDoAfterEvent(), uid, target: target, used: uid)
+                {
+                    NeedHand = true,
+                    BreakOnUserMove = true,
+                    BreakOnWeightlessMove = false,
+                };
+
+            _doAfter.TryStartDoAfter(doAfterEventArgs);
+            return true;
+        }
+
+        private void OnInteract(EntityUid uid, BlindHealingComponent component, ref AfterInteractEvent args)
+        {
+
+            if (args.Handled
+                || !TryComp(args.User, out DamageableComponent? damageable)
+                || damageable.DamageContainerID != null
+                && !component.DamageContainers.Contains(damageable.DamageContainerID)
+                || !TryComp(args.User, out BlindableComponent? blindcomp)
+                || blindcomp is { EyeDamage: 0 })
+                return;
+
+            float delay = component.DoAfterDelay;
+
+            if (args.User == args.Target)
+            {
+                if (!component.AllowSelfHeal)
+                    return;
+                delay *= component.SelfHealPenalty;
+            }
+
+            TryHealBlindness(uid, args.User, args.User, delay);
+        }
+
+        private void OnUse(EntityUid uid, BlindHealingComponent component, ref UseInHandEvent args)
+        {
+            if (args.Handled
+                || !TryComp(args.User, out DamageableComponent? damageable)
+                || damageable.DamageContainerID != null
+                && !component.DamageContainers.Contains(damageable.DamageContainerID)
+                || !TryComp(args.User, out BlindableComponent? blindcomp)
+                || blindcomp is { EyeDamage: 0 }
+                || !component.AllowSelfHeal)
+                return;
+
+            float delay = component.DoAfterDelay;
+            delay *= component.SelfHealPenalty;
+
+            TryHealBlindness(uid, args.User, args.User, delay);
+
+        }
     }
 }

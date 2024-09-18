@@ -19,20 +19,20 @@ public sealed class LiquorLifelineSystem : EntitySystem
         if (!TryComp<BodyComponent>(entity, out var body))
             return;
 
-        if (!_bodySystem.TryGetBodyOrganEntityComps<MetabolizerComponent>((entity, body), out var metabolizers))
+        if (!_bodySystem.TryGetBodyOrganComponents<MetabolizerComponent>(entity, out var metabolizers, body))
             return;
 
-        foreach (var metabolizer in metabolizers)
+        foreach (var (metabolizer, _) in metabolizers)
         {
-            if (metabolizer.Comp1.MetabolizerTypes is null
-                || metabolizer.Comp1.MetabolismGroups is null)
+            if (metabolizer.MetabolizerTypes is null
+                || metabolizer.MetabolismGroups is null)
                 continue;
 
-            foreach (var metabolismGroup in metabolizer.Comp1.MetabolismGroups)
+            foreach (var metabolismGroup in metabolizer.MetabolismGroups)
             {
                 // Add the LiquorLifeline metabolizer type to the liver and equivalent organs.
                 if (metabolismGroup.Id == "Alcohol")
-                    metabolizer.Comp1.MetabolizerTypes.Add("LiquorLifeline");
+                    metabolizer.MetabolizerTypes.Add("LiquorLifeline");
             }
         }
     }

@@ -18,7 +18,7 @@
     Drink:
       effects:
       - !type:SatiateThirst
-        factor: 0.5
+        factor: 1.5
         conditions:
           - !type:OrganType
             type: Human
@@ -33,38 +33,24 @@
         - !type:OrganType
           type: Vampiric
         reagent: Water
-        amount: 0.3
+        amount: 0.15
       - !type:AdjustReagent
         conditions:
         - !type:OrganType
           type: Vampiric
         reagent: Protein
-        amount: 0.25 # See below
+        amount: 0.15
       - !type:AdjustReagent
         conditions:
         - !type:OrganType
           type: Vampiric
         reagent: Omnizine
-        amount: 0.3
-      - !type:ChemAddMoodlet
-        moodPrototype: DrankBlood
-        conditions:
-          - !type:OrganType
-            type: Human
-      - !type:ChemAddMoodlet
-        moodPrototype: DrankBloodVampiric
-        conditions:
-          - !type:OrganType
-            type: Vampiric
+        amount: 0.2
     Food:
       effects:
         - !type:AdjustReagent
           reagent: UncookedAnimalProteins
-          amount: 0.125 # 0.25 proteins for 1u of blood - restores 0.75 hunger, adds 0.25 blood per unit
-          conditions:
-          - !type:OrganType
-            type: Vampiric
-            shouldHave: false
+          amount: 0.5
     Medicine:
       effects:
       - !type:HealthChange
@@ -94,11 +80,6 @@
   recognizable: true
   physicalDesc: reagent-physical-desc-slimy
   slippery: false
-  metabolisms:
-    Drink:
-      effects:
-        - !type:ChemAddMoodlet
-          moodPrototype: DrankInsectBlood
 
 - type: reagent
   id: Slime
@@ -118,7 +99,7 @@
       # Delicious!
       effects:
       - !type:SatiateHunger
-        factor: 1
+        factor: 1.5
   footstepSound:
     collection: FootstepBlood
     params:
@@ -142,9 +123,9 @@
       # Sweet!
       effects:
       - !type:SatiateHunger
-        factor: 0.5
+        factor: 1
       - !type:SatiateThirst
-        factor: 0.5
+        factor: 1
   footstepSound:
     collection: FootstepBlood
     params:
@@ -161,14 +142,6 @@
   recognizable: true
   physicalDesc: reagent-physical-desc-metallic
   slippery: false
-  metabolisms:
-    Drink:
-      effects:
-        - !type:ChemAddMoodlet
-          moodPrototype: DrankBlood
-          conditions:
-            - !type:OrganType
-              type: Human
 
 - type: reagent
   parent: Blood
@@ -181,14 +154,6 @@
   recognizable: true
   physicalDesc: reagent-physical-desc-pungent
   slippery: false
-  metabolisms:
-    Drink:
-      effects:
-        - !type:ChemAddMoodlet
-          moodPrototype: DrankBlood
-          conditions:
-            - !type:OrganType
-              type: Human
 
 - type: reagent
   id: ZombieBlood
@@ -213,9 +178,6 @@
             Poison: 4
       - !type:ChemVomit
         probability: 0.25
-      - !type:CauseZombieInfection
-      - !type:ChemAddMoodlet
-        moodPrototype: DrankZombieBlood
 
 - type: reagent
   id: Ichor
@@ -284,8 +246,6 @@
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.1
-      - !type:ChemAddMoodlet
-        moodPrototype: DrankVomit
   footstepSound:
     collection: FootstepBlood
     params:
@@ -311,26 +271,3 @@
         damage:
           types:
             Cellular: 2
-
-- type: reagent
-  parent: Blood
-  id: BlackBlood
-  name: reagent-name-black-blood
-  group: Biological
-  desc: reagent-desc-black-blood
-  flavor: bitter
-  color: "#1c1624"
-  recognizable: true
-  physicalDesc: reagent-physical-desc-inky
-  slippery: false
-
-- type: reagent
-  id: IPCCoolant
-  name: reagent-name-ipc-coolant
-  group: Biological
-  desc: reagent-desc-ipc-coolant
-  flavor: horrible
-  color: "#f2f3f4"
-  recognizable: true
-  physicalDesc: reagent-physical-desc-slimy
-  slippery: false

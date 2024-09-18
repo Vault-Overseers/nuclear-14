@@ -64,6 +64,11 @@ namespace Content.Shared.Movement.Systems
         protected EntityQuery<CanMoveInAirComponent> CanMoveInAirQuery;
         protected EntityQuery<NoRotateOnMoveComponent> NoRotateQuery;
 
+        private const float StepSoundMoveDistanceRunning = 2;
+        private const float StepSoundMoveDistanceWalking = 1.5f;
+
+        private const float FootstepVariation = 0f;
+
         /// <summary>
         /// <see cref="CCVars.StopSpeed"/>
         /// </summary>
@@ -125,10 +130,9 @@ namespace Content.Shared.Movement.Systems
             var canMove = mover.CanMove;
             if (RelayTargetQuery.TryGetComponent(uid, out var relayTarget))
             {
-                if (_mobState.IsDead(relayTarget.Source)
-                    || TryComp<SleepingComponent>(relayTarget.Source, out _)
-                    || !MoverQuery.TryGetComponent(relayTarget.Source, out var relayedMover)
-                    || _mobState.IsCritical(relayTarget.Source) && !_configManager.GetCVar(CCVars.AllowMovementWhileCrit))
+                if (_mobState.IsIncapacitated(relayTarget.Source) ||
+                    TryComp<SleepingComponent>(relayTarget.Source, out _) ||
+                    !MoverQuery.TryGetComponent(relayTarget.Source, out var relayedMover))
                 {
                     canMove = false;
                 }
@@ -270,7 +274,7 @@ namespace Content.Shared.Movement.Systems
 
                     var audioParams = sound.Params
                         .WithVolume(volume)
-                        .WithVariation(sound.Params.Variation ?? mobMover.FootstepVariation);
+                        .WithVariation(sound.Params.Variation ?? FootstepVariation);
 
                     // If we're a relay target then predict the sound for all relays.
                     if (relayTarget != null)
@@ -295,9 +299,9 @@ namespace Content.Shared.Movement.Systems
             PhysicsSystem.SetAngularVelocity(physicsUid, 0, body: physicsComponent);
         }
 
-        private void WalkingAlert(Entity<InputMoverComponent> entity)
+        private void WalkingAlert(EntityUid player, InputMoverComponent component)
         {
-            _alerts.ShowAlert(entity, entity.Comp.WalkingAlert, entity.Comp.Sprinting ? (short) 1 : (short) 0);
+            _alerts.ShowAlert(player, AlertType.Walking, component.Sprinting ? (short) 1 : (short) 0);
         }
 
         public void LerpRotation(EntityUid uid, InputMoverComponent mover, float frameTime)
@@ -421,9 +425,7 @@ namespace Content.Shared.Movement.Systems
                 return false;
 
             var coordinates = xform.Coordinates;
-            var distanceNeeded = mover.Sprinting
-                ? mobMover.StepSoundMoveDistanceRunning
-                : mobMover.StepSoundMoveDistanceWalking;
+            var distanceNeeded = mover.Sprinting ? StepSoundMoveDistanceRunning : StepSoundMoveDistanceWalking;
 
             // Handle footsteps.
             if (!weightless)

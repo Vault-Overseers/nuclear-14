@@ -3,7 +3,6 @@ using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Tools.Components;
 using Content.Shared.Damage.Events;
 using Content.Shared.Nyanotrasen.Abilities.Oni;
-using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Containers;
@@ -20,7 +19,8 @@ namespace Content.Server.Abilities.Oni
             base.Initialize();
             SubscribeLocalEvent<OniComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
             SubscribeLocalEvent<OniComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
-            SubscribeLocalEvent<MeleeWeaponComponent, GetMeleeDamageEvent>(OnGetMeleeDamage);
+            SubscribeLocalEvent<OniComponent, MeleeHitEvent>(OnOniMeleeHit);
+            SubscribeLocalEvent<HeldByOniComponent, MeleeHitEvent>(OnHeldMeleeHit);
             SubscribeLocalEvent<HeldByOniComponent, TakeStaminaDamageEvent>(OnStamHit);
         }
 
@@ -30,7 +30,7 @@ namespace Content.Server.Abilities.Oni
             heldComp.Holder = uid;
 
             if (TryComp<ToolComponent>(args.Entity, out var tool) && _toolSystem.HasQuality(args.Entity, "Prying", tool))
-                _toolSystem.SetSpeedModifier((args.Entity, tool), tool.SpeedModifier * 1.66f);
+                tool.SpeedModifier *= 1.66f;
 
             if (_gunSystem.TryGetGun(args.Entity, out _, out var gun))
             {
@@ -43,7 +43,7 @@ namespace Content.Server.Abilities.Oni
         private void OnEntRemoved(EntityUid uid, OniComponent component, EntRemovedFromContainerMessage args)
         {
             if (TryComp<ToolComponent>(args.Entity, out var tool) && _toolSystem.HasQuality(args.Entity, "Prying", tool))
-                _toolSystem.SetSpeedModifier((args.Entity, tool), tool.SpeedModifier / 1.66f);
+                tool.SpeedModifier /= 1.66f;
 
             if (_gunSystem.TryGetGun(args.Entity, out _, out var gun))
             {
@@ -55,12 +55,17 @@ namespace Content.Server.Abilities.Oni
             RemComp<HeldByOniComponent>(args.Entity);
         }
 
-        private void OnGetMeleeDamage(EntityUid uid, MeleeWeaponComponent component, ref GetMeleeDamageEvent args)
+        private void OnOniMeleeHit(EntityUid uid, OniComponent component, MeleeHitEvent args)
         {
-            if (!TryComp<OniComponent>(args.User, out var oni))
+            args.ModifiersList.Add(component.MeleeModifiers);
+        }
+
+        private void OnHeldMeleeHit(EntityUid uid, HeldByOniComponent component, MeleeHitEvent args)
+        {
+            if (!TryComp<OniComponent>(component.Holder, out var oni))
                 return;
 
-            args.Modifiers.Add(oni.MeleeModifiers);
+            args.ModifiersList.Add(oni.MeleeModifiers);
         }
 
         private void OnStamHit(EntityUid uid, HeldByOniComponent component, TakeStaminaDamageEvent args)

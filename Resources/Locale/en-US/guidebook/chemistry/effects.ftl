@@ -1,4 +1,4 @@
--create-3rd-person =
+﻿-create-3rd-person =
     { $chance ->
         [1] Creates
         *[other] create
@@ -43,7 +43,7 @@ reagent-effect-guidebook-foam-area-reaction-effect =
         *[other] create
     } large quantities of foam
 
-reagent-effect-guidebook-smoke-area-reaction-effect =
+reagent-effect-guidebook-foam-area-reaction-effect =
     { $chance ->
         [1] Creates
         *[other] create
@@ -86,10 +86,7 @@ reagent-effect-guidebook-status-effect =
         [add]   { $chance ->
                     [1] Causes
                     *[other] cause
-                } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} { $refresh ->
-                    *[true] without accumulation
-                    [false] with accumulation
-                    }
+                } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} with accumulation
         *[set]  { $chance ->
                     [1] Causes
                     *[other] cause
@@ -123,10 +120,7 @@ reagent-effect-guidebook-adjust-solution-temperature-effect =
                 [1] add
                 *[-1] remove
             }
-    } heat { $deltasign ->
-                [1] to
-                *[-1] from
-           } the solution until it reaches { $deltasign ->
+    } heat from the solution until it reaches { $deltasign ->
                 [1] at most {NATURALFIXED($maxtemp, 2)}k
                 *[-1] at least {NATURALFIXED($mintemp, 2)}k
             }
@@ -345,54 +339,6 @@ reagent-effect-guidebook-innoculate-zombie-infection =
         *[other] cure
     } an ongoing zombie infection, and provides immunity to future infections
 
-reagent-effect-guidebook-reduce-rotting =
-    { $chance ->
-        [1] Regenerates
-        *[other] regenerate
-    } {NATURALFIXED($time, 3)} {MANY("second", $time)} of rotting
-
-reagent-effect-guidebook-plant-attribute =
-    { $chance ->
-        [1] Adjusts
-        *[other] adjust
-    } {$attribute} by [color={$colorName}]{$amount}[/color]
-
-reagent-effect-guidebook-plant-cryoxadone =
-    { $chance ->
-        [1] Ages back
-        *[other] age back
-    } the plant, depending on the plant's age and time to grow
-
-reagent-effect-guidebook-plant-phalanximine =
-    { $chance ->
-        [1] Makes
-        *[other] make
-    } a plant not viable due to mutation viable again
-
-reagent-effect-guidebook-plant-diethylamine =
-    { $chance ->
-        [1] Increases
-        *[other] increase
-    } the plant's lifespan and/or base health with 10% chance for each.
-
-reagent-effect-guidebook-plant-robust-harvest =
-    { $chance ->
-        [1] Increases
-        *[other] increase
-    } the plant's potency by {$increase} up to a maximum of {$limit}. Causes the plant to lose its seeds once the potency reaches {$seedlesstreshold}. Trying to add potency over {$limit} may cause decrease in yield at a 10% chance.
-
-reagent-effect-guidebook-plant-seeds-add =
-    { $chance ->
-        [1] Restores the
-        *[other] restore the
-    } seeds of the plant
-
-reagent-effect-guidebook-plant-seeds-remove =
-    { $chance ->
-        [1] Removes the
-        *[other] remove the
-    } seeds of the plant
-
 reagent-effect-guidebook-missing =
     { $chance ->
         [1] Causes
@@ -417,64 +363,9 @@ reagent-effect-guidebook-chem-reroll-psionic =
         *[other] allow
     } a chance to get a different psionic power
 
-reagent-effect-guidebook-chem-restorereroll-psionic =
-    { $chance ->
-        [1] Restores
-        *[other] restore
-    } one's ability to gain benefit from mind opening reagents
-
 reagent-effect-guidebook-add-moodlet =
-    Modifies mood by {$amount}
+    modifies mood by {$amount}
     { $timeout ->
         [0] indefinitely
         *[other] for {$timeout} seconds
     }
-
-reagent-effect-guidebook-remove-moodlet =
-    Removes the {$name} moodlet.
-
-reagent-effect-guidebook-purge-moodlets =
-    Removes all active non-permanent moodlets.
-
-reagent-effect-guidebook-purify-evil = Purifies evil powers
-
-reagent-effect-guidebook-stamina-change =
-    { $chance ->
-        [1] { $deltasign ->
-                [-1] Restores
-                *[1] Deals
-            }
-        *[other] { $deltasign ->
-                    [-1] restore
-                    *[1] deal
-                 }
-    } {$amount} stamina
-
-# Shadowling
-
-reagent-effect-guidebook-blind-non-sling =
-    { $chance ->
-        [1] Blinds any
-        *[other] blind any
-    } non-shadowling
-
-reagent-effect-guidebook-heal-sling =
-    { $chance ->
-        [1] Heals any
-        *[other] heal any
-    } shadowling and thrall
-reagent-effect-guidebook-add-to-chemicals =
-    { $chance ->
-        [1] { $deltasign ->
-                [1] Adds
-                *[-1] Removes
-            }
-        *[other]
-            { $deltasign ->
-                [1] add
-                *[-1] remove
-            }
-    } {NATURALFIXED($amount, 2)}u of {$reagent} { $deltasign ->
-        [1] to
-        *[-1] from
-    } the solution

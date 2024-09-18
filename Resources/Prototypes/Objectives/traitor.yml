@@ -4,10 +4,10 @@
   id: BaseTraitorObjective
   components:
   - type: Objective
-    issuer: objective-issuer-syndicate
+    issuer: syndicate
   - type: RoleRequirement
     roles:
-      mindRoles:
+      components:
       - TraitorRole
 
 - type: entity
@@ -36,9 +36,10 @@
 # state
 
 - type: entity
+  noSpawn: true
   parent: [BaseTraitorObjective, BaseLivingObjective]
   id: EscapeShuttleObjective
-  name: Escape to centcomm alive and unrestrained.
+  name: Escape to centcom alive and unrestrained.
   description: One of our undercover agents will debrief you when you arrive. Don't show up in cuffs.
   components:
   - type: Objective
@@ -48,43 +49,46 @@
       state: shuttle
   - type: EscapeShuttleCondition
 
-- type: entity
-  parent: BaseTraitorObjective
-  id: DieObjective
-  name: Die a glorious death
-  description: Die.
-  components:
-  - type: Objective
-    difficulty: 0.5
-    icon:
-      sprite: Mobs/Ghosts/ghost_human.rsi
-      state: icon
-  - type: ObjectiveBlacklistRequirement
-    blacklist:
-      components:
-      - EscapeShuttleCondition
-      - StealCondition
-  - type: DieCondition
+##- type: entity # DeltaV
+#  noSpawn: true
+#  parent: BaseTraitorObjective
+#  id: DieObjective
+#  name: Die a glorious death
+#  description: Die.
+#  components:
+#  - type: Objective
+#    difficulty: 0.5
+#    icon:
+#      sprite: Mobs/Ghosts/ghost_human.rsi
+#      state: icon
+#  - type: ObjectiveBlacklistRequirement
+#    blacklist:
+#      components:
+#      - EscapeShuttleCondition
+#      - StealCondition
+#  - type: DieCondition
 
-- type: entity
-  parent: [BaseTraitorObjective, BaseLivingObjective]
-  id: HijackShuttleObjective
-  name: Hijack emergency shuttle
-  description: Leave on the shuttle free and clear of the loyal Nanotrasen crew on board. Use ANY methods available to you. Syndicate agents, Nanotrasen enemies, and handcuffed hostages may remain alive on the shuttle. Ignore assistance from anyone other than a support agent.
-  components:
-  - type: Objective
-    difficulty: 5 # insane, default config max difficulty
-    icon:
-      sprite: Objects/Tools/emag.rsi
-      state: icon
-  - type: HijackShuttleCondition
+#- type: entity
+#  noSpawn: true
+#  parent: [BaseTraitorObjective, BaseLivingObjective]
+#  id: HijackShuttleObjective
+#  name: Hijack emergency shuttle
+#  description: Leave on the shuttle free and clear of the loyal Nanotrasen crew on board. Use ANY methods available to you. Syndicate agents, Nanotrasen enemies, and handcuffed hostages may remain alive on the shuttle. Ignore assistance from anyone other than a support agent.
+#  components:
+#    - type: Objective
+#      difficulty: 5 # insane, default config max difficulty
+#      icon:
+#        sprite: Objects/Tools/emag.rsi
+#        state: icon
+#    - type: HijackShuttleCondition
 
 # kill
 
 - type: entity
+  noSpawn: true
   parent: [BaseTraitorObjective, BaseKillObjective]
   id: KillRandomPersonObjective
-  description: Do it however you like, just make sure they don't make it to centcomm.
+  description: Do it however you like, just make sure they don't make it to centcom.
   components:
   - type: Objective
     difficulty: 1.75
@@ -94,6 +98,7 @@
   - type: PickRandomPerson
 
 - type: entity
+  noSpawn: true
   parent: [BaseTraitorObjective, BaseKillObjective]
   id: KillRandomHeadObjective
   description: We need this head gone and you probably know why. Good luck, agent.
@@ -114,6 +119,7 @@
 # social
 
 - type: entity
+  noSpawn: true
   parent: [BaseTraitorSocialObjective, BaseKeepAliveObjective]
   id: RandomTraitorAliveObjective
   description: Identify yourself at your own risk. We just need them alive.
@@ -125,6 +131,7 @@
   - type: RandomTraitorAlive
 
 - type: entity
+  noSpawn: true
   parent: [BaseTraitorSocialObjective, BaseHelpProgressObjective]
   id: RandomTraitorProgressObjective
   description: Identify yourself at your own risk. We just need them to succeed.
@@ -150,21 +157,20 @@
     owner: job-name-cmo
 
 - type: entity
+  noSpawn: true
   parent: BaseCMOStealObjective
   id: CMOHyposprayStealObjective
   components:
   - type: StealCondition
     stealGroup: Hypospray
-    verifyMapExistence: true
 
-# This is going back in Loadouts. Not worth fucking over Paramedics.
-#- type: entity
-#  parent: BaseCMOStealObjective
-#  id: CMOCrewMonitorStealObjective
-#  components:
-#  - type: StealCondition
-#    stealGroup: HandheldCrewMonitor
-#    verifyMapExistence: true
+- type: entity
+  noSpawn: true
+  parent: BaseCMOStealObjective
+  id: CMOCrewMonitorStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: HandheldCrewMonitor
 
 ## rd
 
@@ -179,42 +185,41 @@
     owner: job-name-rd
 
 - type: entity
+  noSpawn: true
   parent: BaseRDStealObjective
   id: RDHardsuitStealObjective
   components:
   - type: StealCondition
     stealGroup: ClothingOuterHardsuitRd
-    verifyMapExistence: true
-  - type: Objective
-    # This item must be worn or stored in a slowing duffelbag, very hard to hide.
-    difficulty: 3
 
 - type: entity
+  noSpawn: true
   parent: BaseRDStealObjective
   id: HandTeleporterStealObjective
   components:
   - type: StealCondition
     stealGroup: HandTeleporter
-    verifyMapExistence: true
 
 ## hos
 
 - type: entity
+  noSpawn: true
   parent: BaseTraitorStealObjective
-  id: HoSAntiqueWeaponStealObjective
+  id: SecretDocumentsStealObjective
   components:
   - type: Objective
-    difficulty: 3 # HoS will mostly be using the gun to stop you from stealing it
+    # hos has a gun ce does not, higher difficulty than most
+    difficulty: 3
   - type: NotJobRequirement
     job: HeadOfSecurity
   - type: StealCondition
-    verifyMapExistence: true
-    stealGroup: HoSAntiqueWeapon
+    stealGroup: BookSecretDocuments
     owner: job-name-hos
 
 ## ce
 
 - type: entity
+  noSpawn: true
   parent: BaseTraitorStealObjective
   id: MagbootsStealObjective
   components:
@@ -222,12 +227,12 @@
     job: ChiefEngineer
   - type: StealCondition
     stealGroup: ClothingShoesBootsMagAdv
-    verifyMapExistence: true
     owner: job-name-ce
 
 ## qm
 
 - type: entity
+  noSpawn: true
   parent: BaseTraitorStealObjective
   id: ClipboardStealObjective
   components:
@@ -235,12 +240,12 @@
     job: Quartermaster
   - type: StealCondition
     stealGroup: BoxFolderQmClipboard
-    verifyMapExistence: true
     owner: job-name-qm
 
 ## hop
 
 - type: entity
+  noSpawn: true
   parent: BaseTraitorStealObjective
   id: CorgiMeatStealObjective
   components:
@@ -266,31 +271,32 @@
     job: Captain
 
 - type: entity
+  noSpawn: true
   parent: BaseCaptainObjective
   id: CaptainIDStealObjective
   components:
   - type: StealCondition
     stealGroup: CaptainIDCard
-    verifyMapExistence: true
 
 - type: entity
+  noSpawn: true
   parent: BaseCaptainObjective
   id: CaptainJetpackStealObjective
   components:
   - type: StealCondition
     stealGroup: JetpackCaptainFilled
-    verifyMapExistence: true
 
 - type: entity
+  noSpawn: true
   parent: BaseCaptainObjective
   id: CaptainGunStealObjective
   components:
   - type: StealCondition
-    stealGroup: WeaponCaptain
+    stealGroup: WeaponAntiqueLaser
     owner: job-name-captain
-    verifyMapExistence: true
 
 - type: entity
+  noSpawn: true
   parent: BaseCaptainObjective
   id: NukeDiskStealObjective
   components:
@@ -302,10 +308,10 @@
   - type: NotCommandRequirement
   - type: StealCondition
     stealGroup: NukeDisk
-    verifyMapExistence: true
     owner: objective-condition-steal-station
 
 - type: entity
+  noSpawn: true
   parent: BaseTraitorStealObjective
   id: StealSupermatterSliverObjective
   components:
@@ -315,24 +321,3 @@
     stealGroup: SupermatterSliver
     objectiveNoOwnerText: objective-condition-steal-smsliver-title
     descriptionText: objective-condition-steal-smsliver-description
-
-## ntrep
-
-- type: entity
-  abstract: true
-  parent: BaseTraitorStealObjective
-  id: BaseNTRepObjective
-  components:
-  - type: Objective
-    difficulty: 2.5
-  - type: NotJobRequirement
-    job: NanotrasenRepresentative
-
-- type: entity
-  parent: BaseNTRepObjective
-  id: NTRepGunStealObjective
-  components:
-  - type: StealCondition
-    stealGroup: NTRepWeapon
-    owner: job-name-ntrep
-    verifyMapExistence: true

@@ -3,7 +3,7 @@
   name: job-name-senior-officer
   description: job-description-senior-officer
   playTimeTracker: JobSeniorOfficer
-  setPreference: false
+  setPreference: false # DeltaV - Disable Senior Roles round start selection
   requirements:
     - !type:CharacterPlaytimeRequirement
       tracker: JobWarden
@@ -17,15 +17,6 @@
     - !type:CharacterDepartmentTimeRequirement
       department: Security
       min: 216000 # 60 hrs
-    # - !type:CharacterTraitRequirement
-      # inverted: true
-      # traits:
-        # - Foreigner
-        # - ForeignerLight
-        # - Muted
-        # - Blindness
-        # - Pacifist
-        # - BrittleBoneDisease
   startingGear: SeniorOfficerGear
   icon: "JobIconSeniorOfficer"
   supervisors: job-supervisors-hos
@@ -39,19 +30,12 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
-  afterLoadoutSpecial:
-  - !type:ModifyEnvirosuitSpecial
-    charges: 6
-  - !type:ModifyEnvirohelmSpecial
-    powerCell: PowerCellHigh
 
 - type: startingGear
   id: SeniorOfficerGear
-  subGear:
-  - SecurityOfficerPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorOfficer
-    back: ClothingBackpackSecurity
+    back: ClothingBackpackSecurityFilled
     shoes: ClothingShoesBootsCombatFilled
     eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadHatBeretSecurity
@@ -59,6 +43,7 @@
     id: SeniorOfficerPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
+    pocket1: WeaponPistolMk58Nonlethal
   innerClothingSkirt: ClothingUniformJumpskirtSeniorOfficer
-  satchel: ClothingBackpackSatchelSecurity
-  duffelbag: ClothingBackpackDuffelSecurity
+  satchel: ClothingBackpackSatchelSecurityFilled
+  duffelbag: ClothingBackpackDuffelSecurityFilled

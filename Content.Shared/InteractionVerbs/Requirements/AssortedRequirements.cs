@@ -15,9 +15,11 @@ public sealed partial class EntityWhitelistRequirement : InteractionRequirement
 {
     [DataField] public EntityWhitelist? Whitelist, Blacklist;
 
-    public override bool IsMet(InteractionArgs args, InteractionVerbPrototype proto, InteractionAction.VerbDependencies deps) =>
-        !deps.WhitelistSystem.IsWhitelistFail(Whitelist, args.Target)
-            && !deps.WhitelistSystem.IsBlacklistPass(Blacklist, args.Target);
+    public override bool IsMet(InteractionArgs args, InteractionVerbPrototype proto, InteractionAction.VerbDependencies deps)
+    {
+        return Whitelist?.IsValid(args.Target, deps.EntMan) != false
+               && Blacklist?.IsValid(args.Target, deps.EntMan) != true;
+    }
 }
 
 /// <summary>
@@ -53,8 +55,7 @@ public sealed partial class StandingStateRequirement : InteractionRequirement
         if (!deps.EntMan.TryGetComponent<StandingStateComponent>(args.Target, out var state))
             return false;
 
-        return state.CurrentState == StandingState.Standing && AllowStanding
-            || state.CurrentState == StandingState.Lying && AllowLaying;
+        return state.Standing ? AllowStanding : AllowLaying;
     }
 }
 

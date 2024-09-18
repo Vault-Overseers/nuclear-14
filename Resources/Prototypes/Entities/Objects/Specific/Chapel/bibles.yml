@@ -1,6 +1,6 @@
 - type: entity
   name: bible
-  description: New Interstellar Version 2340.
+  description: New Interstellar Version 2340
   parent: BaseStorageItem
   id: Bible
   components:
@@ -18,19 +18,10 @@
     damageOnUntrainedUse: ## What a non-chaplain takes when attempting to heal someone
       groups:
         Burn: 10
-  - type: MeleeWeapon
-    soundHit:
-      collection: Punch
-    damage:
-      types:
-        Holy: 20
-        Blunt: 1
-    heavyRateModifier: 1.25
-    heavyDamageBaseModifier: 1
-    heavyStaminaCost: 4
-    maxTargets: 4
   - type: Prayable
     bibleUserOnly: true
+  - type: Summonable
+    specialItem: SpawnPointGhostRemilia
   - type: ReactionMixer
     mixMessage: "bible-mixing-success"
     reactionTypes:
@@ -49,8 +40,17 @@
     - 0,0,0,1
   - type: UserInterface
     interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: MeleeWeapon # Nyanotrasen - Bibles do Holy damage
+    damage:
+      types:
+        Blunt: 4
+        Holy: 20
+    heavyRateModifier: 0.8
+    heavyDamageBaseModifier: 1
+    heavyStaminaCost: 5
+    maxTargets: 3
   - type: Tag
     tags:
     - Book
@@ -64,7 +64,7 @@
     sound: /Audio/SimpleStation14/Items/Handling/book_drop.ogg
 
 - type: entity
-  parent: [Bible, BaseSyndicateContraband]
+  parent: Bible
   name: necronomicon
   description: "There's a note: Klatuu, Verata, Nikto -- Don't forget it again!"
   id: BibleNecronomicon
@@ -95,6 +95,7 @@
   id: ActionBibleSummon
   name: Summon familiar
   description: Summon a familiar that will aid you and gain humanlike intelligence once inhabited by a soul.
+  noSpawn: true
   components:
   - type: InstantAction
     icon: { sprite: Clothing/Head/Hats/witch.rsi, state: icon }

@@ -1,6 +1,6 @@
 using Robust.Shared.Random;
 using Content.Server.Abilities.Psionics;
-using Content.Shared.GameTicking.Components;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.StationEvents.Components;
 using Content.Server.Psionics;
@@ -49,8 +49,9 @@ internal sealed class NoosphericStormRule : StationEventSystem<NoosphericStormRu
 
         // Increase glimmer.
         var baseGlimmerAdd = _robustRandom.Next(component.BaseGlimmerAddMin, component.BaseGlimmerAddMax);
-        var glimmerAdded = baseGlimmerAdd;
+        //var glimmerSeverityMod = 1 + (component.GlimmerSeverityCoefficient * (GetSeverityModifier() - 1f));
+        var glimmerAdded = (int) baseGlimmerAdd; // Math.Round(baseGlimmerAdd * glimmerSeverityMod);
 
-        _glimmerSystem.DeltaGlimmerInput(glimmerAdded);
+        _glimmerSystem.Glimmer += glimmerAdded;
     }
 }

@@ -7,32 +7,38 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: NCR
-      time: 36000 # 10 hours as NCR
-    - !type:WhitelistRequirement
-  weight: 5
+      min: 36000 # 10 hours as NCR
+    - !type:CharacterWhitelistRequirement
   startingGear: NCRRangerGear
   icon: JobIconSecurityOfficer
   requireAdminNotify: true
   canBeAntag: false
   access:
-  - NCRCadet
-  - NCRSoldier
+  - NCR
   - NCRNCO
+  - NCRMP
   - NCRRanger
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - NCR
 
 - type: startingGear
   id: NCRRangerGear
   equipment:
     jumpsuit: N14ClothingUniformRangerPatrol
     shoes: N14ClothingBootsCombatFilled
-    belt: ClothingBeltRevolverfilled
+    ears: N14ClothingHeadsetNCR
+    belt: ClothingBeltRevolverdesertfilled
     eyes: ClothingEyesGlassesSunglasses
     neck: N14ClothingNeckCloakRangerPoncho
-    pocket1: MagazineBox44
-    pocket2: FlashlightSeclite
+    pocket1: MagazineBox45-70
+    pocket2: NCRrangerloadoutkits
     outerClothing: N14ClothingOuterRangerArmor
     head: N14ClothingHeadHatRanger
-    id: N14IDBadgeNCRDesertRanger
+    id: N14IDBadgeNCRRanger
     back: N14ClothingBackpackMilitaryFilled
   innerClothingSkirt: N14ClothingUniformRangerV3 #placeholder
   satchel: N14ClothingBackpackSatchelMilitaryFilled

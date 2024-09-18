@@ -125,6 +125,12 @@ public sealed partial class RCDMenu : RadialMenu
         return a + b;
     }
 
+    private static string OopsConcat(string a, string b)
+    {
+        // This exists to prevent Roslyn being clever and compiling something that fails sandbox checks.
+        return a + b;
+    }
+
     private void AddRCDMenuButtonOnClickActions(Control control)
     {
         var radialContainer = control as RadialContainer;

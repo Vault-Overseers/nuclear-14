@@ -3,7 +3,7 @@
 namespace Content.Shared.Mood;
 
 [Prototype]
-public sealed partial class MoodEffectPrototype : IPrototype
+public sealed class MoodEffectPrototype : IPrototype
 {
     /// <summary>
     ///     The ID of the moodlet to use.

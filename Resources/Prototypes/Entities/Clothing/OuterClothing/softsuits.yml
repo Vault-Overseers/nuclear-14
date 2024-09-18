@@ -14,12 +14,11 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
-    - AllowLamiaHardsuit
     - HidesHarpyWings
 
 #Syndicate EVA
 - type: entity
-  parent: [ ClothingOuterEVASuitBase, BaseSyndicateContraband ]
+  parent: ClothingOuterEVASuitBase
   id: ClothingOuterHardsuitSyndicate # TODO: rename to ClothingOuterEVASuitSyndicate
   name: syndicate vacsuit
   description: "Has a tag on the back that reads: 'Totally not property of an enemy corporation, honest!'"
@@ -33,7 +32,6 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
-    - AllowLamiaHardsuit
     - HidesHarpyWings
 
 #Emergency EVA
@@ -41,7 +39,7 @@
   parent: ClothingOuterEVASuitBase
   id: ClothingOuterSuitEmergency
   name: emergency vacsuit
-  description: An emergency vacsuit with a built-in helmet. It's horribly slow and lacking in temperature protection, but enough to buy you time from the harsh vacuum of space.
+  description: An emergency vacsuit with a built-in helmet. It's horribly slow and lacking in temperature protection, but enough to bide you time from the harsh vaccuum of space.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Suits/eva_emergency.rsi
@@ -52,14 +50,13 @@
     sprintModifier: 0.7
   - type: HeldSpeedModifier
   - type: TemperatureProtection
-    heatingCoefficient: 0.75
-    coolingCoefficient: 0.5
+    coefficient: 0.5
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetEVALarge
     slot: head
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:Container {}
+      toggleable-clothing: !type:ContainerSlot {}
 
 #Prisoner EVA
 - type: entity
@@ -77,7 +74,6 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
-    - AllowLamiaHardsuit
     - HidesHarpyWings
 
 #NTSRA Voidsuit / Ancient Voidsuit
@@ -85,7 +81,7 @@
   parent: ClothingOuterEVASuitBase
   id: ClothingOuterHardsuitAncientEVA
   name: NTSRA vacsuit #Nanotrasen Space Research Association
-  description: An ancient vacsuit, designed by the NTSRA branch of CentComm. It is very finely crafted, allowing for greater mobility than most modern vacsuits.
+  description: An ancient vacsuit, designed by the NTSRA branch of CentCom. It is very finely crafted, allowing for greater mobility than most modern vacsuits.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Suits/ancient_voidsuit.rsi

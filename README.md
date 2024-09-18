@@ -1,5 +1,9 @@
-# Einstein Engines
+# Nuclear 14
+Nuclear 14 is the original Fallout fork on Space Station 14 created by Peptide90 in 2022 and a collection of other valuable contributors. It uses assets from various Fallout13 (F13)(SS13) forks as well as brand new assets created by our community. The location and theme of Nuclear14 differs from F13 for a variety of reasons but mostly to give people something new to experience rather than rehashing the old again. Thanks to the SS14 engine and our Upstream repository, Einstein Engines, we bring something highly modular to the community to enjoy. The codebase has been licensed as AGPLv3 so that the fork and its developments can be enjoyed by all.
 
+The SS13 remake curse and F13 curse have been broken, come check out the community on [discord here](https://discord.gg/4gGSWyNbQF) and consider contributing. Links to the official servers can be found on the discord too or via the launcher at ss14://game.nuclear14.com:1212
+
+# Einstein Engines
 <p align="center"><img src="https://raw.githubusercontent.com/Simple-Station/Einstein-Engines/master/Resources/Textures/Logo/splashlogo.png" width="512px" /></p>
 
 ---
@@ -12,14 +16,6 @@ Space Station 14 is inspired heavily by Space Station 13 and runs on [Robust Too
 
 As a hard fork, any code sourced from a different upstream cannot ever be merged directly here, and must instead be ported.
 All code present in this repository is subject to change as desired by the council of maintainers.
-
-## Official Server Policy
-
-**No official servers will ever be made for Einstein-Engines**.
-
-In order to prevent a potential conflict of interest, we will never open any server directly using the Einstein Engines codebase itself.
-Any server claiming to be an official representation of this fork is not endorsed in any way by this organization.
-We however would like to invite anyone wishing to create a server to make a fork of Einstein Engines.
 
 ## Links
 
@@ -41,7 +37,7 @@ We provide some scripts shown below to make the job easier.
 ### Build dependencies
 
 > - Git
-> - .NET SDK 9.0.101
+> - .NET SDK 8.0.100
 
 
 ### Windows
@@ -67,3 +63,5 @@ We provide some scripts shown below to make the job easier.
 ## License
 
 Please read the [LEGAL.md](./LEGAL.md) file for information on the licenses of the code and assets in this repository.
+
+Note that some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.

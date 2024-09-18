@@ -2,6 +2,7 @@ using Content.Server.Silicon.Death;
 using Content.Shared.Sound.Components;
 using Content.Server.Sound;
 using Content.Shared.Mobs;
+using Content.Shared.Silicon.Systems;
 
 namespace Content.Server.Silicon;
 
@@ -34,9 +35,7 @@ public sealed class EmitSoundOnCritSystem : EntitySystem
 
     public void OnStateChange(EntityUid uid, SiliconEmitSoundOnDrainedComponent component, MobStateChangedEvent args)
     {
-        if (args.NewMobState != MobState.Dead)
-            return;
-
-        RemComp<SpamEmitSoundComponent>(uid);
+        if (args.NewMobState == MobState.Dead)
+            RemComp<SpamEmitSoundComponent>(uid);
     }
 }

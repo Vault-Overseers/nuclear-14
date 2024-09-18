@@ -4,11 +4,15 @@
   roundStart: true
   prototype: MobHuman
   sprites: MobHumanSprites
-  defaultSkinTone: "#c0967f"
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobHumanDummy
   skinColoration: HumanToned
-  bonusTraitPoints: 2
+  minHeight: 0.8
+  defaultHeight: 1
+  maxHeight: 1.25
+  minWidth: 0.7
+  defaultWidth: 1
+  maxWidth: 1.1
 
 # The lack of a layer means that
 # this person cannot have round-start anything
@@ -20,12 +24,9 @@
   id: MobHumanSprites
   sprites:
     Head: MobHumanHead
-    Face: MobHumanoidAnyMarking
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
-    Underwear: MobHumanoidAnyMarking
-    Undershirt: MobHumanoidAnyMarking
     Chest: MobHumanTorso
     Eyes: MobHumanoidEyes
     LArm: MobHumanLArm
@@ -43,9 +44,6 @@
 - type: markingPoints
   id: MobHumanMarkingLimits
   points:
-    Head:
-      points: 2
-      required: false
     Hair:
       points: 1
       required: false
@@ -55,47 +53,38 @@
     Snout:
       points: 1
       required: false
-    Tail:
-      points: 1
+    Tail: # the cat tail joke
+      points: 0
       required: false
-    HeadTop:
-      points: 1
-      required: false
-    HeadSide:
-      points: 4
+    HeadTop: # the cat ear joke
+      points: 0
       required: false
     Chest:
-      points: 6
-      required: false
-    Underwear:
-      points: 1
-      required: false
-    Undershirt:
       points: 1
       required: false
     RightLeg:
-      points: 6
+      points: 2
       required: false
     RightFoot:
-      points: 6
+      points: 2
       required: false
     LeftLeg:
-      points: 6
+      points: 2
       required: false
     LeftFoot:
-      points: 6
+      points: 2
       required: false
     RightArm:
-      points: 6
+      points: 2
       required: false
     RightHand:
-      points: 6
+      points: 2
       required: false
     LeftArm:
-      points: 6
+      points: 2
       required: false
     LeftHand:
-      points: 6
+      points: 2
       required: false
 
 - type: humanoidBaseSprite

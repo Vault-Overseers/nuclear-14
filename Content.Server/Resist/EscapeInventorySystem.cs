@@ -6,6 +6,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
+using Content.Shared.Contests;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Events;
@@ -24,6 +25,7 @@ public sealed class EscapeInventorySystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly CarryingSystem _carryingSystem = default!; // Carrying system from Nyanotrasen.
     [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly ContestsSystem _contests = default!;
 
     /// <summary>
     /// You can't escape the hands of an entity this many times more massive than you.
@@ -63,7 +65,8 @@ public sealed class EscapeInventorySystem : EntitySystem
         // Contested
         if (_handsSystem.IsHolding(container.Owner, uid, out _))
         {
-            AttemptEscape(uid, container.Owner, component);
+            var disadvantage = _contests.MassContest(container.Owner, uid, rangeFactor: 3f);
+            AttemptEscape(uid, container.Owner, component, disadvantage);
             return;
         }
 

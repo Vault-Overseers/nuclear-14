@@ -19,14 +19,14 @@ public sealed partial class DoAfterArgs
     /// <summary>
     ///     How long does the do_after require to complete
     /// </summary>
-    [DataField(required: true)]
+    [DataField("delay", required: true)]
     public TimeSpan Delay;
 
     /// <summary>
     ///     Applicable target (if relevant)
     /// </summary>
     [NonSerialized]
-    [DataField]
+    [DataField("target")]
     public EntityUid? Target;
 
     public NetEntity? NetTarget;
@@ -40,28 +40,17 @@ public sealed partial class DoAfterArgs
 
     public NetEntity? NetUsed;
 
-    // Goobstation - Show doAfter progress bar to another entity
-    [NonSerialized]
-    [DataField]
-    public EntityUid? ShowTo;
-
-    public NetEntity? NetShowTo;
-
     /// <summary>
     /// Whether the progress bar for this DoAfter should be hidden from other players.
     /// </summary>
     [DataField]
     public bool Hidden;
 
-    /// Whether the delay multiplier event should be raised
-    [DataField]
-    public bool MultiplyDelay = true;
-
     #region Event options
     /// <summary>
     ///     The event that will get raised when the DoAfter has finished. If null, this will simply raise a <see cref="SimpleDoAfterEvent"/>
     /// </summary>
-    [DataField(required: true)]
+    [DataField("event", required: true)]
     public DoAfterEvent Event = default!;
 
     /// <summary>
@@ -75,7 +64,7 @@ public sealed partial class DoAfterArgs
     ///     Entity which will receive the directed event. If null, no directed event will be raised.
     /// </summary>
     [NonSerialized]
-    [DataField]
+    [DataField("eventTarget")]
     public EntityUid? EventTarget;
 
     public NetEntity? NetEventTarget;
@@ -83,7 +72,7 @@ public sealed partial class DoAfterArgs
     /// <summary>
     /// Should the DoAfter event broadcast? If this is false, then <see cref="EventTarget"/> should be a valid entity.
     /// </summary>
-    [DataField]
+    [DataField("broadcast")]
     public bool Broadcast;
     #endregion
 
@@ -92,65 +81,63 @@ public sealed partial class DoAfterArgs
     /// <summary>
     ///     Whether or not this do after requires the user to have hands.
     /// </summary>
-    [DataField]
+    [DataField("needHand")]
     public bool NeedHand;
 
     /// <summary>
     ///     Whether we need to keep our active hand as is (i.e. can't change hand or change item). This also covers
     ///     requiring the hand to be free (if applicable). This does nothing if <see cref="NeedHand"/> is false.
     /// </summary>
-    [DataField]
+    [DataField("breakOnHandChange")]
     public bool BreakOnHandChange = true;
 
     /// <summary>
-    ///     Whether the do-after should get interrupted if we drop the
-    ///     active item we started the do-after with
-    ///     This does nothing if <see cref="NeedHand"/> is false.
+    ///     If do_after stops when the user moves
     /// </summary>
-    [DataField]
-    public bool BreakOnDropItem = true;
+    [DataField("breakOnUserMove")]
+    public bool BreakOnUserMove;
 
     /// <summary>
-    ///     If do_after stops when the user or target moves
+    ///     If this is true then any movement, even when weightless, will break the doafter.
+    ///     When there is no gravity, BreakOnUserMove is ignored. If it is false to begin with nothing will change.
     /// </summary>
-    [DataField]
-    public bool BreakOnMove;
+    [DataField("breakOnWeightlessMove")]
+    public bool BreakOnWeightlessMove;
 
     /// <summary>
-    ///     Whether to break on movement when the user is weightless.
-    ///     This does nothing if <see cref="BreakOnMove"/> is false.
+    ///     If do_after stops when the target moves (if there is a target)
     /// </summary>
-    [DataField]
-    public bool BreakOnWeightlessMove = true;
+    [DataField("breakOnTargetMove")]
+    public bool BreakOnTargetMove;
 
     /// <summary>
     ///     Threshold for user and target movement
     /// </summary>
-    [DataField]
-    public float MovementThreshold = 0.3f;
+    [DataField("movementThreshold")]
+    public float MovementThreshold = 0.1f;
 
     /// <summary>
     ///     Threshold for distance user from the used OR target entities.
     /// </summary>
-    [DataField]
+    [DataField("distanceThreshold")]
     public float? DistanceThreshold;
 
     /// <summary>
     ///     Whether damage will cancel the DoAfter. See also <see cref="DamageThreshold"/>.
     /// </summary>
-    [DataField]
+    [DataField("breakOnDamage")]
     public bool BreakOnDamage;
 
     /// <summary>
     ///     Threshold for user damage. This damage has to be dealt in a single event, not over time.
     /// </summary>
-    [DataField]
+    [DataField("damageThreshold")]
     public FixedPoint2 DamageThreshold = 1;
 
     /// <summary>
     ///     If true, this DoAfter will be canceled if the user can no longer interact with the target.
     /// </summary>
-    [DataField]
+    [DataField("requireCanInteract")]
     public bool RequireCanInteract = true;
     #endregion
 
@@ -162,7 +149,7 @@ public sealed partial class DoAfterArgs
     ///     Note that this will block even if the duplicate is cancelled because either DoAfter had
     ///     <see cref="CancelDuplicate"/> enabled.
     /// </remarks>
-    [DataField]
+    [DataField("blockDuplicate")]
     public bool BlockDuplicate = true;
 
     //TODO: User pref to not cancel on second use on specific doafters
@@ -170,7 +157,7 @@ public sealed partial class DoAfterArgs
     ///     If true, this will cancel any duplicate DoAfters when attempting to add a new DoAfter. See also
     ///     <see cref="DuplicateConditions"/>.
     /// </summary>
-    [DataField]
+    [DataField("cancelDuplicate")]
     public bool CancelDuplicate = true;
 
     /// <summary>
@@ -181,7 +168,7 @@ public sealed partial class DoAfterArgs
     ///     Note that both DoAfters may have their own conditions, and they will be considered duplicated if either set
     ///     of conditions is satisfied.
     /// </remarks>
-    [DataField]
+    [DataField("duplicateCondition")]
     public DuplicateConditions DuplicateCondition = DuplicateConditions.All;
     #endregion
 
@@ -203,7 +190,6 @@ public sealed partial class DoAfterArgs
     /// <param name="eventTarget">The entity at which the event will be directed. If null, the event will not be directed.</param>
     /// <param name="target">The entity being targeted by the DoAFter. Not the same as <see cref="EventTarget"/></param>.
     /// <param name="used">The entity being used during the DoAfter. E.g., a tool</param>
-    /// <param name="showTo">Goobstation - The entity that should see doafter progress bar except doAfter entity</param>
     public DoAfterArgs(
         IEntityManager entManager,
         EntityUid user,
@@ -211,8 +197,7 @@ public sealed partial class DoAfterArgs
         DoAfterEvent @event,
         EntityUid? eventTarget,
         EntityUid? target = null,
-        EntityUid? used = null,
-        EntityUid? showTo = null) // Goobstation - Show doAfter popup to another entity
+        EntityUid? used = null)
     {
         User = user;
         Delay = delay;
@@ -220,12 +205,18 @@ public sealed partial class DoAfterArgs
         Used = used;
         EventTarget = eventTarget;
         Event = @event;
-        ShowTo = showTo; // Goobstation
 
         NetUser = entManager.GetNetEntity(User);
         NetTarget = entManager.GetNetEntity(Target);
         NetUsed = entManager.GetNetEntity(Used);
-        NetShowTo = entManager.GetNetEntity(ShowTo); // Goobstation - Show doAfter popup to another entity
+    }
+
+    /// <summary>
+    ///     An empty do-after constructor. This WILL cause runtime errors if used to create a do-after. Only use this if you really know what you're doing!
+    /// </summary>
+    [Obsolete("Use the other constructors if possible.")]
+    public DoAfterArgs()
+    {
     }
 
     /// <summary>
@@ -263,9 +254,9 @@ public sealed partial class DoAfterArgs
         Broadcast = other.Broadcast;
         NeedHand = other.NeedHand;
         BreakOnHandChange = other.BreakOnHandChange;
-        BreakOnDropItem = other.BreakOnDropItem;
-        BreakOnMove = other.BreakOnMove;
+        BreakOnUserMove = other.BreakOnUserMove;
         BreakOnWeightlessMove = other.BreakOnWeightlessMove;
+        BreakOnTargetMove = other.BreakOnTargetMove;
         MovementThreshold = other.MovementThreshold;
         DistanceThreshold = other.DistanceThreshold;
         BreakOnDamage = other.BreakOnDamage;
@@ -275,16 +266,12 @@ public sealed partial class DoAfterArgs
         BlockDuplicate = other.BlockDuplicate;
         CancelDuplicate = other.CancelDuplicate;
         DuplicateCondition = other.DuplicateCondition;
-        ShowTo = other.ShowTo; // Goobstation - Show doAfter popup to another entity
-
-        MultiplyDelay = other.MultiplyDelay; // Goobstation
 
         // Networked
         NetUser = other.NetUser;
         NetTarget = other.NetTarget;
         NetUsed = other.NetUsed;
         NetEventTarget = other.NetEventTarget;
-        NetShowTo = other.NetShowTo; // Goobstation - Show doAfter popup to another entity
 
         Event = other.Event.Clone();
     }

@@ -1,19 +1,23 @@
+using Content.Server.GameTicking.Rules.Components;
 using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
+using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Power.Components;
 using Content.Server.Power.Nodes;
 using Content.Server.Power.NodeGroups;
+using Content.Server.Station.Components;
 using Content.Server.StationEvents.Components;
-using Content.Shared.GameTicking.Components;
 using Content.Shared.Pinpointer;
-using Content.Shared.Station.Components;
 using Content.Shared.Power;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using Content.Server.GameTicking.Components;
 
 namespace Content.Server.Power.EntitySystems;
 
@@ -159,7 +163,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
             allChunks = new();
 
         var tile = _sharedMapSystem.LocalToTile(xform.GridUid.Value, grid, xform.Coordinates);
-        var chunkOrigin = SharedMapSystem.GetChunkIndices(tile, ChunkSize);
+        var chunkOrigin = SharedMapSystem.GetChunkIndices(tile, SharedNavMapSystem.ChunkSize);
 
         if (!allChunks.TryGetValue(chunkOrigin, out var chunk))
         {
@@ -167,8 +171,8 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
             allChunks[chunkOrigin] = chunk;
         }
 
-        var relative = SharedMapSystem.GetChunkRelative(tile, ChunkSize);
-        var flag = GetFlag(relative);
+        var relative = SharedMapSystem.GetChunkRelative(tile, SharedNavMapSystem.ChunkSize);
+        var flag = SharedNavMapSystem.GetFlag(relative);
 
         if (args.Anchored)
             chunk.PowerCableData[(int) component.CableType] |= flag;
@@ -282,17 +286,20 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
             var query = AllEntityQuery<PowerMonitoringConsoleComponent>();
             while (query.MoveNext(out var ent, out var console))
             {
-                if (!_userInterfaceSystem.IsUiOpen(ent, PowerMonitoringConsoleUiKey.Key))
+                if (!_userInterfaceSystem.TryGetUi(ent, PowerMonitoringConsoleUiKey.Key, out var bui))
                     continue;
 
-                UpdateUIState(ent, console);
-
+                foreach (var session in bui.SubscribedSessions)
+                    UpdateUIState(ent, console, session);
             }
         }
     }
 
-    private void UpdateUIState(EntityUid uid, PowerMonitoringConsoleComponent component)
+    public void UpdateUIState(EntityUid uid, PowerMonitoringConsoleComponent component, ICommonSession session)
     {
+        if (!_userInterfaceSystem.TryGetUi(uid, PowerMonitoringConsoleUiKey.Key, out var bui))
+            return;
+
         var consoleXform = Transform(uid);
 
         if (consoleXform?.GridUid == null)
@@ -350,20 +357,19 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                 continue;
 
             // Get the device power stats
-            var powerStats = GetPowerStats(ent, device);
-            //, out var powerSupplied, out var powerUsage, out var batteryUsage);
+            var powerValue = GetPrimaryPowerValues(ent, device, out var powerSupplied, out var powerUsage, out var batteryUsage);
 
             // Update all running totals
-            totalSources += powerStats.PowerSupplied;
-            totalLoads += powerStats.PowerUsage;
-            totalBatteryUsage += powerStats.BatteryUsage;
+            totalSources += powerSupplied;
+            totalLoads += powerUsage;
+            totalBatteryUsage += batteryUsage;
 
             // Continue on if the device is not in the current focus group
             if (device.Group != component.FocusGroup)
                 continue;
 
             // Generate a new console entry with which to populate the UI
-            var entry = new PowerMonitoringConsoleEntry(EntityManager.GetNetEntity(ent), device.Group, powerStats.PowerValue, powerStats.BatteryLevel);
+            var entry = new PowerMonitoringConsoleEntry(EntityManager.GetNetEntity(ent), device.Group, powerValue);
             allEntries.Add(entry);
         }
 
@@ -416,37 +422,39 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
         }
 
         // Set the UI state
-        _userInterfaceSystem.SetUiState(uid,
-            PowerMonitoringConsoleUiKey.Key,
+        _userInterfaceSystem.SetUiState(bui,
             new PowerMonitoringConsoleBoundInterfaceState
                 (totalSources,
                 totalBatteryUsage,
                 totalLoads,
                 allEntries.ToArray(),
                 sourcesForFocus.ToArray(),
-                loadsForFocus.ToArray()));
+                loadsForFocus.ToArray()),
+            session);
     }
 
-    private PowerStats GetPowerStats(EntityUid uid, PowerMonitoringDeviceComponent device)
+    private double GetPrimaryPowerValues(EntityUid uid, PowerMonitoringDeviceComponent device, out double powerSupplied, out double powerUsage, out double batteryUsage)
     {
-        var stats = new PowerStats();
+        var powerValue = 0d;
+        powerSupplied = 0d;
+        powerUsage = 0d;
+        batteryUsage = 0d;
 
         if (device.Group == PowerMonitoringConsoleGroup.Generator)
         {
             // This covers most power sources
             if (TryComp<PowerSupplierComponent>(uid, out var supplier))
             {
-                stats.PowerValue = supplier.CurrentSupply;
-                stats.PowerSupplied += stats.PowerValue;
+                powerValue = supplier.CurrentSupply;
+                powerSupplied += powerValue;
             }
 
             // Edge case: radiation collectors
             else if (TryComp<BatteryDischargerComponent>(uid, out var _) &&
                 TryComp<PowerNetworkBatteryComponent>(uid, out var battery))
             {
-                stats.PowerValue = battery.NetworkBattery.CurrentSupply;
-                stats.PowerSupplied += stats.PowerValue;
-                stats.BatteryLevel = GetBatteryLevel(uid);
+                powerValue = battery.NetworkBattery.CurrentSupply;
+                powerSupplied += powerValue;
             }
         }
 
@@ -457,19 +465,18 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
 
             if (TryComp<PowerNetworkBatteryComponent>(uid, out var battery))
             {
-                stats.BatteryLevel = GetBatteryLevel(uid);
-                stats.PowerValue = battery.CurrentSupply;
+                powerValue = battery.CurrentSupply;
 
                 // Load due to network battery recharging
-                stats.PowerUsage += Math.Max(battery.CurrentReceiving - battery.CurrentSupply, 0d);
+                powerUsage += Math.Max(battery.CurrentReceiving - battery.CurrentSupply, 0d);
 
                 // Track battery usage
-                stats.BatteryUsage += Math.Max(battery.CurrentSupply - battery.CurrentReceiving, 0d);
+                batteryUsage += Math.Max(battery.CurrentSupply - battery.CurrentReceiving, 0d);
 
                 // Records loads attached to APCs
                 if (device.Group == PowerMonitoringConsoleGroup.APC && battery.Enabled)
                 {
-                    stats.PowerUsage += battery.NetworkBattery.LoadingNetworkDemand;
+                    powerUsage += battery.NetworkBattery.LoadingNetworkDemand;
                 }
             }
         }
@@ -486,28 +493,16 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                 if (childDevice.IsCollectionMaster && childDevice.ChildDevices.ContainsKey(uid))
                     continue;
 
-                var childResult = GetPowerStats(child, childDevice);
+                var childPowerValue = GetPrimaryPowerValues(child, childDevice, out var childPowerSupplied, out var childPowerUsage, out var childBatteryUsage);
 
-                stats.PowerValue += childResult.PowerValue;
-                stats.PowerSupplied += childResult.PowerSupplied;
-                stats.PowerUsage += childResult.PowerUsage;
-                stats.BatteryUsage += childResult.BatteryUsage;
+                powerValue += childPowerValue;
+                powerSupplied += childPowerSupplied;
+                powerUsage += childPowerUsage;
+                batteryUsage += childBatteryUsage;
             }
         }
 
-        return stats;
-    }
-
-    private float? GetBatteryLevel(EntityUid uid)
-    {
-        if (!TryComp<BatteryComponent>(uid, out var battery))
-            return null;
-
-        var effectiveMax = battery.MaxCharge;
-        if (effectiveMax == 0)
-            effectiveMax = 1;
-
-        return battery.CurrentCharge / effectiveMax;
+        return powerValue;
     }
 
     private void GetSourcesForNode(EntityUid uid, Node node, out List<PowerMonitoringConsoleEntry> sources)
@@ -544,7 +539,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                     continue;
                 }
 
-                indexedSources.Add(ent, new PowerMonitoringConsoleEntry(EntityManager.GetNetEntity(ent), entDevice.Group, powerSupplier.CurrentSupply, GetBatteryLevel(ent)));
+                indexedSources.Add(ent, new PowerMonitoringConsoleEntry(EntityManager.GetNetEntity(ent), entDevice.Group, powerSupplier.CurrentSupply));
             }
         }
 
@@ -574,7 +569,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                     continue;
                 }
 
-                indexedSources.Add(ent, new PowerMonitoringConsoleEntry(EntityManager.GetNetEntity(ent), entDevice.Group, entBattery.CurrentSupply, GetBatteryLevel(ent)));
+                indexedSources.Add(ent, new PowerMonitoringConsoleEntry(EntityManager.GetNetEntity(ent), entDevice.Group, entBattery.CurrentSupply));
             }
         }
 
@@ -621,7 +616,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
         for (int i = 0; i < sources.Count; i++)
         {
             var entry = sources[i];
-            sources[i] = new PowerMonitoringConsoleEntry(entry.NetEntity, entry.Group, entry.PowerValue * powerFraction, entry.BatteryLevel);
+            sources[i] = new PowerMonitoringConsoleEntry(entry.NetEntity, entry.Group, entry.PowerValue * powerFraction);
         }
     }
 
@@ -658,7 +653,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                     continue;
                 }
 
-                indexedLoads.Add(ent, new PowerMonitoringConsoleEntry(EntityManager.GetNetEntity(ent), entDevice.Group, powerConsumer.ReceivedPower, GetBatteryLevel(ent)));
+                indexedLoads.Add(ent, new PowerMonitoringConsoleEntry(EntityManager.GetNetEntity(ent), entDevice.Group, powerConsumer.ReceivedPower));
             }
         }
 
@@ -725,7 +720,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
         for (int i = 0; i < indexedLoads.Values.Count; i++)
         {
             var entry = loads[i];
-            loads[i] = new PowerMonitoringConsoleEntry(entry.NetEntity, entry.Group, entry.PowerValue * powerFraction, entry.BatteryLevel);
+            loads[i] = new PowerMonitoringConsoleEntry(entry.NetEntity, entry.Group, entry.PowerValue * powerFraction);
         }
     }
 
@@ -892,7 +887,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                 continue;
 
             var tile = _sharedMapSystem.GetTileRef(gridUid, grid, entXform.Coordinates);
-            var chunkOrigin = SharedMapSystem.GetChunkIndices(tile.GridIndices, ChunkSize);
+            var chunkOrigin = SharedMapSystem.GetChunkIndices(tile.GridIndices, SharedNavMapSystem.ChunkSize);
 
             if (!allChunks.TryGetValue(chunkOrigin, out var chunk))
             {
@@ -900,8 +895,8 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                 allChunks[chunkOrigin] = chunk;
             }
 
-            var relative = SharedMapSystem.GetChunkRelative(tile.GridIndices, ChunkSize);
-            var flag = GetFlag(relative);
+            var relative = SharedMapSystem.GetChunkRelative(tile.GridIndices, SharedNavMapSystem.ChunkSize);
+            var flag = SharedNavMapSystem.GetFlag(relative);
 
             chunk.PowerCableData[(int) cable.CableType] |= flag;
         }
@@ -918,7 +913,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
             var xform = Transform(ent);
             var tile = _sharedMapSystem.GetTileRef(gridUid, grid, xform.Coordinates);
             var gridIndices = tile.GridIndices;
-            var chunkOrigin = SharedMapSystem.GetChunkIndices(gridIndices, ChunkSize);
+            var chunkOrigin = SharedMapSystem.GetChunkIndices(gridIndices, SharedNavMapSystem.ChunkSize);
 
             if (!component.FocusChunks.TryGetValue(chunkOrigin, out var chunk))
             {
@@ -926,8 +921,8 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                 component.FocusChunks[chunkOrigin] = chunk;
             }
 
-            var relative = SharedMapSystem.GetChunkRelative(gridIndices, ChunkSize);
-            var flag = GetFlag(relative);
+            var relative = SharedMapSystem.GetChunkRelative(gridIndices, SharedNavMapSystem.ChunkSize);
+            var flag = SharedNavMapSystem.GetFlag(relative);
 
             if (TryComp<CableComponent>(ent, out var cable))
                 chunk.PowerCableData[(int) cable.CableType] |= flag;
@@ -1001,14 +996,5 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
         component.FocusChunks.Clear();
 
         Dirty(uid, component);
-    }
-
-    private struct PowerStats
-    {
-        public double PowerValue { get; set; }
-        public double PowerSupplied { get; set; }
-        public double PowerUsage { get; set; }
-        public double BatteryUsage { get; set; }
-        public float? BatteryLevel { get; set; }
     }
 }

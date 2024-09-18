@@ -1,17 +1,17 @@
 using Content.Shared.Silicon.Components;
 using Content.Shared.Alert;
-using Content.Shared.Bed.Sleep;
-using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Movement.Systems;
-using Content.Shared.PowerCell.Components;
 using Robust.Shared.Serialization;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.PowerCell.Components;
 
 namespace Content.Shared.Silicon.Systems;
+
 
 public sealed class SharedSiliconChargeSystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] protected readonly ItemSlotsSystem ItemSlots = default!;
 
     public override void Initialize()
     {
@@ -22,50 +22,47 @@ public sealed class SharedSiliconChargeSystem : EntitySystem
         SubscribeLocalEvent<SiliconComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
         SubscribeLocalEvent<SiliconComponent, ItemSlotInsertAttemptEvent>(OnItemSlotInsertAttempt);
         SubscribeLocalEvent<SiliconComponent, ItemSlotEjectAttemptEvent>(OnItemSlotEjectAttempt);
-        SubscribeLocalEvent<SiliconComponent, TryingToSleepEvent>(OnTryingToSleep);
-    }
-
-    /// <summary>
-    ///     Silicon entities can now also be Living player entities. We may want to prevent them from sleeping if they can't sleep.
-    /// </summary>
-    private void OnTryingToSleep(EntityUid uid, SiliconComponent component, ref TryingToSleepEvent args)
-    {
-        args.Cancelled = !component.DoSiliconsDreamOfElectricSheep;
     }
 
     private void OnItemSlotInsertAttempt(EntityUid uid, SiliconComponent component, ref ItemSlotInsertAttemptEvent args)
     {
-        if (args.Cancelled
-            || !TryComp<PowerCellSlotComponent>(uid, out var cellSlotComp)
-            || !_itemSlots.TryGetSlot(uid, cellSlotComp.CellSlotId, out var cellSlot)
-            || cellSlot != args.Slot || args.User != uid)
+        if (args.Cancelled)
             return;
 
-        args.Cancelled = true;
+        if (!TryComp<PowerCellSlotComponent>(uid, out var cellSlotComp))
+            return;
+
+        if (!ItemSlots.TryGetSlot(uid, cellSlotComp.CellSlotId, out var cellSlot) || cellSlot != args.Slot)
+            return;
+
+        if (args.User == uid)
+            args.Cancelled = true;
     }
 
     private void OnItemSlotEjectAttempt(EntityUid uid, SiliconComponent component, ref ItemSlotEjectAttemptEvent args)
     {
-        if (args.Cancelled
-            || !TryComp<PowerCellSlotComponent>(uid, out var cellSlotComp)
-            || !_itemSlots.TryGetSlot(uid, cellSlotComp.CellSlotId, out var cellSlot)
-            || cellSlot != args.Slot || args.User != uid)
+        if (args.Cancelled)
             return;
 
-        args.Cancelled = true;
+        if (!TryComp<PowerCellSlotComponent>(uid, out var cellSlotComp))
+            return;
+
+        if (!ItemSlots.TryGetSlot(uid, cellSlotComp.CellSlotId, out var cellSlot) || cellSlot != args.Slot)
+            return;
+
+        if (args.User == uid)
+            args.Cancelled = true;
     }
 
     private void OnSiliconInit(EntityUid uid, SiliconComponent component, ComponentInit args)
     {
-        if (!component.BatteryPowered)
-            return;
-
-        _alertsSystem.ShowAlert(uid, component.BatteryAlert, component.ChargeState);
+        if (component.BatteryPowered)
+            _alertsSystem.ShowAlert(uid, AlertType.BorgBattery, component.ChargeState);
     }
 
     private void OnSiliconChargeStateUpdate(EntityUid uid, SiliconComponent component, SiliconChargeStateUpdateEvent ev)
     {
-        _alertsSystem.ShowAlert(uid, component.BatteryAlert, ev.ChargePercent);
+        _alertsSystem.ShowAlert(uid, AlertType.BorgBattery, (short) ev.ChargePercent);
     }
 
     private void OnRefreshMovespeed(EntityUid uid, SiliconComponent component, RefreshMovementSpeedModifiersEvent args)
@@ -73,12 +70,17 @@ public sealed class SharedSiliconChargeSystem : EntitySystem
         if (!component.BatteryPowered)
             return;
 
-        var closest = 0;
-        foreach (var state in component.SpeedModifierThresholds)
-            if (component.ChargeState >= state.Key && state.Key > closest)
-                closest = state.Key;
+        var speedModThresholds = component.SpeedModifierThresholds;
 
-        var speedMod = component.SpeedModifierThresholds[closest];
+        var closest = 0f;
+
+        foreach (var state in speedModThresholds)
+        {
+            if (component.ChargeState >= state.Key && (float) state.Key > closest)
+                closest = (float) state.Key;
+        }
+
+        var speedMod = speedModThresholds[(short) closest];
 
         args.ModifySpeed(speedMod, speedMod);
     }

@@ -1,23 +1,28 @@
-namespace Content.Server.Silicon.BlindHealing;
+using Content.Shared.Damage;
+using Content.Shared.Tools;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-[RegisterComponent]
-public sealed partial class BlindHealingComponent : Component
+namespace Content.Server.Silicon.BlindHealing
 {
-    [DataField]
-    public int DoAfterDelay = 3;
+    [RegisterComponent]
+    public sealed partial class BlindHealingComponent : Component
+    {
+        [DataField]
+        public int DoAfterDelay = 3;
 
-    /// <summary>
-    ///     A multiplier that will be applied to the above if an entity is repairing themselves.
-    /// </summary>
-    [DataField]
-    public float SelfHealPenalty = 3f;
+        /// <summary>
+        ///     A multiplier that will be applied to the above if an entity is repairing themselves.
+        /// </summary>
+        [DataField]
+        public float SelfHealPenalty = 3f;
 
-    /// <summary>
-    ///     Whether or not an entity is allowed to repair itself.
-    /// </summary>
-    [DataField]
-    public bool AllowSelfHeal = true;
+        /// <summary>
+        ///     Whether or not an entity is allowed to repair itself.
+        /// </summary>
+        [DataField]
+        public bool AllowSelfHeal = true;
 
-    [DataField(required: true)]
-    public List<string> DamageContainers;
+        [DataField(required: true)]
+        public List<string> DamageContainers;
+    }
 }

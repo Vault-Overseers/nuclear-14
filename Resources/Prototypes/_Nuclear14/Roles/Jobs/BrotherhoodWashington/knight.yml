@@ -1,19 +1,14 @@
 - type: job
-  id: BoSWashingtonKnight
+  id: BoSWashingtonSoldier
   setPreference: true
-  name: job-name-bos-washington-knight
-  description: job-description-bos-washington-knight
-  playTimeTracker: BoSWashingtonKnight
+  name: job-name-bos-washington-soldier
+  description: job-description-bos-washington-soldier
+  playTimeTracker: BoSWashingtonSoldier
   requirements:
     - !type:DepartmentTimeRequirement
       department: BrotherhoodWashington
-<<<<<<<< HEAD:Resources/Prototypes/_Nuclear14/Roles/Jobs/BrotherhoodWashington/soldier.yml
-      time: 3600 # 1 hour as BosWashingtonRecruit
+      min: 3600 # 1 hour as BosWashingtonRecruit
   startingGear: BoSWashingtonSoldierGear
-========
-      min: 3600 # 1 hour as BoSWashingtonInitiate
-  startingGear: BoSWashingtonKnightGear
->>>>>>>> 749775c75d (fix washington accesses):Resources/Prototypes/_Nuclear14/Roles/Jobs/BrotherhoodWashington/knight.yml
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
   supervisors: job-supervisors-bos-washington
@@ -21,9 +16,20 @@
   access:
   - WashingtonInitiate
   - WashingtonKnight
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodWashington
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
 
 - type: startingGear
-  id: BoSWashingtonKnightGear
+  id: BoSWashingtonSoldierGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSRed
     back: N14ClothingBackpackMilitary
@@ -35,4 +41,4 @@
     belt: ClothingBeltBoSWebbing
 
 - type: playTimeTracker
-  id: BoSWashingtonKnight
+  id: BoSWashingtonSoldier

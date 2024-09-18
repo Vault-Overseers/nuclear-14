@@ -175,6 +175,11 @@ public sealed partial class BotanySystem : EntitySystem
                 var teleporting = EnsureComp<SquashTeleportComponent>(entity);
                 teleporting.TeleportRadius = proto.Potency / 10f;
             }
+            if (proto.Teleporting)
+            {
+                var teleporting = EnsureComp<TeleportingTraitComponent>(entity);
+                TeleportingTraitSystem.SetPotencyRadius(proto.Potency, teleporting);
+            }
         }
 
         return products;

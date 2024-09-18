@@ -1,3 +1,4 @@
+using Content.Server.Chat.Systems;
 using Content.Server.Lightning;
 using Content.Server.Popups;
 using Content.Server.PowerCell;
@@ -24,11 +25,11 @@ public sealed class DeadStartupButtonSystem : SharedDeadStartupButtonSystem
     [Dependency] private readonly LightningSystem _lightning = default!;
     [Dependency] private readonly SiliconChargeSystem _siliconChargeSystem = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private readonly ChatSystem _chatSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
-        base.Initialize();
         SubscribeLocalEvent<DeadStartupButtonComponent, OnDoAfterButtonPressedEvent>(OnDoAfter);
         SubscribeLocalEvent<DeadStartupButtonComponent, ElectrocutedEvent>(OnElectrocuted);
         SubscribeLocalEvent<DeadStartupButtonComponent, MobStateChangedEvent>(OnMobStateChanged);
@@ -38,12 +39,13 @@ public sealed class DeadStartupButtonSystem : SharedDeadStartupButtonSystem
     private void OnDoAfter(EntityUid uid, DeadStartupButtonComponent comp, OnDoAfterButtonPressedEvent args)
     {
         if (args.Handled || args.Cancelled
-            || !TryComp<MobStateComponent>(uid, out var mobStateComponent)
+            || !TryComp(uid, out MobStateComponent? mobStateComponent) 
             || !_mobState.IsDead(uid, mobStateComponent)
-            || !TryComp<MobThresholdsComponent>(uid, out var mobThresholdsComponent)
-            || !TryComp<DamageableComponent>(uid, out var damageable)
-            || !_mobThreshold.TryGetThresholdForState(uid, MobState.Critical, out var criticalThreshold, mobThresholdsComponent))
+            || !TryComp(uid, out MobThresholdsComponent? mobThresholdsComponent) 
+            || !TryComp(uid, out DamageableComponent? damageable))
             return;
+
+        var criticalThreshold = _mobThreshold.GetThresholdForState(uid, MobState.Critical, mobThresholdsComponent);
 
         if (damageable.TotalDamage < criticalThreshold)
             _mobState.ChangeMobState(uid, MobState.Alive, mobStateComponent);
@@ -57,9 +59,9 @@ public sealed class DeadStartupButtonSystem : SharedDeadStartupButtonSystem
 
     private void OnElectrocuted(EntityUid uid, DeadStartupButtonComponent comp, ElectrocutedEvent args)
     {
-        if (!TryComp<MobStateComponent>(uid, out var mobStateComponent)
+        if (!TryComp(uid, out MobStateComponent? mobStateComponent) 
             || !_mobState.IsDead(uid, mobStateComponent)
-            || !_siliconChargeSystem.TryGetSiliconBattery(uid, out var bateria)
+            || !_siliconChargeSystem.TryGetSiliconBattery(uid, out var bateria) 
             || bateria.CurrentCharge <= 0)
             return;
 
@@ -70,10 +72,13 @@ public sealed class DeadStartupButtonSystem : SharedDeadStartupButtonSystem
 
     private void OnMobStateChanged(EntityUid uid, DeadStartupButtonComponent comp, MobStateChangedEvent args)
     {
-        if (args.NewMobState != MobState.Alive)
-            return;
 
-        _popup.PopupEntity(Loc.GetString("dead-startup-system-reboot-success", ("target", MetaData(uid).EntityName)), uid);
-        _audio.PlayPvs(comp.Sound, uid);
+        if (args.NewMobState == MobState.Alive)
+        {
+            _popup.PopupEntity(Loc.GetString("dead-startup-system-reboot-success", ("target", MetaData(uid).EntityName)), uid);
+            _audio.PlayPvs(comp.Sound, uid);
+        }
+
     }
+
 }

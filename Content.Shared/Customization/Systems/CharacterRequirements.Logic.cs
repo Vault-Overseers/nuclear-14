@@ -1,6 +1,4 @@
 using System.Linq;
-using System.Text;
-using Content.Shared.Mind;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using JetBrains.Annotations;
@@ -12,32 +10,20 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Customization.Systems;
 
 
-[ImplicitDataDefinitionForInheritors, MeansImplicitUse]
-[Serializable, NetSerializable]
-public abstract partial class CharacterLogicRequirement : CharacterRequirement
-{
-    [DataField]
-    public List<CharacterRequirement> Requirements { get; private set; } = new();
-}
-
 /// <summary>
 ///    Requires all of the requirements to be true
 /// </summary>
 [UsedImplicitly]
 [Serializable, NetSerializable]
-public sealed partial class CharacterLogicAndRequirement : CharacterLogicRequirement
+public sealed partial class CharacterLogicAndRequirement : CharacterRequirement
 {
-    public override bool IsValid(JobPrototype job,
-        HumanoidCharacterProfile profile,
-        Dictionary<string, TimeSpan> playTimes,
-        bool whitelisted,
-        IPrototype prototype,
-        IEntityManager entityManager,
-        IPrototypeManager prototypeManager,
-        IConfigurationManager configManager,
-        out string? reason,
-        int depth = 0,
-        MindComponent? mind = null)
+    [DataField]
+    public List<CharacterRequirement> Requirements { get; private set; } = new();
+
+    public override bool IsValid(JobPrototype job, HumanoidCharacterProfile profile,
+        Dictionary<string, TimeSpan> playTimes, bool whitelisted, IPrototype prototype,
+        IEntityManager entityManager, IPrototypeManager prototypeManager, IConfigurationManager configManager,
+        out FormattedMessage? reason, int depth = 0)
     {
         var succeeded = entityManager.EntitySysManager.GetEntitySystem<CharacterRequirementsSystem>()
             .CheckRequirementsValid(Requirements, job, profile, playTimes, whitelisted, prototype, entityManager,
@@ -49,12 +35,12 @@ public sealed partial class CharacterLogicAndRequirement : CharacterLogicRequire
             return succeeded;
         }
 
-        var reasonBuilder = new StringBuilder();
+        reason = new FormattedMessage();
         foreach (var message in reasons)
-            reasonBuilder.Append(Loc.GetString("character-logic-and-requirement-listprefix",
-                ("indent", new string(' ', depth * 2))) + message);
-        reason = Loc.GetString("character-logic-and-requirement",
-            ("inverted", Inverted), ("options", reasonBuilder.ToString()));
+            reason.AddMessage(FormattedMessage.FromMarkup(
+                Loc.GetString("character-logic-and-requirement-listprefix", ("indent", new string(' ', depth * 2))) + message.ToMarkup()));
+        reason = FormattedMessage.FromMarkup(Loc.GetString("character-logic-and-requirement",
+            ("inverted", Inverted), ("options", reason.ToMarkup())));
 
         return succeeded;
     }
@@ -65,22 +51,18 @@ public sealed partial class CharacterLogicAndRequirement : CharacterLogicRequire
 /// </summary>
 [UsedImplicitly]
 [Serializable, NetSerializable]
-public sealed partial class CharacterLogicOrRequirement : CharacterLogicRequirement
+public sealed partial class CharacterLogicOrRequirement : CharacterRequirement
 {
-    public override bool IsValid(JobPrototype job,
-        HumanoidCharacterProfile profile,
-        Dictionary<string, TimeSpan> playTimes,
-        bool whitelisted,
-        IPrototype prototype,
-        IEntityManager entityManager,
-        IPrototypeManager prototypeManager,
-        IConfigurationManager configManager,
-        out string? reason,
-        int depth = 0,
-        MindComponent? mind = null)
+    [DataField]
+    public List<CharacterRequirement> Requirements { get; private set; } = new();
+
+    public override bool IsValid(JobPrototype job, HumanoidCharacterProfile profile,
+        Dictionary<string, TimeSpan> playTimes, bool whitelisted, IPrototype prototype,
+        IEntityManager entityManager, IPrototypeManager prototypeManager, IConfigurationManager configManager,
+        out FormattedMessage? reason, int depth = 0)
     {
         var succeeded = false;
-        var reasons = new List<string>();
+        var reasons = new List<FormattedMessage>();
         var characterRequirements = entityManager.EntitySysManager.GetEntitySystem<CharacterRequirementsSystem>();
 
         foreach (var requirement in Requirements)
@@ -102,12 +84,12 @@ public sealed partial class CharacterLogicOrRequirement : CharacterLogicRequirem
             return succeeded;
         }
 
-        var reasonBuilder = new StringBuilder();
+        reason = new FormattedMessage();
         foreach (var message in reasons)
-            reasonBuilder.Append(Loc.GetString("character-logic-or-requirement-listprefix",
-                ("indent", new string(' ', depth * 2))) + message);
-        reason = Loc.GetString("character-logic-or-requirement",
-            ("inverted", Inverted), ("options", reasonBuilder.ToString()));
+            reason.AddMessage(FormattedMessage.FromMarkup(
+                Loc.GetString("character-logic-or-requirement-listprefix", ("indent", new string(' ', depth * 2))) + message.ToMarkup()));
+        reason = FormattedMessage.FromMarkup(Loc.GetString("character-logic-or-requirement",
+            ("inverted", Inverted), ("options", reason.ToMarkup())));
 
         return succeeded;
     }
@@ -118,21 +100,17 @@ public sealed partial class CharacterLogicOrRequirement : CharacterLogicRequirem
 /// </summary>
 [UsedImplicitly]
 [Serializable, NetSerializable]
-public sealed partial class CharacterLogicXorRequirement : CharacterLogicRequirement
+public sealed partial class CharacterLogicXorRequirement : CharacterRequirement
 {
-    public override bool IsValid(JobPrototype job,
-        HumanoidCharacterProfile profile,
-        Dictionary<string, TimeSpan> playTimes,
-        bool whitelisted,
-        IPrototype prototype,
-        IEntityManager entityManager,
-        IPrototypeManager prototypeManager,
-        IConfigurationManager configManager,
-        out string? reason,
-        int depth = 0,
-        MindComponent? mind = null)
+    [DataField]
+    public List<CharacterRequirement> Requirements { get; private set; } = new();
+
+    public override bool IsValid(JobPrototype job, HumanoidCharacterProfile profile,
+        Dictionary<string, TimeSpan> playTimes, bool whitelisted, IPrototype prototype,
+        IEntityManager entityManager, IPrototypeManager prototypeManager, IConfigurationManager configManager,
+        out FormattedMessage? reason, int depth = 0)
     {
-        var reasons = new List<string>();
+        var reasons = new List<FormattedMessage>();
         var succeeded = false;
         var characterRequirements = entityManager.EntitySysManager.GetEntitySystem<CharacterRequirementsSystem>();
 
@@ -160,12 +138,12 @@ public sealed partial class CharacterLogicXorRequirement : CharacterLogicRequire
             return succeeded;
         }
 
-        var reasonBuilder = new StringBuilder();
+        reason = new FormattedMessage();
         foreach (var message in reasons)
-            reasonBuilder.Append(Loc.GetString("character-logic-xor-requirement-listprefix",
-                ("indent", new string(' ', depth * 2))) + message);
-        reason = Loc.GetString("character-logic-xor-requirement",
-            ("inverted", Inverted), ("options", reasonBuilder.ToString()));
+            reason.AddMessage(FormattedMessage.FromMarkup(
+                Loc.GetString("character-logic-xor-requirement-listprefix", ("indent", new string(' ', depth * 2))) + message.ToMarkup()));
+        reason = FormattedMessage.FromMarkup(Loc.GetString("character-logic-xor-requirement",
+            ("inverted", Inverted), ("options", reason.ToMarkup())));
 
         return succeeded;
     }

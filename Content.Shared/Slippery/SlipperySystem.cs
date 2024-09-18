@@ -139,6 +139,8 @@ public sealed class SlipperySystem : EntitySystem
 
         RaiseLocalEvent(other, new MoodEffectEvent("MobSlipped"));
 
+        RaiseLocalEvent(other, new MoodEffectEvent("MobSlipped"));
+
         // Preventing from playing the slip sound when you are already knocked down.
         if (playSound)
         {

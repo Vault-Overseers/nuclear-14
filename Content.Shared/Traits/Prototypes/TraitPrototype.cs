@@ -1,6 +1,8 @@
 using Content.Shared.Customization.Systems;
+using Content.Shared.Mood;
+using Content.Shared.Psionics;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.Manager;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Traits;
 
@@ -9,7 +11,7 @@ namespace Content.Shared.Traits;
 ///     Describes a trait.
 /// </summary>
 [Prototype("trait")]
-public sealed partial class TraitPrototype : IPrototype, IComparable
+public sealed partial class TraitPrototype : IPrototype
 {
     [ViewVariables]
     [IdDataField]
@@ -25,49 +27,40 @@ public sealed partial class TraitPrototype : IPrototype, IComparable
     ///     How many points this will give the character
     /// </summary>
     [DataField]
-    public int Points;
-
-    /// <summary>
-    ///     How many trait selections this uses. Defaulted to 1:1, but can be any number.
-    /// </summary>
-    [DataField]
-    public int Slots = 1;
-
-    /// <summary>
-    ///     Traits share their item group implementation with Loadouts, but have a separate use for their normal Slots.
-    ///     Thus, they can optionally be split, otherwise the behavior defaults to their standard slots.
-    /// </summary>
-    [DataField]
-    public int ItemGroupSlots = 1;
+    public int Points = 0;
 
 
     [DataField]
     public List<CharacterRequirement> Requirements = new();
 
-    [DataField(serverOnly: true)]
-    public TraitFunction[] Functions { get; private set; } = Array.Empty<TraitFunction>();
-
     /// <summary>
-    ///     Should this trait be loaded earlier/later than other traits?
+    ///     The components that get added to the player when they pick this trait.
     /// </summary>
     [DataField]
-    public int Priority = 0;
-    public int CompareTo(object? obj) // Compare function to allow for some traits to specify they need to load earlier than others
-    {
-        if (obj is not TraitPrototype other)
-            return -1;
+    public ComponentRegistry? Components { get; private set; } = default!;
 
-        return Priority.CompareTo(other.Priority); // No need for total ordering, only care about things that want to be loaded earlier or later.
-    }
-}
+    /// <summary>
+    ///     The components that will be removed from a player when they pick this trait.
+    ///     Primarily used to remove species innate traits.
+    /// </summary>
+    [DataField]
+    public List<string>? ComponentRemovals { get; private set; } = default!;
 
-/// This serves as a hook for trait functions to modify a player character upon spawning in.
-[ImplicitDataDefinitionForInheritors]
-public abstract partial class TraitFunction
-{
-    public abstract void OnPlayerSpawn(
-        EntityUid mob,
-        IComponentFactory factory,
-        IEntityManager entityManager,
-        ISerializationManager serializationManager);
+    /// <summary>
+    ///     The list of each Action that this trait adds in the form of ActionId and ActionEntity
+    /// </summary>
+    [DataField]
+    public List<EntProtoId>? Actions { get; private set; } = default!;
+
+    /// <summary>
+    ///     The list of all Psionic Powers that this trait adds. If this list is not empty, the trait will also Ensure that a player is Psionic.
+    /// </summary>
+    [DataField]
+    public List<string>? PsionicPowers { get; private set; } = default!;
+
+    /// <summary>
+    ///     The list of all Moodlets that this trait adds.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<MoodEffectPrototype>>? MoodEffects { get; private set; } = default!;
 }

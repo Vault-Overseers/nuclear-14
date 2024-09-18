@@ -38,9 +38,9 @@ public sealed class PenLightSystem : EntitySystem
     {
         if (args.Handled
             || args.Target is not {} target
-            || target == null
-            || !args.CanReach
-            || !HasComp<MobStateComponent>(target)
+            || target == null 
+            || !args.CanReach 
+            || !HasComp<MobStateComponent>(target) 
             || !_powerCell.HasDrawCharge(uid, user: args.User))
             return;
         args.Handled = TryStartExam(uid, target, args.User, component);
@@ -91,17 +91,19 @@ public sealed class PenLightSystem : EntitySystem
             uid, target, uid)
         {
             BlockDuplicate = true,
-            BreakOnMove = true,
+            BreakOnUserMove = true,
+            BreakOnTargetMove = true,
             BreakOnHandChange = true,
             NeedHand = true
         });
     }
     private void OpenUserInterface(EntityUid user, EntityUid penlight)
     {
-        if (!_uiSystem.HasUi(penlight, PenLightUiKey.Key))
+        if (!TryComp<ActorComponent>(user, out var actor)
+            || !_uiSystem.TryGetUi(penlight, PenLightUiKey.Key, out var ui))
             return;
 
-        _uiSystem.OpenUi(penlight, PenLightUiKey.Key, user);
+        _uiSystem.OpenUi(ui, actor.PlayerSession);
     }
 
     /// <summary>
@@ -109,7 +111,7 @@ public sealed class PenLightSystem : EntitySystem
     /// </summary>
     private void Diagnose(EntityUid penlight, EntityUid target)
     {
-        if (!_uiSystem.HasUi(penlight, PenLightUiKey.Key)
+        if (!_uiSystem.TryGetUi(penlight, PenLightUiKey.Key, out var ui)
             || !HasComp<EyeComponent>(target)
             || !HasComp<DamageableComponent>(target))
             return;
@@ -122,9 +124,9 @@ public sealed class PenLightSystem : EntitySystem
 
         // EyeDamage
         var eyeDamage = false;
-        if (TryComp<BlindableComponent>(target, out var blindable))
+        if (TryComp<BlindableComponent>(target, out var eyeDam))
         {
-            eyeDamage = blindable.EyeDamage > 0;
+            eyeDamage = eyeDam.EyeDamage > 0 && eyeDam.EyeDamage < 6; //6 means perma-blind
         }
 
         // Hallucinating
@@ -133,16 +135,12 @@ public sealed class PenLightSystem : EntitySystem
         // Healthy
         var healthy = !(blind || drunk || eyeDamage || seeingRainbows);
 
-        _uiSystem.ServerSendUiMessage(
-            penlight,
-            PenLightUiKey.Key,
-            new PenLightUserMessage(GetNetEntity(target),
-                blind,
-                drunk,
-                eyeDamage,
-                healthy,
-                seeingRainbows
-            )
-        );
+        _uiSystem.SendUiMessage(ui, new PenLightUserMessage(GetNetEntity(target),
+        blind,
+        drunk,
+        eyeDamage,
+        healthy,
+        seeingRainbows
+        ));
     }
 }

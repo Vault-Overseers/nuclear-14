@@ -1,33 +1,35 @@
-using Content.Shared.GameTicking.Components;
+using Content.Server.GameTicking.Components;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Psionics.Glimmer;
 using Content.Shared.Psionics.Glimmer;
 
-namespace Content.Server.StationEvents.Events;
-
-public sealed class GlimmerEventSystem : StationEventSystem<GlimmerEventComponent>
+namespace Content.Server.StationEvents.Events
 {
-    [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
-
-    protected override void Ended(EntityUid uid, GlimmerEventComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
+    public sealed class GlimmerEventSystem : StationEventSystem<GlimmerEventComponent>
     {
-        base.Ended(uid, component, gameRule, args);
+        [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
 
-        var glimmerBurned = RobustRandom.Next(component.GlimmerBurnLower, component.GlimmerBurnUpper);
-        _glimmerSystem.DeltaGlimmerInput(-glimmerBurned);
+        protected override void Ended(EntityUid uid, GlimmerEventComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
+        {
+            base.Ended(uid, component, gameRule, args);
 
-        var reportEv = new GlimmerEventEndedEvent(component.SophicReport, glimmerBurned);
-        RaiseLocalEvent(reportEv);
+            var glimmerBurned = RobustRandom.Next(component.GlimmerBurnLower, component.GlimmerBurnUpper);
+            _glimmerSystem.Glimmer -= glimmerBurned;
+
+            var reportEv = new GlimmerEventEndedEvent(component.SophicReport, glimmerBurned);
+            RaiseLocalEvent(reportEv);
+        }
     }
-}
 
-public sealed class GlimmerEventEndedEvent : EntityEventArgs
-{
-    public string Message = "";
-    public int GlimmerBurned = 0;
-
-    public GlimmerEventEndedEvent(string message, int glimmerBurned)
+    public sealed class GlimmerEventEndedEvent : EntityEventArgs
     {
-        Message = message;
-        GlimmerBurned = glimmerBurned;
+        public string Message = "";
+        public int GlimmerBurned = 0;
+
+        public GlimmerEventEndedEvent(string message, int glimmerBurned)
+        {
+            Message = message;
+            GlimmerBurned = glimmerBurned;
+        }
     }
 }

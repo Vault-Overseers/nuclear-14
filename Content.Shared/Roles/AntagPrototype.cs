@@ -1,4 +1,3 @@
-using Content.Shared.Guidebook;
 using Content.Shared.Customization.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -43,13 +42,6 @@ public sealed partial class AntagPrototype : IPrototype
     /// <summary>
     ///     Requirements that must be met to opt in to this antag role.
     /// </summary>
-    [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
+    [DataField("requirements")]
     public List<CharacterRequirement>? Requirements;
-
-    /// <summary>
-    /// Optional list of guides associated with this antag. If the guides are opened, the first entry in this list
-    /// will be used to select the currently selected guidebook.
-    /// </summary>
-    [DataField]
-    public List<ProtoId<GuideEntryPrototype>>? Guides;
 }

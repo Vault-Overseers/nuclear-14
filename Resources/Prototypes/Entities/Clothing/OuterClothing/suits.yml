@@ -27,8 +27,6 @@
     - WhitelistChameleon
     - FullBodyOuter
     - HidesHarpyWings
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
 
 - type: entity
   parent: ClothingOuterSuitBomb
@@ -54,7 +52,7 @@
     - FullBodyOuter
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  parent: ClothingOuterBaseLarge
   id: ClothingOuterSuitFire
   name: fire suit
   description: A suit that helps protect against hazardous temperatures.
@@ -67,28 +65,24 @@
     highPressureMultiplier: 0.04
   - type: TemperatureProtection
     coefficient: 0.005
-  - type: FireProtection
-    reduction: 0.65 # doesnt have a full seal so not as good
   - type: Armor
     modifiers:
       coefficients:
         Slash: 0.9
-        Heat: 0.8
-        Cold: 0.8
+        Heat: 0.3
+        Cold: 0.2
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.7
   - type: HeldSpeedModifier
   - type: GroupExamine
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
   - type: Tag
     tags:
       - WhitelistChameleon
       - HidesHarpyWings
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  parent: ClothingOuterBaseLarge
   id: ClothingOuterSuitAtmosFire
   name: atmos fire suit
   description: An expensive firesuit that protects against even the most deadly of station fires. Designed to protect even if the wearer is set aflame.
@@ -102,21 +96,17 @@
       lowPressureMultiplier: 1000
     - type: TemperatureProtection
       coefficient: 0.001
-    - type: FireProtection
-      reduction: 0.8 # atmos firesuit offers best protection, hardsuits are a little vulnerable
     - type: Armor
       modifiers:
         coefficients:
           Slash: 0.9
-          Heat: 0.8
-          Cold: 0.8
+          Heat: 0.3
+          Cold: 0.2
     - type: ClothingSpeedModifier
       walkModifier: 0.8
       sprintModifier: 0.8
     - type: HeldSpeedModifier
     - type: GroupExamine
-    - type: ClothingRequiredStepTriggerImmune
-      slots: WITHOUT_POCKET
     - type: Tag
       tags:
         - FullBodyOuter
@@ -124,7 +114,7 @@
         - HidesHarpyWings
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]
+  parent: [ClothingOuterBaseLarge, GeigerCounterClothing]
   id: ClothingOuterSuitRad
   name: radiation suit
   description: "A suit that protects against radiation. The label reads, 'Made with lead. Please do not consume insulation.'"
@@ -144,9 +134,7 @@
     slot: head
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:Container {}
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
+      toggleable-clothing: !type:ContainerSlot {}
   - type: Tag
     tags:
       - FullBodyOuter
@@ -154,7 +142,7 @@
       - HidesHarpyWings
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing]
+  parent: ClothingOuterBaseLarge
   id: ClothingOuterSuitSpaceNinja
   name: space ninja suit
   description: This black technologically advanced, cybernetically-enhanced suit provides many abilities like invisibility or teleportation.
@@ -163,7 +151,9 @@
     sprite: Clothing/OuterClothing/Suits/spaceninja.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/spaceninja.rsi
-  # hardsuit stuff
+  - type: StealthClothing
+    visibility: 1.1
+    toggleAction: ActionTogglePhaseCloak
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
@@ -176,28 +166,7 @@
         Slash: 0.8
         Piercing: 0.8
         Heat: 0.8
-  # phase cloak
-  - type: ToggleClothing
-    action: ActionTogglePhaseCloak
-  - type: ComponentToggler
-    parent: true
-    components:
-    - type: Stealth
-      minVisibility: 0.1
-      lastVisibility: 0.1
-  - type: PowerCellDraw
-    drawRate: 1.8 # 200 seconds on the default cell
-  - type: ToggleCellDraw
-  # throwing star ability
-  - type: ItemCreator
-    action: ActionCreateThrowingStar
-    charge: 14.4
-    spawnedPrototype: ThrowingStarNinja
-    noPowerPopup: ninja-no-power
-  # core ninja suit stuff
   - type: NinjaSuit
-  - type: UseDelay
-    delay: 5 # disable time
   - type: PowerCellSlot
     cellSlotId: cell_slot
     # throwing in a recharger would bypass glove charging mechanic
@@ -222,8 +191,6 @@
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
   - type: Tag
     tags:
       - FullBodyOuter
@@ -251,9 +218,7 @@
     sprite: Clothing/OuterClothing/Suits/monkey.rsi
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:Container {}
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
+      toggleable-clothing: !type:ContainerSlot {}
   - type: Tag
     tags:
       - FullBodyOuter
@@ -274,12 +239,10 @@
     clothingPrototype: ClothingHeadHatHoodIan
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:Container {}
+      toggleable-clothing: !type:ContainerSlot {}
   - type: Construction
     graph: ClothingOuterSuitIan
     node: suit
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
 
 - type: entity
   parent: ClothingOuterBase
@@ -297,28 +260,4 @@
     clothingPrototype: ClothingHeadHatHoodCarp
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:Container {}
-
-- type: entity
-  parent: ClothingOuterSuitCarp
-  id: ClothingOuterHardsuitCarp
-  suffix: Hardsuit, DO NOT MAP
-  components:
-  - type: PressureProtection
-    highPressureMultiplier: 0.6
-    lowPressureMultiplier: 1000
-  - type: TemperatureProtection
-    coefficient: 0.01
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitCarp
-
-- type: entity # From Upstream
-  parent: ClothingOuterBase
-  id: ClothingOuterSuitWitchRobes
-  name: witch robes
-  description: Magic is all about the spell power, ZE!
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Suits/witchrobe.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Suits/witchrobe.rsi
+      toggleable-clothing: !type:ContainerSlot {}

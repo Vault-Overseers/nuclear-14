@@ -1,11 +1,15 @@
 using Content.Server.Maps;
+using Content.Server.NPC.Components;
 using Content.Server.RoundEnd;
 using Content.Shared.Dataset;
-using Content.Shared.NPC.Prototypes;
 using Content.Shared.Roles;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Utility;
+
 
 namespace Content.Server.GameTicking.Rules.Components;
 
@@ -64,7 +68,7 @@ public sealed partial class NukeopsRuleComponent : Component
     ///     This amount of TC will be given to each nukie
     /// </summary>
     [DataField]
-    public int WarTcAmountPerNukie = 200;
+    public int WarTcAmountPerNukie = 40;
 
     /// <summary>
     ///     Delay between war declaration and nuke ops arrival on station map. Gives crew time to prepare

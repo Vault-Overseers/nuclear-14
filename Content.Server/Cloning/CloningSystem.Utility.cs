@@ -21,9 +21,9 @@ using Content.Shared.SSDIndicator;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Chat;
 using Content.Server.Body.Components;
-using Content.Server.Language;
 using Content.Shared.Abilities.Psionics;
 using Content.Shared.Language.Components;
+using Content.Shared.Language;
 using Content.Shared.Nutrition.Components;
 using Robust.Shared.Enums;
 
@@ -68,10 +68,9 @@ public sealed partial class CloningSystem
 
         if (ev.Cancelled && ev.CloningFailMessage is not null)
         {
-            if (clonePod.ConnectedConsole is not null)
-                _chatSystem.TrySendInGameICMessage(clonePod.ConnectedConsole.Value,
-                    Loc.GetString(ev.CloningFailMessage),
-                    InGameICChatType.Speak, false);
+            _chatSystem.TrySendInGameICMessage(uid,
+                Loc.GetString(ev.CloningFailMessage),
+                InGameICChatType.Speak, false);
             return false;
         }
 
@@ -190,7 +189,7 @@ public sealed partial class CloningSystem
         }
 
         if (!HasComp<EmaggedComponent>(uid))
-            _material.SpawnMultipleFromMaterial(_random.Next(1, Math.Max(1, (int) (clonePod.UsedBiomass / 2.5))), clonePod.RequiredMaterial, Transform(uid).Coordinates);
+            _material.SpawnMultipleFromMaterial(_random.Next(1, (int) (clonePod.UsedBiomass / 2.5)), clonePod.RequiredMaterial, Transform(uid).Coordinates);
 
         clonePod.UsedBiomass = 0;
         clonePod.ActivelyCloning = false;
@@ -253,7 +252,7 @@ public sealed partial class CloningSystem
                 ? physics.Mass
                 : 71));
 
-        bloodSolution.AddReagent("Blood", 0.8f
+        bloodSolution.AddReagent("blood", 0.8f
             * ((blood is not null)
                 ? blood.BloodMaxVolume
                 : 300));
@@ -327,9 +326,7 @@ public sealed partial class CloningSystem
                 pref = pref.WithFlavorText(flavorText);
 
             _humanoidSystem.LoadProfile(mob, pref);
-            return;
         }
-        _humanoidSystem.LoadProfile(mob, pref);
     }
 
     /// <summary>

@@ -5,14 +5,10 @@ job-name-hos = Head of Security
 job-name-detective = Detective
 job-name-brigmedic = Corpsman
 job-name-borg = Cyborg
-job-name-senior-researcher = Mystic
-job-name-senior-engineer = Senior Engineer
-job-name-senior-physician = Senior Physician
-job-name-senior-officer = Senior Officer
-job-name-scientist = Acolyte
-job-name-research-assistant = Noviciate
+job-name-scientist = Scientist
+job-name-research-assistant = Research Assistant
 job-name-rd = Mystagogue
-job-name-roboticist = Golemancer
+job-name-roboticist = Roboticist
 job-name-psychologist = Psychologist
 job-name-intern = Medical Intern
 job-name-doctor = Medical Doctor
@@ -39,13 +35,10 @@ job-name-botanist = Botanist
 job-name-bartender = Bartender
 job-name-passenger = Passenger
 job-name-salvagespec = Salvage specialist
-job-name-station-ai = Station AI
 job-name-qm = Logistics Officer
 job-name-cargotech = Cargo Technician
 job-name-chef = Chef
 job-name-clown = Clown
-job-name-cburn = CBURN Agent
-job-name-deathsquad = Deathsquad Agent
 job-name-ertleader = ERT Leader
 job-name-ertchaplain = ERT Chaplain
 job-name-ertengineer = ERT Engineer
@@ -55,22 +48,6 @@ job-name-ertjanitor = ERT Janitor
 job-name-boxer = Boxer
 job-name-zookeeper = Zookeeper
 job-name-visitor = Visitor
-
-# unused jobs
-# these are required for the agent ID job icon tooltips
-# I am keeping them for roleplaying opportunities
-job-name-geneticist = Geneticist
-job-name-no-id = No ID
-job-name-prisoner = Prisoner
-job-name-syndicate = Syndicate
-job-name-unknown = Unknown
-job-name-virologist = Virologist
-job-name-zombie = Zombie
-
-# Job titles
-job-title-visitor = Visitor
-job-title-cluwne = Cluwne
-job-title-universal = Universal
 
 # Role timers - Make these alphabetical or I cut you
 JobAtmosphericTechnician = Atmospheric Technician
@@ -109,19 +86,18 @@ JobPassenger = Passenger
 JobPsychologist = Psychologist
 JobQuartermaster = Logistics Officer
 JobReporter = Reporter
-JobResearchAssistant = Noviciate
+JobResearchAssistant = Research Assistant
 JobResearchDirector = Mystagogue
-JobRoboticist = Golemancer
+JobRoboticist = Roboticist
 JobSalvageSpecialist = Salvage Specialist
-JobScientist = Acolyte
+JobScientist = Scientist
 JobSecurityCadet = Security Cadet
 JobSecurityOfficer = Security Officer
 JobSeniorEngineer = Senior Engineer
 JobSeniorOfficer = Senior Officer
 JobSeniorPhysician = Senior Physician
-JobSeniorResearcher = Mystic
+JobSeniorResearcher = Senior Researcher
 JobServiceWorker = Service Worker
-JobStationAi = Station AI
 JobStationEngineer = Station Engineer
 JobTechnicalAssistant = Technical Assistant
 JobVisitor = Visitor

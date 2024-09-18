@@ -14,7 +14,6 @@ using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Zombies;
@@ -35,9 +34,9 @@ namespace Content.Server.Zombies
         [Dependency] private readonly ActionsSystem _actions = default!;
         [Dependency] private readonly AutoEmoteSystem _autoEmote = default!;
         [Dependency] private readonly EmoteOnDamageSystem _emoteOnDamage = default!;
+        [Dependency] private readonly MetaDataSystem _metaData = default!;
         [Dependency] private readonly MobStateSystem _mobState = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly NameModifierSystem _nameMod = default!;
 
         public const SlotFlags ProtectiveSlots =
             SlotFlags.FEET |
@@ -65,14 +64,7 @@ namespace Content.Server.Zombies
 
             SubscribeLocalEvent<PendingZombieComponent, MapInitEvent>(OnPendingMapInit);
 
-            SubscribeLocalEvent<IncurableZombieComponent, MapInitEvent>(OnPendingMapInit);
-
             SubscribeLocalEvent<ZombifyOnDeathComponent, MobStateChangedEvent>(OnDamageChanged);
-        }
-
-        private void OnPendingMapInit(EntityUid uid, IncurableZombieComponent component, MapInitEvent args)
-        {
-            _actions.AddAction(uid, ref component.Action, component.ZombifySelfActionPrototype);
         }
 
         private void OnPendingMapInit(EntityUid uid, PendingZombieComponent component, MapInitEvent args)
@@ -85,6 +77,7 @@ namespace Content.Server.Zombies
 
             component.NextTick = _timing.CurTime + TimeSpan.FromSeconds(1f);
             component.GracePeriod = _random.Next(component.MinInitialInfectedGrace, component.MaxInitialInfectedGrace);
+            _actions.AddAction(uid, ref component.Action, component.ZombifySelfActionPrototype);
         }
 
         public override void Update(float frameTime)
@@ -282,7 +275,7 @@ namespace Content.Server.Zombies
             _humanoidAppearance.SetSkinColor(target, zombiecomp.BeforeZombifiedSkinColor, false);
             _bloodstream.ChangeBloodReagent(target, zombiecomp.BeforeZombifiedBloodReagent);
 
-            _nameMod.RefreshNameModifiers(target);
+            _metaData.SetEntityName(target, zombiecomp.BeforeZombifiedEntityName);
             return true;
         }
 

@@ -2,7 +2,6 @@ using Content.Server.Instruments;
 using Content.Server.Speech.Components;
 using Content.Server.UserInterface;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.FixedPoint;
@@ -45,15 +44,10 @@ public sealed class SingerSystem : SharedSingerSystem
         SubscribeLocalEvent<SingerComponent, OpenUiActionEvent>(OnInstrumentOpen, before: [typeof(ActivatableUISystem)]);
     }
 
-    protected override SharedInstrumentComponent EnsureInstrumentComp(EntityUid uid, SingerInstrumentPrototype singer)
+    protected override SharedInstrumentComponent EnsureInstrumentComp(EntityUid uid)
     {
-        var instrumentComp = EnsureComp<InstrumentComponent>(uid);
-        instrumentComp.AllowPercussion = singer.AllowPercussion;
-        instrumentComp.AllowProgramChange = singer.AllowProgramChange;
-
-        return instrumentComp;
+        return EnsureComp<InstrumentComponent>(uid);
     }
-
 
     protected override void SetUpSwappableInstrument(EntityUid uid, SingerInstrumentPrototype singer)
     {
@@ -71,7 +65,9 @@ public sealed class SingerSystem : SharedSingerSystem
         if (TryComp<AddAccentClothingComponent>(args.Equipment, out var accent) &&
             accent.ReplacementPrototype == "mumble" &&
             args.Slot == "mask")
+        {
             CloseMidiUi(args.Equipee);
+        }
     }
 
     private void OnMobStateChangedEvent(EntityUid uid, SharedInstrumentComponent component, MobStateChangedEvent args)
@@ -158,6 +154,8 @@ public sealed class SingerSystem : SharedSingerSystem
     {
         if (HasComp<ActiveInstrumentComponent>(uid) &&
             TryComp<ActorComponent>(uid, out var actor))
-            _instrument.ToggleInstrumentUi(uid, actor.PlayerSession.AttachedEntity ?? EntityUid.Invalid);
+        {
+            _instrument.ToggleInstrumentUi(uid, actor.PlayerSession);
+        }
     }
 }

@@ -1,11 +1,11 @@
 - type: entity
   id: MobRevenant
-  parent:
-  - BaseMob
-  - Incorporeal
   name: revenant
   description: A spooky ghostie.
   components:
+  - type: MindContainer
+  - type: InputMover
+  - type: MobMover
   - type: Input
     context: "ghost"
   - type: MovementSpeedModifier
@@ -43,6 +43,7 @@
     damageModifierSet: CorporealSpirit
   - type: Examiner
   - type: NoSlip
+  - type: Actions
   - type: Eye
     drawFov: false
     visMask:
@@ -50,6 +51,8 @@
       - Ghost
   - type: ContentEye
     maxZoom: 1.2, 1.2
+  - type: DoAfter
+  - type: Alerts
   - type: NameIdentifier
     group: GenericNumber
   - type: GhostRole
@@ -57,8 +60,6 @@
     name: ghost-role-information-revenant-name
     description: ghost-role-information-revenant-description
     rules: ghost-role-information-revenant-rules
-    raffle:
-      settings: default
   - type: GhostTakeoverAvailable
   - type: Revenant
     malfunctionWhitelist:
@@ -78,8 +79,8 @@
     softness: 1
   - type: UserInterface
     interfaces:
-      enum.StoreUiKey.Key:
-        type: StoreBoundUserInterface
+    - key: enum.StoreUiKey.Key
+      type: StoreBoundUserInterface
   - type: Visibility
     layer: 2 #ghost vis layer
   - type: Store
@@ -98,15 +99,9 @@
     speechVerb: Ghost
   - type: Psionic
     removable: false
-    roller: false
     psychognomicDescriptors:
       - p-descriptor-vampiric
   - type: InnatePsionicPowers
     powersToAdd:
       - XenoglossyPower
       - TelepathyPower
-  - type: LanguageSpeaker
-  - type: UniversalLanguageSpeaker
-  - type: Tag
-    tags:
-      - NoPaint

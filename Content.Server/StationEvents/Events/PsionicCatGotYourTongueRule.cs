@@ -1,4 +1,4 @@
-using Content.Shared.GameTicking.Components;
+using Content.Server.GameTicking.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Content.Server.GameTicking.Rules.Components;

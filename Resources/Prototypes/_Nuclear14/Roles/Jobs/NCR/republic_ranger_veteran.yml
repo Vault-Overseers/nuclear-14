@@ -5,11 +5,10 @@
   description: job-description-ncr-ranger-veteran
   playTimeTracker: NCRRangerVeteran
   requirements:
-    - !type:RoleTimeRequirement
-      role: NCRRanger
-      time: 216000 # 60 hours as NCR
-    - !type:WhitelistRequirement
-  weight: 10
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRRanger
+      min: 216000 # 60 hours as NCR
+    - !type:CharacterWhitelistRequirement
   startingGear: NCRRangerVeteranGear
   icon: "JobIconHeadOfSecurity"
   requireAdminNotify: true

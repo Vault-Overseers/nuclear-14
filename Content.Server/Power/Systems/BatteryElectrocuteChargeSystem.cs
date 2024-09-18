@@ -4,6 +4,7 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Electrocution;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Power.Systems;
 
@@ -25,10 +26,10 @@ public sealed class BatteryElectrocuteChargeSystem : EntitySystem
         if (args.ShockDamage == null || args.ShockDamage <= 0)
             return;
 
-        var charge = Math.Min(args.ShockDamage.Value * args.SiemensCoefficient
-            / ElectrocutionSystem.ElectrifiedDamagePerWatt * 2,
-                battery.MaxCharge * 0.25f)
-            * _random.NextFloat(0.75f, 1.25f);
+        var damagePerWatt = ElectrocutionSystem.ElectrifiedDamagePerWatt * 2;
+
+        var damage = args.ShockDamage.Value * args.SiemensCoefficient;
+        var charge = Math.Min(damage / damagePerWatt, battery.MaxCharge * 0.25f) * _random.NextFloat(0.75f, 1.25f);
 
         _battery.SetCharge(uid, battery.CurrentCharge + charge);
 

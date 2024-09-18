@@ -30,7 +30,6 @@
       baseWalkSpeed: 4
       baseSprintSpeed: 3
     - type: ZombieImmune
-    - type: CanEnterCryostorage
     - type: DoAfter
     - type: RotationVisuals
       horizontalRotation: 90
@@ -39,18 +38,6 @@
     #   safe: false
     # - type: EyeProtection # You'll want this if your robot can't wear glasses, like an IPC.
     #   protectionTime: 12
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeCircle
-            radius: 0.35
-          density: 185
-          restitution: 0.0
-          mask:
-          - MobMask
-          layer:
-          - MobLayer
     - type: Silicon
       entityType: enum.SiliconType.Player
       batteryPowered: false # Needs to also have a battery!
@@ -65,7 +52,7 @@
         0: 0.00
 
     - type: Temperature
-      heatDamageThreshold: 1800 # GoobStation: Roughly the melting point of mild steels
+      heatDamageThreshold: 325
       coldDamageThreshold: 260
       currentTemperature: 310.15
       specificHeat: 42
@@ -76,7 +63,6 @@
         types:
           Heat: 3 #per second, scales with temperature & other constants
       atmosTemperatureTransferEfficiency: 0.05
-    - type: KillOnOverheat # GoobStation
     - type: Deathgasp
       prototype: SiliconDeathgasp
       needsCritical: false
@@ -93,7 +79,7 @@
         - trigger: !type:DamageTrigger
             damage: 500
           behaviors:
-            - !type:GibBehavior { }
+            - !type:GibBehavior {}
     - type: Icon
       sprite: Mobs/Species/IPC/parts.rsi
       state: full
@@ -105,7 +91,6 @@
         - map: ["enum.HumanoidVisualLayers.Head"]
         - map: ["enum.HumanoidVisualLayers.Snout"]
         - map: ["enum.HumanoidVisualLayers.Eyes"]
-        - map: ["enum.HumanoidVisualLayers.Face"]
         - map: ["enum.HumanoidVisualLayers.RArm"]
         - map: ["enum.HumanoidVisualLayers.LArm"]
         - map: ["enum.HumanoidVisualLayers.RLeg"]
@@ -135,8 +120,6 @@
         - map: ["gloves"]
         - map: ["shoes"]
         - map: ["ears"]
-        - map: ["innerBelt"]
-        - map: ["innerNeck"]
         - map: ["outerClothing"]
         - map: ["eyes"]
         - map: ["belt"]
@@ -178,11 +161,12 @@
       canResistFire: true
       damage:
         types:
-          Heat: 0 # GoobStation: Replaced fire damage with overheating shutdown
+          Heat: 0.75 #per second, scales with number of fire 'stacks'
     # - type: Barotrauma # Not particularly modifiable. In the future, some response to pressure changes would be nice.
     #   damage:
     #     types:
     #       Blunt: 0.28 #per second, scales with pressure and other constants.
+      atmosTemperatureTransferEfficiency: 0.4
     - type: Identity
     #  soundHit:
     #    path: /Audio/Effects/metalbreak.ogg
@@ -216,24 +200,14 @@
     - type: CreamPied
     - type: Stripping
     - type: Strippable
-    - type: ComplexInteraction
-    - type: SurgeryTarget
-    - type: Targeting
     - type: UserInterface
       interfaces:
-        enum.HumanoidMarkingModifierKey.Key:
+        - key: enum.VoiceMaskUIKey.Key
+          type: VoiceMaskBoundUserInterface
+        - key: enum.HumanoidMarkingModifierKey.Key
           type: HumanoidMarkingModifierBoundUserInterface
-        enum.StrippingUiKey.Key:
+        - key: enum.StrippingUiKey.Key
           type: StrippableBoundUserInterface
-        enum.InstrumentUiKey.Key:
-          type: InstrumentBoundUserInterface
-          requireInputValidation: false
-        enum.RadialSelectorUiKey.Key:
-          type: RadialSelectorMenuBUI
-        enum.ListViewSelectorUiKey.Key:
-          type: ListViewSelectorBUI
-        enum.SurgeryUIKey.Key:
-          type: SurgeryBui
     - type: Emoting
     - type: Grammar
       attributes:
@@ -249,7 +223,6 @@
     - type: Body
       prototype: IPC
       requiredLegs: 2
-      thermalVisibility: false
     - type: Ensnareable
       sprite: Objects/Misc/ensnare.rsi
     - type: Speech
@@ -270,11 +243,6 @@
       damage:
         types:
           Blunt: 6 # It's tough.
-      heavyRateModifier: 1
-      heavyDamageBaseModifier: 1
-      heavyPartDamageMultiplier: 1
-      heavyStaminaCost: 0
-      maxTargets: 1
     - type: MobPrice
       price: 1500 # Kidnapping a living person and selling them for cred is a good move.
       deathPenalty: 0.01 # However they really ought to be living and intact, otherwise they're worth 100x less.
@@ -328,9 +296,6 @@
     - type: LightningTarget
       priority: 1
       lightningExplode: false
-    - type: FootPrints
-    - type: Carriable
-    - type: LayingDown
 
 
 - type: damageModifierSet
@@ -340,3 +305,4 @@
     Cold: 0.2
     Heat: 2
     Shock: 2.5
+

@@ -1,5 +1,6 @@
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Inventory;
 using Content.Server.Nutrition.Components;
 using Content.Shared.Nutrition.Components;
@@ -24,18 +25,14 @@ using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.EntitySystems;
-using Content.Shared.Popups; // Shitmed Change
 using Content.Shared.Stacks;
 using Content.Shared.Storage;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Player; // Shitmed Change
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.CCVar;
-using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Whitelist;
 using Robust.Shared.Configuration;
 
 namespace Content.Server.Nutrition.EntitySystems;
@@ -57,13 +54,11 @@ public sealed class FoodSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly StomachSystem _stomach = default!;
     [Dependency] private readonly UtensilSystem _utensil = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
     public const float MaxFeedDistance = 1.0f;
 
@@ -73,7 +68,7 @@ public sealed class FoodSystem : EntitySystem
 
         // TODO add InteractNoHandEvent for entities like mice.
         // run after openable for wrapped/peelable foods
-        SubscribeLocalEvent<FoodComponent, UseInHandEvent>(OnUseFoodInHand, after: [ typeof(OpenableSystem), typeof(ServerInventorySystem), ]);
+        SubscribeLocalEvent<FoodComponent, UseInHandEvent>(OnUseFoodInHand, after: new[] { typeof(OpenableSystem), typeof(ServerInventorySystem) });
         SubscribeLocalEvent<FoodComponent, AfterInteractEvent>(OnFeedFood);
         SubscribeLocalEvent<FoodComponent, GetVerbsEvent<AlternativeVerb>>(AddEatVerb);
         SubscribeLocalEvent<FoodComponent, ConsumeDoAfterEvent>(OnDoAfter);
@@ -159,41 +154,34 @@ public sealed class FoodSystem : EntitySystem
             return (false, true);
 
         // TODO make do-afters account for fixtures in the range check.
-        if (!_transform.GetMapCoordinates(user).InRange(_transform.GetMapCoordinates(target), MaxFeedDistance))
+        if (!Transform(user).MapPosition.InRange(Transform(target).MapPosition, MaxFeedDistance))
         {
             var message = Loc.GetString("interaction-system-user-interaction-cannot-reach");
             _popup.PopupEntity(message, user, user);
             return (false, true);
         }
 
-        // Shitmed Change
-        EntityUid? userName = null;
-
         var forceFeed = user != target;
         if (forceFeed)
         {
-            // Shitmed Change
-            userName = Identity.Entity(user, EntityManager);
-            _popup.PopupEntity(
-                Loc.GetString("food-system-force-feed", ("user", userName)),
-                user,
-                target);
+            var userName = Identity.Entity(user, EntityManager);
+            _popup.PopupEntity(Loc.GetString("food-system-force-feed", ("user", userName)),
+                user, target);
 
             // logging
-            _adminLogger.Add(LogType.ForceFeed, LogImpact.Medium, $"{ToPrettyString(user):user} is forcing {ToPrettyString(target):target} to eat {ToPrettyString(food):food} {SharedSolutionContainerSystem.ToPrettyString(foodSolution)}");
+            _adminLogger.Add(LogType.ForceFeed, LogImpact.Medium, $"{ToPrettyString(user):user} is forcing {ToPrettyString(target):target} to eat {ToPrettyString(food):food} {SolutionContainerSystem.ToPrettyString(foodSolution)}");
         }
         else
         {
             // log voluntary eating
-            _adminLogger.Add(LogType.Ingestion, LogImpact.Low, $"{ToPrettyString(target):target} is eating {ToPrettyString(food):food} {SharedSolutionContainerSystem.ToPrettyString(foodSolution)}");
+            _adminLogger.Add(LogType.Ingestion, LogImpact.Low, $"{ToPrettyString(target):target} is eating {ToPrettyString(food):food} {SolutionContainerSystem.ToPrettyString(foodSolution)}");
         }
 
         var foodDelay = foodComp.Delay;
         if (TryComp<ConsumeDelayModifierComponent>(target, out var delayModifier))
             foodDelay *= delayModifier.FoodDelayMultiplier;
 
-        var doAfterArgs = new DoAfterArgs(
-            EntityManager,
+        var doAfterArgs = new DoAfterArgs(EntityManager,
             user,
             forceFeed ? foodComp.ForceFeedDelay : foodDelay,
             new ConsumeDoAfterEvent(foodComp.Solution, flavors),
@@ -201,34 +189,17 @@ public sealed class FoodSystem : EntitySystem
             target: target,
             used: food)
         {
-            BreakOnMove = forceFeed,
+            BreakOnUserMove = forceFeed,
             BreakOnDamage = true,
+            BreakOnTargetMove = forceFeed,
             MovementThreshold = 0.01f,
             DistanceThreshold = MaxFeedDistance,
             // Mice and the like can eat without hands.
             // TODO maybe set this based on some CanEatWithoutHands event or component?
-            NeedHand = forceFeed
+            NeedHand = forceFeed,
         };
 
-        // Shitmed Change - track success of doafter to prevent popup on doafter cancel
-        var doAfterSuccess = _doAfter.TryStartDoAfter(doAfterArgs);
-
-        // Shitmed Change
-        if (foodComp.PopupOnEat && doAfterSuccess)
-        {
-            userName ??= Identity.Entity(user, EntityManager);
-            var foodName = Identity.Entity(food, EntityManager);
-            _popup.PopupPredicted(
-                !forceFeed
-                ? Loc.GetString("food-system-eat-broadcasted", ("user", userName), ("food", foodName))
-                : Loc.GetString("food-system-force-feed-broadcasted", ("user", userName), ("target", Identity.Entity(target, EntityManager)), ("food", foodName)),
-                user, target, PopupType.SmallCaution);
-
-            if (!forceFeed)
-                _popup.PopupEntity(Loc.GetString("food-system-eat-broadcasted-self", ("user", userName), ("food", foodName)),
-                    user, target, PopupType.SmallCaution);
-        }
-
+        _doAfter.TryStartDoAfter(doAfterArgs);
         return (true, true);
     }
 
@@ -301,15 +272,9 @@ public sealed class FoodSystem : EntitySystem
         {
             var targetName = Identity.Entity(args.Target.Value, EntityManager);
             var userName = Identity.Entity(args.User, EntityManager);
-            _popup.PopupEntity(Loc.GetString("food-system-force-feed-success", ("user", userName), ("flavors", flavors)), args.Target.Value, args.Target.Value);
+            _popup.PopupEntity(Loc.GetString("food-system-force-feed-success", ("user", userName), ("flavors", flavors)), entity.Owner, entity.Owner);
 
             _popup.PopupEntity(Loc.GetString("food-system-force-feed-success-user", ("target", targetName)), args.User, args.User);
-
-            // Shitmed change
-            if (entity.Comp.PopupOnEat)
-                _popup.PopupEntity(Loc.GetString("food-system-force-feed-broadcasted-success", ("user", userName), ("target", targetName), ("food", Identity.Entity(entity.Owner, EntityManager))),
-                    args.User, Filter.Pvs(args.User, entityManager: EntityManager).RemovePlayersByAttachedEntity([args.User, args.Target.Value]),
-                    true, PopupType.MediumCaution);
 
             // log successful force feed
             _adminLogger.Add(LogType.ForceFeed, LogImpact.Medium, $"{ToPrettyString(entity.Owner):user} forced {ToPrettyString(args.User):target} to eat {ToPrettyString(entity.Owner):food}");
@@ -317,11 +282,6 @@ public sealed class FoodSystem : EntitySystem
         else
         {
             _popup.PopupEntity(Loc.GetString(entity.Comp.EatMessage, ("food", entity.Owner), ("flavors", flavors)), args.User, args.User);
-
-            // Shitmed change
-            if (entity.Comp.PopupOnEat)
-                _popup.PopupPredicted(Loc.GetString("food-system-eat-broadcasted-success", ("user", Identity.Entity(args.User, EntityManager)), ("food", Identity.Entity(entity.Owner, EntityManager))),
-                    args.User, args.User, PopupType.MediumCaution);
 
             // log successful voluntary eating
             _adminLogger.Add(LogType.Ingestion, LogImpact.Low, $"{ToPrettyString(args.User):target} ate {ToPrettyString(entity.Owner):food}");
@@ -367,31 +327,27 @@ public sealed class FoodSystem : EntitySystem
         if (ev.Cancelled)
             return;
 
-        if (component.Trash.Count == 0)
+        if (string.IsNullOrEmpty(component.Trash))
         {
             QueueDel(food);
             return;
         }
 
         //We're empty. Become trash.
-        //cache some data as we remove food, before spawning trash and passing it to the hand.
+        var position = Transform(food).MapPosition;
+        var finisher = Spawn(component.Trash, position);
 
-        var position = _transform.GetMapCoordinates(food);
-        var trashes = component.Trash;
-        var tryPickup = _hands.IsHolding(user, food, out _);
-
-        Del(food);
-        foreach (var trash in trashes)
+        // If the user is holding the item
+        if (_hands.IsHolding(user, food, out var hand))
         {
-            var spawnedTrash = Spawn(trash, position);
+            Del(food);
 
-            // If the user is holding the item
-            if (tryPickup)
-            {
-                // Put the trash in the user's hand
-                _hands.TryPickupAnyHand(user, spawnedTrash);
-            }
+            // Put the trash in the user's hand
+            _hands.TryPickup(user, finisher, hand);
+            return;
         }
+
+        QueueDel(food);
     }
 
     private void AddEatVerb(Entity<FoodComponent> entity, ref GetVerbsEvent<AlternativeVerb> ev)
@@ -459,9 +415,8 @@ public sealed class FoodSystem : EntitySystem
             if (comp.SpecialDigestible == null)
                 continue;
             // Check if the food is in the whitelist
-            if (_whitelist.IsWhitelistPass(comp.SpecialDigestible, food))
+            if (comp.SpecialDigestible.IsValid(food, EntityManager))
                 return true;
-
             // They can only eat whitelist food and the food isn't in the whitelist. It's not edible.
             return false;
         }
@@ -549,11 +504,10 @@ public sealed class FoodSystem : EntitySystem
     public bool IsMouthBlocked(EntityUid uid, EntityUid? popupUid = null)
     {
         var attempt = new IngestionAttemptEvent();
-        RaiseLocalEvent(uid, attempt);
+        RaiseLocalEvent(uid, attempt, false);
         if (attempt.Cancelled && attempt.Blocker != null && popupUid != null)
         {
-            _popup.PopupEntity(
-                Loc.GetString("food-system-remove-mask", ("entity", attempt.Blocker.Value)),
+            _popup.PopupEntity(Loc.GetString("food-system-remove-mask", ("entity", attempt.Blocker.Value)),
                 uid, popupUid.Value);
         }
 

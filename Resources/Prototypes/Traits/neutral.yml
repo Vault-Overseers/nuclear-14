@@ -1,74 +1,44 @@
 - type: trait
   id: PirateAccent
-  category: TraitsSpeechAccents
-  requirements:
-    - !type:CharacterItemGroupRequirement
-      group: TraitsAccents
-  functions:
-    - !type:TraitAddComponent
-      components:
-        - type: PirateAccent
+  category: Speech
+  components:
+    - type: PirateAccent
 
 - type: trait
   id: Accentless
-  category: TraitsSpeechAccents
-  points: -1
+  category: Speech
+  points: -2
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
       jobs:
         - Borg
         - MedicalBorg
-    - !type:CharacterItemGroupRequirement
-      group: TraitsAccents
-  functions:
-    - !type:TraitAddComponent
-      components:
-        - type: Accentless
-          removes:
-          - type: LizardAccent
-          - type: MothAccent
-          - type: ReplacementAccent
-            accent: dwarf
+  components:
+    - type: Accentless
+      removes:
+      - type: LizardAccent
+      - type: MothAccent
+      - type: ReplacementAccent
+        accent: dwarf
 
 - type: trait
   id: Southern
-  category: TraitsSpeechAccents
-  requirements:
-    - !type:CharacterItemGroupRequirement
-      group: TraitsAccents
-  functions:
-    - !type:TraitAddComponent
-      components:
-        - type: SouthernAccent
-
-- type: trait
-  id: SkeletonAccent
-  category: TraitsSpeechAccents
-  requirements:
-    - !type:CharacterItemGroupRequirement
-      group: TraitsAccents
-    - !type:CharacterSpeciesRequirement
-      species:
-        - Plasmaman
-  functions:
-    - !type:TraitAddComponent
-      components:
-        - type: SkeletonAccent
+  category: Speech
+  components:
+    - type: SouthernAccent
 
 - type: trait
   id: NormalVision
   category: Visual
-  requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-        - Harpy
-        - Vulpkanin
-  functions:
-    - !type:TraitRemoveComponent
-      components:
-        - type: UltraVision
-        - type: DogVision
+  # requirements:
+    # - !type:CharacterSpeciesRequirement
+      # species:
+        # - Harpy
+        # - Vulpkanin
+  componentRemovals:
+    - UltraVision
+    - DogVision
 
 - type: trait
   id: Saturnine
@@ -84,10 +54,8 @@
       inverted: true
       traits:
         - Sanguine
-  functions:
-    - !type:TraitAddMoodlets
-      moodEffects:
-        - TraitSaturnine
+  moodEffects:
+    - TraitSaturnine
 
 - type: trait
   id: Sanguine
@@ -103,10 +71,8 @@
       inverted: true
       traits:
         - Saturnine
-  functions:
-    - !type:TraitAddMoodlets
-      moodEffects:
-        - TraitSanguine
+  moodEffects:
+    - TraitSanguine
 
 - type: trait
   id: AddictionNicotine
@@ -122,17 +88,5 @@
       inverted: true
       species:
         - IPC
-  functions:
-    - !type:TraitAddMoodlets
-      moodEffects:
-        - NicotineWithdrawal
-
-- type: trait
-  id: Liar
-  category: Mental
-  functions:
-    - !type:TraitAddComponent
-      components:
-        - type: ReplacementAccent
-          replacementChance: 0.15
-          accent: liar
+  moodEffects:
+    - NicotineWithdrawal

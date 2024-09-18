@@ -18,15 +18,15 @@
     slots:
       - Belt
   - type: ToolTileCompatible
-    delay: 0.5
   - type: Tool
     qualities:
       - Prying
+    speed: 1.5
     useSound: /Audio/Items/jaws_pry.ogg
   - type: Prying
-    speedModifier: 1.5
     pryPowered: true
     useSound: /Audio/Items/jaws_pry.ogg
+  - type: ToolForcePowered
   - type: MultipleTool
     statusShowBehavior: true
     entries:
@@ -44,43 +44,28 @@
         changeSound: /Audio/Items/change_jaws.ogg
   - type: MeleeWeapon
     wideAnimationRotation: 90
-    attackRate: 1.2
-    range: 1.65
+    attackRate: 0.75
+    range: 1.75
     damage:
       types:
         Blunt: 10
         Slash: 2
     bluntStaminaDamageFactor: 2.0
-    heavyRateModifier: 1.75
+    heavyRateModifier: 0.8
     heavyDamageBaseModifier: 1.5
-    heavyStaminaCost: 2.5
+    heavyStaminaCost: 10
     maxTargets: 1
     angle: 20
     soundHit:
       collection: MetalThud
-  - type: DamageOtherOnHit
-    staminaCost: 7
-  - type: ThrowingAngle
-    angle: 90
   - type: ReverseEngineering # Delta
     difficulty: 3
     recipes:
       - JawsOfLife
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.25,-0.25,0.25,0.25"
-        density: 155
-        mask:
-        - ItemMask
-        restitution: 0.3
-        friction: 0.2
 
 - type: entity
   name: syndicate jaws of life
-  parent: [JawsOfLife, BaseSyndicateContraband]
+  parent: JawsOfLife
   id: SyndicateJawsOfLife
   description: Useful for entering the station or its departments.
   components:
@@ -94,8 +79,10 @@
       right:
       - state: syn_inhand-right
     size: Normal
-  - type: Prying
-    speedModifier: 3.0
+  - type: Tool
+    qualities:
+      - Prying
+    speed: 3.0
   - type: MultipleTool
     entries:
       - behavior: Prying
@@ -115,4 +102,3 @@
       types:
         Blunt: 12
         Slash: 2
-  - type: DamageOtherOnHit

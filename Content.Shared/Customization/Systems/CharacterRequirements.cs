@@ -1,4 +1,3 @@
-using Content.Shared.Mind;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using JetBrains.Annotations;
@@ -36,8 +35,7 @@ public abstract partial class CharacterRequirement
         IEntityManager entityManager,
         IPrototypeManager prototypeManager,
         IConfigurationManager configManager,
-        out string? reason,
-        int depth = 0,
-        MindComponent? mind = null
+        out FormattedMessage? reason,
+        int depth = 0
     );
 }

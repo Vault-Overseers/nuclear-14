@@ -34,7 +34,7 @@ public sealed class RehydratableSystem : EntitySystem
     private void Expand(Entity<RehydratableComponent> ent)
     {
         if (_net.IsClient)
-            return;
+            return; // no
 
         var (uid, comp) = ent;
 

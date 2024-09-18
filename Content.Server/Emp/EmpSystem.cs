@@ -2,10 +2,8 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio;
-using Content.Server.EventScheduler;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
-using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 
 namespace Content.Server.Emp;
@@ -13,8 +11,6 @@ namespace Content.Server.Emp;
 public sealed class EmpSystem : SharedEmpSystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly EventSchedulerSystem _eventScheduler = default!;
 
     public const string EmpPulseEffectPrototype = "EffectEmpPulse";
 
@@ -23,7 +19,6 @@ public sealed class EmpSystem : SharedEmpSystem
         base.Initialize();
         SubscribeLocalEvent<EmpDisabledComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<EmpOnTriggerComponent, TriggerEvent>(HandleEmpTrigger);
-        SubscribeLocalEvent<EmpDisabledComponent, EmpDisabledRemoved>(OnEmpDisabledRemoved);
 
         SubscribeLocalEvent<EmpDisabledComponent, RadioSendAttemptEvent>(OnRadioSendAttempt);
         SubscribeLocalEvent<EmpDisabledComponent, RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
@@ -69,9 +64,7 @@ public sealed class EmpSystem : SharedEmpSystem
     /// <param name="duration">The duration of the EMP effects.</param>
     public void DoEmpEffects(EntityUid uid, float energyConsumption, float duration)
     {
-        TimeSpan delay = TimeSpan.FromSeconds(duration);
-
-        var ev = new EmpPulseEvent(energyConsumption, false, false, delay);
+        var ev = new EmpPulseEvent(energyConsumption, false, false, TimeSpan.FromSeconds(duration));
         RaiseLocalEvent(uid, ref ev);
         if (ev.Affected)
         {
@@ -81,14 +74,11 @@ public sealed class EmpSystem : SharedEmpSystem
         {
             var disabled = EnsureComp<EmpDisabledComponent>(uid);
             // couldnt use null-coalescing operator here sadge
-            if (disabled.LastDelayedEvent != null)
-                _eventScheduler.TryPostponeDelayedEvent(disabled.LastDelayedEvent, delay);
-            else
+            if (disabled.DisabledUntil == TimeSpan.Zero)
             {
-
-                var dEv = new EmpDisabledRemoved();
-                disabled.LastDelayedEvent = _eventScheduler.DelayEvent(uid, ref dEv, delay);
+                disabled.DisabledUntil = Timing.CurTime;
             }
+            disabled.DisabledUntil = disabled.DisabledUntil + TimeSpan.FromSeconds(duration);
 
             /// i tried my best to go through the Pow3r server code but i literally couldn't find in relation to PowerNetworkBatteryComponent that uses the event system
             /// the code is otherwise too esoteric for my innocent eyes
@@ -99,15 +89,24 @@ public sealed class EmpSystem : SharedEmpSystem
         }
     }
 
-    private void OnEmpDisabledRemoved(EntityUid uid, EmpDisabledComponent component, EmpDisabledRemoved args)
+    public override void Update(float frameTime)
     {
-        RemComp<EmpDisabledComponent>(uid);
-        var ev = new EmpDisabledRemoved();
-        RaiseLocalEvent(uid, ref ev);
+        base.Update(frameTime);
 
-        if (TryComp<PowerNetworkBatteryComponent>(uid, out var powerNetBattery))
+        var query = EntityQueryEnumerator<EmpDisabledComponent>();
+        while (query.MoveNext(out var uid, out var comp))
         {
-            powerNetBattery.CanCharge = true;
+            if (comp.DisabledUntil < Timing.CurTime)
+            {
+                RemComp<EmpDisabledComponent>(uid);
+                var ev = new EmpDisabledRemoved();
+                RaiseLocalEvent(uid, ref ev);
+
+                if (TryComp<PowerNetworkBatteryComponent>(uid, out var powerNetBattery))
+                {
+                    powerNetBattery.CanCharge = true;
+                }
+            }
         }
     }
 
@@ -118,7 +117,7 @@ public sealed class EmpSystem : SharedEmpSystem
 
     private void HandleEmpTrigger(EntityUid uid, EmpOnTriggerComponent comp, TriggerEvent args)
     {
-        EmpPulse(_transform.GetMapCoordinates(uid), comp.Range, comp.EnergyConsumption, comp.DisableDuration);
+        EmpPulse(Transform(uid).MapPosition, comp.Range, comp.EnergyConsumption, comp.DisableDuration);
         args.Handled = true;
     }
 

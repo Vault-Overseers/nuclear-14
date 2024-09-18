@@ -13,14 +13,6 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly SharedInteractionSystem _interactions = default!;
 
-    private EntityQuery<OccluderComponent> _occluderQuery;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        _occluderQuery = GetEntityQuery<OccluderComponent>();
-    }
-
     protected override void SendChatLog(string message, EntityUid source, Filter filter, InteractionPopupPrototype popup, bool clip)
     {
         if (filter.Count <= 0)
@@ -32,7 +24,7 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
         // Exclude entities who cannot directly see the target of the popup. TODO this may have a high performance cost - although whispers do the same.
         // We only do this if the popup has to be logged into chat since that has some gameplay implications.
         if (clip && popup.DoClipping)
-            filter.RemoveWhereAttachedEntity(ent => !CanSee(ent, source, popup.VisibilityRange));
+            filter.RemoveWhereAttachedEntity(ent => !_interactions.InRangeUnobstructed(ent, source, popup.VisibilityRange, CollisionGroup.Opaque));
 
         if (filter.Count == 1)
             _chatManager.ChatMessageToOne(popup.LogChannel, message, wrappedMessage, source, false, filter.Recipients.First().Channel, color);
@@ -47,15 +39,4 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
         PopupType.Medium or PopupType.Small => Color.LightGray,
         _ => Color.White
     };
-
-    private bool CanSee(EntityUid source, EntityUid target, float maxRange)
-    {
-        // TODO: InRangeUnobstructed has a pretty high performance cost and is not intended to be used like that.
-        // We should see if we can move this to client side later, aka make the client check if the target is visible for it.
-        return _interactions.InRangeUnobstructed(
-            source, target, maxRange,
-            CollisionGroup.Opaque,
-            uid => !_occluderQuery.TryComp(uid, out var occluder) || !occluder.Enabled, // We ignore all entities that do not occlude light
-            false);
-    }
 }

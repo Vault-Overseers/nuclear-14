@@ -24,9 +24,9 @@ public sealed class IntrinsicRadioKeySystem : EntitySystem
         UpdateChannels(uid, args.Component, ref component.Channels);
     }
 
-    private void UpdateChannels(EntityUid _, EncryptionKeyHolderComponent component, ref HashSet<string> channels)
+    private void UpdateChannels(EntityUid _, EncryptionKeyHolderComponent keyHolderComp, ref HashSet<string> channels)
     {
         channels.Clear();
-        channels.UnionWith(component.Channels);
+        channels.UnionWith(keyHolderComp.Channels);
     }
 }

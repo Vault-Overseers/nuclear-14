@@ -1,28 +1,34 @@
 - type: job
-  id: BoSWashingtonScribe
+  id: BoSWashingtonResearcher
   setPreference: true
-  name: job-name-bos-washington-scribe
-  description: job-description-bos-washington-scribe
-  playTimeTracker: BoSWashingtonScribe
+  name: job-name-bos-washington-researcher
+  description: job-description-bos-washington-researcher
+  playTimeTracker: BoSWashingtonResearcher
   requirements:
     - !type:DepartmentTimeRequirement
       department: BrotherhoodWashington
-<<<<<<<< HEAD:Resources/Prototypes/_Nuclear14/Roles/Jobs/BrotherhoodWashington/researcher.yml
-      time: 3600 # 1 hour as BosWashingtonRecruit
+      min: 3600 # 1 hour as BosWashingtonRecruit
   startingGear: BoSWashingtonResearcherGear
-========
-      min: 3600 # 1 hour as BoSWashingtonInitiate
-  startingGear: BoSWashingtonScribeGear
->>>>>>>> 749775c75d (fix washington accesses):Resources/Prototypes/_Nuclear14/Roles/Jobs/BrotherhoodWashington/scribe.yml
   alwaysUseSpawner: true
   icon: "JobIconScientist"
   supervisors: job-name-bos-washington
   access:
   - WashingtonInitiate
   - WashingtonScribe
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodWashington
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
 
 - type: startingGear
-  id: BoSWashingtonScribeGear
+  id: BoSWashingtonResearcherGear
   equipment:
     head: N14ClothingHeadHatBrotherhoodBeret
     jumpsuit: N14ClothingUniformJumpsuitBOSBlack
@@ -34,4 +40,4 @@
     belt: N14ClothingBeltUtilityFilled
 
 - type: playTimeTracker
-  id: BoSWashingtonScribe
+  id: BoSWashingtonResearcher

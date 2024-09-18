@@ -108,12 +108,13 @@ public sealed partial class InteractionVerbPrototype : IPrototype, IInheritingPr
     ///     The user, target, needHand, event, and other required parameters are set up automatically when the do-after is created.
     /// </summary>
     [DataField]
-    public DoAfterArgs DoAfter = new()
+    public DoAfterArgs DoAfter = new DoAfterArgs()
     {
         User = EntityUid.Invalid,
         NetUser = NetEntity.Invalid,
         BreakOnDamage = true,
-        BreakOnMove = true,
+        BreakOnTargetMove = true,
+        BreakOnUserMove = true,
         BreakOnWeightlessMove = true,
         RequireCanInteract = false,
         // Never used, but must be present because the field is non-nullable and will error during serialization if not set.
@@ -151,12 +152,8 @@ public sealed partial class InteractionVerbPrototype : IPrototype, IInheritingPr
     [DataField]
     public bool RequiresHands = false;
 
-    /// <summary>
-    ///     Whether this verb requires the user to be able to access the target normally (with their hands or otherwise).
-    /// </summary>
-    /// <remarks>The misleading yml name is kept for backwards compatibility with downstreams.</remarks>
-    [DataField("requiresCanInteract")]
-    public bool RequiresCanAccess = true;
+    [DataField]
+    public bool RequiresCanInteract = true;
 
     /// <summary>
     ///     If true, this verb can be invoked by the user on itself.

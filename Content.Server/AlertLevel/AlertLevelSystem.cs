@@ -98,16 +98,6 @@ public sealed class AlertLevelSystem : EntitySystem
         RaiseLocalEvent(new AlertLevelPrototypeReloadedEvent());
     }
 
-    public string GetLevel(EntityUid station, AlertLevelComponent? alert = null)
-    {
-        if (!Resolve(station, ref alert))
-        {
-            return string.Empty;
-        }
-
-        return alert.CurrentLevel;
-    }
-
     public float GetAlertLevelDelay(EntityUid station, AlertLevelComponent? alert = null)
     {
         if (!Resolve(station, ref alert))
@@ -161,11 +151,10 @@ public sealed class AlertLevelSystem : EntitySystem
             announcement = locAnnouncement;
 
         var alert = $"alert{char.ToUpperInvariant(level[0]) + level[1..]}";
-        var filter = _stationSystem.GetInOwningStation(station);
         if (playSound)
-            _announcer.SendAnnouncementAudio(alert, filter);
+            _announcer.SendAnnouncementAudio(alert, _stationSystem.GetInOwningStation(station));
         if (announce)
-            _announcer.SendAnnouncementMessage(alert, "alert-level-announcement", null, filter, detail.Color, null, null,
+            _announcer.SendAnnouncementMessage(alert, "alert-level-announcement", null, detail.Color, null, null,
                 ("name", name), ("announcement", announcement));
 
         RaiseLocalEvent(new AlertLevelChangedEvent(station, level));

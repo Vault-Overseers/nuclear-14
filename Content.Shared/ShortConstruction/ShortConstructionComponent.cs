@@ -1,5 +1,7 @@
-﻿using Content.Shared.RadialSelector;
+﻿using Content.Shared.Construction.Prototypes;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.ShortConstruction;
 
@@ -7,5 +9,11 @@ namespace Content.Shared.ShortConstruction;
 public sealed partial class ShortConstructionComponent : Component
 {
     [DataField(required: true)]
-    public List<RadialSelectorEntry> Entries = new();
+    public List<ProtoId<ConstructionPrototype>> Prototypes = new();
+}
+
+[NetSerializable, Serializable]
+public enum ShortConstructionUiKey : byte
+{
+    Key,
 }
