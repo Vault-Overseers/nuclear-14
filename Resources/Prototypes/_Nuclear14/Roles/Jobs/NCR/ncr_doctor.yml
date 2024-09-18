@@ -1,19 +1,20 @@
 - type: job
   id: NCRDoctor
   setPreference: true
-  name: NCR doctor
-  description: Treat the troopers and offer services to the wasteland people.
+  name: job-name-ncr-doctor
+  description: job-description-ncr-doctor
   playTimeTracker: NCRDoctor
   requirements:
     - !type:DepartmentTimeRequirement
       department: NCR
-      time: 3600 # 1 hour
+      min: 3600 # 1 hour
   startingGear: NCRDoctorGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-ncr-nco
   canBeAntag: false
   access:
   - NCR
+  - NCRMedic
   special:
   - !type:AddComponentSpecial
     components:
@@ -24,19 +25,18 @@
 - type: startingGear
   id: NCRDoctorGear
   equipment:
-    jumpsuit: N14ClothingUniformNCR
-    back: N14ClothingBackpackWastelanderFilled # N14TODO: Doctors Bag
+    jumpsuit: N14ClothingOfficerUniformNCRSnow
+    back: N14ClothingBackpackNCRFilled
     head: N14ClothingHeadHatNCRBeretMedic
     shoes: N14ClothingShoesBlack
     gloves: N14ClothingHandsGlovesNitrile
     belt: ClothingBeltMedicalfilled
-    id: N14IDNCRDogtag
+    id: N14IDNCRDogtagDoctor
     pocket1: N14WeaponPistol9mm
+    pocket2: NCRtrooperloadoutkits
     outerClothing: ClothingOuterCoatLab
-    backpack: N14ClothingBackpackSatchelNCRFilled
-  innerClothingSkirt: N14ClothingUniformNCR
+  innerClothingSkirt: N14ClothingOfficerUniformNCRSnow
   satchel: N14ClothingBackpackSatchelNCRFilled
-  duffelbag: N14ClothingBackpackDuffelFilled  # N14TODO: Doctors Bag
 
 - type: playTimeTracker
   id: NCRDoctor
