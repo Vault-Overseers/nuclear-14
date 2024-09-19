@@ -55,6 +55,10 @@
         conditions:
         - !type:ReagentThreshold
           min: 30
+    Narcotic:
+      effects:
+      - !type:ChemAddMoodlet
+        moodPrototype: JetBenefit
 
 - type: reagent
   id: RobustMovespeedMixture #used in turbo
@@ -94,6 +98,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 12
+          
 
 - type: reagent
   id: DamageModifyingMixture #used in psycho. TODO: figure out how to make a reagent give you a dmg buff
@@ -109,6 +114,10 @@
       - !type:Drunk
       - !type:StrengthModifierReagent
         strengthModifier: 2
+    Narcotic:
+      effects:
+      - !type:ChemAddMoodlet
+        moodPrototype: PsychoBenefit
 
 - type: reagent
   id: Daytripper
