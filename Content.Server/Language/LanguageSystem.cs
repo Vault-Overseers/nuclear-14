@@ -4,7 +4,7 @@ using Content.Shared.Language;
 using Content.Shared.Language.Components;
 using Content.Shared.Language.Events;
 using Content.Shared.Language.Systems;
-using LanguagesUpdateEvent = Content.Server.Language.Events.LanguagesUpdateEvent;
+using LanguagesUpdateEvent = Content.Shared.Language.Events.LanguagesUpdateEvent;
 using UniversalLanguageSpeakerComponent = Content.Shared.Language.Components.UniversalLanguageSpeakerComponent;
 
 namespace Content.Server.Language;

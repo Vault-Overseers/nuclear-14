@@ -1,4 +1,4 @@
-# Animal Parts
+#MARK: Animal Parts
 - type: entity
   parent: BaseItem
   id: N14MaterialRadscorpionTail
@@ -21,66 +21,80 @@
       - ReagentId: ScorpionTail
         Quantity: 10
 
+#MARK: Hide's
 - type: entity
   parent: BaseItem
-  id: N14MaterialBrahminHide
-  name: brahmin hide
-  description: The flesh of a brahmin. Leather-like and tough.
+  id: N14MaterialBaseHide
+  abstract: true
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
     state: hide_brahmin
+  - type: Tag
+    tags:
+      - RawLeather
+  - type: PhysicalComposition
+    materialComposition:
+      RawLeather: 400
+  - type: Material
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: N14MaterialBaseHide
+  id: N14MaterialBrahminHide
+  name: brahmin hide
+  description: The flesh of a brahmin. Leather-like and tough.
+  suffix: Full, 4
+  components:
+  - type: Sprite
+    state: hide_brahmin_2
+    layers:
+    - state: hide_brahmin_2
+      map: ["base"]
   - type: Stack
     stackType: BrahminHide
+    count: 4
+    baseLayer: base
+    layerStates:
+    - hide_brahmin_1
+    - hide_brahmin_1
+    - hide_brahmin_2
+  - type: Appearance
 
 - type: entity
-  parent: BaseItem
-  id: N14MaterialAntChitin
-  name: ant chitin
-  description: A strong and resistent piece of ant "skin".
+  parent: N14MaterialBrahminHide
+  id: N14MaterialBrahminHide1
+  suffix: Single
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
-    state: chitin
+  - type: Stack
+    stackType: BrahminHide
+    count: 1
 
 - type: entity
-  parent: BaseItem
-  id: N14MaterialExoskeleton
-  name: radscorpion exoskeleton piece
-  description: A strong and resistent piece of radscorpion exoskeleton.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
-    state: rad_exo
-
-- type: entity
-  parent: BaseItem
+  parent: N14MaterialBaseHide
   id: N14MaterialNightstalkerPelt
   name: nightstalker pelt
   description: A pelt of fresh nightstalker leather.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
     state: pelt_nightstalker
+  - type: PhysicalComposition
+    materialComposition:
+      RawLeather: 300
 
 - type: entity
-  parent: BaseItem
+  parent: N14MaterialBaseHide
   id: N14MaterialYaoguaiHide
   name: yaoguai hide
   description: A big hide of yaoguai, heavy and strong.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
     state: hide_yaoguai
-
-# Materials
-
-- type: entity
-  parent: BaseItem
-  id: N14MaterialLeather
-  name: leather
-  description: A piece of leather, just non-special leather.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/materials.rsi
-    state: leather
+  - type: Tag
+    tags:
+      - YaoguaiHide
+      - RawLeather
+  - type: PhysicalComposition
+    materialComposition:
+      RawLeather: 600

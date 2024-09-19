@@ -273,14 +273,19 @@ reagent-name-antiseptic = Antiseptic
 reagent-desc-antiseptic = A cleaning solution made from Abraxo Cleaner and some Rubbing Alcohol.
 
 # Ores, Metals, Materials
-materials-gunpowder = gunpowder
-materials-lead = lead
 materials-aluminum = aluminum
-materials-sulfur = sulfur
+materials-antchitin = chitin
 materials-charcoal = charcoal
+materials-exoskeleton = exoskeleton
+materials-gunpowder = gunpowder
+materials-leather = leather
+materials-lead = lead
 materials-raw-lead = raw lead
+materials-raw-leather = raw leather
 materials-raw-aluminum = raw aluminum
 materials-raw-sulfur = raw sulfur
+materials-sulfur = sulfur
+
 reagent-name-gunpowder = gunpowder
 reagent-desc-gunpowder = Small pellet gunpowder. Now just add lead.
 reagent-name-fertilizer = fertilizer

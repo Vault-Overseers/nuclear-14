@@ -73,19 +73,34 @@
   # - type: NukeopsRule
     # faction: Syndicate
 
-- type: entity
-  id: Pirates
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: PiratesRule
+# - type: entity
+  # id: Pirates
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: PiratesRule
 
 - type: entity
   id: Traitor
   parent: BaseGameRule
   noSpawn: true
   components:
+  - type: GameRule
+    minPlayers: 5
+    delay:
+      min: 240
+      max: 420
   - type: TraitorRule
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ Traitor ]
+      max: 12
+      playerRatio: 10
+      lateJoinAdditional: true
+      mindComponents:
+      - type: TraitorRole
+        prototype: Traitor
+
 
 # - type: entity
   # id: Revolutionary
@@ -113,7 +128,32 @@
   parent: BaseGameRule
   noSpawn: true
   components:
+  - type: GameRule
+    minPlayers: 20
+    delay:
+      min: 600
+      max: 900
   - type: ZombieRule
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ InitialInfected ]
+      max: 6
+      playerRatio: 10
+      blacklist:
+        components:
+        - ZombieImmune
+        - InitialInfectedExempt
+      briefing:
+        text: zombie-patientzero-role-greeting
+        color: Plum
+        sound: "/Audio/Ambience/Antag/zombie_start.ogg"
+      components:
+      - type: PendingZombie
+      - type: ZombifyOnDeath
+      - type: IncurableZombie
+      mindComponents:
+      - type: InitialInfectedRole
+        prototype: InitialInfected
 
 # - type: entity
   # id: Vault
@@ -153,6 +193,33 @@
     chaosModifier: 4 # By default, one event each 30-10 seconds after two hours. Changing CVars will cause this to deviate.
     startingChaosRatio: 0.025 # Starts as slow as survival, but quickly ramps up
     shiftLengthModifier: 2.5
+
+- type: entity
+  id: IrregularStationEventScheduler
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: OscillatingStationEventScheduler
+    minChaos: 0.8
+    maxChaos: 14
+    startingSlope: 0.2
+    downwardsLimit: -0.35
+    upwardsLimit: 0.4
+
+# More likely to go down than up, so calmness prevails
+- type: entity
+  id: IrregularExtendedStationEventScheduler
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: OscillatingStationEventScheduler
+    minChaos: 0.8
+    maxChaos: 8
+    startingSlope: -1
+    downwardsLimit: -0.4
+    upwardsLimit: 0.3
+    downwardsBias: -1.1
+    upwardsBias: 0.9
 
 # variation passes
 - type: entity

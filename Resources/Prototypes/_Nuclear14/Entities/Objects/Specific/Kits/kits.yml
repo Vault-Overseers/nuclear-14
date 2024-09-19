@@ -28,7 +28,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRVest
+      - id: N14ClothingOuterNCRVestSnow
       - id: ClothingBeltNCRPouches
       - id: N14WeaponService
       - id: Magazine556Rifle
@@ -53,7 +53,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRVest
+      - id: N14ClothingOuterNCRVestSnow
       - id: ClothingBeltNCR
       - id: N14WeaponLMG
       - id: LMGMagazine556Rifle
@@ -78,7 +78,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRVest
+      - id: N14ClothingOuterNCRVestSnow
       - id: ClothingBeltNCRBandolier
       - id: N14WeaponSniperHunting
       - id: MagazineBox308
@@ -102,7 +102,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRVest
+      - id: N14ClothingOuterNCRVestSnow
       - id: ClothingBeltNCRBandolier
       - id: N14WeaponShotgun
       - id: MagazineBox12gauge
@@ -126,7 +126,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRPlate
+      - id: N14ClothingOuterNCRPlateWoods
       - id: N14ClothingMaskPlate
       - id: ClothingBeltNCRPouches
       - id: N14WastelandFlagSpear
@@ -150,7 +150,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRPouchedVest
+      - id: N14ClothingOuterNCRPouchedVestWoods
       - id: ClothingBeltMedicalfilled
       - id: N14weapon9mmSMG
       - id: N14MagazineSMG9mm
@@ -518,7 +518,7 @@
       - id: N14PowerCellSmall
         amount: 2
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled
 
 - type: entity
   name: Brotherhood ranged issue kit
@@ -539,7 +539,7 @@
       - id: N14PowerCellSmall
         amount: 2
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled
 
 - type: entity
   name: Brotherhood carbine issue kit
@@ -560,7 +560,28 @@
       - id: N14PowerCellSmall
         amount: 2
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled
+
+- type: entity
+  name: Brotherhood laser issue kit
+  parent: KitBase
+  id: KitLaserBoSMidwest
+  description: A crate containing everything a mamber of the Brotherhood AER-9 might need too lay down some laser and lead.
+  components:
+  - type: Sprite
+    state: marksman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserAutoRifle
+      - id: N14WeaponPistol12mm
+      - id: N14PowerCellHigh
+        amount: 3
+      - id: N14MagazinePistol12mm
+        amount: 2
+      - id: N14Stimpak
+      - id: N14BoxCardboardMREBoxKFilled
 
 #MARK: BoS Scribe Kits
 #medic
@@ -576,8 +597,8 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponRevolver10mm
-      - id: SpeedLoader10
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
         amount: 2
       - id: N14ClothingBeltMedicalFilled
       - id: N14MedkitBruteFilled
@@ -587,7 +608,7 @@
       - id: N14ClothingOuterBosScribe
       - id: N14CombatKnife
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled
 
 #field scribe
 - type: entity
@@ -602,15 +623,16 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponSniperVarmint
-      - id: MagazineBox556
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
+        amount: 2
       - id: N14ClothingBeltMedicalFilled
       - id: ClothingHandsGlovesFingerless
       - id: N14ClothingHeadHatBrotherhoodFieldCap
       - id: N14ClothingOuterBrotherhoodFieldScribeCoat
       - id: N14CombatKnife
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled
 
 #engineer scribe
 - type: entity
@@ -636,7 +658,7 @@
       - id: SheetPlastic10
       - id: N14FireAxe
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled
 
 #MARK: BoS Midwest CO Kits
 # - type: entity
@@ -656,8 +678,7 @@
 #       - id: N14PlasmaCartridge
 #         amount: 4
 #       - id: N14Stimpak
-#       - id: BoxMRE
-
+#       - id: N14BoxCardboardMREBoxKFilled
 - type: entity
   name: Brotherhood paladin ballistics kit
   parent: KitBase
@@ -678,4 +699,4 @@
         amount: 2
       - id: MagazineBox556
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled

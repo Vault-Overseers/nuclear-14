@@ -15,6 +15,11 @@
         Slash: 0.85
         Piercing: 0.85
         Heat: 0.75
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: N14MaterialLeather1
+      amount: 4
 
 - type: entity
   parent: ClothingOuterBase
@@ -425,9 +430,9 @@
 
 - type: entity
   parent: ClothingOuterBase
-  id: N14ClothingOuterNCRVest
-  name: leather NCR vest
-  description: A light ballistic plate inside a leather vest, cheap and easy to mass produce, perfect armor for light infantry.
+  id: N14ClothingOuterNCRVestSnow
+  name: snow leather NCR vest
+  description: A light ballistic plate inside a leather vest, cheap and easy to mass produce, perfect armor for light infantry. this one is covered in snow white camo.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRvest.rsi
@@ -445,7 +450,47 @@
 
 - type: entity
   parent: ClothingOuterBase
-  id: N14ClothingOuterNCRPlate
+  id: N14ClothingOuterNCRVestWoods
+  name: woods leather NCR vest
+  description: A light ballistic plate inside a leather vest, cheap and easy to mass produce, perfect armor for light infantry. this one is covered in green camo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRvest2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRvest2.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.65
+        Heat: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterNCRVestDesert
+  name: desert leather NCR vest
+  description: A light ballistic plate inside a leather vest, cheap and easy to mass produce, perfect armor for light infantry. this one is covered in classic desert camo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRvest3.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRvest3.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.65
+        Heat: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterNCRPlateWoods
   name: NCR plate armor
   description: A bunch of light steel plates connected to a hollow regular vest, designed to protect during melee combat.
   components:
@@ -470,8 +515,34 @@
     sprintModifier: 0.90
 
 - type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterNCRPlateDesert
+  name: NCR plate armor
+  description: A bunch of light steel plates connected to a hollow regular vest, designed to protect during melee combat.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRplatevest2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRplatevest2.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.65
+  - type: Reflect
+    reflectProb: 0.05
+    spread: 150
+  - type: ClothingSpeedModifier
+    walkModifier: 0.90
+    sprintModifier: 0.90
+
+- type: entity
   parent: ClothingOuterStorageBase
-  id: N14ClothingOuterNCRPouchedVest
+  id: N14ClothingOuterNCRPouchedVestWoods
   name: pouched leather NCR vest
   description: A leather vest with a light ballistic plate inside, this vest comes with a pack of pouches to hold any kind of things, its uncomfy to move with it.
   components:
@@ -479,6 +550,26 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.65
+        Heat: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: N14ClothingOuterNCRPouchedVestDesert
+  name: pouched leather NCR vest
+  description: A leather vest with a light ballistic plate inside, this vest comes with a pack of pouches to hold any kind of things, its uncomfy to move with it.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest2.rsi
   - type: Armor
     modifiers:
       coefficients:

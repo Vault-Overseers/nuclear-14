@@ -1,5 +1,6 @@
 using Content.Shared._NC.Roles; // Nuclear 14
 using Content.Shared.Access;
+using Content.Shared.Customization.Systems;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
@@ -44,7 +45,7 @@ namespace Content.Shared.Roles
         public string? LocalizedDescription => Description is null ? null : Loc.GetString(Description);
 
         [DataField("requirements")]
-        public HashSet<JobRequirement>? Requirements;
+        public List<CharacterRequirement>? Requirements;
 
         // Nuclear 14 start
         [DataField("jobBlockForSpecies")]
