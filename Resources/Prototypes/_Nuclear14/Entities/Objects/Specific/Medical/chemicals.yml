@@ -31,7 +31,7 @@
     emptySpriteName: stimpak0
   - type: WelderRefinable
     refineResult:
-    - SheetPlastic1
+    - id: SheetPlastic1
   - type: Tag
     tags:
     - Syringe
@@ -69,7 +69,7 @@
     emptySpriteName: stimpak0
   - type: WelderRefinable
     refineResult:
-    - SheetPlastic1
+    - id: SheetPlastic1
   - type: Tag
     tags:
     - Syringe
@@ -155,8 +155,9 @@
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14ChemicalSyringeAntidote
-  name: antidote
+  id: N14ChemicalSyringeAntidoteEmpty
+  suffix: empty
+  name: antidote syringe
   description: A syringe filled with an effective antitoxin.
   components:
   - type: Sprite
@@ -174,6 +175,14 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: used
+
+- type: entity
+  parent: N14ChemicalSyringeAntidoteEmpty
+  id: N14ChemicalSyringeAntidote
+  suffix: filled
+  name: antidote
+  description: A syringe filled with an effective antitoxin.
+  components:
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -187,7 +196,7 @@
   id: N14JetInhaler
   suffix: empty
   name: Jet inhaler
-  description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, and lasts longer than Turbo.
+  description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, but lasts longer than Turbo.
   components:
   - type: Sprite
     layers:
@@ -212,21 +221,22 @@
   id: N14Jet
   suffix: filled
   name: Jet
-  description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, and lasts longer than Turbo.
+  description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, but lasts longer than Turbo.
   components:
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 18
+        maxVol: 15
         reagents:
         - ReagentId: MovespeedMixture
-          Quantity: 18
+          Quantity: 15
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14Turbo
-  name: Turbo
-  description: A small injector fill with a narcotic reagent, that makes you feel as though the world around you is slowing down. It's stronger, and more dangerous than Jet.
+  id: N14TurboInhaler
+  suffix: empty
+  name: Turbo inhaler
+  description: A small injector filled with a narcotic reagent, that makes you feel as though the world around you is slowing down. It's stronger, and more dangerous than Jet.
   components:
   - type: Sprite
     layers:
@@ -239,6 +249,18 @@
   - type: Hypospray
     solutionName: pen
     transferAmount: 10
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 10
+
+- type: entity
+  parent: N14TurboInhaler
+  id: N14Turbo
+  suffix: filled
+  name: Turbo
+  description: A small injector filled with a narcotic reagent, that makes you feel as though the world around you is slowing down. It's stronger, and more dangerous than Jet.
+  components:
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -274,8 +296,43 @@
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14Psycho
-  name: psycho
+  id: N14HydraInhaler
+  suffix: empty
+  name: hydra inhaler
+  description: A bottle of Supa Yum soda with several vials attached to it. Contains a mildly potent healing chemical that comes with side effects.
+  components:
+  - type: Sprite
+    layers:
+    - state: hydra
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: hydra0
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 15
+
+
+- type: entity
+  parent: N14HydraInhaler
+  id: N14Hydra
+  suffix: filled
+  name: hydra
+  description: A bottle of Supa Yum soda with several vials attached to it. Contains a mildly potent healing chemical that comes with side effects.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Hydra
+          Quantity: 15
+
+- type: entity
+  parent: N14ChemicalSyringe
+  id: N14PsychoSyringe
+  name: psycho syringe
   description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin.
   components:
   - type: Sprite
@@ -289,6 +346,17 @@
   - type: Hypospray
     solutionName: pen
     transferAmount: 20
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+
+- type: entity
+  parent: N14PsychoSyringe
+  id: N14Psycho
+  name: psycho
+  description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin.
+  components:
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -402,7 +470,7 @@
     fillBaseName: radawayphial
   - type: WelderRefinable
     refineResult:
-    - MaterialGlass
+    - id: SheetGlass1
   - type: PhysicalComposition
     materialComposition:
       Glass: 50
@@ -431,7 +499,7 @@
     defaultTarget: fill
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkItemBaseBreak
   id: N14RadAwayPhial
   name: RadAway phial
   description: A coloured phial containing RadAway.
@@ -447,7 +515,7 @@
     emptySpriteName: radawayphial
   - type: WelderRefinable
     refineResult:
-    - MaterialGlass
+    - id: SheetGlass1
   - type: PhysicalComposition
     materialComposition:
       Glass: 50
@@ -546,19 +614,17 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: powder1
+    emptySpriteName: smellingsalts0
   - type: Hypospray
     solutionName: pen
-    transferAmount: 10
+    transferAmount: 15
   - type: SolutionContainerManager
     solutions:
       pen:
         maxVol: 15
         reagents:
         - ReagentId: SmellingSalts
-          Quantity: 10
-        - ReagentId: Epinephrine
-          Quantity: 5
+          Quantity: 15
 
 - type: entity
   parent: N14HealingPowder
@@ -641,13 +707,15 @@
 
 - type: entity
   parent: N14HealingPowder
-  id: N14Traumapack
+  id: N14Traumapack #TODO: N14Traumapack needs new sound
   name: traumapack
   description: A backpack filled with a blend of healing chemicals that inject automatically upon the wearer being hurt.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     state: traumapack
+  - type: Item
+    size: Normal
   - type: SolutionContainerManager
     solutions:
       food:
