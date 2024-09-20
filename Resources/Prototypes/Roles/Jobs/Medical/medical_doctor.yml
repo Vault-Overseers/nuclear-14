@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 14400 #4 hrs
+      min: 14400 #4 hrs
   startingGear: DoctorGear
   icon: "JobIconMedicalDoctor"
   supervisors: job-supervisors-cmo
@@ -17,7 +17,11 @@
   - Chemistry
   - Paramedic # DeltaV - Add Paramedic access
   setPreference: false
-  
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: CPRTraining
+
 - type: startingGear
   id: DoctorGear
   equipment:

@@ -188,6 +188,8 @@
     spawned:
     - id: N14FoodMeatGecko
       amount: 3
+    - id: N14MaterialRawLeather1
+      amount: 1
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-laid-egg-popup
@@ -221,7 +223,7 @@
       sprite: _Nuclear14/Mobs/Animals/nightstalkercub.rsi
   - type: Bloodstream
     bloodMaxVolume: 30
-    bloodReagent: WastelandBlood
+    bloodReagent: NightstalkerBlood
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
     baseSprintSpeed : 4.5
@@ -309,7 +311,7 @@
       sprite: _Nuclear14/Mobs/Animals/nightstalker.rsi
   - type: Bloodstream
     bloodMaxVolume: 50
-    bloodReagent: WastelandBlood
+    bloodReagent: NightstalkerBlood
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
     baseSprintSpeed : 5
@@ -588,6 +590,12 @@
   - type: Tag
     tags:
     - Deathclaw
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 8
+    - id: N14MaterialRawLeather1
+      amount: 6
 
 #MARK: Albino Deathclaw
 - type: entity
@@ -709,7 +717,7 @@
     spawned:
     - id: N14FoodMeatBrahmin
       amount: 4
-    - id: N14MaterialBrahminHide
+    - id: N14MaterialBrahminHide1
       amount: 1
       prob: 0.95
   - type: SolutionContainerManager
@@ -730,7 +738,7 @@
   - type: Timer
   - type: TimedSpawner
     prototypes:
-      - N14Dung
+      - N14BrahminDung
     chance: 0.5
     intervalSeconds: 300
     minimumEntitiesSpawned: 1
@@ -775,6 +783,8 @@
     spawned:
     - id: N14FoodMeatBighorner
       amount: 4
+    - id: N14MaterialRawLeather1
+      amount: 4
   - type: MeleeWeapon
     altDisarm: false
     hidden: true
@@ -800,6 +810,10 @@
     quantityperUpdate: 25
     growthDelay: 90
     hungerUsage: 7.5
+  - type: TimedSpawner
+    prototypes:
+      - N14Dung
+    chance: 0.5
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-birth-popup
@@ -840,6 +854,8 @@
     spawned:
     - id: N14FoodMeatRadstag
       amount: 4
+    - id: N14MaterialRawLeather1
+      amount: 4
   - type: MeleeWeapon
     altDisarm: false
     hidden: true
@@ -865,6 +881,10 @@
     quantityperUpdate: 10
     growthDelay: 40
     hungerUsage: 5
+  - type: TimedSpawner
+    prototypes:
+      - N14Dung
+    chance: 0.5
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-birth-popup

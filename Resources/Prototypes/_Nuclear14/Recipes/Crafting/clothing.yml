@@ -1,3 +1,4 @@
+#MARK: Bandanas
 - type: construction
   name: black bandana
   id: blackbandana
@@ -12,20 +13,6 @@
     state: icon_mask
   hide: false
 
-- type: constructionGraph
-  id: blackbandana
-  start: start
-  graph:
-  - node: start
-    edges:
-      - to: bandanablack
-        steps:
-        - material: Cloth
-          amount: 1
-          doAfter: 5
-  - node: bandanablack
-    entity: ClothingMaskBandBlack
-
 - type: construction
   name: blue bandana
   id: bluebandana
@@ -38,21 +25,7 @@
   icon:
     sprite: Clothing/Head/Bandanas/blue.rsi
     state: icon_mask
-  hide: false
-
-- type: constructionGraph
-  id: bluebandana
-  start: start
-  graph:
-  - node: start
-    edges:
-      - to: bandanablue
-        steps:
-        - material: Cloth
-          amount: 1
-          doAfter: 5
-  - node: bandanablue
-    entity: ClothingMaskBandBlue
+  hide: true #MARK: Hide
 
 - type: construction
   name: gold bandana
@@ -66,21 +39,7 @@
   icon:
     sprite: Clothing/Head/Bandanas/gold.rsi
     state: icon_mask
-  hide: false
-
-- type: constructionGraph
-  id: goldbandana
-  start: start
-  graph:
-  - node: start
-    edges:
-      - to: bandanagold
-        steps:
-        - material: Cloth
-          amount: 1
-          doAfter: 5
-  - node: bandanagold
-    entity: ClothingMaskBandGold
+  hide: true #MARK: Hide
 
 - type: construction
   name: green bandana
@@ -94,21 +53,7 @@
   icon:
     sprite: Clothing/Head/Bandanas/green.rsi
     state: icon_mask
-  hide: false
-
-- type: constructionGraph
-  id: greenbandana
-  start: start
-  graph:
-  - node: start
-    edges:
-      - to: bandanagreen
-        steps:
-        - material: Cloth
-          amount: 1
-          doAfter: 5
-  - node: bandanagreen
-    entity: ClothingMaskBandGreen
+  hide: true #MARK: Hide
 
 - type: construction
   name: red bandana
@@ -122,21 +67,7 @@
   icon:
     sprite: Clothing/Head/Bandanas/red.rsi
     state: icon_mask
-  hide: false
-
-- type: constructionGraph
-  id: redbandana
-  start: start
-  graph:
-  - node: start
-    edges:
-      - to: bandanared
-        steps:
-        - material: Cloth
-          amount: 1
-          doAfter: 5
-  - node: bandanared
-    entity: ClothingMaskBandRed
+  hide: true #MARK: Hide
 
 - type: construction
   name: skull bandana
@@ -150,21 +81,7 @@
   icon:
     sprite: Clothing/Head/Bandanas/skull.rsi
     state: icon_mask
-  hide: false
-
-- type: constructionGraph
-  id: skullbandana
-  start: start
-  graph:
-  - node: start
-    edges:
-      - to: bandanaskull
-        steps:
-        - material: Cloth
-          amount: 1
-          doAfter: 5
-  - node: bandanaskull
-    entity: ClothingMaskBandSkull
+  hide: true #MARK: Hide
 
 - type: construction
   name: brown bandana
@@ -180,20 +97,6 @@
     state: icon_mask
   hide: false
 
-- type: constructionGraph
-  id: brownbandana
-  start: start
-  graph:
-  - node: start
-    edges:
-      - to: bandanabrown
-        steps:
-        - material: Cloth
-          amount: 1
-          doAfter: 5
-  - node: bandanabrown
-    entity: ClothingMaskBandBrown
-
 - type: construction
   name: grey bandana
   id: greybandana
@@ -208,16 +111,74 @@
     state: icon_mask
   hide: false
 
-- type: constructionGraph
-  id: greybandana
-  start: start
-  graph:
-  - node: start
-    edges:
-      - to: bandanagrey
-        steps:
-        - material: Cloth
-          amount: 1
-          doAfter: 5
-  - node: bandanagrey
-    entity: ClothingMaskBandGrey
+#MARK: Uniform's
+- type: construction
+  name: wastelander rags
+  id: WastelanderRags
+  graph: WastelanderRagsGraph
+  startNode: start
+  targetNode: rags
+  category: construction-category-clothing
+  objectType: Item
+  description: Hey, it's better than nothing.
+  icon:
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/wastelanderrags.rsi
+    state: icon
+  hide: false
+
+#MARK: Mantle's
+- type: construction
+  id: LeatherMantle
+  name: leather mantle
+  description: A comfortable brown long mantle.
+  category: construction-category-clothing
+  objectType: Item
+  graph: LeatherMantleGraph
+  startNode: start
+  targetNode: mantle
+  icon:
+    sprite: _Nuclear14/Clothing/Neck/leathermantle.rsi
+    state: icon
+  hide: false
+
+- type: construction
+  id: LeatherCloak
+  name: leather cloak
+  description: A handmade cloak, comfy and warm.
+  category: construction-category-clothing
+  objectType: Item
+  graph: LeatherCloakGraph
+  startNode: start
+  targetNode: cloak
+  icon:
+    sprite: _Nuclear14/Clothing/Neck/leathercloak.rsi
+    state: icon
+  hide: false
+
+- type: construction
+  id: YaoguaiCloak
+  name: yaoguai cloak
+  description: A handmade cloak, comfy and warm this piece comes from a dangerous yaoguai.
+  category: construction-category-clothing
+  objectType: Item
+  graph: YaoguaiCloakGraph
+  startNode: start
+  targetNode: cloak
+  icon:
+    sprite: _Nuclear14/Clothing/Neck/yaoguai.rsi
+    state: icon
+  hide: false
+
+- type: construction
+  id: GlovesCloth
+  name: cloth gloves
+  description: A piece of cloth to tie around the hand.
+  category: construction-category-clothing
+  objectType: Item
+  graph: GlovesClothGraph
+  startNode: start
+  targetNode: gloves
+  icon:
+    sprite: _Nuclear14/Clothing/Hands/Gloves/clothgloves.rsi
+    state: icon
+  hide: false

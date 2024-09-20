@@ -66,17 +66,15 @@
   abstract: true
   components:
   - type: Airtight
-  - type: InteractionPopup
-    interactSuccessString: comp-window-knock
-    messagePerceivedByOthers: comp-window-knock
-    interactSuccessSound:
-      path: /Audio/Effects/glass_knock.ogg
   - type: DamageVisuals
     thresholds: [4, 8, 12]
     damageDivisor: 2
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
+  - type: InteractionVerbs
+    allowedVerbs:
+    - KnockOn
       
 - type: entity
   parent: N14WindowBase

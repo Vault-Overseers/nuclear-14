@@ -195,7 +195,7 @@
     state: bos_holotag
   - type: PresetIdCard
     job: BoSMidPaladinCommander
-    
+
 #MARK: Brotherhood Washington
 - type: entity
   parent: N14IDPassportBlank
@@ -439,10 +439,28 @@
   description: A passport used by townsfolk as ID.
 
 - type: entity
+  parent: N14IDPassportVIP
+  id: N14IDShopkeeperTown
+  name: Shopkeepers ID
+  description: A flashy ID card worn by the town shopkeeper
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport_presidential
+  - type: PresetIdCard
+    job: TownShopkeeper
+
+- type: entity
   parent: N14IDDoctor
   id: N14IDDoctorTown
   name: doctors ID
   description: An ID card worn by the town doctor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: doctor
+  - type: PresetIdCard
+    job: TownDoctor
 
 - type: entity
   parent: N14IDPassportBlank
@@ -453,6 +471,8 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: deputy
+  - type: PresetIdCard
+    job: TownDeputy
 
 - type: entity
   parent: N14IDPassportBlank
@@ -463,6 +483,8 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: sheriff
+  - type: PresetIdCard
+    job: TownSheriff
 
 - type: entity
   parent: N14IDPassportBlank
@@ -473,6 +495,8 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: mayor
+  - type: PresetIdCard
+    job: TownMayor
 
 #MARK: Raiders / Tribes
 - type: entity

@@ -40,7 +40,8 @@
   - type: StationEvent
     weight: 10
     duration: 1
-    minimumPlayers: 15
+    minimumPlayers: 7
+    reoccurrenceDelay: 5
   - type: BreakerFlipRule
 
 # - type: entity
@@ -63,6 +64,20 @@
   # - type: StationEvent
     # startAnnouncement: true
     # minimumPlayers: 15
+
+- type: entity
+  parent: BaseGameRule
+  id: ClosetSkeleton
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 10
+    duration: 1
+    minimumPlayers: 15
+    reoccurrenceDelay: 25
+  - type: RandomEntityStorageSpawnRule
+    prototype: MobSkeletonCloset
+
     # weight: 5
     # duration: 1
   # - type: ClericalErrorRule
@@ -138,8 +153,8 @@
   - type: StationEvent
     startAnnouncement: true
     startDelay: 10
-    earliestStart: 30
-    minimumPlayers: 35
+    earliestStart: 15
+    reoccurrenceDelay: 3
     weight: 5
     duration: 50
   - type: VentCrittersRule
@@ -150,11 +165,6 @@
       prob: 0.02
     - id: MobMouse2
       prob: 0.02
-    # DeltaV - Rat King spawns under MidRoundAntag - Comment out Rat King from spawning with MouseMigration gamerule
-    # specialEntries:
-    # - id: SpawnPointGhostRatKing
-    #   prob: 0.005
-    # End of modified code
 
 - type: entity
   id: CockroachMigration
@@ -166,12 +176,37 @@
     startDelay: 10
     weight: 5
     duration: 50
+    reoccurrenceDelay: 15 # Cockroaches en masse are utmost annoying to deal with.
   - type: VentCrittersRule
     entries:
     - id: MobCockroach
       prob: 0.03
     - id: MobMothroach
       prob: 0.008
+
+# TODO this is the same as mouse migration, but with different announcer.
+- type: entity
+  id: VentCritters
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: true
+    startDelay: 10
+    earliestStart: 15
+    reoccurrenceDelay: 3
+    weight: 5
+    duration: 60
+  - type: VentCrittersRule
+    entries:
+    - id: MobMouse
+      prob: 0.02
+    - id: MobMouse1
+      prob: 0.02
+    - id: MobMouse2
+      prob: 0.02
+    - id: MobPibbleVent
+      prob: 0.005
 
 - type: entity
   id: PowerGridCheck
@@ -185,6 +220,7 @@
     startDelay: 24
     duration: 60
     maxDuration: 120
+    reoccurrenceDelay: 2 # Gives a chance for multiple checks in a row, but not in parallel
   - type: PowerGridCheckRule
 
 # - type: entity # DeltaV - Removes the random sentience.
@@ -208,6 +244,7 @@
     endAnnouncement: true
     duration: 120
     maxDuration: 240
+    reoccurrenceDelay: 5
   - type: SolarFlareRule
     onlyJamHeadsets: true
     affectedChannels:
@@ -250,27 +287,6 @@
     # startDelay: 50
     # duration: 60
   # - type: VentClogRule
-
-- type: entity
-  id: VentCritters
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    startAnnouncement: true
-    startDelay: 10
-    earliestStart: 15
-    minimumPlayers: 15
-    weight: 5
-    duration: 60
-  - type: VentCrittersRule
-    entries:
-    - id: MobMouse
-      prob: 0.02
-    - id: MobMouse1
-      prob: 0.02
-    - id: MobMouse2
-      prob: 0.02
 
 # - type: entity
   # id: SlimesSpawn
