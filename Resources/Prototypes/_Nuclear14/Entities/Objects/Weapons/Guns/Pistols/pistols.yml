@@ -13,6 +13,9 @@
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     size: Small
+    shape:
+    - 0,0,1,1
+    - 0,1,0,1
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/viper.rsi
     quickEquip: false
@@ -20,6 +23,10 @@
     - suitStorage
     - Belt
   - type: Gun
+    minAngle: 1
+    maxAngle: 7
+    angleIncrease: 0.5
+    angleDecay: 4
     fireRate: 6
     selectedMode: SemiAuto
     availableModes:
@@ -239,6 +246,10 @@
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/10mmPIPEpistol.rsi
   - type: Gun
+    minAngle: 3
+    maxAngle: 15
+    angleIncrease: 0.5
+    angleDecay: 4
     fireRate: 4
     soundGunshot:
       collection: N14Pistol10mmGunshot
@@ -262,7 +273,7 @@
 
 - type: entity
   name: chinese pistol
-  parent: BaseWeaponSniper
+  parent: N14BaseWeaponPistol
   id: N14WeaponPistolChinese
   description: An elegant long barrel pistol with an integrated magazine, chambered in 9mm.
   components:
@@ -305,7 +316,7 @@
 
 - type: entity
   name: the spy
-  parent: BaseWeaponSniper
+  parent: N14BaseWeaponPistol
   id: N14WeaponPistolSpy
   description: A modified version of the common chinese pistol with a integrated silencer, extended mag and full-auto conversion. This gun was designed with passion, chambered in 9mm.
   components:

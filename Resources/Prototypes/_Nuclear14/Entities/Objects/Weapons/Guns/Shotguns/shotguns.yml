@@ -13,6 +13,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
   - type: Item
+    size: Large
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
   - type: Wieldable
   - type: GunRequiresWield
@@ -28,6 +29,61 @@
     proto: N14ShellShotgun12
     soundInsert:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+  - type: Construction
+    graph: ShotgunSawed
+    node: start
+  - type: FollowDistance
+    backStrength: 5
+
+- type: entity
+  name: sawed-off shotgun
+  parent: BaseWeaponShotgun
+  id: N14WeaponSawedOffShotgun
+  description: A portable and brutal handheld shotgun.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/sawed_off.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/sawed_off.rsi
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/sawed_off.rsi
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      collection: N14DoubleBarrelShotgunGunshot
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun12
+    capacity: 2
+    proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+  - type: Construction
+    graph: ShotgunSawed
+    node: shotgunsawed
+  - type: FollowDistance
+    backStrength: 5
+
+- type: entity
+  name: sawed-off shotgun
+  parent: N14WeaponSawedOffShotgun
+  id: N14WeaponSawedOffShotgunEmpty
+  description: A portable and brutal handheld shotgun.
+  suffix: Empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Construction
+    graph: ShotgunSawed
+    node: start
   - type: FollowDistance
     backStrength: 5
 
@@ -51,6 +107,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: Item
+    size: Large
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: BallisticAmmoProvider
     whitelist:
@@ -85,8 +142,8 @@
     - Back
     - suitStorage
   - type: Item
-    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/combat_shotgun.rsi
     size: Large
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/combat_shotgun.rsi
   - type: Wieldable
   - type: GunRequiresWield
   - type: Gun
@@ -141,6 +198,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/caravan_shotgun.rsi
   - type: Item
+    size: Large
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/caravan_shotgun.rsi
   - type: Wieldable
   - type: Gun
@@ -174,6 +232,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/lever_shotgun.rsi
   - type: Item
+    size: Large
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/lever_shotgun.rsi
   - type: BallisticAmmoProvider
     whitelist:
@@ -217,7 +276,7 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
-    size: Ginormous
+    size: Large
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/riot_shotgun.rsi
   - type: Wieldable
   - type: GunRequiresWield

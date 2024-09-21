@@ -7,7 +7,20 @@
   description: survival-description
   rules:
     - RampingStationEventScheduler
-    - BasicRoundstartVariation
+    # - BasicRoundstartVariation
+    - SubGamemodesRule
+
+- type: gamePreset
+  id: SurvivalHellshift
+  alias:
+    - hellshift
+  showInVote: true
+  name: hellshift-title
+  description: hellshift-description
+  rules:
+    - HellshiftStationEventScheduler
+    # - BasicRoundstartVariation
+    - SubGamemodesRule
 
 # - type: gamePreset
   # id: SurvivalHellshift
@@ -42,18 +55,19 @@
   description: extended-description
   rules:
   - BasicStationEventScheduler
-  - BasicRoundstartVariation
+  # - BasicRoundstartVariation
+  - SubGamemodesRule
 
-- type: gamePreset
-  id: Greenshift
-  alias:
-  - greenshift
-  - shittersafarideluxeedition
-  name: greenshift-title
-  showInVote: false #4boring4vote
-  description: greenshift-description
-  rules:
-  - BasicRoundstartVariation
+# - type: gamePreset
+  # id: Greenshift
+  # alias:
+  # - greenshift
+  # - shittersafarideluxeedition
+  # name: greenshift-title
+  # showInVote: false #4boring4vote
+  # description: greenshift-description
+  # rules:
+  # - BasicRoundstartVariation
 
 - type: gamePreset
   id: Secret
@@ -106,7 +120,7 @@
     - Traitor
     - SubGamemodesRule
     - BasicStationEventScheduler
-    - BasicRoundstartVariation
+    # - BasicRoundstartVariation
 
 - type: gamePreset
   id: Deathmatch
@@ -165,17 +179,17 @@
   # - BasicStationEventScheduler
   # - BasicRoundstartVariation
 
-- type: gamePreset
-  id: Pirates
-  alias:
-    - pirates
-  name: pirates-title
-  description: pirates-description
-  showInVote: false
-  rules:
-    - Pirates
-    - BasicStationEventScheduler
-    - BasicRoundstartVariation
+# - type: gamePreset
+  # id: Pirates
+  # alias:
+    # - pirates
+  # name: pirates-title
+  # description: pirates-description
+  # showInVote: false
+  # rules:
+    # - Pirates
+    # - BasicStationEventScheduler
+    # - BasicRoundstartVariation
 
 # - type: gamePreset
   # id: Waves

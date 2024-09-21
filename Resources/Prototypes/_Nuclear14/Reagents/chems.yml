@@ -55,6 +55,10 @@
         conditions:
         - !type:ReagentThreshold
           min: 30
+    Narcotic:
+      effects:
+      - !type:ChemAddMoodlet
+        moodPrototype: JetBenefit
 
 - type: reagent
   id: RobustMovespeedMixture #used in turbo
@@ -94,6 +98,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 12
+          
 
 - type: reagent
   id: DamageModifyingMixture #used in psycho. TODO: figure out how to make a reagent give you a dmg buff
@@ -109,6 +114,10 @@
       - !type:Drunk
       - !type:StrengthModifierReagent
         strengthModifier: 2
+    Narcotic:
+      effects:
+      - !type:ChemAddMoodlet
+        moodPrototype: PsychoBenefit
 
 - type: reagent
   id: Daytripper
@@ -141,7 +150,7 @@
 - type: reagent
   id: Cateye
   name: reagent-name-cateye
-  group: Medicine
+  group: Chems
   desc: reagent-desc-cateye
   physicalDesc: reagent-physical-desc-sticky
   color: "#00e5ff"
@@ -155,7 +164,7 @@
 - type: reagent
   id: Buffout
   name: reagent-name-buffout
-  group: Medicine
+  group: Chems
   desc: reagent-desc-buffout
   physicalDesc: reagent-physical-desc-robust
   color: "#00e5ff"
@@ -174,7 +183,7 @@
 - type: reagent
   id: Buffjet
   name: reagent-name-buffjet
-  group: Medicine
+  group: Chems
   desc: reagent-desc-buffjet
   physicalDesc: reagent-physical-desc-robust
   color: "#00e5ff"
@@ -196,7 +205,7 @@
 - type: reagent
   id: Bufftats
   name: reagent-name-bufftats
-  group: Medicine
+  group: Chems
   desc: reagent-desc-bufftats
   physicalDesc: reagent-physical-desc-robust
   color: "#00e5ff"
@@ -217,7 +226,7 @@
 - type: reagent
   id: Mentats
   name: reagent-name-mentats
-  group: Medicine
+  group: Chems
   desc: reagent-desc-mentats
   physicalDesc: reagent-physical-desc-tangy
   color: "#00e5ff"
@@ -233,7 +242,7 @@
 - type: reagent
   id: MentatsBerry
   name: reagent-name-mentats-berry
-  group: Medicine
+  group: Chems
   desc: reagent-desc-mentats-berry
   physicalDesc: reagent-physical-desc-tangy
   color: "#2E0071"
@@ -247,7 +256,7 @@
 - type: reagent
   id: MentatsGrape
   name: reagent-name-mentats-grape
-  group: Medicine
+  group: Chems
   desc: reagent-desc-mentats-grape
   physicalDesc: reagent-physical-desc-tangy
   color: "#9932a4"
@@ -261,7 +270,7 @@
 - type: reagent
   id: MentatsOrange
   name: reagent-name-mentats-orange
-  group: Medicine
+  group: Chems
   desc: reagent-desc-mentats-orange
   physicalDesc: reagent-physical-desc-tangy
   color: "#ffb82e"
@@ -290,7 +299,7 @@
 - type: reagent
   id: Hydra
   name : reagent-name-hydra
-  group: Medicine
+  group: Chems
   desc: reagent-desc-hydra
   physicalDesc: reagent-physical-desc-volatile
   color: "#990099"

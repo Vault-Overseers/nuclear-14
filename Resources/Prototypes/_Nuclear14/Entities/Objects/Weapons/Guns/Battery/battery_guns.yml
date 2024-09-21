@@ -5,11 +5,11 @@
   components:
   - type: Sprite
   - type: Item
-    size: Small
+    size: Large
   - type: AmmoCounter
   - type: Gun
     minAngle: 35
-    maxAngle: 65
+    maxAngle: 70
     angleIncrease: 4
     angleDecay: 16
     fireRate: 1
@@ -47,9 +47,18 @@
     quickEquip: false
     slots:
     - Belt
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
   - type: Gun
-    minAngle: 10
-    maxAngle: 20
+    availableModes:
+    - Semiauto
+    minAngle: 1
+    maxAngle: 9
+    angleIncrease: 0.5
+    angleDecay: 4
 
 - type: entity
   id: N14BaseWeaponPowerCellMedium
@@ -57,12 +66,13 @@
   abstract: true
   components:
   - type: Item
-    size: Normal
+    size: Large
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/taser.rsi
     quickEquip: false
     slots:
     - Belt
+
 # MARK: Pistols
 - type: entity
   name: AEP-7 laser pistol
@@ -94,6 +104,11 @@
         whitelist:
           tags:
             - N14PowerCellSmall
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+    - 0,0,1,1
   - type: Gun
     fireRate: 1.5
     soundGunshot:
@@ -183,6 +198,10 @@
   id: N14WeaponRechargerRifle
   description: The first model for a self charging laser rifle, its low energy consumption and advanced internal battery lets this gun last for centuries without recharging.
   components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_rifle.rsi
     layers:
