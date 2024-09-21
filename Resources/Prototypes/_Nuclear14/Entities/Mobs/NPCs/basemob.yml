@@ -79,10 +79,6 @@
       task: SimpleDumbHostileCompound # This replaced SimpleHostileCompound and means they don't dodge between attacks.
   - type: Sprite
     drawdepth: Mobs
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: bloatfly
-      sprite: _Nuclear14/Mobs/Insects/bloatfly.rsi # Replace this with a mob error or something
   - type: MobState
     allowedStates:
       - Alive
@@ -172,17 +168,18 @@
   name: feral
   abstract: true
   id: N14MobBaseHostileFeral
-  parent: [N14BaseMobGhoul, N14MobBaseHostile]
+  parent: N14MobBaseHostile
   components:
   - type: Damageable
     damageContainer: Biological
+    damageModifierSet: Ghoul
   - type: NoSlip
   - type: NpcFactionMember
     factions:
     - Feral
   - type: HTN
     rootTask:
-      task: SimpleHostileCompound
+      task: SimpleDumbHostileCompound
     blackboard:
       NavInteract: !type:Bool
         true
