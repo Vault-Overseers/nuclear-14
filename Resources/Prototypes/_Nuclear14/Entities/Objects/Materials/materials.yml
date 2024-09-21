@@ -237,7 +237,7 @@
     - state: circuits_3
       map: ["base"]
   - type: Appearance
-    
+
 - type: entity
   parent: N14MaterialCircuitry
   id: N14MaterialCircuitry10
@@ -359,7 +359,7 @@
   suffix: Single
   components:
   - type: Stack
-    count: 1 
+    count: 1
 
 #MARK: Exoskeleton
 - type: entity
@@ -377,3 +377,255 @@
       Exoskeleton: 100
   - type: Item
     size: Small
+
+#MARK: Thread
+- type: entity
+  parent: N14MaterialBase
+  id: N14MaterialThread
+  name: thread
+  description: A product made from finely twisted yarn.
+  suffix: Full, 10
+  components:
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: thread
+    layers:
+    - state: thread
+      map: ["base"]
+  - type: Stack
+    stackType: Thread
+    count: 10
+    baseLayer: base
+    layerStates:
+    - thread
+    - thread
+    - thread
+  - type: PhysicalComposition
+    materialComposition:
+      Thread: 100
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: N14MaterialThread
+  id: N14MaterialThread1
+  name: thread
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+#MARK: Scrap
+- type: entity
+  parent: BaseItem
+  id: ScrapBase
+  description: A collection of damaged, components and materials that are no longer suitable for their original purpose, but may still have some value.
+  abstract: true
+  components:
+  - type: Sprite
+  - type: Item
+    size: Small
+  - type: StaticPrice
+    price: 0
+  - type: Tag
+    tags:
+    - Scrap
+
+- type: entity
+  parent: ScrapBase
+  id: Scrap
+  name: scrap
+  suffix: Full, 30
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Scrap: 100
+  - type: Stack
+    count: 30
+    stackType: Scrap
+    baseLayer: base
+    layerStates:
+    - scrap
+    - scrap_2
+    - scrap_3
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: scrap_3
+    layers:
+    - state: scrap_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: scrap
+  - type: Appearance
+
+- type: entity
+  parent: Scrap
+  id: Scrap1
+  name: scrap
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: ScrapBase
+  id: ScrapElectronic
+  name: electronic scrap
+  suffix: Full, 30
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      ScrapElectronic: 100
+  - type: Stack
+    count: 30
+    stackType: ScrapElectronic
+    baseLayer: base
+    layerStates:
+    - scrap_electronic
+    - scrap_electronic_2
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: scrap_electronic
+    layers:
+    - state: scrap_electronic_2
+      map: ["base"]
+  - type: Item
+    heldPrefix: scrap_electronic
+  - type: Appearance
+
+- type: entity
+  parent: ScrapElectronic
+  id: ScrapElectronic1
+  name: electronic scrap
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: ScrapBase
+  id: ScrapSteel
+  name: steel scrap
+  suffix: Full, 30
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      ScrapSteel: 100
+  - type: Stack
+    count: 30
+    stackType: ScrapSteel
+    baseLayer: base
+    layerStates:
+    - scrap_steel
+    - scrap_steel_2
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: scrap_steel
+    layers:
+    - state: scrap_steel_2
+      map: ["base"]
+  - type: Item
+    heldPrefix: scrap_steel
+  - type: Appearance
+
+- type: entity
+  parent: ScrapSteel
+  id: ScrapSteel1
+  name: steel scrap
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: ScrapBase
+  id: ScrapGold
+  name: gold scrap
+  suffix: Full, 30
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      ScrapGold: 100
+  - type: Stack
+    count: 30
+    stackType: ScrapGold
+    baseLayer: base
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: scrap_gold
+  - type: Item
+    heldPrefix: scrap_gold
+  - type: Appearance
+
+- type: entity
+  parent: ScrapGold
+  id: ScrapGold1
+  name: gold scrap
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: ScrapBase
+  id: ScrapCopper
+  name: copper scrap
+  suffix: Full, 30
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      ScrapCopper: 100
+  - type: Stack
+    count: 30
+    stackType: ScrapCopper
+    baseLayer: base
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: scrap_copper
+  - type: Item
+    heldPrefix: scrap_copper
+  - type: Appearance
+
+- type: entity
+  parent: ScrapCopper
+  id: ScrapCopper1
+  name: copper scrap
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: ScrapBase
+  id: ScrapBrass
+  name: brass scrap
+  suffix: Full, 30
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      ScrapBrass: 100
+  - type: Stack
+    count: 30
+    stackType: ScrapBrass
+    baseLayer: base
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: scrap_brass
+  - type: Item
+    heldPrefix: scrap_brass
+  - type: Appearance
+
+- type: entity
+  parent: ScrapBrass
+  id: ScrapBrass1
+  name: brass scrap
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1

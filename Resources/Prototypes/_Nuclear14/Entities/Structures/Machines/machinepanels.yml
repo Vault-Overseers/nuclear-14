@@ -46,7 +46,7 @@
   - type: Construction
     graph: N14TallMachineFrame
     node: missingWires
-    
+
 - type: entity
   parent: N14MachineFrameTall
   id: N14MachineFrameTallDestroyed
@@ -73,7 +73,7 @@
     - type: Construction
       graph: N14TallMachineFrame
       node: destroyedMachineFrame
-      
+
 - type: entity
   parent: N14MachineFrameTall
   id: N14MachineFrameTallWired
@@ -87,7 +87,7 @@
     - type: Construction
       graph: N14TallMachineFrame
       node: machineFrame
-      
+
 # Machine Base
 - type: entity
   abstract: true
@@ -135,7 +135,7 @@
   - type: Sprite
     offset: 0, 1
     drawdepth: Overdoors
-    
+
 - type: entity
   parent: N14BaseMachine
   id: N14BaseMachinePowered
@@ -187,7 +187,7 @@
   - type: Construction
     graph: N14TallMachineFrame
     node: ElectronicsRack
-  
+
 - type: entity
   parent: N14BaseMachinePowered
   id: N14MachineRackServer
@@ -197,7 +197,7 @@
   - type: Construction
     graph: N14TallMachineFrame
     node: ServerRack
-  
+
 - type: entity
   parent: N14BaseMachinePowered
   id: N14MachineRackRecorder
@@ -215,7 +215,7 @@
   - type: Construction
     graph: N14TallMachineFrame
     node: RecorderRack
-  
+
 - type: entity
   parent: N14BaseMachine
   id: N14MachineComputerMainframe # Probably a computer, move it there?
@@ -240,7 +240,7 @@
         - MachineMask
         layer:
         - MachineLayer
-        
+
 - type: entity
   parent: N14BaseMachine
   id: N14MachineModularMachinebox
@@ -254,10 +254,32 @@
     snapCardinals: false
     # offset: 0, 1
     state: box
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ScrapElectronic1:
+           min: 2
+           max: 5
+          Scrap1:
+           min: 3
+           max: 6
+          ScrapCopper1:
+           min: 2
+           max: 4
   - type: Transform
     noRot: false
     anchored: false
-    
+
 - type: entity
   parent: N14MachineModularMachinebox
   id: N14MachineModularMachineDials
@@ -266,7 +288,7 @@
   components:
   - type: Sprite
     state: dials
-    
+
 - type: entity
   parent: N14MachineModularMachineDials
   id: N14MachineModularMachineDialsTall
@@ -274,7 +296,7 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/ms13_modulartall.rsi
-    
+
 - type: entity
   parent: N14MachineModularMachineDialsTall
   id: N14MachineModularMachineConsoleTall
@@ -283,7 +305,7 @@
   components:
   - type: Sprite
     state: console
-    
+
 - type: entity
   parent: N14MachineModularMachineDialsTall
   id: N14MachineModularMachineScreenTall
@@ -322,7 +344,7 @@
   components:
     - type: SurveillanceCameraRouter
       subnetFrequency: SurveillanceCameraBrotherhoodWashington
-      
+
 - type: entity
   parent: N14MachineRackCameraRouterBase
   id: N14MachineRackCameraRouterBrotherhoodMidwest
@@ -330,7 +352,7 @@
   components:
     - type: SurveillanceCameraRouter
       subnetFrequency: SurveillanceCameraBrotherhoodMidwest
-      
+
 - type: entity
   parent: N14MachineRackCameraRouterBase
   id: N14MachineRackCameraRouterNCR
@@ -338,7 +360,7 @@
   components:
     - type: SurveillanceCameraRouter
       subnetFrequency: SurveillanceCameraNCR
-      
+
 - type: entity
   parent: N14MachineRackCameraRouterBase
   id: N14MachineRackCameraRouterTown
@@ -346,7 +368,7 @@
   components:
     - type: SurveillanceCameraRouter
       subnetFrequency: SurveillanceCameraTown
-      
+
 - type: entity
   parent: N14MachineRackCameraRouterBase
   id: N14MachineRackCameraRouterVault

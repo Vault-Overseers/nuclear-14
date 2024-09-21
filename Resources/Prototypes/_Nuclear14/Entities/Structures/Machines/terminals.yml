@@ -43,7 +43,7 @@
     drawdepth: SmallObjects
     sprite: _Nuclear14/Structures/Machines/Terminals/terminal_new.rsi
     state: frame
-  
+
 - type: entity
   id: N14ComputerTerminalBasePowered
   parent: N14ComputerTerminalBase
@@ -106,7 +106,7 @@
   - type: Construction
     graph: TerminalNew
     node: Terminal
-      
+
 - type: entity
   parent: N14ComputerTerminalBase
   id: N14ComputerTerminalNewBroken
@@ -116,10 +116,32 @@
   components:
   - type: Sprite
     state: broken
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ScrapGold1:
+           min: 1
+           max: 3
+          ScrapElectronic1:
+           min: 2
+           max: 5
+          Scrap1:
+           min: 3
+           max: 6
   - type: Construction
     graph: TerminalNew
     node: Broken
-    
+
 - type: entity
   parent: N14ComputerTerminalBase
   id: N14ComputerTerminalNewWired
@@ -130,7 +152,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/Terminals/terminal_new.rsi
     state: wired
-    
+
 # Normal
 - type: entity
   parent: N14ComputerTerminalBasePowered
@@ -145,10 +167,32 @@
       state: computer
     - map: ["computerLayerScreen"]
       state: screens
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ScrapGold1:
+           min: 1
+           max: 3
+          ScrapElectronic1:
+           min: 2
+           max: 5
+          Scrap1:
+           min: 3
+           max: 6
   - type: Construction
     graph: Terminal
     node: Terminal
-      
+
 - type: entity
   parent: N14ComputerTerminalBase
   id: N14ComputerTerminalBroken
@@ -158,10 +202,32 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/Terminals/terminal.rsi
     state: broken
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ScrapGold1:
+           min: 1
+           max: 3
+          ScrapElectronic1:
+           min: 2
+           max: 5
+          Scrap1:
+           min: 3
+           max: 6
   - type: Construction
     graph: Terminal
     node: Broken
-    
+
 - type: entity
   parent: N14ComputerTerminalBase
   id: N14ComputerTerminalFrame
@@ -172,7 +238,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/Terminals/terminal.rsi
     state: frame
-    
+
 - type: entity
   parent: N14ComputerTerminalFrame
   id: N14ComputerTerminalWired
@@ -183,7 +249,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/Terminals/terminal.rsi
     state: wired
-    
+
 # Rusted
 - type: entity
   parent: N14ComputerTerminalBasePowered
@@ -199,7 +265,7 @@
       state: computer
     - map: ["computerLayerScreen"]
       state: screens
-      
+
 - type: entity
   parent: N14ComputerTerminalBase
   id: N14ComputerTerminalRustedBroken
@@ -210,7 +276,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/Terminals/terminal_rusted.rsi
     state: broken
-    
+
 # Handmade
 - type: entity
   parent: N14ComputerTerminalBasePowered
@@ -226,7 +292,7 @@
       state: computer
     - map: ["computerLayerScreen"]
       state: screens
-    
+
 # Rigged Terminals
 - type: entity
   parent: N14ComputerTerminalBasePowered
@@ -270,7 +336,7 @@
   - type: Construction
     graph: Terminal
     node: Rigged
-    
+
 - type: entity
   parent: N14ComputerTerminalRigged
   id: N14ComputerTerminalRustedRigged
@@ -285,9 +351,7 @@
       state: rigged
     - map: ["computerLayerScreen"]
       state: screens
-    
 
-    
 ## Wall Mounted
 # Base
 - type: entity
@@ -324,7 +388,7 @@
   - type: Sprite
     offset: 0, 1
     drawdepth: Overdoors
-  
+
 # Wall Terminal
 # N14TODO: Needs a way to use it to use the off state.
 - type: entity
@@ -340,7 +404,7 @@
       state: computer
     - map: ["computerLayerScreen"]
       state: screens
-      
+
 - type: entity
   parent: N14ComputerTerminalWallBase
   id: N14ComputerTerminalWallBroken
@@ -350,8 +414,8 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/Terminals/terminal_wall.rsi
     state: broken
-   
-# New   
+
+# New
 - type: entity
   parent: [ N14ComputerTerminalWallBase, N14ComputerTerminalBasePowered ]
   id: N14ComputerTerminalWallNew
@@ -366,7 +430,7 @@
       state: computer
     - map: ["computerLayerScreen"]
       state: screens
-      
+
 - type: entity
   parent: N14ComputerTerminalWallBase
   id: N14ComputerTerminalWallNewBroken
@@ -377,8 +441,8 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/Terminals/terminal_wall_new.rsi
     state: broken
-    
-# Rusted  
+
+# Rusted
 - type: entity
   parent: [ N14ComputerTerminalWallBase, N14ComputerTerminalBasePowered ]
   id: N14ComputerTerminalWallRusted
@@ -393,7 +457,7 @@
       state: computer
     - map: ["computerLayerScreen"]
       state: screens
-      
+
 - type: entity
   parent: N14ComputerTerminalWallBase
   id: N14ComputerTerminalWallRustedBroken
@@ -404,7 +468,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Machines/Terminals/terminal_wall_rusted.rsi
     state: broken
-    
+
 # Security
 - type: entity
   parent: [ N14ComputerTerminalWallBase, N14ComputerTerminalBasePowered ]
