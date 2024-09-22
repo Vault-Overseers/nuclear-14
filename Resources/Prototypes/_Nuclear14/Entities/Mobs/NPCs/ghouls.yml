@@ -4,25 +4,10 @@
   parent: N14MobBaseHostileFeral
   description: A mean looking ghoul.
   components:
-  - type: NpcFactionMember
-    factions:
-      - Feral
   - type: MobThresholds
     thresholds:
       0: Alive
       100: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      60: 0.8
-      80: 0.6
-  # - type: DamageStateVisuals
-    # states:
-      # Alive:
-        # Base: alive
-      # Critical:
-        # Base: raider_dead #TODO: Make crit raider
-      # Dead:
-        # Base: raider_dead
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -34,14 +19,15 @@
         Slash: 14
         Structural: 5
     range: 1
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 6
-    baseSprintSpeed : 7
-  - type: Hands
-  - type: Puller
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      sprite: _Nuclear14/Mobs/Ghouls/ghoul-feral.rsi
   
 - type: entity
-  parent: N14MobGhoulFeral
+  parent: N14MobBaseHostileFeral
   id: N14MobGhoulFeralReaver
   name: Feral Ghoul Reaver
   description: A mean looking ghoul.
@@ -59,6 +45,7 @@
     range: 1
   - type: Sprite
     drawdepth: Mobs
+    layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: alive
       sprite: _Nuclear14/Mobs/Ghouls/ghoul-reaver.rsi
@@ -66,17 +53,9 @@
     thresholds:
       0: Alive
       100: Dead
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: alive
-      Critical:
-        Base: alive
-      Dead:
-        Base: dead
         
 - type: entity
-  parent: N14MobGhoulFeralReaver
+  parent: N14MobBaseHostileFeral
   id: N14MobGhoulFeralRotter
   name: Feral Ghoul Rotter
   description: A rotten looking ghoul.
@@ -98,7 +77,3 @@
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: alive
       sprite: _Nuclear14/Mobs/Ghouls/ghoul-rotter.rsi
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      100: Dead

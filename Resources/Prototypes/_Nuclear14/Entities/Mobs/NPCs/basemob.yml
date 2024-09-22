@@ -26,9 +26,9 @@
             radius: 0.20
         density: 20
         mask:
-        - SmallMobMask
+        - MobMask
         layer:
-        - SmallMobLayer
+        - MobLayer
   - type: MobState
     allowedStates:
       - Alive
@@ -54,15 +54,11 @@
   - type: Bloodstream
     bloodMaxVolume: 50
     bloodReagent: WastelandBlood
-  - type: ReplacementAccent
-    accent: genericAggressive
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: WastelandAnimal
   - type: Puller
     needsHands: true
-  - type: Speech
-    speechSounds: Squeak
 
 #MARK: Base Hostile
 - type: entity
@@ -134,6 +130,10 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: N14Scale
+  - type: Speech
+    speechSounds: Squeak
+  - type: ReplacementAccent
+    accent: genericAggressive
 
 #MARK: Base Insect
 - type: entity
@@ -149,6 +149,21 @@
   - type: NpcFactionMember
     factions:
     - WastelandInsect
+  - type: Speech
+    speechSounds: Squeak
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.30
+        density: 30
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
     
 #MARK: Base Humanoid
 - type: entity
@@ -163,17 +178,23 @@
   - type: NpcFactionMember
     factions:
     - Raider
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    understands:
+    - GalacticCommon
     
 - type: entity
-  name: feral
+  name: feral ghoul
   abstract: true
   id: N14MobBaseHostileFeral
   parent: N14MobBaseHostile
+  description: A mean looking ghoul.
   components:
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Ghoul
-  - type: NoSlip
+  # - type: NoSlip
   - type: NpcFactionMember
     factions:
     - Feral
@@ -189,6 +210,32 @@
         true
       NavSmash: !type:Bool
         true
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Critical:
+        Base: alive
+      Dead:
+        Base: dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 6
+    baseSprintSpeed : 7
+  - type: Hands
+  - type: Puller
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.8
+      80: 0.6
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    understands:
+    - GalacticCommon
 
 # Wave Defence Base Hostile
 #MARK: WAVE
@@ -258,3 +305,6 @@
   - type: HTN
     rootTask:
       task: SimpleFollowHostileCompound # HTN compound must include FollowCompound so pet can follow its owner
+  - type: LanguageKnowledge
+    understands:
+    - GalacticCommon
