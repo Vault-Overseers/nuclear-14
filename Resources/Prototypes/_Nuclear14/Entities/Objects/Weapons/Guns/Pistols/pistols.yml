@@ -259,6 +259,28 @@
         whitelist:
           tags:
             - N14CartridgePistol10
+            
+- type: entity
+  parent: N14WeaponPistol10mmPipe
+  id: N14WeaponPistol10mmPipeEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        whitelist:
+          tags:
+            - N14MagazinePistol10mm
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol10
+  - type: Construction
+    graph: N14WeaponPistol10mmPipeEmpty
+    node: start
 
 - type: entity
   name: chinese pistol

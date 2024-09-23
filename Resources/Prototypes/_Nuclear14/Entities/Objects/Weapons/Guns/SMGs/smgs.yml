@@ -120,7 +120,7 @@
         whitelist:
           tags:
             - N14CartridgePistol127
-
+            
 - type: entity
   name: 12.7mm pipe SMG
   parent: N14WeaponSMGBase
@@ -175,6 +175,31 @@
         whitelist:
           tags:
             - N14CartridgePistol127
+            
+- type: entity
+  parent: N14WeaponSMG12mmPipe
+  id: N14WeaponSMG12mmPipeEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
+        ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14MagazineSMG12mm
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol127
+  - type: Construction
+    graph: N14WeaponSMG12mmPipeEmpty
+    node: start
 
 - type: entity
   name: 10mm pipe SMG
@@ -229,6 +254,30 @@
         whitelist:
           tags:
             - N14CartridgePistol10
+            
+- type: entity
+  parent: N14WeaponSMG10mmPipe
+  id: N14WeaponSMG10mmPipeEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
+        ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
+        whitelist:
+          tags:
+            - N14MagazineSMG10mm
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol10
+  - type: Construction
+    graph: N14WeaponSMG10mmPipeEmpty
+    node: start
 
 - type: entity
   name: advanced 12.7mm SMG
