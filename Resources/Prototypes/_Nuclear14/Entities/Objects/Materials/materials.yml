@@ -468,6 +468,7 @@
   - type: Stack
     count: 1
 
+#MARK: Scrap Electronic
 - type: entity
   parent: ScrapBase
   id: ScrapElectronic
@@ -504,6 +505,7 @@
   - type: Stack
     count: 1
 
+#MARK: Scrap Steel
 - type: entity
   parent: ScrapBase
   id: ScrapSteel
@@ -540,6 +542,7 @@
   - type: Stack
     count: 1
 
+#MARK: Scrap Gold
 - type: entity
   parent: ScrapBase
   id: ScrapGold
@@ -570,6 +573,7 @@
   - type: Stack
     count: 1
 
+#MARK: Scrap Copper
 - type: entity
   parent: ScrapBase
   id: ScrapCopper
@@ -600,6 +604,7 @@
   - type: Stack
     count: 1
 
+#MARK: Scrap Brass
 - type: entity
   parent: ScrapBase
   id: ScrapBrass
@@ -625,6 +630,37 @@
   parent: ScrapBrass
   id: ScrapBrass1
   name: brass scrap
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+#MARK: Scrap Lead
+- type: entity
+  parent: ScrapBase
+  id: ScrapLead
+  name: lead scrap
+  suffix: Full, 30
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      ScrapLead: 100
+  - type: Stack
+    count: 30
+    stackType: ScrapLead
+    baseLayer: base
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: scrap_lead
+  - type: Item
+    heldPrefix: scrap_lead
+  - type: Appearance
+
+- type: entity
+  parent: ScrapLead
+  id: ScrapLead1
+  name: lead scrap
   suffix: Single
   components:
   - type: Stack
