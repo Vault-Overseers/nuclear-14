@@ -1,6 +1,20 @@
 - type: entity
-  name: 10mm SMG
   parent: BaseWeaponSubMachineGun
+  id: N14WeaponSMGBase
+  abstract: true
+  components:
+  - type: Wieldable
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
+  name: 10mm SMG
+  parent: N14WeaponSMGBase
   id: N14WeaponSMG10mm
   description: Fully automatic submachinegun chambered in 10mm. # TODO: Need to create projectiles, magazines and boxes for 10mm.
   components:
@@ -31,7 +45,6 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
-  - type: Wieldable
   - type: GunWieldBonus
     minAngle: -7
     maxAngle: -15
@@ -52,17 +65,10 @@
         whitelist:
           tags:
             - N14CartridgePistol10
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: FollowDistance
-    backStrength: 6
 
 - type: entity
   name: 12.7mm SMG
-  parent: BaseWeaponSubMachineGun
+  parent: N14WeaponSMGBase
   id: N14WeaponSMG12mm
   description: A heavy submachinegun chambered in 12mm. # TODO: Need to create projectiles, magazines and boxes for 12mm.
   components:
@@ -93,7 +99,6 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
-  - type: Wieldable
   - type: GunWieldBonus
     minAngle: -11
     maxAngle: -23
@@ -115,17 +120,10 @@
         whitelist:
           tags:
             - N14CartridgePistol127
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: FollowDistance
-    backStrength: 6
 
 - type: entity
   name: 12.7mm pipe SMG
-  parent: BaseWeaponSubMachineGun
+  parent: N14WeaponSMGBase
   id: N14WeaponSMG12mmPipe
   description: a makeshift 12mm SMG, looks like is gonna explode the second it shoots.
   components:
@@ -156,7 +154,6 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
-  - type: Wieldable
   - type: GunWieldBonus
     minAngle: -7
     maxAngle: -15
@@ -178,17 +175,10 @@
         whitelist:
           tags:
             - N14CartridgePistol127
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: FollowDistance
-    backStrength: 6
 
 - type: entity
   name: 10mm pipe SMG
-  parent: BaseWeaponSubMachineGun
+  parent: N14WeaponSMGBase
   id: N14WeaponSMG10mmPipe
   description: a makeshift 10mm SMG, if you shake it you could hear the loose parts inside of the gun.
   components:
@@ -219,7 +209,6 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
-  - type: Wieldable
   - type: GunWieldBonus
     minAngle: -7
     maxAngle: -15
@@ -240,17 +229,10 @@
         whitelist:
           tags:
             - N14CartridgePistol10
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: FollowDistance
-    backStrength: 6
 
 - type: entity
   name: advanced 12.7mm SMG
-  parent: BaseWeaponSubMachineGun
+  parent: N14WeaponSMGBase
   id: N14WeaponSMG12mmAdvanced
   description: A bulky sub machine gun with a top magazine fed system, it uses 12mm ammmo.
   components:
@@ -281,7 +263,6 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
-  - type: Wieldable
   - type: GunWieldBonus
     minAngle: -15
     maxAngle: -29
@@ -303,17 +284,10 @@
         whitelist:
           tags:
             - N14CartridgePistol127
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: FollowDistance
-    backStrength: 6
 
 - type: entity
   name: 9mm SMG
-  parent: BaseWeaponSubMachineGun
+  parent: N14WeaponSMGBase
   id: N14WeaponSMG9mm
   description: a metallic pre-war simple SMG, chambered in 9mm.
   components:
@@ -344,7 +318,6 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
-  - type: Wieldable
   - type: GunWieldBonus
     minAngle: -7
     maxAngle: -15
@@ -365,17 +338,10 @@
         whitelist:
           tags:
             - N14CartridgePistol9
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: FollowDistance
-    backStrength: 6
 
 - type: entity
   name: .45 SMG
-  parent: BaseWeaponSubMachineGun
+  parent: N14WeaponSMGBase
   id: N14WeaponSMG45
   description: A pre-war SMG with a wooden stock, chambered in .45.
   components:
@@ -406,7 +372,6 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
-  - type: Wieldable
   - type: GunWieldBonus
     minAngle: -7
     maxAngle: -15
@@ -427,10 +392,3 @@
         whitelist:
           tags:
             - N14CartridgePistol45
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: FollowDistance
-    backStrength: 6
