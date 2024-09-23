@@ -2,7 +2,7 @@
   name: minigun
   parent: BaseWeaponRifle
   id: BaseWeaponMinigun
-  description: An extremely heavy minigun with 3 barrels, it uses 5mm ammo. # TODO: Need to create projectiles, magazines and boxes for 5.56.
+  abstract: true
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Heavy/minigun.rsi
@@ -61,13 +61,11 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
-  - type: FollowDistance
-    backStrength: 6
 
 - type: entity
   name: avenger minigun
   parent: BaseWeaponMinigun
-  id: N14WeaponAvengerMinigun
+  id: N14WeaponMinigunAvenger
   description: An extremely heavy advanced minigun with multiple barrels, it uses 5mm ammo. # TODO: Need to create projectiles, magazines and boxes for 5.56.
   components:
   - type: Sprite
@@ -86,5 +84,3 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
-  - type: FollowDistance
-    backStrength: 6
