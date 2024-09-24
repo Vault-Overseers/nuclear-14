@@ -78,6 +78,7 @@ public sealed partial class ServerApi : IPostInjectInit
         RegisterActorHandler(HttpMethod.Get, "/admin/info", InfoHandler);
         RegisterHandler(HttpMethod.Get, "/admin/game_rules", GetGameRules);
         RegisterHandler(HttpMethod.Get, "/admin/presets", GetPresets);
+        RegisterHandler(HttpMethod.Get, "/admin/getckey", ActionGetCkey);
 
         // Post
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/round/start", ActionRoundStart);
@@ -497,6 +498,22 @@ public sealed partial class ServerApi : IPostInjectInit
             GameRules = gameRules
         });
     }
+    /// <summary>
+    ///    Returns a user ckey by NetUserId.
+    /// </summary>
+    private async Task ActionGetCkey(IStatusHandlerContext context)
+    {
+        var body = await ReadJson<GetCkeyActionBody>(context);
+        if (body == null)
+            return;
+
+        var data = await _locator.LookupIdAsync(new NetUserId(body.UserUid));
+
+        if (data != null)
+            await context.RespondJsonAsync(data.Username);
+        else
+            await context.RespondErrorAsync(HttpStatusCode.BadRequest);
+    }
 
 
     /// <summary>
@@ -668,6 +685,11 @@ public sealed partial class ServerApi : IPostInjectInit
         public string? Reason { get; init; }
     }
 
+    private sealed class GetCkeyActionBody
+    {
+        public required Guid UserUid { get; init; }
+    }
+    
     private sealed class BanActionBody
     {
         public int Minutes { get; init; }
