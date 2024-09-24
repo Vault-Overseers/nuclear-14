@@ -35,64 +35,75 @@
     
 # TODO: Reduce the healing rate of all these at some point compared to a proper bed.   
 - type: entity
-  parent: N14Bed
   id: N14Bedroll
-  name: Bedroll
-  description: A bed roll good for caravaning with. Not very comfy.
+  parent: RollerBed
+  name: bedroll
+  description: A bedroll for sleeping on the road. Not very comfy.
   components:
-  - type: Sprite
-    state: bedroll_unrolled
-  - type: Construction
-    graph: N14Bed
-    node: bedroll
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 10
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          N14BedrollItem:
-            min: 1
-            max: 1
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialCloth1:
-            min: 0
-            max: 2
-    
+    - type: HealOnBuckle
+      damage:
+        types:
+          Poison: -0.05
+          Blunt: -0.05
+    - type: Sprite
+      sprite: _Nuclear14/Structures/Furniture/bedsandchairs.rsi
+      noRot: true
+      layers:
+      - state: bedroll_unrolled
+        map: ["unfoldedLayer"]
+      - state: bedroll_rolled
+        map: ["foldedLayer"]
+      - state: bedroll_unrolled
+        map: ["buckledLayer"]
+        visible: false
+    - type: Appearance
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.2
+          density: 100
+          mask:
+          - TableMask
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 50
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MaterialCloth1:
+                  min: 0
+                  max: 2
+    - type: Strap
+      position: Down
+      rotation: -90
+      buckleOffset: "0.05,-0.10"
+      buckleOnInteractHand: False
+    - type: Construction
+      graph: N14Bed
+      node: bedroll
+
 - type: entity
-  parent: BaseItem
-  id: N14BedrollItem
-  name: Bedroll
-  description: A rolled up bed for travelling light. Lay it down somewhere to rest.
+  parent: N14Bedroll
+  id: N14BedrollFolded
+  suffix: rolled
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Structures/Furniture/bedsandchairs.rsi
-    state: bedroll_rolled
-  - type: Construction
-    graph: N14BedrollItem
-    node: bedroll
-  - type: Tag
-    tags:
-    - Bedroll
-  - type: Item
-    size: Huge
+  - type: Foldable
+    folded: true
+  - type: Strap
+    enabled: False
+
     
 - type: entity
   parent: N14Bed
   id: N14BedMattress0
   name: Mattress
-  description: A matress on the floor. Better than nothing.
+  description: A mattress on the floor. Better than nothing.
   components:
   - type: Sprite
     state: mattress0
@@ -104,7 +115,7 @@
   parent: N14Bed
   id: N14BedMattressDirty1
   name: Mattress
-  description: A matress on the floor. A little rough.
+  description: A mattress on the floor. A little rough.
   components:
   - type: Sprite
     state: mattress1
@@ -114,7 +125,7 @@
   parent: N14BedMattressDirty1
   id: N14BedMattressDirty2
   name: Mattress
-  description: A matress on the floor. Filthy.
+  description: A mattress on the floor. Filthy.
   components:
   - type: Sprite
     state: mattress2
@@ -123,7 +134,7 @@
   parent: N14BedMattressDirty1
   id: N14BedMattressDirty3
   name: Mattress
-  description: A matress on the floor. Is that blood?
+  description: A mattress on the floor. Is that blood?
   components:
   - type: Sprite
     state: mattress3
@@ -132,7 +143,7 @@
   parent: N14BedMattressDirty1
   id: N14BedMattressDirty4
   name: Mattress
-  description: A matress on the floor. That's definitely blood.
+  description: A mattress on the floor. That's definitely blood.
   components:
   - type: Sprite
     state: mattress4
@@ -142,7 +153,7 @@
   id: N14BedMattressDirty5
   suffix: mouldy
   name: Mattress
-  description: A matress on the floor. I'm not sleeping on that.
+  description: A mattress on the floor. I'm not sleeping on that.
   components:
   - type: Sprite
     state: mattress5
