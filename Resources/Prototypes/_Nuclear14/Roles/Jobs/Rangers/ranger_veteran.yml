@@ -12,6 +12,14 @@
   canBeAntag: false
   accessGroups:
   - NCR
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Rangers
+  requirements:
+    - !type:CharacterWhitelistRequirement
 
 - type: startingGear
   id: RangerVeteranGear
@@ -19,6 +27,7 @@
     head: N14ClothingHeadHatRangerHelmetEliteOld
     back: N14ClothingBackpackMilitaryFilled
     jumpsuit: N14ClothingUniformRangerV3
+    ears: N14ClothingHeadsetNCR
     shoes: N14ClothingBootsCombatFilled
     gloves: N14ClothingHandsGlovesCombat
     belt: ClothingBeltRevolverdesertfilled
@@ -28,7 +37,7 @@
     eyes: ClothingEyesGlassesSunglasses
     outerClothing: N14ClothingOuterRangerEliteOld
     id: N14IDBadgeNCRDesertRangerElite
-  innerClothingSkirt: N14ClothingOfficerUniformNCR #placeholder
+  innerClothingSkirt: N14ClothingUniformRangerV3 #placeholder
   satchel: N14ClothingBackpackSatchelMilitaryFilled
   duffelbag: N14ClothingBackpackDuffelMilitaryFilled
 
