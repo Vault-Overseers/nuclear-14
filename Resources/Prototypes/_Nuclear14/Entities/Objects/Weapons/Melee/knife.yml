@@ -144,7 +144,7 @@
 
 - type: entity
   name: brass Knife
-  parent: N14BaseKnife
+  parent: [N14BaseKnife, N14CombatKnife]
   id: N14BrassKnife
   description: Homemade brass knife with guards.
   components:
@@ -154,20 +154,3 @@
     state: icon
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/brass_knife.rsi
-  - type: Tag
-    tags:
-    - CombatKnife
-    - Knife
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    attackRate: 1.5
-    soundSwing:
-      collection: N14KnifeSwing
-  - type: EmbeddableProjectile
-    sound: /Audio/Weapons/star_hit.ogg
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Slash: 18
-  - type: DisarmMalus
-    malus: 0.225
