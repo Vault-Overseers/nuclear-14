@@ -5,10 +5,15 @@
   description: job-description-bos-washington-paladin
   playTimeTracker: BoSWashingtonPaladin
   requirements:
-    - !type:CharacterDepartmentTimeRequirement
+    - !type:DepartmentTimeRequirement
       department: BrotherhoodWashington
-      min: 54000 # 15 hours
+<<<<<<<< HEAD:Resources/Prototypes/_Nuclear14/Roles/Jobs/BrotherhoodWashington/captain.yml
+      time: 18000 # 5 hours
+  startingGear: BoSWashingtonCaptainGear
+========
+      min: 18000 # 5 hours
   startingGear: BoSWashingtonPaladinGear
+>>>>>>>> 749775c75d (fix washington accesses):Resources/Prototypes/_Nuclear14/Roles/Jobs/BrotherhoodWashington/paladin.yml
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
   supervisors: job-name-bos-washington
@@ -18,17 +23,6 @@
   - WashingtonKnight
   - WashingtonScribe
   - WashingtonPaladin
-  special:
-  - !type:AddComponentSpecial
-    components:
-      - type: NpcFactionMember
-        factions:
-          - BrotherhoodWashington
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSWashingtonPaladinGear
@@ -36,12 +30,11 @@
     jumpsuit: N14ClothingUniformJumpsuitBOSRed
     back: N14ClothingBackpackMilitary
     shoes: N14ClothingBootsCombatMK2Filled
-    head: N14ClothingHeadHatBrotherhoodHelmetMK2
+    head: N14ClothingHeadHatBrotherhoodCap
     outerClothing: N14ClothingOuterCombatArmorBOSMK2
-    id: N14IDBrotherhoodWashingtonHolotagPaladin
+    id: N14IDBrotherhoodWashingtonHolotagCaptain
     ears: N14ClothingHeadsetBOSWashington
     belt: ClothingBeltBoSWebbing
-    pocket1: NCRBoSWashingtonPaladinkits
 
 - type: playTimeTracker
   id: BoSWashingtonPaladin

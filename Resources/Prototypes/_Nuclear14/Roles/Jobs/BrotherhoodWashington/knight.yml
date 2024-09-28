@@ -5,10 +5,15 @@
   description: job-description-bos-washington-knight
   playTimeTracker: BoSWashingtonKnight
   requirements:
-    - !type:CharacterDepartmentTimeRequirement
+    - !type:DepartmentTimeRequirement
       department: BrotherhoodWashington
-      min: 18000
+<<<<<<<< HEAD:Resources/Prototypes/_Nuclear14/Roles/Jobs/BrotherhoodWashington/soldier.yml
+      time: 3600 # 1 hour as BosWashingtonRecruit
+  startingGear: BoSWashingtonSoldierGear
+========
+      min: 3600 # 1 hour as BoSWashingtonInitiate
   startingGear: BoSWashingtonKnightGear
+>>>>>>>> 749775c75d (fix washington accesses):Resources/Prototypes/_Nuclear14/Roles/Jobs/BrotherhoodWashington/knight.yml
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
   supervisors: job-supervisors-bos-washington
@@ -16,17 +21,6 @@
   access:
   - WashingtonInitiate
   - WashingtonKnight
-  special:
-  - !type:AddComponentSpecial
-    components:
-      - type: NpcFactionMember
-        factions:
-          - BrotherhoodWashington
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSWashingtonKnightGear
@@ -36,10 +30,9 @@
     shoes: N14ClothingBootsCombatMK2Filled
     hands: N14ClothingHandsGlovesCombat
     head: N14ClothingHeadHatBrotherhoodHelmet
-    outerClothing: N14ClothingOuterCombatArmorBOS
-    id: N14IDBrotherhoodWashingtonHolotagKnight
+    outerClothing: N14ClothingOuterCombatArmorBOSMK2
+    id: N14IDBrotherhoodWashingtonHolotagSoldier
     belt: ClothingBeltBoSWebbing
-    pocket1: NCRBoSWashingtonkits
 
 - type: playTimeTracker
   id: BoSWashingtonKnight
