@@ -39,7 +39,7 @@
     # locked: true
     # lockSlotId: lock_slot
   # - type: ItemSlots
-    # slots: 
+    # slots:
       # lock_slot:
         # name: cp-lock-slot-component-slot-name-default
         # disableEject: true
@@ -66,7 +66,7 @@
   # suffix: Tavern
   # components:
   # - type: ItemSlots
-    # slots: 
+    # slots:
       # lock_slot:
         # name: cp-lock-slot-component-slot-name-default
         # startingItem: CP14LockTavern
@@ -76,7 +76,7 @@
         # whitelist:
           # components:
           # - CPLock
-          
+
 - type: entity
   parent: N14DoorMetalBlueTall
   id: N14DoorMetalRedTall
@@ -89,7 +89,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorMetalBlueTall
   id: N14DoorMetalBlueAltTall
@@ -99,7 +99,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorMetalBlueTall
   id: N14DoorMetalBlueWindowTall
@@ -116,7 +116,7 @@
     occludes: false
   - type: Occluder
     enabled: false
-    
+
 - type: entity
   parent: N14DoorMetalBlueWindowTall
   id: N14DoorMetalGrateTall
@@ -128,7 +128,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorMetalBlueWindowTall
   id: N14DoorMetalBarTall
@@ -140,7 +140,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorMetalBlueWindowTall
   id: N14DoorMetalFenceTall
@@ -152,7 +152,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorMetalBlueWindowTall
   id: N14DoorMetalFenceBarbedTall
@@ -178,7 +178,26 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 1
+          N14ScrapBrass1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
 - type: entity
   parent: N14DoorWoodTall
   id: N14DoorWoodBlueTall
@@ -188,7 +207,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorWoodTall
   id: N14DoorWoodGreenTall
@@ -198,7 +217,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorWoodTall
   id: N14DoorWoodRedTall
@@ -208,7 +227,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 - type: entity
   parent: N14DoorWoodTall
   id: N14DoorWoodWhiteTall
@@ -218,7 +237,7 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-      
+
 # Cell Doors
 - type: entity
   parent: N14DoorMetalBlueTall
@@ -246,8 +265,8 @@
         layer:
         - AirlockLayer
         density: 1000
-        
-    
+
+
 - type: entity
   parent: N14DoorCell
   id: N14DoorCellRust

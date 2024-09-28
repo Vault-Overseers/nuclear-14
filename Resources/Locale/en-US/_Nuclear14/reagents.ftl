@@ -12,6 +12,8 @@ reagent-name-water-irradiated = irradiated water
 reagent-desc-water-irradiated = That'll put arms on your chest.
 reagent-name-water-filtered = filtered water
 reagent-desc-water-filtered = almost as good as it gets.
+reagent-name-water-salt = salt water
+reagent-desc-water-salt = salty water. Maybe I can boil it for salt.
 
 ## Soda
 reagent-name-nuka-cola = Nuka-Cola
@@ -72,6 +74,8 @@ reagent-name-milk-radstag = radstag milk
 reagent-desc-milk-radstag = Protein rich radstag milk.
 reagent-name-wasteland-blood = waster blood
 reagent-desc-wasteland-blood = waster blood
+reagent-name-nightstalker-blood = nightstalker blood
+reagent-desc-nightstalker-blood = blood from a nightstalker
 
 reagent-name-fireantnectar = Fire ant nectar
 reagent-desc-fireantnectar = Crystals of fire ant nectar.
@@ -103,8 +107,8 @@ reagent-name-extract-datura = datura extract
 reagent-desc-extract-datura = A root that is often harvested for its venom which is commonly put on melee weapons. Tastes terrible, it burns your mouth, it makes your stomach feel sick.
 reagent-name-extract-honey-mesquite-pod = honey mesquite pod extract
 reagent-desc-extract-honey-mesquite-pod = A vegetable that vaguely resembles a pea pod. Tastes of buckwheat and clover honey.
-reagent-name-extract-glowpepper = glowpepper juice 
-reagent-desc-extract-glowpepper = A glowing pepper; something tells you eating this would probably hurt your mouth. Tastes like glorious nuclear fire.
+reagent-name-extract-jalapeno-pepper = jalapeno pepper juice
+reagent-desc-extract-jalapeno-pepper = A green pepper, something tells you eating this would probably hurt your mouth. Tastes like pain, more pain, and even more pain.
 reagent-name-extract-maize = maize extract
 reagent-desc-extract-maize = Corn before there was corn, this vegetable is all sorts of different colours. Tastes slightly sweet and starchy.
 reagent-name-extract-mutfruit = mutfruit juice
@@ -127,6 +131,8 @@ reagent-name-extract-xander = xander extract
 reagent-desc-extract-xander = An edible root, it was obviously pulled from the ground at some point. Tastes similar to a potato, very starchy, but good to eat.
 reagent-name-extract-fungusrad = irradiated fungus extract
 reagent-desc-extract-fungusrad = An irradiated and glowing green fungus. Tastes revolting and mushy. It will gladly donate you some of it's green glow.
+reagent-name-extract-fungus = fungus extract
+reagent-desc-extract-fungus = An extract from fungus. Tastes alright, albeit mushy and is quite poisonous in it's current state.
 
 ## Teas
 reagent-name-tea-agave = agave tea
@@ -159,10 +165,17 @@ reagent-name-tea-fireantnectar = fire ant nectar
 reagent-desc-tea-fireantnectar = Crystalised nectar from a fire ant. Sugary.
 
 
-# Chems
+# Venoms
 reagent-name-firetoxin = fire toxin
 reagent-desc-firetoxin = The hot stuff from firey creatures.
 
+reagent-name-nightstalker-venom = nightstalker venom
+reagent-desc-nightstalker-venom = The venom of a nightstalker. While not nearly as potent as cazador venom, it can still knock you down to your knees.
+
+reagent-name-cazador-venom = cazador venom
+reagent-desc-cazador-venom = The venom of a cazador. Quick death is near guaranteed.
+
+# Chems
 reagent-name-healing-powder = healing powder
 reagent-desc-healing-powder = A powder made from crushed plants.
 
@@ -190,11 +203,14 @@ reagent-desc-healing-mixture = A mixture of reagents that makes you heal.
 reagent-name-dirty-stimpak = dirty stimpak
 reagent-desc-dirty-stimpak = A dirty mixture of reagents that makes you heal.
 
-reagent-name-robust-healing-mixture = robust healing mixture
+reagent-name-robust-healing-mixture = super stimpak
 reagent-desc-robust-healing-mixture = A mixture of reagents that makes you heal fast.
 
-reagent-name-ultra-robust-healing-mixture = ultra robust healing mixture
+reagent-name-ultra-robust-healing-mixture = ultra stimpak
 reagent-desc-ultra-robust-healing-mixture = A mixture of reagents that make you heal faster than you can feel it, however it comes with hefty side effects.
+
+reagent-name-hydra = hydra
+reagent-desc-hydra = A mixture of fungi, scorpion tail and nightstalker blood which provides moderate healing, but is quite painful and can be addictive.
 
 reagent-name-damage-resist-mixture = damage resistant mixture
 reagent-desc-damage-resist-mixture = A mixture of reagents that makes you resistant to damage.
@@ -202,8 +218,17 @@ reagent-desc-damage-resist-mixture = A mixture of reagents that makes you resist
 reagent-name-radaway = radaway
 reagent-desc-radaway = An odd reagent that cures your radiation.
 
+reagent-name-diluted-radaway = diluted radaway
+reagent-desc-diluted-radaway = A diluted odd reagent that cures your radiation at a slower rate.
+
 reagent-name-buffout = buffout
 reagent-desc-buffout = A reagent that makes you overall more robust, for a short period of time.
+
+reagent-name-buffjet = buffjet
+reagent-desc-buffjet = A reagent that combines the power of jet with the power of buffout, highly robust.
+
+reagent-name-bufftats = bufftats
+reagent-desc-bufftats = A reagent that combines the power of mentats with the power of buffout, highly robust.
 
 reagent-name-rad-x = rad-x
 reagent-desc-rad-x = A reagent that makes you resistant to radiation.
@@ -228,14 +253,14 @@ reagent-desc-daytripper = The perfect escape for your horrible life.
 
 
 # Meta
-reagent-name-movespeedmod-mixture = movementspeed modifying mixture
+reagent-name-movespeedmod-mixture = jet
 reagent-desc-movespeedmod-mixture = A mixture of reagents that makes you move fast.
 
-reagent-name-robust-movespeedmod-mixture = robust movementspeed modifying mixture
-reagent-desc-robust-movespeedmod-mixture = A mixture of reagents that makes you move very fast.
+reagent-name-robust-movespeedmod-mixture = turbo
+reagent-desc-robust-movespeedmod-mixture = A mixture of reagents that makes you move extremely fast.
 
-reagent-name-damage-mod-mixture = damage modifying mixture
-reagent-desc-damage-mod-mixture = A mixture of reagents that makes you deal more damage.
+reagent-name-damage-mod-mixture = psycho
+reagent-desc-damage-mod-mixture = A mixture of reagents that makes you stronger for a while.
 
 # Products
 reagent-name-abraxocleaner = Abraxo Cleaner
@@ -248,13 +273,36 @@ reagent-name-antiseptic = Antiseptic
 reagent-desc-antiseptic = A cleaning solution made from Abraxo Cleaner and some Rubbing Alcohol.
 
 # Ores, Metals, Materials
-materials-gunpowder = gunpowder
-materials-lead = lead
 materials-aluminum = aluminum
-materials-sulfur = sulfur
+materials-antchitin = chitin
+materials-charcoal = charcoal
+materials-exoskeleton = exoskeleton
+materials-gunpowder = gunpowder
+materials-leather = leather
+materials-lead = lead
+materials-lead-scrap = scrap lead
 materials-raw-lead = raw lead
+materials-raw-leather = raw leather
+materials-thread = thread
+materials-scrap-electronic = scrap electronic
+materials-N14iron = iron
+materials-raw-N14iron = raw iron
+materials-scrap-steel = scrap steel
+materials-copper = copper
+materials-scrap-copper = scrap copper
+materials-raw-N14copper = raw copper
+materials-N14gold = gold
+materials-scrap-gold = scrap gold
+materials-raw-N14gold = raw gold
+materials-N14brass = brass
+materials-scrap-brass = scrap brass
+materials-N14silver = silver
+materials-raw-N14silver = raw silver
+materials-scrap = scrap
 materials-raw-aluminum = raw aluminum
 materials-raw-sulfur = raw sulfur
+materials-sulfur = sulfur
+
 reagent-name-gunpowder = gunpowder
 reagent-desc-gunpowder = Small pellet gunpowder. Now just add lead.
 reagent-name-fertilizer = fertilizer
