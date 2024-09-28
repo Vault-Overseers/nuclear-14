@@ -96,7 +96,7 @@
     requirePower: true
     highVoltageNode: input
     mediumVoltageNode: output
-    
+
 # In Use
 - type: entity
   parent: N14BaseSubstation
@@ -114,7 +114,7 @@
   components:
   - type: Battery
     startingCharge: 0
-    
+
 # Rusty
 - type: entity
   parent: N14SubstationBasic
@@ -163,8 +163,7 @@
   components:
   - type: Battery
     startingCharge: 0
-    
-    
+
 # Destroyed
 - type: entity
   parent: MachineFrameDestroyed
@@ -176,6 +175,28 @@
     state: substation_destroyed
     drawdepth: Overdoors
     offset: 0, 0.5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14ScrapGold1:
+           min: 2
+           max: 5
+          N14ScrapElectronic1:
+           min: 3
+           max: 6
+          Scrap1:
+           min: 4
+           max: 7
 
 - type: entity
   parent: N14SubstationDestroyed
