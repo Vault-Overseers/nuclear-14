@@ -254,6 +254,28 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
 
+#MARK: MP Kits
+
+- type: entity
+  name: military police kit
+  parent: KitBase
+  id: KitMilitaryPolice
+  description: A crate containing basic equipment for NCR Military Police Officers
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+        amount: 3 #One more than the standard rifleman kit.
+      - id: N14CombatKnife
+      - id: N14BoxCardboardMREBoxCFilled
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
 #MARK: Ranger Kits
 
 - type: entity
