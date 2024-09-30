@@ -1,3 +1,4 @@
+#MARK: Basic Kits
 - type: entity
   name: rifleman kit
   parent: BaseItem
@@ -15,13 +16,11 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
 
-#M NCRA Cadet Kits
-
 - type: entity
-  name: cadet's rifleman kit
+  name: rifleman kit
   parent: KitBase
-  id: KitNCR_CadetRifleman
-  description: A crate containing all an NCR trooper needs to patrol the wasteland.
+  id: KitRifleman
+  description: A crate containing all an NCR soldier needs to patrol the wasteland.
   components:
   - type: Sprite
     state: rifleman
@@ -33,51 +32,45 @@
       - id: ClothingBeltNCRPouches
       - id: N14WeaponRifle556Service
       - id: Magazine556Rifle
-        amount: 3
+        amount: 4
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
+      - id: N14CombatKnife
       - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadXPill
-      - id: N14Bandage
-      - id: N14Flare
     sound:
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  name: cadet's stormtrooper kit
+  name: gunner kit
   parent: KitBase
-  id: KitNCR_CadetStorm
-  description: A crate containing all an NCR trooper needs to patrol the wasteland.
+  id: KitGunner
+  description: A crate containing all an NCR machine gunner needs to patrol the wasteland.
   components:
   - type: Sprite
-    state: rifleman
+    state: gunner
   - type: Item
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRVestWoods
-      - id: ClothingBeltNCRPouches
-      - id: N14WeaponRifle556Butchered
-      - id: Magazine556Rifle
+      - id: N14ClothingOuterNCRVestSnow
+      - id: ClothingBeltNCR
+      - id: N14WeaponLMG
+      - id: LMGMagazine556Rifle
         amount: 3
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
+      - id: N14CombatKnife
       - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadXPill
-      - id: N14Bandage
-      - id: N14Flare
     sound:
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  name: cadet's scout kit
+  name: marksman kit
   parent: KitBase
-  id: KitNCR_CadetScout
-  description: A crate containing all an NCR trooper needs to patrol the wasteland.
+  id: KitMarksman
+  description: A crate containing all an NCR marksman needs to patrol the wasteland.
   components:
   - type: Sprite
     state: marksman
@@ -87,109 +80,21 @@
     items:
       - id: N14ClothingOuterNCRVestSnow
       - id: ClothingBeltNCRBandolier
-      - id: N14WeaponSniper44LeverCarbine
-      - id: MagazineBox44
+      - id: N14WeaponSniperHunting
+      - id: MagazineBox308
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
+      - id: N14CombatKnife
       - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadXPill
-      - id: N14Bandage
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-# NCRA Soldier Kits
-
-- type: entity
-  name: soldier's rifleman kit
-  parent: KitBase
-  id: KitNCR_Rifleman
-  description: A crate containing all an NCR trooper needs to patrol the wasteland.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRPouchedVestSnow
-      - id: ClothingBeltNCR
-      - id: N14WeaponRifle556Service
-      - id: Magazine556Rifle
-        amount: 3
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadXPill
-      - id: N14Bandage
-      - id: N14Flare
     sound:
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  name: soldier's stormtrooper kit
+  name: pointman kit
   parent: KitBase
-  id: KitNCR_Storm
-  description: A crate containing all an NCR trooper needs to patrol the wasteland.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRPouchedVestWoods
-      - id: ClothingBeltNCR
-      - id: N14WeaponRifle556Butchered
-      - id: Magazine556Rifle
-        amount: 3
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadXPill
-      - id: N14Bandage
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: soldier's scout kit
-  parent: KitBase
-  id: KitNCR_Scout
-  description: A crate containing all an NCR trooper needs to patrol the wasteland.
-  components:
-  - type: Sprite
-    state: marksman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRPouchedVestSnow
-      - id: ClothingBeltNCR
-      - id: N14WeaponSniper44LeverCarbine
-      - id: MagazineBox44
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadXPill
-      - id: N14Bandage
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: soldier's pointman kit
-  parent: KitBase
-  id: KitNCR_Point
-  description: A crate containing all an NCR trooper needs to patrol the wasteland.
+  id: KitPointman
+  description: A crate containing all an NCR pointman needs to patrol the wasteland.
   components:
   - type: Sprite
     state: pointman
@@ -197,26 +102,23 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRVestWoods
+      - id: N14ClothingOuterNCRVestSnow
       - id: ClothingBeltNCRBandolier
       - id: N14WeaponShotgun
       - id: MagazineBox12gauge
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
+      - id: N14CombatKnife
       - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadXPill
-      - id: N14Bandage
-      - id: N14Flare
     sound:
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  name: soldier's charger kit
+  name: morale booster kit
   parent: KitBase
-  id: KitNCR_Morale
-  description: A crate containing all an NCR trooper needs to engage the enemy in glorious melee combat!
+  id: KitMorale
+  description: Only the most loyal troops of the NCR carry low quality equipment, a special troop made only to boost the morale during suicide charges.
   components:
   - type: Sprite
     state: pointman
@@ -226,157 +128,21 @@
     items:
       - id: N14ClothingOuterNCRPlateWoods
       - id: N14ClothingMaskPlate
-      - id: ClothingBeltNCR
+      - id: ClothingBeltNCRPouches
       - id: N14WastelandFlagSpear
-      - id: N14ClothingHandsGlovesBlackBiker
-      - id: N14Hatchet
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
-      - id: N14Psycho
+      - id: N14CombatKnife
       - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadXPill
-      - id: N14Bandage
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-# NCRA Engineer Kit
-
-- type: entity
-  name: engineer's mechanic kit
-  parent: KitBase
-  id: KitNCR_EngiMechanic
-  description: A crate containing all an NCR engineer needs to perform their job.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRPouchedVestSnow
-      - id: N14ClothingBeltUtilityFilled
-      - id: N14WeaponSMG9mm
-      - id: N14MagazineSMG9mm
-        amount: 3
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14Scrap
-      - id: SheetGlass10
-      - id: MaterialWoodPlank
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-      - id: N14Flare
     sound:
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  name: engineer's demolition kit
+  name: medic kit
   parent: KitBase
-  id: KitNCR_EngiDemo
-  description: A crate containing all an NCR engineer needs to perform their job.
-  components:
-  - type: Sprite
-    state: pointman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRPouchedVestSnow
-      - id: ClothingBeltNCR
-      - id: N14WeaponShotgun
-      - id: MagazineBox12gauge
-      - id: N14ToolboxMechanical
-      - id: C4
-      - id: N14ripper
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: engineer's breacher kit
-  parent: KitBase
-  id: KitNCR_EngiBreach
-  description: A crate containing all an NCR engineer needs to perform their job.
-  components:
-  - type: Sprite
-    state: pointman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRPouchedVestWoods
-      - id: ClothingBeltNCR
-      - id: N14WeaponShotgunAuto
-      - id: N14MagazineShotgun12
-        amount: 3
-      - id: N14ToolboxMechanical
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-# NCRA Medic Kits
-
-- type: entity
-  name: medic's sugeon kit
-  parent: KitBase
-  id: KitNCR_MedSurgeon
-  description: A crate containing all an NCR medic needs to perform their job.
-  components:
-  - type: Sprite
-    state: medic
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterCoatLab
-      - id: N14ClothingBeltMedicalFilled
-      - id: N14ClothingHandsGlovesNitrile
-      - id: N14ClothingHeadHatNCRBeretMedic
-      - id: N14WeaponSMG9mm
-      - id: N14MagazineSMG9mm
-        amount: 3
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14SuperStimpak
-      - id: Brutepack
-      - id: Ointment
-      - id: Bloodpack
-      - id: N14Antidote
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-        amount: 2
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: medic's field kit
-  parent: KitBase
-  id: KitNCR_MedDoctor
-  description: A crate containing all an NCR medic needs to perform their job.
+  id: KitMedic
+  description: A crate containing all an NCR medic needs to patrol the wasteland.
   components:
   - type: Sprite
     state: medic
@@ -385,217 +151,22 @@
   - type: SpawnItemsOnUse
     items:
       - id: N14ClothingOuterNCRPouchedVestWoods
-      - id: N14ClothingBeltMedicalFilled
-      - id: N14ClothingHandsGlovesNitrile
-      - id: N14ClothingHeadHatNCRBeretMedic
+      - id: ClothingBeltMedicalfilled
       - id: N14WeaponSMG9mm
       - id: N14MagazineSMG9mm
-        amount: 3
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: Brutepack
-      - id: Ointment
-      - id: Bloodpack
-      - id: N14Antidote
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-        amount: 2
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-        amount: 2
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: medic's combat kit
-  parent: KitBase
-  id: KitNCR_MedCombat
-  description: A crate containing all an NCR medic needs to perform their job.
-  components:
-  - type: Sprite
-    state: medic
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRPouchedVestWoods
-      - id: N14ClothingBeltMedicalFilled
-      - id: N14ClothingHeadHatNCRHelmetMetalMedic
-      - id: N14WeaponShotgun
-      - id: MagazineBox12gauge
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14ChemicalSyringeAntidote
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-        amount: 2
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-        amount: 2
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-# NCRA Weapon Specialist Kits
-
-- type: entity
-  name: specialist's gunner kit
-  parent: KitBase
-  id: KitNCR_WSGunner
-  description: A crate containing all an NCR weapon specialist needs to perform their job.
-  components:
-  - type: Sprite
-    state: gunner
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRPouchedVestSnow
-      - id: ClothingBeltNCR
-      - id: N14ClothingHeadHatNCRHelmetMetalWoods
-      - id: N14ClothingNeckCloakNCRWoods
-      - id: N14WeaponLMG
-      - id: LMGMagazine556Rifle
-        amount: 3
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: specialist's grenadier kit
-  parent: KitBase
-  id: KitNCR_WSGrenadier
-  description: A crate containing all an NCR weapon specialist needs to perform their job.
-  components:
-  - type: Sprite
-    state: pointman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRPouchedVestWoods
-      - id: ClothingBeltNCR
-      - id: N14ClothingHeadHatNCRHelmetMetalWoods
-      - id: N14ClothingNeckCloakNCRSnow
-      - id: N14WeaponRifleGrenade
-      - id: 40mmGrenadeFrag
         amount: 4
-      - id: SmokeGrenade
-      - id: N14WeaponPistol45Colt
-      - id: N14MagazinePistol45
-        amount: 2
+      - id: N14CombatKnife
       - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-      - id: N14Flare
     sound:
       path: /Audio/Effects/unwrap.ogg
 
-- type: entity
-  name: specialist's sniper kit
-  parent: KitBase
-  id: KitNCR_WSSniper
-  description: A crate containing all an NCR weapon specialist needs to perform their job.
-  components:
-  - type: Sprite
-    state: pointman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRPouchedVestWoods
-      - id: ClothingBeltNCR
-      - id: N14ClothingHeadHatNCRBeretRecon
-      - id: N14ClothingNeckCloakNCRSnow
-      - id: N14WeaponSniper50NCRRifle
-      - id: MagazineBox50
-      - id: N14WeaponPistol45Colt
-      - id: N14MagazinePistol45
-        amount: 2
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-# NCRA Sergeant Kits
+#MARK: Special Kits
 
 - type: entity
-  name: sergeant's assault kit
+  name: special rifleman kit
   parent: KitBase
-  id: KitNCR_SGTRifleman
-  description: A crate containing all an NCR sergeant needs to patrol the wasteland.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRPouchedVestWoods
-      - id: N14ClothingHeadHatNCRHelmetMetalSnow
-      - id: ClothingBeltNCR
-      - id: N14WeaponRifle556Carbine
-      - id: LongMagazine556Rifle
-        amount: 3
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: sergeant's gunner kit
-  parent: KitBase
-  id: KitNCR_SGTGunner
-  description: A crate containing all an NCR sergeant needs to patrol the wasteland.
-  components:
-  - type: Sprite
-    state: gunner
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRPouchedVestWoods
-      - id: N14ClothingHeadHatNCRHelmetMetalSnow
-      - id: ClothingBeltNCR
-      - id: N14WeaponLMGAutoRifle
-      - id: Magazine308Rifle
-        amount: 3
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: sergeant's scout kit
-  parent: KitBase
-  id: KitNCR_SGTScout
-  description: A crate containing all an NCR sergeant needs to patrol the wasteland.
+  id: KitSpecialRifleman
+  description: A crate containing advanced weaponry for high ranking troops and veterans.
   components:
   - type: Sprite
     state: marksman
@@ -603,28 +174,68 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRPouchedVestSnow
-      - id: N14ClothingHeadHatNCRBeretRecon
-      - id: ClothingBeltNCR
       - id: N14WeaponRifle308Battle
       - id: ClipMagazine308Rifle
-        amount: 6
+        amount: 5
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
+      - id: N14CombatKnife
       - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-      - id: N14Flare
     sound:
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  name: sergeant's pointman kit
+  name: special assault kit
   parent: KitBase
-  id: KitNCR_SGTPoint
-  description: A crate containing all an NCR sergeant needs to patrol the wasteland.
+  id: KitSpecialAssault
+  description: A crate containing advanced weaponry for high ranking troops and veterans.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponRifle556Carbine
+      - id: LongMagazine556Rifle
+        amount: 3
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+        amount: 2
+      - id: N14CombatKnife
+      - id: N14BoxCardboardMREBoxCFilled
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: special gunner kit
+  parent: KitBase
+  id: KitSpecialGunner
+  description: A crate containing advanced weaponry for high ranking troops and veterans.
+  components:
+  - type: Sprite
+    state: marksman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLMGAutoRifle
+      - id: Magazine308Rifle
+        amount: 3
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+        amount: 2
+      - id: N14CombatKnife
+      - id: N14BoxCardboardMREBoxCFilled
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: special pointman kit
+  parent: KitBase
+  id: KitSpecialPointman
+  description: A crate containing advanced weaponry for high ranking troops and veterans.
   components:
   - type: Sprite
     state: pointman
@@ -632,113 +243,46 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRPouchedVestWoods
-      - id: N14ClothingHeadHatNCRHelmetMetalWoods
-      - id: ClothingBeltNCR
-      - id: N14WeaponShotgunAuto
-      - id: N14MagazineShotgun12
+      - id: N14WeaponShotgunRiot
+      - id: N14MagazineShotgun20
         amount: 3
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
+      - id: N14CombatKnife
       - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-      - id: N14Flare
     sound:
       path: /Audio/Effects/unwrap.ogg
 
-# NCRA Lieutenant Kits
+#MARK: MP Kits
 
 - type: entity
-  name: lieutenant's basic kit
+  name: military police kit
   parent: KitBase
-  id: KitNCR_LTPencil
-  description: A crate containing all an NCR lieutenant needs to administrate their troops.
+  id: KitMilitaryPolice
+  description: A crate containing basic equipment for NCR Military Police Officers
   components:
   - type: Sprite
-    state: medic
+    state: rifleman
   - type: Item
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRTrenchCoat
-      - id: ClothingBeltRevolverCaptainfilled
-      - id: N14WeaponSniper44LeverCarbine
-      - id: MagazineBox44
-      - id: LuxuryPen
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+        amount: 3 #One more than the standard rifleman kit.
+      - id: N14CombatKnife
       - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14SuperStimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-        amount: 2
-      - id: N14Flare
     sound:
       path: /Audio/Effects/unwrap.ogg
 
-- type: entity
-  name: lieutenant's scout kit
-  parent: KitBase
-  id: KitNCR_LTScout
-  description: A crate containing all an NCR lieutenant needs to administrate their troops.
-  components:
-  - type: Sprite
-    state: medic
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRTrenchCoat
-      - id: ClothingBeltRevolverfilled
-      - id: N14WeaponRifle308Battle
-      - id: ClipMagazine308Rifle
-        amount: 6
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14SuperStimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-        amount: 2
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: lieutenant's tactical kit
-  parent: KitBase
-  id: KitNCR_LTTactical
-  description: A crate containing all an NCR lieutenant needs to administrate their troops.
-  components:
-  - type: Sprite
-    state: medic
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14ClothingOuterNCRCombatArmor
-      - id: ClothingBeltRevolverfilled
-      - id: N14WeaponRifle556Carbine
-      - id: LongMagazine556Rifle
-        amount: 3
-      - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
-      - id: N14SuperStimpak
-      - id: N14RadAwayBloodbag
-      - id: N14Bandage
-        amount: 2
-      - id: N14Flare
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-#MARK: NCR Ranger Kits
+#MARK: Ranger Kits
 
 - type: entity
   name: ranger service kit
   parent: KitBase
   id: KitServiceRanger
-  description: A crate containing advanced weaponry for members of the Rangers.
+  description: A crate containing advanced weaponry for members of the rangers.
   components:
   - type: Sprite
     state: rifleman
@@ -761,7 +305,7 @@
   name: ranger rifleman kit
   parent: KitBase
   id: KitRiflemanRanger
-  description: A crate containing advanced weaponry for members of the Rangers.
+  description: A crate containing advanced weaponry for members of the rangers.
   components:
   - type: Sprite
     state: rifleman
@@ -784,7 +328,7 @@
   name: ranger marksman kit
   parent: KitBase
   id: KitMarksmanRanger
-  description: A crate containing advanced weaponry for members of the Rangers.
+  description: A crate containing advanced weaponry for members of the rangers.
   components:
   - type: Sprite
     state: marksman
@@ -807,7 +351,7 @@
   name: ranger CQB specialist kit
   parent: KitBase
   id: KitCQBRanger
-  description: A crate containing advanced weaponry for members of the Rangers.
+  description: A crate containing advanced weaponry for members of the rangers.
   components:
   - type: Sprite
     state: pointman
@@ -832,7 +376,7 @@
   name: ranger trailman kit
   parent: KitBase
   id: KitTrailmanRanger
-  description: A crate containing advanced weaponry for members of the Rangers.
+  description: A crate containing advanced weaponry for members of the rangers.
   components:
   - type: Sprite
     state: rifleman
@@ -857,7 +401,7 @@
   name: modified ranger service kit
   parent: KitBase
   id: KitServiceRangerVeteran
-  description: A cache containing the belongings of a seasoned Ranger.
+  description: A cache containing the belongings of a seasoned ranger.
   components:
   - type: Sprite
     state: rifleman
@@ -881,7 +425,7 @@
   name: veteran ranger precision rifle kit
   parent: KitBase
   id: KitRiflemanRangerVeteran
-  description: A cache containing the belongings of a Veteran Ranger.
+  description: A cache containing the belongings of a veteran ranger.
   components:
   - type: Sprite
     state: rifleman
@@ -905,7 +449,7 @@
   name: veteran ranger heavy sniper kit
   parent: KitBase
   id: KitHeavySniperRangerVeteran
-  description: A cache containing the belongings of a Veteran Ranger.
+  description: A cache containing the belongings of a veteran ranger.
   components:
   - type: Sprite
     state: marksman
@@ -929,7 +473,7 @@
   name: veteran ranger assault kit
   parent: KitBase
   id: KitAssaultRangerVeteran
-  description: A cache containing the belongings of a Veteran Ranger.
+  description: A cache containing the belongings of a veteran ranger.
   components:
   - type: Sprite
     state: rifleman
@@ -953,7 +497,7 @@
   name: veteran ranger marksman kit
   parent: KitBase
   id: KitMarksmanRangerVeteran
-  description: A cache containing the belongings of a Veteran Ranger.
+  description: A cache containing the belongings of a veteran ranger.
   components:
   - type: Sprite
     state: marksman
@@ -1002,7 +546,7 @@
   name: Brotherhood ranged issue kit
   parent: KitBase
   id: KitRangedBoSMidwest
-  description: A crate containing everything a member of the Brotherhood might need for long-range firefights.
+  description: A crate containing everything a member of the Brotherhood might need for open range fights.
   components:
   - type: Sprite
     state: marksman
@@ -1023,7 +567,7 @@
   name: Brotherhood carbine issue kit
   parent: KitBase
   id: KitCarbineBoSMidwest
-  description: A crate containing everything a member of the Brotherhood might need for their ballistic needs.
+  description: A crate containing everything a member of the Brotherhood might need for your ballistic needs.
   components:
   - type: Sprite
     state: marksman
@@ -1044,7 +588,7 @@
   name: Brotherhood laser issue kit
   parent: KitBase
   id: KitLaserBoSMidwest
-  description: A crate containing everything a member of the Brotherhood might need to lay down some laser and lead.
+  description: A crate containing everything a mamber of the Brotherhood AER-9 might need too lay down some laser and lead.
   components:
   - type: Sprite
     state: marksman
@@ -1067,7 +611,7 @@
   name: Brotherhood scribe medical kit
   parent: KitBase
   id: KitScribeMedicBoSMidwest
-  description: A crate containing everything a member of the Brotherhood Scribes might need for keeping the fighting forces alive.
+  description: A crate containing everything a member of the Brotherhood scribes might need for keeping the fighting forces alive.
   components:
   - type: Sprite
     state: medic
@@ -1083,7 +627,7 @@
       - id: ClothingHandsGlovesChemist
       - id: ClothingHeadBrotherhoodScribeHeadset
       - id: N14ClothingBootsBlack
-      - id: N14ClothingOuterBrotherhoodMidwestMedicalScribeRobes
+      - id: N14ClothingOuterBosScribe
       - id: N14CombatKnife
       - id: N14Stimpak
       - id: N14BoxCardboardMREBoxKFilled
@@ -1093,7 +637,7 @@
   name: Brotherhood scribe field kit
   parent: KitBase
   id: KitScribeFieldBoSMidwest
-  description: A crate containing everything a member of the Brotherhood Scribes might need for supporting their unit in the field.
+  description: A crate containing everything a member of the Brotherhood scribes might need for supporting your unit in the field.
   components:
   - type: Sprite
     state: rifleman
@@ -1104,25 +648,20 @@
       - id: N14WeaponLaserPistol
       - id: N14PowerCellSmall
         amount: 2
-      - id: Gauze
-      - id: N14AloeSalve
-      - id: Brutepack
+      - id: N14ClothingBeltMedicalFilled
       - id: ClothingHandsGlovesFingerless
       - id: N14ClothingHeadHatBrotherhoodFieldCap
-      - id: N14ClothingOuterBrotherhoodMidwestFieldScribeCoat
+      - id: N14ClothingOuterBrotherhoodFieldScribeCoat
       - id: N14CombatKnife
       - id: N14Stimpak
-        amount: 2
       - id: N14BoxCardboardMREBoxKFilled
-      - id: N14ClothingBeltBoSWebbing
-      - id: N14ClothingUniformJumpsuitBOSFieldScribe
 
 #engineer scribe
 - type: entity
   name: Brotherhood scribe engineer kit
   parent: KitBase
   id: KitScribeEngineerBoSMidwest
-  description: A crate containing everything a member of the Brotherhood Scribes might need for their general engineering needs.
+  description: A crate containing everything a member of the Brotherhood scribes might need for their general engineering needs.
   components:
   - type: Sprite
     state: rifleman
@@ -1181,198 +720,5 @@
       - id: N14MagazinePistol12mm
         amount: 2
       - id: MagazineBox556
-      - id: N14Stimpak
-      - id: N14BoxCardboardMREBoxKFilled
-
-#MARK: WBoS Kits
-- type: entity
-  name: Brotherhood basic issue kit
-  parent: KitBase
-  id: KitDefaultBoSWashington
-  description: A crate containing everything a member of the Brotherhood might need.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponPlasmaRifle
-      - id: N14WeaponLaserPistol
-      - id: N14PlasmaCartridge
-        amount: 3
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14Stimpak
-      - id: N14BoxCardboardMREBoxKFilled
-
-- type: entity
-  name: Brotherhood carbine issue kit
-  parent: KitBase
-  id: KitCarbineBoSWashington
-  description: A crate containing everything a member of the Brotherhood might need for their ballistic needs.
-  components:
-  - type: Sprite
-    state: marksman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponRifle556CarbineOld
-      - id: N14WeaponPistol10mm
-      - id: Magazine556Rifle
-        amount: 3
-      - id: N14MagazinePistol10mm
-        amount: 2
-      - id: N14Stimpak
-      - id: N14BoxCardboardMREBoxKFilled
-
-#MARK: WBoS Scribe Kits
-#medic
-- type: entity
-  name: Brotherhood scribe medical kit
-  parent: KitBase
-  id: KitScribeMedicBoSWashington
-  description: A crate containing everything a member of the Brotherhood Scribes might need for keeping the fighting forces alive.
-  components:
-  - type: Sprite
-    state: medic
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14ClothingBeltMedicalFilled
-      - id: N14MedkitBruteFilled
-      - id: ClothingHandsGlovesChemist
-      - id: ClothingHeadBrotherhoodScribeHeadset
-      - id: N14ClothingBootsBlack
-      - id: N14ClothingOuterBrotherhoodMedicalScribeRobes
-      - id: N14CombatKnife
-      - id: N14Stimpak
-      - id: N14BoxCardboardMREBoxKFilled
-
-#field scribe
-- type: entity
-  name: Brotherhood scribe field kit
-  parent: KitBase
-  id: KitScribeFieldBoSWashington
-  description: A crate containing everything a member of the Brotherhood Scribes might need for supporting their unit in the field.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: ClothingHandsGlovesFingerless
-      - id: N14ClothingHeadHatBrotherhoodFieldCap
-      - id: N14ClothingOuterBrotherhoodFieldScribeCoat
-      - id: N14CombatKnife
-      - id: N14Stimpak
-        amount: 2
-      - id: Gauze
-      - id: N14AloeSalve
-      - id: Brutepack
-      - id: N14BoxCardboardMREBoxKFilled
-      - id: N14ClothingBeltBoSWebbing
-      - id: N14ClothingUniformJumpsuitBOSWashingtonFieldScribe
-
-#engineer scribe
-- type: entity
-  name: Brotherhood scribe engineer kit
-  parent: KitBase
-  id: KitScribeEngineerBoSWashington
-  description: A crate containing everything a member of the Brotherhood Scribes might need for their general engineering needs.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: ClothingHeadBrotherhoodScribeHeadset
-      - id: N14ClothingOuterBosScribe
-      - id: ClothingHandsGlovesCombat
-      - id: N14ClothingBeltUtilityFilled
-      - id: SheetSteel10
-      - id: SheetPlastic10
-      - id: N14FireAxe
-      - id: N14Stimpak
-      - id: N14BoxCardboardMREBoxKFilled
-
-#MARK: WBoS CO & Paladin Kits
-#plasma
-- type: entity
-  name: Brotherhood Paladin plasma kit
-  parent: KitBase
-  id: KitPlasmaBoSWashington
-  description: A crate containing everything a paladin of the Brotherhood might desire for their insane need of bullets downrange.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponPlasmaRifleAuto
-      - id: N14PlasmaCartridge
-        amount: 3
-      - id: N14WeaponPistol10mm
-      - id: N14MagazinePistol10mm
-        amount: 2
-      - id: N14Stimpak
-      - id: N14BoxCardboardMREBoxKFilled
-
-#paladin ballistics
-- type: entity
-  name: Brotherhood paladin ballistics kit
-  parent: KitBase
-  id: KitAssaultBoSWashington
-  description: A crate containing everything a paladin of the Brotherhood might desire for their insane need of bullets downrange.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponRifle556Carbine
-      - id: LongMagazine556Rifle
-        amount: 3
-      - id: N14WeaponPistol12mm
-      - id: N14MagazinePistol12mm
-        amount: 2
-      - id: MagazineBox556
-      - id: N14Stimpak
-      - id: N14BoxCardboardMREBoxKFilled
-
-#paladin marksman
-- type: entity
-  name: Brotherhood Paladin marksman kit
-  parent: KitBase
-  id: KitMarksmanBoSWashington
-  description: A crate containing everything a paladin of the Brotherhood might desire for their insane need of bullets downrange.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserRifleWattz2000
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellFocused
-        amount: 3
-      - id: N14PowerCellSmall
-        amount: 2
       - id: N14Stimpak
       - id: N14BoxCardboardMREBoxKFilled
