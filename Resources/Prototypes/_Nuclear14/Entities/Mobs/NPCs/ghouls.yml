@@ -92,9 +92,10 @@
     animation: WeaponArcThrust
     damage:
       types:
-        Slash: 14
+        Brute: 20
+        Slash: 5
         Structural: 5
-    range: 1
+    range: 2
   - type: Sprite
     sprite: _Nuclear14/Mobs/Ghouls/maypole.rsi
     layers:
@@ -107,3 +108,21 @@
     noMovementLayers:
       movement:
         state: sleeping
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2
+    baseSprintSpeed : 3
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.7
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
