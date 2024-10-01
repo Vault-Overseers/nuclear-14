@@ -5,22 +5,13 @@
   description: job-description-bos-washington-knight
   playTimeTracker: BoSWashingtonKnight
   requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-      - Human
-      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodWashington
       min: 3600 # 1 hour as BoSWashingtonInitiate
-    - !type:CharacterLogicOrRequirement
-      requirements:
-        - !type:CharacterSpeciesRequirement
-          species:
-            - Human
   startingGear: BoSWashingtonKnightGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
-  supervisors: job-supervisors-bos-wash-knight
+  supervisors: job-supervisors-bos-washington
   canBeAntag: false
   access:
   - WashingtonInitiate
@@ -31,6 +22,11 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodWashington
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSWashingtonKnightGear
@@ -40,10 +36,9 @@
     shoes: N14ClothingBootsCombatMK2Filled
     hands: N14ClothingHandsGlovesCombat
     head: N14ClothingHeadHatBrotherhoodHelmet
-    outerClothing: N14ClothingOuterCombatArmorBOS
+    outerClothing: N14ClothingOuterCombatArmorBOSMK2
     id: N14IDBrotherhoodWashingtonHolotagKnight
     belt: ClothingBeltBoSWebbing
-    pocket1: NCRBoSWashingtonkits
 
 - type: playTimeTracker
   id: BoSWashingtonKnight

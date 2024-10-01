@@ -4,16 +4,13 @@
   description: job-description-vault-security
   playTimeTracker: VaultSecurity
   requirements:
-  - !type:CharacterSpeciesRequirement
-    species:
-    - Human
-  - !type:CharacterDepartmentTimeRequirement
-    department: Vault
-    min: 18000 # 5 hours
+    - !type:CharacterDepartmentTimeRequirement
+      department: Vault
+      min: 7200 # 2 hours
   startingGear: VaultSecurityGear
   alwaysUseSpawner: true
   icon: "JobIconSecurityOfficer"
-  supervisors: job-supervisors-vault
+  supervisors: job-supervisors-overseer
   canBeAntag: false
   access:
   - VaultDweller
@@ -24,6 +21,11 @@
       - type: NpcFactionMember
         factions:
           - Vault
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: VaultSecurityGear
