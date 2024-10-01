@@ -93,11 +93,11 @@
   parent: N14MobRobotHostileMelee
   id: N14MobRobotAssaultronHostile
   name: Assaultron
-  description: Horrifying. Fast. Deadly.
+  description: Horrifying.
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
-    baseSprintSpeed : 6
+    baseSprintSpeed : 4
   # - type: GhostRole
     # prob: 1
     # makeSentient: true
@@ -226,10 +226,6 @@
       map: ["light"]
       visible: false
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-    minAngle: 6
-    maxAngle: 12
-    angleIncrease: 2
-    angleDecay: 4
     fireRate: 1
     soundGunshot:
       collection: N14RechargerRifleGunshot
@@ -239,12 +235,12 @@
       - SemiAuto
   - type: BasicEntityAmmoProvider
     proto: BulletLaser
-    capacity: 9
-    count: 9
+    capacity: 12
+    count: 12
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 2
+    rechargeCooldown: 1
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -341,25 +337,20 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-    minAngle: 6
-    maxAngle: 12
-    angleIncrease: 2
-    angleDecay: 4
     fireRate: 1
-    soundGunshot:
-      collection: N14RechargerRifleGunshot
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/mk58.ogg
     useKey: false
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
   - type: BasicEntityAmmoProvider
-    proto: BulletLaser
-    capacity: 9
-    count: 9
+    proto: N14CartridgePistol9
+    capacity: 12
+    count: 12
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 2
+    rechargeCooldown: 1
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
   - type: Loadout
     prototypes:
       - RaiderPistolGear
@@ -397,11 +388,7 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-    minAngle: 6
-    maxAngle: 12
-    angleIncrease: 2
-    angleDecay: 4
-    fireRate: 1
+    fireRate: 0.5
     soundGunshot:
       collection: N14PlasmaPistolGunshot
     useKey: false
@@ -410,12 +397,12 @@
       - SemiAuto
   - type: BasicEntityAmmoProvider
     proto: BulletPlasma
-    capacity: 9
-    count: 9
+    capacity: 12
+    count: 12
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 2
+    rechargeCooldown: 1
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -424,7 +411,7 @@
   parent: N14MobRobotHostile
   id: N14MobRobotRobobrain
   name: Robobrain
-  description: A military Robobrain outfitted with a laser weapon.
+  description: A military Robobrain fitted out with a laser weapon.
   suffix: hostile, laser
   components:
   - type: MovementSpeedModifier
@@ -450,10 +437,6 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-    minAngle: 6
-    maxAngle: 12
-    angleIncrease: 2
-    angleDecay: 4
     fireRate: 1
     soundGunshot:
       collection: N14RechargerRifleGunshot
@@ -463,12 +446,12 @@
       - SemiAuto
   - type: BasicEntityAmmoProvider
     proto: BulletLaser
-    capacity: 9
-    count: 9
+    capacity: 12
+    count: 12
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 2
+    rechargeCooldown: 1
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -496,11 +479,7 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-    minAngle: 6
-    maxAngle: 12
-    angleIncrease: 2
-    angleDecay: 4
-    fireRate: 1
+    fireRate: 0.5
     soundGunshot:
       collection: N14RechargerRifleGunshot
     useKey: false
@@ -509,12 +488,12 @@
       - SemiAuto
   - type: BasicEntityAmmoProvider
     proto: BulletLaser
-    capacity: 9
-    count: 9
+    capacity: 12
+    count: 12
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 2
+    rechargeCooldown: 1
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
