@@ -250,7 +250,8 @@ public sealed class MoodSystem : EntitySystem
         if (_debugMode)
             return;
 
-        if (TryComp<MobThresholdsComponent>(uid, out var mobThresholdsComponent)
+        if (_config.GetCVar(CCVars.MoodModifiesThresholds)
+            && TryComp<MobThresholdsComponent>(uid, out var mobThresholdsComponent)
             && _mobThreshold.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold, mobThresholdsComponent))
             component.CritThresholdBeforeModify = critThreshold.Value;
 
@@ -343,7 +344,8 @@ public sealed class MoodSystem : EntitySystem
 
     private void SetCritThreshold(EntityUid uid, MoodComponent component, int modifier)
     {
-        if (!TryComp<MobThresholdsComponent>(uid, out var mobThresholds)
+        if (!_config.GetCVar(CCVars.MoodModifiesThresholds)
+            || !TryComp<MobThresholdsComponent>(uid, out var mobThresholds)
             || !_mobThreshold.TryGetThresholdForState(uid, MobState.Critical, out var key))
             return;
 
