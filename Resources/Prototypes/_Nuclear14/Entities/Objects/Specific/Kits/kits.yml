@@ -28,9 +28,9 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRVest
+      - id: N14ClothingOuterNCRVestSnow
       - id: ClothingBeltNCRPouches
-      - id: N14WeaponService
+      - id: N14WeaponRifle556Service
       - id: Magazine556Rifle
         amount: 4
       - id: N14WeaponPistol9mm
@@ -53,7 +53,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRVest
+      - id: N14ClothingOuterNCRVestSnow
       - id: ClothingBeltNCR
       - id: N14WeaponLMG
       - id: LMGMagazine556Rifle
@@ -78,7 +78,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRVest
+      - id: N14ClothingOuterNCRVestSnow
       - id: ClothingBeltNCRBandolier
       - id: N14WeaponSniperHunting
       - id: MagazineBox308
@@ -102,7 +102,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRVest
+      - id: N14ClothingOuterNCRVestSnow
       - id: ClothingBeltNCRBandolier
       - id: N14WeaponShotgun
       - id: MagazineBox12gauge
@@ -126,7 +126,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRPlate
+      - id: N14ClothingOuterNCRPlateWoods
       - id: N14ClothingMaskPlate
       - id: ClothingBeltNCRPouches
       - id: N14WastelandFlagSpear
@@ -150,9 +150,9 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRPouchedVest
+      - id: N14ClothingOuterNCRPouchedVestWoods
       - id: ClothingBeltMedicalfilled
-      - id: N14weapon9mmSMG
+      - id: N14WeaponSMG9mm
       - id: N14MagazineSMG9mm
         amount: 4
       - id: N14CombatKnife
@@ -174,7 +174,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponBattleRifle
+      - id: N14WeaponRifle308Battle
       - id: ClipMagazine308Rifle
         amount: 5
       - id: N14WeaponPistol9mm
@@ -197,7 +197,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponCarbine
+      - id: N14WeaponRifle556Carbine
       - id: LongMagazine556Rifle
         amount: 3
       - id: N14WeaponPistol9mm
@@ -220,7 +220,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponAutoRifle
+      - id: N14WeaponLMGAutoRifle
       - id: Magazine308Rifle
         amount: 3
       - id: N14WeaponPistol9mm
@@ -243,12 +243,34 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponRiotShotgun
+      - id: N14WeaponShotgunRiot
       - id: N14MagazineShotgun20
         amount: 3
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
+      - id: N14CombatKnife
+      - id: N14BoxCardboardMREBoxCFilled
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+#MARK: MP Kits
+
+- type: entity
+  name: military police kit
+  parent: KitBase
+  id: KitMilitaryPolice
+  description: A crate containing basic equipment for NCR Military Police Officers
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+        amount: 3 #One more than the standard rifleman kit.
       - id: N14CombatKnife
       - id: N14BoxCardboardMREBoxCFilled
     sound:
@@ -269,7 +291,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: ClothingBeltNCR
-      - id: N14WeaponService
+      - id: N14WeaponRifle556Service
       - id: Magazine556Rifle
         amount: 4
       - id: MagazineBox556
@@ -292,7 +314,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: ClothingBeltNCR
-      - id: N14WeaponCarbine
+      - id: N14WeaponRifle556Carbine
       - id: LongMagazine556Rifle
         amount: 4
       - id: MagazineBox556
@@ -315,7 +337,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: ClothingBeltNCR
-      - id: N14WeaponMarksman
+      - id: N14WeaponRifle762Marksman
       - id: Magazine762Rifle
         amount: 4
       - id: MagazineBox762
@@ -338,7 +360,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: ClothingBeltNCRPouches
-      - id: N14WeaponRiotShotgun
+      - id: N14WeaponShotgunRiot
       - id: N14MagazineShotgun20
         amount: 4
       - id: MagazineBox20gauge
@@ -363,7 +385,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: ClothingBeltNCRPouches
-      - id: N14WeaponLeverCarbine
+      - id: N14WeaponSniper44LeverCarbine
       - id: MagazineBox44
         amount: 3
       - id: N14Stimpak
@@ -388,7 +410,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: ClothingBeltNCR
-      - id: N14WeaponScout
+      - id: N14WeaponRifle556Scout
       - id: Magazine556Rifle
         amount: 4
       - id: MagazineBox556
@@ -412,7 +434,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: ClothingBeltNCRPouches
-      - id: N14WeaponBrushGun
+      - id: N14WeaponSniper45-70BrushGun
       - id: SpeedLoader45-70Tube
         amount: 4
       - id: MagazineBox45-70
@@ -436,7 +458,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: ClothingBeltNCRPouches
-      - id: N14WeaponAntiMateriel
+      - id: N14WeaponSniper50AntiMateriel
       - id: N14Magazine50AMR
         amount: 4
       - id: MagazineBox50
@@ -460,7 +482,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: ClothingBeltNCR
-      - id: N14WeaponCarbine
+      - id: N14WeaponRifle556Carbine
       - id: LongMagazine556Rifle
         amount: 4
       - id: MagazineBox556
@@ -484,7 +506,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: ClothingBeltNCR
-      - id: N14WeaponMarksman
+      - id: N14WeaponRifle762Marksman
       - id: Magazine762Rifle
         amount: 4
       - id: MagazineBox762
@@ -518,7 +540,7 @@
       - id: N14PowerCellSmall
         amount: 2
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled
 
 - type: entity
   name: Brotherhood ranged issue kit
@@ -532,14 +554,14 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponWattz2000
+      - id: N14WeaponLaserRifleWattz2000
       - id: N14WeaponLaserPistol
       - id: N14PowerCellFocused
         amount: 3
       - id: N14PowerCellSmall
         amount: 2
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled
 
 - type: entity
   name: Brotherhood carbine issue kit
@@ -553,14 +575,35 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponOldCarbine
+      - id: N14WeaponRifle556CarbineOld
       - id: N14WeaponLaserPistol
       - id: Magazine556Rifle
         amount: 3
       - id: N14PowerCellSmall
         amount: 2
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled
+
+- type: entity
+  name: Brotherhood laser issue kit
+  parent: KitBase
+  id: KitLaserBoSMidwest
+  description: A crate containing everything a mamber of the Brotherhood AER-9 might need too lay down some laser and lead.
+  components:
+  - type: Sprite
+    state: marksman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserRifleAuto
+      - id: N14WeaponPistol12mm
+      - id: N14PowerCellHigh
+        amount: 3
+      - id: N14MagazinePistol12mm
+        amount: 2
+      - id: N14Stimpak
+      - id: N14BoxCardboardMREBoxKFilled
 
 #MARK: BoS Scribe Kits
 #medic
@@ -576,8 +619,8 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponRevolver10mm
-      - id: SpeedLoader10
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
         amount: 2
       - id: N14ClothingBeltMedicalFilled
       - id: N14MedkitBruteFilled
@@ -587,7 +630,7 @@
       - id: N14ClothingOuterBosScribe
       - id: N14CombatKnife
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled
 
 #field scribe
 - type: entity
@@ -602,15 +645,16 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponSniperVarmint
-      - id: MagazineBox556
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
+        amount: 2
       - id: N14ClothingBeltMedicalFilled
       - id: ClothingHandsGlovesFingerless
       - id: N14ClothingHeadHatBrotherhoodFieldCap
       - id: N14ClothingOuterBrotherhoodFieldScribeCoat
       - id: N14CombatKnife
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled
 
 #engineer scribe
 - type: entity
@@ -636,28 +680,27 @@
       - id: SheetPlastic10
       - id: N14FireAxe
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled
 
 #MARK: BoS Midwest CO Kits
-- type: entity
-  name: Brotherhood commander plasma kit
-  parent: KitBase
-  id: KitPlasmaBoSMidwest
-  description: A crate containing everything a leader of Brotherhood might need for his plasma induced rage.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponPlasmaRifle
-      - id: N14WeaponPlasmaPistol
-      - id: N14PlasmaCartridge
-        amount: 4
-      - id: N14Stimpak
-      - id: BoxMRE
-
+# - type: entity
+#   name: Brotherhood commander plasma kit
+#   parent: KitBase
+#   id: KitPlasmaBoSMidwest
+#   description: A crate containing everything a leader of Brotherhood might need for his plasma induced rage.
+#   components:
+#   - type: Sprite
+#     state: rifleman
+#   - type: Item
+#     size: Huge
+#   - type: SpawnItemsOnUse
+#     items:
+#       - id: N14WeaponPlasmaRifle
+#       - id: N14WeaponPlasmaPistol
+#       - id: N14PlasmaCartridge
+#         amount: 4
+#       - id: N14Stimpak
+#       - id: N14BoxCardboardMREBoxKFilled
 - type: entity
   name: Brotherhood paladin ballistics kit
   parent: KitBase
@@ -670,7 +713,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponCarbine
+      - id: N14WeaponRifle556Carbine
       - id: LongMagazine556Rifle
         amount: 3
       - id: N14WeaponPistol12mm
@@ -678,4 +721,4 @@
         amount: 2
       - id: MagazineBox556
       - id: N14Stimpak
-      - id: BoxMRE
+      - id: N14BoxCardboardMREBoxKFilled

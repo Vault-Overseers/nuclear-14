@@ -1,6 +1,14 @@
 - type: entity
-  name: 9mm revolver
   parent: BaseWeaponRevolver
+  id: N14WeaponRevolverBase
+  abstract: true
+  components:
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
+  name: 9mm revolver
+  parent: N14WeaponRevolverBase
   id: N14WeaponRevolver9mm
   description: A small, compact six shooter. Uses 9mm ammo.
   components:
@@ -14,15 +22,23 @@
         - N14CartridgePistol9
         - SpeedLoader9
     proto: N14CartridgePistol9
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,0,1
+    - 0,0,0,1
   - type: Gun
+    minAngle: 1
+    maxAngle: 5
+    angleIncrease: 0.5
+    angleDecay: 4
+    fireRate: 3
     soundGunshot:
       collection: N14Revolver9mmGunshot
-  - type: FollowDistance
-    backStrength: 6
 
 - type: entity
   name: 10mm revolver
-  parent: BaseWeaponRevolver
+  parent: N14WeaponRevolverBase
   id: N14WeaponRevolver10mm
   description: The first prototype for the semiauto 10mm pistol, Uses 10mm ammo.
   components:
@@ -37,15 +53,29 @@
         - SpeedLoader10
     proto: N14CartridgePistol10
   - type: Gun
+    fireRate: 3
     soundGunshot:
       collection: N14Revolver10mmGunshot
-  - type: FollowDistance
-    backStrength: 6
+      
+- type: entity
+  parent: N14WeaponRevolver10mm
+  id: N14WeaponRevolver10mmEmpty
+  components:
+  - type: RevolverAmmoProvider
+    proto: null
+    chambers: [ null, null, null, null, null, null ]
+    whitelist:
+      tags:
+      - N14CartridgePistol10
+      - SpeedLoader10
+  - type: Construction
+    graph: N14WeaponRevolver10mmEmpty
+    node: start
 
 - type: entity
   name: magnum revolver
-  parent: BaseWeaponRevolver
-  id: N14WeaponRevolverMagnun
+  parent: N14WeaponRevolverBase
+  id: N14WeaponRevolver44Magnun
   description: The Big Iron. Uses .44 magnum ammo.
   components:
   - type: Sprite
@@ -61,13 +91,11 @@
   - type: Gun
     soundGunshot:
       collection: N14RevolverMagnunGunshot
-  - type: FollowDistance
-    backStrength: 6
 
 - type: entity
   name: captain revolver
-  parent: BaseWeaponRevolver
-  id: N14WeaponRevolverCaptainMagnun
+  parent: N14WeaponRevolverBase
+  id: N14WeaponRevolver44MagnumCaptain
   description: A true freedom fighter carries his flag everywhere, even on his gun. Uses .44 magnum ammo.
   components:
   - type: Gun
@@ -85,13 +113,11 @@
         - N14Cartridge44Magnum
         - SpeedLoader44
     proto: N14Cartridge44Magnum
-  - type: FollowDistance
-    backStrength: 6
 
 - type: entity
   name: hunting revolver
-  parent: BaseWeaponRevolver
-  id: N14WeaponHunterRevolver
+  parent: N14WeaponRevolverBase
+  id: N14WeaponRevolver45-70Hunter
   description: A heavy revolver with a long cannon designed to hunt small animals, but it also works for people. Uses .45-70 gov't ammo.
   components:
   - type: Gun
@@ -107,13 +133,11 @@
         - N14Cartridge45-70
         - SpeedLoader45-70
     proto: N14Cartridge45-70
-  - type: FollowDistance
-    backStrength: 6
 
 - type: entity
   name: wild whisper
-  parent: BaseWeaponRevolver
-  id: N14Weaponwildwhisper
+  parent: N14WeaponRevolverBase
+  id: N14WeaponRevolver45-70WildWhisper
   description: Its said that after a troublemaker gets shot down with this revolver some words are whispered to their ears, no one knows what the question is, but the answer is always "innocent". Uses .45-70 gov't ammo.
   components:
   - type: Gun
@@ -131,13 +155,11 @@
         - N14Cartridge45-70
         - SpeedLoader45-70
     proto: N14Cartridge45-70
-  - type: FollowDistance
-    backStrength: 6
 
 - type: entity
   name: ranger sequoia
-  parent: BaseWeaponRevolver
-  id: N14WeaponRangerSequoia
+  parent: N14WeaponRevolverBase
+  id: N14WeaponRevolver45-70RangerSequoia
   description: 20 years of suffering for a good looking glorified revolver, worth it. Uses .45-70 gov't ammo.
   components:
   - type: Sprite
@@ -155,5 +177,3 @@
         - N14Cartridge45-70
         - SpeedLoader45-70
     proto: N14Cartridge45-70
-  - type: FollowDistance
-    backStrength: 6

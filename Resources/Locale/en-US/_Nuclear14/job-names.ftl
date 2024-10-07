@@ -13,14 +13,14 @@ job-description-bos-mid-squire = Follow your Knight into battle and do their bid
 # Washington Brotherhood
 job-name-bos-washington-commander = Washington Brotherhood Commander
 job-description-bos-washington-commander = Lead the Washington Brotherhood of Steel to glory in their mission.
-job-name-bos-washington-recruit = Washington Brotherhood Initiate
-job-description-bos-washington-recruit = Prove yourself to your chapter to progress through the ranks.
-job-name-bos-washington-soldier = Washington Brotherhood Knight
-job-description-bos-washington-soldier = The military arm of the Brotherhood. Defend your chapter in their objectives and manufacture equipment.
-job-name-bos-washington-captain = Washington Brotherhood Captain
-job-description-bos-washington-captain = Protect the Brotherhood at all costs. Take the Commanders will out into the wasteland.
-job-name-bos-washington-researcher = Washington Brotherhood Scribe
-job-description-bos-washington-researcher = Conduct scientific missions and research for your brotherhood chapter.
+job-name-bos-washington-initiate = Washington Brotherhood Initiate
+job-description-bos-washington-initiate = Prove yourself to your chapter to progress through the ranks.
+job-name-bos-washington-knight = Washington Brotherhood Knight
+job-description-bos-washington-knight = The military arm of the Brotherhood. Defend your chapter in their objectives and manufacture equipment.
+job-name-bos-washington-paladin = Washington Brotherhood Captain
+job-description-bos-washington-paladin = Protect the Brotherhood at all costs. Take the Commanders will out into the wasteland.
+job-name-bos-washington-scribe = Washington Brotherhood Scribe
+job-description-bos-washington-scribe = Conduct scientific missions and research for your brotherhood chapter.
 
 # Caravan
 job-name-caravan-leader = Caravan Leader

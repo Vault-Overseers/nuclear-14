@@ -1,0 +1,45 @@
+- type: job
+  id: BoSWashingtonKnight
+  setPreference: true
+  name: job-name-bos-washington-knight
+  description: job-description-bos-washington-knight
+  playTimeTracker: BoSWashingtonKnight
+  requirements:
+    - !type:CharacterDepartmentTimeRequirement
+      department: BrotherhoodWashington
+      min: 3600 # 1 hour as BoSWashingtonInitiate
+  startingGear: BoSWashingtonKnightGear
+  alwaysUseSpawner: true
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-bos-washington
+  canBeAntag: false
+  access:
+  - WashingtonInitiate
+  - WashingtonKnight
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodWashington
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
+
+- type: startingGear
+  id: BoSWashingtonKnightGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitBOSRed
+    back: N14ClothingBackpackMilitary
+    shoes: N14ClothingBootsCombatMK2Filled
+    hands: N14ClothingHandsGlovesCombat
+    head: N14ClothingHeadHatBrotherhoodHelmetMK2 # Corvax-N14
+    outerClothing: N14ClothingOuterCombatArmorBOSMK2
+    id: N14IDBrotherhoodWashingtonHolotagKnight
+    belt: ClothingBeltBoSWebbing
+    pocket1: BoSWashingtonStandartKits # Corvax-N14
+
+- type: playTimeTracker
+  id: BoSWashingtonKnight

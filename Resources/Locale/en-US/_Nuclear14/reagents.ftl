@@ -13,7 +13,7 @@ reagent-desc-water-irradiated = That'll put arms on your chest.
 reagent-name-water-filtered = filtered water
 reagent-desc-water-filtered = almost as good as it gets.
 reagent-name-water-salt = salt water
-reagent-desc-water-salt = salty water. Maybe I can boil it for salt. 
+reagent-desc-water-salt = salty water. Maybe I can boil it for salt.
 
 ## Soda
 reagent-name-nuka-cola = Nuka-Cola
@@ -273,14 +273,36 @@ reagent-name-antiseptic = Antiseptic
 reagent-desc-antiseptic = A cleaning solution made from Abraxo Cleaner and some Rubbing Alcohol.
 
 # Ores, Metals, Materials
-materials-gunpowder = gunpowder
-materials-lead = lead
 materials-aluminum = aluminum
-materials-sulfur = sulfur
+materials-antchitin = chitin
 materials-charcoal = charcoal
+materials-exoskeleton = exoskeleton
+materials-gunpowder = gunpowder
+materials-leather = leather
+materials-lead = lead
+materials-lead-scrap = scrap lead
 materials-raw-lead = raw lead
+materials-raw-leather = raw leather
+materials-thread = thread
+materials-scrap-electronic = scrap electronic
+materials-N14iron = iron
+materials-raw-N14iron = raw iron
+materials-scrap-steel = scrap steel
+materials-copper = copper
+materials-scrap-copper = scrap copper
+materials-raw-N14copper = raw copper
+materials-N14gold = gold
+materials-scrap-gold = scrap gold
+materials-raw-N14gold = raw gold
+materials-N14brass = brass
+materials-scrap-brass = scrap brass
+materials-N14silver = silver
+materials-raw-N14silver = raw silver
+materials-scrap = scrap
 materials-raw-aluminum = raw aluminum
 materials-raw-sulfur = raw sulfur
+materials-sulfur = sulfur
+
 reagent-name-gunpowder = gunpowder
 reagent-desc-gunpowder = Small pellet gunpowder. Now just add lead.
 reagent-name-fertilizer = fertilizer

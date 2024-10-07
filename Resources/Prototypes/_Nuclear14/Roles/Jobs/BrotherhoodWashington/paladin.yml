@@ -1,0 +1,47 @@
+- type: job
+  id: BoSWashingtonPaladin
+  setPreference: true
+  name: job-name-bos-washington-paladin
+  description: job-description-bos-washington-paladin
+  playTimeTracker: BoSWashingtonPaladin
+  requirements:
+    - !type:CharacterDepartmentTimeRequirement
+      department: BrotherhoodWashington
+      min: 18000 # 5 hours
+  startingGear: BoSWashingtonPaladinGear
+  alwaysUseSpawner: true
+  icon: "JobIconPassenger"
+  supervisors: job-name-bos-washington
+  canBeAntag: false
+  access:
+  - WashingtonInitiate
+  - WashingtonKnight
+  - WashingtonScribe
+  - WashingtonPaladin
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodWashington
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
+
+- type: startingGear
+  id: BoSWashingtonPaladinGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitBOSRed
+    back: N14ClothingBackpackMilitary
+    shoes: N14ClothingBootsCombatMK2Filled
+    head: N14ClothingHeadHatBrotherhoodCap
+    outerClothing: N14ClothingOuterCombatArmorBOSMK2
+    id: N14IDBrotherhoodWashingtonHolotagPaladin
+    ears: N14ClothingHeadsetBOSWashington
+    belt: ClothingBeltBoSWebbing
+    pocket1: BoSWashingtonCommandKits # Crovax-N14
+
+- type: playTimeTracker
+  id: BoSWashingtonPaladin

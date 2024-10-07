@@ -43,7 +43,7 @@ reagent-effect-guidebook-foam-area-reaction-effect =
         *[other] create
     } large quantities of foam
 
-reagent-effect-guidebook-smoke-area-reaction-effect =
+reagent-effect-guidebook-foam-area-reaction-effect =
     { $chance ->
         [1] Creates
         *[other] create
@@ -386,3 +386,28 @@ reagent-effect-guidebook-plant-robust-harvest =
         [1] Increases
         *[other] increase
     } the plant's potency by {$increase} up to a maximum of {$limit}. Causes the plant to lose its seeds once the potency reaches {$seedlesstreshold}. Trying to add potency over {$limit} may cause decrease in yield at a 10% chance
+
+reagent-effect-guidebook-change-glimmer-reaction-effect =
+    { $chance ->
+        [1] Modifies
+        *[other] modify
+    } the glimmer count by {$count} points
+
+reagent-effect-guidebook-chem-remove-psionic =
+    { $chance ->
+        [1] Removes
+        *[other] remove
+    } psionic powers
+
+reagent-effect-guidebook-chem-reroll-psionic =
+    { $chance ->
+        [1] Allows
+        *[other] allow
+    } a chance to get a different psionic power
+
+reagent-effect-guidebook-add-moodlet =
+    modifies mood by {$amount}
+    { $timeout ->
+        [0] indefinitely
+        *[other] for {$timeout} seconds
+    }

@@ -1,0 +1,39 @@
+- type: job
+  id: BoSWashingtonInitiate
+  setPreference: true
+  name: job-name-bos-washington-initiate
+  description: job-description-bos-washington-initiate
+  playTimeTracker: BoSWashingtonInitiate
+  startingGear: BoSWashingtonInitiateGear
+  alwaysUseSpawner: true
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-bos-washington-initiate
+  canBeAntag: false
+  access:
+  - WashingtonInitiate
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodWashington
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
+
+- type: startingGear
+  id: BoSWashingtonInitiateGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitBOSRed
+    back: N14ClothingBackpackMilitary
+    shoes: N14ClothingBootsCombatFilled
+    id: N14IDBrotherhoodWashingtonHolotagInitiate # Corvax-N14
+    head: N14ClothingHeadHatBrotherhoodHelmet # Corvax-N14
+    outerClothing: N14ClothingOuterCombatArmorBOS
+    belt: ClothingBeltBoSWebbing
+    pocket1: BoSWashingtonStandartKits # Corvax-N14
+
+- type: playTimeTracker
+  id: BoSWashingtonInitiate

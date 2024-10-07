@@ -22,6 +22,24 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: N14ClothingNeckCloakNCRSnow
+  name: NCR winter cloak
+  description: A comfy cloak with a NCR logo on one side, this kind of cloaks are commonly used by the troopers during hard weathers. this one is snow white.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/NCRcloak2.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckCloakNCRWoods
+  name: NCR woods cloak
+  description: A comfy cloak with a NCR logo on one side, this kind of cloaks are commonly used by the troopers during hard weathers. this one is green.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/NCRcloak3.rsi
+
+- type: entity
+  parent: ClothingNeckBase
   id: N14ClothingNeckCloakRanger
   name: NCR ranger cape
   description: Ranger cape made from what looks like old poncho fitted with star, stripes and a bear. Most likely has a holster hidden underneath.
@@ -64,7 +82,6 @@
     sprite: _Nuclear14/Clothing/Neck/tribal.rsi
 
 # Neutral
-
 - type: entity
   parent: ClothingNeckBase
   id: N14ClothingNeckCloakLeather
@@ -81,6 +98,14 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+  - type: Construction
+    graph: LeatherCloakGraph
+    node: cloak
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: N14MaterialLeather1
+      amount: 2
 
 - type: entity
   parent: ClothingNeckBase
@@ -90,3 +115,11 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Neck/yaoguai.rsi
+  - type: Construction
+    graph: YaoguaiCloakGraph
+    node: cloak
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: N14MaterialYaoguaiHide
+      amount: 1

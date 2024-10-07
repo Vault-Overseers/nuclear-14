@@ -1,70 +1,73 @@
 # There may be some overlap with the Junk.yml so look there for other crafting components.
+
 - type: entity
-  abstract: true
   parent: BaseItem
-  id: N14MaterialBase
-  description: A raw material.
+  id: N14Dung
+  name: dung pile
+  description: flip those cowpats for free fertilizer!
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/materials.rsi
-  - type: Item
-    sprite: _Nuclear14/Objects/Misc/materials.rsi
-    size: Normal
-  - type: Tag
-    tags:
-      - RawMaterial
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-
-- type: entity
-  parent: N14MaterialBase
-  id: N14MaterialCircuitry
-  name: circuitry
-  suffix: Full
-  components:
-  - type: Material
-#  - type: PhysicalComposition
-#    materialComposition:
-#      Circuitry: 100
-  - type: Stack
-    stackType: Circuitry
-    baseLayer: base
-    layerStates:
-    - circuits
-    - circuits_2
-    - circuits_3
-    count: 15
-  - type: Sprite
-    state: circuits_3
+    sprite: /Textures/_Nuclear14/Objects/Misc/crafting_material.rsi
+    noRot: true
     layers:
-    - state: circuits_3
-      map: ["base"]
-  - type: Appearance
-    
-- type: entity
-  parent: N14MaterialCircuitry
-  id: N14MaterialCircuitry10
-  suffix: 10
-  components:
-  - type: Sprite
-    state: circuits_2
-  - type: Stack
-    count: 10
+      - state: dung
+      - state: dung-flies
+# N14:TODO: Add creampie ing but worse and it makes you throw up.
+  - type: SolutionContainerManager
+    solutions:
+      dung:
+        maxVol: 25
+        reagents:
+        - ReagentId: Dung
+          Quantity: 25
+  - type: DrainableSolution
+    solution: dung
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
+  - type: DeleteOnSolutionEmpty
+    solution: dung
+  - type: TimedDespawn
+    lifetime: 300
 
 - type: entity
-  parent: N14MaterialCircuitry
-  id: N14MaterialCircuitry1
-  suffix: Single
+  parent: N14Dung
+  id: N14BrahminDung
+  name: brahmin dung
+  description: A dung pile more acrid and vile than the rest, rancher's gold.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      dung:
+        maxVol: 25
+        reagents:
+        - ReagentId: Dung
+          Quantity: 15
+        - ReagentId: Ammonia
+          Quantity: 10
+
+- type: entity
+  parent: BaseItem
+  id: N14CompostRotted
+  name: compost
+  description: Rotting remains, like a compost. Good for fertilizing.
   components:
   - type: Sprite
-    state: circuits
+    sprite: /Textures/_Nuclear14/Objects/Misc/crafting_material.rsi
+    state: compost
+  - type: SolutionContainerManager
+    solutions:
+      compost:
+        maxVol: 25
+        reagents:
+        - ReagentId: Fertilizer
+          Quantity: 25
+  - type: DrainableSolution
+    solution: compost
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
+  - type: DeleteOnSolutionEmpty
+    solution: compost
+  - type: Material
   - type: Stack
+    stackType: Compost
     count: 1

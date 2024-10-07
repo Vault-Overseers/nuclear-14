@@ -1,39 +1,15 @@
 - type: entity
-  name: double-barrel shotgun
   parent: BaseWeaponShotgun
-  id: N14WeaponDoubleBarrelShotgun
-  description: An immortal classic, uses 12 gauge shells.
+  id: N14WeaponShotgunBase
+  abstract: true
   components:
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
-    quickEquip: false
-    slots:
-    - Back
-    - suitStorage
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
-  - type: Item
-    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
-  - type: Wieldable
-  - type: GunRequiresWield
-  - type: Gun
-    fireRate: 6
-    soundGunshot:
-      collection: N14DoubleBarrelShotgunGunshot
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - N14ShellShotgun12
-    capacity: 2
-    proto: N14ShellShotgun12
-    soundInsert:
-      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
   - type: FollowDistance
     backStrength: 5
+  - type: Wieldable
 
 - type: entity
   name: shotgun
-  parent: BaseWeaponShotgun
+  parent: N14WeaponShotgunBase
   id: N14WeaponShotgun
   description: A pump action shotgun.
   components:
@@ -51,6 +27,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: Item
+    size: Large
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: BallisticAmmoProvider
     whitelist:
@@ -60,14 +37,93 @@
     proto: N14ShellShotgun12
     soundInsert:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
-  - type: Wieldable
-  - type: FollowDistance
-    backStrength: 5
+
+- type: entity
+  name: double-barrel shotgun
+  parent: N14WeaponShotgunBase
+  id: N14WeaponShotgunDoubleBarrel
+  description: An immortal classic, uses 12 gauge shells.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
+  - type: Item
+    size: Large
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      collection: N14DoubleBarrelShotgunGunshot
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun12
+    capacity: 2
+    proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+  - type: Construction
+    graph: ShotgunSawed
+    node: start
+
+- type: entity
+  name: sawed-off shotgun
+  parent: N14WeaponShotgunBase
+  id: N14WeaponShotgunSawedOff
+  description: A portable and brutal handheld shotgun.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/sawed_off.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/sawed_off.rsi
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/sawed_off.rsi
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      collection: N14DoubleBarrelShotgunGunshot
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun12
+    capacity: 2
+    proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+  - type: Construction
+    graph: ShotgunSawed
+    node: shotgunsawed
+
+- type: entity
+  name: sawed-off shotgun
+  parent: N14WeaponShotgunSawedOff
+  id: N14WeaponShotgunSawedOffEmpty
+  description: A portable and brutal handheld shotgun.
+  suffix: Empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Construction
+    graph: ShotgunSawed
+    node: start
 
 - type: entity
   name: combat shotgun
-  parent: BaseItem
-  id: N14WeaponAutoShotgun
+  parent: N14WeaponShotgunBase
+  id: N14WeaponShotgunAuto
   description: It's a magazine-fed automatic shotgun designed for close quarters combat, uses 12 gauge shells.
   components:
   - type: Sprite
@@ -85,9 +141,8 @@
     - Back
     - suitStorage
   - type: Item
-    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/combat_shotgun.rsi
     size: Large
-  - type: Wieldable
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/combat_shotgun.rsi
   - type: GunRequiresWield
   - type: Gun
     minAngle: 23
@@ -123,13 +178,11 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  - type: FollowDistance
-    backStrength: 5
 
 - type: entity
   name: caravan shotgun
-  parent: BaseWeaponShotgun
-  id: N14WeaponCaravanShotgun
+  parent: N14WeaponShotgunBase
+  id: N14WeaponShotgunCaravan
   description: The perfect shotgun for a long journey. works well for hunting brahmins, geckos and fiends, uses 20 gauge shells.
   components:
   - type: Clothing
@@ -142,7 +195,6 @@
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/caravan_shotgun.rsi
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/caravan_shotgun.rsi
-  - type: Wieldable
   - type: Gun
     fireRate: 6
     soundGunshot:
@@ -156,13 +208,11 @@
     soundInsert:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
     proto: N14ShellShotgun20
-  - type: FollowDistance
-    backStrength: 5
 
 - type: entity
   name: lever action shotgun
-  parent: BaseWeaponShotgun
-  id: N14WeaponLeverShotgun
+  parent: N14WeaponShotgunBase
+  id: N14WeaponShotgunLever
   description: The perfect gun for a cowboy, it uses 20 gauge shells.
   components:
   - type: Clothing
@@ -174,6 +224,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/lever_shotgun.rsi
   - type: Item
+    size: Large
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/lever_shotgun.rsi
   - type: BallisticAmmoProvider
     whitelist:
@@ -183,7 +234,6 @@
     proto: N14ShellShotgun20
     soundInsert:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
-  - type: Wieldable
   - type: GunRequiresWield
   - type: Gun
     minAngle: 23
@@ -193,13 +243,11 @@
     fireRate: 1
     soundGunshot:
       collection: N14LeverShotgunGunshot
-  - type: FollowDistance
-    backStrength: 5
 
 - type: entity
   name: riot shotgun
-  parent: BaseItem
-  id: N14WeaponRiotShotgun
+  parent: N14WeaponShotgunBase
+  id: N14WeaponShotgunRiot
   description: A compact semi automatic shotgun used by pre-war police forces, chambered in 20 gauge shells.
   components:
   - type: Clothing
@@ -217,9 +265,8 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
-    size: Ginormous
+    size: Large
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/riot_shotgun.rsi
-  - type: Wieldable
   - type: GunRequiresWield
   - type: Gun
     minAngle: 23
@@ -255,5 +302,3 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  - type: FollowDistance
-    backStrength: 5
