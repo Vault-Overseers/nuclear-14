@@ -49,6 +49,7 @@ public sealed class JoinQueueManager
     private readonly List<ICommonSession> _queue = new(); // Real Queue class can't delete disconnected users
 
     private bool _isEnabled = false;
+    private bool _isQueueUpdateMessageRegistered = false;
 
     public int PlayerInQueueCount => _queue.Count;
     public int ActualPlayersCount => _player.PlayerCount - PlayerInQueueCount; // Now it's only real value with actual players count that in game
@@ -56,7 +57,11 @@ public sealed class JoinQueueManager
 
     public void Initialize()
     {
-        _net.RegisterNetMessage<QueueUpdateMessage>();
+        if (!_isQueueUpdateMessageRegistered)
+        {
+            _net.RegisterNetMessage<QueueUpdateMessage>();
+            _isQueueUpdateMessageRegistered = true;
+        }
 
         _configuration.OnValueChanged(CCVars.QueueEnabled, OnQueueCVarChanged, true);
         _player.PlayerStatusChanged += OnPlayerStatusChanged;
