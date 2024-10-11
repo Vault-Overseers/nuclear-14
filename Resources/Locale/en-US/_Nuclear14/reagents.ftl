@@ -179,10 +179,10 @@ reagent-desc-cazador-venom = The venom of a cazador. Quick death is near guarant
 reagent-name-healing-powder = healing powder
 reagent-desc-healing-powder = A powder made from crushed plants.
 
-reagent-name-antidote-mixture = antidote
+reagent-name-antidote-mixture = handmade antidote
 reagent-desc-antidote-mixture = An antidote made from radscorpion tail and water for treating poison.
 
-reagent-name-antidote = antidote
+reagent-name-antidote = industrial antidote
 reagent-desc-antidote = A potent antitoxin manufactured in a lab.
 
 reagent-name-healing-poultice = healing poultice
