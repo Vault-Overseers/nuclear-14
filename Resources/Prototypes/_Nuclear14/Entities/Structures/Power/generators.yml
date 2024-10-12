@@ -4,7 +4,7 @@
   abstract: true
   id: N14BaseGenerator
   description: A high efficiency thermoelectric generator.
-  name: generator
+  name: Generator
   placement:
     mode: SnapgridCenter
   components:
@@ -89,7 +89,7 @@
   id: N14BaseGeneratorPortable
   abstract: true
   description: A generator that uses expendable fusion cores.
-  name: generator
+  name: Generator
   components:
   - type: Fixtures
     fixtures:
@@ -114,7 +114,7 @@
   parent: N14BaseGeneratorPortable
   id: N14GeneratorFusioncore
   description: A generator that uses expendable fusion cores.
-  name: fusion core generator
+  name: Fusion Core Generator
   components:
   - type: Fixtures
     fixtures:
@@ -141,7 +141,7 @@
   parent: N14BaseGeneratorPortable
   id: N14GeneratorFusionMini
   description: A generator that uses heavy water for fusion power.
-  name: mini fusion generator
+  name: Mini Fusion Generator
   components:
   - type: Fixtures
     fixtures:
@@ -194,7 +194,7 @@
   parent: N14GeneratorFusionMini
   id: N14GeneratorFusionEnclave
   description: A generator that uses heavy water for fusion power.
-  name: enclave fusion generator
+  name: Enclave Fusion Generator
   components:
   - type: Fixtures
     fixtures:
@@ -224,7 +224,7 @@
   parent: N14GeneratorFusionMini
   id: N14GeneratorFusionMiniRusted
   description: A generator that uses heavy water for fusion power. This ones rusted.
-  name: mini fusion generator
+  name: Mini Fusion Generator
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Power/32x48_machines.rsi
@@ -235,7 +235,7 @@
   parent: N14GeneratorFusioncore
   id: N14GeneratorPrewar
   description: A dirty old generator that uses fuel to run.
-  name: pre-war generator
+  name: Pre-War Generator
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Power/generator.rsi
@@ -259,7 +259,7 @@
   parent: N14GeneratorPrewar
   id: N14GeneratorPrewarUranium
   description: A dirty old generator that uses raw uranium to run.
-  name: pre-war uranium generator
+  name: Pre-War Uranium Generator
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Power/generator.rsi
@@ -271,7 +271,7 @@
   parent: N14BaseGenerator
   id: N14GeneratorVaultTecReactor
   description: A fusion reactor built by vault-tec.
-  name: vault-tec reactor
+  name: Vault-Tec Reactor
   components:
   - type: Fixtures
     fixtures:
@@ -306,7 +306,7 @@
   parent: N14GeneratorVaultTecReactor
   id: N14GeneratorReactorFloor
   description: An old reactor built into the floor.
-  name: pre-war reactor
+  name: Pre-War Reactor
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Power/reactor_floor.rsi
@@ -328,7 +328,7 @@
   parent: BaseStructure
   id: N14GeneratorReactorFloorDestroyed
   description: An old reactor built into the floor. This ones suffered a meltdown.
-  name: pre-war reactor
+  name: Pre-War Reactor
   suffix: destroyed
   components:
   - type: Fixtures
@@ -356,7 +356,7 @@
     color: "#f05e1b"
 
 - type: entity
-  name: gas powered generator
+  name: Gas Powered Generator
   description: |-
     A small generator capable of powering individual rooms.
     Runs off welding fuel and is rated for up to 8 kW.
