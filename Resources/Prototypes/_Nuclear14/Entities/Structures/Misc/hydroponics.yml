@@ -2,7 +2,7 @@
 - type: entity
   parent: BaseStructure
   id: N14CompostBox
-  name: compost box
+  name: Compost Box
   description: Insert animal dung in here to produce compost.
   placement:
     mode: SnapgridCenter
@@ -51,7 +51,7 @@
 # Seed Extractor
 - type: entity
   id: N14SeedExtractor
-  name: seed extractor
+  name: Seed Extractor
   parent: BaseStructure
   description: Extracts seeds from produce.
   components:
@@ -81,9 +81,9 @@
 
 - type: entity
   id: N14SeedExtractorFrame
-  name: seed extractor frame
+  name: Seed Extractor Frame
   parent: BaseStructure
-  description: Extracts seeds from produce. This one isn't finished building
+  description: Extracts seeds from produce. This one isn't finished being built.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
@@ -106,7 +106,7 @@
 # Soils and Planters
 - type: entity
   id: N14Soil
-  name: soil
+  name: Soil
   description: Looks good for planting things in.
   placement:
     mode: SnapgridCenter
@@ -140,16 +140,16 @@
         acts: ["Destruction"]
   - type: Sprite
     sprite: Structures/Hydroponics/misc.rsi
-    state: soil
+    state: Soil
     noRot: true
   - type: PlantHolder
     drawWarnings: false
   - type: SolutionContainerManager
     solutions:
-      soil:
+      Soil:
         maxVol: 200
   - type: RefillableSolution
-    solution: soil
+    solution: Soil
     maxRefill: 50
   - type: Transform
     anchored: true
@@ -159,7 +159,7 @@
       methods: [Touch, Ingestion, Injection]
       effects:
       - !type:AddToSolutionReaction
-        solution: soil
+        solution: Soil
   - type: Appearance
   - type: PlantHolderVisuals
   - type: Construction
@@ -170,7 +170,7 @@
 - type: entity
   parent: BaseStructure
   id: N14HydroponicsPlanterEmpty
-  name: planter
+  name: Planter
   description: A wooden planter for growing things. Just needs soil.
   components:
   - type: Sprite
@@ -208,7 +208,7 @@
 - type: entity
   parent: N14Soil
   id: N14HydroponicsPlanter
-  name: planter
+  name: Planter
   description: A wooden planter with soil for growing things in.
   components:
   - type: Sprite
