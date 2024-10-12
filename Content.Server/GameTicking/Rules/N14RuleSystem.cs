@@ -17,22 +17,29 @@ public sealed class N14RuleSystem : GameRuleSystem<N14RuleComponent>
 
     private void OnSpawnComplete(PlayerSpawnCompleteEvent args)
     {
-        if (_mindSystem.TryGetMind(args.Player, out var mindId, out var mind))
+        var query = EntityQueryEnumerator<N14RuleComponent>();
+        while (query.MoveNext(out var uid, out var rule))
         {
-            var objective = _objectives.GetRandomObjective(mindId, mind, "N14Objectives");
-            if (objective != null)
+            if (_mindSystem.TryGetMind(args.Player, out var mindId, out var mind))
             {
-                Logger.DebugS("n14rule", $"Added objective {objective.Value} for {args.Player}");
-                _mindSystem.AddObjective(mindId, mind, objective.Value);
+                var objective = _objectives.GetRandomObjective(mindId, mind, "N14Objectives");
+                if (objective != null)
+                {
+                    Logger.DebugS("n14rule", $"Added objective {objective.Value} for {args.Player}");
+                    _mindSystem.AddObjective(mindId, mind, objective.Value);
+                }
+                else
+                {
+                    Logger.DebugS("n14rule", $"No suitable objectives found for {args.Player}");
+                }
             }
             else
             {
-                Logger.DebugS("n14rule", $"No suitable objectives found for {args.Player}");
+                Logger.DebugS("n14rule", $"{args.Player} has no mind");
             }
-        }
-        else
-        {
-            Logger.DebugS("n14rule", $"{args.Player} has no mind");
+
+            // break out of loop: we only need to do this once
+            break;
         }
     }
 }
