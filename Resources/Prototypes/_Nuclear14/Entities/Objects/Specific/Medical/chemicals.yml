@@ -155,8 +155,9 @@
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14ChemicalSyringeAntidote
-  name: antidote
+  id: N14ChemicalSyringeAntidoteEmpty
+  suffix: empty
+  name: antidote syringe
   description: A syringe filled with an effective antitoxin.
   components:
   - type: Sprite
@@ -174,6 +175,14 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: used
+
+- type: entity
+  parent: N14ChemicalSyringeAntidoteEmpty
+  id: N14ChemicalSyringeAntidote
+  suffix: filled
+  name: antidote
+  description: A syringe filled with an effective antitoxin.
+  components:
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -217,15 +226,16 @@
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 18
+        maxVol: 15
         reagents:
         - ReagentId: MovespeedMixture
-          Quantity: 18
+          Quantity: 15
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14Turbo
-  name: Turbo
+  id: N14TurboInhaler
+  suffix: empty
+  name: Turbo inhaler
   description: A small injector filled with a narcotic reagent, that makes you feel as though the world around you is slowing down. It's stronger, and more dangerous than Jet.
   components:
   - type: Sprite
@@ -239,6 +249,18 @@
   - type: Hypospray
     solutionName: pen
     transferAmount: 10
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 10
+
+- type: entity
+  parent: N14TurboInhaler
+  id: N14Turbo
+  suffix: filled
+  name: Turbo
+  description: A small injector filled with a narcotic reagent, that makes you feel as though the world around you is slowing down. It's stronger, and more dangerous than Jet.
+  components:
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -274,8 +296,9 @@
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14Hydra
-  name: hydra
+  id: N14HydraInhaler
+  suffix: empty
+  name: hydra inhaler
   description: A bottle of Supa Yum soda with several vials attached to it. Contains a mildly potent healing chemical that comes with side effects.
   components:
   - type: Sprite
@@ -289,6 +312,15 @@
   - type: Hypospray
     solutionName: pen
     transferAmount: 15
+
+
+- type: entity
+  parent: N14HydraInhaler
+  id: N14Hydra
+  suffix: filled
+  name: hydra
+  description: A bottle of Supa Yum soda with several vials attached to it. Contains a mildly potent healing chemical that comes with side effects.
+  components:
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -299,8 +331,8 @@
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14Psycho
-  name: psycho
+  id: N14PsychoSyringe
+  name: psycho syringe
   description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin.
   components:
   - type: Sprite
@@ -314,6 +346,17 @@
   - type: Hypospray
     solutionName: pen
     transferAmount: 20
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+
+- type: entity
+  parent: N14PsychoSyringe
+  id: N14Psycho
+  name: psycho
+  description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin.
+  components:
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -425,6 +468,8 @@
     maxFillLevels: 3
     changeColor: true
     fillBaseName: radawayphial
+  - type: Item
+    size: Tiny
   - type: WelderRefinable
     refineResult:
     - id: SheetGlass1
