@@ -1,21 +1,21 @@
-﻿﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
-using Content.Server.Ghost;
 using Content.Server.Mind.Commands;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
-using Content.Shared.NPC.Components;
 using Content.Shared.Players;
 using Robust.Server.GameStates;
 using Robust.Server.Player;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Robust.Shared.Prototypes;
-using Content.Shared.NPC.Prototypes;
+
+using Content.Server.NPC.Components;
 
 namespace Content.Server.Mind;
 
@@ -24,7 +24,8 @@ public sealed class MindSystem : SharedMindSystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly GhostSystem _ghosts = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly SharedGhostSystem _ghosts = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly PvsOverrideSystem _pvsOverride = default!;
 
@@ -64,8 +65,8 @@ public sealed class MindSystem : SharedMindSystem
             && !Terminating(visiting))
         {
             TransferTo(mindId, visiting, mind: mind);
-            if (TryComp(visiting, out GhostComponent? ghostComp))
-                _ghosts.SetCanReturnToBody(ghostComp, false);
+            if (TryComp(visiting, out GhostComponent? ghost))
+                _ghosts.SetCanReturnToBody(ghost, false);
             return;
         }
 
@@ -75,13 +76,40 @@ public sealed class MindSystem : SharedMindSystem
         if (!component.GhostOnShutdown || mind.Session == null || _gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
             return;
 
-        var ghost = _ghosts.SpawnGhost((mindId, mind), uid);
-        if (ghost != null)
+        var xform = Transform(uid);
+        var gridId = xform.GridUid;
+        var spawnPosition = Transform(uid).Coordinates;
+
+        // Use a regular timer here because the entity has probably been deleted.
+        Timer.Spawn(0, () =>
+        {
+            // Make extra sure the round didn't end between spawning the timer and it being executed.
+            if (_gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
+                return;
+
+            // Async this so that we don't throw if the grid we're on is being deleted.
+            if (!HasComp<MapGridComponent>(gridId))
+                spawnPosition = _gameTicker.GetObserverSpawnPoint();
+
+            // TODO refactor observer spawning.
+            // please.
+            if (!spawnPosition.IsValid(EntityManager))
+            {
+                // This should be an error, if it didn't cause tests to start erroring when they delete a player.
+                Log.Warning($"Entity \"{ToPrettyString(uid)}\" for {mind.CharacterName} was deleted, and no applicable spawn location is available.");
+                TransferTo(mindId, null, createGhost: false, mind: mind);
+                return;
+            }
+
+            var ghost = Spawn(GameTicker.ObserverPrototypeName, spawnPosition);
+            var ghostComponent = Comp<GhostComponent>(ghost);
+            _ghosts.SetCanReturnToBody(ghostComponent, false);
+
             // Log these to make sure they're not causing the GameTicker round restart bugs...
             Log.Debug($"Entity \"{ToPrettyString(uid)}\" for {mind.CharacterName} was deleted, spawned \"{ToPrettyString(ghost)}\".");
-        else
-            // This should be an error, if it didn't cause tests to start erroring when they delete a player.
-            Log.Warning($"Entity \"{ToPrettyString(uid)}\" for {mind.CharacterName} was deleted, and no applicable spawn location is available.");
+            _metaData.SetEntityName(ghost, mind.CharacterName ?? string.Empty);
+            TransferTo(mindId, ghost, mind: mind);
+        });
     }
 
     public override bool TryGetMind(NetUserId user, [NotNullWhen(true)] out EntityUid? mindId, [NotNullWhen(true)] out MindComponent? mind)
@@ -369,7 +397,7 @@ public sealed class MindSystem : SharedMindSystem
 
     /// Return true if the entity owned by this mind is a member of one of the
     /// given factions.
-    public bool InFaction(EntityUid uid, MindComponent mind, HashSet<ProtoId<NpcFactionPrototype>> factions)
+    public bool InFaction(EntityUid uid, MindComponent mind, HashSet<string> factions)
     {
         if (mind.OwnedEntity != null)
         {

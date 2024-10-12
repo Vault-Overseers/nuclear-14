@@ -1,6 +1,4 @@
 using Content.Server.Objectives.Systems;
-using Robust.Shared.Prototypes;
-using Content.Shared.NPC.Prototypes;
 
 namespace Content.Server.Objectives.Components;
 
@@ -11,5 +9,5 @@ namespace Content.Server.Objectives.Components;
 public sealed partial class FactionRequirementComponent : Component
 {
     [DataField(required: true)]
-    public HashSet<ProtoId<NpcFactionPrototype>> Factions = new();
+    public HashSet<string> Factions = new();
 }
