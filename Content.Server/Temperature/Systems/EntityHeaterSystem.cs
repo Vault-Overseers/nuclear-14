@@ -42,7 +42,10 @@ public sealed class EntityHeaterSystem : EntitySystem
             var energy = power.PowerReceived * deltaTime;
             foreach (var ent in placer.PlacedEntities)
             {
-                _temperature.ChangeHeat(ent, energy);
+                // Mitigates error for missing component
+                if (HasComp<TemperatureComponent>(ent)){
+                        _temperature.ChangeHeat(ent, energy);
+                }
             }
         }
     }
