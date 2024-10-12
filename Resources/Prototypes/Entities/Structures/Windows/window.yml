@@ -1,7 +1,7 @@
 - type: entity
   id: Window
   parent: BaseStructure
-  name: window
+  name: Window
   description: Don't smudge up the glass down there.
   placement:
     mode: SnapgridCenter
@@ -20,9 +20,9 @@
       - Window
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/window.rsi
+    sprite: Structures/Windows/Window.rsi
   - type: Icon
-    sprite: Structures/Windows/window.rsi
+    sprite: Structures/Windows/Window.rsi
     state: full
   - type: Physics
     bodyType: Static
@@ -73,10 +73,10 @@
   - type: Airtight
   - type: IconSmooth
     key: walls
-    base: window
+    base: Window
   - type: Construction
     graph: Window
-    node: window
+    node: Window
   - type: Appearance
   - type: DamageVisuals
     thresholds: [4, 8, 12]
@@ -114,7 +114,7 @@
   - type: Tag
     tags:
       - Window
-      - Directional #Delta V - Summary: Allows the tilewindow mapping command to work.
+      - Directional #Delta V - Summary: Allows the tileWindow mapping command to work.
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -125,7 +125,7 @@
     state: window
   - type: Icon
     sprite: Structures/Windows/directional.rsi
-    state: window
+    state: Window
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -179,7 +179,7 @@
     - South
   - type: Construction
     graph: WindowDirectional
-    node: windowDirectional
+    node: WindowDirectional
   - type: Appearance
   - type: DamageVisuals
     thresholds: [4, 8, 12]
@@ -204,7 +204,7 @@
 - type: entity
   id: WindowFrostedDirectional
   parent: WindowDirectional
-  name: directional frosted window
+  name: directional frosted Window
   description: Don't smudge up the glass down there.
   placement:
     mode: SnapgridCenter
@@ -213,10 +213,10 @@
   components:
   - type: Sprite
     sprite: Structures/Windows/directional.rsi
-    state: frosted_window
+    state: frosted_Window
   - type: Icon
     sprite: Structures/Windows/directional.rsi
-    state: frosted_window
+    state: frosted_Window
 
 - type: entity
   parent: Window
@@ -229,14 +229,14 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/window_diagonal.rsi
+    sprite: Structures/Windows/Window_diagonal.rsi
     state: state0
   - type: IconSmooth
     mode: Diagonal
     key: walls
     base: state
   - type: Icon
-    sprite: Structures/Windows/window_diagonal.rsi
+    sprite: Structures/Windows/Window_diagonal.rsi
     state: state0
   - type: Fixtures
     fixtures:
@@ -261,4 +261,4 @@
       sprite: Structures/Windows/cracks_diagonal.rsi
   - type: Construction
     graph: WindowDiagonal
-    node: windowDiagonal
+    node: WindowDiagonal
