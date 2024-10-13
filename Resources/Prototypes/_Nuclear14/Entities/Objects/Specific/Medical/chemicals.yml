@@ -3,7 +3,7 @@
 - type: entity
   parent: BaseItem
   id: N14ChemicalSyringe
-  name: chemical syringe
+  name: Chemical Syringe
   description: A syringe filled with an unknown chemical. Chem junkies would kill you for it.
   components:
   - type: Sprite
@@ -37,9 +37,9 @@
     - Syringe
 
 - type: entity
-  name: doctors syringe
+  name: Doctors Syringe
   parent: BaseItem
-  description: Used to draw blood samples from mobs, or to inject them with reagents. Chem junkies would kill you for it.
+  description: Used to draw blood samples from enemies or to inject them with reagents. Chem junkies would kill you for it.
   id: N14BaseSyringe
   abstract: true
   components:
@@ -89,7 +89,7 @@
 - type: entity
   parent: N14ChemicalSyringe
   id: N14Stimpak
-  name: stimpak
+  name: Stimpak
   description: A syringe filled with a wondrous mixture of medical reagents. Essential for those with little to no medical knowledge.
   components:
   - type: Sprite
@@ -117,8 +117,8 @@
 - type: entity
   parent: N14Stimpak
   id: N14StimpakDirty
-  name: dirty stimpak
-  description: A syringe filled with a wondrous mixture of medical reagents. Essential for those with little to no medical knowledge.
+  name: Dirty Stimpak
+  description: A syringe filled with a wondrous mixture of medical reagents. The familiar color on this one seems odd.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -131,7 +131,7 @@
 - type: entity
   parent: N14ChemicalSyringe
   id: N14SuperStimpak
-  name: super stimpak
+  name: Super Stimpak
   description: A stronger version of the stimpak. Be careful, however, as you can overdose from taking too much.
   components:
   - type: Sprite
@@ -157,7 +157,7 @@
   parent: N14ChemicalSyringe
   id: N14ChemicalSyringeAntidoteEmpty
   suffix: empty
-  name: antidote syringe
+  name: Antidote Syringe
   description: A syringe filled with an effective antitoxin.
   components:
   - type: Sprite
@@ -180,7 +180,7 @@
   parent: N14ChemicalSyringeAntidoteEmpty
   id: N14ChemicalSyringeAntidote
   suffix: filled
-  name: antidote
+  name: Antidote
   description: A syringe filled with an effective antitoxin.
   components:
   - type: SolutionContainerManager
@@ -195,8 +195,8 @@
   parent: N14ChemicalSyringe
   id: N14JetInhaler
   suffix: empty
-  name: Jet inhaler
-  description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, but lasts longer than Turbo.
+  name: Jet Inhaler
+  description: A rare injector filled with a narcotic reagent that makes you feel as though you're speeding up. It's weaker than but lasts longer than Turbo.
   components:
   - type: Sprite
     layers:
@@ -221,7 +221,7 @@
   id: N14Jet
   suffix: filled
   name: Jet
-  description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, but lasts longer than Turbo.
+  description: A rare injector filled with a narcotic reagent that makes you feel as though you're speeding up. It's weaker than but lasts longer than Turbo.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -235,8 +235,8 @@
   parent: N14ChemicalSyringe
   id: N14TurboInhaler
   suffix: empty
-  name: Turbo inhaler
-  description: A small injector filled with a narcotic reagent, that makes you feel as though the world around you is slowing down. It's stronger, and more dangerous than Jet.
+  name: Turbo Inhaler
+  description: A small inhaler filled with a narcotic reagent that makes you feel as though the world around you is slowing down. It's stronger and more dangerous than Jet.
   components:
   - type: Sprite
     layers:
@@ -259,7 +259,7 @@
   id: N14Turbo
   suffix: filled
   name: Turbo
-  description: A small injector filled with a narcotic reagent, that makes you feel as though the world around you is slowing down. It's stronger, and more dangerous than Jet.
+  description: An inhaler of Jet hastily duct-taped to a can of HairStylez brand hairspray. It's stronger and more dangerous than Jet.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -272,7 +272,7 @@
 - type: entity
   parent: N14ChemicalSyringe
   id: N14Med-X
-  name: med-x
+  name: Med-X
   description: A syringe filled with a powerful painkiller. Some believe that it makes you more resistant to pain.
   components:
   - type: Sprite
@@ -298,7 +298,7 @@
   parent: N14ChemicalSyringe
   id: N14HydraInhaler
   suffix: empty
-  name: hydra inhaler
+  name: Hydra Inhaler
   description: A bottle of Supa Yum soda with several vials attached to it. Contains a mildly potent healing chemical that comes with side effects.
   components:
   - type: Sprite
@@ -318,7 +318,7 @@
   parent: N14HydraInhaler
   id: N14Hydra
   suffix: filled
-  name: hydra
+  name: Hydra
   description: A bottle of Supa Yum soda with several vials attached to it. Contains a mildly potent healing chemical that comes with side effects.
   components:
   - type: SolutionContainerManager
@@ -332,7 +332,7 @@
 - type: entity
   parent: N14ChemicalSyringe
   id: N14PsychoSyringe
-  name: psycho syringe
+  name: Psycho Syringe
   description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin.
   components:
   - type: Sprite
@@ -354,7 +354,7 @@
 - type: entity
   parent: N14PsychoSyringe
   id: N14Psycho
-  name: psycho
+  name: Psycho
   description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin.
   components:
   - type: SolutionContainerManager
@@ -369,7 +369,7 @@
   parent: N14ChemicalSyringe
   id: N14RadAwayBloodbag
   name: RadAway
-  description: A bloodbag filled with an odd reagent that cures any Radiation you've substained.
+  description: A bloodbag filled with an oily reagent that cures any radiation you've sustained.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/bloodbags.rsi
@@ -396,7 +396,7 @@
 - type: entity
   parent: N14ChemicalSyringe
   id: N14RadAwayInhalerBase
-  name: RadAway inhaler
+  name: RadAway Inhaler
   description: A jet inhaler with a RadAway phial screwed on top of it. Three puffs away from being rad free.
   abstract: true
   components:
@@ -434,7 +434,7 @@
 - type: entity
   parent: N14RadAwayInhalerBase
   id: N14RadAwayInhaler
-  name: RadAway inhaler
+  name: RadAway Inhaler
   description: A jet inhaler with a RadAway phial screwed on top of it. Three puffs away from being rad free.
   components:
   - type: SolutionContainerManager
@@ -503,7 +503,7 @@
 - type: entity
   parent: N14JunkItemBaseBreak
   id: N14RadAwayPhial
-  name: RadAway phial
+  name: RadAway Phial
   description: A coloured phial containing RadAway.
   components:
   - type: Sprite
@@ -540,7 +540,7 @@
 
 #MARK: Healing Powder
 - type: entity
-  name: healing powder
+  name: Healing Powder
   parent: BaseItem
   id: N14HealingPowder
   description: A bag of tribal healing powder. Nausiating.
@@ -590,8 +590,8 @@
 - type: entity
   parent: DrinkBottleGlassBaseFull
   id: N14Antidote
-  name: antidote
-  description: A toxin antidote made from radscorpion tail and water.
+  name: Antidote
+  description: A toxin antidote made from radscorpion tail and ethanol.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -606,7 +606,7 @@
 - type: entity
   parent: N14ChemicalSyringe
   id: N14SmellingSalts
-  name: smelling salts
+  name: Smelling Salts
   description: A small glass ampoule containing smelling salts. Their smell is said to wake up even a dead ghoul.
   components:
   - type: Sprite
@@ -631,8 +631,8 @@
 - type: entity
   parent: N14HealingPowder
   id: N14HealingPoultice
-  name: healing poultice
-  description: A bag of poultice to help with all common ailments slowly.
+  name: Healing Poultice
+  description: A bag of poultice to help with all common ailments, if slowly.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
@@ -666,7 +666,7 @@
 - type: entity
   parent: N14HealingPowder
   id: N14MourningPoultice
-  name: mourning poultice
+  name: Mourning Poultice
   description: A bag of powder made from poisonous flowers for use within tribal ceremenoies.
   components:
   - type: Sprite
@@ -685,7 +685,7 @@
 - type: entity
   parent: N14ChemicalSyringe
   id: N14UltraStimpak
-  name: ultra stimpak
+  name: Ultra Stimpak
   description: A special type of super stimpak with an additional mixture of chemicals which makes a man near invincible at a great cost. It is widely deemed inhumane and outlawed.
   components:
   - type: Sprite
@@ -710,8 +710,8 @@
 - type: entity
   parent: N14HealingPowder
   id: N14Traumapack #TODO: N14Traumapack needs new sound
-  name: traumapack
-  description: A backpack filled with a blend of healing chemicals that inject automatically upon the wearer being hurt.
+  name: Traumapack
+  description: A backpack filled with a blend of healing chemicals that inject automatically upon the wearer being hurt. The mechanism seems broken, though.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
@@ -740,7 +740,7 @@
 - type: entity
   parent: Gauze
   id: N14Bandage
-  name: bandage
+  name: Bandage
   description: A long strip cloth which can stop bleeding. Mostly sterile.
   components:
   - type: Sprite
@@ -750,8 +750,8 @@
 - type: entity
   parent: DrinkBottleGlassBaseFull
   id: N14Ethanol
-  name: ethanol bottle
-  description: A small brownish bottle containing ethanol. Great for disinfecting wounds.
+  name: Ethanol Bottle
+  description: A small brown glass bottle containing ethanol. Great for disinfecting wounds or mixing with reagents.
   components:
   - type: SolutionContainerManager
     solutions:
