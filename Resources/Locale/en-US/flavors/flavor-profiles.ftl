@@ -49,6 +49,9 @@ flavor-base-holy = holy
 flavor-base-horrible = horrible
 # lmao
 flavor-base-terrible = terrible
+flavor-base-bad = bad
+flavor-base-sludgy = sludgy
+# N14 changes
 flavor-base-mindful = mindful
 
 # Complex flavors. Put a flavor here when you want something that's more
@@ -123,6 +126,8 @@ flavor-complex-meatballs = like meatballs
 flavor-complex-nettles = like nettles
 flavor-complex-jungle = like jungle
 flavor-complex-vegetables = like vegetables
+flavor-complex-tato = like worse tomatoes and potatoes
+# N14 change
 # use it when there multiple types of veggies
 
 ## Complex foodstuffs (cooked foods, joke flavors, etc)
