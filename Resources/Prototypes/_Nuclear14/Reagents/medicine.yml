@@ -195,6 +195,48 @@
         - !type:ReagentThreshold
           min: 30
 
+- type: reagent
+  id: UltraRobustHealingMixture
+  name: reagent-name-ultra-robust-healing-mixture
+  group: Medicine
+  desc: reagent-desc-ultra-robust-healing-mixture
+  physicalDesc: reagent-physical-desc-overpowering
+  color: "#ff0000"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -10
+            Brute: -10
+            Airloss: -10
+            Toxin: 0.5
+      - !type:ModifyBleedAmount
+        amount: -2
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+        damage:
+          groups:
+            Burn: -10 # Temporary invincibility more or less
+            Brute: -10
+            Airloss: -10
+          types:
+            Poison: 3
+            Cellular: 2 # Congratulations. Still revivable, but permanently fucked
+      - !type:MovespeedModifier
+        walkSpeedModifier: 0.40
+        sprintSpeedModifier: 0.40
+        conditions:
+        - !type:ReagentThreshold
+          min: 25
+      - !type:Drunk
+        conditions:
+        - !type:ReagentThreshold
+          min: 25
+
 # Radiation
 - type: reagent
   id: RadAway
@@ -369,43 +411,35 @@
       - !type:Drunk
 
 - type: reagent
-  id: UltraRobustHealingMixture
-  name: reagent-name-ultra-robust-healing-mixture
-  group: Medicine
-  desc: reagent-desc-ultra-robust-healing-mixture
-  physicalDesc: reagent-physical-desc-overpowering
-  color: "#ff0000"
+  id: Hydra
+  name : reagent-name-hydra
+  group: Chems
+  desc: reagent-desc-hydra
+  physicalDesc: reagent-physical-desc-volatile
+  color: "#990099"
   metabolisms:
     Medicine:
+      metabolismRate: 0.2
       effects:
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 5
+        refresh: false
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: ScrambledAccent
+      - !type:GenericStatusEffect
+        key: SlurredSpeech
+        component: TelepathicRepeater
+      - !type:Jitter
+      - !type:EnduranceModifierReagent
+        enduranceModifier: -1
       - !type:HealthChange
         damage:
           groups:
-            Burn: -10
-            Brute: -10
-            Airloss: -10
-            Toxin: 0.5
+            Brute: -1
+            Burn: -1
       - !type:ModifyBleedAmount
-        amount: -2
-      - !type:HealthChange
-        conditions:
-        - !type:ReagentThreshold
-          min: 30
-        damage:
-          groups:
-            Burn: -10 # Temporary invincibility more or less
-            Brute: -10
-            Airloss: -10
-          types:
-            Poison: 3
-            Cellular: 2 # Congratulations. Still revivable, but permanently fucked
-      - !type:MovespeedModifier
-        walkSpeedModifier: 0.40
-        sprintSpeedModifier: 0.40
-        conditions:
-        - !type:ReagentThreshold
-          min: 25
-      - !type:Drunk
-        conditions:
-        - !type:ReagentThreshold
-          min: 25
+        amount: -0.5
