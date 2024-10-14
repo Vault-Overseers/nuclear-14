@@ -56,6 +56,27 @@
     fireRate: 3
     soundGunshot:
       collection: N14Revolver10mmGunshot
+
+- type: entity
+  name: webley revolver
+  parent: N14WeaponRevolverBase
+  id: N14WeaponRevolverWebley
+  description: A old and light top break revolver, trusty and easy to use.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/webley_revolver.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/webley_revolver.rsi
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - N14Cartridge44Magnum
+        - SpeedLoader44
+    proto: N14Cartridge44Magnum
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      collection: N14RevolverMagnunGunshot
       
 - type: entity
   parent: N14WeaponRevolver10mm
