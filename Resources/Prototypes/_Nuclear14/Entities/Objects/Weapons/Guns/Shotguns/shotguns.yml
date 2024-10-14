@@ -37,6 +37,9 @@
     proto: N14ShellShotgun12
     soundInsert:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+  - type: Construction
+    graph: PumpShotgunSawed
+    node: start
 
 - type: entity
   name: double-barrel shotgun
@@ -219,6 +222,7 @@
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/lever_shotgun.rsi
     quickEquip: false
     slots:
+    - Belt
     - Back
     - suitStorage
   - type: Sprite
@@ -254,6 +258,7 @@
     sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/riot_shotgun.rsi
     quickEquip: false
     slots:
+    - Belt
     - Back
     - suitStorage
   - type: Sprite
@@ -302,3 +307,40 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  name: stockless shotgun
+  parent: N14WeaponShotgunBase
+  id: N14WeaponShotgunShort
+  description: A stockless pump action shotgun, handy for close encounters.
+  components:
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      collection: N14ShotgunGunshot
+  - type: GunRequiresWield
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/shortpump.rsi
+    quickEquip: false
+    slots:
+    - Belt
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/shortpump.rsi
+  - type: Item
+    size: Large
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/shortpump.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun12
+    capacity: 6
+    proto: null
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+  - type: Construction
+    graph: PumpShotgunSawed
+    node: pumpshotgunsawed
+
+
