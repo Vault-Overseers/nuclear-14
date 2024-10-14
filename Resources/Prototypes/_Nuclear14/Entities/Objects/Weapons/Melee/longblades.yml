@@ -137,3 +137,31 @@
     qualities:
       - Sawing
     speed: 3.0
+
+- type: entity
+  name: ceremonial sword
+  parent: N14Machete
+  id: N14CeremonialSword
+  description: A clean and long double sharp blade, dont let the fragile look deceive you it can still cut someone arm off in a single swing.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/ceremonialsword.rsi
+    quickEquip: false
+    slots:
+    - Belt
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/ceremonialsword.rsi
+    state: icon
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 21
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 28
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Melee/ceremonialsword.rsi
