@@ -183,36 +183,6 @@
   price: 0.15
 
 - type: reagent
-  id: Fertilizer
-  name: reagent-name-fertilizer
-  group: Botanical
-  desc: reagent-desc-fertilizer
-  flavor: bitter
-  color: "#664330"
-  physicalDesc: reagent-physical-desc-thick
-  plantMetabolism:
-  - !type:PlantAdjustNutrition
-    amount: 3
-  - !type:PlantAdjustPests
-    prob: 0.1
-    amount: -1
-  - !type:PlantAdjustHealth
-    amount: 0.1
-  - !type:PlantAffectGrowth
-    prob: 0.2
-    amount: 1
-  - !type:PlantDiethylamine {}
-  metabolisms:
-    Poison:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Poison: 0.25
-      - !type:ChemVomit
-        probability: 0.45
-
-- type: reagent
   id: Dung
   name: reagent-name-dung
   group: Botanical
