@@ -33,11 +33,31 @@
 
 - type: entity
   id: Magazine308Rifle
-  name: "magazine (308.)"
+  name: "magazine (.308)"
   parent: BaseMagazine308Rifle
   components:
   - type: BallisticAmmoProvider
     proto: N14Cartridge308Rifle
+
+- type: entity
+  id: Magazine308RifleLong
+  name: "long magazine (.308)"
+  parent: BaseMagazine308Rifle
+  components:
+  - type: Tag
+    tags:
+      - N14Magazine308RifleLong
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge308Rifle
+    capacity: 40
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/308/mag3.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: ClipMagazine308Rifle
@@ -49,7 +69,8 @@
       - N14Clip308Rifle
   - type: BallisticAmmoProvider
     proto: N14Cartridge308Rifle
-    capacity: 8
+    capacity: 7
   - type: Sprite
     netsync: false
     sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/308/mag2.rsi
+

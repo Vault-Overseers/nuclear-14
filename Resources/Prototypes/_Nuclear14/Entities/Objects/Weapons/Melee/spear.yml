@@ -210,6 +210,33 @@
         Slash: 6
 
 - type: entity
+  name: poleaxe
+  parent: N14WastelandSpear
+  id: N14WastelandPolearm
+  description: A heavy and long pole with a axe blade attached at its end, this basic weapon can be devastating.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/polearm.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/polearm.rsi
+    netsync: false
+    state: spear
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 18
+        Slash: 12
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 16
+        Slash: 6
+
+- type: entity
   name: javelin
   parent: baseThrowingSpear
   id: N14WastelandTribalJavelin
