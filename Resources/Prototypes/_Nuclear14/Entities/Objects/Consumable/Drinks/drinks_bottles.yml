@@ -15,23 +15,6 @@
   abstract: true
   suffix: empty
 
-# Allows for caps and fill levels
-- type: entity
-  id: DrinkGlassVisualsOpenable
-  abstract: true
-  components:
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.OpenableVisuals.Opened:
-        enum.OpenableVisuals.Layer:
-          True: {state: "icon_open"}
-          False: {state: "icon"}
-  - type: Sprite
-    layers:
-      - state: icon
-        map: ["enum.OpenableVisuals.Layer"]
- 
 # Milk
 # Empty Bottle
 - type: entity
@@ -41,11 +24,10 @@
   description: Looks good at holding milky substances.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Drinks/milk.rsi 
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi # N14TODO:SPRITE: Change this
 
-# Basic Milk Bottle
 - type: entity
-  parent: [DrinkGlassVisualsOpenable, DrinkBottleBaseFull50]
+  parent: DrinkBottleBaseFull50
   id: N14DrinkMilkBrahmin
   name: brahmin milk
   description: A glass bottle of brahmin milk.
@@ -58,16 +40,7 @@
         - ReagentId: N14MilkBrahmin
           Quantity: 50
   - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Drinks/milk.rsi 
-    layers:
-      - state: icon
-        map: ["enum.OpenableVisuals.Layer"]
-      - state: fill1
-        map: ["enum.SolutionContainerLayers.Fill"]
-        visible: false
-  - type: SolutionContainerVisuals
-    maxFillLevels: 6
-    fillBaseName: fill
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi # N14TODO:SPRITE: Change this
 
 - type: entity
   parent: N14DrinkMilkBrahmin
@@ -97,43 +70,6 @@
         - ReagentId: N14MilkRadstag
           Quantity: 50
 
-# Cream
-# Empty Cream Bottle
-- type: entity
-  parent: DrinkBottleBaseEmpty50
-  id: N14DrinkCreamGlassEmpty
-  name: cream glass
-  description: Aw look, theres a little cow on the front.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Drinks/cream.rsi 
-
-# Filled Cream Bottle
-- type: entity
-  parent: [DrinkGlassVisualsOpenable, DrinkBottleBaseFull50]
-  id: N14DrinkCreamGlass
-  name: cream
-  description: Aw look, theres a little cow on the front. Seems to be filled with heavy cream.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 50
-        reagents:
-        - ReagentId: Cream
-          Quantity: 50
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Drinks/cream.rsi 
-    layers:
-      - state: icon
-        map: ["enum.OpenableVisuals.Layer"]
-      - state: fill1
-        map: ["enum.SolutionContainerLayers.Fill"]
-        visible: false
-  - type: SolutionContainerVisuals
-    maxFillLevels: 6
-    fillBaseName: fill
-    
 # Soda
 - type: entity
   parent: DrinkBottleBaseFull50
@@ -229,7 +165,7 @@
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaCherry
   name: Nuka Cola Cherry
-  description: Classic Nuka Cola taste, but with a twist! You can taste cherries and syrup! It tingles the tongue.
+  description: Typical Nuka Cola taste, but with a twist! You can taste cherries and syrup! It tingles the tongue..
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
@@ -246,7 +182,7 @@
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaGrape
   name: Nuka Cola Grape
-  description: Classic Nuka Cola taste, but with a twist! You can taste grapes and syrup! It tingles the tongue.
+  description: Typical Nuka Cola taste, but with a twist! You can taste grapes and syrup! It tingles the tongue..
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
@@ -263,7 +199,7 @@
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaOrange
   name: Nuka Cola Orange
-  description: Classic Nuka Cola taste, but with a twist! You can taste oranges and syrup! It tingles the tongue.
+  description: Typical Nuka Cola taste, but with a twist! You can taste oranges and syrup! It tingles the tongue..
 
   components:
   - type: Sprite
@@ -299,7 +235,7 @@
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaQuantum
   name: Nuka Cola Quantum
-  description: An explosion of sweetness and fruit! You can taste various berry flavours.. And a lot of sugar!
+  description: An explosion of sugar and tastes! You can taste various berry flavours.. And a lot of sugar!
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
@@ -312,16 +248,12 @@
         reagents:
         - ReagentId: NukaColaQuantum
           Quantity: 50
-  - type: PointLight
-    color: "#8DB6FF"
-    radius: 1.5
-    energy: 0.2
 
 - type: entity
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaQuartz
   name: Nuka Cola Quartz
-  description: Minty, fresh, extra fizzy.. This soda is a blast to the mouth of freshness.
+  description: Minty, fresh, extra fizzy.. This soda is a blast to the mouth with freshness.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
@@ -343,7 +275,7 @@
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaVictory
   name: Nuka Cola Victory
-  description: A mixture of vanilla, cinnamon, dash of cream, and a bit of spice.. It tingles the tongue.
+  description: A mixture of vanilla, cinnamon, dashes of cream, and a bit of spice.. It tingles the tongue.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
@@ -370,7 +302,7 @@
       drink:
         maxVol: 50
         reagents:
-        - ReagentId: NukaColaWild
+        - ReagentId: NukaCola # Change me
           Quantity: 50
 
 # Vim

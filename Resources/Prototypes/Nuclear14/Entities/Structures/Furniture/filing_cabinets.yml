@@ -1,9 +1,9 @@
 - type: entity
-  name: N14 filing cabinet
+  name: filing cabinet
   parent: BaseStructureDynamic
   id: N14filingCabinet
   suffix: Empty
-  description: A cabinet for all your filing needs.
+  description: "Remember: only you can prevent corporate espionage!"
   components:
   - type: Storage
     grid:
@@ -20,8 +20,8 @@
       map: ["openLayer"]
   - type: UserInterface
     interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
   - type: Transform
     noRot: true
   - type: Fixtures
@@ -40,9 +40,12 @@
     containers:
       storagebase: !type:Container
 
-
-# TODO:RESET:TIMEDSTORAGEFILL
 - type: entity
-  parent: [ N14filingCabinet, N14BaseTimedStorageFill ]
+  parent: [ N14filingCabinet, N14BaseSmallLockerTimedStorageFill ]
   id: N14FilingCabinetRefilling
   suffix: Refilling,Random
+
+- type: entity
+  parent: [ N14filingCabinet, N14BaseSmallLockerStorageFill ]
+  id: N14LootFilingCabinet
+  suffix: Loot,Random
