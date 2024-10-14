@@ -31,8 +31,7 @@
     layers:
       - state: icon
         map: ["enum.OpenableVisuals.Layer"]
-
-        
+ 
 # Milk
 # Empty Bottle
 - type: entity
@@ -44,6 +43,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/milk.rsi 
 
+# Basic Milk Bottle
 - type: entity
   parent: [DrinkGlassVisualsOpenable, DrinkBottleBaseFull50]
   id: N14DrinkMilkBrahmin
@@ -60,7 +60,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/milk.rsi 
     layers:
-      - state: milkglass
+      - state: icon
         map: ["enum.OpenableVisuals.Layer"]
       - state: fillm1
         map: ["enum.SolutionContainerLayers.Fill"]
@@ -96,8 +96,9 @@
         reagents:
         - ReagentId: N14MilkRadstag
           Quantity: 50
-# Cream
 
+# Cream
+# Empty Cream Bottle
 - type: entity
   parent: DrinkBottleBaseEmpty50
   id: N14DrinkCreamGlassEmpty
@@ -107,6 +108,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/cream.rsi 
 
+# Filled Cream Bottle
 - type: entity
   parent: [DrinkGlassVisualsOpenable, DrinkBottleBaseFull50]
   id: N14DrinkCreamGlass
@@ -123,7 +125,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/cream.rsi 
     layers:
-      - state: emptyglass
+      - state: icon
         map: ["enum.OpenableVisuals.Layer"]
       - state: fillc1
         map: ["enum.SolutionContainerLayers.Fill"]
@@ -132,7 +134,6 @@
     maxFillLevels: 6
     fillBaseName: fillc
     
-
 # Soda
 - type: entity
   parent: DrinkBottleBaseFull50
