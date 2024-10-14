@@ -24,6 +24,37 @@
     whitelist:
       tags:
       - N14Cartridge308Rifle
+    capacity: 8
+    proto: N14Cartridge308Rifle
+  - type: FollowDistance
+    backStrength: 3
+
+- type: entity
+  name: lee enfield rifle
+  parent: BaseWeaponSniper
+  id: N14WeaponSniperEnfield
+  description: A well preserved bolt action service rifle. Uses .308 ammo.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/enfield.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/enfield.rsi
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -104
+  - type: Gun
+    minAngle: 24
+    maxAngle: 105
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 1.5
+    soundGunshot:
+      collection: N14SniperHuntingGunshot
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14Cartridge308Rifle
     capacity: 10
     proto: N14Cartridge308Rifle
   - type: FollowDistance
@@ -153,10 +184,13 @@
     whitelist:
       tags:
       - N14Cartridge44Magnum
-    capacity: 14
+    capacity: 12
     proto: N14Cartridge44Magnum
   - type: FollowDistance
     backStrength: 3
+  - type: Construction
+    graph: LeverCarbineSawed
+    node: start
 
 - type: entity
   name: lever action rifle
@@ -252,3 +286,40 @@
     proto: N14Cartridge556Rifle
   - type: FollowDistance
     backStrength: 3
+
+- type: entity
+  name: stockless lever action carbine
+  parent: N14WeaponSniperHunting
+  id: N14WeaponSniper44LeverShortCarbine
+  description: A extra short lever action carbine. Uses .44 ammo.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/shortlevercarbine.rsi
+    slots:
+    - suitStorage
+    - Belt
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/shortlevercarbine.rsi
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -95
+  - type: Gun
+    minAngle: 24
+    maxAngle: 105
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 2
+    soundGunshot:
+      collection: N14LeverCarbineGunshot
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14Cartridge44Magnum
+    capacity: 14
+    proto: null
+  - type: FollowDistance
+    backStrength: 6
+  - type: Construction
+    graph: LeverCarbineSawed
+    node: levercarbinesawed
