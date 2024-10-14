@@ -95,10 +95,13 @@
         Brute: 20
         Slash: 5
         Structural: 5
-    range: 2
+    range: 2.5
   - type: Sprite
-    sprite: _Nuclear14/Mobs/Ghouls/maypole.rsi
-    state: alive
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      sprite: _Nuclear14/Mobs/Ghouls/maypole.rsi
     # layers:
     # - state: alive
       # map: ["movement"]
@@ -110,8 +113,8 @@
       # movement:
         # state: sleeping
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2
-    baseSprintSpeed : 3
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
   - type: Fixtures
     fixtures:
       fix1:
@@ -126,4 +129,6 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      500: Dead
+      1000: Dead
+  - type: StaminaDamageResistance
+    coefficient: 0
