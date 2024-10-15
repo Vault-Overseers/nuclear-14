@@ -1,0 +1,134 @@
+- type: entity
+  name: Feral Ghoul
+  id: N14MobGhoulFeral
+  parent: N14MobBaseHostileFeral
+  description: A mean looking ghoul.
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcThrust
+    damage:
+      types:
+        Slash: 14
+        Structural: 5
+    range: 1
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      sprite: _Nuclear14/Mobs/Ghouls/ghoul-feral.rsi
+  
+- type: entity
+  parent: N14MobBaseHostileFeral
+  id: N14MobGhoulFeralReaver
+  name: Feral Ghoul Reaver
+  description: A mean looking ghoul.
+  components:
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcThrust
+    damage:
+      types:
+        Slash: 14
+        Structural: 5
+    range: 1
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      sprite: _Nuclear14/Mobs/Ghouls/ghoul-reaver.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+        
+- type: entity
+  parent: N14MobBaseHostileFeral
+  id: N14MobGhoulFeralRotter
+  name: Feral Ghoul Rotter
+  description: A rotten looking ghoul.
+  components:
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcThrust
+    damage:
+      types:
+        Slash: 14
+        Structural: 5
+    range: 1
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      sprite: _Nuclear14/Mobs/Ghouls/ghoul-rotter.rsi
+      
+- type: entity
+  parent: N14MobBaseHostileFeral
+  id: N14MobGhoulMaypole
+  name: Maypole
+  description: A special looking ghoul.
+  components:
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcThrust
+    damage:
+      types:
+        Brute: 20
+        Slash: 5
+        Structural: 5
+    range: 2.5
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      sprite: _Nuclear14/Mobs/Ghouls/maypole.rsi
+    # layers:
+    # - state: alive
+      # map: ["movement"]
+  # - type: SpriteMovement
+    # movementLayers:
+      # movement:
+        # state: alive
+    # noMovementLayers:
+      # movement:
+        # state: sleeping
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.7
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1000: Dead
+  - type: StaminaDamageResistance
+    coefficient: 0
