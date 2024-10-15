@@ -98,8 +98,29 @@
 - type: entity
   parent: N14IDPassport
   id: N14IDPassportCaravan
-  name: caravan passport
+  name: caravan guard ID
+  description: A stamped passport used by caravan guards as ID.
+  components:
+  - type: PresetIdCard
+    job: CaravanGuard
+    
+- type: entity
+  parent: N14IDPassport
+  id: N14IDPassportCaravanTrader
+  name: caravan trader ID
   description: A stamped passport used by caravaneers as ID.
+  components:
+  - type: PresetIdCard
+    job: CaravanTrader
+    
+- type: entity
+  parent: N14IDPassport
+  id: N14IDPassportCaravanLeader
+  name: caravan leader ID
+  description: A stamped passport used by caravaneers as ID.
+  components:
+  - type: PresetIdCard
+    job: CaravanLeader
 
 - type: entity
   parent: N14IDPassportBlank
@@ -440,16 +461,28 @@
   description: A passport used by townsfolk as ID.
 
 - type: entity
-  parent: N14IDPassportVIP
+  parent: N14IDPassportPhoto
   id: N14IDShopkeeperTown
   name: Shopkeepers ID
-  description: A flashy ID card worn by the town shopkeeper
+  description: A passport ID used by a town shopkeeper
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: passport_presidential
   - type: PresetIdCard
     job: TownShopkeeper
+    
+- type: entity
+  parent: N14IDPassportPhoto
+  id: N14IDPassportTownMechanic
+  name: mechanics ID
+  description: A passport ID used by a town mechanic.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport_presidential
+  - type: PresetIdCard
+    job: TownMechanic
 
 - type: entity
   parent: N14IDDoctor
