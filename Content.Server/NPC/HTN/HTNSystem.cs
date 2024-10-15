@@ -40,6 +40,9 @@ public sealed class HTNSystem : EntitySystem
 
     private readonly HashSet<ICommonSession> _subscribers = new();
 
+    private const float ReplanRate = 4f; // per second, TODO: CVar?
+    private float Accumulator; // limit replanning rate
+
     // Hierarchical Task Network
     public override void Initialize()
     {
@@ -160,6 +163,14 @@ public sealed class HTNSystem : EntitySystem
     public void UpdateNPC(ref int count, int maxUpdates, float frameTime)
     {
         _planQueue.Process();
+
+        // Limit update rate
+        const float updatePeriod = 1/ReplanRate;
+        Accumulator += frameTime;
+        if (Accumulator < updatePeriod)
+            return;
+        Accumulator -= updatePeriod;
+
         var query = EntityQueryEnumerator<ActiveNPCComponent, HTNComponent>();
 
         while(query.MoveNext(out var uid, out _, out var comp))
