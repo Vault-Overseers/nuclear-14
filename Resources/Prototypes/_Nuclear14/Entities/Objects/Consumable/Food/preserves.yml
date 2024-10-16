@@ -1,48 +1,19 @@
 - type: entity
-  abstract: true
-  parent: [FoodBase, FoodOpenableBase]
-  id: FoodJarBase
-  name: jar
-  description: A glass jar. Seems like it should be full of something.
+  name: glass jar
+  description: A glass jar, a cuter alternative to the glass cup.
+  parent: DrinkGlassBase
+  id: N14FoodJarBase
   components:
+  - type: Appearance
   - type: SolutionContainerManager
     solutions:
-      food:
+      drink:
         maxVol: 30
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-  - type: Openable
-    openableByHand: true
-    sound:
-      path: /Audio/Items/can_open3.ogg #change or add a new audio
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 6
-      behaviors:
-      - !type:OpenBehavior
-  - type: Item
-    sprite: Objects/Consumable/Food/preserves.rsi
-    heldPrefix: packet
-    size: Tiny
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 3
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Blunt: 3
-  - type: Damageable
-    damageContainer: Inorganic
+    metamorphic: true
+    metamorphicDefaultSprite:
+      sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+      state: empty
+  - type: TransformableContainer
 
 - type: entity
   parent: FoodJarBase
@@ -50,15 +21,23 @@
   name: agave jam
   description: A jar filled with agave jam. Wait... people make agave jam?
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
   - type: FlavorProfile
     flavors:
     - sweet
     - fruity
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: agavejam
+          Quantity: 30
+  - type: Icon
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    state: agavejam
   - type: Tag
     tags:
-    - Fruit
+    - Jam
 
 - type: entity
   parent: FoodJarBase
@@ -72,9 +51,19 @@
     flavors:
     - tart
     - fruity
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: blackberryjam
+          Quantity: 30
+  - type: Icon
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    state: blackberryjam
   - type: Tag
     tags:
-    - Fruit
+    - Jam
 
 - type: entity
   parent: FoodJarBase
@@ -86,11 +75,21 @@
     sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
   - type: FlavorProfile
     flavors:
-    - medicine
-    - fruity
+    - medicinal
+    - floral
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: brocjam
+          Quantity: 30
+  - type: Icon
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    state: brocjam
   - type: Tag
     tags:
-    - medicine #What can i even put here?
+    - Jam
 
 - type: entity
   parent: FoodJarBase
@@ -104,9 +103,19 @@
     flavors:
     - tart
     - crisp
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: cactusjam
+          Quantity: 30
+  - type: Icon
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    state: cactusjam
   - type: Tag
     tags:
-    - Fruit
+    - Jam
 
 - type: entity
   parent: FoodJarBase
@@ -120,9 +129,19 @@
     flavors:
     - sweet
     - fruity
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: multifruitjam
+          Quantity: 30
+  - type: Icon
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    state: multifruitjam
   - type: Tag
     tags:
-    - Fruit
+    - Jam
 
 - type: entity
   parent: FoodJarBase
@@ -136,9 +155,19 @@
     flavors:
     - sweet
     - fruity
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: pricklypearjam
+          Quantity: 30
+  - type: Icon
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    state: pricklyjam
   - type: Tag
     tags:
-    - Fruit
+    - Jam
 
 - type: entity
   parent: FoodJarBase
@@ -152,9 +181,19 @@
     flavors:
     - sweet
     - fruity
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: starlightjam
+          Quantity: 30
+  - type: Icon
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    state: starlightjam
   - type: Tag
     tags:
-    - Fruit
+    - Jam
 
 - type: entity
   parent: FoodJarBase
@@ -166,11 +205,21 @@
     sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
   - type: FlavorProfile
     flavors:
-    - sweet
+    - tart
     - fruity
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: tarberryjam
+          Quantity: 30
+  - type: Icon
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    state: tarberryjam
   - type: Tag
     tags:
-    - Fruit
+    - Jam
 
 # Start of pickled jars
 - type: entity
@@ -186,6 +235,16 @@
     - vinegar
     - sweet
     - sour
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: pickledcabbage
+          Quantity: 30
+  - type: Icon
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    state: pickledcabbage
   - type: Tag
     tags:
     - Pickled #is this an option?
@@ -203,6 +262,16 @@
     - vinegar
     - sweet
     - sour
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: pickledcarrot
+          Quantity: 30
+  - type: Icon
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    state: pickledcarrots
   - type: Tag
     tags:
     - Pickled
@@ -220,6 +289,16 @@
     - vinegar
     - sweet
     - sour
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: pickledcorn
+          Quantity: 30
+  - type: Icon
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    state: pickledcorn
   - type: Tag
     tags:
     - Pickled
@@ -237,6 +316,16 @@
     - vinegar
     - sweet
     - sour
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: pickledjalapeno
+          Quantity: 30
+  - type: Icon
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    state: pickledjalapenos
   - type: Tag
     tags:
     - Pickled
@@ -254,6 +343,16 @@
     - vinegar
     - sweet
     - sour
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: pickledonion
+          Quantity: 30
+  - type: Icon
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    state: pickledonions
   - type: Tag
     tags:
     - Pickled
