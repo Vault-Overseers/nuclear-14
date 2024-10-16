@@ -2,8 +2,8 @@
 # Base
 
 - type: entity
-  parent: FoodInjectableBase
-  id: FoodPizzaBase
+  parent: N14FoodInjectableBase
+  id: N14FoodPizzaBase
   abstract: true
   components:
   - type: FlavorProfile
@@ -32,8 +32,8 @@
     - ReptilianFood
 
 - type: entity
-  parent: FoodInjectableBase # Not sliceable
-  id: FoodPizzaSliceBase
+  parent: N14FoodInjectableBase # Not sliceable
+  id: N14FoodPizzaSliceBase
   abstract: true
   components:
   - type: FlavorProfile
@@ -46,7 +46,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        # Note: Keep FoodPizzaMoldySlice & FoodPizzaSliceBase roughly in sync
+        # Note: Keep FoodPizzaMoldySlice & N14FoodPizzaSliceBase roughly in sync
         maxVol: 6
         reagents:
         - ReagentId: Nutriment
@@ -64,8 +64,8 @@
 
 - type: entity
   name: margherita pizza
-  parent: FoodPizzaBase
-  id: FoodPizzaMargherita
+  parent: N14FoodPizzaBase
+  id: N14FoodPizzaMargherita
   description: The flavor of some place called... Iti-lie..? #N14 change
   components:
   - type: FlavorProfile
@@ -78,12 +78,12 @@
     layers:
     - state: margherita
   - type: SliceableFood
-    slice: FoodPizzaMargheritaSlice
+    slice: N14FoodPizzaMargheritaSlice
 
 - type: entity
   name: slice of margherita pizza
-  parent: FoodPizzaSliceBase
-  id: FoodPizzaMargheritaSlice
+  parent: N14FoodPizzaSliceBase
+  id: N14FoodPizzaMargheritaSlice
   description: A slice of Iti-lie. #N14 change
   components:
   - type: FlavorProfile
@@ -98,8 +98,8 @@
 
 - type: entity
   name: meat pizza
-  parent: FoodPizzaBase
-  id: FoodPizzaMeat
+  parent: N14FoodPizzaBase
+  id: N14FoodPizzaMeat
   description: Greasy pizza with delicious meat.
   components:
   - type: FlavorProfile
@@ -113,7 +113,7 @@
     layers:
     - state: meat
   - type: SliceableFood
-    slice: FoodPizzaMeatSlice
+    slice: N14FoodPizzaMeatSlice
   - type: Tag
     tags:
     - Meat
@@ -121,8 +121,8 @@
 
 - type: entity
   name: slice of meat pizza
-  parent: FoodPizzaSliceBase
-  id: FoodPizzaMeatSlice
+  parent: N14FoodPizzaSliceBase
+  id: N14FoodPizzaMeatSlice
   description: A nutritious slice of meatpizza.
   components:
   - type: FlavorProfile
@@ -143,8 +143,8 @@
 
 - type: entity
   name: mushroom pizza
-  parent: FoodPizzaBase
-  id: FoodPizzaMushroom
+  parent: N14FoodPizzaBase
+  id: N14FoodPizzaMushroom
   description: It reeks of the dark, but tastes like delight. #N14 change
   components:
   - type: FlavorProfile
@@ -156,12 +156,12 @@
     layers:
     - state: mushroom
   - type: SliceableFood
-    slice: FoodPizzaMushroomSlice
+    slice: N14FoodPizzaMushroomSlice
 
 - type: entity
   name: slice of mushroom pizza
-  parent: FoodPizzaSliceBase
-  id: FoodPizzaMushroomSlice
+  parent: N14FoodPizzaSliceBase
+  id: N14FoodPizzaMushroomSlice
   description: Chewy and oddly sweet. #N14 change
   components:
   - type: FlavorProfile
@@ -176,8 +176,8 @@
 
 - type: entity
   name: vegetable pizza
-  parent: FoodPizzaBase
-  id: FoodPizzaVegetable
+  parent: N14FoodPizzaBase
+  id: N14FoodPizzaVegetable
   description: Probably the healthiest thing a waster has ever tasted. #N14 change
   components:
   - type: FlavorProfile
@@ -192,7 +192,7 @@
     layers:
     - state: vegetable
   - type: SliceableFood
-    slice: FoodPizzaVegetableSlice
+    slice: N14FoodPizzaVegetableSlice
   - type: SolutionContainerManager
     solutions:
       food:
@@ -207,8 +207,8 @@
 
 - type: entity
   name: slice of vegetable pizza
-  parent: FoodPizzaSliceBase
-  id: FoodPizzaVegetableSlice
+  parent: N14FoodPizzaSliceBase
+  id: N14FoodPizzaVegetableSlice
   description: You feel less diseased just looking at it. #N14 change
   components:
   - type: FlavorProfile
@@ -239,8 +239,8 @@
 
 - type: entity
   name: donk-pocket pizza
-  parent: FoodPizzaBase
-  id: FoodPizzaDonkpocket
+  parent: N14FoodPizzaBase
+  id: N14FoodPizzaDonkpocket
   description: Who thought this would be a good idea?
   components:
   - type: FlavorProfile
@@ -250,7 +250,7 @@
     layers:
     - state: donkpocket
   - type: SliceableFood
-    slice: FoodPizzaDonkpocketSlice
+    slice: N14FoodPizzaDonkpocketSlice
   - type: SolutionContainerManager
     solutions:
       food:
@@ -270,8 +270,8 @@
 
 - type: entity
   name: slice of donk-pocket pizza
-  parent: FoodPizzaSliceBase
-  id: FoodPizzaDonkpocketSlice
+  parent: N14FoodPizzaSliceBase
+  id: N14FoodPizzaDonkpocketSlice
   description: Smells like donk-pocket.
   components:
   - type: FlavorProfile
@@ -299,8 +299,8 @@
 
 - type: entity
   name: dank pizza
-  parent: FoodPizzaBase
-  id: FoodPizzaDank
+  parent: N14FoodPizzaBase
+  id: N14FoodPizzaDank
   description: The hippie's pizza of choice.
   components:
   - type: FlavorProfile
@@ -313,7 +313,7 @@
     layers:
     - state: dank
   - type: SliceableFood
-    slice: FoodPizzaDankSlice
+    slice: N14FoodPizzaDankSlice
   - type: SolutionContainerManager
     solutions:
       food:
@@ -328,8 +328,8 @@
 
 - type: entity
   name: slice of dank pizza
-  parent: FoodPizzaSliceBase
-  id: FoodPizzaDankSlice
+  parent: N14FoodPizzaSliceBase
+  id: N14FoodPizzaDankSlice
   description: So good, man...
   components:
   - type: FlavorProfile
@@ -356,8 +356,8 @@
 
 - type: entity
   name: sassysage pizza
-  parent: FoodPizzaBase
-  id: FoodPizzaSassysage
+  parent: N14FoodPizzaBase
+  id: N14FoodPizzaSassysage
   description: You can really smell the sassiness.
   components:
   - type: FlavorProfile
@@ -370,7 +370,7 @@
     layers:
     - state: sassysage
   - type: SliceableFood
-    slice: FoodPizzaSassysageSlice
+    slice: N14FoodPizzaSassysageSlice
   - type: Tag
     tags:
     - Meat
@@ -378,8 +378,8 @@
 
 - type: entity
   name: slice of sassysage pizza
-  parent: FoodPizzaSliceBase
-  id: FoodPizzaSassysageSlice
+  parent: N14FoodPizzaSliceBase
+  id: N14FoodPizzaSassysageSlice
   description: Deliciously sassy.
   components:
   - type: FlavorProfile
@@ -399,8 +399,8 @@
 
 - type: entity
   name: Hawaiian pizza
-  parent: FoodPizzaBase
-  id: FoodPizzaPineapple
+  parent: N14FoodPizzaBase
+  id: N14FoodPizzaPineapple
   description: Makes people burst into tears. Tears of joy or sadness depends on the persons fondness for pineapple.
   components:
   - type: FlavorProfile
@@ -414,12 +414,12 @@
     layers:
     - state: pineapple
   - type: SliceableFood
-    slice: FoodPizzaPineappleSlice
+    slice: N14FoodPizzaPineappleSlice
 
 - type: entity
   name: slice of pineapple pizza
-  parent: FoodPizzaSliceBase
-  id: FoodPizzaPineappleSlice
+  parent: N14FoodPizzaSliceBase
+  id: N14FoodPizzaPineappleSlice
   description: A slice of joy/sin.
   components:
   - type: FlavorProfile
@@ -441,8 +441,8 @@
 #TODO: This is a meme pizza from /tg/. It has specially coded mechanics.
 - type: entity
   name: Arnold's pizza
-  parent: FoodPizzaBase
-  id: FoodPizzaArnold
+  parent: N14FoodPizzaBase
+  id: N14FoodPizzaArnold
   description: Hello, you've reached Arnold's pizza shop. I'm not here now, I'm out killing pepperoni.
   components:
   - type: FlavorProfile
@@ -456,7 +456,7 @@
     layers:
     - state: arnold
   - type: SliceableFood
-    slice: FoodPizzaArnoldSlice
+    slice: N14FoodPizzaArnoldSlice
   - type: SolutionContainerManager
     solutions:
       food:
@@ -477,8 +477,8 @@
 
 - type: entity
   name: slice of Arnold's pizza
-  parent: FoodPizzaSliceBase
-  id: FoodPizzaArnoldSlice
+  parent: N14FoodPizzaSliceBase
+  id: N14FoodPizzaArnoldSlice
   description: I come over, maybe I give you a pizza, maybe I break off your arm.
   components:
   - type: FlavorProfile
@@ -513,8 +513,8 @@
 #TODO: Make this do poison damage and make cut pizza slices eventually rot into this.
 - type: entity
   name: slice of moldy pizza
-  parent: FoodPizzaSliceBase
-  id: FoodPizzaMoldySlice
+  parent: N14FoodPizzaSliceBase
+  id: N14FoodPizzaMoldySlice
   description: Once a perfectly good slice of pizza pie, but now it lies here, rancid and bursting with spores.
   components:
   - type: FlavorProfile
@@ -528,7 +528,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        # Note: Keep FoodPizzaMoldySlice & FoodPizzaSliceBase roughly in sync
+        # Note: Keep FoodPizzaMoldySlice & N14FoodPizzaSliceBase roughly in sync
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
