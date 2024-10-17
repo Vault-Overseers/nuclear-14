@@ -9,11 +9,24 @@
     solutions:
       drink:
         maxVol: 30
+  - type: SolutionContainerVisuals
+    maxFillLevels: 7
+    fillBaseName: fill
     metamorphic: true
     metamorphicDefaultSprite:
       sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-      state: empty
+      state: icon
   - type: TransformableContainer
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    layers:
+      - state: icon
+        map: [ "enum.SolutionContainerLayers.Base" ]
+      - state: fill1
+        map: [ "enum.SolutionContainerLayers.Fill" ]
+        visible: false
+      - state: icon-front
+        map: [ "enum.SolutionContainerLayers.Overlay" ]
 
 - type: entity
   parent: N14FoodJarBase
@@ -32,9 +45,6 @@
         reagents:
         - ReagentId: agavejam
           Quantity: 30
-  - type: Icon
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-    state: agavejam
   - type: Tag
     tags:
     - Jam
@@ -58,9 +68,6 @@
         reagents:
         - ReagentId: blackberryjam
           Quantity: 30
-  - type: Icon
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-    state: blackberryjam
   - type: Tag
     tags:
     - Jam
@@ -84,9 +91,6 @@
         reagents:
         - ReagentId: brocjam
           Quantity: 30
-  - type: Icon
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-    state: brocjam
   - type: Tag
     tags:
     - Jam
@@ -110,9 +114,6 @@
         reagents:
         - ReagentId: cactusjam
           Quantity: 30
-  - type: Icon
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-    state: cactusjam
   - type: Tag
     tags:
     - Jam
@@ -136,9 +137,6 @@
         reagents:
         - ReagentId: multifruitjam
           Quantity: 30
-  - type: Icon
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-    state: multifruitjam
   - type: Tag
     tags:
     - Jam
@@ -162,9 +160,6 @@
         reagents:
         - ReagentId: pricklypearjam
           Quantity: 30
-  - type: Icon
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-    state: pricklyjam
   - type: Tag
     tags:
     - Jam
@@ -188,9 +183,6 @@
         reagents:
         - ReagentId: starlightjam
           Quantity: 30
-  - type: Icon
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-    state: starlightjam
   - type: Tag
     tags:
     - Jam
@@ -214,9 +206,6 @@
         reagents:
         - ReagentId: tarberryjam
           Quantity: 30
-  - type: Icon
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-    state: tarberryjam
   - type: Tag
     tags:
     - Jam
@@ -242,9 +231,6 @@
         reagents:
         - ReagentId: pickledcabbage
           Quantity: 30
-  - type: Icon
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-    state: pickledcabbage
   - type: Tag
     tags:
     - Pickled #is this an option?
@@ -269,9 +255,6 @@
         reagents:
         - ReagentId: pickledcarrot
           Quantity: 30
-  - type: Icon
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-    state: pickledcarrots
   - type: Tag
     tags:
     - Pickled
@@ -296,9 +279,6 @@
         reagents:
         - ReagentId: pickledcorn
           Quantity: 30
-  - type: Icon
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-    state: pickledcorn
   - type: Tag
     tags:
     - Pickled
@@ -323,9 +303,6 @@
         reagents:
         - ReagentId: pickledjalapeno
           Quantity: 30
-  - type: Icon
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-    state: pickledjalapenos
   - type: Tag
     tags:
     - Pickled
@@ -350,9 +327,6 @@
         reagents:
         - ReagentId: pickledonion
           Quantity: 30
-  - type: Icon
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-    state: pickledonions
   - type: Tag
     tags:
     - Pickled
