@@ -56,6 +56,7 @@ flavor-base-mindful = mindful
 
 flavor-complex-nothing = like nothing
 flavor-complex-honey = like honey
+flavor-complex-pickled = like its been pickled
 
 # Condiments
 
