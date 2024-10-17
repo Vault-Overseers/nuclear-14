@@ -15,6 +15,23 @@
   abstract: true
   suffix: empty
 
+# Allows for caps and fill levels
+- type: entity
+  id: DrinkGlassVisualsOpenable
+  abstract: true
+  components:
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "icon_open"}
+          False: {state: "icon"}
+  - type: Sprite
+    layers:
+      - state: icon
+        map: ["enum.OpenableVisuals.Layer"]
+ 
 # Milk
 # Empty Bottle
 - type: entity
@@ -24,10 +41,11 @@
   description: Looks good at holding milky substances.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi # N14TODO:SPRITE: Change this
+    sprite: _Nuclear14/Objects/Consumable/Drinks/milk.rsi 
 
+# Basic Milk Bottle
 - type: entity
-  parent: DrinkBottleBaseFull50
+  parent: [DrinkGlassVisualsOpenable, DrinkBottleBaseFull50]
   id: N14DrinkMilkBrahmin
   name: brahmin milk
   description: A glass bottle of brahmin milk.
@@ -40,7 +58,16 @@
         - ReagentId: N14MilkBrahmin
           Quantity: 50
   - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi # N14TODO:SPRITE: Change this
+    sprite: _Nuclear14/Objects/Consumable/Drinks/milk.rsi 
+    layers:
+      - state: icon
+        map: ["enum.OpenableVisuals.Layer"]
+      - state: fill1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill
 
 - type: entity
   parent: N14DrinkMilkBrahmin
@@ -70,6 +97,43 @@
         - ReagentId: N14MilkRadstag
           Quantity: 50
 
+# Cream
+# Empty Cream Bottle
+- type: entity
+  parent: DrinkBottleBaseEmpty50
+  id: N14DrinkCreamGlassEmpty
+  name: cream glass
+  description: Aw look, theres a little cow on the front.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/cream.rsi 
+
+# Filled Cream Bottle
+- type: entity
+  parent: [DrinkGlassVisualsOpenable, DrinkBottleBaseFull50]
+  id: N14DrinkCreamGlass
+  name: cream
+  description: Aw look, theres a little cow on the front. Seems to be filled with heavy cream.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Cream
+          Quantity: 50
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/cream.rsi 
+    layers:
+      - state: icon
+        map: ["enum.OpenableVisuals.Layer"]
+      - state: fill1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill
+    
 # Soda
 - type: entity
   parent: DrinkBottleBaseFull50
