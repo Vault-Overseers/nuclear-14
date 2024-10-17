@@ -1,0 +1,253 @@
+- type: entity
+  name: glass jar
+  description: A glass jar, a cuter alternative to the glass cup.
+  parent: DrinkGlassBase
+  id: N14FoodJarBase
+  components:
+  - type: Appearance
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+  - type: SolutionContainerVisuals
+    maxFillLevels: 7
+    fillBaseName: fill
+    metamorphic: true
+    metamorphicDefaultSprite:
+      sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+      state: icon
+  - type: TransformableContainer
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+    layers:
+      - state: icon
+        map: [ "enum.SolutionContainerLayers.Base" ]
+      - state: fill1
+        map: [ "enum.SolutionContainerLayers.Fill" ]
+        visible: false
+      - state: icon-front
+        map: [ "enum.SolutionContainerLayers.Overlay" ]
+
+# JamBase
+- type: entity
+  parent: N14FoodJarBase
+  id: N14FoodJamBase
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - fruity
+  - type: Tag
+    tags:
+    - Jam
+
+# PickledBase
+- type: entity
+  parent: N14FoodJarBase
+  id: N14PickledBase
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+  - type: FlavorProfile
+    flavors:
+    - vinegar
+    - sweet
+    - sour
+  - type: Tag
+    tags:
+    - Pickled
+
+# Jams
+- type: entity
+  parent: N14FoodJamBase
+  id: N14AgaveJam
+  name: agave jam
+  description: A jar filled with agave jam. Wait... people make agave jam?
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: AgaveJam
+          Quantity: 30
+
+- type: entity
+  parent: N14FoodJamBase
+  id: N14BlackberryJam
+  name: blackberry jam
+  description: A jar filled with blackberry jam. What a treat!
+  components:
+  - type: FlavorProfile
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: BlackberryJam
+          Quantity: 30
+
+- type: entity
+  parent: N14FoodJamBase
+  id: N14BrocJam
+  name: broc jam
+  description: A jar filled with broc jam. It... doesnt taste very good.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - medicinal
+    - floral
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: BrocJam
+          Quantity: 30
+
+- type: entity
+  parent: N14FoodJamBase
+  id: N14CactusJam
+  name: cactus jam
+  description: A jar filled with cactus jam. These jams are getting out of hand.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - tart
+    - crisp
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: CactusJam
+          Quantity: 30
+
+- type: entity
+  parent: N14FoodJamBase
+  id: N14MultifruitJam
+  name: multifruit jam
+  description: A jar filled with multifruit jam. Now where is some toast?
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: MultifruitJam
+          Quantity: 30
+
+- type: entity
+  parent: N14FoodJamBase
+  id: N14PricklyJam
+  name: prickly pear jam
+  description: A jar filled with prickly pear jam. Now THIS is jam!
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: PricklyPearJam
+          Quantity: 30
+
+- type: entity
+  parent: N14FoodJamBase
+  id: N14StarlightJam
+  name: starlight jam
+  description: A jar filled with starlight jam. Its a pretty color.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: StarlightJam
+          Quantity: 30
+
+- type: entity
+  parent: N14FoodJamBase
+  id: N14TarberryJam
+  name: tarberry jam
+  description: A jar filled with tarberry jam. It gives you a strange feeling...
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: TarberryJam
+          Quantity: 30
+
+# Start of pickled jars
+- type: entity
+  parent: N14PickledBase
+  id: N14PickledCabbage
+  name: pickled cabbage
+  description: A jar filled with pickled cabbage. How old is this?
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: PickledCabbage
+          Quantity: 30
+
+- type: entity
+  parent: N14PickledBase
+  id: N14PickledCarrots
+  name: pickled carrots
+  description: A jar filled with pickled carrots. I guess people will pickle anything now-a-days.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: PickledCarrots
+          Quantity: 30
+  
+- type: entity
+  parent: N14PickledBase
+  id: N14PickledCorn
+  name: pickled corn
+  description: A jar filled with pickled corn. Aw, its baby corn.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: PickledCorn
+          Quantity: 30
+
+- type: entity
+  parent: N14PickledBase
+  id: N14PickledJalapenos
+  name: pickled jalapenos
+  description: A jar filled with pickled jalapenos. So hot!
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: PickledJalapenos
+          Quantity: 30
+
+- type: entity
+  parent: N14PickledBase
+  id: N14PickledOnions
+  name: pickled onions
+  description: A jar filled with pickled onions. What a crunch!
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: PickledOnions
+          Quantity: 30
