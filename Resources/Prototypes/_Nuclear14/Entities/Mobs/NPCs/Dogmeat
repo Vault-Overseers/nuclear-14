@@ -1,0 +1,33 @@
+- type: entity
+  name: Dogmeat
+  parent: MobSecDog
+  id: MobSecDogLaika
+  description: You know him, you love him, you might just die for him. It's Dogmeat.
+  components:
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: false
+    allowMovement: true
+    name: "Dogmeat"
+    description: "You know him, you love him, you might just die for him. It's Dogmeat."
+    requirements:
+    - !type:DepartmentTimeRequirement
+      time: 12000 # N14 - 200 hours
+  - type: GhostTakeoverAvailable
+  - type: InteractionPopup
+    successChance: 1
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 2
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: Loadout
+    prototypes: [ MobSecDogLaikaGear ]
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+    - DoorBumpOpener
