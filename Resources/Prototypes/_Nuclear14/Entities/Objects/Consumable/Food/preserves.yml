@@ -28,16 +28,44 @@
       - state: icon-front
         map: [ "enum.SolutionContainerLayers.Overlay" ]
 
+# JamBase
 - type: entity
   parent: N14FoodJarBase
-  id: N14AgaveJam
-  name: agave jam
-  description: A jar filled with agave jam. Wait... people make agave jam?
+  id: N14FoodJambase
   components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
   - type: FlavorProfile
     flavors:
     - sweet
     - fruity
+  - type: Tag
+    tags:
+    - Jam
+
+# PickledBase
+- type: entity
+  parent: N14FoodJarBase
+  id: N14PickledBase
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+  - type: FlavorProfile
+    flavors:
+    - vinegar
+    - sweet
+    - sour
+  - type: Tag
+    tags:
+    - Pickled
+
+# Jams
+- type: entity
+  parent: N14FoodJamBase
+  id: N14AgaveJam
+  name: agave jam
+  description: A jar filled with agave jam. Wait... people make agave jam?
+  components:
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -45,9 +73,6 @@
         reagents:
         - ReagentId: agavejam
           Quantity: 30
-  - type: Tag
-    tags:
-    - Jam
 
 - type: entity
   parent: N14FoodJarBase
@@ -55,12 +80,7 @@
   name: blackberry jam
   description: A jar filled with blackberry jam. What a treat!
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
   - type: FlavorProfile
-    flavors:
-    - tart
-    - fruity
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -68,9 +88,6 @@
         reagents:
         - ReagentId: blackberryjam
           Quantity: 30
-  - type: Tag
-    tags:
-    - Jam
 
 - type: entity
   parent: N14FoodJarBase
@@ -78,8 +95,6 @@
   name: broc jam
   description: A jar filled with broc jam. It... doesnt taste very good.
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
   - type: FlavorProfile
     flavors:
     - medicinal
@@ -91,9 +106,6 @@
         reagents:
         - ReagentId: brocjam
           Quantity: 30
-  - type: Tag
-    tags:
-    - Jam
 
 - type: entity
   parent: N14FoodJarBase
@@ -101,8 +113,6 @@
   name: cactus jam
   description: A jar filled with cactus jam. These jams are getting out of hand.
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
   - type: FlavorProfile
     flavors:
     - tart
@@ -114,9 +124,6 @@
         reagents:
         - ReagentId: cactusjam
           Quantity: 30
-  - type: Tag
-    tags:
-    - Jam
 
 - type: entity
   parent: N14FoodJarBase
@@ -124,12 +131,6 @@
   name: multifruit jam
   description: A jar filled with multifruit jam. Now where is some toast?
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-  - type: FlavorProfile
-    flavors:
-    - sweet
-    - fruity
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -137,9 +138,6 @@
         reagents:
         - ReagentId: multifruitjam
           Quantity: 30
-  - type: Tag
-    tags:
-    - Jam
 
 - type: entity
   parent: N14FoodJarBase
@@ -147,12 +145,6 @@
   name: prickly pear jam
   description: A jar filled with prickly pear jam. Now THIS is jam!
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-  - type: FlavorProfile
-    flavors:
-    - sweet
-    - fruity
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -160,9 +152,6 @@
         reagents:
         - ReagentId: pricklypearjam
           Quantity: 30
-  - type: Tag
-    tags:
-    - Jam
 
 - type: entity
   parent: N14FoodJarBase
@@ -170,12 +159,6 @@
   name: starlight jam
   description: A jar filled with starlight jam. Its a pretty color.
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-  - type: FlavorProfile
-    flavors:
-    - sweet
-    - fruity
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -183,9 +166,6 @@
         reagents:
         - ReagentId: starlightjam
           Quantity: 30
-  - type: Tag
-    tags:
-    - Jam
 
 - type: entity
   parent: N14FoodJarBase
@@ -193,12 +173,6 @@
   name: tarberry jam
   description: A jar filled with tarberry jam. It gives you a strange feeling...
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-  - type: FlavorProfile
-    flavors:
-    - tart
-    - fruity
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -206,9 +180,6 @@
         reagents:
         - ReagentId: tarberryjam
           Quantity: 30
-  - type: Tag
-    tags:
-    - Jam
 
 # Start of pickled jars
 - type: entity
@@ -217,13 +188,6 @@
   name: pickled cabbage
   description: A jar filled with pickled cabbage. How old is this?
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-  - type: FlavorProfile
-    flavors:
-    - vinegar
-    - sweet
-    - sour
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -231,9 +195,6 @@
         reagents:
         - ReagentId: pickledcabbage
           Quantity: 30
-  - type: Tag
-    tags:
-    - Pickled #is this an option?
 
 - type: entity
   parent: N14FoodJarBase
@@ -241,13 +202,6 @@
   name: pickled carrots
   description: A jar filled with pickled carrots. I guess people will pickle anything now-a-days.
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-  - type: FlavorProfile
-    flavors:
-    - vinegar
-    - sweet
-    - sour
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -255,9 +209,6 @@
         reagents:
         - ReagentId: pickledcarrot
           Quantity: 30
-  - type: Tag
-    tags:
-    - Pickled
   
 - type: entity
   parent: N14FoodJarBase
@@ -265,13 +216,6 @@
   name: pickled corn
   description: A jar filled with pickled corn. Aw, its baby corn.
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-  - type: FlavorProfile
-    flavors:
-    - vinegar
-    - sweet
-    - sour
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -279,9 +223,6 @@
         reagents:
         - ReagentId: pickledcorn
           Quantity: 30
-  - type: Tag
-    tags:
-    - Pickled
 
 - type: entity
   parent: N14FoodJarBase
@@ -289,13 +230,6 @@
   name: pickled jalapenos
   description: A jar filled with pickled jalapenos. So hot!
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-  - type: FlavorProfile
-    flavors:
-    - vinegar
-    - sweet
-    - sour
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -303,9 +237,6 @@
         reagents:
         - ReagentId: pickledjalapeno
           Quantity: 30
-  - type: Tag
-    tags:
-    - Pickled
 
 - type: entity
   parent: N14FoodJarBase
@@ -313,13 +244,6 @@
   name: pickled onions
   description: A jar filled with pickled onions. What a crunch!
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
-  - type: FlavorProfile
-    flavors:
-    - vinegar
-    - sweet
-    - sour
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -327,6 +251,3 @@
         reagents:
         - ReagentId: pickledonion
           Quantity: 30
-  - type: Tag
-    tags:
-    - Pickled
