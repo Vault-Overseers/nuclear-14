@@ -98,8 +98,29 @@
 - type: entity
   parent: N14IDPassport
   id: N14IDPassportCaravan
-  name: caravan passport
+  name: caravan guard ID
+  description: A stamped passport used by caravan guards as ID.
+  components:
+  - type: PresetIdCard
+    job: CaravanGuard
+    
+- type: entity
+  parent: N14IDPassport
+  id: N14IDPassportCaravanTrader
+  name: caravan trader ID
   description: A stamped passport used by caravaneers as ID.
+  components:
+  - type: PresetIdCard
+    job: CaravanTrader
+    
+- type: entity
+  parent: N14IDPassport
+  id: N14IDPassportCaravanLeader
+  name: caravan leader ID
+  description: A stamped passport used by caravaneers as ID.
+  components:
+  - type: PresetIdCard
+    job: CaravanLeader
 
 - type: entity
   parent: N14IDPassportBlank
@@ -215,7 +236,7 @@
   parent: N14IDPassportBlank
   id: N14IDBrotherhoodWashingtonHolotagInitiate
   name: holotag
-  description: An ID holotag worn by a Initiate in the Washington Brotherhood of Steel.
+  description: An ID holotag worn by an Initiate in the Washington Brotherhood of Steel.
   suffix: Washington Initiate
   components:
   - type: Sprite
@@ -294,7 +315,7 @@
   parent: N14IDPassportBlank
   id: N14IDEnclaveNoncombat
   name: holotag
-  description: An ID holotag worn by the non combative members of Enclave.
+  description: An ID holotag worn by the non-combat members of Enclave.
   suffix: Scientist , Noncombat
   components:
   - type: Sprite
@@ -440,16 +461,28 @@
   description: A passport used by townsfolk as ID.
 
 - type: entity
-  parent: N14IDPassportVIP
+  parent: N14IDPassportPhoto
   id: N14IDShopkeeperTown
   name: Shopkeepers ID
-  description: A flashy ID card worn by the town shopkeeper
+  description: A passport ID used by a town shopkeeper.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: passport_presidential
   - type: PresetIdCard
     job: TownShopkeeper
+    
+- type: entity
+  parent: N14IDPassportPhoto
+  id: N14IDPassportTownMechanic
+  name: mechanics ID
+  description: A passport ID used by a town mechanic.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport_presidential
+  - type: PresetIdCard
+    job: TownMechanic
 
 - type: entity
   parent: N14IDDoctor
@@ -524,7 +557,7 @@
   parent: N14IDPassportBlank
   id: N14IDTribeEnforcerPendant
   name: enforcer pendant
-  description: A pendant often worn by tribes as ID. This one is a jet canister.
+  description: A pendant often worn by tribes as ID. This one is a Jet canister.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -553,7 +586,7 @@
   parent: N14IDCard
   id: N14IDKeyIron
   name: iron key
-  description: a worn out iron key. I wonder where it goes?
+  description: A worn out iron key. I wonder where it goes?
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -566,7 +599,7 @@
   parent: N14IDCard
   id: N14IDKeyBrass
   name: brass key
-  description: a worn out brass key. I wonder where it goes?
+  description: A worn out brass key. I wonder where it goes?
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -579,7 +612,7 @@
   parent: N14IDCard
   id: N14IDKeyBronze
   name: bronze key
-  description: a worn out bronze key. I wonder where it goes?
+  description: A worn out bronze key. I wonder where it goes?
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -592,7 +625,7 @@
   parent: N14IDCard
   id: N14IDKeySilver
   name: silver key
-  description: a worn out silver key. I wonder where it goes?
+  description: A worn out silver key. I wonder where it goes?
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -606,7 +639,7 @@
   id: N14IDKeyGold
   name: gold key
   suffix: AllKeyAccess
-  description: a sparkling gold key. I wonder where it goes?
+  description: A sparkling gold key. I wonder where it goes?
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -682,7 +715,7 @@
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessEnclaveVault
-  description: A special vault-tec keycard stamped with an E.
+  description: A special Vault-Tec keycard stamped with an E.
   suffix: Enclave Vault
   components:
   - type: Sprite
@@ -694,7 +727,7 @@
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessVault
-  description: A special vault-tec keycard.
+  description: A special Vault-Tec keycard.
   suffix: Vault
   components:
   - type: Sprite
