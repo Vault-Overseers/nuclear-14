@@ -36,13 +36,14 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.90
-        Slash: 0.90
+        Blunt: 0.8
+        Slash: 0.8
         Piercing: 0.85
-        Heat: 0.90
+        Heat: 0.8
   - type: Tag
     tags:
     - HidesHair
+    - HidesBeard
 
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
@@ -82,13 +83,14 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.8
-        Heat: 0.85
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.8
   - type: Tag
     tags:
     - HidesHair
+    - HidesBeard
 
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
@@ -130,17 +132,18 @@
       coefficients:
         Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.8
+        Piercing: 0.85
         Heat: 0.8
   - type: Tag
     tags:
     - HidesHair
+    - HidesBeard
 
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: N14ClothingHeadHelmetPowerArmorX01
   name: X-01 power armor helmet
-  description: A advanced helmet used with X-01 power armor suits.
+  description: An advanced helmet used with X-01 Power Armor suits.
   components:
   - type: Sprite
     netsync: false
@@ -174,13 +177,14 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.8
-        Heat: 0.75
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.8
   - type: Tag
     tags:
     - HidesHair
+    - HidesBeard
 
 - type: entity
   parent: N14ClothingHeadHelmetPowerArmorX01
@@ -204,17 +208,18 @@
       coefficients:
         Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.8
+        Piercing: 0.85
         Heat: 0.8
   - type: Tag
     tags:
     - HidesHair
+    - HidesBeard
 
 - type: entity
   parent: N14ClothingHeadHelmetPowerArmorX01
   id: N14ClothingHeadHelmetPowerArmorHellfire
   name: hellfire power armor helmet
-  description: A deep black helmet of Enclave-manufactured heavy power armor with yellow ballistic glass, based on pre-war designs such as the T-51 and improving off of data gathered by post-war designs such as the X-01. Most commonly fielded on the East Coast, no other helmet rivals it's strength.
+  description: A deep black helmet of Enclave-manufactured heavy Power Armor with yellow ballistic glass, based on pre-war designs such as the T-51 and improving off of data gathered by post-war designs such as the X-01. Most commonly fielded on the East Coast, no other helmet rivals its strength.
   components:
   - type: Sprite
     netsync: false
@@ -230,19 +235,20 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.65
-        Piercing: 0.75
-        Heat: 0.65
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
   - type: Tag
     tags:
     - HidesHair
+    - HidesBeard
 
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: N14ClothingHeadHelmetPowerArmorT51BC
   name: t-51bc power armor helmet
-  description: The pinnacle of pre-war technology, appropriated by the Brotherhood of Steel. Commonly worn by Head Paladins.
+  description: The pinnacle of pre-war technology appropriated by the Brotherhood of Steel. Commonly worn by Paladin Commanders.
   components:
   - type: Sprite
     netsync: false
@@ -276,19 +282,20 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.80
-        Slash: 0.80
+        Blunt: 0.8
+        Slash: 0.8
         Piercing: 0.85
-        Heat: 0.80
+        Heat: 0.8
   - type: Tag
     tags:
     - HidesHair
+    - HidesBeard
 
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: N14ClothingHeadHelmetPowerArmorT45NCR
   name: t-45 NCR power armor helmet
-  description: Originally existing as T-45d power armor that was recovered by the NCR and repurposed for the use within NCR.
+  description: Originally existing as T-45d power armor that was recovered by and repurposed for the use within NCR.
   components:
   - type: Sprite
     netsync: false
@@ -322,10 +329,69 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.90
-        Slash: 0.90
-        Piercing: 0.95
-        Heat: 0.90
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.8
   - type: Tag
     tags:
     - HidesHair
+    - HidesBeard
+
+- type: entity
+  parent: N14ClothingHeadHelmetPowerArmorX01
+  id: N14ClothingHeadHelmetPowerArmorMidwest
+  name: midwest power armor helmet
+  description: A unknown model of Power Armor helmet originating from the midwest region and adopted by the Midwest Brotherhood chapter.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Clothing/Head/PowerArmorHelmets/midwest.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: EyeProtection
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.8
+  - type: Tag
+    tags:
+    - HidesHair
+    - HidesBeard
+
+- type: entity
+  parent: N14ClothingHeadHelmetPowerArmorX01
+  id: N14ClothingHeadHelmetPowerArmorMidwestCommander
+  name: midwest commander power armor helmet
+  description: A unknown model of Power Armor helmet originating from the midwest region and adopted by the Midwest Brotherhood chapter. This modified version is commonly used by high-ranking Midwest Brotherhood Paladins.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Clothing/Head/PowerArmorHelmets/midwestcommander.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: EyeProtection
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.8
+  - type: Tag
+    tags:
+    - HidesHair
+    - HidesBeard

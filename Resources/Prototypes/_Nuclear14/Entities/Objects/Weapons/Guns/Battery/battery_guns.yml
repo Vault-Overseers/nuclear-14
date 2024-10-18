@@ -7,11 +7,11 @@
   components:
   - type: Sprite
   - type: Item
-    size: Small
+    size: Large
   - type: AmmoCounter
   - type: Gun
     minAngle: 35
-    maxAngle: 65
+    maxAngle: 70
     angleIncrease: 4
     angleDecay: 16
     fireRate: 1
@@ -38,7 +38,6 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Craftable
 
 - type: entity
   id: N14BaseWeaponPowerCellSmall
@@ -50,9 +49,18 @@
     quickEquip: false
     slots:
     - Belt
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
   - type: Gun
-    minAngle: 10
-    maxAngle: 20
+    availableModes:
+    - Semiauto
+    minAngle: 1
+    maxAngle: 9
+    angleIncrease: 0.5
+    angleDecay: 4
 
 - type: entity
   id: N14BaseWeaponPowerCellMedium
@@ -60,12 +68,13 @@
   abstract: true
   components:
   - type: Item
-    size: Normal
+    size: Large
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/taser.rsi
     quickEquip: false
     slots:
     - Belt
+
 # MARK: Pistols
 - type: entity
   name: AEP-7 laser pistol
@@ -97,10 +106,17 @@
         whitelist:
           tags:
             - N14PowerCellSmall
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+    - 0,0,1,1
   - type: Gun
     fireRate: 1.5
     soundGunshot:
       collection: N14LaserPistolGunshot
+  - type: FollowDistance
+    backStrength: 6
 
 - type: entity
   name: plasma pistol
@@ -136,6 +152,8 @@
     soundGunshot:
       collection: N14PlasmaPistolGunshot
     fireRate: 1.5
+  - type: FollowDistance
+    backStrength: 6
 
 - type: entity
   name: plasma defender
@@ -171,6 +189,8 @@
     soundGunshot:
       collection: N14PlasmaDefenderGunshot
     fireRate: 2.5
+  - type: FollowDistance
+    backStrength: 6
 
 # MARK: Recharger
 
@@ -178,8 +198,12 @@
   name: recharger rifle
   parent: BaseWeaponBattery
   id: N14WeaponLaserRifleRecharger
-  description: The first model for a self charging laser rifle, its low energy consumption and advanced internal battery lets this gun last for centuries without recharging.
+  description: The first model for a self-charging laser rifle, its low energy consumption and advanced internal battery lets this gun last for centuries without recharging.
   components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_rifle.rsi
     layers:
@@ -202,6 +226,8 @@
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: recharger pistol
@@ -236,6 +262,8 @@
   - type: Tag
     tags:
     - Sidearm
+  - type: FollowDistance
+    backStrength: 6
 
 # MARK: Fullauto
 
@@ -243,7 +271,7 @@
   name: AER-9 auto laser rifle
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponLaserRifleAuto
-  description: A sturdy pre-war laser rifle. Emits beams of concentrated light to kill targets. This one has been jury-rigged against all common sense with a rotating barrel to fire in full auto.
+  description: A sturdy pre-war laser rifle. Emits beams of concentrated light to damage targets. This one has been jury-rigged against all common sense with a rotating barrel to fire in full auto.
   components:
   - type: Wieldable
   - type: GunWieldBonus
@@ -284,6 +312,8 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: plasma automatic rifle
@@ -330,12 +360,14 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: prototype AER-14 laser rifle
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponLaserRiflePrototypeAER14
-  description: A bleeding-edge, pre-war laser rifle. Extremely powerful, but eats ECPs like nothing else.
+  description: A cutting-edge, pre-war laser rifle. Extremely powerful, but drains electron charge packs like nothing else.
   components:
   - type: Wieldable
   - type: GunWieldBonus
@@ -376,6 +408,8 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+  - type: FollowDistance
+    backStrength: 5
 
 # MARK: Semiauto
 
@@ -383,7 +417,7 @@
   name: AER-9
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponLaserRifle
-  description: A sturdy pre-war laser rifle. Emits beams of concentrated light to kill targets.
+  description: A sturdy pre-war laser rifle. Emits beams of concentrated light to damage targets.
   components:
   - type: Wieldable
   - type: GunWieldBonus
@@ -424,6 +458,8 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: plasma rifle
@@ -470,12 +506,14 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: FollowDistance
+    backStrength: 5
 
 - type: entity
   name: urban plasma rifle
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponPlasmaRifleUrban
-  description: A mass produced pre-war plasma rifle designed for close quarters combat in urban environments.
+  description: A mass-produced pre-war plasma rifle designed for close quarters combat in urban environments.
   components:
   - type: Wieldable
   - type: GunWieldBonus
@@ -516,6 +554,8 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: FollowDistance
+    backStrength: 5
 
 # MARK: Shotguns
 
@@ -523,7 +563,7 @@
   name: multiplas
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponPlasmaMultiplas
-  description: A modified urban plasma rifle, it spreads the plasma into multiple projectiles sacrificing accuracy.
+  description: A modified urban plasma rifle, it sacrifices accuracy to instead spread the plasma into multiple projectiles.
   components:
   - type: Wieldable
   - type: GunWieldBonus
@@ -565,6 +605,8 @@
     availableModes:
      - SemiAuto
      - Burst
+  - type: FollowDistance
+    backStrength: 6
 
 #MARK: Focused
 # (just a different looking laser rifle until we get more options)
@@ -614,6 +656,8 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: FollowDistance
+    backStrength: 4
 
 - type: entity
   name: wattz 2000 laser rifle
@@ -660,6 +704,8 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: FollowDistance
+    backStrength: 4
 
 #MARK: Heavy
 
@@ -667,7 +713,7 @@
   name: plasma caster
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponPlasmaCaster
-  description: A massive plasma gun with a pretty sharp cannon, this gun is fed with plasma shells.
+  description: A massive plasma gun with a pretty sharp barrel, this gun is fed with plasma shells.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_caster.rsi
@@ -714,12 +760,14 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+  - type: FollowDistance
+    backStrength: 6
 
 - type: entity
   name: laser gatling gun
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponLaserGatling
-  description: A minigun, but laser for those who really needed an upscaling.
+  description: A minigun, but laser for those who really prefer ash piles to perforated corpses.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_gatling.rsi
@@ -768,3 +816,5 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
+  - type: FollowDistance
+    backStrength: 6
