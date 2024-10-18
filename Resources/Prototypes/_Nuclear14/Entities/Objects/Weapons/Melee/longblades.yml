@@ -85,7 +85,7 @@
   name: ripper
   parent: N14Machete
   id: N14ripper
-  description: A light one handed chainsaw, originally designed for the pre-war army sappers to clean selvatic and wooded paths, it also works well against meat.
+  description: A light one-handed chainsaw originally designed for the pre-war army sappers to clean selvatic and wooded paths, it also works well against flesh.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Melee/ripper.rsi
@@ -137,3 +137,31 @@
     qualities:
       - Sawing
     speed: 3.0
+
+- type: entity
+  name: ceremonial sword
+  parent: N14Machete
+  id: N14CeremonialSword
+  description: "An impressive double-edged sword, this weapon's size and sharpness make you think it could cleave a man in two."
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/ceremonialsword.rsi
+    quickEquip: false
+    slots:
+    - Belt
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/ceremonialsword.rsi
+    state: icon
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 21
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 28
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Melee/ceremonialsword.rsi
