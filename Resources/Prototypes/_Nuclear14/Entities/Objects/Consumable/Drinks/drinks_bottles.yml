@@ -15,6 +15,23 @@
   abstract: true
   suffix: empty
 
+# Allows for caps and fill levels
+- type: entity
+  id: DrinkGlassVisualsOpenable
+  abstract: true
+  components:
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "icon_open"}
+          False: {state: "icon"}
+  - type: Sprite
+    layers:
+      - state: icon
+        map: ["enum.OpenableVisuals.Layer"]
+ 
 # Milk
 # Empty Bottle
 - type: entity
@@ -24,10 +41,11 @@
   description: Looks good at holding milky substances.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi # N14TODO:SPRITE: Change this
+    sprite: _Nuclear14/Objects/Consumable/Drinks/milk.rsi 
 
+# Basic Milk Bottle
 - type: entity
-  parent: DrinkBottleBaseFull50
+  parent: [DrinkGlassVisualsOpenable, DrinkBottleBaseFull50]
   id: N14DrinkMilkBrahmin
   name: brahmin milk
   description: A glass bottle of brahmin milk.
@@ -40,7 +58,16 @@
         - ReagentId: N14MilkBrahmin
           Quantity: 50
   - type: Sprite
-    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi # N14TODO:SPRITE: Change this
+    sprite: _Nuclear14/Objects/Consumable/Drinks/milk.rsi 
+    layers:
+      - state: icon
+        map: ["enum.OpenableVisuals.Layer"]
+      - state: fill1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill
 
 - type: entity
   parent: N14DrinkMilkBrahmin
@@ -70,12 +97,49 @@
         - ReagentId: N14MilkRadstag
           Quantity: 50
 
+# Cream
+# Empty Cream Bottle
+- type: entity
+  parent: DrinkBottleBaseEmpty50
+  id: N14DrinkCreamGlassEmpty
+  name: cream glass
+  description: Aw look, theres a little cow on the front.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/cream.rsi 
+
+# Filled Cream Bottle
+- type: entity
+  parent: [DrinkGlassVisualsOpenable, DrinkBottleBaseFull50]
+  id: N14DrinkCreamGlass
+  name: cream
+  description: Aw look, theres a little cow on the front. Seems to be filled with heavy cream.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Cream
+          Quantity: 50
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/cream.rsi 
+    layers:
+      - state: icon
+        map: ["enum.OpenableVisuals.Layer"]
+      - state: fill1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill
+    
 # Soda
 - type: entity
   parent: DrinkBottleBaseFull50
   id: N14DrinkNukaColaBottleFull
   name: Nuka Cola bottle
-  description: The leading cola since 2044.
+  description: A refreshing beverage that has a extremely sugary taste. Reminds you of vanilla and cinnamon.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -91,7 +155,7 @@
   parent: DrinkBottleBaseFull50
   id: N14DrinkIrradiatedNukaColaBottleFull
   name: irratiated Nuka Cola bottle
-  description: The leading cola since 2044. Looks a bit... weird.
+  description: An unrefreshing beverage that has a extremely sugary taste. The aftertaste is bitter and burnt.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -165,7 +229,7 @@
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaCherry
   name: Nuka Cola Cherry
-  description: The leading cola since 2044. Cherry flavor.
+  description: Classic Nuka Cola taste, but with a twist! You can taste cherries and syrup! It tingles the tongue.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
@@ -182,7 +246,7 @@
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaGrape
   name: Nuka Cola Grape
-  description: The leading cola since 2044. Grape flavor.
+  description: Classic Nuka Cola taste, but with a twist! You can taste grapes and syrup! It tingles the tongue.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
@@ -199,7 +263,8 @@
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaOrange
   name: Nuka Cola Orange
-  description: The leading cola since 2044. Orange flavor.
+  description: Classic Nuka Cola taste, but with a twist! You can taste oranges and syrup! It tingles the tongue.
+
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
@@ -216,7 +281,8 @@
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaYellow
   name: Nuka Cola Yellow
-  description: A rare flavor of Nuka-Cola from crazy naked Roshambo.
+  description: A rare flavor of Nuka-Cola from crazy naked Roshambo. You're unsure of what this tastes or smells like and you feel like you shouldn't be drinking this.
+
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
@@ -233,7 +299,7 @@
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaQuantum
   name: Nuka Cola Quantum
-  description: The leading cola since 2044.
+  description: An explosion of sweetness and fruit! You can taste various berry flavours.. And a lot of sugar!
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
@@ -251,7 +317,7 @@
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaQuartz
   name: Nuka Cola Quartz
-  description: The leading cola since 2044.
+  description: Minty, fresh, extra fizzy.. This soda is a blast to the mouth of freshness.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
@@ -273,7 +339,7 @@
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaVictory
   name: Nuka Cola Victory
-  description: The leading cola since 2044.
+  description: A mixture of vanilla, cinnamon, dash of cream, and a bit of spice.. It tingles the tongue.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
@@ -290,7 +356,7 @@
   parent: N14DrinkNukaCola
   id: N14DrinkNukaColaWild
   name: Nuka Cola Wild
-  description: The leading cola since 2044.
+  description: Creamy, heavy, spicy, good ol' fashioned root beer-like taste.. It tingles the tongue.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
@@ -308,7 +374,7 @@
   parent: N14DrinkNukaCola
   id: N14DrinkVim
   name: Vim!
-  description: Pure Maine spring water and other extracts and syrups.
+  description: Pure Maine spring water, extracts, and syrups. Tastes medicinal.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Consumable/Drinks/vim.rsi
