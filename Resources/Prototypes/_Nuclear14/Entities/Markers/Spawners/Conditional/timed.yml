@@ -18,6 +18,46 @@
       intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
+      
+- type: entity
+  name: Pigrat Timed Spawner
+  id: N14TimedSpawnerPigrat
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: _Nuclear14/Mobs/Animals/pigrat.rsi
+          state: pigrat
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - N14MobPigrat
+      chance: 0.65
+      intervalSeconds: 2400
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 3
+      
+- type: entity
+  name: Radhog Timed Spawner
+  id: N14TimedSpawnerRadhog
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: _Nuclear14/Mobs/Animals/radhog.rsi
+          state: radhog
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - N14MobRadhog
+      chance: 0.65
+      intervalSeconds: 2400
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 3
 
 - type: entity
   parent: N14TimedSpawnerMolerat
@@ -54,6 +94,46 @@
     - type: TimedSpawner
       prototypes:
         - N14MobGecko
+      chance: 0.65
+      intervalSeconds: 2400
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 3
+      
+- type: entity
+  parent: N14TimedSpawnerMolerat
+  id: N14TimedSpawnerGeckoFire
+  name: Fire Gecko Timed Spawner
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: _Nuclear14/Mobs/Animals/firegecko.rsi
+          state: gecko
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - N14MobGeckoFire
+      chance: 0.65
+      intervalSeconds: 2400
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 3
+      
+- type: entity
+  parent: N14TimedSpawnerMolerat
+  id: N14TimedSpawnerGeckoGolden
+  name: Golden Gecko Timed Spawner
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: _Nuclear14/Mobs/Animals/goldengecko.rsi
+          state: gecko
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - N14MobGeckoGolden
       chance: 0.65
       intervalSeconds: 2400
       minimumEntitiesSpawned: 1

@@ -34,6 +34,30 @@
       - minTemperature: 305
   - node: SteakCooked
     entity: N14FoodMeatGeckoCooked
+    
+- type: constructionGraph
+  id: MeatSteakGeckoFire
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: SteakCooked
+      steps:
+      - minTemperature: 305
+  - node: SteakCooked
+    entity: N14FoodMeatGeckoFireCooked
+    
+- type: constructionGraph
+  id: MeatSteakGeckoGolden
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: SteakCooked
+      steps:
+      - minTemperature: 305
+  - node: SteakCooked
+    entity: N14FoodMeatGeckoGoldenCooked
 
 - type: constructionGraph
   id: MeatSteakRadstag
