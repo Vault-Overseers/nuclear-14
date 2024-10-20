@@ -104,9 +104,9 @@
     defaultTarget: SteakCooked
     
 - type: entity
-  name: raw radhog meat
   parent: N14FoodMeatBrahmin
   id: N14FoodMeatRadhog
+  name: raw radhog meat
   description: A raw chunk of radhog meat.
   components:
   - type: Sprite
@@ -116,6 +116,19 @@
     slice: N14FoodMeatRadhogCutlet
   - type: Construction
     graph: MeatSteakRadhog
+    node: start
+    defaultTarget: SteakCooked
+    
+- type: entity
+  parent: N14FoodMeatBrahmin
+  id: N14FoodMeatPigrat
+  name: raw pigrat meat
+  description: Raw morsels of pigrat meat.
+  components:
+  - type: Sprite
+    state: morsels
+  - type: Construction
+    graph: MeatSteakPigrat
     node: start
     defaultTarget: SteakCooked
 
@@ -398,6 +411,19 @@
     slice: N14FoodMeatRadhogCutletCooked
   - type: Construction
     graph: MeatSteakRadhog
+    node: SteakCooked
+    defaultTarget: SteakCooked
+    
+- type: entity
+  parent: N14FoodMeatBrahminCooked
+  id: N14FoodMeatPigratCooked
+  name: cooked pigrat meat
+  description: Cooked morsels of pigrat meat.
+  components:
+  - type: Sprite
+    state: morsels_roasted
+  - type: Construction
+    graph: MeatSteakPigrat
     node: SteakCooked
     defaultTarget: SteakCooked
 
