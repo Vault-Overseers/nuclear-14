@@ -28,8 +28,8 @@
     key: enum.LatheUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.LatheUiKey.Key:
-        type: LatheBoundUserInterface
+    - key: enum.LatheUiKey.Key
+      type: LatheBoundUserInterface
   - type: ExtensionCableReceiver
   - type: ApcPowerReceiver
     needsPower: false
@@ -60,8 +60,6 @@
       - N14WastelandSpear
       - N14WastelandTribalJavelin
       - N14BrassKnife
-      - N14TrainingSword
-      - N14LongSword
 
 - type: entity
   parent: N14WorkbenchBase
@@ -266,8 +264,8 @@
     key: enum.ChemMasterUiKey.Key
   - type: UserInterface
     interfaces:
-       enum.ChemMasterUiKey.Key:
-         type: ChemMasterBoundUserInterface
+    - key: enum.ChemMasterUiKey.Key
+      type: ChemMasterBoundUserInterface
   - type: ChemMaster
     pillDosageLimit: 20
 
@@ -336,7 +334,6 @@
       - HydroponicsToolSpade
       - N14HydroponicsToolScythe
       - N14HydroponicsToolClippers
-      - N14HandLabeler
       # Kitchen
       - N14ButchersCleaver
       - N14KitchenKnife
@@ -349,12 +346,11 @@
       - N14FoodPlateSmall
       - N14FoodPlatePlastic
       - N14FoodPlateSmallPlastic
-      - FoodBowlBig
+      - N14FoodBowlBig
       - N14FoodPlateTin
       - N14FoodKebabSkewer
       - N14JunkCookpot
       - N14JunkCoffeepot
-      - PlantBag
       # Janitorial
       - N14Mop
       - N14MopBucket
@@ -508,109 +504,3 @@
     graph: N14WorkbenchForge
     node: WorkbenchForgeFrame
     defaultTarget: WorkbenchForge
-
-# ID Printer
-- type: entity
-  parent: BaseLathe
-  id: N14WorkbenchIDPrinter
-  description: An ID printer.
-  name: ID Printer
-  abstract: true # Base off of this per faction.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Structures/Machines/circuit_imprinter.rsi
-    snapCardinals: true
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-  - type: Lathe
-    producingSound: /Audio/Machines/circuitprinter.ogg
-    idleState: icon
-    runningState: building
-
-- type: entity
-  parent: N14WorkbenchIDPrinter
-  id: N14WorkbenchIDPrinterTownspeople
-  description: An ID printer for printing town passports
-  suffix: townspeople
-  components:
-  - type: Lathe
-    staticRecipes:
-    - PassportTownsfolk
-    - PassportTownsfolkShopkeeper
-    - PassportTownsfolkMechanic
-    - PassportTownsfolkDoctor
-    - PassportTownsfolkDeputy
-    - PassportTownsfolkSheriff
-    - PassportTownsfolkMayor
-
-- type: entity
-  parent: N14WorkbenchIDPrinter
-  id: N14WorkbenchIDPrinterBrotherhoodMidwest
-  description: An ID printer for printing Midwest Brotherhood holotags.
-  suffix: Midwest BOS
-  components:
-  - type: Lathe
-    staticRecipes:
-    - HolotagMidwestScribe
-    - HolotagMidwestSquire
-    - HolotagMidwestKnight
-    - HolotagMidwestPaladin
-
-- type: entity
-  parent: N14WorkbenchIDPrinter
-  id: N14WorkbenchIDPrinterBrotherhoodWashington
-  description: An ID printer for printing Washington Brotherhood holotags.
-  suffix: Washington BOS
-  components:
-  - type: Lathe
-    staticRecipes:
-    - HolotagWashingtonScribe
-    - HolotagWashingtonInitiate
-    - HolotagWashingtonKnight
-    - HolotagWashingtonPaladin
-
-- type: entity
-  parent: N14WorkbenchIDPrinter
-  id: N14WorkbenchIDPrinterCaravan
-  description: An ID printer for printing caravan IDs.
-  suffix: Caravan
-  components:
-  - type: Lathe
-    staticRecipes:
-    - PassportCaravan
-    - PassportCaravanTrader
-
-- type: entity
-  parent: N14WorkbenchIDPrinter
-  id: N14WorkbenchIDPrinterNCR
-  description: An ID printer for printing NCR IDs.
-  suffix: NCR
-  components:
-  - type: Lathe
-    staticRecipes:
-    - DogtagNCR
-    - DogtagNCRNCO
-
-- type: entity
-  parent: N14WorkbenchIDPrinter
-  id: N14WorkbenchIDPrinterVault
-  description: An ID printer for printing Vault IDs.
-  suffix: Vault
-  components:
-  - type: Lathe
-    staticRecipes:
-    - IDVault
-    - IDVaultEngineer
-    - IDVaultSecurity
-    - IDVaultDoctor
