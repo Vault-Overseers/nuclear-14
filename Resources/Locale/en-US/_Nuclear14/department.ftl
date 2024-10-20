@@ -3,6 +3,7 @@ department-BrotherhoodMidwest = Midwest Brotherhood of Steel
 department-BrotherhoodWashington = Washington Brotherhood of Steel
 department-CaravanCompany = Caravan Company
 department-NCR = New California Republic
+department-Ranger = Desert Rangers
 department-Tribe = Tribal
 department-Vault = Vault Dwellers
 department-Wastelander = Wastelander

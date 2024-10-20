@@ -42,14 +42,18 @@
   - type: Damageable
   - type: Appearance
   - type: AnimationPlayer
-  - type: GuideHelp
-    guides:
-    - AnomalousResearch
+  # - type: GuideHelp
+    # guides:
+    # - AnomalousResearch
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/teleport_arrival.ogg
-  - type: Psionic #Nyano - Summary: makes psionic on creation.
-  - type: GlimmerSource #Nyano - Summary: makes this a potential source of Glimmer.
+  - type: Psionic
+    removable: false
+  - type: InnatePsionicPowers
+    powersToAdd:
+      - TelepathyPower
+  - type: GlimmerSource
     active: false
   - type: SecretDataAnomaly
     randomStartSecretMin: 0

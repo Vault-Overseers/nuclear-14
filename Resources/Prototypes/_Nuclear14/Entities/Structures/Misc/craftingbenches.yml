@@ -42,6 +42,24 @@
   components:
   - type: Sprite
     state: weaponbench
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+        - Scrap
+  - type: Lathe
+    idleState: icon
+    runningState: icon # change this
+    staticRecipes: # Guns or melee weapons related only.
+      # Guns
+      - BowImprovised
+      # Melee
+      - N14ScrapMachete
+      - N14WastelandSpear
+      - N14WastelandTribalJavelin
+      - N14BrassKnife
 
 - type: entity
   parent: N14WorkbenchBase
@@ -141,6 +159,34 @@
   components:
   - type: Sprite
     state: armorbench
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+        - RawLeather # move it to the tanning machine
+  - type: Lathe
+    idleState: icon
+    runningState: icon # change this
+    staticRecipes:
+      # Armor
+      - N14ClothingOuterCoatLeatherDuster
+      - N14ClothingOuterCoatWinterArmored
+      - N14ClothingOuterLeatherArmor
+      - N14ClothingOuterChitinArmor
+      - N14ClothingOuterPainspike
+      - N14ClothingOuterTribalArmorHeavy
+      - N14ClothingOuterInsectArmor
+      - N14ClothingOuterMetalArmor
+      # Shield's
+      - N14InsectShield
+      - MakeshiftShield
+      - WoodenBuckler
+      # Other
+      - N14MaterialLeather
+      - ClothingBeltQuiver # In misc.yml
+      - ClothingBeltQuiverSpear
 
 - type: entity
   parent: N14WorkbenchBase
@@ -150,6 +196,28 @@
   components:
   - type: Sprite
     state: tinkerbench
+  - type: PointLight
+    color: "#fffbeb"
+    energy: 2
+    offset: 0.5, 0
+    radius: 1.5
+  - type: Lathe
+    idleState: icon
+    runningState: icon # change this
+    staticRecipes:
+      #Tools
+      - N14Multitool
+      - N14NetworkConfigurator
+      - N14PowerDrill
+      - N14HandheldGPSBasic
+      - N14TRayScanner
+      - N14GasAnalyzer
+      - N14RPED
+      - N14MiningDrill
+      - N14HandheldRadio
+      #Misc
+      - N14FlashlightLantern
+      - N14GlowstickRed
 
 - type: entity
   parent: BaseStructure
@@ -235,12 +303,6 @@
   description: A workbench with metal working tools for crafting.
   name: workbench
   components:
-  - type: PointLight
-    radius: 2
-    energy: 1
-    softness: 0.5
-    color: "#f05e1b"
-    offset: "0.5, 0"
   - type: Construction
     graph: N14WorkbenchMetal
     node: WorkbenchMetal
@@ -265,16 +327,13 @@
       - N14Crowbar
       - N14Pickaxe
       - N14Shovel
-      - N14Multitool
-      - N14NetworkConfigurator
-      - N14PowerDrill
-      - N14HandheldGPSBasic
-      - N14TRayScanner
-      - N14GasAnalyzer
       - N14SprayPainter
-      - N14RPED
-      - N14MiningDrill
       - N14ClothingEyesGlassesWelding
+      - N14HydroponicsToolHoe
+      - N14HydroponicsToolHatchet
+      - HydroponicsToolSpade
+      - N14HydroponicsToolScythe
+      - N14HydroponicsToolClippers
       # Kitchen
       - N14ButchersCleaver
       - N14KitchenKnife
@@ -316,6 +375,10 @@
       - N14PillCanisterCateye
       - N14PillCanisterFixer
       - N14JetInhaler
+      - N14TurboInhaler
+      - N14HydraInhaler
+      - N14ChemicalSyringeAntidoteEmpty
+      - N14PsychoSyringe
       - N14RadAwayPhialEmpty
       # Misc
       - N14LightTube
@@ -324,10 +387,12 @@
       - N14ExteriorLightTube
       - N14LightBulb
       - N14LedLightBulb
-      - N14GlowstickRed
       - N14Flare
-      - N14FlashlightLantern
       - N14Matchbox
+      # Ammo
+      - ArrowRegular
+      # Machine Parts
+      - N14PortableGeneratorWeldingFuelMachineParts
 
 - type: entity
   parent: N14WorkbenchBase
@@ -369,8 +434,10 @@
     sprite: _Nuclear14/Structures/Misc/forgeworkbench.rsi
     state: forge
   - type: PointLight
-    energy: 2
-    offset: "-0.65, 0"
+    offset: "-0.13, 0"
+    color: "#f05e1b"
+    radius: 3
+    energy: 3
   - type: MaterialStorage
     whitelist:
       tags:
@@ -378,17 +445,33 @@
         - RawMaterial
         - Ingot
         - Ore
+        - Scrap
   - type: Lathe
     idleState: icon
     runningState: icon # change this
     staticRecipes:
       # Ores
+      - N14IngotSilver
+      - N14IngotSilverCharcoal
+      - N14IngotIron
+      - N14IngotIronCharcoal
+      - N14IngotGold
+      - N14IngotGoldCharcoal
+      - N14IngotCopper
+      - N14IngotCopperCharcoal
       - N14SheetSteel
       - N14SheetSteelCharcoal
       - N14SheetPlastic
       - N14SheetGlass
-      - IngotLead
+      - N14IngotLead
       - SulfurPowder
+      # Scrap
+      - SheetPlasticScrap
+      - N14IngotBrassScrap
+      - N14IngotCopperScrap
+      - N14IngotGoldScrap
+      - N14IngotSteelScrap
+      - N14N14IngotLeadScrap
       # Other
       - Charcoal
 

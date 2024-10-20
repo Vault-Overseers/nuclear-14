@@ -29,7 +29,7 @@
                 SheetSteel1:
                   min: 2
                   max: 4
-        
+
 - type: entity
   parent: N14WeaponTurretBroken
   id: N14WeaponTurretMobileBroken
@@ -105,9 +105,10 @@
       availableModes:
         - FullAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+      useKey: false
     # TODO: Power ammo provider?
     - type: BallisticAmmoProvider
-      proto: CartridgeCaselessRifle
+      proto: N14CartridgePistol10 
       capacity: 500
     - type: HTN
       rootTask:
@@ -119,7 +120,7 @@
           path: /Audio/Effects/double_beep.ogg
     - type: MouseRotator
       angleTolerance: 5
-      rotationSpeed: 180
+      rotationSpeed: 90
       simple4DirMode: false
     - type: NoRotateOnInteract
     - type: NoRotateOnMove
@@ -242,6 +243,7 @@
       availableModes:
         - FullAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+      useKey: false
     # TODO: Power ammo provider?
     - type: BallisticAmmoProvider
       proto: N14Bullet50HEIAPMeta
@@ -263,7 +265,7 @@
   - type: NpcFactionMember
     factions:
     - BrotherhoodMidwestSecureArea
-    
+
 - type: entity
   parent: N14BaseWeaponTurretMeta
   id: N14WeaponTurretBrotherhoodWashingtonSpawnpoint
@@ -272,7 +274,7 @@
   - type: NpcFactionMember
     factions:
     - BrotherhoodWashingtonSecureArea
-    
+
 - type: entity
   parent: N14BaseWeaponTurretMeta
   id: N14WeaponTurretVaultSpawnpoint
@@ -281,7 +283,7 @@
   - type: NpcFactionMember
     factions:
     - VaultSecureArea
-    
+
 - type: entity
   parent: N14BaseWeaponTurretMeta
   id: N14WeaponTurretNCRSpawnpoint

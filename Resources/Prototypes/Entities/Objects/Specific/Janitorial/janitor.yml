@@ -3,14 +3,23 @@
   name: mop
   id: MopItem
   description: A mop that can't be stopped, viscera cleanup detail awaits.
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Specific/Janitorial/mop.rsi
     state: mop
   - type: MeleeWeapon
+    range: 1.85
     damage:
       types:
-        Blunt: 10
+        Blunt: 2
+    bluntStaminaDamageFactor: 3
+    heavyRateModifier: 0.8
+    heavyRangeModifier: 1.25
+    heavyDamageBaseModifier: 1.25
+    heavyStaminaCost: 10
+    maxTargets: 2
+    angle: 180
     soundHit:
       collection: MetalThud
   - type: Spillable
@@ -34,23 +43,32 @@
     tags:
       - Mop
       - MopBasic
-  - type: GuideHelp
-    guides:
-    - Janitorial
+  # - type: GuideHelp
+    # guides:
+    # - Janitorial
 
 - type: entity
   parent: BaseItem
   name: advanced mop
   id: AdvMopItem
+  noSpawn: true
   description: Motorized mop that has a bigger reservoir and quickly replaces reagents inside with water. Automatic Clown Countermeasure not included.
   components:
     - type: Sprite
       sprite: Objects/Specific/Janitorial/advmop.rsi
       state: advmop
     - type: MeleeWeapon
+      range: 1.85
       damage:
         types:
-          Blunt: 10
+          Blunt: 2
+      bluntStaminaDamageFactor: 3
+      heavyRateModifier: 0.8
+      heavyRangeModifier: 1.25
+      heavyDamageBaseModifier: 1.25
+      heavyStaminaCost: 10
+      maxTargets: 2
+      angle: 180
       soundHit:
          collection: MetalThud
     - type: Spillable
@@ -113,6 +131,7 @@
   suffix: Explosive
   parent: WetFloorSign
   id: WetFloorSignMineExplosive
+  noSpawn: true
   components:
   - type: StepTrigger
     intersectRatio: 0.2
@@ -178,9 +197,9 @@
   - type: Item
     sprite: Objects/Specific/Janitorial/plunger.rsi
     heldPrefix: plunger
-  - type: GuideHelp
-    guides:
-    - Janitorial
+  # - type: GuideHelp
+    # guides:
+    # - Janitorial
   - type: Clothing
     sprite: Objects/Specific/Janitorial/plunger.rsi
     slots:

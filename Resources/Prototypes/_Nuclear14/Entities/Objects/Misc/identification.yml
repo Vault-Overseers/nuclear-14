@@ -14,6 +14,7 @@
     sprite: Objects/Misc/id_cards.rsi
   - type: Item
     heldPrefix: default
+    size: Small
   - type: Access
   - type: IdCard
   - type: StationRecordKeyStorage
@@ -29,10 +30,15 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/tapes_cards.rsi
+    scale: 0.7, 0.7
     layers:
     - state: keycard_vault
   - type: PresetIdCard
     job: VaultDweller
+  - type: Tag
+    tags:
+    - IdCardVault
+    - DoorBumpOpener
 
 - type: entity
   parent: N14IDCardVault
@@ -93,8 +99,29 @@
 - type: entity
   parent: N14IDPassport
   id: N14IDPassportCaravan
-  name: caravan passport
+  name: caravan guard ID
+  description: A stamped passport used by caravan guards as ID.
+  components:
+  - type: PresetIdCard
+    job: CaravanGuard
+    
+- type: entity
+  parent: N14IDPassport
+  id: N14IDPassportCaravanTrader
+  name: caravan trader ID
   description: A stamped passport used by caravaneers as ID.
+  components:
+  - type: PresetIdCard
+    job: CaravanTrader
+    
+- type: entity
+  parent: N14IDPassport
+  id: N14IDPassportCaravanLeader
+  name: caravan leader ID
+  description: A stamped passport used by caravaneers as ID.
+  components:
+  - type: PresetIdCard
+    job: CaravanLeader
 
 - type: entity
   parent: N14IDPassportBlank
@@ -126,7 +153,7 @@
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: doctor
 
-#MARK: Brotherhood
+#MARK: Brotherhood Midwest
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDBrotherhoodHolotag
@@ -192,6 +219,72 @@
   - type: PresetIdCard
     job: BoSMidPaladinCommander
 
+#MARK: Brotherhood Washington
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodWashingtonHolotagScribe
+  name: holotag
+  description: An ID holotag worn by a Scribe in the Washington Brotherhood of Steel.
+  suffix: Washington Scribe
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonScribe
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodWashingtonHolotagInitiate
+  name: holotag
+  description: An ID holotag worn by an Initiate in the Washington Brotherhood of Steel.
+  suffix: Washington Initiate
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonInitiate
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodWashingtonHolotagKnight
+  name: holotag
+  description: An ID holotag worn by a Knight in the Washington Brotherhood of Steel.
+  suffix: Washington Knight
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonKnight
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodWashingtonHolotagPaladin
+  name: holotag
+  description: An ID holotag worn by a Paladin in the Washington Brotherhood of Steel.
+  suffix: Washington Paladin
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonPaladin
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDBrotherhoodWashingtonHolotagCommander
+  name: holotag
+  description: An ID holotag worn by the Commander of the Washington Brotherhood of Steel.
+  suffix: Washington Commander
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: bos_holotag
+  - type: PresetIdCard
+    job: BoSWashingtonCommander
+
 #MARK: Enclave
 - type: entity
   parent: N14IDPassportBlank
@@ -223,7 +316,7 @@
   parent: N14IDPassportBlank
   id: N14IDEnclaveNoncombat
   name: holotag
-  description: An ID holotag worn by the non combative members of Enclave.
+  description: An ID holotag worn by the non-combat members of Enclave.
   suffix: Scientist , Noncombat
   components:
   - type: Sprite
@@ -327,7 +420,7 @@
   parent: N14IDPassportBlank
   id: N14IDBadgeNCRDesertRangerElite
   name: ranger elite badge
-  description: An ID badge worn by Elite Desert Ranger.
+  description: An ID badge worn by Elite Desert Rangers.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -351,14 +444,14 @@
 - type: entity
   parent: N14IDBadgeNCRDesertRanger
   id: N14IDBadgeNCRRanger
-  description: An ID badge worn by Republic Rangers.
+  description: An ID badge worn by Republic Rangers. Inscribed on it reads; "Quieter than a shadow and more ferocious than a deathclaw."
   suffix: NCR
 
 
 - type: entity
   parent: N14IDBadgeNCRDesertRangerElite
   id: N14IDBadgeNCRRangerElite
-  description: An ID badge worn by Elite Republic Rangers.
+  description: An ID badge worn by Elite Republic Rangers. Inscribed on it reads; "Quieter than a shadow and more ferocious than a deathclaw."
   suffix: NCR
 
 #MARK: Townsfolk
@@ -369,10 +462,40 @@
   description: A passport used by townsfolk as ID.
 
 - type: entity
+  parent: N14IDPassportPhoto
+  id: N14IDShopkeeperTown
+  name: Shopkeepers ID
+  description: A passport ID used by a town shopkeeper.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport_presidential
+  - type: PresetIdCard
+    job: TownShopkeeper
+    
+- type: entity
+  parent: N14IDPassportPhoto
+  id: N14IDPassportTownMechanic
+  name: mechanics ID
+  description: A passport ID used by a town mechanic.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport_presidential
+  - type: PresetIdCard
+    job: TownMechanic
+
+- type: entity
   parent: N14IDDoctor
   id: N14IDDoctorTown
   name: doctors ID
   description: An ID card worn by the town doctor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: doctor
+  - type: PresetIdCard
+    job: TownDoctor
 
 - type: entity
   parent: N14IDPassportBlank
@@ -383,26 +506,32 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: deputy
+  - type: PresetIdCard
+    job: TownDeputy
 
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDBadgeTownSheriff
   name: town sheriff badge
-  description: An ID badge worn by a town sheriff.
+  description: An ID badge worn by the town sheriff.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: sheriff
+  - type: PresetIdCard
+    job: TownSheriff
 
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDBadgeTownMayor
   name: town mayor badge
-  description: An ID badge worn by a town mayor.
+  description: An ID badge worn by the town mayor.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: mayor
+  - type: PresetIdCard
+    job: TownMayor
 
 #MARK: Raiders / Tribes
 - type: entity
@@ -429,7 +558,7 @@
   parent: N14IDPassportBlank
   id: N14IDTribeEnforcerPendant
   name: enforcer pendant
-  description: A pendant often worn by tribes as ID. This one is a jet canister.
+  description: A pendant often worn by tribes as ID. This one is a Jet canister.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -458,7 +587,7 @@
   parent: N14IDCard
   id: N14IDKeyIron
   name: iron key
-  description: a worn out iron key. I wonder where it goes?
+  description: A worn out iron key. I wonder where it goes?
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -471,7 +600,7 @@
   parent: N14IDCard
   id: N14IDKeyBrass
   name: brass key
-  description: a worn out brass key. I wonder where it goes?
+  description: A worn out brass key. I wonder where it goes?
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -484,7 +613,7 @@
   parent: N14IDCard
   id: N14IDKeyBronze
   name: bronze key
-  description: a worn out bronze key. I wonder where it goes?
+  description: A worn out bronze key. I wonder where it goes?
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -497,7 +626,7 @@
   parent: N14IDCard
   id: N14IDKeySilver
   name: silver key
-  description: a worn out silver key. I wonder where it goes?
+  description: A worn out silver key. I wonder where it goes?
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -511,7 +640,7 @@
   id: N14IDKeyGold
   name: gold key
   suffix: AllKeyAccess
-  description: a sparkling gold key. I wonder where it goes?
+  description: A sparkling gold key. I wonder where it goes?
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
@@ -535,7 +664,7 @@
   - type: Access
     tags:
     - DungeonBunkerA1
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessBunkerA2
@@ -547,7 +676,7 @@
   - type: Access
     tags:
     - DungeonBunkerA2
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessBunkerA3
@@ -559,7 +688,7 @@
   - type: Access
     tags:
     - DungeonBunkerA3
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessBunkerAA
@@ -571,7 +700,7 @@
   - type: Access
     groups:
     - DungeonBunkerAA
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessEnclave
@@ -583,11 +712,11 @@
   - type: Access
     tags:
     - Enclave
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessEnclaveVault
-  description: A special vault-tec keycard stamped with an E.
+  description: A special Vault-Tec keycard stamped with an E.
   suffix: Enclave Vault
   components:
   - type: Sprite
@@ -595,16 +724,16 @@
   - type: Access
     groups:
     - EnclaveVault
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessVault
-  description: A special vault-tec keycard.
+  description: A special Vault-Tec keycard.
   suffix: Vault
   components:
   - type: Sprite
     state: keycard_vault
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessBlue
@@ -616,7 +745,7 @@
   - type: Access
     tags:
     - DungeonBlue
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessYellow
@@ -628,7 +757,7 @@
   - type: Access
     tags:
     - DungeonYellow
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessRed
@@ -640,7 +769,7 @@
   - type: Access
     tags:
     - DungeonRed
-    
+
 - type: entity
   parent: N14CardAccessBunkerA1
   id: N14CardAccessCommon
@@ -652,80 +781,3 @@
   - type: Access
     tags:
     - DungeonCommon
-    
-#MARK: Holotapes
-- type: entity
-  parent: BaseItem
-  id: N14Holotape
-  name: holotape
-  description: A holotape for storing data.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/tapes_cards.rsi
-    state: holotape_black
-    scale: 0.75, 0.75
-    
-- type: entity
-  parent: N14Holotape
-  id: N14HolotapeBlue
-  name: blue holotape
-  components:
-  - type: Sprite
-    state: holotape_blue
-    
-- type: entity
-  parent: N14Holotape
-  id: N14HolotapeEnclave
-  name: enclave holotape
-  components:
-  - type: Sprite
-    state: holotape_enclave
-    
-- type: entity
-  parent: N14Holotape
-  id: N14HolotapeGreen
-  name: green holotape
-  components:
-  - type: Sprite
-    state: holotape_green
-    
-- type: entity
-  parent: N14Holotape
-  id: N14HolotapeRed
-  name: red holotape
-  components:
-  - type: Sprite
-    state: holotape_red
-    
-- type: entity
-  parent: N14Holotape
-  id: N14HolotapeYellow
-  name: yellow holotape
-  components:
-  - type: Sprite
-    state: holotape_yellow
-
-#MARK: Holotapes for Objectives
-- type: entity
-  parent: N14HolotapeYellow
-  id: N14HolotapeQuestFusionplans # BoS / Town find objective
-  name: fusion plans holotape
-  description: A holotape containing plans for optimising fusion reactors.
-  
-- type: entity
-  parent: N14HolotapeEnclave
-  id: N14HolotapeQuestEnclaveplans # Enclave secure objective / NCR, BoS Find Objective
-  name: enclave plans holotape
-  description: A holotape containing plans for restoring America.
-  
-- type: entity
-  parent: N14HolotapeGreen
-  id: N14HolotapeQuestGECK
-  name: GECK location holotape # Vault secure objective / Enclave, NCR, BoS Find Objective
-  description: A holotape containing details on remaining G.E.C.K's.
-  
-- type: entity
-  parent: N14HolotapeRed
-  id: N14HolotapeQuestNCRplans
-  name: NCR plans holotape # NCR secure objective
-  description: A holotape containing battle plans and base locations for the NCR.

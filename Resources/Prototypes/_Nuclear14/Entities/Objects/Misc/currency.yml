@@ -7,7 +7,8 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/storage.rsi
     state: wallet
-    scale: 0.6, 0.6
+    offset: "0.0,-0.02"
+    # scale: 0.8, 0.8
   - type: Item
     storedRotation: -90
   - type: Clothing
@@ -18,27 +19,31 @@
   - type: Storage
     grid:
     - 0,0,2,1
-    maxItemSize: Tiny
+    maxItemSize: Normal
     quickInsert: true
     areaInsert: true
-    # whitelist:
-      # components:
-        # - Produce
-        # - Seed
+    whitelist:
+      tags:
+      - Currency
+      - DoorBumpOpener
   - type: Dumpable
   - type: Construction
     graph: N14Wallet
     node: wallet
+
 # Caps
 # Scroll down for other currencies
 - type: entity
   parent: BaseItem
   id: N14CurrencyCap
   name: bottlecap
-  description: A bottlecap from a soda bottle.
+  description: A bottlecap from a bottle of Nuka-Cola.
   components:
   - type: StaticPrice
     price: 0
+  - type: Tag
+    tags:
+      - Currency
   - type: Stack
     stackType: Caps
     count: 1
@@ -127,7 +132,7 @@
   parent: N14CurrencyCap
   id: N14CurrencyPrewar
   name: pre-war money
-  description: Wads of paper. Make it rain!
+  description: Wads of useless paper. Make it rain!
   components:
   - type: Stack
     stackType: PrewarMoney
@@ -200,7 +205,7 @@
   parent: N14CurrencyCap
   id: N14CurrencyNCRDollar
   name: NCR dollar
-  description: Wads of paper. Make it rain!
+  description: Wads of paper, these ones bear the insignia of the NCR. Make it rain!
   components:
   - type: Stack
     stackType: NCRDollar

@@ -5,14 +5,15 @@
   description: job-description-townsheriff
   playTimeTracker: TownSheriff
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Townsfolk
-      time: 18000 # 5 hours
+      min: 18000 # 5 hours
   startingGear: TownSheriffGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk
   access:
-  - OasisSheriff
+  - TownieLaw
+  - TownieMechanic
   special:
   - !type:AddComponentSpecial
     components:
@@ -27,12 +28,12 @@
     back: N14ClothingBackpackSheriffFilled
     shoes: N14ClothingBootsCowboy
     head: N14ClothingHeadHatSheriff
-    eyes: N14ClothingEyesSunGlasses 
+    eyes: N14ClothingEyesSunGlasses
     id: N14IDBadgeTownSheriff
     outerClothing: N14ClothingOuterSheriffVest
     belt: ClothingBeltRevolverWildWhisper
     pocket1: RadioHandheld
-    pocket2: Handcuffs 
+    pocket2: Handcuffs
   satchel: N14ClothingBackpackSatchelSheriffFilled
   duffelbag: N14ClothingBackpackDuffelSheriffFilled
 

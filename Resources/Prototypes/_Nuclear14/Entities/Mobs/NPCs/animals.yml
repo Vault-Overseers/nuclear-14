@@ -1,5 +1,5 @@
 # See basemob.yml for parent entities
-#MARK: Molerat
+#MARK: Molerat #Oh hi Mark.
 - type: entity
   name: molerat
   id: N14MobMolerat
@@ -30,6 +30,8 @@
     thresholds:
       0: Alive
       50: Dead
+  - type: Stamina
+    critThreshold: 60
   - type: DamageStateVisuals
     states:
       Alive:
@@ -147,7 +149,7 @@
   name: feral dog
   id: N14MobDogFeral
   parent: N14MobBaseHostile
-  description: A rabid dog. Not so friendly friend.
+  description: A rabid dog. Not so friendly even if friend-shaped.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -163,7 +165,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-            radius: 0.20
+            radius: 0.30
         density: 20
         mask:
         - MobMask
@@ -222,7 +224,7 @@
       sprite: _Nuclear14/Mobs/Animals/gecko.rsi
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 3.6
+    baseSprintSpeed : 4
   - type: Fixtures
     fixtures:
       fix1:
@@ -416,7 +418,7 @@
   name: nightstalker cub
   id: N14MobNightstalkerCub
   parent: N14MobBaseHostile
-  description: Is it a coyote? Why does it have a rattler...This one is small
+  description: Is it a coyote? Why does it have a rattler... This one is small.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -426,7 +428,7 @@
       sprite: _Nuclear14/Mobs/Animals/nightstalkercub.rsi
   - type: Bloodstream
     bloodMaxVolume: 30
-    bloodReagent: WastelandBlood
+    bloodReagent: NightstalkerBlood
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
     baseSprintSpeed : 4.5
@@ -511,7 +513,7 @@
       sprite: _Nuclear14/Mobs/Animals/nightstalker.rsi
   - type: Bloodstream
     bloodMaxVolume: 50
-    bloodReagent: WastelandBlood
+    bloodReagent: NightstalkerBlood
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
     baseSprintSpeed : 5
@@ -610,7 +612,7 @@
   name: yao guai
   id: N14MobYaoguai
   parent: N14MobBaseHostile
-  description: An angry bear...but uglier, meaner and with bigger claws.
+  description: An angry bear... but uglier, meaner, and with bigger claws.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -632,7 +634,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      500: Dead
+      550: Dead
+  - type: Stamina
+    critThreshold: 250
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      275: 0.7
+      450: 0.5
   - type: Butcherable
     spawned:
     - id: N14MaterialYaoguaiHide
@@ -662,7 +670,7 @@
     range: 1.25
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 3.6
+    baseSprintSpeed : 4.75
   - type: NoSlip
   - type: Reproductive
     breedChance: 0.05
@@ -714,6 +722,8 @@
       0: Alive
       500: Critical
       600: Dead
+  - type: Stamina
+    critThreshold: 250
   - type: SlowOnDamage
     speedModifierThresholds:
       250: 0.7
@@ -738,7 +748,7 @@
       types:
         Slash: 15
         Structural: 5
-    range: 1.5
+    range: 1.75
   - type: MovementSpeedModifier
     baseWalkSpeed : 4
     baseSprintSpeed : 5
@@ -756,12 +766,11 @@
     useSound:
       path: /Audio/Items/crowbar.ogg
   - type: Insulated
-  - type: GhostRole
-    prob: 0.5
-    makeSentient: true
-    name: deathclaw
-    description: |
-      You're a smart killer. Use tactics to kill everyone.
+  # - type: GhostRole
+    # prob: 0.5
+    # makeSentient: true
+    # name: deathclaw
+    # description: You're a smart killer. Use tactics to hunt and stalk.
   - type: NoSlip
   - type: Reproductive
     breedChance: 0.05
@@ -780,6 +789,12 @@
   - type: Tag
     tags:
     - Deathclaw
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 8
+    - id: N14MaterialRawLeather1
+      amount: 6
 
 #MARK: Albino Deathclaw
 - type: entity
@@ -811,6 +826,8 @@
       0: Alive
       750: Critical
       900: Dead
+  - type: Stamina
+    critThreshold: 350
   - type: DamageStateVisuals
     states:
       Alive:
@@ -890,6 +907,8 @@
         Base: brahmin-2
       Dead:
         Base: dead
+  - type: Stamina
+    critThreshold: 200
   - type: Tag
     tags:
     - Brahmin
@@ -897,7 +916,7 @@
     spawned:
     - id: N14FoodMeatBrahmin
       amount: 4
-    - id: N14MaterialBrahminHide
+    - id: N14MaterialBrahminHide1
       amount: 1
       prob: 0.95
   - type: SolutionContainerManager
@@ -918,7 +937,7 @@
   - type: Timer
   - type: TimedSpawner
     prototypes:
-      - N14Dung
+      - N14BrahminDung
     chance: 0.5
     intervalSeconds: 300
     minimumEntitiesSpawned: 1
@@ -954,12 +973,16 @@
         Base: bighorner
       Dead:
         Base: dead
+  - type: Stamina
+    critThreshold: 200
   - type: Tag
     tags:
     - Bighorner
   - type: Butcherable
     spawned:
     - id: N14FoodMeatBighorner
+      amount: 4
+    - id: N14MaterialRawLeather1
       amount: 4
   - type: MeleeWeapon
     altDisarm: false
@@ -985,6 +1008,10 @@
     quantityperUpdate: 25
     growthDelay: 90
     hungerUsage: 7.5
+  - type: TimedSpawner
+    prototypes:
+      - N14Dung
+    chance: 0.5
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-birth-popup
@@ -1002,7 +1029,7 @@
   name: radstag
   parent: N14MobBrahmin
   id: N14MobRadstag
-  description: Stag? Raaaad
+  description: Stag? Raaaad!
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -1016,12 +1043,16 @@
         Base: radstag
       Dead:
         Base: dead
+  - type: Stamina
+    critThreshold: 200
   - type: Tag
     tags:
     - Radstag
   - type: Butcherable
     spawned:
     - id: N14FoodMeatRadstag
+      amount: 4
+    - id: N14MaterialRawLeather1
       amount: 4
   - type: MeleeWeapon
     altDisarm: false
@@ -1047,6 +1078,10 @@
     quantityperUpdate: 10
     growthDelay: 40
     hungerUsage: 5
+  - type: TimedSpawner
+    prototypes:
+      - N14Dung
+    chance: 0.5
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-birth-popup
@@ -1156,7 +1191,7 @@
   parent: N14MobBaseSimple
   id: N14MobIguana
   name: iguana
-  description: Little green food...I mean friend.
+  description: Little green food... I mean friend.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -1170,6 +1205,8 @@
         Base: iguana
       Dead:
         Base: dead
+  - type: Stamina
+    critThreshold: 20
   # - type: Butcherable
     # spawned:
     # - id: N14FoodMeatRadchicken

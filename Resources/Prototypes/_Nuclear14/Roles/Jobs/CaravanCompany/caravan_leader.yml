@@ -5,14 +5,15 @@
   description: job-description-caravan-leader
   playTimeTracker: CaravanLeader
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: CaravanCompany
-      time: 3600 # 1 hour as Caravan Trader
+      min: 3600 # 1 hour as Caravan Trader
   weight: 10
   startingGear: CaravanLeaderGear
   icon: "JobIconQuarterMaster"
   canBeAntag: false
   supervisors: job-supervisors-caravan-leader
+  alwaysUseSpawner: true
   accessGroups:
   - CaravanCompany
   special:
@@ -21,6 +22,7 @@
       - type: NpcFactionMember
         factions:
           - CaravanCompany
+      - type: CPRTraining
 
 - type: startingGear
   id: CaravanLeaderGear
@@ -30,7 +32,7 @@
     back: N14ClothingBackpackCaravanLeaderFilled
     shoes: N14ClothingBootsLeather
     pocket1: N14WeaponPistol12mm
-    id: N14IDPassportCaravan
+    id: N14IDPassportCaravanLeader
 
 - type: playTimeTracker
   id: CaravanLeader

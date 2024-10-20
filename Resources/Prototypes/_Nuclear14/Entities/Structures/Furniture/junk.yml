@@ -45,7 +45,7 @@
   - type: InteractionOutline
   - type: Clickable
 # No fixture on this base, inherit from further down for fixture
-  
+
 - type: entity
   parent: N14JunkWoodBase
   id: N14JunkMetalBase
@@ -100,7 +100,7 @@
         layer:
         - MidImpassable
         - LowImpassable
-    
+
 - type: entity
   parent: N14JunkDresser
   id: N14JunkCabinet
@@ -109,7 +109,7 @@
   components:
   - type: Sprite
     state: junk_cabinet
-    
+
 - type: entity
   parent: N14JunkDresser
   id: N14JunkTable
@@ -118,7 +118,7 @@
   components:
   - type: Sprite
     state: junk_table
-    
+
 - type: entity
   parent: N14JunkWoodBase
   id: N14JunkBench
@@ -128,7 +128,7 @@
   - type: Sprite
     state: junk_bench
     noRot: true
-    
+
 # Metal Junk
 - type: entity
   parent: N14JunkMetalBase
@@ -138,6 +138,28 @@
   components:
   - type: Sprite
     state: junk_machine
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14ScrapElectronic1:
+           min: 1
+           max: 3
+          N14Scrap1:
+           min: 2
+           max: 4
+          N14ScrapCopper1:
+           min: 1
+           max: 2
   - type: Fixtures
     fixtures:
       fix1:
@@ -150,7 +172,7 @@
         layer:
         - MidImpassable
         - LowImpassable
-    
+
 - type: entity
   parent: N14JunkMachine
   id: N14JunkMicrowave
@@ -159,7 +181,7 @@
   components:
   - type: Sprite
     state: junk_micro
-    
+
 - type: entity
   parent: N14JunkMachine
   id: N14JunkJukebox
@@ -168,7 +190,7 @@
   components:
   - type: Sprite
     state: junk_jukebox
-    
+
 - type: entity
   parent: N14JunkMetalBase
   id: N14JunkBed1
@@ -177,7 +199,7 @@
   components:
   - type: Sprite
     state: junk_bed1
-    
+
 - type: entity
   parent: N14JunkMetalBase
   id: N14JunkBed2
@@ -186,7 +208,7 @@
   components:
   - type: Sprite
     state: junk_bed2
-    
+
 - type: entity
   parent: N14JunkMachine
   id: N14JunkTV
@@ -195,7 +217,7 @@
   components:
   - type: Sprite
     state: junk_tv
-    
+
 - type: entity
   parent: N14JunkMachine
   id: N14JunkArcade
@@ -204,7 +226,7 @@
   components:
   - type: Sprite
     state: junk_arcade
-    
+
 - type: entity
   parent: N14JunkMetalBase
   id: N14JunkUrinal
@@ -213,7 +235,7 @@
   components:
   - type: Sprite
     state: junk_urinal
-    
+
 - type: entity
   parent: SeatBase
   id: N14JunkToilet
@@ -228,7 +250,7 @@
     drawdepth: Overdoors
   - type: SecretStash
     secretPartName: secret-stash-part-toilet
-    
+
 - type: entity
   parent: N14JunkMetalBase
   id: N14JunkShower
@@ -239,7 +261,7 @@
     state: junk_shower
     noRot: true
     drawdepth: Overdoors
-    
+
 - type: entity
   parent: N14JunkMetalBase
   id: N14JunkSink
@@ -250,7 +272,7 @@
     state: junk_sink
     noRot: true
     drawdepth: Overdoors
-    
+
 - type: entity
   parent: Mirror
   id: N14JunkMirror
@@ -261,7 +283,7 @@
     sprite: _Nuclear14/Structures/Furniture/junk.rsi
     state: junk_mirror
     drawdepth: Overdoors
-      
+
 - type: entity
   parent: N14JunkMetalBase
   id: N14JunkClock

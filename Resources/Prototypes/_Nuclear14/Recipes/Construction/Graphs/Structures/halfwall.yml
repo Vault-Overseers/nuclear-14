@@ -1,0 +1,29 @@
+﻿- type: constructionGraph
+  id: N14HalfWall
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: Wood
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2
+              
+    - node: Wood
+      entity: N14WallWoodHalf
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Prying
+              doAfter: 10

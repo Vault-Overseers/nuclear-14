@@ -5,9 +5,9 @@
   description: job-description-bos-mid-scribe
   playTimeTracker: BoSMidScribe
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodMidwest
-      time: 3600 # 1 hour
+      min: 3600 # 1 hour
   startingGear: BoSMidScribeGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
@@ -20,6 +20,7 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodMidwest
+      - type: CPRTraining
   jobBlockForSpecies:
   - !type:JobBlockForSpecie
     nameSpecie: Ghoul

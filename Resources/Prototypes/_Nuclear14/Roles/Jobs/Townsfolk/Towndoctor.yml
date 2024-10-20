@@ -7,12 +7,15 @@
   startingGear: TownDoctorGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk
+  access:
+  - TownieDoctor
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
           - Townsfolk
+      - type: CPRTraining
 
 - type: startingGear
   id: TownDoctorGear

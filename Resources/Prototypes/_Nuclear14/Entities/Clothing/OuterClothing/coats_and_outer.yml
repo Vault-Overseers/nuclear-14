@@ -1,6 +1,6 @@
 #MARK: Plain Coats and Clothing
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterStorageBase
   id: N14ClothingOuterJacketLettermanRed
   name: letterman jacket
   description: A red letterman jacket.
@@ -9,9 +9,11 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/letterman_red.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/letterman_red.rsi
+  - type: ClothingSpecialModifier
+    charismaModifier: 1
 
 - type: entity
-  parent: N14ClothingOuterJacketLettermanRed
+  parent: ClothingOuterStorageBase
   id: N14ClothingOuterJacketLettermanBrown
   description: A brown letterman jacket.
   components:
@@ -19,20 +21,24 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/letterman_brown.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/letterman_brown.rsi
+  - type: ClothingSpecialModifier
+    charismaModifier: 1
 
 - type: entity
   parent: ClothingOuterBase
   id: N14ClothingOuterRobeHubologist
   name: hubologist robes
-  description: Hubologist robes...ominous
+  description: Hubologist robes... ominous.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/hubologist.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/hubologist.rsi
+  - type: ClothingSpecialModifier
+    intelligenceModifier: 1
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterStorageBase
   id: N14ClothingOuterFlannelRed
   name: flannel shirt
   description: A red flannel shirt
@@ -41,28 +47,34 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/flannel_red.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/flannel_red.rsi
+  - type: ClothingSpecialModifier
+    charismaModifier: 1
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterStorageBase
   id: N14ClothingOuterFlannelAqua
   name: flannel shirt
-  description: An aqua flannel shirt
+  description: An aqua flannel shirt.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/flannel_aqua.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/flannel_aqua.rsi
+  - type: ClothingSpecialModifier
+    charismaModifier: 1
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterStorageBase
   id: N14ClothingOuterFlannelBrown
   name: flannel shirt
-  description: A brown flannel shirt
+  description: A brown flannel shirt.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/flannel_brown.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/flannel_brown.rsi
+  - type: ClothingSpecialModifier
+    charismaModifier: 1
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -74,6 +86,8 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutfollowerlabcoat.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutfollowerlabcoat.rsi
+  - type: ClothingSpecialModifier
+    intelligenceModifier: 1
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -85,6 +99,8 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/jacket_bomber.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/jacket_bomber.rsi
+  - type: ClothingSpecialModifier
+    strengthModifier: 1
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -99,8 +115,17 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Heat: 0.9
+        Blunt: 0.9
+        Slash: 0.95
+        Piercing: 0.9
+        Heat: 0.85
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: N14MaterialLeather1
+      amount: 1
+    - id: MaterialCloth1
+      amount: 1
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -114,15 +139,24 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutleatherduster.rsi
   - type: Armor
     modifiers:
-      coefficients:
-        Blunt: 0.95
-        Heat: 0.9
+     coefficients:
+        Blunt: 0.9
+        Slash: 0.95
+        Piercing: 0.9
+        Heat: 0.85
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: N14MaterialLeather1
+      amount: 2
+    - id: MaterialCloth1
+      amount: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterBase
   id: N14ClothingOuterCoatLeatherJacket
   name: leather jacket
-  description: A slick and smooth leather jacket. Perfect for any greaser. 
+  description: A slick and smooth leather jacket. Perfect for any greaser.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/leather_jacket.rsi
@@ -131,14 +165,25 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.95
+        Blunt: 0.9
+        Slash: 0.95
+        Piercing: 0.95
         Heat: 0.9
+  - type: ClothingSpecialModifier
+    strengthModifier: 1
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: N14MaterialLeather1
+      amount: 1
+    - id: MaterialCloth1
+      amount: 1
 
 - type: entity
   parent: ClothingOuterStorageBase
   id: N14ClothingOuterCoatLeatherCoat
   name: leather coat
-  description: A slick and smooth long black leather coat. 
+  description: A slick and smooth long black leather coat.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/coat_leather.rsi
@@ -146,31 +191,52 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/coat_leather.rsi
   - type: Armor
     modifiers:
-      coefficients:
-        Blunt: 0.95
-        Heat: 0.9
+     coefficients:
+        Blunt: 0.9
+        Slash: 0.95
+        Piercing: 0.9
+        Heat: 0.85
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: N14MaterialLeather1
+      amount: 2
 
 - type: entity
   parent: ClothingOuterStorageBase
   id: N14ClothingOuterCoatSoldierCoat
   name: soldier coat
-  description: A dapper looking soldiers coat.
+  description: A dapper-looking soldier's coat.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/coat_soldier.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/coat_soldier.rsi
+  - type: Armor
+    modifiers:
+     coefficients:
+        Blunt: 0.85
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
 
 - type: entity
   parent: ClothingOuterStorageBase # balance this?
   id: N14ClothingOuterPoliceOfficer
   name: police officer uniform
-  description: Respect my authoritay
+  description: Respect my authoritay.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/police_officer.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/police_officer.rsi
+  - type: Armor
+    modifiers:
+     coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
 
 - type: entity
   parent: ClothingOuterStorageBase # balance this?
@@ -182,6 +248,13 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/police_lieutenant.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/police_lieutenant.rsi
+  - type: Armor
+    modifiers:
+     coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
 
 - type: entity
   parent: ClothingOuterStorageBase # balance this?
@@ -193,13 +266,20 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/police_chief.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/police_chief.rsi
+  - type: Armor
+    modifiers:
+     coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
 
 #MARK: Armored Coats
 - type: entity
   parent: ClothingOuterStorageBase
   id: N14ClothingOuterCoatWinterArmored
   name: armored winter coat
-  description: A winter coat equipped makeshift armor, for when you need to protect yourself from something other than the cold.
+  description: A winter coat equipped with makeshift armor for when you need to protect yourself from something other than the cold.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/armoredwinter.rsi
@@ -210,13 +290,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.9
-        Heat: 0.8
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.85
+        Heat: 0.85
 
 - type: entity
-  parent: N14ClothingOuterOverseerCoat
+  parent: ClothingOuterStorageBase
   id: N14ClothingOuterBattlecoatCoat
   name: battlecoat
   description: For when you're going into battle.
@@ -225,6 +305,20 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutbattlecoat.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutbattlecoat.rsi
+  - type: Armor
+    modifiers:
+     coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: N14MaterialLeather1
+      amount: 2
+    - id: MaterialCloth1
+      amount: 1
 
 - type: entity
   parent: N14ClothingOuterBattlecoatCoat
@@ -240,37 +334,37 @@
   parent: ClothingOuterStorageBase
   id: N14ClothingOuterCoatCombatDuster
   name: combat duster
-  description: Refurbished combat armor under a weathered duster. Simple metal plates replace the ceramic plates that has gotten damaged.
+  description: Refurbished combat armor under a weathered duster. Simple metal plates replace the ceramic plates that have gotten damaged over time.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutcombatduster.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutcombatduster.rsi
-  - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.80
+        Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.6
-        Heat: 0.7
+        Piercing: 0.65
+        Heat: 0.65
 
 #MARK: Brotherhood
 - type: entity
-  parent: N14ClothingOuterOverseerCoat
+  parent: N14ClothingOuterCoatWinterArmored
   id: N14ClothingOuterBrotherhoodElderCoat
   name: Elder greatcoat
-  description: For when you're going into battle.
+  description: Coat of the biggest brother.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/brotherhoodeldercoat.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/brotherhoodeldercoat.rsi
+  - type: ClothingSpecialModifier
+    strengthModifier: 1
+    charismaModifier: 1
 
 - type: entity
-  parent: N14ClothingOuterOverseerCoat
+  parent: N14ClothingOuterCoatWinterArmored
   id: N14ClothingOuterBrotherhoodFieldScribeCoat
   name: Brotherhood field Scribe coat
   description: A warm coat worn by Brotherhood field Scribes.
@@ -279,32 +373,25 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/brotherhoodfieldscribe.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/brotherhoodfieldscribe.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.7
-        Slash: 0.8
-        Piercing: 0.75
-        Heat: 0.8
 
 #MARK: Enclave
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterCoatWinterArmored
   id: N14ClothingOuterEnclaverOfficerCoat
   name: enclave officer coat
-  description: A coat worn by enclave officers. It has armor underneath.
+  description: A coat worn by Enclave officers. It has armor underneath.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutarmoredofficer.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutarmoredofficer.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.9
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: N14MaterialLeather1
+      amount: 2
+    - id: MaterialCloth1
+      amount: 1
 
 #MARK: NCR
 - type: entity
@@ -317,6 +404,21 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/ncr_cf.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/ncr_cf.rsi
+  - type: ClothingSpecialModifier
+    strengthModifier: 1
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: N14ClothingOuterNCRTrenchCoat
+  name: NCR officer trench coat
+  description: Warm and comfy, this nice white coat is used by officers of the 3rd battalion to warm themselves.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/ncr_trenchcoat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/ncr_trenchcoat.rsi
+  - type: ClothingSpecialModifier
+    charismaModifier: 2
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -328,20 +430,24 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/ncr_dressjacket.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/ncr_dressjacket.rsi
+  - type: ClothingSpecialModifier
+    charismaModifier: 1
 
 - type: entity
   parent: ClothingOuterStorageBase
   id: N14ClothingOuterNCRDressJacketCO
   name: NCR CO dress jacket
-  description: An NCR commanding officer dress uniform.
+  description: An NCR Commanding Officer dress uniform.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/ncr_codressjacket.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/ncr_codressjacket.rsi
+  - type: ClothingSpecialModifier
+    charismaModifier: 1
 
 - type: entity
-  parent: N14ClothingOuterOverseerCoat
+  parent: ClothingOuterStorageBase
   id: N14ClothingOuterNCRQuartermaster
   name: NCR QM uniform
   description: The uniform of an NCR Quartermaster.
@@ -350,10 +456,12 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/ncr_qm.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/ncr_qm.rsi
+  - type: ClothingSpecialModifier
+    charismaModifier: 1
 
 #MARK: Vault
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBattlecoatCoat
   id: N14ClothingOuterOverseerCoat
   name: "overseer's coat"
   description: A coat worn by someone important. It has the number 14 on the back.
@@ -364,18 +472,15 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutoverseercoat.rsi
   - type: TemperatureProtection
     coefficient: 0.1
-  - type: Armor
-    modifiers:
-      coefficients:
-        Slash: 0.95
-        Heat: 0.75
+  - type: ClothingSpecialModifier
+    charismaModifier: 1
 
 #MARK: Midwest BoS
 - type: entity
   parent: ClothingOuterStorageBase
   id: N14ClothingOuterMidwestBoSCoat
   name: scribe quilted armor
-  description: A piece of quilted cloth with midwest botherhood marks and metal plates, it has some pouches for tools storage.
+  description: A piece of quilted cloth with Midwest Brotherhood marks and metal plates, it has some pouches for tools storage.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/midwestbosscribe.rsi
@@ -391,10 +496,10 @@
 
 #MARK: Washington BoS
 - type: entity
-  parent: ClothingOuterStorageBase # balance this.
+  parent: N14ClothingOuterBattlecoatCoat
   id: N14ClothingOuterBrotherhoodWashingtonScribe
   name: scribe clothes
-  description: An outfit traditionally worn by brotherhood scribes.
+  description: An outfit traditionally worn by Brotherhood Scribes.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/washington_bos_scribe.rsi
@@ -402,10 +507,10 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/washington_bos_scribe.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase # balance this.
-  id: N14ClothingOuterBrotherhoodWashingtonElder
+  parent: N14ClothingOuterBrotherhoodElderCoat
+  id: N14ClothingOuterBrotherhoodWashingtonCommander
   name: elder clothes
-  description: An outfit traditionally worn by brotherhood elders.
+  description: An outfit traditionally worn by Brotherhood Elders.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/washington_bos_elder.rsi
@@ -417,7 +522,7 @@
   parent: ClothingOuterStorageBase
   id: N14ClothingOuterTribalCoat
   name: tribal armored coat
-  description: A heavy armor with ballistic inserts, now sleeveless for tempature and hanging an ornamental animal skull from the back.
+  description: A heavy armor with ballistic inserts, now sleeveless for temperature control and hanging an ornamental animal skull from the back.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/fallouttribalcoat.rsi
@@ -428,7 +533,7 @@
       coefficients:
         Blunt: 0.65
         Slash: 0.6
-        Piercing: 0.8
+        Piercing: 0.7
         Heat: 0.8
 
 #MARK: Town
@@ -445,14 +550,16 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Heat: 0.9
+        Blunt: 0.9
+        Slash: 0.95
+        Piercing: 0.9
+        Heat: 0.85
 
 - type: entity
   parent: ClothingOuterStorageBase
   id: N14ClothingOuterTownMediumCoat
   name: armored town trenchcoat
-  description: An armored trench coat with added shoulderpads, a chestplate, and legguards.
+  description: An armored trench coat with added shoulderpads, a chestplate, and leg guards.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/fallouttowntrenchcoatmedium.rsi
@@ -461,16 +568,16 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.8
+        Blunt: 0.85
+        Slash: 0.9
         Piercing: 0.85
-        Heat: 0.9
+        Heat: 0.8
 
 - type: entity
   parent: ClothingOuterStorageBase
   id: N14ClothingOuterTownHeavyCoat
   name: combat town trenchcoat
-  description: A trenchcoat which does not attempt to hide the full-body worn down combat armor beneath it.
+  description: A trenchcoat which does not attempt to hide the full-body worn-down combat armor beneath it.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/fallouttowntrenchcoatheavy.rsi
@@ -479,13 +586,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
+        Blunt: 0.65
+        Slash: 0.65
         Piercing: 0.7
-        Heat: 0.8
-  - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
+        Heat: 0.7
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -500,7 +604,7 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.6
-        Heat: 0.7
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.65
+        Heat: 0.65

@@ -118,7 +118,7 @@
   parent: N14Stimpak
   id: N14StimpakDirty
   name: dirty stimpak
-  description: A syringe filled with a wondrous mixture of medical reagents. Essential for those with little to no medical knowledge.
+  description: A syringe filled with a once-wondrous mixture of medical reagents, now tainted by the wastes. Essential for those with little to no medical knowledge.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -155,8 +155,9 @@
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14ChemicalSyringeAntidote
-  name: antidote
+  id: N14ChemicalSyringeAntidoteEmpty
+  suffix: empty
+  name: antidote syringe
   description: A syringe filled with an effective antitoxin.
   components:
   - type: Sprite
@@ -174,6 +175,14 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: used
+
+- type: entity
+  parent: N14ChemicalSyringeAntidoteEmpty
+  id: N14ChemicalSyringeAntidote
+  suffix: filled
+  name: antidote
+  description: A syringe filled with an effective antitoxin.
+  components:
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -187,7 +196,7 @@
   id: N14JetInhaler
   suffix: empty
   name: Jet inhaler
-  description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, and lasts longer than Turbo.
+  description: A rare injector filled with a narcotic reagent that makes you feel as though you're speeding up. It's weaker but lasts longer than Turbo.
   components:
   - type: Sprite
     layers:
@@ -212,21 +221,22 @@
   id: N14Jet
   suffix: filled
   name: Jet
-  description: A rare injector filled with a narcotic reagent, that makes you feel as though you're speeding up. It's weaker, and lasts longer than Turbo.
+  description: A rare injector filled with a narcotic reagent that makes you feel as though you're speeding up. It's weaker but lasts longer than Turbo.
   components:
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 18
+        maxVol: 15
         reagents:
         - ReagentId: MovespeedMixture
-          Quantity: 18
+          Quantity: 15
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14Turbo
-  name: Turbo
-  description: A small injector fill with a narcotic reagent, that makes you feel as though the world around you is slowing down. It's stronger, and more dangerous than Jet.
+  id: N14TurboInhaler
+  suffix: empty
+  name: Turbo inhaler
+  description: A small injector filled with a narcotic reagent that makes you feel as though the world around you is slowing down. It's stronger and more dangerous than Jet.
   components:
   - type: Sprite
     layers:
@@ -239,6 +249,18 @@
   - type: Hypospray
     solutionName: pen
     transferAmount: 10
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 10
+
+- type: entity
+  parent: N14TurboInhaler
+  id: N14Turbo
+  suffix: filled
+  name: Turbo
+  description: A small injector filled with a narcotic reagent that makes you feel as though the world around you is slowing down. It's stronger and more dangerous than Jet.
+  components:
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -274,9 +296,10 @@
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14Hydra
-  name: hydra
-  description: A bottle of Supa Yum soda with several vials attached to it. Contains a mildly potent healing chemical that comes with side effects.
+  id: N14HydraInhaler
+  suffix: empty
+  name: hydra inhaler
+  description: A bottle of Supa Yum soda with several vials attached to it. Contains a mildly potent healing chemical that comes with addictive side effects.
   components:
   - type: Sprite
     layers:
@@ -289,6 +312,15 @@
   - type: Hypospray
     solutionName: pen
     transferAmount: 15
+
+
+- type: entity
+  parent: N14HydraInhaler
+  id: N14Hydra
+  suffix: filled
+  name: hydra
+  description: A bottle of Supa Yum soda with several vials attached to it. Contains a mildly potent healing chemical that comes with addictive side effects.
+  components:
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -299,8 +331,8 @@
 
 - type: entity
   parent: N14ChemicalSyringe
-  id: N14Psycho
-  name: psycho
+  id: N14PsychoSyringe
+  name: psycho syringe
   description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin.
   components:
   - type: Sprite
@@ -318,6 +350,17 @@
     solutions:
       pen:
         maxVol: 20
+
+- type: entity
+  parent: N14PsychoSyringe
+  id: N14Psycho
+  name: psycho
+  description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
         reagents:
         - ReagentId: DamageModifyingMixture
           Quantity: 20
@@ -326,7 +369,7 @@
   parent: N14ChemicalSyringe
   id: N14RadAwayBloodbag
   name: RadAway
-  description: A bloodbag filled with an odd reagent that cures any Radiation you've substained.
+  description: A bloodbag filled with an odd oily reagent that cures any radiation you've sustained.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/bloodbags.rsi
@@ -410,7 +453,7 @@
   parent: BaseBeaker
   id: N14RadAwayPhialBase
   name: RadAway phial
-  description: A coloured phial containing RadAway. This one appears to be empty
+  description: A coloured phial containing RadAway. This one appears to be empty.
   abstract: true
   components:
   - type: Sprite
@@ -425,6 +468,8 @@
     maxFillLevels: 3
     changeColor: true
     fillBaseName: radawayphial
+  - type: Item
+    size: Tiny
   - type: WelderRefinable
     refineResult:
     - id: SheetGlass1
@@ -437,7 +482,7 @@
 #   parent: N14RadAwayPhialBase
 #   id: N14RadAwayPhialCraft
 #   name: RadAway phial
-#   description: A coloured phial containing RadAway. This one appears to be empty
+#   description: A coloured phial containing RadAway. This one appears to be empty.
 #   suffix: crafting
 #   components:
 #   - type: Construction
@@ -545,7 +590,7 @@
   parent: DrinkBottleGlassBaseFull
   id: N14Antidote
   name: antidote
-  description: A toxin antidote made from radscorpion tail and water.
+  description: A toxin antidote made from radscorpion tail and ethanol.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -586,7 +631,7 @@
   parent: N14HealingPowder
   id: N14HealingPoultice
   name: healing poultice
-  description: A bag of poultice to help with all common ailments slowly.
+  description: A bag of poultice to help with all common ailments if slowly.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
@@ -640,7 +685,7 @@
   parent: N14ChemicalSyringe
   id: N14UltraStimpak
   name: ultra stimpak
-  description: A special type of super stimpak with an additional mixture of chemicals which makes a man near invincible at a great cost. It is widely deemed inhumane and outlawed.
+  description: A special type of super-stimpak with an additional mixture of chemicals which makes a man near invincible at a great cost. It is widely deemed inhumane and outlawed.
   components:
   - type: Sprite
     layers:
@@ -665,7 +710,7 @@
   parent: N14HealingPowder
   id: N14Traumapack #TODO: N14Traumapack needs new sound
   name: traumapack
-  description: A backpack filled with a blend of healing chemicals that inject automatically upon the wearer being hurt.
+  description: A backpack filled with a blend of healing chemicals that inject automatically upon the wearer being hurt. The mechanism seems to be broken, however.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
@@ -695,7 +740,7 @@
   parent: Gauze
   id: N14Bandage
   name: bandage
-  description: A long strip cloth which can stop bleeding. Mostly sterile.
+  description: A long strip of cloth which can stop bleeding. Mostly sterile.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
@@ -705,7 +750,7 @@
   parent: DrinkBottleGlassBaseFull
   id: N14Ethanol
   name: ethanol bottle
-  description: A small brownish bottle containing ethanol. Great for disinfecting wounds.
+  description: A small brown glass bottle containing ethanol. Great for disinfecting wounds.
   components:
   - type: SolutionContainerManager
     solutions:

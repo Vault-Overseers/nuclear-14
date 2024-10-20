@@ -1,0 +1,38 @@
+- type: constructionGraph
+  id: ShotgunSawed
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: shotgunsawed
+          steps:
+            - tool: Sawing
+              doAfter: 2
+    - node: shotgunsawed
+      entity: N14WeaponShotgunSawedOffEmpty
+
+- type: constructionGraph
+  id: PumpShotgunSawed
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: pumpshotgunsawed
+          steps:
+            - tool: Sawing
+              doAfter: 2
+    - node: pumpshotgunsawed
+      entity: N14WeaponShotgunShort
+
+- type: constructionGraph
+  id: LeverCarbineSawed
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: levercarbinesawed
+          steps:
+            - tool: Sawing
+              doAfter: 2
+    - node: levercarbinesawed
+      entity: N14WeaponSniper44LeverShortCarbine

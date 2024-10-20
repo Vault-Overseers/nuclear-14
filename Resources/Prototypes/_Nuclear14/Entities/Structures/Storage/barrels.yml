@@ -45,7 +45,7 @@
         solution: barrel
     - trigger:
         !type:DamageTrigger
-        damage: 10
+        damage: 50
       behaviors:
       - !type:SpillBehavior
         solution: barrel
@@ -80,7 +80,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: black-closed
-    
+
 - type: entity
   parent: N14BaseBarrel
   id: N14BlueBarrel
@@ -90,7 +90,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: blue-closed
-    
+
 - type: entity
   parent: N14BaseBarrel
   id: N14RedBarrel
@@ -103,7 +103,7 @@
   - type: Explosive
     explosionType: Default
     totalIntensity: 120 # ~ 5 tile radius
-    
+
 - type: entity
   parent: N14BaseBarrel
   id: N14YellowBarrel
@@ -128,7 +128,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: black-open
-    
+
 - type: entity
   parent: N14BaseBarrelOpen
   id: N14BlueBarrelOpen
@@ -139,7 +139,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: blue-open
-    
+
 - type: entity
   parent: N14BaseBarrelOpen
   id: N14RedBarrelOpen
@@ -150,7 +150,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: red-open
-    
+
 - type: entity
   parent: N14BaseBarrelOpen
   id: N14YellowBarrelOpen
@@ -164,7 +164,7 @@
   - type: RadiationSource
     intensity: 1
     slope: 1
-    
+
 # Full barrels
 - type: entity
   parent: N14BlackBarrelOpen
@@ -176,7 +176,7 @@
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: black-full
     # TODO - fill with some sort of waste product? Maybe just dirty water.
-    
+
 - type: entity
   parent: N14RedBarrelOpen
   id: N14RedBarrelFull
@@ -201,7 +201,7 @@
   - type: Explosive
     explosionType: Default
     totalIntensity: 120 # ~ 5 tile radius
-    
+
 - type: entity
   parent: N14YellowBarrelOpen
   id: N14YellowBarrelFull
@@ -220,6 +220,19 @@
     energy: 1.6
     color: "#3db83b"
     castShadows: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:SpillBehavior
+        solution: barrel
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     # TODO - fill with some sort of radioactive waste reagent.
 
 # Burning Barrels
@@ -246,7 +259,7 @@
         layer:
         - MidImpassable
         - LowImpassable
-    
+
 - type: entity
   parent: N14BurningBarrel
   id: N14BurningBarrelLit

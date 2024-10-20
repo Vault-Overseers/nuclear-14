@@ -30,12 +30,9 @@
           completed:
             - !type:SnapToGrid { }
           steps:
-            - tag: Bedroll
-              name: a bedroll
-              icon:
-                sprite: _Nuclear14/Structures/Furniture/bedsandchairs.rsi
-                state: bedroll_rolled
-              doAfter: 1
+            - material: Cloth
+              amount: 3
+              doAfter: 2
         - to: mattress
           completed:
             - !type:SnapToGrid { }
@@ -104,7 +101,7 @@
               prototype: MaterialCloth1
               amount: 3
           steps:
-            - tool: Cutting
+            - tool: Slicing
               doAfter: 1
     - node: mattress
       entity: N14BedMattress0

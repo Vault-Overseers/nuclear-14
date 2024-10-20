@@ -1,0 +1,33 @@
+# Drugs should be paired up in Trios of "Bonus, Penalty, Category"
+
+# Jet
+- type: moodEffect
+  id: JetBenefit
+  moodChange: 5
+  timeout: 600 #10 minutes
+  moodletOnEnd: JetWithdrawal
+  category: "JetAddiction"
+
+- type: moodEffect
+  id: JetWithdrawal
+  moodChange: -7 #No timeout
+  category: "JetAddiction"
+
+- type: moodCategory
+  id: JetAddiction
+  
+# Psycho
+- type: moodEffect
+  id: PsychoBenefit
+  moodChange: 5
+  timeout: 600 #10 minutes
+  moodletOnEnd: PsychoWithdrawal
+  category: "PsychoAddiction"
+
+- type: moodEffect
+  id: PsychoWithdrawal
+  moodChange: -7 #No timeout
+  category: "PsychoAddiction"
+
+- type: moodCategory
+  id: PsychoAddiction

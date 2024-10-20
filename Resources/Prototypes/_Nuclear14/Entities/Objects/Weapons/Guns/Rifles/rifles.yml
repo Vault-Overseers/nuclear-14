@@ -1,8 +1,34 @@
 - type: entity
-  name: R-91
   parent: BaseWeaponRifle
-  id: N14WeaponRifleR91
-  description: An old fashioned assault rifle chambered in 5.56. # TODO: Need to create projectiles, magazines and boxes for 5.56.
+  id: N14WeaponRifleBase
+  abstract: true
+  components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -21
+    maxAngle: -38
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: FollowDistance
+    backStrength: 5
+
+- type: entity
+  name: R-91 Rifle
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle556R91
+  description: An old-fashioned assault rifle chambered in 5.56 munitions.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/r91.rsi
@@ -17,12 +43,6 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/r91.rsi
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -21
-    maxAngle: -38
   - type: Gun
     minAngle: 24
     maxAngle: 45
@@ -48,21 +68,12 @@
         whitelist:
           tags:
             - N14Cartridge556Rifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
 
 - type: entity
   name: chinese assault rifle
-  parent: BaseWeaponRifle
-  id: N14WeaponChineseRifle
-  description: A old foreing assault rifle with strange simbols on it, the chamber has enough space to hold a 7,62 bullet.
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle762Chinese
+  description: An old foreign assault rifle with strange symbols on it, it is chambered in the old 7.62 ammunition.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/chineserifle.rsi
@@ -77,12 +88,6 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/chineserifle.rsi
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -21
-    maxAngle: -38
   - type: Gun
     minAngle: 24
     maxAngle: 50
@@ -109,17 +114,12 @@
         whitelist:
           tags:
             - N14Cartridge762Rifle
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
 
 - type: entity
   name: assault carbine
-  parent: BaseWeaponRifle
-  id: N14WeaponCarbine
-  description: A black compact assault rifle, uses 5.56 ammo.
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle556Carbine
+  description: A sleek black compact assault rifle, uses 5.56 ammo.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/assaultcarbine.rsi
@@ -134,12 +134,6 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/assaultcarbine.rsi
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -41
   - type: Gun
     minAngle: 24
     maxAngle: 45
@@ -169,16 +163,11 @@
         whitelist:
           tags:
             - N14Cartridge556Rifle
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
 
 - type: entity
   name: marksman carbine
-  parent: BaseWeaponRifle
-  id: N14WeaponMarksman
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle762Marksman
   description: A heavy semiautomatic rifle with a scope, uses 7.62 ammo.
   components:
   - type: Clothing
@@ -194,11 +183,6 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -44
   - type: Gun
     minAngle: 24
     maxAngle: 45
@@ -228,17 +212,12 @@
         whitelist:
           tags:
             - N14Cartridge762Rifle
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
 
 - type: entity
   name: service rifle
-  parent: BaseWeaponRifle
-  id: N14WeaponService
-  description: A cheap mass produced post war rifle made by the NCR, chambered in 5.56.
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle556Service
+  description: A cheaply mass-produced post-war rifle made by the NCR, chambered in 5.56 ammo.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/servicerifle.rsi
@@ -253,13 +232,9 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -21
-    maxAngle: -43
   - type: Gun
-    minAngle: 18
-    maxAngle: 40
+    minAngle: 21
+    maxAngle: 45
     angleIncrease: 4
     angleDecay: 16
     fireRate: 5
@@ -286,17 +261,12 @@
         whitelist:
           tags:
             - N14Cartridge556Rifle
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
 
 - type: entity
   name: scout rifle
-  parent: BaseWeaponRifle
-  id: N14WeaponScout
-  description: A modified version of the service rifle made by rangers in the field. It is capable of using larger 5.56 magazines.
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle556Scout
+  description: A modified version of the service rifle made by Rangers in the field. It is capable of using larger 5.56 magazines than its predecessor.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/scoutrifle.rsi
@@ -311,13 +281,9 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -21
-    maxAngle: -46
   - type: Gun
-    minAngle: 18
-    maxAngle: 46
+    minAngle: 24
+    maxAngle: 45
     angleIncrease: 4
     angleDecay: 12
     fireRate: 6
@@ -346,17 +312,12 @@
         whitelist:
           tags:
             - N14Cartridge556Rifle
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
 
 - type: entity
   name: battle rifle
-  parent: BaseWeaponRifle
-  id: N14WeaponBattleRifle
-  description: A long semi automatic rifle feed by clips, chambered in the powerfull 308.
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle308Battle
+  description: A long semi-automatic rifle fed by clips, chambered in the powerful 308.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/battlerifle.rsi
@@ -373,7 +334,6 @@
         map: ["enum.GunVisualLayers.Mag"]
   - type: ChamberMagazineAmmoProvider
     autoEject: true
-  - type: Wieldable
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -56
@@ -382,7 +342,7 @@
     maxAngle: 60
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 2
+    fireRate: 3
     soundGunshot:
       collection: N14BattleRifleGunshot
     selectedMode: SemiAuto
@@ -406,17 +366,14 @@
         whitelist:
           tags:
             - N14Cartridge308Rifle
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
+  - type: FollowDistance
+    backStrength: 3
 
 - type: entity
-  name: carbine
-  parent: BaseWeaponRifle
-  id: N14WeaponOldCarbine
-  description: A short compact rifle of the pre-war, chambered in 5.56.
+  name: old carbine
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle556CarbineOld
+  description: A short compact rifle of the pre-war, chambered in 5.56 ammo.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/carbine.rsi
@@ -431,13 +388,9 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -21
-    maxAngle: -40
   - type: Gun
     minAngle: 24
-    maxAngle: 48
+    maxAngle: 47
     angleIncrease: 4
     angleDecay: 16
     fireRate: 4
@@ -464,8 +417,3 @@
         whitelist:
           tags:
             - N14Cartridge556Rifle
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance

@@ -1,12 +1,13 @@
 - type: reaction
   id: Jet
+  minTemp: 373.15 # 100 degrees Celcius.
   reactants:
     Ammonia:
       amount: 1
-    ExtractXander: # N14:TODO: This will do for now till we figure out a catalyst...
+    Abraxocleaner:
       amount: 1
   products:
-    MovespeedMixture: 2
+    MovespeedMixture: 1
 
 - type: reaction
   id: Mentats
@@ -76,3 +77,51 @@
   effects:
     - !type:CreateEntityReactionEffect
       entity: N14Hydra
+
+- type: reaction
+  id: Psycho
+  reactants:
+    N14BloatflyAcid:
+      amount: 1
+    ExtractBroc: #N14:TODO: Add hubflower
+      amount: 2
+    Blood:
+      amount : 1
+    Antiseptic:
+      amount: 2
+  products:
+    DamageModifyingMixture: 3
+
+- type: reaction
+  id: Turbo
+  reactants:
+    N14CazadorAcid:
+      amount: 1
+    ExtractBroc:
+      amount: 1
+    MovespeedMixture:
+      amount : 1
+    Turpentine:
+      amount: 1
+  products:
+    RobustMovespeedMixture: 3
+
+- type: reaction
+  id: Buffjet
+  reactants:
+    MovespeedMixture:
+      amount: 1
+    Buffout:
+      amount: 1
+  products:
+    Buffjet : 1
+
+- type: reaction
+  id: Bufftats
+  reactants:
+    Mentats:
+      amount: 1
+    Buffout:
+      amount: 1
+  products:
+    Bufftats : 1

@@ -32,6 +32,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
+using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -362,11 +363,11 @@ public abstract partial class SharedGunSystem : EntitySystem
         var shotEv = new GunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gunUid, ref shotEv);
 
-        if (userImpulse && TryComp<PhysicsComponent>(user, out var userPhysics))
-        {
-            if (_gravity.IsWeightless(user, userPhysics))
-                CauseImpulse(fromCoordinates, toCoordinates.Value, user, userPhysics);
-        }
+        if (gun.DoRecoil
+            && userImpulse
+            && TryComp<PhysicsComponent>(user, out var userPhysics)
+            && _gravity.IsWeightless(user, userPhysics))
+            CauseImpulse(fromCoordinates, toCoordinates.Value, user, userPhysics);
 
         Dirty(gunUid, gun);
     }
@@ -457,6 +458,10 @@ public abstract partial class SharedGunSystem : EntitySystem
         {
             Audio.PlayPvs(cartridge.EjectSound, entity, AudioParams.Default.WithVariation(SharedContentAudioSystem.DefaultVariation).WithVolume(-1f));
         }
+
+        // Reduce entity spam from cartridges for N14.
+        var despawn = EnsureComp<TimedDespawnComponent>(entity);
+        despawn.Lifetime = 15f * 60; // 15 minutes
     }
 
     protected IShootable EnsureShootable(EntityUid uid)

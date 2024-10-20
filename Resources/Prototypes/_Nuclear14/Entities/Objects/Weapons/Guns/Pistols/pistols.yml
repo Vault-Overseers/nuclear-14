@@ -13,6 +13,9 @@
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     size: Small
+    shape:
+    - 0,0,1,1
+    - 0,1,0,1
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/viper.rsi
     quickEquip: false
@@ -20,6 +23,10 @@
     - suitStorage
     - Belt
   - type: Gun
+    minAngle: 1
+    maxAngle: 7
+    angleIncrease: 0.5
+    angleDecay: 4
     fireRate: 6
     selectedMode: SemiAuto
     availableModes:
@@ -58,12 +65,14 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
+  - type: FollowDistance
+    backStrength: 6
 
 - type: entity
   name: 9mm Pistol
   parent: N14BaseWeaponPistol
   id: N14WeaponPistol9mm
-  description: A cheap, ubiquitous sidearm, chambered in 9 mm.
+  description: The cheap and ubiquitous sidearm, chambered in 9mm ammo.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/9mm.rsi
@@ -98,7 +107,7 @@
   name: 10mm Pistol
   parent: N14BaseWeaponPistol
   id: N14WeaponPistol10mm
-  description: A cheap, ubiquitous sidearm, chambered in 10mm. # TODO: Need to create projectiles, magazines and boxes for 10mm.
+  description: A cheap, ubiquitous sidearm, chambered in 10mm munitions. # TODO: Need to create projectiles, magazines and boxes for 10mm.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/10mm.rsi
@@ -128,11 +137,10 @@
         whitelist:
           tags:
             - N14CartridgePistol10
-
 - type: entity
-  name: .45 handgun
+  name: .45 colt handgun
   parent: N14BaseWeaponPistol
-  id: N14WeaponPistolColt
+  id: N14WeaponPistol45Colt
   description: A rugged handgun chambered in .45.
   components:
   - type: Sprite
@@ -175,7 +183,7 @@
   name: 12.7mm handgun
   parent: N14BaseWeaponPistol
   id: N14WeaponPistol12mm
-  description: A rugged, robust handgun chambered in 12.7mm. # TODO: Need to create projectiles, magazines and boxes for 12mm.
+  description: A rugged and robust handgun chambered in 12.7mm ammo. # TODO: Need to create projectiles, magazines and boxes for 12mm.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/12mm.rsi
@@ -216,8 +224,8 @@
 - type: entity
   name: 10mm pipe pistol
   parent: N14BaseWeaponPistol
-  id: N14WeaponPipe10mm
-  description: a light 10mm makeshift pistol, the grip is incredibly uncomfortable.
+  id: N14WeaponPistol10mmPipe
+  description: A shoddy makeshift 10mm pistol, the grip is incredibly uncomfortable. Uses 10mm ammo.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/10mmPIPEpistol.rsi
@@ -229,6 +237,10 @@
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/10mmPIPEpistol.rsi
   - type: Gun
+    minAngle: 3
+    maxAngle: 15
+    angleIncrease: 0.5
+    angleDecay: 4
     fireRate: 4
     soundGunshot:
       collection: N14Pistol10mmGunshot
@@ -247,12 +259,34 @@
         whitelist:
           tags:
             - N14CartridgePistol10
+            
+- type: entity
+  parent: N14WeaponPistol10mmPipe
+  id: N14WeaponPistol10mmPipeEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        whitelist:
+          tags:
+            - N14MagazinePistol10mm
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol10
+  - type: Construction
+    graph: N14WeaponPistol10mmPipeEmpty
+    node: start
 
 - type: entity
   name: chinese pistol
-  parent: BaseWeaponSniper
-  id: N14WeaponPistolChinese
-  description: A elegant and long barrel pistol with a integrated magazine, chambered in 9 mm.
+  parent: N14BaseWeaponPistol
+  id: N14WeaponPistol9mmChinese
+  description: A foreign long-barrel pistol with an integrated magazine, chambered in 9mm.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/chinesepistol.rsi
@@ -291,9 +325,9 @@
 
 - type: entity
   name: the spy
-  parent: BaseWeaponSniper
-  id: N14WeaponPistolSpy
-  description: A modified version of the common chinese pistols. with a integrated silencer, extended mag and fully automatic conversion this gun was designed with passion, chambered in 9 mm.
+  parent: N14BaseWeaponPistol
+  id: N14WeaponPistol9mmSpy
+  description: A modified version of the common chinese pistol with a integrated silencer, extended magazine, and full-auto conversion. This gun was designed with passion, chambered in 9mm.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/thespy.rsi
@@ -334,7 +368,7 @@
   name: 22lr Pistol
   parent: N14BaseWeaponPistol
   id: N14WeaponPistol22lr
-  description: A simple and silenced pistol, chambered in 22lr.
+  description: A simple and silenced pistol, chambered in 22lr ammo.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/22lr.rsi
