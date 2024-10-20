@@ -5,6 +5,34 @@ reagent-desc-uncooked-animal-proteins-rad = Might give you food poisoning.
 reagent-name-rad-particle-food = radioactive contamination
 reagent-desc-rad-particle-food = Too much will make you sick of living.
 
+# Preserves
+reagent-name-agavejam = agave jam
+reagent-desc-agavejam = Agave Jam. What a flavor...
+reagent-name-blackberryjam = blackberry jam
+reagent-desc-blackberryjam = Blackberry Jam. Needs some toast.
+reagent-name-brocjam = broc jam
+reagent-desc-brocjam = Broc Jam. Seems healthy.
+reagent-name-cactusjam = cactus jam
+reagent-desc-cactusjam = Cactus Jam. Needs some toast.
+reagent-name-multifruitjam = multifruit jam
+reagent-desc-multifruitjam = Multifruit Jam. Very Delicious.
+reagent-name-pricklypearjam = pricklypear jam
+reagent-desc-pricklypearjam = Prickly Pear Jam. Has a nice refreshing feeling.
+reagent-name-starlightjam = starlight jam
+reagent-desc-starlightjam = Starlight Jam. The color is quite bright.
+reagent-name-tarberryjam = tarberry jam
+reagent-desc-tarberryjam = Tarberry Jam. Gives you a strange feeling.
+reagent-name-pickledcabbage = pickled cabbage
+reagent-desc-pickledcabbage = Pickled Cabbage. Has a nice crunch.
+reagent-name-pickledcarrots = pickled carrots
+reagent-desc-pickledcarrots = Pickled Carrots. Has a nice crunch.
+reagent-name-pickledcorn = pickled corn
+reagent-desc-pickledcorn = Pickled Corn. An interesting way to eat corn.
+reagent-name-pickledjalapenos = pickled jalapenos
+reagent-desc-pickledjalapenos = Pickled Jalapenos. Perfect amount of spice.
+reagent-name-pickledonions = pickled onions
+reagent-desc-pickledonions = Pickled Onions. Finely aged onions.
+
 # Drinks
 reagent-name-water-dirty = dirty water
 reagent-desc-water-dirty = Looks murky.
@@ -17,25 +45,27 @@ reagent-desc-water-salt = salty water. Maybe I can boil it for salt.
 
 ## Soda
 reagent-name-nuka-cola = Nuka-Cola
-reagent-desc-nuka-cola = Nuka-Cola brand soda from before war. Sugary goodness.
+reagent-desc-nuka-cola = A refreshing beverage that has a extremely sugary taste. Reminds you of vanilla and cinnamon.
 reagent-name-irradiated-nuka-cola = irradiated Nuka-Cola
-reagent-desc-irradiated-nuka-cola = This Nuka-Cola gives off a slight tingle.
+reagent-desc-irradiated-nuka-cola = An unrefreshing beverage that has a extremely sugary taste. The aftertaste is bitter and burnt.
 reagent-name-nuka-cola-quantum = Nuka-Cola Quantum
-reagent-desc-nuka-cola-quantum = Nuka-Cola Quantum
+reagent-desc-nuka-cola-quantum = An explosion of sugar and tastes! You can taste various berry flavours.. And a lot of sugar!
 reagent-name-nuka-cola-clear = Nuka-Cola Clear
-reagent-desc-nuka-cola-clear = Nuka-Cola Clear
+reagent-desc-nuka-cola-clear = A fresh take on Nuka Cola, an invigorating twist of lemon and lime flavors.. And a ton of sugar of course!
 reagent-name-nuka-cola-cherry = Nuka-Cola Cherry
-reagent-desc-nuka-cola-cherry = Nuka-Cola Cherry
+reagent-desc-nuka-cola-cherry = Typical Nuka Cola taste, but with a twist! You can taste cherries and syrup! It tingles the tongue..
 reagent-name-nuka-cola-grape = Nuka-Cola Grape
-reagent-desc-nuka-cola-grape = Nuka-Cola Grape
+reagent-desc-nuka-cola-grape = Typical Nuka Cola taste, but with a twist! You can taste grapes and syrup! It tingles the tongue..
 reagent-name-nuka-cola-orange = Nuka-Cola Orange
-reagent-desc-nuka-cola-orange = Nuka-Cola Orange
+reagent-desc-nuka-cola-orange = Typical Nuka Cola taste, but with a twist! You can taste oranges and syrup! It tingles the tongue..
 reagent-name-nuka-cola-victory = Nuka-Cola Victory
-reagent-desc-nuka-cola-victory = Nuka-Cola Victory
+reagent-desc-nuka-cola-victory = A mixture of vanilla, cinnamon, dashes of cream, and a bit of spice.. It tingles the tongue.
 reagent-name-nuka-cola-yellow = Nuka-Cola Yellow
-reagent-desc-nuka-cola-yellow = Nuka-Cola Yellow
+reagent-desc-nuka-cola-yellow = You're ensure of what this tastes, or smells like. You feel like you shouldn't be drinking this.
 reagent-name-nuka-cola-quartz = Nuka-Cola Quartz
-reagent-desc-nuka-cola-quartz = Nuka-Cola Quartz
+reagent-desc-nuka-cola-quartz = Minty, fresh, extra fizzy.. This soda is a blast to the mouth with freshness.
+reagent-name-nuka-cola-wild = Nuka-Cola Wild
+reagent-desc-nuka-cola-wild = Creamy, heavy, spicy, good ol' fashioned root beer-like taste.. It tingles the tongue.
 reagent-name-vim = Vim
 reagent-desc-vim = Vim
 reagent-name-vim-captainsblend = Vim Captains Blend
@@ -115,6 +145,8 @@ reagent-name-extract-mutfruit = mutfruit juice
 reagent-desc-extract-mutfruit = A mutated piece of fruit that no one is exactly sure how it came to be. Tastes like berries, apples, bananas.. But they've all gone slightly bad.
 reagent-name-extract-nettle = nettle juice
 reagent-desc-extract-nettle = Juice from a prickly nettle. Tastes minty and medicinal.
+reagent-name-extract-pinyon = pinyon juice
+reagent-desc-extract-pinyon = Juice from a pinyon. Its very strong.
 reagent-name-extract-pricky-pear-fruit = prickly pear juice
 reagent-desc-extract-pricky-pear-fruit = The fruit from a cactus, make sure you get rod of the pokers before eating. Tastes of melon, or kiwi, it is very juicy and refreshing.
 reagent-name-extract-razorgrain = razorgrain flour
@@ -179,10 +211,10 @@ reagent-desc-cazador-venom = The venom of a cazador. Quick death is near guarant
 reagent-name-healing-powder = healing powder
 reagent-desc-healing-powder = A powder made from crushed plants.
 
-reagent-name-antidote-mixture = antidote
+reagent-name-antidote-mixture = handmade antidote
 reagent-desc-antidote-mixture = An antidote made from radscorpion tail and water for treating poison.
 
-reagent-name-antidote = antidote
+reagent-name-antidote = industrial antidote
 reagent-desc-antidote = A potent antitoxin manufactured in a lab.
 
 reagent-name-healing-poultice = healing poultice

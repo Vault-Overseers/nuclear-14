@@ -1,0 +1,12 @@
+character-item-group-N14LoadoutEyes = Eyewear
+character-item-group-N14LoadoutHands = Gloves
+character-item-group-N14LoadoutHead = Headgear
+character-item-group-N14LoadoutMask = Masks
+character-item-group-N14LoadoutSmokeables = Smokeables
+character-item-group-N14LoadoutLighters = Lighters
+character-item-group-N14LoadoutGuns = Guns
+character-item-group-N14LoadoutAmmo = Ammo
+character-item-group-N14LoadoutMelee = Melee Weapons
+character-item-group-N14LoadoutNeck = Neckwear
+character-item-group-N14LoadoutOuter = Outerwear
+character-item-group-N14LoadoutShoes = Shoes

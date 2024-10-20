@@ -347,6 +347,68 @@
     prototypes:
       - N14MobRaiderPsycho
 
+
+# Ghoul
+- type: entity
+  name: Feral Ghoul Spawner
+  id: N14SpawnMobFeralGhoul
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Ghouls/f13ghouls.rsi
+        state: feralghoul
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobGhoulFeral
+      
+- type: entity
+  name: Feral Ghoul Reaver Spawner
+  id: N14SpawnMobFeralGhoulReaver
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Ghouls/ghoul-reaver.rsi
+        state: alive
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobGhoulFeralReaver
+      
+- type: entity
+  name: Feral Ghoul Rotter Spawner
+  id: N14SpawnMobFeralGhoulRotter
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Ghouls/ghoul-rotter.rsi
+        state: alive
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobGhoulFeralRotter
+      
+- type: entity
+  name: Maypole Spawner
+  id: N14SpawnMobGhoulMaypole
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Ghouls/maypole.rsi
+        state: alive
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobGhoulMaypole
+
 # Robots
 - type: entity
   name: Assaultron Spawner

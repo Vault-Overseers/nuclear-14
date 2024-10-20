@@ -1,0 +1,115 @@
+# TODO: `PickRandomHead` component needs replaced with a new `KillSpecificRole` with a datafield so each faction can have an opposite faction head listed. 
+- type: weightedRandom
+  id: N14Objectives
+  weights:
+    RealN14Objectives: 1
+
+# We need this following dummy objective group since N14Objectives has to be an objective group.
+- type: weightedRandom
+  id: RealN14Objectives
+  weights:
+    KillNCRHeadObjective: 1
+    NCRStealObjective: 1
+    BOSWStealObjective: 1
+    KillBOSWHeadObjective: 1
+
+# NCR
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseNCRObjective
+  components:
+  - type: Objective
+    issuer: ncr
+  - type: FactionRequirement
+    factions:
+    - NCR
+
+- type: entity
+  abstract: true
+  parent: [BaseNCRObjective, BaseStealObjective]
+  id: BaseNCRStealObjective
+  components:
+  - type: StealCondition
+    verifyMapExistence: false
+  - type: Objective
+    difficulty: 2.75
+  - type: ObjectiveLimit
+    limit: 2 # there is usually only 1 of each steal objective, have 2 max for drama
+
+# Kill
+- type: entity
+  noSpawn: true
+  parent: [BaseNCRObjective, BaseKillObjective]
+  id: KillNCRHeadObjective
+  description: We need this leader gone and you probably know why. Good luck.
+  components:
+  - type: Objective
+    difficulty: 3.0
+    unique: true # killing 1 head is enough
+  - type: TargetObjective
+    title: objective-condition-kill-head-title
+  - type: PickRandomHead
+  - type: KillPersonCondition
+    requireDead: true # don't count missing evac as killing as heads are higher profile, so you really need to do the dirty work
+
+# Steal
+- type: entity
+  noSpawn: true
+  parent: BaseNCRStealObjective
+  id: NCRStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: FactionPlansEnclave
+    owner: objective-condition-steal-enclave
+   
+   
+# Brotherhood Washington
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseBOSWObjective
+  components:
+  - type: Objective
+    issuer: Washington Brotherhood
+  - type: FactionRequirement
+    factions:
+    - BrotherhoodWashington
+
+- type: entity
+  abstract: true
+  parent: [BaseBOSWObjective, BaseStealObjective]
+  id: BaseBOSWStealObjective
+  components:
+  - type: StealCondition
+    verifyMapExistence: false
+  - type: Objective
+    difficulty: 2.75
+  - type: ObjectiveLimit
+    limit: 2 # there is usually only 1 of each steal objective, have 2 max for drama
+
+# Kill
+- type: entity
+  noSpawn: true
+  parent: [BaseBOSWObjective, BaseKillObjective]
+  id: KillBOSWHeadObjective
+  description: We need this leader gone and you probably know why. Good luck.
+  components:
+  - type: Objective
+    difficulty: 3.0
+    unique: true # killing 1 head is enough
+  - type: TargetObjective
+    title: objective-condition-kill-head-title
+  - type: PickRandomHead
+  - type: KillPersonCondition
+    requireDead: true # don't count missing evac as killing as heads are higher profile, so you really need to do the dirty work
+
+# Steal
+- type: entity
+  noSpawn: true
+  parent: BaseBOSWStealObjective
+  id: BOSWStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: FactionPlansVault
+    owner: objective-condition-steal-vault

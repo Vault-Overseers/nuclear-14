@@ -13,6 +13,7 @@ using JetBrains.Annotations;
 using Robust.Server.GameObjects; // Corvax
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server.Worldgen; // Corvax
 using Content.Server.Worldgen.Components; // Corvax
@@ -24,6 +25,7 @@ namespace Content.Server.NPC.HTN;
 public sealed class HTNSystem : EntitySystem
 {
     [Dependency] private readonly IAdminManager _admin = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
@@ -37,6 +39,9 @@ public sealed class HTNSystem : EntitySystem
     private readonly JobQueue _planQueue = new(0.004);
 
     private readonly HashSet<ICommonSession> _subscribers = new();
+
+    private const float ReplanRate = 4f; // per second, TODO: CVar?
+    private float Accumulator; // limit replanning rate
 
     // Hierarchical Task Network
     public override void Initialize()
@@ -152,12 +157,20 @@ public sealed class HTNSystem : EntitySystem
     [PublicAPI]
     public void Replan(HTNComponent component)
     {
-        component.PlanAccumulator = 0f;
+        component.NextPlanTime = _gameTiming.CurTime;
     }
 
     public void UpdateNPC(ref int count, int maxUpdates, float frameTime)
     {
         _planQueue.Process();
+
+        // Limit update rate
+        const float updatePeriod = 1/ReplanRate;
+        Accumulator += frameTime;
+        if (Accumulator < updatePeriod)
+            return;
+        Accumulator -= updatePeriod;
+
         var query = EntityQueryEnumerator<ActiveNPCComponent, HTNComponent>();
 
         while(query.MoveNext(out var uid, out _, out var comp))
@@ -316,12 +329,8 @@ public sealed class HTNSystem : EntitySystem
 
     private void Update(HTNComponent component, float frameTime)
     {
-        // If we're not planning then countdown to next one.
-        if (component.PlanningJob == null)
-            component.PlanAccumulator -= frameTime;
-
         // We'll still try re-planning occasionally even when we're updating in case new data comes in.
-        if (component.PlanAccumulator <= 0f)
+        if (component.NextPlanTime <= _gameTiming.CurTime)
         {
             RequestPlan(component);
         }
@@ -455,7 +464,7 @@ public sealed class HTNSystem : EntitySystem
         if (component.PlanningJob != null)
             return;
 
-        component.PlanAccumulator += component.PlanCooldown;
+        component.NextPlanTime = _gameTiming.CurTime + TimeSpan.FromSeconds(component.PlanCooldown);
         var cancelToken = new CancellationTokenSource();
         var branchTraversal = component.Plan?.BranchTraversalRecord;
 
