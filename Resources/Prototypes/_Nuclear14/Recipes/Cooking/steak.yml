@@ -48,6 +48,18 @@
     entity: N14FoodMeatRadstagCooked
     
 - type: constructionGraph
+  id: MeatSteakRadhog
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: SteakCooked
+      steps:
+      - minTemperature: 305
+  - node: SteakCooked
+    entity: N14FoodMeatRadhogCooked
+    
+- type: constructionGraph
   id: MeatSteakRadscorpion
   start: start
   graph:

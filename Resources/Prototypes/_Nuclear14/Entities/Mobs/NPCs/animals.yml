@@ -63,6 +63,16 @@
   - type: Tag
     tags:
     - Molerat
+  # - type: NPCTamingOnTouchBehaviour
+    # follow: true
+    # persistent: true
+    # tameChance: 0.5
+    # oneTry: false
+    # successPopup: This pet is your friend now!
+    # deniedPopup: This pet refused to be your friend.
+    # whitelist:
+      # components:
+      # - HumanoidAppearance
 
 - type: entity
   name: pigrat
@@ -827,7 +837,6 @@
       types:
         Blunt: 8
         Slash: 2
-        Structural: 8
   - type: SolutionContainerManager
     solutions:
       udder:
@@ -890,7 +899,6 @@
       types:
         Blunt: 6
         Slash: 2
-        Structural: 8
   - type: SolutionContainerManager
     solutions:
       udder:
@@ -919,7 +927,7 @@
 - type: entity
   name: radhog
   parent: N14MobBrahmin
-  id: N14MobRahdog
+  id: N14MobRadhog
   description: Radiated bacon on angry hooves.
   components:
   - type: Sprite
@@ -953,7 +961,6 @@
       types:
         Blunt: 6
         Slash: 2
-        Structural: 8
   - type: SolutionContainerManager
     solutions:
       udder:
@@ -961,11 +968,6 @@
         reagents:
         - ReagentId: N14MilkRadstag
           Quantity: 30
-  - type: Udder
-    reagentId: N14MilkRadstag
-    quantityperUpdate: 10
-    growthDelay: 40
-    hungerUsage: 5
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-birth-popup

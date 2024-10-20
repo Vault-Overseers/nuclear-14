@@ -102,6 +102,22 @@
     graph: MeatSteakRadstag
     node: start
     defaultTarget: SteakCooked
+    
+- type: entity
+  name: raw radhog meat
+  parent: N14FoodMeatBrahmin
+  id: N14FoodMeatRadhog
+  description: A raw chunk of radhog meat.
+  components:
+  - type: Sprite
+    state: porkchop
+  - type: SliceableFood
+    count: 3
+    slice: N14FoodMeatRadhogCutlet
+  - type: Construction
+    graph: MeatSteakRadhog
+    node: start
+    defaultTarget: SteakCooked
 
 - type: entity
   name: raw yao-guai meat
@@ -366,6 +382,22 @@
     slice: N14FoodMeatRadstagCutletCooked
   - type: Construction
     graph: MeatSteakRadstag
+    node: SteakCooked
+    defaultTarget: SteakCooked
+    
+- type: entity
+  name: cooked radhog meat
+  parent: N14FoodMeatBrahminCooked
+  id: N14FoodMeatRadhogCooked
+  description: A chunk of cooked radhog meat.
+  components:
+  - type: Sprite
+    state: porkchop_roasted
+  - type: SliceableFood
+    count: 3
+    slice: N14FoodMeatRadhogCutletCooked
+  - type: Construction
+    graph: MeatSteakRadhog
     node: SteakCooked
     defaultTarget: SteakCooked
 
@@ -638,6 +670,18 @@
     - state: cutlet
     - state: cutlet-alpha
       color: brown
+      
+- type: entity
+  name: raw radhog cutlet
+  parent: N14FoodMeatRadCutlet
+  id: N14FoodMeatRadhogCutlet
+  description: A very grisly cutlet of radhog meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet
+    - state: cutlet-alpha
+      color: brown
 
 - type: entity
   name: raw yao-guai cutlet
@@ -741,6 +785,18 @@
   parent: N14FoodMeatRadCutletCooked
   id: N14FoodMeatRadstagCutletCooked
   description: A very grisly cutlet of cooked radstag meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet-cooked
+    - state: cutlet-alpha
+      color: brown
+      
+- type: entity
+  name: cooked radhog cutlet
+  parent: N14FoodMeatRadCutletCooked
+  id: N14FoodMeatRadhogCutletCooked
+  description: A very grisly cutlet of cooked radhog meat.
   components:
   - type: Sprite
     layers:
