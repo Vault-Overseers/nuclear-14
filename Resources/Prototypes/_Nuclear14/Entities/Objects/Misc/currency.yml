@@ -139,6 +139,9 @@
   name: pre-war money
   description: Wads of useless paper. Make it rain!
   components:
+  - type: PhysicalComposition
+    materialComposition:
+      Credit: 0
   - type: Stack
     stackType: PrewarMoney
     count: 1
@@ -204,7 +207,14 @@
     state: prewar3
   - type: Stack
     count: 500
-    
+
+- type: material
+  id: NcrCredit
+  name: speso
+  unit: materials-unit-bill
+  stackEntity: N14CurrencyNCRDollar
+  price: 0.66
+
 # NCR Dollars
 - type: entity
   parent: N14CurrencyCap
@@ -212,6 +222,9 @@
   name: NCR dollar
   description: Wads of paper, these ones bear the insignia of the NCR. Make it rain!
   components:
+  - type: PhysicalComposition
+    materialComposition:
+      NcrCredit: 1
   - type: Stack
     stackType: NCRDollar
     count: 1
