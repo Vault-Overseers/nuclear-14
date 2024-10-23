@@ -39,6 +39,8 @@
     tags:
     - IdCardVault
     - DoorBumpOpener
+  - type: ClothingAddFaction
+    faction: Vault
 
 - type: entity
   parent: N14IDCardVault
@@ -104,9 +106,11 @@
   components:
   - type: PresetIdCard
     job: CaravanGuard
+  - type: ClothingAddFaction
+    faction: CaravanCompany
     
 - type: entity
-  parent: N14IDPassport
+  parent: N14IDPassportCaravan
   id: N14IDPassportCaravanTrader
   name: caravan trader ID
   description: A stamped passport used by caravaneers as ID.
@@ -115,7 +119,7 @@
     job: CaravanTrader
     
 - type: entity
-  parent: N14IDPassport
+  parent: N14IDPassportCaravan
   id: N14IDPassportCaravanLeader
   name: caravan leader ID
   description: A stamped passport used by caravaneers as ID.
@@ -166,73 +170,50 @@
     state: bos_holotag
   - type: PresetIdCard
     job: BoSMidScribe
-
+  - type: ClothingAddFaction
+    faction: BrotherhoodMidwest
+    
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDBrotherhoodHolotag
   id: N14IDBrotherhoodHolotagSquire
   name: holotag (squire)
   description: An ID holotag worn by the Brotherhood of Steel.
   suffix: Midwest Squire
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
   - type: PresetIdCard
     job: BoSMidSquire
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDBrotherhoodHolotag
   id: N14IDBrotherhoodHolotagKnight
   name: holotag (knight)
   description: An ID holotag worn by the Brotherhood of Steel.
   suffix: Midwest Knight
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
   - type: PresetIdCard
     job: BoSMidKnight
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDBrotherhoodHolotag
   id: N14IDBrotherhoodHolotagPaladin
   name: holotag (paladin)
   description: An ID holotag worn by the Paladins of the Brotherhood of Steel.
   suffix: Midwest Paladin
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
   - type: PresetIdCard
     job: BoSMidPaladin
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDBrotherhoodHolotag
   id: N14IDBrotherhoodHolotagCommander
   name: holotag (commander)
   description: An ID holotag worn by the Paladin Commander of the Brotherhood of Steel.
   suffix: Midwest Commander
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
   - type: PresetIdCard
     job: BoSMidPaladinCommander
 
 #MARK: Brotherhood Washington
-- type: entity
-  parent: N14IDPassportBlank
-  id: N14IDBrotherhoodWashingtonHolotagScribe
-  name: holotag (scribe)
-  description: An ID holotag worn by a Scribe in the Washington Brotherhood of Steel.
-  suffix: Washington Scribe
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
-  - type: PresetIdCard
-    job: BoSWashingtonScribe
-
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDBrotherhoodWashingtonHolotagInitiate
@@ -245,43 +226,46 @@
     state: bos_holotag
   - type: PresetIdCard
     job: BoSWashingtonInitiate
+  - type: ClothingAddFaction
+    faction: BrotherhoodWashington
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDBrotherhoodWashingtonHolotagInitiate
+  id: N14IDBrotherhoodWashingtonHolotagScribe
+  name: holotag
+  description: An ID holotag worn by a Scribe in the Washington Brotherhood of Steel.
+  suffix: Washington Scribe
+  components:
+  - type: PresetIdCard
+    job: BoSWashingtonScribe
+
+- type: entity
+  parent: N14IDBrotherhoodWashingtonHolotagInitiate
   id: N14IDBrotherhoodWashingtonHolotagKnight
   name: holotag (knight)
   description: An ID holotag worn by a Knight in the Washington Brotherhood of Steel.
   suffix: Washington Knight
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
   - type: PresetIdCard
     job: BoSWashingtonKnight
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDBrotherhoodWashingtonHolotagInitiate
   id: N14IDBrotherhoodWashingtonHolotagPaladin
   name: holotag (paladin)
   description: An ID holotag worn by a Paladin in the Washington Brotherhood of Steel.
   suffix: Washington Paladin
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
   - type: PresetIdCard
     job: BoSWashingtonPaladin
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDBrotherhoodWashingtonHolotagInitiate
   id: N14IDBrotherhoodWashingtonHolotagCommander
   name: holotag (commander)
   description: An ID holotag worn by the Commander of the Washington Brotherhood of Steel.
   suffix: Washington Commander
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
   - type: PresetIdCard
     job: BoSWashingtonCommander
 
@@ -338,9 +322,11 @@
     state: ncrdogtag
   - type: PresetIdCard
     job: NCRSoldier
+  - type: ClothingAddFaction
+    faction: NCR
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDNCRDogtag
   id: N14IDNCRDogtagMP
   name: dogtag
   description: An ID dogtag worn by decently ranking members of the NCR.
@@ -353,7 +339,7 @@
     job: NCRMP
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDNCRDogtag
   id: N14IDNCRDogtagDoctor
   name: dogtag
   description: An ID dogtag worn by decently ranking members of the NCR.
@@ -366,7 +352,7 @@
     job: NCRDoctor
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDNCRDogtag
   id: N14IDNCRDogtagNCO
   name: dogtag (NCO)
   description: An ID dogtag worn by decently ranking members of the NCR.
@@ -379,7 +365,7 @@
     job: NCRNCO
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDNCRDogtag
   id: N14IDNCRDogtagOfficer
   name: dogtag (officer)
   description: An ID dogtag worn by high ranking members of the NCR.
@@ -393,7 +379,7 @@
 
 #MARK: Desert Rangers
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDNCRDogtag
   id: N14IDBadgeNCRDesertRangerRecruit
   name: ranger recruit badge
   description: An ID badge worn by Desert Ranger Recruits.
@@ -405,7 +391,7 @@
     job: RangerRecruit
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDBadgeNCRDesertRangerRecruit
   id: N14IDBadgeNCRDesertRanger
   name: ranger badge
   description: An ID badge worn by Desert Rangers.
@@ -417,7 +403,7 @@
     job: NCRRanger
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDBadgeNCRDesertRangerRecruit
   id: N14IDBadgeNCRDesertRangerElite
   name: ranger elite badge
   description: An ID badge worn by Elite Desert Rangers.
@@ -429,7 +415,7 @@
     job: NCRRangerVeteran
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDBadgeNCRDesertRangerRecruit
   id: N14IDBadgeNCRDesertRangerChief
   name: ranger chief badge
   description: An ID badge worn by the Chief Desert Ranger.
@@ -447,7 +433,6 @@
   description: An ID badge worn by Republic Rangers. Inscribed on it reads; "Quieter than a shadow and more ferocious than a deathclaw."
   suffix: NCR
 
-
 - type: entity
   parent: N14IDBadgeNCRDesertRangerElite
   id: N14IDBadgeNCRRangerElite
@@ -460,9 +445,12 @@
   id: N14IDPassportTownsfolk
   name: passport
   description: A passport used by townsfolk as ID.
+  components:
+  - type: ClothingAddFaction
+    faction: Townsfolk
 
 - type: entity
-  parent: N14IDPassportPhoto
+  parent: N14IDPassportTownsfolk
   id: N14IDShopkeeperTown
   name: Shopkeepers ID
   description: A passport ID used by a town shopkeeper.
@@ -474,7 +462,7 @@
     job: TownShopkeeper
     
 - type: entity
-  parent: N14IDPassportPhoto
+  parent: N14IDPassportTownsfolk
   id: N14IDPassportTownMechanic
   name: mechanics ID
   description: A passport ID used by a town mechanic.
@@ -496,9 +484,11 @@
     state: doctor
   - type: PresetIdCard
     job: TownDoctor
+  - type: ClothingAddFaction
+    faction: Townsfolk
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDPassportTownsfolk
   id: N14IDBadgeTownDeputy
   name: town deputy badge
   description: An ID badge worn by a town deputy.
@@ -510,7 +500,7 @@
     job: TownDeputy
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDPassportTownsfolk
   id: N14IDBadgeTownSheriff
   name: town sheriff badge
   description: An ID badge worn by the town sheriff.
@@ -522,7 +512,7 @@
     job: TownSheriff
 
 - type: entity
-  parent: N14IDPassportBlank
+  parent: N14IDPassportTownsfolk
   id: N14IDBadgeTownMayor
   name: town mayor badge
   description: An ID badge worn by the town mayor.
@@ -543,6 +533,8 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: sawbone
+  - type: ClothingAddFaction
+    faction: Tribal
 
 - type: entity
   parent: N14IDPassportBlank
