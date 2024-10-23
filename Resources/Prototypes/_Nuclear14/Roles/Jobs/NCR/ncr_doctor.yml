@@ -1,14 +1,14 @@
 - type: job
-  id: NCRDoctor
+  id: NCRMedic
   setPreference: true
-  name: job-name-ncr-doctor
-  description: job-description-ncr-doctor
+  name: job-name-ncr-medic
+  description: job-description-ncr-medic
   playTimeTracker: NCRDoctor
   requirements:
     - !type:CharacterDepartmentTimeRequirement
       department: NCR
       min: 3600 # 1 hour
-  startingGear: NCRDoctorGear
+  startingGear: NCRMedicGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-ncr-nco
   canBeAntag: false
@@ -24,7 +24,7 @@
       - type: CPRTraining
 
 - type: startingGear
-  id: NCRDoctorGear
+  id: NCRMedicGear
   equipment:
     jumpsuit: N14ClothingOfficerUniformNCRSnow
     back: N14ClothingBackpackNCRFilled
