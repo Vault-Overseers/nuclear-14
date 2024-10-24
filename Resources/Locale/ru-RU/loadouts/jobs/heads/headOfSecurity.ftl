@@ -1,0 +1,10 @@
+loadout-description-LoadoutCommandHOSNeckMantle = Чтобы по-настоящему показать, кто здесь главный.
+loadout-description-LoadoutCommandHOSNeckCloak = Чтобы действительно показать, кто здесь главный.
+loadout-description-LoadoutCommandHOSJumpsuitParade = Шикарный униформа для шикарного офицера, интересно, на какое мероприятие он собирается.
+loadout-description-LoadoutCommandHOSJumpsuitFormal = Очень стильный наряд. Я думаю, куда может направляться его обладатель в таком модном виде.
+loadout-description-LoadoutCommandHOSJumpskirtParade = Шикарный униформа для шикарного офицера, интересно, на какое мероприятие он собирается.
+loadout-description-LoadoutCommandHOSJumpskirtFormal = Очень стильный наряд. Я думаю, куда может направляться его обладатель в таком модном виде.
+loadout-description-LoadoutCommandHOSOuterWinter = Теплое пальто для холодного космоса.
+loadout-description-LoadoutCommandHOSOuterTrench = Плащ для Главы Службы Безопасности.
+loadout-description-LoadoutCommandHOSHatBeret = Берет для Главы Службы Безопасности.
+loadout-description-LoadoutCommandHOSHatHoshat = Шляпа Главы Службы Безопасности, довольно стильная.

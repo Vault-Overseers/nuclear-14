@@ -35,6 +35,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly SharedMindSystem _minds = default!;
         [Dependency] private readonly IAfkManager _afkManager = default!;
+        [Dependency] private readonly INetManager _netManager = default!;
 
         private ISawmill _sawmill = default!;
         private readonly HttpClient _httpClient = new();
@@ -396,7 +397,9 @@ namespace Content.Server.Administration.Systems
 
             string bwoinkText;
 
-            if (senderAdmin is not null && senderAdmin.Flags == AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
+            if (senderAdmin is not null &&
+                senderAdmin.Flags ==
+                AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
             {
                 bwoinkText = $"[color=purple]{senderSession.Name}[/color]";
             }
@@ -435,7 +438,9 @@ namespace Content.Server.Administration.Systems
                     {
                         string overrideMsgText;
                         // Doing the same thing as above, but with the override name. Theres probably a better way to do this.
-                        if (senderAdmin is not null && senderAdmin.Flags == AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
+                        if (senderAdmin is not null &&
+                            senderAdmin.Flags ==
+                            AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
                         {
                             overrideMsgText = $"[color=purple]{_overrideClientName}[/color]";
                         }
@@ -450,11 +455,62 @@ namespace Content.Server.Administration.Systems
 
                         overrideMsgText = $"{(message.PlaySound ? "" : "(S) ")}{overrideMsgText}: {escapedText}";
 
-                        RaiseNetworkEvent(new BwoinkTextMessage(message.UserId, senderSession.UserId, overrideMsgText, playSound: playSound), session.Channel);
+                        RaiseNetworkEvent(
+                            new BwoinkTextMessage(message.UserId, senderSession.UserId, overrideMsgText,
+                                playSound: playSound), session.Channel);
                     }
                     else
                         RaiseNetworkEvent(msg, session.Channel);
                 }
+            }
+        }
+
+        public void DiscordAhelpSendMessage(BwoinkTextMessage message, EntitySessionEventArgs eventArgs)
+        {
+            var senderSession = eventArgs.SenderSession;
+
+            // Confirm that this person is actually allowed to send a message here.
+            var personalChannel = senderSession.UserId == message.UserId;
+            var senderAdmin = _adminManager.GetAdminData(senderSession);
+            var senderAHelpAdmin = senderAdmin?.HasFlag(AdminFlags.Adminhelp) ?? false;
+            var authorized = personalChannel || senderAHelpAdmin;
+            if (!authorized)
+            {
+                // Unauthorized bwoink (log?)
+                return;
+            }
+
+            var escapedText = FormattedMessage.EscapeText(message.Text);
+
+            string bwoinkText;
+
+            if (senderAdmin is not null && senderAdmin.Flags == AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
+            {
+                bwoinkText = $"[color=purple]{senderSession.Name}[/color]";
+            }
+            else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
+            {
+                bwoinkText = $"[color=red]{senderSession.Name}[/color]";
+            }
+            else
+            {
+                bwoinkText = $"{senderSession.Name}";
+            }
+
+            bwoinkText = $"{"(Discord) "}{bwoinkText}: {escapedText}";
+
+            // If it's not an admin / admin chooses to keep the sound then play it.
+            var playSound = !senderAHelpAdmin || message.PlaySound;
+            var msg = new BwoinkTextMessage(message.UserId, senderSession.UserId, bwoinkText, playSound: playSound);
+
+            LogBwoink(msg);
+
+            var admins = GetTargetAdmins();
+
+            // Notify all admins
+            foreach (var channel in admins)
+            {
+                RaiseNetworkEvent(msg, channel);
             }
 
             var sendsWebhook = _webhookUrl != string.Empty;

@@ -1,0 +1,14 @@
+ent-N14WeaponRevolver9mm = 9mm revolver
+    .desc = A small, compact six shooter. Uses 9mm ammo.
+ent-N14WeaponRevolver10mm = 10mm revolver
+    .desc = The first prototype for the semiauto 10mm pistol, Uses 10mm ammo.
+ent-N14WeaponRevolverMagnun = magnum revolver
+    .desc = The Big Iron. Uses .44 magnum ammo.
+ent-N14WeaponRevolverCaptainMagnun = captain revolver
+    .desc = A true freedom fighter carries his flag everywhere, even on his gun. Uses .44 magnum ammo.
+ent-N14WeaponHunterRevolver = hunting revolver
+    .desc = A heavy revolver with a long cannon designed to hunt small animals, but it also works for people. Uses .45-70 gov't ammo.
+ent-N14Weaponwildwhisper = wild whisper
+    .desc = Its said that after a troublemaker get shoot down with this revolver some words are whispered to their ears, no one knows what the question is, but the awnser is always "innocent". Uses .45-70 gov't ammo.
+ent-N14WeaponRangerSequoia = ranger sequoia
+    .desc = 20 years of suffering for a good looking glorified revolver, worth it. Uses .45-70 gov't ammo.

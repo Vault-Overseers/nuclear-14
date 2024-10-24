@@ -1,0 +1,16 @@
+cmd-babyjail-desc = Переключает baby jail, который включает более строгие ограничения на то, кто может присоединиться к серверу.
+cmd-babyjail-help = Использование: babyjail
+babyjail-command-enabled = Baby jail включен.
+babyjail-command-disabled = Baby jail выключен.
+cmd-babyjail_show_reason-desc = Переключает отображение причины, по которой baby jail заблокировал подключение клиентов.
+cmd-babyjail_show_reason-help = Использование: babyjail_show_reason
+babyjail-command-show-reason-enabled = Baby jail теперь будет показывать причину пользователям, которым он блокирует подключение.
+babyjail-command-show-reason-disabled = Baby jail больше не будет показывать причину пользователям, которым он блокирует подключение.
+cmd-babyjail_max_account_age-desc = Получает или устанавливает максимальный возраст аккаунта в минутах, при котором аккаунт может подключиться с включенным baby jail.
+cmd-babyjail_max_account_age-help = Использование: babyjail_max_account_age <минуты>
+babyjail-command-max-account-age-is = Максимальный возраст аккаунта для baby jail составляет { $minutes } минут.
+babyjail-command-max-account-age-set = Установлен максимальный возраст аккаунта для baby jail: { $minutes } минут.
+cmd-babyjail_max_overall_minutes-desc = Получает или устанавливает максимальное общее время игры в минутах, при котором аккаунт может подключиться с включенным baby jail.
+cmd-babyjail_max_overall_minutes-help = Использование: babyjail_max_overall_minutes <минуты>
+babyjail-command-max-overall-minutes-is = Максимальное общее время игры для baby jail составляет { $minutes } минут.
+babyjail-command-max-overall-minutes-set = Установлено максимальное общее время игры для baby jail: { $minutes } минут.

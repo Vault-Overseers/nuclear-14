@@ -1,0 +1,17 @@
+admin-ui-panic-bunker-window-title = Panic Bunker
+admin-ui-panic-bunker-enabled = Panic Bunker включен
+admin-ui-panic-bunker-disabled = Panic Bunker выключен
+admin-ui-panic-bunker-tooltip = Panic Bunker ограничивает игроков от подключения, если их аккаунт слишком новый или у них недостаточно общего игрового времени на этом сервере.
+admin-ui-panic-bunker-disable-automatically = Отключить автоматически
+admin-ui-panic-bunker-disable-automatically-tooltip = Автоматически отключает Panic Bunker при подключении администратора.
+admin-ui-panic-bunker-enable-automatically = Включить автоматически
+admin-ui-panic-bunker-enable-automatically-tooltip = Автоматически включает Panic Bunker при отсутствии администраторов в сети.
+admin-ui-panic-bunker-count-deadminned-admins = Учитывать разжалованных администраторов
+admin-ui-panic-bunker-count-deadminned-admins-tooltip = Учитывать разжалованных администраторов при автоматическом включении и отключении Panic Bunker.
+admin-ui-panic-bunker-show-reason = Показать причину
+admin-ui-panic-bunker-show-reason-tooltip = Показывает пользователю, почему Panic Bunker заблокировал его подключение.
+admin-ui-panic-bunker-min-account-age = Мин. возраст аккаунта
+admin-ui-panic-bunker-min-overall-minutes = Мин. общее игровое время
+admin-ui-panic-bunker-is-enabled = Panic Bunker в данный момент включен.
+admin-ui-panic-bunker-enabled-admin-alert = Panic Bunker был включен.
+admin-ui-panic-bunker-disabled-admin-alert = Panic Bunker был выключен.

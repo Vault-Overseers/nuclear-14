@@ -1,0 +1,10 @@
+ent-N14MobHumanVaultDweller = VaultDweller
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanVaultDoctor = VaultDoctor
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanVaultEngineer = VaultEngineer
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanVaultSecurity = VaultSecurity
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanOverseer = VaultOverseer
+    .desc = { ent-MobHuman.desc }

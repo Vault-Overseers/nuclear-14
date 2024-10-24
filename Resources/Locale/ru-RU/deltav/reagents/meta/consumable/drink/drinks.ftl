@@ -1,0 +1,16 @@
+reagent-name-kvass = квас
+reagent-desc-kvass = Прохладный, освежающий напиток с привкусом социализма.
+reagent-name-gunmetal = оружейная сталь
+reagent-desc-gunmetal = Скандальный напиток, впервые смешанный Солусом Кримом, известным как первый бармен, подавший сварочное топливо в коктейле - и сохранивший при этом лицензию.
+reagent-name-lemondrop = лимонная капля
+reagent-desc-lemondrop = Простой, терпкий и вкусный напиток, состоящий из лимона, водки и сахарного сиропа. Освежает!
+reagent-name-greengrass = зелёная трава
+reagent-desc-greengrass = Зелёная трава, или grüne wiese, - своеобразный зелёный коктейль родом из ныне несуществующей ГДР. Популярен как среди разочарованных, так и среди неискренних.
+reagent-name-daiquiri = современный дайкири
+reagent-desc-daiquiri = Сладкая смесь рома и лайма, фаворит писателей и политиков.
+reagent-name-arsonistsbrew = варево поджигателя
+reagent-desc-arsonistsbrew = Сделай глоток и смейся, пока твой мир горит.
+reagent-name-healthviolation = нарушение санитарных норм
+reagent-desc-healthviolation = Утверждают, что это коктейль. Мотив предупреждающего конуса кажется уместным.
+reagent-name-mothamphetamine = метамфетамин
+reagent-desc-mothamphetamine = Странно... размытый напиток. От него веет хаосом.

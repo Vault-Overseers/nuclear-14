@@ -1,0 +1,10 @@
+ent-baseThrowingSpear = baseThrowingSpear
+    .desc = Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+ent-N14WastelandSpear = spear
+    .desc = Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+ent-N14WastelandFlagSpear = NCR battle flag
+    .desc = A long spear with a NCR flag tied on his end, the most loyal soldiers carry these to boost the morale.
+ent-N14WastelandTribalSpear = tribal spear
+    .desc = Strong and with a devastating attack, these spears are commonly made and used by tribals.
+ent-N14WastelandTribalJavelin = javelin
+    .desc = Practically a very short spear, but his strength doesnt come from melee combat.

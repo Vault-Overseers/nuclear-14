@@ -1,0 +1,10 @@
+ent-N14HydroponicsToolHoe = мотыга
+    .desc = { ent-HydroponicsToolMiniHoe.desc }
+ent-N14HydroponicsToolClippers = { ent-HydroponicsToolClippers }
+    .desc = { ent-HydroponicsToolClippers.desc }
+ent-N14HydroponicsToolScythe = { ent-HydroponicsToolScythe }
+    .desc = Коса, позволяющая быстро и эффективно собирать урожай на ферме. Без нее вам придется собирать урожай вручную, а это долго и утомительно.
+ent-N14HydroponicsToolHatchet = { ent-HydroponicsToolHatchet }
+    .desc = Топор, некогда использовавшийся для рубки деревьев, теперь служит для дробления черепов и колки дров. Времена изменились, но топор все еще незаменим.
+ent-N14HydroponicsToolShovel = лопата
+    .desc = Лопата, необходимая для копания и перемещения грунта, особенно полезна на фермах.

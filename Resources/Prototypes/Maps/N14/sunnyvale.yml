@@ -1,17 +1,19 @@
 - type: gameMap
   id: Sunnyvale
-  mapName: 'Sunnyvale'
-  mapPath: /Maps/N14/SunnyvaleSurface.yml
+  mapName: 'Саннивейл'
+#  mapPath: /Maps/N14/SunnyvaleSurface.yml
+  mapPath: /Maps/Corvax/CorvaxSunnyvaleSurface.yml # Corvax-Maps / Hi Boich
   minPlayers: 0
   stations:
     Sunnyvale:
       stationProto: FalloutStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Sunnyvale'
+          mapNameTemplate: 'Саннивейл'
         - type: CP14StationAdditionalMap
           mapPaths:
           - /Maps/N14/SunnyvaleUnderground.yml
+          #- /Maps/Corvax/CorvaxSunnyvaleUnderground.yml Removed for refactoring
         - type: StationJobs
           overflowJobs:
             - Wastelander
@@ -40,22 +42,36 @@
             NCRNCO: [ 1, 2 ]
             NCRQM: [ 1, 1 ]
             NCRMP: [ 1, 2 ]
-            NCRDoctor: [ 1, 2 ] 
+            NCRDoctor: [ 1, 2 ]
             NCRSoldier: [ 3, 6 ]
             NCRCadet: [ 2, 5 ]
             CaravanLeader: [ 1, 1 ]
             CaravanTrader: [ 1, 1 ]
             CaravanGuard: [ 2, 2 ]
+<<<<<<< HEAD
             # BoSWashingtonCommander: [ 1, 0 ]
             # BoSWashingtonPaladin: [ 1, 0 ]
             # BoSWashingtonScribe: [ 2, 0 ]
             # BoSWashingtonKnight: [ 2, 2 ]
             # BoSWashingtonInitiate: [ 0, 2 ]
+=======
+            #BoSWashingtonCommander: [ 1, 1 ]
+            #BoSWashingtonCaptain: [ 1, 1 ]
+            #BoSWashingtonResearcher: [ 2, 2 ]
+            #BoSWashingtonSoldier: [ 2, 2 ]
+            #BoSWashingtonRecruit: [ 2, 2 ]
+>>>>>>> private/UpOctober
             BoSMidPaladinCommander: [ 1, 1 ]
             BoSMidPaladin: [ 1, 1 ]
             BoSMidKnight: [ 2, 3 ]
             BoSMidScribe: [ 1, 2 ]
             BoSMidSquire: [ 2, 2 ]
+            CaesarLegionCenturion: [ 1, 1 ] # Corvax-Legion
+            CaesarLegionFrumentary: [ 1, 1 ] # Corvax-Legion
+            CaesarLegionDean: [ 2, 2 ] # Corvax-Legion
+            CaesarLegionLegionnaireVeteran: [ 2, 3 ] # Corvax-Legion
+            CaesarLegionLegionnaireWarrior: [ 3, 4 ] # Corvax-Legion
+            CaesarLegionLegionnaireRecruit: [ 4, 6 ] # Corvax-Legion
             Overseer: [ 1, 1 ]
             VaultDoctor: [ 2, 2 ]
             VaultDweller: [ 4, 4 ]

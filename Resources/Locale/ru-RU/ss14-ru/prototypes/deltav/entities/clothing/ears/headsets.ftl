@@ -1,0 +1,10 @@
+ent-ClothingHeadsetHoP = гарнитура  Главы персонала
+    .desc = Гарнитура,  используемая  главой  персонала.
+ent-ClothingHeadsetAltService = гарнитура  главы  персонала
+    .desc = { ent-ClothingHeadsetAlt.desc }
+ent-ClothingHeadsetAltSyndicateListening = кроваво-красная  гарнитура  перехвата
+    .desc = Дополненная,  модульная  гарнитура  перехвата  Синдиката,  которую  надевают  на  голову.
+ent-ClothingHeadsetPrison = тюремная  гарнитура
+    .desc = Гарнитура,  используемая  любым,  кому  нужен  прямой  контакт  с  заключенными
+ent-ClothingHeadsetPrisonGuard = гарнитура  охранника
+    .desc = Гарнитура,  используемая  охранниками  тюрьмы.

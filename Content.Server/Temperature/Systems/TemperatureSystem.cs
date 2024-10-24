@@ -122,6 +122,9 @@ public sealed class TemperatureSystem : EntitySystem
     public void ChangeHeat(EntityUid uid, float heatAmount, bool ignoreHeatResistance = false,
         TemperatureComponent? temperature = null)
     {
+        if (!HasComp<TemperatureComponent>(uid)) //nuclear-14 change
+            return;
+
         if (!Resolve(uid, ref temperature))
             return;
 

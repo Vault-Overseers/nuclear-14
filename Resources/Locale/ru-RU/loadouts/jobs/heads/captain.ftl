@@ -1,0 +1,12 @@
+loadout-description-LoadoutCommandCapNeckMantle = Чтобы всем было ясно, кто здесь главный.
+loadout-description-LoadoutCommandCapNeckCloak = Чтобы по-настоящему подчеркнуть своё влияние.
+loadout-description-LoadoutCommandCapNeckCloakFormal = Не только символ власти, но и олицетворение стиля и утонченности.
+loadout-description-LoadoutCommandCapJumpsuitFormal = Очень стильный наряд. Интересно, куда направляется его обладатель?
+loadout-description-LoadoutCommandCapJumpskirtFormal = Очень стильный наряд. Интересно, куда направляется его обладатель?
+loadout-description-LoadoutCommandCapOuterWinter = Теплое пальто для космоса, где царят морозы.
+loadout-description-LoadoutCommandCapGloves = Великолепные перчатки капитана.
+loadout-description-LoadoutCommandCapHat = Превосходная шляпа капитана.
+loadout-description-LoadoutCommandCapHatCapcap = Кепка капитана — стильный аксессуар.
+loadout-description-LoadoutCommandCapHat = Берет капитана — символ утонченного вкуса.
+loadout-description-LoadoutCommandCapMaskGas = Зачем капитану такая маска? Но выглядит это очень круто.
+loadout-description-LoadoutCommandCapItemDrinkFlask = Лучшая фляга для самых изысканных напитков.

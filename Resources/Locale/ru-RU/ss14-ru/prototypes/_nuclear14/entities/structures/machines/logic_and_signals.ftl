@@ -1,0 +1,12 @@
+ent-N14ControlTerminalButton = { ent-SignalButton }
+    .suffix = Кнопка
+    .desc = { ent-SignalButton.desc }
+ent-N14ControlTerminalVault = { ent-N14ControlTerminalButton }
+    .suffix = Дверь Убежища
+    .desc = { ent-N14ControlTerminalButton.desc }
+ent-N14DoorVaultControls = Пульт управления дверью Убежища
+    .suffix = Кнопка
+    .desc = Панель управления с большой красной кнопкой. Одно нажатие - и многотонная дверь Убежища с грохотом откроется, отделяя вас от опасностей внешнего мира... или наоборот, надежно закрывая вас внутри.
+ent-N14DoorVaultControlsLocked = { ent-N14DoorVaultControls }
+    .suffix = Смотритель Убежища, Закрыто
+    .desc = { ent-N14DoorVaultControls.desc }

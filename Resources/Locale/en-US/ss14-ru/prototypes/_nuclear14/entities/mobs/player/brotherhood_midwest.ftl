@@ -1,0 +1,10 @@
+ent-BoSMidPaladinCommander = BoSMidPaladinCommander
+    .desc = { ent-MobHuman.desc }
+ent-N14MobHumanBoSMidKnight = BoSMidKnight
+    .desc = { ent-BoSMidPaladinCommander.desc }
+ent-N14MobHumanBoSMidPaladin = BoSMidPaladin
+    .desc = { ent-BoSMidPaladinCommander.desc }
+ent-N14MobHumanBoSMidScribe = BoSMidScribe
+    .desc = { ent-BoSMidPaladinCommander.desc }
+ent-N14MobHumanBoSMidSquire = BoSMidSquire
+    .desc = { ent-BoSMidPaladinCommander.desc }

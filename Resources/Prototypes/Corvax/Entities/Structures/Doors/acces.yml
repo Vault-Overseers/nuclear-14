@@ -1,0 +1,29 @@
+- type: entity
+  parent: N14DoorBunker
+  id: N14CorvaxDoorBunkerLockedBoSWashingtonInitiate
+  suffix: Corvax, BoSWashinton, Locked, Initiate
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ CorvaxDoorElectronicsBOSWashingtonInitiate ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSMidwestInitiate
+  suffix: Corvax, BoSWashinton, Locked, Initiate
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ CorvaxDoorElectronicsBOSWashingtonInitiate ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: DoorElectronics
+  id: CorvaxDoorElectronicsBOSWashingtonInitiate
+  suffix: BOSW Initiate, Locked
+  components:
+  - type: AccessReader
+    access: [["WashingtonInitiate"]]

@@ -1,0 +1,22 @@
+﻿<Control xmlns="https://spacestation14.io"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:parallax="clr-namespace:Content.Client.Parallax"
+          xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls">
+    <parallax:ParallaxControl />
+    <Control HorizontalAlignment="Center" VerticalAlignment="Center">
+        <PanelContainer StyleClasses="AngleRect" />
+        <BoxContainer Orientation="Vertical">
+            <BoxContainer Orientation="Horizontal">
+                <Label Margin="8 0 0 0" Text="Авторизация"
+                       StyleClasses="LabelHeading" VAlign="Center" />
+                <Button Name="QuitButton" Text="Выйти"
+                        HorizontalAlignment="Right" HorizontalExpand="True" />
+            </BoxContainer>
+            <controls:HighDivider />
+            <BoxContainer Orientation="Vertical" Margin="50 20 50 20">
+                <Label Text="Вы должны пройти авторизацию аккаунта дискорда с аккаунтом Space Station 14, для дальнейшей игры. При возникновении проблем, обращайтесь в наше официальное сообщество. https://discord.gg/corvax-forge" Align="Center" />
+            </BoxContainer>
+            <Button Name="AuthorizeButton" Text="Authorize" HorizontalExpand="True" StyleClasses="OpenRight" />
+        </BoxContainer>
+    </Control>
+</Control>

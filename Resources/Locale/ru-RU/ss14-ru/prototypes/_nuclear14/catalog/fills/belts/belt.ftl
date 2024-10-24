@@ -1,0 +1,12 @@
+ent-ClothingBeltRevolverfilled = { ent-ClothingBeltRevolver }
+    .desc = { ent-ClothingBeltRevolver.desc }
+ent-ClothingBelt9mmfilled = { ent-ClothingBeltRevolver }
+    .desc = { ent-ClothingBeltRevolver.desc }
+ent-ClothingBeltRevolvervetfilled = { ent-ClothingBeltRevolver }
+    .desc = { ent-ClothingBeltRevolver.desc }
+ent-ClothingBeltRevolverdesertfilled = { ent-ClothingBeltRevolver }
+    .desc = { ent-ClothingBeltRevolver.desc }
+ent-ClothingBeltRevolverCaptainfilled = { ent-ClothingBeltRevolver }
+    .desc = { ent-ClothingBeltRevolver.desc }
+ent-ClothingBeltMedicalfilled = { ent-ClothingBeltMedical }
+    .desc = { ent-ClothingBeltMedical.desc }

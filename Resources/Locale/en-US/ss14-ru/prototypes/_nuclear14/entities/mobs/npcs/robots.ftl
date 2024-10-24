@@ -1,0 +1,9 @@
+ent-N14MobRobotHostile = robot
+    .desc = Designed to serve humankind. Maybe it ended it.
+    .suffix = hostile npc
+ent-N14MobRobotAssaultronHostile = Assaultron
+    .desc = Horrifying.
+ent-N14MobRobotProtectronHostile = Protectron
+    .desc = A common protectron looking for a fight.
+ent-N14MobRobotMrHandyClaw = Mr Handy
+    .desc = A domestic Mr Handy model with a claw attachment.

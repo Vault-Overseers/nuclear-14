@@ -1,0 +1,16 @@
+ent-BaseCartridgeSpecial = патрон (.38 special)
+    .desc = { ent-BaseCartridge.desc }
+ent-CartridgeSpecial = патрон (.38 special)
+    .desc = { ent-BaseCartridgeSpecial.desc }
+ent-CartridgeSpecialPractice = тренировочный патрон (.38 special)
+    .desc = { ent-BaseCartridgeSpecial.desc }
+ent-CartridgeSpecialRubber = резиновый патрон (.38 special)
+    .desc = { ent-BaseCartridgeSpecial.desc }
+ent-CartridgeSpecialIncendiary = зажигательный патрон (.38 special)
+    .desc = { ent-BaseCartridgeSpecial.desc }
+ent-CartridgeSpecialUranium = урановый патрон (.38 special)
+    .desc = { ent-BaseCartridgeSpecial.desc }
+ent-CartridgeSpecialHoly = священный патрон (.38 special)
+    .desc = { ent-BaseCartridgeSpecial.desc }
+ent-CartridgeSpecialMindbreaker = патрон "Разрушитель разума" (.38 special)
+    .desc = { ent-BaseCartridgeSpecial.desc }

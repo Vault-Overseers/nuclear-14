@@ -1,0 +1,15 @@
+ent-N14WeaponTurretBrotherhoodMidwestSecureArea = { ent-BaseWeaponTurret }
+    .suffix = BOS Midwest, Hostile
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-N14WeaponTurretBrotherhoodMidwest = { ent-BaseWeaponTurret }
+    .suffix = BOS Midwest
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-N14WeaponTurretBrotherhoodWashingtonSecureArea = { ent-BaseWeaponTurret }
+    .suffix = BOS Washington, Hostile
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-N14WeaponTurretBrotherhoodWashington = { ent-BaseWeaponTurret }
+    .suffix = BOS Washington
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-N14WeaponTurretVault = { ent-BaseWeaponTurret }
+    .suffix = Vault, Hostile
+    .desc = { ent-BaseWeaponTurret.desc }
