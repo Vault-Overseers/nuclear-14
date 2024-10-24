@@ -9,7 +9,7 @@ using Content.Server.JoinQueue;
 using Content.Server._NC.Discord;
 using Content.Server._NC.Sponsors;
 using Content.Server.Database;
-using Content.Server.DiscordAuth;
+//using Content.Server.DiscordAuth;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
 using Content.Server.GhostKick;

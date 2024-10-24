@@ -2453,12 +2453,9 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<bool> MoodDecreasesSpeed =
             CVarDef.Create("mood.decreases_speed", true, CVar.SERVER);
 
-<<<<<<< HEAD
         public static readonly CVarDef<bool> MoodModifiesThresholds =
             CVarDef.Create("mood.modify_thresholds", false, CVar.SERVER);
 
-=======
->>>>>>> private/UpOctober
         #endregion
 
         #region Material Reclaimer

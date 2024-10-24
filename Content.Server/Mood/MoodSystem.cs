@@ -1,4 +1,4 @@
-﻿using Content.Server.Chat.Managers;
+using Content.Server.Chat.Managers;
 using Content.Server.Popups;
 using Content.Shared.Alert;
 using Content.Shared.Chat;
@@ -103,7 +103,7 @@ public sealed class MoodSystem : EntitySystem
     {
         if (_debugMode
             || !_config.GetCVar(CCVars.MoodEnabled)
-            || !_prototypeManager.TryIndex<MoodEffectPrototype>(args.EffectId, out var prototype) )
+            || !_prototypeManager.TryIndex<MoodEffectPrototype>(args.EffectId, out var prototype))
             return;
 
         var ev = new OnMoodEffect(uid, args.EffectId, args.EffectModifier, args.EffectOffset);
@@ -250,12 +250,8 @@ public sealed class MoodSystem : EntitySystem
         if (_debugMode)
             return;
 
-<<<<<<< HEAD
         if (_config.GetCVar(CCVars.MoodModifiesThresholds)
             && TryComp<MobThresholdsComponent>(uid, out var mobThresholdsComponent)
-=======
-        if (TryComp<MobThresholdsComponent>(uid, out var mobThresholdsComponent)
->>>>>>> private/UpOctober
             && _mobThreshold.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold, mobThresholdsComponent))
             component.CritThresholdBeforeModify = critThreshold.Value;
 
@@ -348,12 +344,8 @@ public sealed class MoodSystem : EntitySystem
 
     private void SetCritThreshold(EntityUid uid, MoodComponent component, int modifier)
     {
-<<<<<<< HEAD
         if (!_config.GetCVar(CCVars.MoodModifiesThresholds)
             || !TryComp<MobThresholdsComponent>(uid, out var mobThresholds)
-=======
-        if (!TryComp<MobThresholdsComponent>(uid, out var mobThresholds)
->>>>>>> private/UpOctober
             || !_mobThreshold.TryGetThresholdForState(uid, MobState.Critical, out var key))
             return;
 
