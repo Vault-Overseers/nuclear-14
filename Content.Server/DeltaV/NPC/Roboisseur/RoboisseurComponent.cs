@@ -110,7 +110,7 @@ namespace Content.Server.Roboisseur.Roboisseur
             "FoodMothMacBalls",
             "FoodSoupNettle",
             "FoodBurgerDuck",
-            "N14FoodBurgerBaseball"
+            "FoodBurgerBaseball"
         };
 
         [DataField("tier3Protos")]
@@ -172,7 +172,7 @@ namespace Content.Server.Roboisseur.Roboisseur
             "FoodBurgerCorgi",
             "FoodBreadPlain",
             "FoodMeatKebab",
-            "N14FoodBreadBun",
+            "FoodBreadBun",
             "FoodBurgerCat",
             "FoodSoupTomatoBlood",
             "FoodMothSaladBase",
