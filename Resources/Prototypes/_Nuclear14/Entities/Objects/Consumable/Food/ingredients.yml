@@ -7,7 +7,7 @@
 - type: entity
   abstract: true
   parent: BaseItem
-  id: ReagentContainerBase
+  id: N14ReagentContainerBase
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/ingredients.rsi
@@ -37,7 +37,7 @@
 
 - type: entity
   abstract: true
-  parent: ReagentContainerBase
+  parent: N14ReagentContainerBase
   id: N14ReagentPacketBase
   components:
   - type: Openable
@@ -64,19 +64,6 @@
     damage:
       types:
         Blunt: 0
-
-- type: entity
-  abstract: true
-  id: ItemHeftyBase
-  components:
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 1
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Blunt: 1
 
 - type: entity
   parent: [N14ReagentPacketBase, ItemHeftyBase]
@@ -260,7 +247,7 @@
 - type: entity
   abstract: true
   parent: FoodBase
-  id: FoodBakingBase
+  id: N14FoodBakingBase
   description: Used in various recipes.
   components:
   - type: Sprite
@@ -275,7 +262,7 @@
 
 - type: entity
   name: dough
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodDough
   description: A piece of dough.
   components:
@@ -293,7 +280,7 @@
 
 - type: entity
   name: dough slice
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodDoughSlice
   description: A slice of dough. Can be cooked into a bun.
   components:
@@ -305,7 +292,7 @@
 
 - type: entity
   name: cornmeal dough
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodDoughCornmeal
   description: A piece of cornmeal dough.
   components:
@@ -321,7 +308,7 @@
 
 - type: entity
   name: cornmeal dough slice
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodDoughCornmealSlice
   description: A slice of cornmeal dough.
   components:
@@ -334,7 +321,7 @@
 
 - type: entity
   name: tortilla dough
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodDoughTortilla
   description: A piece of tortilla dough.
   components:
@@ -350,7 +337,7 @@
 
 - type: entity
   name: tortilla dough slice
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodDoughTortillaSlice
   description: A slice of tortilla dough.
   components:
@@ -366,7 +353,7 @@
 
 - type: entity
   name: flattened tortilla dough
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodDoughTortillaFlat
   description: A flattened slice of tortilla dough, cook this to get a taco shell.
   components:
@@ -382,7 +369,7 @@
 
 - type: entity
   name: raw pastry base
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodDoughPastryBaseRaw
   description: Must be cooked before use.
   components:
@@ -391,7 +378,7 @@
 
 - type: entity
   name: pastry base
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodDoughPastryBase
   description: A base for any self-respecting pastry.
   components:
@@ -400,7 +387,7 @@
 
 - type: entity
   name: pie dough
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodDoughPie
   description: Cook it to get a pie.
   components:
@@ -409,7 +396,7 @@
 
 - type: entity
   name: flat dough
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodDoughFlat
   description: A flattened dough.
   components:
@@ -421,7 +408,7 @@
 
 - type: entity
   name: pizza bread
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodDoughPizzaBaked
   description: Add ingredients to make a pizza.
   components:
@@ -430,7 +417,7 @@
 
 - type: entity
   name: cake batter
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodCakeBatter
   description: Cook it to get a cake.
   components:
@@ -442,7 +429,7 @@
 
 - type: entity
   name: stick of butter
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodButter
   description: A stick of delicious, golden, fatty goodness.
   components:
@@ -451,7 +438,7 @@
 
 - type: entity
   name: stick of cannabis butter
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodCannabisButter
   description: Add this to your favorite baked goods for an irie time.
   components:
@@ -472,7 +459,7 @@
 
 - type: entity
   name: cheese wheel
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodCheese
   description: A big wheel of delicious Cheddar.
   components:
@@ -487,7 +474,7 @@
 
 - type: entity
   name: cheese wedge
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodCheeseSlice
   description: A wedge of delicious Cheddar. The cheese wheel it was cut from can't have gone far.
   components:
@@ -506,7 +493,7 @@
 
 - type: entity
   name: chèvre log
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodChevre
   description: A soft log of creamy Chèvre.
   components:
@@ -531,7 +518,7 @@
 
 - type: entity
   name: chèvre disk
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodChevreSlice
   description: A small disk of creamy Chèvre. An ideal adornment for French side dishes.
   components:
@@ -553,7 +540,7 @@
 
 - type: entity
   name: tofu
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodTofu
   description: Solid white block with a subtle flavor.
   components:
@@ -577,7 +564,7 @@
 
 - type: entity
   name: tofu slice
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodTofuSlice
   description: A slice of tofu. Ingredient of various vegetarian dishes.
   components:
@@ -598,7 +585,7 @@
 
 - type: entity
   name: burned mess
-  parent: FoodBakingBase
+  parent: N14FoodBakingBase
   id: N14FoodBadRecipe
   description: Someone should be demoted from cook for this.
   components:

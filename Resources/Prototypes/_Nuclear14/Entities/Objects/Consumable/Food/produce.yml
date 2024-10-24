@@ -3,7 +3,7 @@
 
 - type: entity
   parent: BaseItem
-  id: ProduceBase
+  id: N14ProduceBase
   abstract: true
   components:
   - type: SolutionContainerManager
@@ -21,8 +21,8 @@
 # For produce that can be immediately eaten
 
 - type: entity
-  parent: N14FoodInjectableBase
-  id: FoodProduceBase
+  parent: FoodInjectableBase
+  id: N14FoodProduceBase
   abstract: true
   components:
   - type: SolutionContainerManager
@@ -40,7 +40,7 @@
   name: wheat bushel
   description: Sigh... wheat... a-grain?
   id: N14WheatBushel
-  parent: ProduceBase
+  parent: N14ProduceBase
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/wheat.rsi
@@ -60,7 +60,7 @@
   name: oat bushel
   description: Eat oats, do squats.
   id: N14OatBushel
-  parent: ProduceBase
+  parent: N14ProduceBase
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/oat.rsi
@@ -82,7 +82,7 @@
   name: sugarcane
   description: Sickly sweet.
   id: N14Sugarcane
-  parent: ProduceBase
+  parent: N14ProduceBase
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/sugarcane.rsi
@@ -96,7 +96,7 @@
     seedId: sugarcane
 
 - type: entity
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodLaughinPeaPod
   name: laughin' pea pod
   description: The clown's favorite plant.
@@ -132,7 +132,7 @@
   name: tower-cap log
   description: It's better than bad, it's good!
   id: N14Log
-  parent: ProduceBase
+  parent: N14ProduceBase
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/towercap.rsi
@@ -149,7 +149,7 @@
   name: steel-cap log
   description: Steel doesn't grow on trees! It grows on mushrooms, of course.
   id: N14SteelLog
-  parent: ProduceBase
+  parent: N14ProduceBase
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/steelcap.rsi
@@ -168,7 +168,7 @@
   name: nettle
   description: Stingy little prick.
   id: N14Nettle
-  parent: ProduceBase
+  parent: N14ProduceBase
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/nettle.rsi
@@ -199,7 +199,7 @@
   name: death nettle
   description: This nettle's out for blood.
   id: N14DeathNettle
-  parent: ProduceBase
+  parent: N14ProduceBase
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/death_nettle.rsi
@@ -231,7 +231,7 @@
 
 - type: entity
   name: banana
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodBanana
   description: Rich in potassium.
   components:
@@ -265,7 +265,7 @@
 
 - type: entity
   name: mimana
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodMimana
   description: Mime's favorite.
   components:
@@ -300,114 +300,8 @@
     - Fruit
 
 - type: entity
-  name: banana peel
-  parent: BaseItem
-  id: TrashBananaPeel
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Hydroponics/banana.rsi
-    state: peel
-  - type: Item
-    sprite: Objects/Specific/Hydroponics/banana.rsi
-    heldPrefix: peel
-  - type: Slippery
-    launchForwardsMultiplier: 1.5
-  - type: StepTrigger
-    intersectRatio: 0.2
-  - type: CollisionWake
-    enabled: false
-  - type: Physics
-    bodyType: Dynamic
-  - type: Fixtures
-    fixtures:
-      slips:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.2,-0.2,0.2,0.2"
-        hard: false
-        layer:
-        - SlipLayer
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.2,-0.2,0.2,0.2"
-        density: 30
-        mask:
-        - ItemMask
-  - type: Tag
-    tags:
-    - Recyclable
-    - Trash
-    - BananaPeel
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 4
-        reagents:
-        - ReagentId: PulpedBananaPeel
-          Quantity: 4
-  - type: Extractable
-    grindableSolutionName: food
-  - type: SpaceGarbage
-
-- type: entity
-  name: baked banana peel
-  parent: TrashBananaPeel
-  id: N14TrashBakedBananaPeel
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Hydroponics/banana.rsi
-    state: baked-peel
-  - type: Item
-    sprite: Objects/Specific/Hydroponics/banana.rsi
-    heldPrefix: baked-peel
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: PulpedBananaPeel
-          Quantity: 1
-        - ReagentId: Bananadine
-          Quantity: 1
-        - ReagentId: Carbon
-          Quantity: 2
-
-- type: entity
-  name: mimana peel
-  parent: TrashBananaPeel
-  id: N14TrashMimanaPeel
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Hydroponics/mimana.rsi
-    state: peel
-  - type: Item
-    sprite: Objects/Specific/Hydroponics/mimana.rsi
-    heldPrefix: peel
-  - type: Slippery
-    slipSound:
-      path: /Audio/Effects/slip.ogg
-      params:
-        volume: -100
-    launchForwardsMultiplier: 1.6
-
-- type: entity
-  name: bananium peel
-  parent: TrashBananaPeel
-  id: N14TrashBananiumPeel
-  components:
-  - type: Sprite
-    sprite: Objects/Materials/materials.rsi
-    state: peel
-  - type: Item
-    sprite: Objects/Materials/materials.rsi
-    heldPrefix: peel
-  - type: Slippery
-    paralyzeTime: 4
-    launchForwardsMultiplier: 2
-
-- type: entity
   name: carrot
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodCarrot
   description: It's good for the eyes!
   components:
@@ -443,7 +337,7 @@
 
 - type: entity
   name: cabbage
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodCabbage
   description: Ewwwwwwwwww. Cabbage.
   components:
@@ -469,7 +363,7 @@
 
 - type: entity
   name: garlic
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodGarlic
   description: Delicious, but with a potentially overwhelming odor.
   components:
@@ -497,7 +391,7 @@
 
 - type: entity
   name: lemon
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodLemon
   description: When life gives you lemons, be grateful they aren't limes.
   components:
@@ -529,7 +423,7 @@
 
 - type: entity
   name: lemoon
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodLemoon
   description: People says Moon is made out of cheese, but Moon is actually made out of milk and laurel!
   components:
@@ -605,7 +499,7 @@
 
 - type: entity
   name: pineapple
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodPineapple
   description: Mmm, tropical.
   components:
@@ -641,7 +535,7 @@
 
 - type: entity
   name: potato
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodPotato
   description: The space Irish starved to death after their potato crops died. Sadly they were unable to fish for space carp due to it being the queen's space. Bringing this up to any space IRA member will drive them insane with anger.
   components:
@@ -674,7 +568,7 @@
 
 - type: entity
   name: tomato
-  parent: [FoodProduceBase, ItemHeftyBase]
+  parent: [N14FoodProduceBase, ItemHeftyBase]
   id: N14FoodTomato
   description: I say to-mah-to, you say tom-mae-to.
   components:
@@ -817,7 +711,7 @@
 
 - type: entity
   name: eggplant
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodEggplant
   description: Maybe there's a chicken inside?
   components:
@@ -844,7 +738,7 @@
 
 - type: entity
   name: apple
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodApple
   description: It's a little piece of Eden.
   components:
@@ -875,7 +769,7 @@
 
 - type: entity
   name: cocoa pod
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodCocoaPod
   description: You can never have too much chocolate!
   components:
@@ -908,7 +802,7 @@
 
 - type: entity
   name: ear of corn
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodCorn
   description: Needs some butter! And some cooking...
   components:
@@ -967,7 +861,7 @@
 
 - type: entity
   name: onion
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodOnion
   description: Nothing to cry over.
   components:
@@ -998,7 +892,7 @@
 
 - type: entity
   name: red onion
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodOnionRed
   description: Purple despite the name.
   components:
@@ -1029,7 +923,7 @@
 
 - type: entity
   name: chanterelle cluster
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodMushroom
   description: "Cantharellus Cibarius: These jolly yellow little shrooms sure look tasty!"
   components:
@@ -1050,7 +944,7 @@
 # Slices
 
 - type: entity
-  parent: N14FoodInjectableBase
+  parent: FoodInjectableBase
   id: N14ProduceSliceBase
   abstract: true
   components:
@@ -1134,7 +1028,7 @@
 
 - type: entity
   name: chili
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodChili
   description: Spicy, best not touch your eyes.
   components:
@@ -1162,7 +1056,7 @@
 
 - type: entity
   name: chilly pepper
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodChilly
   description: Icy hot.
   components:
@@ -1188,7 +1082,7 @@
 
 - type: entity
   name: aloe
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodAloe
   description: A fragrant plant with soothing properties.
   components:
@@ -1216,7 +1110,7 @@
 
 - type: entity
   name: poppy
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodPoppy
   description: A flower with extracts often used in the production of medicine
   components:
@@ -1276,7 +1170,7 @@
 
 - type: entity
   name: lingzhi
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodLingzhi
   description: A potent medicinal mushroom. Don't go overboard.
   components:
@@ -1302,7 +1196,7 @@
 
 - type: entity
   name: ambrosia vulgaris
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodAmbrosiaVulgaris
   description: A medicinal plant. May make you feel a little funny.
   components:
@@ -1341,7 +1235,7 @@
 
 - type: entity
   name: ambrosia deus
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodAmbrosiaDeus
   description: An extremely sought-after medicinal plant. May have some funky side effects.
   components:
@@ -1378,7 +1272,7 @@
 
 - type: entity
   name: galaxythistle
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodGalaxythistle
   description: A medicinal plant used for its antitoxin.
   components:
@@ -1405,7 +1299,7 @@
 
 - type: entity
   name: fly amanita
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodFlyAmanita
   description: A delicious-looking mushroom like you see in those cartoons.
   components:
@@ -1431,7 +1325,7 @@
 
 - type: entity
   name: gatfruit
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodGatfruit
   description: A delicious, gun-shaped fruit with a thick wooden stem.
   components:
@@ -1461,7 +1355,7 @@
   name: rice bushel
   description: Can be ground into rice, perfect for pudding or sake.
   id: N14RiceBushel
-  parent: ProduceBase
+  parent: N14ProduceBase
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/rice.rsi
@@ -1478,7 +1372,7 @@
   name: soybeans
   description: For those who can't stand seeing good old meat.
   id: N14FoodSoybeans
-  parent: ProduceBase
+  parent: N14ProduceBase
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/soybeans.rsi
@@ -1504,7 +1398,7 @@
   name: spaceman's trumpet
   description: A vivid flower that smells faintly of freshly cut grass. Touching the flower seems to stain the skin some time after contact, yet most other surfaces seem to be unaffected by this phenomenon.
   id: N14FoodSpacemansTrumpet
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   components:
   - type: FlavorProfile
     flavors:
@@ -1532,7 +1426,7 @@
   name: koibean
   description: These beans seem a little bit fishy.
   id: N14FoodKoibean
-  parent: ProduceBase
+  parent: N14ProduceBase
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/koibean.rsi
@@ -1558,7 +1452,7 @@
 
 - type: entity
   name: watermelon
-  parent: [FoodProduceBase, ItemHeftyBase]
+  parent: [N14FoodProduceBase, ItemHeftyBase]
   id: N14FoodWatermelon
   description: Round green object that you can slice and eat.
   components:
@@ -1650,7 +1544,7 @@
 
 - type: entity
   name: grapes
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodGrape
   description: The food of emperors, Space France inhabitants (usually as wine) and soccer moms. One day it could be used in wine production for the bartender if he ever runs out.
   components:
@@ -1681,7 +1575,7 @@
 
 - type: entity
   name: berries
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodBerries
   description: A handful of various types of berries.
   components:
@@ -1712,7 +1606,7 @@
 
 - type: entity
   name: bungo fruit
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodBungo
   description: The humble bungo fruit.
   components:
@@ -1740,7 +1634,7 @@
 
 - type: entity
   name: bungo pit
-  parent: N14FoodInjectableBase
+  parent: FoodInjectableBase
   id: N14FoodBungoPit
   components:
   - type: Sprite
@@ -1767,7 +1661,7 @@
   - type: BadFood
 
 - type: entity
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodPeaPod
   name: pea pod
   description: A duck's favorite treat!
@@ -1794,7 +1688,7 @@
 
 - type: entity
   name: pumpkin
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   id: N14FoodPumpkin
   description: A large, orange... berry. Seriously.
   components:
@@ -1845,7 +1739,7 @@
   name: cotton boll
   description: Moth people's favorite snack, and just as fluffy as them.
   id: N14CottonBol
-  parent: FoodProduceBase
+  parent: N14FoodProduceBase
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/cotton.rsi
