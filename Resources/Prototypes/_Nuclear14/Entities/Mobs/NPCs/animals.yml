@@ -65,6 +65,84 @@
   - type: Tag
     tags:
     - Molerat
+  # - type: NPCTamingOnTouchBehaviour
+    # follow: true
+    # persistent: true
+    # tameChance: 0.5
+    # oneTry: false
+    # successPopup: This pet is your friend now!
+    # deniedPopup: This pet refused to be your friend.
+    # whitelist:
+      # components:
+      # - HumanoidAppearance
+
+- type: entity
+  name: pigrat
+  id: N14MobPigrat
+  parent: N14MobBaseHostile
+  description: Part pig, part rat, full pest. Watch out for the teeth.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: pigrat
+      sprite: _Nuclear14/Mobs/Animals/pigrat.rsi
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: pigrat
+      Critical:
+        Base: pigrat
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 3
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatPigrat
+      amount: 3
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Pigrat
+    offspring:
+    - id: N14MobPigrat
+      maxAmount: 1
+  - type: ReproductivePartner
+  - type: Tag
+    tags:
+    - Pigrat
 
 #MARK: Feral Dog
 - type: entity
@@ -116,9 +194,6 @@
     damage:
       groups:
         Brute: 5
-  - type: Speech
-    speechVerb: Canine
-    speechSounds: Vulpkanin
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-birth-popup
@@ -188,7 +263,7 @@
     spawned:
     - id: N14FoodMeatGecko
       amount: 3
-    - id: N14MaterialRawLeather1
+    - id: N14MaterialHideGecko
       amount: 1
   - type: Reproductive
     breedChance: 0.05
@@ -207,7 +282,137 @@
   - type: Tag
     tags:
     - Gecko
-
+    
+- type: entity
+  parent: N14MobGecko
+  id: N14MobGeckoFire
+  name: fire gecko
+  description: A dangerous fire gecko. Don't let it get close!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: gecko
+      sprite: _Nuclear14/Mobs/Animals/firegecko.rsi
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      types:
+        Slash: 5
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatGeckoFire
+      amount: 3
+    - id: N14MaterialHideGeckoFire
+      amount: 1
+  # - type: Reproductive
+    # breedChance: 0.05
+    # birthPopup: reproductive-laid-egg-popup
+    # makeOffspringInfant: false
+    # partnerWhitelist:
+      # tags:
+      # - Gecko
+    # offspring:
+    # - id: N14FoodEggGeckoFertilized
+      # maxAmount: 3
+  # - type: ReproductivePartner
+  # - type: EggLayer
+    # eggSpawn:
+    # - id: N14FoodEggGecko
+  # - type: Tag
+    # tags:
+    # - Gecko
+  - type: Gun
+    cameraRecoilScalar: 0 #no recoil
+    fireRate: 10
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Nuclear14/Weapons/Guns/Flames/flamer.ogg
+  - type: SolutionContainerManager
+    solutions:
+      chamber:
+        maxVol: 100
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 100
+  - type: SolutionAmmoProvider
+    solutionId: chamber
+    proto: FireProjectileShort
+  - type: SolutionRegeneration
+    solution: chamber
+    generated:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 1
+    duration: 0.1
+    nextChargeTime: 10
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: Flammable
+    fireSpread: false
+    canResistFire: true
+    FirestackFade: -1
+  - type: Damageable
+    damageModifierSet: N14ScaleFireresist
+      
+- type: entity
+  name: golden gecko
+  id: N14MobGeckoGolden
+  parent: N14MobGecko
+  description: A beautiful golden gecko. Don't let it scratch.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: gecko
+      sprite: _Nuclear14/Mobs/Animals/goldengecko.rsi
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      types:
+        Slash: 6
+        Radiation: 1
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatGeckoGolden
+      amount: 3
+    - id: N14MaterialHideGeckoGolden
+      amount: 1
+  # - type: Reproductive
+    # breedChance: 0.05
+    # birthPopup: reproductive-laid-egg-popup
+    # makeOffspringInfant: false
+    # partnerWhitelist:
+      # tags:
+      # - Gecko
+    # offspring:
+    # - id: N14FoodEggGeckoFertilized
+      # maxAmount: 3
+  # - type: ReproductivePartner
+  # - type: EggLayer
+    # eggSpawn:
+    # - id: N14FoodEggGecko
+  # - type: Tag
+    # tags:
+    # - Gecko
+      
 #MARK: Nightstalker Cub
 - type: entity
   name: nightstalker cub
@@ -281,9 +486,6 @@
         reagents:
         - ReagentId: NightstalkerVenom
           Quantity: 5
-  - type: Speech
-    speechVerb: Canine
-    speechSounds: Vulpkanin
   - type: Udder
     reagentId: NightstalkerVenom
     quantityPerUpdate: 1
@@ -387,9 +589,6 @@
   - type: MeleeChemicalInjector
     solution: melee
     transferAmount: 1.5
-  - type: Speech
-    speechVerb: Canine
-    speechSounds: Vulpkanin
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-laid-egg-popup
@@ -797,7 +996,6 @@
       types:
         Blunt: 8
         Slash: 2
-        Structural: 8
   - type: SolutionContainerManager
     solutions:
       udder:
@@ -868,7 +1066,6 @@
       types:
         Blunt: 6
         Slash: 2
-        Structural: 8
   - type: SolutionContainerManager
     solutions:
       udder:
@@ -894,6 +1091,56 @@
       - Radstag
     offspring:
     - id: N14MobRadstag
+      maxAmount: 1
+  - type: ReproductivePartner
+
+#MARK: Radhog
+- type: entity
+  name: radhog
+  parent: N14MobBrahmin
+  id: N14MobRadhog
+  description: Radiated bacon on angry hooves.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: radhog
+      sprite: _Nuclear14/Mobs/Animals/radhog.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: radhog
+      Dead:
+        Base: dead
+  - type: Tag
+    tags:
+    - Radhog
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadstag
+      amount: 4
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    angle: 60
+    animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 7
+        Piercing: 1
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Radhog
+    offspring:
+    - id: N14MobRadhog
       maxAmount: 1
   - type: ReproductivePartner
 

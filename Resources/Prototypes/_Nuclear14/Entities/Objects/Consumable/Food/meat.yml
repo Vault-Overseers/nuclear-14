@@ -102,6 +102,35 @@
     graph: MeatSteakRadstag
     node: start
     defaultTarget: SteakCooked
+    
+- type: entity
+  parent: N14FoodMeatBrahmin
+  id: N14FoodMeatRadhog
+  name: raw radhog meat
+  description: A raw chunk of radhog meat.
+  components:
+  - type: Sprite
+    state: porkchop
+  - type: SliceableFood
+    count: 3
+    slice: N14FoodMeatRadhogCutlet
+  - type: Construction
+    graph: MeatSteakRadhog
+    node: start
+    defaultTarget: SteakCooked
+    
+- type: entity
+  parent: N14FoodMeatBrahmin
+  id: N14FoodMeatPigrat
+  name: raw pigrat meat
+  description: Raw morsels of pigrat meat.
+  components:
+  - type: Sprite
+    state: morsels
+  - type: Construction
+    graph: MeatSteakPigrat
+    node: start
+    defaultTarget: SteakCooked
 
 - type: entity
   name: raw yao-guai meat
@@ -197,11 +226,34 @@
   components:
   - type: Sprite
     state: silvergeckomeat
-  - type: SliceableFood
-    count: 3
-    slice: N14FoodMeatGeckoCutlet
   - type: Construction
     graph: MeatSteakGecko
+    node: start
+    defaultTarget: SteakCooked
+    
+- type: entity
+  name: raw fire gecko meat
+  parent: N14FoodMeatRadRaw
+  id: N14FoodMeatGeckoFire
+  description: tough chunk of fire gecko meat. It glistens.
+  components:
+  - type: Sprite
+    state: icegeckomeat
+  - type: Construction
+    graph: MeatSteakGeckoFire
+    node: start
+    defaultTarget: SteakCooked
+    
+- type: entity
+  name: raw golden gecko meat
+  parent: N14FoodMeatRadRaw
+  id: N14FoodMeatGeckoGolden
+  description: tough chunk of golden gecko meat. It glistens.
+  components:
+  - type: Sprite
+    state: goldengeckomeat
+  - type: Construction
+    graph: MeatSteakGeckoGolden
     node: start
     defaultTarget: SteakCooked
     
@@ -368,6 +420,35 @@
     graph: MeatSteakRadstag
     node: SteakCooked
     defaultTarget: SteakCooked
+    
+- type: entity
+  name: cooked radhog meat
+  parent: N14FoodMeatBrahminCooked
+  id: N14FoodMeatRadhogCooked
+  description: A chunk of cooked radhog meat.
+  components:
+  - type: Sprite
+    state: porkchop_roasted
+  - type: SliceableFood
+    count: 3
+    slice: N14FoodMeatRadhogCutletCooked
+  - type: Construction
+    graph: MeatSteakRadhog
+    node: SteakCooked
+    defaultTarget: SteakCooked
+    
+- type: entity
+  parent: N14FoodMeatBrahminCooked
+  id: N14FoodMeatPigratCooked
+  name: cooked pigrat meat
+  description: Cooked morsels of pigrat meat.
+  components:
+  - type: Sprite
+    state: morsels_roasted
+  - type: Construction
+    graph: MeatSteakPigrat
+    node: SteakCooked
+    defaultTarget: SteakCooked
 
 - type: entity
   name: cooked yao-guai steak
@@ -426,11 +507,36 @@
   - type: Sprite
     layers:
     - state: silvergeckomeat_roasted
-  - type: SliceableFood
-    count: 3
-    slice: N14FoodMeatGeckoCutletCooked
   - type: Construction
     graph: MeatSteakGecko
+    node: SteakCooked
+    defaultTarget: SteakCooked
+    
+- type: entity
+  name: cooked fire gecko steak
+  parent: N14FoodMeatCooked
+  id: N14FoodMeatGeckoFireCooked
+  description: Cooked, tough fire gecko meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: icegeckomeat_roasted
+  - type: Construction
+    graph: MeatSteakGeckoFire
+    node: SteakCooked
+    defaultTarget: SteakCooked
+    
+- type: entity
+  name: cooked golden gecko steak
+  parent: N14FoodMeatCooked
+  id: N14FoodMeatGeckoGoldenCooked
+  description: Cooked, tough golden gecko meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: goldengeckomeat_roasted
+  - type: Construction
+    graph: MeatSteakGeckoGolden
     node: SteakCooked
     defaultTarget: SteakCooked
     
@@ -638,6 +744,18 @@
     - state: cutlet
     - state: cutlet-alpha
       color: brown
+      
+- type: entity
+  name: raw radhog cutlet
+  parent: N14FoodMeatRadCutlet
+  id: N14FoodMeatRadhogCutlet
+  description: A very grisly cutlet of radhog meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet
+    - state: cutlet-alpha
+      color: brown
 
 - type: entity
   name: raw yao-guai cutlet
@@ -660,19 +778,6 @@
   - type: Sprite
     state: cutlet
     color: white
-
-- type: entity
-  name: raw gecko cutlet
-  parent: N14FoodMeatRadCutlet
-  id: N14FoodMeatGeckoCutlet
-  description: Delicious dino cutlet.
-  components:
-  - type: Sprite
-    layers:
-    - state: cutlet
-      color: green
-    - state: cutlet-alpha
-      color: pink
 
 - type: entity
   name: raw radscorpion cutlet
@@ -747,6 +852,18 @@
     - state: cutlet-cooked
     - state: cutlet-alpha
       color: brown
+      
+- type: entity
+  name: cooked radhog cutlet
+  parent: N14FoodMeatRadCutletCooked
+  id: N14FoodMeatRadhogCutletCooked
+  description: A very grisly cutlet of cooked radhog meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet-cooked
+    - state: cutlet-alpha
+      color: brown
 
 - type: entity
   name: cooked yao-guai cutlet
@@ -769,17 +886,6 @@
   - type: Sprite
     state: cutlet-cooked
     color: white
-
-- type: entity
-  name: cooked gecko cutlet
-  parent: N14FoodMeatRadCutletCooked
-  id: N14FoodMeatGeckoCutletCooked
-  description: Delicious cooked dino cutlet.
-  components:
-  - type: Sprite
-    layers:
-    - state: cutlet-cooked
-      color: green
 
 - type: entity
   name: cooked radscorpion cutlet

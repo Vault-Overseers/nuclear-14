@@ -586,7 +586,6 @@
     graph: N14HealingPowder
     node: healingpowder
 
-
 - type: entity
   parent: DrinkBottleGlassBaseFull
   id: N14Antidote
@@ -763,3 +762,35 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     state: ethanol
+
+- type: entity
+  name: aloe salve
+  description: Used to treat those nasty burns. Less effective on caustic burns.
+  parent: Ointment
+  id: N14AloeSalve
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: N14AloeSalve
+    count: 10
+    baseLayer: base
+    layerStates:
+    - aloe1
+    - aloe2
+    - aloe3
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/ms13_medical_new.rsi
+    layers:
+    - state: aloe3
+      map: ["base"]
+
+- type: entity
+  id: N14AloeSalve1
+  parent: N14AloeSalve
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: N14AloeSalve
+    count: 1
+  - type: Sprite
+    state: aloe1
