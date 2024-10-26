@@ -38,6 +38,11 @@
   name: bottlecap
   description: A bottlecap from a soda bottle.
   components:
+  - type: Cash
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Credit: 1
   - type: StaticPrice
     price: 0
   - type: Tag
@@ -78,9 +83,8 @@
 - type: stack
   id: Caps
   name: caps
-  icon: { sprite: /Textures/_Nuclear14/Objects/Misc/currency.rsi, state: caps3 }
+  icon: { sprite: _Nuclear14/Objects/Misc/currency.rsi, state: caps3 }
   spawn: N14CurrencyCap
-  maxCount: 500
 
 - type: entity
   parent: N14CurrencyCap
@@ -133,6 +137,9 @@
   name: pre-war money
   description: Wads of paper. Make it rain!
   components:
+  - type: PhysicalComposition
+    materialComposition:
+      Credit: 0
   - type: Stack
     stackType: PrewarMoney
     count: 1
@@ -198,7 +205,15 @@
     state: prewar3
   - type: Stack
     count: 500
-    
+
+- type: material
+  id: NcrCredit
+  name: ncrCredit
+  unit: materials-unit-bill
+  stackEntity: N14CurrencyNCRDollar
+  icon: { sprite: /Textures/_Nuclear14/Objects/Misc/currency.rsi, state: ncr3 }
+  price: 0.66
+
 # NCR Dollars
 - type: entity
   parent: N14CurrencyCap
@@ -206,6 +221,10 @@
   name: NCR dollar
   description: Wads of paper. Make it rain!
   components:
+  - type: Cash
+  - type: PhysicalComposition
+    materialComposition:
+      NcrCredit: 1
   - type: Stack
     stackType: NCRDollar
     count: 1
