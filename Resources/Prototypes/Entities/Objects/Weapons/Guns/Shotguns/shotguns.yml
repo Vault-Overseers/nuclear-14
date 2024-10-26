@@ -33,7 +33,6 @@
     whitelist:
       tags:
       - ShellShotgun
-      - Flare
     capacity: 7
     proto: ShellShotgun
     soundInsert:
@@ -44,30 +43,11 @@
         ents: []
   - type: StaticPrice
     price: 500
-  - type: Execution
-  - type: MeleeWeapon
-    attackRate: 1.4
-    damage:
-      types:
-        Blunt: 10
-    bluntStaminaDamageFactor: 1.3333
-    swapKeys: true
-    disableHeavy: true
-    animation: WeaponArcThrust
-    wideAnimationRotation: 180
-    soundHit:
-      collection: MetalThud
-  - type: IncreaseDamageOnWield
-    damage:
-      types:
-        Blunt: 2.5
-  - type: DamageOtherOnHit
-    staminaCost: 9.5
 
 - type: entity
   name: Bulldog
   # Don't parent to BaseWeaponShotgun because it differs significantly
-  parent: [BaseItem, BaseGunWieldable, BaseSyndicateContraband]
+  parent: BaseItem
   id: WeaponShotgunBulldog
   description: It's a magazine-fed shotgun designed for close quarters combat. Uses .50 shotgun shells.
   components:
@@ -87,7 +67,6 @@
     - Back
     - suitStorage
   - type: AmmoCounter
-  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 2
     selectedMode: FullAuto
@@ -98,9 +77,6 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     fireOnDropChance: 0.3
-    shotgunSpreadMultiplier: 1.5
-    shotgunProjectileCountModifier: 1.33
-  - type: Wieldable
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -110,7 +86,6 @@
         whitelist:
           tags:
           - MagazineShotgun
-        whitelistFailPopup: gun-magazine-whitelist-fail
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
   - type: ContainerContainer
@@ -125,56 +100,10 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
-  - type: Execution
-  - type: MeleeWeapon
-    attackRate: 1.4
-    damage:
-      types:
-        Blunt: 10
-    bluntStaminaDamageFactor: 1.3333
-    swapKeys: true
-    disableHeavy: true
-    animation: WeaponArcThrust
-    wideAnimationRotation: 180
-    soundHit:
-      collection: MetalThud
-  - type: IncreaseDamageOnWield
-    damage:
-      types:
-        Blunt: 2.5
-  - type: DamageOtherOnHit
-    staminaCost: 9.5
-
-- type: entity
-  name: Bulldog
-  parent: [WeaponShotgunBulldog]
-  id: WeaponShotgunBulldogEmpty
-  description: It's a magazine-fed shotgun designed for close quarters combat. Uses .50 shotgun shells.
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: null
-        priority: 2
-        whitelist:
-          tags:
-          - MagazineShotgun
-        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-
-- type: entity
-  name: antique Bulldog
-  parent: WeaponShotgunBulldog
-  id: WeaponShotgunBulldogHoS
-  description: This is a seemingly ordinary shotgun, no different from those issued as standard in the Republic of Biesel Navy. A close inspection reveals that this weapon's serial number is 000000013.
-  components:
-    - type: StealTarget
-      stealGroup: HoSAntiqueWeapon
 
 - type: entity
   name: double-barreled shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseMinorContraband]
+  parent: BaseWeaponShotgun
   id: WeaponShotgunDoubleBarreled
   description: An immortal classic. Uses .50 shotgun shells.
   components:
@@ -184,24 +113,17 @@
     size: Normal
     shape:
     - 0,0,4,0
-    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
-  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
+    heldPrefix: db
   - type: Gun
     fireRate: 2
     fireOnDropChance: 0.5
-  - type: Wieldable
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
     graph: ShotgunSawn
     node: start
     deconstructionTarget: null
-  - type: MeleeWeapon
-    damage:
-      types:
-        Blunt: 8.5
-  - type: DamageOtherOnHit
-    staminaCost: 7.5
 
 - type: entity
   name: double-barreled shotgun
@@ -215,28 +137,15 @@
 
 - type: entity
   name: Enforcer
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseRestrictedContraband]
+  parent: BaseWeaponShotgun
   id: WeaponShotgunEnforcer
   description: A premium combat shotgun based on the Kammerer design, featuring an upgraded clip capacity. .50 shotgun shells.
   components:
   - type: Sprite
-    sprite: DeltaV/Objects/Weapons/Guns/Shotguns/enforcer.rsi
+    sprite: DeltaV/Objects/Weapons/Guns/Shotguns/enforcer.rsi # Delta-V
   - type: Clothing
-    sprite: DeltaV/Objects/Weapons/Guns/Shotguns/enforcer.rsi
-  - type: Item
-    sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
+    sprite: DeltaV/Objects/Weapons/Guns/Shotguns/enforcer.rsi # Delta-V
   - type: BallisticAmmoProvider
-    capacity: 7
-    autoCycle: false
-  - type: Wieldable
-  - type: GunRequiresWield
-  - type: MeleeWeapon
-    attackRate: 1.4
-    damage:
-      types:
-        Blunt: 9
-  - type: DamageOtherOnHit
-    staminaCost: 8.0
 
 - type: entity
   parent: WeaponShotgunEnforcer
@@ -248,7 +157,7 @@
 
 - type: entity
   name: Kammerer
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseRestrictedContraband]
+  parent: BaseWeaponShotgun
   id: WeaponShotgunKammerer
   description: When an old Remington design meets modern materials, this is the result. A favourite weapon of militia forces throughout many worlds. Uses .50 shotgun shells.
   components:
@@ -256,27 +165,17 @@
     size: Normal
     shape:
     - 0,0,4,0
-    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
+    heldPrefix: pump
   - type: Sprite
-    sprite: DeltaV/Objects/Weapons/Guns/Shotguns/pump.rsi
+    sprite: DeltaV/Objects/Weapons/Guns/Shotguns/pump.rsi # Delta-V
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
-  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+    sprite: DeltaV/Objects/Weapons/Guns/Shotguns/pump.rsi # Delta-V
   - type: BallisticAmmoProvider
     capacity: 4
-    autoCycle: false
   - type: Tag
     tags:
     - WeaponShotgunKammerer
-  - type: Wieldable
-  - type: Gun
-    shotgunSpreadMultiplier: 0.5
-  - type: ExtendDescription
-    descriptionList:
-      - description: "gun-modifier-choke"
-        fontSize: 12
-        color: "#ff4f00"
-        requireDetailRange: false
 
 - type: entity
   name: sawn-off shotgun
@@ -290,38 +189,20 @@
     sprite: DeltaV/Objects/Weapons/Guns/Shotguns/sawn.rsi # Delta-V
   - type: Item
     size: Small
-    sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
+    heldPrefix: sawn
   - type: Gun
     fireRate: 4
     fireOnDropChance: 0.5
-    shotgunSpreadMultiplier: 3
-    damageModifier: 1.5
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
     graph: ShotgunSawn
     node: shotgunsawn
     deconstructionTarget: null
-  - type: MeleeWeapon
-    attackRate: 1.2
-    damage:
-      types:
-        Blunt: 7.5
-  - type: DamageOtherOnHit
-    staminaCost: 6
 
 - type: entity
-  parent: WeaponShotgunSawn
-  id: WeaponShotgunSawnLumen
-  suffix: Lumenblast
-  description: Groovy! Uses .50 shotgun shells.
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 2
-    proto: ShellShotgunLumen
-
-- type: entity
-  name: sawn-off shotgun
+  name: sawn-off shogun
   parent: WeaponShotgunSawn
   id: WeaponShotgunSawnEmpty
   description: Groovy! Uses .50 shotgun shells.
@@ -336,7 +217,7 @@
 
 - type: entity
   name: handmade pistol
-  parent: [BaseWeaponShotgun, BaseMinorContraband]
+  parent: BaseWeaponShotgun
   id: WeaponShotgunHandmade
   description: Looks unreliable. Uses .50 shotgun shells.
   components:
@@ -358,18 +239,10 @@
     deconstructionTarget: null
   - type: StaticPrice
     price: 0
-  - type: MeleeWeapon
-    attackRate: 1.2
-    damage:
-      types:
-        Blunt: 7.5
-    wideAnimationRotation: 135
-  - type: DamageOtherOnHit
-    staminaCost: 5
 
 - type: entity
   name: blunderbuss
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseMinorContraband]
+  parent: BaseWeaponShotgun
   id: WeaponShotgunBlunderbuss
   suffix: Pirate
   description: Deadly at close range.
@@ -380,7 +253,6 @@
     - 0,0,4,0
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
-  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 2
     fireOnDropChance: 1
@@ -388,11 +260,10 @@
     capacity: 1
   - type: StaticPrice
     price: 0
-  - type: Wieldable
 
 - type: entity
   name: improvised shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseMinorContraband]
+  parent: BaseWeaponShotgun
   id: WeaponShotgunImprovised
   description: A shitty, hand-made shotgun that uses .50 shotgun shells. It can only hold one round in the chamber.
   components:
@@ -404,8 +275,8 @@
     size: Normal
     shape:
     - 0,0,4,0
-    sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun_inhands_64x.rsi
-  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
+    heldPrefix: improvised
   - type: Gun
     fireRate: 4 #No reason to stifle the firerate since you have to manually reload every time anyways.
     fireOnDropChance: 1

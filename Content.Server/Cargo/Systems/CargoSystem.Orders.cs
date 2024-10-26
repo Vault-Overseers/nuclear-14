@@ -88,8 +88,12 @@ namespace Content.Server.Cargo.Systems
                 var stationQuery = EntityQueryEnumerator<StationBankAccountComponent>();
                 while (stationQuery.MoveNext(out var uid, out var bank))
                 {
+<<<<<<< HEAD
                     var balanceToAdd = bank.IncreasePerSecond * Delay;
                     UpdateBankAccount(uid, bank, balanceToAdd);
+=======
+                    account.Balance += account.IncreasePerSecond * Delay;
+>>>>>>> 22aa7389e3 (Revert "Crimson Caravan Cargo System" (#630))
                 }
 
                 var query = EntityQueryEnumerator<CargoOrderConsoleComponent>();

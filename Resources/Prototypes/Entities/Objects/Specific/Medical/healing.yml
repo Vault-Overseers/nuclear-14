@@ -29,22 +29,22 @@
     heldPrefix: ointment
   - type: Healing
     damageContainers:
-    - Biological
+      - Biological
     damage:
       types:
-        Heat: -10
-        Cold: -10
-        Shock: -10
-        Caustic: -5 #Was 5 per type & 1.5 caustic, Buffed due to limb damage changes
+        Heat: -5
+        Cold: -5
+        Shock: -5
+        Caustic: -1.5
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
     healingEndSound:
       path: "/Audio/Items/Medical/ointment_end.ogg"
   - type: Stack
     stackType: Ointment
-    count: 15 #Was 10, Buffed due to limb damage changes
+    count: 10
   - type: StackPrice
-    price: 10 #Was 5, Buffed due to surgery changes
+    price: 5
 
 - type: entity
   id: Ointment1
@@ -80,22 +80,22 @@
     heldPrefix: regenerative-mesh
   - type: Healing
     damageContainers:
-    - Biological
+      - Biological
     damage:
       types:
-        Heat: -15
-        Cold: -15
-        Shock: -15
-        Caustic: -15 #Was 10 per type, Buffed due to limb damage changes
+        Heat: -10
+        Cold: -10
+        Shock: -10
+        Caustic: -10
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
     healingEndSound:
       path: "/Audio/Items/Medical/ointment_end.ogg"
   - type: Stack
     stackType: RegenerativeMesh
-    count: 15 #Was 10, Buffed due to limb damage changes
+    count: 10
   - type: StackPrice
-    price: 40 #Was 20, Buffed due to limb damage changes
+    price: 20
 
 - type: entity
   id: OintmentAdvanced1
@@ -120,19 +120,19 @@
     state: brutepack
   - type: Healing
     damageContainers:
-    - Biological
+      - Biological
     damage:
       groups:
-        Brute: -30 # was 5 (-15 Brute) for each, Buffed due to limb damage changes
+        Brute: -15 # 5 for each type in the group
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
     healingEndSound:
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: Brutepack
-    count: 15 #Was 10, Buffed due to limb damage changes
+    count: 10
   - type: StackPrice
-    price: 10 #Was 5, Buffed due to limb damage changes
+    price: 5
 
 - type: entity
   id: Brutepack1
@@ -169,10 +169,10 @@
     storedRotation: -90
   - type: Healing
     damageContainers:
-    - Biological
+      - Biological
     damage:
       groups:
-        Brute: -45 # was 10 for each, now 20 for each type in the group, Buffed due to Limb Damage Changes
+        Brute: -30 # 10 for each type in the group
     bloodlossModifier: -10 # a suture should stop ongoing bleeding
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -180,9 +180,9 @@
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: MedicatedSuture
-    count: 15 #Was 10, Buffed due to surgery changes
+    count: 10
   - type: StackPrice
-    price: 40 #Was 20, Buffed due to limb damage changes
+    price: 20
 
 - type: entity
   id: BrutepackAdvanced1
@@ -195,7 +195,7 @@
 
 - type: entity
   name: blood pack
-  description: Contains a universal blood replacement created by Med-Tek Laboratories.
+  description: Contains a groundbreaking universal blood replacement created by Nanotrasen's advanced medical science.
   parent: BaseHealingItem
   id: Bloodpack
   suffix: Full
@@ -207,20 +207,20 @@
     state: bloodpack
   - type: Healing
     damageContainers:
-    - Biological
+      - Biological
     damage:
       types:
-        Bloodloss: -2.5 #lowers bloodloss damage, was .5, buffed due to Limb Damage Changes
-    ModifyBloodLevel: 30 #used to restore 5% blood per use, now restores about 10% blood per use on standard Buffed due to Limb Damage Changes
+        Bloodloss: -0.5 #lowers bloodloss damage
+    ModifyBloodLevel: 15 #restores about 5% blood per use on standard humanoids.
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
     healingEndSound:
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: Bloodpack
-    count: 15 #Was 10, Buffed due to limb damage changes
+    count: 10
   - type: StackPrice
-    price: 20 #Was 10, Buffed due to limb damage changes
+    price: 10
 
 - type: entity
   parent: Bloodpack
@@ -236,26 +236,25 @@
   name: tourniquet
   description: Stops bleeding! Hopefully.
   components:
-  - type: Tag
-    tags:
-    - Tourniquet #Goobstation - ParamedHypo
-    - SecBeltEquip
-  - type: Sprite
-    state: tourniquet
-  - type: Healing
-    damageContainers:
-    - Biological
-    damage:
-      groups:
-        Brute: 5 # Tourniquets HURT!
-      types:
-        Asphyxiation: 5 # Essentially Stopping all blood reaching a part of your body
-    bloodlossModifier: -10 # Tourniquets stop bleeding
-    delay: 0.5
-    healingBeginSound:
-      path: "/Audio/Items/Medical/brutepack_begin.ogg"
-    healingEndSound:
-      path: "/Audio/Items/Medical/brutepack_end.ogg"
+    - type: Tag
+      tags:
+        - SecBeltEquip
+    - type: Sprite
+      state: tourniquet
+    - type: Healing
+      damageContainers:
+        - Biological
+      damage:
+        groups:
+          Brute: 5 # Tourniquets HURT!
+        types:
+          Asphyxiation: 5 # Essentially Stopping all blood reaching a part of your body
+      bloodlossModifier: -10 # Tourniquets stop bleeding
+      delay: 0.5
+      healingBeginSound:
+        path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      healingEndSound:
+        path: "/Audio/Items/Medical/brutepack_end.ogg"
 
 - type: entity
   name: roll of gauze
@@ -274,11 +273,11 @@
     node: gauze
   - type: Healing
     damageContainers:
-    - Biological
+      - Biological
     damage:
       types:
-        Slash: -10 # Was 5
-        Piercing: -15 # Was 10, Buffed due to limb damage changes
+        Slash: -5
+        Piercing: -10
     bloodlossModifier: -10
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -286,9 +285,9 @@
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: Gauze
-    count: 15 #Was 10, Buffed due to limb damage changes
+    count: 10
   - type: StackPrice
-    price: 20 #Was 10, Buffed due to limb damage changes
+    price: 10
 
 - type: entity
   id: Gauze1
@@ -305,7 +304,7 @@
   components:
   - type: Stack
     lingering: true
-    count: 1
+    count: 10
 
 - type: entity
   name: aloe cream
@@ -318,7 +317,7 @@
     state: cream
   - type: Stack
     stackType: AloeCream
-    count: 15 #Was 10, Buffed due to limb damage changes
+    count: 10
 
 - type: entity
   parent: BaseHealingItem
@@ -348,7 +347,7 @@
 
 # Pills
 - type: entity
-  suffix: Dexalin 10u
+  name: pill (dexalin 10u)
   parent: Pill
   id: PillDexalin
   components:
@@ -368,9 +367,10 @@
 
 
 - type: entity
+  name: pill canister (dexalin 10u)
   parent: PillCanister
   id: PillCanisterDexalin
-  suffix: Dexalin 10u, 7
+  suffix: Dexalin, 7
   components:
   - type: Label
     currentLabel: dexalin 10u
@@ -380,7 +380,7 @@
       amount: 7
 
 - type: entity
-  suffix: Dylovene 10u
+  name: pill (dylovene 10u)
   parent: Pill
   id: PillDylovene
   components:
@@ -399,9 +399,10 @@
           Quantity: 10
 
 - type: entity
+  name: pill canister (dylovene 10u)
   parent: PillCanister
   id: PillCanisterDylovene
-  suffix: Dylovene 10u, 5
+  suffix: Dylovene, 5
   components:
   - type: Label
     currentLabel: dylovene 10u
@@ -411,7 +412,7 @@
       amount: 5
 
 - type: entity
-  suffix: Hyronalin 10u
+  name: pill (hyronalin 10u)
   parent: Pill
   id: PillHyronalin
   components:
@@ -430,9 +431,10 @@
           Quantity: 10
 
 - type: entity
+  name: pill canister (hyronalin 10u)
   parent: PillCanister
   id: PillCanisterHyronalin
-  suffix: Hyronalin 10u, 5
+  suffix: Hyronalin, 5
   components:
   - type: Label
     currentLabel: hyronalin 10u
@@ -442,38 +444,7 @@
       amount: 5
 
 - type: entity
-  suffix: Potassium iodide 10u
-  parent: Pill
-  id: PillPotassiumIodide
-  components:
-  - type: Pill
-    pillType: 8
-  - type: Sprite
-    state: pill9
-  - type: Label
-    currentLabel: potassium iodide 10u
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: PotassiumIodide
-          Quantity: 10
-
-- type: entity
-  parent: PillCanister
-  id: PillCanisterPotassiumIodide
-  suffix: Potassium iodide, 5
-  components:
-  - type: Label
-    currentLabel: potassium iodide 10u
-  - type: StorageFill
-    contents:
-    - id: PillPotassiumIodide
-      amount: 5
-
-- type: entity
-  suffix: Iron 10u
+  name: pill (iron 10u)
   parent: Pill
   id: PillIron
   components:
@@ -492,7 +463,7 @@
           Quantity: 10
 
 - type: entity
-  suffix: Copper 10u
+  name: pill (copper 10u)
   parent: Pill
   id: PillCopper
   components:
@@ -511,6 +482,7 @@
           Quantity: 10
 
 - type: entity
+  name: pill canister (iron 10u)
   parent: PillCanister
   id: PillCanisterIron
   suffix: Iron, 5
@@ -523,9 +495,10 @@
       amount: 5
 
 - type: entity
+  name: pill canister (copper 10u)
   parent: PillCanister
   id: PillCanisterCopper
-  suffix: Copper 10u, 5
+  suffix: Copper, 5
   components:
   - type: Label
     currentLabel: copper 10u
@@ -535,7 +508,7 @@
       amount: 5
 
 - type: entity
-  suffix: Kelotane 10u
+  name: pill (kelotane 10u)
   parent: Pill
   id: PillKelotane
   components:
@@ -554,9 +527,10 @@
           Quantity: 10
 
 - type: entity
+  name: pill canister (kelotane 10u)
   parent: PillCanister
   id: PillCanisterKelotane
-  suffix: Kelotane 10u, 5
+  suffix: Kelotane, 5
   components:
   - type: Label
     currentLabel: kelotane 10u
@@ -566,7 +540,7 @@
       amount: 5
 
 - type: entity
-  suffix: Dermaline 10u
+  name: pill (dermaline 10u)
   parent: Pill
   id: PillDermaline
   components:
@@ -585,9 +559,10 @@
           Quantity: 10
 
 - type: entity
+  name: pill canister (dermaline 10u)
   parent: PillCanister
   id: PillCanisterDermaline
-  suffix: Dermaline 10u, 5
+  suffix: Dermaline, 5
   components:
   - type: Label
     currentLabel: dermaline 10u
@@ -597,12 +572,10 @@
       amount: 5
 
 - type: entity
-  suffix: space mirage 15u
+  name: space drugs
   parent: Pill
   id: PillSpaceDrugs
   components:
-  - type: Label
-    currentLabel: space mirage 15u
   - type: SolutionContainerManager
     solutions:
       food:
@@ -610,53 +583,9 @@
         reagents:
         - ReagentId: SpaceDrugs
           Quantity: 15
-  - type: GuideHelp
-    guides: [ Psionics ]
 
 - type: entity
-  parent: PillCanister
-  id: PillCanisterSpaceDrugs
-  suffix: Space Drugs, 5
-  components:
-  - type: Label
-    currentLabel: LSD 15u
-  - type: StorageFill
-    contents:
-    - id: PillSpaceDrugs
-      amount: 5
-  - type: GuideHelp
-    guides: [ Psionics ]
-
-- type: entity
-  suffix: Pax 10u
-  parent: Pill
-  id: PillPax
-  components:
-  - type: Label
-    currentLabel: pax 10u
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Pax
-          Quantity: 10
-
-- type: entity
-  parent: PillCanister
-  id: PillCanisterPax
-  suffix: Pax, 5
-  components:
-  - type: Label
-    currentLabel: Pax 10u
-  - type: StorageFill
-    contents:
-    - id: PillPax
-      amount: 5
-
-
-- type: entity
-  suffix: Tricordrazine 10u
+  name: pill (tricordrazine 10u)
   parent: Pill
   id: PillTricordrazine
   components:
@@ -675,9 +604,10 @@
           Quantity: 10
 
 - type: entity
+  name: pill canister (tricordrazine 10u)
   parent: PillCanister
   id: PillCanisterTricordrazine
-  suffix: Tricordrazine 10u, 5
+  suffix: Tricordrazine, 5
   components:
   - type: Label
     currentLabel: tricordrazine 10u
@@ -687,7 +617,7 @@
       amount: 5
 
 - type: entity
-  suffix: Bicaridine 10u
+  name: pill (bicaridine 10u)
   parent: Pill
   id: PillBicaridine
   components:
@@ -706,9 +636,10 @@
           Quantity: 10
 
 - type: entity
+  name: pill canister (bicaridine 10u)
   parent: PillCanister
   id: PillCanisterBicaridine
-  suffix: Bicaridine 10u, 5
+  suffix: Bicaridine, 5
   components:
   - type: Label
     currentLabel: bicaridine 10u
@@ -718,7 +649,7 @@
       amount: 5
 
 - type: entity
-  suffix: Charcoal 10u
+  name: pill (charcoal 10u)
   parent: Pill
   id: PillCharcoal
   components:
@@ -737,9 +668,10 @@
           Quantity: 10
 
 - type: entity
+  name: pill canister (charcoal 10u)
   parent: PillCanister
   id: PillCanisterCharcoal
-  suffix: Charcoal 10u, 3
+  suffix: Charcoal, 3
   components:
   - type: Label
     currentLabel: charcoal 10u
@@ -749,12 +681,10 @@
       amount: 3
 
 - type: entity
-  suffix: Romerol 10u
+  name: romerol pill
   parent: Pill
   id: PillRomerol
   components:
-  - type: Label
-    currentLabel: romerol 10u
   - type: SolutionContainerManager
     solutions:
       food:
@@ -764,38 +694,34 @@
           Quantity: 10
 
 - type: entity
-  suffix: Ambuzol 10u
+  name: ambuzol pill
   parent: Pill
   id: PillAmbuzol
   components:
-  - type: Label
-    currentLabel: ambuzol 10u
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Ambuzol
-          Quantity: 10
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 20
+          reagents:
+            - ReagentId: Ambuzol
+              Quantity: 10
 
 - type: entity
-  suffix: Ambuzol plus 5u
+  name: ambuzol plus pill
   parent: Pill
   id: PillAmbuzolPlus
   components:
-  - type: Pill
-    pillType: 2
-  - type: Sprite
-    state: pill3
-  - type: Label
-    currentLabel: ambuzol plus 5u
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: AmbuzolPlus
-          Quantity: 5
+    - type: Pill
+      pillType: 2
+    - type: Sprite
+      state: pill3
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 20
+          reagents:
+            - ReagentId: AmbuzolPlus
+              Quantity: 5
 
 - type: entity
   parent: PillCanister
@@ -813,10 +739,6 @@
       maxAmount: 7
       orGroup: RandomPill
     - id: PillHyronalin
-      prob: 0.10
-      maxAmount: 7
-      orGroup: RandomPill
-    - id: PillPotassiumIodide
       prob: 0.10
       maxAmount: 7
       orGroup: RandomPill
@@ -962,70 +884,70 @@
   parent: PrefilledSyringe
   id: SyringeAmbuzol
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-        reagents:
-        - ReagentId: Ambuzol
-          Quantity: 15
+    - type: SolutionContainerManager
+      solutions:
+        injector:
+          maxVol: 15
+          reagents:
+            - ReagentId: Ambuzol
+              Quantity: 15
 
 - type: entity
   name: sigynate syringe
   parent: PrefilledSyringe
   id: SyringeSigynate
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-        reagents:
-        - ReagentId: Sigynate
-          Quantity: 15
+    - type: SolutionContainerManager
+      solutions:
+        injector:
+          maxVol: 15
+          reagents:
+            - ReagentId: Sigynate
+              Quantity: 15
 
 - type: entity
   name: ethylredoxrazine syringe
   parent: PrefilledSyringe
   id: SyringeEthylredoxrazine
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-        reagents:
-        - ReagentId: Ethylredoxrazine
-          Quantity: 15
+    - type: SolutionContainerManager
+      solutions:
+        injector:
+          maxVol: 15
+          reagents:
+            - ReagentId: Ethylredoxrazine
+              Quantity: 15
 
 - type: entity
   name: phalanximine syringe
   parent: PrefilledSyringe
   id: SyringePhalanximine
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-        reagents:
-        - ReagentId: Phalanximine
-          Quantity: 15
+    - type: SolutionContainerManager
+      solutions:
+        injector:
+          maxVol: 15
+          reagents:
+            - ReagentId: Phalanximine
+              Quantity: 15
 
 - type: entity
   name: saline syringe
   parent: PrefilledSyringe
   id: SyringeSaline
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-        reagents:
-        - ReagentId: Saline
-          Quantity: 15
+    - type: SolutionContainerManager
+      solutions:
+        injector:
+          maxVol: 15
+          reagents:
+            - ReagentId: Saline
+              Quantity: 15
 
 #this is where all the syringes are so i didn't know where to put it
 - type: entity
   name: romerol syringe
-  parent: [PrefilledSyringe, BaseSyndicateContraband]
+  parent: PrefilledSyringe
   id: SyringeRomerol
   components:
   - type: SolutionContainerManager
@@ -1037,8 +959,8 @@
           Quantity: 15
 
 - type: entity
-  name: hyperzine syringe
-  parent: [PrefilledSyringe, BaseSyndicateContraband]
+  name: stimulants syringe
+  parent: PrefilledSyringe
   id: SyringeStimulants
   components:
   - type: SolutionContainerManager
