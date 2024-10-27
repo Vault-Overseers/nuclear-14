@@ -5,7 +5,6 @@ using Content.Shared.Customization.Systems;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
-using Content.Shared._NC.Roles; // Nuclear 14
 using Robust.Client;
 using Robust.Client.Player;
 using Content.Client.Preferences; // Nuclear 14
@@ -23,7 +22,7 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IBaseClient _client = default!;
     [Dependency] private readonly IClientNetManager _net = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
-	[Dependency] private readonly IClientPreferencesManager _clientPreferences = default!; // Nuclear 14
+    [Dependency] private readonly IClientPreferencesManager _clientPreferences = default!; // Nuclear 14
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<string> _roleBans = new();

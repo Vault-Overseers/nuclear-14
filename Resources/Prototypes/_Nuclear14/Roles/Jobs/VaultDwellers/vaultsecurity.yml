@@ -7,6 +7,10 @@
     - !type:CharacterDepartmentTimeRequirement
       department: Vault
       min: 7200 # 2 hours
+    - !type:JobBlockForSpeciesRequirement
+      species:
+      - Ghoul
+      - GhoulGlowing
   startingGear: VaultSecurityGear
   alwaysUseSpawner: true
   icon: "JobIconSecurityOfficer"
@@ -21,11 +25,6 @@
       - type: NpcFactionMember
         factions:
           - Vault
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: VaultSecurityGear

@@ -3,6 +3,11 @@
   name: job-name-vault-doctor
   description: job-description-vault-doctor
   playTimeTracker: VaultDoctor
+  requirements:
+    - !type:JobBlockForSpeciesRequirement
+      species:
+      - Ghoul
+      - GhoulGlowing
   startingGear: VaultDoctorGear
   alwaysUseSpawner: true
   icon: "JobIconMedicalDoctor"
@@ -17,11 +22,6 @@
         factions:
           - Vault
       - type: CPRTraining
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: VaultDoctorGear
