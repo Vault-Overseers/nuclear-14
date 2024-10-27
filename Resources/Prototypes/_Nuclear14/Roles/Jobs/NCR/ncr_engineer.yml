@@ -1,20 +1,19 @@
 - type: job
-  id: NCRQM
+  id: NCREngineer
   setPreference: true
-  name: job-name-ncr-qm
-  description: job-description-ncr-qm
-  playTimeTracker: NCRQM
+  name: job-name-ncr-engineer
+  description: job-description-ncr-engineer
+  playTimeTracker: NCREngineer
   requirements:
     - !type:CharacterDepartmentTimeRequirement
       department: NCR
-      min: 14400 # 4 hours
-  startingGear: NCRQMGear
+      min: 18000 # 5 hours
+  startingGear: NCREngineerGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-ncr-nco
   canBeAntag: false
   access:
   - NCR
-  - NCRNCO
   special:
   - !type:AddComponentSpecial
     components:
@@ -23,17 +22,16 @@
           - NCR
 
 - type: startingGear
-  id: NCRQMGear
+  id: NCREngineerGear
   equipment:
-    head: N14ClothingHeadHatNCRBeretQM
+    head: N14ClothingHeadHatNCRHelmetMetalSnow
     back: N14ClothingBackpackNCRFilled
-    jumpsuit: N14ClothingOfficerUniformNCRSnow
+    jumpsuit: N14ClothingUniformNCRSnow
     shoes: N14ClothingBootsLeather
-    id: N14IDNCRDogtagNCO
-    pocket1: NCRNCOloadoutkits
-    pocket2: RadioHandheld
-  innerClothingSkirt: N14ClothingOfficerUniformNCRSnow #placeholder
+    id: N14IDNCRDogtagEngineer
+    pocket1: NCRengineerloadoutkits
+  innerClothingSkirt: N14ClothingUniformNCRSnow #placeholder
   satchel: N14ClothingBackpackSatchelNCRFilled
 
 - type: playTimeTracker
-  id: NCRQM
+  id: NCREngineer

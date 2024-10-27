@@ -1,21 +1,20 @@
 - type: job
-  id: NCRNCO
+  id: NCRLT
   setPreference: true
-  name: job-name-ncr-nco
-  description: job-description-ncr-nco
-  playTimeTracker: NCRNCO
+  name: job-name-ncr-lt
+  description: job-description-ncr-lt
+  playTimeTracker: NCROfficer
   requirements:
     - !type:CharacterDepartmentTimeRequirement
       department: NCR
-      min: 36000 # 10 hours
-  startingGear: NCRNCOGear
-  icon: "JobIconSecurityOfficer"
-  supervisors: job-supervisors-ncr
+      min: 72000 # 20 hours
+  weight: 10
+  startingGear: NCRLTGear
+  icon: "JobIconHeadOfSecurity"
+  requireAdminNotify: true
   canBeAntag: false
-  access:
+  accessGroups:
   - NCR
-  - NCRNCO
-  - NCRMP
   special:
   - !type:AddComponentSpecial
     components:
@@ -24,20 +23,20 @@
           - NCR
 
 - type: startingGear
-  id: NCRNCOGear
+  id: NCRLTGear
   equipment:
-    head: N14ClothingHeadHatNCRHelmetMetalSnow
+    head: N14ClothingHeadHatNCRBeretOfficer
     back: N14ClothingBackpackNCRFilled
     jumpsuit: N14ClothingOfficerUniformNCRSnow
     shoes: N14ClothingBootsLeather
-    neck: N14ClothingNeckMantleNCR
-    belt: ClothingBeltNCR
-    outerClothing: N14ClothingOuterNCRVestSnow
-    pocket1: NCRNCOloadoutkits
+    belt: ClothingBeltRevolverCaptainfilled
+    outerClothing: N14ClothingOuterNCRTrenchCoat
+    eyes: ClothingEyesGlassesSunglasses
+    pocket1: NCRSGTloadoutkits
     pocket2: RadioHandheld
-    id: N14IDNCRDogtagNCO
+    id: N14IDNCRDogtagOfficer
   innerClothingSkirt: N14ClothingOfficerUniformNCRSnow #placeholder
   satchel: N14ClothingBackpackSatchelNCRFilled
 
 - type: playTimeTracker
-  id: NCRNCO
+  id: NCROfficer
