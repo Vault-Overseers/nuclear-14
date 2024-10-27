@@ -9,7 +9,7 @@ namespace Content.Server.Cargo.Components;
 public sealed partial class StationBankAccountComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("balance")]
-    public int Balance = 2000;
+    public int Balance = 500;
 
     /// <summary>
     /// How much the bank balance goes up per second, every Delay period. Rounded down when multiplied.
