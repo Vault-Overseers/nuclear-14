@@ -1,33 +1,43 @@
 - type: job
   id: NCRRanger
   setPreference: true
-  name: Republic Ranger
-  description: the most experienced and robust soldiers form part of this elite group of the NCR army, lead troops or act by yourself under the orders of the republic.
+  name: job-name-ncr-ranger
+  description: job-description-ncr-ranger
   playTimeTracker: NCRRanger
-  weight: 5
+  requirements:
+    - !type:CharacterDepartmentTimeRequirement
+      department: NCR
+      min: 36000 # 10 hours as NCR
+    - !type:CharacterWhitelistRequirement
   startingGear: NCRRangerGear
   icon: JobIconSecurityOfficer
   requireAdminNotify: true
   canBeAntag: false
   access:
-  - NCRCadet
-  - NCRSoldier
-  - NCRNCO
+  - NCR
+  - NCRSGT
   - NCRRanger
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - NCR
 
 - type: startingGear
   id: NCRRangerGear
   equipment:
     jumpsuit: N14ClothingUniformRangerPatrol
     shoes: N14ClothingBootsCombatFilled
-    belt: ClothingBeltRevolverfilled
+    ears: N14ClothingHeadsetNCR
+    belt: ClothingBeltRevolverdesertfilled
     eyes: ClothingEyesGlassesSunglasses
     neck: N14ClothingNeckCloakRangerPoncho
-    pocket1: MagazineBox44
-    pocket2: FlashlightSeclite
+    pocket1: MagazineBox45-70
+    pocket2: NCRrangerloadoutkits
     outerClothing: N14ClothingOuterRangerArmor
     head: N14ClothingHeadHatRanger
-    id: N14IDBadgeNCRDesertRanger
+    id: N14IDBadgeNCRRanger
     back: N14ClothingBackpackMilitaryFilled
   innerClothingSkirt: N14ClothingUniformRangerV3 #placeholder
   satchel: N14ClothingBackpackSatchelMilitaryFilled

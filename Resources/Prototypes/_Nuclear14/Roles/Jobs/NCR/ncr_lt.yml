@@ -1,51 +1,44 @@
 - type: job
   id: NCRLT
   setPreference: true
-  overrideConsoleVisibility: false
-  canBeAntag: true
   name: job-name-ncr-lt
   description: job-description-ncr-lt
   playTimeTracker: NCROfficer
   requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-      - Human
-      - Ghoul
-    - !type:CharacterDepartmentTimeRequirement
+    - !type:DepartmentTimeRequirement
       department: NCR
-      min: 72000 # 20 hours
+      time: 72000 # 20 hours
   weight: 10
   startingGear: NCRLTGear
   icon: "JobIconHeadOfSecurity"
-  supervisors: job-supervisors-ncr-lt
   requireAdminNotify: true
-  alwaysUseSpawner: true
-  access:
+  canBeAntag: false
+  accessGroups:
   - NCR
-  - NCRSGT
-  - NCRMedic
-  - NCRLT
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
-          - Wastelander
           - NCR
 
 - type: startingGear
   id: NCRLTGear
   equipment:
     head: N14ClothingHeadHatNCRBeretOfficer
-    back: N14ClothingBackpackNCRFilled
-    jumpsuit: N14ClothingOfficerUniformNCRSnow
-    shoes: N14ClothingBootsCombatFilled
-    eyes: ClothingEyesGlassesSunglasses
+    jumpsuit: N14ClothingOfficerUniformNCR
     ears: N14ClothingHeadsetNCR
-    pocket1: NCRLTloadoutkits
+    shoes: N14ClothingBootsLeather
+    belt: ClothingBeltRevolverCaptainfilled
+    eyes: ClothingEyesGlassesSunglasses
+<<<<<<<< HEAD:Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_officer.yml
+========
+    pocket1: NCRSGTloadoutkits
     pocket2: RadioHandheld
+>>>>>>>> 2296fe8edf (NCR Update Parts 1 and 2 (#626)):Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_lt.yml
     id: N14IDNCRDogtagOfficer
-  innerClothingSkirt: N14ClothingOfficerUniformNCRSnow #placeholder
+    backpack: N14ClothingBackpackSatchelNCRFilled
+  innerClothingSkirt: N14ClothingOfficerUniformNCR #placeholder
   satchel: N14ClothingBackpackSatchelNCRFilled
 
 - type: playTimeTracker
