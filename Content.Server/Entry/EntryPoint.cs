@@ -9,7 +9,7 @@ using Content.Server.JoinQueue;
 using Content.Server._NC.Discord;
 using Content.Server._NC.Sponsors;
 using Content.Server.Database;
-//using Content.Server.DiscordAuth;
+using Content.Server.DiscordAuth;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
 using Content.Server.GhostKick;
@@ -111,7 +111,7 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<JoinQueueManager>().Initialize();
                 IoCManager.Resolve<DiscordAuthManager>().Initialize();
                 IoCManager.Resolve<ServerApi>().Initialize();
-                IoCManager.Resolve<SponsorsManager>().Initialize();
+                //IoCManager.Resolve<SponsorsManager>().Initialize();
                 IoCManager.Resolve<JoinQueueManager>().Initialize();
 
                 _voteManager.Initialize();
