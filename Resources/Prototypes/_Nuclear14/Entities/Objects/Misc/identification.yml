@@ -327,19 +327,6 @@
 
 - type: entity
   parent: N14IDNCRDogtag
-  id: N14IDNCRDogtagMP
-  name: dogtag
-  description: An ID dogtag worn by decently ranking members of the NCR.
-  suffix: Military Police
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: ncrdogtag
-  - type: PresetIdCard
-    job: NCRMP
-
-- type: entity
-  parent: N14IDNCRDogtag
   id: N14IDNCRDogtagDoctor
   name: dogtag
   description: An ID dogtag worn by decently ranking members of the NCR.
@@ -349,20 +336,46 @@
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: ncrdogtag
   - type: PresetIdCard
-    job: NCRDoctor
+    job: NCRMedic
+
+- type: entity
+  parent: N14IDNCRDogtag
+  id: N14IDNCRDogtagWS
+  name: dogtag
+  description: An ID dogtag worn by decently ranking members of the NCR.
+  suffix: WS
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ncrdogtag
+  - type: PresetIdCard
+    job: NCRWS
+
+- type: entity
+  parent: N14IDNCRDogtag
+  id: N14IDNCRDogtagEngineer
+  name: dogtag
+  description: An ID dogtag worn by decently ranking members of the NCR.
+  suffix: Engineer
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: ncrdogtag
+  - type: PresetIdCard
+    job: NCREngineer
 
 - type: entity
   parent: N14IDNCRDogtag
   id: N14IDNCRDogtagNCO
   name: dogtag (NCO)
   description: An ID dogtag worn by decently ranking members of the NCR.
-  suffix: NCO, QM
+  suffix: SGT
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: ncrdogtag
   - type: PresetIdCard
-    job: NCRNCO
+    job: NCRSGT
 
 - type: entity
   parent: N14IDNCRDogtag
@@ -375,7 +388,7 @@
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: ncrdogtag
   - type: PresetIdCard
-    job: NCROfficer
+    job: NCRLT
 
 #MARK: Desert Rangers
 - type: entity
