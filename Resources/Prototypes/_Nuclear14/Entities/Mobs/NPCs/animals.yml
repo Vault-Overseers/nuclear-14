@@ -144,6 +144,56 @@
     tags:
     - Pigrat
 
+#MARK: Radhog
+- type: entity
+  name: radhog
+  parent: N14MobBaseHostile
+  id: N14MobRadhog
+  description: Radiated bacon on angry hooves.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: radhog
+      sprite: _Nuclear14/Mobs/Animals/radhog.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: radhog
+      Dead:
+        Base: dead
+  - type: Tag
+    tags:
+    - Radhog
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadhog
+      amount: 4
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    angle: 60
+    animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 7
+        Piercing: 1
+  - type: Reproductive
+    breedChance: 0.05
+    birthPopup: reproductive-birth-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Radhog
+    offspring:
+    - id: N14MobRadhog
+      maxAmount: 1
+  - type: ReproductivePartner
+
 #MARK: Feral Dog
 - type: entity
   name: feral dog
@@ -953,6 +1003,15 @@
     - id: N14MobBrahmin
       maxAmount: 1
   - type: ReproductivePartner
+  - type: Inventory
+    # speciesId: secdog
+    templateId: packanimal
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
 
 #MARK: Bighorner
 - type: entity
@@ -1091,56 +1150,6 @@
       - Radstag
     offspring:
     - id: N14MobRadstag
-      maxAmount: 1
-  - type: ReproductivePartner
-
-#MARK: Radhog
-- type: entity
-  name: radhog
-  parent: N14MobBrahmin
-  id: N14MobRadhog
-  description: Radiated bacon on angry hooves.
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: radhog
-      sprite: _Nuclear14/Mobs/Animals/radhog.rsi
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: radhog
-      Dead:
-        Base: dead
-  - type: Tag
-    tags:
-    - Radhog
-  - type: Butcherable
-    spawned:
-    - id: N14FoodMeatRadstag
-      amount: 4
-  - type: MeleeWeapon
-    altDisarm: false
-    hidden: true
-    soundHit:
-      collection: MetalThud
-    angle: 60
-    animation: WeaponArcClaw
-    wideAnimation: WeaponArcClaw
-    damage:
-      types:
-        Blunt: 7
-        Piercing: 1
-  - type: Reproductive
-    breedChance: 0.05
-    birthPopup: reproductive-birth-popup
-    makeOffspringInfant: false
-    partnerWhitelist:
-      tags:
-      - Radhog
-    offspring:
-    - id: N14MobRadhog
       maxAmount: 1
   - type: ReproductivePartner
 
