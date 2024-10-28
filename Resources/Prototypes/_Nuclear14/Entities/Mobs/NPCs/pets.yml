@@ -1,0 +1,17 @@
+#MARK: Haggis
+- type: entity
+  name: Haggis
+  id: N14MobCatShopkeep
+  parent: MobCat
+  description: A little rough around the edges, but still cute as can be.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cathaggis
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: cathaggis
+      Dead:
+        Base: cathaggis_dead
