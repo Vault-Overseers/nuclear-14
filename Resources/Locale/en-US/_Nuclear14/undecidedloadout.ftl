@@ -50,6 +50,12 @@ undecided-loadout-category-medic-description =
     Includes 1 NCR leather vest, 1 medical belt, 1 9mm SMG,
     4 9mm SMG magazines, 1 combat knife, and a C ration MRE.
 
+undecided-loadout-category-engineer-name = Engineer Kit
+undecided-loadout-category-engineer-description =
+    A crate containing all a NCR pointman needs to patrol on the wasteland.
+    Includes 1 NCR leather vest, 1 Filled Toolbelt, 1 shotgun, 1 box of 12 gauge,
+    1 9mm pistol, 2 9mm magazines, 1 combat knife, and a C ration MRE.
+
 undecided-loadout-category-special-rifleman-name = Special Rifleman Kit
 undecided-loadout-category-special-rifleman-description =
     A crate containing advance weaponry for high rank troops and veterans.
