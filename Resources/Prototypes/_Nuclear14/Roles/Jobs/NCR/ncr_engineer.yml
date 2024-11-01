@@ -1,0 +1,37 @@
+- type: job
+  id: NCREngineer
+  setPreference: true
+  name: job-name-ncr-engineer
+  description: job-description-ncr-engineer
+  playTimeTracker: NCREngineer
+  requirements:
+    - !type:CharacterDepartmentTimeRequirement
+      department: NCR
+      min: 18000 # 5 hours
+  startingGear: NCREngineerGear
+  icon: "JobIconWarden"
+  supervisors: job-supervisors-ncr-nco
+  canBeAntag: false
+  access:
+  - NCR
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - NCR
+
+- type: startingGear
+  id: NCREngineerGear
+  equipment:
+    head: N14ClothingHeadHatNCRHelmetMetalSnow
+    back: N14ClothingBackpackNCRFilled
+    jumpsuit: N14ClothingUniformNCRSnow
+    shoes: N14ClothingBootsLeather
+    id: N14IDNCRDogtagEngineer
+    pocket1: NCRengineerloadoutkits
+  innerClothingSkirt: N14ClothingUniformNCRSnow #placeholder
+  satchel: N14ClothingBackpackSatchelNCRFilled
+
+- type: playTimeTracker
+  id: NCREngineer

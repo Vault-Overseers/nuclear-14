@@ -160,6 +160,34 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
 
+#MARK: Enginner Kits
+- type: entity
+  name: engineer kit
+  parent: KitBase
+  id: KitEngineer
+  description: A crate containing all an NCR engineer needs to patrol the wasteland.
+  components:
+  - type: Sprite
+    state: pointman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterNCRVestSnow
+      - id: N14ClothingBeltUtilityFilled
+      - id: N14WeaponShotgun
+      - id: MagazineBox12gauge
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+        amount: 2
+      - id: N14CombatKnife
+      - id: N14BoxCardboardMREBoxCFilled
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+#MARK: WS Kits
+# TODO: Grenadier Kit
+
 #MARK: Special Kits
 
 - type: entity
@@ -249,28 +277,6 @@
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
-      - id: N14CombatKnife
-      - id: N14BoxCardboardMREBoxCFilled
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-#MARK: MP Kits
-
-- type: entity
-  name: military police kit
-  parent: KitBase
-  id: KitMilitaryPolice
-  description: A crate containing basic equipment for NCR Military Police Officers.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 3 #One more than the standard rifleman kit.
       - id: N14CombatKnife
       - id: N14BoxCardboardMREBoxCFilled
     sound:

@@ -1,0 +1,44 @@
+- type: job
+  id: NCRMedic
+  setPreference: true
+  name: job-name-ncr-medic
+  description: job-description-ncr-medic
+  playTimeTracker: NCRDoctor
+  requirements:
+    - !type:CharacterDepartmentTimeRequirement
+      department: NCR
+      min: 3600 # 1 hour
+  startingGear: NCRMedicGear
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-ncr-nco
+  canBeAntag: false
+  alwaysUseSpawner: true
+  access:
+  - NCR
+  - NCRMedic
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - NCR
+      - type: CPRTraining
+
+- type: startingGear
+  id: NCRMedicGear
+  equipment:
+    jumpsuit: N14ClothingOfficerUniformNCRSnow
+    back: N14ClothingBackpackNCRFilled
+    head: N14ClothingHeadHatNCRBeretMedic
+    shoes: N14ClothingShoesBlack
+    gloves: N14ClothingHandsGlovesNitrile
+    belt: ClothingBeltMedicalfilled
+    id: N14IDNCRDogtagDoctor
+    pocket1: N14WeaponPistol9mm
+    pocket2: NCRtrooperloadoutkits
+    outerClothing: ClothingOuterCoatLab
+  innerClothingSkirt: N14ClothingOfficerUniformNCRSnow
+  satchel: N14ClothingBackpackSatchelNCRFilled
+
+- type: playTimeTracker
+  id: NCRDoctor
