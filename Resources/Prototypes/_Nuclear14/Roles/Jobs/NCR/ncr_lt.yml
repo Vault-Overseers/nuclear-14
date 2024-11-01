@@ -5,25 +5,17 @@
   description: job-description-ncr-lt
   playTimeTracker: NCROfficer
   requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-      - Human
-      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: NCR
       min: 72000 # 20 hours
   weight: 10
   startingGear: NCRLTGear
   icon: "JobIconHeadOfSecurity"
-  supervisors: job-supervisors-ncr-lt
   requireAdminNotify: true
   canBeAntag: false
   alwaysUseSpawner: true
-  access:
+  accessGroups:
   - NCR
-  - NCRSGT
-  - NCRMedic
-  - NCRLT
   special:
   - !type:AddComponentSpecial
     components:
@@ -37,10 +29,11 @@
     head: N14ClothingHeadHatNCRBeretOfficer
     back: N14ClothingBackpackNCRFilled
     jumpsuit: N14ClothingOfficerUniformNCRSnow
-    shoes: N14ClothingBootsCombatFilled
+    shoes: N14ClothingBootsLeather
+    belt: ClothingBeltRevolverCaptainfilled
+    outerClothing: N14ClothingOuterNCRTrenchCoat
     eyes: ClothingEyesGlassesSunglasses
-    ears: N14ClothingHeadsetNCR
-    pocket1: NCRLTloadoutkits
+    pocket1: NCRSGTloadoutkits
     pocket2: RadioHandheld
     id: N14IDNCRDogtagOfficer
   innerClothingSkirt: N14ClothingOfficerUniformNCRSnow #placeholder
