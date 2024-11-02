@@ -74,6 +74,36 @@
   - type: ConditionalSpawner
     prototypes:
       - N14MobMolerat
+
+- type: entity
+  name: Pigrat Spawner
+  id: N14SpawnMobPigrat
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Animals/pigrat.rsi
+        state: pigrat
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobPigrat
+
+- type: entity
+  name: Radhog Spawner
+  id: N14SpawnMobRadhog
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Animals/radhog.rsi
+        state: radhog
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobRadhog
       
 - type: entity
   name: Feral Dog Spawner
@@ -104,7 +134,37 @@
   - type: ConditionalSpawner
     prototypes:
       - N14MobGecko
-      
+
+- type: entity
+  name: Fire Gecko Spawner
+  id: N14SpawnMobGeckoFire
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Animals/firegecko.rsi
+        state: gecko
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobGeckoFire
+
+- type: entity
+  name: Golden Gecko Spawner
+  id: N14SpawnMobGeckoGolden
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Animals/goldengecko.rsi
+        state: gecko
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobGeckoGolden
+
 - type: entity
   name: Nightstalker Cub Spawner
   id: N14SpawnMobNightstalkerCub
@@ -346,6 +406,68 @@
   - type: ConditionalSpawner
     prototypes:
       - N14MobRaiderPsycho
+
+
+# Ghoul
+- type: entity
+  name: Feral Ghoul Spawner
+  id: N14SpawnMobFeralGhoul
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Ghouls/f13ghouls.rsi
+        state: feralghoul
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobGhoulFeral
+      
+- type: entity
+  name: Feral Ghoul Reaver Spawner
+  id: N14SpawnMobFeralGhoulReaver
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Ghouls/ghoul-reaver.rsi
+        state: alive
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobGhoulFeralReaver
+      
+- type: entity
+  name: Feral Ghoul Rotter Spawner
+  id: N14SpawnMobFeralGhoulRotter
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Ghouls/ghoul-rotter.rsi
+        state: alive
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobGhoulFeralRotter
+      
+- type: entity
+  name: Maypole Spawner
+  id: N14SpawnMobGhoulMaypole
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Ghouls/maypole.rsi
+        state: alive
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobGhoulMaypole
 
 # Robots
 - type: entity

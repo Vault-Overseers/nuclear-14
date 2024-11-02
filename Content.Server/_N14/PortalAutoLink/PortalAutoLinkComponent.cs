@@ -12,5 +12,5 @@ public sealed partial class PortalAutoLinkComponent : Component
     /// A key used to locate another entity with a matching link in the world.
     /// </summary>
     [DataField]
-    public string? LinkKey { get; set; } = "ReplaceMe";
+    public string? LinkKey { get; set; } = "IgnoreMe";
 }

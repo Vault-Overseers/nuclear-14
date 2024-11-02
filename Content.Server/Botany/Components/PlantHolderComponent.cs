@@ -30,10 +30,10 @@ public sealed partial class PlantHolderComponent : Component
     public bool DrawWarnings = false;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("waterLevel")]
-    public float WaterLevel = 100f;
+    public float WaterLevel = 20f;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("nutritionLevel")]
-    public float NutritionLevel = 100f;
+    public float NutritionLevel = 20f;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("pestLevel")]
     public float PestLevel;

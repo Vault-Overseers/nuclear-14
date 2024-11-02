@@ -256,8 +256,16 @@
     Medicine:
       metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
-      - !type:Drunk
-      # - !type:CureAddiction
+      - !type:GenericStatusEffect # Remove this block when !type:CureAddiction is functional
+        key: Drunk
+        time: 6.0
+        type: Remove
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -0.5
+     # - !type:Drunk
+     # - !type:CureAddiction
 
 # - type: reagent
 #   id: Addictol

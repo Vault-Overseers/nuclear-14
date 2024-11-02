@@ -2,7 +2,7 @@
 - type: entity
   id: NCRtrooperloadoutkits
   name: Undecided NCR Trooper Loadout Kit
-  description: please only take one
+  description: Please only take one..
   parent: BaseItem
   components:
   - type: Sprite
@@ -12,7 +12,6 @@
     transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     - RiflemanSet
-    - GunnerSet
     - MarksmanSet
     - PointmanSet
     - MoraleSet
@@ -24,10 +23,53 @@
       - key: enum.UndecidedLoadoutBackpackUIKey.Key
         type: UndecidedLoadoutBackpackBoundUserInterface
 
+# Engineer Kits
 - type: entity
-  id: NCRNCOloadoutkits
-  name: Undecided NCR NCO Loadout Kit
-  description: please only take one
+  id: NCRengineerloadoutkits
+  name: Undecided NCR Engineer Loadout Kit
+  description: Please only take one..
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - EngineerSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+# WS Kits
+- type: entity
+  id: NCRwsloadoutkits
+  name: Undecided NCR Weapon Specalist Loadout Kit
+  description: Please only take one..
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: gunner
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - GunnerSet
+    #- GrenadierSet #TODO
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: NCRSGTloadoutkits
+  name: Undecided NCR SGT Loadout Kit
+  description: Please only take one.
   parent: BaseItem
   components:
   - type: Sprite
@@ -56,7 +98,7 @@
 - type: entity
   id: NCRrangerloadoutkits
   name: Undecided NCR Ranger Loadout Kit
-  description: please only take one
+  description: Please only take one.
   parent: BaseItem
   components:
   - type: Sprite
@@ -80,7 +122,7 @@
 - type: entity
   id: NCRveteranrangerloadoutkits
   name: Undecided NCR Veteran Ranger Loadout Kit
-  description: please only take one
+  description: Please only take one.
   parent: BaseItem
   components:
   - type: Sprite
@@ -110,7 +152,7 @@
 - type: entity
   id: NCRBoSMidwestkits
   name: Undecided BoS Midwest Kit
-  description: please only take one
+  description: Please only take one.
   parent: BaseItem
   components:
   - type: Sprite
@@ -132,7 +174,7 @@
 - type: entity
   id: NCRBoSMidwestScribekits
   name: Undecided BoS Scribe Midwest Kit
-  description: please only take one
+  description: Please only take one.
   parent: BaseItem
   components:
   - type: Sprite
@@ -155,7 +197,7 @@
 - type: entity
   id: NCRBoSMidwestPaladinkits
   name: Undecided BoS Paladin Midwest Kit
-  description: please only take one
+  description: Please only take one.
   parent: BaseItem
   components:
   - type: Sprite
@@ -237,6 +279,21 @@
     state: medic
   content:
   - KitMedic
+
+#MARK: Engineer Kits
+
+- type: UndecidedLoadoutBackpackSet
+  id: EngineerSet
+  name: undecided-loadout-category-engineer-name
+  description: undecided-loadout-category-engineer-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  content:
+  - KitEngineer
+
+#MARK: WS Kits
+#TODO: Grendeir Specific Kit
 
 #MARK: Special Kits
 
