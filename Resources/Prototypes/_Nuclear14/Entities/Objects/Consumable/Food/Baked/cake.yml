@@ -1,0 +1,753 @@
+# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_baked_whole.yml & food_baked_single.yml
+# Base
+
+- type: entity
+  parent: FoodInjectableBase
+  id: N14FoodCakeBase
+  abstract: true
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Food
+  - type: Sprite
+    sprite: Objects/Consumable/Food/Baked/cake.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: N14FoodCakeBase
+  id: N14FoodCakeSliceBase
+  abstract: true
+  description: A decadent slice of simple cake.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: Item
+    size: Tiny
+
+# Custom Cake Example
+
+- type: entity
+  name: tarberry cake #N14 change
+  parent: N14FoodCakeBase
+  id: N14FoodCakeTarberry
+  description: A hearty, filling tarberry cake. #N14 change
+  components:
+  - type: Sprite
+    layers:
+    - state: plain
+    - state: alpha-filling
+      color: blue
+  - type: SliceableFood
+    slice: N14FoodCakeBlueberrySlice
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: tarberry slice #N14 change
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeBlueberrySlice
+  description: Stains - and sticks to - your teeth. #N14 change
+  components:
+  - type: Sprite
+    layers:
+    - state: plain-slice
+    - state: alpha-slice-filling
+      color: blue
+  - type: Tag
+    tags:
+    - Fruit
+
+# Cake
+
+- type: entity
+  name: cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakePlain
+  description: A plain cake. Obscene luxury, even so. #N14 change
+  components:
+  - type: Sprite
+    state: plain
+  - type: SliceableFood
+    slice: N14FoodCakePlainSlice
+
+# Added in type lines above
+
+- type: entity
+  name: slice of cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakePlainSlice
+  description: A decadent slice of simple cake. #N14 change
+  components:
+  - type: Sprite
+    state: plain-slice
+# Tastes like sweetness, cake.
+
+- type: entity
+  name: carrot cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeCarrot
+  description: Cake? Actual cake in the wasteland? Pinch yourself. Make sure you're not in heaven. #N14 change
+  components:
+  - type: Sprite
+    state: carrot
+  - type: SliceableFood
+    slice: N14FoodCakeCarrotSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: JuiceCarrot
+          Quantity: 15
+        - ReagentId: Sugar
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 5
+
+- type: entity
+  name: slice of carrot cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeCarrotSlice
+  description: Delicious! Also good for your eyes, if you're a dumbfuck who welded without protection. #N14 change
+  components:
+  - type: Sprite
+    state: carrot-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: JuiceCarrot
+          Quantity: 3
+        - ReagentId: Sugar
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+# Tastes like sweetness, cake, carrot.
+
+- type: entity
+  name: brain cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeBrain
+  description: Food for thought. #N14 change
+  components:
+  - type: Sprite
+    state: brain
+  - type: SliceableFood
+    slice: N14FoodCakeBrainSlice
+
+
+- type: entity
+  name: slice of brain cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeBrainSlice
+  description: Lemme tell you something about prions. THEY'RE DELICIOUS.
+  components:
+  - type: Sprite
+    state: brain-slice
+# Tastes like sweetness, cake, brains.
+
+- type: entity
+  name: cheese cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeCheese
+  description: DANGEROUSLY cheesy.
+  components:
+  - type: Sprite
+    state: cheese
+  - type: SliceableFood
+    slice: N14FoodCakeCheeseSlice
+
+- type: entity
+  name: slice of cheese cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeCheeseSlice
+  description: Slice of pure cheestisfaction. #god this should be changed sometime
+  components:
+  - type: Sprite
+    state: cheese-slice
+# Tastes like sweetness, cream cheese.
+
+- type: entity
+  name: orange cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeOrange
+  description: A cake with added orange.
+  components:
+  - type: Sprite
+    state: orange
+  - type: SliceableFood
+    slice: N14FoodCakeOrangeSlice
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: slice of orange cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeOrangeSlice
+  components:
+  - type: Sprite
+    state: orange-slice
+  - type: Tag
+    tags:
+    - Fruit
+# Tastes like sweetness, cake, oranges.
+
+- type: entity
+  name: lime cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeLime
+  description: A cake with added lime.
+  components:
+  - type: Sprite
+    state: lime
+  - type: SliceableFood
+    slice: N14FoodCakeLimeSlice
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: slice of lime cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeLimeSlice
+  components:
+  - type: Sprite
+    state: lime-slice
+  - type: Tag
+    tags:
+    - Fruit
+# Tastes like sweetness, cake, limes.
+
+- type: entity
+  name: lemon cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeLemon
+  description: A cake with added lemon.
+  components:
+  - type: Sprite
+    state: lemon
+  - type: SliceableFood
+    slice: N14FoodCakeLemonSlice
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: slice of lemon cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeLemonSlice
+  components:
+  - type: Sprite
+    state: lemon-slice
+  - type: Tag
+    tags:
+    - Fruit
+# Tastes like sweetness, cake, lemons.
+
+- type: entity
+  name: lemoon cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeLemoon
+  description: A cake that represents the moon of earth
+  components:
+  - type: Sprite
+    state: lemoon
+  - type: FlavorProfile
+    flavors:
+      - lemoon
+      - berry
+  - type: SliceableFood
+    slice: N14FoodCakeLemoonSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Milk
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: shard of lemoon cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeLemoonSlice
+  description: A shard of moon, has the smell of milk.
+  components:
+  - type: Sprite
+    state: lemoon-slice
+  - type: FlavorProfile
+    flavors:
+      - lemoon
+      - berry
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Milk
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: chocolate cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeChocolate
+  description: A cake with added chocolate.
+  components:
+  - type: Sprite
+    state: chocolate
+  - type: SliceableFood
+    slice: N14FoodCakeChocolateSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Theobromine
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 5
+
+- type: entity
+  name: slice of chocolate cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeChocolateSlice
+  description: All for you... #N14 change
+  components:
+  - type: Sprite
+    state: chocolate-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Theobromine
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+# Tastes like sweetness, cake, chocolate.
+
+- type: entity
+  name: mutfruit cake #N14 change
+  parent: N14FoodCakeBase
+  id: N14FoodCakeMutfruit
+  description: A cake with a gooey mutfruit centre. #N14 change
+  components:
+  - type: Sprite
+    state: apple
+  - type: SliceableFood
+    slice: N14FoodCakeMutfruitSlice
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: slice of apple cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeMutfruitSlice
+  description: A slice of heavenly cake. Squishy. #N14 change
+  components:
+  - type: Sprite
+    state: apple-slice
+  - type: Tag
+    tags:
+    - Fruit
+# Tastes like sweetness, cake, slime.
+
+- type: entity
+  name: slime cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeSlime
+  description: A cake made of slimes. Probably not electrified.
+  components:
+  - type: Sprite
+    state: slime
+  - type: SliceableFood
+    slice: N14FoodCakeSlimeSlice
+
+- type: entity
+  name: slice of slime cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeSlimeSlice
+  description: A slice of slime cake.
+  components:
+  - type: Sprite
+    state: slime-slice
+# Tastes like sweetness, cake, slime.
+
+- type: entity
+  name: pumpkin-spice cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakePumpkin
+  description: A hollow cake with real pumpkin.
+  components:
+  - type: Sprite
+    state: pumpkinspice
+  - type: SliceableFood
+    slice: N14FoodCakePumpkinSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 50
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 32
+        - ReagentId: Vitamin
+          Quantity: 11
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: slice of pumpkin-spice cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakePumpkinSlice
+  description: A spicy slice of pumpkin goodness.
+  components:
+  - type: Sprite
+    state: pumpkinspice-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6.4
+        - ReagentId: Vitamin
+          Quantity: 2.2
+  - type: Tag
+    tags:
+    - Fruit
+# Tastes like sweetness, cake, pumpkin.
+
+- type: entity
+  name: christmas cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeChristmas
+  description: A cake made of christmas.
+  components:
+  - type: Sprite
+    state: christmas
+  - type: SliceableFood
+    slice: N14FoodCakeChristmasSlice
+
+- type: entity
+  name: slice of christmas cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeChristmasSlice
+  components:
+  - type: Sprite
+    state: christmas-slice
+# Tastes like sweetness, cake, christmas.
+
+- type: entity
+  name: birthday cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeBirthday
+  description: You made it another year in the wastes AND you got cake. #N14 change
+  components:
+  - type: Sprite
+    state: birthday
+  - type: SliceableFood
+    slice: N14FoodCakeBirthdaySlice
+
+- type: entity
+  name: slice of birthday cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeBirthdaySlice
+  description: A slice of your birthday.
+  components:
+  - type: Sprite
+    state: birthday-slice
+# Tastes like sweetness, cake, christmas.
+
+- type: entity
+  name: vanilla cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeVanilla
+  description: A vanilla frosted cake.
+  components:
+  - type: Sprite
+    state: vanilla
+  - type: SliceableFood
+    slice: N14FoodCakeVanillaSlice
+  - type: SolutionContainerManager #TODO Sprinkles
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Sugar
+          Quantity: 15
+
+- type: entity
+  name: slice of vanilla cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeVanillaSlice
+  description: A slice of vanilla frosted cake.
+  components:
+  - type: Sprite
+    state: vanilla-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Sugar
+          Quantity: 3
+# Tastes like sweetness, cake, vanilla.
+
+- type: entity
+  name: clown cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeClown
+  description: A funny cake with a clown face on it.
+  components:
+  - type: Sprite
+    state: clown
+  - type: SliceableFood
+    slice: N14FoodCakeClownSlice
+  - type: SolutionContainerManager #TODO Sprinkles
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Sugar
+          Quantity: 15
+
+- type: entity
+  name: slice of clown cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeClownSlice
+  description: A slice of bad jokes, and silly props.
+  components:
+  - type: Sprite
+    state: clown-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Sugar
+          Quantity: 3
+# Tastes like sweetness, cake, clown.
+
+- type: entity
+  name: spaceman's cake
+  parent: N14FoodCakeBase
+  id: N14FoodCakeSpaceman
+  description: A spaceman's trumpet frosted cake.
+  components:
+  - type: Sprite
+    state: trumpet
+  - type: SliceableFood
+    slice: N14FoodCakeSpacemanSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Omnizine #This is a really rare cake with healing stuff and we don't have any of its chems yet
+          Quantity: 15
+
+- type: entity
+  name: slice of spaceman's cake
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeSpacemanSlice
+  description: A spaceman's trumpet frosted cake.
+  components:
+  - type: Sprite
+    state: trumpet-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Omnizine
+          Quantity: 3
+# Tastes like sweetness, cake, jam.
+
+- type: entity
+  name: cak
+  id: N14MobCatCake
+  parent: N14FoodCakeBase
+  description: It's a cake. It's a cat. It's a cak.
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    sprite: Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cak
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: RotationVisuals
+    defaultRotation: 0
+    horizontalRotation: 0
+  - type: Item
+    size: Ginormous
+    heldPrefix: cak
+  - type: Clothing
+    quickEquip: false
+    sprite: Mobs/Pets/cat.rsi
+    equippedPrefix: cak
+    slots:
+    - HEAD
+  - type: GhostRole
+    prob: 1
+    name: ghost-role-information-Cak-name
+    allowMovement: true
+    description: ghost-role-information-Cak-description
+    rules: ghost-role-information-Cak-rules
+  - type: GhostTakeoverAvailable
+  - type: OwOAccent
+  - type: Speech
+    speechSounds: Cat
+    speechVerb: SmallMob
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5
+    baseSprintSpeed : 3
+  - type: Tag
+    tags:
+    - VimPilot
+    - DoorBumpOpener
+  - type: CanEscapeInventory
+    baseResistTime: 2
+  - type: Puller
+    needsHands: false
+  - type: Examiner
+  - type: CombatMode
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Animals/cat_hiss.ogg
+    hidden: true
+    damage:
+      groups:
+        Brute: 1
+
+# Suppermatter
+# I can't figure out where to put this. It kind of acts like a cake I guess?
+
+- type: entity
+  name: suppermatter
+  parent: N14FoodCakeBase
+  id: N14FoodCakeSuppermatter
+  description: Extremely dense and powerful food.
+  components:
+  - type: Sprite
+    state: suppermatter
+  - type: SliceableFood
+    slice: N14FoodCakeSuppermatterSlice
+    count: 8
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 48
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 48
+  - type: Food
+    transferAmount: 12
+  - type: Item
+    size: Normal
+  - type: PointLight
+    color: "#FFFF00"
+    radius: 2
+    energy: 1.4
+
+- type: entity
+  name: suppermatter shard
+  parent: N14FoodCakeSliceBase
+  id: N14FoodCakeSuppermatterSlice
+  description: A single portion of power.
+  components:
+  - type: Sprite
+    state: suppermatter-shard
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+  - type: Food
+    transferAmount: 3
+  - type: PointLight
+    color: "#FFFF00"
+    radius: 1.4
+    energy: 1.4

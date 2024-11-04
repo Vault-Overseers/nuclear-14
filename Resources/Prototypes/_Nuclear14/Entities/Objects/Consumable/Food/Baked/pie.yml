@@ -1,0 +1,504 @@
+# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_baked_whole.yml & food_baked_single.yml
+# Base
+
+- type: entity
+  parent: FoodInjectableBase
+  id: N14FoodPieBase
+  abstract: true
+  components:
+  - type: Item
+    storedRotation: -90
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Sprite
+    sprite: Objects/Consumable/Food/Baked/pie.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents: #Most of these are this with slight variations, not worth changing until we have the rest of the reagents
+        - ReagentId: Nutriment
+          Quantity: 11
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Food #All pies here made with a pie tin; unless you're some kind of savage, you're probably not destroying this when you eat or slice the pie!
+    trash: FoodPlateTin
+  - type: SliceableFood
+    count: 4
+  - type: Tag
+    tags:
+    - Pie
+
+- type: entity
+  parent: FoodInjectableBase # Not sliceable
+  id: N14FoodPieSliceBase
+  abstract: true
+  description: A slice of pie. Tasty!
+  components:
+  - type: Item
+    size: Tiny
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Sprite
+    sprite: Objects/Consumable/Food/Baked/pie.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1.2
+        - ReagentId: Vitamin
+          Quantity: 1
+
+# Pie
+
+- type: entity
+  name: mutfruit pie #N14 change
+  parent: N14FoodPieBase
+  id: N14FoodPieMutfruit
+  description: It's all... gloppy. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - mutfruit #N14 change
+  - type: Sprite
+    layers:
+    - state: tin
+    - state: apple
+  - type: SliceableFood
+    slice: N14FoodPieMutfruitSlice
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+
+- type: entity
+  name: slice of mutfruit pie #N14 change
+  parent: N14FoodPieSliceBase
+  id: N14FoodPieMutfruitSlice
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - mutfruit #N14 change
+  - type: Sprite
+    layers:
+    - state: plain-slice
+    - state: alpha-slice-filling
+      color: orange #change to purple when I'm not tiiiiiiiiired
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+# Tastes like pie, apple.
+
+- type: entity
+  name: baklava
+  parent: N14FoodPieBase
+  id: N14FoodPieBaklava
+  description: A delightful healthy snack made of nut layers with thin bread.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - nutty
+  - type: Sprite
+    layers:
+    - state: tin
+    - state: baklava
+  - type: SliceableFood
+    slice: N14FoodPieBaklavaSlice
+
+- type: entity
+  name: slice of baklava
+  parent: N14FoodPieSliceBase
+  id: N14FoodPieBaklavaSlice
+  description: A portion of a delightful healthy snack made of nut layers with thin bread.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - nutty
+  - type: Sprite
+    state: baklava-slice
+# Tastes like pie, nuts.
+
+- type: entity
+  name: banana cream pie
+  parent: N14FoodPieBase
+  id: N14FoodPieBananaCream
+  description: Just like back home, on clown planet! HONK!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - banana
+      - creamy
+  - type: Sprite
+    layers:
+    - state: tin
+    - state: plain
+  - type: CreamPie
+  - type: ContainerContainer
+    containers:
+      payloadSlot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      payloadSlot:
+        whitelist:
+          components:
+          - OnUseTimerTrigger
+        insertSound:
+          path: /Audio/Weapons/Guns/Empty/empty.ogg
+        ejectSound:
+          path: /Audio/Weapons/Guns/Empty/empty.ogg
+        swap: false
+        disableEject: true
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+  - type: SliceableFood
+    slice: N14FoodPieBananaCreamSlice
+
+- type: entity
+  name: slice of banana cream pie
+  parent: N14FoodPieSliceBase
+  id: N14FoodPieBananaCreamSlice
+  description: Just like back home, on clown planet! HONK!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - banana
+      - creamy
+  - type: Sprite
+    state: bananapie-slice
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+# Tastes like pie, cream, banana.
+
+- type: entity
+  name: tarberry pie #N14 change
+  parent: N14FoodPieBase
+  id: N14FoodPieTarberry
+  description: It tastes subtly different than tarberry cake. You're living large, friend. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - berry
+  - type: Sprite
+    layers:
+    - state: tin
+      color: blue #N14 change
+    - state: berryclafoutis
+  - type: SliceableFood
+    slice: N14FoodPieTarberrySlice
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+
+- type: entity
+  name: slice of tarberry pie #N14 change
+  parent: N14FoodPieSliceBase
+  id: N14FoodPieTarberrySlice
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - berry
+  - type: Sprite
+    layers:
+    - state: plain-slice
+    - state: alpha-slice-filling
+      color: pink
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+# Tastes like pie, blackberries.
+
+- type: entity
+  name: cherry pie
+  parent: N14FoodPieBase
+  id: N14FoodPieCherry
+  description: Tastes good enough to make a grown man cry.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Sprite
+    layers:
+    - state: tin
+    - state: cherry
+  - type: SliceableFood
+    slice: N14FoodPieCherrySlice
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+
+- type: entity
+  name: slice of cherry pie
+  parent: N14FoodPieSliceBase
+  id: N14FoodPieCherrySlice
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Sprite
+    layers:
+    - state: plain-slice
+    - state: alpha-slice-filling
+      color: red
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+# Tastes like pie, cherries.
+
+- type: entity
+  name: meat pie
+  parent: N14FoodPieBase
+  id: N14FoodPieMeat
+  description: Tastes like the wastes. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+  - type: Sprite
+    layers:
+    - state: tin
+    - state: meat
+  - type: SliceableFood
+    slice: N14FoodPieMeatSlice
+  - type: Tag
+    tags:
+    - Meat
+    - Pie
+
+- type: entity
+  name: slice of meat pie
+  parent: N14FoodPieSliceBase
+  id: N14FoodPieMeatSlice
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+  - type: Sprite
+    layers:
+    - state: plain-slice
+    - state: alpha-slice-filling
+      color: brown
+  - type: Tag
+    tags:
+    - Meat
+    - Pie
+# Tastes like pie, meat.
+
+- type: entity
+  name: xeno pie
+  parent: N14FoodPieBase
+  id: N14FoodPieXeno
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - acid
+  - type: Sprite
+    layers:
+    - state: tin
+    - state: xeno
+  - type: SliceableFood
+    slice: N14FoodPieXenoSlice
+  - type: Tag
+    tags:
+    - Meat
+    - Pie
+
+- type: entity
+  name: slice of xeno pie
+  parent: N14FoodPieSliceBase
+  id: N14FoodPieXenoSlice
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - acid
+  - type: Sprite
+    layers:
+    - state: plain-slice
+    - state: alpha-slice-filling
+      color: green
+  - type: Tag
+    tags:
+    - Meat
+    - Pie
+# Tastes like pie, meat, acid.
+
+- type: entity
+  name: frosty pie
+  parent: N14FoodPieBase
+  id: N14FoodPieFrosty
+  description: Tastes like blue and cold.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cold
+  - type: Sprite
+    layers:
+    - state: tin
+    - state: frosty
+  - type: SliceableFood
+    slice: N14FoodPieFrostySlice
+
+- type: entity
+  name: slice of frosty pie
+  parent: N14FoodPieSliceBase
+  id: N14FoodPieFrostySlice
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cold
+  - type: Sprite
+    layers:
+    - state: plain-slice
+    - state: alpha-slice-filling
+      color: blue
+# Tastes like pie, mint.
+
+- type: entity
+  name: mime tart
+  parent: N14FoodPieBase
+  id: N14FoodTartMime
+  description: "\"      \""
+  components:
+  - type: FlavorProfile
+    flavors:
+      - nothing
+  - type: Sprite
+    state: mime
+  - type: Item
+    heldPrefix: mime
+  - type: SliceableFood
+    slice: N14FoodTartMimeSlice
+
+- type: entity
+  name: slice of mime tart
+  parent: N14FoodPieSliceBase
+  id: N14FoodTartMimeSlice
+  components:
+  - type: FlavorProfile
+    flavors:
+      - nothing
+  - type: Sprite
+    layers:
+    - state: mimetart-slice
+  - type: Item
+    heldPrefix: mime
+# Tastes like nothing.
+
+# No Slice
+
+- type: entity
+  name: amanita pie
+  parent: N14FoodPieBase
+  id: N14FoodPieAmanita
+  description: Sweet and tasty poison pie.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - mushroom
+  - type: Sprite
+    state: amanita
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 17
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Amatoxin
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 4
+# Tastes like pie, mushrooms.
+
+- type: entity
+  name: plump pie
+  parent: N14FoodPieBase
+  id: N14FoodPiePlump
+  description: I bet you love stuff made out of plump helmets!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - mushroom
+  - type: Sprite
+    state: plump
+# Tastes like pie, mushrooms.
+
+# Tart
+
+- type: entity
+  name: grape tart
+  parent: N14FoodPieBase
+  id: N14FoodTartGrape
+  description: A tasty dessert that reminds you of the wine you didn't make.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Sprite
+    state: grape
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+# Tastes like tart, grape.
+
+- type: entity
+  name: golden apple streusel tart
+  parent: N14FoodPieBase
+  id: N14FoodTartGapple
+  description: A tasty dessert that won't make it through a metal detector.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - apple
+  - type: Sprite
+    state: gapple
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+# Tastes like tart, apple, expensive metal.
+
+- type: entity
+  name: chocolate lava tart
+  parent: N14FoodPieBase
+  id: N14FoodTartCoco
+  description: A tasty dessert made of chocolate, with a liquid core.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - chocolate
+  - type: Sprite
+    state: cocolava
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 26
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Theobromine
+          Quantity: 2
+# Tastes like tart, dark chocolate.
