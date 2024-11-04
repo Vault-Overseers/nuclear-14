@@ -11,7 +11,7 @@
       catalyst: true
   effects:
     - !type:CreateEntityReactionEffect
-      entity: N14FoodCheese
+      entity: FoodCheese #N14TODO: Replace this
 
 - type: reaction
   id: N14RazorgrainDough
@@ -25,7 +25,7 @@
       amount: 10
   effects:
     - !type:CreateEntityReactionEffect
-      entity: N14FoodDough
+      entity: FoodDough #N14TODO: Replace this
 
 - type: reaction
   id: N14MaizeDough
@@ -39,14 +39,15 @@
       amount: 10
   effects:
     - !type:CreateEntityReactionEffect
-      entity: N14FoodDoughCornmeal
+      entity: N14FoodDoughCornmeal #N14TODO: Replace this
+
 - type: reaction
   id: N14SweetBatter
   impact: Low
   quantized: true
   conserveEnergy: false
   reactants:
-    ExtractRazorgrainFlour:
+    Flour:
       amount: 15
     Egg:
       amount: 12
@@ -54,7 +55,7 @@
       amount: 5
   effects:
     - !type:CreateEntityReactionEffect
-      entity: N14FoodCakeBatter
+      entity: FoodCakeBatter
 
 - type: reaction
   id: N14BrahminButter
@@ -69,7 +70,7 @@
       catalyst: true
   effects:
     - !type:CreateEntityReactionEffect
-      entity: N14FoodButter
+      entity: FoodButter #N14TODO: Replace this
 
 - type: reaction
   id: N14PieDough
@@ -77,7 +78,7 @@
   quantized: true
   conserveEnergy: false
   reactants:
-    ExtractRazorgrainFlour:
+    Flour:
       amount: 15
     Egg:
       amount: 12
@@ -85,23 +86,22 @@
       amount: 5
   effects:
     - !type:CreateEntityReactionEffect
-      entity: N14FoodDoughPie
+      entity: FoodDoughPie #N14TODO: Replace this
 
 # -- N14TODO: Replace --
-#- type: reaction
-#  id: N14CreateMeatball
-#  impact: Low
-#  quantized: true
-#  conserveEnergy: false
-#  reactants:
-#    N14UncookedAnimalProteinsRad:
-#      amount: 5
-#    Egg:
-#      amount: 6
-#  effects:
-#    - !type:CreateEntityReactionEffect
-#      entity: N14FoodMeatMeatball
-#meatballs are causing a ton of errors for some reason, commented out for now -hazel
+- type: reaction
+  id: N14CreateMeatball
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    N14UncookedAnimalProteinsRad:
+      amount: 5
+    Egg:
+      amount: 6
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: FoodMeatMeatball #N14TODO: Replace this
 
 - type: reaction
   id: N14CreateAgaveJam
