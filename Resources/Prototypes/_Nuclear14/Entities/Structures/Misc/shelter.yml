@@ -1,6 +1,6 @@
 - type: entity
-  parent: BaseStructure
-  id: N14ShelterNew
+  parent: CryogenicSleepUnit
+  id: N14PulowskiShelterNew
   name:  Pulowski Preservation Shelter
   description: "Pulowski: Nuclear protection on a budget!"
   components:
@@ -43,9 +43,9 @@
           True: { state: shelternewclosedoccupied }
           False: { state: shelternewopen }
 
-  - type: entity
-  parent: BaseStructure
-  id: N14ShelterWorn
+- type: entity
+  parent: N14PulowskiShelterNew
+  id: N14PulowskiShelterWorn
   name:  Pulowski Preservation Shelter
   description: "Pulowski: Nuclear protection on a budget!"
   components:
@@ -54,33 +54,6 @@
     sprite: _Nuclear14/Structures/Misc/shelter.rsi
     layers:
     - state: shelterwornopen
-      map: ["base"]
-  - type: UserInterface
-    interfaces:
-    - key: enum.CryostorageUIKey.Key
-      type: CryostorageBoundUserInterface
-  - type: ActivatableUI
-    key: enum.CryostorageUIKey.Key
-  - type: AccessReader
-    breakOnEmag: false
-    access: [["Cryogenics"]]
-  - type: InteractionOutline
-  - type: Cryostorage
-  - type: Physics
-    canCollide: false
-  - type: DragInsertContainer
-    containerId: storage
-  - type: ExitContainerOnMove
-    containerId: storage
-  - type: PointLight
-    color: Lime
-    radius: 1.5
-    energy: 0.5
-    castShadows: false
-  - type: ContainerContainer
-    containers:
-      storage: !type:ContainerSlot
-  - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.CryostorageVisuals.Full:
