@@ -15,7 +15,7 @@
   suffix: NCR, Locked, NCO
   components:
   - type: AccessReader
-    access: [["NCRNCO"]]
+    access: [["NCRSGT"]]
   - type: Wires
     layoutId: AirlockSecurity
 
@@ -32,30 +32,30 @@
 - type: entity
   parent: N14DoorWoodSecureNCR
   id: N14DoorWoodSecureLockedNCRMP
-  suffix: NCR, Locked, MP
+  suffix: NCR, Locked, SGT
   components:
   - type: AccessReader
-    access: [["NCRMP"]]
+    access: [["NCRSGT"]]
   - type: Wires
     layoutId: AirlockSecurity
 
 - type: entity
   parent: N14DoorCellMetal
   id: N14DoorCellMetalLockedNCRMP
-  suffix: NCR, Locked, MP
+  suffix: NCR, Locked, SGT
   components:
   - type: AccessReader
-    access: [["NCRMP"]]
+    access: [["NCRSGT"]]
   - type: Wires
     layoutId: AirlockSecurity
 
 - type: entity
   parent: N14DoorWoodSecureNCR
   id: N14DoorWoodSecureLockedNCROfficer
-  suffix: NCR, Locked, Officer
+  suffix: NCR, Locked, LT
   components:
   - type: AccessReader
-    access: [["NCROfficer"]]
+    access: [["NCRLT"]]
   - type: Wires
     layoutId: AirlockSecurity
 
@@ -69,14 +69,15 @@
   - type: Wires
     layoutId: HighSec
 
-#MARK: BoS
+#MARK: BoS Midwest
 - type: entity
   parent: N14DoorBunker
   id: N14DoorBunkerLockedBoSMidwest
   suffix: BoSMidwest, Locked
   components:
-  - type: AccessReader
-    access: [["BoSMidwest"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestGeneral ]
   - type: Wires
     layoutId: HighSec
 
@@ -85,80 +86,358 @@
   id: N14DoorBunkerGlassLockedBoSMidwest
   suffix: BoSMidwest, Locked
   components:
-  - type: AccessReader
-    access: [["BoSMidwest"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestGeneral ]
   - type: Wires
     layoutId: HighSec
 
 - type: entity
   parent: N14DoorBunker
-  id: N14DoorBunkerLockedBoSPaladin
-  suffix: BoSMidwest, Locked, Paladin
+  id: N14DoorBunkerLockedBoSMidwestScribe
+  suffix: BoSMidwest, Locked, Scribe
   components:
-  - type: AccessReader
-    access: [["Paladin"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestScribe ]
   - type: Wires
     layoutId: HighSec
 
 - type: entity
   parent: N14DoorBunkerGlass
-  id: N14DoorBunkerGlassLockedBoSPaladin
-  suffix: BoSMidwest, Locked, Paladin
+  id: N14DoorBunkerGlassLockedBoSMidwestScribe
+  suffix: BoSMidwest, Locked, Scribe
   components:
-  - type: AccessReader
-    access: [["Paladin"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestScribe ]
   - type: Wires
     layoutId: HighSec
 
 - type: entity
   parent: N14DoorBunker
-  id: N14DoorBunkerLockedPaladinCommander
-  suffix: BOSMidwest, Locked, Commander
+  id: N14DoorBunkerLockedBoSMidwestKnight
+  suffix: BoSMidwest, Locked, Knight
   components:
-  - type: AccessReader
-    access: [["PaladinCommander"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestKnight ]
   - type: Wires
     layoutId: HighSec
 
 - type: entity
   parent: N14DoorBunkerGlass
-  id: N14DoorBunkerGlassLockedPaladinCommander
-  suffix: BOSMidwest, Locked, Commander
+  id: N14DoorBunkerGlassLockedBoSMidwestKnight
+  suffix: BoSMidwest, Locked, Knight
   components:
-  - type: AccessReader
-    access: [["PaladinCommander"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestKnight ]
   - type: Wires
     layoutId: HighSec
 
-#MARK: Oasis
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSMidwestPaladin
+  suffix: BoSMidwest, Locked, Paladin
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestPaladin ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSMidwestPaladin
+  suffix: BoSMidwest, Locked, Paladin
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestPaladin ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSMidwestCommander
+  suffix: BOSMidwest, Locked, Commander
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestPaladinCommander ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSCommander
+  suffix: BOSMidwest, Locked, Commander
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSMidwestPaladinCommander ]
+  - type: Wires
+    layoutId: HighSec
+
+#MARK: BoS Washington
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSWashington
+  suffix: BoSWashington, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashington ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSWashington
+  suffix: BoSWashington, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashington ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSWashingtonScribe
+  suffix: BoSWashington, Locked, Scribe
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonScribe ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSWashingtonScribe
+  suffix: BoSWashington, Locked, Scribe
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonScribe ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSWashingtonKnight
+  suffix: BoSWashington, Locked, Knight
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonKnight ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSWashingtonKnight
+  suffix: BoSWashington, Locked, Knight
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonKnight ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSWashingtonPaladin
+  suffix: BoSWashington, Locked, Paladin
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonPaladin ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSWashingtonPaladin
+  suffix: BoSWashington, Locked, Paladin
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBOSWashingtonPaladin ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedBoSWashingtonCommander
+  suffix: BoSWashington, Locked, Elder
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBoSWashingtonCommander ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunkerGlass
+  id: N14DoorBunkerGlassLockedBoSWashingtonElder
+  suffix: BoSWashington, Locked, Elder
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBoSWashingtonCommander ]
+  - type: Wires
+    layoutId: HighSec
+
+#MARK: Townie
 
 - type: entity
   parent: N14DoorWoodSecure
   id: N14DoorWoodSecureLockedSheriff
-  suffix: Oasis, Locked, Sheriff
+  suffix: Townie, Locked, Sheriff
   components:
   - type: AccessReader
-    access: [["Sheriff"]]
+    access: [["TownieLaw"]]
   - type: Wires
     layoutId: AirlockService
 
 - type: entity
   parent: N14DoorCellMetal
   id: N14DoorCellMetalLockedSheriff
-  suffix: Oasis, Locked, Sheriff
+  suffix: Townie, Locked, Sheriff
   components:
   - type: AccessReader
-    access: [["Sheriff"]]
+    access: [["TownieLaw"]]
   - type: Wires
     layoutId: AirlockService
 
 - type: entity
   parent: N14DoorWoodSecure
   id: N14DoorWoodSecureLockedMayor
-  suffix: Oasis, Locked, Mayor
+  suffix: Townie, Locked, Mayor
   components:
   - type: AccessReader
-    access: [["Mayor"]]
+    access: [["TownieMayor"]]
+  - type: Wires
+    layoutId: AirlockService
+    
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedMechanic
+  suffix: Townie, Locked, Mechanic
+  components:
+  - type: AccessReader
+    access: [["TownieMechanic"]]
+  - type: Wires
+    layoutId: AirlockService
+
+#MARK: Vault
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedVaultDweller
+  suffix: Vault Dweller, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsVaultDweller ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedVaultEngineer
+  suffix: Vault Engineer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsVaultEngineer ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedVaultMedical
+  suffix: Vault Medical, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsVaultMedical ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedVaultSecurity
+  suffix: Vault Security, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsVaultSecurity ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedVaultGatekeeper
+  suffix: Vault Gatekeeper, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsVaultGatekeeper ]
+  - type: Wires
+    layoutId: HighSec
+
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedVaultOverseer
+  suffix: Vault Overseer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsVaultOverseer ]
+  - type: Wires
+    layoutId: HighSec
+    
+#MARK: Caravan Company
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedCaravanGuard
+  suffix: Caravan Guard, Locked
+  components:
+  - type: AccessReader
+    access: [["CaravanCompanyGuard"]]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: N14DoorCellMetal
+  id: N14DoorCellMetalLockedCaravanGuard
+  suffix: Caravan Guard, Locked
+  components:
+  - type: AccessReader
+    access: [["CaravanCompanyGuard"]]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedCaravanTrader
+  suffix: Caravan Trader, Locked
+  components:
+  - type: AccessReader
+    access: [["CaravanCompanyTrader"]]
+  - type: Wires
+    layoutId: AirlockService
+    
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedCaravanLeader
+  suffix: Caravan Leader, Locked
+  components:
+  - type: AccessReader
+    access: [["CaravanCompanyLeader"]]
   - type: Wires
     layoutId: AirlockService
 
