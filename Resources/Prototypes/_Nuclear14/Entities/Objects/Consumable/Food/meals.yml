@@ -434,3 +434,21 @@
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 4
+
+- type: entity
+  name: popcorn
+  parent: FoodSnackBase
+  id: N14FoodSnackPopcorn
+  description: Feel it in your hands. Nice and warm...
+  components:
+  - type: FlavorProfile
+    flavors:
+      - corn
+      - salt
+      - butter
+  - type: Sprite
+    state: popcorn
+  - type: Item
+    heldPrefix: popcorn
+  - type: Food
+    trash: FoodPacketPopcornTrash
