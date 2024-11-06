@@ -911,3 +911,33 @@
       color: black
     - state: cutlet-alpha
       color: red
+
+- type: entity
+  name: raw bacon
+  # bacon is cured so not raw = cant rot
+  parent: N14FoodMeatBase
+  id: N14FoodMeatBacon
+  description: A raw piece of bacon.
+  components:
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+  - type: Sprite
+    state: bacon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 2
+        - ReagentId: Fat
+          Quantity: 9
+  - type: InternalTemperature
+    conductivity: 0.44
+    thickness: 0.004 # bacon is thin so faster to cook than a steak
+    area: 0.0075 # ~5x15cm
+  - type: Construction
+    graph: Bacon
+    node: start
+    defaultTarget: bacon
