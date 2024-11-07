@@ -355,13 +355,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
         - ReagentId: Protein
           Quantity: 6
         - ReagentId: N14RadParticleFood
-          Quantity: 3
+          Quantity: 0 #currently, we are experimenting with cooked food not giving rads. Former value is 5.
 
 - type: entity
   name: cooked brahmin steak
@@ -375,13 +376,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
         - ReagentId: Protein
           Quantity: 5
         - ReagentId: N14RadParticleFood
-          Quantity: 3
+          Quantity: 0 #former value 3
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatBrahminCutletCooked
@@ -399,6 +401,17 @@
   - type: Sprite
     layers:
     - state: bighornermeat_roasted
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatBighornerCutletCooked
@@ -416,6 +429,17 @@
   - type: Sprite
     layers:
     - state: radstagmeat_roasted
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadstagCutletCooked
@@ -432,6 +456,17 @@
   components:
   - type: Sprite
     state: porkchop_roasted
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadhogCutletCooked
@@ -448,6 +483,17 @@
   components:
   - type: Sprite
     state: morsels_roasted
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: Construction
     graph: MeatSteakPigrat
     node: SteakCooked
@@ -462,6 +508,17 @@
   - type: Sprite
     layers:
     - state: brahminmeat_roasted
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: N14RadParticleFood
+          Quantity: 3
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatYaoguaiCutletCooked
@@ -479,6 +536,17 @@
   - type: Sprite
     layers:
     - state: radscorpionmeat_roasted
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadscorpionCutletCooked
@@ -491,12 +559,23 @@
   name: cooked radchicken meat
   parent: N14FoodMeatCooked
   id: N14FoodMeatRadchickenCooked
-  description: A cooked piece of radchicken. Best used in other recipes.
+  description: A cooked piece of radchicken. Flaky!
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/meat.rsi
     layers:
     - state: bird-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadchickenCutletCooked
@@ -510,6 +589,17 @@
   - type: Sprite
     layers:
     - state: silvergeckomeat_roasted
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: Construction
     graph: MeatSteakGecko
     node: SteakCooked
@@ -524,6 +614,17 @@
   - type: Sprite
     layers:
     - state: icegeckomeat_roasted
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: Construction
     graph: MeatSteakGeckoFire
     node: SteakCooked
@@ -533,11 +634,22 @@
   name: cooked golden gecko steak
   parent: N14FoodMeatCooked
   id: N14FoodMeatGeckoGoldenCooked
-  description: Cooked, tough golden gecko meat.
+  description: Cooked, tough golden gecko meat. Your molars itch uncomfortably at the thought of eating this.
   components:
   - type: Sprite
     layers:
     - state: goldengeckomeat_roasted
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: N14RadParticleFood
+          Quantity: 3 #golden geckos are normally radioactive and they're not common right now. Later we should add a special meal made of them! ^^
   - type: Construction
     graph: MeatSteakGeckoGolden
     node: SteakCooked
@@ -594,7 +706,7 @@
   name: cooked radroach fillet
   parent: N14FoodMeatCooked
   id: N14FoodMeatRadroachFilletCooked
-  description: Cooked, hard radroach.
+  description: Cooked, hard radroach. Smells like indigestion.
   components:
   - type: Sprite
     layers:
@@ -608,7 +720,7 @@
         - ReagentId: Protein
           Quantity: 2
         - ReagentId: N14RadParticleFood
-          Quantity: 1
+          Quantity: 1 #not VERY radioactive but definitely not good for you. A desperation / poverty food?
   - type: Construction
     graph: MeatRadroach
     node: MeatCooked
@@ -827,7 +939,7 @@
         - ReagentId: Protein
           Quantity: 2
         - ReagentId: N14RadParticleFood
-          Quantity: 1
+          Quantity: 0 #Ditto, changing these values to 0 seemed like the best bet for if we want to revert this later. Formerly 3 rads.
 
 - type: entity
   name: cooked brahmin cutlet
