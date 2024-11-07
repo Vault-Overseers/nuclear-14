@@ -430,7 +430,7 @@
     Wine: 5
   solids:
     N14CookedFoodBreadPlainSlice: 2
-#Is this one a reference? I might get rid of it, it seems kinda useless.    
+#Is this one a reference? I might get rid of it, it seems kinda useless.
 
 - type: microwaveMealRecipe
   id: N14RecipeOnionRings
@@ -441,6 +441,7 @@
     N14FoodOnionRedSlice: 1 #N14 change
 
 #Pizzas TODO: contruction graph based pizza
+#Due to rolling pin issues, pizzas currently need to use upstream dough. See cooking.yml and pizza.yml for details
 
 - type: microwaveMealRecipe
   id: N14RecipeMargheritaPizza
@@ -448,7 +449,7 @@
   result: N14CookedFoodPizzaMargherita
   time: 30
   solids:
-    N14FoodDoughFlat: 1
+    FoodDoughFlat: 1
     N14FoodCheeseSlice: 1
     N14FloraProduceWildTato: 4 #N14 change
 
@@ -458,7 +459,7 @@
   result: N14CookedFoodPizzaMushroom
   time: 30
   solids:
-    N14FoodDoughFlat: 1
+    FoodDoughFlat: 1
     N14FloraProduceWildCaveFungus: 5 #N14 change
 
 - type: microwaveMealRecipe
@@ -467,10 +468,10 @@
   result: N14CookedFoodPizzaMeat
   time: 30
   solids:
-    N14FoodDoughFlat: 1
-    N14FoodMeatRadRaw: 3 
+    FoodDoughFlat: 1
+    N14FoodMeatRadRaw: 3
     N14FoodCheeseSlice: 1
-    N14FloraProduceWildTato: 1 
+    N14FloraProduceWildTato: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeVegetablePizza
@@ -478,7 +479,7 @@
   result: N14CookedFoodPizzaVegetable
   time: 30
   solids:
-    N14FoodDoughFlat: 1
+    FoodDoughFlat: 1
     N14FloraProduceWildOnion: 1 #N14 change
     N14FloraProduceWildCarrot: 1 #N14 change
     N14FloraProduceWildMaize: 1 #N14 change
@@ -490,7 +491,7 @@
   result: N14CookedFoodPizzaPineapple
   time: 30
   solids:
-    N14FoodDoughFlat: 1
+    FoodDoughFlat: 1
     N14FoodMeatRadchicken: 3 #N14 change
     N14FoodPineappleSlice: 5 #good fucking luck canada this placeholder is never getting added
 
