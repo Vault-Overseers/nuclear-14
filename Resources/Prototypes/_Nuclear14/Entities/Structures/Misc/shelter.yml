@@ -13,12 +13,6 @@
     layers:
     - state: shelternewopen
       map: ["base"]
-  - type: UserInterface
-    interfaces:
-    - key: enum.CryostorageUIKey.Key
-      type: CryostorageBoundUserInterface
-  - type: ActivatableUI
-    key: enum.CryostorageUIKey.Key
   - type: InteractionOutline
   - type: Cryostorage
   - type: Physics
@@ -70,7 +64,7 @@
       enum.CryostorageVisuals.Full:
         base:
           True: { state: shelterwornclosedoccupied }
-          False: { state: shelterworkopen }
+          False: { state: shelterwornopen }
   - type: Door
     bumpOpen: false
     clickOpen: true
