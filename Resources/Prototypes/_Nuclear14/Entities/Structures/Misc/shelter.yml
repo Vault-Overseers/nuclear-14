@@ -6,12 +6,12 @@
   components:
   - type: Sprite
     scale: 0.54, 0.54
-    offset: 0, 0.5
+    offset: 0,.5
     drawdepth: FloorObjects
     noRot: true
     sprite: _Nuclear14/Structures/Misc/shelternew.rsi
     layers:
-    - state: open
+    - state: shelternewopen
       map: ["base"]
   - type: InteractionOutline
   - type: Cryostorage
@@ -21,6 +21,11 @@
     containerId: storage
   - type: ExitContainerOnMove
     containerId: storage
+#  - type: PointLight
+#    color: blue
+#    radius: 1.5
+#    energy: 0.5
+#    castShadows: false
   - type: ContainerContainer
     containers:
       storage: !type:ContainerSlot
@@ -29,8 +34,19 @@
     visuals:
       enum.CryostorageVisuals.Full:
         base:
-          True: { state: closed }
-          False: { state: open }
+          True: { state: shelternewclosedoccupied }
+          False: { state: shelternewopen }
+  - type: AnimationPlayer
+  - type: Door
+    bumpOpen: false
+    clickOpen: true
+    closeTimeOne: 0.2
+    closeTimeTwo: 0.6
+    openTimeOne: 0.6
+    openTimeTwo: 0.2
+    openingAnimationTime: 1.3
+    closingAnimationTime: 1.3
+    occludes: false
 
 - type: entity
   parent: N14PulowskiShelterNew
@@ -42,5 +58,20 @@
     noRot: true
     sprite: _Nuclear14/Structures/Misc/shelterworn.rsi
     layers:
-    - state: open
-      map: ["base"]
+    - state: shelterwornopen
+  - type: GenericVisualizer
+    visuals:
+      enum.CryostorageVisuals.Full:
+        base:
+          True: { state: shelterwornclosedoccupied }
+          False: { state: shelterwornopen }
+  - type: Door
+    bumpOpen: false
+    clickOpen: true
+    closeTimeOne: 0.2
+    closeTimeTwo: 0.6
+    openTimeOne: 0.6
+    openTimeTwo: 0.2
+    openingAnimationTime: 1.0
+    closingAnimationTime: 1.6
+    occludes: false
