@@ -3,7 +3,7 @@
 
 - type: entity
   parent: FoodInjectableBase
-  id: N14CookedFoodBakedBase #I've avoiding messing with the bases for now because upstream references them a lot.
+  id: N14FoodBakedBase
   abstract: true
   components:
   - type: Food
@@ -23,8 +23,8 @@
 
 - type: entity
   name: muffin
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedMuffin
+  parent: N14FoodBakedBase
+  id: N14FoodBakedMuffin
   description: A delicious and spongy little cake.
   components:
   - type: Sprite
@@ -32,8 +32,8 @@
 
 - type: entity
   name: berry muffin
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedMuffinBerry
+  parent: N14FoodBakedBase
+  id: N14FoodBakedMuffinBerry
   description: A delicious and spongy little cake, with berries.
   components:
   - type: Sprite
@@ -44,8 +44,8 @@
 
 - type: entity
   name: cherry muffin
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedMuffinCherry
+  parent: N14FoodBakedBase
+  id: N14FoodBakedMuffinCherry
   description: A sweet muffin with cherry bits.
   components:
   - type: Sprite
@@ -55,9 +55,21 @@
     - Fruit
 
 - type: entity
+  name: bluecherry muffin
+  parent: N14FoodBakedBase
+  id: N14FoodBakedMuffinBluecherry
+  description: Blue cherries inside a delicious muffin.
+  components:
+  - type: Sprite
+    state: muffin-bluecherry
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
   name: honey bun #TODO honey
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedBunHoney
+  parent: N14FoodBakedBase
+  id: N14FoodBakedBunHoney
   description: A sticky pastry bun glazed with honey.
   components:
   - type: Sprite
@@ -65,8 +77,8 @@
 
 - type: entity
   name: hotcross bun
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedBunHotX
+  parent: N14FoodBakedBase
+  id: N14FoodBakedBunHotX
   description: A sticky pastry bun glazed with a distinct white cross.
   components:
   - type: Sprite
@@ -74,9 +86,9 @@
 
 - type: entity
   name: meat bun
-  parent: N14CookedFoodBakedBase
+  parent: N14FoodBakedBase
   id: N14FoodBakedBunMeat
-  description: Could be dogmeat, for all you know.
+  description: Has the potential to not be dog.
   components:
   - type: Sprite
     state: bun-meat
@@ -94,8 +106,8 @@
 
 - type: entity
   name: cookie
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedCookie
+  parent: N14FoodBakedBase
+  id: N14FoodBakedCookie
   description: COOKIE!!!
   components:
   - type: Sprite
@@ -103,8 +115,8 @@
 
 - type: entity
   name: oatmeal cookie
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedCookieOatmeal
+  parent: N14FoodBakedBase
+  id: N14FoodBakedCookieOatmeal
   description: The best of both cookie and oat.
   components:
   - type: Sprite
@@ -121,8 +133,8 @@
 
 - type: entity
   name: raisin cookie
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedCookieRaisin
+  parent: N14FoodBakedBase
+  id: N14FoodBakedCookieRaisin
   description: Why would you put raisins in a cookie?
   components:
   - type: Sprite
@@ -142,8 +154,8 @@
 
 - type: entity
   name: sugar cookie
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedCookieSugar
+  parent: N14FoodBakedBase
+  id: N14FoodBakedCookieSugar
   description: Just like your mom used to make.
   components:
   - type: Sprite
@@ -156,8 +168,8 @@
 
 - type: entity
   name: chicken nugget
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedNugget
+  parent: N14FoodBakedBase
+  id: N14FoodBakedNugget
   description: A "chicken" nugget vaguely shaped into an object. # Should change depending on name.
   components:
   - type: Tag
@@ -193,8 +205,8 @@
 
 - type: entity
   name: pancake
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedPancake
+  parent: N14FoodBakedBase
+  id: N14FoodBakedPancake
   description: A fluffy pancake. The softer, superior relative of the waffle.
   components:
   - type: Stack
@@ -248,8 +260,8 @@
 
 - type: entity
   name: tarberry pancake #N14 change
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedPancakeBb
+  parent: N14FoodBakedBase
+  id: N14FoodBakedPancakeBb
   description: The tarberries stick to your mouth like glue. #N14 change when is MAPLE SYRUP COMING I NEED TO REPRESENT
   components:
   - type: Stack
@@ -280,8 +292,8 @@
 
 - type: entity
   name: chocolate chip pancake
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedPancakeCc
+  parent: N14FoodBakedBase
+  id: N14FoodBakedPancakeCc
   description: A fluffy and delicious chocolate chip pancake.
   components:
   - type: Stack
@@ -320,8 +332,8 @@
 
 - type: entity
   name: waffles
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedWaffle
+  parent: N14FoodBakedBase
+  id: N14FoodBakedWaffle
   description: Mmm, waffles.
   components:
   - type: Sprite
@@ -340,9 +352,9 @@
 
 - type: entity
   name: soy waffles
-  parent: N14CookedFoodBakedWaffle
-  id: N14CookedFoodBakedWaffleSoy
-  description: Healthy, tasty.
+  parent: N14FoodBakedWaffle
+  id: N14FoodBakedWaffleSoy
+  description: You feel healthier and - more feminine?
   components:
   - type: Sprite
     layers:
@@ -358,12 +370,52 @@
         - ReagentId: Vitamin
           Quantity: 1
 
+- type: entity
+  name: soylent waffles
+  parent: N14FoodBakedWaffle
+  id: N14FoodBakedWaffleSoylent
+  description: Not made of people. Honest. # Definitely people
+  components:
+  - type: Sprite
+    layers:
+      - state: tray
+      - state: waffles-soylent
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: entity
+  name: roffle waffles
+  parent: N14FoodBakedWaffle
+  id: N14FoodBakedWaffleRoffle
+  description: Waffles from Roffle. Co.
+  components:
+  - type: Sprite
+    layers:
+      - state: tray
+      - state: waffles-roffle
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 2
+
 # Misc
 
 - type: entity
   name: poppy pretzel
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedPretzel
+  parent: N14FoodBakedBase
+  id: N14FoodBakedPretzel
   description: It's all twisted up!
   components:
   - type: Sprite
@@ -371,9 +423,9 @@
 
 - type: entity
   name: cannoli
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedCannoli
-  description: Supposedly from a sick-illy place, but tasty all the same.
+  parent: N14FoodBakedBase
+  id: N14FoodBakedCannoli
+  description: A Sicilian treat that makes you into a wise guy.
   components:
   - type: Sprite
     state: cannoli
@@ -389,8 +441,8 @@
 
 - type: entity
   name: dumplings
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedDumplings
+  parent: N14FoodBakedBase
+  id: N14FoodBakedDumplings
   description: An easy-to-eat collection of meal-lets. #N14 change
   components:
   - type: Sprite
@@ -407,8 +459,8 @@
 
 - type: entity
   name: chèvre chaud
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedChevreChaud
+  parent: N14FoodBakedBase
+  id: N14FoodBakedChevreChaud
   description: A disk of slightly melted chèvre flopped on top of a crostini, and toasted all-round.
   components:
   - type: FlavorProfile
@@ -431,8 +483,8 @@
 
 - type: entity
   name: brownies
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedBrownieBatch
+  parent: N14FoodBakedBase
+  id: N14FoodBakedBrownieBatch
   description: A pan of brownies.
   components:
   - type: FlavorProfile
@@ -453,12 +505,12 @@
           Quantity: 18
   - type: SliceableFood
     count: 6
-    slice: FoodBakedBrownie
+    slice: N14FoodBakedBrownie
 
 - type: entity
   name: brownie
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedBrownie
+  parent: N14FoodBakedBase
+  id: N14FoodBakedBrownie
   suffix: Fresh
   description: A fresh baked brownie.
   components:
@@ -481,9 +533,9 @@
 
 - type: entity
   name: special brownies
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedCannabisBrownieBatch
-  description: A pan of special brownies that let you get cozily high. Hard to eat just one...
+  parent: N14FoodBakedBase
+  id: N14FoodBakedCannabisBrownieBatch
+  description: A pan of "special" brownies.
   components:
   - type: FlavorProfile
     flavors:
@@ -506,13 +558,13 @@
           Quantity: 150
   - type: SliceableFood
     count: 6
-    slice: N14CookedFoodBakedCannabisBrownie
+    slice: N14FoodBakedCannabisBrownie
 
 - type: entity
   name: special brownie
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodBakedCannabisBrownie
-  description: Loaded with chems.
+  parent: N14FoodBakedBase
+  id: N14FoodBakedCannabisBrownie
+  description: A "special" brownie.
   components:
   - type: FlavorProfile
     flavors:
@@ -536,8 +588,8 @@
 
 - type: entity
   name: onion rings
-  parent: N14CookedFoodBakedBase
-  id: N14CookedFoodOnionRings
+  parent: N14FoodBakedBase
+  id: N14FoodOnionRings
   description: How many can you fit on your fingers, huh? #N14 change
   components:
     - type: FlavorProfile
