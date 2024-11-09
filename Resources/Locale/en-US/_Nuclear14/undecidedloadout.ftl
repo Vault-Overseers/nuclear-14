@@ -216,8 +216,8 @@ undecided-loadout-category-bos-washington-carbine-description =
     Includes 1 pre-war carbine rifle, 10mm pistol, 3 carbine 556 magazines,
      2 10mm pistol magazines, 1 stimpak, 1 C ration MRE
 
-undecided-loadout-category-bos-washington-laser-name = Brotherhood Plasma Issue Kit
-undecided-loadout-category-bos-washington-laser-description =
+undecided-loadout-category-bos-washington-plasma-name = Brotherhood Plasma Issue Kit
+undecided-loadout-category-bos-washington-plasma-description =
     A crate containing everything a member of the Brotherhood might need
         too lay down some laser and lead.
     Includes 1 modified plasma rifle, 1 10mm pistol, 3 plasma cartridges,
