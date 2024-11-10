@@ -19,3 +19,139 @@
         - MachineMask
         layer:
         - LowImpassable
+
+- type: entity #prototype for radio station microphone
+  parent: BaseStructure
+  id: RadioDJMicrophone
+  name: radio microphone
+  description: An decent quality professional microphone for use in DJ booths.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/radiostation/microphones.rsi
+    state: radiomicrophone
+  - type: RadioMicrophone
+    broadcastChannel: PBS
+    toggleOnInteract: false # Nuclear-14
+    frequency: 1667 # Nuclear-14
+    listenRange: 2
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Appearance
+  - type: WiresVisuals
+  - type: Transform
+    noRot: false
+    anchored: true
+  - type: ActiveRadio
+    channels:
+    - PBS
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  # Nuclear-14-Start
+  - type: ActivatableUI
+    key: enum.HandheldRadioUiKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.HandheldRadioUiKey.Key
+        type: HandheldRadioBoundUserInterface
+  # Nuclear-14-End
+
+- type: entity # Prototype for radio receivers
+  name: table radio
+  description: A simple tabletop radio
+  parent: BaseStructure
+  id: N14RadioTable
+  components:
+  - type: Sprite #states aren't quite working, will need to address, would like to have it toggle state when you turn on and off the radio
+    sprite: _Nuclear14/Structures/Misc/radiostation/tableradio.rsi
+    offset: 0,0.25
+    drawdepth: SmallObjects
+    layers:
+      - sprite: _Nuclear14/Structures/Misc/radiostation/tableradio.rsi
+        state: base
+        map: [ "base" ]
+      - state: on
+        map: [ "enabled" ]
+      - state: off
+        map: [ "disabled" ]
+  - type: RadioSpeaker
+    channels:
+    - PBS
+    enabled: true
+    toggleOnInteract: true # Nuclear-14
+    IsSpeaker: true
+  - type: Tag
+    tags:
+    - Radio
+  - type: Speech
+    speechVerb: Robotic
+  - type: ActiveRadio
+    channels:
+    - PBS
+    # Nuclear-14-Start
+  - type: RadioMicrophone
+    broadcastChannel: PBS
+    toggleOnInteract: false # Nuclear-14
+    frequency: 1667 # Nuclear-14
+    listenRange: 0
+
+- type: entity # Prototype for radio receivers
+  name: standing microphone
+  description: A microphone stand and microphone
+  parent: BaseStructure
+  id: N14MicrophoneStand
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/radiostation/microphones.rsi
+    state: radiomicrophonestand
+  - type: RadioMicrophone
+    broadcastChannel: PBS
+    toggleOnInteract: false # Nuclear-14
+    frequency: 1667 # Nuclear-14
+    listenRange: 2
+  - type: ActiveRadio
+    channels:
+    - PBS
+    listenRange: 2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,0.5,0,-0.5"
+        layer:
+        - LowImpassable
+  # Nuclear-14-Start
+  - type: ActivatableUI
+    key: enum.HandheldRadioUiKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.HandheldRadioUiKey.Key
+        type: HandheldRadioBoundUserInterface
+  # Nuclear-14-End
+
+- type: entity
+  parent: PoweredSmallLight
+  id: N14LightRadioOnAirSign
+  name: radio on air sign
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/radiostation/radioonair.rsi
+    state: base
+    layers:
+    - state: off
+    - state: on
+      map: ["enum.PoweredLightLayers.Base"]
+  - type: WallMount
+  - type: PointLight
+    radius: 7
+    energy: 0.6
+    softness: 0.4
