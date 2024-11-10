@@ -145,7 +145,7 @@ undecided-loadout-category-bos-default-name = Brotherhood Basic Issue Kit
 undecided-loadout-category-bos-default-description =
     A crate containing everything a member of Brotherhood might need.
         For soldiers and laser lovers alike.
-    Includes 1 laser rifle, 1 laser pistol, 3 MF cells, 2 energy cells, 1 stimpak, C ration MRE
+    Includes 1 AER-9 laser rifle, 1 laser pistol, 3 MF cells, 2 energy cells, 1 stimpak, C ration MRE
 
 undecided-loadout-category-bos-carbine-name = Brotherhood Carbine Issue Kit
 undecided-loadout-category-bos-carbine-description =
@@ -153,6 +153,7 @@ undecided-loadout-category-bos-carbine-description =
         For your ballistic needs.
     Includes 1 pre-war carbine rifle, 1 laser pistol, 3 carbine 556 magazines,
      2 energy cells, 1 stimpak, 1 C ration MRE
+
 undecided-loadout-category-bos-laser-name = Brotherhood Laser Issue Kit
 undecided-loadout-category-bos-laser-description =
     A crate containing everything a member of the Brotherhood might need
@@ -171,7 +172,7 @@ undecided-loadout-category-bos-scribe-field-name = Brotherhood Scribe Field Kit
 undecided-loadout-category-bos-scribe-field-description =
     A crate containing everything a member of Brotherhood scribes.
         For supporting your unit from the back.
-    Includes 1 varmint rifle, 1 5.56 ammo box, 1 AEP-7 pistol, 2 energy cells, 1 medical belt,
+    Includes 1 AEP-7 pistol, 2 energy cells, 1 medical belt,
      1 field scribe clothing, 1 knife, 1 stimpak, 1 C ration MRE
 
 undecided-loadout-category-bos-scribe-engineer-name = Brotherhood Scribe Engineer Kit
@@ -202,3 +203,57 @@ undecided-loadout-category-bos-ballistics-description =
     Includes 1 assault rifle, 3 5.56 magazines, 1 12.7mm pistol,
      2 12.7mm pistol magazines, 5.56 ammo box, 1 stimpak, 1 C ration MRE
 
+undecided-loadout-category-bos-washington-default-name = Brotherhood Basic Issue Kit
+undecided-loadout-category-bos-washington-default-description =
+    A crate containing everything a member of Brotherhood might need.
+        For soldiers and laser lovers alike.
+    Includes 1 1 plasma rifle, 1 laser pistol, 3 MF cells, 2 energy cells, 1 stimpak, C ration MRE
+
+undecided-loadout-category-bos-washington-carbine-name = Brotherhood Carbine Issue Kit
+undecided-loadout-category-bos-washington-carbine-description =
+    A crate containing everything a member of Brotherhood might need.
+        For your ballistic needs.
+    Includes 1 pre-war carbine rifle, 10mm pistol, 3 carbine 556 magazines,
+     2 10mm pistol magazines, 1 stimpak, 1 C ration MRE
+
+undecided-loadout-category-bos-washington-plasma-name = Brotherhood Plasma Issue Kit
+undecided-loadout-category-bos-washington-plasma-description =
+    A crate containing everything a member of the Brotherhood might need
+        too lay down some laser and lead.
+    Includes 1 modified plasma rifle, 1 10mm pistol, 3 plasma cartridges,
+     2 10mm pistol magazines, 1 stimpak, 1 C ration MRE
+
+undecided-loadout-category-bos-washington-scribe-medic-name = Brotherhood Scribe Medical Kit
+undecided-loadout-category-bos-washington-scribe-medic-description =
+    A crate containing everything a member of Brotherhood scribes.
+        For keeping the fighting forces alive.
+    Includes 1 AEP-7 pistol, 2 energy cells, 1 medical belt,
+     1 bullet wound kit, 1 medical scribe clothing, 1 knife, 1 stimpak, 1 C ration MRE
+
+undecided-loadout-category-bos-washington-scribe-field-name = Brotherhood Scribe Field Kit
+undecided-loadout-category-bos-washington-scribe-field-description =
+    A crate containing everything a member of Brotherhood scribes.
+        For supporting your unit from the back.
+    Includes 1 AEP-7 pistol, 1 AEP-7 pistol, 2 energy cells, 1 medical belt,
+     1 field scribe clothing, 1 knife, 1 stimpak, 1 C ration MRE
+
+undecided-loadout-category-bos-washington-scribe-engineer-name = Brotherhood Scribe Engineer Kit
+undecided-loadout-category-bos-washington-scribe-engineer-description =
+    A crate containing everything a member of Brotherhood scribes.
+        For upkeeping the base and tinkering alike.
+    Includes 1 AEP-7 laser pistol, 2 energy cells, 1 utility belt,
+     1 engineer scribe clothing, 1 fire-axe, 1 stimpak, 1 C ration MRE
+
+undecided-loadout-category-bos-washington-ranged-name = Brotherhood Marksman Paladin Kit
+undecided-loadout-category-bos-washington-ranged-description =
+    A crate containing everything a paladin of Brotherhood might need.
+        For open range fights.
+    Includes 1 wattz 2000 rifle, 1 laser pistol, 3 H-MF cells, 2 energy cells,
+     1 stimpak, 1 C ration MRE
+
+undecided-loadout-category-bos-washington-ballistics-name = Brotherhood Assault Paladin Kit
+undecided-loadout-category-bos-washington-ballistics-description =
+    A crate containing everything a paladin of Brotherhood might need.
+        For his insane need of bullets downrange.
+    Includes 1 assault rifle, 3 5.56 magazines, 1 10mm pistol,
+     2 10mm pistol magazines, 5.56 ammo box, 1 stimpak, 1 C ration MRE
