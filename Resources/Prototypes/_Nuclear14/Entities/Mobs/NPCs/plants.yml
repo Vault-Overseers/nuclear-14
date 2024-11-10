@@ -12,26 +12,10 @@
     speechSounds: Squeak
   - type: ReplacementAccent
     accent: genericAggressive
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 0
-    baseSprintSpeed : 0
   - type: Butcherable
     spawned:
-    - id: N14FoodMeatRadRaw
+    - id: N14FoodMeatRadRaw #change to something else
       amount: 1
-  - type: CombatMode
-  - type: MeleeWeapon
-    hidden: true
-    attackRate: 0.5
-    range: 1
-    soundHit:
-        path: /Audio/Effects/bite.ogg
-    angle: 60
-    animation: WeaponArcBite
-    wideAnimation: WeaponArcBite
-    damage:
-      groups:
-        Brute: 2
   - type: Fixtures
     fixtures:
       fix1:
@@ -43,3 +27,43 @@
         - SmallMobMask
         layer:
         - SmallMobLayer
+
+- type: entity
+  name: spore plant
+  parent: N14MobBaseHostilePlant
+  id: N14MobSporeplant
+  description: A mutated venus fly trap. Who knew they got this big?
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: bloatfly
+      sprite: _Nuclear14/Mobs/Plants/sporeplant.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: sporeplant
+      Critical:
+        Base: sporeplant
+      Dead:
+        Base: dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 0
+    baseSprintSpeed : 0
+  - type: Stamina
+    critThreshold: 20
+  - type: Bloodstream
+    bloodMaxVolume: 50
+  - type: ReplacementAccent
+    accent: mouse
+  - type: BallisticAmmoProvider
+    proto: N14BulletAcid
+    capacity: 100
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    useKey: false
