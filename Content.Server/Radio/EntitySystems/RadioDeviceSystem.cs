@@ -216,9 +216,26 @@ public sealed class RadioDeviceSystem : EntitySystem
         var name = Loc.GetString("speech-name-relay", ("speaker", Name(uid)),
             ("originalName", nameEv.Name));
 
-        // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
-        var message = args.OriginalChatMsg.Message; // The chat system will handle the rest and re-obfuscate if needed.
-        _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language);
+        var channelType = ToString(args.Channel);
+
+        if (channelType=="PBS")
+        {
+            // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
+            var message = args.OriginalChatMsg.Message; // The chat system will handle the rest and re-obfuscate if needed.
+            _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Speak, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language);
+        }
+        else
+        {
+            // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
+            var message = args.OriginalChatMsg.Message; // The chat system will handle the rest and re-obfuscate if needed.
+            var chatType = component.IsSpeaker ? InGameICChatType.Speak : InGameICChatType.Whisper;
+            _chat.TrySendInGameICMessage(uid, message, chatType, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language);
+     }
+    }
+
+    private string ToString(RadioChannelPrototype channel)
+    {
+        throw new NotImplementedException();
     }
 
     private void OnBeforeIntercomUiOpen(EntityUid uid, IntercomComponent component, BeforeActivatableUIOpenEvent args)
