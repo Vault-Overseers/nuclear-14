@@ -144,3 +144,20 @@
         type: HandheldRadioBoundUserInterface
   # Nuclear-14-End
 
+- type: entity
+  parent: PoweredSmallLight
+  id: N14LightRadioOnAirSign
+  name: radio on air sign
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/radiostation/radioonair.rsi
+    state: base
+    layers:
+    - state: off
+    - state: on
+      map: ["enum.PoweredLightLayers.Base"]
+  - type: WallMount
+  - type: PointLight
+    radius: 7
+    energy: 0.6
+    softness: 0.4
