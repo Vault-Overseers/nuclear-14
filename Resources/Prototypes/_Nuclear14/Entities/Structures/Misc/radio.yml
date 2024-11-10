@@ -1,0 +1,21 @@
+- type: entity
+  parent: BaseStructure
+  id: N14RadioTower
+  name: radio tower
+  description: An old prewar radio tower, due to its simple design, it still works..
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/radio.rsi
+    state: radiotower
+    drawdepth: Walls
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.0,-2.0,1.0,-1.0"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - LowImpassable

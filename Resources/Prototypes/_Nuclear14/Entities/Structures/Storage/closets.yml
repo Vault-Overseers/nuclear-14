@@ -163,7 +163,19 @@
   - type: AntiRottingContainer
 
 - type: entity
-  parent: [ N14ClosetFridgeDirty, N14ClosetFridgeFill ]
+  parent: N14ClosetBaseW
+  id: N14ClosetFridgeWideDirty
+  name: fridge
+  description: A dirty old fridge for keeping food fresh
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Storage/Closets/fridgewidedirty.rsi
+  - type: ExplosionResistance
+    resistance: 0.90
+  - type: AntiRottingContainer
+
+- type: entity
+  parent: [ N14ClosetFridgeDirty, N14ClosetFridgeWideDirty, N14ClosetFridgeFill ]
   id: N14LootClosetFridge
   suffix: Loot,Domestic,Random
 
