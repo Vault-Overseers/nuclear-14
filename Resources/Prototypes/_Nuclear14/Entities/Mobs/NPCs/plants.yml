@@ -1,0 +1,45 @@
+- type: entity
+  name: wasteland plant
+  abstract: true
+  id: N14MobBaseHostilePlant
+  parent: N14MobBaseHostile
+  description: A mutated plant. You wonder where it came from, a vault perhaps?
+  components:
+  - type: Damageable
+    damageContainer: Biological
+  - type: NoSlip
+  - type: Speech
+    speechSounds: Squeak
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 0
+    baseSprintSpeed : 0
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 1
+  - type: CombatMode
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 0.5
+    range: 1
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.30
+        density: 30
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
