@@ -38,7 +38,7 @@
     drawdepth: Mobs
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: bloatfly
+      state: sporeplant
       sprite: _Nuclear14/Mobs/Plants/sporeplant.rsi
   - type: DamageStateVisuals
     states:
@@ -57,13 +57,12 @@
     bloodMaxVolume: 50
   - type: ReplacementAccent
     accent: mouse
-  - type: BallisticAmmoProvider
-    proto: N14BulletAcid
-    capacity: 100
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1
-  - type: Gun
-    fireRate: 0.5
-    selectedMode: FullAuto
-    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
-    useKey: false
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      65: Dead
+  - type: MeleeWeapon
+    range: 2
+    damage:
+      groups:
+        Brute: 6
