@@ -1,23 +1,18 @@
 - type: job
   id: BoSWashingtonKnight
   setPreference: true
-  overrideConsoleVisibility: true
-  canBeAntag: false
   name: job-name-bos-washington-knight
   description: job-description-bos-washington-knight
   playTimeTracker: BoSWashingtonKnight
   requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-      - Human
-      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodWashington
       min: 3600 # 1 hour as BoSWashingtonInitiate
   startingGear: BoSWashingtonKnightGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
-  supervisors: job-supervisors-bos-wash-knight
+  supervisors: job-supervisors-bos-washington
+  canBeAntag: false
   access:
   - WashingtonInitiate
   - WashingtonKnight
@@ -26,21 +21,25 @@
     components:
       - type: NpcFactionMember
         factions:
-          - Wastelander
           - BrotherhoodWashington
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: Ghoul
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSWashingtonKnightGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSRed
-    back: N14ClothingBackpackMilitaryFilled
-    shoes: N14ClothingBootsLeatherFilled
+    back: N14ClothingBackpackMilitary
+    shoes: N14ClothingBootsCombatMK2Filled
     hands: N14ClothingHandsGlovesCombat
     head: N14ClothingHeadHatBrotherhoodHelmet
-    outerClothing: N14ClothingOuterWBoSKnightArmor
+    outerClothing: N14ClothingOuterCombatArmorBOS
     id: N14IDBrotherhoodWashingtonHolotagKnight
     belt: ClothingBeltBoSWebbing
-    pocket1: BoSWashingtonKnightSet
+    pocket1: NCRBoSWashingtonkits
 
 - type: playTimeTracker
   id: BoSWashingtonKnight

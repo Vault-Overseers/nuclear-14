@@ -2,7 +2,7 @@
 - type: entity
   id: NCRtrooperloadoutkits
   name: Undecided NCR Trooper Loadout Kit
-  description: please only take one
+  description: Please only take one..
   parent: BaseItem
   components:
   - type: Sprite
@@ -12,7 +12,6 @@
     transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     - RiflemanSet
-    - GunnerSet
     - MarksmanSet
     - PointmanSet
     - MoraleSet
@@ -24,10 +23,53 @@
       - key: enum.UndecidedLoadoutBackpackUIKey.Key
         type: UndecidedLoadoutBackpackBoundUserInterface
 
+# Engineer Kits
 - type: entity
-  id: NCRNCOloadoutkits
-  name: Undecided NCR NCO Loadout Kit
-  description: please only take one
+  id: NCRengineerloadoutkits
+  name: Undecided NCR Engineer Loadout Kit
+  description: Please only take one..
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - EngineerSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+# WS Kits
+- type: entity
+  id: NCRwsloadoutkits
+  name: Undecided NCR Weapon Specalist Loadout Kit
+  description: Please only take one..
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: gunner
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - GunnerSet
+    #- GrenadierSet #TODO
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: NCRSGTloadoutkits
+  name: Undecided NCR SGT Loadout Kit
+  description: Please only take one.
   parent: BaseItem
   components:
   - type: Sprite
@@ -56,7 +98,7 @@
 - type: entity
   id: NCRrangerloadoutkits
   name: Undecided NCR Ranger Loadout Kit
-  description: please only take one
+  description: Please only take one.
   parent: BaseItem
   components:
   - type: Sprite
@@ -80,7 +122,7 @@
 - type: entity
   id: NCRveteranrangerloadoutkits
   name: Undecided NCR Veteran Ranger Loadout Kit
-  description: please only take one
+  description: Please only take one.
   parent: BaseItem
   components:
   - type: Sprite
@@ -110,7 +152,7 @@
 - type: entity
   id: NCRBoSMidwestkits
   name: Undecided BoS Midwest Kit
-  description: please only take one
+  description: Please only take one.
   parent: BaseItem
   components:
   - type: Sprite
@@ -128,11 +170,32 @@
       - key: enum.UndecidedLoadoutBackpackUIKey.Key
         type: UndecidedLoadoutBackpackBoundUserInterface
 
+- type: entity
+  id: NCRBoSWashingtonkits
+  name: Undecided Washington BoS Kit
+  description: Please only take one.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - BoSWashingtonDefaultSet
+    - BoSWashingtonCarbineSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
 #MARK: Scribes
 - type: entity
   id: NCRBoSMidwestScribekits
   name: Undecided BoS Scribe Midwest Kit
-  description: please only take one
+  description: Please only take one.
   parent: BaseItem
   components:
   - type: Sprite
@@ -151,11 +214,33 @@
       - key: enum.UndecidedLoadoutBackpackUIKey.Key
         type: UndecidedLoadoutBackpackBoundUserInterface
 
+- type: entity
+  id: NCRBoSWashingtonScribekits
+  name: Undecided BoS Scribe Washington Kit
+  description: Please only take one.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - BoSWashingtonScribeMedicalSet
+    - BoSWashingtonScribeFieldSet
+    - BoSWashingtonScribeEngineerSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
 #MARK: Paladins
 - type: entity
   id: NCRBoSMidwestPaladinkits
   name: Undecided BoS Paladin Midwest Kit
-  description: please only take one
+  description: Please only take one.
   parent: BaseItem
   components:
   - type: Sprite
@@ -166,8 +251,32 @@
     possibleSets:
     - BoSDefaultSet
     - BoSRangedSet
+    - BoSLaserSet 
     # - BoSPlasmaSet
     - BoSAssaultSet
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.UndecidedLoadoutBackpackUIKey.Key
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+- type: entity
+  id: NCRBoSWashingtonPaladinkits
+  name: Undecided BoS Paladin Washington Kit
+  description: Please only take one.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    transformAfterSelect: AlwaysPoweredWallLight
+    possibleSets:
+    - BoSWashingtonDefaultSet
+    - BoSWashingtonRangedSet
+    - BoSWashingtonPlasmaSet
+    - BoSWashingtonAssaultSet
   - type: ActivatableUI
     key: enum.UndecidedLoadoutBackpackUIKey.Key
   - type: UserInterface
@@ -195,7 +304,7 @@
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: gunner
   content:
-  - KitRifleman
+  - KitGunner
 
 - type: UndecidedLoadoutBackpackSet
   id: MarksmanSet
@@ -236,6 +345,21 @@
     state: medic
   content:
   - KitMedic
+
+#MARK: Engineer Kits
+
+- type: UndecidedLoadoutBackpackSet
+  id: EngineerSet
+  name: undecided-loadout-category-engineer-name
+  description: undecided-loadout-category-engineer-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  content:
+  - KitEngineer
+
+#MARK: WS Kits
+#TODO: Grendeir Specific Kit
 
 #MARK: Special Kits
 
@@ -394,6 +518,17 @@
   content:
   - KitDefaultBoSMidwest
 
+#laser
+- type: UndecidedLoadoutBackpackSet
+  id: BoSLaserSet
+  name: undecided-loadout-category-bos-laser-name
+  description: undecided-loadout-category-bos-laser-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitLaserBoSMidwest
+
 #carbine
 - type: UndecidedLoadoutBackpackSet
   id: BoSCarbineSet
@@ -473,3 +608,95 @@
     state: rifleman
   content:
   - KitAssaultBoSMidwest
+
+#MARK: WBoS Kits
+#default
+- type: UndecidedLoadoutBackpackSet
+  id: BoSWashingtonDefaultSet
+  name: undecided-loadout-category-bos-washington-default-name
+  description: undecided-loadout-category-bos-washington-default-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitDefaultBoSWashington
+
+#carbine
+- type: UndecidedLoadoutBackpackSet
+  id: BoSWashingtonCarbineSet
+  name: undecided-loadout-category-bos-washington-carbine-name
+  description: undecided-loadout-category-bos-washington-carbine-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitCarbineBoSWashington
+
+#MARK: WBoS Scribes
+#medic
+- type: UndecidedLoadoutBackpackSet
+  id: BoSWashingtonScribeMedicalSet
+  name: undecided-loadout-category-bos-washington-scribe-medic-name
+  description: undecided-loadout-category-bos-washington-cribe-medic-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: medic
+  content:
+  - KitScribeMedicBoSWashington
+
+#field scribe
+- type: UndecidedLoadoutBackpackSet
+  id: BoSWashingtonScribeFieldSet
+  name: undecided-loadout-category-bos-washington-scribe-field-name
+  description: undecided-loadout-category-bos-washington-scribe-field-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitScribeFieldBoSWashington
+
+#engineer
+- type: UndecidedLoadoutBackpackSet
+  id: BoSWashingtonScribeEngineerSet
+  name: undecided-loadout-category-bos-washington-scribe-engineer-name
+  description: undecided-loadout-category-bos-washington-scribe-engineer-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitScribeEngineerBoSWashington
+
+#MARK: WBoS Commander Special
+
+#PlasmaRifle
+- type: UndecidedLoadoutBackpackSet
+  id: BoSWashingtonPlasmaSet
+  name: undecided-loadout-category-bos-washington-plasma-name
+  description: undecided-loadout-category-washington-bos-plasma-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitPlasmaBoSWashington
+
+#AssaultRifle
+- type: UndecidedLoadoutBackpackSet
+  id: BoSWashingtonAssaultSet
+  name: undecided-loadout-category-bos-washington-ballistics-name
+  description: undecided-loadout-category-bos-washington-ballistics-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitAssaultBoSWashington
+
+#ranged-wattz
+- type: UndecidedLoadoutBackpackSet
+  id: BoSWashingtonRangedSet
+  name: undecided-loadout-category-bos-washington-ranged-name
+  description: undecided-loadout-category-bos-washington-ranged-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitMarksmanBoSWashington
