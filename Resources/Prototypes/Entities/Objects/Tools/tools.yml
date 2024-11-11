@@ -35,12 +35,10 @@
     range: 1.6
     damage:
       types:
-        Piercing: 6
+        Blunt: 6.5
     heavyRateModifier: 0.9
     heavyDamageBaseModifier: 1.2
-    heavyStaminaCost: 5
     maxTargets: 4
-    angle: 60
     soundHit:
       path: "/Audio/Items/wirecutter.ogg"
   - type: Tool
@@ -97,13 +95,12 @@
     storedRotation: -90
   - type: MeleeWeapon
     wideAnimationRotation: -90
-    attackRate: 1.2
+    attackRate: 1.35
     damage:
       types:
-        Piercing: 8
+        Piercing: 6
     heavyRateModifier: 0.75
     heavyDamageBaseModifier: 1.5
-    heavyStaminaCost: 5
     maxTargets: 1
     angle: 20
     soundHit:
@@ -157,14 +154,14 @@
       state: storage
   - type: MeleeWeapon
     wideAnimationRotation: 135
-    attackRate: 1.2
+    attackRate: 0.9
+    range: 1.6
     damage:
       types:
-        Blunt: 12
+        Blunt: 6.5
     bluntStaminaDamageFactor: 1.5
     heavyRateModifier: 0.75
     heavyDamageBaseModifier: 1.75
-    heavyStaminaCost: 5
     angle: 100
     soundHit:
       collection: MetalThud
@@ -217,7 +214,7 @@
     attackRate: 1.25
     damage:
       types:
-        Blunt: 14
+        Blunt: 6
     bluntStaminaDamageFactor: 2
     heavyStaminaCost: 5
     soundHit:
@@ -278,7 +275,6 @@
         Shock: 2
     heavyRateModifier: 0.9
     heavyDamageBaseModifier: 1.2
-    heavyStaminaCost: 5
     maxTargets: 1
     angle: 20
   - type: Item
@@ -297,11 +293,11 @@
     inHandsOnly: true
   - type: UserInterface
     interfaces:
-      - key: enum.NetworkConfiguratorUiKey.List
+      enum.NetworkConfiguratorUiKey.List:
         type: NetworkConfiguratorBoundUserInterface
-      - key: enum.NetworkConfiguratorUiKey.Configure
+      enum.NetworkConfiguratorUiKey.Configure:
         type: NetworkConfiguratorBoundUserInterface
-      - key: enum.NetworkConfiguratorUiKey.Link
+      enum.NetworkConfiguratorUiKey.Link:
         type: NetworkConfiguratorBoundUserInterface
   - type: Tag
     tags:
@@ -353,17 +349,17 @@
         - DoorElectronicsConfigurator
     - type: UserInterface
       interfaces:
-        - key: enum.NetworkConfiguratorUiKey.List
+        enum.NetworkConfiguratorUiKey.List:
           type: NetworkConfiguratorBoundUserInterface
-        - key: enum.NetworkConfiguratorUiKey.Configure
+        enum.NetworkConfiguratorUiKey.Configure:
           type: NetworkConfiguratorBoundUserInterface
-        - key: enum.NetworkConfiguratorUiKey.Link
+        enum.NetworkConfiguratorUiKey.Link:
           type: NetworkConfiguratorBoundUserInterface
     - type: StaticPrice
       price: 56
-    # - type: GuideHelp
-      # guides:
-        # - NetworkConfigurator
+    - type: GuideHelp
+      guides:
+        - NetworkConfigurator
 
 #Power tools
 #Later on these should switch probably switch damage when changing the tool behavior.
@@ -423,7 +419,6 @@
         Piercing: 8
     heavyRateModifier: 0.9
     heavyDamageBaseModifier: 1.2
-    heavyStaminaCost: 5
     maxTargets: 1
     angle: 20
     soundHit:
@@ -482,8 +477,8 @@
     price: 100
   - type: UserInterface
     interfaces:
-    - key: enum.RcdUiKey.Key
-      type: RCDMenuBoundUserInterface
+      enum.RcdUiKey.Key:
+        type: RCDMenuBoundUserInterface
   - type: ActivatableUI
     key: enum.RcdUiKey.Key
   - type: ReverseEngineering # Nyano
@@ -640,14 +635,14 @@
   - type: MeleeWeapon
     wideAnimationRotation: 45
     attackRate: 0.8
-    range: 2.0
+    range: 1.75
     damage:
       types:
-        Blunt: 16
+        Blunt: 8
     bluntStaminaDamageFactor: 1.5
     heavyRateModifier: 0.9
     heavyDamageBaseModifier: 1.5
-    heavyStaminaCost: 10
+    heavyStaminaCost: 7.5
     angle: 100
     soundHit:
       collection: MetalThud
@@ -691,12 +686,11 @@
     attackRate: 0.9
     damage:
       types:
-        Blunt: 8
+        Blunt: 7
     bluntStaminaDamageFactor: 2.0
     heavyRateModifier: 0.8
     heavyDamageBaseModifier: 1.5
-    heavyStaminaCost: 5
-    maxTargets: 1
+    maxTargets: 2
     angle: 20
     soundHit:
       collection: MetalThud

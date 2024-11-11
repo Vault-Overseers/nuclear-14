@@ -6,10 +6,6 @@
   abstract: true
   components:
   - type: Hunger
-    starvationDamage:
-      types:
-        Cold: 0.5
-        Bloodloss: 0.5
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
     sprite: Mobs/Species/Human/parts.rsi
     state: full
@@ -20,13 +16,19 @@
     spawned:
     - id: FoodMeatHuman
       amount: 5
-  - type: PsionicInsulation
+  - type: HumanoidAppearance
+    species: Human
+    hideLayersOnEquip:
+    - Hair
+    - Snout
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - TauCetiBasic
+    - SolCommon
     understands:
-    - GalacticCommon
-  - type: Special
+    - TauCetiBasic
+    - SolCommon
+  - type: FootPrints
 
 - type: entity
   parent: BaseSpeciesDummy

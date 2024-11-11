@@ -18,6 +18,8 @@
     - Back
     - suitStorage
   - type: AmmoCounter
+  - type: Wieldable
+  - type: GunRequiresWield
   - type: Gun
     fireRate: 0.75
     selectedMode: SemiAuto
@@ -40,7 +42,7 @@
 
 - type: entity
   name: Kardashev-Mosin
-  parent: BaseWeaponSniper
+  parent: [BaseWeaponSniper, BaseGunWieldable]
   id: WeaponSniperMosin
   description: A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
   components:
@@ -67,7 +69,7 @@
 
 - type: entity
   name: Hristov
-  parent: BaseWeaponSniper
+  parent: [BaseWeaponSniper, BaseGunWieldable]
   id: WeaponSniperHristov
   description: A portable anti-materiel rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-materiel ammo.
   components:
@@ -81,6 +83,7 @@
       - CartridgeAntiMateriel
     capacity: 5
     proto: CartridgeAntiMateriel
+  - type: Telescope
 
 - type: entity
   name: musket

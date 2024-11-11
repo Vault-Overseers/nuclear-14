@@ -51,6 +51,9 @@ public sealed class ThrusterSystem : EntitySystem
 
         SubscribeLocalEvent<ThrusterComponent, ExaminedEvent>(OnThrusterExamine);
 
+        SubscribeLocalEvent<ThrusterComponent, RefreshPartsEvent>(OnRefreshParts);
+        SubscribeLocalEvent<ThrusterComponent, UpgradeExamineEvent>(OnUpgradeExamine);
+
         SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
     }
 
@@ -578,6 +581,24 @@ public sealed class ThrusterSystem : EntitySystem
                 _appearance.SetData(uid, ThrusterVisualState.Thrusting, false, appearance);
             }
         }
+    }
+
+    private void OnRefreshParts(EntityUid uid, ThrusterComponent component, RefreshPartsEvent args)
+    {
+        if (component.IsOn) // safely disable thruster to prevent negative thrust
+            DisableThruster(uid, component);
+
+        var thrustRating = args.PartRatings[component.MachinePartThrust];
+
+        component.Thrust = component.BaseThrust * MathF.Pow(component.PartRatingThrustMultiplier, thrustRating - 1);
+
+        if (component.Enabled && CanEnable(uid, component))
+            EnableThruster(uid, component);
+    }
+
+    private void OnUpgradeExamine(EntityUid uid, ThrusterComponent component, UpgradeExamineEvent args)
+    {
+        args.AddPercentageUpgrade("thruster-comp-upgrade-thrust", component.Thrust / component.BaseThrust);
     }
 
     #endregion

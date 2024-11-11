@@ -1,4 +1,3 @@
-using Content.Shared._NC.Roles; // Nuclear 14
 using Content.Shared.Access;
 using Content.Shared.Customization.Systems;
 using Content.Shared.Players.PlayTimeTracking;
@@ -46,11 +45,6 @@ namespace Content.Shared.Roles
 
         [DataField("requirements")]
         public List<CharacterRequirement>? Requirements;
-
-        // Nuclear 14 start
-        [DataField("jobBlockForSpecies")]
-        public HashSet<JobBlockAbstract>? JobBlockForSpecies;
-        // Nuclear 14 end
 
         [DataField("joinNotifyCrew")]
         public bool JoinNotifyCrew { get; private set; } = false;
@@ -129,6 +123,9 @@ namespace Content.Shared.Roles
 
         [DataField("extendedAccessGroups")]
         public IReadOnlyCollection<ProtoId<AccessGroupPrototype>> ExtendedAccessGroups { get; private set; } = Array.Empty<ProtoId<AccessGroupPrototype>>();
+
+        [DataField]
+        public bool Whitelisted;
     }
 
     /// <summary>

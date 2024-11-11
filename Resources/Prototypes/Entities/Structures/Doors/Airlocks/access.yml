@@ -12,7 +12,7 @@
     layoutId: AirlockService
 
 - type: entity
-  parent: AirlockServiceLocked
+  parent: AirlockJustice # DeltaV - Lawyer is in Justice Dept
   id: AirlockLawyerLocked
   suffix: Lawyer, Locked
   noSpawn: true
@@ -169,7 +169,7 @@
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsFreezer ]
+      board: [ DoorElectronicsKitchenHydroponics ]
 
 - type: entity
   parent: AirlockFreezer
@@ -271,6 +271,17 @@
       board: [ DoorElectronicsChemistry ]
 
 - type: entity
+  parent: AirlockMedical
+  id: AirlockMedicalMorgueLocked
+  suffix: Morgue, Locked
+  noSpawn: true
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMorgue ]
+
+
+- type: entity
   parent: AirlockScience
   id: AirlockScienceLocked
   suffix: Epistemics, Locked # DeltaV - Epistemics Department replacing Science
@@ -288,7 +299,7 @@
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsScience ]
+      board: [ DoorElectronicsMedicalResearch ]
 
 - type: entity
   parent: AirlockCentralCommand
@@ -466,8 +477,8 @@
     layoutId: AirlockService
 
 - type: entity
-  parent: AirlockServiceGlassLocked
-  id: AirlockLawyerGlassLocked
+  parent: AirlockJusticeGlass
+  id: AirlockLawyerGlassLocked # DeltaV - Lawyer is in Justice Dept
   suffix: Lawyer, Locked
   noSpawn: true
   components:

@@ -1,4 +1,5 @@
 - type: job
+  setPreference: false
   id: HeadOfSecurity
   name: job-name-hos
   description: job-description-hos
@@ -7,6 +8,9 @@
     - !type:CharacterPlaytimeRequirement
       tracker: JobWarden
       min: 14400 #DeltaV 4 hrs
+  #  - !type:RoleTimeRequirement # DeltaV - No Security Officer time requirement - REIMPLEMENT WHEN MORE PEOPLE HAVE IT
+  #    role: JobDetective
+  #    time: 14400 #DeltaV 4 hrs
     - !type:CharacterDepartmentTimeRequirement # DeltaV - Command dept time requirement
       department: Command
       min: 36000 # 10 hours
@@ -37,7 +41,6 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
-  setPreference: false
 
 - type: startingGear
   id: HoSGear
@@ -50,7 +53,6 @@
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
   innerClothingSkirt: ClothingUniformJumpskirtHoS
   satchel: ClothingBackpackSatchelHOSFilled
   duffelbag: ClothingBackpackDuffelHOSFilled

@@ -3,6 +3,7 @@ using System.Linq;
 using Content.Server.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.Preferences;
 using Content.Shared.Nuclear14.Special;
 using Microsoft.Data.Sqlite;
@@ -38,22 +39,22 @@ namespace Content.IntegrationTests.Tests.Preferences
 
         private static HumanoidCharacterProfile CharlieCharlieson()
         {
-            return new(
-                "Charlie Charlieson",
-                "The biggest boy around.",
-                "Human",
-                1,
-                1,
-                21,
-                Sex.Male,
-                Gender.Epicene,
-                new HumanoidCharacterAppearance(
+            return new HumanoidCharacterProfile
+            {
+                Name = "Charlie Charlieson",
+                FlavorText = "The biggest boy around.",
+                Species = "Human",
+                Customspeciename = "",
+                Age = 21,
+                Appearance = new(
                     "Afro",
                     Color.Aqua,
                     "Shaved",
                     Color.Aquamarine,
                     Color.Azure,
                     Color.Beige,
+                    new List<Marking>()),
+            };
                     new ()
                 ),
                 ClothingPreference.Jumpskirt,

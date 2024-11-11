@@ -26,6 +26,7 @@ public sealed partial class GhostGui : UIWidget
     public event Action? RequestWarpsPressed;
     public event Action? ReturnToBodyPressed;
     public event Action? GhostRolesPressed;
+    public event Action? ReturnToRoundPressed;
 
     public GhostGui()
     {
@@ -41,6 +42,7 @@ public sealed partial class GhostGui : UIWidget
         GhostWarpButton.OnPressed += _ => RequestWarpsPressed?.Invoke();
         ReturnToBodyButton.OnPressed += _ => ReturnToBodyPressed?.Invoke();
         GhostRolesButton.OnPressed += _ => GhostRolesPressed?.Invoke();
+        ReturnToRound.OnPressed += _ => ReturnToRoundPressed?.Invoke();
         GhostRespawnButton.OnPressed += _ => RulesWindow.OpenCentered();
     }
 
@@ -56,7 +58,7 @@ public sealed partial class GhostGui : UIWidget
         Visible = false;
     }
 
-    public void Update(int? roles, bool? canReturnToBody, TimeSpan? timeOfDeath, float minTimeToRespawn)
+    public void Update(int? roles, bool? canReturnToBody)
     {
         ReturnToBodyButton.Disabled = !canReturnToBody ?? true;
         _timeOfDeath = timeOfDeath;

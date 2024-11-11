@@ -1,4 +1,5 @@
 - type: job
+  setPreference: false
   id: Prisoner
   name: job-name-prisoner
   description: job-description-prisoner
@@ -13,7 +14,15 @@
     - !type:DepartmentTimeRequirement
       department: Security
       min: 21600
-  setPreference: false
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          inverted: true
+          species:
+            - Shadowkin
+        - !type:CharacterTraitRequirement
+          traits:
+            - ShadowkinBlackeye
 
 - type: startingGear
   id: PrisonerGear

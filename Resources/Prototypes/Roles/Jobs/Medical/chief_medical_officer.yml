@@ -1,12 +1,12 @@
 # Best job.
 
 - type: job
+  setPreference: false
   id: ChiefMedicalOfficer
   name: job-name-cmo
   description: job-description-cmo
   playTimeTracker: JobChiefMedicalOfficer
   antagAdvantage: 6 # DeltaV - Reduced TC: Head of Staff
-  setPreference: false
   requirements:
     - !type:CharacterPlaytimeRequirement
       tracker: JobChemist
@@ -19,6 +19,15 @@
       min: 43200 # DeltaV - 12 hours
     - !type:CharacterOverallTimeRequirement
       min: 72000 # DeltaV - 20 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          inverted: true
+          species:
+            - Shadowkin
+        - !type:CharacterTraitRequirement
+          traits:
+            - ShadowkinBlackeye
   weight: 10
   startingGear: CMOGear
   icon: "JobIconChiefMedicalOfficer"

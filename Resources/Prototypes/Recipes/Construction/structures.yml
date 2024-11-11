@@ -689,6 +689,42 @@
   placementMode: SnapgridCenter
 
 - type: construction
+  name: directional uranium window
+  id: UraniumWindowDirectional
+  graph: WindowDirectional
+  startNode: start
+  targetNode: uraniumWindowDirectional
+  category: construction-category-structures
+  canBuildInImpassable: true
+  description: Clear and tougher than regular glass, with added RadAbsorb to protect you from deadly radiation.
+  conditions:
+    - !type:EmptyOrWindowValidInTile
+    - !type:NoWindowsInTile
+  icon:
+    sprite: Structures/Windows/directional.rsi
+    state: uranium_window
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  name: directional reinforced uranium window
+  id: UraniumReinforcedWindowDirectional
+  graph: WindowDirectional
+  startNode: start
+  targetNode: uraniumReinforcedWindowDirectional
+  category: construction-category-structures
+  canBuildInImpassable: true
+  description: Clear and much tougher than regular glass, with added RadAbsorb to protect you from deadly radiation.
+  conditions:
+    - !type:EmptyOrWindowValidInTile
+    - !type:NoWindowsInTile
+  icon:
+    sprite: Structures/Windows/directional.rsi
+    state: uranium_reinforced_window
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
   name: firelock
   id: Firelock
   graph: Firelock
@@ -858,7 +894,6 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden barricade
@@ -876,7 +911,6 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: railing
@@ -894,7 +928,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: railing corner
@@ -912,7 +945,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: railing corner small
@@ -930,7 +962,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: railing round
@@ -948,7 +979,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 # Chain link fencing
 - type: construction
@@ -1036,7 +1066,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden high fence end
@@ -1054,7 +1083,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden high fence corner
@@ -1072,7 +1100,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden high fence t-junction
@@ -1090,7 +1117,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden high fence gate
@@ -1108,7 +1134,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 #Wooden fence small
 - type: construction
@@ -1127,8 +1152,7 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
-    
+
 - type: construction
   name: wooden small fence end
   id: FenceWoodEndSmall
@@ -1145,7 +1169,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden small fence corner
@@ -1163,7 +1186,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden small fence t-junction
@@ -1181,7 +1203,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden small fence gate
@@ -1199,7 +1220,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 #Airlocks
 - type: construction
@@ -1569,23 +1589,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: airtight plastic flaps
-  id: PlasticFlapsAirtight
-  graph: PlasticFlapsGraph
-  startNode: start
-  targetNode: airtightFlaps
-  category: construction-category-structures
-  placementMode: SnapgridCenter
-  description: An airtight plastic flap to let items through and keep people out.
-  objectType: Structure
-  canBuildInImpassable: false
-  icon:
-    sprite: Structures/plastic_flaps.rsi
-    state: plasticflaps
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   name: opaque plastic flaps
   id: PlasticFlapsOpaque
   graph: PlasticFlapsGraph
@@ -1594,23 +1597,6 @@
   category: construction-category-structures
   placementMode: SnapgridCenter
   description: An opaque plastic flap to let items through and keep people out.
-  objectType: Structure
-  canBuildInImpassable: false
-  icon:
-    sprite: Structures/plastic_flaps.rsi
-    state: plasticflaps
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  name: airtight opaque plastic flaps
-  id: PlasticFlapsAirtightOpaque
-  graph: PlasticFlapsGraph
-  startNode: start
-  targetNode: airtightopaqueFlaps
-  category: construction-category-structures
-  placementMode: SnapgridCenter
-  description: An opaque, airtight plastic flap to let items through and keep people out.
   objectType: Structure
   canBuildInImpassable: false
   icon:
