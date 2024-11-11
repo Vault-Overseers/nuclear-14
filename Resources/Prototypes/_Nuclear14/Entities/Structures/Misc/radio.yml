@@ -31,8 +31,8 @@
     state: radiomicrophone
   - type: RadioMicrophone
     broadcastChannel: PBS
-    toggleOnInteract: false # Nuclear-14
-    frequency: 1667 # Nuclear-14
+    toggleOnInteract: false
+    frequency: 1667
     listenRange: 2
   - type: Clickable
   - type: InteractionOutline
@@ -55,14 +55,12 @@
         - MachineMask
         layer:
         - MachineLayer
-  # Nuclear-14-Start
   - type: ActivatableUI
     key: enum.HandheldRadioUiKey.Key
   - type: UserInterface
     interfaces:
       - key: enum.HandheldRadioUiKey.Key
         type: HandheldRadioBoundUserInterface
-  # Nuclear-14-End
 
 - type: entity # Prototype for radio receivers
   name: table radio
@@ -86,7 +84,7 @@
     channels:
     - PBS
     enabled: true
-    toggleOnInteract: true # Nuclear-14
+    toggleOnInteract: true
     IsSpeaker: true
   - type: Tag
     tags:
@@ -96,11 +94,10 @@
   - type: ActiveRadio
     channels:
     - PBS
-    # Nuclear-14-Start
   - type: RadioMicrophone
     broadcastChannel: PBS
-    toggleOnInteract: false # Nuclear-14
-    frequency: 1667 # Nuclear-14
+    toggleOnInteract: false
+    frequency: 1667
     listenRange: 0
 
 - type: entity # Prototype for radio receivers
@@ -114,8 +111,6 @@
     state: radiomicrophonestand
   - type: RadioMicrophone
     broadcastChannel: PBS
-    toggleOnInteract: false # Nuclear-14
-    frequency: 1667 # Nuclear-14
     listenRange: 2
   - type: ActiveRadio
     channels:
@@ -129,14 +124,12 @@
           bounds: "-0.25,0.5,0,-0.5"
         layer:
         - LowImpassable
-  # Nuclear-14-Start
   - type: ActivatableUI
     key: enum.HandheldRadioUiKey.Key
   - type: UserInterface
     interfaces:
       - key: enum.HandheldRadioUiKey.Key
         type: HandheldRadioBoundUserInterface
-  # Nuclear-14-End
 
 - type: entity
   parent: PoweredSmallLight
