@@ -31,7 +31,7 @@
     state: radiomicrophone
   - type: RadioMicrophone
     broadcastChannel: PBS
-    toggleOnInteract: false
+    toggleOnInteract: true
     frequency: 1667
     listenRange: 2
   - type: Clickable
@@ -55,12 +55,6 @@
         - MachineMask
         layer:
         - MachineLayer
-  - type: ActivatableUI
-    key: enum.HandheldRadioUiKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.HandheldRadioUiKey.Key
-        type: HandheldRadioBoundUserInterface
 
 - type: entity # Prototype for radio receivers
   name: table radio
@@ -111,6 +105,8 @@
     state: radiomicrophonestand
   - type: RadioMicrophone
     broadcastChannel: PBS
+    toggleOnInteract: true
+    frequency: 1667
     listenRange: 2
   - type: ActiveRadio
     channels:
@@ -124,12 +120,6 @@
           bounds: "-0.25,0.5,0,-0.5"
         layer:
         - LowImpassable
-  - type: ActivatableUI
-    key: enum.HandheldRadioUiKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.HandheldRadioUiKey.Key
-        type: HandheldRadioBoundUserInterface
 
 - type: entity
   parent: PoweredSmallLight
