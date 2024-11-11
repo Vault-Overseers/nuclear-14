@@ -223,11 +223,6 @@ public sealed class RadioDeviceSystem : EntitySystem
 
     }
 
-    private string ToString(RadioChannelPrototype channel)
-    {
-        throw new NotImplementedException();
-    }
-
     private void OnBeforeIntercomUiOpen(EntityUid uid, IntercomComponent component, BeforeActivatableUIOpenEvent args)
     {
         UpdateIntercomUi(uid, component);
