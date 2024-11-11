@@ -25,7 +25,7 @@ public sealed partial class RadioSpeakerComponent : Component
     [DataField("enabled")]
     public bool Enabled;
 
-    [DataField("IsSpeaker")] //This field when true will play the audio over the Speak chat type. The default chat type is whisper. This will allow the audio to carry further.
+    [DataField("IsSpeaker")] // Set to true for broadcast radio speakers so that it speaks instead of whispers the message.
     public bool IsSpeaker;
 
 }
