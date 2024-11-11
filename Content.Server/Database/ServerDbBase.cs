@@ -260,7 +260,7 @@ namespace Content.Server.Database
                 (PreferenceUnavailableMode) profile.PreferenceUnavailable,
                 antags.ToHashSet(),
                 traits.ToHashSet(),
-                loadouts.ToHashSet()
+                loadouts.ToHashSet(),
                 antags.ToList(),
                 specials // Nuclear14 Special
             );

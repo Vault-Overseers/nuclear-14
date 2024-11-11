@@ -383,9 +383,6 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             case HeavyAttackEvent:
                 fireRateSwingModifier *= weapon.HeavyRateModifier;
                 break;
-            case HeavyAttackEvent:
-                fireRateSwingModifier *= weapon.HeavyRateModifier;
-                break;
             default:
                 if (!Blocker.CanAttack(user, weapon: (weaponUid, weapon)))
                     return false;

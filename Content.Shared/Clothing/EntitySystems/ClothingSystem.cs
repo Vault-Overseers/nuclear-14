@@ -18,8 +18,6 @@ public abstract class ClothingSystem : EntitySystem
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private readonly InventorySystem _invSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSys = default!;
-
 
     public override void Initialize()
     {

@@ -108,7 +108,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
 
     /// <summary>
     ///     Returns the list of languages this entity can understand.
-k    /// </summary
+    /// </summary
     /// <remarks>This simply returns the value of <see cref="LanguageSpeakerComponent.SpokenLanguages"/>.</remarks>
     public List<ProtoId<LanguagePrototype>> GetUnderstoodLanguages(EntityUid uid)
     {

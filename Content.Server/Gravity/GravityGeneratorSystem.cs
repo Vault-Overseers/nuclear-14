@@ -26,7 +26,8 @@ namespace Content.Server.Gravity
 
             SubscribeLocalEvent<GravityGeneratorComponent, ComponentInit>(OnCompInit);
             SubscribeLocalEvent<GravityGeneratorComponent, ComponentShutdown>(OnComponentShutdown);
-            SubscribeLocalEvent<GravityGeneratorComponent, EntParentChangedMessage>(OnParentChanged); // Or just anchor changed?
+            SubscribeLocalEvent<GravityGeneratorComponent, EntParentChangedMessage>(
+                OnParentChanged); // Or just anchor changed?
             SubscribeLocalEvent<GravityGeneratorComponent, InteractHandEvent>(OnInteractHand);
             SubscribeLocalEvent<GravityGeneratorComponent, RefreshPartsEvent>(OnRefreshParts);
             SubscribeLocalEvent<GravityGeneratorComponent, SharedGravityGeneratorComponent.SwitchGeneratorMessage>(
@@ -35,7 +36,9 @@ namespace Content.Server.Gravity
             SubscribeLocalEvent<GravityGeneratorComponent, EmpPulseEvent>(OnEmpPulse);
         }
 
-        private void OnParentChanged(EntityUid uid, GravityGeneratorComponent component, ref EntParentChangedMessage args)
+        private void OnParentChanged(EntityUid uid,
+            GravityGeneratorComponent component,
+            ref EntParentChangedMessage args)
         {
             if (component.GravityActive && TryComp(args.OldParent, out GravityComponent? gravity))
             {
@@ -135,14 +138,19 @@ namespace Content.Server.Gravity
             }
         }
 
-        private void SetSwitchedOn(EntityUid uid, GravityGeneratorComponent component, bool on,
-            ApcPowerReceiverComponent? powerReceiver = null, EntityUid? user = null)
+        private void SetSwitchedOn(EntityUid uid,
+            GravityGeneratorComponent component,
+            bool on,
+            ApcPowerReceiverComponent? powerReceiver = null,
+            EntityUid? user = null)
         {
             if (!Resolve(uid, ref powerReceiver))
                 return;
 
             if (user != null)
-                _adminLogger.Add(LogType.Action, on ? LogImpact.Medium : LogImpact.High, $"{ToPrettyString(user)} set ${ToPrettyString(uid):target} to {(on ? "on" : "off")}");
+                _adminLogger.Add(LogType.Action,
+                    on ? LogImpact.Medium : LogImpact.High,
+                    $"{ToPrettyString(user)} set ${ToPrettyString(uid):target} to {(on ? "on" : "off")}");
 
             component.SwitchedOn = on;
             UpdatePowerState(component, powerReceiver);
@@ -235,7 +243,9 @@ namespace Content.Server.Gravity
             if (_lights.TryGetLight(uid, out var pointLight))
             {
                 _lights.SetEnabled(uid, grav.Charge > 0, pointLight);
-                _lights.SetRadius(uid, MathHelper.Lerp(grav.LightRadiusMin, grav.LightRadiusMax, grav.Charge), pointLight);
+                _lights.SetRadius(uid,
+                    MathHelper.Lerp(grav.LightRadiusMin, grav.LightRadiusMax, grav.Charge),
+                    pointLight);
             }
 
             if (!grav.Intact)
@@ -296,29 +306,6 @@ namespace Content.Server.Gravity
             SharedGravityGeneratorComponent.SwitchGeneratorMessage args)
         {
             SetSwitchedOn(uid, component, args.On, user: args.Actor);
-        }
-
-        private void OnEmpPulse(EntityUid uid, GravityGeneratorComponent component, EmpPulseEvent args)
-        {
-            /// i really don't think that the gravity generator should use normalised 0-1 charge
-            /// as opposed to watts charge that every other battery uses
-
-            ApcPowerReceiverComponent? powerReceiver = null;
-            if (!Resolve(uid, ref powerReceiver, false))
-                return;
-
-            var ent = (uid, component, powerReceiver);
-
-            // convert from normalised energy to watts and subtract
-            float maxEnergy = component.ActivePowerUse / component.ChargeRate;
-            float currentEnergy = maxEnergy * component.Charge;
-            currentEnergy = Math.Max(0, currentEnergy - args.EnergyConsumption);
-
-            // apply renormalised energy to charge variable
-            component.Charge = currentEnergy / maxEnergy;
-
-            // update power state
-            UpdateState(ent);
         }
 
         private void OnEmpPulse(EntityUid uid, GravityGeneratorComponent component, EmpPulseEvent args)

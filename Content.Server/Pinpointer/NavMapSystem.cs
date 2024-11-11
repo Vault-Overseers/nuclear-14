@@ -36,9 +36,6 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
     private EntityQuery<MapGridComponent> _gridQuery;
     private EntityQuery<NavMapComponent> _navQuery;
 
-    public const float CloseDistance = 15f;
-    public const float FarDistance = 30f;
-
     public override void Initialize()
     {
         base.Initialize();

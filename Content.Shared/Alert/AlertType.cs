@@ -25,6 +25,7 @@ namespace Content.Shared.Alert
         HumanHealth,
         BorgBattery,
         BorgBatteryNone,
+        NightVision,
 
         // Mood
         Bleeding,

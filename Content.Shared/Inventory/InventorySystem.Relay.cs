@@ -53,7 +53,7 @@ public partial class InventorySystem
 
         SubscribeLocalEvent<InventoryComponent, GetVerbsEvent<EquipmentVerb>>(OnGetEquipmentVerbs);
         // Nuclear14 Cloth Special Modifiers
-        SubscribeLocalEvent<InventoryComponent, RefreshSpecialModifiersEvent>(RelayInventoryEvent);
+        // SubscribeLocalEvent<InventoryComponent, RefreshSpecialModifiersEvent>(RelayInventoryEvent);
         // Nuclear14 end
     }
 

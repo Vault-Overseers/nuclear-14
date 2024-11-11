@@ -37,6 +37,7 @@ public sealed class PermanentBlindnessSystem : EntitySystem
         _blinding.UpdateIsBlind(blindness.Owner);
     }
 
+    private void OnMapInit(Entity<Components.PermanentBlindnessComponent> blindness, ref MapInitEvent args)
     {
         if (!_entityManager.TryGetComponent<BlindableComponent>(blindness, out var blindable))
             return;

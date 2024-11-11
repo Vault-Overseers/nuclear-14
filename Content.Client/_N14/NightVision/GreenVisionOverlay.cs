@@ -1,4 +1,5 @@
-﻿using Robust.Client.Graphics;
+﻿using System.Numerics;
+using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
@@ -38,7 +39,7 @@ public sealed partial class GreenVisionOverlay : Overlay
 
         var worldHandle = args.WorldHandle;
         var viewport = args.WorldBounds;
-        worldHandle.SetTransform(Matrix3.Identity);
+        worldHandle.SetTransform(Matrix3x2.Identity);
         worldHandle.UseShader(_greenVisionShader);
         worldHandle.DrawRect(viewport, Color.White);
     }
