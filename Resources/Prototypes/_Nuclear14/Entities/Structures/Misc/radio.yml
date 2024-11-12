@@ -7,7 +7,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/radio.rsi
     state: radiotower
-    drawdepth: OverMobs
+    drawdepth: Walls
   - type: Fixtures
     fixtures:
       fix1:
@@ -28,8 +28,6 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/radiostation/microphones.rsi
-    drawdepth: OverMobs
-    offset: 0,0.5
     layers:
       - state: base
       - state: on
@@ -54,6 +52,7 @@
     broadcastChannel: PBS
     toggleOnInteract: true
     frequency: 1667
+    listenRange: 2
   - type: Clickable
   - type: InteractionOutline
   - type: WiresVisuals
@@ -112,6 +111,7 @@
     broadcastChannel: PBS
     toggleOnInteract: false
     frequency: 1667
+    listenRange: 0
 
 - type: entity # Prototype for radio receivers
   name: standing microphone
@@ -126,9 +126,11 @@
     broadcastChannel: PBS
     toggleOnInteract: true
     frequency: 1667
+    listenRange: 2
   - type: ActiveRadio
     channels:
     - PBS
+    listenRange: 2
   - type: Fixtures
     fixtures:
       fix1:
@@ -145,7 +147,6 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/radiostation/radioonair.rsi
-    offset: 0,-0.25
     state: base
     layers:
     - state: off
