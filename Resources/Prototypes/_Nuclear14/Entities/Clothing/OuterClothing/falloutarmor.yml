@@ -783,7 +783,7 @@
   parent: N14ClothingOuterRangerCombat
   id: N14ClothingOuterRangerEliteOld
   name: worn elite ranger combat armor
-  description: A customized and well-worn suit of riot gear with parts of the suit reinforced with leather armor and slain Centurion armor pieces by the wearer. A sniper's veil is wrapped around the neck. This one has seen some wear.
+  description: Worn riot gear granted to Rangers who served as law bringers for times of great unrest. This armor is a testament to the reach and power of the Republic and its will to bring peace to the lawlessness of the wasteland.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerelite.rsi
@@ -792,10 +792,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.35
-        Heat: 0.4
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.55
+        Heat: 0.55
+  - type: ExplosionResistance
+    damageCoefficient: 0.65
 
 - type: entity
   parent: N14ClothingOuterRangerCombat
@@ -896,6 +898,27 @@
         Slash: 0.8
         Piercing: 0.8
         Heat: 0.6
+
+- type: entity
+  parent: N14ClothingOuterCombatArmorMK2
+  id: N14ClothingOuterCombatArmorMK3
+  name: brotherhood combat armor mk3
+  description: Meticulously worked on by the Washington Scribes, its near unrecognisable from its original state.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosmk3armor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosmk3armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.5
+        Heat: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+
 
 #MARK: midwest BoS
 
