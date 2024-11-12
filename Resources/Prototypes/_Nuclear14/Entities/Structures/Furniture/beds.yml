@@ -13,6 +13,22 @@
 
 - type: entity
   parent: N14Bed
+  id: N14BedBunk
+  name: "Bunk Bed"
+  description: A clean bunk bed. I call top bunk!
+  components:
+  - type: Sprite
+    state: bed_bunk
+    snapCardinals: true
+    drawdepth: OverMobs
+  - type: Strap
+    position: Down
+    rotation: -270
+    buckleOffset: 0,0.3
+    maxBuckleDistance: 0.3
+
+- type: entity
+  parent: N14Bed
   id: N14BedDirty
   name: "Dirty Bed"
   description: A bed that looks like it's seen better days.
@@ -41,6 +57,12 @@
   components:
   - type: Sprite
     state: bed_wood_bunk
+    drawdepth: OverMobs
+  - type: Strap
+    position: Down
+    rotation: -270
+    buckleOffset: 0,0.3
+    maxBuckleDistance: 0.3
 
 # TODO: Reduce the healing rate of all these at some point compared to a proper bed.
 - type: entity
@@ -89,7 +111,6 @@
                   min: 0
                   max: 2
     - type: Strap
-      enabled: True
       position: Down
       rotation: -90
       buckleOffset: "0.05,-0.10"
@@ -104,8 +125,18 @@
   components:
   - type: Foldable
     folded: true
-  - type: Strap
-    enabled: False
+
+- type: entity
+  parent: N14Bed
+  id: N14BedMattress0
+  name: Mattress
+  description: A mattress on the floor. Better than nothing.
+  components:
+  - type: Sprite
+    state: mattress0
+  - type: Construction
+    graph: N14Bed
+    node: mattress
 
 - type: entity
   parent: N14Bed
