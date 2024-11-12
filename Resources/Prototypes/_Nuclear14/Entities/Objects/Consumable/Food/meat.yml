@@ -1,12 +1,11 @@
 # Base
 - type: entity
-  parent: FoodMeatRawBase
+  parent: FoodMeat
   id: N14FoodMeatBase
   abstract: true
   components:
   - type: Food
   - type: Sprite
-    scale: 0.75, 0.75
     sprite: _Nuclear14/Objects/Consumable/Food/meat.rsi
     state: brahminmeat
     netsync: false
@@ -137,7 +136,7 @@
     defaultTarget: SteakCooked
 
 - type: entity
-  name: raw Yao Guai meat
+  name: raw yao-guai meat
   parent: N14FoodMeatBrahmin
   id: N14FoodMeatYaoguai
   description: A very muscular slab of raw yao-guai meat.
@@ -362,8 +361,8 @@
           Quantity: 6
         - ReagentId: Protein
           Quantity: 6
-        # - ReagentId: N14RadParticleFood # You cannot set variables to a zero value!
-          # Quantity: 0 #currently, we are experimenting with cooked food not giving rads. Former value is 5.
+        - ReagentId: N14RadParticleFood
+          Quantity: 0 #currently, we are experimenting with cooked food not giving rads. Former value is 5.
 
 - type: entity
   name: cooked brahmin steak
@@ -383,8 +382,8 @@
           Quantity: 10
         - ReagentId: Protein
           Quantity: 5
-        # - ReagentId: N14RadParticleFood
-          # Quantity: 0 #former value 3
+        - ReagentId: N14RadParticleFood
+          Quantity: 0 #former value 3
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatBrahminCutletCooked
@@ -411,8 +410,8 @@
           Quantity: 8
         - ReagentId: Protein
           Quantity: 8
-        # - ReagentId: N14RadParticleFood
-          # Quantity: 0
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatBighornerCutletCooked
@@ -439,8 +438,8 @@
           Quantity: 6
         - ReagentId: Protein
           Quantity: 4
-        # - ReagentId: N14RadParticleFood
-          # Quantity: 0
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadstagCutletCooked
@@ -466,8 +465,8 @@
           Quantity: 4
         - ReagentId: Protein
           Quantity: 4
-        # - ReagentId: N14RadParticleFood
-          # Quantity: 0
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadhogCutletCooked
@@ -493,8 +492,8 @@
           Quantity: 6
         - ReagentId: Protein
           Quantity: 6
-        # - ReagentId: N14RadParticleFood
-          # Quantity: 0
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: Construction
     graph: MeatSteakPigrat
     node: SteakCooked
@@ -546,8 +545,8 @@
           Quantity: 4
         - ReagentId: Protein
           Quantity: 6
-        # - ReagentId: N14RadParticleFood
-          # Quantity: 0
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadscorpionCutletCooked
@@ -575,8 +574,8 @@
           Quantity: 4
         - ReagentId: Protein
           Quantity: 4
-        # - ReagentId: N14RadParticleFood
-          # Quantity: 0
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: SliceableFood
     count: 3
     slice: N14FoodMeatRadchickenCutletCooked
@@ -599,8 +598,8 @@
           Quantity: 6
         - ReagentId: Protein
           Quantity: 6
-        # - ReagentId: N14RadParticleFood
-          # Quantity: 0
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: Construction
     graph: MeatSteakGecko
     node: SteakCooked
@@ -624,8 +623,8 @@
           Quantity: 6
         - ReagentId: Protein
           Quantity: 6
-        # - ReagentId: N14RadParticleFood
-          # Quantity: 0
+        - ReagentId: N14RadParticleFood
+          Quantity: 0
   - type: Construction
     graph: MeatSteakGeckoFire
     node: SteakCooked
@@ -833,10 +832,6 @@
     rotAfter: 900
     # don't want meat giving off ammonia only bodies
     molsPerSecondPerUnitMass: 0
-  - type: Construction
-    graph: MeatRadCutlet
-    node: start
-    defaultTarget: CutletCooked
 
 - type: entity
   name: raw brahmin cutlet
@@ -849,10 +844,6 @@
     - state: cutlet
     - state: cutlet-alpha
       color: brown
-  - type: Construction
-    graph: MeatBrahminCutlet
-    node: start
-    defaultTarget: CutletCooked
 
 - type: entity
   name: raw bighorner cutlet
@@ -865,10 +856,6 @@
     - state: cutlet
     - state: cutlet-alpha
       color: brown
-  - type: Construction
-    graph: MeatBighornerCutlet
-    node: start
-    defaultTarget: CutletCooked
 
 - type: entity
   name: raw radstag cutlet
@@ -881,10 +868,6 @@
     - state: cutlet
     - state: cutlet-alpha
       color: brown
-  - type: Construction
-    graph: MeatRadstagCutlet
-    node: start
-    defaultTarget: CutletCooked
 
 - type: entity
   name: raw radhog cutlet
@@ -897,10 +880,6 @@
     - state: cutlet
     - state: cutlet-alpha
       color: brown
-  - type: Construction
-    graph: MeatRadhogCutlet
-    node: start
-    defaultTarget: CutletCooked
 
 - type: entity
   name: raw yao-guai cutlet
@@ -913,10 +892,6 @@
     - state: cutlet
     - state: cutlet-alpha
       color: brown
-  - type: Construction
-    graph: MeatYaoguaiCutlet
-    node: start
-    defaultTarget: CutletCooked
 
 - type: entity
   name: raw radchicken cutlet
@@ -927,10 +902,6 @@
   - type: Sprite
     state: cutlet
     color: white
-  - type: Construction
-    graph: MeatRadchickenCutlet
-    node: start
-    defaultTarget: CutletCooked
 
 - type: entity
   name: raw radscorpion cutlet
@@ -944,10 +915,6 @@
       color: black
     - state: cutlet-alpha
       color: red
-  - type: Construction
-    graph: MeatRadscorpionCutlet
-    node: start
-    defaultTarget: CutletCooked
 
 # Cooked
 - type: entity
@@ -971,12 +938,8 @@
           Quantity: 2
         - ReagentId: Protein
           Quantity: 2
-        # - ReagentId: N14RadParticleFood
-          # Quantity: 0 #Ditto, changing these values to 0 seemed like the best bet for if we want to revert this later. Formerly 3 rads.
-  - type: Construction
-    graph: MeatRadCutlet
-    node: CutletCooked
-    defaultTarget: CutletCooked
+        - ReagentId: N14RadParticleFood
+          Quantity: 0 #Ditto, changing these values to 0 seemed like the best bet for if we want to revert this later. Formerly 3 rads.
 
 - type: entity
   name: cooked brahmin cutlet
@@ -989,10 +952,6 @@
     - state: cutlet-cooked
     - state: cutlet-alpha
       color: brown
-  - type: Construction
-    graph: MeatBrahminCutlet
-    node: CutletCooked
-    defaultTarget: CutletCooked
 
 - type: entity
   name: cooked bighorner cutlet
@@ -1005,10 +964,6 @@
     - state: cutlet-cooked
     - state: cutlet-alpha
       color: brown
-  - type: Construction
-    graph: MeatBighornerCutlet
-    node: CutletCooked
-    defaultTarget: CutletCooked
 
 - type: entity
   name: cooked radstag cutlet
@@ -1021,10 +976,6 @@
     - state: cutlet-cooked
     - state: cutlet-alpha
       color: brown
-  - type: Construction
-    graph: MeatRadstagCutlet
-    node: CutletCooked
-    defaultTarget: CutletCooked
 
 - type: entity
   name: cooked radhog cutlet
@@ -1037,10 +988,6 @@
     - state: cutlet-cooked
     - state: cutlet-alpha
       color: brown
-  - type: Construction
-    graph: MeatRadhogCutlet
-    node: CutletCooked
-    defaultTarget: CutletCooked
 
 - type: entity
   name: cooked yao-guai cutlet
@@ -1053,10 +1000,6 @@
     - state: cutlet-cooked
     - state: cutlet-alpha
       color: brown
-  - type: Construction
-    graph: MeatYaoguaiCutlet
-    node: CutletCooked
-    defaultTarget: CutletCooked
 
 - type: entity
   name: cooked radchicken cutlet
@@ -1067,10 +1010,6 @@
   - type: Sprite
     state: cutlet-cooked
     color: white
-  - type: Construction
-    graph: MeatRadchickenCutlet
-    node: CutletCooked
-    defaultTarget: CutletCooked
 
 - type: entity
   name: cooked radscorpion cutlet
@@ -1084,10 +1023,6 @@
       color: black
     - state: cutlet-alpha
       color: red
-  - type: Construction
-    graph: MeatRadscorpionCutlet
-    node: CutletCooked
-    defaultTarget: CutletCooked
 
 #- type: entity
 #  name: raw bacon

@@ -1,0 +1,258 @@
+- type: reaction
+  id: N14Curdling
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    N14MilkBrahmin:
+      amount: 40
+    Enzyme: #N14TODO: Replace this
+      amount: 5
+      catalyst: true
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14FoodCheese
+
+- type: reaction
+  id: N14RazorgrainDough
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    ExtractRazorgrainFlour:
+      amount: 15
+    Water:
+      amount: 10
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14FoodDough
+
+- type: reaction
+  id: N14MaizeDough
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    ExtractMaize:
+      amount: 15
+    Water:
+      amount: 10
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14FoodDoughCornmeal
+- type: reaction
+  id: N14SweetBatter
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    ExtractRazorgrainFlour:
+      amount: 15
+    Egg:
+      amount: 12
+    Sugar:
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14FoodCakeBatter
+
+- type: reaction
+  id: N14BrahminButter
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    N14MilkBrahmin:
+      amount: 30
+    TableSalt:
+      amount: 5
+      catalyst: true
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14FoodButter
+
+- type: reaction
+  id: N14PieDough
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    ExtractRazorgrainFlour:
+      amount: 15
+    Egg:
+      amount: 12
+    TableSalt:
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14FoodDoughPie
+
+# -- N14TODO: Replace --
+#- type: reaction
+#  id: N14CreateMeatball
+#  impact: Low
+#  quantized: true
+#  conserveEnergy: false
+#  reactants:
+#    N14UncookedAnimalProteinsRad:
+#      amount: 5
+#    Egg:
+#      amount: 6
+#  effects:
+#    - !type:CreateEntityReactionEffect
+#      entity: N14FoodMeatMeatball
+#meatballs are causing a ton of errors for some reason, commented out for now -hazel
+
+- type: reaction
+  id: N14CreateAgaveJam
+  minTemp: 353.15 # 80 degrees Celcius.
+  reactants:
+    ExtractAgaveNectar:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    AgaveJam: 2
+
+- type: reaction
+  id: N14CreateBlackberryJam
+  minTemp: 353.15 # 80 degrees Celcius.
+  reactants:
+    ExtractBlackberries:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    BlackberryJam: 2
+
+- type: reaction
+  id: N14CreateBrocJam
+  minTemp: 353.15 # 80 degrees Celcius.
+  reactants:
+    ExtractBroc:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    BrocJam: 2
+
+- type: reaction
+  id: N14CreateCactusJam
+  minTemp: 353.15 # 80 degrees Celcius.
+  reactants:
+    ExtractCactusWater:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    CactusJam: 2
+
+- type: reaction
+  id: N14CreateMultifruitJam
+  minTemp: 353.15 # 80 degrees Celcius.
+  reactants:
+    ExtractMutfruit:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    MultifruitJam: 2
+
+- type: reaction
+  id: N14CreatePricklyPearJam
+  minTemp: 353.15 # 80 degrees Celcius.
+  reactants:
+    ExtractPricklyPearFruit:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    PricklyPearJam: 2
+
+- type: reaction
+  id: N14CreateStarlightJam
+  minTemp: 353.15 # 80 degrees Celcius.
+  reactants:
+    ExtractStarlightBerries:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    StarlightJam: 2
+
+- type: reaction
+  id: N14CreateTarberryJam
+  minTemp: 353.15 # 80 degrees Celcius.
+  reactants:
+    ExtractTarberries:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    TarberryJam: 2
+
+# Pickled Varients
+- type: reaction
+  id: N14CreatePickledCabbage
+  minTemp: 303.15 # 30 degrees Celcius.
+  reactants:
+    ExtractCabbage:
+      amount: 1
+    TableSalt:
+      amount: 1
+    Water:
+      amount: 1
+  products:
+    PickledCabbage: 3
+
+- type: reaction
+  id: N14CreatePickledCarrots
+  minTemp: 303.15 # 30 degrees Celcius.
+  reactants:
+    ExtractCarrot:
+      amount: 1
+    TableSalt:
+      amount: 1
+    Water:
+      amount: 1
+  products:
+    PickledCarrots: 3
+
+- type: reaction
+  id: N14CreatePickledCorn
+  minTemp: 303.15 # 30 degrees Celcius.
+  reactants:
+    ExtractMaize:
+      amount: 1
+    TableSalt:
+      amount: 1
+    Water:
+      amount: 1
+  products:
+    PickledCorn: 3
+
+- type: reaction
+  id: N14CreatePickledJalapenos
+  minTemp: 303.15 # 30 degrees Celcius.
+  reactants:
+    ExtractGlowpepper:
+      amount: 1
+    TableSalt:
+      amount: 1
+    Water:
+      amount: 1
+  products:
+    PickledJalapenos: 3
+
+- type: reaction
+  id: N14CreatePickledOnions
+  minTemp: 303.15 # 30 degrees Celcius.
+  reactants:
+    ExtractPinyon:
+      amount: 1
+    TableSalt:
+      amount: 1
+    Water:
+      amount: 1
+  products:
+    PickledOnions: 3
