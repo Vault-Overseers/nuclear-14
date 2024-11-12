@@ -3,7 +3,7 @@
 
 - type: entity
   parent: FoodInjectableBase
-  id: N14FoodNoodlesBase
+  id: N14CookedFoodNoodlesBase
   abstract: true
   description: Now that's a nice pasta!
   components:
@@ -23,8 +23,8 @@
 
 - type: entity
   name: boiled spaghetti
-  parent: N14FoodNoodlesBase
-  id: N14FoodNoodlesBoiled
+  parent: N14CookedFoodNoodlesBase
+  id: N14CookedFoodNoodlesBoiled
   description: A plain dish of noodles, this needs more ingredients.
   components:
   - type: FlavorProfile
@@ -36,8 +36,8 @@
 
 - type: entity
   name: spaghetti
-  parent: N14FoodNoodlesBase
-  id: N14FoodNoodles
+  parent: N14CookedFoodNoodlesBase
+  id: N14CookedFoodNoodles
   description: Spaghetti and crushed tatos. People used to eat this slop?
   components:
   - type: FlavorProfile
@@ -53,31 +53,9 @@
 # Tastes like pasta, tomato.
 
 - type: entity
-  name: copypasta
-  parent: N14FoodNoodlesBase
-  id: N14FoodNoodlesCopy
-  description: You probably shouldn't try this, you always hear people talking about how bad it is...
-  components:
-  - type: FlavorProfile
-    flavors:
-      - copypasta
-  - type: Sprite
-    state: copypasta
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 12
-        - ReagentId: Vitamin
-          Quantity: 8
-# Tastes like pasta, bad humor.
-
-- type: entity
   name: spaghetti and meatballs
-  parent: N14FoodNoodlesBase
-  id: N14FoodNoodlesMeatball
+  parent: N14CookedFoodNoodlesBase
+  id: N14CookedFoodNoodlesMeatball
   description: It's kind of annoying to eat, but tasty. #N14 change
   components:
   - type: FlavorProfile
@@ -102,32 +80,9 @@
 # Tastes like pasta, meat.
 
 - type: entity
-  name: spesslaw
-  parent: N14FoodNoodlesBase
-  id: N14FoodNoodlesSpesslaw
-  description: A lawyer's favourite.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - pasta
-      - meaty
-  - type: Sprite
-    state: spesslaw
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 8
-        - ReagentId: Vitamin
-          Quantity: 6
-# Tastes like pasta, meat.
-
-- type: entity
   name: chow mein
-  parent: N14FoodNoodlesBase
-  id: N14FoodNoodlesChowmein
+  parent: N14CookedFoodNoodlesBase
+  id: N14CookedFoodNoodlesChowmein
   description: A nice mix of noodles and fried vegetables.
   components:
   - type: FlavorProfile
@@ -151,8 +106,8 @@
 
 - type: entity
   name: butter noodles
-  parent: N14FoodNoodlesBase
-  id: N14FoodNoodlesButter
+  parent: N14CookedFoodNoodlesBase
+  id: N14CookedFoodNoodlesButter
   description: Noodles covered in savory butter. Simple and slippery, but delicious.
   components:
   - type: FlavorProfile
