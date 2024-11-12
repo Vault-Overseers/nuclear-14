@@ -12,7 +12,7 @@ namespace Content.Server.Chemistry.ReagentEffects
     /// </summary>
     public sealed partial class SatiateHunger : ReagentEffect
     {
-        private const float DefaultNutritionFactor = 3.0f;
+        private const float DefaultNutritionFactor = 2.55f;
 
         /// <summary>
         ///     How much hunger is satiated when 1u of the reagent is metabolized
