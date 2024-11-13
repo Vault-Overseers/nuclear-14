@@ -8,9 +8,6 @@
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodMidwest
       min: 54000 # 15 hours
-  - !type:CharacterSpeciesRequirement
-    species:
-    - Human
   startingGear: BoSMidPaladinGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
@@ -24,12 +21,9 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodMidwest
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
-
+  - !type:CharacterSpeciesRequirement
+    - species:
+      - Human
 - type: startingGear
   id: BoSMidPaladinGear
   equipment:
