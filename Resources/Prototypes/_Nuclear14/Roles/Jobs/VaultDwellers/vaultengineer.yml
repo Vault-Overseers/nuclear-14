@@ -2,6 +2,10 @@
   id: VaultEngineer
   name: job-name-vault-engineer
   description: job-description-vault-engineer
+  requirements:
+  - !type:CharacterSpeciesRequirement
+    species:
+    - Human
   playTimeTracker: VaultEngineer
   startingGear: VaultEngineerGear
   alwaysUseSpawner: true
@@ -16,11 +20,6 @@
       - type: NpcFactionMember
         factions:
           - Vault
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: VaultEngineerGear
