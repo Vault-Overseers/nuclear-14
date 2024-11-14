@@ -2,6 +2,10 @@
   id: VaultDoctor
   name: job-name-vault-doctor
   description: job-description-vault-doctor
+  requirements:
+    - !type:CharacterSpeciesRequirement
+    species:
+    - Human
   playTimeTracker: VaultDoctor
   startingGear: VaultDoctorGear
   alwaysUseSpawner: true
@@ -17,9 +21,7 @@
         factions:
           - Vault
       - type: CPRTraining
-  - !type:CharacterSpeciesRequirement
-    species:
-    - Human
+  
 
 - type: startingGear
   id: VaultDoctorGear
