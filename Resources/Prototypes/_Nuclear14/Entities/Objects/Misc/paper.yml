@@ -1,0 +1,310 @@
+- type: entity
+  name: reporters pen
+  parent: Pen
+  id: N14PenReporter
+  description: A one of a kind pen that uses a ballpoint for versatility. Reads Wasteland News.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/pens.rsi
+    state: penreporter
+  - type: Item
+    sprite: _Nuclear14/Structures/Misc/pens.rsi
+    heldPrefix: penreporter
+    size: Tiny
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+
+- type: entity
+  name: magazine
+  parent: BaseItem
+  id: N14Magazine
+  description: 'a magazine found in the wasteland'
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_base
+  - type: Paper
+  - type: PaperLabelType
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - Magazine
+  - type: Appearance
+  - type: PaperVisuals
+  - type: Flammable
+    fireSpread: true
+    canResistFire: false
+    alwaysCombustible: true
+    canExtinguish: false # Mwahaha! Let the world burn because of one piece of paper!
+    damage:
+      types:
+        Heat: 1
+  - type: FireVisuals
+    sprite: Effects/fire.rsi
+    normalState: fire
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+            Ash:
+              min: 1
+              max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: EmitSoundOnPickup
+    sound: /Audio/SimpleStation14/Items/Handling/paper_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound: /Audio/SimpleStation14/Items/Handling/paper_drop.ogg
+  - type: EmitSoundOnLand
+    sound: /Audio/SimpleStation14/Items/Handling/paper_drop.ogg
+
+- type: entity
+  name: astoundingly awesome tales
+  parent: N14Magazine
+  id: N14MagazineAwesome
+  description: "a collection of astoundingly awesome tales"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_awesome
+
+- type: entity
+  name: astoundingly awesome tales
+  parent: N14Magazine
+  id: N14MagazineAwesomeDirty
+  description: "a collection of astoundingly awesome tales, though it's a bit dirty"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_awesome_dirty
+
+- type: entity
+  name: covert operations manual
+  parent: N14Magazine
+  id: N14MagazineCovert
+  description: "Authorized Eyes Only"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_covert
+
+- type: entity
+  name: covert operations manual
+  parent: N14Magazine
+  id: N14MagazineCovertDirty
+  description: "Authorized Eyes Only"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_covert_dirty
+
+- type: entity
+  name: grognak the barbarian
+  parent: N14Magazine
+  id: N14MagazineGrognak
+  description: "follow the prehistoric man on his adventures"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_grognak
+
+- type: entity
+  name: grognak the barbarian
+  parent: N14Magazine
+  id: N14MagazineGrognakDirty
+  description: "follow the prehistoric man on his adventures, though it's a bit dirty"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_grognak_dirty
+
+- type: entity
+  name: guns and bullets
+  parent: N14Magazine
+  id: N14MagazineGuns
+  description: "a magazine devoted to the practical use of firearms, and the occasional biased review"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_guns
+
+- type: entity
+  name: guns and bullets
+  parent: N14Magazine
+  id: N14MagazineGunsDirty
+  description: "a magazine devoted to the practical use of firearms, and the occasional biased review, though it's a bit dirty"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_guns_dirty
+
+- type: entity
+  name: tales of a junktown jerky vendor
+  parent: N14Magazine
+  id: N14MagazineJunktown
+  description: "A series of books/magazines about trading and barter written by an unknown jerky vendor from Junktown, California"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_junktown
+
+- type: entity
+  name: tales of a junktown jerky vendor
+  parent: N14Magazine
+  id: N14MagazineJunktownDirty
+  description: "A series of books/magazines about trading and barter written by an unknown jerky vendor from Junktown, California, though it's a bit dirty"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_junktown_dirty
+
+- type: entity
+  name: massachusetts surgical journal
+  parent: N14Magazine
+  id: N14MagazineMass
+  description: "the massachusetts surgical journal"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_massachusetts
+
+- type: entity
+  name: massachusetts surgical journal
+  parent: N14Magazine
+  id: N14MagazineMassDirty
+  description: "massachusetts surgical journal, though it's a bit dirty"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_massachusetts_dirty
+
+- type: entity
+  name: scav!
+  parent: N14Magazine
+  id: N14MagazineScav
+  description: "SCAV!"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_scav
+
+- type: entity
+  name: scav!
+  parent: N14Magazine
+  id: N14MagazineScavDirty
+  description: "SCAV!, though it's a bit dirty"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_scav_dirty
+
+- type: entity
+  name: tesla science
+  parent: N14Magazine
+  id: N14MagazineTesla
+  description: "An issue of Tesla Science"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_tesla
+
+- type: entity
+  name: tesla science
+  parent: N14Magazine
+  id: N14MagazineTeslaDirty
+  description: "An issue of Tesla Science, though it's a bit dirty"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_tesla_dirty
+
+- type: entity
+  name: tumblers today
+  parent: N14Magazine
+  id: N14MagazineTumblers
+  description: "An issue of Tumblers Today"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_tumblers
+
+- type: entity
+  name: tumblers today
+  parent: N14Magazine
+  id: N14MagazineTumblersDirty
+  description: "An issue of Tumblers Today, though it's a bit dirty"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_tumblers_dirty
+
+- type: entity
+  name: unstoppables
+  parent: N14Magazine
+  id: N14MagazineUnstoppables
+  description: "An issue of Unstoppables"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_unstoppable
+
+- type: entity
+  name: unstoppables
+  parent: N14Magazine
+  id: N14MagazineUnstoppablesDirty
+  description: "An issue of Unstoppables, though it's a bit dirty"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_unstoppable_dirty
+
+- type: entity
+  name: wasteland survival guide
+  parent: N14Magazine
+  id: N14MagazineWasteland
+  description: "An issue of the Wasteland Survival Guide"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_wasteland
+
+- type: entity
+  name: live and love
+  parent: N14Magazine
+  id: N14MagazineLive
+  description: "An issue of Live and Love"
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/magazines.rsi
+    layers:
+    - state: magazine_live
