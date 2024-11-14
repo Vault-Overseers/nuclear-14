@@ -2,6 +2,10 @@
   id: VaultDweller
   name: job-name-vault-dweller
   description: job-description-vault-dweller
+  requirements:
+    - !type:CharacterSpeciesRequirement
+    species:
+    - Human
   playTimeTracker: VaultDweller
   startingGear: VaultDwellerGear
   alwaysUseSpawner: true
@@ -15,9 +19,6 @@
       - type: NpcFactionMember
         factions:
           - Vault
-  - !type:CharacterSpeciesRequirement
-    species:
-    - Human
 
 - type: startingGear
   id: VaultDwellerGear
