@@ -13,3 +13,4 @@ chat-radio-bosmidwest = Brotherhood Midwest
 chat-radio-boswashington = Brotherhood Washington
 chat-radio-enclave = Enclave
 chat-radio-ncr = NCR
+chat-radio-pbs = Public Broadcast

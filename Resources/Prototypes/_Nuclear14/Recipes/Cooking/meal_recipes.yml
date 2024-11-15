@@ -133,58 +133,50 @@
 - type: microwaveMealRecipe
   id: N14RecipeBun
   name: bun recipe
-  result: N14FoodBreadBun
+  result: N14CookedFoodBreadBun
   time: 5
   solids:
-    FoodDoughSlice: 1 # one third of a standard bread dough recipe
+    N14FoodDoughSlice: 1 # one third of a standard bread dough recipe
 
 #Burgers
 
 - type: microwaveMealRecipe
   id: N14RecipeAppendixBurger
   name: appendix burger recipe
-  result: N14FoodBurgerAppendix
+  result: N14CookedFoodBurgerAppendix
   time: 10
   solids:
-    N14FoodBreadBun: 1
+    N14CookedFoodBreadBun: 1
     OrganHumanAppendix: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeBaconBurger
   name: bacon burger recipe
-  result: N14FoodBurgerBacon
+  result: N14CookedFoodBurgerBacon
   time: 10
   solids:
-    N14FoodBreadBun: 1
-    FoodMeatBacon: 1
+    N14CookedFoodBreadBun: 1
+    FoodMeatBacon: 1 #N14TODO: switch to N14 bacon if we get that working later
     N14FoodCheeseSlice: 2
 
-# - type: microwaveMealRecipe
-# id: RecipeBaseballBurger
-# name: baseball burger recipe
-#  result: N14FoodBurgerBaseball
-#  time: 10
-#  solids:
-#    N14FoodBreadBun: 1
-#    BaseBallBat: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeBearger
   name: bearger recipe
-  result: N14FoodBurgerBear
+  result: N14CookedFoodBurgerBear
   time: 10
   solids:
-    N14FoodBreadBun: 1
+    N14CookedFoodBreadBun: 1
     N14FoodMeatYaoguai: 1 #hazel's first test, making Yao Guai work for Beargers
-    #N14 change, it'll need a custom sprite.
+    #N14TODO: it'll need a custom sprite.
 
 - type: microwaveMealRecipe
   id: N14RecipeBigBiteBurger
   name: big bite burger recipe
-  result: N14FoodBurgerBig
+  result: N14CookedFoodBurgerBig
   time: 15
   solids:
-    N14FoodBreadBun: 1
+    N14CookedFoodBreadBun: 1
     N14FoodMeatRadRaw: 2 #N14 change. This could be made a more specific meat later, this might be a good candidate for a deathclaw burger.
     N14FoodCheeseSlice: 1
     N14FloraProduceWildTato: 1 #N14 change
@@ -193,239 +185,109 @@
 - type: microwaveMealRecipe
   id: N14RecipeBrainBurger
   name: brain burger recipe
-  result: N14FoodBurgerBrain
+  result: N14CookedFoodBurgerBrain
   time: 10
   solids:
-    N14FoodBreadBun: 1
+    N14CookedFoodBreadBun: 1
     OrganHumanBrain: 1
-
-#- type: microwaveMealRecipe
-#  id: RecipeCatBurger
-#  name: cat burger recipe
-#  result: FoodBurgerCat
-#  time: 10
-#  solids:
-#    N14FoodBreadBun: 1
-#    FoodMeat: 1
-#    ClothingHeadHatCatEars: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeCheeseburger
   name: cheeseburger recipe
-  result: N14FoodBurgerCheese
+  result: N14CookedFoodBurgerCheese
   time: 10
   solids:
-    N14FoodBreadBun: 1
+    N14CookedFoodBreadBun: 1
     N14FoodMeatRadRaw: 1 #N14 change
     N14FoodCheeseSlice: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeChickenSandwich
   name: chicken sandwich recipe
-  result: N14FoodBurgerChicken
+  result: N14CookedFoodBurgerChicken
   time: 10
   reagents:
     Mayo: 5
   solids:
-    N14FoodBreadBun: 1
+    N14CookedFoodBreadBun: 1
     N14FoodMeatRadchicken: 1 #N14 change
-
-#- type: microwaveMealRecipe
-#  id: RecipeClownBurger
-#  name: clownburger recipe
-#  result: FoodBurgerClown
-#  time: 10
-#  solids:
-#    N14FoodBreadBun: 1
-#    ClothingMaskClown: 1
-
-#- type: microwaveMealRecipe
-#  id: RecipeCorgiBurger
-#  name: corgi burger recipe
-#  result: FoodBurgerCorgi
-#  time: 10
-#  solids:
-#    N14FoodBreadBun: 1
-#    FoodMeatCorgi: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeCrabBurger
   name: crab burger recipe
-  result: N14FoodBurgerCrab
+  result: N14CookedFoodBurgerCrab
   time: 10
   solids:
-    N14FoodBreadBun: 1
+    N14CookedFoodBreadBun: 1
     N14FoodMeatMirelurkClaw: 2 #N14 change. Not like mirelurks are in but it's good to have it set up I guess.
-
-#- type: microwaveMealRecipe
-#  id: RecipeCrazyHamburger
-#  name: crazy hamburger recipe
-#  result: FoodBurgerCrazy
-#  time: 15
-#  reagents:
-#    OilOlive: 15
-#  solids:
-#    N14FoodBreadBun: 1
-#    FoodMeat: 2
-#    N14FoodCheeseSlice: 2
-#    FoodChili: 1
-#    FoodCabbage: 1
-#    CrayonGreen: 1
-#    Flare: 1
-
-#- type: microwaveMealRecipe
-#  id: RecipeDuckBurger
-#  name: duck sandwich recipe
-#  result: FoodBurgerDuck
-#  time: 10
-#  solids:
-#    N14FoodBreadBun: 1
-#    FoodMeatDuck: 1
-#    N14FoodCheeseSlice: 1
-# Not that this recipe is silly but there's no equivalent for a duck burg in N14.
-
-#- type: microwaveMealRecipe
-#  id: RecipeEmpoweredBurger
-#  name: empowered burger recipe
-#  result: FoodBurgerEmpowered
-#  time: 10
-#  solids:
-#    N14FoodBreadBun: 1
-#    SheetPlasma1: 2
 
 #- type: microwaveMealRecipe
 #  id: N14RecipeCarpBurger
 #  name: fillet-o-carp burger recipe
-#  result: N14FoodBurgerCarp
+#  result: N14CookedFoodBurgerCarp
 #  time: 10
 #  solids:
-#    N14FoodBreadBun: 1
+#    N14CookedFoodBreadBun: 1
 #    FoodMeatFish: 1 # a mystery for later
 #    N14FoodCheeseSlice: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeFiveBurger
   name: five alarm burger recipe
-  result: N14FoodBurgerFive
+  result: N14CookedFoodBurgerFive
   time: 10
   solids:
-    N14FoodBreadBun: 1
+    N14CookedFoodBreadBun: 1
     N14FoodMeatRadRaw: 1 #N14 change
     N14FloraProduceWildGlowpepper: 3 #N14 change
-
-#- type: microwaveMealRecipe
-#  id: RecipeGhostBurger
-#  name: ghost burger recipe
-#  result: FoodBurgerGhost
-#  time: 10
-#  solids:
-#    N14FoodBreadBun: 1
-#    Ectoplasm: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeHumanBurger
-  name: human burger recipe
-  result: N14FoodBurgerHuman
-  time: 10
-  solids:
-    N14FoodBreadBun: 1
-    FoodMeatHuman: 1
-
-#- type: microwaveMealRecipe
-#  id: RecipeJellyBurger
-#  name: jelly burger recipe
-#  result: FoodBurgerJelly
-#  time: 10
-#  solids:
-#    N14FoodBreadBun: 1
-#    FoodJellyAmanita: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeBurgerMcguffin
   name: McGuffin recipe
-  result: N14FoodBurgerMcguffin
+  result: N14CookedFoodBurgerMcguffin
   time: 10
   solids:
-    N14FoodBreadBun: 1
+    N14CookedFoodBreadBun: 1
     N14FoodCheeseSlice: 1
     N14FoodEggChicken: 2 #N14 change
 
 - type: microwaveMealRecipe
   id: N14RecipeBurgerMcrib
   name: BBQ rib sandwich recipe
-  result: N14FoodBurgerMcrib
+  result: N14CookedFoodBurgerMcrib
   time: 10
   solids:
-    N14FoodBreadBun: 1
-    N14FoodMealRibs: 1
+    N14CookedFoodBreadBun: 1
+    N14CookedFoodMealRibs: 1
     N14FoodOnionRedSlice: 1 #N14 change
-
-#- type: microwaveMealRecipe
-#  id: RecipeMimeBurger
-#  name: mime burger recipe
-#  result: FoodBurgerMime
-#  time: 10
-#  solids:
-#    N14FoodBreadBun: 1
-#    ClothingMaskMime: 1
 
 - type: microwaveMealRecipe
   id: N14RecipePlainBurger
   name: plain burger recipe
-  result: N14FoodBurgerPlain
+  result: N14CookedFoodBurgerPlain
   time: 10
   solids:
-    N14FoodBreadBun: 1
+    N14CookedFoodBreadBun: 1
     N14FoodMeatRadRaw: 1 #N14 change
-
 
 - type: microwaveMealRecipe
   id: N14RecipeRatBurger
   name: rat burger recipe
-  result: N14FoodBurgerRat
+  result: N14CookedFoodBurgerRat
   time: 10
   solids:
-    N14FoodBreadBun: 1
+    N14CookedFoodBreadBun: 1
     FoodMeatRat: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeRobotBurger
-  name: roburger recipe
-  result: N14FoodBurgerRobot
-  time: 10
-  solids:
-    N14FoodBreadBun: 1
-    CapacitorStockPart: 2
-    # i would add steel to this recipe but the microwave explodes
-
-- type: microwaveMealRecipe
-  id: N14RecipeSoylentBurger
-  name: soylent burger recipe
-  result: N14FoodBurgerSoy
-  time: 10
-  solids:
-    N14FoodBreadBun: 1
-    N14FoodCheeseSlice: 2
-    N14FoodSoybeans: 2 #replace with soylent green when those become craftable
-
-- type: microwaveMealRecipe
-  id: N14RecipeSpellBurger
-  name: spell burger recipe
-  result: N14FoodBurgerSpell
-  time: 10
-  solids:
-    N14FoodBreadBun: 1
-    ClothingHeadHatWizard: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeSuperBiteBurger
   name: super bite burger recipe
-  result: N14FoodBurgerSuper
+  result: N14CookedFoodBurgerSuper
   time: 25
   reagents:
     TableSalt: 5
   solids:
-    N14FoodBreadBun: 1
+    N14CookedFoodBreadBun: 1
     N14FoodMeatRadRaw: 2 #N14 change
     N14FoodCheeseSlice: 2
     N14FloraProduceWildTato: 2 #N14 change
@@ -434,44 +296,27 @@
 - type: microwaveMealRecipe
   id: N14RecipeTofuBurger
   name: tofu burger recipe
-  result: N14FoodBurgerTofu
+  result: N14CookedFoodBurgerTofu
   time: 10
   solids:
-    N14FoodBreadBun: 1
+    N14CookedFoodBreadBun: 1
     N14FoodTofuSlice: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeXenoburger
-  name: xenoburger recipe
-  result: N14FoodBurgerXeno
-  time: 10
-  solids:
-    N14FoodBreadBun: 1
-    FoodMeatXeno: 1 #a fine candidate for a new burger here
-
-- type: microwaveMealRecipe
-  id: N14RecipeMothRoachburger
-  name: mothroachburger recipe
-  result: N14FoodBurgerMothRoach
-  solids:
-    N14FoodBreadBun: 1
-    MobMothroach: 1 #ditto, we can have a new burger here
 
 #Breads & Sandwiches
 
 - type: microwaveMealRecipe
   id: N14RecipeBananaBread
   name: banana bread recipe
-  result: N14FoodBreadBanana
+  result: N14CookedFoodBreadBanana
   time: 15
   solids:
     N14FoodDough: 1
-    N14FoodBanana: 1
+    N14FoodBanana: 1 #placeholder since no banana
 
 - type: microwaveMealRecipe
   id: N14RecipeCornbread
   name: cornbread recipe
-  result: N14FoodBreadCorn
+  result: N14CookedFoodBreadCorn
   time: 10
   solids:
     N14FoodDoughCornmeal: 1
@@ -479,10 +324,10 @@
 - type: microwaveMealRecipe
   id: N14RecipeCreamCheeseBread
   name: cream cheese bread recipe
-  result: N14FoodBreadCreamcheese
+  result: N14CookedFoodBreadCreamcheese
   time: 15
   reagents:
-    Milk: 5
+    N14MilkBrahmin: 5
   solids:
     N14FoodDough: 1
     N14FoodCheeseSlice: 2
@@ -490,7 +335,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeMeatBread
   name: meat bread recipe
-  result: N14FoodBreadMeat
+  result: N14CookedFoodBreadMeat
   time: 15
   solids:
     N14FoodDough: 1
@@ -498,20 +343,9 @@
     N14FoodCheeseSlice: 2
 
 - type: microwaveMealRecipe
-  id: N14RecipeMimanaBread
-  name: mimana bread recipe
-  result: N14FoodBreadMimana
-  time: 15
-  reagents:
-    Nothing: 5
-  solids:
-    N14FoodDough: 1
-    N14FoodMimana: 1
-
-- type: microwaveMealRecipe
   id: N14RecipeBread
   name: bread recipe
-  result: N14FoodBreadPlain
+  result: N14CookedFoodBreadPlain
   time: 10
   solids:
     N14FoodDough: 1
@@ -519,7 +353,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeRadroll
   name: radroll recipe
-  result: N14FoodBreadRadroll
+  result: N14CookedFoodBreadRadroll
   time: 15
   solids:
     N14FoodDough: 1
@@ -528,38 +362,28 @@
 - type: microwaveMealRecipe
   id: N14RecipeSpiderMeatBread
   name: scorpion bread recipe
-  result: N14FoodBreadMeatRadscorp
+  result: N14CookedFoodBreadMeatRadscorp
   time: 15
   solids:
-    FoodDough: 1
+    N14FoodDough: 1
     N14FoodMeatRadscorpionLeg: 2 #N14 change
     N14FoodCheeseSlice: 2
 
 - type: microwaveMealRecipe
   id: N14TofuBread
   name: tofu bread recipe
-  result: N14FoodBreadTofu
+  result: N14CookedFoodBreadTofu
   time: 15
   solids:
     N14FoodDough: 1
     N14FoodTofu: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeXenoMeatBread
-  name: xeno meat bread recipe
-  result: N14FoodBreadMeatXeno
-  time: 15
-  solids:
-    N14FoodDough: 1
-    FoodMeatXenoCutlet: 2
-    N14FoodCheeseSlice: 2
 
 #Slices Only
 
 - type: microwaveMealRecipe
   id: N14RecipeBaguette
   name: baguette recipe
-  result: N14FoodBreadBaguette
+  result: N14CookedFoodBreadBaguette
   time: 15
   reagents:
     TableSalt: 5
@@ -570,107 +394,92 @@
 - type: microwaveMealRecipe
   id: N14RecipeButteredToast
   name: buttered toast recipe
-  result: N14FoodBreadButteredToast
+  result: N14CookedFoodBreadButteredToast
   time: 5
   solids:
-    N14FoodBreadPlainSlice: 1
+    N14CookedFoodBreadPlainSlice: 1
     N14FoodButter: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeFrenchToast
   name: french toast recipe
-  result: N14FoodBreadFrenchToast
+  result: N14CookedFoodBreadFrenchToast
   time: 5
   reagents:
-    Milk: 5
-    Egg: 12
+    N14MilkBrahmin: 5
+    Egg: 12 #radchicken eggs give standard egg reagent currently, this is fine
   solids:
-    N14FoodBreadPlainSlice: 1
+    N14CookedFoodBreadPlainSlice: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeGarlicBread
   name: garlic bread slice recipe
-  result: N14FoodBreadGarlicSlice
+  result: N14CookedFoodBreadGarlicSlice
   time: 5
   solids:
-    N14FoodBreadPlainSlice: 1
+    N14CookedFoodBreadPlainSlice: 1
     N14FoodGarlic: 1
     N14FoodButter: 1
 
 - type: microwaveMealRecipe
-  id: N14RecipeJellyToast
-  name: jelly toast recipe
-  result: N14FoodBreadJellySlice
-  time: 5
-  solids:
-    N14FoodBreadPlainSlice: 1
-    N14FoodJellyAmanita: 1 #replace with jelly
-
-- type: microwaveMealRecipe
-  id: N14RecipeMoldyBreadSlice
-  name: moldy bread slice recipe
-  result: N14FoodBreadMoldySlice
-  time: 5
-  solids:
-    N14FoodBreadPlainSlice: 1
-    N14FoodFlyAmanita: 1
-
-- type: microwaveMealRecipe
   id: N14RecipeTwoBreadSlice
   name: two slice recipe
-  result: N14FoodBreadTwoSlice
+  result: N14CookedFoodBreadTwoSlice
   time: 5
   reagents:
     Wine: 5
   solids:
-    N14FoodBreadPlainSlice: 2
+    N14CookedFoodBreadPlainSlice: 2
+#Is this one a reference? I might get rid of it, it seems kinda useless.
 
 - type: microwaveMealRecipe
   id: N14RecipeOnionRings
   name: onion rings recipe
-  result: N14FoodOnionRings
+  result: N14CookedFoodOnionRings
   time: 15
   solids:
     N14FoodOnionRedSlice: 1 #N14 change
 
 #Pizzas TODO: contruction graph based pizza
+#Due to rolling pin issues, pizzas currently need to use upstream dough. See cooking.yml and pizza.yml for details
+
 - type: microwaveMealRecipe
   id: N14RecipeMargheritaPizza
   name: margherita pizza recipe
-  result: N14FoodPizzaMargherita
+  result: N14CookedFoodPizzaMargherita
   time: 30
   solids:
-    N14FoodDoughFlat: 1
+    FoodDoughFlat: 1
     N14FoodCheeseSlice: 1
     N14FloraProduceWildTato: 4 #N14 change
 
 - type: microwaveMealRecipe
   id: N14RecipeMushroomPizza
   name: mushroom pizza recipe
-  result: N14FoodPizzaMushroom
+  result: N14CookedFoodPizzaMushroom
   time: 30
   solids:
-    N14FoodDoughFlat: 1
+    FoodDoughFlat: 1
     N14FloraProduceWildCaveFungus: 5 #N14 change
 
 - type: microwaveMealRecipe
   id: N14RecipeMeatPizza
   name: meat pizza recipe
-  result: N14FoodPizzaMeat
+  result: N14CookedFoodPizzaMeat
   time: 30
   solids:
-    N14FoodDoughFlat: 1
-    N14FoodMeatRadRaw: 3 #N14 change
+    FoodDoughFlat: 1
+    N14FoodMeatRadRaw: 3
     N14FoodCheeseSlice: 1
-    N14FloraProduceWildTato: 1 #N14 change
+    N14FloraProduceWildTato: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeVegetablePizza
   name: vegetable pizza recipe
-  result: N14FoodPizzaVegetable
+  result: N14CookedFoodPizzaVegetable
   time: 30
   solids:
-    N14FoodDoughFlat: 1
+    FoodDoughFlat: 1
     N14FloraProduceWildOnion: 1 #N14 change
     N14FloraProduceWildCarrot: 1 #N14 change
     N14FloraProduceWildMaize: 1 #N14 change
@@ -679,43 +488,21 @@
 - type: microwaveMealRecipe
   id: N14RecipeHawaiianPizza
   name: Hawaiian pizza recipe
-  result: N14FoodPizzaPineapple
+  result: N14CookedFoodPizzaPineapple
   time: 30
   solids:
-    N14FoodDoughFlat: 1
+    FoodDoughFlat: 1
     N14FoodMeatRadchicken: 3 #N14 change
-    N14FoodPineappleSlice: 5 #good fucking luck canada
-
-- type: microwaveMealRecipe
-  id: N14RecipeDankPizza
-  name: dank pizza recipe
-  result: N14FoodPizzaDank
-  time: 30
-  solids:
-    N14FoodDoughFlat: 1
-    N14FoodAmbrosiaVulgaris: 3
-    N14FoodCheeseSlice: 1
-    N14FloraProduceWildTato: 1 #N14 change
-
-- type: microwaveMealRecipe
-  id: N14RecipeDonkpocketPizza
-  name: donk-pocket pizza recipe
-  result: N14FoodPizzaDonkpocket
-  time: 30
-  solids:
-    N14FoodDoughFlat: 1
-    N14FoodDonkpocketWarm: 3
-    N14FoodCheeseSlice: 1
-    N14FloraProduceWildTato: 1 #N14 change
+    N14FoodPineappleSlice: 5 #good fucking luck canada this placeholder is never getting added
 
 #Italian
 - type: microwaveMealRecipe
   id: N14RecipeBoiledSpaghetti
   name: boiled spaghetti recipe
-  result: N14FoodNoodlesBoiled
+  result: N14CookedFoodNoodlesBoiled
   time: 15
   reagents:
-    Flour: 15
+    ExtractRazorgrainFlour: 15
     Egg: 6
   solids:
     N14FoodButter: 1
@@ -723,37 +510,38 @@
 - type: microwaveMealRecipe
   id: N14RecipePastaTomato
   name: pasta tomato recipe
-  result: N14FoodNoodles
+  result: N14CookedFoodNoodles
   time: 10
   solids:
-    N14FoodNoodlesBoiled: 1
+    N14CookedFoodNoodlesBoiled: 1
     N14FloraProduceWildTato: 2 #N14 change
 
-# - type: microwaveMealRecipe
-  # id: N14RecipeMeatballSpaghetti
-  # name: spaghetti & meatballs recipe
-  # result: N14FoodNoodlesMeatball
-  # time: 10
-  # solids:
-    # N14FoodNoodlesBoiled: 1
-    # N14FoodMeatMeatball: 2
+#- type: microwaveMealRecipe
+#  id: N14RecipeMeatballSpaghetti
+#  name: spaghetti & meatballs recipe
+#  result: N14CookedFoodNoodlesMeatball
+#  time: 10
+#  solids:
+#    N14CookedFoodNoodlesBoiled: 1
+#    N14FoodMeatMeatball: 2
+  #Meatball recipes are throwing up a lot of bugs, so it's commented out for now. Fix it and be forever known as Meatball Hero. -Hazel
 
 - type: microwaveMealRecipe
   id: N14RecipeButterNoodles
   name: butter noodles recipe
-  result: N14FoodNoodlesButter
+  result: N14CookedFoodNoodlesButter
   time: 10
   solids:
-    N14FoodNoodlesBoiled: 1
+    N14CookedFoodNoodlesBoiled: 1
     N14FoodButter: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeChowMein
   name: chow mein recipe
-  result: N14FoodNoodlesChowmein
+  result: N14CookedFoodNoodlesChowmein
   time: 10
   solids:
-    N14FoodNoodlesBoiled: 1
+    N14CookedFoodNoodlesBoiled: 1
     N14FloraProduceWildOnion: 1 #N14 change
     N14FloraProduceWildCarrot: 1 #N14 change
     N14FloraProduceWildMaize: 1 #N14 change
@@ -762,7 +550,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeOatmeal
   name: oatmeal recipe
-  result: N14FoodOatmeal
+  result: N14CookedFoodOatmeal
   time: 15
   reagents:
     Oats: 15
@@ -773,7 +561,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeBoiledRice
   name: boiled rice recipe
-  result: N14FoodRiceBoiled
+  result: N14CookedFoodRiceBoiled
   time: 15
   reagents:
     Rice: 15
@@ -784,11 +572,11 @@
 - type: microwaveMealRecipe
   id: N14RecipeRicePudding
   name: rice pudding recipe
-  result: N14FoodRicePudding
+  result: N14CookedFoodRicePudding
   time: 15
   reagents:
     Rice: 15
-    Milk: 10
+    N14MilkBrahmin: 10
     Sugar: 5
   solids:
     FoodBowlBig: 1
@@ -796,45 +584,37 @@
 - type: microwaveMealRecipe
   id: N14RecipeRiceRoadkill
   name: roadkill rice recipe
-  result: N14FoodRiceRoadkill
+  result: N14CookedFoodRiceRoadkill
   time: 15
   solids:
-    N14FoodRiceBoiled: 1
+    N14CookedFoodRiceBoiled: 1
     N14FoodMeatRadCutlet: 3 #N14 change
 
 - type: microwaveMealRecipe
   id: N14RecipeRiceGumbo
   name: black-eyed gumbo recipe
-  result: N14FoodRiceGumbo
+  result: N14CookedFoodRiceGumbo
   time: 15
   solids:
-    N14FoodRiceBoiled: 1
+    N14CookedFoodRiceBoiled: 1
     N14FoodMeatRadCutlet: 3 #N14 change
     N14FloraProduceWildGlowpepper: 2 #N14 change
 
 - type: microwaveMealRecipe
   id: N14RecipeEggRice
   name: egg-fried rice recipe
-  result: N14FoodRiceEgg
+  result: N14CookedFoodRiceEgg
   time: 15
   solids:
-    N14FoodRiceBoiled: 1
+    N14CookedFoodRiceBoiled: 1
     N14FoodEggChicken: 1 #N14 change
     N14FloraProduceWildCarrot: 1 #N14 change
-
-- type: microwaveMealRecipe
-  id: N14RecipeCopypasta
-  name: copypasta recipe
-  result: N14FoodNoodlesCopy
-  time: 10
-  solids:
-    N14FoodNoodles: 2
 
 #Soups & Stew
 # - type: microwaveMealRecipe
   # id: N14RecipeBisque
   # name: bisque recipe
-  # result: N14FoodSoupBisque
+  # result: N14CookedFoodSoupBisque
   # time: 10
   # reagents:
     # Water: 10
@@ -844,23 +624,23 @@
     # N14FloraProduceWildCaveFungus: 1 #N14 change
     # N14FoodMeatFish: 1 #alas for thee no fishee -Hazel
 
-# - type: microwaveMealRecipe
-  # id: N14RecipeMeatballSoup
-  # name: meatball soup recipe
-  # result: N14FoodSoupMeatball
-  # time: 10
-  # reagents:
-    # Water: 10
-  # solids:
-    # FoodBowlBig: 1
-    # N14FoodMeatMeatball: 1
-    # N14FloraProduceWildCarrot: 1 #N14 change
-    # N14FloraProduceWildTato: 1 #N14 change
+#- type: microwaveMealRecipe
+#  id: N14RecipeMeatballSoup
+#  name: meatball soup recipe
+#  result: N14CookedFoodSoupMeatball
+#  time: 10
+#  reagents:
+#    Water: 10
+#  solids:
+#    FoodBowlBig: 1
+#    N14FoodMeatMeatball: 1
+#    N14FloraProduceWildCarrot: 1
+#    N14FloraProduceWildTato: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeNettleSoup
   name: nettle soup recipe
-  result: N14FoodSoupNettle
+  result: N14CookedFoodSoupNettle
   time: 10
   reagents:
     Water: 10
@@ -873,7 +653,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeEyeballSoup
   name: eyeball soup recipe
-  result: N14FoodSoupEyeball
+  result: N14CookedFoodSoupEyeball
   time: 10
   reagents:
     Water: 10
@@ -884,20 +664,9 @@
     N14FloraProduceWildTato: 1 #N14 change
 
 - type: microwaveMealRecipe
-  id: N14RecipeAmanitaJelly
-  name: amanita jelly recipe
-  result: N14FoodJellyAmanita
-  time: 10
-  reagents:
-    Water: 5
-    Vodka: 5
-  solids:
-    N14FoodFlyAmanita: 3
-
-- type: microwaveMealRecipe
   id: N14RecipeOnionSoup
   name: onion soup recipe
-  result: N14FoodSoupOnion
+  result: N14CookedFoodSoupOnion
   time: 10
   reagents:
     Water: 10
@@ -909,7 +678,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeMushroomSoup
   name: mushroom soup recipe
-  result: N14FoodSoupMushroom
+  result: N14CookedFoodSoupMushroom
   time: 10
   reagents:
     Water: 5
@@ -921,33 +690,32 @@
 - type: microwaveMealRecipe
   id: N14RecipeStewSoup
   name: stew recipe
-  result: N14FoodSoupStew
+  result: N14CookedFoodSoupStew
   time: 10
   reagents:
     Water: 10
   solids:
     FoodBowlBig: 1
     N14FoodMeatRadCutlet: 3
-    N14FloraProduceWildTato: 1 #N14 change
-    N14FloraProduceWildCarrot: 1 #N14 change
-    N14FloraProduceWildOnion: 1 #N14 change
-    N14FloraProduceWildCaveFungus: 1 #N14 change
+    N14FloraProduceWildTato: 1
+    N14FloraProduceWildOnion: 1
+    N14FloraProduceWildCaveFungus: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeTatoSoup
-  name: tato soup recipe #N14 changes
-  result: N14FoodSoupTato
+  name: tato soup recipe
+  result: N14CookedFoodSoupTato
   time: 10
   reagents:
     Water: 10
   solids:
     FoodBowlBig: 1
-    N14FloraProduceWildTato: 2 #N14 changes
+    N14FloraProduceWildTato: 2
 
 - type: microwaveMealRecipe
-  id: N14RecipeTomatoBloodSoup
-  name: blood tato soup recipe
-  result: N14FoodSoupTomatoBlood
+  id: N14CookedRecipeBloodtatoSoup
+  name: bloodtato soup recipe
+  result: N14CookedFoodSoupBloodtato
   time: 10
   reagents:
     Blood: 50 #N14 change. This improves the taste of tato soup.
@@ -956,20 +724,20 @@
     N14FloraProduceWildTato: 2 #N14 change
 
 - type: microwaveMealRecipe
-  id: N14RecipeWingFangChuSoupSpider
-  name: wing fang chu recipe
-  result: N14FoodSoupWingFangChu
+  id: N14RecipeMutieSoup
+  name: mutie soup recipe
+  result: N14CookedFoodSoupMutie
   time: 10
   reagents:
     Soysauce: 5
   solids:
     FoodBowlBig: 1
-    N14FoodMeatRadscorpionLeg: 2 #N14 change
+    N14FoodMeatRadscorpionLeg: 2 #N14 TODO: make this soup out of some awful mutant freak instead of radscorp
 
 - type: microwaveMealRecipe
   id: N14RecipeVegetableSoup
   name: vegetable soup recipe
-  result: N14FoodSoupVegetable
+  result: N14CookedFoodSoupVegetable
   time: 10
   reagents:
     Water: 5
@@ -980,61 +748,12 @@
     N14FloraProduceWildTato: 1 #N14 change
     N14FloraProduceWildOnion: 1 #N14 change
 
-- type: microwaveMealRecipe
-  id: N14RecipeClownTearsSoup
-  name: clown tears soup recipe
-  result: N14FoodSoupClown
-  time: 10
-  reagents:
-    Water: 10
-  solids:
-    FoodBowlBig: 1
-    N14FoodBanana: 1
-    ShardGlass: 1
-    #idk probably replace shard with someting bananium when #14663 merged
-
-- type: microwaveMealRecipe
-  id: N14RecipeMonkeysDelightSoup
-  name: monkeys delight recipe
-  result: N14FoodSoupMonkey
-  time: 10
-  reagents:
-    Flour: 5
-    TableSalt: 1
-    Blackpepper: 1
-  solids:
-    FoodBowlBig: 1
-    N14FoodBanana: 1
-    MonkeyCube: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeBungoSoup
-  name: bungo soup recipe
-  result: N14FoodSoupBungo
-  time: 10
-  reagents:
-    Water: 5
-  solids:
-    FoodBowlBig: 1
-    N14FoodBungo: 2
-    N14FloraProduceWildGlowpepper: 1
-
 #Pies
-
-- type: microwaveMealRecipe
-  id: N14RecipeAmanitaPie
-  name: amanita pie recipe
-  result: N14FoodPieAmanita
-  time: 15
-  solids:
-    N14FoodDoughPie: 1
-    N14FoodFlyAmanita: 1
-    FoodPlateTin: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeMutfruitPie
   name: mutfruit pie recipe
-  result: N14FoodPieMutfruit
+  result: N14CookedFoodPieMutfruit
   time: 15
   solids:
     N14FoodDoughPie: 1
@@ -1044,7 +763,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeBaklava
   name: baklava recipe
-  result: N14FoodPieBaklava
+  result: N14CookedFoodPieBaklava
   time: 15
   solids:
     N14FoodDoughPie: 1
@@ -1052,73 +771,23 @@
     FoodPlateTin: 1
 
 - type: microwaveMealRecipe
-  id: N14RecipeBananaCreamPie
-  name: banana cream pie recipe
-  result: N14FoodPieBananaCream
+  id: N14RecipeBlackberryPie
+  name: blackberry pie recipe
+  result: N14CookedFoodPieBlackberry
   time: 15
   solids:
     N14FoodDoughPie: 1
-    N14FoodBanana: 3
-    FoodPlateTin: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeTarberryPie
-  name: tarberry pie recipe
-  result: N14FoodPieTarberry
-  time: 15
-  solids:
-    N14FoodDoughPie: 1
-    N14FloraProduceWildTarberries: 3
-    FoodPlateTin: 1
-
-#- type: microwaveMealRecipe
-#  id: RecipeCherryPie
-#  name: cherry pie recipe
-#  result: FoodPieCherry
-#  time: 15
-#  solids:
-#    FoodDoughPie: 1
-#    FoodCherry: 3 #cherries don't exist yet
-#    FoodPlateTin: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeFrostyPie
-  name: frosty pie recipe
-  result: N14FoodPieFrosty
-  time: 15
-  solids:
-    N14FoodDoughPie: 1
-    N14FoodChilly: 3
+    N14FloraProduceWildBlackberries: 3
     FoodPlateTin: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeMeatPie
   name: meat pie recipe
-  result: N14FoodPieMeat
+  result: N14CookedFoodPieMeat
   time: 15
   solids:
     N14FoodDoughPie: 1
     N14FoodMeatRadRaw: 3
-    FoodPlateTin: 1
-
-#- type: microwaveMealRecipe
-#  id: RecipePlumpPie
-#  name: plump pie recipe
-#  result: FoodPiePlump
-#  time: 15
-#  solids:
-#    FoodDoughPie: 1
-#    FoodPlumpHelmet: 3 #a big part of me wants to veto this because the item description is a dick joke but i'll write the placeholder anyway
-#    FoodPlateTin: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeXenoPie
-  name: xeno pie recipe
-  result: N14FoodPieXeno
-  time: 15
-  solids:
-    N14FoodDoughPie: 1
-    FoodMeatXeno: 3
     FoodPlateTin: 1
 
 #Tarts
@@ -1126,7 +795,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeCocoTart
   name: chocolate lava tart recipe
-  result: N14FoodTartCoco
+  result: N14CookedFoodTartCoco
   time: 15
   reagents:
     Sugar: 5
@@ -1136,63 +805,23 @@
     FoodSnackChocolateBar: 3
     FoodPlateTin: 1
 
-- type: microwaveMealRecipe
-  id: N14RecipeGappleTart
-  name: golden apple streusel tart recipe
-  result: N14FoodTartGapple
-  time: 15
-  reagents:
-    Gold: 10
-    Sugar: 5
-    Milk: 5
-  solids:
-    N14FoodDoughPie: 1
-    N14FoodApple: 2 #in absence of the real gapple i'm substituting one apple with 10u gold (one ingot)
-    FoodPlateTin: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeGrapeTart
-  name: grape tart recipe
-  result: N14FoodTartGrape
-  time: 15
-  reagents:
-    Sugar: 5
-    Milk: 5
-  solids:
-    N14FoodDoughPie: 1
-    N14FoodGrape: 3
-    FoodPlateTin: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeMimeTart
-  name: mime tart recipe
-  result: N14FoodTartMime
-  time: 15
-  reagents:
-    Sugar: 5
-    Milk: 5
-  solids:
-    N14FoodDoughPie: 1
-    N14FoodMimana: 3
-    FoodPlateTin: 1
-
 #Other
 
 - type: microwaveMealRecipe
   id: N14RecipeCubanCarp
   name: Cuban carp recipe
-  result: N14FoodMealCubancarp #this will have to be changed someday
+  result: N14CookedFoodMealCubancarp #this will have to be changed someday
   time: 15
   solids:
     N14FoodDough: 1
     N14FoodCheeseSlice: 2
-    N14FloraProduceWildGlowpepper: 1 
+    N14FloraProduceWildGlowpepper: 1
     FoodMeatFish: 2
 
 - type: microwaveMealRecipe
   id: N14RecipeSashimi
   name: sashimi recipe
-  result: N14FoodMealSashimi
+  result: N14CookedFoodMealSashimi
   time: 15
   reagents:
     TableSalt: 1
@@ -1200,28 +829,18 @@
     FoodMeatFish: 2
 
 - type: microwaveMealRecipe
-  id: N14RecipeMisoColaSoup
-  name: salty sweet misocola soup recipe
-  result: N14DisgustingSweptSoup
-  time: 15
-  reagents:
-    Cola: 5 # I'm not fixing this one I'd rather just comment it out
-  solids:
-    N14FoodSoupMiso: 1
-
-- type: microwaveMealRecipe
   id: N14RecipeLoadedBakedPotato
   name: loaded baked potato recipe
-  result: N14FoodMealPotatoLoaded
+  result: N14CookedFoodMealPotatoLoaded
   time: 15
   solids:
-    N14FloraProduceWildTato: 1 #N14 change
+    N14FloraProduceWildTato: 1
     N14FoodCheeseSlice: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeFries
-  name: fries recipe #N14 change, space isn't real
-  result: N14FoodMealFries
+  name: fries recipe
+  result: N14CookedFoodMealFries
   time: 15
   reagents:
     TableSalt: 5
@@ -1231,7 +850,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeCheesyFries
   name: cheesy fries recipe
-  result: N14FoodMealFriesCheesy
+  result: N14CookedFoodMealFriesCheesy
   time: 15
   reagents:
     TableSalt: 5
@@ -1242,38 +861,38 @@
 - type: microwaveMealRecipe
   id: N14RecipeCarrotFries
   name: carrot fries recipe
-  result: N14FoodMealFriesCarrot
+  result: N14CookedFoodMealFriesCarrot
   time: 15
   reagents:
     TableSalt: 5
   solids:
     N14FloraProduceWildCarrot: 1 #N14 change
 
-# - type: microwaveMealRecipe
-  # id: N14RecipePopcorn
-  # name: popcorn recipe
-  # result: N14FoodSnackPopcorn
-  # time: 20
-  # solids:
-    # N14FloraProduceWildMaize: 1 #N14 change
+- type: microwaveMealRecipe
+  id: N14RecipePopcorn
+  name: popcorn recipe
+  result: N14FoodSnackPopcorn
+  time: 20
+  solids:
+    N14FloraProduceWildMaize: 1 #N14 change
 
 - type: microwaveMealRecipe
   id: N14RecipePancake
   name: pancake recipe
-  result: N14FoodBakedPancake
+  result: N14CookedFoodBakedPancake
   time: 5
   reagents:
-    Flour: 5
+    ExtractRazorgrainFlour: 5
     N14MilkBrahmin: 5 #N14 change
     Egg: 6
 
 - type: microwaveMealRecipe
   id: N14RecipeBlueberryPancake
   name: tarberry pancake recipe #N14 change
-  result: N14FoodBakedPancakeBb
+  result: N14CookedFoodBakedPancakeBb
   time: 5
   reagents:
-    Flour: 5
+    ExtractRazorgrainFlour: 5
     N14MilkBrahmin: 5 #N14 change
     Egg: 6
   solids:
@@ -1282,10 +901,10 @@
 - type: microwaveMealRecipe
   id: N14RecipeWaffles
   name: waffle recipe
-  result: N14FoodBakedWaffle
+  result: N14CookedFoodBakedWaffle
   time: 10
   reagents:
-    Flour: 5
+    ExtractRazorgrainFlour: 5
     N14MilkBrahmin: 5 #N14 change
     Egg: 6
     SodaWater: 5
@@ -1293,10 +912,10 @@
 - type: microwaveMealRecipe
   id: N14RecipeWaffleSoy
   name: soy waffle recipe
-  result: N14FoodBakedWaffleSoy
+  result: N14CookedFoodBakedWaffleSoy
   time: 10
   reagents:
-    Flour: 5
+    ExtractRazorgrainFlour: 5
     MilkSoy: 5
     Egg: 6
     SodaWater: 5
@@ -1304,10 +923,10 @@
 - type: microwaveMealRecipe
   id: N14RecipeCookie
   name: cookie recipe
-  result: N14FoodBakedCookie
+  result: N14CookedFoodBakedCookie
   time: 5
   reagents:
-    Flour: 5
+    ExtractRazorgrainFlour: 5
     Sugar: 5
   solids:
     N14FoodButter: 1
@@ -1316,10 +935,10 @@
 - type: microwaveMealRecipe
   id: N14RecipeSugarCookie
   name: sugar cookie recipe
-  result: N14FoodBakedCookieSugar
+  result: N14CookedFoodBakedCookieSugar
   time: 5
   reagents:
-    Flour: 5
+    ExtractRazorgrainFlour: 5
     Sugar: 10
   solids:
     N14FoodButter: 1
@@ -1327,10 +946,10 @@
 - type: microwaveMealRecipe
   id: N14RecipeRaisinCookie
   name: raisin cookie recipe
-  result: N14FoodBakedCookieRaisin
+  result: N14CookedFoodBakedCookieRaisin
   time: 5
   reagents:
-    Flour: 5
+    ExtractRazorgrainFlour: 5
     Sugar: 5
   solids:
     FoodSnackRaisins: 1
@@ -1338,7 +957,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeCookieOatmeal
   name: oatmeal cookie recipe
-  result: N14FoodBakedCookieOatmeal
+  result: N14CookedFoodBakedCookieOatmeal
   time: 5
   reagents:
     Oats: 5
@@ -1349,10 +968,10 @@
 - type: microwaveMealRecipe
   id: N14RecipeChocolateChipPancake
   name: chocolate chip pancake recipe
-  result: N14FoodBakedPancakeCc
+  result: N14CookedFoodBakedPancakeCc
   time: 5
   reagents:
-    Flour: 5
+    ExtractRazorgrainFlour: 5
     N14MilkBrahmin: 5 #N14 change
     Egg: 6
   solids:
@@ -1361,100 +980,63 @@
 - type: microwaveMealRecipe
   id: N14RecipeMutfruitCake
   name: mutfruit cake recipe
-  result: N14FoodCakeMutfruit
+  result: N14CookedFoodCakeMutfruit
   time: 5
   solids:
-    N14FoodCakePlain: 1
+    N14CookedFoodCakePlain: 1
     N14FloraProduceWildMutfruit: 3 #N14 change
 
 - type: microwaveMealRecipe
   id: N14RecipeCarrotCake
   name: carrot cake recipe
-  result: N14FoodCakeCarrot
+  result: N14CookedFoodCakeCarrot
   time: 5
   solids:
-    N14FoodCakePlain: 1
+    N14CookedFoodCakePlain: 1
     N14FloraProduceWildCarrot: 3 #N14 change
 
 - type: microwaveMealRecipe
   id: N14RecipeLemonCake
   name: lemon cake recipe
-  result: N14FoodCakeLemon
+  result: N14CookedFoodCakeLemon
   time: 5
   solids:
-    N14FoodCakePlain: 1
+    N14CookedFoodCakePlain: 1
     N14FoodLemon: 3
-
-- type: microwaveMealRecipe
-  id: N14RecipeLemoonCake
-  name: lemoon cake recipe
-  result: N14FoodCakeLemoon
-  time: 5
-  solids:
-    N14FoodCakePlain: 1
-    N14FoodLemoon: 2
-    N14FloraProduceWildTarberries: 1 #placeholder
-
-- type: microwaveMealRecipe
-  id: N14RecipeOrangeCake
-  name: orange cake recipe
-  result: N14FoodCakeOrange
-  time: 5
-  solids:
-    N14FoodCakePlain: 1
-    N14FoodOrange: 3
 
 - type: microwaveMealRecipe
   id: N14RecipeTarberryCake
   name: tarberry cake recipe #N14 change
-  result: N14FoodCakeTarberry
+  result: N14CookedFoodCakeTarberry
   time: 5
   solids:
-    N14FoodCakePlain: 1
+    N14CookedFoodCakePlain: 1
     N14FloraProduceWildTarberries: 3 #N14 change
-
-- type: microwaveMealRecipe
-  id: N14RecipeLimeCake
-  name: lime cake recipe
-  result: N14FoodCakeLime
-  time: 5
-  solids:
-    N14FoodCakePlain: 1
-    N14FoodLime: 3
 
 - type: microwaveMealRecipe
   id: N14RecipeCheeseCake
   name: cheese cake recipe
-  result: N14FoodCakeCheese
+  result: N14CookedFoodCakeCheese
   time: 5
   reagents:
     Cream: 10
   solids:
-    N14FoodCakePlain: 1
+    N14CookedFoodCakePlain: 1
     N14FoodCheeseSlice: 3
 
 - type: microwaveMealRecipe
   id: N14RecipePumpkinCake
   name: pumpkin cake recipe
-  result: N14FoodCakePumpkin
+  result: N14CookedFoodCakePumpkin
   time: 5
   solids:
-    N14FoodCakePlain: 1
+    N14CookedFoodCakePlain: 1
     N14FoodPumpkin: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeClownCake
-  name: clown cake recipe
-  result: N14FoodCakeClown
-  time: 5
-  solids:
-    ClothingMaskClown: 1
-    N14FoodCakePlain: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeCake
   name: cake recipe
-  result: N14FoodCakePlain
+  result: N14CookedFoodCakePlain
   time: 15
   solids:
     N14FoodCakeBatter: 1
@@ -1462,70 +1044,35 @@
 - type: microwaveMealRecipe
   id: N14RecipeBirthdayCake
   name: birthday cake recipe
-  result: N14FoodCakeBirthday
+  result: N14CookedFoodCakeBirthday
   time: 5
   reagents:
     Cream: 5
   solids:
-    N14FoodCakePlain: 1
+    N14CookedFoodCakePlain: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeChocolateCake
   name: chocolate cake recipe
-  result: N14FoodCakeChocolate
+  result: N14CookedFoodCakeChocolate
   time: 5
   solids:
-    N14FoodCakePlain: 1
+    N14CookedFoodCakePlain: 1
     FoodSnackChocolateBar: 2
 
 - type: microwaveMealRecipe
   id: N14RecipeBrainCake
   name: brain cake recipe
-  result: N14FoodCakeBrain
+  result: N14CookedFoodCakeBrain
   time: 15
   solids:
-    N14FoodCakePlain: 1
+    N14CookedFoodCakePlain: 1
     OrganHumanBrain: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeSlimeCake
-  name: slime cake recipe
-  result: N14FoodCakeSlime
-  time: 5
-  reagents:
-    Slime: 15
-  solids:
-    N14FoodCakePlain: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeCatCake
-  name: cat cake recipe
-  result: N14MobCatCake
-  time: 15
-  reagents:
-    Milk: 15
-    Cognizine: 5
-  solids:
-    N14FoodCakePlain: 1
-    FoodSnackRaisins: 1
-    OrganAnimalHeart: 1
-
-# - type: microwaveMealRecipe
-  # id: N14RecipeBreadDog
-  # name: bread dog recipe
-  # result: N14MobBreadDog
-  # time: 15
-  # reagents:
-    # Cognizine: 5
-  # solids:
-    # N14FoodBreadSausage: 1
-    # OrganAnimalHeart: 1
-    # FoodSpaceshroomCooked: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeDumplings
   name: dumplings recipe
-  result: N14FoodBakedDumplings
+  result: N14CookedFoodBakedDumplings
   time: 15
   reagents:
     Water: 10
@@ -1536,103 +1083,20 @@
 - type: microwaveMealRecipe
   id: N14RecipeBrownies
   name: brownie recipe
-  result: N14FoodBakedBrownieBatch
+  result: N14CookedFoodBakedBrownieBatch
   time: 25
   reagents:
-    Flour: 15
+    ExtractRazorgrainFlour: 15
     Sugar: 30
   solids:
     N14FoodButter: 2
     FoodSnackChocolateBar: 2
     N14FoodEggChicken: 3
 
-# - type: microwaveMealRecipe
-  # id: RecipeHarpyWings
-  # name: harpy wings recipe
-  # result: FoodHarpyWings
-  # time: 15
-  # solids:
-    # LeftLegHarpy: 1
-    # RightLegHarpy: 1
-
-#Donks, these are all just legacy foods we probably want to remove or replace
-- type: microwaveMealRecipe
-  id: N14RecipeWarmDonkpocket
-  name: warm donk pocket recipe
-  result: N14FoodDonkpocketWarm
-  time: 5
-  solids:
-    N14FoodDonkpocket: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeWarmDankpocket
-  name: warm dank pocket recipe
-  result: N14FoodDonkpocketDankWarm
-  time: 5
-  solids:
-    N14FoodDonkpocketDank: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeWarmDonkpocketSpicy
-  name: warm spicy donk-pocket recipe
-  result: N14FoodDonkpocketSpicyWarm
-  time: 5
-  solids:
-    N14FoodDonkpocketSpicy: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeWarmDonkpocketTeriyaki
-  name: warm teriyaki-pocket recipe
-  result: N14FoodDonkpocketTeriyakiWarm
-  time: 5
-  solids:
-    N14FoodDonkpocketTeriyaki: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeWarmDonkpocketPizza
-  name: warm pizza-pocket recipe
-  result: N14FoodDonkpocketPizzaWarm
-  time: 5
-  solids:
-    N14FoodDonkpocketPizza: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeDonkpocketHonk
-  name: warm honk-pocket recipe
-  result: N14FoodDonkpocketHonkWarm
-  time: 5
-  solids:
-    N14FoodDonkpocketHonk: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeDonkpocketBerry
-  name: warm berry-pocket recipe
-  result: N14FoodDonkpocketBerryWarm
-  time: 5
-  solids:
-    N14FoodDonkpocketBerry: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeDonkpocketStonk
-  name: warm stonk-pocket recipe
-  result: N14FoodDonkpocketStonkWarm
-  time: 5
-  solids:
-    N14FoodDonkpocketStonk: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeDonkpocketCarp
-  name: warm carp-pocket recipe
-  result: N14FoodDonkpocketCarpWarm
-  time: 5
-  solids:
-    N14FoodDonkpocketCarp: 1
-
-
 - type: microwaveMealRecipe
   id: N14RecipeHotChili
-  name: hot chili recipe #N14 change
-  result: N14FoodSoupChiliHot
+  name: hot chili recipe
+  result: N14CookedFoodSoupChiliHot
   time: 20
   solids:
     FoodBowlBig: 1
@@ -1642,54 +1106,20 @@
     N14FloraProduceWildTato: 1 #N14 change
 
 - type: microwaveMealRecipe
-  id: N14RecipeColdChili
-  name: cold chili recipe
-  result: N14FoodSoupChiliCold
-  time: 5
-  reagents:
-    Nitrogen: 5
-  solids:
-    N14FoodSoupChiliHot: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeClownTears
-  name: clown's tears recipe
-  result: N14FoodSoupClown
-  time: 15
-  solids:
-    FoodBowlBig: 1
-    N14FoodOnionSlice: 1  #not bothering with SS14 joke recipes
-    N14FoodTomato: 1
-    BikeHorn: 1
-
-- type: microwaveMealRecipe
-  id: N14RecipeChiliClown
-  name: chili con carnival recipe
-  result: N14FoodSoupChiliClown
-  time: 30
-  solids:
-    FoodBowlBig: 1
-    N14FoodChili: 1
-    N14FoodMeatRadCutlet: 1
-    N14FoodOnionSlice: 1
-    N14FloraProduceWildTato: 1 #N14 change
-    ClothingShoesClown: 1
-
-- type: microwaveMealRecipe
   id: N14RecipeQueso
   name: queso recipe
-  result: N14FoodMealQueso
+  result: N14CookedFoodMealQueso
   time: 15
   reagents:
     Blackpepper: 5
   solids:
-    N14FloraProduceWildGlowpepper: 1 #N14 change
+    N14FloraProduceWildGlowpepper: 1
     N14FoodCheeseSlice: 2
 
 - type: microwaveMealRecipe
   id: N14RecipeRibs
   name: BBQ ribs recipe
-  result: N14FoodMealRibs
+  result: N14CookedFoodMealRibs
   time: 15
   reagents:
     BbqSauce: 5
@@ -1697,30 +1127,31 @@
     N14FoodMeatBighorner: 2 #N14 change
     FoodKebabSkewer: 1
 
-# - type: microwaveMealRecipe
-  # id: N14RecipeEnchiladas
-  # name: enchiladas recipe
-  # result: N14FoodMealEnchiladas
-  # time: 20
-  # solids:
-    # N14FloraProduceWildGlowpepper: 2 #N14 change
-    # N14FloraProduceWildMaize: 1 #N14 change
+- type: microwaveMealRecipe
+  id: N14RecipeEnchiladas
+  name: enchiladas recipe
+  result: N14CookedFoodMealEnchiladas
+  time: 20
+  solids:
+    N14FoodMeatGecko: 1
+    N14FloraProduceWildGlowpepper: 2
+    N14FloraProduceWildMaize: 1
 
 # SALADS: These should be moved out of the microwave as soon as possible
 - type: microwaveMealRecipe
   id: N14RecipeHerbSalad
   name: herb salad recipe
-  result: N14FoodSaladHerb
+  result: N14CookedFoodSaladHerb
   time: 5
   solids:
     FoodBowlBig: 1
-    N14FoodAmbrosiaVulgaris: 3
-    N14FoodApple: 1
+    N14FloraProduceWildBrocFlower: 3
+    N14FloraProduceWildMutfruit: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeColeslaw
   name: coleslaw recipe
-  result: N14FoodSaladColeslaw
+  result: N14CookedFoodSaladColeslaw
   time: 5
   reagents:
     Vinaigrette: 5
@@ -1732,32 +1163,21 @@
 - type: microwaveMealRecipe
   id: N14RecipeCaesarSalad
   name: caesar salad recipe
-  result: N14FoodSaladCaesar
+  result: N14CookedFoodSaladCaesar
   time: 5
   reagents:
     OilOlive: 5 #someone map this maybe?
   solids:
     FoodBowlBig: 1
     N14FoodOnionRedSlice: 1
-    N14FoodBreadPlainSlice: 1
+    N14CookedFoodBreadPlainSlice: 1
     N14FoodCheeseSlice: 1
     N14FloraProduceWildCabbage: 1 #N14 change
 
 - type: microwaveMealRecipe
-  id: N14RecipeCitrusSalad
-  name: citrus salad recipe
-  result: N14FoodSaladCitrus
-  time: 5
-  solids:
-    FoodBowlBig: 1
-    N14FoodOrange: 1
-    N14FoodLemon: 1
-    N14FoodLime: 1
-
-- type: microwaveMealRecipe
   id: N14RecipeKimchiSalad
   name: kimchi salad recipe
-  result: N14FoodSaladKimchi
+  result: N14CookedFoodSaladKimchi
   time: 5
   reagents:
     Vinegar: 5
@@ -1770,7 +1190,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeFruitSalad
   name: fruit salad recipe
-  result: N14FoodSaladFruit
+  result: N14CookedFoodSaladFruit
   time: 5
   solids:
     FoodBowlBig: 1
@@ -1782,7 +1202,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeJungleSalad
   name: jungle salad recipe
-  result: N14FoodSaladJungle
+  result: N14CookedFoodSaladJungle
   time: 5
   solids:
     FoodBowlBig: 1
@@ -1791,33 +1211,22 @@
     N14FoodGrape: 1
     N14FoodWatermelonSlice: 2
 
-- type: microwaveMealRecipe
-  id: N14RecipeWatermelonFruitBowlSalad
-  name: watermelon fruit bowl recipe
-  result: N14FoodSaladWatermelonFruitBowl
-  time: 5
-  solids:
-    N14FoodWatermelon: 1
-    N14FoodApple: 1
-    N14FoodBanana: 1
-    N14FoodLemon: 1
-    N14FoodOrange: 1
-    N14FoodAmbrosiaVulgaris: 1
-
 # Kebabs
-# - type: microwaveMealRecipe
-  # id: N14RecipeMeatKebab
-  # name: meat kebab recipe
-  # result: N14FoodMeatKebab
-  # time: 5
-  # solids:
-    # N14FoodMeatRadCutlet: 3 #N14 change
-    # FoodKebabSkewer: 1
+#all of these lack N14 entities and don't work currently it seems
+
+#- type: microwaveMealRecipe
+#  id: N14RecipeMeatKebab
+#  name: meat kebab recipe
+#  result: N14CookedFoodMeatKebab
+#  time: 5
+#  solids:
+#    N14FoodMeatRadCutlet: 3
+#    FoodKebabSkewer: 1
 
 # - type: microwaveMealRecipe
   # id: N14RecipeHawaiianKebab
   # name: Hawaiian kebab recipe
-  # result: N14FoodMeatHawaiianKebab
+  # result: N14CookedFoodMeatHawaiianKebab
   # time: 5
   # solids:
     # N14FloraProduceWildGlowpepper: 1 #N14 change
@@ -1825,26 +1234,28 @@
     # N14FoodPineappleSlice: 1
     # FoodKebabSkewer: 1
 
-# - type: microwaveMealRecipe
-  # id: N14RecipeFiestaKebab
-  # name: fiesta kebab recipe
-  # result: N14FoodMeatFiestaKebab
-  # time: 5
-  # solids:
-    # N14FloraProduceWildGlowpepper: 1 #N14 change
-    # N14FloraProduceWildMaize: 1 #N14 change
-    # N14FoodMeatRadCutlet: 1 #N14 change
-    # N14FloraProduceWildTato: 1 #N14 change
-    # FoodKebabSkewer: 1
+#- type: microwaveMealRecipe
+#  id: N14RecipeFiestaKebab
+#  name: fiesta kebab recipe
+#  result: N14CookedFoodMeatFiestaKebab
+#  time: 5
+#  solids:
+#    N14FloraProduceWildGlowpepper: 1 #N14 change
+#    N14FloraProduceWildMaize: 1 #N14 change
+#    N14FoodMeatRadCutlet: 1 #N14 change
+#    N14FloraProduceWildTato: 1 #N14 change
+#    FoodKebabSkewer: 1
 
 # - type: microwaveMealRecipe
   # id: N14RecipeRatKebab
   # name: rat kebab recipe
-  # result: N14FoodMeatRatKebab
+  # result: N14CookedFoodMeatRatKebab
   # time: 10
   # solids:
-    # FoodMeatRat: 1
-    # FoodKebabSkewer: 1
+  #   FoodMeatRat: 1
+  #   FoodKebabSkewer: 1
+
+  #rat kebabs have to stay commented out for now, there's no N14 ratmeat and the skewers are upstream too. The recipes would overlap. -Hazel
 
 # - type: microwaveMealRecipe
   # id: N14RecipeDoubleRatKebab
@@ -1852,25 +1263,7 @@
   # result: N14FoodMeatRatdoubleKebab
   # time: 20
   # solids:
-    # FoodMeatRat: 2
-    # FoodKebabSkewer: 1
-
-# - type: microwaveMealRecipe
-  # id: N14RecipeHumanKebab
-  # name: human kebab recipe
-  # result: N14FoodMeatHumanKebab
-  # time: 15
-  # solids:
-    # TorsoHuman: 1
-    # FoodKebabSkewer: 1
-
-# - type: microwaveMealRecipe
-  # id: N14RecipeLizardKebab
-  # name: lizard kebab recipe
-  # result: N14FoodMeatLizardtailKebab
-  # time: 15
-  # solids:
-    # FoodMeatLizard: 1
+  #   FoodMeatRat: 2
     # FoodKebabSkewer: 1
 
 # - type: microwaveMealRecipe
@@ -1887,7 +1280,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeFoodMealSoftTaco
   name: soft taco recipe
-  result: N14FoodMealSoftTaco
+  result: N14CookedFoodMealSoftTaco
   time: 10
   solids:
     N14FoodDoughSlice: 1
@@ -1899,19 +1292,11 @@
 - type: microwaveMealRecipe
   id: N14RecipeFoodBakedChevreChaud
   name: chevre chaud recipe
-  result: N14FoodBakedChevreChaud
+  result: N14CookedFoodBakedChevreChaud
   time: 5
   solids:
     N14FoodChevreSlice: 1
-    N14FoodBreadBaguetteSlice: 1
-
-# - type: microwaveMealRecipe
-  # id: N14RecipeCookedSpaceshroom
-  # name: cooked spaceshroom recipe
-  # result: N14FoodSpaceshroomCooked
-  # time: 5
-  # solids:
-    # FoodSpaceshroom: 1
+    N14CookedFoodBreadBaguetteSlice: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeCannabisButter
@@ -1925,10 +1310,10 @@
 - type: microwaveMealRecipe
   id: N14RecipeCannabisBrownies
   name: cannabis brownie recipe
-  result: N14FoodBakedCannabisBrownieBatch
+  result: N14CookedFoodBakedCannabisBrownieBatch
   time: 25
   reagents:
-    Flour: 15
+    ExtractRazorgrainFlour: 15
     Sugar: 30
   solids:
     N14FoodCannabisButter: 2
@@ -1938,7 +1323,7 @@
 - type: microwaveMealRecipe
   id: N14RecipeCornInButter
   name: corn in butter recipe
-  result: N14FoodMealCornInButter
+  result: N14CookedFoodMealCornInButter
   time: 10
   solids:
     N14FloraProduceWildMaize: 1 #N14 change
@@ -1946,51 +1331,40 @@
     N14FoodButter: 1
 
 - type: microwaveMealRecipe
-  id: N14RecipePeaSoup
-  name: pea soup recipe
-  result: N14FoodSoupPea
-  time: 10
-  solids:
-    FoodPeaPod: 2
-    FoodBowlBig: 1
-  reagents:
-    Water: 10
-
-- type: microwaveMealRecipe
   id: N14RecipeTacoShell
   name: taco shell recipe
-  result: N14FoodTacoShell
+  result: N14CookedFoodTacoShell
   time: 5
   solids:
     N14FoodDoughTortillaFlat: 1 # one third of a standard bread dough recipe
 
 - type: microwaveMealRecipe
-  id: N14RecipeTacoBeef
-  name: beef taco recipe
-  result: N14FoodTacoBeef
+  id: N14RecipeTacoMeat
+  name: meat taco recipe
+  result: N14CookedFoodTacoMeat
   time: 10
   solids:
-    N14FoodTacoShell: 1
-    N14FoodMeatRadCutlet: 1 #N14 change. Embarrassed a typo had me fucking up all cutlet recipes.
+    N14CookedFoodTacoShell: 1
+    N14FoodMeatRadCutlet: 1 #Need to check cutlets
     N14FoodCheeseSlice: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeTacoChicken
   name: chicken taco recipe
-  result: N14FoodTacoChicken
+  result: N14CookedFoodTacoChicken
   time: 10
   solids:
-    N14FoodTacoShell: 1
+    N14CookedFoodTacoShell: 1
     N14FoodMeatRadchicken: 1 #N14 change
     N14FoodCheeseSlice: 1
 
 # - type: microwaveMealRecipe
   # id: N14RecipeTacoFish
   # name: fish taco recipe
-  # result: N14FoodTacoFish
+  # result: N14CookedFoodTacoFish
   # time: 10
   # solids:
-    # N14FoodTacoShell: 1
+    # N14CookedFoodTacoShell: 1
     # N14FoodMeatFish: 1 #again, someday there could be fishing... maybe
     # N14FoodOnionRedSlice: 2 #N14 change
     # N14FloraProduceWildTato: 1 #N14 change
@@ -1999,20 +1373,20 @@
 - type: microwaveMealRecipe
   id: N14RecipeTacoRat
   name: rat taco recipe
-  result: N14FoodTacoRat
+  result: N14CookedFoodTacoRat
   time: 10
   solids:
-    N14FoodTacoShell: 1
+    N14CookedFoodTacoShell: 1
     N14FoodCheeseSlice: 1
     FoodMeatRat: 1
 
 - type: microwaveMealRecipe
-  id: N14RecipeTacoBeefSupreme
-  name: beef taco supreme recipe
-  result: N14FoodTacoBeefSupreme
+  id: N14RecipeTacoMeatSupreme
+  name: meat taco supreme recipe
+  result: N14CookedFoodTacoMeatSupreme
   time: 10
   solids:
-    N14FoodTacoShell: 1
+    N14CookedFoodTacoShell: 1
     N14FoodCheeseSlice: 1
     N14FoodMeatRadCutlet: 1 #N14 change
     N14FloraProduceWildTato: 1 #N14 change
@@ -2022,12 +1396,12 @@
 - type: microwaveMealRecipe
   id: N14RecipeTacoChickenSupreme
   name: chicken taco supreme recipe #N14 change, I guess someone upstream was sleepy
-  result: N14FoodTacoChickenSupreme
+  result: N14CookedFoodTacoChickenSupreme
   time: 10
   solids:
-    N14FoodTacoShell: 1
+    N14CookedFoodTacoShell: 1
     N14FoodCheeseSlice: 1
     N14FoodMeatRadchicken: 1 #N14 change
     N14FloraProduceWildTato: 1 #N14 change
     N14FloraProduceWildCabbage: 1 #N14 change
-    FoodOnionRedSlice: 2 #N14 change I DID IT
+    N14FoodOnionRedSlice: 2 #N14 change I DID IT
