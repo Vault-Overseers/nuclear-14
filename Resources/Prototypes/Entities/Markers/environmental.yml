@@ -87,6 +87,37 @@
   - type: Physics
     bodyType: Static
 
+# Slowdown Tile
+- type: entity
+  name: Slowdown Tile
+  id: N14FloorWaterDirtyEntity
+  parent: MarkerBase
+  suffix: invisible wall
+  components:
+  - type: Sprite
+    layers:
+      - sprite: Markers/environment.rsi
+        state: base-blue
+        shader: unshaded
+      - sprite: Markers/environment.rsi
+        shader: unshaded
+        state: wall
+  - type: PlacementReplacement
+    key: blocker
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        layer:
+        - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+        hard: false
+  - type: Physics
+    bodyType: Static
 
 # Weather Blocker
 - type: entity
