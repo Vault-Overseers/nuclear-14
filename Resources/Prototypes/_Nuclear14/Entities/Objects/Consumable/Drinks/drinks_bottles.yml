@@ -1,0 +1,526 @@
+# Base 50 units
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: DrinkBottleBaseFull50
+  abstract: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+
+- type: entity
+  parent: DrinkBottleBaseFull50
+  id: DrinkBottleBaseEmpty50
+  abstract: true
+  suffix: empty
+
+# Allows for caps and fill levels
+- type: entity
+  id: DrinkGlassVisualsOpenable
+  abstract: true
+  components:
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "icon_open"}
+          False: {state: "icon"}
+  - type: Sprite
+    layers:
+      - state: icon
+        map: ["enum.OpenableVisuals.Layer"]
+ 
+# Milk
+# Empty Bottle
+- type: entity
+  parent: DrinkBottleBaseEmpty50
+  id: N14DrinkBottleMilkEmpty
+  name: milk bottle
+  description: Looks good at holding milky substances.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/milk.rsi 
+
+# Basic Milk Bottle
+- type: entity
+  parent: [DrinkGlassVisualsOpenable, DrinkBottleBaseFull50]
+  id: N14DrinkMilkBrahmin
+  name: brahmin milk
+  description: A glass bottle of brahmin milk.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14MilkBrahmin
+          Quantity: 50
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/milk.rsi 
+    layers:
+      - state: icon
+        map: ["enum.OpenableVisuals.Layer"]
+      - state: fill1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill
+
+- type: entity
+  parent: N14DrinkMilkBrahmin
+  id: N14DrinkMilkBighorner
+  name: bighorner milk
+  description: A glass bottle of bighorner milk.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14MilkBighorner
+          Quantity: 50
+
+- type: entity
+  parent: N14DrinkMilkBrahmin
+  id: N14DrinkMilkRadstag
+  name: radstag milk
+  description: A glass bottle of radstag milk.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14MilkRadstag
+          Quantity: 50
+
+# Cream
+# Empty Cream Bottle
+- type: entity
+  parent: DrinkBottleBaseEmpty50
+  id: N14DrinkCreamGlassEmpty
+  name: cream glass
+  description: Aw look, theres a little cow on the front.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/cream.rsi 
+
+# Filled Cream Bottle
+- type: entity
+  parent: [DrinkGlassVisualsOpenable, DrinkBottleBaseFull50]
+  id: N14DrinkCreamGlass
+  name: cream
+  description: Aw look, theres a little cow on the front. Seems to be filled with heavy cream.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Cream
+          Quantity: 50
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/cream.rsi 
+    layers:
+      - state: icon
+        map: ["enum.OpenableVisuals.Layer"]
+      - state: fill1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill
+    
+# Soda
+- type: entity
+  parent: DrinkBottleBaseFull50
+  id: N14DrinkNukaColaBottleFull
+  name: Nuka Cola bottle
+  description: A refreshing beverage that has a extremely sugary taste. Reminds you of vanilla and cinnamon.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola
+          Quantity: 50
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi
+
+- type: entity
+  parent: DrinkBottleBaseFull50
+  id: N14DrinkIrradiatedNukaColaBottleFull
+  name: irratiated Nuka Cola bottle
+  description: An unrefreshing beverage that has a extremely sugary taste. The aftertaste is bitter and burnt.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: IrradiatedNukaCola
+          Quantity: 50
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola.rsi
+
+# New Soda
+- type: entity
+  parent: DrinkBottleBaseEmpty50
+  id: N14DrinkNukaColaEmpty
+  name: Nuka Cola bottle
+  description: The leading cola since 2044.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: empty
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14DrinkNukaColaBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: BrokenBottle
+  id: N14DrinkNukaColaBroken
+  name: broken Nuka Cola bottle
+  description: The leading cola since 2044.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: broken
+
+- type: entity
+  parent: N14DrinkNukaColaEmpty
+  id: N14DrinkNukaCola
+  name: Nuka Cola
+  description: The leading cola since 2044.
+  suffix: full
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: cola
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola
+          Quantity: 50
+
+- type: entity
+  parent: N14DrinkNukaCola
+  id: N14DrinkNukaColaCherry
+  name: Nuka Cola Cherry
+  description: Classic Nuka Cola taste, but with a twist! You can taste cherries and syrup! It tingles the tongue.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: cherry
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaColaCherry
+          Quantity: 50
+
+- type: entity
+  parent: N14DrinkNukaCola
+  id: N14DrinkNukaColaGrape
+  name: Nuka Cola Grape
+  description: Classic Nuka Cola taste, but with a twist! You can taste grapes and syrup! It tingles the tongue.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: grape
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaColaGrape
+          Quantity: 50
+
+- type: entity
+  parent: N14DrinkNukaCola
+  id: N14DrinkNukaColaOrange
+  name: Nuka Cola Orange
+  description: Classic Nuka Cola taste, but with a twist! You can taste oranges and syrup! It tingles the tongue.
+
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: orange
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaColaOrange
+          Quantity: 50
+
+- type: entity
+  parent: N14DrinkNukaCola
+  id: N14DrinkNukaColaYellow
+  name: Nuka Cola Yellow
+  description: A rare flavor of Nuka-Cola from crazy naked Roshambo. You're unsure of what this tastes or smells like and you feel like you shouldn't be drinking this.
+
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: piss
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaColaYellow
+          Quantity: 50
+
+- type: entity
+  parent: N14DrinkNukaCola
+  id: N14DrinkNukaColaQuantum
+  name: Nuka Cola Quantum
+  description: An explosion of sweetness and fruit! You can taste various berry flavours.. And a lot of sugar!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: quantum
+    shader: unshaded
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaColaQuantum
+          Quantity: 50
+
+- type: entity
+  parent: N14DrinkNukaCola
+  id: N14DrinkNukaColaQuartz
+  name: Nuka Cola Quartz
+  description: Minty, fresh, extra fizzy.. This soda is a blast to the mouth of freshness.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: quartz
+    shader: unshaded
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaColaQuartz
+          Quantity: 50
+  - type: PointLight
+    color: "#B2FFFF"
+    radius: 1.5
+    energy: 0.2
+
+- type: entity
+  parent: N14DrinkNukaCola
+  id: N14DrinkNukaColaVictory
+  name: Nuka Cola Victory
+  description: A mixture of vanilla, cinnamon, dash of cream, and a bit of spice.. It tingles the tongue.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: victory
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaColaVictory
+          Quantity: 50
+
+- type: entity
+  parent: N14DrinkNukaCola
+  id: N14DrinkNukaColaWild
+  name: Nuka Cola Wild
+  description: Creamy, heavy, spicy, good ol' fashioned root beer-like taste.. It tingles the tongue.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/nuka_cola_new.rsi
+    state: wild
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: NukaCola # Change me
+          Quantity: 50
+
+# Vim
+- type: entity
+  parent: N14DrinkNukaCola
+  id: N14DrinkVim
+  name: Vim!
+  description: Pure Maine spring water, extracts, and syrups. Tastes medicinal.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/vim.rsi
+    state: vim
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Vim
+          Quantity: 50
+
+- type: entity
+  parent: N14DrinkVim
+  id: N14DrinkVimCaptainsBlend
+  name: Vim! Captain's Blend
+  description: A taste of Maine in a bottle. Fishy.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/vim.rsi
+    state: captainsblend
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: VimCaptainsblend
+          Quantity: 50
+
+- type: entity
+  parent: N14DrinkVim
+  id: N14DrinkVimRefresh
+  name: Vim! Refresh
+  description: Apple and lime flavor with oddly no rads.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/vim.rsi
+    state: refresh
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: VimRefresh
+          Quantity: 50
+
+- type: entity
+  parent: N14DrinkVim
+  id: N14DrinkVimQuartz
+  name: Vim! Quartz
+  description: Bubblegum flavored Vim! with extra oomph.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/vim.rsi
+    state: quartz
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: VimQuartz
+          Quantity: 50
+
+# Alcohol
+#N14Absinthe
+#N14Ale
+#N14AlcoholZ
+#N14BeantownBrownBeer
+#N14Bourbon
+
+- type: entity
+  parent: DrinkBottleBaseFull50
+  id: N14DrinkGammagulpBeer
+  name: Gamma Gulp Beer
+  description: One of Gecko's biggest exports. A mild, radioactive alcohol.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/alcohol.rsi
+    state: gammagulp
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14GammaGulpBeer
+          Quantity: 50
+
+#N14GwinnetStout
+#N14Lager
+#N14Moonshine
+#N14Pilsner
+
+- type: entity
+  parent: DrinkBottleBaseFull50
+  id: N14DrinkRoentgenRum
+  name: Roentgen Rum
+  description: One of Gecko's biggest exports. A strong, tingly alcohol.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/alcohol.rsi
+    state: roentgen
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14RoentgenRum
+          Quantity: 50
+
+#N14RotGut
+#N14RumNuka
+#N14Scotch
+#N14Vodka
+
+- type: entity
+  parent: DrinkBottleBaseFull50
+  id: N14DrinkWhisky
+  name: whiskey
+  description: A bottle of standard looking whiskey
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/alcohol.rsi
+    state: whisky
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Whiskey
+          Quantity: 50
+
+#N14WhiskeyRare
+
+- type: entity
+  parent: DrinkBottleBaseFull50
+  id: N14DrinkWine
+  name: wine
+  description: Nappa Valley Wine.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Drinks/alcohol.rsi
+    state: nappavalleywine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: N14Wine
+          Quantity: 50

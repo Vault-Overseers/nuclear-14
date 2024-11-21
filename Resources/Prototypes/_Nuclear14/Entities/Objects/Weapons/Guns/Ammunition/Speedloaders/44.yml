@@ -1,0 +1,40 @@
+- type: entity
+  id: N14BaseSpeedLoader44
+  name: "speed loader (.44 magnum)"
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - SpeedLoader44
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - N14Cartridge44Magnum
+    capacity: 6
+  - type: Sprite
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  id: SpeedLoader44
+  name: "speed loader (.44 magnum)"
+  parent: N14BaseSpeedLoader44
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge44Magnum
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Speedloaders/44loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-6
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: base
+    steps: 7
+    zeroVisible: false
+  - type: Appearance

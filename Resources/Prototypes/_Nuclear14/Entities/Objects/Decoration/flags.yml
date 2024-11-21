@@ -1,0 +1,88 @@
+# See Structures/Decoration and wallmounts for non wield flags.
+- type: entity
+  parent: BaseItem
+  id: N14DecorationFlagpoleNCR
+  name: NCR flag pole
+  description: An NCR flag on a wooden pole.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Decoration/Flags/ncr_flagpole.rsi
+    state: icon
+    noRot: true
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 10
+        Structural: 5
+    soundHit:
+      collection: MetalThud
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 5
+        Structural: 10
+  - type: Item
+    size: Huge
+  - type: UseDelay
+    delay: 1
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        # N14TODO: Needs inhands sprites
+
+  #BoS Flagpole
+- type: entity
+  parent: BaseItem
+  id: N14DecorationFlagpoleBOS
+  name: BoS flag pole
+  description: A Midwest Brotherhood flag on a wooden pole.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Decoration/Flags/bos_flagpole.rsi
+    state: icon
+    noRot: true
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 10
+        Structural: 5
+    soundHit:
+      collection: MetalThud
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 5
+        Structural: 10
+  - type: Item
+    size: Huge
+  - type: UseDelay
+    delay: 1
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

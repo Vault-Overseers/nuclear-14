@@ -1,0 +1,60 @@
+# Flashlights
+- type: entity
+  parent: FlashlightLantern
+  id: N14Flashlight
+  name: flashlight
+  description: Brighten up your miserable life.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/flashlight.rsi # N14TODO: SPRITE
+    layers:
+      - state: flashlight
+      - state: flashlight-overlay
+        shader: unshaded
+        visible: false
+        map: [ "light" ]
+  - type: Item
+    sprite: Objects/Tools/flashlight.rsi  # N14TODO: SPRITE
+
+- type: entity
+  parent: N14Flashlight
+  id: N14FlashlightEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+# Flares
+- type: entity
+  parent: Flare
+  id: N14Flare
+  name: flare
+  description: Creates light for a short period of time.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/flare.rsi # N14TODO: Change
+    layers:
+      - map: [ enum.ExpendableLightVisualLayers.Base ]
+        state: flare_base
+      - map: [ enum.ExpendableLightVisualLayers.Glow ]
+        state: flare_burn
+        color: "#FFFFFF" # N14TODO: Change
+        visible: false
+        shader: unshaded
+      - map: [ enum.ExpendableLightVisualLayers.Overlay ]
+        state: flare_unlit
+        color: "#FF0000" # N14TODO: Change
+  - type: Icon
+    sprite: Objects/Misc/flare.rsi # N14TODO: Change
+    state: icon
+  - type: Item
+    sprite: Objects/Misc/flare.rsi # N14TODO: Change
+    heldPrefix: unlit
+  - type: PointLight
+    enabled: false
+    color: "#FF8080"  # N14TODO: Change
+    radius: 1.0
+    energy: 9.0
+    netsync: false

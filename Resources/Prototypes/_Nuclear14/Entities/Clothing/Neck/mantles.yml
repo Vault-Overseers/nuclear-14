@@ -1,0 +1,48 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckMantleBrotherhoodWashington
+  name: Washington Brotherhood mantle
+  description: A red and black mantle, worn by high-ranking of the Washington Brotherhood of Steel. It represents a high status.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/WBoSmantle.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Neck/WBoSmantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckMantleNCR
+  name: NCR squad leader mantle
+  description: A tiny piece of cloth bound with a rope, commonly used between Sergeants from the NCR army.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/NCRmantle.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Neck/NCRmantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckMantleLeather
+  name: leather mantle
+  description: A comfortable brown leather mantle.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/leathermantle.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Neck/leathermantle.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHoodLeatherCloak
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: Construction
+    graph: LeatherMantleGraph
+    node: mantle
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: N14MaterialLeather1
+      amount: 2

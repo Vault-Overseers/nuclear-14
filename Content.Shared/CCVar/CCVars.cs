@@ -150,7 +150,7 @@ namespace Content.Shared.CCVar
         ///     Controls the default game preset.
         /// </summary>
         public static readonly CVarDef<string>
-            GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "secret", CVar.ARCHIVE);
+            GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "N14", CVar.ARCHIVE);
 
         /// <summary>
         ///     Controls if the game can force a different preset if the current preset's criteria are not met.
@@ -162,7 +162,7 @@ namespace Content.Shared.CCVar
         ///     The preset for the game to fall back to if the selected preset could not be used, and fallback is enabled.
         /// </summary>
         public static readonly CVarDef<string>
-            GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "Traitor,Extended", CVar.ARCHIVE);
+            GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "Extended", CVar.ARCHIVE);
 
         /// <summary>
         ///     Controls if people can win the game in Suspicion or Deathmatch.
@@ -210,7 +210,7 @@ namespace Content.Shared.CCVar
         ///     Controls the maximum number of character slots a player is allowed to have.
         /// </summary>
         public static readonly CVarDef<int>
-            GameMaxCharacterSlots = CVarDef.Create("game.maxcharacterslots", 30, CVar.ARCHIVE | CVar.SERVERONLY);
+            GameMaxCharacterSlots = CVarDef.Create("game.maxcharacterslots", 15, CVar.ARCHIVE | CVar.SERVERONLY);
 
         /// <summary>
         ///     Controls the game map prototype to load. SS14 stores these prototypes in Prototypes/Maps.
@@ -1354,7 +1354,7 @@ namespace Content.Shared.CCVar
         /// Whether or not OOC chat should be enabled during a round.
         /// </summary>
         public static readonly CVarDef<bool> OocEnableDuringRound =
-            CVarDef.Create("ooc.enable_during_round", false, CVar.NOTIFY | CVar.REPLICATED | CVar.SERVER);
+            CVarDef.Create("ooc.enable_during_round", true, CVar.NOTIFY | CVar.REPLICATED | CVar.SERVER);
 
         public static readonly CVarDef<bool> ShowOocPatronColor =
             CVarDef.Create("ooc.show_ooc_patron_color", true, CVar.ARCHIVE | CVar.REPLICATED | CVar.CLIENT);
@@ -1439,19 +1439,19 @@ namespace Content.Shared.CCVar
         ///     Config for when the restart vote should be allowed to be called based on percentage of ghosts.
         ///
         public static readonly CVarDef<int> VoteRestartGhostPercentage =
-            CVarDef.Create("vote.restart_ghost_percentage", 75, CVar.SERVERONLY);
+            CVarDef.Create("vote.restart_ghost_percentage", 50, CVar.SERVERONLY);
 
         /// <summary>
         ///     See vote.enabled, but specific to preset votes
         /// </summary>
         public static readonly CVarDef<bool> VotePresetEnabled =
-            CVarDef.Create("vote.preset_enabled", false, CVar.SERVERONLY);
+            CVarDef.Create("vote.preset_enabled", true, CVar.SERVERONLY);
 
         /// <summary>
         ///     See vote.enabled, but specific to map votes
         /// </summary>
         public static readonly CVarDef<bool> VoteMapEnabled =
-            CVarDef.Create("vote.map_enabled", false, CVar.SERVERONLY);
+            CVarDef.Create("vote.map_enabled", true, CVar.SERVERONLY);
 
         /// <summary>
         ///     The required ratio of the server that must agree for a restart round vote to go through.
@@ -1463,7 +1463,7 @@ namespace Content.Shared.CCVar
         /// Whether or not to prevent the restart vote from having any effect when there is an online admin
         /// </summary>
         public static readonly CVarDef<bool> VoteRestartNotAllowedWhenAdminOnline =
-            CVarDef.Create("vote.restart_not_allowed_when_admin_online", true, CVar.SERVERONLY);
+            CVarDef.Create("vote.restart_not_allowed_when_admin_online", false, CVar.SERVERONLY);
 
         /// <summary>
         ///     The delay which two votes of the same type are allowed to be made by separate people, in seconds.
@@ -1532,13 +1532,13 @@ namespace Content.Shared.CCVar
         /// Whether the arrivals terminal should be on a planet map.
         /// </summary>
         public static readonly CVarDef<bool> ArrivalsPlanet =
-            CVarDef.Create("shuttle.arrivals_planet", true, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.arrivals_planet", false, CVar.SERVERONLY);
 
         /// <summary>
         /// Whether the arrivals shuttle is enabled.
         /// </summary>
         public static readonly CVarDef<bool> ArrivalsShuttles =
-            CVarDef.Create("shuttle.arrivals", true, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.arrivals", false, CVar.SERVERONLY);
 
         /// <summary>
         /// The map to use for the arrivals station.
@@ -2119,7 +2119,7 @@ namespace Content.Shared.CCVar
         /// Whether the player mob is walking by default instead of running.
         /// </summary>
         public static readonly CVarDef<bool> DefaultWalk =
-            CVarDef.Create("control.default_walk", true, CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
+            CVarDef.Create("control.default_walk", false, CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
 
         /*
          * STORAGE
@@ -2337,7 +2337,7 @@ namespace Content.Shared.CCVar
          */
 
         public static readonly CVarDef<bool> GatewayGeneratorEnabled =
-            CVarDef.Create("gateway.generator_enabled", true);
+            CVarDef.Create("gateway.generator_enabled", false);
 
         // Clippy!
         public static readonly CVarDef<string> TippyEntity =
@@ -2362,7 +2362,7 @@ namespace Content.Shared.CCVar
         ///    Whether glimmer is enabled.
         /// </summary>
         public static readonly CVarDef<bool> GlimmerEnabled =
-            CVarDef.Create("glimmer.enabled", true, CVar.REPLICATED);
+            CVarDef.Create("glimmer.enabled", false, CVar.REPLICATED);
 
         /// <summary>
         ///     Passive glimmer drain per second.
@@ -2376,7 +2376,7 @@ namespace Content.Shared.CCVar
         ///     Guaranteed psionics will still go through.
         /// </summary>
         public static readonly CVarDef<bool> PsionicRollsEnabled =
-            CVarDef.Create("psionics.rolls_enabled", true, CVar.SERVERONLY);
+            CVarDef.Create("psionics.rolls_enabled", false, CVar.SERVERONLY);
 
         /// <summary>
         ///     Whether height & width sliders adjust a character's Fixture Component
@@ -2403,7 +2403,7 @@ namespace Content.Shared.CCVar
         ///     Enables station goals
         /// </summary>
         public static readonly CVarDef<bool> StationGoalsEnabled =
-            CVarDef.Create("game.station_goals", true, CVar.SERVERONLY);
+            CVarDef.Create("game.station_goals", false, CVar.SERVERONLY);
 
         /// <summary>
         ///     Chance for a station goal to be sent

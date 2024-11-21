@@ -24,6 +24,8 @@ using Robust.Shared.Physics;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Nuclear14.Special.Components;
+using Content.Shared.Popups;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -321,7 +323,23 @@ public sealed partial class GunSystem : SharedGunSystem
     private Angle GetRecoilAngle(TimeSpan curTime, GunComponent component, Angle direction, EntityUid? shooter)
     {
         var timeSinceLastFire = (curTime - component.LastFire).TotalSeconds;
-        var newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, component.MinAngleModified.Theta, component.MaxAngleModified.Theta);
+        var minAngle = component.MinAngleModified;
+        var decay = component.AngleDecayModified;
+        var maxAngle = component.MaxAngleModified;
+        Angle newTheta;
+        if (TryComp<SpecialComponent>(shooter, out var special))
+        {
+            maxAngle += Angle.FromDegrees((10f - special.TotalPerception*2));
+            minAngle += Angle.FromDegrees((10f - special.TotalPerception*2));
+            maxAngle *= 1.5 - special.TotalPerception / 10;
+            minAngle *= 1.5 - special.TotalPerception / 10;
+            decay += Angle.FromDegrees((special.TotalPerception - 5f) / 10);
+
+            newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - decay.Theta * timeSinceLastFire, minAngle.Theta, maxAngle.Theta);
+        }
+        else
+            newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, component.MinAngleModified.Theta, component.MaxAngleModified.Theta);
+        // Nuclear14 end
         component.CurrentAngle = new Angle(newTheta);
         component.LastFire = component.NextFire;
 

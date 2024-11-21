@@ -1,0 +1,42 @@
+- type: entity
+  id: N14BaseSpeedLoader9
+  name: "speed loader (9mm)"
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+      - SpeedLoader9
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - N14CartridgePistol9
+    capacity: 6
+  - type: Sprite
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  id: SpeedLoader9
+  name: "speed loader (9mm)"
+  parent: N14BaseSpeedLoader9
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14CartridgePistol9
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Speedloaders/9mmloader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-6
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: base
+    steps: 7
+    zeroVisible: false
+  - type: Appearance

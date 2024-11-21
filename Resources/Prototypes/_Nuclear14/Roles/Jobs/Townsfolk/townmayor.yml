@@ -1,0 +1,37 @@
+- type: job
+  id: TownMayor
+  setPreference: true
+  name: job-name-townmayor
+  description: job-description-townmayor
+  playTimeTracker: TownMayor
+  requirements:
+    - !type:CharacterDepartmentTimeRequirement
+      department: Townsfolk
+      min: 18000 # 5 hours
+  startingGear: TownMayorGear
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-townsfolk
+  accessGroups:
+  - Townie
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Townsfolk
+
+- type: startingGear
+  id: TownMayorGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitCheckered
+    back: N14ClothingBackpackMayorFilled
+    shoes: N14ClothingShoesBrown
+    id: N14IDBadgeTownMayor
+    pocket1: RadioHandheld
+    belt: N14WalletLottaCash
+  innerClothingSkirt: N14ClothingUniformJumpskirtFalloutBlack
+  satchel: N14ClothingBackpackSatchelMayorFilled
+  duffelbag: N14ClothingBackpackDuffelMayorFilled
+
+- type: playTimeTracker
+  id: TownMayor

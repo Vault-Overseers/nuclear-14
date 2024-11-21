@@ -54,6 +54,7 @@ public sealed class LockSystem : EntitySystem
 
     private void OnActivated(EntityUid uid, LockComponent lockComp, ActivateInWorldEvent args)
     {
+
         if (args.Handled)
             return;
 

@@ -1,0 +1,161 @@
+- type: reaction
+  id: Antiseptic
+  reactants:
+    Abraxocleaner:
+      amount: 1
+    Ethanol:
+      amount: 1
+  products:
+      Antiseptic: 2
+
+- type: reaction
+  id: AntidoteMixture
+  reactants:
+    Ethanol:
+      amount: 1
+    ScorpionTail:
+      amount: 1
+  products:
+    AntidoteMixture: 2
+
+- type: reaction
+  id: AntidoteMixtureConversion
+  reactants:
+    AntidoteMixture:
+      amount: 100
+    Silicon:
+      amount: 20 # 2 grinded glass
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14Antidote
+
+- type: reaction
+  id: Antidote
+  reactants:
+    AntidoteMixture:
+      amount: 1
+    ExtractTarberries:
+      amount: 1
+  products:
+    Antidote: 2
+
+- type: reaction
+  id: AntidoteConversion
+  reactants:
+    Antidote:
+      amount: 15
+    Oil:
+      amount: 5
+    Phosphorus:
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14ChemicalSyringeAntidote
+
+- type: reaction
+  id: RadAway
+  reactants:
+    ExtractFungusRad:
+      amount: 1
+    Antiseptic:
+      amount: 2
+    Water:
+      amount: 2
+  products:
+    RadAway: 3
+
+- type: reaction
+  id: RadAwayPhialConversion
+  reactants:
+    RadAway:
+      amount: 30
+    Silicon:
+      amount: 10
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14RadAwayPhial
+
+- type: reaction
+  id: RadAwayDiluted
+  reactants:
+    RadAway:
+      amount: 1
+    Water:
+      amount: 2
+  products:
+    RadAwayDiluted: 2
+
+- type: reaction
+  id: RadAwayConversion
+  reactants:
+    RadAway:
+      amount: 20
+    Oil:
+      amount: 5
+    Phosphorus:
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14RadAwayBloodbag
+
+- type: reaction
+  id: Stimpak
+  reactants:
+    ExtractBroc:
+      amount: 1
+    ExtractXander:
+      amount: 1
+    Blood:
+      amount: 1
+  products:
+    HealingMixture: 1
+
+- type: reaction
+  id: StimpakConversion
+  reactants:
+    HealingMixture:
+      amount: 25
+    Oil: # Plastic contains 5u of Oil and 5u of Phosphorus
+      amount: 5
+    Phosphorus:
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14Stimpak
+
+- type: reaction
+  id: DirtyStimpak
+  reactants:
+    ExtractBroc:
+      amount: 1
+    ExtractXander:
+      amount: 1
+    WastelandBlood:
+      amount: 1
+  products:
+    DirtyStimpak: 1
+
+- type: reaction
+  id: DirtyStimpakConversion
+  reactants:
+    DirtyStimpak:
+      amount: 25
+    Oil:
+      amount: 5
+    Phosphorus:
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14StimpakDirty
+
+- type: reaction
+  id: Bitterdrink
+  reactants:
+    ExtractBroc:
+      amount: 1
+    ExtractXander:
+      amount: 1
+    Water:
+      amount: 1
+  products:
+    Bitterdrink: 1

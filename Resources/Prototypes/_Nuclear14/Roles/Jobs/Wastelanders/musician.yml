@@ -1,0 +1,26 @@
+- type: job
+  id: WastelandMusician
+  setPreference: true
+  name: job-name-musician
+  description: job-description-musician
+  playTimeTracker: WastelandMusician
+  startingGear: WastelandMusicianGear
+  icon: "JobIconMusician"
+  supervisors: job-supervisors-hire
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: MikuDay
+    prototype: BoxPerformer
+
+- type: startingGear
+  id: WastelandMusicianGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitManagerSuit
+    back: N14ClothingBackpackMusicianFilled
+    eyes: ClothingEyesGlassesSunglasses
+    shoes: N14ClothingShoesBrown
+  satchel: N14ClothingBackpackSatchelMusicianFilled
+  duffelbag: N14ClothingBackpackDuffelMusicianFilled
+
+- type: playTimeTracker
+  id: WastelandMusician

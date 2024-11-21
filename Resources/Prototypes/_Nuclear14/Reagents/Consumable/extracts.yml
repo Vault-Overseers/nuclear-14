@@ -1,0 +1,338 @@
+# Alphabetical
+# Extracts
+- type: reagent
+  parent: BaseDrink
+  id: ExtractAgaveNectar
+  name: reagent-name-extract-agave-nectar
+  group: Extracts
+  desc: reagent-desc-extract-agave-nectar
+  physicalDesc: reagent-physical-desc-syrupy
+  flavor: syrupy
+  color: "#babf4d"
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractBananaYucca
+  name: reagent-name-extract-banana-yucca
+  group: Extracts
+  desc: reagent-desc-extract-banana-yucca
+  physicalDesc: reagent-physical-desc-starchy
+  flavor: bitter
+  color: "#c2d64d"
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractBlackberries
+  name: reagent-name-extract-blackberries
+  group: Extracts
+  desc: reagent-desc-extract-blackberries
+  physicalDesc: reagent-physical-desc-sugary
+  flavor: sweet
+  color: "#2746b8"
+
+- type: reagent
+  id: ExtractBroc
+  name: reagent-name-extract-broc
+  group: Extracts
+  desc: reagent-desc-extract-broc
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: leafy
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -0.1
+            Brute: -0.1
+      - !type:ChemVomit
+        probability: 0.1
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractBuffaloGourd
+  name: reagent-name-extract-buffalo-gourd
+  group: Extracts
+  desc: reagent-desc-extract-buffalo-gourd
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: watermelon
+  color: "#f0ff8c"
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractCabbage
+  name: reagent-name-extract-cabbage
+  group: Extracts
+  desc: reagent-desc-extract-cabbage
+  physicalDesc: reagent-physical-desc-metallic
+  flavor: leafy
+  color: "#99a845"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ModifyBloodLevel
+        amount: 0.5
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractCactusWater #barrel cactus
+  name: reagent-name-extract-cactus-water
+  group: Extracts
+  desc: reagent-desc-extract-cactus-water
+  physicalDesc: reagent-physical-desc-odorless
+  color: "#5f959c"
+
+- type: reagent
+  id: ExtractCarrot
+  name: reagent-name-extract-carrot
+  parent: BaseDrink
+  desc: reagent-desc-extract-carrot
+  physicalDesc: reagent-physical-desc-crisp
+  flavor: carrot
+  color: "#FF8820"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Oculine
+        amount: 0.15
+      - !type:AdjustReagent
+        reagent: Nutriment
+        amount: 0.5
+
+# Cave fungus = no reagent
+
+- type: reagent
+  id: ExtractCoyoteTobacco
+  name: reagent-name-extract-coyote-tobacco
+  group: Extracts
+  desc: reagent-desc-extract-coyote-tobacco
+  flavor: bitter
+  color: "#C0C0C0"
+  physicalDesc: reagent-physical-desc-strong-smelling
+  plantMetabolism:
+  - !type:PlantAdjustHealth
+    amount: -5
+
+- type: reagent
+  id: ExtractDatura #HeartbreakerToxin
+  name: reagent-name-extract-datura
+  group: Toxins
+  desc: reagent-desc-extract-datura
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: bitter
+  color: "#5f959c"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: 2
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 10
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractHoneyMesquitePod
+  name: reagent-name-extract-honey-mesquite-pod
+  group: Extracts
+  desc: reagent-desc-extract-honey-mesquite-pod
+  physicalDesc: reagent-physical-desc-sugary
+  flavor: sweet
+  color: "#f0ff8c"
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractGlowpepper #N14 change
+  name: reagent-name-extract-glowpepper #N14 change
+  group: Extracts
+  desc: reagent-desc-extract-glowpepper #N14 change
+  physicalDesc: reagent-physical-desc-spicy
+  flavor: spicy
+  color: "#d12519"
+
+- type: reagent
+  id: ExtractMaize
+  name: reagent-name-extract-maize
+  group: Extract
+  desc: reagent-desc-extract-maize
+  physicalDesc: reagent-physical-desc-coarse
+  flavor: fiber
+  color: "#a2ab6f"
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateThirst
+        factor: -0.2
+      - !type:AdjustReagent
+        reagent: Nutriment
+        amount: 0.2
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractMutfruit
+  name: reagent-name-extract-mutfruit
+  group: Extracts
+  desc: reagent-desc-extract-mutfruit
+  physicalDesc: reagent-physical-desc-pulpy
+  flavor: fiber
+  color: "#6ab854"
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractNettle
+  name: reagent-name-extract-nettle
+  group: Extracts
+  desc: reagent-desc-extract-nettle
+  physicalDesc: reagent-physical-desc-chalky
+  flavor: bitter
+  color: "#009900"
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractPinyon
+  name: reagent-name-extract-pinyon
+  group: Extracts
+  desc: reagent-desc-extract-pinyon
+  physicalDesc: reagent-physical-desc-chalky
+  flavor: sweet
+  color: "#5e1756"
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractPricklyPearFruit
+  name: reagent-name-extract-pricky-pear-fruit
+  group: Extracts
+  desc: reagent-desc-extract-pricky-pear-fruit
+  physicalDesc: reagent-physical-desc-citric
+  flavor: fruity
+  color: "#6ab854"
+
+- type: reagent
+  id: ExtractRazorgrainFlour
+  name: reagent-name-extract-razorgrain
+  group: Extract
+  desc: reagent-desc-extract-razorgrain
+  physicalDesc: reagent-physical-desc-powdery
+  flavor: chalky
+  color: white
+  recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:AdjustReagent
+        reagent: Sugar
+        amount: 0.4
+      - !type:SatiateThirst
+        factor: -0.2
+      - !type:AdjustReagent
+        reagent: Nutriment
+        amount: 0.1
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractStarlightBerries
+  name: reagent-name-extract-starlight-berries
+  group: Extracts
+  desc: reagent-desc-extract-starlight-berries
+  physicalDesc: reagent-physical-desc-sugary
+  flavor: sweet
+  color: "#fc2c03"
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractTarberries
+  name: reagent-name-extract-tarberries
+  group: Extracts
+  desc: reagent-desc-extract-tarberries
+  physicalDesc: reagent-physical-desc-sugary
+  flavor: sweet
+  color: "#2746b8"
+
+- type: reagent
+  parent: BaseDrink
+  id: ExtractTato
+  name: reagent-name-extract-tato
+  group: Extracts
+  desc: reagent-desc-extract-tato
+  physicalDesc: reagent-physical-desc-starchy
+  flavor: savory
+  color: "#97a832"
+
+- type: reagent
+  id: ExtractWhiteHorsenettle
+  name: reagent-name-extract-white-horsenettle
+  group: Toxins
+  desc: reagent-desc-extract-white-horsenettle
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: bitter
+  color: "#f0ff8c"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: 2
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 10
+
+- type: reagent
+  id: ExtractXander
+  name: reagent-name-extract-xander
+  group: Extracts
+  desc: reagent-desc-extract-xander
+  physicalDesc: reagent-physical-desc-soothing
+  color: "#00e5ff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -0.1
+            Brute: -0.1
+      - !type:ChemVomit
+        probability: 0.1
+
+- type: reagent
+  id: ExtractFungus
+  name: reagent-name-extract-fungus
+  group: Toxins
+  desc: reagent-desc-extract-fungus
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#4eff3b"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.2
+            Radiation: 0.1
+      - !type:ChemVomit
+        probability: 0.1
+
+- type: reagent
+  id: ExtractFungusRad
+  name: reagent-name-extract-fungusrad
+  group: Toxins
+  desc: reagent-desc-extract-fungusrad
+  physicalDesc: reagent-physical-desc-fizzy
+  color: "#4eff3b"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1
+            Radiation: 0.5
+      - !type:ChemVomit
+        probability: 0.2

@@ -9,6 +9,7 @@ using Content.Shared.Language;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech;
+using Content.Shared.Ghost; // Nuclear-14
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -49,6 +50,18 @@ public sealed class RadioSystem : EntitySystem
             SendRadioMessage(uid, args.Message, args.Channel, uid, args.Language);
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
+    }
+
+    //Nuclear-14
+    /// <summary>
+    /// Gets the message frequency, if there is no such frequency, returns the standard channel frequency.
+    /// </summary>
+    public int GetFrequency(EntityUid source, RadioChannelPrototype channel)
+    {
+        if (TryComp<RadioMicrophoneComponent>(source, out var radioMicrophone))
+            return radioMicrophone.Frequency;
+
+        return channel.Frequency;
     }
 
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
@@ -122,6 +135,12 @@ public sealed class RadioSystem : EntitySystem
 
         var speakerQuery = GetEntityQuery<RadioSpeakerComponent>();
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
+
+        /*Nuclear-14-Start*/
+        if (frequency == null)
+            frequency = GetFrequency(messageSource, channel);
+        /*Nuclear-14-End*/
+
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
             if (!radio.ReceiveAllChannels)
@@ -130,6 +149,10 @@ public sealed class RadioSystem : EntitySystem
                                                              !intercom.SupportedChannels.Contains(channel.ID)))
                     continue;
             }
+
+            // Nuclear-14
+            if (!HasComp<GhostComponent>(receiver) && GetFrequency(receiver, channel) != frequency)
+                continue;
 
             if (!channel.LongRange && transform.MapID != sourceMapId && !radio.GlobalReceive)
                 continue;

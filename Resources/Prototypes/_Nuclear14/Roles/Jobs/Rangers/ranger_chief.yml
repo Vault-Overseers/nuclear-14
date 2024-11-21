@@ -1,0 +1,44 @@
+- type: job
+  id: RangerChief #admin lead
+  setPreference: false
+  name: job-name-ranger-chief
+  description: job-description-ranger-chief
+  playTimeTracker: RangerChief
+  weight: 20
+  startingGear: RangerChiefGear
+  icon: "JobIconCaptain"
+  requireAdminNotify: true
+  canBeAntag: false
+  accessGroups:
+  - NCR
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Rangers
+  requirements:
+    - !type:CharacterWhitelistRequirement
+
+- type: startingGear
+  id: RangerChiefGear
+  equipment:
+    head: N14ClothingHeadHatRangerHelmetElite
+    back: N14ClothingBackpackMilitaryFilled
+    jumpsuit: N14ClothingUniformRangerVeteran
+    ears: N14ClothingHeadsetNCR
+    shoes: N14ClothingBootsCombatMK2Filled
+    gloves: N14ClothingHandsGlovesCombat
+    belt: ClothingBeltRevolvervetfilled
+    mask: ClothingMaskGasRangerElite
+    pocket1: MagazineBox45-70
+    pocket2: FlashlightSeclite
+    eyes: ClothingEyesGlassesSunglasses
+    outerClothing: N14ClothingOuterRangerElite
+    id: N14IDBadgeNCRDesertRangerChief
+  innerClothingSkirt: N14ClothingUniformRangerVeteran #placeholder
+  satchel: N14ClothingBackpackSatchelMilitaryFilled
+  duffelbag: N14ClothingBackpackDuffelMilitaryFilled
+
+- type: playTimeTracker
+  id: RangerChief

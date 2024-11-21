@@ -23,7 +23,7 @@ namespace Content.Server.Cargo.Systems
         /// <summary>
         /// How much time to wait (in seconds) before increasing bank accounts balance.
         /// </summary>
-        private const int Delay = 10;
+        private const int Delay = 200;
 
         /// <summary>
         /// Keeps track of how much time has elapsed since last balance increase.
@@ -84,7 +84,7 @@ namespace Content.Server.Cargo.Systems
 
                 foreach (var account in EntityQuery<StationBankAccountComponent>())
                 {
-                    account.Balance += account.IncreasePerSecond * Delay;
+                    account.Balance += (int) (account.IncreasePerSecond * Delay);
                 }
 
                 var query = EntityQueryEnumerator<CargoOrderConsoleComponent>();

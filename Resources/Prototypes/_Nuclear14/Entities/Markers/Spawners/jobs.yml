@@ -1,0 +1,621 @@
+# Wastelanders
+
+- type: entity
+  parent: SpawnPointJobBase
+  id: N14SpawnPointWastelander
+  name: wastelander
+  components:
+  - type: SpawnPoint
+    job_id: Wastelander
+  - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/wastelanders.rsi
+    layers:
+      - state: green
+      - state: wastelander
+
+# BOS Midwest
+- type: entity
+  id: N14SpawnPointBoSMidPaladinCommander
+  parent: N14SpawnPointWastelander
+  name: BOS midwest paladin commander
+  components:
+  - type: SpawnPoint
+    job_id: BoSMidPaladinCommander
+  - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/bosmid.rsi
+    layers:
+      - state: green
+      - state: commander
+
+- type: entity
+  id: N14SpawnPointBoSMidKnight
+  parent: N14SpawnPointBoSMidPaladinCommander
+  name: BOS midwest knight
+  components:
+  - type: SpawnPoint
+    job_id: BoSMidKnight
+  - type: Sprite
+    layers:
+      - state: green
+      - state: knight
+
+- type: entity
+  id: N14SpawnPointBoSMidPaladin
+  parent: N14SpawnPointBoSMidPaladinCommander
+  name: BOS midwest paladin
+  components:
+  - type: SpawnPoint
+    job_id: BoSMidPaladin
+  - type: Sprite
+    layers:
+      - state: green
+      - state: paladin
+
+- type: entity
+  id: N14SpawnPointBoSMidInitiate # change this when I care
+  parent: N14SpawnPointBoSMidPaladinCommander
+  name: BOS midwest squire
+  components:
+  - type: SpawnPoint
+    job_id: BoSMidSquire
+  - type: Sprite
+    layers:
+      - state: green
+      - state: squire
+
+- type: entity
+  id: N14SpawnPointBoSMidScribe
+  parent: N14SpawnPointBoSMidPaladinCommander
+  name: BOS midwest scribe
+  components:
+  - type: SpawnPoint
+    job_id: BoSMidScribe
+  - type: Sprite
+    layers:
+      - state: green
+      - state: scribe
+
+# BOS Washington
+- type: entity
+  id: N14SpawnPointBoSWashingtonCommander
+  parent: N14SpawnPointWastelander
+  name: BOS washington commander
+  components:
+  - type: SpawnPoint
+    job_id: BoSWashingtonCommander
+  - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/boswashington.rsi
+    layers:
+      - state: green
+      - state: commander
+
+- type: entity
+  id: N14SpawnPointBoSWashingtonInitiate
+  parent: N14SpawnPointBoSWashingtonCommander
+  name: BOS washington recruit
+  components:
+  - type: SpawnPoint
+    job_id: BoSWashingtonInitiate
+  - type: Sprite
+    layers:
+      - state: green
+      - state: initiate
+
+- type: entity
+  id: N14SpawnPointBoSWashingtonPaladin
+  parent: N14SpawnPointBoSWashingtonCommander
+  name: BOS washington captain
+  components:
+  - type: SpawnPoint
+    job_id: BoSWashingtonPaladin
+  - type: Sprite
+    layers:
+      - state: green
+      - state: paladin
+
+- type: entity
+  id: N14SpawnPointBoSWashingtonKnight
+  parent: N14SpawnPointBoSWashingtonCommander
+  name: BOS washington soldier
+  components:
+  - type: SpawnPoint
+    job_id: BoSWashingtonKnight
+  - type: Sprite
+    layers:
+      - state: green
+      - state: knight
+
+- type: entity
+  id: N14SpawnPointBoSWashingtonScribe
+  parent: N14SpawnPointBoSWashingtonCommander
+  name: BOS washington researcher
+  components:
+  - type: SpawnPoint
+    job_id: BoSWashingtonScribe
+  - type: Sprite
+    layers:
+      - state: green
+      - state: scribe
+
+# Caravan Company
+- type: entity
+  id: N14SpawnPointCaravanLeader
+  parent: N14SpawnPointWastelander
+  name: caravan leader
+  components:
+  - type: SpawnPoint
+    job_id: CaravanLeader
+  - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/caravan.rsi
+    layers:
+      - state: green
+      - state: leader
+
+- type: entity
+  id: N14SpawnPointCaravanTrader
+  parent: N14SpawnPointCaravanLeader
+  name: caravan trader
+  components:
+  - type: SpawnPoint
+    job_id: CaravanTrader
+  - type: Sprite
+    layers:
+      - state: green
+      - state: trader
+
+- type: entity
+  id: N14SpawnPointCaravanGuard
+  parent: N14SpawnPointCaravanLeader
+  name: caravan guard
+  components:
+  - type: SpawnPoint
+    job_id: CaravanGuard
+  - type: Sprite
+    layers:
+      - state: green
+      - state: guard
+
+# NCR
+- type: entity
+  id: N14SpawnPointNCRCadet
+  parent: N14SpawnPointWastelander
+  name: NCR cadet
+  components:
+  - type: SpawnPoint
+    job_id: NCRCadet
+  - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/ncr.rsi
+    layers:
+      - state: green
+      - state: cadet
+
+- type: entity
+  id: N14SpawnPointNCRMedic
+  parent: N14SpawnPointNCRCadet
+  name: NCR doctor
+  components:
+  - type: SpawnPoint
+    job_id: NCRMedic
+  - type: Sprite
+    layers:
+      - state: green
+      - state: medic
+
+- type: entity
+  id: N14SpawnPointNCRSGT
+  parent: N14SpawnPointNCRCadet
+  name: NCR SGT
+  components:
+  - type: SpawnPoint
+    job_id: NCRSGT
+  - type: Sprite
+    layers:
+      - state: green
+      - state: sgt
+
+- type: entity
+  id: N14SpawnPointNCRLT
+  parent: N14SpawnPointNCRCadet
+  name: NCR LT
+  components:
+  - type: SpawnPoint
+    job_id: NCRLT
+  - type: Sprite
+    layers:
+      - state: green
+      - state: lt
+
+- type: entity
+  id: N14SpawnPointNCRWS
+  parent: N14SpawnPointNCRCadet
+  name: NCR WS
+  components:
+  - type: SpawnPoint
+    job_id: NCRWS
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ws
+
+- type: entity
+  id: N14SpawnPointNCREngineer
+  parent: N14SpawnPointNCRCadet
+  name: NCR Engineer
+  components:
+  - type: SpawnPoint
+    job_id: NCREngineer
+  - type: Sprite
+    layers:
+      - state: green
+      - state: engineer
+
+- type: entity
+  id: N14SpawnPointNCRRanger
+  parent: N14SpawnPointNCRCadet
+  name: NCR ranger
+  components:
+  - type: SpawnPoint
+    job_id: NCRRanger
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ranger
+
+- type: entity
+  id: N14SpawnPointNCRRangerVeteran
+  parent: N14SpawnPointNCRCadet
+  name: NCR ranger veteran
+  components:
+  - type: SpawnPoint
+    job_id: NCRRangerVeteran
+  - type: Sprite
+    layers:
+      - state: green
+      - state: rangerveteran
+
+- type: entity
+  id: N14SpawnPointNCRSoldier
+  parent: N14SpawnPointNCRCadet
+  name: NCR Soldier
+  components:
+  - type: SpawnPoint
+    job_id: NCRSoldier
+  - type: Sprite
+    layers:
+      - state: green
+      - state: soldier
+
+# Rangers
+- type: entity
+  id: N14SpawnPointRangerRecruit
+  parent: N14SpawnPointWastelander
+  name: ranger recruit
+  components:
+  - type: SpawnPoint
+    job_id: RangerRecruit
+  - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/rangers.rsi
+    layers:
+      - state: green
+      - state: recruit
+
+- type: entity
+  id: N14SpawnPointRanger
+  parent: N14SpawnPointRangerRecruit
+  name: ranger
+  components:
+  - type: SpawnPoint
+    job_id: Ranger
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ranger
+
+- type: entity
+  id: N14SpawnPointRangerVeteran
+  parent: N14SpawnPointRangerRecruit
+  name: ranger veteran
+  components:
+  - type: SpawnPoint
+    job_id: RangerVeteran
+  - type: Sprite
+    layers:
+      - state: green
+      - state: veteran
+
+# Tribals
+- type: entity
+  id: N14SpawnPointTribal
+  parent: N14SpawnPointWastelander
+  name: tribal
+  components:
+  - type: SpawnPoint
+    job_id: Tribal
+  - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/tribal.rsi
+    layers:
+      - state: green
+      - state: tribal
+
+- type: entity
+  id: N14SpawnPointTribalElder
+  parent: N14SpawnPointTribal
+  name: tribal elder
+  components:
+  - type: SpawnPoint
+    job_id: TribalElder
+  - type: Sprite
+    layers:
+      - state: green
+      - state: elder
+
+- type: entity
+  id: N14SpawnPointTribalFarmer
+  parent: N14SpawnPointTribal
+  name: tribal farmer
+  components:
+  - type: SpawnPoint
+    job_id: TribalFarmer
+  - type: Sprite
+    layers:
+      - state: green
+      - state: farmer
+
+- type: entity
+  id: N14SpawnPointTribalHealer
+  parent: N14SpawnPointTribal
+  name: tribal healer
+  components:
+  - type: SpawnPoint
+    job_id: TribalHealer
+  - type: Sprite
+    layers:
+      - state: green
+      - state: healer
+
+# Vault
+- type: entity
+  id: N14SpawnPointOverseer
+  parent: N14SpawnPointWastelander
+  name: overseer
+  components:
+  - type: SpawnPoint
+    job_id: Overseer
+  - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/vault.rsi
+    layers:
+      - state: green
+      - state: overseer
+
+- type: entity
+  id: N14SpawnPointVaultDoctor
+  parent: N14SpawnPointOverseer
+  name: vault doctor
+  components:
+  - type: SpawnPoint
+    job_id: VaultDoctor
+  - type: Sprite
+    layers:
+      - state: green
+      - state: doctor
+
+- type: entity
+  id: N14SpawnPointVaultDweller
+  parent: N14SpawnPointOverseer
+  name: vault dweller
+  components:
+  - type: SpawnPoint
+    job_id: VaultDweller
+  - type: Sprite
+    layers:
+      - state: green
+      - state: dweller
+
+- type: entity
+  id: N14SpawnPointVaultEngineer
+  parent: N14SpawnPointOverseer
+  name: vault engineer
+  components:
+  - type: SpawnPoint
+    job_id: VaultEngineer
+  - type: Sprite
+    layers:
+      - state: green
+      - state: engineer
+
+- type: entity
+  id: N14SpawnPointVaultSecurity
+  parent: N14SpawnPointOverseer
+  name: vault security
+  components:
+  - type: SpawnPoint
+    job_id: VaultSecurity
+  - type: Sprite
+    layers:
+      - state: green
+      - state: security
+
+# Wastelanders
+- type: entity
+  id: N14SpawnPointWastelandBartender
+  parent: N14SpawnPointWastelander
+  name: wasteland bartender
+  components:
+  - type: SpawnPoint
+    job_id: WastelandBartender
+  - type: Sprite
+    layers:
+      - state: green
+      - state: bartender
+
+- type: entity
+  id: N14SpawnPointWastelandChaplain
+  parent: N14SpawnPointWastelander
+  name: wasteland chaplain
+  components:
+  - type: SpawnPoint
+    job_id: WastelandChaplain
+  - type: Sprite
+    layers:
+      - state: green
+      - state: chaplain
+
+- type: entity
+  id: N14SpawnPointWastelandFarmer
+  parent: N14SpawnPointWastelander
+  name: wasteland farmer
+  components:
+  - type: SpawnPoint
+    job_id: WastelandFarmer
+  - type: Sprite
+    layers:
+      - state: green
+      - state: farmer
+
+- type: entity
+  id: N14SpawnPointWastelandMusician
+  parent: N14SpawnPointWastelander
+  name: wasteland musician
+  components:
+  - type: SpawnPoint
+    job_id: WastelandMusician
+  - type: Sprite
+    layers:
+      - state: green
+      - state: musician
+
+- type: entity
+  id: N14SpawnPointWastelandReporter
+  parent: N14SpawnPointWastelander
+  name: wasteland reporter
+  components:
+  - type: SpawnPoint
+    job_id: WastelandReporter
+  - type: Sprite
+    layers:
+      - state: green
+      - state: reporter
+
+- type: entity
+  id: N14SpawnPointWastelandScavenger
+  parent: N14SpawnPointWastelander
+  name: wasteland scavenger
+  components:
+  - type: SpawnPoint
+    job_id: WastelandScavenger
+  - type: Sprite
+    layers:
+      - state: green
+      - state: scavenger
+
+# Townsfolk
+- type: entity
+  id: N14SpawnPointTownsfolkTownsperson
+  parent: N14SpawnPointWastelander
+  name: townsperson
+  components:
+  - type: SpawnPoint
+    job_id: Townsperson
+  - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/town.rsi
+    layers:
+      - state: green
+      - state: person
+
+- type: entity
+  id: N14SpawnPointTownsfolkTownMechanic
+  parent: N14SpawnPointTownsfolkTownsperson
+  name: town mechanic
+  components:
+  - type: SpawnPoint
+    job_id: TownMechanic
+  - type: Sprite
+    layers:
+      - state: green
+      - state: mechanic
+
+- type: entity
+  id: N14SpawnPointTownsfolkTownDoctor
+  parent: N14SpawnPointTownsfolkTownsperson
+  name: town doctor
+  components:
+  - type: SpawnPoint
+    job_id: TownDoctor
+  - type: Sprite
+    layers:
+      - state: green
+      - state: doctor
+
+- type: entity
+  id: N14SpawnPointTownsfolkTownShopkeeper
+  parent: N14SpawnPointTownsfolkTownsperson
+  name: town shopkeeper
+  components:
+  - type: SpawnPoint
+    job_id: TownShopkeeper
+  - type: Sprite
+    layers:
+      - state: green
+      - state: shopkeeper
+
+- type: entity
+  id: N14SpawnPointTownsfolkTownDeputy
+  parent: N14SpawnPointTownsfolkTownsperson
+  name: town deputy
+  components:
+  - type: SpawnPoint
+    job_id: TownDeputy
+  - type: Sprite
+    layers:
+      - state: green
+      - state: deputy
+
+- type: entity
+  id: N14SpawnPointTownsfolkTownSheriff
+  parent: N14SpawnPointTownsfolkTownsperson
+  name: town sheriff
+  components:
+  - type: SpawnPoint
+    job_id: TownSheriff
+  - type: Sprite
+    layers:
+      - state: green
+      - state: sheriff
+
+- type: entity
+  id: N14SpawnPointTownsfolkTownMayor
+  parent: N14SpawnPointTownsfolkTownsperson
+  name: town mayor
+  components:
+  - type: SpawnPoint
+    job_id: TownMayor
+  - type: Sprite
+    layers:
+      - state: green
+      - state: mayor
+
+
+# Fun / Misc
+- type: entity
+  id: N14SpawnPointFollowers
+  parent: N14SpawnPointWastelander
+  name: followers of the apocalypse
+  components:
+  - type: SpawnPoint
+    job_id: Followers
+  - type: Sprite
+    layers:
+      - state: green
+      - state: zetan
+
+- type: entity
+  id: N14SpawnPointZetan
+  parent: N14SpawnPointWastelander
+  name: Zetan
+  components:
+  - type: SpawnPoint
+    job_id: Zetan
+  - type: Sprite
+    layers:
+      - state: green
+      - state: zetan

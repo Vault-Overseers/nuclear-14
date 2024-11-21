@@ -1,0 +1,44 @@
+# Late join spawnpoints (matrix, edge of map usually)
+
+- type: entity
+  id: N14LatejoinMarkerBase
+  abstract: true
+  description: right click > enter, to leave the round.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Nuclear14/Structures/Walls/nc14/matrix.rsi
+    state: matrix
+  - type: Cryostorage
+  - type: DragInsertContainer
+    containerId: storage
+  - type: ExitContainerOnMove
+    containerId: storage
+  - type: ContainerContainer
+    containers:
+      storage: !type:ContainerSlot
+  - type: InteractionOutline
+
+- type: entity
+  name: latejoin spawn point
+  parent: N14LatejoinMarkerBase
+  id: N14SpawnPointLatejoin
+  suffix: Wastelander
+  components:
+  - type: SpawnPoint
+    spawn_type: LateJoin
+
+# Brotherhood Midwest
+
+- type: entity
+  parent: N14SpawnPointLatejoin
+  id: N14SpawnPointLatejoinMidwestCommander
+  suffix: BOS Midwest Commander
+  components:
+  - type: SpawnPoint
+    job_id: BoSMidPaladinCommander
+    spawn_type: LateJoin

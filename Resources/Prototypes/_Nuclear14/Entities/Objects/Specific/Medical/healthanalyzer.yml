@@ -1,0 +1,25 @@
+- type: entity
+  id: N14HandheldHealthAnalyzerUnpowered
+  parent: HandheldHealthAnalyzerUnpowered
+  name: health analyzer
+  description: A hand-held body scanner capable of distinguishing vital signs of the subject.
+  suffix: Do not map
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/healthanalyzer.rsi
+    state: icon
+    layers:
+      - state: icon
+      - state: analyzer
+        shader: unshaded
+        visible: true
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+
+- type: entity
+  id: N14HandheldHealthAnalyzer
+  parent: [ N14HandheldHealthAnalyzerUnpowered, PowerCellSlotSmallItem]
+  suffix: Powered
+  components:
+  - type: PowerCellDraw
+    drawRate: 1.2 #Calculated for 5 minutes on a small cell
+  - type: ActivatableUIRequiresPowerCell

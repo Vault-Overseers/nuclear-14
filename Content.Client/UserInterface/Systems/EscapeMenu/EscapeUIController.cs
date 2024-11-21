@@ -97,6 +97,15 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
         {
             _uri.OpenUri(_cfg.GetCVar(CCVars.InfoLinksWiki));
         };
+		
+// discord-button start
+
+        _escapeWindow.DiscordButton.OnPressed += _ =>
+        {
+            _uri.OpenUri(_cfg.GetCVar(CCVars.InfoLinksDiscord));
+        };
+
+// discord-button end
 
         _escapeWindow.GuidebookButton.OnPressed += _ =>
         {
@@ -105,6 +114,8 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
 
         // Hide wiki button if we don't have a link for it.
         _escapeWindow.WikiButton.Visible = _cfg.GetCVar(CCVars.InfoLinksWiki) != "";
+		// Hide discord button if we don't have a link for it.
+        _escapeWindow.DiscordButton.Visible = _cfg.GetCVar(CCVars.InfoLinksDiscord) != ""; //discord-button
 
         CommandBinds.Builder
             .Bind(EngineKeyFunctions.EscapeMenu,

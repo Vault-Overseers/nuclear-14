@@ -109,11 +109,11 @@
     soundGroups:
       Brute:
         collection:
-          MeatBulletImpact
+          N14MeatBulletImpact # Nuclear 14 Sound Overhaul
     soundTypes:
       Heat:
         collection:
-          MeatLaserImpact
+          N14MeatLaserImpact # Nuclear 14 Sound Overhaul
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -230,6 +230,9 @@
     - DoorBumpOpener
   - type: Targeting
   - type: SurgeryTarget
+  - type: CameraFollow # NC-Changes-End
+    backStrength: 50
+    defaultBackStrength: 20
 
 - type: entity
   save: false
@@ -279,6 +282,7 @@
   - type: Blindable
   # Other
   - type: Temperature
+    AtmosTemperatureTransferEfficiency: 0.5
     heatDamageThreshold: 325
     coldDamageThreshold: 260
     currentTemperature: 310.15
@@ -298,6 +302,8 @@
     normalBodyTemperature: 310.15
     thermalRegulationTemperatureThreshold: 25
   - type: Perishable
+    # Makes humans and human derived species rot after 30 minutes instead of 10 minutes.
+    rotAfter: 1800
   - type: Butcherable
     butcheringType: Spike # TODO human.
     spawned:

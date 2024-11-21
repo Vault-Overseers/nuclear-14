@@ -1,0 +1,36 @@
+- type: job
+  id: CaravanTrader
+  setPreference: true
+  name: job-name-caravan-trader
+  description: job-description-caravan-trader
+  playTimeTracker: CaravanTrader
+  startingGear: CaravanTraderGear
+  icon: "JobIconCargoTechnician"
+  supervisors: job-supervisors-caravan
+  alwaysUseSpawner: true
+  access:
+  - CaravanCompanyTrader
+  - CaravanCompanyGuard
+  - Orders # DeltaV - Orders, see Resources/Prototypes/DeltaV/Access/cargo.yml
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - CaravanCompany
+
+- type: startingGear
+  id: CaravanTraderGear
+  equipment:
+    head: N14ClothingHeadHatCaravanUniform
+    jumpsuit: N14ClothingUniformJumpsuitCaravanShirt
+    back: N14ClothingBackpackCaravanTraderFilled
+    shoes: N14ClothingShoesBrown
+    id: N14IDPassportCaravanTrader
+    outerClothing: ClothingOuterVest
+  innerClothingSkirt: N14ClothingUniformJumpsuitTrader #placeholder
+  satchel: N14ClothingBackpackSatchelCaravanFilled
+  duffelbag: N14ClothingBackpackDuffelCaravanFilled
+
+- type: playTimeTracker
+  id: CaravanTrader

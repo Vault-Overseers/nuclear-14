@@ -1,0 +1,123 @@
+- type: entity
+  name: baseball bat
+  parent: BaseItem
+  id: N14BaseBallBat
+  description: A robust baseball bat.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/baseball_bat.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 15
+    soundHit:
+      collection: MetalThud
+    soundSwing:
+      collection: N14BaseballBatSwing
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 10
+  - type: Item
+    size: Large
+  - type: Tool
+    qualities:
+    - Rolling
+    speed: 0.75 # a bit unwieldly but does the job
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: Construction
+    graph: WoodenBat
+    node: bat
+  - type: UseDelay
+    delay: 1
+  - type: Tag
+    tags:
+    - BaseballBat
+
+
+- type: entity
+  name: pool cue
+  parent: BaseItem
+  id: N14PoolCue
+  description: A pool cue used for hitting balls, usually the ones on pool tables, but also occasionally your enemy's.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/pool_cue.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - Spear
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.4
+    damage:
+      types:
+        Blunt: 5
+    angle: 0
+    animation: WeaponArcThrust
+    soundSwing:
+      collection: N14SmallSwing
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 10
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/sledgehammer.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: golf club
+  parent: BaseItem
+  id: N14GolfClub
+  description: A tool used for a pointless old-world sport, now used as an instrument of destruction.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/golf_club.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.2
+    damage:
+      types:
+        Blunt: 5
+    soundSwing:
+      collection: N14SmallSwing
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 16
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/golf_club.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage

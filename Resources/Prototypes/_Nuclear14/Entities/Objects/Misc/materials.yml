@@ -1,0 +1,73 @@
+# There may be some overlap with the Junk.yml so look there for other crafting components.
+
+- type: entity
+  parent: BaseItem
+  id: N14Dung
+  name: dung pile
+  description: Flip those cowpatties into free fertilizer!
+  components:
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/crafting_material.rsi
+    noRot: true
+    layers:
+      - state: dung
+      - state: dung-flies
+# N14:TODO: Add creampie ing but worse and it makes you throw up.
+  - type: SolutionContainerManager
+    solutions:
+      dung:
+        maxVol: 25
+        reagents:
+        - ReagentId: Dung
+          Quantity: 25
+  - type: DrainableSolution
+    solution: dung
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
+  - type: DeleteOnSolutionEmpty
+    solution: dung
+  - type: TimedDespawn
+    lifetime: 300
+
+- type: entity
+  parent: N14Dung
+  id: N14BrahminDung
+  name: brahmin dung
+  description: A dung pile more acrid and vile than the rest, rancher's gold.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      dung:
+        maxVol: 25
+        reagents:
+        - ReagentId: Dung
+          Quantity: 15
+        - ReagentId: Ammonia
+          Quantity: 10
+
+- type: entity
+  parent: BaseItem
+  id: N14CompostRotted
+  name: compost
+  description: Rotting remains, like compost. Good for fertilizing.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/crafting_material.rsi
+    state: compost
+  - type: SolutionContainerManager
+    solutions:
+      compost:
+        maxVol: 25
+        reagents:
+        - ReagentId: Fertilizer
+          Quantity: 25
+  - type: DrainableSolution
+    solution: compost
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
+  - type: DeleteOnSolutionEmpty
+    solution: compost
+  - type: Material
+  - type: Stack
+    stackType: Compost
+    count: 1

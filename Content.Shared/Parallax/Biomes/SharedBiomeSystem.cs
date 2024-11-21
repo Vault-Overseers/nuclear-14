@@ -118,7 +118,8 @@ public abstract class SharedBiomeSystem : EntitySystem
             // Check if the tile is from meta layer, otherwise fall back to default layers.
             if (layer is BiomeMetaLayer meta)
             {
-                if (TryGetBiomeTile(indices, ProtoManager.Index<BiomeTemplatePrototype>(meta.Template).Layers, seed, grid, out tile))
+                if (TryGetTile(indices, ProtoManager.Index<BiomeTemplatePrototype>(meta.Template).Layers, seed, grid, out tile))
+                    //CP14 bandage - replaced from TryGetBiomeTile (not working for biomespawner)
                 {
                     return true;
                 }
@@ -183,7 +184,7 @@ public abstract class SharedBiomeSystem : EntitySystem
     }
 
 
-    private bool TryGetEntity(Vector2i indices, List<IBiomeLayer> layers, Tile tileRef, int seed, MapGridComponent grid,
+    public bool TryGetEntity(Vector2i indices, List<IBiomeLayer> layers, Tile tileRef, int seed, MapGridComponent grid,
         [NotNullWhen(true)] out string? entity)
     {
         var tileId = TileDefManager[tileRef.TypeId].ID;
@@ -246,7 +247,7 @@ public abstract class SharedBiomeSystem : EntitySystem
     /// Tries to get the relevant decals for this tile.
     /// </summary>
     public bool TryGetDecals(Vector2i indices, List<IBiomeLayer> layers, int seed, MapGridComponent grid,
-        [NotNullWhen(true)] out List<(string ID, Vector2 Position)>? decals)
+        [NotNullWhen(true)] out List<(string ID, Vector2 Position, Color Color)>? decals)
     {
         if (!TryGetBiomeTile(indices, layers, seed, grid, out var tileRef))
         {
@@ -301,7 +302,7 @@ public abstract class SharedBiomeSystem : EntitySystem
                 return false;
             }
 
-            decals = new List<(string ID, Vector2 Position)>();
+            decals = new List<(string ID, Vector2 Position, Color Color)>();
 
             for (var x = 0; x < decalLayer.Divisions; x++)
             {
@@ -314,7 +315,7 @@ public abstract class SharedBiomeSystem : EntitySystem
                     if (decalValue < decalLayer.Threshold)
                         continue;
 
-                    decals.Add((Pick(decalLayer.Decals, (noiseCopy.GetNoise(indices.X, indices.Y, x + y * decalLayer.Divisions) + 1f) / 2f), index));
+                    decals.Add((Pick(decalLayer.Decals, (noiseCopy.GetNoise(indices.X, indices.Y, x + y * decalLayer.Divisions) + 1f) / 2f), index, decalLayer.Color));
                 }
             }
 

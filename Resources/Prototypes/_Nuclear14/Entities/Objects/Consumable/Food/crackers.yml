@@ -1,0 +1,46 @@
+- type: entity
+  parent: N14CookedFoodBreadSliceBase
+  id: N14FoodCrackerBase
+  name: cracker
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Tins/crackers.rsi
+    layers:
+    - state: c_cracker
+
+# C Cracker
+
+- type: entity
+  name: c ration cracker
+  parent: N14FoodCrackerBase
+  id: N14FoodCrackerCSlice
+  description: A c type cracker, plain and old cracker. Little stale.
+  components:
+  - type: Food
+
+# K Cracker
+
+- type: entity
+  name: k ration cracker
+  parent: N14FoodCrackerBase
+  id: N14FoodCrackerKSlice
+  description: A k type cracker, also called ranger cracker due to it's buttery flavour.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - butter
+      - bread
+  - type: Food
+  - type: Sprite
+    layers:
+    - state: k_cracker
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 1

@@ -1,0 +1,121 @@
+- type: entity
+  id: N14BaseMagazine127Pistol
+  name: pistol magazine (12.7mm)
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - N14MagazinePistol12mm
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14CartridgePistol127
+    capacity: 10
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/12.7/pistolmag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: N14MagazinePistol12mm
+  name: pistol magazine (12.7mm)
+  parent: N14BaseMagazine127Pistol
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14CartridgePistol127
+
+- type: entity
+  id: N14BaseMagazine127SubMachineGun
+  name: SMG magazine (12.7mm)
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - N14MagazineSMG12mm
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14CartridgePistol127
+    capacity: 28
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/12.7/smgmag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: N14MagazineSMG12mm
+  name: SMG magazine (12.7mm)
+  parent: N14BaseMagazine127SubMachineGun
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14CartridgePistol127
+
+- type: entity
+  id: N14BaseTopMag127SubMachineGun
+  name: SMG top magazine (12.7mm)
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - N14TopMagazineSMG12mm
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14CartridgePistol127
+    capacity: 40
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/12.7/topmag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: N14TopMagazineSMG12mm
+  name: top mounted SMG magazine (12.7mm)
+  parent: N14BaseTopMag127SubMachineGun
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14CartridgePistol127
+
+

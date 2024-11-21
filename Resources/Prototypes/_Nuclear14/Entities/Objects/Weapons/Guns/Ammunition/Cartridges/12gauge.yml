@@ -1,0 +1,55 @@
+- type: entity
+  id: N14BaseShell12Shotgun
+  name: shell (12 gauge)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - N14ShellShotgun12
+  - type: CartridgeAmmo
+    count: 6
+    spread: 12
+    soundEject:
+      collection: N14ShellEject
+  - type: Sprite
+    netsync: false
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: EmitSoundOnLand
+    sound:
+      collection: N14ShellEject
+      params:
+        volume: -1
+  - type: EmitSoundOnCollide
+    sound:
+      collection: N14ShellEject
+      params:
+        volume: -1
+
+- type: entity
+  id: N14ShellShotgun12
+  name: shell (12 gauge)
+  parent: N14BaseShell12Shotgun
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgun12
+  - type: EmitSoundOnLand
+    sound:
+      collection: N14ShellEject
+      params:
+        volume: -1
+  - type: EmitSoundOnCollide
+    sound:
+      collection: N14ShellEject
+      params:
+        volume: -1

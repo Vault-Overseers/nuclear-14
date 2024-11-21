@@ -1,0 +1,36 @@
+- type: job
+  id: BoSMidSquire
+  setPreference: true
+  name: job-name-bos-mid-squire
+  description: job-description-bos-mid-squire
+  playTimeTracker: BoSMidSquire
+  startingGear: BoSMidSquireGear
+  alwaysUseSpawner: true
+  icon: "JobIconPassenger"
+  canBeAntag: false
+  access:
+  - BoSMidwest
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodMidwest
+  jobBlockForSpecies:
+  - !type:JobBlockForSpecie
+    nameSpecie: GhoulGlowing
+
+- type: startingGear
+  id: BoSMidSquireGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitBOSGreen
+    back: N14ClothingBackpackMilitary
+    shoes: N14ClothingBootsCombatFilled
+    head: N14ClothingHeadHatArmyCap
+    outerClothing: N14ClothingOuterMidwestArmor
+    pocket1: NCRBoSMidwestkits
+    id: N14IDBrotherhoodHolotagSquire
+    belt: ClothingBeltMilitary
+
+- type: playTimeTracker
+  id: BoSMidSquire

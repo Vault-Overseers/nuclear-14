@@ -1,0 +1,31 @@
+- type: job
+  id: TribalFarmer
+  setPreference: true
+  name: job-name-tribal-farmer
+  description: job-description-farmer
+  playTimeTracker: TribalFarmer
+  startingGear: TribalFarmerGear
+  icon: "JobIconBotanist"
+  supervisors: job-supervisors-tribal
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Tribal
+
+- type: startingGear
+  id: TribalFarmerGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitTribal
+    outerClothing: N14ClothingOuterTribalArmor
+    shoes: N14ClothingShoesTribal
+    gloves: N14ClothingHandsGlovesTribal
+    back: N14ClothingBackpackTribalFilled
+    belt: ClothingBeltPlantFilled # placeholder
+    pocket1: N14TribalKnife
+  innerClothingSkirt: N14ClothingUniformJumpskirtTribal
+  satchel: N14ClothingBackpackSatchelTribalFilled
+
+- type: playTimeTracker
+  id: TribalFarmer

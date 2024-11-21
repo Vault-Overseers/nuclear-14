@@ -1,0 +1,47 @@
+- type: entity
+  parent: MobHuman
+  id: N14MobHumanFollowers
+  name: Followers
+  components:
+    - type: Icon
+      sprite: _Nuclear14/Markers/Jobs/wastelanders.rsi
+      state: zetan
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: Loadout
+      prototypes: [FollowersGear]
+    - type: NpcFactionMember
+      factions:
+      - Wastelander
+
+- type: entity
+  parent: N14MobHumanFollowers
+  id: N14MobHumanSurvivor
+  name: Survivor
+  components:
+    - type: Icon
+      state: survivor
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: Loadout
+      prototypes: [SurvivorGear]
+    - type: NpcFactionMember
+      factions:
+      - Wastelander
+
+- type: entity
+  parent: N14MobHumanFollowers
+  id: N14MobHumanZetan
+  name: Zetan
+  components:
+    - type: Icon
+      state: zetan
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: Loadout
+      prototypes: [ZetanGear]
+    - type: NpcFactionMember
+      factions:
+      - Zetan
+
+#TODO ROBOT

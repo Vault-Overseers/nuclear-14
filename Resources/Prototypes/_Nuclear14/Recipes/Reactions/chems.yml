@@ -1,0 +1,127 @@
+- type: reaction
+  id: Jet
+  minTemp: 373.15 # 100 degrees Celcius.
+  reactants:
+    Ammonia:
+      amount: 1
+    Abraxocleaner:
+      amount: 1
+  products:
+    MovespeedMixture: 1
+
+- type: reaction
+  id: Mentats
+  reactants:
+    Abraxocleaner:
+      amount: 1
+    Lead:
+      amount: 1
+    # BrainFungus: N14:TODO: Add brain fungus plant
+      # amount: 1
+  products:
+    Mentats: 2
+
+- type: reaction
+  id: MentatsBerry
+  reactants:
+    Mentats:
+      amount: 1
+    ExtractTarberries:
+      amount: 1
+  products:
+    MentatsBerry: 1
+
+- type: reaction
+  id: MentatsGrape
+  reactants:
+    Mentats:
+      amount: 1
+    Whiskey:
+      amount: 1
+    # BrainFungus: N14:TODO: Add hubflower
+      # amount: 1
+  products:
+    MentatsGrape: 1
+
+- type: reaction
+  id: MentatsOrange
+  reactants:
+    Mentats:
+      amount: 1
+    ExtractCarrot:
+      amount: 1
+  products:
+    MentatsOrange: 1
+
+- type: reaction
+  id: Hydra
+  reactants:
+    ExtractFungus:
+      amount: 1
+    ScorpionTail:
+      amount: 1
+    NightstalkerBlood:
+      amount: 2
+  products:
+    Hydra: 2
+
+- type: reaction
+  id: HydraConversion
+  reactants:
+    Hydra:
+      amount: 15
+    Oil:
+      amount: 5
+    Phosphorus:
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: N14Hydra
+
+- type: reaction
+  id: Psycho
+  reactants:
+    N14BloatflyAcid:
+      amount: 1
+    ExtractBroc: #N14:TODO: Add hubflower
+      amount: 2
+    Blood:
+      amount : 1
+    Antiseptic:
+      amount: 2
+  products:
+    DamageModifyingMixture: 3
+
+- type: reaction
+  id: Turbo
+  reactants:
+    N14CazadorAcid:
+      amount: 1
+    ExtractBroc:
+      amount: 1
+    MovespeedMixture:
+      amount : 1
+    Turpentine:
+      amount: 1
+  products:
+    RobustMovespeedMixture: 3
+
+- type: reaction
+  id: Buffjet
+  reactants:
+    MovespeedMixture:
+      amount: 1
+    Buffout:
+      amount: 1
+  products:
+    Buffjet : 1
+
+- type: reaction
+  id: Bufftats
+  reactants:
+    Mentats:
+      amount: 1
+    Buffout:
+      amount: 1
+  products:
+    Bufftats : 1

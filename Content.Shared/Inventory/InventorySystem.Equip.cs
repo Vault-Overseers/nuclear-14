@@ -15,6 +15,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Nuclear14.Special;
 
 namespace Content.Shared.Inventory;
 
@@ -22,6 +23,9 @@ public abstract partial class InventorySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
+    // Nuclear14 Cloth Special Modifiers
+    [Dependency] private readonly SpecialModifierSystem _specialModifiers = default!;
+    // Nuclear14 end
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -195,6 +199,10 @@ public abstract partial class InventorySystem
         Dirty(target, inventory);
 
         _movementSpeed.RefreshMovementSpeedModifiers(target);
+
+        // Nuclear14 Cloth Special Modifiers
+        _specialModifiers.RefreshClothingSpecialModifiers(target);
+        // Nuclear14 end
 
         return true;
     }
@@ -454,6 +462,10 @@ public abstract partial class InventorySystem
         Dirty(target, inventory);
 
         _movementSpeed.RefreshMovementSpeedModifiers(target);
+
+        // Nuclear14 Cloth Special Modifiers
+        _specialModifiers.RefreshClothingSpecialModifiers(target);
+        // Nuclear14 end
 
         return true;
     }
