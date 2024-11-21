@@ -104,6 +104,36 @@
     prototypes:
       - N14MobRabbit
 
+- type: entity
+  name: Normal Opossum Spawner
+  id: N14SpawnMobNormOpossum
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Animals/opossum.rsi
+        state: normopossum
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobOpossum
+
+- type: entity
+  name: Normal Rabbit Spawner
+  id: N14SpawnMobNormRabbit
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Animals/rabbit.rsi
+        state: normrabbit
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobRabbit
+
 #MARK: Hostile Animals
 - type: entity
   name: Molerat Spawner
