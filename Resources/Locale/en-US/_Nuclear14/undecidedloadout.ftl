@@ -172,8 +172,8 @@ undecided-loadout-category-bos-scribe-field-name = Brotherhood Scribe Field Kit
 undecided-loadout-category-bos-scribe-field-description =
     A crate containing everything a member of Brotherhood scribes.
         For supporting your unit from the back.
-    Includes 1 AEP-7 pistol, 2 energy cells, 1 medical belt,
-     1 field scribe clothing, 1 knife, 1 stimpak, 1 C ration MRE
+    Includes 1 AEP-7 pistol, 2 energy cells, 1 scribe webbing,
+     1 field scribe clothing, 1 knife, 2 stimpak, 1 gauze, 1 bruise pack, 1 ointment, 1 C ration MRE
 
 undecided-loadout-category-bos-scribe-engineer-name = Brotherhood Scribe Engineer Kit
 undecided-loadout-category-bos-scribe-engineer-description =
@@ -234,8 +234,8 @@ undecided-loadout-category-bos-washington-scribe-field-name = Brotherhood Scribe
 undecided-loadout-category-bos-washington-scribe-field-description =
     A crate containing everything a member of Brotherhood scribes.
         For supporting your unit from the back.
-    Includes 1 AEP-7 pistol, 1 AEP-7 pistol, 2 energy cells, 1 medical belt,
-     1 field scribe clothing, 1 knife, 1 stimpak, 1 C ration MRE
+    Includes 1 AEP-7 pistol, 1 AEP-7 pistol, 2 energy cells, 1 scribe webbing,
+     1 field scribe clothing, 1 knife, 2 stimpak, 1 gauze, 1 bruise pack, 1 ointment, 1 C ration MRE
 
 undecided-loadout-category-bos-washington-scribe-engineer-name = Brotherhood Scribe Engineer Kit
 undecided-loadout-category-bos-washington-scribe-engineer-description =
