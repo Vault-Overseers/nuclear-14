@@ -84,12 +84,6 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
             giveObjectives = autoTraitorComponent.GiveObjectives;
         }
 
-        if (TryComp<AutoTraitorComponent>(traitor, out var autoTraitorComponent))
-        {
-            giveUplink = autoTraitorComponent.GiveUplink;
-            giveObjectives = autoTraitorComponent.GiveObjectives;
-        }
-
         Note[]? code = null;
         if (giveUplink)
         {
