@@ -6,21 +6,21 @@
   description: "A RobCo Stealth Boy 3001 personal stealth device."
   components:
   - type: Sprite
-      sprite: "_Nuclear14/Entities/Objects/Devices/stealthboy1.png"
+    sprite: "_Nuclear14/Entities/Objects/Devices/stealthboy1.png"
   - type: Stealth
-      lastVisibility: 1.5
-      access:
-        system: SharedStealthSystem
-        permissions:
-          other: None
-      stealthDuration: 15.0 # duration in seconds for stealth effect
+    lastVisibility: 1.5
+    access:
+    system: SharedStealthSystem
+    permissions:
+    other: None
+    stealthDuration: 15.0 # duration in seconds for stealth effect
   - type: consumable
-      onUse:
-        action: "ActivatePDAEffect"
-        consume: true
+    onUse:
+    action: "ActivatePDAEffect"
+    consume: true
   - type: timer
-      interval: 10.0  # applies effect for 10 seconds
-      repeat: false  # one-time effect per use
-      action: "DeactivatePDAEffect"
+    interval: 10.0  # applies effect for 10 seconds
+    repeat: false  # one-time effect per use
+    action: "DeactivatePDAEffect"
   - type: PDAComponent
-      slot: PDA  # Defines this entity for the PDA slot
+    slot: PDA  # Defines this entity for the PDA slot
