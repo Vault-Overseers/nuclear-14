@@ -1,0 +1,55 @@
+- type: entity
+  parent: MobHuman
+  id: BoSMidPaladinCommander
+  name: BoSMidPaladinCommander
+  components:
+    - type: Icon
+      sprite: _Nuclear14/Markers/Jobs/bosmid.rsi
+      state: commander
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: Loadout
+      prototypes: [BoSMidPaladinCommanderGear]
+    - type: NpcFactionMember
+      factions:
+      - BrotherhoodMidwest
+
+- type: entity
+  parent: BoSMidPaladinCommander
+  id: N14MobHumanBoSMidKnight
+  name: BoSMidKnight
+  components:
+    - type: Icon
+      state: knight
+    - type: Loadout
+      prototypes: [BoSMidKnightGear]
+
+- type: entity
+  parent: BoSMidPaladinCommander
+  id: N14MobHumanBoSMidPaladin
+  name: BoSMidPaladin
+  components:
+    - type: Icon
+      state: paladin
+    - type: Loadout
+      prototypes: [BoSMidPaladinGear]
+
+- type: entity
+  parent: BoSMidPaladinCommander
+  id: N14MobHumanBoSMidScribe
+  name: BoSMidScribe
+  components:
+    - type: Icon
+      state: scribe
+    - type: Loadout
+      prototypes: [BoSMidScribeGear]
+
+- type: entity
+  parent: BoSMidPaladinCommander
+  id: N14MobHumanBoSMidSquire
+  name: BoSMidSquire
+  components:
+    - type: Icon
+      state: squire
+    - type: Loadout
+      prototypes: [BoSMidSquireGear]
