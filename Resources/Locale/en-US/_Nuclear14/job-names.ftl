@@ -1,26 +1,26 @@
 # Midwest Brotherhood
-job-name-bos-mid-paladin-comm = Midwest Brotherhood Paladin Commander
+job-name-bos-mid-paladin-comm = Midwest BoS Paladin Commander
 job-description-bos-mid-paladin-comm = Lead the Midwest Brotherhood of Steel on their mission.
-job-name-bos-mid-paladin = Midwest Brotherhood Paladin
+job-name-bos-mid-paladin = Midwest BoS Paladin
 job-description-bos-mid-paladin = Follow the Paladin Commander on their mission.
-job-name-bos-mid-knight = Midwest Brotherhood Knight
+job-name-bos-mid-knight = Midwest BoS Knight
 job-description-bos-mid-knight = Follow the Paladin Commander on their mission.
-job-name-bos-mid-scribe = Midwest Brotherhood Scribe
+job-name-bos-mid-scribe = Midwest BoS Scribe
 job-description-bos-mid-scribe = Conduct scientific missions and research for your brotherhood chapter.
-job-name-bos-mid-squire = Midwest Brotherhood Squire
+job-name-bos-mid-squire = Midwest BoS Squire
 job-description-bos-mid-squire = Follow your Knight into battle and do their bidding.
 
 # Washington Brotherhood
-job-name-bos-washington-commander = Washington Brotherhood Commander
+job-name-bos-washington-commander = Washington BoS Paladin Commander
 job-description-bos-washington-commander = Lead the Washington Brotherhood of Steel to glory in their mission.
-job-name-bos-washington-recruit = Washington Brotherhood Initiate
-job-description-bos-washington-recruit = Prove yourself to your chapter to progress through the ranks.
-job-name-bos-washington-soldier = Washington Brotherhood Knight
-job-description-bos-washington-soldier = The military arm of the Brotherhood. Defend your chapter in their objectives and manufacture equipment.
-job-name-bos-washington-captain = Washington Brotherhood Captain
-job-description-bos-washington-captain = Protect the Brotherhood at all costs. Take the Commanders will out into the wasteland.
-job-name-bos-washington-researcher = Washington Brotherhood Scribe
-job-description-bos-washington-researcher = Conduct scientific missions and research for your brotherhood chapter.
+job-name-bos-washington-initiate = Washington BoS Initiate
+job-description-bos-washington-initiate = Prove yourself to your chapter to progress through the ranks.
+job-name-bos-washington-knight = Washington BoS Knight
+job-description-bos-washington-knight = The military arm of the Brotherhood. Defend your chapter in their objectives and manufacture equipment.
+job-name-bos-washington-paladin = Washington BoS Paladin
+job-description-bos-washington-paladin = Protect the Brotherhood at all costs. Take the Commanders will out into the wasteland.
+job-name-bos-washington-scribe = Washington BoS Scribe
+job-description-bos-washington-scribe = Conduct scientific missions and research for your brotherhood chapter.
 
 # Caravan
 job-name-caravan-leader = Caravan Leader
@@ -33,18 +33,18 @@ job-description-caravan-guard = Protect the caravan company traders, their lives
 # NCR
 job-name-ncr-cadet = NCR Cadet
 job-description-ncr-cadet = Show your officers that youre ready to become a private of the NCR army.
-job-name-ncr-doctor = NCR Doctor
-job-description-ncr-doctor = Treat the troopers and offer services to the wasteland people.
-job-name-ncr-mp = NCR Military Police
-job-description-ncr-mp = Protect the camp and make sure the soldiers behave correctly.
-job-name-ncr-qm = NCR Quartermaster
-job-description-ncr-qm = Protect the armory and trade looted equipment with any wastelander.
-job-name-ncr-nco = NCR NCO
-job-description-ncr-nco = A non commissioned officer in the NCR military. Lead a squad to protect the NCRs interests in the region.
-job-name-ncr-officer = NCR Officer
-job-description-ncr-officer = A local leader in the NCR military. Fulfil your missions by coordinating your military forces in the area.
+job-name-ncr-medic = NCR Medic
+job-description-ncr-medic = Treat the troopers and offer services to the wasteland people.
+job-name-ncr-sgt = NCR Sergeant
+job-description-ncr-sgt = A non commissioned officer in the NCR military. Lead a squad to protect the NCRs interests in the region. In the absence of a lieutenant, lead the base.
+job-name-ncr-lt = NCR Lieutenant
+job-description-ncr-lt = The local leader of the NCR military. Fulfil your missions by coordinating your military forces in the area. Organise your Sergeants.
 job-name-ncr-soldier = NCR Soldier
-job-description-ncr-soldier = The backbone of any military. Soldiers get stuff done and follow an NCO on missions.
+job-description-ncr-soldier = The backbone of any military. Soldiers get stuff done and follow a SGT on missions.
+job-name-ncr-engineer = NCR Engineer
+job-description-ncr-soldier = The backbone of any squad. Repair equipment, establish defenses, and follow a SGT on missions.
+job-name-ncr-ws = NCR Weapon Specalist
+job-description-ncr-ws = The fire support of any squad. Lay down supportive fire and use special weapons inaccessible to others. Follow a SGT on missions.
 job-name-ncr-ranger = NCR Ranger
 job-description-ncr-ranger = The most experienced and robust soldiers form part of this elite group of the NCR army, lead troops or act by yourself under the orders of the republic.
 job-name-ncr-ranger-veteran = NCR Ranger Veteran
