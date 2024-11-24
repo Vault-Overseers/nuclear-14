@@ -19,6 +19,7 @@ marking-ZetaHairShortMessy = Short and Messy
 marking-ZetaHairShortSpikehair = Short Spikehair
 marking-ZetaHairSpikehawk = Spikehawk
 marking-ZetaHairPolitical = The Political
+<<<<<<< HEAD
 marking-ZetaHairZetaBasicBraids = Basic Braids (Zeta)
 marking-CMAfro = Afro (N14)
 marking-CMAfrotwo = Afro 2 (N14)
@@ -156,3 +157,6 @@ marking-ZetaHairRadical = Radical!
 marking-ZetaHairTunnelSnake = Tunnel Snake
 marking-ZetaHairOverTheShoulder = Over the Shoulder
 marking-ZetaHairStandardAsymmetry = Standard Asymmetry
+=======
+marking-ZetaHairZetaBasicBraids = Basic Braids (Zeta)
+>>>>>>> 8fdba1c974 (Zeta Extra Hair (#716))
