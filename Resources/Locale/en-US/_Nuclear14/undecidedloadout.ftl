@@ -44,9 +44,9 @@ undecided-loadout-category-morale-description =
     1 NCR spear flag, 1 9mm pistol, 2 9mm magazines, 1 combat knife,
     and a C ration MRE.
 
-undecided-loadout-category-medic-name = Medic Kit
+undecided-loadout-category-medic-name = Combat Lifesaver Kit
 undecided-loadout-category-medic-description =
-    A crate containing all a NCR medic needs to patrol on the wasteland.
+    A crate containing all an NCR CLS needs to patrol the wasteland.
     Includes 1 NCR leather vest, 1 medical belt, 1 9mm SMG,
     4 9mm SMG magazines, 1 combat knife, and a C ration MRE.
 
