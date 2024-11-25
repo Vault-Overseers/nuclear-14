@@ -1,25 +1,25 @@
 # Midwest Brotherhood
-job-name-bos-mid-paladin-comm = Midwest Brotherhood Paladin Commander
+job-name-bos-mid-paladin-comm = Midwest BoS Paladin Commander
 job-description-bos-mid-paladin-comm = Lead the Midwest Brotherhood of Steel on their mission.
-job-name-bos-mid-paladin = Midwest Brotherhood Paladin
+job-name-bos-mid-paladin = Midwest BoS Paladin
 job-description-bos-mid-paladin = Follow the Paladin Commander on their mission.
-job-name-bos-mid-knight = Midwest Brotherhood Knight
+job-name-bos-mid-knight = Midwest BoS Knight
 job-description-bos-mid-knight = Follow the Paladin Commander on their mission.
-job-name-bos-mid-scribe = Midwest Brotherhood Scribe
+job-name-bos-mid-scribe = Midwest BoS Scribe
 job-description-bos-mid-scribe = Conduct scientific missions and research for your brotherhood chapter.
-job-name-bos-mid-squire = Midwest Brotherhood Squire
+job-name-bos-mid-squire = Midwest BoS Squire
 job-description-bos-mid-squire = Follow your Knight into battle and do their bidding.
 
 # Washington Brotherhood
-job-name-bos-washington-commander = Washington Brotherhood Commander
+job-name-bos-washington-commander = Washington BoS Paladin Commander
 job-description-bos-washington-commander = Lead the Washington Brotherhood of Steel to glory in their mission.
-job-name-bos-washington-initiate = Washington Brotherhood Initiate
+job-name-bos-washington-initiate = Washington BoS Initiate
 job-description-bos-washington-initiate = Prove yourself to your chapter to progress through the ranks.
-job-name-bos-washington-knight = Washington Brotherhood Knight
+job-name-bos-washington-knight = Washington BoS Knight
 job-description-bos-washington-knight = The military arm of the Brotherhood. Defend your chapter in their objectives and manufacture equipment.
-job-name-bos-washington-paladin = Washington Brotherhood Captain
+job-name-bos-washington-paladin = Washington BoS Paladin
 job-description-bos-washington-paladin = Protect the Brotherhood at all costs. Take the Commanders will out into the wasteland.
-job-name-bos-washington-scribe = Washington Brotherhood Scribe
+job-name-bos-washington-scribe = Washington BoS Scribe
 job-description-bos-washington-scribe = Conduct scientific missions and research for your brotherhood chapter.
 
 # Caravan
