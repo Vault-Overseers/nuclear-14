@@ -94,7 +94,9 @@
       - !type:ModifyBleedAmount
         amount: -0.1
       - !type:ChemVomit
-        probability: 0.05
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 # Strong overtime healing
 - type: reagent
