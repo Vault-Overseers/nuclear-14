@@ -43,10 +43,13 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-  - type: PacifismDangerousAttack
-  - type: Explosive
-    explosionType: Default
-    totalIntensity: 120 # ~ 5 tile radius
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Piercing
+        damage: 50
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/wrecks.rsi
     layers:
