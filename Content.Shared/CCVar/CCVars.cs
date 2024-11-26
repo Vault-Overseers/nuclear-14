@@ -1399,7 +1399,7 @@ namespace Content.Shared.CCVar
         ///     Config for when the restart vote should be allowed to be called based on percentage of ghosts.
         ///
         public static readonly CVarDef<int> VoteRestartGhostPercentage =
-            CVarDef.Create("vote.restart_ghost_percentage", 50, CVar.SERVERONLY);
+            CVarDef.Create("vote.restart_ghost_percentage", 20, CVar.SERVERONLY);
 
         /// <summary>
         ///     See vote.enabled, but specific to preset votes
@@ -1417,7 +1417,7 @@ namespace Content.Shared.CCVar
         ///     The required ratio of the server that must agree for a restart round vote to go through.
         /// </summary>
         public static readonly CVarDef<float> VoteRestartRequiredRatio =
-            CVarDef.Create("vote.restart_required_ratio", 0.85f, CVar.SERVERONLY);
+            CVarDef.Create("vote.restart_required_ratio", 0.75f, CVar.SERVERONLY);
 
         /// <summary>
         /// Whether or not to prevent the restart vote from having any effect when there is an online admin
