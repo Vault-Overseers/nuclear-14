@@ -24,7 +24,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 500
+        damage: 300
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -43,10 +43,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-  - type: PacifismDangerousAttack
-  - type: Explosive
-    explosionType: Default
-    totalIntensity: 120 # ~ 5 tile radius
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/wrecks.rsi
     layers:
@@ -447,5 +443,6 @@
         layer:
         - MidImpassable
         - LowImpassable
+        - BulletImpassable
   - type: Occluder
     boundingBox: "-1,-0.7,1.5,0.4"
