@@ -274,6 +274,26 @@
         Piercing: 0.9
         Heat: 0.9
 
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: N14ClothingOuterCoatLab
+  name: lab coat
+  description: A coat that protects against staining, chemical or otherwise, a quality particularly useful in these less civilised times.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Coats/labcoat.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Coats/labcoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, N14ClothingOuterCoatLab]
+  id: N14ClothingOuterCoatLabOpened
+  name: lab coat
+
 #MARK: Armored Coats
 - type: entity
   parent: ClothingOuterStorageBase
