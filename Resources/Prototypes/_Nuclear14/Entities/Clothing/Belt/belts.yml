@@ -1,0 +1,218 @@
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: N14ClothingBeltStorageBase
+  name: Abstract Belt
+  description: You shouldn't be seeing this.
+  abstract: true
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+        - CigPack
+        - N14AmmoCell
+      components:
+        - BallisticAmmoProvider
+        - CartridgeAmmo
+
+- type: entity
+  parent: N14ClothingBeltStorageBase
+  id: ClothingBeltBoSWebbing
+  name: BoS carrier
+  description: A simple black carrier capable of holding all kind of ammo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/boswebbing.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/boswebbing.rsi
+  - type: Appearance
+
+- type: entity
+  parent: N14ClothingBeltStorageBase
+  id: N14ClothingBeltBoSWebbing
+  name: BoS webbing
+  description: A simple black carrier, capable of holding all kind of ammo and medicine for field-use.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/midwestboswebbing.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/midwestboswebbing.rsi
+  - type: Appearance
+  - type: Storage
+    whitelist:
+      tags:
+        - Wrench
+        - Bottle
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+        - SurgeryTool
+        - CigPack
+        - N14AmmoCell
+      components:
+        - Hypospray
+        - Injector
+        - Pill
+        - HandLabeler
+        - BallisticAmmoProvider
+        - CartridgeAmmo
+
+- type: entity
+  parent: N14ClothingBeltStorageBase
+  id: ClothingBeltMilitary
+  name: military carrier
+  description: A simple brown carrier capable of holding all kind of ammo, it was commonly used by the military of the pre-war.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/militarywebbing.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/militarywebbing.rsi
+  - type: Appearance
+
+- type: entity
+  parent: N14ClothingBeltStorageBase
+  id: ClothingBeltNCR
+  name: NCR belt
+  description: A leather belt designed by the NCR for their troops.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/ncrbelt.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/ncrbelt.rsi
+  - type: Appearance
+
+- type: entity
+  parent: N14ClothingBeltStorageBase
+  id: ClothingBeltNCRPouches
+  name: NCR pouches bandolier
+  description: A leather bandolier with multiple pouches designed by the NCR for their troops.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/ncrpouches.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/ncrpouches.rsi
+  - type: Appearance
+
+- type: entity
+  parent: N14ClothingBeltStorageBase
+  id: ClothingBeltNCRHarness
+  name: NCR Harness
+  description: A leather harness designed by the NCR for their troops.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/ncrharness.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/ncrharness.rsi
+  - type: Appearance
+
+- type: entity
+  parent: N14ClothingBeltStorageBase
+  id: ClothingBeltNCRBandolier
+  name: bandolier
+  description: A bandolier commonly used to carry single shells or cartridges, modified by the NCR for more capacity.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/bandolier.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/bandolier.rsi
+
+- type: entity
+  parent: N14ClothingBeltStorageBase
+  id: ClothingBeltRope
+  name: rope belt
+  description: A handmade belt with a rope, not the best but at least works.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/ropebelt.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/ropebelt.rsi
+
+- type: entity
+  parent: N14ClothingBeltStorageBase
+  id: ClothingBeltQuiverSpear
+  name: spear quiver
+  description: A simple quiver for holding spears
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/quiver_spear.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/quiver_spear.rsi
+  - type: Storage
+    whitelist:
+      tags:
+        - Spear
+    grid:
+    - 0,0,7,3
+    maxItemSize: Large
+  # - type: Appearance
+  # - type: StorageContainerVisuals
+    # maxFillLevels: 3
+    # fillBaseName: fill-
+
+
+- type: entity
+  parent: N14ClothingBeltStorageBase
+  id: ClothingBeltRevolver
+  name: revolver holster
+  description: Can hold a revolver and speedloaders.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/revolverholster.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/revolverholster.rsi
+  - type: Storage
+    whitelist:
+      tags:
+        - Revolver
+        - SpeedLoader
+      components:
+        - BallisticAmmoProvider
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltRevolver
+  id: ClothingBeltCowboy
+  name: cowboy belt
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/cowboy.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/cowboy.rsi
+
+- type: entity
+  parent: N14ClothingBeltStorageBase
+  id: ClothingBeltEnclave
+  name: Enclave belt
+  description: A leather belt designed by the Enclave.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/enclavebelt.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/enclavebelt.rsi
+
+- type: entity
+  parent: ClothingBeltPlant
+  id: ClothingBeltFarmer
+  name: farmers belt
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/gardener.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/gardener.rsi
+
+- type: entity
+  parent: N14ClothingBeltStorageBase
+  id: ClothingBeltMountie
+  name: mountie pouched bandolier
+  description: A simple brown bandolier capable of holding all kind of ammo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Belt/mountiebandolier.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Belt/mountiebandolier.rsi
+  - type: Appearance
