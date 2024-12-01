@@ -226,6 +226,10 @@
       map: ["light"]
       visible: false
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
+    minAngle: 6
+    maxAngle: 12
+    angleIncrease: 2
+    angleDecay: 4
     fireRate: 1
     soundGunshot:
       collection: N14RechargerRifleGunshot
@@ -235,12 +239,12 @@
       - SemiAuto
   - type: BasicEntityAmmoProvider
     proto: BulletLaser
-    capacity: 12
-    count: 12
+    capacity: 9
+    count: 9
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1
+    rechargeCooldown: 2
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -337,20 +341,25 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
+    minAngle: 6
+    maxAngle: 12
+    angleIncrease: 2
+    angleDecay: 4
     fireRate: 1
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+    soundGunshot:
+      collection: N14RechargerRifleGunshot
     useKey: false
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
   - type: BasicEntityAmmoProvider
-    proto: N14CartridgePistol9
-    capacity: 12
-    count: 12
+    proto: BulletLaser
+    capacity: 9
+    count: 9
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1
+    rechargeCooldown: 2
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: Loadout
     prototypes:
       - RaiderPistolGear
@@ -388,7 +397,11 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-    fireRate: 0.5
+    minAngle: 6
+    maxAngle: 12
+    angleIncrease: 2
+    angleDecay: 4
+    fireRate: 1
     soundGunshot:
       collection: N14PlasmaPistolGunshot
     useKey: false
@@ -397,12 +410,12 @@
       - SemiAuto
   - type: BasicEntityAmmoProvider
     proto: BulletPlasma
-    capacity: 12
-    count: 12
+    capacity: 9
+    count: 9
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1
+    rechargeCooldown: 2
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -437,6 +450,10 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
+    minAngle: 6
+    maxAngle: 12
+    angleIncrease: 2
+    angleDecay: 4
     fireRate: 1
     soundGunshot:
       collection: N14RechargerRifleGunshot
@@ -446,12 +463,12 @@
       - SemiAuto
   - type: BasicEntityAmmoProvider
     proto: BulletLaser
-    capacity: 12
-    count: 12
+    capacity: 9
+    count: 9
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1
+    rechargeCooldown: 2
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -479,7 +496,11 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-    fireRate: 0.5
+    minAngle: 6
+    maxAngle: 12
+    angleIncrease: 2
+    angleDecay: 4
+    fireRate: 1
     soundGunshot:
       collection: N14RechargerRifleGunshot
     useKey: false
@@ -488,12 +509,12 @@
       - SemiAuto
   - type: BasicEntityAmmoProvider
     proto: BulletLaser
-    capacity: 12
-    count: 12
+    capacity: 9
+    count: 9
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1
+    rechargeCooldown: 2
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
