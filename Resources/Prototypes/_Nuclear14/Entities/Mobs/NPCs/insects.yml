@@ -5,11 +5,11 @@
   name: bloatfly
   parent: N14MobBaseHostileInsect
   id: N14MobBloatfly
-  description: A mutated floating bug with an infectious bite.
+  description: A mutated floating bug with an infectious bite and parasitic stinger capable of launching larvae.
   components:
   - type: HTN
     rootTask:
-      task: N14RangedHostileCompound
+      task: SimpleRangedHostileCompound
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -35,6 +35,8 @@
         Base: dead
       Dead:
         Base: dead
+  - type: Stamina
+    critThreshold: 99
   - type: Bloodstream
     bloodMaxVolume: 50
   - type: ReplacementAccent
@@ -45,6 +47,10 @@
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 1
   - type: Gun
+    minAngle: 5
+    maxAngle: 15
+    angleIncrease: 2
+    angleDecay: 4
     fireRate: 0.5
     selectedMode: FullAuto
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
@@ -88,8 +94,6 @@
     thresholds:
       0: Alive
       100: Dead
-  - type: Stamina
-    critThreshold: 10
   - type: DamageStateVisuals
     states:
       Alive:
@@ -126,7 +130,7 @@
   name: giant fire ant
   parent: N14MobGiantAnt
   id: N14MobGiantFireAnt
-  description: It's an ant...but giant and red. Watch for the nippers.
+  description: It's an ant...but giant and red. Watch for the nippers and bring some ointment.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -169,7 +173,7 @@
   name: radroach
   id: N14MobRadroach
   parent: N14MobBaseHostileInsect
-  description: stinking roaches survived the bombs.
+  description: Stinking roaches survived the bombs.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -196,6 +200,8 @@
     thresholds:
       0: Alive
       15: Dead
+  - type: Stamina
+    critThreshold: 20
   - type: DamageStateVisuals
     states:
       Alive:
@@ -248,8 +254,6 @@
     thresholds:
       0: Alive
       150: Dead
-  - type: Stamina
-    critThreshold: 10
   - type: DamageStateVisuals
     states:
       Alive:
@@ -310,7 +314,7 @@
   name: barkscorpion
   parent: N14MobRadscorpion
   id: N14MobRadscorpionBark
-  description: It's a giant bark radscorpion! Stingy sting.
+  description: It's a giant barkscorpion! Stingy sting.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -338,7 +342,7 @@
   name: cazador
   parent: N14MobBaseHostileInsect
   id: N14MobCazador
-  description: Pure hate with a stinger and wings.
+  description: Pure hate with a stinger and wings. Don't get close.
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
@@ -368,6 +372,8 @@
         Base: cazador
       Dead:
         Base: dead
+  - type: Stamina
+    critThreshold: 20
   - type: Bloodstream
     bloodMaxVolume: 50
   - type: MeleeWeapon
