@@ -1,7 +1,8 @@
 - type: entity
   name: police baton
+  description: STOP RESISTING!
   parent: BaseItem
-  id: N14BasePoliceBaton
+  id: N14PoliceBaton
   components:
   - type: StaminaDamageOnHit
     damage: 20
@@ -11,11 +12,14 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 16
+        Blunt: 8
+    soundSwing:
+      collection: N14BaseballBatSwing
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/policebaton.rsi
+    state: icon
   - type: Item
-    size: Large
+    size: Normal 
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Melee/policebaton.rsi
     quickEquip: false
@@ -26,15 +30,18 @@
 - type: entity
   name: tribal club
   parent: BaseItem
-  id: N14BaseTribalClub
+  id: N14TribalClub
   components:
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
       types:
         Blunt: 24
+    soundSwing:
+      collection: N14LargeSwing
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/tribalclub.rsi
+    state: icon
   - type: Item
     size: Large
   - type: Clothing
@@ -46,20 +53,72 @@
 
 - type: entity
   name: broken pipe
+  description: "It's not intended to be a weapon but sturdy enough to give a good few whacks."
   parent: BaseItem
-  id: N14BaseBrokenPipe
+  id: N14BrokenPipe
   components:
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
       types:
         Blunt: 22
+    soundSwing:
+      collection: N14LargeSwing
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/pipe.rsi
+    state: icon
   - type: Item
     size: Large
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Melee/pipe.rsi
+    quickEquip: false
+    slots:
+    - belt
+    - suitStorage
+
+- type: entity
+  name: training sword
+  description: A crude wooden sword used for training in melee combat.
+  parent: BaseItem
+  id: N14TrainingSword
+  components:
+  - type: StaminaDamageOnHit
+    damage: 12
+  - type: StaminaDamageOnCollide
+    damage: 8
+  - type: MeleeWeapon
+    wideAnimationRotation: -60
+    attackRate: 1.2
+    damage:
+      types:
+        Blunt: 2
+    soundSwing:
+      collection: N14MediumSwing
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/training_sword.rsi
+    state: icon
+  - type: Item
+    size: Large
+    
+- type: entity
+  name: trench club
+  parent: BaseItem
+  id: N14TrenchClub
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 24
+    soundSwing:
+      collection: N14LargeSwing
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/trenchclub.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/trenchclub.rsi
     quickEquip: false
     slots:
     - belt
