@@ -1,6 +1,7 @@
 - type: entity
   abstract: true
   id: N14GodHoward
+  parent: N14MobRaiderPsycho
   name: God Howard
   description: "'It just works'."
   components:
@@ -11,10 +12,25 @@
       sprite: _Nuclear14/Mobs/Admemes.rsi
       state: GodHoward
       shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.9
+        density: 40
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Dead
+      200: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.5
+      80: 0.3
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -23,5 +39,9 @@
     animation: WeaponArcFist
     damage:
       types:
-        Slash: 20
-    range: 10
+        Slash: 35
+    range: 3
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 8
+    baseSprintSpeed : 8
+  
