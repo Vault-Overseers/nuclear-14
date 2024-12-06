@@ -85,8 +85,10 @@ job-description-vault-security = Keep order within the Vault and report to the O
 # Wasteland
 job-name-farmer = Farmer
 job-description-farmer = Produce crops in the wasteland for yourself or to barter with others.
+job-name-waste-musician = Musician
+job-description-waste-musician = This role is going to be removed from the game, please set your preference to "NEVER" on all your characters!
 job-name-scavenger = Scavenger
-job-description-scavenger = Scavenge the ruins of the wastes for pre-war treasures and supplies to trade.
+job-description-scavenger = This role is going to be removed from the game, please set your preference to "NEVER" on all your characters!
 job-name-wastelander = Wastelander
 job-description-wastelander = Survive in the wasteland and carve out your own path. It's tough out there alone, consider finding others.
 
