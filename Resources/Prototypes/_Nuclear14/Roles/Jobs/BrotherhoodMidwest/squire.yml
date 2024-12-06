@@ -4,9 +4,17 @@
   name: job-name-bos-mid-squire
   description: job-description-bos-mid-squire
   playTimeTracker: BoSMidSquire
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterOverallTimeRequirement
+      min: 7200
   startingGear: BoSMidSquireGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
+  supervisors: job-supervisors-bos-mid-initiate
   canBeAntag: false
   access:
   - BoSMidwest
@@ -16,9 +24,6 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodMidwest
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSMidSquireGear

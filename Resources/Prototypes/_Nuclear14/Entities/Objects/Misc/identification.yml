@@ -502,6 +502,34 @@
 
 - type: entity
   parent: N14IDPassportTownsfolk
+  id: N14IDReporterTown
+  name: bartender ID
+  description: A passport ID used by a town reporter.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport_presidential
+  - type: PresetIdCard
+    job: WastelandReporter
+  - type: ClothingAddFaction
+    faction: Townsfolk
+
+- type: entity
+  parent: N14IDPassportTownsfolk
+  id: N14IDBartenderTown
+  name: reporter ID
+  description: A passport ID used by a town bartender.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport_presidential
+  - type: PresetIdCard
+    job: WastelandBartender
+  - type: ClothingAddFaction
+    faction: Townsfolk
+
+- type: entity
+  parent: N14IDPassportTownsfolk
   id: N14IDBadgeTownDeputy
   name: town deputy badge
   description: An ID badge worn by a town deputy.
@@ -535,6 +563,31 @@
     state: mayor
   - type: PresetIdCard
     job: TownMayor
+
+# Wastelanders
+- type: entity
+  parent: N14IDPassportPhoto
+  id: N14IDPassportWasteChaplain
+  name: chaplain ID
+  description: A passport ID used by a chaplain of the region.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport
+  - type: PresetIdCard
+    job: WastelandChaplain
+
+- type: entity
+  parent: N14IDPassportPhoto
+  id: N14IDPassportWasteFarmer
+  name: farmer ID
+  description: A passport ID used by a farmer of the region.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport
+  - type: PresetIdCard
+    job: WastelandFarmer
 
 #MARK: Raiders / Tribes
 - type: entity

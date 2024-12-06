@@ -4,6 +4,13 @@
   name: job-name-townsperson
   description: job-description-townsperson
   playTimeTracker: Townsperson
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterOverallTimeRequirement
+      min: 7200 # 2 hours
   startingGear: TownspersonGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk

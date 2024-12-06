@@ -5,15 +5,21 @@
   description: job-description-townsheriff
   playTimeTracker: TownSheriff
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: Townsfolk
-      min: 18000 # 5 hours
+      min: 28800 # 8 hours
   startingGear: TownSheriffGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk
   access:
   - TownieLaw
   - TownieMechanic
+  - TownieDoctor
+  - WastelandReporter
   special:
   - !type:AddComponentSpecial
     components:
