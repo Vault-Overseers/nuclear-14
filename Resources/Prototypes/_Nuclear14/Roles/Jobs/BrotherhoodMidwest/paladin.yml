@@ -5,12 +5,16 @@
   description: job-description-bos-mid-paladin
   playTimeTracker: BoSMidPaladin
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodMidwest
       min: 54000 # 15 hours
   startingGear: BoSMidPaladinGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
+  supervisors: job-supervisors-bos-mid
   canBeAntag: false
   access:
   - BoSMidwest
@@ -21,11 +25,6 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodMidwest
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSMidPaladinGear

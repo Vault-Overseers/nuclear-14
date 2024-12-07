@@ -4,6 +4,14 @@
   name: job-name-towndoctor
   description: job-description-towndoctor
   playTimeTracker: TownDoctor
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
+      department: Townsfolk
+      min: 7200
   startingGear: TownDoctorGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk
@@ -32,3 +40,4 @@
 
 - type: playTimeTracker
   id: TownDoctor
+  
