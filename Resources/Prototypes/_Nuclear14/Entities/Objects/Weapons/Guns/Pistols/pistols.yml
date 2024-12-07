@@ -259,7 +259,7 @@
         whitelist:
           tags:
             - N14CartridgePistol10
-            
+
 - type: entity
   parent: N14WeaponPistol10mmPipe
   id: N14WeaponPistol10mmPipeEmpty
@@ -398,3 +398,45 @@
         whitelist:
           tags:
             - N14CartridgePistol22
+
+- type: entity
+  name: desert eagle 44
+  parent: N14BaseWeaponPistol
+  id: N14WeaponDesertEagle44
+  description: A rugged handgun chambered in .44.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/deserteagle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/deserteagle.rsi
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      collection: N14PistolDesertEagleGunshot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazinePistol44
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14MagazinePistol44
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge44Magnum
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge44Magnum
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
