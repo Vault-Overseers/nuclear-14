@@ -4,6 +4,14 @@
   name: job-name-tribal-healer
   description: job-description-tribal-healer
   playTimeTracker: TribalHealer
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
+      department: Tribe
+      min: 7200 # 2 hours
   startingGear: TribalHealerGear
   icon: "JobIconBotanist"
   supervisors: job-supervisors-tribal

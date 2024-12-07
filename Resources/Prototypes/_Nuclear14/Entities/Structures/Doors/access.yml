@@ -333,6 +333,48 @@
   - type: Wires
     layoutId: AirlockService
 
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedBartender
+  suffix: Townie, Locked, Bartender
+  components:
+  - type: AccessReader
+    access: [["WastelandBartender"]]
+  - type: Wires
+    layoutId: AirlockService
+    
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedReporter
+  suffix: Townie, Locked, Reporter
+  components:
+  - type: AccessReader
+    access: [["WastelandReporter"]]
+  - type: Wires
+    layoutId: AirlockService
+
+# Wastelander
+    
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedChaplain
+  suffix: Locked, Chaplain
+  components:
+  - type: AccessReader
+    access: [["WastelandChaplain"]]
+  - type: Wires
+    layoutId: AirlockService
+    
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedFarmer
+  suffix: Locked, Farmer
+  components:
+  - type: AccessReader
+    access: [["WastelandFarmer"]]
+  - type: Wires
+    layoutId: AirlockService
+
 #MARK: Vault
 - type: entity
   parent: N14DoorBunker

@@ -4,6 +4,14 @@
   name: job-name-tribal-farmer
   description: job-description-farmer
   playTimeTracker: TribalFarmer
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
+      department: Tribe
+      min: 7200 # 2 hours
   startingGear: TribalFarmerGear
   icon: "JobIconBotanist"
   supervisors: job-supervisors-tribal
