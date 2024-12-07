@@ -5,6 +5,10 @@
   description: job-description-ncr-ranger-veteran
   playTimeTracker: NCRRangerVeteran
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterPlaytimeRequirement
       tracker: NCRRanger
       min: 216000 # 60 hours as NCR
@@ -13,8 +17,11 @@
   icon: "JobIconHeadOfSecurity"
   requireAdminNotify: true
   canBeAntag: false
-  accessGroups:
+  access:
   - NCR
+  - NCRSGT
+  - NCRMedic
+  - NCRRanger
   special:
   - !type:AddComponentSpecial
     components:

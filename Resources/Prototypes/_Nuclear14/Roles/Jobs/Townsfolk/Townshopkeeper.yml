@@ -4,6 +4,14 @@
   name: job-name-townshopkeeper
   description: job-description-townshopkeeper
   playTimeTracker: TownShopkeeper
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
+      department: Townsfolk
+      min: 7200 # 2 hours
   startingGear: TownShopkeeperGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk

@@ -5,13 +5,18 @@
   description: job-description-ncr-soldier
   playTimeTracker: NCRSoldier
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
       department: NCR
-      time: 3600 # 1 hour
+      min: 3600 # 1 hour
   startingGear: NCRSoldierGear
   icon: "JobIconWarden"
-  supervisors: job-supervisors-ncr-nco
+  supervisors: job-supervisors-ncr
   canBeAntag: false
+  alwaysUseSpawner: true
   access:
   - NCR
   special:
@@ -24,13 +29,13 @@
 - type: startingGear
   id: NCRSoldierGear
   equipment:
-    head: N14ClothingHeadHatNCRHelmetMetal
-    jumpsuit: N14ClothingUniformNCR
+    head: N14ClothingHeadHatNCRHelmetMetalSnow
+    back: N14ClothingBackpackNCRFilled
+    jumpsuit: N14ClothingUniformNCRSnow
     shoes: N14ClothingBootsLeather
     id: N14IDNCRDogtag
     pocket1: NCRtrooperloadoutkits
-    backpack: N14ClothingBackpackSatchelNCRFilled
-  innerClothingSkirt: N14ClothingUniformNCR #placeholder
+  innerClothingSkirt: N14ClothingUniformNCRSnow #placeholder
   satchel: N14ClothingBackpackSatchelNCRFilled
 
 - type: playTimeTracker

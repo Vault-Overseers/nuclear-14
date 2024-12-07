@@ -5,13 +5,18 @@
   description: job-description-ncr-engineer
   playTimeTracker: NCREngineer
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: NCR
       min: 18000 # 5 hours
   startingGear: NCREngineerGear
   icon: "JobIconWarden"
-  supervisors: job-supervisors-ncr-nco
+  supervisors: job-supervisors-ncr
   canBeAntag: false
+  alwaysUseSpawner: true
   access:
   - NCR
   special:

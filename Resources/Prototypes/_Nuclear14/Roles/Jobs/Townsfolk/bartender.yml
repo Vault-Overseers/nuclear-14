@@ -1,16 +1,29 @@
 - type: job
   id: WastelandBartender
   setPreference: true
-  name: job-name-bartender
-  description: job-description-bartender
+  name: job-name-townbartender
+  description: job-description-townbartender
   playTimeTracker: WastelandBartender
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
+      department: Townsfolk
+      min: 7200 # 2 hours
   startingGear: WastelandBartenderGear
   icon: "JobIconBartender"
-  supervisors: job-supervisors-wastelander
+  supervisors: job-supervisors-townsfolk
+  access:
+  - WastelandBartender
   special: 
   - !type:AddComponentSpecial
     components:
-    - type: ProfessionalChef
+      - type: NpcFactionMember
+        factions:
+          - Townsfolk
+      - type: ProfessionalChef
 
 - type: startingGear
   id: WastelandBartenderGear
@@ -20,6 +33,7 @@
     outerClothing: N14ClothingOuterLeatherArmor
     back: N14ClothingBackpackWastelanderFilled
     shoes: N14ClothingBootsLeather
+    id: N14IDBartenderTown
   innerClothingSkirt: N14ClothingUniformJumpsuitBartenderAlt #placeholder
   satchel: N14ClothingBackpackSatchelWastelanderFilled
   duffelbag: N14ClothingBackpackDuffelFilled
