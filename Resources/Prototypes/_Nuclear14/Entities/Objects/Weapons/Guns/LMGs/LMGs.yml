@@ -17,6 +17,7 @@
     size: Huge
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/autorifle.rsi
   - type: Wieldable
+  - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -59
@@ -62,6 +63,131 @@
     backStrength: 6
 
 - type: entity
+  name: canadian HMG
+  parent: BaseWeaponRifle
+  id: N14WeaponHMGcanadian
+  description: A powerfull belt feed machine gun commonly used by the pre-war canadian army, chambered in 7.62mm ammunition.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/canadianhmg.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/canadianhmg.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Huge
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/canadianhmg.rsi
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -59
+  - type: Gun
+    minAngle: 24
+    maxAngle: 60
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 6
+    soundGunshot:
+      collection: N14AutoRifleGunshot
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine762AmmoBelt
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14Magazine762Belt
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge762Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge762Rifle
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
+  name: chinese LMG
+  parent: BaseWeaponRifle
+  id: N14WeaponLMGchinese
+  description: A pre-war chinese light machine gun, chambered in 7.62mm ammunition.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/chineselmg.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/chineselmg.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Huge
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/chineselmg.rsi
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -59
+  - type: Gun
+    minAngle: 24
+    maxAngle: 60
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 5
+    soundGunshot:
+      collection: N14AutoRifleGunshot
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine762AmmoBelt
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14Magazine762Belt
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge762Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge762Rifle
+  - type: HeldSpeedModifier
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
   name: light machine gun
   parent: BaseWeaponRifle
   id: N14WeaponLMG
@@ -80,6 +206,7 @@
     size: Huge 
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/lmg.rsi
   - type: Wieldable
+  - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -20
     maxAngle: -55
@@ -143,6 +270,7 @@
     size: Huge
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/bren.rsi
   - type: Wieldable
+  - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -59

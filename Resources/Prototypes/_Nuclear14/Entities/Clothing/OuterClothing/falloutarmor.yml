@@ -91,6 +91,26 @@
 
 - type: entity
   parent: ClothingOuterBase
+  id: N14ClothingOuterVestLeather
+  name: leather vest
+  description: A simple armored leather vest, better than nothing.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleathervest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleathervest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.65
+        Heat: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingOuterBase
   id: N14ClothingOuterMetalArmor
   name: metal armor
   description: A suit of metal armor that provides protection against physical threats at the cost of movement.
@@ -1147,6 +1167,45 @@
         Heat: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.7
+
+#MARK: Chinese renmants
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterCombatArmorChinese
+  name: chinese combat armor
+  description: A bulletproof vest combined with knee pads, mostly used by chinese commandos and special forces.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesearmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesearmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.5
+        Heat: 0.5
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterVestChinese
+  name: chinese armored vest
+  description: A light bulletproof vest, mostly used by regular chinese infantry.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesevest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesevest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.6
+        Heat: 0.6
+
 # random other armor
 - type: entity
   parent: ClothingOuterBase
