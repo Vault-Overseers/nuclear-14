@@ -36,7 +36,7 @@ public sealed partial class ClothingSpecialModifierSystem : EntitySystem
         if (component.Enabled != enabled)
         {
             component.Enabled = enabled;
-            Dirty(component);
+            Dirty(uid, component);
 
             // inventory system will automatically hook into the event raised by this and update accordingly
             if (_container.TryGetContainingContainer(uid, out var container))

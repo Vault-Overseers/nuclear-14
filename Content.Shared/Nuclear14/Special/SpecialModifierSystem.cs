@@ -184,7 +184,7 @@ namespace Content.Shared.Nuclear14.Special
             if (!_doAfter.TryStartDoAfter(doAfterEventArgs))
                 return;
 
-            Dirty(special);
+            Dirty(uid, special);
         }
 
 
