@@ -1,8 +1,39 @@
 - type: entity
-  parent: BaseWeaponShotgun
+  name: N14WeaponShotgunBase
+  parent: BaseItem
   id: N14WeaponShotgunBase
+  description: A rooty tooty point and shooty.
   abstract: true
   components:
+  - type: Sprite
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: DeltaV/Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+    fireOnDropChance: 0.2
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 10
   - type: FollowDistance
     backStrength: 5
   - type: Wieldable

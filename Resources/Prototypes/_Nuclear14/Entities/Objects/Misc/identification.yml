@@ -593,44 +593,58 @@
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDTribeSawbonePendant
-  name: sawbone pendant
-  description: A pendant often worn by tribes as ID. This one is a sawbone.
+  name: healer pendant
+  description: A pendant often worn by tribes as ID. This one is made of a bonesaw.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: sawbone
+  - type: PresetIdCard
+    job: TribalHealer
   - type: ClothingAddFaction
     faction: Tribal
 
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDTribeBulletsPendant
-  name: bullet pendant
+  name: member pendant
   description: A pendant often worn by tribes as ID. This one is made of bullets.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: raider
+  - type: PresetIdCard
+    job: Tribal
+  - type: ClothingAddFaction
+    faction: Tribal
 
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDTribeEnforcerPendant
-  name: enforcer pendant
-  description: A pendant often worn by tribes as ID. This one is a Jet canister.
+  name: farmer pendant
+  description: A pendant often worn by tribes as ID. This one is made of a shotgun shell.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: enforcer
+  - type: PresetIdCard
+    job: TribalFarmer
+  - type: ClothingAddFaction
+    faction: Tribal
 
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDTribeBossPendant
-  name: bullet pendant
-  description: A pendant worn by a tribal leader.
+  name: elder pendant
+  description: A pendant often worn by tribes as ID. This one is made of rifle rounds.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: boss
+  - type: PresetIdCard
+    job: TribalElder
+  - type: ClothingAddFaction
+    faction: Tribal
 
 # Fun / Misc
 - type: entity

@@ -353,6 +353,26 @@
   - type: Wires
     layoutId: AirlockService
 
+- type: entity
+  parent: N14DoorSpikedGate
+  id: N14DoorSpikedGateTribal
+  suffix: Tribal, Locked
+  components:
+  - type: AccessReader
+    access: [["TribeMember"]]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedChief
+  suffix: Tribal, Locked, Chief
+  components:
+  - type: AccessReader
+    access: [["TribeChief"]]
+  - type: Wires
+    layoutId: AirlockService
+
 # Wastelander
     
 - type: entity
@@ -377,7 +397,7 @@
 
 #MARK: Vault
 - type: entity
-  parent: N14DoorBunker
+  parent: N14DoorBunkerVault
   id: N14DoorBunkerLockedVaultDweller
   suffix: Vault Dweller, Locked
   components:
@@ -388,7 +408,7 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
+  parent: N14DoorBunkerVault
   id: N14DoorBunkerLockedVaultEngineer
   suffix: Vault Engineer, Locked
   components:
@@ -399,7 +419,7 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
+  parent: N14DoorBunkerVault
   id: N14DoorBunkerLockedVaultMedical
   suffix: Vault Medical, Locked
   components:
@@ -410,7 +430,7 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
+  parent: N14DoorBunkerVault
   id: N14DoorBunkerLockedVaultSecurity
   suffix: Vault Security, Locked
   components:
@@ -421,7 +441,7 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
+  parent: N14DoorBunkerVault
   id: N14DoorBunkerLockedVaultGatekeeper
   suffix: Vault Gatekeeper, Locked
   components:
@@ -432,7 +452,7 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
+  parent: N14DoorBunkerVault
   id: N14DoorBunkerLockedVaultOverseer
   suffix: Vault Overseer, Locked
   components:
