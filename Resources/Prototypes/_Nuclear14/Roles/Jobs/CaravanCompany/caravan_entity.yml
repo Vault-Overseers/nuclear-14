@@ -3,6 +3,9 @@
   id: N14MobHumanCaravanGuard
   name: CaravanGuard
   components:
+    - type: Icon
+      sprite: _Nuclear14/Markers/Jobs/caravan.rsi
+      state: guard
     - type: RandomHumanoidAppearance
       randomizeName: true
     - type: Loadout
@@ -12,10 +15,12 @@
       - CaravanCompany
 
 - type: entity
-  parent: MobHuman
+  parent: N14MobHumanCaravanGuard
   id: N14MobHumanCaravanLeader
   name: CaravanLeader
   components:
+    - type: Icon
+      state: leader
     - type: RandomHumanoidAppearance
       randomizeName: true
     - type: Loadout
@@ -25,10 +30,12 @@
       - CaravanCompany
 
 - type: entity
-  parent: MobHuman
+  parent: N14MobHumanCaravanGuard
   id: N14MobHumanCaravanTrader
   name: CaravanTrader
   components:
+    - type: Icon
+      state: trader
     - type: RandomHumanoidAppearance
       randomizeName: true
     - type: Loadout

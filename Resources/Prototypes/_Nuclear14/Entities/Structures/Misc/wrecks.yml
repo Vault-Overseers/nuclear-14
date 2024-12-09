@@ -16,6 +16,7 @@
         layer:
         - MidImpassable
         - LowImpassable
+        - BulletImpassable
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -23,7 +24,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 300
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -442,5 +443,6 @@
         layer:
         - MidImpassable
         - LowImpassable
+        - BulletImpassable
   - type: Occluder
     boundingBox: "-1,-0.7,1.5,0.4"

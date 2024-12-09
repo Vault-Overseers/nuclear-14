@@ -5,17 +5,23 @@
   description: job-description-ncr-ranger
   playTimeTracker: NCRRanger
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: NCR
       min: 7200 # 20 hours as NCR
     - !type:CharacterWhitelistRequirement
   startingGear: NCRRangerGear
   icon: JobIconSecurityOfficer
+  supervisors: job-supervisors-ncr-ranger
   requireAdminNotify: true
   canBeAntag: false
   access:
   - NCR
   - NCRSGT
+  - NCRMedic
   - NCRRanger
   special:
   - !type:AddComponentSpecial

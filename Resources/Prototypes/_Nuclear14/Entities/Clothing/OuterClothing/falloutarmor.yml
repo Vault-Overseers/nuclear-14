@@ -1,5 +1,73 @@
 - type: entity
   parent: ClothingOuterBase
+  id: N14ClothingOuterZealotDuster
+  name: zealot duster
+  description: A heavily modified highway patrol coat clearly designed by some manner of fanatic.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutzealotduster.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutzealotduster.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.8
+        Heat: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: ClothingSpecialModifier
+    luckModifier: 1
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingScavengerHeavyArmor
+  name: scavenger heavy armor
+  description: A reinforced duster hiding pieces of scavenged armor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutscavengerheavyarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutscavengerheavyarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.6
+        Piercing: 0.65
+        Heat: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Reflect
+    reflectProb: 0.05
+    spread: 150
+  - type: ClothingSpeedModifier
+    walkModifier: 0.90
+    sprintModifier: 0.90
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterCoatFollowersArmored
+  name: Followers Armored Labcoat
+  description: A vest used by the followers. It haves a bulletproof vest underneath
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutfoaarmoredcoat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutfoaarmoredcoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+  - type: ClothingSpecialModifier
+    intelligenceModifier: 1
+
+- type: entity
+  parent: ClothingOuterBase
   id: N14ClothingOuterLeatherArmor
   name: leather armor
   description: A leather suit of armor that provides protection against physical threats.
@@ -1138,5 +1206,21 @@
         Piercing: 0.6
         Heat: 0.6
 
-
-
+# random other armor
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterPressArmor
+  name: prewar reporter armor
+  description: An old piece of armor once used by the Free Press before the war. Though the kevlar is worn, it will still offer some protection.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/reportersvest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/reportersvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.9

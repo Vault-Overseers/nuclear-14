@@ -6,7 +6,7 @@
 
 - type: entity
   parent: FoodInjectableBase
-  id: N14FoodMealBase
+  id: N14CookedFoodMealBase
   abstract: true
   description: A delicious meal, cooked with love.
   components:
@@ -27,8 +27,8 @@
 
 - type: entity
   name: loaded baked potato
-  parent: N14FoodMealBase
-  id: N14FoodMealPotatoLoaded
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealPotatoLoaded
   description: Totally baked.
   components:
   - type: FlavorProfile
@@ -41,8 +41,8 @@
 
 - type: entity
   name: fries #N14 change. I don't think I need to change anything else, the ID is the same...
-  parent: N14FoodMealBase
-  id: N14FoodMealFries
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealFries
   description: You hear these used to be fried in oil. Baked, salty tatos are just about 'alright'. #N14 change
   components:
   - type: FlavorProfile
@@ -55,8 +55,8 @@
 
 - type: entity
   name: cheesy fries
-  parent: N14FoodMealBase
-  id: N14FoodMealFriesCheesy
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealFriesCheesy
   description: Alright, this is good shit. You can barely taste the tato. #N14 change
   components:
   - type: FlavorProfile
@@ -70,8 +70,8 @@
 
 - type: entity
   name: carrot fries
-  parent: N14FoodMealBase
-  id: N14FoodMealFriesCarrot
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealFriesCarrot
   description: Tasty fries from fresh carrots.
   components:
   - type: FlavorProfile
@@ -94,8 +94,8 @@
 
 - type: entity
   name: nachos
-  parent: N14FoodMealBase
-  id: N14FoodMealNachos
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealNachos
   description: Corn chips. #N14 change
   components:
   - type: FlavorProfile
@@ -107,8 +107,8 @@
 
 - type: entity
   name: cheesy nachos
-  parent: N14FoodMealBase
-  id: N14FoodMealNachosCheesy
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealNachosCheesy
   description: The delicious combination of nachos and melting cheese.
   components:
   - type: FlavorProfile
@@ -132,8 +132,8 @@
 
 - type: entity
   name: Cuban nachos
-  parent: N14FoodMealBase
-  id: N14FoodMealNachosCuban
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealNachosCuban
   description: That's some dangerously spicy nachos.
   components:
   - type: FlavorProfile
@@ -158,8 +158,8 @@
 
 - type: entity
   name: mint
-  parent: N14FoodMealBase
-  id: N14FoodMealMint
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealMint
   description: It's wafer thin.
   components:
   - type: FlavorProfile
@@ -178,50 +178,10 @@
 # Tastes like parsnips, salt.
 
 - type: entity
-  name: eggplant parmigiana
-  parent: N14FoodMealBase
-  id: N14FoodMealEggplantParm
-  description: The only good recipe for eggplant.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - eggplant
-      - cheesy
-  - type: Sprite
-    state: eggplantparm
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 2
-  - type: Tag
-    tags:
-    - Fruit
-# Tastes like eggplant, cheese.
-
-- type: entity
-  name: yaki imo
-  parent: N14FoodMealBase
-  id: N14FoodMealPotatoYaki
-  description: Made with roasted sweet potatoes!
-  components:
-  - type: FlavorProfile
-    flavors:
-      - sweet
-      - potatoes
-  - type: Sprite
-    state: yakiimo
-# Tastes like sweet potato.
-
-- type: entity
   name: Cuban carp
-  parent: N14FoodMealBase
-  id: N14FoodMealCubancarp
-  description: A grifftastic sandwich that burns your tongue and then leaves it numb!
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealCubancarp
+  description: An impossible meal. The gods smile on you.
   components:
   - type: FlavorProfile
     flavors:
@@ -247,87 +207,9 @@
 # Tastes like fish, batter, hot peppers.
 
 - type: entity
-  name: corned beef and cabbage
-  parent: N14FoodMealBase
-  id: N14FoodMealCornedbeef
-  description: Now you can feel like a real tourist vacationing in Ireland.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - meaty
-      - cabbage
-  - type: Sprite
-    state: cornedbeef
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 4
-  - type: Tag
-    tags:
-    - Meat
-# Tastes like meat, cabbage.
-
-- type: entity
-  name: filet migrawr
-  parent: N14FoodMealBase
-  id: N14FoodMealBearsteak
-  description: Because eating bear wasn't manly enough.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - meaty
-      - fishy
-  - type: Sprite
-    state: bearsteak
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Vitamin
-          Quantity: 5
-  - type: Tag
-    tags:
-    - Meat
-# Tastes like meat, salmon.
-
-- type: entity
-  name: pig in a blanket
-  parent: N14FoodMealBase
-  id: N14FoodMealPigblanket
-  description: A tiny sausage wrapped in a flakey, buttery roll. Free this pig from its blanket prison by eating it.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - meaty
-      - butter
-  - type: Sprite
-    state: pigblanket
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 1
-  - type: Tag
-    tags:
-    - Meat
-# Tastes like meat, butter.
-
-- type: entity
   name: bbq ribs
-  parent: N14FoodMealBase
-  id: N14FoodMealRibs
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealRibs
   description: Big, big, bighorner ribs, slathered in sweet smokey paradise. #N14 change
   components:
   - type: Food
@@ -356,8 +238,8 @@
 
 - type: entity
   name: eggs benedict
-  parent: N14FoodMealBase
-  id: N14FoodMealEggsbenedict
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealEggsbenedict
   description: There is only one egg on this, how rude.
   components:
   - type: FlavorProfile
@@ -383,8 +265,8 @@
 
 - type: entity
   name: cheese omelette
-  parent: N14FoodMealBase
-  id: N14FoodMealOmelette
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealOmelette
   description: Cheesy.
   components:
   - type: FlavorProfile
@@ -407,8 +289,8 @@
 
 - type: entity
   name: fried egg
-  parent: N14FoodMealBase
-  id: N14FoodMealFriedegg
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealFriedegg
   description: A fried egg, with a touch of salt and pepper.
   components:
   - type: FlavorProfile
@@ -435,66 +317,9 @@
 # Tastes like egg, salt, pepper.
 
 - type: entity
-  name: milk ape
-  parent: N14FoodMealBase
-  id: N14FoodMealMilkape
-  description: The king of Jungle Thick.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - milk
-      - chocolate
-  - type: Sprite
-    state: milkape
-# Tastes like milk, chocolate, the jungle.
-
-- type: entity
-  name: memory leek
-  parent: N14FoodMealBase
-  id: N14FoodMealMemoryleek
-  description: This should refresh your memory.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - memoryleek
-  - type: Sprite
-    state: memoryLeek
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Allicin
-          Quantity: 5
-# Tastes like pain.
-
-- type: entity
-  name: salty sweet miso cola soup
-  parent: N14FoodMealBase
-  id: N14DisgustingSweptSoup
-  description: Jesus christ.
-  components:
-  - type: Sprite
-    state: saltysweet
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 9
-        - ReagentId: Water
-          Quantity: 10
-        - ReagentId: Blackpepper
-          Quantity: 3
-# Tastes awesome.
-
-- type: entity
   name: queso
-  parent: N14FoodMealBase
-  id: N14FoodMealQueso
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealQueso
   description: A classic dipping sauce that you can't go wrong with.
   components:
     - type: FlavorProfile
@@ -506,8 +331,8 @@
 
 - type: entity
   name: sashimi
-  parent: N14FoodMealBase
-  id: N14FoodMealSashimi
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealSashimi
   description: Its taste can only be described as "Exotic".
   components:
   - type: FlavorProfile
@@ -532,8 +357,8 @@
 
 - type: entity
   name: enchiladas
-  parent: N14FoodMealBase
-  id: N14FoodMealEnchiladas
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealEnchiladas
   description: Viva La Mexico!
   components:
     - type: FlavorProfile
@@ -557,8 +382,8 @@
 
 - type: entity
   name: melon fruit bowl
-  parent: N14FoodMealBase
-  id: N14FoodSaladWatermelonFruitBowl
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodSaladWatermelonFruitBowl
   description: The only salad where you can eat the bowl.
   components:
   - type: FlavorProfile
@@ -588,8 +413,8 @@
 
 - type: entity
   name: corn in butter
-  parent: N14FoodMealBase
-  id: N14FoodMealCornInButter
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealCornInButter
   description: Buttery.
   components:
   - type: Food
@@ -610,23 +435,20 @@
         - ReagentId: Vitamin
           Quantity: 4
 
-- type: entity
-  name: harpy wings
-  parent: N14FoodMealBase
-  id: N14FoodHarpyWings
-  description: It's a bit stringy.
+- type: entity #It felt weird to make an entire snacks folder just for this, so it's here in meals.yml, our catch-all. -Hazel
+  name: popcorn
+  parent: FoodSnackBase
+  id: N14FoodSnackPopcorn
+  description: Feel it in your hands. Nice and warm...
   components:
   - type: FlavorProfile
     flavors:
-      - chicken
+      - corn
+      - salt
+      - butter
   - type: Sprite
-    state: harpywings
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 13
-        - ReagentId: Protein
-          Quantity: 7
+    state: popcorn
+  - type: Item
+    heldPrefix: popcorn
+  - type: Food
+    trash: FoodPacketPopcornTrash

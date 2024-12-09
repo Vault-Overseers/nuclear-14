@@ -1,6 +1,32 @@
 #MARK: Plain Coats and Clothing
 - type: entity
   parent: ClothingOuterStorageBase
+  id: N14ClothingOuterGhostEchoes
+  name: Ghost Echoes
+  description: A coat filled with bullets holes... Seems like his previous owner wasn't so lucky
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutghostechoes.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutghostechoes.rsi
+  - type: ClothingSpecialModifier
+    luckModifier: 1
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: N14ClothingOuterHarperCoat
+  name: Harper Coat
+  description: A dark coat with some red lining.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutharpercoat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutharpercoat.rsi
+  - type: ClothingSpecialModifier
+    charismaModifier: 1
+
+- type: entity
+  parent: ClothingOuterStorageBase
   id: N14ClothingOuterJacketLettermanRed
   name: letterman jacket
   description: A red letterman jacket.
@@ -273,6 +299,26 @@
         Slash: 0.85
         Piercing: 0.9
         Heat: 0.9
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: N14ClothingOuterCoatLab
+  name: lab coat
+  description: A coat that protects against staining, chemical or otherwise, a quality particularly useful in these less civilised times.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Coats/labcoat.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Coats/labcoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, N14ClothingOuterCoatLab]
+  id: N14ClothingOuterCoatLabOpened
+  name: lab coat
 
 #MARK: Armored Coats
 - type: entity

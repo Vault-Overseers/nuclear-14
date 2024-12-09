@@ -361,9 +361,10 @@
   - type: ConditionalSpawner
     prototypes:
       - N14MobCazador
-          
+
+# Ranged Raider Variants
 - type: entity
-  name: Raider Ranged Psycho Spawner
+  name: Raider Spawner - Pistol
   id: N14SpawnMobRaiderPsychoRanged
   parent: MarkerBase
   components:
@@ -378,7 +379,37 @@
       - N14MobRaiderPsychoRanged
       
 - type: entity
-  name: Raider Psycho Boss Spawner
+  name: Raider Spawner - Rifle
+  id: N14SpawnMobRaiderPsychoHunter
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raider_ranged
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobRaiderHunter
+      
+- type: entity
+  name: Raider Spawner - Shotgun
+  id: N14SpawnMobRaiderPsychoSkrimisher
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raider_ranged
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobRaiderSkrimisher
+      
+- type: entity
+  name: Raider Spawner - Boss
   id: N14SpawnMobRaiderBoss
   parent: MarkerBase
   components:
@@ -391,9 +422,100 @@
   - type: ConditionalSpawner
     prototypes:
       - N14MobRaiderBoss
-      
+
 - type: entity
-  name: Raider Psycho Spawner
+  name: Mercenary Spawner - Private
+  id: N14SpawnMobRaiderFernPrivate
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raider_ranged
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobFernMercPrivate
+
+- type: entity
+  name: Mercenary Spawner - Sergeant
+  id: N14SpawnMobRaiderFernSergeant
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raider_ranged
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobFernMercSergeant
+
+- type: entity
+  name: Mercenary Spawner - Lieutenant
+  id: N14SpawnMobRaiderFern
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raider_ranged
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobFernMercLieutenant
+
+- type: entity
+  name: Enforcer Spawner - Trooper
+  id: N14SpawnMobRaiderEnforcerTrooper
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raider_ranged
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobEnforcerTrooper
+
+- type: entity
+  name: Enforcer Spawner - Warden
+  id: N14SpawnMobRaiderEnforcerWarden
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raider_ranged
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobEnforcerWarden
+
+- type: entity
+  name: Enforcer Spawner - Chief
+  id: N14SpawnMobRaiderEnforcerChief
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raider_ranged
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobEnforcerChief
+
+# Melee Raider Variants
+- type: entity
+  name: Raider Spawner - Melee
   id: N14SpawnMobRaiderPsycho
   parent: MarkerBase
   components:
@@ -407,6 +529,35 @@
     prototypes:
       - N14MobRaiderPsycho
 
+- type: entity
+  name: Fern Spawner - Melee
+  id: N14SpawnMobRaiderFernMelee
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/RaiderPsycho.rsi
+        state: raider_melee
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobRaiderFernMelee
+
+- type: entity
+  name: Enforcer Spawner - Melee
+  id: N14SpawnMobRaiderEnforcerMelee
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/RaiderPsycho.rsi
+        state: raider_melee
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobRaiderEnforcerMelee
 
 # Ghoul
 - type: entity
@@ -634,6 +785,21 @@
   - type: ConditionalSpawner
     prototypes:
       - N14MobRobotEyebot
+
+- type: entity
+  name: Spore Plant Spawner
+  id: N14SpawnMobSporePlant
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Plants/sporeplant.rsi
+        state: sporeplant
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobSporeplant
 
 #Pets
 - type: entity
