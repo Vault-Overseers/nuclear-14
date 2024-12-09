@@ -4,9 +4,16 @@
   name: job-name-ncr-cadet
   description: job-description-ncr-cadet
   playTimeTracker: NCRCadet
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterOverallTimeRequirement
+      min: 3600
   startingGear: NCRCadetGear
   icon: "JobIconSecurityCadet"
-  supervisors: job-supervisors-ncr-nco
+  supervisors: job-supervisors-ncr
   canBeAntag: false
   alwaysUseSpawner: true
   access:

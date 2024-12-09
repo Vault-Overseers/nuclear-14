@@ -67,6 +67,22 @@
   parent: N14MobBaseSimple
   description: It's a dirty wasteland animal. Watch out for it's bite, it could be infectious.
   components:
+  - type: Hunger
+    thresholds:
+      Overfed: 200
+      Okay: 150
+      Peckish: 100
+      Starving: 50
+      Dead: 0
+    baseDecayRate: 0.0 # Decay rate decreased to 0, because humanoid raider NPCs are able to starve to death. We generally don't need life sim for any hostile mob.
+  - type: Thirst
+    thresholds:
+      OverHydrated: 200
+      Okay: 150
+      Thirsty: 100
+      Parched: 50
+      Dead: 0
+    baseDecayRate: 0.0 # Decay rate decreased to 0, because hostile mobs can be way too easily defeated by slowness applied to them.
   - type: NpcFactionMember
     factions:
     - WastelandAnimal
@@ -204,7 +220,7 @@
   components:
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Ghoul
+    damageModifierSet: GhoulNPC
   # - type: NoSlip
   - type: NpcFactionMember
     factions:

@@ -4,6 +4,14 @@
   name: job-name-townmechanic
   description: job-description-townmechanic
   playTimeTracker: TownMechanic
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
+      department: Townsfolk
+      min: 7200 # 2 hours
   startingGear: TownMechanicGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk

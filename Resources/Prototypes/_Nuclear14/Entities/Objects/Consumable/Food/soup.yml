@@ -2,7 +2,7 @@
 
 - type: entity
   parent: FoodBase
-  id: N14FoodBowlBase
+  id: N14CookedFoodBowlBase
   abstract: true
   components:
   - type: Item
@@ -65,8 +65,8 @@
 
 - type: entity
   name: pea soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupPea
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupPea
   description: A humble split pea soup.
   components:
   - type: FlavorProfile
@@ -92,39 +92,10 @@
 # Salad
 
 - type: entity
-  name: aesir salad
-  parent: N14FoodBowlBase
-  id: N14FoodSaladAesir
-  description: Probably too incredible for mortals to fully enjoy.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - leafy
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: aesir
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 8
-        - ReagentId: Vitamin
-          Quantity: 6
-        - ReagentId: Omnizine
-          Quantity: 8
-  - type: Tag
-    tags:
-    - Soup
-    - Fruit # I don't know what this is but its' a salad so sure
-
-- type: entity
   name: herb salad
-  parent: N14FoodBowlBase
-  id: N14FoodSaladHerb
-  description: A tasty salad with apples on top.
+  parent: N14CookedFoodBowlBase #cooked is a stretch but... okay, we tag salads as that for now. We can swap it out later if we want. -Hazel
+  id: N14CookedFoodSaladHerb
+  description: A tasty salad with mutfruit on top.
   components:
   - type: FlavorProfile
     flavors:
@@ -149,42 +120,9 @@
     - Soup
 
 - type: entity
-  name: valid salad
-  parent: N14FoodBowlBase
-  id: N14FoodSaladValid
-  description: It's just an herb salad with meatballs and fried potato slices. Nothing suspicious about it.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - leafy
-      - meaty
-      - potatoes
-      - validhunting
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: valid
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 8
-        - ReagentId: Vitamin
-          Quantity: 2
-        - ReagentId: DoctorsDelight
-          Quantity: 5
-  - type: Tag
-    tags:
-    - Meat
-    - Fruit
-    - Soup
-
-- type: entity
   name: coleslaw
-  parent: N14FoodBowlBase
-  id: N14FoodSaladColeslaw
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSaladColeslaw
   description: Shredded cabbage and red onions dressed with a vinaigrette.
   components:
   - type: FlavorProfile
@@ -210,8 +148,8 @@
 
 - type: entity
   name: caesar salad
-  parent: N14FoodBowlBase
-  id: N14FoodSaladCaesar
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSaladCaesar
   description: A simple yet flavorful salad of onions, cabbage, croutons, and shreds of cheese dressed in oil. #N14 change
   components:
   - type: FlavorProfile
@@ -236,8 +174,8 @@
 
 - type: entity
   name: kimchi salad
-  parent: N14FoodBowlBase
-  id: N14FoodSaladKimchi
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSaladKimchi
   description: It really is just a spicy salad.
   components:
   - type: FlavorProfile
@@ -263,8 +201,8 @@
 
 - type: entity
   name: fruit salad
-  parent: N14FoodBowlBase
-  id: N14FoodSaladFruit
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSaladFruit
   description: Your standard fruit salad.
   components:
   - type: FlavorProfile
@@ -290,8 +228,8 @@
 
 - type: entity
   name: jungle salad
-  parent: N14FoodBowlBase
-  id: N14FoodSaladJungle
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSaladJungle
   description: Exotic fruits in a bowl.
   components:
   - type: FlavorProfile
@@ -318,8 +256,8 @@
 
 - type: entity
   name: citrus salad
-  parent: N14FoodBowlBase
-  id: N14FoodSaladCitrus
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSaladCitrus
   description: Citrus overload!
   components:
   - type: FlavorProfile
@@ -344,38 +282,12 @@
     - Fruit
     - Soup
 
-- type: entity
-  name: salad of eden
-  parent: N14FoodBowlBase
-  id: N14FoodSaladEden
-  description: A salad brimming with untapped potential.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - bitter
-      - hope
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: eden
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 8
-        - ReagentId: Vitamin
-          Quantity: 5
-        - ReagentId: Omnizine
-          Quantity: 5
-
 # Rice
 
 - type: entity
   name: boiled rice
-  parent: N14FoodBowlBase
-  id: N14FoodRiceBoiled
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodRiceBoiled
   description: A warm bowl of rice.
   components:
   - type: FlavorProfile
@@ -385,11 +297,23 @@
     layers:
     - state: bowl
     - state: rice
+  - type: SolutionContainerManager #Rice didn't have any sort of nutritional value before I added this. I think. -Hazel
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Tag
+    tags:
+    - Soup
 
 - type: entity
   name: egg-fried rice
-  parent: N14FoodBowlBase
-  id: N14FoodRiceEgg
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodRiceEgg
   description: A bowl of rice with a fried egg.
   components:
   - type: FlavorProfile
@@ -416,8 +340,8 @@
 
 - type: entity
   name: roadkill rice
-  parent: N14FoodBowlBase
-  id: N14FoodRiceRoadkill
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodRiceRoadkill
   description: Dotted with blackened scraps of waste-meat. #N14 change
   components:
   - type: FlavorProfile
@@ -427,7 +351,7 @@
   - type: Sprite
     layers:
     - state: bowl
-    - state: rice-pork
+    - state: rice-pork #dunno if I can fix this safely for now?? -Hazel
   - type: SolutionContainerManager
     solutions:
       food:
@@ -437,11 +361,6 @@
           Quantity: 18
         - ReagentId: Vitamin
           Quantity: 7
-        #- ReagentId: Dexalin ##This is probably a reference to something but I don't get it
-        #  Quantity: 6.5
-        #- ReagentId: Epinephrine
-        #  Quantity: 2
-        #Got rid of this, it seems like it'd maybe be abused if ppl found out -Hazel
   - type: Tag
     tags:
     - Meat
@@ -449,8 +368,8 @@
 
 - type: entity
   name: rice pudding
-  parent: N14FoodBowlBase
-  id: N14FoodRicePudding
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodRicePudding
   description: Everybody loves rice pudding!
   components:
   - type: FlavorProfile
@@ -470,15 +389,15 @@
           Quantity: 9
         - ReagentId: Vitamin
           Quantity: 3
-        - ReagentId: Milk
+        - ReagentId: N14MilkBrahmin
           Quantity: 5
         - ReagentId: Sugar
           Quantity: 5
 
 - type: entity
   name: black-eyed gumbo
-  parent: N14FoodBowlBase
-  id: N14FoodRiceGumbo
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodRiceGumbo
   description: A spicy and savory meat and rice dish.
   components:
   - type: FlavorProfile
@@ -511,8 +430,8 @@
 
 - type: entity
   name: oatmeal
-  parent: N14FoodBowlBase
-  id: N14FoodOatmeal
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodOatmeal
   description: A nice bowl of oatmeal.
   components:
   - type: FlavorProfile
@@ -532,28 +451,13 @@
           Quantity: 7
         - ReagentId: Vitamin
           Quantity: 2
-        - ReagentId: Milk
+        - ReagentId: N14MilkBrahmin
           Quantity: 10
 
-- type: entity
-  name: space liberty duff
-  parent: N14FoodBowlBase
-  id: N14FoodJellyDuff
-  description: Jello gelatin, from Alfred Hubbard's cookbook.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - jelly
-      - mushrooms
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: spacelibertyduff
-
-- type: entity
+- type: entity #I'm leaving this here as a placeholder. Maybe poisonous food will be desirable someday. -Hazel
   name: amanita jelly
   parent: FoodInjectableBase
-  id: N14FoodJellyAmanita
+  id: N14CookedFoodJellyAmanita
   description: It's evil, don't touch it!
   components:
   - type: FlavorProfile
@@ -577,9 +481,9 @@
 
 - type: entity
   name: meatball soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupMeatball
-  description: You've got balls kid, BALLS!
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupMeatball
+  description: Meatballs in a soup - well, hell, we work with what we got.
   components:
   - type: FlavorProfile
     flavors:
@@ -605,66 +509,10 @@
     - Soup
 
 - type: entity
-  name: slime soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupSlime
-  description: If no water is available, you may substitute tears.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - slimy
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: slime
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 12
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 1
-        - ReagentId: Vitamin
-          Quantity: 5
-        - ReagentId: Water
-          Quantity: 10
-
-- type: entity
-  name: tomato soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupTomatoBlood
-  description: The blood blots out the tato flavor. Worth the hassle. #N14 change
-  components:
-  - type: FlavorProfile
-    flavors:
-      - acidic
-      - metallic
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: tomato
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 12
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Iron
-          Quantity: 10
-        - ReagentId: Blood
-          Quantity: 5 #these numbers are now scuffed and I am not smart enough to fix them eex
-
-  - type: Tag
-    tags:
-    - Fruit
-    - Soup
-
-- type: entity
-  name: wing fang chu
-  parent: N14FoodBowlBase
-  id: N14FoodSoupWingFangChu
-  description: A savory dish of alien wing wang in soy.
+  name: mutie soup
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupMutie
+  description: Some kind of mutant cooked in sauce. Looks... uh... unappetizing...
   components:
   - type: FlavorProfile
     flavors:
@@ -687,40 +535,44 @@
           Quantity: 7
 
 - type: entity
-  name: clown's tears
-  parent: N14FoodBowlBase
-  id: N14FoodSoupClown
-  description: Not very funny.
+  name: bloodtato soup
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupBloodtato
+  description: The blood blots out the tato flavor. A surprisingly good, if insane, spin on the meal.
   components:
   - type: FlavorProfile
     flavors:
-      - bad-joke
+      - acidic
+      - metallic
   - type: Sprite
     layers:
     - state: bowl
-    - state: clowntears
+    - state: tomato
   - type: SolutionContainerManager
     solutions:
       food:
         maxVol: 12
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Vitamin
-          Quantity: 9
-        - ReagentId: Water
+          Quantity: 3
+        - ReagentId: Iron
           Quantity: 10
+        - ReagentId: Blood
+          Quantity: 5 #these numbers are now scuffed and I am not smart enough to fix them
+  - type: Tag
+    tags:
+    - Fruit
+    - Soup
 
 - type: entity
   name: vegetable soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupVegetable
-  description: A true vegan meal.
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupVegetable
+  description: A hearty, healthy meal beloved by foragers and farmers.
   components:
   - type: FlavorProfile
     flavors:
       - vegetables
-      - sadness
   - type: Sprite
     layers:
     - state: bowl
@@ -741,9 +593,9 @@
 
 - type: entity
   name: nettle soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupNettle
-  description: To think, the botanist would've beat you to death with one of these.
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupNettle
+  description: Food for foragers. Said to be a potent restorative.
   components:
   - type: FlavorProfile
     flavors:
@@ -769,23 +621,9 @@
           Quantity: 0.5
 
 - type: entity
-  name: mystery soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupMystery
-  description: The mystery is, why aren't you eating it?
-  components:
-  - type: FlavorProfile
-    flavors:
-      - chaos
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: mystery
-
-- type: entity
   name: bowl of hot chili
-  parent: N14FoodBowlBase
-  id: N14FoodSoupChiliHot
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupChiliHot
   description: A Washington five-alarm chili! #N14 change
   components:
   - type: FlavorProfile
@@ -812,103 +650,10 @@
     tags:
     - ChiliBowl
 
-
-- type: entity
-  name: cold chili
-  parent: N14FoodBowlBase
-  id: N14FoodSoupChiliCold
-  description: This slush is barely a liquid!
-  components:
-  - type: FlavorProfile
-    flavors:
-      - minty
-      - tomato
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: chili-cold
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-          - ReagentId: Nutriment
-            Quantity: 8
-          - ReagentId: Vitamin
-            Quantity: 4
-  - type: Tag
-    tags:
-    - ChiliBowl
-
-- type: entity
-  name: chili con carnival
-  parent: N14FoodBowlBase
-  id: N14FoodSoupChiliClown
-  description: A delicious stew of meat, chilies, and salty, salty clown tears.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - spicy
-      - tomato
-      - bad-joke
-      - parents
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: chili-clown
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-          - ReagentId: Nutriment
-            Quantity: 6
-          - ReagentId: CapsaicinOil
-            Quantity: 5
-          - ReagentId: Vitamin
-            Quantity: 4
-          - ReagentId: Allicin
-            Quantity: 3
-  - type: Tag
-    tags:
-    - ChiliBowl
-
-- type: entity
-  name: monkey's delight
-  parent: N14FoodBowlBase
-  id: N14FoodSoupMonkey
-  description: A delicious soup with hunks of monkey meat simmered to perfection, in a broth that tastes faintly of bananas.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - jungle
-      - banana
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: monkeydelight
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-          - ReagentId: Nutriment
-            Quantity: 10
-          - ReagentId: Vitamin
-            Quantity: 5
-          - ReagentId: TableSalt
-            Quantity: 1
-          - ReagentId: Blackpepper
-            Quantity: 1
-  - type: Tag
-    tags:
-    - Meat
-    - Soup
-
 - type: entity
   name: tato soup #N14 change
-  parent: N14FoodBowlBase
-  id: N14FoodSoupTato
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupTato
   description: This really doesn't taste good. But it's good for you..? #N14 change
   components:
   - type: FlavorProfile
@@ -938,8 +683,8 @@
 
 - type: entity
   name: eyeball soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupEyeball
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupEyeball
   description: It's looking back at you...
   components:
   - type: FlavorProfile
@@ -964,10 +709,10 @@
     - Meat
     - Soup
 
-- type: entity
+- type: entity #not in the game, placeholder
   name: miso soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupMiso
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupMiso
   description: Salty, fishy soup, best had with ramen.
   components:
   - type: FlavorProfile
@@ -979,7 +724,6 @@
     layers:
     - state: bowl2
     - state: miso
-        #rip milo
   - type: SolutionContainerManager
     solutions:
       food:
@@ -998,8 +742,8 @@
 
 - type: entity
   name: mushroom soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupMushroom
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupMushroom
   description: A delicious and hearty mushroom soup.
   components:
   - type: FlavorProfile
@@ -1020,57 +764,13 @@
             Quantity: 6
           - ReagentId: Water
             Quantity: 5
-          - ReagentId: Milk
+          - ReagentId: N14MilkBrahmin
             Quantity: 5
 
 - type: entity
-  name: beet soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupBeet
-  description: Wait, how do you spell it again..?
-  components:
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: beet
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25
-        reagents:
-          - ReagentId: Nutriment
-            Quantity: 3
-          - ReagentId: Vitamin
-            Quantity: 7
-          - ReagentId: Water
-            Quantity: 10
-# Tastes like borsch, bortsch, borstch, borsh, borshch, borscht.
-
-- type: entity
-  name: red beet soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupBeetRed
-  description: Quite a delicacy.
-  components:
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: redbeet
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-          - ReagentId: Nutriment
-            Quantity: 4
-          - ReagentId: Vitamin
-            Quantity: 6
-# Tastes like beet.
-
-- type: entity
   name: stew
-  parent: N14FoodBowlBase
-  id: N14FoodSoupStew
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupStew
   description: A nice and warm stew. Healthy and strong.
   components:
   - type: FlavorProfile
@@ -1100,34 +800,10 @@
     - Soup
 
 - type: entity
-  name: sweet potato soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupPotato
-  description: Delicious sweet potato in soup form.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - sweet
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: sweetpotato
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 12
-        reagents:
-          - ReagentId: Nutriment
-            Quantity: 4
-          - ReagentId: Vitamin
-            Quantity: 5
-# Tastes like sweet potato.
-
-- type: entity
-  name: french onion soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupOnion
-  description: Good enough to make a grown mime cry.
+  name: onion soup
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupOnion
+  description: The cheese thickens it up nicely.
   components:
   - type: FlavorProfile
     flavors:
@@ -1142,7 +818,7 @@
         maxVol: 10
         reagents:
           - ReagentId: Nutriment
-            Quantity: 1
+            Quantity: 4
           - ReagentId: Vitamin
             Quantity: 5
           - ReagentId: Allicin
@@ -1150,9 +826,9 @@
 
 - type: entity
   name: bisque
-  parent: N14FoodBowlBase
-  id: N14FoodSoupBisque
-  description: A classic entrée from Space France.
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupBisque
+  description: A fish dish that comes from a guy called Franz.
   components:
   - type: FlavorProfile
     flavors:
@@ -1175,57 +851,3 @@
           - ReagentId: Water
             Quantity: 5
 # Tastes like crab.
-
-- type: entity
-  name: electron soup
-  parent: N14FoodBowlBase
-  id: N14FoodSoupElectron
-  description: A gastronomic curiosity of ethereal origin.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - mushrooms
-      - electrons
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: electron
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-          - ReagentId: Nutriment
-            Quantity: 3
-          - ReagentId: Licoxide
-            Quantity: 6
-
-- type: entity
-  name: bungo curry
-  parent: N14FoodBowlBase
-  id: N14FoodSoupBungo
-  description: A spicy vegetable curry made with the humble bungo fruit, Exotic!
-  components:
-  - type: FlavorProfile
-    flavors:
-      - jungle
-  - type: Sprite
-    layers:
-    - state: bowl
-    - state: bungo
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-          - ReagentId: Nutriment
-            Quantity: 6
-          - ReagentId: Vitamin
-            Quantity: 5
-          - ReagentId: CapsaicinOil
-            Quantity: 5
-  - type: Tag
-    tags:
-    - Fruit
-    - Soup
-# Tastes like bungo, hot curry.

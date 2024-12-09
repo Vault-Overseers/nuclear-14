@@ -5,17 +5,25 @@
   description: job-description-ncr-lt
   playTimeTracker: NCROfficer
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: NCR
       min: 72000 # 20 hours
   weight: 10
   startingGear: NCRLTGear
   icon: "JobIconHeadOfSecurity"
+  supervisors: job-supervisors-ncr-lt
   requireAdminNotify: true
   canBeAntag: false
   alwaysUseSpawner: true
-  accessGroups:
+  access:
   - NCR
+  - NCRSGT
+  - NCRMedic
+  - NCRLT
   special:
   - !type:AddComponentSpecial
     components:

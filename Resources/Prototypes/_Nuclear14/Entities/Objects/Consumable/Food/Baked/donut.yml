@@ -2,7 +2,7 @@
 
 - type: entity
   parent: FoodInjectableBase
-  id: N14FoodDonutBase
+  id: N14CookedFoodDonutBase
   abstract: true
   description: Goes great with robust coffee.
   components:
@@ -35,8 +35,8 @@
 
 - type: entity
   name: plain donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutPlain
+  parent: N14CookedFoodDonutBase
+  id: N14CookedFoodDonutPlain
   components:
   - type: FlavorProfile
     flavors:
@@ -46,8 +46,8 @@
 
 - type: entity
   name: plain jelly-donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutJellyPlain
+  parent: N14CookedFoodDonutBase
+  id: N14CookedFoodDonutJellyPlain
   components:
   - type: FlavorProfile
     flavors:
@@ -68,8 +68,8 @@
 
 - type: entity
   name: donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutHomer
+  parent: N14CookedFoodDonutBase
+  id: N14CookedFoodDonutHomer
   components:
   - type: FlavorProfile
     flavors:
@@ -80,25 +80,9 @@
     heldPrefix: pink
 
 - type: entity
-  name: chaos donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutChaos
-  description: Like life, it never quite tastes the same.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - sweet
-      - funny
-      - magical
-      - tingly
-  - type: Sprite
-    state: chaos
-# Tastes like donut, chaos.
-
-- type: entity
   name: meat donut
-  parent: N14FoodDonutBase
-  id: N14oodDonutMeat
+  parent: N14CookedFoodDonutBase
+  id: N14CookedFoodDonutMeat
   description: Tastes as gross as it looks.
   components:
   - type: FlavorProfile
@@ -113,8 +97,8 @@
 
 - type: entity
   name: pink donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutPink
+  parent: N14CookedFoodDonutBase
+  id: N14CookedFoodDonutPink
   description: Goes great with a soy latte.
   components:
   - type: FlavorProfile
@@ -126,19 +110,9 @@
     heldPrefix: pink
 
 - type: entity
-  name: spaceman's donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutSpaceman
-  description: Goes great with a cold beaker of malk.
-  components:
-  - type: Sprite
-    state: purple
-# Tastes like donut, violets.
-
-- type: entity
   name: apple donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutApple
+  parent: N14CookedFoodDonutBase
+  id: N14CookedFoodDonutApple
   description: Goes great with a shot of cinnamon schnapps.
   components:
   - type: FlavorProfile
@@ -151,8 +125,8 @@
 
 - type: entity
   name: caramel donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutCaramel
+  parent: N14CookedFoodDonutBase
+  id: N14CookedFoodDonutCaramel
   description: Goes great with a mug of hot coco.
   components:
   - type: Sprite
@@ -161,8 +135,8 @@
 
 - type: entity
   name: chocolate donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutChocolate
+  parent: N14CookedFoodDonutBase
+  id: N14CookedFoodDonutChocolate
   description: Goes great with a glass of warm milk.
   components:
   - type: FlavorProfile
@@ -181,59 +155,12 @@
           Quantity: 1
 # Tastes like donut, bitterness.
 
-- type: entity
-  name: blorbo donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutBlumpkin
-  description: Goes great with a mug of BLORBO.
-  components:
-  - type: Sprite
-    state: blue
-# Tastes like donut, blorbo.
-
-- type: entity
-  name: bungo donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutBungo
-  description: Goes great with a mason jar of hippie's delight.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - sweet
-      - bungo
-  - type: Sprite
-    state: yellow
-# Tastes like donut, tropical sweetness.
-
-- type: entity
-  name: matcha donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonut
-  description: The L-theanine in this donut is relaxing, yet not euphoric. Goes great with a cup of tea.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - tea
-  - type: Sprite
-    state: olive
-# Tastes like donut, matcha.
-
-- type: entity
-  name: sweet pea donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutSweetpea
-  description: Goes great with a bottle of Bastion Burbon!
-  components:
-  - type: Sprite
-    state: laugh
-# Tastes like donut, fizzy tutti frutti.
-
 # Jelly Donuts
 
 - type: entity
   name: jelly-donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutJellyHomer
+  parent: N14CookedFoodDonutBase
+  id: N14CookedFoodDonutJellyHomer
   description: You jelly?
   components:
   - type: Sprite
@@ -252,8 +179,8 @@
 
 - type: entity
   name: pink jelly-donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutJellyPink
+  parent: N14CookedFoodDonutBase
+  id: N14CookedFoodDonutJellyPink
   description: Goes great with a soy latte.
   components:
   - type: Sprite
@@ -271,28 +198,9 @@
           Quantity: 1
 
 - type: entity
-  name: spaceman's jelly-donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutJellySpaceman
-  description: Goes great with a cold beaker of malk.
-  components:
-  - type: Sprite
-    state: jelly-purple
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
-# Tastes like jelly-donut, violets.
-
-- type: entity
   name: apple jelly-donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutJellyApple
+  parent: N14CookedFoodDonutBase
+  id: N14CookedFoodDonutJellyApple
   description: Goes great with a shot of cinnamon schnapps.
   components:
   - type: Sprite
@@ -313,8 +221,8 @@
 
 - type: entity
   name: caramel jelly-donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutJellyCaramel
+  parent: N14CookedFoodDonutBase
+  id: N14CookedFoodDonutJellyCaramel
   description: Goes great with a mug of hot coco.
   components:
   - type: Sprite
@@ -332,8 +240,8 @@
 
 - type: entity
   name: chocolate jelly-donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutJellyChocolate
+  parent: N14CookedFoodDonutBase
+  id: N14CookedFoodDonutJellyChocolate
   description: Goes great with a glass of warm milk.
   components:
   - type: Sprite
@@ -350,118 +258,3 @@
         - ReagentId: Vitamin
           Quantity: 1
 # Tastes like jelly-donut, bitterness.
-
-- type: entity
-  name: blumpkin jelly-donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutJellyBlumpkin
-  description: Goes great with a mug of soothing drunken blumpkin.
-  components:
-  - type: Sprite
-    state: jelly-blue
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
-  - type: Tag
-    tags:
-    - Fruit
-# Tastes like jelly-donut, blumpkin.
-
-- type: entity
-  name: bungo jelly-donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutJellyBungo
-  description: Goes great with a mason jar of hippie's delight.
-  components:
-  - type: Sprite
-    state: jelly-yellow
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
-  - type: Tag
-    tags:
-    - Fruit # Apparently this is a fruit. Huh.
-# Tastes like jelly-donut, tropical sweetness.
-
-- type: entity
-  name: matcha jelly-donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutJelly
-  description: The L-theanine in this jelly-donut is relaxing, yet not euphoric. Goes great with a cup of tea.
-  components:
-  - type: Sprite
-    state: jelly-olive
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
-# Tastes like jelly-donut, matcha.
-
-- type: entity
-  name: sweet pea jelly-donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutJellySweetpea
-  description: Goes great with a bottle of Bastion Burbon!
-  components:
-  - type: Sprite
-    state: jelly-laugh
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
-# Tastes like jelly-donut, fizzy tutti frutti.
-
-- type: entity
-  name: slugcat jelly-donut
-  parent: N14FoodDonutBase
-  id: N14FoodDonutJellySlugcat
-  description: No holes in this donut in case a suspicious looking pole shows up.
-  components:
-  - type: Sprite
-    state: jelly-slug
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 1
-# Tastes like jelly-donut, fizzy tutti frutti.
-
-# Poison donut
-- type: entity
-  parent: N14FoodDonutPink
-  id: N14FoodDonutPoison
-  suffix: Poison
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Amatoxin
-          Quantity: 10

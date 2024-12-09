@@ -77,6 +77,30 @@
     - suitStorage
 
 - type: entity
+  name: training sword
+  description: A crude wooden sword used for training in melee combat.
+  parent: BaseItem
+  id: N14TrainingSword
+  components:
+  - type: StaminaDamageOnHit
+    damage: 12
+  - type: StaminaDamageOnCollide
+    damage: 8
+  - type: MeleeWeapon
+    wideAnimationRotation: -60
+    attackRate: 1.2
+    damage:
+      types:
+        Blunt: 2
+    soundSwing:
+      collection: N14MediumSwing
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/training_sword.rsi
+    state: icon
+  - type: Item
+    size: Large
+    
+- type: entity
   name: trench club
   parent: BaseItem
   id: N14TrenchClub
