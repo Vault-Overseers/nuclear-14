@@ -44,7 +44,15 @@ job-description-ncr-nco = A non commissioned officer in the NCR military. Lead a
 job-name-ncr-officer = NCR Officer
 job-description-ncr-officer = A local leader in the NCR military. Fulfil your missions by coordinating your military forces in the area.
 job-name-ncr-soldier = NCR Soldier
+<<<<<<< HEAD
 job-description-ncr-soldier = The backbone of any military. Soldiers get stuff done and follow an NCO on missions.
+=======
+job-description-ncr-soldier = The backbone of any military. Soldiers get stuff done and follow a Sergeant on missions.
+job-name-ncr-engineer = NCR Engineer
+job-description-ncr-soldier = The backbone of any squad. Repair equipment, establish defenses, and follow a Sergeant on missions.
+job-name-ncr-ws = NCR Weapon Specialist
+job-description-ncr-ws = The fire support of any squad. Lay down supportive fire, and follow a Sergeant on missions.
+>>>>>>> 8e94faae4d (Tribe vault fixes (#747))
 job-name-ncr-ranger = NCR Ranger
 job-description-ncr-ranger = The most experienced and robust soldiers form part of this elite group of the NCR army, lead troops or act by yourself under the orders of the republic.
 job-name-ncr-ranger-veteran = NCR Ranger Veteran
