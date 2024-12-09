@@ -165,3 +165,31 @@
         path: /Audio/Weapons/bladeslice.ogg
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/ceremonialsword.rsi
+
+- type: entity
+  name: chinese officer sword
+  parent: N14Machete
+  id: N14ChineseSword
+  description: "An impressive double-edged sword used by pre-war chinese officers, this weapon's size and sharpness make you think it could cleave a man in two."
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/chinesesword.rsi
+    quickEquip: false
+    slots:
+    - Belt
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/chinesesword.rsi
+    state: icon
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 20
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 20
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Melee/chinesesword.rsi

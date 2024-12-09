@@ -1,0 +1,24 @@
+- type: entity
+  id: N14CartridgeGauss
+  name: cartridge (2mm EC)
+  parent: BaseCartridgeLightRifle
+  components:
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: GaussLight
+    soundEject:
+      collection: N14RifleCasingEject
+  - type: Tag
+    tags:
+      - Cartridge
+      - N14CartridgeGauss
+  - type: EmitSoundOnLand
+    sound:
+      collection: N14RifleCasingEject
+      params:
+        volume: -1
+  - type: EmitSoundOnCollide
+    sound:
+      collection: N14RifleCasingEject
+      params:
+        volume: -1

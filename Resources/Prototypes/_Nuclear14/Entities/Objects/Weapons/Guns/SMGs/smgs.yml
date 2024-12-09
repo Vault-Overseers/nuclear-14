@@ -441,3 +441,221 @@
         whitelist:
           tags:
             - N14CartridgePistol45
+
+- type: entity
+  name: sten SMG
+  parent: N14WeaponSMGBase
+  id: N14WeaponSMG9mmCanadian
+  description: A simple pre-war canadian submachine gun, chambered in 9mm ammo.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/canadianSMG.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/canadianSMG.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 8.5
+    soundGunshot:
+      collection: N14Pistol9mmGunshot
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 24
+    angleIncrease: 4
+    angleDecay: 16
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -15
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazineSMG9mm
+        insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
+        ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
+        whitelist:
+          tags:
+            - N14MagazineSMG9mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol9
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol9
+
+- type: entity
+  name: douglas advanced SMG
+  parent: N14WeaponSMGBase
+  id: N14WeaponSMG12mmAdvancedCanadian
+  description: An advanced pre-war canadian submachine gun, chambered in 12.7mm ammo.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/canadianadvanceSMG.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/canadianadvanceSMG.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 5
+    soundGunshot:
+      collection: N14Pistol12mmGunshot
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    minAngle: 16
+    maxAngle: 24
+    angleIncrease: 4
+    angleDecay: 16
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
+  - type: GunWieldBonus
+    minAngle: -15
+    maxAngle: -29
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14TopMagazineSMG12mm
+        insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
+        ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14TopMagazineSMG12mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol127
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol127
+
+- type: entity
+  name: chinese advanced SMG
+  parent: N14WeaponSMGBase
+  id: N14WeaponSMG12mmAdvancedChinese
+  description: An advanced pre-war chinese submachine gun intended for special forces, chambered in 12.7mm ammo.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/chineseadvanceSMG.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/chineseadvanceSMG.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 7
+    soundGunshot:
+      collection: N14Pistol12mmGunshot
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    minAngle: 16
+    maxAngle: 24
+    angleIncrease: 4
+    angleDecay: 16
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
+  - type: GunWieldBonus
+    minAngle: -15
+    maxAngle: -29
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14TopMagazineSMG12mm
+        insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
+        ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14TopMagazineSMG12mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol127
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol127
+
+- type: entity
+  name: chinese SMG
+  parent: N14WeaponSMGBase
+  id: N14WeaponSMG10mmChinese
+  description: A chinese fully automatic silenced submachine gun chambered in 10mm.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/chineseSMG.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/chineseSMG.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 7
+    soundGunshot:
+      collection: N14Pistol10mmGunshot
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 28
+    angleIncrease: 6
+    angleDecay: 16
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -15
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazineSMG10mm
+        insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
+        ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
+        whitelist:
+          tags:
+            - N14MagazineSMG10mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol10
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol10
