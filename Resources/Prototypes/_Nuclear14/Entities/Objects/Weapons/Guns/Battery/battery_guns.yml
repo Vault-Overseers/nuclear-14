@@ -119,6 +119,48 @@
     backStrength: 6
 
 - type: entity
+  name: makeshift laser revolver
+  parent: N14BaseWeaponPowerCellSmall
+  id: N14WeaponLaserRevolver
+  description: A basic makeshift energy-based laser revolver that fires concentrated beams of light.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_revolver.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_revolver.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellHigh
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellHigh
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+    - 0,0,1,1
+  - type: Gun
+    fireRate: 1.5
+    soundGunshot:
+      collection: N14LaserPistolGunshot
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
   name: plasma pistol
   parent: N14BaseWeaponPowerCellSmall
   id: N14WeaponPlasmaPistol
@@ -433,6 +475,54 @@
       shader: unshaded
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellHigh
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellHigh
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      collection: N14LaserAutoRifleGunshot
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: FollowDistance
+    backStrength: 5
+
+- type: entity
+  name: makeshift laser rifle
+  parent: N14BaseWeaponPowerCellMedium
+  id: N14WeaponLaserRifleMakeshift
+  description: A sturdy makeshift laser rifle. Emits beams of concentrated light to damage targets.
+  components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/makeshift_laser_rifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/makeshift_laser_rifle.rsi
     quickEquip: false
     slots:
     - Back
