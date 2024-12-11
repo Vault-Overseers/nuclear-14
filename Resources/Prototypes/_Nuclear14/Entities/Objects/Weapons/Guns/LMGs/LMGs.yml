@@ -1,8 +1,8 @@
 - type: entity
   name: automatic rifle
   parent: BaseWeaponRifle
-  id: N14WeaponAutoRifle
-  description: A high caliber, long, and heavy machine gun of the pre-war, chambered in the powerful 308.
+  id: N14WeaponLMGAutoRifle
+  description: A high caliber, low-capacity heavy machine gun of the pre-war, chambered in the powerful .308 ammunition.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/autorifle.rsi
@@ -14,8 +14,10 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    size: Huge
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/autorifle.rsi
   - type: Wieldable
+  - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -59
@@ -49,20 +51,147 @@
           tags:
             - N14Cartridge308Rifle
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: HeldSpeedModifier
   - type: MagazineVisuals
     magState: mag
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
+  name: canadian HMG
+  parent: BaseWeaponRifle
+  id: N14WeaponHMGcanadian
+  description: A powerfull belt feed machine gun commonly used by the pre-war canadian army, chambered in 7.62mm ammunition.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/canadianhmg.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/canadianhmg.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Huge
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/canadianhmg.rsi
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -59
+  - type: Gun
+    minAngle: 24
+    maxAngle: 60
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 6
+    soundGunshot:
+      collection: N14AutoRifleGunshot
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine762AmmoBelt
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14Magazine762Belt
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge762Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge762Rifle
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
+  name: chinese LMG
+  parent: BaseWeaponRifle
+  id: N14WeaponLMGchinese
+  description: A pre-war chinese light machine gun, chambered in 7.62mm ammunition.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/chineselmg.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/chineselmg.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Huge
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/chineselmg.rsi
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -59
+  - type: Gun
+    minAngle: 24
+    maxAngle: 60
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 5
+    soundGunshot:
+      collection: N14AutoRifleGunshot
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine762AmmoBelt
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14Magazine762Belt
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge762Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge762Rifle
+  - type: HeldSpeedModifier
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: FollowDistance
+    backStrength: 6
 
 - type: entity
   name: light machine gun
   parent: BaseWeaponRifle
   id: N14WeaponLMG
-  description: A light machine gun designed by the NCR for their heavy troops, chambered in 5.56.
+  description: A light machine gun designed by the NCR for their heavy troops, chambered in 5.56 ammo.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/lmg.rsi
@@ -74,8 +203,10 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    size: Huge 
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/lmg.rsi
   - type: Wieldable
+  - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -20
     maxAngle: -55
@@ -109,11 +240,73 @@
           tags:
             - N14Cartridge556Rifle
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: HeldSpeedModifier
   - type: MagazineVisuals
     magState: mag
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
+  name: bren machine gun
+  parent: BaseWeaponRifle
+  id: N14WeaponLMGBren
+  description: A high-caliber, high-damage, heavy machine gun mass-produced by the RCMP, chambered in the powerful .308 ammunition.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/bren.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/bren.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Huge
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/bren.rsi
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -59
+  - type: Gun
+    minAngle: 24
+    maxAngle: 60
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 4
+    soundGunshot:
+      collection: N14AutoRifleGunshot
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine308RifleLong
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14Magazine308RifleLong
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge308Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge308Rifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: FollowDistance
+    backStrength: 6

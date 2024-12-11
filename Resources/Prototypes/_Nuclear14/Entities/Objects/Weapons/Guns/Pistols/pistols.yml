@@ -121,6 +121,58 @@
     backStrength: 6
 
 - type: entity
+  name: N14BaseInternalPistol
+  parent: BaseItem
+  id: N14BaseWeaponInternalMagPistol
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+    - 0,1,0,1
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Gun
+    minAngle: 1
+    maxAngle: 7
+    angleIncrease: 0.5
+    angleDecay: 4
+    fireRate: 6
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Pistols/pistol_cock.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
   name: 9mm Pistol
   parent: N14BaseWeaponPistol
   id: N14WeaponPistol9mm
