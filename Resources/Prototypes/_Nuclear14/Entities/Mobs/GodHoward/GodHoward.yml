@@ -5,37 +5,37 @@
   description: "'It just works'."
   components:
   - type: Sprite
-    drawdepth: mobs
-	layers:
-	- map: ["enum.DamageStateVisualLayers.Base"]
-	  sprite: _Nuclear14/Mobs/God Howard/howard.png
-	  state: howard
-	  shader: unshaded
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      sprite: _Nuclear14/Mobs/God Howard/howard.png
+      state: howard
+      shader: unshaded
   - type: Fixtures
-	fixtures:
-		fix1:
-			shape:
-				!type:PhysShapeCircle
-					radius: 0.9
-			density: 40
-			mask:
-			- MobMask
-			layer:
-			- MobLayer
+    fixtures:
+        fix1:
+            shape:
+                !type:PhysShapeCircle
+                    radius: 0.9
+            density: 40
+            mask:
+            - MobMask
+            layer:
+            - MobLayer
   - type: MobThresholds
-	thresholds:
-		0: alive
-		100: dead
+    thresholds:
+        0: alive
+        100: dead
   - type: MeleeWeapon
-	hidden: true
-	soundHit:
-		path: _Audio/Admin/Smites/you_probably_should_upgrade.ogg
-	angle: 0
-	animation: WeaponArcFist
-	damage:
-		types:
-			Slash: 35
-	range: 4
+    hidden: true
+    soundHit:
+        path: _Audio/Admin/Smites/you_probably_should_upgrade.ogg
+    angle: 0
+    animation: WeaponArcFist
+    damage:
+        types:
+            Slash: 35
+    range: 4
   - type: MovementSpeedModifier
-	baseWalkSpeed: 8
-	baseSprintSpeed: 8
+    baseWalkSpeed: 8
+    baseSprintSpeed: 8
