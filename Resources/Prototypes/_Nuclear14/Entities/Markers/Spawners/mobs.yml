@@ -1,4 +1,4 @@
-# Passive Animals
+#MARK: Passive Animals
 - type: entity
   name: Brahmin Spawner
   id: N14SpawnMobBrahmin
@@ -59,7 +59,82 @@
     prototypes:
       - N14MobRadstag
 
-# Hostile Animals
+- type: entity
+  name: Nuclear Beaver Spawner
+  id: N14SpawnMobNuclearBeaver
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Animals/beaver.rsi
+        state: beaver
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobNuclearBeaver
+
+- type: entity
+  name: Nuclear Opossum Spawner
+  id: N14SpawnMobNuclearOpossum
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Animals/opossum.rsi
+        state: opossum
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobNuclearOpossum
+
+- type: entity
+  name: Nuclear Rabbit Spawner
+  id: N14SpawnMobNuclearRabbit
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Animals/rabbit.rsi
+        state: rabbit
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobNuclearRabbit
+
+- type: entity
+  name: Opossum Spawner
+  id: N14SpawnMobOpossum
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Animals/opossum.rsi
+        state: normopossum
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobOpossum
+
+- type: entity
+  name: Normal Rabbit Spawner
+  id: N14SpawnMobNormRabbit
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Animals/rabbit.rsi
+        state: normrabbit
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobRabbit
+      
+#MARK: Hostile Animals
 - type: entity
   name: Molerat Spawner
   id: N14SpawnMobMolerat
@@ -210,7 +285,7 @@
     prototypes:
       - N14MobYaoguai
 
-# Scaley Animals
+#MARK: Scaley Animals
 - type: entity
   name: Deathclaw Spawner
   id: N14SpawnMobDeathclaw
@@ -256,7 +331,7 @@
     prototypes:
       - N14MobDeathclawMetal
       
-# Insects
+#MARK: Insects
 - type: entity
   name: Bloatfly Spawner
   id: N14SpawnMobBloatfly
@@ -559,7 +634,7 @@
     prototypes:
       - N14MobRaiderEnforcerMelee
 
-# Ghoul
+#MARK: Ghoul
 - type: entity
   name: Feral Ghoul Spawner
   id: N14SpawnMobFeralGhoul
@@ -620,7 +695,7 @@
     prototypes:
       - N14MobGhoulMaypole
 
-# Robots
+#MARK: Robots
 - type: entity
   name: Assaultron Spawner
   id: N14SpawnMobAssaultron
