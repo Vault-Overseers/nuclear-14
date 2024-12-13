@@ -1,0 +1,40 @@
+- type: entity
+  name: God Howard
+  id: N14GodHoward
+  parent: N14MobBaseHostile
+  description: "'It just works'."
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: howard
+      sprite: _Nuclear14/Mobs/GodHoward/GodHoward.rsi
+  - type: Fixtures
+    fixtures:
+        fix1:
+            shape:
+                !type:PhysShapeCircle
+                    radius: 0.9
+            density: 40
+            mask:
+            - MobMask
+            layer:
+            - MobLayer
+  - type: MobThresholds
+    thresholds:
+        0: alive
+        100: dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Admin/Smites/you_probably_should_upgrade.ogg
+    angle: 0
+    animation: WeaponArcFist
+    damage:
+        types:
+            Slash: 35
+    range: 4
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 8
+    baseSprintSpeed: 8
