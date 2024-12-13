@@ -1,14 +1,37 @@
-namespace Content.Server.Standing;
+using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
-[RegisterComponent]
+namespace Content.Shared.Standing;
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class LayingDownComponent : Component
 {
-    [DataField]
-    public float DownedSpeedMultiplier = 0.15f;
+    [DataField, AutoNetworkedField]
+    public TimeSpan StandingUpTime = TimeSpan.FromSeconds(1);
 
-    [DataField]
-    public TimeSpan Cooldown = TimeSpan.FromSeconds(2.5f);
+    [DataField, AutoNetworkedField]
+    public float LyingSpeedModifier = 0.35f,
+        CrawlingUnderSpeedModifier = 0.5f;
 
-    [DataField]
-    public TimeSpan NextToggleAttempt = TimeSpan.Zero;
+    [DataField, AutoNetworkedField]
+    public bool AutoGetUp;
+
+    /// <summary>
+    ///     If true, the entity is choosing to crawl under furniture. This is purely visual and has no effect on physics.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool IsCrawlingUnder = false;
+
+    [DataField, AutoNetworkedField]
+    public int NormalDrawDepth = (int) DrawDepth.DrawDepth.Mobs,
+        CrawlingUnderDrawDepth = (int) DrawDepth.DrawDepth.SmallMobs;
+}
+
+[Serializable, NetSerializable]
+public sealed class ChangeLayingDownEvent : CancellableEntityEventArgs;
+
+[Serializable, NetSerializable]
+public sealed class CheckAutoGetUpEvent(NetEntity user) : CancellableEntityEventArgs
+{
+    public NetEntity User = user;
 }
