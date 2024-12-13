@@ -321,7 +321,7 @@ public sealed class RadioDeviceSystem : EntitySystem
         var micEnabled = radio.Comp.Enabled;
         var speakerEnabled = speakerComp?.Enabled ?? false;
         var state = new HandheldRadioBoundUIState(micEnabled, speakerEnabled, frequency);
-        _ui.TrySetUiState(radio, HandheldRadioUiKey.Key, state);
+        _ui.SetUiState(radio, HandheldRadioUiKey.Key, state);
     }
 
     #endregion
