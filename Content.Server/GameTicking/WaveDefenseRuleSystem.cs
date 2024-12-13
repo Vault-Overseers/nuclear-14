@@ -17,6 +17,8 @@ using System.Linq;
 using Content.Server.Cargo.Components;
 using Content.Server.GameTicking.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.GameTicking.Components;
+
 
 namespace Content.Server.GameTicking.Rules;
 
