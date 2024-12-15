@@ -25,8 +25,8 @@
       # - !type:LuckModifierReagent # Nuclear 14 Example of adding modifier to Chemicals
       #   luckModifier: 1
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.15
-        sprintSpeedModifier: 1.15
+        walkSpeedModifier: 1.1
+        sprintSpeedModifier: 1.1
       - !type:GenericStatusEffect
         key: SeeingRainbows
         component: SeeingRainbows
@@ -34,12 +34,11 @@
         time: 5
         refresh: false
       - !type:HealthChange
-        conditions:
-        - !type:ReagentThreshold
-          min: 30
         damage:
           types:
-            Asphyxiation: 1
+            Poison: 0.1
+          groups:
+            Airloss: 0.2
       - !type:Jitter
       - !type:GenericStatusEffect
         key: Stun
@@ -73,16 +72,15 @@
     Narcotic:
       effects:
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.40
-        sprintSpeedModifier: 1.40
+        walkSpeedModifier: 1.20
+        sprintSpeedModifier: 1.20
       - !type:Drunk
       - !type:HealthChange
-        conditions:
-        - !type:ReagentThreshold
-          min: 10
         damage:
           types:
-            Asphyxiation: 1.3
+            Poison: 0.25
+          groups:
+            Airloss: 0.5
       - !type:Jitter
       - !type:GenericStatusEffect
         key: Stun
@@ -191,6 +189,12 @@
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.15
+          groups:
+            Airloss: 0.3
       - !type:Jitter
       - !type:MovespeedModifier
         walkSpeedModifier: 1.1
