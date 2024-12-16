@@ -34,9 +34,6 @@ public sealed class DrainSystem : SharedDrainSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    private float DrainRunPeriod = 1f; // 1 second to make multiplying by DrainFrequency correct
-    private float Accumulator;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -44,6 +41,13 @@ public sealed class DrainSystem : SharedDrainSystem
         SubscribeLocalEvent<DrainComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<DrainComponent, AfterInteractUsingEvent>(OnInteract);
         SubscribeLocalEvent<DrainComponent, DrainDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<DrainComponent, ComponentInit>(OnComponentInit);
+    }
+
+    private void OnComponentInit(EntityUid uid, DrainComponent component, ComponentInit args)
+    {
+        // Randomize accumulator on init to try to spread out all drain updates as much as possible.
+        component.Accumulator = _random.NextFloat() * component.DrainFrequency;
     }
 
     private void AddEmptyVerb(Entity<DrainComponent> entity, ref GetVerbsEvent<Verb> args)
@@ -111,14 +115,7 @@ public sealed class DrainSystem : SharedDrainSystem
 
     public override void Update(float frameTime)
     {
-        Accumulator += frameTime;
-        if (Accumulator < DrainRunPeriod)
-        {
-            return;
-        }
-        Accumulator -= DrainRunPeriod;
-
-        base.Update(DrainRunPeriod);
+        base.Update(frameTime);
         var managerQuery = GetEntityQuery<SolutionContainerManagerComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
         var puddleQuery = GetEntityQuery<PuddleComponent>();
@@ -127,6 +124,13 @@ public sealed class DrainSystem : SharedDrainSystem
         var query = EntityQueryEnumerator<DrainComponent>();
         while (query.MoveNext(out var uid, out var drain))
         {
+            drain.Accumulator += frameTime;
+            if (drain.Accumulator < drain.DrainFrequency)
+            {
+                continue;
+            }
+            drain.Accumulator -= drain.DrainFrequency;
+
             // Disable ambient sound from emptying manually
             if (!drain.AutoDrain)
             {
