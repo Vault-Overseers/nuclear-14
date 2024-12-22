@@ -1,8 +1,9 @@
+#MARK: `BaseItem`
 - type: entity
   parent: BaseItem
   id: N14JunkItemBase
   name: junk
-  description: it's junk!
+  description: It's junk!
   abstract: true
   components:
   - type: Sprite
@@ -14,9 +15,9 @@
 
 - type: entity
   parent: N14JunkItemBase
-  id: N14JunkItemBaseGlass # Parent anything made from glass to this
+  id: N14JunkItemBaseBreak # Breakable glass parent
   name: junk
-  description: it's junk!
+  description: It's junk!
   abstract: true
   components:
   - type: Damageable
@@ -62,9 +63,34 @@
     - Trash
   - type: WelderRefinable
     refineResult:
-    - SheetGlass1
+    - id: SheetGlass1
   - type: PhysicalComposition
-    Glass: 50
+  materialComposition:
+      Glass: 50
+
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkItemBaseGlass # Parent anything made from glass to this.
+  abstract: true
+  components:
+  - type: WelderRefinable
+    refineResult:
+    - id: SheetGlass1
+  - type: PhysicalComposition
+  materialComposition:
+      Glass: 50
+
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkItemBaseWood # Parent anything made from wood to this.
+  abstract: true
+  components:
+  - type: WelderRefinable
+    refineResult:
+    - id: MaterialWoodPlank1
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 50
 
 - type: entity
   parent: N14JunkItemBase
@@ -73,7 +99,7 @@
   components:
   - type: WelderRefinable
     refineResult:
-    - SheetPlastic1
+    - id: SheetPlastic1
   - type: PhysicalComposition
     materialComposition:
       Plastic: 50
@@ -85,10 +111,34 @@
   components:
   - type: WelderRefinable
     refineResult:
-    - SheetSteel1
+    - id: SheetSteel1
   - type: PhysicalComposition
     materialComposition:
       Steel: 50
+
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkItemBaseAluminum # Parent anything made from aluminum to this.
+  abstract: true
+  components:
+  - type: WelderRefinable
+    refineResult:
+    - id: N14IngotAluminum1
+  - type: PhysicalComposition
+    materialComposition:
+      Aluminum: 50
+
+- type: entity
+  parent: N14JunkItemBase
+  id: N14JunkItemBaseLead # Parent anything made from lead to this.
+  abstract: true
+  components:
+  - type: WelderRefinable
+    refineResult:
+    - id: N14IngotLead1
+  - type: PhysicalComposition
+    materialComposition:
+      Lead: 50
 
 - type: entity
   parent: [N14JunkItemBase, DrinkBottlePlasticBaseFull]
@@ -97,13 +147,13 @@
   components:
   - type: WelderRefinable
     refineResult:
-    - SheetPlastic1
+    - id: SheetPlastic1
   - type: PhysicalComposition
     materialComposition:
       Plastic: 50
 
 # TODO: Give all items in orGroup: "JunkItem" material composition they can be "welded", "wrenched" or "pried" into
-# Products and Random Bits
+#MARK: Products 'n" Bits
 - type: entity
   parent: N14JunkItemBaseContainer
   id: N14JunkAbraxoCleaner
@@ -120,10 +170,10 @@
           Quantity: 50
   - type: WelderRefinable
     refineResult:
-    - MaterialCardboard2
+    - id: SheetPlastic1
   - type: PhysicalComposition
     materialComposition:
-      Cardboard: 100
+      Plastic: 100
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -152,6 +202,10 @@
   components:
   - type: Sprite
     state: coffeepot
+  - type: SolutionContainerManager
+    solutions:
+      coffeepot:
+        maxVol: 100
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -161,9 +215,18 @@
   components:
   - type: Sprite
     state: cookpot
+  - type: Tag
+    tags:
+    - JunkItem
+    - Trash
+    - CookPot
+  - type: SolutionContainerManager
+    solutions:
+      cookpot:
+        maxVol: 100
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseWood
   id: N14JunkCrutch
   name: crutch
   description: An old wooden crutch.
@@ -179,6 +242,11 @@
   components:
   - type: Sprite
     state: duct_tape
+  - type: Tag
+    tags:
+    - JunkItem
+    - Trash
+    - DuctTape
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -190,17 +258,94 @@
     state: iron
   - type: WelderRefinable
     refineResult:
-    - SheetSteel1
-    - SheetSteel1
+    - id: SheetSteel1
+      amount: 1
+      maxAmount: 3
+      prob: 0.5
+      orGroup: Metal
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: [ N14JunkItemBaseAluminum , BoxCardboard ]
   id: N14JunkLunchbox
   name: lunchbox
   description: A small vault-tec branded lunchbox.
   components:
   - type: Sprite
     state: lunchbox
+  - type: StorageFill
+    contents:
+      - id: DrinkWaterBottleFull
+        orGroup: Drink
+        prob: 0.6
+      - id: N14DrinkNukaCola
+        orGroup: Drink
+        prob: 0.4
+      - id: N14DrinkNukaColaYellow
+        orGroup: Drink
+        prob: 0.3
+      - id: N14DrinkNukaColaCherry
+        orGroup: Drink
+        prob: 0.2
+      - id: N14DrinkNukaColaGrape
+        orGroup: Drink
+        prob: 0.2
+      - id: N14DrinkNukaColaOrange
+        orGroup: Drink
+        prob: 0.2
+      - id: N14DrinkNukaColaWild
+        orGroup: Drink
+        prob: 0.1
+      - id: N14DrinkNukaColaQuartz
+        orGroup: Drink
+        prob: 0.1
+      - id: N14DrinkNukaColaVictory
+        orGroup: Drink
+        prob: 0.05
+      - id: N14DrinkNukaColaQuantum
+        orGroup: Drink
+        prob: 0.01
+      - id: N14FoodInstamash
+        orGroup: Food
+        prob: 0.03
+      - id: N14FoodFancyladssnackcakes
+        orGroup: Food
+        prob: 0.02
+      - id: N14FoodBubblegum
+        orGroup: Food
+        prob: 0.05
+      - id: N14FoodCram
+        orGroup: Food
+        prob: 0.03
+      - id: N14FoodDandyboyapples
+        orGroup: Food
+        prob: 0.02
+      - id: N14FoodDinki-Di # funny dogfood
+        orGroup: Food
+        prob: 0.03
+      - id: N14FoodPorkBeans
+        orGroup: Food
+        prob: 0.02
+      - id: N14FoodSalisburysteak
+        orGroup: Food
+        prob: 0.02
+      - id: N14FoodSugarbombs
+        orGroup: Food
+        prob: 0.03
+      - id: N14FoodYumyumdeviledeggs
+        orGroup: Food
+        prob: 0.04
+      - id: FoodBakedCookie
+        orGroup: Food
+        prob: 0.03
+      - id: FoodBakedCookieRaisin
+        orGroup: Food
+        prob: 0.03
+      - id: N14JunkToyNukaTruck
+        orGroup: Toy
+        prob: 0.06
+      - id: N14JunkToyRacecar
+        orGroup: Toy
+        prob: 0.06
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -210,6 +355,10 @@
   components:
   - type: Sprite
     state: teapot
+  - type: SolutionContainerManager
+    solutions:
+      teapot:
+        maxVol: 100
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -230,7 +379,7 @@
     state: tincan
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBaseAluminum
   id: N14JunkToaster
   name: toaster
   description: A pre-war toaster. Insert bread.
@@ -239,7 +388,7 @@
     state: toaster
 
 - type: entity
-  parent: N14JunkItemBasePlastic
+  parent: N14JunkItemBaseLead
   id: N14JunkToyNukaTruck
   name: toy Nuka-Cola truck
   description: An old Nuka-Cola truck toy.
@@ -248,7 +397,7 @@
     state: toy_Nuka_truck
 
 - type: entity
-  parent: N14JunkItemBasePlastic
+  parent: N14JunkItemBaseLead
   id: N14JunkToyRacecar
   name: toy race car
   description: An old toy race car.
@@ -307,6 +456,9 @@
   components:
   - type: Sprite
     state: wonderglue
+  - type: Tag
+    tags:
+    - WonderGlue
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -315,7 +467,7 @@
           Quantity: 25
 
 
-# Gun Parts
+#MARK: Gun Parts
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsAction
@@ -324,15 +476,21 @@
   components:
   - type: Sprite
     state: action
+  - type: Tag
+    tags:
+    - Action
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBaseAluminum
   id: N14JunkGunpartsAdvancedFrame
   name: gun frame (part)
   description: An advanced gun frame.
   components:
   - type: Sprite
     state: advancedframe
+  - type: Tag
+    tags:
+    - N14AdvancedFrame
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -342,6 +500,9 @@
   components:
   - type: Sprite
     state: barrel
+  - type: Tag
+    tags:
+    - Barrel
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -351,6 +512,9 @@
   components:
   - type: Sprite
     state: bolt
+  - type: Tag
+    tags:
+    - Bolt
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -360,6 +524,9 @@
   components:
   - type: Sprite
     state: gunframe
+  - type: Tag
+    tags:
+    - GunFrame
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -369,6 +536,9 @@
   components:
   - type: Sprite
     state: pistolframe
+  - type: Tag
+    tags:
+    - PistolFrame
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -378,6 +548,9 @@
   components:
   - type: Sprite
     state: receiver
+  - type: Tag
+    tags:
+    - Receiver
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -387,6 +560,9 @@
   components:
   - type: Sprite
     state: recoilcomp
+  - type: Tag
+    tags:
+    - RecoilComp
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -396,6 +572,9 @@
   components:
   - type: Sprite
     state: rifleframe
+  - type: Tag
+    tags:
+    - RifleFrame
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -405,6 +584,9 @@
   components:
   - type: Sprite
     state: riflestock
+  - type: Tag
+    tags:
+    - RifleStock1
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -414,6 +596,9 @@
   components:
   - type: Sprite
     state: scope
+  - type: Tag
+    tags:
+    - RifleScope
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -423,6 +608,9 @@
   components:
   - type: Sprite
     state: stock
+  - type: Tag
+    tags:
+    - Stock
 
 - type: entity
   parent: N14JunkItemBase
@@ -432,6 +620,9 @@
   components:
   - type: Sprite
     state: stockwood
+  - type: Tag
+    tags:
+    - StockWood
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -441,6 +632,9 @@
   components:
   - type: Sprite
     state: trigger
+  - type: Tag
+    tags:
+    - Trigger
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -450,6 +644,9 @@
   components:
   - type: Sprite
     state: weapon_parts_1
+  - type: Tag
+    tags:
+    - WeaponParts1
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -459,20 +656,26 @@
   components:
   - type: Sprite
     state: weapon_parts_2
+  - type: Tag
+    tags:
+    - WeaponParts2
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBaseAluminum
   id: N14JunkGunpartsWeaponParts3
   name: energy weapon parts
   description: A collection of broken weapon parts.
   components:
   - type: Sprite
     state: weapon_parts_3
+  - type: Tag
+    tags:
+    - WeaponParts3
 
 
-# Components
+#MARK: Components
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBasePlastic
   id: N14JunkComponentBoard1
   name: circuit board
   description: A silver looking circuit board.
@@ -481,7 +684,7 @@
     state: board_1
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBasePlastic
   id: N14JunkComponentBoard2
   name: circuit board
   description: A gold looking circuit board.
@@ -490,7 +693,7 @@
     state: board_2
 
 - type: entity
-  parent: N14JunkItemBaseMetal
+  parent: N14JunkItemBasePlastic
   id: N14JunkComponentBoard3
   name: circuit board
   description: A green looking circuit board.
@@ -499,7 +702,7 @@
     state: board_3
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentBulb1
   name: bulb
   description: A tiny bulb.
@@ -508,7 +711,7 @@
     state: bulb_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentBulb2
   name: bulb
   description: A double bulb.
@@ -517,7 +720,7 @@
     state: bulb_2
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentBulb3
   name: bulb
   description: A large bulb.
@@ -526,7 +729,7 @@
     state: bulb_3
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseMetal
   id: N14JunkComponentBuzzer
   name: buzzer
   description: An electronic buzzer.
@@ -535,7 +738,7 @@
     state: buzzer
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentCapacitor1
   name: capacitor
   description: An electrolytic capacitor.
@@ -544,16 +747,19 @@
     state: capacitor_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentCapacitor2
   name: capacitor
   description: A ceramic type capacitor.
   components:
   - type: Sprite
     state: capacitor_2
+  - type: Tag
+    tags:
+    - Capacitor2
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentCapacitor3
   name: capacitor
   description: A paper type capacitor.
@@ -562,7 +768,7 @@
     state: capacitor_3
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentDiode1
   name: diode
   description: An old vacuum diode.
@@ -571,16 +777,19 @@
     state: diode_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentDiode2
   name: diode
   description: A more advanced zener diode.
   components:
   - type: Sprite
     state: diode_2
+  - type: Tag
+    tags:
+    - Diode2
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentDiode3
   name: diode
   description: A standard diode.
@@ -589,16 +798,19 @@
     state: diode_3
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentMainboard
   name: mainframe board
   description: A sophisticated circuit board
   components:
   - type: Sprite
     state: frame
+  - type: Tag
+    tags:
+    - Mainboard
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentFuse1
   name: fuse
   description: A large capacity, slow blow fuse.
@@ -607,7 +819,7 @@
     state: fuse_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentFuse2
   name: fuse
   description: A small capacity, fast blow fuse.
@@ -616,34 +828,59 @@
     state: fuse_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseMetal
   id: N14JunkComponentGearLarge
   name: large gear
   description: A large mechanical gear.
   components:
   - type: Sprite
     state: gear_large
+  - type: Tag
+    tags:
+    - JunkItem
+    - Trash
+    - Gear
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseMetal
   id: N14JunkComponentGearSmall
   name: small gear
   description: A small mechanical gear.
   components:
   - type: Sprite
     state: gear_small
+  - type: Tag
+    tags:
+    - JunkItem
+    - Trash
+    - GearSmall
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
   id: N14JunkComponentIgniter
   name: igniter
   description: A small ignition device. Apply power for a spark.
   components:
   - type: Sprite
     state: igniter
+  - type: Tag
+    tags:
+    - N14Igniter
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseGlass
+  id: N14JunkComponentElectronic
+  abstract: true
+  components:
+  - type: Sprite
+    state: resistor_1
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Circuitry: 20
+
+- type: entity
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentResistor1
   name: resistor
   description: A low resistance resistor.
@@ -652,16 +889,19 @@
     state: resistor_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentResistor2
   name: resistor
   description: A medium resistance resistor.
   components:
   - type: Sprite
     state: resistor_2
+  - type: Tag
+    tags:
+    - Resistor2
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentResistor3
   name: resistor
   description: A high resistance resistor.
@@ -670,25 +910,33 @@
     state: resistor_3
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBaseMetal
   id: N14JunkComponentScrew
   name: screw
   description: Aw screw it!
   components:
   - type: Sprite
     state: screw
+  - type: Tag
+    tags:
+    - JunkItem
+    - Trash
+    - Screw
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentSensor
   name: sensor board
   description: A sophisticated sensor board.
   components:
   - type: Sprite
     state: sensor
+  - type: Tag
+    tags:
+    - Sensor
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentSensorModule
   name: sensor module
   description: An advanced sensor module.
@@ -697,16 +945,19 @@
     state: sensor_module
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkItemBasePlastic
   id: N14JunkComponentSwitch
   name: sensor module
   description: An electronics switch.
   components:
   - type: Sprite
     state: switch_1
+  - type: Tag
+    tags:
+    - Switch
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentTransistor1
   name: transistor
   description: A FET or not-a-FET. That is the question.
@@ -715,16 +966,19 @@
     state: transistor_1
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentTransistor2
   name: transistor
   description: A bipolar junction transistor.
   components:
   - type: Sprite
     state: transistor_2
+  - type: Tag
+    tags:
+    - Transistor2
 
 - type: entity
-  parent: N14JunkItemBase
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentTransistor3
   name: transistor
   description: A junction FET.
