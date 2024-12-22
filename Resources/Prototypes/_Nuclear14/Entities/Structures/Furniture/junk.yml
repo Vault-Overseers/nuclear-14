@@ -52,8 +52,6 @@
   components:
   - type: Damageable
     damageModifierSet: Metallic
-  - type: Physics
-    canCollide: False
   - type: Destructible
     thresholds:
     - trigger:
@@ -120,6 +118,16 @@
   - type: Sprite
     state: junk_table
 
+- type: entity
+  parent: N14JunkWoodBase
+  id: N14JunkBench
+  name: broken bench
+  description: If only I could have rested here. Junk.
+  components:
+  - type: Sprite
+    state: junk_bench
+    noRot: true
+
 # Metal Junk
 - type: entity
   parent: N14JunkMetalBase
@@ -140,6 +148,17 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14ScrapElectronic1:
+           min: 1
+           max: 3
+          N14ScrapSteel1:
+           min: 2
+           max: 4
+          N14ScrapCopper1:
+           min: 1
+           max: 2
   - type: Fixtures
     fixtures:
       fix1:
@@ -217,6 +236,43 @@
     state: junk_urinal
 
 - type: entity
+  parent: SeatBase
+  id: N14JunkToilet
+  name: broken toilet
+  description: Once a porcelain throne. Now it's junk.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Furniture/junk.rsi
+    state: junk_toilet
+    drawdepth: Overdoors
+  - type: SecretStash
+    secretPartName: secret-stash-part-toilet
+
+- type: entity
+  parent: N14JunkMetalBase
+  id: N14JunkShower
+  name: broken shower
+  description: No showering here, it's junk.
+  components:
+  - type: Sprite
+    state: junk_shower
+    noRot: true
+    drawdepth: Overdoors
+
+- type: entity
+  parent: N14JunkMetalBase
+  id: N14JunkSink
+  name: broken sink
+  description: This basin won't hold water anymore.
+  components:
+  - type: Sprite
+    state: junk_sink
+    noRot: true
+    drawdepth: Overdoors
+
+- type: entity
   parent: Mirror
   id: N14JunkMirror
   name: broken mirror
@@ -237,3 +293,54 @@
     state: junk_clock
     drawdepth: Overdoors
   - type: WallMount
+
+#Tires
+- type: entity
+  parent: N14JunkMetalBase #for the moment
+  id: N14JunkTire1
+  name: stack of tires
+  description: A stack of old, unusable tires.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Decoration/tires.rsi
+    state: junktire1
+
+- type: entity
+  parent: N14JunkMetalBase #for the moment
+  id: N14JunkTire2
+  name: a pile of tires
+  description: A pile of old, unusable tires spread on the ground.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Decoration/tires.rsi
+    state: junktire2
+
+- type: entity
+  parent: N14JunkMetalBase #for the moment
+  id: N14JunkTire3
+  name: a pile of tires
+  description: A pile of old, unusable tires spread on the ground.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Decoration/tires.rsi
+    state: junktire3
+
+- type: entity
+  parent: N14JunkMetalBase #for the moment
+  id: N14JunkTire4
+  name: a pile of tires
+  description: A pile of old, unusable tires spread on the ground.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Decoration/tires.rsi
+    state: junktire4
+
+- type: entity
+  parent: N14JunkMetalBase #for the moment
+  id: N14JunkTire5
+  name: a pile of tires
+  description: A pile of old, unusable tires spread on the ground.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Decoration/tires.rsi
+    state: junktire5        
