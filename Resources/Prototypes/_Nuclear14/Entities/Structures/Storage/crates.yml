@@ -15,7 +15,7 @@
     spread: 90
 
 - type: entity
-  parent: [ N14CrateFootlocker ]
+  parent: [ N14CrateFootlocker, N14BaseSmallLockerStorageFill ]
   id: N14LootCrateFootlocker
   suffix: Loot, RandomSmall
 
@@ -31,7 +31,7 @@
     sprite: _Nuclear14/Structures/Storage/Crates/aluminiumcrate.rsi
 
 - type: entity
-  parent: [ N14CrateFootlocker ]
+  parent: [ N14CrateFootlocker, N14BaseLockerStorageFill ]
   id: N14LootCrateAluminium
   suffix: Loot, Random
 
@@ -47,7 +47,7 @@
     sprite: _Nuclear14/Structures/Storage/Crates/armycrate.rsi
 
 - type: entity
-  parent: [ N14CrateFootlocker ]
+  parent: [ N14CrateFootlocker, N14BaseMilitaryStorageFill ]
   id: N14LootCrateArmy
   suffix: Loot, RandomMilitary
 
@@ -64,7 +64,7 @@
     # TODO: Will need an access locked variant.
 
 - type: entity
-  parent: [ N14CrateEnclave ]
+  parent: [ N14CrateEnclave, N14BaseMilitaryStorageFill ]
   id: N14LootCrateEnclave
   suffix: Loot, RandomMilitary
 
@@ -81,7 +81,7 @@
     sprite: _Nuclear14/Structures/Storage/Crates/enclavecrate.rsi
 
 - type: entity
-  parent: [ N14CrateEnclaveDirectional ]
+  parent: [ N14CrateEnclaveDirectional, N14BaseMilitaryStorageFill ]
   id: N14LootCrateEnclaveDirectional
   suffix: Loot, RandomMilitary
 
@@ -97,12 +97,12 @@
     sprite: _Nuclear14/Structures/Storage/Crates/medicalcrate.rsi
 
 - type: entity
-  parent: [ N14CrateMedical ]
+  parent: [ N14CrateMedical, N14StorageFillMedical ]
   id: N14LootCrateMedical
   suffix: Loot, Medical
 
 - type: entity
-  parent: [ N14CrateMedical ]
+  parent: [ N14CrateMedical, N14TimedStorageFillMedical ]
   id: N14CrateMedicalRefilling
   suffix: Refilling, Medical
 
@@ -116,6 +116,116 @@
     sprite: _Nuclear14/Structures/Storage/Crates/redcrate.rsi
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/Crates/redcrate.rsi
+
+- type: entity
+  parent: CrateGenericSteel
+  id: N14CrateVaultBig
+  name: vault-tec crate
+  description: A big crate with a Vault-Tec logo on it.
+  components:
+  - type: Icon
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultbig.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultbig.rsi
+
+- type: entity
+  parent: CrateGenericSteel
+  id: N14CrateVaultBigRusted
+  name: vault-tec crate
+  description: A rusty big crate with a Vault-Tec logo on it.
+  suffix: rusted
+  components:
+  - type: Icon
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultbigrusted.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultbigrusted.rsi
+
+- type: entity
+  parent: [ N14CrateVaultBigRusted, N14BaseLockerStorageFill ]
+  id: N14LootCrateVaultBigRusted
+  suffix: Loot, Random
+
+- type: entity
+  parent: CrateGenericSteel
+  id: N14CrateVaultCompactRusted
+  name: vault-tec crate
+  description: A rusty compact crate with a Vault-Tec logo on it.
+  suffix: rusted
+  components:
+  - type: Icon
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultcompactrusted.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultcompactrusted.rsi
+
+- type: entity
+  parent: [ N14CrateVaultCompactRusted, N14BaseLockerStorageFill ]
+  id: N14LootCrateVaultCompactRusted
+  suffix: Loot, Random
+
+- type: entity
+  parent: CrateGenericSteel
+  id: N14CrateVault
+  name: vault-tec crate
+  description: A big crate with a Vault-Tec logo on it.
+  components:
+  - type: Icon
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultcrate.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultcrate.rsi
+
+- type: entity
+  parent: [ N14CrateVault, N14BaseLockerStorageFill ]
+  id: N14LootCrateVault
+  suffix: Loot, Random
+
+- type: entity
+  parent: CrateGenericSteel
+  id: N14CrateVaultLong
+  name: vault-tec crate
+  description: A long crate with a Vault-Tec logo on it.
+  components:
+  - type: Icon
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultlong.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultlong.rsi
+
+- type: entity
+  parent: [ N14CrateVaultLong, N14BaseLockerStorageFill ]
+  id: N14LootCrateVaultLong
+  suffix: Loot, Random
+
+- type: entity
+  parent: CrateGenericSteel
+  id: N14CrateVaultLongRusted
+  name: vault-tec crate
+  description: A rusty long crate with a Vault-Tec logo on it.
+  suffix: rusted
+  components:
+  - type: Icon
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultlongrusted.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultlongrusted.rsi
+
+- type: entity
+  parent: [ N14CrateVaultLongRusted, N14BaseLockerStorageFill ]
+  id: N14LootCrateVaultLongRusted
+  suffix: Loot, Random
+
+- type: entity
+  parent: CrateGenericSteel
+  id: N14CrateVaultStandard
+  name: vault-tec crate
+  description: A standard crate with a Vault-Tec logo on it.
+  components:
+  - type: Icon
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultstandard.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Storage/Crates/vaultstandard.rsi
+
+- type: entity
+  parent: [ N14CrateVaultStandard, N14BaseLockerStorageFill ]
+  id: N14LootCrateVaultStandard
+  suffix: Loot, Random
 
 - type: entity
   parent: CrateGeneric
@@ -164,7 +274,7 @@
   - type: AntiRottingContainer
 
 - type: entity
-  parent: [ N14CrateFreezer ]
+  parent: [ N14CrateFreezer, N14StorageFillDomestic ]
   id: N14LootCrateFreezer
   suffix: Loot, Random
 
@@ -197,12 +307,12 @@
         - MachineLayer
 
 - type: entity
-  parent: [ N14CrateWooden ]
+  parent: [ N14CrateWooden, N14WastelandBotanyStorageTimedFill ]
   id: N14CrateWastelandBotanyRefilling
   suffix: Refilling, Random Botany
 
 - type: entity
-  parent: [ N14CrateWooden ]
+  parent: [ N14CrateWooden, N14WastelandBotanyStorageFill ]
   id: N14LootCrateWastelandBotany
   suffix: Loot, Random Botany
 
@@ -218,12 +328,12 @@
     sprite: _Nuclear14/Structures/Storage/Crates/cratemilitary.rsi
 
 - type: entity
-  parent: [ N14CrateMilitary ]
+  parent: [ N14CrateMilitary, N14BaseMilitaryTimedStorageFill ]
   id: N14CrateMilitaryRefilling
   suffix: Refilling, Random Military
 
 - type: entity
-  parent: [ N14CrateMilitary ]
+  parent: [ N14CrateMilitary, N14BaseMilitaryStorageFill ]
   id: N14LootCrateMilitary
   suffix: Loot,Random Military
 
@@ -232,7 +342,7 @@
   parent: BaseStructureDynamic
   id: N14CrateBreakBase
   name: wooden crate
-  description: Might have to break it to see whats inside.
+  description: A wooden crate for storage.
   abstract: true
   components:
   - type: Damageable
@@ -261,11 +371,15 @@
     grid:
     - 0,0,6,3
     maxItemSize: Huge
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
         ents: []
-    # TODO: Add crate deconstruction
+  - type: InteractionOutline
 
 - type: entity
   parent: N14CrateBreakBase
