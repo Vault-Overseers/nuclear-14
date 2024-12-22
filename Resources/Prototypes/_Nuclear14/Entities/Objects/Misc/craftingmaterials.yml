@@ -1,0 +1,131 @@
+#MARK: Animal Parts
+- type: entity
+  parent: BaseItem
+  id: N14MaterialRadscorpionTail
+  name: radscorpion tail
+  description: It's the stinger from a radscorpion.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/crafting_material.rsi
+    state: radscorpiontail
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ScorpionTail
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ScorpionTail
+        Quantity: 10
+
+#MARK: Hides
+- type: entity
+  parent: BaseItem
+  id: N14MaterialBaseHide
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
+    state: hide_brahmin
+  - type: Tag
+    tags:
+      - RawLeather
+  - type: PhysicalComposition
+    materialComposition:
+      RawLeather: 400
+  - type: Material
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: N14MaterialBaseHide
+  id: N14MaterialBrahminHide
+  name: brahmin hide
+  description: The hide of a brahmin. Leather-like and tough.
+  suffix: Full, 4
+  components:
+  - type: Sprite
+    state: hide_brahmin_2
+    layers:
+    - state: hide_brahmin_2
+      map: ["base"]
+  - type: Stack
+    stackType: BrahminHide
+    count: 4
+    baseLayer: base
+    layerStates:
+    - hide_brahmin_1
+    - hide_brahmin_1
+    - hide_brahmin_2
+  - type: Appearance
+
+- type: entity
+  parent: N14MaterialBrahminHide
+  id: N14MaterialBrahminHide1
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: BrahminHide
+    count: 1
+
+- type: entity
+  parent: N14MaterialBaseHide
+  id: N14MaterialNightstalkerPelt
+  name: nightstalker pelt
+  description: A pelt of fresh nightstalker leather.
+  components:
+  - type: Sprite
+    state: pelt_nightstalker
+  - type: Tag
+    tags:
+      - NightstalkerPelt
+  - type: PhysicalComposition
+    materialComposition:
+      RawLeather: 300
+
+- type: entity
+  parent: N14MaterialBaseHide
+  id: N14MaterialYaoguaiHide
+  name: yaoguai hide
+  description: The big hide of a yaoguai, heavy and strong.
+  components:
+  - type: Sprite
+    state: hide_yaoguai
+  - type: Tag
+    tags:
+      - YaoguaiHide
+      - RawLeather
+  - type: PhysicalComposition
+    materialComposition:
+      RawLeather: 600
+    
+- type: entity
+  parent: BaseItem
+  id: N14MaterialHideGecko
+  name: silver gecko hide
+  description: A thick hide from a gecko.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
+    state: hide_gecko
+  - type: Tag
+    tags:
+      - RawLeather
+  - type: PhysicalComposition
+    materialComposition:
+      RawLeather: 600
+    
+- type: entity
+  parent: N14MaterialHideGecko
+  id: N14MaterialHideGeckoFire
+  name: fire gecko hide
+  description: A thick flame resistant hide from a fire gecko.
+  
+- type: entity
+  parent: N14MaterialHideGecko
+  id: N14MaterialHideGeckoGolden
+  name: golden gecko hide
+  description: A thick beautiful hide from a golden gecko.

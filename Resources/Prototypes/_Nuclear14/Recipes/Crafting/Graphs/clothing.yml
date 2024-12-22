@@ -1,0 +1,93 @@
+#MARK: Uniform's
+- type: constructionGraph
+  id: WastelanderRagsGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+      - to: rags
+        steps:
+        - material: Cloth
+          amount: 4
+          doAfter: 8
+  - node: rags
+    entity: N14ClothingUniformJumpsuitRags
+
+#MARK: Mantie's
+- type: constructionGraph
+  id: LeatherMantleGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+      - to: mantle
+        steps:
+        - material: Leather
+          amount: 2
+          doAfter: 4
+  - node: mantle
+    entity: N14ClothingNeckMantleLeather
+
+- type: constructionGraph
+  id: LeatherCloakGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+      - to: cloak
+        steps:
+        - material: Leather
+          amount: 2
+          doAfter: 4
+  - node: cloak
+    entity: N14ClothingNeckCloakLeather
+
+- type: constructionGraph
+  id: YaoguaiCloakGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+      - to: cloak
+        steps:
+        - tag: YaoguaiHide
+          name: yaoguai hide
+          icon:
+            sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
+            state: hide_yaoguai
+          doAfter: 8
+  - node: cloak
+    entity: N14ClothingNeckCloakYaoguai
+
+#MARK: Gloves
+- type: constructionGraph
+  id: GlovesClothGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+      - to: gloves
+        steps:
+        - material: Cloth
+          amount: 2
+          doAfter: 4
+  - node: gloves
+    entity: N14ClothingHandsGlovesCloth
+
+
+- type: constructionGraph
+  id: NightstalkerhatGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+      - to: head
+        steps:
+        - tag: NightstalkerPelt
+          name: nightstalker pelt
+          icon:
+            sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
+            state: pelt_nightstalker
+          doAfter: 8
+  - node: head
+    entity: N14ClothingHeadHatNightstalker
