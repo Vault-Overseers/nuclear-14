@@ -47,8 +47,7 @@
         sound:
           collection: MetalBreak
   - type: StaticPrice
-    price: 50
-  - type: RequireProjectileTarget
+    price: 0
 
 #Starts unanchored, cannot be rotated while anchored
 - type: entity
@@ -83,63 +82,6 @@
   components:
   - type: Rotatable
     rotateWhileAnchored: true
-
-- type: entity
-  name: chair
-  id: RollingOfficeChairBase
-  description: Scoot from desk to desk because standing is for interns.
-  parent: BaseVehicle
-  abstract: true
-  components:
-  - type: Anchorable
-  - type: Rotatable
-    rotateWhileAnchored: true
-  - type: Sprite
-    sprite: Structures/Furniture/chairs.rsi
-    noRot: true
-  - type: Strap
-    position: Stand
-    buckleOffset: "0,-0.05"
-  - type: Vehicle
-    requiredHands: 0
-    engineRunning: true
-    renderOver: South, SouthEast, SouthWest
-  - type: MovementSpeedModifier
-    acceleration: 10
-    friction: 3.5
-    baseSprintSpeed: 2.5
-    baseWalkSpeed: 1.5
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.2
-        density: 75
-        mask:
-        - TableMask
-  - type: StaticPrice
-    price: 50
 
 #Starts anchored, can be rotated while anchored
 - type: entity
@@ -219,10 +161,6 @@
   - type: Construction
     graph: Seat
     node: chairOffice
-  - type: SpawnItemsAtLocationOnUse
-    spawnItemsVerbText: disable-wheel-locks
-    items:
-    - id: ChairOfficeLightRolling
 
 - type: entity
   name: dark office chair
@@ -234,46 +172,6 @@
   - type: Construction
     graph: Seat
     node: chairOfficeDark
-  - type: SpawnItemsAtLocationOnUse
-    spawnItemsVerbText: disable-wheel-locks
-    items:
-    - id: ChairOfficeDarkRolling
-
-# EE start
-
-- type: entity
-  name: white office chair
-  suffix: No mapping
-  id: ChairOfficeLightRolling
-  parent: RollingOfficeChairBase
-  components:
-  - type: Sprite
-    state: office-white
-  - type: Construction
-    graph: Seat
-    node: chairOffice
-  - type: SpawnItemsAtLocationOnUse
-    spawnItemsVerbText: activate-wheel-locks
-    items:
-    - id: ChairOfficeLight
-
-- type: entity
-  name: dark office chair
-  suffix: No mapping
-  id: ChairOfficeDarkRolling
-  parent: ChairOfficeLightRolling
-  components:
-  - type: Sprite
-    state: office-dark
-  - type: Construction
-    graph: Seat
-    node: chairOfficeDark
-  - type: SpawnItemsAtLocationOnUse
-    spawnItemsVerbText: activate-wheel-locks
-    items:
-    - id: ChairOfficeDark
-
-# EE end
 
 - type: entity
   name: comfy chair
@@ -331,7 +229,7 @@
     tags:
     - Wooden
   - type: StaticPrice
-    price: 75
+    price: 0
 
 - type: entity
   name: ritual chair
@@ -425,7 +323,7 @@
     node: chair
 
 - type: entity
-  parent: [SeatBase, BaseDeployFoldable]
+  parent: [SeatBase, BaseFoldable]
   id: ChairFolding
   name: folding chair
   description: If you carry six of these you become the coolest kid at church.
@@ -459,8 +357,6 @@
   components:
   - type: Foldable
     folded: true
-  - type: Strap
-    enabled: False
 
 - type: entity
   name: steel bench
@@ -502,4 +398,4 @@
             min: 2
             max: 4
   - type: StaticPrice
-    price: 50
+    price: 0

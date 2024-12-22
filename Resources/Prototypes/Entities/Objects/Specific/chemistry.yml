@@ -25,8 +25,7 @@
     solutions:
       beaker:
         maxVol: 50
-  - type: MixableSolution
-    solution: beaker
+        canMix: true
   - type: FitsInDispenser
     solution: beaker
   - type: RefillableSolution
@@ -41,12 +40,10 @@
     solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
-  - type: SolutionItemStatus
-    solution: beaker
   - type: UserInterface
     interfaces:
-      enum.TransferAmountUiKey.Key:
-        type: TransferAmountBoundUserInterface
+    - key: enum.TransferAmountUiKey.Key
+      type: TransferAmountBoundUserInterface
   - type: Drink
     solution: beaker
   - type: Appearance
@@ -91,8 +88,7 @@
       types:
         Blunt: 5
   - type: StaticPrice
-    price: 30
-  - type: DnaSubstanceTrace
+    price: 3
 
 - type: entity
   parent: BaseItem
@@ -121,8 +117,7 @@
     solutions:
       beaker:
         maxVol: 50
-  - type: MixableSolution
-    solution: beaker
+        canMix: true
   - type: FitsInDispenser
     solution: beaker
   - type: RefillableSolution
@@ -137,12 +132,10 @@
     solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
-  - type: SolutionItemStatus
-    solution: beaker
   - type: UserInterface
     interfaces:
-      enum.TransferAmountUiKey.Key:
-        type: TransferAmountBoundUserInterface
+    - key: enum.TransferAmountUiKey.Key
+      type: TransferAmountBoundUserInterface
   - type: Drink
     solution: beaker
   - type: Appearance
@@ -153,8 +146,7 @@
     damageContainer: Inorganic
     damageModifierSet: Glass
   - type: StaticPrice
-    price: 30
-  - type: DnaSubstanceTrace
+    price: 3
 
 - type: entity
   name: beaker
@@ -165,10 +157,7 @@
   - type: Spillable
     solution: beaker
   - type: StaticPrice
-    price: 10
-  - type: PhysicalComposition
-    materialComposition:
-      Glass: 50
+    price: 1
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: beaker
@@ -211,17 +200,15 @@
     solutions:
       beaker:
         maxVol: 100
+        canMix: true
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: beakerlarge
     inHandsMaxFillLevels: 4
     inHandsFillBaseName: -fill-
-  - type: PhysicalComposition
-    materialComposition:
-      Glass: 100
   - type: StaticPrice
-    price: 20
+    price: 2
 
 - type: entity
   name: cryostasis beaker
@@ -235,8 +222,6 @@
     sprite: Objects/Specific/Chemistry/beaker_cryostasis.rsi
     layers:
       - state: beakernoreact
-  - type: SolutionContainerVisuals
-    maxFillLevels: 0
   - type: SolutionContainerManager
     solutions:
       beaker:
@@ -259,13 +244,12 @@
     sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
     layers:
       - state: beakerbluespace
-  - type: SolutionContainerVisuals
-    maxFillLevels: 0
   - type: SolutionContainerManager
     solutions:
       beaker:
         maxVol: 1000
-  - type: ReverseEngineering
+        canMix: true
+  - type: ReverseEngineering # Delta
     difficulty: 4
     recipes:
       - BluespaceBeaker
@@ -298,13 +282,12 @@
     solution: dropper
   - type: UserInterface
     interfaces:
-      enum.TransferAmountUiKey.Key:
-        type: TransferAmountBoundUserInterface
+    - key: enum.TransferAmountUiKey.Key
+      type: TransferAmountBoundUserInterface
   - type: Spillable
     solution: injector
   - type: Item
     sprite: Objects/Specific/Chemistry/dropper.rsi
-    size: Tiny
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 1
@@ -312,11 +295,7 @@
     inHandsMaxFillLevels: 1
     inHandsFillBaseName: -fill-
   - type: StaticPrice
-    price: 40
-  - type: DnaSubstanceTrace
-  - type: Tag
-    tags:
-    - Dropper
+    price: 2
 
 - type: entity
   name: borgdropper
@@ -337,46 +316,6 @@
         maxVol: 10
   - type: Item
     sprite: Objects/Specific/Chemistry/dropper.rsi
-
-- type: entity
-  name: disposable syringe
-  parent: BaseItem
-  description: Used to inject mobs with controlled dosages of specific reagents. One-time use.
-  id: DisposableSyringe
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Chemistry/disposablesyringe.rsi
-    layers:
-      - state: syringe1
-        map: ["enum.SolutionContainerLayers.Fill"]
-        visible: false
-      - state: syringe_base0
-        map: ["enum.SolutionContainerLayers.Base"]
-  - type: Icon
-    sprite: Objects/Specific/Chemistry/disposablesyringe.rsi
-    state: "syringe_base0"
-  - type: Item
-    size: Tiny
-    sprite: Objects/Specific/Chemistry/disposablesyringe.rsi
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-  - type: FillableOneTimeInjector
-    transferAmount: 15
-    toggleState: Draw
-  - type: ExaminableSolution
-    solution: injector
-  - type: Spillable
-    solution: injector
-  - type: TrashOnSolutionEmpty
-    solution: injector
-  - type: Appearance
-  - type: SolutionContainerVisuals
-    maxFillLevels: 2
-    fillBaseName: syringe
-    inHandsMaxFillLevels: 3
-    inHandsFillBaseName: -fill-
 
 - type: entity
   name: syringe
