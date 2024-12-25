@@ -73,3 +73,29 @@
             Poison: 3
           groups:
             Airloss: 3.5
+
+- type: reagent
+  id: DarkDatura
+  name: reagent-name-Dark-datura
+  group: Toxins
+  desc: reagent-name-Dark-datura
+  physicalDesc: reagent-physical-desc-strong-smelling
+  color: "#00008b"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.2 #Slow acting, default 0.5
+      effects:
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 5
+        refresh: false
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: ScrambledAccent
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.5
+            Asphyxiation: 2
