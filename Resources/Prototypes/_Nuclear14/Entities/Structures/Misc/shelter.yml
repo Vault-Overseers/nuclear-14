@@ -11,8 +11,18 @@
     noRot: true
     sprite: _Nuclear14/Structures/Misc/shelternew.rsi
     layers:
-    - state: shelternewopen
-      map: ["base"]
+    - state: open
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    bumpOpen: false
+    clickOpen: true
+    closeTimeOne: 0.2
+    closeTimeTwo: 0.6
+    openTimeOne: 0.6
+    openTimeTwo: 0.2
+    openingAnimationTime: 1.3
+    closingAnimationTime: 1.3
+    occludes: false
   - type: InteractionOutline
   - type: Cryostorage
   - type: Physics
@@ -34,19 +44,10 @@
     visuals:
       enum.CryostorageVisuals.Full:
         base:
-          True: { state: shelternewclosedoccupied }
-          False: { state: shelternewopen }
+          True: { state: closed }
+          False: { state: open }
   - type: AnimationPlayer
-  - type: Door
-    bumpOpen: false
-    clickOpen: true
-    closeTimeOne: 0.2
-    closeTimeTwo: 0.6
-    openTimeOne: 0.6
-    openTimeTwo: 0.2
-    openingAnimationTime: 1.3
-    closingAnimationTime: 1.3
-    occludes: false
+
 
 - type: entity
   parent: N14PulowskiShelterNew
@@ -58,13 +59,8 @@
     noRot: true
     sprite: _Nuclear14/Structures/Misc/shelterworn.rsi
     layers:
-    - state: shelterwornopen
-  - type: GenericVisualizer
-    visuals:
-      enum.CryostorageVisuals.Full:
-        base:
-          True: { state: shelterwornclosedoccupied }
-          False: { state: shelterwornopen }
+    - state: open
+      map: ["enum.DoorVisualLayers.Base"]
   - type: Door
     bumpOpen: false
     clickOpen: true
@@ -75,3 +71,9 @@
     openingAnimationTime: 1.0
     closingAnimationTime: 1.6
     occludes: false
+  - type: GenericVisualizer
+    visuals:
+      enum.CryostorageVisuals.Full:
+        base:
+          True: { state: closed }
+          False: { state: open }
