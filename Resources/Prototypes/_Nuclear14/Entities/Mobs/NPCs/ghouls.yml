@@ -13,11 +13,10 @@
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
     angle: 0
-    animation: WeaponArcThrust
+    animation: WeaponArcFist
     damage:
       types:
-        Slash: 14
-        Structural: 5
+        Slash: 7
     range: 1
   - type: Sprite
     drawdepth: Mobs
@@ -30,18 +29,17 @@
   parent: N14MobBaseHostileFeral
   id: N14MobGhoulFeralReaver
   name: Feral Ghoul Reaver
-  description: A mean looking ghoul.
+  description: A mean looking ghoul clad in the remnants of metal armor.
   components:
   - type: MeleeWeapon
     hidden: true
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
     angle: 0
-    animation: WeaponArcThrust
+    animation: WeaponArcFist
     damage:
       types:
-        Slash: 14
-        Structural: 5
+        Slash: 7
     range: 1
   - type: Sprite
     drawdepth: Mobs
@@ -58,18 +56,17 @@
   parent: N14MobBaseHostileFeral
   id: N14MobGhoulFeralRotter
   name: Feral Ghoul Rotter
-  description: A rotten looking ghoul.
+  description: A rotten looking ghoul barely holding itself together.
   components:
   - type: MeleeWeapon
     hidden: true
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
     angle: 0
-    animation: WeaponArcThrust
+    animation: WeaponArcFist
     damage:
       types:
-        Slash: 14
-        Structural: 5
+        Slash: 7
     range: 1
   - type: Sprite
     drawdepth: Mobs
@@ -82,19 +79,21 @@
   parent: N14MobBaseHostileFeral
   id: N14MobGhoulMaypole
   name: Maypole
-  description: A special looking ghoul.
+  description: A special looking ghoul towering over most everything.
   components:
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: N14ToughAnimal
   - type: MeleeWeapon
     hidden: true
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
     angle: 0
-    animation: WeaponArcThrust
+    animation: WeaponArcFist
     damage:
       types:
-        Brute: 20
-        Slash: 5
-        Structural: 5
+        Brute: 15
+        Slash: 15
     range: 2.5
   - type: Sprite
     drawdepth: Mobs
@@ -113,8 +112,8 @@
       # movement:
         # state: sleeping
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 5
+    baseSprintSpeed : 5
   - type: Fixtures
     fixtures:
       fix1:

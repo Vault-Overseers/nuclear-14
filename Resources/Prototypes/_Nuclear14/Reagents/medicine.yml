@@ -2,7 +2,7 @@
 - type: reagent
   id: HealingMixture #used in regular stimpacks
   name: reagent-name-healing-mixture
-  group: Medicine
+  group: Chems
   desc: reagent-desc-healing-mixture
   physicalDesc: reagent-physical-desc-soothing
   color: "#00e5ff"
@@ -15,6 +15,8 @@
             Burn: -2.0
             Brute: -2.0
             Airloss: -2.0
+      - !type:ModifyBleedAmount
+        amount: -1.5
       - !type:HealthChange # Bonus for poison
         conditions:
         - !type:ReagentThreshold
@@ -37,7 +39,7 @@
 - type: reagent
   id: DirtyStimpak
   name: reagent-name-dirty-stimpak
-  group: Medicine
+  group: Chems
   desc: reagent-desc-dirty-stimpak
   physicalDesc: reagent-physical-desc-soothing
   color: "#00e5ff"
@@ -52,6 +54,8 @@
             Airloss: -1.5
           types:
             Radiation: 0.1
+      - !type:ModifyBleedAmount
+        amount: -1
       - !type:HealthChange # to prevent doping
         conditions:
         - !type:ReagentThreshold
@@ -74,7 +78,7 @@
 - type: reagent
   id: HealingPowder
   name: reagent-name-healing-powder
-  group: Medicine
+  group: Chems
   desc: reagent-desc-healing-powder
   physicalDesc: reagent-physical-desc-soothing
   color: "#00e5ff"
@@ -87,8 +91,12 @@
           groups:
             Burn: -0.5
             Brute: -0.5
+      - !type:ModifyBleedAmount
+        amount: -0.5
       - !type:ChemVomit
-        probability: 0.05
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 # Strong overtime healing
 - type: reagent
@@ -110,12 +118,14 @@
             Airloss: -2
           types:
             Poison: -1
+      - !type:ModifyBleedAmount
+        amount: -0.5
 
 # Poison
 - type: reagent
   id: AntidoteMixture
   name: reagent-name-antidote-mixture
-  group: Medicine
+  group: Chems
   desc: reagent-desc-antidote-mixture
   physicalDesc: reagent-physical-desc-soothing
   color: "#D41244"
@@ -133,7 +143,7 @@
 - type: reagent
   id: Antidote
   name: reagent-name-antidote
-  group: Medicine
+  group: Chems
   desc: reagent-desc-antidote
   physicalDesc: reagent-physical-desc-soothing
   color: "#D41244"
@@ -149,7 +159,7 @@
 - type: reagent
   id: RobustHealingMixture #used in super stimpacks
   name: reagent-name-robust-healing-mixture
-  group: Medicine
+  group: Chems
   desc: reagent-desc-robust-healing-mixture
   physicalDesc: reagent-physical-desc-opaque
   color: "#00e5ff"
@@ -162,6 +172,8 @@
             Burn: -5
             Brute: -5
             Airloss: -5
+      - !type:ModifyBleedAmount
+        amount: -1
       - !type:HealthChange # Taking 2 is more or less a guaranteed death
         conditions:
         - !type:ReagentThreshold
@@ -189,7 +201,7 @@
 - type: reagent
   id: RadAway
   name: reagent-name-radaway
-  group: Medicine
+  group: Chems
   desc: reagent-desc-radaway
   physicalDesc: reagent-physical-desc-oily
   color: "#ff9000"
@@ -205,7 +217,7 @@
 - type: reagent
   id: RadAwayDiluted
   name: reagent-name-diluted-radaway
-  group: Medicine
+  group: Chems
   desc: reagent-desc-diluted-radaway
   physicalDesc: reagent-physical-desc-oily
   color: "#ffbb60"
@@ -221,7 +233,7 @@
 - type: reagent
   id: RadX
   name: reagent-name-rad-x # Should provide a radiation resistance instead of healing it
-  group: Medicine
+  group: Chems
   desc: reagent-desc-rad-x
   physicalDesc: reagent-physical-desc-soapy
   color: "#00e5ff"
@@ -238,7 +250,7 @@
 - type: reagent
   id: Fixer
   name: reagent-name-fixer
-  group: Medicine
+  group: Chems
   desc: reagent-desc-fixer
   physicalDesc: reagent-physical-desc-volatile
   color: "#00e5ff"
@@ -246,8 +258,16 @@
     Medicine:
       metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
-      - !type:Drunk
-      # - !type:CureAddiction
+      - !type:GenericStatusEffect # Remove this block when !type:CureAddiction is functional
+        key: Drunk
+        time: 6.0
+        type: Remove
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -0.5
+     # - !type:Drunk
+     # - !type:CureAddiction
 
 # - type: reagent
 #   id: Addictol
@@ -264,26 +284,57 @@
 - type: reagent
   id: SmellingSalts
   name: reagent-name-smelling-salts
-  group: Medicine
+  group: Chems
   desc: reagent-desc-smelling-salts
   physicalDesc: reagent-physical-desc-strong-smelling
   color: "#e1f5f4"
   metabolisms:
     Medicine:
-      metabolismRate: 5 # Effectively 5 ticks per second
+      metabolismRate: 0.2 # Slow Acting
       effects:
-      - !type:HealthChange
+      - !type:HealthChange # Base Airloss fixing
         damage:
+          types:
+            Asphyxiation: -5
+            Cold: -2
+      - !type:HealthChange # Conditional Epinephrine-like bonus on unconscious
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        - !type:ReagentThreshold
+          min: 0
+          max: 20
+        damage:
+          types:
+            Asphyxiation: -3
+            Poison: -0.5
           groups:
-            Airloss: -10 #TODO add detail to wake up a guy if found
+            Brute: -0.5
+            Burn: -0.5
+      - !type:HealthChange # 20u threshold
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        damage:
+          types:
+            Asphyxiation: 3
+            Poison: 1
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 0.75
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
+        time: 0.75
+        type: Remove
       - !type:Jitter
       - !type:ChemVomit
-        probability: 0.1
+        probability: 0.05
 
 - type: reagent
   id: HealingPoultice
   name: reagent-name-healing-poultice
-  group: Medicine
+  group: Chems
   desc: reagent-desc-healing-poultice
   physicalDesc: reagent-physical-desc-soothing
   color: "#24b530"
@@ -297,6 +348,8 @@
             Brute: -0.5
             Burn: -0.5
             Toxin: -0.5
+      - !type:ModifyBleedAmount
+        amount: -0.5
       - !type:ChemVomit
         probability: 0.05
       - !type:Drunk
@@ -307,7 +360,7 @@
 - type: reagent
   id: Bitterdrink
   name: reagent-name-bitterdrink
-  group: Medicine
+  group: Chems
   desc: reagent-desc-bitterdrink
   physicalDesc: reagent-physical-desc-sticky
   color: "#ba67f5"
@@ -322,13 +375,12 @@
           types:
             Radiation: -1
       - !type:ChemVomit
-        min: 25
-      - !type:Drunk
+        probability: 0.05
 
 - type: reagent
   id: UltraRobustHealingMixture
   name: reagent-name-ultra-robust-healing-mixture
-  group: Medicine
+  group: Chems
   desc: reagent-desc-ultra-robust-healing-mixture
   physicalDesc: reagent-physical-desc-overpowering
   color: "#ff0000"
@@ -342,6 +394,8 @@
             Brute: -10
             Airloss: -10
             Toxin: 0.5
+      - !type:ModifyBleedAmount
+        amount: -3
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
