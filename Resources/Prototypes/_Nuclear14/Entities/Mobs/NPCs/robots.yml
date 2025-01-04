@@ -26,7 +26,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-            radius: 0.20
+            radius: 0.4
         density: 150
         mask:
         - MobMask
@@ -95,8 +95,18 @@
   name: Assaultron
   description: Horrifying. Fast. Deadly.
   components:
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2
+    baseWalkSpeed : 3
     baseSprintSpeed : 6
   # - type: GhostRole
     # prob: 1
@@ -126,6 +136,12 @@
     noMovementLayers:
       movement:
         state: icon
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: deathclaw
+      Dead:
+        Base: dead
     
 - type: entity
   parent: N14MobRobotHostileMelee
@@ -134,8 +150,8 @@
   description: A common protectron looking for a fight.
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1
-    baseSprintSpeed : 2
+    baseWalkSpeed : 1.5
+    baseSprintSpeed : 3
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/protectron.rsi
     layers:
@@ -226,9 +242,9 @@
       map: ["light"]
       visible: false
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-    minAngle: 6
-    maxAngle: 12
-    angleIncrease: 2
+    minAngle: 9
+    maxAngle: 18
+    angleIncrease: 3
     angleDecay: 4
     fireRate: 1
     soundGunshot:
@@ -257,8 +273,17 @@
   suffix: hostile, claw
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1
-    baseSprintSpeed : 2
+    baseWalkSpeed : 2
+    baseSprintSpeed : 4
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/metal_thud1.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Pierce: 5
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/mrhandyclaw.rsi
     layers:
@@ -297,6 +322,16 @@
   description: A domestic Mr Handy model with a saw attachment.
   suffix: hostile, saw
   components:
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/chainsaw.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Slash: 3
+    attackRate: 2
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/mrhandysaw.rsi
     layers:
@@ -319,8 +354,8 @@
   suffix: hostile, gun
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1
-    baseSprintSpeed : 2
+    baseWalkSpeed : 2
+    baseSprintSpeed : 4
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/mrhandygun.rsi
     layers:
@@ -341,9 +376,9 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-    minAngle: 6
-    maxAngle: 12
-    angleIncrease: 2
+    minAngle: 9
+    maxAngle: 18
+    angleIncrease: 3
     angleDecay: 4
     fireRate: 1
     soundGunshot:
@@ -375,8 +410,8 @@
   suffix: hostile, plasma
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1
-    baseSprintSpeed : 2
+    baseWalkSpeed : 2
+    baseSprintSpeed : 4
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/mrhandygutsy.rsi
     layers:
@@ -397,9 +432,9 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-    minAngle: 6
-    maxAngle: 12
-    angleIncrease: 2
+    minAngle: 9
+    maxAngle: 18
+    angleIncrease: 3
     angleDecay: 4
     fireRate: 1
     soundGunshot:
@@ -428,8 +463,8 @@
   suffix: hostile, laser
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1
-    baseSprintSpeed : 2
+    baseWalkSpeed : 1.5
+    baseSprintSpeed : 3
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/robobrain.rsi
     layers:
@@ -481,8 +516,8 @@
   suffix: hostile, laser
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1
-    baseSprintSpeed : 2
+    baseWalkSpeed : 3
+    baseSprintSpeed : 6
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/eyebot.rsi
     layers:
@@ -496,9 +531,9 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-    minAngle: 6
-    maxAngle: 12
-    angleIncrease: 2
+    minAngle: 12
+    maxAngle: 24
+    angleIncrease: 4
     angleDecay: 4
     fireRate: 1
     soundGunshot:
