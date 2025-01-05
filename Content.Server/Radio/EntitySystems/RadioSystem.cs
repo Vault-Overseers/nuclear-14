@@ -81,9 +81,9 @@ public sealed class RadioSystem : EntitySystem
     /// <summary>
     /// Send radio message to all active radio listeners
     /// </summary>
-    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, LanguagePrototype? language = null, bool escapeMarkup = true)
+    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, LanguagePrototype? language = null, int? frequency = null, bool escapeMarkup = true)
     {
-        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, language: language);
+        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, language: language, frequency: frequency);
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public sealed class RadioSystem : EntitySystem
     /// </summary>
     /// <param name="messageSource">Entity that spoke the message</param>
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
-    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, LanguagePrototype? language = null, bool escapeMarkup = true)
+    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, LanguagePrototype? language = null, int? frequency = null, bool escapeMarkup = true)
     {
         if (language == null)
             language = _language.GetLanguage(messageSource);
