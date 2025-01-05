@@ -47,7 +47,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     private HumanoidProfileEditor? _profileEditor;
 
     /// This is the character preview panel in the chat. This should only update if their character updates
-    private LobbyCharacterPreviewPanel? PreviewPanel => GetLobbyPreview();
+    private LobbyCharacterPanel? PreviewPanel => GetLobbyPreview();
 
     /// This is the modified profile currently being edited
     private HumanoidCharacterProfile? EditedProfile => _profileEditor?.Profile;
@@ -95,7 +95,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         ReloadCharacterSetup();
     }
 
-    private LobbyCharacterPreviewPanel? GetLobbyPreview()
+    private LobbyCharacterPanel? GetLobbyPreview()
     {
         return _stateManager.CurrentState is LobbyState lobby ? lobby.Lobby?.CharacterPreview : null;
     }

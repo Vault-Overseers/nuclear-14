@@ -153,7 +153,7 @@ public sealed class RadioDeviceSystem : EntitySystem
         SetSpeakerEnabled(uid, user, !component.Enabled, quiet, component);
     }
 
-    public void SetSpeakerEnabled(EntityUid uid, EntityUid user, bool enabled, bool quiet = false, RadioSpeakerComponent? component = null)
+    public void SetSpeakerEnabled(EntityUid uid, EntityUid? user, bool enabled, bool quiet = false, RadioSpeakerComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
@@ -164,7 +164,8 @@ public sealed class RadioDeviceSystem : EntitySystem
         {
             var state = Loc.GetString(component.Enabled ? "handheld-radio-component-on-state" : "handheld-radio-component-off-state");
             var message = Loc.GetString("handheld-radio-component-on-use", ("radioState", state));
-            _popup.PopupEntity(message, user, user);
+            if (user != null)
+                _popup.PopupEntity(message, user.Value, user.Value);
         }
 
         _appearance.SetData(uid, RadioDeviceVisuals.Speaker, component.Enabled);
@@ -288,27 +289,18 @@ public sealed class RadioDeviceSystem : EntitySystem
 
     private void OnToggleHandheldRadioMic(Entity<RadioMicrophoneComponent> microphone, ref ToggleHandheldRadioMicMessage args)
     {
-        if (args.Session.AttachedEntity is not { } user)
-            return;
-
-        SetMicrophoneEnabled(microphone, user, args.Enabled, true);
+        SetMicrophoneEnabled(microphone, null, args.Enabled, true);
         UpdateHandheldRadioUi(microphone);
     }
 
     private void OnToggleHandheldRadioSpeaker(Entity<RadioMicrophoneComponent> microphone, ref ToggleHandheldRadioSpeakerMessage args)
     {
-        if (args.Session.AttachedEntity is not { } user)
-            return;
-
-        SetSpeakerEnabled(microphone, user, args.Enabled, true);
+        SetSpeakerEnabled(microphone, null, args.Enabled, true);
         UpdateHandheldRadioUi(microphone);
     }
 
     private void OnChangeHandheldRadioFrequency(Entity<RadioMicrophoneComponent> microphone, ref SelectHandheldRadioFrequencyMessage args)
     {
-        if (args.Session.AttachedEntity is not { })
-            return;
-
         microphone.Comp.Frequency = args.Frequency;
         UpdateHandheldRadioUi(microphone);
     }
@@ -321,7 +313,7 @@ public sealed class RadioDeviceSystem : EntitySystem
         var micEnabled = radio.Comp.Enabled;
         var speakerEnabled = speakerComp?.Enabled ?? false;
         var state = new HandheldRadioBoundUIState(micEnabled, speakerEnabled, frequency);
-        _ui.SetUiState(radio, HandheldRadioUiKey.Key, state);
+        //_ui.SetUiState(radio, HandheldRadioUiKey.Key, state); FIXME
     }
 
     #endregion

@@ -86,6 +86,7 @@ public sealed class SpecialSystem : EntitySystem
     // When the player is spawned in, add all trait components selected during character creation
     private void OnPlayerSpawnComplete(EntityUid uid, SpecialComponent component, PlayerSpawnCompleteEvent args)
     {
+#if WITH_SPECIAL
         if (!EntityManager.TryGetComponent<SpecialComponent>(uid, out var special))
         {
             return;
@@ -138,7 +139,7 @@ public sealed class SpecialSystem : EntitySystem
         mind.AddSpecial(Loc.GetString("special-component-examine-character-intelligence", ("base", special.BaseIntelligence), ("modifier", special.IntelligenceModifier), ("total", special.TotalIntelligence)));
         mind.AddSpecial(Loc.GetString("special-component-examine-character-agility", ("base", special.BaseAgility), ("modifier", special.AgilityModifier), ("total", special.TotalAgility)));
         mind.AddSpecial(Loc.GetString("special-component-examine-character-luck", ("base", special.BaseLuck), ("modifier", special.LuckModifier), ("total", special.TotalLuck)));
-
+#endif
     }
 
     private void setSpecial(SpecialComponent component,
