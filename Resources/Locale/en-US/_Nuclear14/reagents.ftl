@@ -341,8 +341,6 @@ reagent-name-fertilizer = fertilizer
 reagent-desc-fertilizer = Ground fertilizer. Perfect for your plants!
 reagent-name-dung = dung
 reagent-desc-dung = Animal dung. Ripe for turning into compost.
-reagent-name-sulfur = sulfur
-reagent-desc-sulfur = Ground sulfur in a powdery form. You should really wear a gas mask.
 
 
 # Other

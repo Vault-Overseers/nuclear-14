@@ -3,8 +3,6 @@
 # Food-specific flavors.
 ## Basic foodstuffs (ingredients, generic flavors)
 
-flavor-complex-cabbage = like cabbage
-
 ## Complex foodstuffs (cooked foods, joke flavors, etc)
 
 
