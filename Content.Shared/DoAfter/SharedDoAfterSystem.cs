@@ -5,7 +5,6 @@ using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Tag;
-using Content.Shared.Nuclear14.Special.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
@@ -205,11 +204,6 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         {
             id = null;
             return false;
-        }
-
-        if (TryComp<SpecialComponent>(args.User, out var special))
-        {
-            args.Delay /= 0.90f + (special.TotalAgility / 50f);
         }
 
         id = new DoAfterId(args.User, comp.NextId++);
