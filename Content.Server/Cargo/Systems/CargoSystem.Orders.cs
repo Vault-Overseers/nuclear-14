@@ -88,7 +88,7 @@ namespace Content.Server.Cargo.Systems
                 var stationQuery = EntityQueryEnumerator<StationBankAccountComponent>();
                 while (stationQuery.MoveNext(out var uid, out var bank))
                 {
-                    var balanceToAdd = bank.IncreasePerSecond * Delay;
+                    var balanceToAdd = (int)Math.Floor(bank.IncreasePerSecond * Delay);
                     UpdateBankAccount(uid, bank, balanceToAdd);
                 }
 

@@ -14,6 +14,8 @@ using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
+using Content.Shared.NPC.Prototypes;
 
 namespace Content.Server.Mind;
 
@@ -367,7 +369,7 @@ public sealed class MindSystem : SharedMindSystem
 
     /// Return true if the entity owned by this mind is a member of one of the
     /// given factions.
-    public bool InFaction(EntityUid uid, MindComponent mind, HashSet<string> factions)
+    public bool InFaction(EntityUid uid, MindComponent mind, HashSet<ProtoId<NpcFactionPrototype>> factions)
     {
         if (mind.OwnedEntity != null)
         {
