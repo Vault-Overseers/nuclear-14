@@ -5,7 +5,6 @@ using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.GameStates;
-using Content.Shared.Nuclear14.Special.Components;
 
 namespace Content.Shared.Mobs.Systems;
 
@@ -28,41 +27,24 @@ public sealed class MobThresholdSystem : EntitySystem
 
     private void OnGetState(EntityUid uid, MobThresholdsComponent component, ref ComponentGetState args)
     {
-        // Nuclear14 HP depends on Endurance
-        var totalEndurance = 5;
-        if (TryComp<SpecialComponent>(uid, out var special))
-            totalEndurance = special.TotalEndurance;
         var thresholds = new Dictionary<FixedPoint2, MobState>();
-        foreach (var (key, value) in component.BaseThresholds)
-        {
-            thresholds.Add(key + FixedPoint2.New((totalEndurance - 5) * 4), value);
-        }
+
+        foreach (var (key, value) in component.Thresholds)
+            thresholds.Add(key, value);
+
         args.State = new MobThresholdsComponentState(thresholds,
             component.TriggersAlerts,
             component.CurrentThresholdState,
             component.StateAlertDict,
             component.ShowOverlays,
             component.AllowRevives);
-        // Nuclear14 end
     }
 
     private void OnHandleState(EntityUid uid, MobThresholdsComponent component, ref ComponentHandleState args)
     {
-        // Nuclear14 HP depends on Endurance
-        var totalEndurance = 5;
-        if (TryComp<SpecialComponent>(uid, out var special))
-            totalEndurance = special.TotalEndurance;
-        var thresholds = new Dictionary<FixedPoint2, MobState>();
-        foreach (var (key, value) in component.BaseThresholds)
-        {
-            thresholds.Add(key + FixedPoint2.New((totalEndurance - 5) * 4), value);
-        }
-
         if (args.Current is not MobThresholdsComponentState state)
             return;
-        component.Thresholds = new SortedDictionary<FixedPoint2, MobState>(thresholds);
-        // component.Thresholds = new SortedDictionary<FixedPoint2, MobState>(state.UnsortedThresholds);
-        // Nuclear14 end
+        component.Thresholds = new SortedDictionary<FixedPoint2, MobState>(state.UnsortedThresholds);
         component.TriggersAlerts = state.TriggersAlerts;
         component.CurrentThresholdState = state.CurrentThresholdState;
         component.AllowRevives = state.AllowRevives;
@@ -114,15 +96,12 @@ public sealed class MobThresholdSystem : EntitySystem
     {
         if (!Resolve(target, ref thresholdComponent))
             return FixedPoint2.Zero;
-        var totalEndurance = 5;
-        if (TryComp<SpecialComponent>(target, out var special))
-            totalEndurance = special.TotalEndurance;
 
         foreach (var pair in thresholdComponent.Thresholds)
         {
             if (pair.Value == mobState)
             {
-                return pair.Key + FixedPoint2.New((totalEndurance - 5) * 4);
+                return pair.Key;
             }
         }
 
@@ -141,10 +120,6 @@ public sealed class MobThresholdSystem : EntitySystem
         [NotNullWhen(true)] out FixedPoint2? threshold,
         MobThresholdsComponent? thresholdComponent = null)
     {
-        var totalEndurance = 5;
-        if (TryComp<SpecialComponent>(target, out var special))
-            totalEndurance = special.TotalEndurance;
-
         threshold = null;
         if (!Resolve(target, ref thresholdComponent))
             return false;
@@ -153,7 +128,7 @@ public sealed class MobThresholdSystem : EntitySystem
         {
             if (pair.Value == mobState)
             {
-                threshold = pair.Key + FixedPoint2.New((totalEndurance - 5) * 4);
+                threshold = pair.Key;
                 return true;
             }
         }
@@ -221,11 +196,8 @@ public sealed class MobThresholdSystem : EntitySystem
             percentage = 0;
             return true;
         }
-        var totalEndurance = 5;
-        if (TryComp<SpecialComponent>(target, out var special))
-            totalEndurance = special.TotalEndurance;
 
-        percentage = FixedPoint2.Min(1.0f, damage / (threshold.Value + FixedPoint2.New((totalEndurance - 5) * 4)));
+        percentage = FixedPoint2.Min(1.0f, damage / threshold.Value);
         return true;
     }
 
@@ -311,9 +283,6 @@ public sealed class MobThresholdSystem : EntitySystem
     {
         if (!Resolve(target, ref threshold))
             return;
-        var totalEndurance = 5;
-        if (TryComp<SpecialComponent>(target, out var special))
-            totalEndurance = special.TotalEndurance;
 
         // create a duplicate dictionary so we don't modify while enumerating.
         var thresholds = new Dictionary<FixedPoint2, MobState>(threshold.Thresholds);
@@ -323,7 +292,7 @@ public sealed class MobThresholdSystem : EntitySystem
                 continue;
             threshold.Thresholds.Remove(damageThreshold);
         }
-        threshold.Thresholds[damage + FixedPoint2.New((totalEndurance - 5) * 4)] = mobState;
+        threshold.Thresholds[damage] = mobState;
         Dirty(target, threshold);
         VerifyThresholds(target, threshold);
     }
@@ -365,13 +334,9 @@ public sealed class MobThresholdSystem : EntitySystem
     private void CheckThresholds(EntityUid target, MobStateComponent mobStateComponent,
         MobThresholdsComponent thresholdsComponent, DamageableComponent damageableComponent, EntityUid? origin = null)
     {
-        var totalEndurance = 5;
-        if (TryComp<SpecialComponent>(target, out var special))
-            totalEndurance = special.TotalEndurance;
-
         foreach (var (threshold, mobState) in thresholdsComponent.Thresholds.Reverse())
         {
-            if (damageableComponent.TotalDamage < threshold + FixedPoint2.New((totalEndurance - 5) * 4))
+            if (damageableComponent.TotalDamage < threshold)
                 continue;
 
             TriggerThreshold(target, mobState, mobStateComponent, thresholdsComponent, origin);
@@ -459,9 +424,6 @@ public sealed class MobThresholdSystem : EntitySystem
     {
         if (!TryComp<MobStateComponent>(target, out var mobState) || !TryComp<DamageableComponent>(target, out var damageable))
             return;
-
-        thresholds.BaseThresholds = new SortedDictionary<FixedPoint2, MobState>(thresholds.Thresholds);  // Nuclear14 HP depends on Endurance
-
         CheckThresholds(target, mobState, thresholds, damageable);
         UpdateAllEffects((target, thresholds, mobState, damageable), mobState.CurrentState);
     }

@@ -1,3 +1,4 @@
+using Content.Shared.FixedPoint;
 using Content.Shared.Traits;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
@@ -9,7 +10,16 @@ using Content.Server.Abilities.Psionics;
 using Content.Shared.Psionics;
 using Content.Server.Language;
 using Content.Shared.Mood;
-using Content.Server.NPC.Systems;
+using Content.Shared.Traits.Assorted.Components;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Mobs;
+using Content.Shared.Damage.Components;
+using Content.Shared.NPC.Systems;
 
 namespace Content.Server.Traits;
 
@@ -129,6 +139,9 @@ public sealed partial class TraitAddPsionics : TraitFunction
     [DataField, AlwaysPushInheritance]
     public List<ProtoId<PsionicPowerPrototype>> PsionicPowers { get; private set; } = new();
 
+    [DataField, AlwaysPushInheritance]
+    public bool PlayFeedback;
+
     public override void OnPlayerSpawn(EntityUid uid,
         IComponentFactory factory,
         IEntityManager entityManager,
@@ -139,7 +152,34 @@ public sealed partial class TraitAddPsionics : TraitFunction
 
         foreach (var powerProto in PsionicPowers)
             if (prototype.TryIndex(powerProto, out var psionicPower))
-                psionic.InitializePsionicPower(uid, psionicPower, false);
+                psionic.InitializePsionicPower(uid, psionicPower, PlayFeedback);
+    }
+}
+
+/// <summary>
+///     This isn't actually used for any traits, surprise, other systems can use these functions!
+///     This is used by Items of Power to remove a psionic power when unequipped.
+/// </summary>
+[UsedImplicitly]
+public sealed partial class TraitRemovePsionics : TraitFunction
+{
+    [DataField, AlwaysPushInheritance]
+    public List<ProtoId<PsionicPowerPrototype>> PsionicPowers { get; private set; } = new();
+
+    [DataField, AlwaysPushInheritance]
+    public bool Forced = true;
+
+    public override void OnPlayerSpawn(EntityUid uid,
+        IComponentFactory factory,
+        IEntityManager entityManager,
+        ISerializationManager serializationManager)
+    {
+        var prototype = IoCManager.Resolve<IPrototypeManager>();
+        var psionic = entityManager.System<PsionicAbilitiesSystem>();
+
+        foreach (var powerProto in PsionicPowers)
+            if (prototype.TryIndex(powerProto, out var psionicPower))
+                psionic.RemovePsionicPower(uid, psionicPower, Forced);
     }
 }
 
@@ -261,5 +301,287 @@ public sealed partial class TraitVVEdit : TraitFunction
         var vvm = IoCManager.Resolve<IViewVariablesManager>();
         foreach (var (path, value) in VVEdit)
             vvm.WritePath(path, value);
+    }
+}
+
+/// Used for writing to an entity's ExtendDescriptionComponent. If one is not present, it will be added!
+/// Use this to create traits that add special descriptions for when a character is shift-click examined.
+[UsedImplicitly]
+public sealed partial class TraitPushDescription : TraitFunction
+{
+    [DataField, AlwaysPushInheritance]
+    public List<DescriptionExtension> DescriptionExtensions { get; private set; } = new();
+
+    public override void OnPlayerSpawn(EntityUid uid,
+        IComponentFactory factory,
+        IEntityManager entityManager,
+        ISerializationManager serializationManager)
+    {
+        entityManager.EnsureComponent<ExtendDescriptionComponent>(uid, out var descComp);
+        foreach (var descExtension in DescriptionExtensions)
+            descComp.DescriptionList.Add(descExtension);
+    }
+}
+
+[UsedImplicitly]
+public sealed partial class TraitAddArmor : TraitFunction
+{
+    /// <summary>
+    ///     The list of prototype ID's of DamageModifierSets to be added to the enumerable damage modifiers of an entity.
+    /// </summary>
+    /// <remarks>
+    ///     Dear Maintainer, I'm well aware that validating protoIds is a thing. Unfortunately, this is for a legacy system that doesn't have validated prototypes.
+    ///     And refactoring the entire DamageableSystem is way the hell outside of the scope of the PR adding this function.
+    ///     {FaridaIsCute.png} - Solidus
+    /// </remarks>
+    [DataField, AlwaysPushInheritance]
+    public List<string> DamageModifierSets { get; private set; } = new();
+
+    public override void OnPlayerSpawn(EntityUid uid,
+        IComponentFactory factory,
+        IEntityManager entityManager,
+        ISerializationManager serializationManager)
+    {
+        entityManager.EnsureComponent<DamageableComponent>(uid, out var damageableComponent);
+        foreach (var modifierSet in DamageModifierSets)
+            damageableComponent.DamageModifierSets.Add(modifierSet);
+    }
+}
+
+[UsedImplicitly]
+public sealed partial class TraitRemoveArmor : TraitFunction
+{
+    [DataField, AlwaysPushInheritance]
+    public List<string> DamageModifierSets { get; private set; } = new();
+
+    public override void OnPlayerSpawn(EntityUid uid,
+        IComponentFactory factory,
+        IEntityManager entityManager,
+        ISerializationManager serializationManager)
+    {
+        if (!entityManager.TryGetComponent<DamageableComponent>(uid, out var damageableComponent))
+            return;
+
+        foreach (var modifierSet in DamageModifierSets)
+            damageableComponent.DamageModifierSets.Remove(modifierSet);
+    }
+}
+
+[UsedImplicitly]
+public sealed partial class TraitAddSolutionContainer : TraitFunction
+{
+    [DataField, AlwaysPushInheritance]
+    public Dictionary<string, SolutionComponent> Solutions { get; private set; } = new();
+
+    public override void OnPlayerSpawn(EntityUid uid,
+        IComponentFactory factory,
+        IEntityManager entityManager,
+        ISerializationManager serializationManager)
+    {
+        var solutionContainer = entityManager.System<SharedSolutionContainerSystem>();
+
+        foreach (var (containerKey, solution) in Solutions)
+        {
+            var hasSolution = solutionContainer.EnsureSolution(uid, containerKey, out Solution? newSolution);
+
+            if (!hasSolution)
+                return;
+
+            newSolution!.AddSolution(solution.Solution, null);
+        }
+    }
+}
+
+[UsedImplicitly]
+public sealed partial class TraitModifyMobThresholds : TraitFunction
+{
+    [DataField, AlwaysPushInheritance]
+    public int CritThresholdModifier;
+
+    [DataField, AlwaysPushInheritance]
+    public int SoftCritThresholdModifier;
+
+    [DataField, AlwaysPushInheritance]
+    public int DeadThresholdModifier;
+
+    public override void OnPlayerSpawn(EntityUid uid,
+        IComponentFactory factory,
+        IEntityManager entityManager,
+        ISerializationManager serializationManager)
+    {
+        if (!entityManager.TryGetComponent<MobThresholdsComponent>(uid, out var threshold))
+            return;
+
+        var thresholdSystem = entityManager.System<MobThresholdSystem>();
+        if (CritThresholdModifier != 0)
+        {
+            var critThreshold = thresholdSystem.GetThresholdForState(uid, MobState.Critical, threshold);
+            if (critThreshold != 0)
+                thresholdSystem.SetMobStateThreshold(uid, critThreshold + CritThresholdModifier, MobState.Critical);
+        }
+
+        if (SoftCritThresholdModifier != 0)
+        {
+            var softCritThreshold = thresholdSystem.GetThresholdForState(uid, MobState.SoftCritical, threshold);
+            if (softCritThreshold != 0)
+                thresholdSystem.SetMobStateThreshold(uid, softCritThreshold + SoftCritThresholdModifier, MobState.SoftCritical);
+        }
+
+        if (DeadThresholdModifier != 0)
+        {
+            var deadThreshold = thresholdSystem.GetThresholdForState(uid, MobState.Dead, threshold);
+            if (deadThreshold != 0)
+                thresholdSystem.SetMobStateThreshold(uid, deadThreshold + DeadThresholdModifier, MobState.Dead);
+        }
+    }
+}
+
+[UsedImplicitly]
+public sealed partial class TraitModifyMobState : TraitFunction
+{
+    // Three-State Booleans my beloved.
+    // :faridabirb.png:
+
+    [DataField, AlwaysPushInheritance]
+    public bool? AllowMovementWhileCrit;
+
+    [DataField, AlwaysPushInheritance]
+    public bool? AllowMovementWhileSoftCrit;
+
+    [DataField, AlwaysPushInheritance]
+    public bool? AllowMovementWhileDead;
+
+    [DataField, AlwaysPushInheritance]
+    public bool? AllowTalkingWhileCrit;
+
+    [DataField, AlwaysPushInheritance]
+    public bool? AllowTalkingWhileSoftCrit;
+
+    [DataField, AlwaysPushInheritance]
+    public bool? AllowTalkingWhileDead;
+
+    [DataField, AlwaysPushInheritance]
+    public bool? DownWhenCrit;
+
+    [DataField, AlwaysPushInheritance]
+    public bool? DownWhenSoftCrit;
+
+    [DataField, AlwaysPushInheritance]
+    public bool? DownWhenDead;
+
+    [DataField, AlwaysPushInheritance]
+    public bool? AllowHandInteractWhileCrit;
+
+    [DataField, AlwaysPushInheritance]
+    public bool? AllowHandInteractWhileSoftCrit;
+
+    [DataField, AlwaysPushInheritance]
+    public bool? AllowHandInteractWhileDead;
+
+    public override void OnPlayerSpawn(EntityUid uid,
+        IComponentFactory factory,
+        IEntityManager entityManager,
+        ISerializationManager serializationManager)
+    {
+        if (!entityManager.TryGetComponent<MobStateComponent>(uid, out var mobStateComponent))
+            return;
+
+        if (AllowMovementWhileCrit is not null)
+            mobStateComponent.AllowMovementWhileCrit = AllowMovementWhileCrit.Value;
+
+        if (AllowMovementWhileSoftCrit is not null)
+            mobStateComponent.AllowHandInteractWhileSoftCrit = AllowMovementWhileSoftCrit.Value;
+
+        if (AllowMovementWhileDead is not null)
+            mobStateComponent.AllowMovementWhileDead = AllowMovementWhileDead.Value;
+
+        if (AllowTalkingWhileCrit is not null)
+            mobStateComponent.AllowTalkingWhileCrit = AllowTalkingWhileCrit.Value;
+
+        if (AllowTalkingWhileSoftCrit is not null)
+            mobStateComponent.AllowTalkingWhileSoftCrit = AllowTalkingWhileSoftCrit.Value;
+
+        if (AllowTalkingWhileDead is not null)
+            mobStateComponent.AllowTalkingWhileDead = AllowTalkingWhileDead.Value;
+
+        if (DownWhenCrit is not null)
+            mobStateComponent.DownWhenCrit = DownWhenCrit.Value;
+
+        if (DownWhenSoftCrit is not null)
+            mobStateComponent.DownWhenSoftCrit = DownWhenSoftCrit.Value;
+
+        if (DownWhenDead is not null)
+            mobStateComponent.DownWhenDead = DownWhenDead.Value;
+
+        if (AllowHandInteractWhileCrit is not null)
+            mobStateComponent.AllowHandInteractWhileCrit = AllowHandInteractWhileCrit.Value;
+
+        if (AllowHandInteractWhileSoftCrit is not null)
+            mobStateComponent.AllowHandInteractWhileSoftCrit = AllowHandInteractWhileSoftCrit.Value;
+
+        if (AllowHandInteractWhileDead is not null)
+            mobStateComponent.AllowHandInteractWhileDead = AllowHandInteractWhileDead.Value;
+    }
+}
+
+[UsedImplicitly]
+public sealed partial class TraitModifyStamina : TraitFunction
+{
+    [DataField, AlwaysPushInheritance]
+    public float StaminaModifier;
+
+    [DataField, AlwaysPushInheritance]
+    public float DecayModifier;
+
+    [DataField, AlwaysPushInheritance]
+    public float CooldownModifier;
+
+    public override void OnPlayerSpawn(EntityUid uid,
+        IComponentFactory factory,
+        IEntityManager entityManager,
+        ISerializationManager serializationManager)
+    {
+        if (!entityManager.TryGetComponent<StaminaComponent>(uid, out var staminaComponent))
+            return;
+
+        staminaComponent.CritThreshold += StaminaModifier;
+        staminaComponent.Decay += DecayModifier;
+        staminaComponent.Cooldown += CooldownModifier;
+    }
+}
+
+/// <summary>
+///     Used for traits that modify SlowOnDamageComponent.
+/// </summary>
+[UsedImplicitly]
+public sealed partial class TraitModifySlowOnDamage : TraitFunction
+{
+    // <summary>
+    //     A flat modifier to add to all damage threshold keys.
+    // </summary>
+    [DataField, AlwaysPushInheritance]
+    public float DamageThresholdsModifier;
+
+    // <summary>
+    //     A multiplier applied to all speed modifier values.
+    //     The higher the multiplier, the stronger the slowdown.
+    // </summary>
+    [DataField, AlwaysPushInheritance]
+    public float SpeedModifierMultiplier = 1f;
+
+    public override void OnPlayerSpawn(EntityUid uid,
+        IComponentFactory factory,
+        IEntityManager entityManager,
+        ISerializationManager serializationManager)
+    {
+        if (!entityManager.TryGetComponent<SlowOnDamageComponent>(uid, out var slowOnDamage))
+            return;
+
+        var newSpeedModifierThresholds = new Dictionary<FixedPoint2, float>();
+
+        foreach (var (damageThreshold, speedModifier) in slowOnDamage.SpeedModifierThresholds)
+            newSpeedModifierThresholds[damageThreshold + DamageThresholdsModifier] = 1 - (1 - speedModifier) * SpeedModifierMultiplier;
+
+        slowOnDamage.SpeedModifierThresholds = newSpeedModifierThresholds;
     }
 }

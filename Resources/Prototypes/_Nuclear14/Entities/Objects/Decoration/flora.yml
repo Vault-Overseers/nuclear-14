@@ -35,7 +35,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 400
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -53,18 +53,9 @@
         acts: [ "Destruction" ]
       - !type:SpawnEntitiesBehavior
         spawn:
-          N14FloraLogTimber:
-            min: 1
-            max: 1
-  - type: SoundOnGather
-  - type: Gatherable
-    whitelist:
-      tags:
-        - Axe
-        - BotanyHatchet
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: Timber
+          Log:
+            min: 2
+            max: 8
   - type: Pullable
   
 - type: entity
@@ -77,54 +68,7 @@
   - type: Strap
     position: Stand
     buckleOffset: "0,-0.05"
-            
-- type: entity
-  parent: N14FloraLogBase
-  id: N14FloraLogTimber
-  name: timber
-  suffix: item
-  components:
-  - type: Sprite
-    state: tree_timber
-  - type: Gatherable
-    whitelist:
-      tags:
-        - Saw
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: WoodPlank
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Effects/tree_fell.ogg
-          params:
-            volume: 5
-            variation: 0.05
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialWoodPlank1:
-            min: 1
-            max: 1
-  - type: Stack
-    stackType: N14Timber
-    count: 1
-  - type: Material
-  - type: Item
-    size: Huge
-    
+
 - type: entity
   parent: N14FloraLogBase
   id: N14FloraLog3

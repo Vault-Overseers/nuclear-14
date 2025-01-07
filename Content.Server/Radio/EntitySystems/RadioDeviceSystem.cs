@@ -1,17 +1,17 @@
+using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
-using Content.Server.Language;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.Components;
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
-using Content.Shared.UserInterface;
-using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
+using Content.Shared.Power;
 using Content.Shared.Radio;
+using Content.Shared.Chat;
 using Content.Shared.Radio.Components;
 using Content.Shared._NC.Radio;
 using Robust.Server.GameObjects;
@@ -30,8 +30,6 @@ public sealed class RadioDeviceSystem : EntitySystem
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid)> _recentlySent = new();
@@ -50,7 +48,7 @@ public sealed class RadioDeviceSystem : EntitySystem
         SubscribeLocalEvent<RadioSpeakerComponent, ActivateInWorldEvent>(OnActivateSpeaker);
         SubscribeLocalEvent<RadioSpeakerComponent, RadioReceiveEvent>(OnReceiveRadio);
 
-        SubscribeLocalEvent<IntercomComponent, BeforeActivatableUIOpenEvent>(OnBeforeIntercomUiOpen);
+        SubscribeLocalEvent<IntercomComponent, EncryptionChannelsChangedEvent>(OnIntercomEncryptionChannelsChanged);
         SubscribeLocalEvent<IntercomComponent, ToggleIntercomMicMessage>(OnToggleIntercomMic);
         SubscribeLocalEvent<IntercomComponent, ToggleIntercomSpeakerMessage>(OnToggleIntercomSpeaker);
         SubscribeLocalEvent<IntercomComponent, SelectIntercomChannelMessage>(OnSelectIntercomChannel);
@@ -90,6 +88,9 @@ public sealed class RadioDeviceSystem : EntitySystem
     #region Toggling
     private void OnActivateMicrophone(EntityUid uid, RadioMicrophoneComponent component, ActivateInWorldEvent args)
     {
+        if (!args.Complex)
+            return;
+
         if (!component.ToggleOnInteract)
             return;
 
@@ -99,6 +100,9 @@ public sealed class RadioDeviceSystem : EntitySystem
 
     private void OnActivateSpeaker(EntityUid uid, RadioSpeakerComponent component, ActivateInWorldEvent args)
     {
+        if (!args.Complex)
+            return;
+
         if (!component.ToggleOnInteract)
             return;
 
@@ -160,12 +164,11 @@ public sealed class RadioDeviceSystem : EntitySystem
 
         component.Enabled = enabled;
 
-        if (!quiet)
+        if (!quiet && user != null)
         {
             var state = Loc.GetString(component.Enabled ? "handheld-radio-component-on-state" : "handheld-radio-component-off-state");
             var message = Loc.GetString("handheld-radio-component-on-use", ("radioState", state));
-            if (user != null)
-                _popup.PopupEntity(message, user.Value, user.Value);
+            _popup.PopupEntity(message, user.Value, user.Value);
         }
 
         _appearance.SetData(uid, RadioDeviceVisuals.Speaker, component.Enabled);
@@ -214,59 +217,59 @@ public sealed class RadioDeviceSystem : EntitySystem
         if (uid == args.RadioSource)
             return;
 
-        var nameEv = new TransformSpeakerSpeechEvent(args.MessageSource, Name(args.MessageSource));
+        var nameEv = new TransformSpeakerNameEvent(args.MessageSource, Name(args.MessageSource));
         RaiseLocalEvent(args.MessageSource, nameEv);
 
-        var name = Loc.GetString("speech-name-relay", ("speaker", Name(uid)),
-            ("originalName", nameEv.VoiceName ?? Name(args.MessageSource)));
+        var name = Loc.GetString("speech-name-relay",
+            ("speaker", Name(uid)),
+            ("originalName", nameEv.VoiceName));
 
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
-        var message = args.OriginalChatMsg.Message; // The chat system will handle the rest and re-obfuscate if needed.
-        _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language);
+        _chat.TrySendInGameICMessage(uid, args.OriginalChatMsg.Message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false);
     }
 
-    private void OnBeforeIntercomUiOpen(EntityUid uid, IntercomComponent component, BeforeActivatableUIOpenEvent args)
+    private void OnIntercomEncryptionChannelsChanged(Entity<IntercomComponent> ent, ref EncryptionChannelsChangedEvent args)
     {
-        UpdateIntercomUi(uid, component);
+        ent.Comp.SupportedChannels = args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p)).ToList();
+
+        var channel = args.Component.DefaultChannel;
+        if (ent.Comp.CurrentChannel != null && ent.Comp.SupportedChannels.Contains(ent.Comp.CurrentChannel.Value))
+            channel = ent.Comp.CurrentChannel;
+
+        SetIntercomChannel(ent, channel);
     }
 
-    private void OnToggleIntercomMic(EntityUid uid, IntercomComponent component, ToggleIntercomMicMessage args)
+    private void OnToggleIntercomMic(Entity<IntercomComponent> ent, ref ToggleIntercomMicMessage args)
     {
-        if (component.RequiresPower && !this.IsPowered(uid, EntityManager))
+        if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
 
-        SetMicrophoneEnabled(uid, args.Actor, args.Enabled, true);
-        UpdateIntercomUi(uid, component);
+        SetMicrophoneEnabled(ent, args.Actor, args.Enabled, true);
+        ent.Comp.MicrophoneEnabled = args.Enabled;
+        Dirty(ent);
     }
 
-    private void OnToggleIntercomSpeaker(EntityUid uid, IntercomComponent component, ToggleIntercomSpeakerMessage args)
+    private void OnToggleIntercomSpeaker(Entity<IntercomComponent> ent, ref ToggleIntercomSpeakerMessage args)
     {
-        if (component.RequiresPower && !this.IsPowered(uid, EntityManager))
+        if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
 
-        SetSpeakerEnabled(uid, args.Actor, args.Enabled, true);
-        UpdateIntercomUi(uid, component);
+        SetSpeakerEnabled(ent, args.Actor, args.Enabled, true);
+        ent.Comp.SpeakerEnabled = args.Enabled;
+        Dirty(ent);
     }
 
-    private void OnSelectIntercomChannel(EntityUid uid, IntercomComponent component, SelectIntercomChannelMessage args)
+    private void OnSelectIntercomChannel(Entity<IntercomComponent> ent, ref SelectIntercomChannelMessage args)
     {
-        if (component.RequiresPower && !this.IsPowered(uid, EntityManager))
+        if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
 
         if (!_protoMan.TryIndex<RadioChannelPrototype>(args.Channel, out var /*Nuclear-14-start*/ channel /*Nuclear-14-end*/) || !component.SupportedChannels.Contains(args.Channel))
             return;
 
-        if (TryComp<RadioMicrophoneComponent>(uid, out var mic))
-        {
-            mic.BroadcastChannel = args.Channel;
-            mic.Frequency = _radio.GetFrequency(uid, channel); // Nuclear-14
-        }
-        if (TryComp<RadioSpeakerComponent>(uid, out var speaker))
-            speaker.Channels = new(){ args.Channel };
-        UpdateIntercomUi(uid, component);
     }
 
-    private void UpdateIntercomUi(EntityUid uid, IntercomComponent component)
+    private void SetIntercomChannel(Entity<IntercomComponent> ent, ProtoId<RadioChannelPrototype>? channel)
     {
         var micComp = CompOrNull<RadioMicrophoneComponent>(uid);
         var speakerComp = CompOrNull<RadioSpeakerComponent>(uid);

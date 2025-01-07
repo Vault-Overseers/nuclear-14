@@ -58,7 +58,7 @@
           - !type:GibBehavior { }
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
+      60: 0.75
       90: 0.5
       120: 0.3
   - type: SiliconDownOnDead
@@ -106,6 +106,8 @@
   - type: OfferItem
   - type: LayingDown
   - type: Carriable
+  - type: StatusIcon
+    bounds: -0.5,-0.5,0.5,0.5
   - type: StepTriggerImmune
     whitelist:
       types:
@@ -122,6 +124,12 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - SiliconEmotes
 
 - type: entity
   save: false

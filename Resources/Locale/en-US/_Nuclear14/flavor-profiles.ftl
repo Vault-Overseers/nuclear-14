@@ -4,6 +4,7 @@
 ## Basic foodstuffs (ingredients, generic flavors)
 
 ## Complex foodstuffs (cooked foods, joke flavors, etc)
+flavor-complex-tato = like worse tomatoes and potatoes
 
 
 # Drink-specific flavors.

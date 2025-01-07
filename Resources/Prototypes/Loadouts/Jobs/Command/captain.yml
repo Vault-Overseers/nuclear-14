@@ -105,6 +105,8 @@
   id: LoadoutCaptainDrinkFlask
   category: JobsCommandCaptain
   cost: 0
+  canBeHeirloom: true
+  customColorTint: true
   requirements:
     - !type:CharacterItemGroupRequirement
       group: LoadoutCaptainTrinkets
@@ -157,6 +159,7 @@
   id: LoadoutCaptainAntiqueLaserPistol
   category: JobsCommandCaptain
   cost: 0
+  canBeHeirloom: true
   requirements:
     - !type:CharacterItemGroupRequirement
       group: LoadoutCaptainWeapon
@@ -170,6 +173,7 @@
   id: LoadoutCaptainPulsePistol
   category: JobsCommandCaptain
   cost: 0
+  canBeHeirloom: true
   requirements:
     - !type:CharacterItemGroupRequirement
       group: LoadoutCaptainWeapon
@@ -212,6 +216,7 @@
   category: JobsCommandCaptain
   cost: 0
   exclusive: true
+  customColorTint: true
   requirements:
     - !type:CharacterItemGroupRequirement
       group: LoadoutCaptainGloves
@@ -350,6 +355,19 @@
   items:
     - ClothingMaskGasCaptain
 
+- type: loadout
+  id: LoadoutCommandCapMaskGasCombat
+  category: JobsCommandCaptain
+  cost: 0
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCaptainMask
+    - !type:CharacterJobRequirement
+      jobs:
+        - Captain
+  items:
+    - ClothingMaskGasCaptainCombat
+
 # Outer
 - type: loadout
   id: LoadoutCommandCapOuterWinter
@@ -376,6 +394,21 @@
         - Captain
   items:
     - ClothingOuterArmorCaptainCarapace
+
+- type: loadout
+  id: LoadoutCaptainOuterTrench
+  category: JobsCommandCaptain
+  cost: 0
+  exclusive: true
+  canBeHeirloom: true
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCaptainOuter
+    - !type:CharacterJobRequirement
+      jobs:
+        - Captain
+  items:
+    - ClothingOuterCoatCapTrench
 
 # Shoes
 - type: loadout

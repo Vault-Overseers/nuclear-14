@@ -21,6 +21,8 @@
     interfaces:
       enum.HealthAnalyzerUiKey.Key:
         type: HealthAnalyzerBoundUserInterface
+  - type: ItemToggle
+    onUse: false
   - type: HealthAnalyzer
     scanningEndSound:
       path: "/Audio/Items/Medical/healthscanner.ogg"
@@ -34,9 +36,13 @@
         enum.PowerDeviceVisualLayers.Powered:
           True: { visible: true }
           False: { visible: false }
-  # - type: GuideHelp
-    # guides:
-      # - Medical Doctor
+  - type: GuideHelp
+    guides:
+      - Medical Doctor
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
 
 - type: entity
   id: HandheldHealthAnalyzer
