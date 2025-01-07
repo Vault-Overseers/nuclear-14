@@ -48,7 +48,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem<WaveDefenseRuleCompon
 
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnPlayersSpawned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(HandleLatejoin);
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
+        //SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText); FIXME: subscribed by superclass
         SubscribeLocalEvent<WaveDefenderComponent, MobStateChangedEvent>(OnPlayerDied);
         SubscribeLocalEvent<WaveMobComponent, MobStateChangedEvent>(OnMobDied);
     }
