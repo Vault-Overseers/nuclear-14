@@ -265,22 +265,19 @@ public sealed class RadioDeviceSystem : EntitySystem
         if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
 
-        if (!_protoMan.TryIndex<RadioChannelPrototype>(args.Channel, out var /*Nuclear-14-start*/ channel /*Nuclear-14-end*/) || !component.SupportedChannels.Contains(args.Channel))
+        if (!_protoMan.TryIndex<RadioChannelPrototype>(args.Channel, out var /*Nuclear-14-start*/ channel /*Nuclear-14-end*/) || !ent.Comp.SupportedChannels.Contains(args.Channel))
             return;
 
     }
 
     private void SetIntercomChannel(Entity<IntercomComponent> ent, ProtoId<RadioChannelPrototype>? channel)
     {
-        var micComp = CompOrNull<RadioMicrophoneComponent>(uid);
-        var speakerComp = CompOrNull<RadioSpeakerComponent>(uid);
-
-        var micEnabled = micComp?.Enabled ?? false;
-        var speakerEnabled = speakerComp?.Enabled ?? false;
-        var availableChannels = component.SupportedChannels;
-        var selectedChannel = micComp?.BroadcastChannel ?? SharedChatSystem.CommonChannel;
-        var state = new IntercomBoundUIState(micEnabled, speakerEnabled, availableChannels, selectedChannel);
-        _ui.SetUiState(uid, IntercomUiKey.Key, state);
+        SetSpeakerEnabled(ent, null, false);
+        SetMicrophoneEnabled(ent, null, false);
+        ent.Comp.MicrophoneEnabled = false;
+        ent.Comp.SpeakerEnabled = false;
+        Dirty(ent);
+        return;
     }
 
     // Nuclear-14-Start

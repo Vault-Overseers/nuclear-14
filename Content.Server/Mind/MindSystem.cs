@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿﻿using System.Diagnostics.CodeAnalysis;
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
@@ -7,14 +7,13 @@ using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.NPC.Components;
 using Content.Shared.Players;
 using Robust.Server.GameStates;
 using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-
-using Content.Server.NPC.Components;
 
 namespace Content.Server.Mind;
 
