@@ -94,7 +94,7 @@ public sealed class RadioSystem : EntitySystem
         ProtoId<RadioChannelPrototype> channel,
         EntityUid radioSource,
         LanguagePrototype? language = null,
-        int? frequency = null
+        int? frequency = null,
         bool escapeMarkup = true
         ) =>
         SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, language: language, frequency: frequency);
