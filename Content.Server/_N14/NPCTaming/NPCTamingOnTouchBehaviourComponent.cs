@@ -1,3 +1,4 @@
+/*
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -101,3 +102,4 @@ public sealed partial class NPCTamingOnTouchBehaviourComponent : Component
     [ViewVariables]
     public Dictionary<EntityUid, TimeSpan> AggroMemories = new();
 }
+*/
