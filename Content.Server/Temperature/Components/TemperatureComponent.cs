@@ -49,7 +49,7 @@ public sealed partial class TemperatureComponent : Component
     /// How well does the air surrounding you merge into your body temperature?
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float AtmosTemperatureTransferEfficiency = 0.5f;
+    public float AtmosTemperatureTransferEfficiency = 0.1f;
 
     [Obsolete("Use system method")]
     public float HeatCapacity
