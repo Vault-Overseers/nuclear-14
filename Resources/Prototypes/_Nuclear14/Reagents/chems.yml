@@ -112,8 +112,6 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Drunk
-      - !type:StrengthModifierReagent
-        strengthModifier: 2
     Narcotic:
       effects:
       - !type:ChemAddMoodlet
@@ -136,12 +134,6 @@
         type: Add
         time: 10
         refresh: false
-      - !type:CharismaModifierReagent
-        charismaModifier: 3
-      - !type:LuckModifierReagent
-        luckModifier: 3
-      - !type:StrengthModifierReagent
-        strengthModifier: 2
     Food:
       effects:
       - !type:SatiateThirst
@@ -173,12 +165,8 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Jitter
-      - !type:StrengthModifierReagent
-        strengthModifier: 2
-      - !type:EnduranceModifierReagent
-        enduranceModifier: 2
-      # - !type:HealthIncreaseReagent
-      #   increaseAmount: 50
+      - !type:HealthIncreaseReagent
+        increaseAmount: 50
 
 - type: reagent
   id: Buffjet
@@ -195,12 +183,8 @@
       - !type:MovespeedModifier
         walkSpeedModifier: 1.1
         sprintSpeedModifier: 1.1
-      - !type:StrengthModifierReagent
-        strengthModifier: 3
-      - !type:EnduranceModifierReagent
-        enduranceModifier: 3
-      # - !type:HealthIncreaseReagent
-      #   increaseAmount: 50
+      - !type:HealthIncreaseReagent
+        increaseAmount: 50
 
 - type: reagent
   id: Bufftats
@@ -214,14 +198,8 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Jitter
-      - !type:StrengthModifierReagent
-        strengthModifier: 3
-      - !type:EnduranceModifierReagent
-        enduranceModifier: 3
-      - !type:PerceptionModifierReagent
-        perceptionModifier: 3
-      # - !type:HealthIncreaseReagent
-      #   increaseAmount: 50
+      - !type:HealthIncreaseReagent
+        increaseAmount: 50
 
 - type: reagent
   id: Mentats
@@ -233,11 +211,6 @@
   metabolisms:
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
-      effects:
-      - !type:IntelligenceModifierReagent
-        intelligenceModifier: 2
-      - !type:PerceptionModifierReagent
-        perceptionModifier: 2
 
 - type: reagent
   id: MentatsBerry
@@ -249,9 +222,6 @@
   metabolisms:
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
-      effects:
-      - !type:IntelligenceModifierReagent
-        intelligenceModifier: 5
 
 - type: reagent
   id: MentatsGrape
@@ -263,9 +233,6 @@
   metabolisms:
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
-      effects:
-      - !type:CharismaModifierReagent
-        charismaModifier: 5
 
 - type: reagent
   id: MentatsOrange
@@ -277,9 +244,6 @@
   metabolisms:
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
-      effects:
-      - !type:PerceptionModifierReagent
-        perceptionModifier: 5
 
 - type: reagent
   id: DamageResistMixture
@@ -293,8 +257,6 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Drunk
-      - !type:EnduranceModifierReagent
-        enduranceModifier: 4 # increases endurance until % resistance is introduced
 
 - type: reagent
   id: Hydra
@@ -320,8 +282,6 @@
         key: SlurredSpeech
         component: TelepathicRepeater
       - !type:Jitter
-      - !type:EnduranceModifierReagent
-        enduranceModifier: -1
       - !type:HealthChange
         damage:
           groups:
