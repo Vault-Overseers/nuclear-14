@@ -8,6 +8,11 @@
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodWashington
       min: 18000 # 5 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
   startingGear: BoSWashingtonScribeGear
   alwaysUseSpawner: true
   icon: "JobIconScientist"
@@ -22,11 +27,6 @@
         factions:
           - BrotherhoodWashington
       - type: CPRTraining
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSWashingtonScribeGear

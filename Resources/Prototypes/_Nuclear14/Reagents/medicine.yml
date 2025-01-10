@@ -351,9 +351,13 @@
       - !type:ChemVomit
         probability: 0.05
       - !type:Drunk
-        min: 15
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
       - !type:Jitter
-        min: 25
+        conditions:
+        - !type:ReagentThreshold
+          min: 25
 
 - type: reagent
   id: Bitterdrink
@@ -373,7 +377,9 @@
           types:
             Radiation: -1
       - !type:ChemVomit
-        min: 25
+        conditions:
+        - !type:ReagentThreshold
+          min: 25
       - !type:Drunk
 
 - type: reagent

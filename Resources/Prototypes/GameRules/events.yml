@@ -31,15 +31,15 @@
       min:  40
       max:  60
 
-# - type: entity
-  # id: AnomalySpawn
-  # parent: BaseStationEventLongDelay
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: AnomalySpawn
+  parent: BaseStationEventLongDelay
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # weight: 8
     # duration: 35
-  # - type: AnomalySpawnRule
+  - type: AnomalySpawnRule
 
 # - type: entity
   # id: BluespaceArtifact
@@ -98,22 +98,22 @@
     # duration: 1
   # - type: ClericalErrorRule
 
-# - type: entity
-  # parent: BaseGameRule
-  # id: ClosetSkeleton
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  parent: BaseGameRule
+  id: ClosetSkeleton
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # weight: 5
     # duration: 1
     # minimumPlayers: 10
-  # - type: RandomEntityStorageSpawnRule
-    # prototype: MobSkeletonCloset
+  - type: RandomEntityStorageSpawnRule
+    prototype: MobSkeletonCloset
 
-# - type: entity
-  # parent: BaseGameRule
-  # id: DragonSpawn
-  # categories: [ HideSpawnMenu ]
+- type: entity
+  parent: BaseGameRule
+  id: DragonSpawn
+  categories: [ HideSpawnMenu ]
   # components:
   # - type: StationEvent
     # weight: 6.5
@@ -124,10 +124,10 @@
   # - type: RandomSpawnRule
     # prototype: SpawnPointGhostDragon
 
-# - type: entity
-  # parent: BaseGameRule
-  # id: NinjaSpawn
-  # categories: [ HideSpawnMenu ]
+- type: entity
+  parent: BaseGameRule
+  id: NinjaSpawn
+  categories: [ HideSpawnMenu ]
   # components:
   # - type: StationEvent
     # weight: 6
@@ -173,18 +173,18 @@
       # - type: NinjaRole
         # prototype: SpaceNinja
 
-# - type: entity
-  # parent: BaseGameRule
-  # id: RevenantSpawn
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  parent: BaseGameRule
+  id: RevenantSpawn
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # weight: 7.5
     # duration: 1
     # earliestStart: 45
     # minimumPlayers: 20
-  # - type: RandomSpawnRule
-    # prototype: MobRevenant
+  - type: RandomSpawnRule
+    prototype: MobRevenant
 
 # # disabled until event is rewritten to be more interesting
 # #- type: entity
@@ -197,36 +197,36 @@
 # #    duration: 1
 # #  - type: FalseAlarmRule
 
-# - type: entity
-  # id: GasLeak
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: GasLeak
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # startAnnouncement: true
     # endAnnouncement: true
     # weight: 8
     # startDelay: 20
-  # - type: GasLeakRule
+  - type: GasLeakRule
 
-# - type: entity
-  # id: KudzuGrowth
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: KudzuGrowth
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # earliestStart: 15
     # minimumPlayers: 15
     # weight: 7
     # startDelay: 50
     # duration: 240
-  # - type: KudzuGrowthRule
+  - type: KudzuGrowthRule
 
-# - type: entity
-  # id: MeteorSwarm
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: MeteorSwarm
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # earliestStart: 30
     # weight: 7.5
@@ -235,94 +235,94 @@
     # endAnnouncement: true
     # duration: null #ending is handled by MeteorSwarmRule
     # startDelay: 30
-  # - type: MeteorSwarmRule
+  - type: MeteorSwarmRule
 
-# - type: entity
-  # id: MouseMigration
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: MouseMigration
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # startAnnouncement: true
     # startDelay: 10
     # earliestStart: 15
     # weight: 6
     # duration: 50
-  # - type: VentCrittersRule
-    # entries:
-    # - id: MobMouse
-      # prob: 0.02
-    # - id: MobMouse1
-      # prob: 0.02
-    # - id: MobMouse2
-      # prob: 0.02
-    # - id: MobMouseCancer
-      # prob: 0.001
-    # specialEntries:
-    # - id: SpawnPointGhostRatKing
-      # prob: 0.001
+  - type: VentCrittersRule
+    entries:
+    - id: MobMouse
+      prob: 0.02
+    - id: MobMouse1
+      prob: 0.02
+    - id: MobMouse2
+      prob: 0.02
+    - id: MobMouseCancer
+      prob: 0.001
+    specialEntries:
+    - id: SpawnPointGhostRatKing
+      prob: 0.001
 
-# - type: entity
-  # id: CockroachMigration
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: CockroachMigration
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # startAnnouncement: true
     # startDelay: 10
     # weight: 6
     # duration: 50
-  # - type: VentCrittersRule
-    # entries:
-    # - id: MobCockroach
-      # prob: 0.03
-    # - id: MobMothroach
-      # prob: 0.008
+  - type: VentCrittersRule
+    entries:
+    - id: MobCockroach
+      prob: 0.03
+    - id: MobMothroach
+      prob: 0.008
 
-# - type: entity
-  # id: SnailMigrationLowPop
-  # parent: BaseGameRule
-  # components:
+- type: entity
+  id: SnailMigrationLowPop
+  parent: BaseGameRule
+  components:
   # - type: StationEvent
     # startAnnouncement: true
     # startDelay: 10
     # weight: 6
     # duration: 50
-  # - type: VentCrittersRule
-    # entries:
-    # - id: MobSnail
-      # prob: 0.02
-    # - id: MobSnailSpeed
-      # prob: 0.002
-    # - id: MobSnailMoth
-      # prob: 0.002
+  - type: VentCrittersRule
+    entries:
+    - id: MobSnail
+      prob: 0.02
+    - id: MobSnailSpeed
+      prob: 0.002
+    - id: MobSnailMoth
+      prob: 0.002
 
-# - type: entity
-  # id: SnailMigration
-  # parent: BaseStationEventShortDelay
-  # components:
+- type: entity
+  id: SnailMigration
+  parent: BaseStationEventShortDelay
+  components:
   # - type: StationEvent
     # startAnnouncement: true
     # earliestStart: 15
     # weight: 6
     # duration: 50
     # minimumPlayers: 30
-  # - type: VentCrittersRule
-    # entries:
-    # - id: MobSnail
-      # prob: 0.02
-    # - id: MobSnailSpeed
-      # prob: 0.002
-    # - id: MobSnailMoth
-      # prob: 0.002
-    # - id: MobSnailInstantDeath
-      # prob: 0.00001 #  ~ 1:2000 snails
+  - type: VentCrittersRule
+    entries:
+    - id: MobSnail
+      prob: 0.02
+    - id: MobSnailSpeed
+      prob: 0.002
+    - id: MobSnailMoth
+      prob: 0.002
+    - id: MobSnailInstantDeath
+      prob: 0.00001 #  ~ 1:2000 snails
 
-# - type: entity
-  # id: PowerGridCheck
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: PowerGridCheck
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # weight: 5
     # startAnnouncement: true
@@ -330,51 +330,51 @@
     # startDelay: 24
     # duration: 60
     # maxDuration: 120
-  # - type: PowerGridCheckRule
+  - type: PowerGridCheckRule
 
-# - type: entity
-  # id: RandomSentience
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: RandomSentience
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # weight: 6
     # duration: 1
     # maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
-  # - type: RandomSentienceRule
+  - type: RandomSentienceRule
 
-# - type: entity
-  # parent: BaseGameRule
-  # id: SolarFlare
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  parent: BaseGameRule
+  id: SolarFlare
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # weight: 8
     # startAnnouncement: true
     # endAnnouncement: true
     # duration: 120
     # maxDuration: 240
-  # - type: SolarFlareRule
-    # onlyJamHeadsets: true
-    # affectedChannels:
-    # - Common
-    # extraChannels:
-    # - Command
-    # - Engineering
-    # - Medical
-    # - Science
-    # - Security
-    # - Service
-    # - Supply
-    # extraCount: 2
-    # lightBreakChancePerSecond: 0.0003
-    # doorToggleChancePerSecond: 0.001
+  - type: SolarFlareRule
+    onlyJamHeadsets: true
+    affectedChannels:
+    - Common
+    extraChannels:
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    extraCount: 2
+    lightBreakChancePerSecond: 0.0003
+    doorToggleChancePerSecond: 0.001
 
-# - type: entity
-  # id: VentClog
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: VentClog
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # startAnnouncement: true
     # earliestStart: 15
@@ -382,12 +382,12 @@
     # weight: 5
     # startDelay: 50
     # duration: 60
-  # - type: VentClogRule
+  - type: VentClogRule
 
-# - type: entity
-  # id: SlimesSpawn
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
+- type: entity
+  id: SlimesSpawn
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
   # components:
   # - type: StationEvent
     # startAnnouncement: true
@@ -405,10 +405,10 @@
     # - id: MobAdultSlimesYellowAngry
       # prob: 0.02
 
-# - type: entity
-  # id: SpiderSpawn
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
+- type: entity
+  id: SpiderSpawn
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
   # components:
   # - type: StationEvent
     # startAnnouncement: true
@@ -422,10 +422,10 @@
     # - id: MobGiantSpiderAngry
       # prob: 0.05
 
-# - type: entity
-  # id: SpiderClownSpawn
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
+- type: entity
+  id: SpiderClownSpawn
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
   # components:
   # - type: StationEvent
     # startAnnouncement: false
@@ -439,44 +439,44 @@
     # - id: MobClownSpider
       # prob: 0.05
 
-# - type: entity
-  # id: ZombieOutbreak
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: ZombieOutbreak
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # earliestStart: 50
     # minimumPlayers: 30
     # weight: 2
     # duration: 1
-  # - type: ZombieRule
-  # - type: AntagSelection
-    # definitions:
-    # - prefRoles: [ InitialInfected ]
-      # max: 3
-      # playerRatio: 10
-      # blacklist:
-        # components:
-        # - ZombieImmune
-        # - AntagImmune
-      # briefing:
-        # text: zombie-patientzero-role-greeting
-        # color: Plum
-        # sound: "/Audio/Ambience/Antag/zombie_start.ogg"
-      # components:
-      # - type: PendingZombie #less time to prepare than normal
-        # minInitialInfectedGrace: 300
-        # maxInitialInfectedGrace: 450
-      # - type: ZombifyOnDeath
-      # - type: IncurableZombie
-      # mindComponents:
-      # - type: InitialInfectedRole
-        # prototype: InitialInfected
+  - type: ZombieRule
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ InitialInfected ]
+      max: 3
+      playerRatio: 10
+      blacklist:
+        components:
+        - ZombieImmune
+        - AntagImmune
+      briefing:
+        text: zombie-patientzero-role-greeting
+        color: Plum
+        sound: "/Audio/Ambience/Antag/zombie_start.ogg"
+      components:
+      - type: PendingZombie #less time to prepare than normal
+        minInitialInfectedGrace: 300
+        maxInitialInfectedGrace: 450
+      - type: ZombifyOnDeath
+      - type: IncurableZombie
+      mindComponents:
+      - type: InitialInfectedRole
+        prototype: InitialInfected
 
-# - type: entity
-  # categories: [ HideSpawnMenu ]
-  # parent: BaseNukeopsRule
-  # id: LoneOpsSpawn
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseNukeopsRule
+  id: LoneOpsSpawn
   # components:
   # - type: StationEvent
     # earliestStart: 35
@@ -507,11 +507,11 @@
       # - type: NukeopsRole
         # prototype: Nukeops
 
-# - type: entity
-  # categories: [ HideSpawnMenu ]
-  # parent: BaseTraitorRule
-  # id: SleeperAgents
-  # components:
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseTraitorRule
+  id: SleeperAgents
+  components:
   # - type: StationEvent
     # earliestStart: 25
     # weight: 8
@@ -519,81 +519,81 @@
     # reoccurrenceDelay: 30
     # startAnnouncement: false
 # # - type: AlertLevelInterceptionRule - Disable setting to blue with sleeper agents. Uncomment to enable.
-  # - type: AntagSelection
-    # definitions:
-    # - prefRoles: [ TraitorSleeper ]
-      # fallbackRoles: [ Traitor ]
-      # min: 1
-      # max: 2
-      # playerRatio: 10
-      # blacklist:
-        # components:
-        # - AntagImmune
-      # mindComponents:
-      # - type: TraitorRole
-        # prototype: TraitorSleeper
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ TraitorSleeper ]
+      fallbackRoles: [ Traitor ]
+      min: 1
+      max: 2
+      playerRatio: 10
+      blacklist:
+        components:
+        - AntagImmune
+      mindComponents:
+      - type: TraitorRole
+        prototype: TraitorSleeper
 
-# - type: entity
-  # id: MassHallucinations
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: MassHallucinations
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # weight: 7
     # duration: 150
     # maxDuration: 300
     # reoccurrenceDelay: 30
-  # - type: MassHallucinationsRule
-    # minTimeBetweenIncidents: 0.1
-    # maxTimeBetweenIncidents: 300
-    # maxSoundDistance: 7
-    # sounds:
-      # collection: Paracusia
+  - type: MassHallucinationsRule
+    minTimeBetweenIncidents: 0.1
+    maxTimeBetweenIncidents: 300
+    maxSoundDistance: 7
+    sounds:
+      collection: Paracusia
 
-# - type: entity
-  # id: ImmovableRodSpawn
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: ImmovableRodSpawn
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
   # - type: StationEvent
     # startAnnouncement: false
     # weight: 2
     # duration: 1
     # earliestStart: 45
     # minimumPlayers: 20
-  # - type: ImmovableRodRule
+  - type: ImmovableRodRule
 
-# - type: entity
-  # categories: [ HideSpawnMenu ]
-  # parent: BaseGameRule
-  # id: IonStorm
-  # components:
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseGameRule
+  id: IonStorm
+  components:
   # - type: StationEvent
     # weight: 8
     # reoccurrenceDelay: 20
     # duration: 1
-  # - type: IonStormRule
+  - type: IonStormRule
 
-# - type: entity
-  # id: MimicVendorRule
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: MimicVendorRule
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
     # - type: StationEvent
       # earliestStart: 0
       # minimumPlayers: 20
       # maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
       # weight: 5
-    # - type: MobReplacementRule
+   - type: MobReplacementRule
 
-# - type: entity
-  # id: AirlockVirusRule
-  # parent: BaseGameRule
-  # categories: [ HideSpawnMenu ]
-  # components:
+- type: entity
+  id: AirlockVirusRule
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
     # - type: StationEvent
       # earliestStart: 15
       # minimumPlayers: 5
       # maxOccurrences: 1
       # weight: 3
-    # - type: AirlockVirusRule
+   - type: AirlockVirusRule
