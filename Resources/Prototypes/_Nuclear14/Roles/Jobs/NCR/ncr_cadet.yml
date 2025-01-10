@@ -4,10 +4,18 @@
   name: job-name-ncr-cadet
   description: job-description-ncr-cadet
   playTimeTracker: NCRCadet
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterOverallTimeRequirement
+      min: 3600
   startingGear: NCRCadetGear
   icon: "JobIconSecurityCadet"
-  supervisors: job-supervisors-ncr-nco
+  supervisors: job-supervisors-ncr
   canBeAntag: false
+  alwaysUseSpawner: true
   access:
   - NCR
   special:
@@ -22,11 +30,11 @@
   equipment:
     head: N14ClothingHeadHatNCRSidecap
     back: N14ClothingBackpackNCRFilled
-    jumpsuit: N14ClothingUniformNCR
-    shoes: N14ClothingBootsLeather
+    jumpsuit: N14ClothingUniformNCRSnow
+    shoes: N14ClothingBootsLeatherFilled
+    pocket1: NCRcadetloadoutkits
     id: N14IDNCRDogtag
-    backpack: N14ClothingBackpackSatchelNCRFilled
-  innerClothingSkirt: N14ClothingUniformNCR #placeholder
+  innerClothingSkirt: N14ClothingUniformNCRSnow #placeholder
   satchel: N14ClothingBackpackSatchelNCRFilled
 
 - type: playTimeTracker

@@ -5,16 +5,25 @@
   description: job-description-ncr-lt
   playTimeTracker: NCROfficer
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
       department: NCR
-      time: 72000 # 20 hours
+      min: 72000 # 20 hours
   weight: 10
   startingGear: NCRLTGear
   icon: "JobIconHeadOfSecurity"
+  supervisors: job-supervisors-ncr-lt
   requireAdminNotify: true
   canBeAntag: false
-  accessGroups:
+  alwaysUseSpawner: true
+  access:
   - NCR
+  - NCRSGT
+  - NCRMedic
+  - NCRLT
   special:
   - !type:AddComponentSpecial
     components:
@@ -26,19 +35,15 @@
   id: NCRLTGear
   equipment:
     head: N14ClothingHeadHatNCRBeretOfficer
-    jumpsuit: N14ClothingOfficerUniformNCR
-    ears: N14ClothingHeadsetNCR
-    shoes: N14ClothingBootsLeather
-    belt: ClothingBeltRevolverCaptainfilled
+    back: N14ClothingBackpackNCRFilled
+    jumpsuit: N14ClothingOfficerUniformNCRSnow
+    shoes: N14ClothingBootsCombatFilled
     eyes: ClothingEyesGlassesSunglasses
-<<<<<<<< HEAD:Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_officer.yml
-========
-    pocket1: NCRSGTloadoutkits
+    ears: N14ClothingHeadsetNCR
+    pocket1: NCRLTloadoutkits
     pocket2: RadioHandheld
->>>>>>>> 2296fe8edf (NCR Update Parts 1 and 2 (#626)):Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_lt.yml
     id: N14IDNCRDogtagOfficer
-    backpack: N14ClothingBackpackSatchelNCRFilled
-  innerClothingSkirt: N14ClothingOfficerUniformNCR #placeholder
+  innerClothingSkirt: N14ClothingOfficerUniformNCRSnow #placeholder
   satchel: N14ClothingBackpackSatchelNCRFilled
 
 - type: playTimeTracker

@@ -5,25 +5,21 @@
   description: job-description-ncr-sgt
   playTimeTracker: NCRNCO
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
       department: NCR
-<<<<<<<< HEAD:Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_nco.yml
-      time: 36000 # 10 hours
-  startingGear: NCRNCOGear
-========
       min: 36000 # 10 hours
   startingGear: NCRSGTGear
->>>>>>>> 2296fe8edf (NCR Update Parts 1 and 2 (#626)):Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_sgt.yml
   icon: "JobIconSecurityOfficer"
-  supervisors: job-supervisors-ncr
+  supervisors: job-supervisors-ncr-sgt
   canBeAntag: false
+  alwaysUseSpawner: true
   access:
   - NCR
-<<<<<<<< HEAD:Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_nco.yml
-  - NCRNCO
-========
   - NCRSGT
->>>>>>>> 2296fe8edf (NCR Update Parts 1 and 2 (#626)):Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_sgt.yml
   special:
   - !type:AddComponentSpecial
     components:
@@ -34,23 +30,15 @@
 - type: startingGear
   id: NCRSGTGear
   equipment:
-    head: N14ClothingHeadHatNCRHelmetMetal
-    back: N14ClothingBackpackNCR
-    ears: N14ClothingHeadsetNCR
-    jumpsuit: N14ClothingOfficerUniformNCR
-    shoes: N14ClothingBootsLeather
+    back: N14ClothingBackpackNCRFilled
+    gloves: N14ClothingHandsGlovesCombat
+    jumpsuit: N14ClothingOfficerUniformNCRSnow
+    shoes: N14ClothingBootsCombatFilled
     neck: N14ClothingNeckMantleNCR
-    belt: ClothingBeltNCR
-<<<<<<<< HEAD:Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_nco.yml
-    outerClothing: N14ClothingOuterNCRVest
-========
-    outerClothing: N14ClothingOuterNCRVestSnow
     pocket1: NCRSGTloadoutkits
     pocket2: RadioHandheld
->>>>>>>> 2296fe8edf (NCR Update Parts 1 and 2 (#626)):Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_sgt.yml
     id: N14IDNCRDogtagNCO
-    backpack: N14ClothingBackpackSatchelNCRFilled
-  innerClothingSkirt: N14ClothingOfficerUniformNCR #placeholder
+  innerClothingSkirt: N14ClothingOfficerUniformNCRSnow #placeholder
   satchel: N14ClothingBackpackSatchelNCRFilled
 
 - type: playTimeTracker
