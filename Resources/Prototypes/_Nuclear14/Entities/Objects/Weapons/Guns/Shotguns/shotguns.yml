@@ -1,8 +1,39 @@
 - type: entity
-  parent: BaseWeaponShotgun
+  name: N14WeaponShotgunBase
+  parent: BaseItem
   id: N14WeaponShotgunBase
+  description: A rooty tooty point and shooty.
   abstract: true
   components:
+  - type: Sprite
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: DeltaV/Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+    fireOnDropChance: 0.2
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 10
   - type: FollowDistance
     backStrength: 5
   - type: Wieldable
@@ -343,4 +374,188 @@
     graph: PumpShotgunSawed
     node: pumpshotgunsawed
 
+- type: entity
+  name: blowback shotgun
+  parent: N14WeaponShotgunBase
+  id: N14WeaponBlowback
+  description: A semi automatic combat shotgun with a integrated drum mag, uses 12 gauge shells.
+  components:
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      collection: N14ShotgunGunshot
+  - type: GunRequiresWield
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/blowback.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/blowback.rsi
+  - type: Item
+    size: Large
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/blowback.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun12
+    capacity: 12
+    proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
 
+- type: entity
+  name: chinese shotgun
+  parent: N14WeaponShotgunBase
+  id: N14WeaponShotgunChinese
+  description: A pump action chinese shotgun, uses 12 gauge shells.
+  components:
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      collection: N14ShotgunGunshot
+  - type: GunRequiresWield
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/chinese_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/chinese_shotgun.rsi
+  - type: Item
+    size: Large
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/chinese_shotgun.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun12
+    capacity: 6
+    proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+
+- type: entity
+  name: frenchi shotgun
+  parent: N14WeaponShotgunBase
+  id: N14WeaponShotgunCanadian
+  description: A semi automatic canadian combat shotgun, uses 12 gauge shells.
+  components:
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      collection: N14ShotgunGunshot
+  - type: GunRequiresWield
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/canadian_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/canadian_shotgun.rsi
+  - type: Item
+    size: Large
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/canadian_shotgun.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun12
+    capacity: 8
+    proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+
+- type: entity
+  name: boom stick
+  parent: N14WeaponShotgunBase
+  id: N14WeaponShotgunBoomstick
+  description: A heavy and strong double barrel shotgun, it has a reinforcer barrel with teeths and a straight form to be used has a club, uses 12 gauge shells.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/boomstick.rsi
+  - type: Item
+    size: Large
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/boomstick.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      collection: N14DoubleBarrelShotgunGunshot
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun12
+    capacity: 2
+    proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+
+- type: entity
+  name: bloody stick
+  parent: N14WeaponShotgunBase
+  id: N14WeaponShotgunBloodyStick
+  description: A heavy and strong double barrel shotgun, it has a reinforcer barrel with sharp blades and a straight form to be used has a axe, uses 12 gauge shells.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/boomstick2.rsi
+  - type: Item
+    size: Large
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/boomstick2.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      collection: N14DoubleBarrelShotgunGunshot
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun12
+    capacity: 2
+    proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+
+- type: entity
+  name: pipe shotgun
+  parent: N14WeaponShotgunBase
+  id: N14WeaponShotgunPipe
+  description: A handmade weird double barrel shotgun made with pipes, uses 12 gauge shells.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/pipe_shotgun.rsi
+  - type: Item
+    size: Large
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/pipe_shotgun.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      collection: N14DoubleBarrelShotgunGunshot
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun12
+    capacity: 2
+    proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg

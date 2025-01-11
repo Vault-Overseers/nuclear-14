@@ -73,3 +73,21 @@
           doAfter: 4
   - node: gloves
     entity: N14ClothingHandsGlovesCloth
+
+
+- type: constructionGraph
+  id: NightstalkerhatGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+      - to: head
+        steps:
+        - tag: NightstalkerPelt
+          name: nightstalker pelt
+          icon:
+            sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
+            state: pelt_nightstalker
+          doAfter: 8
+  - node: head
+    entity: N14ClothingHeadHatNightstalker

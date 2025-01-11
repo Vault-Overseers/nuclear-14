@@ -5,12 +5,16 @@
   description: job-description-ncr-ws
   playTimeTracker: NCRWS
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: NCR
       min: 18000 # 5 hours
   startingGear: NCRWSGear
   icon: "JobIconWarden"
-  supervisors: job-supervisors-ncr-nco
+  supervisors: job-supervisors-ncr
   canBeAntag: false
   alwaysUseSpawner: true
   access:
@@ -25,10 +29,9 @@
 - type: startingGear
   id: NCRWSGear
   equipment:
-    head: N14ClothingHeadHatNCRHelmetMetalSnow
     back: N14ClothingBackpackNCRFilled
     jumpsuit: N14ClothingUniformNCRSnow
-    shoes: N14ClothingBootsLeather
+    shoes: N14ClothingBootsLeatherFilled
     pocket1: NCRwsloadoutkits
     id: N14IDNCRDogtagWS
   innerClothingSkirt: N14ClothingUniformNCRSnow #placeholder

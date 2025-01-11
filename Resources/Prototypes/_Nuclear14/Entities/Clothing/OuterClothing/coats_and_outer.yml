@@ -1,6 +1,32 @@
 #MARK: Plain Coats and Clothing
 - type: entity
   parent: ClothingOuterStorageBase
+  id: N14ClothingOuterGhostEchoes
+  name: Ghost Echoes
+  description: A coat filled with bullets holes... Seems like his previous owner wasn't so lucky
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutghostechoes.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutghostechoes.rsi
+ # - type: ClothingSpecialModifier
+  #  luckModifier: 1
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: N14ClothingOuterHarperCoat
+  name: Harper Coat
+  description: A dark coat with some red lining.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutharpercoat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutharpercoat.rsi
+ # - type: ClothingSpecialModifier
+  #  charismaModifier: 1
+
+- type: entity
+  parent: ClothingOuterStorageBase
   id: N14ClothingOuterJacketLettermanRed
   name: letterman jacket
   description: A red letterman jacket.
@@ -117,8 +143,8 @@
       coefficients:
         Blunt: 0.9
         Slash: 0.95
-        Piercing: 0.9
-        Heat: 0.85
+        Piercing: 0.95
+        Heat: 0.9
   - type: Butcherable
     butcheringType: Knife
     spawned:
@@ -140,10 +166,10 @@
   - type: Armor
     modifiers:
      coefficients:
-        Blunt: 0.9
-        Slash: 0.95
+        Blunt: 0.95
+        Slash: 0.9
         Piercing: 0.9
-        Heat: 0.85
+        Heat: 0.95
   - type: Butcherable
     butcheringType: Knife
     spawned:
@@ -165,7 +191,7 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
+        Blunt: 0.95
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.9
@@ -193,9 +219,9 @@
     modifiers:
      coefficients:
         Blunt: 0.9
-        Slash: 0.95
+        Slash: 0.9
         Piercing: 0.9
-        Heat: 0.85
+        Heat: 0.95
   - type: Butcherable
     butcheringType: Knife
     spawned:
@@ -215,7 +241,7 @@
   - type: Armor
     modifiers:
      coefficients:
-        Blunt: 0.85
+        Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
@@ -233,8 +259,8 @@
   - type: Armor
     modifiers:
      coefficients:
-        Blunt: 0.85
-        Slash: 0.85
+        Blunt: 0.9
+        Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
 
@@ -251,8 +277,8 @@
   - type: Armor
     modifiers:
      coefficients:
-        Blunt: 0.85
-        Slash: 0.85
+        Blunt: 0.9
+        Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
 
@@ -269,10 +295,36 @@
   - type: Armor
     modifiers:
      coefficients:
-        Blunt: 0.85
-        Slash: 0.85
+        Blunt: 0.9
+        Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: N14ClothingOuterCoatLab
+  name: lab coat
+  description: A coat that protects against staining, chemical or otherwise, a quality particularly useful in these less civilised times.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Coats/labcoat.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Coats/labcoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.9
+        Caustic: 0.75
+  - type: ClothingSpecialModifier
+    intelligenceModifier: 1
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, N14ClothingOuterCoatLab]
+  id: N14ClothingOuterCoatLabOpened
+  name: lab coat
 
 #MARK: Armored Coats
 - type: entity
@@ -290,8 +342,8 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.80
-        Slash: 0.80
+        Blunt: 0.9
+        Slash: 0.9
         Piercing: 0.85
         Heat: 0.85
 
@@ -310,8 +362,11 @@
      coefficients:
         Blunt: 0.85
         Slash: 0.85
-        Piercing: 0.9
-        Heat: 0.9
+        Piercing: 0.8
+        Heat: 0.85
+  - type: ClothingSpecialModifier
+    charismaModifier: 1
+    enduranceModifier: 1
   - type: Butcherable
     butcheringType: Knife
     spawned:
@@ -343,10 +398,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.65
-        Heat: 0.65
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.8
 
 #MARK: Brotherhood
 - type: entity
@@ -359,9 +414,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/brotherhoodeldercoat.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/brotherhoodeldercoat.rsi
-  # - type: ClothingSpecialModifier
-    # strengthModifier: 1
-    # charismaModifier: 1
 
 - type: entity
   parent: N14ClothingOuterCoatWinterArmored
@@ -408,7 +460,7 @@
     # strengthModifier: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBattlecoatCoat
   id: N14ClothingOuterNCRTrenchCoat
   name: NCR officer trench coat
   description: Warm and comfy, this nice white coat is used by officers of the 3rd battalion to warm themselves.
@@ -417,8 +469,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/ncr_trenchcoat.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/ncr_trenchcoat.rsi
-  # - type: ClothingSpecialModifier
-    # charismaModifier: 2
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -472,8 +522,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutoverseercoat.rsi
   - type: TemperatureProtection
     coefficient: 0.1
-  # - type: ClothingSpecialModifier
-    # charismaModifier: 1
 
 #MARK: Midwest BoS
 - type: entity
@@ -489,10 +537,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.70
-        Slash: 0.70
-        Piercing: 0.85
-        Heat: 0.80
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.8
   - type: ToggleableClothing
@@ -551,7 +599,7 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/washington_bos_elder.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBrotherhoodMidwestMedicalScribeRobes
   id: N14ClothingOuterBrotherhoodMedicalScribeRobes
   name: Washington Brotherhood medical Scribe coat
   description: A finely made robe affixed with leather worn by medical Scribes, a symbol of the Brotherhood emblazoned across the chest and back.
@@ -560,13 +608,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/brotherhoodmedicalscribe.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/brotherhoodmedicalscribe.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.80
-        Slash: 0.85
-        Piercing: 0.70
-        Heat: 0.70
 
 #MARK: Tribal
 - type: entity
@@ -582,9 +623,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.6
-        Piercing: 0.7
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.8
         Heat: 0.8
 
 #MARK: Town
@@ -602,9 +643,9 @@
     modifiers:
       coefficients:
         Blunt: 0.9
-        Slash: 0.95
-        Piercing: 0.9
-        Heat: 0.85
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.95
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -619,10 +660,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.9
+        Blunt: 0.8
+        Slash: 0.8
         Piercing: 0.85
-        Heat: 0.8
+        Heat: 0.85
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -637,10 +678,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.65
-        Piercing: 0.7
-        Heat: 0.7
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.75
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -655,7 +696,28 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.65
-        Heat: 0.65
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
+  - type: ClothingSpecialModifier
+    charismaModifier: 1
+
+#MARK: Vancouver preventor
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: N14ClothingOuterPreventorJacket
+  name: preventor paded jacket
+  description: A winter leather jacket with internal armor layers, the regular piece of armor used by the vancouver law enforcers and preventors.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/armoredjacket.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/armoredjacket.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.6
+        Heat: 0.6

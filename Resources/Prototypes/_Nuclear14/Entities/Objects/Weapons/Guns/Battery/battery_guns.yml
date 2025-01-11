@@ -10,8 +10,8 @@
     size: Large
   - type: AmmoCounter
   - type: Gun
-    minAngle: 35
-    maxAngle: 70
+    minAngle: 25
+    maxAngle: 60
     angleIncrease: 4
     angleDecay: 16
     fireRate: 1
@@ -119,6 +119,48 @@
     backStrength: 6
 
 - type: entity
+  name: makeshift laser revolver
+  parent: N14BaseWeaponPowerCellSmall
+  id: N14WeaponLaserRevolver
+  description: A basic makeshift energy-based laser revolver that fires concentrated beams of light.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_revolver.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_revolver.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellHigh
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellHigh
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+    - 0,0,1,1
+  - type: Gun
+    fireRate: 1.5
+    soundGunshot:
+      collection: N14LaserPistolGunshot
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
   name: plasma pistol
   parent: N14BaseWeaponPowerCellSmall
   id: N14WeaponPlasmaPistol
@@ -202,8 +244,8 @@
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -34
-    maxAngle: -63
+    minAngle: -24
+    maxAngle: -53
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_rifle.rsi
     layers:
@@ -275,8 +317,8 @@
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -30
-    maxAngle: -58
+    minAngle: -23
+    maxAngle: -56
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_autorifle.rsi
     layers:
@@ -323,8 +365,8 @@
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -30
-    maxAngle: -58
+    minAngle: -23
+    maxAngle: -56
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_autorifle.rsi
     layers:
@@ -371,8 +413,8 @@
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -34
-    maxAngle: -63
+    minAngle: -23
+    maxAngle: -56
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle_proto.rsi
     layers:
@@ -421,8 +463,8 @@
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -34
-    maxAngle: -63
+    minAngle: -24
+    maxAngle: -58
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi
     layers:
@@ -462,6 +504,54 @@
     backStrength: 5
 
 - type: entity
+  name: makeshift laser rifle
+  parent: N14BaseWeaponPowerCellMedium
+  id: N14WeaponLaserRifleMakeshift
+  description: A sturdy makeshift laser rifle. Emits beams of concentrated light to damage targets.
+  components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -34
+    maxAngle: -63
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/makeshift_laser_rifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/makeshift_laser_rifle.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellHigh
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellHigh
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      collection: N14LaserAutoRifleGunshot
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: FollowDistance
+    backStrength: 5
+
+- type: entity
   name: plasma rifle
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponPlasmaRifle
@@ -469,8 +559,8 @@
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -34
-    maxAngle: -63
+    minAngle: -24
+    maxAngle: -58
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle.rsi
     layers:
@@ -517,8 +607,8 @@
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -34
-    maxAngle: -63
+    minAngle: -23
+    maxAngle: -55
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_urban.rsi
     layers:
@@ -567,8 +657,8 @@
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -34
-    maxAngle: -63
+    minAngle: -23
+    maxAngle: -56
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/multiplas.rsi
     layers:
@@ -619,8 +709,8 @@
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -34
-    maxAngle: -63
+    minAngle: -24
+    maxAngle: -58
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/wattz3000.rsi
     layers:
@@ -667,8 +757,8 @@
   components:
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -34
-    maxAngle: -63
+    minAngle: -24
+    maxAngle: -58
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/wattz2000.rsi
     layers:
@@ -746,9 +836,11 @@
           tags:
             - N14PlasmaShell
   - type: Gun
-    minAngle: 10
-    maxAngle: 16
-    fireRate: 3
+    minAngle: 2
+    maxAngle: 12
+    angleIncrease: 4
+    angleDecay: 12
+    fireRate: 7
     soundGunshot:
       collection: N14PlasmaCasterGunshot
     selectedMode: SemiAuto
@@ -756,10 +848,10 @@
     - SemiAuto
   - type: Appearance
   - type: MultiHandedItem
-  - type: HeldSpeedModifier
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
   - type: FollowDistance
     backStrength: 6
 
@@ -800,7 +892,7 @@
           tags:
             - N14PowerCellFusion
   - type: Gun
-    minAngle: 4
+    minAngle: 2
     maxAngle: 12
     angleIncrease: 4
     angleDecay: 12
@@ -812,9 +904,9 @@
     - FullAuto
   - type: Appearance
   - type: MultiHandedItem
-  - type: HeldSpeedModifier
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.7
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
   - type: FollowDistance
     backStrength: 6

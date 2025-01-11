@@ -43,6 +43,13 @@ public sealed class DrainSystem : SharedDrainSystem
         SubscribeLocalEvent<DrainComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<DrainComponent, AfterInteractUsingEvent>(OnInteract);
         SubscribeLocalEvent<DrainComponent, DrainDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<DrainComponent, ComponentInit>(OnComponentInit);
+    }
+
+    private void OnComponentInit(EntityUid uid, DrainComponent component, ComponentInit args)
+    {
+        // Randomize accumulator on init to try to spread out all drain updates as much as possible.
+        component.Accumulator = _random.NextFloat() * component.DrainFrequency;
     }
 
     private void AddEmptyVerb(Entity<DrainComponent> entity, ref GetVerbsEvent<Verb> args)

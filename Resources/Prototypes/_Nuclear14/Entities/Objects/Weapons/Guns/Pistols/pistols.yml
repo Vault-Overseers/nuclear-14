@@ -69,6 +69,58 @@
     backStrength: 6
 
 - type: entity
+  name: N14BaseInternalPistol
+  parent: BaseItem
+  id: N14BaseWeaponInternalMagPistol
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+    - 0,1,0,1
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Gun
+    minAngle: 1
+    maxAngle: 7
+    angleIncrease: 0.5
+    angleDecay: 4
+    fireRate: 6
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/Pistols/pistol_cock.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 5
+  - type: FollowDistance
+    backStrength: 6
+
+- type: entity
   name: 9mm Pistol
   parent: N14BaseWeaponPistol
   id: N14WeaponPistol9mm
@@ -284,7 +336,7 @@
 
 - type: entity
   name: chinese pistol
-  parent: N14BaseWeaponPistol
+  parent: N14BaseWeaponInternalMagPistol
   id: N14WeaponPistol9mmChinese
   description: A foreign long-barrel pistol with an integrated magazine, chambered in 9mm.
   components:
@@ -307,15 +359,6 @@
     selectedMode: Semiauto
     availableModes:
     - Semiauto
-  - type: ItemSlots
-    slots:
-      gun_chamber:
-        name: Chamber
-        startingItem: N14CartridgePistol9
-        priority: 1
-        whitelist:
-          tags:
-            - N14CartridgePistol9
   - type: BallisticAmmoProvider
     capacity: 14
     proto: N14CartridgePistol9
@@ -325,7 +368,7 @@
 
 - type: entity
   name: the spy
-  parent: N14BaseWeaponPistol
+  parent: N14BaseWeaponInternalMagPistol
   id: N14WeaponPistol9mmSpy
   description: A modified version of the common chinese pistol with a integrated silencer, extended magazine, and full-auto conversion. This gun was designed with passion, chambered in 9mm.
   components:
@@ -348,15 +391,6 @@
     selectedMode: Fullauto
     availableModes:
     - Fullauto
-  - type: ItemSlots
-    slots:
-      gun_chamber:
-        name: Chamber
-        startingItem: N14CartridgePistol9
-        priority: 1
-        whitelist:
-          tags:
-            - N14CartridgePistol9
   - type: BallisticAmmoProvider
     capacity: 24
     proto: N14CartridgePistol9
@@ -398,3 +432,38 @@
         whitelist:
           tags:
             - N14CartridgePistol22
+
+- type: entity
+  name: webley pistol
+  parent: N14BaseWeaponPistol
+  id: N14WeaponPistolWebley
+  description: A cheap and simple pre-war canadian pistol, chambered in 9mm ammo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/webleypistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/webleypistol.rsi
+  - type: Gun
+    fireRate: 5
+    soundGunshot:
+      collection: N14Pistol9mmGunshot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazinePistol9mm
+        whitelist:
+          tags:
+            - N14MagazinePistol9mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol9
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol9

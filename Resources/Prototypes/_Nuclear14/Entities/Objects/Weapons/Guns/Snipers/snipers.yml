@@ -123,6 +123,9 @@
   - type: Appearance
   - type: FollowDistance
     backStrength: 3
+  - type: HeldSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
 
 - type: entity
   name: .50 NCR rifle
@@ -157,6 +160,9 @@
       collection: N14AntiMaterielGunshot
   - type: FollowDistance
     backStrength: 3
+  - type: HeldSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
 
 - type: entity
   name: lever action carbine
@@ -323,3 +329,116 @@
   - type: Construction
     graph: LeverCarbineSawed
     node: levercarbinesawed
+
+- type: entity
+  name: .50 pipe rifle
+  parent: BaseWeaponSniper
+  id: N14WeaponSniper50Pipe
+  description: A bunch of scrap and pipe held together in a desperate attemp of countering power armor. Uses .50 anti-material ammo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/50piperifle.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/50piperifle.rsi
+  - type: Item
+    size: Huge
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/50ncrrifle.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14Cartridge50
+    capacity: 1
+    proto: N14Cartridge50
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -104
+  - type: Gun
+    minAngle: 24
+    maxAngle: 105
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 1.2
+    soundGunshot:
+      collection: N14AntiMaterielGunshot
+  - type: HeldSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: FollowDistance
+    backStrength: 3
+
+- type: entity
+  name: huntstick
+  parent: N14WeaponSniperHunting
+  id: N14WeaponSniper308Tribal
+  description: A tribal lever action rifle. Uses .308 ammo.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/tribalhuntstick.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/tribalhuntstick.rsi
+  - type: Gun
+    fireRate: 1.2
+    soundGunshot:
+      collection: N14LeverRifleGunshot
+  - type: FollowDistance
+    backStrength: 3
+
+- type: entity
+  name: master huntstick
+  parent: N14WeaponSniperHunting
+  id: N14WeaponSniper308TribalUpgraded
+  description: A tribal decorated lever action rifle. Uses .308 ammo.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/tribalhuntstick2.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/tribalhuntstick2.rsi
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      collection: N14LeverRifleGunshot
+  - type: FollowDistance
+    backStrength: 3
+
+- type: entity
+  name: F1 sniper rifle
+  parent: N14WeaponSniperHunting
+  id: N14WeaponSniper308Canadian
+  description: A pre-war bolt action canadian sniper rifle. Uses .308 ammo.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/canadiansniper.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/canadiansniper.rsi
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      collection: N14SniperHuntingGunshot
+  - type: FollowDistance
+    backStrength: 3
+
+- type: entity
+  name: ross rifle
+  parent: N14WeaponSniperHunting
+  id: N14WeaponSniper308Ross
+  description: A well-preserved bolt action canadian service rifle. Uses .308 ammo.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/ross.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/ross.rsi
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -104
+  - type: Gun
+    fireRate: 1.5
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14Cartridge308Rifle
+    capacity: 6
+    proto: N14Cartridge308Rifle
+  - type: FollowDistance
+    backStrength: 3

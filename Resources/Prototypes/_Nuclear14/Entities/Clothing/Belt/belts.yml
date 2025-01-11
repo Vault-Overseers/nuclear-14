@@ -28,15 +28,39 @@
 
 - type: entity
   parent: N14ClothingBeltStorageBase
-  id: ClothingBeltBoSMidwestWebbing
-  name: Midwest BoS carrier
-  description: A simple black carrier capable of holding all kind of ammo.
+  id: N14ClothingBeltBoSWebbing
+  name: BoS webbing
+  description: A simple black carrier, capable of holding all kind of ammo and medicine for field-use.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Belt/midwestboswebbing.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Belt/midwestboswebbing.rsi
   - type: Appearance
+  - type: Storage
+    whitelist:
+      tags:
+        - Wrench
+        - Bottle
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+        - SurgeryTool
+        - CigPack
+        - N14AmmoCell
+      components:
+        - Hypospray
+        - Injector
+        - Pill
+        - HandLabeler
+        - BallisticAmmoProvider
+        - CartridgeAmmo
 
 - type: entity
   parent: N14ClothingBeltStorageBase
@@ -90,18 +114,12 @@
   parent: N14ClothingBeltStorageBase
   id: ClothingBeltNCRBandolier
   name: bandolier
-  description: A bandolier commonly used to carry single shells or cartridges.
+  description: A bandolier commonly used to carry single shells or cartridges, modified by the NCR for more capacity.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Belt/bandolier.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Belt/bandolier.rsi
-  - type: Storage
-    whitelist:
-      tags:
-        - CigPack
-      components:
-        - CartridgeAmmo
 
 - type: entity
   parent: N14ClothingBeltStorageBase
