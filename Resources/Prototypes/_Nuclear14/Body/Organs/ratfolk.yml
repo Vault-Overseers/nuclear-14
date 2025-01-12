@@ -1,0 +1,188 @@
+- type: entity
+  id: N14BaseRatFolkOrgan
+  parent: BaseHumanOrgan
+  abstract: true
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14\Mobs\Species\Ratfolk\organs.rsi
+  - type: Organ
+  - type: Food
+  - type: Extractable
+    grindableSolutionName: organ
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+
+- type: entity
+  id: N14OrganRatFolkBrain
+  parent: N14BaseRatFolkOrgan
+  name: brain
+  description: "Dreams of nothing but cheese."
+  components:
+  - type: Sprite
+    state: brain
+  - type: Organ
+  - type: Input
+    context: "ghost"
+  - type: InputMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0
+    baseSprintSpeed: 0
+  - type: GhostOnMove
+  - type: Brain
+
+- type: entity
+  id: N14OrganRatFolkEyes
+  parent: N14BaseRatFolkOrgan
+  name: eyes
+  description: "Red and bright. A bit unnerving, to be honest."
+  components:
+  - type: Sprite
+    layers:
+      - state: eyeball-l
+      - state: eyeball-r
+  - type: Organ
+
+- type: entity
+  id: N14OrganRatFolkTongue
+  parent: N14BaseRatFolkOrgan
+  name: tongue
+  description: "No one can hear them squeak now."
+  components:
+  - type: Sprite
+    state: tongue
+  - type: Organ
+
+- type: entity
+  id: N14OrganRatFolkAppendix
+  parent: N14BaseRatFolkOrgan
+  name: appendix
+  components:
+  - type: Sprite
+    layers:
+    - state: appendix
+    - state: appendix-inflamed
+      visible: false
+  - type: Organ
+
+- type: entity
+  id: N14OrganRatFolkEars
+  parent: N14BaseRatFolkOrgan
+  name: ears
+  description: "All the better to hear you with."
+  components:
+  - type: Sprite
+    state: ears
+  - type: Organ
+
+- type: entity
+  id: N14OrganRatFolkRatFolkLungs
+  parent: N14BaseRatFolkOrgan
+  name: lungs
+  description: "Why anyone would hold this is beyond any rational thought."
+  components:
+  - type: Sprite
+    layers:
+      - state: lung-l
+      - state: lung-r
+  - type: Organ
+  - type: Lung
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
+    metabolizerTypes: [ Human ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      Lung:
+        maxVol: 100.0
+        canReact: false
+
+- type: entity
+  id: N14OrganRatFolkHeart
+  parent: N14BaseRatFolkOrgan
+  name: heart
+  description: "Cheesed to meet you."
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Organ
+  # The heart 'metabolizes' medicines and poisons that aren't filtered out by other organs.
+  # This is done because these chemicals need to have some effect even if they aren't being filtered out of your body.
+  # You're technically 'immune to poison' without a heart, but.. uhh, you'll have bigger problems on your hands.
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Human]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+
+- type: entity
+  id: N14OrganRatFolkStomach
+  parent: N14BaseRatFolkOrgan
+  name: stomach
+  description: "A lot bigger than you'd thought it'd be."
+  components:
+  - type: Sprite
+    state: stomach
+  - type: Organ
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+  - type: Stomach
+  # The stomach metabolizes stuff like foods and drinks.
+  # TODO: Have it work off of the ent's solution container, and move this
+  # to intestines instead.
+  - type: Metabolizer
+    # mm yummy
+    maxReagents: 3
+    metabolizerTypes: [Human]
+    groups:
+    - id: Food
+    - id: Drink
+
+- type: entity
+  id: N14OrganRatFolkLiver
+  parent: N14BaseRatFolkOrgan
+  name: liver
+  description: "Pairing suggestion: cheddar and rice."
+  components:
+  - type: Sprite
+    state: liver
+  - type: Organ
+  - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
+    maxReagents: 1
+    metabolizerTypes: [Human]
+    groups:
+    - id: Alcohol
+      rateModifier: 0.1 # removes alcohol very slowly along with the stomach removing it as a drink
+
+- type: entity
+  id: N14OrganRatFolkKidneys
+  parent: N14BaseRatFolkOrgan
+  name: kidneys
+  description: "Small and spongy looking."
+  components:
+  - type: Sprite
+    layers:
+      - state: kidney-l
+      - state: kidney-r
+  - type: Organ
+  # The kidneys just remove anything that doesn't currently have any metabolisms, as a stopgap.
+  - type: Metabolizer
+    maxReagents: 5
+    metabolizerTypes: [Human]
+    removeEmpty: true
