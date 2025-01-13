@@ -1,135 +1,151 @@
-#MARK: Undecided Loadout Backpacks
+# BASE
 - type: entity
-  id: NCRtrooperloadoutkits
-  name: Undecided NCR Trooper Loadout Kit
-  description: Please only take one..
+  id: BaseLoadoutKit
+  name: Undecided Loadout Kit
+  description: Please only take one.
   parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.UndecidedLoadoutBackpackUIKey.Key:
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
+#MARK: Undecided Loadout Backpacks
+
+# New California Republic Army
+- type: entity
+  id: NCRcadetloadoutkits
+  name: Undecided NCRA Cadet Loadout Kit
+  parent: BaseLoadoutKit
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
-    - RiflemanSet
-    - MarksmanSet
-    - PointmanSet
-    - MoraleSet
-    - MedicSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.UndecidedLoadoutBackpackUIKey.Key
-        type: UndecidedLoadoutBackpackBoundUserInterface
+    - NCRA_CadetRiflemanSet
+    - NCRA_CadetStormSet
+    - NCRA_CadetScoutSet
 
-# Engineer Kits
+- type: entity
+  id: NCRtrooperloadoutkits
+  name: Undecided NCRA Trooper Loadout Kit
+  parent: NCRcadetloadoutkits
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - NCRA_RiflemanSet
+    - NCRA_StormSet
+    - NCRA_ScoutSet
+    - NCRA_PointSet
+    - NCRA_MoraleSet
+
 - type: entity
   id: NCRengineerloadoutkits
-  name: Undecided NCR Engineer Loadout Kit
-  description: Please only take one..
-  parent: BaseItem
+  name: Undecided NCRA Engineer Loadout Kit
+  parent: NCRcadetloadoutkits
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: pointman
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
-    - EngineerSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.UndecidedLoadoutBackpackUIKey.Key
-        type: UndecidedLoadoutBackpackBoundUserInterface
+    - NCRA_MechanicSet
+    - NCRA_DemolitionSet
+    - NCRA_BreacherSet
 
-# WS Kits
+- type: entity
+  id: NCRmedicloadoutkits
+  name: Undecided NCRA Medic Loadout Kit
+  parent: NCRcadetloadoutkits
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: medic
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - NCRA_SurgeonSet
+    - NCRA_DoctorSet
+    - NCRA_ComMedSet
+
 - type: entity
   id: NCRwsloadoutkits
-  name: Undecided NCR Weapon Specalist Loadout Kit
-  description: Please only take one..
-  parent: BaseItem
+  name: Undecided NCRA Weapon Specalist Loadout Kit
+  parent: NCRcadetloadoutkits
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: gunner
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
-    - GunnerSet
-    #- GrenadierSet #TODO
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.UndecidedLoadoutBackpackUIKey.Key
-        type: UndecidedLoadoutBackpackBoundUserInterface
+    - NCRA_GunnerSet
+    - NCRA_GrenadierSet
+    - NCRA_SniperSet
 
 - type: entity
   id: NCRSGTloadoutkits
-  name: Undecided NCR SGT Loadout Kit
-  description: Please only take one.
-  parent: BaseItem
+  name: Undecided NCRA Sergeant Loadout Kit
+  parent: NCRcadetloadoutkits
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
-    - RiflemanSet
-    - GunnerSet
-    - MarksmanSet
-    - PointmanSet
-    - MoraleSet
-    - MedicSet
-    - SpecialRiflemanSet
-    - SpecialAssaultSet
-    - SpecialGunnerSet
-    - SpecialPointmanSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.UndecidedLoadoutBackpackUIKey.Key
-        type: UndecidedLoadoutBackpackBoundUserInterface
+    - NCRA_SGTRiflemanSet
+    - NCRA_SGTGunnerSet
+    - NCRA_SGTScoutSet
+    - NCRA_SGTPointSet
 
+- type: entity
+  id: NCRLTloadoutkits
+  name: Undecided NCRA Lieutenant Loadout Kit
+  parent: NCRcadetloadoutkits
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - NCRA_LTPencilSet
+    - NCRA_LTScoutSet
+    - NCRA_LTTacticalSet
+  - type: ActivatableUI
+
+# New California Republic Rangers
 - type: entity
   id: NCRrangerloadoutkits
   name: Undecided NCR Ranger Loadout Kit
-  description: Please only take one.
-  parent: BaseItem
+  parent: NCRcadetloadoutkits
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     - RangerServiceSet
     - RangerRiflemanSet
     - RangerMarksmanSet
     - RangerCQBSet
     - RangerTrailmanSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.UndecidedLoadoutBackpackUIKey.Key
-        type: UndecidedLoadoutBackpackBoundUserInterface
 
 - type: entity
   id: NCRveteranrangerloadoutkits
   name: Undecided NCR Veteran Ranger Loadout Kit
-  description: Please only take one.
-  parent: BaseItem
+  parent: NCRcadetloadoutkits
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     - RangerServiceSet
     - RangerRiflemanSet
@@ -141,269 +157,345 @@
     - VeteranRangerHeavySniperSet
     - VeteranRangerAssaultSet
     - VeteranRangerMarksmanSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.UndecidedLoadoutBackpackUIKey.Key
-        type: UndecidedLoadoutBackpackBoundUserInterface
 
 #MARK: Knights
 - type: entity
   id: NCRBoSMidwestkits
   name: Undecided BoS Midwest Kit
-  description: Please only take one.
-  parent: BaseItem
+  parent: NCRcadetloadoutkits
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     - BoSDefaultSet
     - BoSCarbineSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.UndecidedLoadoutBackpackUIKey.Key
-        type: UndecidedLoadoutBackpackBoundUserInterface
 
 - type: entity
   id: NCRBoSWashingtonkits
   name: Undecided Washington BoS Kit
-  description: Please only take one.
-  parent: BaseItem
+  parent: BaseLoadoutKit
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     - BoSWashingtonDefaultSet
     - BoSWashingtonCarbineSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.UndecidedLoadoutBackpackUIKey.Key
-        type: UndecidedLoadoutBackpackBoundUserInterface
 
 #MARK: Scribes
 - type: entity
   id: NCRBoSMidwestScribekits
   name: Undecided BoS Scribe Midwest Kit
-  description: Please only take one.
-  parent: BaseItem
+  parent: BaseLoadoutKit
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     - BoSScribeMedicalSet
     - BoSScribeFieldSet
     - BoSScribeEngineerSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.UndecidedLoadoutBackpackUIKey.Key
-        type: UndecidedLoadoutBackpackBoundUserInterface
 
 - type: entity
   id: NCRBoSWashingtonScribekits
   name: Undecided BoS Scribe Washington Kit
-  description: Please only take one.
-  parent: BaseItem
+  parent: BaseLoadoutKit
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     - BoSWashingtonScribeMedicalSet
     - BoSWashingtonScribeFieldSet
     - BoSWashingtonScribeEngineerSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.UndecidedLoadoutBackpackUIKey.Key
-        type: UndecidedLoadoutBackpackBoundUserInterface
 
 #MARK: Paladins
 - type: entity
   id: NCRBoSMidwestPaladinkits
   name: Undecided BoS Paladin Midwest Kit
-  description: Please only take one.
-  parent: BaseItem
+  parent: BaseLoadoutKit
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     - BoSDefaultSet
     - BoSRangedSet
     - BoSLaserSet 
     # - BoSPlasmaSet
     - BoSAssaultSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.UndecidedLoadoutBackpackUIKey.Key
-        type: UndecidedLoadoutBackpackBoundUserInterface
 
 - type: entity
   id: NCRBoSWashingtonPaladinkits
   name: Undecided BoS Paladin Washington Kit
-  description: Please only take one.
-  parent: BaseItem
+  parent: BaseLoadoutKit
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     - BoSWashingtonDefaultSet
     - BoSWashingtonRangedSet
     - BoSWashingtonPlasmaSet
     - BoSWashingtonAssaultSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.UndecidedLoadoutBackpackUIKey.Key
-        type: UndecidedLoadoutBackpackBoundUserInterface
 
-#MARK: Trooper Kits
-
+# Here do the individual ALREADY DECIDED kits start
+# NCRA Cadet Kits
 - type: UndecidedLoadoutBackpackSet
-  id: RiflemanSet
-  name: undecided-loadout-category-rifleman-name
-  description: undecided-loadout-category-rifleman-description
+  id: NCRA_CadetRiflemanSet
+  name: undecided-loadout-category-cadet-rifleman-name
+  description: undecided-loadout-category-cadet-rifleman-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
-  - KitRifleman
+  - KitNCR_CadetRifleman
 
 - type: UndecidedLoadoutBackpackSet
-  id: GunnerSet
-  name: undecided-loadout-category-gunner-name
-  description: undecided-loadout-category-gunner-description
+  id: NCRA_CadetStormSet
+  name: undecided-loadout-category-cadet-storm-name
+  description: undecided-loadout-category-cadet-storm-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: gunner
+    state: rifleman
   content:
-  - KitGunner
+  - KitNCR_CadetStorm
 
 - type: UndecidedLoadoutBackpackSet
-  id: MarksmanSet
-  name: undecided-loadout-category-marksman-name
-  description: undecided-loadout-category-marksman-description
+  id: NCRA_CadetScoutSet
+  name: undecided-loadout-category-cadet-scout-name
+  description: undecided-loadout-category-cadet-scout-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
-  - KitMarksman
+  - KitNCR_CadetScout
+
+# NCRA Soldier / Trooper Kits
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_RiflemanSet
+  name: undecided-loadout-category-soldier-rifleman-name
+  description: undecided-loadout-category-soldier-rifleman-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitNCR_Rifleman
 
 - type: UndecidedLoadoutBackpackSet
-  id: PointmanSet
-  name: undecided-loadout-category-pointman-name
-  description: undecided-loadout-category-pointman-description
+  id: NCRA_StormSet
+  name: undecided-loadout-category-soldier-storm-name
+  description: undecided-loadout-category-soldier-storm-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitNCR_Storm
+
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_ScoutSet
+  name: undecided-loadout-category-soldier-scout-name
+  description: undecided-loadout-category-soldier-scout-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitNCR_Scout
+
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_PointSet
+  name: undecided-loadout-category-soldier-point-name
+  description: undecided-loadout-category-soldier-point-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: pointman
   content:
-  - KitPointman
+  - KitNCR_Point
 
 - type: UndecidedLoadoutBackpackSet
-  id: MoraleSet
-  name: undecided-loadout-category-morale-name
-  description: undecided-loadout-category-morale-description
+  id: NCRA_MoraleSet
+  name: undecided-loadout-category-soldier-morale-name
+  description: undecided-loadout-category-soldier-morale-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: pointman
   content:
-  - KitMorale
+  - KitNCR_Morale
+
+# NCRA Engineer Kits
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_MechanicSet
+  name: undecided-loadout-category-engi-mechanic-name
+  description: undecided-loadout-category-engi-mechanic-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitNCR_EngiMechanic
 
 - type: UndecidedLoadoutBackpackSet
-  id: MedicSet
-  name: undecided-loadout-category-medic-name
-  description: undecided-loadout-category-medic-description
+  id: NCRA_DemolitionSet
+  name: undecided-loadout-category-engi-demo-name
+  description: undecided-loadout-category-engi-demo-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  content:
+  - KitNCR_EngiDemo
+
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_BreacherSet
+  name: undecided-loadout-category-engi-breach-name
+  description: undecided-loadout-category-engi-breach-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  content:
+  - KitNCR_EngiBreach
+
+# NCRA Medic Kits
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_SurgeonSet
+  name: undecided-loadout-category-med-surg-name
+  description: undecided-loadout-category-med-surg-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: medic
   content:
-  - KitMedic
-
-#MARK: Engineer Kits
+  - KitNCR_MedSurgeon
 
 - type: UndecidedLoadoutBackpackSet
-  id: EngineerSet
-  name: undecided-loadout-category-engineer-name
-  description: undecided-loadout-category-engineer-description
+  id: NCRA_DoctorSet
+  name: undecided-loadout-category-med-doc-name
+  description: undecided-loadout-category-med-doc-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: medic
+  content:
+  - KitNCR_MedDoctor
+
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_ComMedSet
+  name: undecided-loadout-category-med-combat-name
+  description: undecided-loadout-category-med-combat-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: medic
+  content:
+  - KitNCR_MedCombat
+
+# NCRA Weapon Specialist Kits
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_GunnerSet
+  name: undecided-loadout-category-ws-gunner-name
+  description: undecided-loadout-category-ws-gunner-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: gunner
+  content:
+  - KitNCR_WSGunner
+
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_GrenadierSet
+  name: undecided-loadout-category-ws-grenadier-name
+  description: undecided-loadout-category-ws-grenadier-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: pointman
   content:
-  - KitEngineer
-
-#MARK: WS Kits
-#TODO: Grendeir Specific Kit
-
-#MARK: Special Kits
+  - KitNCR_WSGrenadier
 
 - type: UndecidedLoadoutBackpackSet
-  id: SpecialRiflemanSet
-  name: undecided-loadout-category-special-rifleman-name
-  description: undecided-loadout-category-special-rifleman-description
+  id: NCRA_SniperSet
+  name: undecided-loadout-category-ws-sniper-name
+  description: undecided-loadout-category-ws-sniper-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
-  - KitSpecialRifleman
+  - KitNCR_WSSniper
 
+# NCRA Sergeant Kits
 - type: UndecidedLoadoutBackpackSet
-  id: SpecialAssaultSet
-  name: undecided-loadout-category-special-assault-name
-  description: undecided-loadout-category-special-assault-description
+  id: NCRA_SGTRiflemanSet
+  name: undecided-loadout-category-sgt-rifleman-name
+  description: undecided-loadout-category-sgt-rifleman-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
-  - KitSpecialAssault
+  - KitNCR_SGTRifleman
 
 - type: UndecidedLoadoutBackpackSet
-  id: SpecialGunnerSet
-  name: undecided-loadout-category-special-gunner-name
-  description: undecided-loadout-category-special-gunner-description
+  id: NCRA_SGTGunnerSet
+  name: undecided-loadout-category-sgt-gunner-name
+  description: undecided-loadout-category-sgt-gunner-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: gunner
+  content:
+  - KitNCR_SGTGunner
+
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_SGTScoutSet
+  name: undecided-loadout-category-sgt-scout-name
+  description: undecided-loadout-category-sgt-scout-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
-  - KitSpecialGunner
+  - KitNCR_SGTScout
 
 - type: UndecidedLoadoutBackpackSet
-  id: SpecialPointmanSet
-  name: undecided-loadout-category-special-pointman-name
-  description: undecided-loadout-category-special-pointman-description
+  id: NCRA_SGTPointSet
+  name: undecided-loadout-category-sgt-point-name
+  description: undecided-loadout-category-sgt-point-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: pointman
   content:
-  - KitSpecialPointman
-  #MARK: Ranger Kits
+  - KitNCR_SGTPoint
 
+# NCRA Lieutenant Kits
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_LTPencilSet
+  name: undecided-loadout-category-lt-pencil-name
+  description: undecided-loadout-category-lt-pencil-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  content:
+  - KitNCR_LTPencil
+
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_LTScoutSet
+  name: undecided-loadout-category-lt-scout-name
+  description: undecided-loadout-category-lt-scout-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitNCR_LTScout
+
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_LTTacticalSet
+  name: undecided-loadout-category-lt-tactical-name
+  description: undecided-loadout-category-lt-tactical-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitNCR_LTTactical
+
+
+  #MARK: Ranger Kits
 - type: UndecidedLoadoutBackpackSet
   id: RangerServiceSet
   name: undecided-loadout-category-ranger-service-name
@@ -455,7 +547,6 @@
   - KitTrailmanRanger
 
 #MARK: Veteran Kits
-
 - type: UndecidedLoadoutBackpackSet
   id: VeteranRangerServiceSet
   name: undecided-loadout-category-veteran-ranger-service-name

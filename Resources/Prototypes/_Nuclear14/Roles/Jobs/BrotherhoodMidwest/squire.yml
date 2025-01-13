@@ -5,10 +5,12 @@
   description: job-description-bos-mid-squire
   playTimeTracker: BoSMidSquire
   requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-      - Human
-      - Ghoul
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
+            - Ghoul
     - !type:CharacterOverallTimeRequirement
       min: 3600
   startingGear: BoSMidSquireGear

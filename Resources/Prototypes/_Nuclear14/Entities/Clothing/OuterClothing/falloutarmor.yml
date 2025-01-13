@@ -17,8 +17,8 @@
         Heat: 0.7
   - type: ExplosionResistance
     damageCoefficient: 0.85
-  - type: ClothingSpecialModifier
-    luckModifier: 1
+ # - type: ClothingSpecialModifier
+  #  luckModifier: 1
 
 - type: entity
   parent: ClothingOuterBase
@@ -65,11 +65,11 @@
         Heat: 0.85
   - type: ExplosionResistance
     damageCoefficient: 0.85
-  - type: ClothingSpecialModifier
-    intelligenceModifier: 1
   - type: Construction
     graph: CoatFollowersArmoredGraph
     node: followercoat
+ # - type: ClothingSpecialModifier
+  #  intelligenceModifier: 1
 
 - type: entity
   parent: ClothingOuterBase
@@ -316,9 +316,9 @@
         Heat: 0.75
   - type: ExplosionResistance
     damageCoefficient: 0.8
-  - type: ClothingSpecialModifier
-    charismaModifier: 1
-    luckModifier: 1
+  # - type: ClothingSpecialModifier
+    # charismaModifier: 1
+    # luckModifier: 1
 
 #MARK: Raiders
 - type: entity
@@ -340,8 +340,8 @@
         Heat: 0.95
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: ClothingSpecialModifier
-    strengthModifier: 1
+ # - type: ClothingSpecialModifier
+  #  strengthModifier: 1
 
 - type: entity
   parent: ClothingOuterBase
@@ -362,8 +362,8 @@
         Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.85
-  - type: ClothingSpecialModifier
-    agilityModifier: 1
+ # - type: ClothingSpecialModifier
+  #  agilityModifier: 1
 
 - type: entity
   parent: N14ClothingOuterCombatArmor
@@ -689,6 +689,26 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest2.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest2.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: N14ClothingOuterNCRPouchedVestSnow
+  name: pouched leather NCR vest
+  description: A leather vest with a light ballistic plate inside, this vest comes with a pack of pouches to hold any kind of things. It's uncomfy to move with it.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest3.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest3.rsi
   - type: Armor
     modifiers:
       coefficients:

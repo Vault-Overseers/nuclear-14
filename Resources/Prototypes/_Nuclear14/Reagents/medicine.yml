@@ -16,7 +16,7 @@
             Brute: -2.0
             Airloss: -2.0
       - !type:ModifyBleedAmount
-        amount: -0.5
+        amount: -1.5
       - !type:HealthChange # Bonus for poison
         conditions:
         - !type:ReagentThreshold
@@ -55,7 +55,7 @@
           types:
             Radiation: 0.1
       - !type:ModifyBleedAmount
-        amount: -0.5
+        amount: -1
       - !type:HealthChange # to prevent doping
         conditions:
         - !type:ReagentThreshold
@@ -92,7 +92,7 @@
             Burn: -0.5
             Brute: -0.5
       - !type:ModifyBleedAmount
-        amount: -0.1
+        amount: -0.5
       - !type:ChemVomit
         conditions:
         - !type:ReagentThreshold
@@ -353,9 +353,13 @@
       - !type:ChemVomit
         probability: 0.05
       - !type:Drunk
-        min: 15
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
       - !type:Jitter
-        min: 25
+        conditions:
+        - !type:ReagentThreshold
+          min: 25
 
 - type: reagent
   id: Bitterdrink
@@ -376,6 +380,9 @@
             Radiation: -1
       - !type:ChemVomit
         probability: 0.05
+        conditions:
+        - !type:ReagentThreshold
+          min: 25
 
 - type: reagent
   id: UltraRobustHealingMixture
@@ -395,7 +402,7 @@
             Airloss: -10
             Toxin: 0.5
       - !type:ModifyBleedAmount
-        amount: -2
+        amount: -3
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold

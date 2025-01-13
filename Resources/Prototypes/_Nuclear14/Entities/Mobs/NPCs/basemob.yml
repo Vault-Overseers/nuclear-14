@@ -196,9 +196,9 @@
     - Raider
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - English
     understands:
-    - GalacticCommon
+    - English
   - type: Fixtures
     fixtures:
       fix1:
@@ -244,8 +244,8 @@
       Dead:
         Base: dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 6
+    baseWalkSpeed : 2.75
+    baseSprintSpeed : 5.5
   - type: Hands
   - type: Puller
   - type: SlowOnDamage
@@ -254,14 +254,11 @@
       80: 0.6
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - English
     understands:
-    - GalacticCommon
+    - English
   - type: Appearance
   - type: Clumsy
-    clumsyDamage:
-      types:
-        Blunt: 1
     clumsySound:
       collection: BodyFall
 
@@ -320,19 +317,19 @@
   id: N14TameableMobBase
   parent: SimpleMobBase
   components:
-  - type: NPCTamingOnTouchBehaviour
-    follow: true
-    persistent: true
-    tameChance: 0.5
-    oneTry: false
-    successPopup: This pet is your friend now!
-    deniedPopup: This pet refused to be your friend.
-    whitelist:
-      components:
-      - HumanoidAppearance
+#  - type: NPCTamingOnTouchBehaviour
+#    follow: true
+#    persistent: true
+#    tameChance: 0.5
+#    oneTry: false
+#    successPopup: This pet is your friend now!
+#    deniedPopup: This pet refused to be your friend.
+#    whitelist:
+#      components:
+#      - HumanoidAppearance
   - type: HTN
     rootTask:
       task: SimpleFollowHostileCompound # HTN compound must include FollowCompound so pet can follow its owner
   - type: LanguageKnowledge
     understands:
-    - GalacticCommon
+    - English

@@ -57,7 +57,7 @@
   id: FireProjectile
   name: fire
   parent: BaseFire
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: IgniteOnCollide
     fireStacks: 0.40
@@ -67,7 +67,7 @@
 - type: entity
   id: FireProjectileShort
   parent: FireProjectile
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 0.05
@@ -76,7 +76,7 @@
   id: BaseFireExplosiveProjectile
   name: fire
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
@@ -101,7 +101,7 @@
   id: FireExplosive
   name: fire
   parent: BaseFireExplosiveProjectile
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
