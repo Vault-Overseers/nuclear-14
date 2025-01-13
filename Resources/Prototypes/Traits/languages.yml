@@ -1,16 +1,10 @@
 - type: trait
   id: SignLanguage
   category: TraitsSpeechLanguages
-  points: -1
-  # slots: 1
-  # itemGroupSlots: 0
+  points: -2
   requirements:
-    # - !type:CharacterItemGroupRequirement
-    #   group: TraitsLanguagesBasic
-    - !type:CharacterTraitRequirement
-      inverted: true
-      traits:
-        - Muted
+    - !type:CharacterItemGroupRequirement
+      group: TraitsLanguagesBasic
   functions:
     - !type:TraitModifyLanguages
       languagesSpoken:
@@ -18,145 +12,97 @@
       languagesUnderstood:
         - Sign
 
-- type: trait
-  id: SolCommon
-  category: TraitsSpeechLanguages
-  points: 0
-  # slots: 1
-  # itemGroupSlots: 0
-  requirements:
-    # - !type:CharacterItemGroupRequirement
-    #   group: TraitsLanguagesBasic
-    - !type:CharacterSpeciesRequirement
-      inverted: true
-      species:
-        - Human
-    - !type:CharacterNationalityRequirement
-      inverted: true
-      nationalities:
-        - Solarian
-  functions:
-    - !type:TraitModifyLanguages
-      languagesSpoken:
-        - SolCommon
-      languagesUnderstood:
-        - SolCommon
-
-- type: trait
-  id: Tradeband
-  category: TraitsSpeechLanguages
-  points: 0
-  # slots: 1
-  # itemGroupSlots: 0
-  requirements:
-    # - !type:CharacterItemGroupRequirement
-    #   group: TraitsLanguagesBasic
-    - !type:CharacterSpeciesRequirement
-      inverted: true
-      species:
-        - Harpy
-  functions:
-    - !type:TraitModifyLanguages
-      languagesSpoken:
-        - Tradeband
-      languagesUnderstood:
-        - Tradeband
-
-- type: trait
-  id: Freespeak
-  category: TraitsSpeechLanguages
-  points: 0
-  # slots: 1
-  # itemGroupSlots: 0
+# - type: trait
+  # id: SolCommon
+  # category: TraitsSpeechLanguages
+  # points: 0
   # requirements:
-  #   - !type:CharacterItemGroupRequirement
-  #     group: TraitsLanguagesBasic
-  functions:
-    - !type:TraitModifyLanguages
-      languagesSpoken:
-        - Freespeak
-      languagesUnderstood:
-        - Freespeak
-
-- type: trait
-  id: Elyran
-  category: TraitsSpeechLanguages
-  points: 0
-  # slots: 1
-  # itemGroupSlots: 0
-  requirements:
     # - !type:CharacterItemGroupRequirement
-    #   group: TraitsLanguagesBasic
-    - !type:CharacterNationalityRequirement
-      inverted: true
-      nationalities:
-        - Elyran
-  functions:
-    - !type:TraitModifyLanguages
-      languagesSpoken:
-        - Elyran
-      languagesUnderstood:
-        - Elyran
+      # group: TraitsLanguagesBasic
+    # - !type:CharacterSpeciesRequirement
+      # inverted: true
+      # species:
+        # - Human
+  # functions:
+    # - !type:TraitModifyLanguages
+      # languagesSpoken:
+        # - SolCommon
+      # languagesUnderstood:
+        # - SolCommon
 
-- type: trait
-  id: ValyrianStandard
-  category: TraitsSpeechLanguages
-  points: -1
-  # slots: 1
-  # itemGroupSlots: 0
-  requirements:
+# - type: trait
+  # id: Tradeband
+  # category: TraitsSpeechLanguages
+  # points: 0
+  # requirements:
     # - !type:CharacterItemGroupRequirement
-    #   group: TraitsLanguagesBasic
-    - !type:CharacterNationalityRequirement
-      inverted: true
-      nationalities:
-        - Valyrian
-    - !type:CharacterSpeciesRequirement
-      inverted: true
-      species:
-        - Harpy
-  functions:
-    - !type:TraitModifyLanguages
-      languagesSpoken:
-        - ValyrianStandard
-      languagesUnderstood:
-        - ValyrianStandard
+      # group: TraitsLanguagesBasic
+    # - !type:CharacterSpeciesRequirement
+      # inverted: true
+      # species:
+        # - Harpy
+  # functions:
+    # - !type:TraitModifyLanguages
+      # languagesSpoken:
+        # - Tradeband
+      # languagesUnderstood:
+        # - Tradeband
 
-- type: trait
-  id: NovuNederic
-  category: TraitsSpeechLanguages
-  points: 0
-  # slots: 1
-  # itemGroupSlots: 0
-  requirements:
+# - type: trait
+  # id: Freespeak
+  # category: TraitsSpeechLanguages
+  # points: 0
+  # requirements:
     # - !type:CharacterItemGroupRequirement
-    #   group: TraitsLanguagesBasic
-    - !type:CharacterNationalityRequirement
-      inverted: true
-      nationalities:
-        - Nederlandic
-  functions:
-    - !type:TraitModifyLanguages
-      languagesSpoken:
-        - NovuNederic
-      languagesUnderstood:
-        - NovuNederic
+      # group: TraitsLanguagesBasic
+  # functions:
+    # - !type:TraitModifyLanguages
+      # languagesSpoken:
+        # - Freespeak
+      # languagesUnderstood:
+        # - Freespeak
 
-- type: trait
-  id: Azaziba
-  category: TraitsSpeechLanguages
-  points: -1
-  # slots: 1
-  # itemGroupSlots: 0
-  requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-        - Reptilian
+# - type: trait
+  # id: Elyran
+  # category: TraitsSpeechLanguages
+  # points: 0
+  # requirements:
     # - !type:CharacterItemGroupRequirement
-    #   group: TraitsLanguagesBasic
-  functions:
-    - !type:TraitModifyLanguages
-      languagesSpoken:
-        - Azaziba
-      languagesUnderstood:
-        - Azaziba
+      # group: TraitsLanguagesBasic
+  # functions:
+    # - !type:TraitModifyLanguages
+      # languagesSpoken:
+        # - Elyran
+      # languagesUnderstood:
+        # - Elyran
+
+# - type: trait
+  # id: ValyrianStandard
+  # category: TraitsSpeechLanguages
+  # points: -1
+  # requirements:
+    # - !type:CharacterItemGroupRequirement
+      # group: TraitsLanguagesBasic
+  # functions:
+    # - !type:TraitModifyLanguages
+      # languagesSpoken:
+        # - ValyrianStandard
+      # languagesUnderstood:
+        # - ValyrianStandard
+
+# - type: trait
+  # id: Azaziba
+  # category: TraitsSpeechLanguages
+  # points: -1
+  # requirements:
+    # - !type:CharacterSpeciesRequirement
+      # species:
+        # - Reptilian
+    # - !type:CharacterItemGroupRequirement
+      # group: TraitsLanguagesBasic
+  # functions:
+    # - !type:TraitModifyLanguages
+      # languagesSpoken:
+        # - Azaziba
+      # languagesUnderstood:
+        # - Azaziba
