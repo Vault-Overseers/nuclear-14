@@ -47,7 +47,8 @@ public sealed class WeatherSystem : SharedWeatherSystem
         if (!Timing.IsFirstTimePredicted || weatherProto.Sound == null)
             return;
 
-        weather.Stream ??= _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true).Value.Entity;
+        var playStream = _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true);
+        weather.Stream ??= playStream!.Value.Entity;
 
         var stream = weather.Stream.Value;
         var comp = Comp<AudioComponent>(stream);
@@ -119,9 +120,9 @@ public sealed class WeatherSystem : SharedWeatherSystem
         comp.Occlusion = occlusion;
     }
 
-    protected override bool SetState(WeatherState state, WeatherComponent comp, WeatherData weather, WeatherPrototype weatherProto)
+    protected override bool SetState(EntityUid uid, WeatherState state, WeatherComponent comp, WeatherData weather, WeatherPrototype weatherProto)
     {
-        if (!base.SetState(state, comp, weather, weatherProto))
+        if (!base.SetState(uid, state, comp, weather, weatherProto))
             return false;
 
         if (!Timing.IsFirstTimePredicted)

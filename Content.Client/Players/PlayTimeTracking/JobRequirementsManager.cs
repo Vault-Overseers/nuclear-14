@@ -1,19 +1,16 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Text; // Nuclear 14
 using Content.Shared.CCVar;
 using Content.Shared.Customization.Systems;
+using Content.Shared.Players.JobWhitelist;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
-using Content.Shared._NC.Roles; // Nuclear 14
 using Robust.Client;
 using Robust.Client.Player;
-using Content.Client.Preferences; // Nuclear 14
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Content.Shared.Preferences; // Nuclear 14
 using Robust.Shared.Utility;
 
 namespace Content.Client.Players.PlayTimeTracking;
@@ -22,14 +19,13 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 {
     [Dependency] private readonly IBaseClient _client = default!;
     [Dependency] private readonly IClientNetManager _net = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
-	[Dependency] private readonly IClientPreferencesManager _clientPreferences = default!; // Nuclear 14
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<string> _roleBans = new();
-
     private ISawmill _sawmill = default!;
-
+    private readonly List<string> _jobWhitelists = new();
     public event Action? Updated;
 
     public void Initialize()
@@ -40,6 +36,7 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         _net.RegisterNetMessage<MsgRoleBans>(RxRoleBans);
         _net.RegisterNetMessage<MsgPlayTime>(RxPlayTime);
         _net.RegisterNetMessage<MsgWhitelist>(RxWhitelist);
+        _net.RegisterNetMessage<MsgJobWhitelist>(RxJobWhitelist);
 
         _client.RunLevelChanged += ClientOnRunLevelChanged;
     }
@@ -50,15 +47,14 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         {
             // Reset on disconnect, just in case.
             _roles.Clear();
+            _jobWhitelists.Clear();
+            _roleBans.Clear();
         }
     }
 
     private void RxRoleBans(MsgRoleBans message)
     {
         _sawmill.Debug($"Received roleban info containing {message.Bans.Count} entries.");
-
-        if (_roleBans.Equals(message.Bans))
-            return;
 
         _roleBans.Clear();
         _roleBans.AddRange(message.Bans);
@@ -81,6 +77,28 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
             sawmill.Info($"{tracker}: {time}");
         }*/
         Updated?.Invoke();
+    }
+
+    private void RxJobWhitelist(MsgJobWhitelist message)
+    {
+        _jobWhitelists.Clear();
+        _jobWhitelists.AddRange(message.Whitelist);
+        Updated?.Invoke();
+    }
+
+    public bool CheckJobWhitelist(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
+    {
+        reason = default;
+        if (!_cfg.GetCVar(CCVars.GameRoleWhitelist))
+            return true;
+
+        if (job.Whitelisted && !_jobWhitelists.Contains(job.ID))
+        {
+            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-not-whitelisted"));
+            return false;
+        }
+
+        return true;
     }
 
     public TimeSpan FetchOverallPlaytime()
