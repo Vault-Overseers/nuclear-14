@@ -167,7 +167,7 @@ namespace Content.Server.GameTicking
 
             var gridIds = _map.LoadMap(targetMapId, ev.GameMap.MapPath.ToString(), ev.Options);
 
-            _metaData.SetEntityName(_mapManager.GetMapEntityId(targetMapId), "Station map");
+            _metaData.SetEntityName(_mapManager.GetMapEntityId(targetMapId), $"station map - {map.MapName}");
 
             var gridUids = gridIds.ToList();
             RaiseLocalEvent(new PostGameMapLoad(map, targetMapId, gridUids, stationName));
@@ -184,9 +184,6 @@ namespace Content.Server.GameTicking
                     continue;
 
                 if (!_playerManager.TryGetSessionById(userId, out _))
-                    continue;
-
-                if (_banManager.GetRoleBans(userId) == null)
                     continue;
 
                 total++;
@@ -232,11 +229,7 @@ namespace Content.Server.GameTicking
 #if DEBUG
                 DebugTools.Assert(_userDb.IsLoadComplete(session), $"Player was readied up but didn't have user DB data loaded yet??");
 #endif
-                if (_banManager.GetRoleBans(userId) == null)
-                {
-                    Logger.ErrorS("RoleBans", $"Role bans for player {session} {userId} have not been loaded yet.");
-                    continue;
-                }
+
                 readyPlayers.Add(session);
                 HumanoidCharacterProfile profile;
                 if (_prefsManager.TryGetCachedPreferences(userId, out var preferences))
@@ -269,7 +262,10 @@ namespace Content.Server.GameTicking
             var origReadyPlayers = readyPlayers.ToArray();
 
             if (!StartPreset(origReadyPlayers, force))
+            {
+                _startingRound = false;
                 return;
+            }
 
             // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
             _mapManager.DoMapInitialize(DefaultMap);
@@ -333,8 +329,23 @@ namespace Content.Server.GameTicking
 
             RunLevel = GameRunLevel.PostRound;
 
-            ShowRoundEndScoreboard(text);
-            SendRoundEndDiscordMessage();
+            try
+            {
+                ShowRoundEndScoreboard(text);
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Error while showing round end scoreboard: {e}");
+            }
+
+            try
+            {
+                SendRoundEndDiscordMessage();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Error while sending round end Discord message: {e}");
+            }
         }
 
         public void ShowRoundEndScoreboard(string text = "")
@@ -567,19 +578,15 @@ namespace Content.Server.GameTicking
 
             DisallowLateJoin = false;
             _playerGameStatuses.Clear();
+            
             foreach (var session in _playerManager.Sessions)
-            {
                 _playerGameStatuses[session.UserId] = LobbyEnabled ? PlayerGameStatus.NotReadyToPlay : PlayerGameStatus.ReadyToPlay;
-            }
         }
 
         public bool DelayStart(TimeSpan time)
         {
             if (_runLevel != GameRunLevel.PreRoundLobby)
-            {
                 return false;
-            }
-
             _roundStartTime += time;
 
             RaiseNetworkEvent(new TickerLobbyCountdownEvent(_roundStartTime, Paused));

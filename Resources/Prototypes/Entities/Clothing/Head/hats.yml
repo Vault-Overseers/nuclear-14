@@ -26,6 +26,17 @@
     - WhitelistChameleon
 
 - type: entity
+  parent: ClothingHeadHatBeret
+  id: ClothingHeadHatBeretWhite
+  name: beret
+  description: A beret, an artists favorite headwear.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/beretwhite.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/beretwhite.rsi
+
+- type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretFrench
   name: French beret
@@ -247,16 +258,50 @@
     - 0,0,0,0
   - type: UserInterface
     interfaces:
-      - key: enum.StorageUiKey.Key
+      enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
+  - type: PilotedClothing
+    pilotWhitelist:
+      tags:
+        - ChefPilot
   - type: Tag
     tags:
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadHatChef
+  id: ClothingHeadHatChefNt
+  name: nanotrasen chef's hat
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/chefhat_nt.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/chefhat_nt.rsi
+
+- type: entity
+  parent: ClothingHeadHatChef
+  id: ClothingHeadHatChefIdris
+  name: idris incorporated chef's hat
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/chefhat_idris.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/chefhat_idris.rsi
+
+- type: entity
+  parent: ClothingHeadHatChef
+  id: ClothingHeadHatChefOrion
+  name: orion express' chef hat
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/chefhat_orion.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/chefhat_orion.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -384,12 +429,15 @@
     sprite: Clothing/Head/Hats/plaguedoctor.rsi
   - type: Tag
     tags:
-    - HidesHair
     - WhitelistChameleon
     - ClothMade
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadHatWizardBase
   id: ClothingHeadHatRedwizard
   name: red wizard hat
   description: Strange-looking red hat-wear that most certainly belongs to a real magic user.
@@ -509,7 +557,7 @@
 
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadHatWizardBase
   id: ClothingHeadHatVioletwizard
   name: violet wizard hat
   description: "Strange-looking violet hat-wear that most certainly belongs to a real magic user."
@@ -543,15 +591,18 @@
   name: witch hat
   description: A witch hat.
   components:
+  - type: WizardClothes #Yes this will count
   - type: Sprite
     sprite: Clothing/Head/Hats/witch.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/witch.rsi
   - type: Tag
     tags:
-    - HidesHair
     - WhitelistChameleon
     - ClothMade
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: ClothingHeadBase
@@ -565,7 +616,14 @@
     sprite: Clothing/Head/Hats/wizard_fake.rsi
 
 - type: entity
+  abstract: true
   parent: ClothingHeadBase
+  id: ClothingHeadHatWizardBase
+  components:
+  - type: WizardClothes
+
+- type: entity
+  parent: ClothingHeadHatWizardBase
   id: ClothingHeadHatWizard
   name: wizard hat
   description: Strange-looking blue hat-wear that most certainly belongs to a powerful magic user.
@@ -777,6 +835,21 @@
 
 - type: entity
   parent: ClothingHeadBase
+  id: ClothingHeadHatHolyWatermelon
+  name: watermelon halo
+  description: Holy moly.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/holyhatmelon.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/holyhatmelon.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.95
+
+- type: entity
+  parent: ClothingHeadBase
   id: ClothingHeadHatSyndie
   name: syndicate hat
   description: A souvenir hat from "Syndieland", their production has already been closed.
@@ -846,8 +919,8 @@
     - 0,0,0,0
   - type: UserInterface
     interfaces:
-      - key: enum.StorageUiKey.Key
-        type: StorageBoundUserInterface
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -1098,3 +1171,33 @@
     sprite: Clothing/Head/Hats/beret_medic.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/beret_medic.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatFlatcapBartenderNanotrasen
+  name: bartender's nanotrasen flatcap
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/flatcap_nt.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/flatcap_nt.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatFlatcapBartenderIdris
+  name: bartender's idris incorporated flatcap
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/flatcap_idris.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/flatcap_idris.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatFlatcapBartenderOrion
+  name: bartender's orion express flatcap
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/flatcap_orion.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/flatcap_orion.rsi

@@ -29,18 +29,18 @@
     activatedDamage:
       types:
         Blunt: 0
+  - type: ItemToggleDamageOtherOnHit
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
       types:
         Blunt: 7
-    bluntStaminaDamageFactor: 2.0
+    bluntStaminaDamageFactor: 2.5
     heavyRateModifier: 0.75
     heavyDamageBaseModifier: 1.75
-    heavyStaminaCost: 5
-    maxTargets: 3
-    angle: 60
+    heavyStaminaCost: 1
     animation: WeaponArcSlash
+  - type: DamageOtherOnHit
   - type: StaminaDamageOnHit
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
@@ -82,9 +82,13 @@
     explosionType: Default
     intensitySlope: 1.5
     maxIntensity: 200
-  # - type: GuideHelp
-    # guides:
-    # - Security
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Plastic: 100
+  - type: GuideHelp
+    guides:
+    - Security
 
 - type: entity
   name: truncheon
@@ -106,9 +110,14 @@
     bluntStaminaDamageFactor: 2
     heavyRateModifier: 1
     heavyDamageBaseModifier: 1.2
-    heavyStaminaCost: 10
+    heavyStaminaCost: 7.5
+  - type: DamageOtherOnHit
+    staminaCost: 9
   - type: Item
     size: Normal
+  - type: Tag
+    tags:
+    - Truncheon
   - type: Clothing
     sprite: Objects/Weapons/Melee/truncheon.rsi
     quickEquip: false
@@ -119,9 +128,9 @@
   - type: Appearance
   - type: StaticPrice
     price: 80
-  # - type: GuideHelp
-    # guides:
-    # - Security
+  - type: GuideHelp
+    guides:
+    - Security
 
 - type: entity
   name: flash
@@ -168,9 +177,9 @@
           enum.FlashVisuals.LightLayer:
             True: {visible: true}
             False: {visible: false}
-    # - type: GuideHelp
-      # guides:
-      # - Security
+    - type: GuideHelp
+      guides:
+      - Security
 
 - type: entity
   name: flash
@@ -226,6 +235,6 @@
       radius: 0
       softness: 0
       enabled: true
-    # - type: GuideHelp
-      # guides:
-      # - Security
+    - type: GuideHelp
+      guides:
+      - Security

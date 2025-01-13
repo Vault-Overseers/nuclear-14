@@ -5,10 +5,11 @@
   description: job-description-bos-washington-initiate
   playTimeTracker: BoSWashingtonInitiate
   requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-      - Human
-      - Ghoul
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
     - !type:CharacterOverallTimeRequirement
       min: 3600
   startingGear: BoSWashingtonInitiateGear

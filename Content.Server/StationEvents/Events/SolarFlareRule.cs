@@ -1,5 +1,3 @@
-using Content.Server.GameTicking.Components;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Radio;
 using Robust.Shared.Random;
 using Content.Server.Light.EntitySystems;
@@ -8,6 +6,7 @@ using Content.Server.StationEvents.Components;
 using Content.Shared.Radio.Components;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
+using Content.Shared.GameTicking.Components;
 
 namespace Content.Server.StationEvents.Events;
 
