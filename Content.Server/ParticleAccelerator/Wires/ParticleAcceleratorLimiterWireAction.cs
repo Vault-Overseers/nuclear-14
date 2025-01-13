@@ -5,6 +5,7 @@ using Content.Server.Wires;
 using Content.Shared.Popups;
 using Content.Shared.Singularity.Components;
 using Content.Shared.Wires;
+using Robust.Shared.Player;
 
 namespace Content.Server.ParticleAccelerator.Wires;
 
@@ -34,8 +35,6 @@ public sealed partial class ParticleAcceleratorLimiterWireAction : ComponentWire
     public override bool Cut(EntityUid user, Wire wire, ParticleAcceleratorControlBoxComponent controller)
     {
         controller.MaxStrength = ParticleAcceleratorPowerState.Level3;
-        var paSystem = EntityManager.System<ParticleAcceleratorSystem>();
-        paSystem.UpdateUI(wire.Owner, controller);
         return true;
     }
 
@@ -50,14 +49,12 @@ public sealed partial class ParticleAcceleratorLimiterWireAction : ComponentWire
         // Since that blocks SetStrength().
         var paSystem = EntityManager.System<ParticleAcceleratorSystem>();
         paSystem.SetStrength(wire.Owner, controller.MaxStrength, user, controller);
-        paSystem.UpdateUI(wire.Owner, controller);
         return true;
     }
 
     public override void Pulse(EntityUid user, Wire wire, ParticleAcceleratorControlBoxComponent controller)
     {
-        EntityManager.System<PopupSystem>()
-            .PopupEntity(
+        EntityManager.System<PopupSystem>().PopupEntity(
             Loc.GetString("particle-accelerator-control-box-component-wires-update-limiter-on-pulse"),
             user,
             PopupType.SmallCaution

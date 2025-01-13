@@ -18,13 +18,14 @@ public sealed partial class NanoChatUiFragment : BoxContainer
 {
     [Dependency] private readonly IGameTiming _timing = default!;
 
+    private const int MaxMessageLength = 256;
+
     private readonly NewChatPopup _newChatPopup;
     private readonly EditChatPopup _editChatPopup;
     private uint? _currentChat;
     private uint? _pendingChat;
     private uint _ownNumber;
     private bool _notificationsMuted;
-    private bool _listNumber = true;
     private Dictionary<uint, NanoChatRecipient> _recipients = new();
     private Dictionary<uint, List<NanoChatMessage>> _messages = new();
 
@@ -49,7 +50,8 @@ public sealed partial class NanoChatUiFragment : BoxContainer
 
         _editChatPopup.OnContactEdited += (number, name, job) =>
         {
-            ActionSendUiMessage?.Invoke(NanoChatUiMessageType.EditChat, number, name, job);
+            DeleteCurrentChat();
+            ActionSendUiMessage?.Invoke(NanoChatUiMessageType.NewChat, number, name, job);
         };
 
         NewChatButton.OnPressed += _ =>
@@ -69,50 +71,26 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         {
             var length = args.Text.Length;
             var isValid = !string.IsNullOrWhiteSpace(args.Text) &&
-                          length <= NanoChatMessage.MaxContentLength &&
+                          length <= MaxMessageLength &&
                           (_currentChat != null || _pendingChat != null);
 
             SendButton.Disabled = !isValid;
 
             // Show character count when over limit
-            CharacterCount.Visible = length > NanoChatMessage.MaxContentLength;
-            if (length > NanoChatMessage.MaxContentLength)
+            CharacterCount.Visible = length > MaxMessageLength;
+            if (length > MaxMessageLength)
             {
                 CharacterCount.Text = Loc.GetString("nano-chat-message-too-long",
                     ("current", length),
-                    ("max", NanoChatMessage.MaxContentLength));
+                    ("max", MaxMessageLength));
                 CharacterCount.StyleClasses.Add("LabelDanger");
             }
-        };
-
-        LookupButton.OnPressed += _ => ToggleView();
-        LookupView.OnStartChat += contact =>
-        {
-            if (ActionSendUiMessage is { } handler)
-            {
-                handler(NanoChatUiMessageType.NewChat, contact.Number, contact.Name, contact.JobTitle);
-                SelectChat(contact.Number);
-                ToggleView();
-            }
-        };
-        ListNumberButton.OnPressed += _ =>
-        {
-            _listNumber = !_listNumber;
-            UpdateListNumber();
-            ActionSendUiMessage?.Invoke(NanoChatUiMessageType.ToggleListNumber, null, null, null);
         };
 
         MessageInput.OnTextEntered += _ => SendMessage();
         SendButton.OnPressed += _ => SendMessage();
         EditChatButton.OnPressed += _ => BeginEditChat();
         DeleteChatButton.OnPressed += _ => DeleteCurrentChat();
-    }
-
-    private void ToggleView()
-    {
-        ChatView.Visible = !ChatView.Visible;
-        LookupView.Visible = !ChatView.Visible;
-        LookupButton.Pressed = LookupView.Visible;
     }
 
     private void SendMessage()
@@ -122,12 +100,6 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             return;
 
         var messageContent = MessageInput.Text;
-        if (!string.IsNullOrWhiteSpace(messageContent))
-        {
-            messageContent = messageContent.Trim();
-            if (messageContent.Length > NanoChatMessage.MaxContentLength)
-                messageContent = messageContent[..NanoChatMessage.MaxContentLength];
-        }
 
         // Add predicted message
         var predictedMessage = new NanoChatMessage(
@@ -170,9 +142,6 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             _recipients[number] = recipient;
             UpdateChatList(_recipients);
         }
-
-        if (MessageList.Parent is ScrollContainer scroll)
-            scroll.SetScrollValue(new Vector2(0, float.MaxValue));
 
         ActionSendUiMessage?.Invoke(NanoChatUiMessageType.SelectChat, number, null, null);
         UpdateCurrentChat();
@@ -286,20 +255,12 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             BellMutedIcon.Visible = _notificationsMuted;
     }
 
-    private void UpdateListNumber()
-    {
-        if (ListNumberButton != null)
-            ListNumberButton.Pressed = _listNumber;
-    }
-
     public void UpdateState(NanoChatUiState state)
     {
         _ownNumber = state.OwnNumber;
         _notificationsMuted = state.NotificationsMuted;
-        _listNumber = state.ListNumber;
         OwnNumberLabel.Text = $"#{state.OwnNumber:D4}";
         UpdateMuteButton();
-        UpdateListNumber();
 
         // Update new chat button state based on recipient limit
         var atLimit = state.Recipients.Count >= state.MaxRecipients;
@@ -324,6 +285,5 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         UpdateCurrentChat();
         UpdateChatList(state.Recipients);
         UpdateMessages(state.Messages);
-        LookupView.UpdateContactList(state);
     }
 }

@@ -1,32 +1,41 @@
+# BASE
+- type: entity
+  id: BaseLoadoutKit
+  name: Undecided Loadout Kit
+  description: Please only take one.
+  parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: ActivatableUI
+    key: enum.UndecidedLoadoutBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.UndecidedLoadoutBackpackUIKey.Key:
+        type: UndecidedLoadoutBackpackBoundUserInterface
+
 #MARK: Undecided Loadout Backpacks
 
 # New California Republic Army
 - type: entity
   id: NCRcadetloadoutkits
   name: Undecided NCRA Cadet Loadout Kit
-  description: Please only take one.
-  parent: BaseItem
+  parent: BaseLoadoutKit
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     - NCRA_CadetRiflemanSet
     - NCRA_CadetStormSet
     - NCRA_CadetScoutSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.UndecidedLoadoutBackpackUIKey.Key
-        type: UndecidedLoadoutBackpackBoundUserInterface
 
 - type: entity
   id: NCRtrooperloadoutkits
   name: Undecided NCRA Trooper Loadout Kit
-  description: Please only take one.
   parent: NCRcadetloadoutkits
   components:
   - type: Sprite
@@ -43,7 +52,6 @@
 - type: entity
   id: NCRengineerloadoutkits
   name: Undecided NCRA Engineer Loadout Kit
-  description: Please only take one.
   parent: NCRcadetloadoutkits
   components:
   - type: Sprite
@@ -58,7 +66,6 @@
 - type: entity
   id: NCRmedicloadoutkits
   name: Undecided NCRA Medic Loadout Kit
-  description: Please only take one.
   parent: NCRcadetloadoutkits
   components:
   - type: Sprite
@@ -73,7 +80,6 @@
 - type: entity
   id: NCRwsloadoutkits
   name: Undecided NCRA Weapon Specalist Loadout Kit
-  description: Please only take one.
   parent: NCRcadetloadoutkits
   components:
   - type: Sprite
@@ -88,7 +94,6 @@
 - type: entity
   id: NCRSGTloadoutkits
   name: Undecided NCRA Sergeant Loadout Kit
-  description: Please only take one.
   parent: NCRcadetloadoutkits
   components:
   - type: Sprite
@@ -104,7 +109,6 @@
 - type: entity
   id: NCRLTloadoutkits
   name: Undecided NCRA Lieutenant Loadout Kit
-  description: Please only take one.
   parent: NCRcadetloadoutkits
   components:
   - type: Sprite
@@ -121,13 +125,11 @@
 - type: entity
   id: NCRrangerloadoutkits
   name: Undecided NCR Ranger Loadout Kit
-  description: Please only take one.
   parent: NCRcadetloadoutkits
   components:
   - type: Sprite
     state: rifleman
   - type: UndecidedLoadoutBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     - RangerServiceSet
     - RangerRiflemanSet
@@ -138,7 +140,6 @@
 - type: entity
   id: NCRveteranrangerloadoutkits
   name: Undecided NCR Veteran Ranger Loadout Kit
-  description: Please only take one.
   parent: NCRcadetloadoutkits
   components:
   - type: Sprite
@@ -161,7 +162,6 @@
 - type: entity
   id: NCRBoSMidwestkits
   name: Undecided BoS Midwest Kit
-  description: Please only take one.
   parent: NCRcadetloadoutkits
   components:
   - type: Sprite
@@ -175,8 +175,7 @@
 - type: entity
   id: NCRBoSWashingtonkits
   name: Undecided Washington BoS Kit
-  description: Please only take one.
-  parent: NCRcadetloadoutkits
+  parent: BaseLoadoutKit
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
@@ -190,8 +189,7 @@
 - type: entity
   id: NCRBoSMidwestScribekits
   name: Undecided BoS Scribe Midwest Kit
-  description: Please only take one.
-  parent: NCRcadetloadoutkits
+  parent: BaseLoadoutKit
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
@@ -205,8 +203,7 @@
 - type: entity
   id: NCRBoSWashingtonScribekits
   name: Undecided BoS Scribe Washington Kit
-  description: Please only take one.
-  parent: NCRcadetloadoutkits
+  parent: BaseLoadoutKit
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
@@ -221,8 +218,7 @@
 - type: entity
   id: NCRBoSMidwestPaladinkits
   name: Undecided BoS Paladin Midwest Kit
-  description: Please only take one.
-  parent: NCRcadetloadoutkits
+  parent: BaseLoadoutKit
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
@@ -238,8 +234,7 @@
 - type: entity
   id: NCRBoSWashingtonPaladinkits
   name: Undecided BoS Paladin Washington Kit
-  description: Please only take one.
-  parent: NCRcadetloadoutkits
+  parent: BaseLoadoutKit
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
@@ -499,8 +494,8 @@
   content:
   - KitNCR_LTTactical
 
-  #MARK: Ranger Kits
 
+  #MARK: Ranger Kits
 - type: UndecidedLoadoutBackpackSet
   id: RangerServiceSet
   name: undecided-loadout-category-ranger-service-name
@@ -552,7 +547,6 @@
   - KitTrailmanRanger
 
 #MARK: Veteran Kits
-
 - type: UndecidedLoadoutBackpackSet
   id: VeteranRangerServiceSet
   name: undecided-loadout-category-veteran-ranger-service-name

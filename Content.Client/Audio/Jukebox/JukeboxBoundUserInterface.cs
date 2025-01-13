@@ -1,23 +1,13 @@
 using Content.Shared.Audio.Jukebox;
 using Robust.Client.Audio;
-<<<<<<< HEAD
 using Robust.Client.UserInterface;
 using Robust.Shared.Audio.Components;
-=======
-using Robust.Client.Player;
-using Robust.Shared.Audio.Components;
-using Robust.Shared.Player;
->>>>>>> 8dc036c8a7 (Upstream merge 16th Sept 2024 (#527))
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Audio.Jukebox;
 
 public sealed class JukeboxBoundUserInterface : BoundUserInterface
 {
-<<<<<<< HEAD
-=======
-    [Dependency] private readonly IPlayerManager _player = default!;
->>>>>>> 8dc036c8a7 (Upstream merge 16th Sept 2024 (#527))
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
     [ViewVariables]
@@ -32,13 +22,7 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-<<<<<<< HEAD
         _menu = this.CreateWindow<JukeboxMenu>();
-=======
-        _menu = new JukeboxMenu();
-        _menu.OnClose += Close;
-        _menu.OpenCentered();
->>>>>>> 8dc036c8a7 (Upstream merge 16th Sept 2024 (#527))
 
         _menu.OnPlayPressed += args =>
         {
@@ -113,22 +97,5 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
 
         SendMessage(new JukeboxSetTimeMessage(sentTime));
     }
-<<<<<<< HEAD
-=======
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        if (!disposing)
-            return;
-
-        if (_menu == null)
-            return;
-
-        _menu.OnClose -= Close;
-        _menu.Dispose();
-        _menu = null;
-    }
->>>>>>> 8dc036c8a7 (Upstream merge 16th Sept 2024 (#527))
 }
 

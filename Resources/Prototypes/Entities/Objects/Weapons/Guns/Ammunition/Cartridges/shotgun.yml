@@ -1,7 +1,7 @@
-- type: entity
+﻿- type: entity
   id: BaseShellShotgun
   name: shell (.50)
-  parent: [ BaseCartridge, BaseRestrictedContraband ]
+  parent: BaseCartridge
   abstract: true
   components:
   - type: Tag
@@ -14,20 +14,10 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
     layers:
-    - state: base
-      map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
   - type: Appearance
   - type: SpentAmmoVisuals
-  - type: EmitSoundOnLand
-    sound:
-      collection: ShellLand
-      params:
-        volume: -5
-  - type: EmitSoundOnCollide
-    sound:
-      collection: ShellLand
-      params:
-        volume: -5
 
 - type: entity
   id: ShellShotgunBeanbag
@@ -41,8 +31,8 @@
     - ShellShotgunLight
   - type: Sprite
     layers:
-    - state: beanbag
-      map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: beanbag
+        map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgunBeanbag
   - type: SpentAmmoVisuals
@@ -55,30 +45,31 @@
   components:
   - type: Sprite
     layers:
-    - state: slug
-      map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: slug
+        map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgunSlug
   - type: SpentAmmoVisuals
     state: "slug"
 
 - type: entity
-  id: ShellShotgunLumen
-  name: shell (.50 Lumenblast)
+  id: ShellShotgunFlare
+  name: shell (.50 flare)
   parent: BaseShellShotgun
   components:
   - type: Tag
     tags:
     - Cartridge
     - ShellShotgun
+    - ShellShotgunLight
   - type: Sprite
     layers:
-    - state: lumen
-      map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: flare
+        map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
-    proto: PelletShotgunLumen
+    proto: PelletShotgunFlare
   - type: SpentAmmoVisuals
-    state: "lumen"
+    state: "flare"
 
 - type: entity
   id: ShellShotgun
@@ -87,8 +78,8 @@
   components:
   - type: Sprite
     layers:
-    - state: base
-      map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgunSpread
 
@@ -99,8 +90,8 @@
   components:
   - type: Sprite
     layers:
-    - state: incendiary
-      map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: incendiary
+        map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgunIncendiarySpread
   - type: SpentAmmoVisuals
@@ -113,8 +104,8 @@
   components:
   - type: Sprite
     layers:
-    - state: practice
-      map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: practice
+        map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgunPracticeSpread
   - type: SpentAmmoVisuals
@@ -132,8 +123,8 @@
     - ShellShotgunLight
   - type: Sprite
     layers:
-    - state: tranquilizer
-      map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: practice
+        map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgunTranquilizer
   - type: ChemicalAmmo
@@ -146,8 +137,8 @@
   - type: SolutionTransfer
     maxTransferAmount: 7
   - type: SpentAmmoVisuals
-    state: "tranquilizer"
-
+    state: "practice"
+    
 - type: entity
   id: ShellShotgunImprovised
   name: improvised shotgun shell
@@ -161,8 +152,8 @@
     - ShellShotgunLight
   - type: Sprite
     layers:
-    - state: improvised
-      map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: improvised
+        map: [ "enum.AmmoVisualLayers.Base" ]
   - type: Construction
     graph: ImprovisedShotgunShellGraph
     node: shell
@@ -176,66 +167,11 @@
   name: uranium shotgun shell
   parent: BaseShellShotgun
   components:
-  - type: Sprite
-    layers:
-    - state: depleted-uranium
-      map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: PelletShotgunUraniumSpread
-  - type: SpentAmmoVisuals
-    state: "depleted-uranium"
-
-- type: entity
-  id: ShellShotgunBirdshot
-  name: shell (.50 birdshot)
-  parent: BaseShellShotgun
-  components:
-  - type: Sprite
-    layers:
-    - state: base
-      map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: PelletShotgunSpreadBirdshot
-
-- type: entity
-  id: ShellShotgun00Buckshot
-  name: shell (.50 00-Buckshot)
-  parent: BaseShellShotgun
-  components:
-  - type: Sprite
-    layers:
-    - state: base
-      map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: PelletShotgunSpread00Buckshot
-
-- type: entity
-  id: ShellShotgun0000Buckshot
-  name: shell (.50 0000-Buckshot)
-  parent: BaseShellShotgun
-  components:
-  - type: Sprite
-    layers:
-    - state: base
-      map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: PelletShotgunSpread0000Buckshot
-
-- type: entity
-  id: ShellShotgunFlare
-  name: shell (.50 flare)
-  parent: BaseShellShotgun
-  components:
-  - type: Tag
-    tags:
-    - Cartridge
-    - ShellShotgun
-    - ShellShotgunLight
-  - type: Sprite
-    layers:
-    - state: flare
-      map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: PelletShotgunFlare
-  - type: SpentAmmoVisuals
-    state: "flare"
+    - type: Sprite
+      layers:
+        - state: depleted-uranium
+          map: [ "enum.AmmoVisualLayers.Base" ]
+    - type: CartridgeAmmo
+      proto: PelletShotgunUraniumSpread
+    - type: SpentAmmoVisuals
+      state: "depleted-uranium"

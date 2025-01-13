@@ -81,7 +81,7 @@ public sealed partial class AutodocWindow : FancyWindow
             _dialog.OnClose += () => _dialog = null;
         };
 
-        AbortButton.AddStyleClass("Danger");
+        AbortButton.AddStyleClass("Caution");
         AbortButton.OnPressed += _ => OnStop?.Invoke();
 
         UpdateActive();

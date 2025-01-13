@@ -1,8 +1,6 @@
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.Overlays;
 using Robust.Client.Player;
 using Robust.Shared.Console;
-using Robust.Shared.Prototypes;
 using System.Linq;
 
 namespace Content.Client.Commands;
@@ -36,8 +34,8 @@ public sealed class ShowHealthBarsCommand : LocalizedCommands
         {
             var showHealthBarsComponent = new ShowHealthBarsComponent
             {
-                DamageContainers = args.Select(arg => new ProtoId<DamageContainerPrototype>(arg)).ToList(),
-                HealthStatusIcon = null,
+                DamageContainers = args.ToList(),
+                HealthStatusIcon = "",
                 NetSyncEnabled = false
             };
 

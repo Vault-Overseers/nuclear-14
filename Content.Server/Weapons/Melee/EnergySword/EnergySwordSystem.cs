@@ -38,7 +38,7 @@ public sealed class EnergySwordSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!_toolSystem.HasQuality(args.Used, SharedToolSystem.PulseQuality))
+        if (!_toolSystem.HasQuality(args.Used, "Pulsing"))
             return;
 
         args.Handled = true;

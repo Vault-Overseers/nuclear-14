@@ -1,7 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
-using Content.Server.Mind;
 using Content.Shared.Database;
 using Content.Shared.CCVar;
 using Content.Shared.Ghost;
@@ -14,8 +13,6 @@ namespace Content.Server.Ghost;
 
 public sealed class GhostReturnToRoundSystem : EntitySystem
 {
-    [Dependency] private readonly MindSystem _mindSystem = default!; // WD EDIT
-
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -60,13 +57,8 @@ public sealed class GhostReturnToRoundSystem : EntitySystem
         }
 
         var deathTime = EnsureComp<GhostComponent>(uid).TimeOfDeath;
-        // WD EDIT START
-        if (_mindSystem.TryGetMind(uid, out _, out var mind) && mind.TimeOfDeath.HasValue)
-            deathTime = mind.TimeOfDeath.Value;
-
-        var timeUntilRespawn = TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.GhostRespawnTime));
-        var timePast = _gameTiming.CurTime - deathTime;
-        // WD EDIT END
+        var timeUntilRespawn = _cfg.GetCVar(CCVars.GhostRespawnTime);
+        var timePast = (_gameTiming.CurTime - deathTime).TotalMinutes;
         if (timePast >= timeUntilRespawn)
         {
             _playerManager.TryGetSessionById(userId, out var targetPlayer);
@@ -82,13 +74,7 @@ public sealed class GhostReturnToRoundSystem : EntitySystem
             return;
         }
 
-        // WD EDIT START
-        var timeLeft = timeUntilRespawn - timePast;
-        message = timeLeft.Minutes > 0
-            ? Loc.GetString("ghost-respawn-minutes-left", ("time", timeLeft.Minutes))
-            : Loc.GetString("ghost-respawn-seconds-left", ("time", timeLeft.Seconds));
-        // WD EDIT END
-
+        message = Loc.GetString("ghost-respawn-time-left", ("time", (int) (timeUntilRespawn - timePast)));
         wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", message));
     }
 }

@@ -130,8 +130,9 @@ public sealed class CargoTest
                 {
                     ent = entManager.SpawnEntity(proto, coord);
                 }
-                catch
+                catch (Exception e)
                 {
+                    Assert.Fail($"Prototype {proto} failed to spawn! Is your configuration invalid?");
                     return;
                 }
 

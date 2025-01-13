@@ -8,9 +8,7 @@ namespace Content.Shared.EntityTable.EntitySelectors;
 /// </summary>
 public sealed partial class EntSelector : EntityTableSelector
 {
-    public const string IdDataFieldTag = "id";
-
-    [DataField(IdDataFieldTag, required: true)]
+    [DataField(required: true)]
     public EntProtoId Id;
 
     [DataField]

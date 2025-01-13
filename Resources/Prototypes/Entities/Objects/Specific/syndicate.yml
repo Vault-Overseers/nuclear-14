@@ -1,7 +1,6 @@
-
 - type: entity
   name: telecrystal
-  parent: [BaseItem, BaseSyndicateContraband]
+  parent: BaseItem
   id: Telecrystal
   suffix: 20 TC
   description: It seems to be pulsing with suspiciously enticing energies.
@@ -49,7 +48,7 @@
 
 # Uplinks
 - type: entity
-  parent: [BaseItem, StorePresetUplink, BaseSyndicateContraband]
+  parent: [ BaseItem, StorePresetUplink ]
   id: BaseUplinkRadio
   name: syndicate uplink
   description: Suspiciously looking old radio...
@@ -75,30 +74,30 @@
 - type: entity
   parent: BaseUplinkRadio
   id: BaseUplinkRadio20TC
-  suffix: 100 TC
+  suffix: 20 TC
   components:
   - type: Store
     balance:
-      Telecrystal: 100
+      Telecrystal: 20
 
 - type: entity
   parent: BaseUplinkRadio
   id: BaseUplinkRadio25TC
-  suffix: 125 TC
+  suffix: 25 TC
   components:
   - type: Store
     balance:
-      Telecrystal: 125
+      Telecrystal: 25
 
 #this uplink MUST be used for nukeops, as it has the tag for filtering the listing.
 - type: entity
   parent: BaseUplinkRadio
   id: BaseUplinkRadio40TC
-  suffix: 250 TC, NukeOps
+  suffix: 40 TC, NukeOps
   components:
   - type: Store
     balance:
-      Telecrystal: 250 # 5x TC, +cost of a tacsuit they no longer spawn with.
+      Telecrystal: 40
   - type: Tag
     tags:
     - NukeOpsUplink
@@ -106,11 +105,11 @@
 - type: entity
   parent: BaseUplinkRadio
   id: BaseUplinkRadio60TC
-  suffix: 350 TC, LoneOps
+  suffix: 60 TC, LoneOps
   components:
   - type: Store
     balance:
-      Telecrystal: 350 # 5x TC, +cost of a tacsuit they no longer spawn with.
+      Telecrystal: 60
   - type: Tag
     tags:
     - NukeOpsUplink

@@ -1,12 +1,13 @@
 using Content.Server.Body.Components;
 using Content.Shared.Nutrition.Components;
+using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Nutrition.Components;
 
-[RegisterComponent]
+[RegisterComponent, Access(typeof(FoodSystem), typeof(FoodSequenceSystem))]
 public sealed partial class FoodComponent : Component
 {
     [DataField]
@@ -69,17 +70,8 @@ public sealed partial class FoodComponent : Component
     public float ForceFeedDelay = 3;
 
     /// <summary>
-    /// Shitmed Change: Whether to show a popup to everyone in range when attempting to eat this food, and upon successful eating.
-    /// </summary>
-    [DataField]
-    public bool PopupOnEat;
-
-    /// <summary>
     /// For mobs that are food, requires killing them before eating.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool RequireDead = true;
-
-    [DataField]
-    public HashSet<string> MoodletsOnEat = new();
 }

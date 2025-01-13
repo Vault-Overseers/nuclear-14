@@ -1,12 +1,14 @@
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Objectives.Components;
 using Content.Server.Popups;
 using Content.Server.Roles;
+using Content.Server.Sticky.Events;
+using Content.Shared.Interaction;
 using Content.Shared.Ninja.Components;
 using Content.Shared.Ninja.Systems;
-using Content.Shared.Roles;
-using Content.Shared.Sticky;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Ninja.Systems;
 
@@ -17,7 +19,6 @@ public sealed class SpiderChargeSystem : SharedSpiderChargeSystem
 {
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SpaceNinjaSystem _ninja = default!;
 
@@ -33,17 +34,14 @@ public sealed class SpiderChargeSystem : SharedSpiderChargeSystem
     /// <summary>
     /// Require that the planter is a ninja and the charge is near the target warp point.
     /// </summary>
-    private void OnAttemptStick(EntityUid uid, SpiderChargeComponent comp, ref AttemptEntityStickEvent args)
+    private void OnAttemptStick(EntityUid uid, SpiderChargeComponent comp, AttemptEntityStickEvent args)
     {
         if (args.Cancelled)
             return;
 
         var user = args.User;
 
-        if (!_mind.TryGetMind(args.User, out var mind, out _))
-            return;
-
-        if (!_role.MindHasRole<NinjaRoleComponent>(mind))
+        if (!_mind.TryGetRole<NinjaRoleComponent>(user, out var _))
         {
             _popup.PopupEntity(Loc.GetString("spider-charge-not-ninja"), user, user);
             args.Cancelled = true;
@@ -69,7 +67,7 @@ public sealed class SpiderChargeSystem : SharedSpiderChargeSystem
     /// <summary>
     /// Allows greentext to occur after exploding.
     /// </summary>
-    private void OnStuck(EntityUid uid, SpiderChargeComponent comp, ref EntityStuckEvent args)
+    private void OnStuck(EntityUid uid, SpiderChargeComponent comp, EntityStuckEvent args)
     {
         comp.Planter = args.User;
     }

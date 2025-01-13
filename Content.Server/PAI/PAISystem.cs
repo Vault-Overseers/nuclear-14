@@ -111,7 +111,7 @@ public sealed class PAISystem : SharedPAISystem
         if (TryComp<InstrumentComponent>(uid, out var instrument))
             _instrumentSystem.Clean(uid, instrument);
 
-        if (TryComp(uid, out MetaDataComponent? metadata))
+        if (TryComp<MetaDataComponent>(uid, out var metadata))
         {
             var proto = metadata.EntityPrototype;
             if (proto != null)

@@ -1,4 +1,5 @@
 using Content.Server.NPC;
+using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.Popups;
@@ -35,7 +36,7 @@ public sealed partial class PsionicFamiliarSystem : EntitySystem
     private void OnSummon(EntityUid uid, PsionicComponent psionicComponent, SummonPsionicFamiliarActionEvent args)
     {
         if (psionicComponent.Familiars.Count >= psionicComponent.FamiliarLimit
-            || !_psionics.OnAttemptPowerUse(args.Performer, args.PowerName, args.CheckInsulation)
+            || !_psionics.OnAttemptPowerUse(args.Performer, args.PowerName, args.ManaCost, args.CheckInsulation)
             || args.Handled || args.FamiliarProto is null)
             return;
 

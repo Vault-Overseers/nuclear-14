@@ -98,6 +98,7 @@ public abstract class SharedVirtualItemSystem : EntitySystem
             {
                 if (hand.HeldEntity is not { } held
                     || held == blockingEnt
+                    || HasComp<VirtualItemComponent>(held)
                     || !_handsSystem.TryDrop(user, hand))
                     continue;
 
@@ -218,7 +219,7 @@ public abstract class SharedVirtualItemSystem : EntitySystem
 
         var pos = Transform(user).Coordinates;
         virtualItem = Spawn(VirtualItem, pos);
-        var virtualItemComp = EnsureComp<VirtualItemComponent>(virtualItem.Value); // Goobstation
+        var virtualItemComp = Comp<VirtualItemComponent>(virtualItem.Value);
         virtualItemComp.BlockingEntity = blockingEnt;
         Dirty(virtualItem.Value, virtualItemComp);
         return true;
@@ -229,16 +230,16 @@ public abstract class SharedVirtualItemSystem : EntitySystem
     /// </summary>
     public void DeleteVirtualItem(Entity<VirtualItemComponent> item, EntityUid user)
     {
-        var userEv = new VirtualItemDeletedEvent(item.Comp.BlockingEntity, user, item.Owner); // Goobstation
+        var userEv = new VirtualItemDeletedEvent(item.Comp.BlockingEntity, user);
         RaiseLocalEvent(user, userEv);
 
-        var targEv = new VirtualItemDeletedEvent(item.Comp.BlockingEntity, user, item.Owner); // Goobstation
+        var targEv = new VirtualItemDeletedEvent(item.Comp.BlockingEntity, user);
         RaiseLocalEvent(item.Comp.BlockingEntity, targEv);
 
         if (TerminatingOrDeleted(item))
             return;
 
-        _transformSystem.DetachEntity(item, Transform(item));
+        _transformSystem.DetachParentToNull(item, Transform(item));
         if (_netManager.IsServer)
             QueueDel(item);
     }

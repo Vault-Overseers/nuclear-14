@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:Content.Server/GameTicking/Components/GameRuleComponent.cs
 <<<<<<<< HEAD:Content.Shared/GameTicking/Components/GameRuleComponent.cs
 using Content.Shared.Destructible.Thresholds;
 using Robust.Shared.Prototypes;
@@ -10,6 +11,13 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.GameTicking.Components;
 >>>>>>>> 8dc036c8a7 (Upstream merge 16th Sept 2024 (#527)):Content.Server/GameTicking/Components/GameRuleComponent.cs
+========
+using Content.Shared.Destructible.Thresholds;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+
+namespace Content.Shared.GameTicking.Components;
+>>>>>>>> 9110293ca6 (Upstream Merge January 2025 (#780)):Content.Shared/GameTicking/Components/GameRuleComponent.cs
 
 /// <summary>
 /// Component attached to all gamerule entities.

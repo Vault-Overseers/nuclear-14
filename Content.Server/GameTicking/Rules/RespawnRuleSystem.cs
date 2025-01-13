@@ -1,5 +1,5 @@
 using Content.Server.Chat.Managers;
-using Content.Server.GameTicking.Components;
+using Content.Server.Database.Migrations.Postgres;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Chat;

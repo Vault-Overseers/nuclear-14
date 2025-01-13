@@ -37,3 +37,5 @@ public sealed partial class UpgradePowerDrawComponent : Component
     [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
     public MachineUpgradeScalingType Scaling;
 }
+
+

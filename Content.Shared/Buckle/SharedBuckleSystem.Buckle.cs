@@ -43,7 +43,6 @@ public abstract partial class SharedBuckleSystem
         SubscribeLocalEvent<BuckleComponent, StartPullAttemptEvent>(OnPullAttempt);
         SubscribeLocalEvent<BuckleComponent, BeingPulledAttemptEvent>(OnBeingPulledAttempt);
         SubscribeLocalEvent<BuckleComponent, PullStartedMessage>(OnPullStarted);
-        SubscribeLocalEvent<BuckleComponent, UnbuckleAlertEvent>(OnUnbuckleAlert);
 
         SubscribeLocalEvent<BuckleComponent, InsertIntoEntityStorageAttemptEvent>(OnBuckleInsertIntoEntityStorageAttempt);
 
@@ -78,13 +77,6 @@ public abstract partial class SharedBuckleSystem
     private void OnPullStarted(Entity<BuckleComponent> ent, ref PullStartedMessage args)
     {
         Unbuckle(ent!, args.PullerUid);
-    }
-
-    private void OnUnbuckleAlert(Entity<BuckleComponent> ent, ref UnbuckleAlertEvent args)
-    {
-        if (args.Handled)
-            return;
-        args.Handled = TryUnbuckle(ent, ent, ent);
     }
 
     #endregion
@@ -354,9 +346,9 @@ public abstract partial class SharedBuckleSystem
 
         _audio.PlayPredicted(strap.Comp.BuckleSound, strap, user);
 
+        SetBuckledTo(buckle, strap!);
         Appearance.SetData(strap, StrapVisuals.State, true);
         Appearance.SetData(buckle, BuckleVisuals.Buckled, true);
-
         _rotationVisuals.SetHorizontalAngle(buckle.Owner, strap.Comp.Rotation);
 
         var xform = Transform(buckle);
@@ -368,14 +360,12 @@ public abstract partial class SharedBuckleSystem
         switch (strap.Comp.Position)
         {
             case StrapPosition.Stand:
-                _standing.Stand(buckle, force: true);
+                _standing.Stand(buckle);
                 break;
             case StrapPosition.Down:
                 _standing.Down(buckle, false, false);
                 break;
         }
-
-        SetBuckledTo(buckle, strap!); // DeltaV - Allow standing system to handle Down/Stand before buckling
 
         var ev = new StrappedEvent(strap, buckle);
         RaiseLocalEvent(strap, ref ev);

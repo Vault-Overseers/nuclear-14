@@ -133,20 +133,6 @@ public sealed partial class FaxMachineComponent : Component
     /// </summary>
     [ViewVariables]
     public float PrintingTime = 2.3f;
-
-    /// <summary>
-    ///     The prototype ID to use for faxed or copied entities if we can't get one from
-    ///     the paper entity for whatever reason.
-    /// </summary>
-    [DataField]
-    public EntProtoId PrintPaperId = "Paper";
-
-    /// <summary>
-    ///     The prototype ID to use for faxed or copied entities if we can't get one from
-    ///     the paper entity for whatever reason of the Office type.
-    /// </summary>
-    [DataField]
-    public EntProtoId PrintOfficePaperId = "PaperOffice";
 }
 
 [DataDefinition]
@@ -170,14 +156,11 @@ public sealed partial class FaxPrintout
     [DataField("stampedBy")]
     public List<StampDisplayInfo> StampedBy { get; private set; } = new();
 
-    [DataField]
-    public bool Locked { get; private set; }
-
     private FaxPrintout()
     {
     }
 
-    public FaxPrintout(string content, string name, string? label = null, string? prototypeId = null, string? stampState = null, List<StampDisplayInfo>? stampedBy = null, bool locked = false)
+    public FaxPrintout(string content, string name, string? label = null, string? prototypeId = null, string? stampState = null, List<StampDisplayInfo>? stampedBy = null)
     {
         Content = content;
         Name = name;
@@ -185,6 +168,5 @@ public sealed partial class FaxPrintout
         PrototypeId = prototypeId ?? "";
         StampState = stampState;
         StampedBy = stampedBy ?? new List<StampDisplayInfo>();
-        Locked = locked;
     }
 }

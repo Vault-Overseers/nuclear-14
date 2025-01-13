@@ -27,7 +27,7 @@ public sealed class StockTradingCartridgeSystem : EntitySystem
 
     private void OnBalanceUpdated(Entity<StockTradingCartridgeComponent> ent, ref BankBalanceUpdatedEvent args)
     {
-        UpdateAllCartridges(args.Station);
+            UpdateAllCartridges(args.Station);
     }
 
     private void OnUiReady(Entity<StockTradingCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
@@ -35,7 +35,7 @@ public sealed class StockTradingCartridgeSystem : EntitySystem
         UpdateUI(ent, args.Loader);
     }
 
-    private void OnStockMarketUpdated(ref StockMarketUpdatedEvent args)
+    private void OnStockMarketUpdated(StockMarketUpdatedEvent args)
     {
         UpdateAllCartridges(args.Station);
     }
@@ -81,9 +81,17 @@ public sealed class StockTradingCartridgeSystem : EntitySystem
             !TryComp<StationBankAccountComponent>(ent.Comp.Station, out var bankAccount))
             return;
 
+        // Convert company data to UI state format
+        var entries = stockMarket.Companies.Select(company => new StockCompanyStruct(
+            displayName: company.LocalizedDisplayName,
+                currentPrice: company.CurrentPrice,
+                basePrice: company.BasePrice,
+                priceHistory: company.PriceHistory))
+            .ToList();
+
         // Send the UI state with balance and owned stocks
         var state = new StockTradingUiState(
-            entries: stockMarket.Companies,
+            entries: entries,
             ownedStocks: stockMarket.StockOwnership,
             balance: bankAccount.Balance
         );

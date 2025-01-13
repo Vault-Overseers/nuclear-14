@@ -12,6 +12,9 @@ public sealed partial class NightVisionComponent : Component
     [DataField]
     public ProtoId<AlertPrototype>? Alert;
 
+    [DataField]
+    public ProtoId<AlertPrototype> NightVisionAlert = "NightVision";
+
     [DataField, AutoNetworkedField]
     public NightVisionState State = NightVisionState.Full;
 

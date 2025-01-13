@@ -1,11 +1,10 @@
-using Content.Shared.Alert;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.HealthExaminable;
 
-[RegisterComponent, Access(typeof(SharedHealthExaminableSystem))]
+[RegisterComponent, Access(typeof(HealthExaminableSystem))]
 public sealed partial class HealthExaminableComponent : Component
 {
     // <summary>
@@ -26,5 +25,3 @@ public sealed partial class HealthExaminableComponent : Component
     [DataField]
     public string LocPrefix = "carbon";
 }
-
-public sealed partial class CheckHealthAlertEvent : BaseAlertEvent;

@@ -16,35 +16,33 @@ public sealed class ExplosionOverlay : Overlay
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
-    private readonly SharedTransformSystem _transformSystem;
-    private SharedAppearanceSystem _appearance;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
 
     private ShaderInstance _shader;
 
-    public ExplosionOverlay(SharedAppearanceSystem appearanceSystem)
+    public ExplosionOverlay()
     {
         IoCManager.InjectDependencies(this);
         _shader = _proto.Index<ShaderPrototype>("unshaded").Instance();
-        _transformSystem = _entMan.System<SharedTransformSystem>();
-        _appearance = appearanceSystem;
     }
 
     protected override void Draw(in OverlayDrawArgs args)
     {
+        var appearanceSystem = _entMan.System<SharedAppearanceSystem>();
         var drawHandle = args.WorldHandle;
         drawHandle.UseShader(_shader);
 
         var xforms = _entMan.GetEntityQuery<TransformComponent>();
-        var query = _entMan.EntityQueryEnumerator<ExplosionVisualsComponent, ExplosionVisualsTexturesComponent>();
+        var query = _entMan
+            .EntityQuery<ExplosionVisualsComponent, ExplosionVisualsTexturesComponent, AppearanceComponent>(true);
 
-        while (query.MoveNext(out var uid, out var visuals, out var textures))
+        foreach (var (visuals, textures, appearance) in query)
         {
             if (visuals.Epicenter.MapId != args.MapId)
                 continue;
 
-            if (!_appearance.TryGetData(uid, ExplosionAppearanceData.Progress, out int index))
+            if (!appearanceSystem.TryGetData(appearance.Owner, ExplosionAppearanceData.Progress, out int index))
                 continue;
 
             index = Math.Min(index, visuals.Intensity.Count - 1);
@@ -70,7 +68,7 @@ public sealed class ExplosionOverlay : Overlay
                 continue;
 
             var xform = xforms.GetComponent(gridId);
-            var (_, _, worldMatrix, invWorldMatrix) = _transformSystem.GetWorldPositionRotationMatrixWithInv(xform, xforms);
+            var (_, _, worldMatrix, invWorldMatrix) = xform.GetWorldPositionRotationMatrixWithInv(xforms);
 
             gridBounds = invWorldMatrix.TransformBox(worldBounds).Enlarged(grid.TileSize * 2);
             drawHandle.SetTransform(worldMatrix);

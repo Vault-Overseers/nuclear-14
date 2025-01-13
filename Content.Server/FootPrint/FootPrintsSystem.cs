@@ -6,7 +6,6 @@ using Content.Shared.Standing;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Forensics;
-using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
@@ -38,12 +37,6 @@ public sealed class FootPrintsSystem : EntitySystem
 
         SubscribeLocalEvent<FootPrintsComponent, ComponentStartup>(OnStartupComponent);
         SubscribeLocalEvent<FootPrintsComponent, MoveEvent>(OnMove);
-        SubscribeLocalEvent<FootPrintComponent, ComponentGetState>(OnGetState);
-    }
-
-    private void OnGetState(Entity<FootPrintComponent> ent, ref ComponentGetState args)
-    {
-        args.State = new FootPrintState(TerminatingOrDeleted(ent.Comp.PrintOwner) ? NetEntity.Invalid : GetNetEntity(ent.Comp.PrintOwner));
     }
 
     private void OnStartupComponent(EntityUid uid, FootPrintsComponent component, ComponentStartup args)
@@ -53,8 +46,7 @@ public sealed class FootPrintsSystem : EntitySystem
 
     private void OnMove(EntityUid uid, FootPrintsComponent component, ref MoveEvent args)
     {
-        if (TerminatingOrDeleted(uid)
-            || component.ContainedSolution.Volume <= 0
+        if (component.ContainedSolution.Volume <= 0
             || TryComp<PhysicsComponent>(uid, out var physics) && physics.BodyStatus != BodyStatus.OnGround
             || args.Entity.Comp1.GridUid is not {} gridUid)
             return;
@@ -96,7 +88,7 @@ public sealed class FootPrintsSystem : EntitySystem
 
         stepTransform.LocalRotation = dragging
             ? (newPos - component.LastStepPos).ToAngle() + Angle.FromDegrees(-90f)
-            : args.Component.LocalRotation + Math.PI;
+            : args.Component.LocalRotation + Angle.FromDegrees(180f);
 
         if (!TryComp<SolutionContainerManagerComponent>(footprintUid, out var solutionContainer)
             || !_solution.ResolveSolution((footprintUid, solutionContainer), footPrintComponent.SolutionName, ref footPrintComponent.Solution, out var solution))
@@ -116,7 +108,7 @@ public sealed class FootPrintsSystem : EntitySystem
             return new(uid, transform.LocalPosition);
 
         var offset = component.RightStep
-            ? new Angle(Math.PI + transform.LocalRotation).RotateVec(component.OffsetPrint)
+            ? new Angle(Angle.FromDegrees(180f) + transform.LocalRotation).RotateVec(component.OffsetPrint)
             : new Angle(transform.LocalRotation).RotateVec(component.OffsetPrint);
 
         return new(uid, transform.LocalPosition + offset);

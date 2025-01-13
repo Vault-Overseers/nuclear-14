@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared.Silicon.Components; // Goobstation
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Examine;
@@ -12,7 +11,6 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Players;
-using Content.Shared.Silicon.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -28,6 +26,7 @@ public abstract class SharedMindSystem : EntitySystem
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
     [Dependency] private readonly SharedPlayerSystem _player = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerMan = default!;
 
     [ViewVariables]
     protected readonly Dictionary<NetUserId, EntityUid> UserMinds = new();
@@ -41,7 +40,6 @@ public abstract class SharedMindSystem : EntitySystem
         SubscribeLocalEvent<VisitingMindComponent, EntityTerminatingEvent>(OnVisitingTerminating);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnReset);
         SubscribeLocalEvent<MindComponent, ComponentStartup>(OnMindStartup);
-        SubscribeLocalEvent<MindComponent, EntityRenamedEvent>(OnRenamed);
     }
 
     public override void Shutdown()
@@ -184,12 +182,6 @@ public abstract class SharedMindSystem : EntitySystem
             args.Handled = true;
     }
 
-    private void OnRenamed(Entity<MindComponent> ent, ref EntityRenamedEvent args)
-    {
-        ent.Comp.CharacterName = args.NewName;
-        Dirty(ent);
-    }
-
     public EntityUid? GetMind(EntityUid uid, MindContainerComponent? mind = null)
     {
         if (!Resolve(uid, ref mind))
@@ -324,10 +316,6 @@ public abstract class SharedMindSystem : EntitySystem
     {
     }
 
-    public virtual void ControlMob(EntityUid user, EntityUid target) {}
-
-    public virtual void ControlMob(NetUserId user, EntityUid target) {}
-
     /// <summary>
     /// Tries to create and add an objective from its prototype id.
     /// </summary>
@@ -385,7 +373,7 @@ public abstract class SharedMindSystem : EntitySystem
         if (Resolve(mindId, ref mind))
         {
             var query = GetEntityQuery<T>();
-            foreach (var uid in mind.Objectives)
+            foreach (var uid in mind.AllObjectives)
             {
                 if (query.TryGetComponent(uid, out objective))
                 {
@@ -486,6 +474,19 @@ public abstract class SharedMindSystem : EntitySystem
     }
 
     /// <summary>
+    /// Gets a role component from a player's mind.
+    /// </summary>
+    /// <returns>Whether a role was found</returns>
+    public bool TryGetRole<T>(EntityUid user, [NotNullWhen(true)] out T? role) where T : IComponent
+    {
+        role = default;
+        if (!TryComp<MindContainerComponent>(user, out var mindContainer) || mindContainer.Mind == null)
+            return false;
+
+        return TryComp(mindContainer.Mind, out role);
+    }
+
+    /// <summary>
     /// Sets the Mind's UserId, Session, and updates the player's PlayerData. This should have no direct effect on the
     /// entity that any mind is connected to, except as a side effect of the fact that it may change a player's
     /// attached entity. E.g., ghosts get deleted.
@@ -534,23 +535,22 @@ public abstract class SharedMindSystem : EntitySystem
     /// <summary>
     /// Returns a list of every living humanoid player's minds, except for a single one which is exluded.
     /// </summary>
-    public HashSet<Entity<MindComponent>> GetAliveHumans(EntityUid? exclude = null, bool excludeSilicon = false)
+    public List<EntityUid> GetAliveHumansExcept(EntityUid exclude)
     {
-        var allHumans = new HashSet<Entity<MindComponent>>();
+        var mindQuery = EntityQuery<MindComponent>();
+
+        var allHumans = new List<EntityUid>();
         // HumanoidAppearanceComponent is used to prevent mice, pAIs, etc from being chosen
-        var query = EntityQueryEnumerator<MobStateComponent, HumanoidAppearanceComponent>();
-        while (query.MoveNext(out var uid, out var mobState, out _))
+        var query = EntityQueryEnumerator<MindContainerComponent, MobStateComponent, HumanoidAppearanceComponent>();
+        while (query.MoveNext(out var uid, out var mc, out var mobState, out _))
         {
-            // the player needs to have a mind and not be the excluded one +
+            // the player needs to have a mind and not be the excluded one
+            if (mc.Mind == null || mc.Mind == exclude)
+                continue;
+
             // the player has to be alive
-            if (!TryGetMind(uid, out var mind, out var mindComp) || mind == exclude || !_mobState.IsAlive(uid, mobState))
-                continue;
-
-            // Goobstation: Skip IPCs from selections
-            if (excludeSilicon && HasComp<SiliconComponent>(uid))
-                continue;
-
-            allHumans.Add(new Entity<MindComponent>(mind, mindComp));
+            if (_mobState.IsAlive(uid, mobState))
+                allHumans.Add(mc.Mind.Value);
         }
 
         return allHumans;
@@ -564,9 +564,3 @@ public abstract class SharedMindSystem : EntitySystem
 /// <param name="Dead"></param>
 [ByRefEvent]
 public record struct GetCharactedDeadIcEvent(bool? Dead);
-
-/// <summary>
-///     Shitmed Change: Raised on an entity to notify that an objective has been added to the mind.
-/// </summary>
-/// <param name="Objective"></param>
-public record struct ObjectiveAddedEvent(EntityUid Objective);

@@ -26,7 +26,7 @@
 
 - type: entity
   parent: N14CookedFoodBreadBase
-  id: N14FoodBreadSliceBase
+  id: N14CookedFoodBreadSliceBase
   abstract: true
   components:
   - type: Item
@@ -64,7 +64,7 @@
 
 - type: entity
   name: volcanic slice
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadVolcanicSlice
   description: A slice of dark loaf. Resembles pumice.
   components:
@@ -102,7 +102,7 @@
 
 - type: entity
   name: banana bread slice
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadBananaSlice
   description: A slice of delicious banana bread.
   components:
@@ -145,7 +145,7 @@
 
 - type: entity
   name: cornbread slice
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadCornSlice
   description: A slice of cornbread.
   components:
@@ -195,7 +195,7 @@
 
 - type: entity
   name: cream cheese bread slice
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadCreamcheeseSlice
   description: A slice of yum!
   components:
@@ -251,7 +251,7 @@
 
 - type: entity
   name: meat bread slice
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadMeatSlice
   description: A slice of delicious meatbread.
   components:
@@ -291,7 +291,7 @@
 
 - type: entity
   name: bread slice
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadPlainSlice
   description: A slice of home.
   components:
@@ -334,7 +334,7 @@
 
 - type: entity
   name: radroll slice
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadRadrollSlice
   description: Dont think too much about it.
   components:
@@ -394,7 +394,7 @@
 
 - type: entity
   name: scorpion roll slice
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadMeatRadscorpSlice
   description: A slice of meatloaf made from an animal that most likely still wants you dead.
   components:
@@ -448,7 +448,7 @@
 
 - type: entity
   name: tofu bread slice
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadTofuSlice
   description: A slice of questionably delicious tofu bread.
   components:
@@ -473,59 +473,8 @@
 # Other than bread/slices
 
 - type: entity
-  name: baguette
-  parent: N14CookedFoodBreadBase
-  id: N14CookedFoodBreadBaguette
-  description: Bon appétit!
-  components:
-  - type: Tag
-    tags:
-    - Baguette
-  - type: Sprite
-    state: baguette
-  - type: SliceableFood
-    count: 12
-    slice: N14CookedFoodBreadBaguetteSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: TableSalt
-          Quantity: 1
-        - ReagentId: Blackpepper
-          Quantity: 1
-# Tastes like France.
-
-- type: entity
-  name: crostini
-  parent: N14FoodBreadSliceBase
-  id: N14CookedFoodBreadBaguetteSlice
-  description: Bon ap-petite!
-  components:
-  - type: Sprite
-    state: crostini
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 2
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 0.5
-        - ReagentId: Vitamin
-          Quantity: 0.1
-        - ReagentId: TableSalt
-          Quantity: 0.1
-        - ReagentId: Blackpepper
-          Quantity: 0.1
-
-- type: entity
   name: buttered toast
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadButteredToast
   description: Crunchy and warm, seeped with hard-to-come-by butter. #N14 change
   components:
@@ -548,7 +497,7 @@
 
 - type: entity
   name: french toast
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadFrenchToast
   description: A favorite of pre-war scouts. #N14 change
   components:
@@ -571,7 +520,7 @@
 
 - type: entity
   name: garlic bread
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadGarlicSlice
   description: Alas, it is limited. #is this a joke/reference to something? shouldn't be a problem, garlic isn't in currently
   components:
@@ -595,7 +544,7 @@
 
 - type: entity
   name: moldy bread slice
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadMoldySlice
   description: Don't... why would you... #N14 change
   components:
@@ -615,7 +564,7 @@
 
 - type: entity
   name: two slice
-  parent: N14FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadTwoSlice
   description: Classy.
   components:

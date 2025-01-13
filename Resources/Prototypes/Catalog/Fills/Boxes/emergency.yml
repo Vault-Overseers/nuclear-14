@@ -1,226 +1,131 @@
 - type: entity
-  parent: BoxCardboardSmall
+  name: survival box
+  parent: BoxCardboard
   id: BoxSurvival
-  name: survival box
   description: It's a box with basic internals inside.
-  suffix: Standard
   components:
   - type: StorageFill
     contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyOxygenTankFilled
-    - id: SpaceMedipen
-    - id: EmergencyMedipen
-    - id: Flare
-    - id: FoodPSB
-    - id: DrinkWaterBottleFull
+      - id: ClothingMaskBreath
+      - id: EmergencyOxygenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: Flare
+      - id: FoodPSB # Nyanotrasen - Replace Tinned Meat with PSB
+      - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
-    - state: internals
-    - state: emergencytank
+      - state: internals
+      - state: emergencytank
 
 - type: entity
-  parent: BoxSurvival
-  id: BoxSurvivalNitrogen
-  suffix: Standard N2
-  components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyNitrogenTankFilled
-    - id: SpaceMedipen
-    - id: EmergencyMedipen
-    - id: Flare
-    - id: FoodPSB
-    - id: DrinkWaterBottleFull
-  # Intentionally wrong picture on the box. NT did not care enough to change it.
-  - type: Label
-    currentLabel: reagent-name-nitrogen
-
-- type: entity
-  parent: BoxCardboardSmall
-  id: BoxSurvivalEngineering
   name: extended-capacity survival box
+  parent: BoxCardboard
+  id: BoxSurvivalEngineering
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
-  suffix: Extended
   components:
   - type: StorageFill
     contents:
-    - id: ClothingMaskBreath
-    - id: ExtendedEmergencyOxygenTankFilled
-    - id: SpaceMedipen
-    - id: EmergencyMedipen
-    - id: Flare
-    - id: FoodPSB
-    - id: DrinkWaterBottleFull
+      - id: ClothingMaskBreath
+      - id: ExtendedEmergencyOxygenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: Flare
+      - id: FoodPSB # Nyanotrasen - Replace Tinned Meat with PSB
+      - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
-    - state: internals
-    - state: extendedtank
-
-- type: entity
-  parent: BoxSurvivalEngineering
-  id: BoxSurvivalEngineeringNitrogen
-  suffix: Extended N2
-  components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: ExtendedEmergencyNitrogenTankFilled
-    - id: SpaceMedipen
-    - id: EmergencyMedipen
-    - id: Flare
-    - id: FoodPSB
-    - id: DrinkWaterBottleFull
-  # Intentionally wrong picture on the box. NT did not care enough to change it.
-  - type: Label
-    currentLabel: reagent-name-nitrogen
+      - state: internals
+      - state: extendedtank
 
 - type: entity
   name: survival box
-  parent: BoxCardboardSmall
+  parent: BoxCardboard
   id: BoxSurvivalSecurity
   description: It's a box with basic internals inside.
   suffix: Security
   components:
   - type: StorageFill
     contents:
-    - id: ClothingMaskGasSecurity
-    - id: EmergencyOxygenTankFilled
-    - id: SpaceMedipen
-    - id: EmergencyMedipen
-    - id: Flare
-    - id: FoodPSB
-    - id: DrinkWaterBottleFull
+      - id: ClothingMaskGasSecurity
+      - id: EmergencyOxygenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: Flare
+      - id: FoodPSB # Nyanotrasen - Replace Tinned Meat with PSB
+      - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
-    - state: internals
-    - state: emergencytank
-
-- type: entity
-  parent: BoxSurvivalSecurity
-  id: BoxSurvivalSecurityNitrogen
-  suffix: Security N2
-  components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSecurity
-    - id: EmergencyNitrogenTankFilled
-    - id: SpaceMedipen
-    - id: EmergencyMedipen
-    - id: Flare
-    - id: FoodPSB
-    - id: DrinkWaterBottleFull
-  # Intentionally wrong picture on the box. NT did not care enough to change it.
-  - type: Label
-    currentLabel: reagent-name-nitrogen
+      - state: internals
+      - state: emergencytank
 
 - type: entity
   name: survival box
-  parent: BoxCardboardSmall
+  parent: BoxCardboard
   id: BoxSurvivalBrigmedic
   description: It's a box with basic internals inside.
-  suffix: Brigmedic
+  suffix: MedSec
   components:
   - type: StorageFill
     contents:
-    - id: ClothingMaskBreathMedicalSecurity
-    - id: EmergencyOxygenTankFilled
-    - id: SpaceMedipen
-    - id: EmergencyMedipen
-    - id: EmergencyMedipen
-    - id: FoodPSB
-    - id: DrinkWaterBottleFull
+      - id: ClothingMaskBreathMedicalSecurity
+      - id: EmergencyOxygenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: EmergencyMedipen
+      - id: FoodPSB # Nyanotrasen - Replace Tinned Meat with PSB
+      - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
-    - state: internals
-    - state: emergencytank
+      - state: internals
+      - state: emergencytank
 
 - type: entity
   name: survival box
-  parent: BoxCardboardSmall
-  id: BoxSurvivalBrigmedicNitrogen
-  description: It's a box with basic internals inside.
-  suffix: Brigmedic N2
-  components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreathMedicalSecurity
-    - id: EmergencyNitrogenTankFilled
-    - id: SpaceMedipen
-    - id: EmergencyMedipen
-    - id: EmergencyMedipen
-    - id: FoodPSB
-    - id: DrinkWaterBottleFull
-  - type: Sprite
-    layers:
-    - state: internals
-    - state: emergencytank
-
-- type: entity
-  parent: BoxCardboardSmall
+  parent: BoxCardboard
   id: BoxSurvivalMedical
-  name: survival box
   description: It's a box with basic internals inside.
   suffix: Medical
   components:
   - type: StorageFill
     contents:
-    - id: ClothingMaskBreathMedical
-    - id: EmergencyOxygenTankFilled
-    - id: SpaceMedipen
-    - id: EmergencyMedipen
-    - id: Flare
-    - id: FoodPSB
-    - id: DrinkWaterBottleFull
+      - id: ClothingMaskBreathMedical
+      - id: EmergencyOxygenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: Flare
+      - id: FoodPSB # Nyanotrasen - Replace Tinned Meat with PSB
+      - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
-    - state: internals
-    - state: emergencytank
+      - state: internals
+      - state: emergencytank
 
 - type: entity
-  parent: BoxSurvivalMedical
-  id: BoxSurvivalMedicalNitrogen
-  suffix: Medical N2
-  components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreathMedical
-    - id: EmergencyNitrogenTankFilled
-    - id: SpaceMedipen
-    - id: EmergencyMedipen
-    - id: Flare
-    - id: FoodPSB
-    - id: DrinkWaterBottleFull
-  # Intentionally wrong picture on the box. NT did not care enough to change it.
-  - type: Label
-    currentLabel: reagent-name-nitrogen
-
-- type: entity
-  parent: BoxCardboardSmall
-  id: BoxHug
   name: box of hugs
+  parent: BoxCardboard
+  id: BoxHug
   description: A special box for sensitive people.
   suffix: Emergency
   components:
   - type: Sprite
     layers:
-    - state: box_hug
-    - state: heart
+      - state: box_hug
+      - state: heart
   - type: Item
     heldPrefix: hug
   - type: StorageFill
     contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyFunnyOxygenTankFilled
-    - id: SpaceMedipen
-    - id: EmergencyMedipen
-    - id: Flare
-    - id: FoodPSB
-    - id: DrinkWaterBottleFull
+      - id: ClothingMaskBreath
+      - id: EmergencyFunnyOxygenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: Flare
+      - id: FoodPSB # Nyanotrasen - Replace Tinned Meat with PSB
+      - id: DrinkWaterBottleFull
   - type: Tag
     tags:
-    - BoxHug
+      - BoxHug
 
 - type: entity
   parent: BoxHug
@@ -231,10 +136,9 @@
     contents:
     - id: ClothingMaskBreath
     - id: EmergencyNitrogenTankFilled
-    - id: SpaceMedipen
     - id: EmergencyMedipen
     - id: Flare
-    - id: FoodPSB
+    - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Label
     currentLabel: reagent-name-nitrogen
@@ -250,10 +154,9 @@
     contents:
     - id: ClothingMaskBreath
     - id: EmergencyOxygenTankFilled
-    - id: SpaceMedipen
     - id: EmergencyMedipen
     - id: Flare
-    - id: FoodPSB
+    - id: FoodBreadBaguette
     - id: DrinkWaterBottleFull
 
 - type: entity
@@ -265,48 +168,27 @@
     contents:
     - id: ClothingMaskBreath
     - id: EmergencyNitrogenTankFilled
-    - id: SpaceMedipen
     - id: EmergencyMedipen
     - id: Flare
-    - id: FoodPSB
+    - id: FoodBreadBaguette
     - id: DrinkWaterBottleFull
   - type: Label
     currentLabel: reagent-name-nitrogen
 
 - type: entity
-  parent: BoxCardboardSmall
+  parent: BoxCardboard
   id: BoxSurvivalSyndicate
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
-  suffix: Syndicate
   components:
   - type: StorageFill
     contents:
-    - id: ClothingMaskGasSyndicate
-    - id: ExtendedEmergencyOxygenTankFilled
-    - id: SpaceMedipen
-    - id: EmergencyMedipen
-    - id: Flare
-    - id: FoodPSB
-    - id: DrinkWaterBottleFull
+      - id: ClothingMaskGasSyndicate
+      - id: ExtendedEmergencyOxygenTankFilled
+      - id: EmergencyMedipen
+      - id: Flare
+      - id: FoodPSB # Nyanotrasen - Replace Tinned Meat with PSB
+      - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
-    - state: internals
-    - state: extendedtank
-
-- type: entity
-  parent: BoxSurvivalSyndicate
-  id: BoxSurvivalSyndicateNitrogen
-  suffix: Syndicate N2
-  components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSyndicate
-    - id: ExtendedEmergencyNitrogenTankFilled
-    - id: SpaceMedipen
-    - id: EmergencyMedipen
-    - id: Flare
-    - id: FoodPSB
-    - id: DrinkWaterBottleFull
-    # Intentionally wrong picture on the box to mimic the NT one
-  - type: Label
-    currentLabel: reagent-name-nitrogen
+      - state: internals
+      - state: extendedtank

@@ -1,0 +1,69 @@
+- type: constructionGraph
+  id: N14Soil
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: Soil
+          steps:
+            - material: Compost
+              amount: 2
+              doAfter: 1
+    - node: Soil
+      entity: N14Soil
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14CompostRotted
+              amount: 1
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Prying # shoveling
+              doAfter: 3
+
+
+- type: constructionGraph
+  id: N14Planter
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: box
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 5
+              
+    - node: box
+      entity: N14HydroponicsPlanterEmpty
+      edges:
+        - to: Planter
+          steps:
+            - material: Compost
+              amount: 2
+              doAfter: 1
+              
+        - to: start
+          completed:
+          - !type:SpawnPrototype
+            prototype: MaterialWoodPlank1
+            amount: 4
+          - !type:DeleteEntity {}
+          steps:
+          - tool: Prying
+            doAfter: 3
+            
+    - node: Planter
+      entity: N14HydroponicsPlanter
+      edges:
+        - to: box
+          completed:
+          - !type:SpawnPrototype
+                prototype: N14CompostRotted
+                amount: 2
+          steps:
+            - tool: Prying # shoveling

@@ -42,7 +42,7 @@ namespace Content.IntegrationTests.Tests.Construction
                     {
                         ent = entMan.SpawnEntity(proto.ID, new MapCoordinates(Vector2.Zero, map.MapId));
                     }
-                    catch
+                    catch (Exception e)
                     {
                         Assert.Fail(proto.ID);
                         return;

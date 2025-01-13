@@ -2,6 +2,7 @@ using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared._Shitmed.Body.Events;
 using Robust.Shared.Map;
+using Robust.Shared.Timing;
 using Robust.Shared.Network;
 using System.Numerics;
 
@@ -10,6 +11,7 @@ namespace Content.Shared._Shitmed.BodyEffects.Subsystems;
 public sealed class GenerateChildPartSystem : EntitySystem
 {
     [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     public override void Initialize()
     {

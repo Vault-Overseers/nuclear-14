@@ -7,7 +7,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 25
+        Piercing: 35
 
 - type: entity
   id: BulletMagnumPractice
@@ -21,6 +21,19 @@
         Blunt: 1
 
 - type: entity
+  id: BulletMagnumRubber
+  name: bullet (.45 magnum rubber)
+  parent: BaseBulletRubber
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+  - type: StaminaDamageOnCollide
+    damage: 35 # 3 hits to stun cuz revolver
+
+- type: entity
   id: BulletMagnumIncendiary
   parent: BaseBulletIncendiary
   name: bullet (.45 magnum incendiary)
@@ -30,8 +43,8 @@
     damage:
       types:
         Blunt: 3
-        Heat: 22
-
+        Heat: 32
+        
 - type: entity
   id: BulletMagnumAP
   name: bullet (.45 magnum armor-piercing)
@@ -41,7 +54,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 25
+        Piercing: 26 # 20% decrease
     ignoreResistances: true
 
 - type: entity
@@ -54,27 +67,4 @@
     damage:
       types:
         Radiation: 15
-        Piercing: 10
-
-- type: entity
-  id: BulletMagnumShrapnel
-  name: bullet (.45 magnum shrapnel)
-  categories: [ HideSpawnMenu ]
-  parent: BaseBullet
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 4.7916
-  - type: Sprite
-    scale: 0.5, 0.5
-
-- type: entity
-  id: BulletMagnumShrapnelSpread
-  categories: [ HideSpawnMenu ]
-  parent: BulletMagnumShrapnel
-  components:
-  - type: ProjectileSpread
-    proto: BulletMagnumShrapnel
-    count: 6
-    spread: 15
+        Piercing: 20

@@ -1,7 +1,10 @@
 - type: entity
   save: false
   parent:
-    - BaseMobSpeciesOrganic
+    - MobBloodstream
+    - MobAtmosStandard
+    - MobFlammable
+    - BaseMobSpecies
   id: MobShadowkinBase
   name: Urist McShadow
   abstract: true
@@ -11,7 +14,7 @@
         - trigger:
             !type:DamageTypeTrigger
             damageType: Blunt
-            damage: 300
+            damage: 400
           behaviors:
             - !type:GibBehavior {}
             - !type:SpawnEntitiesBehavior
@@ -63,7 +66,6 @@
         - Muted
         - Pacified
         - StaminaModifier
-        - Flashed
     - type: Blindable
     - type: ThermalRegulator
       metabolismHeat: 800
@@ -78,6 +80,7 @@
       alternateState: Standing
     - type: OfferItem
     - type: LayingDown
+    - type: Shoving
     - type: BloodstreamAffectedByMass
       power: 0.6
     - type: Hunger
@@ -106,11 +109,6 @@
     - type: Damageable
       damageContainer: Biological # Shadowkin
       damageModifierSet: Shadowkin
-    - type: DamageVisuals
-      damageOverlayGroups:
-        Brute:
-          sprite: Mobs/Effects/brute_damage.rsi
-          color: "#1c1624"
     - type: Barotrauma
       damage:
         types:
@@ -122,7 +120,6 @@
       bloodlossHealDamage:
         types:
           Bloodloss: -0.25
-      bloodReagent: BlackBlood
     - type: Temperature
       heatDamageThreshold: 330
       coldDamageThreshold: 195
@@ -156,14 +153,13 @@
         - map: ["enum.HumanoidVisualLayers.Snout"]
         - map: ["enum.HumanoidVisualLayers.Eyes"]
           shader: unshaded
-        - map: ["enum.HumanoidVisualLayers.Face"]
         - map: ["enum.HumanoidVisualLayers.RArm"]
         - map: ["enum.HumanoidVisualLayers.LArm"]
         - map: ["enum.HumanoidVisualLayers.RLeg"]
         - map: ["enum.HumanoidVisualLayers.LLeg"]
-#     - shader: StencilClear
-#      sprite: Mobs/Species/Human/parts.rsi
-#      state: l_leg
+        - shader: StencilClear
+          sprite: Mobs/Species/Human/parts.rsi
+          state: l_leg
         - shader: StencilMask
           map: ["enum.HumanoidVisualLayers.StencilMask"]
           sprite: Mobs/Customization/masking_helpers.rsi
@@ -186,13 +182,12 @@
         - map: ["gloves"]
         - map: ["shoes"]
         - map: ["ears"]
-        - map: ["innerBelt"]
-        - map: ["innerNeck"]
         - map: ["outerClothing"]
         - map: ["eyes"]
         - map: ["belt"]
         - map: ["neck"]
         - map: ["back"]
+        - map: [ "enum.HumanoidVisualLayers.Face" ]
         - map: ["enum.HumanoidVisualLayers.FacialHair"]
         - map: ["enum.HumanoidVisualLayers.Hair"]
         - map: ["enum.HumanoidVisualLayers.HeadSide"]
@@ -220,15 +215,22 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 2.7
       baseSprintSpeed: 4.5
-    - type: EyeDamageOnFlashing
+    - type: Flashable
+      eyeDamageChance: 0.3
+      eyeDamage: 1
+      durationMultiplier: 1.5
     - type: Speech
       allowedEmotes: ['Mars', 'Wurble']
     - type: Shadowkin
     - type: Psionic
       mindbreakingFeedback: shadowkin-blackeye
+      manaGain: 0.25
+      mana: 100
+      maxMana: 200
+      noMana: shadowkin-tired
     - type: InnatePsionicPowers
       powersToAdd:
-        - TelepathyPower
+        - DarkSwapPower
     - type: LanguageKnowledge
       speaks:
         - TauCetiBasic
@@ -236,8 +238,6 @@
       understands:
         - TauCetiBasic
         - Marish
-    - type: PotentiaModifier
-      potentiaMultiplier: 1.25
     - type: Tag
       tags:
       - CanPilot
@@ -265,14 +265,13 @@
         - map: ["enum.HumanoidVisualLayers.Snout"]
         - map: ["enum.HumanoidVisualLayers.Eyes"]
           shader: unshaded
-        - map: ["enum.HumanoidVisualLayers.Face"]
         - map: ["enum.HumanoidVisualLayers.RArm"]
         - map: ["enum.HumanoidVisualLayers.LArm"]
         - map: ["enum.HumanoidVisualLayers.RLeg"]
         - map: ["enum.HumanoidVisualLayers.LLeg"]
-#     - shader: StencilClear
-#      sprite: Mobs/Species/Human/parts.rsi
-#      state: l_leg
+        - shader: StencilClear
+          sprite: Mobs/Species/Human/parts.rsi
+          state: l_leg
         - shader: StencilMask
           map: ["enum.HumanoidVisualLayers.StencilMask"]
           sprite: Mobs/Customization/masking_helpers.rsi
@@ -295,13 +294,12 @@
         - map: ["gloves"]
         - map: ["shoes"]
         - map: ["ears"]
-        - map: ["innerBelt"]
-        - map: ["innerNeck"]
         - map: ["outerClothing"]
         - map: ["eyes"]
         - map: ["belt"]
         - map: ["neck"]
         - map: ["back"]
+        - map: [ "enum.HumanoidVisualLayers.Face" ]
         - map: ["enum.HumanoidVisualLayers.FacialHair"]
         - map: ["enum.HumanoidVisualLayers.Hair"]
         - map: ["enum.HumanoidVisualLayers.HeadSide"]

@@ -8,6 +8,16 @@
     - tasks:
         - !type:HTNCompoundTask
           task: IdleCompound
+          
+- type: htnCompound
+  id: SimpleDumbHostileCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound # MeleeDumbCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
 
 - type: htnCompound
   id: RatServantTargetAttackCompound
@@ -67,19 +77,6 @@
 
 - type: htnCompound
   id: DragonCarpCompound
-  branches:
-    - tasks:
-        - !type:HTNCompoundTask
-          task: MeleeCombatCompound
-    - tasks:
-        - !type:HTNCompoundTask
-          task: FollowCompound
-    - tasks:
-        - !type:HTNCompoundTask
-          task: IdleCompound
-
-- type: htnCompound
-  id: KillerTomatoCompound
   branches:
     - tasks:
         - !type:HTNCompoundTask

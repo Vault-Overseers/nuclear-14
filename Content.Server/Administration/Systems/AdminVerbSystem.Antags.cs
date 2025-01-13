@@ -1,6 +1,7 @@
 using Content.Server.Administration.Commands;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server.WhiteDream.BloodCult.Gamerule;
 using Content.Server.Zombies;
 using Content.Shared.Administration;
 using Content.Shared.Database;
@@ -21,14 +22,17 @@ public sealed partial class AdminVerbSystem
     [ValidatePrototypeId<EntityPrototype>]
     private const string DefaultTraitorRule = "Traitor";
 
-    // [ValidatePrototypeId<EntityPrototype>]
-    // private const string DefaultNukeOpRule = "LoneOpsSpawn";
-    //
-    // [ValidatePrototypeId<EntityPrototype>]
-    // private const string DefaultRevsRule = "Revolutionary";
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string DefaultNukeOpRule = "LoneOpsSpawn";
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string DefaultRevsRule = "Revolutionary";
 
     [ValidatePrototypeId<EntityPrototype>]
     private const string DefaultThiefRule = "Thief";
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string DefaultBloodCultRule = "BloodCult";
 
     [ValidatePrototypeId<StartingGearPrototype>]
     private const string PirateGearId = "PirateGear";
@@ -78,7 +82,7 @@ public sealed partial class AdminVerbSystem
         args.Verbs.Add(zombie);
 
 
-        /*Verb nukeOp = new()
+        Verb nukeOp = new()
         {
             Text = Loc.GetString("admin-verb-text-make-nuclear-operative"),
             Category = VerbCategory.Antag,
@@ -90,7 +94,7 @@ public sealed partial class AdminVerbSystem
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-nuclear-operative"),
         };
-        args.Verbs.Add(nukeOp);*/
+        args.Verbs.Add(nukeOp);
 
         Verb pirate = new()
         {
@@ -107,7 +111,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(pirate);
 
-        /*Verb headRev = new()
+        Verb headRev = new()
         {
             Text = Loc.GetString("admin-verb-text-make-head-rev"),
             Category = VerbCategory.Antag,
@@ -119,7 +123,7 @@ public sealed partial class AdminVerbSystem
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-head-rev"),
         };
-        args.Verbs.Add(headRev);*/
+        args.Verbs.Add(headRev);
 
         Verb thief = new()
         {
@@ -134,5 +138,19 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-verb-make-thief"),
         };
         args.Verbs.Add(thief);
+
+        Verb cultist = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-blood-cultist"),
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Weapons/Melee/cult_dagger.rsi"), "icon"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<BloodCultRuleComponent>(targetPlayer, DefaultBloodCultRule);
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-blood-cultist"),
+        };
+        args.Verbs.Add(cultist);
     }
 }

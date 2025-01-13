@@ -1,14 +1,18 @@
+using Content.Shared.Eye.Blinding;
 using Content.Shared.UserInterface;
+using Content.Server.Popups;
 using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Popups;
+using Content.Shared.Eye.Blinding.Systems;
+using Robust.Shared.Player;
+using Robust.Server.GameObjects;
 using Robust.Shared.Collections;
 
-namespace Content.Shared.Eye.Blinding.Systems;
+namespace Content.Server.Eye.Blinding;
 
 public sealed class ActivatableUIRequiresVisionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _userInterfaceSystem = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
 
     public override void Initialize()
     {
@@ -24,7 +28,7 @@ public sealed class ActivatableUIRequiresVisionSystem : EntitySystem
 
         if (TryComp<BlindableComponent>(args.User, out var blindable) && blindable.IsBlind)
         {
-            _popupSystem.PopupClient(Loc.GetString("blindness-fail-attempt"), args.User, Shared.Popups.PopupType.MediumCaution);
+            _popupSystem.PopupCursor(Loc.GetString("blindness-fail-attempt"), args.User, Shared.Popups.PopupType.MediumCaution);
             args.Cancel();
         }
     }

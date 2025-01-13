@@ -26,7 +26,7 @@ public sealed partial class LungComponent : Component
     /// <summary>
     /// The solution on this entity that these lungs act on.
     /// </summary>
-    [ViewVariables]
+    [DataField]
     public Entity<SolutionComponent>? Solution = null;
 
     /// <summary>
@@ -34,10 +34,4 @@ public sealed partial class LungComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<AlertPrototype> Alert = "LowOxygen";
-
-    [DataField]
-    public float MaxVolume = 100f;
-
-    [DataField]
-    public bool CanReact = false; // No Dexalin lungs... right?
 }

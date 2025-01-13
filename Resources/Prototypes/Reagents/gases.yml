@@ -4,7 +4,7 @@
   desc: reagent-desc-oxygen
   physicalDesc: reagent-physical-desc-gaseous
   flavor: bitter
-  color: "#c4f5ff"
+  color: "#808080"
   boilingPoint: -183.0
   meltingPoint: -218.4
   metabolisms:
@@ -32,9 +32,6 @@
         - !type:OrganType
           type: Vox
           shouldHave: false
-        - !type:OrganType
-          type: Plasmaman
-          shouldHave: false
         ratios:
           CarbonDioxide: 1.0
           Oxygen: -1.0
@@ -49,31 +46,12 @@
             Poison:
               7
       - !type:AdjustAlert
-        alertType: HighOxygen
+        alertType: Toxins
         conditions:
           - !type:ReagentThreshold
             min: 0.5
           - !type:OrganType
             type: Vox
-        clear: true
-        time: 5
-      - !type:HealthChange
-        conditions:
-        - !type:OrganType
-          type: Plasmaman
-        scaleByQuantity: true
-        ignoreResistances: true
-        damage:
-          types:
-            Poison:
-              7
-      - !type:AdjustAlert
-        alertType: HighOxygen
-        conditions:
-          - !type:ReagentThreshold
-            min: 0.5
-          - !type:OrganType
-            type: Plasmaman
         clear: true
         time: 5
 
@@ -94,27 +72,15 @@
     Poison:
       effects:
       - !type:HealthChange
-        conditions:
-        - !type:OrganType
-          type: Plasmaman
-          shouldHave: false
         damage:
           types:
             Poison: 3
       - !type:AdjustReagent
-        conditions:
-        - !type:OrganType
-          type: Plasmaman
-          shouldHave: false
         reagent: Inaprovaline
         amount: -2.0
     Gas:
       effects:
       - !type:HealthChange
-        conditions:
-        - !type:OrganType
-          type: Plasmaman
-          shouldHave: false
         scaleByQuantity: true
         ignoreResistances: true
         damage:
@@ -125,48 +91,10 @@
       - !type:AdjustAlert
         alertType: Toxins
         conditions:
-          - !type:OrganType
-            type: Plasmaman
-            shouldHave: false
           - !type:ReagentThreshold
             min: 1.5
         clear: True
         time: 5
-      - !type:Oxygenate
-        factor: 4
-        conditions:
-        - !type:OrganType
-          type: Plasmaman
-      - !type:ModifyLungGas
-        conditions:
-        - !type:OrganType
-          type: Plasmaman
-        ratios:
-          Nitrogen: 1.0 # Interesting exhale for plasmamen
-          Plasma: -1.0
-    Medicine:
-      effects:
-      - !type:HealthChange
-        conditions:
-        - !type:OrganType
-          type: Plasmaman
-        damage:
-          groups:
-            Brute: -2
-          types:
-            Heat: -0.66
-            Shock: -0.66
-            Caustic: -0.66
-            Asphyxiation: -0.66
-            Poison: -0.66
-      - !type:ChemAddMoodlet
-        conditions:
-        - !type:OrganType
-          type: Plasmaman
-        - !type:ReagentThreshold
-          reagent: Plasma
-          min: 4
-        moodPrototype: PlasmamanIngestPlasma
   reactiveEffects:
     Flammable:
       methods: [ Touch ]
@@ -262,7 +190,7 @@
   desc: reagent-desc-nitrogen
   physicalDesc: reagent-physical-desc-gaseous
   flavor: bitter
-  color: "#a1e1ff"
+  color: "#808080"
   boilingPoint: -195.8
   meltingPoint: -210.0
   metabolisms:
@@ -304,7 +232,7 @@
   desc: reagent-desc-nitrous-oxide
   physicalDesc: reagent-physical-desc-gaseous
   flavor: bitter
-  color: "#5d88c9"
+  color: "#808080"
   boilingPoint: -88
   meltingPoint: -90
   metabolisms:

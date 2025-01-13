@@ -16,6 +16,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
+using FastAccessors;
 using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
 
@@ -29,16 +30,14 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] NoSpawnMaps =
         {
-            "CentCommMain",
-            "CentCommHarmony",
+            "CentComm",
             "Dart",
             "NukieOutpost"
         };
 
         private static readonly string[] Grids =
         {
-            "/Maps/CentralCommand/main.yml",
-            "/Maps/CentralCommand/harmony.yml", // Harmony CC version
+            "/Maps/centcomm.yml",
             "/Maps/Shuttles/cargo.yml",
             "/Maps/Shuttles/emergency.yml",
             "/Maps/Shuttles/infiltrator.yml",
@@ -48,8 +47,7 @@ namespace Content.IntegrationTests.Tests
         {
             "Dev",
             "TestTeg",
-            "CentCommMain",
-            "CentCommHarmony",
+            "CentComm",
             "MeteorArena",
             "NukieOutpost",
             "Core",
@@ -67,9 +65,7 @@ namespace Content.IntegrationTests.Tests
             "Submarine", //DeltaV
             "Gax",
             "Rad",
-            "Europa",
-            "Meta",
-            "Box"
+            "Europa"
         };
 
         /// <summary>
@@ -260,18 +256,6 @@ namespace Content.IntegrationTests.Tests
                         .Select(x => x.Job!.ID);
 
                     jobs.ExceptWith(spawnPoints);
-
-                    foreach (var jobId in jobs)
-                    {
-                        var exists = protoManager.TryIndex<JobPrototype>(jobId, out var jobPrototype);
-
-                        if (!exists)
-                            continue;
-
-                        if (jobPrototype.JobEntity != null)
-                            jobs.Remove(jobId);
-                    }
-
                     Assert.That(jobs, Is.Empty, $"There is no spawnpoints for {string.Join(", ", jobs)} on {mapProto}.");
                 }
 

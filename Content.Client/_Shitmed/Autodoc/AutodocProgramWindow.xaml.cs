@@ -124,9 +124,9 @@ public sealed partial class AutodocProgramWindow : FancyWindow
 
         SafetyButton.Text = Loc.GetString("autodoc-safety-" + (safety ? "enabled" : "disabled"));
         if (safety)
-            SafetyButton.RemoveStyleClass("Danger");
+            SafetyButton.RemoveStyleClass("Caution");
         else
-            SafetyButton.AddStyleClass("Danger");
+            SafetyButton.AddStyleClass("Caution");
     }
 
     private void UpdateSteps()

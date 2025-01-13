@@ -1,4 +1,3 @@
-using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
@@ -86,14 +85,6 @@ public sealed partial record PolymorphConfiguration
     public PolymorphInventoryChange Inventory = PolymorphInventoryChange.None;
 
     /// <summary>
-    /// If true, items transferred by the polymorph will be force-equipped even if
-    /// they do not fit the new body's inventory whitelist. If false, incompatible
-    /// items will be dropped on the ground instead of being equipped.
-    /// </summary>
-    [DataField(serverOnly: true)]
-    public bool ForceEquip = true;
-
-    /// <summary>
     /// Whether or not the polymorph reverts when the entity goes into crit.
     /// </summary>
     [DataField(serverOnly: true)]
@@ -124,18 +115,6 @@ public sealed partial record PolymorphConfiguration
     [DataField(serverOnly: true)]
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan Cooldown = TimeSpan.Zero;
-
-    /// <summary>
-    ///     If not null, this sound will be played when being polymorphed into something.
-    /// </summary>
-    [DataField]
-    public SoundSpecifier? PolymorphSound;
-
-    /// <summary>
-    ///     If not null, this sound will be played when being reverted from a polymorph.
-    /// </summary>
-    [DataField]
-    public SoundSpecifier? ExitPolymorphSound;
 
     /// <summary>
     /// The exact names of components to copy over when this polymorph is applied.

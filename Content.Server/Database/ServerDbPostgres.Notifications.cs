@@ -97,8 +97,6 @@ public sealed partial class ServerDbPostgres
                 _notifyLog.Error($"Error in notification listener: {e}");
             }
         }
-
-        _notificationConnection.Dispose();
     }
 
     private void OnNotification(object _, NpgsqlNotificationEventArgs notification)
@@ -118,5 +116,6 @@ public sealed partial class ServerDbPostgres
             return;
 
         _notificationConnection.Notification -= OnNotification;
+        _notificationConnection.Dispose();
     }
 }

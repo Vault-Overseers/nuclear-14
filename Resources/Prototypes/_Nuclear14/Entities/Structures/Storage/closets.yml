@@ -13,6 +13,8 @@
       map: ["enum.StorageVisualLayers.Base"]
     - state: closet_door
       map: ["enum.StorageVisualLayers.Door"]
+  - type: Physics
+    bodyType: Static
   - type: EntityStorageVisuals
     stateBaseClosed: closet
     stateDoorOpen: closet_open
@@ -66,6 +68,16 @@
   suffix: Loot,Domestic,Random
 
 - type: entity
+  parent: [ N14ClosetGrey1, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetGrey1RefillingGeneric
+  suffix: Refilling,Generic,Random
+
+- type: entity
+  parent: [ N14ClosetGrey1, N14BaseLockerStorageFill ]
+  id: N14LootGenericClosetGrey1
+  suffix: Loot,Generic,Random
+
+- type: entity
   id: N14ClosetGrey2
   parent: N14ClosetBaseW
   components:
@@ -81,6 +93,16 @@
   parent: [ N14ClosetGrey2, N14StorageFillDomestic ]
   id: N14LootClosetGrey2
   suffix: Loot,Domestic,Random
+
+- type: entity
+  parent: [ N14ClosetGrey2, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetGrey2RefillingGeneric
+  suffix: Refilling,Generic,Random
+
+- type: entity
+  parent: [ N14ClosetGrey2, N14BaseLockerStorageFill ]
+  id: N14LootGenericClosetGrey2
+  suffix: Loot,Generic,Random
 
 - type: entity
   parent: N14ClosetBaseW
@@ -102,6 +124,16 @@
   suffix: Loot,Domestic,Random
 
 - type: entity
+  parent: [ N14ClosetRusty, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetRustyRefillingGeneric
+  suffix: Refilling,Generic,Random
+
+- type: entity
+  parent: [ N14ClosetRusty, N14BaseLockerStorageFill ]
+  id: N14LootGenericClosetRusty
+  suffix: Loot,Generic,Random
+
+- type: entity
   parent: N14ClosetBaseW
   id: N14ClosetGunCabinet
   name: gun cabinet
@@ -116,9 +148,9 @@
   suffix: Refilling,Military,Random
 
 - type: entity
-  parent: [ N14ClosetGunCabinet, N14StorageFillDomestic ]
+  parent: [ N14ClosetGunCabinet, N14BaseMilitaryStorageFill ]
   id: N14LootClosetGunCabinet
-  suffix: Loot,Domestic,Random
+  suffix: Loot,Military,Random
 
 - type: entity
   parent: N14ClosetBaseW
@@ -129,11 +161,20 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/Closets/fridgedirty.rsi
   - type: ExplosionResistance
-    resistance: 0.90
+    damageCoefficient: 0.1
   - type: AntiRottingContainer
 
 - type: entity
-  parent: [ N14ClosetFridgeDirty, N14ClosetFridgeFill ]
+  parent: N14ClosetFridgeDirty
+  id: N14ClosetFridgeWideDirty
+  name: fridge
+  description: A dirty old fridge for keeping food fresh
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Storage/Closets/fridgewidedirty.rsi
+
+- type: entity
+  parent: [ N14ClosetFridgeDirty, N14ClosetFridgeWideDirty, N14ClosetFridgeFill ]
   id: N14LootClosetFridge
   suffix: Loot,Domestic,Random
 
@@ -167,6 +208,16 @@
   id: N14LootClosetDouble
   suffix: Loot,Domestic,Random
 
+- type: entity
+  parent: [ N14ClosetDouble, N14BaseLockerTimedStorageFill ]
+  id: N14ClosetDoubleRefillingGeneric
+  suffix: Refilling,Generic,Random
+
+- type: entity
+  parent: [ N14ClosetDouble, N14BaseLockerStorageFill ]
+  id: N14LootGenericClosetDouble
+  suffix: Loot,Generic,Random
+
 # Wooden Closets
 
 - type: entity
@@ -192,6 +243,9 @@
       - !type:SpawnEntitiesBehavior
         spawn:
           MaterialWoodPlank:
+            min: 0
+            max: 1
+          N14ScrapBrass1:
             min: 0
             max: 1
       - !type:DoActsBehavior
@@ -225,6 +279,21 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/Closets/closetgeneric.rsi
+
+- type: entity
+  parent: [ N14ClosetGeneric, N14BaseLockerStorageFill ]
+  id: N14LootClosetGeneric
+  suffix: Loot,Generic,Random
+
+- type: entity
+  parent: [ N14ClosetGeneric, N14BaseMilitaryStorageFill ]
+  id: N14LootMilitaryClosetGeneric
+  suffix: Loot,Military,Random
+
+- type: entity
+  parent: [ N14ClosetGeneric, N14BaseMilitaryTimedStorageFill ]
+  id: N14ClosetGenericRefillingMilitary
+  suffix: Refilling,Military,Random
 
 # Wallmounted Closets
 - type: entity

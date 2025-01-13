@@ -2,8 +2,6 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Inventory;
 using Robust.Shared.Network;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffect;
 using Content.Shared.StepTrigger.Systems;
@@ -15,7 +13,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Physics.Events;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Slippery;
@@ -29,7 +26,6 @@ public sealed class SlipperySystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SpeedModifierContactsSystem _speedModifier = default!;
 
     public override void Initialize()
     {
@@ -41,9 +37,6 @@ public sealed class SlipperySystem : EntitySystem
         SubscribeLocalEvent<ThrownItemComponent, SlipCausingAttemptEvent>(OnThrownSlipAttempt);
         // as long as slip-resistant mice are never added, this should be fine (otherwise a mouse-hat will transfer it's power to the wearer).
         SubscribeLocalEvent<NoSlipComponent, InventoryRelayedEvent<SlipAttemptEvent>>((e, c, ev) => OnNoSlipAttempt(e, c, ev.Args));
-        SubscribeLocalEvent<SlowedOverSlipperyComponent, InventoryRelayedEvent<SlipAttemptEvent>>((e, c, ev) => OnSlowedOverSlipAttempt(e, c, ev.Args));
-        SubscribeLocalEvent<SlowedOverSlipperyComponent, InventoryRelayedEvent<GetSlowedOverSlipperyModifierEvent>>(OnGetSlowedOverSlipperyModifier);
-        SubscribeLocalEvent<SlipperyComponent, EndCollideEvent>(OnEntityExit);
         SubscribeLocalEvent<SlippableModifierComponent, SlippedEvent>(OnSlippableModifierSlipped);
     }
 
@@ -62,28 +55,12 @@ public sealed class SlipperySystem : EntitySystem
 
     private static void OnNoSlipAttempt(EntityUid uid, NoSlipComponent component, SlipAttemptEvent args)
     {
-        args.NoSlip = true;
-    }
-
-    private void OnSlowedOverSlipAttempt(EntityUid uid, SlowedOverSlipperyComponent component, SlipAttemptEvent args)
-    {
-        args.SlowOverSlippery = true;
+        args.Cancel();
     }
 
     private void OnThrownSlipAttempt(EntityUid uid, ThrownItemComponent comp, ref SlipCausingAttemptEvent args)
     {
         args.Cancelled = true;
-    }
-
-    private void OnGetSlowedOverSlipperyModifier(EntityUid uid, SlowedOverSlipperyComponent comp, ref InventoryRelayedEvent<GetSlowedOverSlipperyModifierEvent> args)
-    {
-        args.Args.SlowdownModifier *= comp.SlowdownModifier;
-    }
-
-    private void OnEntityExit(EntityUid uid, SlipperyComponent component, ref EndCollideEvent args)
-    {
-        if (HasComp<SpeedModifiedByContactComponent>(args.OtherEntity))
-            _speedModifier.AddModifiedEntity(args.OtherEntity);
     }
 
     private void OnSlippableModifierSlipped(EntityUid uid, SlippableModifierComponent comp, ref SlippedEvent args)
@@ -97,17 +74,14 @@ public sealed class SlipperySystem : EntitySystem
                 && _statusEffects.CanApplyEffect(toSlip, "Stun"); //Should be KnockedDown instead?
     }
 
-    public void TrySlip(EntityUid uid, SlipperyComponent component, EntityUid other, bool requiresContact = true)
+    private void TrySlip(EntityUid uid, SlipperyComponent component, EntityUid other)
     {
         if (HasComp<KnockedDownComponent>(other) && !component.SuperSlippery)
             return;
 
         var attemptEv = new SlipAttemptEvent();
         RaiseLocalEvent(other, attemptEv);
-        if (attemptEv.SlowOverSlippery)
-            _speedModifier.AddModifiedEntity(other);
-
-        if (attemptEv.NoSlip)
+        if (attemptEv.Cancelled)
             return;
 
         var attemptCausingEv = new SlipCausingAttemptEvent();
@@ -125,7 +99,7 @@ public sealed class SlipperySystem : EntitySystem
         {
             _physics.SetLinearVelocity(other, physics.LinearVelocity * component.LaunchForwardsMultiplier, body: physics);
 
-            if (component.SuperSlippery && requiresContact)
+            if (component.SuperSlippery)
             {
                 var sliding = EnsureComp<SlidingComponent>(other);
                 sliding.CollidingEntities.Add(uid);
@@ -136,8 +110,6 @@ public sealed class SlipperySystem : EntitySystem
         var playSound = !_statusEffects.HasStatusEffect(other, "KnockedDown");
 
         _stun.TryParalyze(other, TimeSpan.FromSeconds(slippedEv.ParalyzeTime), true);
-
-        RaiseLocalEvent(other, new MoodEffectEvent("MobSlipped"));
 
         RaiseLocalEvent(other, new MoodEffectEvent("MobSlipped"));
 
@@ -155,12 +127,8 @@ public sealed class SlipperySystem : EntitySystem
 /// <summary>
 ///     Raised on an entity to determine if it can slip or not.
 /// </summary>
-public sealed class SlipAttemptEvent : EntityEventArgs, IInventoryRelayEvent
+public sealed class SlipAttemptEvent : CancellableEntityEventArgs, IInventoryRelayEvent
 {
-    public bool NoSlip;
-
-    public bool SlowOverSlippery;
-
     public SlotFlags TargetSlots { get; } = SlotFlags.FEET;
 }
 

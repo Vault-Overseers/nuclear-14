@@ -12,7 +12,7 @@ namespace Content.Shared.UserInterface
 
         /// <summary>
         /// Whether the item must be held in one of the user's hands to work.
-        /// This is ignored unless <see cref="RequiresComplex"/> is true.
+        /// This is ignored unless <see cref="RequireHands"/> is true.
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField]
@@ -29,15 +29,15 @@ namespace Content.Shared.UserInterface
         public LocId VerbText = "ui-verb-toggle-open";
 
         /// <summary>
-        ///     Whether you need to be able to do complex interactions to operate this UI.
+        ///     Whether you need a hand to operate this UI. The hand does not need to be free, you just need to have one.
         /// </summary>
         /// <remarks>
         ///     This should probably be true for most machines & computers, but there will still be UIs that represent a
-        ///     more generic interaction / configuration that might not require complex.
+        ///     more generic interaction / configuration that might not require hands.
         /// </remarks>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField]
-        public bool RequiresComplex = true;
+        public bool RequireHands = true;
 
         /// <summary>
         ///     Entities that are required to open this UI.
@@ -57,13 +57,6 @@ namespace Content.Shared.UserInterface
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public bool VerbOnly;
-
-        /// <summary>
-        ///     Goobstation
-        ///     If true, UI can only be opened via alt verb.
-        /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public bool AltVerb;
 
         /// <summary>
         ///     Whether spectators (non-admin ghosts) should be allowed to view this UI.

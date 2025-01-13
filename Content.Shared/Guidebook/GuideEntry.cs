@@ -1,13 +1,8 @@
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Guidebook;
-
-[Prototype("guideEntry")]
-public sealed partial class GuideEntryPrototype : GuideEntry, IPrototype
-{
-    public string ID => Id;
-}
+namespace Content.Client.Guidebook;
 
 [Virtual]
 public class GuideEntry
@@ -15,7 +10,7 @@ public class GuideEntry
     /// <summary>
     ///     The file containing the contents of this guide.
     /// </summary>
-    [DataField(required: true)] public ResPath Text = default!;
+    [DataField("text", required: true)] public ResPath Text = default!;
 
     /// <summary>
     ///     The unique id for this guide.
@@ -26,24 +21,28 @@ public class GuideEntry
     /// <summary>
     ///     The name of this guide. This gets localized.
     /// </summary>
-    [DataField(required: true)] public string Name = default!;
+    [DataField("name", required: true)] public string Name = default!;
 
     /// <summary>
     ///     The "children" of this guide for when guides are shown in a tree / table of contents.
     /// </summary>
-    [DataField]
-    public List<ProtoId<GuideEntryPrototype>> Children = new();
+    [DataField("children", customTypeSerializer:typeof(PrototypeIdListSerializer<GuideEntryPrototype>))]
+    public List<string> Children = new();
 
     /// <summary>
     ///     Enable filtering of items.
     /// </summary>
-    [DataField] public bool FilterEnabled = default!;
-
-    [DataField] public bool RuleEntry;
+    [DataField("filterEnabled")] public bool FilterEnabled = default!;
 
     /// <summary>
     ///     Priority for sorting top-level guides when shown in a tree / table of contents.
     ///     If the guide is the child of some other guide, the order simply determined by the order of children in <see cref="Children"/>.
     /// </summary>
-    [DataField] public int Priority = 0;
+    [DataField("priority")] public int Priority = 0;
+}
+
+[Prototype("guideEntry")]
+public sealed partial class GuideEntryPrototype : GuideEntry, IPrototype
+{
+    public string ID => Id;
 }

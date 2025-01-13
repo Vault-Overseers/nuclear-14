@@ -7,11 +7,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.Text.Json;
-using Content.Shared._EE.Contractors.Prototypes;
 using Content.Shared.Database;
 using Microsoft.EntityFrameworkCore;
 using NpgsqlTypes;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager.Attributes;
 
 
@@ -83,6 +81,15 @@ namespace Content.Server.Database
             modelBuilder.Entity<Job>()
                 .HasIndex(j => new { j.ProfileId, j.JobName })
                 .IsUnique();
+
+            // Nuclear14 Special
+            modelBuilder.Entity<Special>()
+                .HasIndex(j => j.ProfileId);
+
+            modelBuilder.Entity<Special>()
+                .HasIndex(j => new { j.ProfileId, j.SpecialName })
+                .IsUnique();
+            // Nuclear14 end
 
             modelBuilder.Entity<AssignedUserId>()
                 .HasIndex(p => p.UserName)
@@ -391,15 +398,9 @@ namespace Content.Server.Database
         [Column("char_name")] public string CharacterName { get; set; } = null!;
         public string FlavorText { get; set; } = null!;
         public string CustomSpecieName { get; set; } = null!;
-        public string Nationality { get; set; } = null!;
-        public string Employer { get; set; } = null!;
-        public string Lifepath { get; set; } = null!;
         public int Age { get; set; }
         public string Sex { get; set; } = null!;
         public string Gender { get; set; } = null!;
-        public string? DisplayPronouns { get; set; }
-        public string? StationAiName { get; set; }
-        public string? CyborgName { get; set; }
         public string Species { get; set; } = null!;
         public float Height { get; set; } = 1f;
         public float Width { get; set; } = 1f;
@@ -410,8 +411,11 @@ namespace Content.Server.Database
         public string FacialHairColor { get; set; } = null!;
         public string EyeColor { get; set; } = null!;
         public string SkinColor { get; set; } = null!;
+        public string Clothing { get; set; } = null!;
+        public string Backpack { get; set; } = null!;
         public int SpawnPriority { get; set; } = 0;
         public List<Job> Jobs { get; } = new();
+        public List<Special> Specials { get; } = new(); // Nuclear14 Special
         public List<Antag> Antags { get; } = new();
         public List<Trait> Traits { get; } = new();
         public List<Loadout> Loadouts { get; } = new();
@@ -440,6 +444,33 @@ namespace Content.Server.Database
         Medium = 2,
         High = 3
     }
+
+    // Nuclear14 Special
+    public class Special
+    {
+        public int Id { get; set; }
+        public Profile Profile { get; set; } = null!;
+        public int ProfileId { get; set; }
+        public string SpecialName { get; set; } = null!;
+        public DbSpecialPriority Priority { get; set; }
+    }
+
+    public enum DbSpecialPriority
+    {
+        // These enum values HAVE to match the ones in SpecialPriority in Content.Shared
+        Zero = 0,
+        One = 1,
+        Two = 2,
+        Three = 3,
+        Four = 4,
+        Five = 5,
+        Six = 6,
+        Seven = 7,
+        Eight = 8,
+        Nine = 9,
+        Ten = 10
+    }
+    // Nuclear14 end
 
     public class Antag
     {
@@ -904,7 +935,7 @@ namespace Content.Server.Database
         Panic = 3,
         /*
          * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
-         *
+         * 
          * If baby jail is removed, please reserve this value for as long as can reasonably be done to prevent causing ambiguity in connection denial reasons.
          * Reservation by commenting out the value is likely sufficient for this purpose, but may impact projects which depend on SS14 like SS14.Admin.
          */

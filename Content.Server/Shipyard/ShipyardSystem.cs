@@ -6,8 +6,6 @@ using Content.Shared.DeltaV.CCVars;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
-using Robust.Shared.EntitySerialization.Systems;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Shipyard;
 
@@ -38,7 +36,7 @@ public sealed class ShipyardSystem : EntitySystem
     /// <summary>
     /// Creates a ship from its yaml path in the shipyard.
     /// </summary>
-    public Entity<ShuttleComponent>? TryCreateShuttle(ResPath path)
+    public Entity<ShuttleComponent>? TryCreateShuttle(string path)
     {
         if (!Enabled)
             return null;
@@ -46,28 +44,38 @@ public sealed class ShipyardSystem : EntitySystem
         var map = _map.CreateMap(out var mapId);
         _map.SetPaused(map, false);
 
-        if (!_mapLoader.TryLoadGrid(mapId, path, out var grid))
+        if (!_mapLoader.TryLoad(mapId, path, out var grids))
         {
             Log.Error($"Failed to load shuttle {path}");
             Del(map);
             return null;
         }
 
-        if (!TryComp<ShuttleComponent>(grid, out var comp))
+        // only 1 grid is supported, no tramshuttle
+        if (grids.Count != 1)
+        {
+            var error = grids.Count < 1 ? "less" : "more";
+            Log.Error($"Shuttle {path} had {error} than 1 grid, which is not supported.");
+            Del(map);
+            return null;
+        }
+
+        var uid = grids[0];
+        if (!TryComp<ShuttleComponent>(uid, out var comp))
         {
             Log.Error($"Shuttle {path}'s grid was missing ShuttleComponent");
             Del(map);
             return null;
         }
 
-        _mapDeleterShuttle.Enable(grid.Value.Owner);
-        return (grid.Value.Owner, comp);
+        _mapDeleterShuttle.Enable(uid);
+        return (uid, comp);
     }
 
     /// <summary>
     /// Adds a ship to the shipyard and attempts to ftl-dock it to the given station.
     /// </summary>
-    public Entity<ShuttleComponent>? TrySendShuttle(Entity<StationDataComponent?> station, ResPath path)
+    public Entity<ShuttleComponent>? TrySendShuttle(Entity<StationDataComponent?> station, string path)
     {
         if (!Resolve(station, ref station.Comp))
             return null;

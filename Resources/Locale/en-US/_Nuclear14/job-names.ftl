@@ -49,7 +49,7 @@ job-description-ncr-soldier = The backbone of any military. Soldiers get stuff d
 =======
 job-description-ncr-soldier = The backbone of any military. Soldiers get stuff done and follow a Sergeant on missions.
 job-name-ncr-engineer = NCR Engineer
-job-description-ncr-soldier = The backbone of any squad. Repair equipment, establish defenses, and follow a Sergeant on missions.
+job-description-ncr-engineer = The backbone of any squad. Repair equipment, establish defenses, and follow a Sergeant on missions.
 job-name-ncr-ws = NCR Weapon Specialist
 job-description-ncr-ws = The fire support of any squad. Lay down supportive fire, and follow a Sergeant on missions.
 >>>>>>> 8e94faae4d (Tribe vault fixes (#747))

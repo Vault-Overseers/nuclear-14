@@ -18,11 +18,12 @@ public sealed partial class SurgeryRemoveMarkingStepComponent : Component
     ///     against the entity to validate that the marking is present.
     /// </summary>
     [DataField]
-    public string MatchString = string.Empty;
+    public String MatchString = "";
 
     /// <summary>
     ///     Will this step spawn an item as a result of removing the markings? If so, which?
     /// </summary>
     [DataField]
     public EntProtoId? ItemSpawn = default!;
+
 }

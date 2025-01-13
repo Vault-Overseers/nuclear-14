@@ -1,5 +1,4 @@
 using Content.Shared.Customization.Systems;
-using Content.Shared.Mind;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using JetBrains.Annotations;
@@ -10,7 +9,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Customization.Systems;
 
 /// <summary>
-///     Requires the server to have a specific CVar value.
+///     Requires the server to have a specific CVar value. 
 /// </summary>
 [UsedImplicitly, Serializable, NetSerializable,]
 public sealed partial class CVarRequirement : CharacterRequirement
@@ -31,8 +30,7 @@ public sealed partial class CVarRequirement : CharacterRequirement
         IPrototypeManager prototypeManager,
         IConfigurationManager configManager,
         out string? reason,
-        int depth = 0,
-        MindComponent? mind = null
+        int depth = 0
     )
     {
         if (!configManager.IsCVarRegistered(CVar))

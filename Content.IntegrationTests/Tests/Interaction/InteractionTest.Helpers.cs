@@ -62,10 +62,7 @@ public abstract partial class InteractionTest
 
         // Please someone purge async construction code
         Task<bool> task = default!;
-        await Server.WaitPost(() =>
-        {
-            task = SConstruction.TryStartItemConstruction(prototype, SEntMan.GetEntity(Player));
-        });
+        await Server.WaitPost(() => task = SConstruction.TryStartItemConstruction(prototype, SEntMan.GetEntity(Player)));
 
         Task? tickTask = null;
         while (!task.IsCompleted)
@@ -1210,12 +1207,11 @@ public abstract partial class InteractionTest
         BoundKeyFunction key,
         BoundKeyState state,
         NetCoordinates? coordinates = null,
-        NetEntity? cursorEntity = null,
-        ScreenCoordinates? screenCoordinates = null)
+        NetEntity? cursorEntity = null)
     {
         var coords = coordinates ?? TargetCoords;
         var target = cursorEntity ?? Target ?? default;
-        var screen = screenCoordinates ?? default;
+        ScreenCoordinates screen = default;
 
         var funcId = InputManager.NetworkBindMap.KeyFunctionID(key);
         var message = new ClientFullInputCmdMessage(CTiming.CurTick, CTiming.TickFraction, funcId)

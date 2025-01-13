@@ -9,7 +9,6 @@ using Content.Shared.Disposal;
 using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Disposal.Mailing;
 
@@ -36,7 +35,7 @@ public sealed class MailingUnitSystem : EntitySystem
         SubscribeLocalEvent<MailingUnitComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<MailingUnitComponent, BeforeDisposalFlushEvent>(OnBeforeFlush);
         SubscribeLocalEvent<MailingUnitComponent, ConfigurationSystem.ConfigurationUpdatedEvent>(OnConfigurationUpdated);
-        SubscribeLocalEvent<MailingUnitComponent, ActivateInWorldEvent>(HandleActivate, before: new[] { typeof(DisposalUnitSystem) });
+        SubscribeLocalEvent<MailingUnitComponent, ActivateInWorldEvent>(HandleActivate);
         SubscribeLocalEvent<MailingUnitComponent, DisposalUnitUIStateUpdatedEvent>(OnDisposalUnitUIStateChange);
         SubscribeLocalEvent<MailingUnitComponent, TargetSelectedMessage>(OnTargetSelected);
     }
@@ -90,17 +89,13 @@ public sealed class MailingUnitSystem : EntitySystem
         if (string.IsNullOrEmpty(component.Target))
         {
             args.Cancel();
+            return;
         }
-        else
-        {
-            args.Tags.Add(MailTag);
-            args.Tags.Add(component.Target);
 
-            BroadcastSentMessage(uid, component);
+        args.Tags.Add(MailTag);
+        args.Tags.Add(component.Target);
 
-            component.Target = null;
-        }
-        UpdateUserInterface(uid, component);
+        BroadcastSentMessage(uid, component);
     }
 
     /// <summary>
@@ -184,15 +179,13 @@ public sealed class MailingUnitSystem : EntitySystem
         if (component.DisposalUnitInterfaceState == null)
             return;
 
-        var state = new MailingUnitBoundUserInterfaceState(component.DisposalUnitInterfaceState, component.Target, component.TargetList.ShallowClone(), component.Tag);
+        var state = new MailingUnitBoundUserInterfaceState(component.DisposalUnitInterfaceState, component.Target, component.TargetList, component.Tag);
         _userInterfaceSystem.SetUiState(uid, MailingUnitUiKey.Key, state);
     }
 
     private void OnTargetSelected(EntityUid uid, MailingUnitComponent component, TargetSelectedMessage args)
     {
-        // Clear the Target if we select the same one
-        component.Target =
-            args.Target != component.Target ? args.Target : null;
+        component.Target = args.Target;
         UpdateUserInterface(uid, component);
     }
 

@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using Content.Server.Administration.Systems;
 using Content.Server.Administration.Managers;
 using Content.Server.GameTicking;
-using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Maps;
@@ -44,7 +43,7 @@ public sealed partial class ServerApi : IPostInjectInit
         CCVars.PanicBunkerCountDeadminnedAdmins.Name,
         CCVars.PanicBunkerShowReason.Name,
         CCVars.PanicBunkerMinAccountAge.Name,
-        CCVars.PanicBunkerMinOverallMinutes.Name,
+        CCVars.PanicBunkerMinOverallHours.Name,
         CCVars.PanicBunkerCustomReason.Name,
     ];
 
@@ -86,8 +85,6 @@ public sealed partial class ServerApi : IPostInjectInit
         RegisterActorHandler(HttpMethod.Patch, "/admin/actions/panic_bunker", ActionPanicPunker);
 
         RegisterHandler(HttpMethod.Post, "/admin/actions/send_bwoink", ActionSendBwoink); // Frontier - Discord Ahelp Reply
-
-        InitializeFunky();
     }
 
     public void Initialize()

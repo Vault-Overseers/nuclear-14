@@ -19,10 +19,6 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
-    - state: paper
-      visible: false
-      sprite: Structures/Storage/closet_labels.rsi
-      map: ["enum.PaperLabelVisuals.Layer"]
   - type: MovedByPressure
   - type: PaperLabel
     labelSlot:
@@ -31,9 +27,6 @@
       whitelist:
         components:
         - Paper
-      blacklist:
-        tags:
-        - Book
   - type: ItemSlots
   - type: DamageOnHighSpeedImpact
     damage:
@@ -49,7 +42,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.25,-0.48,0.25,0.48"
-        density: 150
+        density: 75
         mask:
         - MachineMask
         layer:
@@ -98,28 +91,13 @@
           SheetSteel1:
             min: 1
             max: 1
-  - type: GenericVisualizer
-    visuals:
-      enum.PaperLabelVisuals.HasLabel:
-        enum.PaperLabelVisuals.Layer:
-          True: { visible: true }
-          False: { visible: false }
-      enum.StorageVisuals.Open:
-        enum.PaperLabelVisuals.Layer:
-          True: { visible: false }
-      enum.PaperLabelVisuals.LabelType:
-        enum.PaperLabelVisuals.Layer:
-          Paper: { state: paper }
-          Bounty: { state: bounty }
-          CaptainsPaper: { state: captains_paper }
-          Invoice: { state: invoice }
   - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: generic
     stateDoorOpen: generic_open
     stateDoorClosed: generic_door
   - type: StaticPrice
-    price: 75
+    price: 50
   - type: DamageOtherOnHit
     damage:
       types:
@@ -158,7 +136,7 @@
   - type: WallMount
     arc: 175
   - type: StaticPrice
-    price: 75
+    price: 50
   - type: Transform
     noRot: false
   - type: Sprite
@@ -175,8 +153,7 @@
       map: ["enum.WeldableLayers.BaseWelded"]
   - type: EntityStorage
     isCollidableWhenOpen: true
-    enteringOffset: 0, -0.6
-    enteringRange: 0.03
+    enteringOffset: 0, -0.75
     closeSound:
       path: /Audio/Items/deconstruct.ogg
     openSound:
@@ -186,7 +163,7 @@
       entity_storage: !type:Container
         ents: []
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Metallic
   - type: Destructible
     thresholds:
@@ -300,7 +277,7 @@
     placeCentered: true
     isPlaceable: false
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Metallic
   - type: Destructible
     thresholds:

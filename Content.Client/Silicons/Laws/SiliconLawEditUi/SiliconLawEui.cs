@@ -6,7 +6,7 @@ namespace Content.Client.Silicons.Laws.SiliconLawEditUi;
 
 public sealed class SiliconLawEui : BaseEui
 {
-    private readonly EntityManager _entityManager;
+    public readonly EntityManager _entityManager = default!;
 
     private SiliconLawUi _siliconLawUi;
     private EntityUid _target;

@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Singularity.Components;
+using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 
 namespace Content.Client.ParticleAccelerator.UI
@@ -17,11 +18,9 @@ namespace Content.Client.ParticleAccelerator.UI
             base.Open();
 
             _menu = this.CreateWindow<ParticleAcceleratorControlMenu>();
-            _menu.SetEntity(Owner);
-
             _menu.OnOverallState += SendEnableMessage;
             _menu.OnPowerState += SendPowerStateMessage;
-            _menu.OnScan += SendScanPartsMessage;
+            _menu.OnScanPartsRequested += SendScanPartsMessage;
         }
 
         public void SendEnableMessage(bool enable)

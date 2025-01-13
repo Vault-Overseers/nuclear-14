@@ -160,8 +160,7 @@ public sealed class PaintSystem : SharedPaintSystem
     public void Paint(EntityWhitelist? whitelist, EntityWhitelist? blacklist, EntityUid target, Color color)
     {
         if (_whitelist.IsWhitelistFail(whitelist, target)
-            || _whitelist.IsBlacklistPass(blacklist, target)
-            || !HasComp<MetaDataComponent>(target)) // TODO: FIND THE STUPID RACE CONDITION THAT IS MAKING ME CHECK FOR THIS.
+            || _whitelist.IsBlacklistPass(blacklist, target))
             return;
 
         EnsureComp<PaintedComponent>(target, out var paint);

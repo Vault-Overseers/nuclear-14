@@ -39,8 +39,7 @@ public sealed class AntagRandomObjectivesSystem : EntitySystem
 
             for (var pick = 0; pick < set.MaxPicks && ent.Comp.MaxDifficulty > difficulty; pick++)
             {
-                var remainingDifficulty = ent.Comp.MaxDifficulty - difficulty;
-                if (_objectives.GetRandomObjective(mindId, mind, set.Groups, remainingDifficulty) is not { } objective)
+                if (_objectives.GetRandomObjective(mindId, mind, set.Groups) is not {} objective)
                     continue;
 
                 _mind.AddObjective(mindId, mind, objective);

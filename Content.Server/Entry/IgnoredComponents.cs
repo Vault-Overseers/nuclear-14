@@ -19,9 +19,7 @@ namespace Content.Server.Entry
             "InventorySlots",
             "LightFade",
             "HolidayRsiSwap",
-            "OptionsVisualizer",
-            "ToggleableLightWieldable", // Goobstation
-            "ItemSlotRenderer", // WWDP EDIT
+            "OptionsVisualizer"
         };
     }
 }

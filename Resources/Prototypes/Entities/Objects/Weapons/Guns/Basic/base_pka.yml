@@ -7,33 +7,22 @@
     sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
   - type: Item
     sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
-    size: Large # Lavaland Change
-    shape:
-    - 0,0,2,1
-  # Lavaland Change start
-  - type: WeaponAttachment
-    lightActionPrototype: ActionTogglePKALight
-  - type: PressureDamageChange
-  - type: Multishot
-  - type: UpgradeableGun
-    whitelist:
-      tags:
-      - PKAUpgrade
-  #- type: GunWieldBonus
-  #  minAngle: -43
-  #  maxAngle: -43
-  #- type: Wieldable
-  # Lavaland Change end
+    size: Normal
+  - type: GunWieldBonus
+    minAngle: -43
+    maxAngle: -43
+  - type: Wieldable
   - type: Gun
-    fireRate: 0.7 #goobstation
+    fireRate: 0.5
     selectedMode: SemiAuto
-    #angleDecay: 45 # Lavaland Change
-    minAngle: 3 # Lavaland Change
-    maxAngle: 5 # Lavaland Change
+    angleDecay: 45
+    minAngle: 44
+    maxAngle: 45
     availableModes:
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+    fireOnDropChance: 1
   - type: AmmoCounter
   - type: Appearance
   - type: GenericVisualizer
@@ -44,7 +33,7 @@
           False: { visible: True }
         #todo: add other 'empty' animations
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.65 #Goobstation
+    rechargeCooldown: 0.75
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
@@ -59,22 +48,15 @@
     - Belt
   - type: UseDelay
     delay: 1
-  - type: PhysicalComposition #Goobstation - Recycle update
-    materialComposition:
-      Steel: 250
-      Glass: 125
-      Silver: 25
   - type: MeleeWeapon
-    wideAnimationRotation: 270
-    attackRate: 1
-    angle: 0
-    range: 1.1
+    attackRate: 1.3333
     damage:
       types:
-        Blunt: 5
+        Blunt: 9.0
     swapKeys: true
     disableHeavy: true
     animation: WeaponArcThrust
+    wideAnimationRotation: 180
     soundHit:
       collection: MetalThud
   - type: IncreaseDamageOnWield

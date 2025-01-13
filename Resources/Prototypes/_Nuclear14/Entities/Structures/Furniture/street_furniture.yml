@@ -1,28 +1,24 @@
 # Base floor sign
 - type: entity
   id: N14SignFloorBase
-  parent: BaseStructure
   name: sign
   description: It's a sign!
   abstract: true
+  placement:
+    mode: SnapgridCenter
   components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Tag
+    tags:
+      - Structure
   - type: Sprite
     snapCardinals: true
     drawdepth: Overdoors
-  - type: Transform
-    noRot: true
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0
-        density: 1000
-        mask:
-        - FullTileMask
-        layer:
-        - WallLayer
-  - type: InteractionOutline
   - type: SpriteFade
   - type: Damageable
     damageContainer: Inorganic
@@ -53,7 +49,7 @@
   description: A billboard advertising nuka cola.
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
     layers:
     - state: base
     - state: nukacola1
@@ -85,7 +81,7 @@
   description: A billboard advertising nuka cola.
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
     layers:
     - state: base
     - state: nukacola1-worn
@@ -96,7 +92,7 @@
   description: A billboard advertising the Mass Fusion company.
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
     layers:
     - state: base
     - state: massfusion1
@@ -107,7 +103,7 @@
   description: A billboard advertising the Mass Fusion company.
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
     layers:
     - state: base
     - state: massfusion1-worn
@@ -118,7 +114,7 @@
   description: A billboard advertising the Red Rocket fuel company.
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
     layers:
     - state: base
     - state: redrocket1
@@ -129,7 +125,7 @@
   description: A billboard advertising the Red Rocket fuel company.
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/billboards192x192.rsi
     layers:
     - state: base
     - state: redrocket1-worn
@@ -171,7 +167,7 @@
   description: A sign for a bazaar. How bizarre!
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Decoration/signs_64x64.rsi
+    sprite: _Nuclear14/Structures/Decoration/signs_64x64.rsi
     state: bazaar
     
 - type: entity
@@ -181,7 +177,7 @@
   description: We are open!
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Decoration/signs_64x64.rsi
+    sprite: _Nuclear14/Structures/Decoration/signs_64x64.rsi
     state: we_open
   - type: Fixtures
     fixtures:
@@ -209,10 +205,9 @@
   - type: Sprite
     snapCardinals: false
     noRot: true
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetsigns.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetsigns.rsi
   - type: Transform
     noRot: false
-  - type: Fixtures # removes the fixture because why not. It's thin and directions would break the BB.
 
 - type: entity
   parent: N14SignStreetBase
@@ -386,17 +381,8 @@
   description: An old wooden post mounted transformer for power distribution.
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/powerpole.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/powerpole.rsi
     state: powerpole1
-  - type: Fixtures
-    fixtures:
-      fix1:
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MidImpassable
-        - LowImpassable
           
 - type: entity
   parent: N14StreetPowerPoleRight
@@ -405,15 +391,6 @@
   components:
   - type: Sprite
     state: powerpole2
-  - type: Fixtures
-    fixtures:
-      fix1:
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MidImpassable
-        - LowImpassable
 
 # Street Lights
 - type: entity
@@ -433,18 +410,6 @@
       - On
       - Off
       - Toggle
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MidImpassable
-        - LowImpassable
 
 - type: entity
   parent: N14BaseLightStructure
@@ -452,7 +417,7 @@
   suffix: Always Powered, Right
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_right.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_right.rsi
     layers:
     - state: off
     - state: on
@@ -471,24 +436,12 @@
   suffix: Always Powered, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_left.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_left.rsi
     layers:
     - state: off
     - state: on
       map: ["enum.PoweredLightLayers.Base"]
     state: on
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MidImpassable
-        - LowImpassable
     
 - type: entity
   parent: N14BaseLightStructure
@@ -496,7 +449,7 @@
   suffix: Empty, Right
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_right.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_right.rsi
     state: off
   - type: PointLight
     enabled: false
@@ -520,20 +473,8 @@
   suffix: Empty, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_left.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_left.rsi
     state: off
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MidImpassable
-        - LowImpassable
       
 - type: entity
   parent: N14LightStreetLampPostPoweredEmptyRight
@@ -575,7 +516,7 @@
   suffix: Always Powered, Right
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider_right.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider_right.rsi
     
 - type: entity
   parent: N14LightStreetLampPostAlwaysPoweredLeft
@@ -583,7 +524,7 @@
   suffix: Always Powered, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider_left.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider_left.rsi
     
 - type: entity
   parent: N14LightStreetLampPostPoweredEmptyRight
@@ -591,7 +532,7 @@
   suffix: Empty, Right
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider_right.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider_right.rsi
     state: off
     
 - type: entity
@@ -600,7 +541,7 @@
   suffix: Empty, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider_left.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight1_raider_left.rsi
     state: off
     
 - type: entity
@@ -631,7 +572,7 @@
   suffix: Always Powered, Right
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_right.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_right.rsi
     
 - type: entity
   parent: N14LightStreetLampPostAlwaysPoweredLeft
@@ -639,19 +580,7 @@
   suffix: Always Powered, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_left.rsi
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MidImpassable
-        - LowImpassable
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_left.rsi
     
 - type: entity
   parent: N14LightStreetLampPostPoweredEmptyRight
@@ -659,7 +588,7 @@
   suffix: Empty, Right
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_right.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_right.rsi
     state: off
     
 - type: entity
@@ -668,7 +597,7 @@
   suffix: Empty, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_left.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_left.rsi
     state: off
     
 - type: entity
@@ -677,7 +606,7 @@
   suffix: Powered, Right
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_right.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_right.rsi
     layers:
     - state: off
     - state: on
@@ -689,7 +618,7 @@
   suffix: Powered, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_left.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_left.rsi
     layers:
     - state: off
     - state: on
@@ -701,7 +630,7 @@
   suffix: Always Powered, Right
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_right.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_right.rsi
     
 - type: entity
   parent: N14LightStreetLampPostAlwaysPoweredLeft
@@ -709,7 +638,7 @@
   suffix: Always Powered, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_left.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_left.rsi
     
 - type: entity
   parent: N14LightStreetLampPostPoweredEmptyRight
@@ -717,7 +646,7 @@
   suffix: Empty, Right
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_right.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_right.rsi
     state: off
     
 - type: entity
@@ -726,7 +655,7 @@
   suffix: Empty, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_left.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_left.rsi
     state: off
     
 - type: entity
@@ -735,7 +664,7 @@
   suffix: Powered, Right
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_right.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_right.rsi
     layers:
     - state: off
     - state: on
@@ -747,8 +676,112 @@
   suffix: Powered, Left
   components:
   - type: Sprite
-    sprite: Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_left.rsi
+    sprite: _Nuclear14/Structures/Furniture/Street_Furniture/streetlight2_raider_left.rsi
     layers:
     - state: off
     - state: on
       map: [ "enum.PoweredLightLayers.Base" ]
+      
+# Other Furniture
+- type: entity
+  parent: BaseStructure
+  id: N14DecorStreetPayphone
+  name: payphone
+  description: An old payphone
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Decoration/world.rsi
+    state: payphone
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 80
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 40
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+  - type: Pullable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.4,0.2,0.2"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+
+- type: entity
+  parent: N14DecorStreetPayphone
+  id: N14DecorStreetMailbox
+  name: mailbox
+  description: An old mailbox
+  components:
+  - type: Sprite
+    netsync: false
+    state: mailbox_old
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    maxItemSize: Large
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: InteractionOutline
+
+- type: entity
+  parent: N14DecorStreetMailbox
+  id: N14DecorStreetMailboxWide
+  suffix: Wide
+  name: mailbox
+  description: An old wide mailbox
+  components:
+  - type: Sprite
+    state: mailbox
+    
+- type: entity
+  parent: N14DecorStreetMailbox
+  id: N14DecorStreetTrashbin
+  name: trashbin
+  description: An old trashbin
+  components:
+  - type: Sprite
+    state: trashbin
+    
+- type: entity
+  parent: N14DecorStreetTrashbin
+  id: N14DecorStreetTrashbinDamaged
+  suffix: damaged, random
+  components:
+  - type: Sprite
+    layers:
+    - state: trashbin-1
+      map: [ "body" ]
+  - type: RandomSprite
+    available:
+      - body:
+          trashbin-1: ""
+          trashbin-2: ""
+          trashbin-3: ""

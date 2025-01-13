@@ -45,9 +45,13 @@
     containers:
       brain_slot: !type:ContainerSlot
   - type: Appearance
-  # - type: GuideHelp
-    # guides:
-      # - Cyborgs
+  - type: GuideHelp
+    guides:
+      - Cyborgs
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks: [TauCetiBasic, RobotTalk]
+    understands: [TauCetiBasic, RobotTalk]
 
 - type: entity
   parent: MMI
@@ -120,7 +124,11 @@
             Off: { state: posibrain }
             Searching: { state: posibrain-searching }
             On: { state: posibrain-occupied }
+    - type: GuideHelp
+      guides:
+      - Cyborgs
     - type: Organ # Estacao Pirata - IPCs
-    # - type: GuideHelp
-      # guides:
-      # - Cyborgs
+    - type: LanguageSpeaker
+    - type: LanguageKnowledge
+      speaks: [RobotTalk]
+      understands: [RobotTalk]

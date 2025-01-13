@@ -18,7 +18,7 @@ public sealed partial class SurgeryAddMarkingStepComponent : Component
     ///     against the entity to validate that the marking is not already present.
     /// </summary>
     [DataField]
-    public string MatchString = string.Empty;
+    public String MatchString = "";
 
     /// <summary>
     ///     What type of organ is required for this surgery?

@@ -9,32 +9,32 @@ public sealed partial class PryingComponent : Component
     /// <summary>
     /// Whether the entity can pry open powered doors
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool PryPowered;
+    [DataField("pryPowered"), AutoNetworkedField]
+    public bool PryPowered = false;
 
     /// <summary>
     /// Whether the tool can bypass certain restrictions when prying.
     /// For example door bolts.
     /// </summary>
-    [DataField]
-    public bool Force;
+    [DataField("force")]
+    public bool Force = false;
     /// <summary>
     /// Modifier on the prying time.
     /// Lower values result in more time.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField("speedModifier"), AutoNetworkedField]
     public float SpeedModifier = 1.0f;
 
     /// <summary>
     /// What sound to play when prying is finished.
     /// </summary>
-    [DataField]
+    [DataField("useSound")]
     public SoundSpecifier UseSound = new SoundPathSpecifier("/Audio/Items/crowbar.ogg");
 
     /// <summary>
     /// Whether the entity can currently pry things.
     /// </summary>
-    [DataField]
+    [DataField("enabled")]
     public bool Enabled = true;
 }
 

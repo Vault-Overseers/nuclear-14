@@ -19,7 +19,7 @@ public abstract class SharedLatheSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedMaterialStorageSystem _materialStorage = default!;
 
-    public readonly Dictionary<string, List<LatheRecipePrototype>> InverseRecipes = new();
+    private readonly Dictionary<string, List<LatheRecipePrototype>> _inverseRecipeDictionary = new();
 
     public override void Initialize()
     {
@@ -83,20 +83,20 @@ public abstract class SharedLatheSystem : EntitySystem
 
     private void BuildInverseRecipeDictionary()
     {
-        InverseRecipes.Clear();
+        _inverseRecipeDictionary.Clear();
         foreach (var latheRecipe in _proto.EnumeratePrototypes<LatheRecipePrototype>())
         {
-            if (latheRecipe.Result is not {} result)
+            if (latheRecipe.Result == null)
                 continue;
 
-            InverseRecipes.GetOrNew(result).Add(latheRecipe);
+            _inverseRecipeDictionary.GetOrNew(latheRecipe.Result).Add(latheRecipe);
         }
     }
 
     public bool TryGetRecipesFromEntity(string prototype, [NotNullWhen(true)] out List<LatheRecipePrototype>? recipes)
     {
         recipes = new();
-        if (InverseRecipes.TryGetValue(prototype, out var r))
+        if (_inverseRecipeDictionary.TryGetValue(prototype, out var r))
             recipes.AddRange(r);
         return recipes.Count != 0;
     }
@@ -111,7 +111,7 @@ public abstract class SharedLatheSystem : EntitySystem
         if (!string.IsNullOrWhiteSpace(proto.Name))
             return Loc.GetString(proto.Name);
 
-        if (proto.Result is {} result)
+        if (proto.Result is { } result)
         {
             return _proto.Index(result).Name;
         }
@@ -137,7 +137,7 @@ public abstract class SharedLatheSystem : EntitySystem
         if (!string.IsNullOrWhiteSpace(proto.Description))
             return Loc.GetString(proto.Description);
 
-        if (proto.Result is {} result)
+        if (proto.Result is { } result)
         {
             return _proto.Index(result).Description;
         }

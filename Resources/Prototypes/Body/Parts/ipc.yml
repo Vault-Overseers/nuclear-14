@@ -5,24 +5,13 @@
   abstract: true
   components:
   - type: Damageable
-<<<<<<<< HEAD:Resources/Prototypes/Body/Parts/harpy.yml
-    damageContainer: OrganicPart # Shitmed Change
-========
-    damageContainer: Inorganic
->>>>>>>> 8dc036c8a7 (Upstream merge 16th Sept 2024 (#527)):Resources/Prototypes/Body/Parts/ipc.yml
+    damageContainer: Inorganic # Shitmed Change
   - type: BodyPart
+  - type: Gibbable
   - type: ContainerContainer
     containers:
       bodypart: !type:Container
         ents: []
-  - type: StaticPrice
-    price: 100
-<<<<<<<< HEAD:Resources/Prototypes/Body/Parts/harpy.yml
-  - type: Tag
-    tags:
-      - Trash
-  # Shitmed Change Start
-  - type: Gibbable
   - type: SurgeryTool
     startSound:
       path: /Audio/_Shitmed/Medical/Surgery/organ1.ogg
@@ -42,24 +31,8 @@
         damage: 150
       behaviors:
       - !type:GibPartBehavior { }
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Heat
-        damage: 200
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawnInContainer: true
-        spawn:
-          Ash:
-            min: 1
-            max: 1
-      - !type:BurnBodyBehavior { }
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MeatLaserImpact
-  # Shitmed Change End
-========
->>>>>>>> 8dc036c8a7 (Upstream merge 16th Sept 2024 (#527)):Resources/Prototypes/Body/Parts/ipc.yml
+  - type: StaticPrice
+    price: 100
 
 - type: entity
   id: TorsoIPC
@@ -75,9 +48,27 @@
     state: "torso_m"
   - type: BodyPart
     partType: Torso
-  # Shitmed Change Start
-    toolName: "a torso"
-    containerName: "torso_slot"
+    children: # I hate this so much I want to kill it AAAAAAAAAAAAAAAAAAAAAAAA
+      head:
+        id: "head"
+        type: Head
+      left arm:
+        id: "left arm"
+        type: Arm
+      right arm:
+        id: "right arm"
+        type: Arm
+      left leg:
+        id: "left leg"
+        type: Leg
+      right leg:
+        id: "right leg"
+        type: Leg
+    organs:
+      posbrain:
+        id: "posbrain"
+      pump:
+        id: "pump"
   - type: ContainerContainer
     containers:
       torso_slot: !type:ContainerSlot {}
@@ -95,22 +86,6 @@
         damage: 400
       behaviors:
       - !type:GibPartBehavior { }
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Heat
-        damage: 400
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawnInContainer: true
-        spawn:
-          Ash:
-            min: 1
-            max: 1
-      - !type:BurnBodyBehavior { }
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MeatLaserImpact
-  # Shitmed Change End
 
 - type: entity
   id: HeadIPC
@@ -126,8 +101,10 @@
     state: "head_m"
   - type: BodyPart
     partType: Head
+    organs:
+      eyes:
+        id: "eyes"
     vital: true
-    toolName: "a head" # Shitmed Change
   - type: Input
     context: "ghost"
   - type: MovementSpeedModifier
@@ -154,7 +131,10 @@
   - type: BodyPart
     partType: Arm
     symmetry: Left
-    toolName: "a left arm" # Shitmed Change
+    children:
+      left hand:
+        id: "left hand"
+        type: Hand
 
 - type: entity
   id: RightArmIPC
@@ -171,13 +151,10 @@
   - type: BodyPart
     partType: Arm
     symmetry: Right
-    toolName: "a right arm" # Shitmed Change
-    onAdd:
-    - type: Flight
-      speedModifier: 1.3 # For harpies, it gives an effective ~60% (60.16%) increase over sprinting (as sprinting has a 10% increase for harpies) with base harpy weightless modifier
-      isLayerAnimated: true
-      layer: "/Textures/Mobs/Customization/Harpy/harpy_wings.rsi"
-      animationKey: "Flap"
+    children:
+      right hand:
+        id: "right hand"
+        type: Hand
 
 - type: entity
   id: LeftHandIPC
@@ -194,7 +171,6 @@
   - type: BodyPart
     partType: Hand
     symmetry: Left
-    toolName: "a left hand" # Shitmed Change
 
 - type: entity
   id: RightHandIPC
@@ -211,7 +187,6 @@
   - type: BodyPart
     partType: Hand
     symmetry: Right
-    toolName: "a right hand" # Shitmed Change
 
 - type: entity
   id: LeftLegIPC
@@ -228,7 +203,10 @@
   - type: BodyPart
     partType: Leg
     symmetry: Left
-    toolName: "a left leg" # Shitmed Change
+    children:
+      left foot:
+        id: "left foot"
+        type: Foot
   - type: MovementBodyPart
 
 - type: entity
@@ -246,7 +224,10 @@
   - type: BodyPart
     partType: Leg
     symmetry: Right
-    toolName: "a right leg" # Shitmed Change
+    children:
+      right foot:
+        id: "right foot"
+        type: Foot
   - type: MovementBodyPart
 
 - type: entity
@@ -264,7 +245,6 @@
   - type: BodyPart
     partType: Foot
     symmetry: Left
-    toolName: "a left foot" # Shitmed Change
 
 - type: entity
   id: RightFootIPC
@@ -281,4 +261,3 @@
   - type: BodyPart
     partType: Foot
     symmetry: Right
-    toolName: "a right foot" # Shitmed Change

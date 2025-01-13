@@ -1,3 +1,4 @@
+﻿﻿using System.Diagnostics.CodeAnalysis;
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
@@ -6,13 +7,15 @@ using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.NPC.Components;
 using Content.Shared.Players;
 using Robust.Server.GameStates;
 using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using System.Diagnostics.CodeAnalysis;
+using Robust.Shared.Prototypes;
+using Content.Shared.NPC.Prototypes;
 
 namespace Content.Server.Mind;
 
@@ -194,7 +197,7 @@ public sealed class MindSystem : SharedMindSystem
             component = EnsureComp<MindContainerComponent>(entity.Value);
 
             if (component.HasMind)
-                _ghosts.OnGhostAttempt(component.Mind.Value, false);
+                _gameTicker.OnGhostAttempt(component.Mind.Value, false);
 
             if (TryComp<ActorComponent>(entity.Value, out var actor))
             {
@@ -264,7 +267,6 @@ public sealed class MindSystem : SharedMindSystem
         if (entity != null)
         {
             component!.Mind = mindId;
-            component.OriginalMind ??= mindId; // DeltaV
             mind.OwnedEntity = entity;
             mind.OriginalOwnedEntity ??= GetNetEntity(mind.OwnedEntity);
             Entity<MindComponent> mindEnt = (mindId, mind);
@@ -342,13 +344,13 @@ public sealed class MindSystem : SharedMindSystem
         }
     }
 
-    public override void ControlMob(EntityUid user, EntityUid target)
+    public void ControlMob(EntityUid user, EntityUid target)
     {
         if (TryComp(user, out ActorComponent? actor))
             ControlMob(actor.PlayerSession.UserId, target);
     }
 
-    public override void ControlMob(NetUserId user, EntityUid target)
+    public void ControlMob(NetUserId user, EntityUid target)
     {
         var (mindId, mind) = GetOrCreateMind(user);
 
@@ -363,5 +365,19 @@ public sealed class MindSystem : SharedMindSystem
 
         MakeSentientCommand.MakeSentient(target, EntityManager);
         TransferTo(mindId, target, ghostCheckOverride: true, mind: mind);
+    }
+
+    /// Return true if the entity owned by this mind is a member of one of the
+    /// given factions.
+    public bool InFaction(EntityUid uid, MindComponent mind, HashSet<ProtoId<NpcFactionPrototype>> factions)
+    {
+        if (mind.OwnedEntity != null)
+        {
+            if (TryComp(mind.OwnedEntity, out NpcFactionMemberComponent? faction))
+            {
+                return factions.Overlaps(faction.Factions);
+            }
+        }
+        return false;
     }
 }

@@ -13,8 +13,8 @@ using Content.Server.Emp;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Throwing;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
-using Content.Shared.Chemistry.EntitySystems;
 
 namespace Content.Server.Abilities.Psionics;
 
@@ -37,7 +37,7 @@ public sealed partial class AnomalyPowerSystem : EntitySystem
     [Dependency] private readonly ExplosionSystem _boom = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly PuddleSystem _puddle = default!;
     [Dependency] private readonly FlammableSystem _flammable = default!;
 
@@ -49,10 +49,10 @@ public sealed partial class AnomalyPowerSystem : EntitySystem
 
     private void OnPowerUsed(EntityUid uid, PsionicComponent component, AnomalyPowerActionEvent args)
     {
-        if (!_psionics.OnAttemptPowerUse(args.Performer, args.Settings.PowerName, args.Settings.CheckInsulation))
+        if (!_psionics.OnAttemptPowerUse(args.Performer, args.Settings.PowerName, args.Settings.ManaCost, args.Settings.CheckInsulation))
             return;
 
-        var overcharged = args.Settings.DoSupercritical ? _glimmerSystem.GlimmerOutput * component.CurrentAmplification
+        var overcharged = args.Settings.DoSupercritical ? _glimmerSystem.Glimmer * component.CurrentAmplification
             > Math.Min(args.Settings.SupercriticalThreshold * component.CurrentDampening, args.Settings.MaxSupercriticalThreshold)
             : false;
 
@@ -84,7 +84,7 @@ public sealed partial class AnomalyPowerSystem : EntitySystem
         }
 
         if (args.Settings.PulseSound is null
-            || _glimmerSystem.GlimmerOutput < args.Settings.GlimmerSoundThreshold * component.CurrentDampening)
+            || _glimmerSystem.Glimmer < args.Settings.GlimmerSoundThreshold * component.CurrentDampening)
             return;
 
         _audio.PlayEntity(args.Settings.PulseSound, uid, uid);

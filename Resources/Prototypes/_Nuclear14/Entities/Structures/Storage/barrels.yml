@@ -5,14 +5,13 @@
   id: N14BaseBarrel
   name: barrel
   description: This barrel looks like it could contain something.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: blue-closed
     netsync: false
     noRot: true
-    snapCardinals: true
   - type: Fixtures
     fixtures:
       fix1:
@@ -45,7 +44,7 @@
         solution: barrel
     - trigger:
         !type:DamageTrigger
-        damage: 10
+        damage: 50
       behaviors:
       - !type:SpillBehavior
         solution: barrel
@@ -60,7 +59,7 @@
   parent: N14BaseBarrel
   id: N14BaseBarrelOpen
   suffix: open
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -80,7 +79,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: black-closed
-    
+
 - type: entity
   parent: N14BaseBarrel
   id: N14BlueBarrel
@@ -90,7 +89,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: blue-closed
-    
+
 - type: entity
   parent: N14BaseBarrel
   id: N14RedBarrel
@@ -100,10 +99,21 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: red-closed
+  - type: SolutionContainerManager
+    solutions:
+      barrel:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 100
+  - type: DamageOnToolInteract
+    tools: Welding
+    weldingDamage:
+      types:
+        Heat: 10
   - type: Explosive
     explosionType: Default
-    totalIntensity: 120 # ~ 5 tile radius
-    
+    totalIntensity: 90
+
 - type: entity
   parent: N14BaseBarrel
   id: N14YellowBarrel
@@ -115,6 +125,7 @@
     state: yellow-closed
   - type: RadiationSource
     intensity: 2
+    slope: 1
 
 # Open
 - type: entity
@@ -127,7 +138,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: black-open
-    
+
 - type: entity
   parent: N14BaseBarrelOpen
   id: N14BlueBarrelOpen
@@ -138,7 +149,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: blue-open
-    
+
 - type: entity
   parent: N14BaseBarrelOpen
   id: N14RedBarrelOpen
@@ -149,7 +160,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: red-open
-    
+
 - type: entity
   parent: N14BaseBarrelOpen
   id: N14YellowBarrelOpen
@@ -162,7 +173,8 @@
     state: yellow-open
   - type: RadiationSource
     intensity: 1
-    
+    slope: 1
+
 # Full barrels
 - type: entity
   parent: N14BlackBarrelOpen
@@ -174,7 +186,7 @@
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: black-full
     # TODO - fill with some sort of waste product? Maybe just dirty water.
-    
+
 - type: entity
   parent: N14RedBarrelOpen
   id: N14RedBarrelFull
@@ -189,17 +201,16 @@
       barrel:
         reagents:
         - ReagentId: WeldingFuel
-          Quantity: 500
+          Quantity: 100
   - type: DamageOnToolInteract
-    tools:
-    - Welding
+    tools: Welding
     weldingDamage:
       types:
         Heat: 10
   - type: Explosive
     explosionType: Default
-    totalIntensity: 120 # ~ 5 tile radius
-    
+    totalIntensity: 90
+
 - type: entity
   parent: N14YellowBarrelOpen
   id: N14YellowBarrelFull
@@ -211,12 +222,26 @@
     state: yellow-full
   - type: RadiationSource
     intensity: 3
+    slope: 1
   - type: PointLight
     netsync: false
     radius: 1.5
     energy: 1.6
     color: "#3db83b"
     castShadows: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:SpillBehavior
+        solution: barrel
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     # TODO - fill with some sort of radioactive waste reagent.
 
 # Burning Barrels
@@ -243,7 +268,7 @@
         layer:
         - MidImpassable
         - LowImpassable
-    
+
 - type: entity
   parent: N14BurningBarrel
   id: N14BurningBarrelLit
@@ -262,7 +287,7 @@
   - type: LightBehaviour
     behaviours:
       - !type:RandomizeBehaviour # immediately make it bright and flickery
-        id: burnbarrel_lit
+        id: N14burnbarrel_lit
         interpolate: Nearest
         minDuration: 0.02
         maxDuration: 0.06

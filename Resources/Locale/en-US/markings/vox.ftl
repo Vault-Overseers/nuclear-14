@@ -6,5 +6,5 @@ marking-VoxLLegScales = Vox Left Arm
 marking-VoxRArmScales = Vox Right Arm
 marking-VoxRFootScales = Vox Right Foot
 marking-VoxRHandScales = Vox Right hand
-marking-VoxRLegScales = Vox Right Leg
+marking-VoxRLegScale = Vox Right Leg
 marking-VoxTail = Vox Tail

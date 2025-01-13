@@ -9,6 +9,5 @@ public interface ISpeakSpell // The speak n spell interface
     /// </summary>
     public string? Speech { get; }
 
-    [DataField]
     public InGameICChatType ChatType { get; }
 }

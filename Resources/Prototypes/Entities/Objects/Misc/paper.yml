@@ -18,7 +18,7 @@
   - type: PaperLabelType
   - type: ActivatableUI
     key: enum.PaperUiKey.Key
-    requiresComplex: false
+    requireHands: false
   - type: UserInterface
     interfaces:
       enum.PaperUiKey.Key:
@@ -117,9 +117,9 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
-  # - type: GuideHelp
-    # guides:
-    # - ArtifactReports
+  - type: GuideHelp
+    guides:
+    - ArtifactReports
   - type: PaperVisuals
     headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
     headerMargin: 0.0, 0.0, 0.0, 16.0
@@ -231,9 +231,9 @@
   - type: CargoBountyLabel
   - type: StaticPrice
     price: 0
-  # - type: GuideHelp
-    # guides:
-    # - CargoBounties
+  - type: GuideHelp
+    guides:
+    - CargoBounties
 
 - type: entity
   name: character sheet
@@ -395,13 +395,6 @@
         Piercing: 15
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Piercing: 15
-  - type: EmbeddableProjectile
-    removalTime: 2
-  - type: EmbedPassiveDamage
   - type: Tool
     qualities:
       - Screwing

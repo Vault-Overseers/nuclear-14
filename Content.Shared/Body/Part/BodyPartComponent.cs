@@ -37,16 +37,16 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField, AutoNetworkedField]
     public FixedPoint2 VitalDamage = 100;
 
-    [DataField]
+    [DataField, AlwaysPushInheritance]
     public string ToolName { get; set; } = "A body part";
 
-    [DataField]
-    public string SlotId = string.Empty;
+    [DataField, AlwaysPushInheritance]
+    public string SlotId = "";
 
     [DataField, AutoNetworkedField]
     public bool? Used { get; set; } = null;
 
-    [DataField]
+    [DataField, AlwaysPushInheritance]
     public float Speed { get; set; } = 1f;
 
     /// <summary>
@@ -125,7 +125,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     /// <summary>
     ///     Shitmed Change: The ID of the base layer for this body part.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField, AutoNetworkedField, AlwaysPushInheritance]
     public string? BaseLayerId;
 
     /// <summary>
@@ -146,7 +146,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     };
 
 
-    [DataField, AutoNetworkedField]
+    [DataField, AutoNetworkedField, AlwaysPushInheritance]
     public BodyPartType PartType = BodyPartType.Other;
 
 
@@ -158,7 +158,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField("vital"), AutoNetworkedField]
     public bool IsVital;
 
-    [DataField, AutoNetworkedField]
+    [DataField, AutoNetworkedField, AlwaysPushInheritance]
     public BodyPartSymmetry Symmetry = BodyPartSymmetry.None;
 
     /// <summary>

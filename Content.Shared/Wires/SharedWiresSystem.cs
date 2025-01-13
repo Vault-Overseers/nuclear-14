@@ -39,6 +39,11 @@ public abstract class SharedWiresSystem : EntitySystem
         UpdateAppearance(ent, ent);
     }
 
+    private void OnStartup(Entity<WiresPanelComponent> ent, ref ComponentStartup args)
+    {
+        UpdateAppearance(ent, ent);
+    }
+
     private void OnPanelDoAfter(EntityUid uid, WiresPanelComponent panel, WirePanelDoAfterEvent args)
     {
         if (args.Cancelled)

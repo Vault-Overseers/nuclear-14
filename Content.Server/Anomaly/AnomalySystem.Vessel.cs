@@ -7,8 +7,6 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Research.Components;
 using Content.Server.Psionics.Glimmer;
-using Content.Shared.Radiation.Components;
-
 
 namespace Content.Server.Anomaly;
 
@@ -23,7 +21,6 @@ public sealed partial class AnomalySystem
     {
         SubscribeLocalEvent<AnomalyVesselComponent, ComponentShutdown>(OnVesselShutdown);
         SubscribeLocalEvent<AnomalyVesselComponent, MapInitEvent>(OnVesselMapInit);
-        SubscribeLocalEvent<AnomalyVesselComponent, RefreshPartsEvent>(OnRefreshParts);
         SubscribeLocalEvent<AnomalyVesselComponent, UpgradeExamineEvent>(OnUpgradeExamine);
         SubscribeLocalEvent<AnomalyVesselComponent, InteractUsingEvent>(OnVesselInteractUsing);
         SubscribeLocalEvent<AnomalyVesselComponent, ExaminedEvent>(OnExamined);
@@ -70,20 +67,9 @@ public sealed partial class AnomalySystem
         UpdateVesselAppearance(uid,  component);
     }
 
-    private void OnRefreshParts(EntityUid uid, AnomalyVesselComponent component, RefreshPartsEvent args)
-    {
-        var pointRating = args.PartRatings[component.MachinePartPointMultiplier];
-        var radRating = args.PartRatings[component.MachinePartPointMultiplier];
-
-        component.PointMultiplier = component.BasePointMultiplier * (component.UpgradePointMultiplier * pointRating);
-
-        if (TryComp<RadiationSourceComponent>(uid, out var radiation))
-            radiation.Intensity = component.BaseRadiation * radRating;
-    }
-
     private void OnUpgradeExamine(EntityUid uid, AnomalyVesselComponent component, UpgradeExamineEvent args)
     {
-        args.AddPercentageUpgrade("anomaly-vessel-component-upgrade-output", component.PointMultiplier / component.BasePointMultiplier);
+        args.AddPercentageUpgrade("anomaly-vessel-component-upgrade-output", component.PointMultiplier);
     }
 
     private void OnVesselInteractUsing(EntityUid uid, AnomalyVesselComponent component, InteractUsingEvent args)

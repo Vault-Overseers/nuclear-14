@@ -182,19 +182,22 @@ namespace Content.Server.RoundEnd
                 units = "eta-units-minutes";
             }
 
-            _announcer.SendAnnouncement(
-                _announcer.GetAnnouncementId("ShuttleCalled"),
+            _announcer.SendAnnouncement(_announcer.GetAnnouncementId("ShuttleCalled"),
+                Filter.Broadcast(),
                 text,
                 name,
-                colorOverride: Color.Gold,
-                localeArgs: [("time", time), ("units", Loc.GetString(units)), ]
+                Color.Gold,
+                null,
+                null,
+                ("time", time),
+                    ("units", Loc.GetString(units))
             );
 
             LastCountdownStart = _gameTiming.CurTime;
             ExpectedCountdownEnd = _gameTiming.CurTime + countdownTime;
 
             // TODO full game saves
-            Timer.Spawn(countdownTime, _shuttle.DockEmergencyShuttle, _countdownTokenSource.Token);
+            Timer.Spawn(countdownTime, _shuttle.CallEmergencyShuttle, _countdownTokenSource.Token);
 
             ActivateCooldown();
             RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
@@ -235,9 +238,10 @@ namespace Content.Server.RoundEnd
 
             _announcer.SendAnnouncement(
                 _announcer.GetAnnouncementId("ShuttleRecalled"),
+                Filter.Broadcast(),
                 "round-end-system-shuttle-recalled-announcement",
                 Loc.GetString("Station"),
-                colorOverride: Color.Gold
+                Color.Gold
             );
 
             LastCountdownStart = null;
@@ -319,9 +323,10 @@ namespace Content.Server.RoundEnd
                     {
                         _announcer.SendAnnouncement(
                             _announcer.GetAnnouncementId("ShuttleCalled"),
+                            Filter.Broadcast(),
                             textAnnounce,
                             Loc.GetString(sender),
-                            colorOverride: Color.Gold
+                            Color.Gold
                         );
                     }
                     else
@@ -367,7 +372,7 @@ namespace Content.Server.RoundEnd
             _countdownTokenSource.Cancel();
             _countdownTokenSource = new CancellationTokenSource();
 
-            Timer.Spawn(countdown, _shuttle.DockEmergencyShuttle, _countdownTokenSource.Token);
+            Timer.Spawn(countdown, _shuttle.CallEmergencyShuttle, _countdownTokenSource.Token);
         }
 
         public override void Update(float frameTime)

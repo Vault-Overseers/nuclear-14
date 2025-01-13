@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared.Body.Systems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.Loadouts.Prototypes;
 using Content.Shared.Customization.Systems;
@@ -8,9 +7,7 @@ using Content.Shared.Paint;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Station;
-using JetBrains.Annotations;
 using Robust.Shared.Configuration;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
@@ -27,18 +24,12 @@ public sealed class SharedLoadoutSystem : EntitySystem
     [Dependency] private readonly CharacterRequirementsSystem _characterRequirements = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedTransformSystem _sharedTransformSystem = default!;
-    [Dependency] private readonly ILogManager _log = default!;
-
-    private ISawmill _sawmill = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        // Wait until the character has all their organs before we give them their loadout to activate internals
-        SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedBodySystem)]);
-
-        _sawmill = _log.GetSawmill("loadouts");
+        SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit);
     }
 
     private void OnMapInit(EntityUid uid, LoadoutComponent component, MapInitEvent args)
@@ -84,8 +75,6 @@ public sealed class SharedLoadoutSystem : EntitySystem
         var failedLoadouts = new List<EntityUid>();
         var allLoadouts = new List<(EntityUid, LoadoutPreference, int)>();
         heirlooms = new();
-        if (!job.SpawnLoadout)
-            return (failedLoadouts, allLoadouts);
 
         foreach (var loadout in profile.LoadoutPreferences)
         {
@@ -109,14 +98,8 @@ public sealed class SharedLoadoutSystem : EntitySystem
             var i = 0; // If someone wants to add multi-item support to the editor
             foreach (var item in spawned)
             {
-                if (item == EntityUid.Invalid || !Exists(item))
-                {
-                    _sawmill.Warning($"Item {ToPrettyString(item)} failed to spawn or did not exist.");
-                    continue;
-                }
-
                 allLoadouts.Add((item, loadout, i));
-                if (i == 0 && loadout.CustomHeirloom == true) // Only the first item can be an heirloom
+                if (loadout.CustomHeirloom == true)
                     heirlooms.Add((item, loadout));
 
                 // Equip it
@@ -160,8 +143,6 @@ public sealed class SharedLoadoutSystem : EntitySystem
                 // Equip the loadout
                 if (!_inventory.TryEquip(uid, item, slot, true, !string.IsNullOrEmpty(slot), true))
                     failedLoadouts.Add(item);
-
-                RaiseLocalEvent(item, new SpawnedViaLoadoutEvent(uid, job.ID, profile));
 
                 i++;
             }
@@ -210,62 +191,4 @@ public sealed partial class LoadoutPreference : Loadout
         string? customColorTint = null,
         bool? customHeirloom = null
     ) : base(loadoutName, customName, customDescription, customColorTint, customHeirloom) { }
-}
-
-/// <summary>
-///     Event raised both directed and broadcast when a player has been spawned and then given a Loadout.
-///     Most useful to delay actions that should happen on spawn for when the loadouts have been handled.
-/// </summary>
-[PublicAPI]
-public sealed class PlayerLoadoutAppliedEvent : EntityEventArgs
-{
-    public EntityUid Mob { get; }
-    public ICommonSession Player { get; }
-    public string? JobId { get; }
-    public bool LateJoin { get; }
-    public bool Silent { get; }
-    public EntityUid Station { get; }
-    public HumanoidCharacterProfile Profile { get; }
-
-    // Ex. If this is the 27th person to join, this will be 27.
-    public int JoinOrder { get; }
-
-    public PlayerLoadoutAppliedEvent(EntityUid mob,
-        ICommonSession player,
-        string? jobId,
-        bool lateJoin,
-        bool silent,
-        int joinOrder,
-        EntityUid station,
-        HumanoidCharacterProfile profile)
-    {
-        Mob = mob;
-        Player = player;
-        JobId = jobId;
-        LateJoin = lateJoin;
-        Silent = silent;
-        Station = station;
-        Profile = profile;
-        JoinOrder = joinOrder;
-    }
-}
-
-/// <summary>
-///     Event raised when a player's loadout item is spawned on said item.
-/// </summary>
-[PublicAPI]
-public sealed class SpawnedViaLoadoutEvent : EntityEventArgs
-{
-    public EntityUid Mob { get; }
-    public string? JobId { get; }
-    public HumanoidCharacterProfile Profile { get; }
-
-    public SpawnedViaLoadoutEvent(EntityUid mob,
-        string? jobId,
-        HumanoidCharacterProfile profile)
-    {
-        Mob = mob;
-        JobId = jobId;
-        Profile = profile;
-    }
 }

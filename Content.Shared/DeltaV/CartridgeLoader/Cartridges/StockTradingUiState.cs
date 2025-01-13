@@ -4,19 +4,19 @@ namespace Content.Shared.CartridgeLoader.Cartridges;
 
 [Serializable, NetSerializable]
 public sealed class StockTradingUiState(
-    List<StockCompany> entries,
+    List<StockCompanyStruct> entries,
     Dictionary<int, int> ownedStocks,
     float balance)
     : BoundUserInterfaceState
 {
-    public readonly List<StockCompany> Entries = entries;
+    public readonly List<StockCompanyStruct> Entries = entries;
     public readonly Dictionary<int, int> OwnedStocks = ownedStocks;
     public readonly float Balance = balance;
 }
 
 // No structure, zero fucks given
 [DataDefinition, Serializable]
-public partial struct StockCompany
+public partial struct StockCompanyStruct
 {
     /// <summary>
     /// The displayed name of the company shown in the UI.
@@ -55,7 +55,7 @@ public partial struct StockCompany
     [DataField]
     public List<float>? PriceHistory;
 
-    public StockCompany(string displayName, float currentPrice, float basePrice, List<float>? priceHistory)
+    public StockCompanyStruct(string displayName, float currentPrice, float basePrice, List<float>? priceHistory)
     {
         DisplayName = displayName;
         _displayName = null;

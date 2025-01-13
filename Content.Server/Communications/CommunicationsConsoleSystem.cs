@@ -30,6 +30,7 @@ namespace Content.Server.Communications
     public sealed class CommunicationsConsoleSystem : EntitySystem
     {
         [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
+        [Dependency] private readonly InteractionSystem _interaction = default!;
         [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
         [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
@@ -181,6 +182,10 @@ namespace Content.Server.Communications
 
         private bool CanUse(EntityUid user, EntityUid console)
         {
+            // This shouldn't technically be possible because of BUI but don't trust client.
+            if (!_interaction.InRangeUnobstructed(console, user))
+                return false;
+
             if (TryComp<AccessReaderComponent>(console, out var accessReaderComponent) && !HasComp<EmaggedComponent>(console))
             {
                 return _accessReaderSystem.IsAllowed(user, console, accessReaderComponent);
@@ -198,7 +203,7 @@ namespace Content.Server.Communications
 
             // Calling shuttle checks
             if (_roundEndSystem.ExpectedCountdownEnd is null)
-                return true;
+                return comp.CanShuttle;
 
             // Recalling shuttle checks
             var recallThreshold = _cfg.GetCVar(CCVars.EmergencyRecallTurningPoint);
@@ -266,14 +271,15 @@ namespace Content.Server.Communications
             msg += $"\n{Loc.GetString("comms-console-announcement-sent-by")} {author}";
             if (comp.Global)
             {
-                _announcer.SendAnnouncement("announce", msg, title, colorOverride: comp.Color);
+                _announcer.SendAnnouncement("announce", Filter.Broadcast(), msg, title, comp.Color);
 
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following global announcement: {msg}");
                 return;
             }
 
             if (TryComp<StationDataComponent>(_stationSystem.GetOwningStation(uid), out var stationData))
-                _announcer.SendAnnouncement("announce", msg, title, _stationSystem.GetInStation(stationData), comp.Color);
+                _announcer.SendAnnouncement("announce", _stationSystem.GetInStation(stationData), msg, title,
+                    comp.Color);
 
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
 

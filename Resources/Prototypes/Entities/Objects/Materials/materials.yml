@@ -46,10 +46,6 @@
     - state: cardboard_3
       map: ["base"]
   - type: Appearance
-  - type: Tag
-    tags:
-      - RawMaterial
-      - MaterialCardboard
   - type: Extractable
     grindableSolutionName: cardboard
   - type: SolutionContainerManager
@@ -78,6 +74,9 @@
     state: cardboard
   - type: Stack
     count: 1
+  - type: Construction
+    graph: N14Cardboard
+    node: cardboard
 
 - type: entity
   parent: MaterialBase
@@ -85,18 +84,18 @@
   name: cloth
   suffix: Full
   components:
-  # - type: Healing
-    # damageContainers:
-      # - Biological
-    # damage:
-      # types:
-        # Slash: -0.5
-        # Piercing: -0.5
-    # bloodlossModifier: -4
-    # healingBeginSound:
-      # path: "/Audio/Items/Medical/brutepack_begin.ogg"
-    # healingEndSound:
-      # path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Slash: -0.5
+        Piercing: -0.5
+    bloodlossModifier: -4
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: Cloth
     baseLayer: base
@@ -199,8 +198,6 @@
     tags:
       - ClothMade
       - RawMaterial
-  - type: Item
-    heldPrefix: durathread
 
 - type: entity
   parent: MaterialDurathread
@@ -433,8 +430,6 @@
     tags:
       - ClothMade
       - RawMaterial
-  - type: Item
-    heldPrefix: cotton
 
 - type: entity
   parent: MaterialCotton
@@ -566,7 +561,6 @@
   description: A webby material.
   suffix: Full
   components:
-  - type: Material
   - type: PhysicalComposition
     materialComposition:
       WebSilk: 100
@@ -611,83 +605,6 @@
 - type: entity
   parent: MaterialWebSilk
   id: MaterialWebSilk1
-  suffix: 1
-  components:
-  - type: Stack
-    count: 1
-
-- type: entity
-  parent: MaterialBase
-  id: MaterialToothSpaceCarp
-  name: space carp tooth
-  description: Pretty small but plenty nasty. You like them best when they're not sinking into you.
-  suffix: Full
-  components:
-  - type: Sprite
-    sprite: Objects/Materials/Mob/carptooth.rsi
-    layers:
-    - state: tooth
-      map: [ "base" ]
-  - type: Item
-    sprite: Objects/Materials/Mob/carptooth.rsi
-    size: Normal
-  - type: Appearance
-  - type: Stack
-    stackType: SpaceCarpTooth
-    count: 30
-    baseLayer: base
-    layerStates:
-    - tooth
-    - tooth_2
-    - tooth_3
-  - type: StackPrice
-    price: 50
-  - type: Tag
-    tags:
-    - ToothSpaceCarp
-
-- type: entity
-  parent: MaterialToothSpaceCarp
-  id: MaterialToothSpaceCarp1
-  suffix: 1
-  components:
-  - type: Stack
-    count: 1
-
-- type: entity
-  parent: [ MaterialBase, BaseKnife ]
-  id: MaterialToothSharkminnow
-  name: sharkminnow tooth
-  description: Looks sharp. Sharp enough to poke someone's eye out. Holy fuck it's big.
-  suffix: Full
-  components:
-  - type: Sprite
-    sprite: Objects/Materials/Mob/sharktooth.rsi
-    layers:
-    - state: tooth
-      map: [ "base" ]
-  - type: Item
-    sprite: Objects/Materials/Mob/sharktooth.rsi
-    size: Normal
-  - type: Appearance
-  - type: Stack
-    stackType: SharkMinnowTooth
-    count: 30
-    baseLayer: base
-    layerStates:
-    - tooth
-    - tooth_2
-    - tooth_3
-  - type: StackPrice
-    price: 150
-  - type: Tag
-    tags:
-    - Knife
-    - ToothSharkminnow
-
-- type: entity
-  parent: MaterialToothSharkminnow
-  id: MaterialToothSharkminnow1
   suffix: 1
   components:
   - type: Stack

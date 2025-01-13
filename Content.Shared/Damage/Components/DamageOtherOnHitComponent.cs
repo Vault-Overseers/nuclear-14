@@ -1,6 +1,9 @@
 using Content.Shared.Contests;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Damage.Components;
 
@@ -69,7 +72,4 @@ public sealed partial class DamageOtherOnHitComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public SoundSpecifier SoundNoDamage { get; set; } = new SoundCollectionSpecifier("WeakHit");
-
-    [DataField, AutoNetworkedField]
-    public float MinimumSpeed = 1f;
 }

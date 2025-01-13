@@ -1,0 +1,87 @@
+- type: entity
+  parent: BaseItem
+  id: N14FuelTankHandy
+  name: fuel tank
+  description: A tank of Mr Handy fuel.
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Piercing
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:SpillBehavior
+        solution: tank
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 250
+  - type: DrainableSolution
+    solution: tank
+  - type: ExaminableSolution
+    solution: tank
+  - type: ReagentTank
+    tankType: Fuel
+  - type: DamageOnToolInteract
+    tools: Welding
+    weldingDamage:
+      types:
+        Heat: 10
+  - type: PacifismDangerousAttack
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 20 # ~ 4 tile radius
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/handyfuel.rsi
+    layers:
+      - state: fuel
+      # - state: fueltank-2-1
+        # map: ["enum.SolutionContainerLayers.Fill"]
+        # visible: false
+  # - type: Appearance
+  # - type: SolutionContainerVisuals
+    # maxFillLevels: 3
+    # fillBaseName: fueltank-2-
+  - type: Item
+    size: Huge
+    
+- type: entity
+  parent: N14FuelTankHandy
+  id: N14FuelTankHandyRusty
+  name: fuel tank
+  suffix: rusty
+  description: A rusty tank of Mr Handy fuel.
+  components:
+  - type: Sprite
+    layers:
+      - state: fuel-rusty

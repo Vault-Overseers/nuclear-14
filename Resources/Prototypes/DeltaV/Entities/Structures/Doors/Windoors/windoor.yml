@@ -2,7 +2,6 @@
   parent: Windoor
   id: WindoorMailLocked
   suffix: Mail, Locked
-  noSpawn: true
   components:
   - type: AccessReader
     access: [["Mail"]]
@@ -11,7 +10,6 @@
   parent: WindoorSecure
   id: WindoorSecureMailLocked
   suffix: Mail, Locked
-  noSpawn: true
   components:
   - type: AccessReader
     access: [["Mail"]]
@@ -20,7 +18,6 @@
   parent: WindoorSecure
   id: WindoorSecureParamedicLocked
   suffix: Paramedic, Locked
-  noSpawn: true
   components:
   - type: AccessReader
     access: [["Paramedic"]]
@@ -52,15 +49,6 @@
     containers:
       board: [ DoorElectronicsProsecutor ]
 
-- type: entity
-  parent: WindoorSecure
-  id: WindoorSecureClerkLocked
-  suffix: Clerk, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsClerk ]
-      
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureLawyerLocked

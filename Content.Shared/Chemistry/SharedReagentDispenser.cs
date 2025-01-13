@@ -1,5 +1,4 @@
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Chemistry
@@ -94,11 +93,11 @@ namespace Content.Shared.Chemistry
     }
 
     [Serializable, NetSerializable]
-    public sealed class ReagentInventoryItem(string storageSlotId, string reagentLabel, FixedPoint2 quantity, Color reagentColor)
+    public sealed class ReagentInventoryItem(string storageSlotId, string reagentLabel, string storedAmount, Color reagentColor)
     {
         public string StorageSlotId = storageSlotId;
         public string ReagentLabel = reagentLabel;
-        public FixedPoint2 Quantity = quantity;
+        public string StoredAmount = storedAmount;
         public Color ReagentColor = reagentColor;
     }
 

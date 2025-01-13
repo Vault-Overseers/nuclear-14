@@ -2,7 +2,8 @@
   id: Bonfire
   parent: BaseStructure
   name: bonfire
-  description: What can be better than a late evening under the sky with guitar and friends?
+  description: What can be better then late evening under the sky with guitar and friends.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     noRot: true
@@ -15,7 +16,7 @@
     energy: 3
     color: "#FFC90C"
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Wood
   - type: Destructible
     thresholds:
@@ -31,18 +32,13 @@
     sound:
       path: /Audio/Ambience/Objects/fireplace.ogg
   - type: AlwaysHot
-  - type: Construction # Frontier
-    graph: FiresGraph # Frontier
-    node: BonfireNode # Frontier
-  - type: Tag
-    tags:
-      - NoPaint
 
 - type: entity
   id: LegionnaireBonfire
   parent: Bonfire
   name: legionnaire bonfire
   description: There, in the land of lava and ash, place to to cook marshmallow and potato.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:

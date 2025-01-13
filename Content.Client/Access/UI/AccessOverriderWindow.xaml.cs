@@ -13,14 +13,12 @@ namespace Content.Client.Access.UI
     [GenerateTypedNameReferences]
     public sealed partial class AccessOverriderWindow : DefaultWindow
     {
-        [Dependency] private readonly ILocalizationManager _localization = default!;
         private readonly Dictionary<string, Button> _accessButtons = new();
 
         public event Action<List<ProtoId<AccessLevelPrototype>>>? OnSubmit;
 
         public AccessOverriderWindow()
         {
-            IoCManager.InjectDependencies(this);
             RobustXamlLoader.Load(this);
         }
 
@@ -57,8 +55,8 @@ namespace Content.Client.Access.UI
         {
             PrivilegedIdLabel.Text = state.PrivilegedIdName;
             PrivilegedIdButton.Text = state.IsPrivilegedIdPresent
-                ? _localization.GetString("access-overrider-window-eject-button")
-                : _localization.GetString("access-overrider-window-insert-button");
+                ? Loc.GetString("access-overrider-window-eject-button")
+                : Loc.GetString("access-overrider-window-insert-button");
 
             TargetNameLabel.Text = state.TargetLabel;
             TargetNameLabel.FontColorOverride = state.TargetLabelColor;
@@ -75,11 +73,11 @@ namespace Content.Client.Access.UI
 
                 foreach (string tag in state.MissingPrivilegesList)
                 {
-                    var privilege = _localization.GetString(protoManager.Index<AccessLevelPrototype>(tag)?.Name ?? "generic-unknown");
+                    var privilege = Loc.GetString(protoManager.Index<AccessLevelPrototype>(tag)?.Name ?? "generic-unknown");
                     missingPrivileges.Add(privilege);
                 }
 
-                MissingPrivilegesLabel.Text = _localization.GetString("access-overrider-window-missing-privileges");
+                MissingPrivilegesLabel.Text = Loc.GetString("access-overrider-window-missing-privileges");
                 MissingPrivilegesText.Text = string.Join(", ", missingPrivileges);
             }
 

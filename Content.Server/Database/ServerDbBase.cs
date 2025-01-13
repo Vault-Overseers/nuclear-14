@@ -101,20 +101,6 @@ namespace Content.Server.Database
                 .SingleOrDefault(h => h.Slot == slot);
 
             var newProfile = ConvertProfiles(humanoid, slot, oldProfile);
-
-            var sum = 0;
-            foreach(var special in newProfile.Specials)
-            {
-                sum += (int) special.Priority;
-            }
-            if(sum > 40)
-            {
-                foreach(var special in newProfile.Specials)
-                {
-                special.Priority = DbSpecialPriority.Five;
-                }
-            }
-
             if (oldProfile == null)
             {
                 var prefs = await db.DbContext
@@ -243,9 +229,6 @@ namespace Content.Server.Database
                 profile.Age,
                 sex,
                 gender,
-                profile.DisplayPronouns,
-                profile.StationAiName,
-                profile.CyborgName,
                 new HumanoidCharacterAppearance(
                     profile.HairName,
                     Color.FromHex(profile.HairColor),
@@ -288,9 +271,6 @@ namespace Content.Server.Database
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
             profile.Gender = humanoid.Gender.ToString();
-            profile.DisplayPronouns = humanoid.DisplayPronouns;
-            profile.StationAiName = humanoid.StationAiName;
-            profile.CyborgName = humanoid.CyborgName;
             profile.Height = humanoid.Height;
             profile.Width = humanoid.Width;
             profile.HairName = appearance.HairStyleId;

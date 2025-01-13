@@ -48,9 +48,6 @@ namespace Content.Client.Jittering
             if (args.Key != _jitterAnimationKey || jittering.LifeStage >= ComponentLifeStage.Stopping)
                 return;
 
-            if (!args.Finished)
-                return;
-
             if (TryComp(uid, out AnimationPlayerComponent? animationPlayer)
                 && TryComp(uid, out SpriteComponent? sprite))
                 _animationPlayer.Play(uid, animationPlayer, GetAnimation(jittering, sprite), _jitterAnimationKey);

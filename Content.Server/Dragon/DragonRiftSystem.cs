@@ -1,4 +1,3 @@
-using Content.Server.Announcements.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.NPC;
 using Content.Server.NPC.Systems;
@@ -15,6 +14,7 @@ using System.Numerics;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
+using Content.Server.Announcements.Systems;
 
 namespace Content.Server.Dragon;
 
@@ -72,7 +72,7 @@ public sealed class DragonRiftSystem : EntitySystem
                 comp.State = DragonRiftState.AlmostFinished;
                 Dirty(uid, comp);
 
-                _announcer.SendAnnouncement(_announcer.GetAnnouncementId("CarpRift"),
+                _announcer.SendAnnouncement(_announcer.GetAnnouncementId("CarpRift"), Filter.Broadcast(),
                     "carp-rift-warning", colorOverride: Color.Red, localeArgs: ("location", FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString((uid, xform)))));
                 _navMap.SetBeaconEnabled(uid, true);
             }

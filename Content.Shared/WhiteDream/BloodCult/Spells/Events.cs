@@ -62,9 +62,6 @@ public sealed partial class SummonEquipmentEvent : InstantActionEvent, ISpeakSpe
     [DataField]
     public bool Force { get; set; } = true;
 
-    [DataField]
-    public InGameICChatType InvokeChatType = InGameICChatType.Whisper;
-
     public InGameICChatType ChatType => InGameICChatType.Whisper;
 }
 
@@ -111,8 +108,3 @@ public sealed partial class TeleportActionDoAfterEvent : SimpleDoAfterEvent
 
 [Serializable, NetSerializable]
 public sealed partial class BloodRitesExtractDoAfterEvent : SimpleDoAfterEvent;
-
-public sealed partial class SpeakOnAuraUseEvent(EntityUid user) : EntityEventArgs
-{
-    public EntityUid User = user;
-}

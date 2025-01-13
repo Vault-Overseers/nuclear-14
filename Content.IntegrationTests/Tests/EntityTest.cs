@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Robust.Shared;
-using Robust.Shared.Audio.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Log;
@@ -215,18 +214,16 @@ namespace Content.IntegrationTests.Tests
         /// <remarks>
         /// Unless an entity is intentionally designed to spawn other entities (e.g., mob spawners), they should
         /// generally not spawn unrelated / detached entities. Any entities that do get spawned should be parented to
+        /// the spawned entity (e.g., in a container). If an entity needs to spawn an entity somewhere in null-space,
         /// it should delete that entity when it is no longer required. This test mainly exists to prevent "entity leak"
-        /// bugs, where spawning some entity starts spawning unrelated entities in null space that stick around after
-        /// the original entity is gone.
-        ///
-        /// Note that this isn't really a strict requirement, and there are probably quite a few edge cases. Its a pretty
-        /// crude test to try catch issues like this, and possibly should just be disabled.
+        /// bugs, where spawning some entity starts spawning unrelated entities in null space.
         /// </remarks>
         [Test]
         public async Task SpawnAndDeleteEntityCountTest()
         {
             var settings = new PoolSettings { Connected = true, Dirty = true };
             await using var pair = await PoolManager.GetServerClient(settings);
+            var mapManager = pair.Server.ResolveDependency<IMapManager>();
             var mapSys = pair.Server.System<SharedMapSystem>();
             var server = pair.Server;
             var client = pair.Client;
@@ -264,14 +261,11 @@ namespace Content.IntegrationTests.Tests
 
             await pair.RunTicksSync(3);
 
-            // We consider only non-audio entities, as some entities will just play sounds when they spawn.
-            int Count(IEntityManager ent) =>  ent.EntityCount - ent.Count<AudioComponent>();
-
             foreach (var protoId in protoIds)
             {
                 // TODO fix ninja
                 // Currently ninja fails to equip their own loadout.
-                if (protoId == "MobHumanSpaceNinja" || protoId == "LavalandHierophantTelepad") // TODO Lavaland Change: fix telepad
+                if (protoId == "MobHumanSpaceNinja")
                     continue;
 
                 // TODO fix tests properly upstream
@@ -279,8 +273,8 @@ namespace Content.IntegrationTests.Tests
                 if (protoId == "StandardNanotrasenStation")
                     continue;
 
-                var count = Count(server.EntMan);
-                var clientCount = Count(client.EntMan);
+                var count = server.EntMan.EntityCount;
+                var clientCount = client.EntMan.EntityCount;
                 EntityUid uid = default;
                 await server.WaitPost(() => uid = server.EntMan.SpawnEntity(protoId, coords));
                 await pair.RunTicksSync(3);
@@ -288,30 +282,30 @@ namespace Content.IntegrationTests.Tests
                 // If the entity deleted itself, check that it didn't spawn other entities
                 if (!server.EntMan.EntityExists(uid))
                 {
-                    if (Count(server.EntMan) != count)
+                    if (server.EntMan.EntityCount != count)
                     {
                         Assert.Fail($"Server prototype {protoId} failed on deleting itself");
                     }
 
-                    if (Count(client.EntMan) != clientCount)
+                    if (client.EntMan.EntityCount != clientCount)
                     {
                         Assert.Fail($"Client prototype {protoId} failed on deleting itself\n" +
-                                    $"Expected {clientCount} and found {Count(client.EntMan)}.\n" +
+                                    $"Expected {clientCount} and found {client.EntMan.EntityCount}.\n" +
                                     $"Server was {count}.");
                     }
                     continue;
                 }
 
                 // Check that the number of entities has increased.
-                if (Count(server.EntMan) <= count)
+                if (server.EntMan.EntityCount <= count)
                 {
                     Assert.Fail($"Server prototype {protoId} failed on spawning as entity count didn't increase");
                 }
 
-                if (Count(client.EntMan) <= clientCount)
+                if (client.EntMan.EntityCount <= clientCount)
                 {
                     Assert.Fail($"Client prototype {protoId} failed on spawning as entity count didn't increase" +
-                                $"Expected at least {clientCount} and found {Count(client.EntMan)}. " +
+                                $"Expected at least {clientCount} and found {client.EntMan.EntityCount}. " +
                                 $"Server was {count}");
                 }
 
@@ -319,15 +313,15 @@ namespace Content.IntegrationTests.Tests
                 await pair.RunTicksSync(3);
 
                 // Check that the number of entities has gone back to the original value.
-                if (Count(server.EntMan) != count)
+                if (server.EntMan.EntityCount != count)
                 {
                     Assert.Fail($"Server prototype {protoId} failed on deletion count didn't reset properly");
                 }
 
-                if (Count(client.EntMan) != clientCount)
+                if (client.EntMan.EntityCount != clientCount)
                 {
                     Assert.Fail($"Client prototype {protoId} failed on deletion count didn't reset properly:\n" +
-                                $"Expected {clientCount} and found {Count(client.EntMan)}.\n" +
+                                $"Expected {clientCount} and found {client.EntMan.EntityCount}.\n" +
                                 $"Server was {count}.");
                 }
             }
@@ -349,7 +343,6 @@ namespace Content.IntegrationTests.Tests
                 "MapGrid",
                 "Broadphase",
                 "StationData", // errors when removed mid-round
-                "StationJobs",
                 "Actor", // We aren't testing actor components, those need their player session set.
                 "BlobFloorPlanBuilder", // Implodes if unconfigured.
                 "DebrisFeaturePlacerController", // Above.

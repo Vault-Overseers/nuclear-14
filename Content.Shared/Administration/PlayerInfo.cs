@@ -1,37 +1,36 @@
-using Content.Shared.Mind;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Administration;
-
-[Serializable, NetSerializable]
-public sealed record PlayerInfo(
-    string Username,
-    string CharacterName,
-    string IdentityName,
-    string StartingJob,
-    bool Antag,
-    RoleTypePrototype RoleProto,
-    NetEntity? NetEntity,
-    NetUserId SessionId,
-    bool Connected,
-    bool ActiveThisRound,
-    TimeSpan? OverallPlaytime)
+namespace Content.Shared.Administration
 {
-    private string? _playtimeString;
-
-    public bool IsPinned { get; set; }
-
-    public string PlaytimeString => _playtimeString ??=
-        OverallPlaytime?.ToString("%d':'hh':'mm") ?? Loc.GetString("generic-unknown-title");
-
-    public bool Equals(PlayerInfo? other)
+    [Serializable, NetSerializable]
+    public sealed record PlayerInfo(
+        string Username,
+        string CharacterName,
+        string IdentityName,
+        string StartingJob,
+        bool Antag,
+        NetEntity? NetEntity,
+        NetUserId SessionId,
+        bool Connected,
+        bool ActiveThisRound,
+        TimeSpan? OverallPlaytime)
     {
-        return other?.SessionId == SessionId;
-    }
+        private string? _playtimeString;
 
-    public override int GetHashCode()
-    {
-        return SessionId.GetHashCode();
+        public bool IsPinned { get; set; }
+
+        public string PlaytimeString => _playtimeString ??=
+            OverallPlaytime?.ToString("%d':'hh':'mm") ?? Loc.GetString("generic-unknown-title");
+
+        public bool Equals(PlayerInfo? other)
+        {
+            return other?.SessionId == SessionId;
+        }
+
+        public override int GetHashCode()
+        {
+            return SessionId.GetHashCode();
+        }
     }
 }

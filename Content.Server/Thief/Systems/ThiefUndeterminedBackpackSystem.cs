@@ -1,12 +1,8 @@
 using Content.Server.Thief.Components;
-using Content.Shared.Customization.Systems;
-using Content.Shared.Humanoid;
-using Content.Shared.Roles;
 using Content.Shared.Item;
 using Content.Shared.Thief;
 using Robust.Server.GameObjects;
 using Robust.Server.Audio;
-using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Thief.Systems;
@@ -19,11 +15,10 @@ public sealed class ThiefUndeterminedBackpackSystem : EntitySystem
 {
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly CharacterRequirementsSystem _characterRequirements = default!;
 
+    private const int MaxSelectedSets = 2;
     public override void Initialize()
     {
         base.Initialize();
@@ -35,12 +30,12 @@ public sealed class ThiefUndeterminedBackpackSystem : EntitySystem
 
     private void OnUIOpened(Entity<ThiefUndeterminedBackpackComponent> backpack, ref BoundUIOpenedEvent args)
     {
-        UpdateUI(backpack.Owner, args.Actor, backpack.Comp);
+        UpdateUI(backpack.Owner, backpack.Comp);
     }
 
     private void OnApprove(Entity<ThiefUndeterminedBackpackComponent> backpack, ref ThiefBackpackApproveMessage args)
     {
-        if (backpack.Comp.SelectedSets.Count != backpack.Comp.MaxSelectedSets)
+        if (backpack.Comp.SelectedSets.Count != MaxSelectedSets)
             return;
 
         foreach (var i in backpack.Comp.SelectedSets)
@@ -62,10 +57,10 @@ public sealed class ThiefUndeterminedBackpackSystem : EntitySystem
         if (!backpack.Comp.SelectedSets.Remove(args.SetNumber))
             backpack.Comp.SelectedSets.Add(args.SetNumber);
 
-        UpdateUI(backpack.Owner, args.Actor, backpack.Comp);
+        UpdateUI(backpack.Owner, backpack.Comp);
     }
 
-    private void UpdateUI(EntityUid uid, EntityUid user, ThiefUndeterminedBackpackComponent? component = null)
+    private void UpdateUI(EntityUid uid, ThiefUndeterminedBackpackComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
@@ -75,15 +70,6 @@ public sealed class ThiefUndeterminedBackpackSystem : EntitySystem
         for (int i = 0; i < component.PossibleSets.Count; i++)
         {
             var set = _proto.Index(component.PossibleSets[i]);
-
-            if (set.Requirements.Count != 0 &&
-                TryComp<HumanoidAppearanceComponent>(user, out var appearance) &&
-                appearance.LastProfileLoaded != null &&
-                !_characterRequirements.CheckRequirementsValid(
-                    set.Requirements, new JobPrototype() /* not gonna bother with jobs */,
-                    appearance.LastProfileLoaded, new(), false, set, EntityManager, _proto, _config, out _))
-                continue;
-
             var selected = component.SelectedSets.Contains(i);
             var info = new ThiefBackpackSetInfo(
                 set.Name,
@@ -93,6 +79,6 @@ public sealed class ThiefUndeterminedBackpackSystem : EntitySystem
             data.Add(i, info);
         }
 
-        _ui.SetUiState(uid, ThiefBackpackUIKey.Key, new ThiefBackpackBoundUserInterfaceState(data, component.MaxSelectedSets));
+        _ui.SetUiState(uid, ThiefBackpackUIKey.Key, new ThiefBackpackBoundUserInterfaceState(data, MaxSelectedSets));
     }
 }

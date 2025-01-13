@@ -19,84 +19,44 @@
   - type: Item
     size: Tiny
 
-# Muffins
+# Muffins/Buns
 
 - type: entity
   name: muffin
-  parent: FoodInjectableBase
+  parent: FoodBakedBase
   id: FoodBakedMuffin
   description: A delicious and spongy little cake.
   components:
-  - type: Food
-    trash:
-    - FoodPlateMuffinTin
   - type: Sprite
-    sprite: Objects/Consumable/Food/Baked/misc.rsi
     state: muffin
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 2
-  - type: FlavorProfile
-    flavors:
-      - sweet
-  - type: Item
-    size: Tiny
 
 - type: entity
   name: berry muffin
-  parent: FoodBakedMuffin
+  parent: FoodBakedBase
   id: FoodBakedMuffinBerry
   description: A delicious and spongy little cake, with berries.
   components:
   - type: Sprite
     state: muffin-berry
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 12
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 2
-        - ReagentId: JuiceBerry
-          Quantity: 2
   - type: Tag
     tags:
     - Fruit
 
 - type: entity
   name: cherry muffin
-  parent: FoodBakedMuffin
+  parent: FoodBakedBase
   id: FoodBakedMuffinCherry
   description: A sweet muffin with cherry bits.
   components:
   - type: Sprite
     state: muffin-cherry
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 12
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 2
-        - ReagentId: JuiceCherry
-          Quantity: 2
   - type: Tag
     tags:
     - Fruit
 
 - type: entity
   name: bluecherry muffin
-  parent: FoodBakedMuffin
+  parent: FoodBakedBase
   id: FoodBakedMuffinBluecherry
   description: Blue cherries inside a delicious muffin.
   components:
@@ -105,51 +65,6 @@
   - type: Tag
     tags:
     - Fruit
-
-- type: entity
-  name: chocolate muffin
-  parent: FoodBakedMuffin
-  id: FoodBakedMuffinChocolate
-  description: A delicious and spongy chocolate muffin.
-  components:
-  - type: Sprite
-    state: muffin-chocolate
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 12
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 2
-        - ReagentId: CocoaPowder
-          Quantity: 2
-
-- type: entity
-  name: banana muffin
-  parent: FoodBakedMuffin
-  id: FoodBakedMuffinBanana
-  description: A delicious and spongy banana muffin.
-  components:
-  - type: Sprite
-    state: muffin-banana
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 12
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 2
-        - ReagentId: JuiceBanana
-          Quantity: 2
-  - type: Tag
-    tags:
-    - Fruit
-
-# Buns
 
 - type: entity
   name: honey bun #TODO honey
@@ -256,19 +171,19 @@
   components:
   - type: Tag
     tags:
-    - Nugget
+      - Nugget
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/nuggets.rsi
     layers:
-    - state: tendie
-      map: [ "enum.DamageStateVisualLayers.Base" ]
+      - state: tendie
+        map: [ "enum.DamageStateVisualLayers.Base" ]
   - type: RandomSprite
     available:
-    - enum.DamageStateVisualLayers.Base:
-        tendie: ""
-        lizard: ""
-        star: ""
-        corgi: ""
+      - enum.DamageStateVisualLayers.Base:
+          tendie: ""
+          lizard: ""
+          star: ""
+          corgi: ""
   - type: SolutionContainerManager
     solutions:
       food:
@@ -280,9 +195,6 @@
           Quantity: 2
         - ReagentId: Vitamin
           Quantity: 1
-  - type: FlavorProfile # DeltaV - custom flavor, see Resources/Locale/en-US/deltav/flavors/flavor_profiles.ftl
-    flavors:
-    - nuggie
 
 # Waffles/Pancakes
 
@@ -345,22 +257,18 @@
 
 - type: entity
   name: blueberry pancake
-  parent: FoodBakedPancake
+  parent: FoodBakedBase
   id: FoodBakedPancakeBb
   description: A fluffy and delicious blueberry pancake.
   components:
   - type: Stack
-    stackType: PancakeBb
+    stackType: Pancake
+    count: 1
+    composite: true
     layerStates:
     - pancakesbb1
     - pancakesbb2
     - pancakesbb3
-    - pancakesbb4
-    - pancakesbb5
-    - pancakesbb6
-    - pancakesbb7
-    - pancakesbb8
-    - pancakesbb9
   - type: Sprite
     state: pancakesbb1
     layers:
@@ -373,24 +281,7 @@
     - state: pancakesbb3
       map: ["pancakesbb3"]
       visible: false
-    - state: pancakesbb4
-      map: ["pancakesbb4"]
-      visible: false
-    - state: pancakesbb5
-      map: ["pancakesbb5"]
-      visible: false
-    - state: pancakesbb6
-      map: ["pancakesbb6"]
-      visible: false
-    - state: pancakesbb7
-      map: ["pancakesbb7"]
-      visible: false
-    - state: pancakesbb8
-      map: ["pancakesbb8"]
-      visible: false
-    - state: pancakesbb9
-      map: ["pancakesbb9"]
-      visible: false
+  - type: Appearance
   - type: Tag
     tags:
     - Pancake
@@ -398,22 +289,18 @@
 
 - type: entity
   name: chocolate chip pancake
-  parent: FoodBakedPancake
+  parent: FoodBakedBase
   id: FoodBakedPancakeCc
   description: A fluffy and delicious chocolate chip pancake.
   components:
   - type: Stack
-    stackType: PancakeCc
+    stackType: Pancake
+    count: 1
+    composite: true
     layerStates:
     - pancakescc1
     - pancakescc2
     - pancakescc3
-    - pancakescc4
-    - pancakescc5
-    - pancakescc6
-    - pancakescc7
-    - pancakescc8
-    - pancakescc9
   - type: Sprite
     state: pancakescc1
     layers:
@@ -426,24 +313,7 @@
     - state: pancakescc3
       map: ["pancakescc3"]
       visible: false
-    - state: pancakescc4
-      map: ["pancakescc4"]
-      visible: false
-    - state: pancakescc5
-      map: ["pancakescc5"]
-      visible: false
-    - state: pancakescc6
-      map: ["pancakescc6"]
-      visible: false
-    - state: pancakescc7
-      map: ["pancakescc7"]
-      visible: false
-    - state: pancakescc8
-      map: ["pancakescc8"]
-      visible: false
-    - state: pancakescc9
-      map: ["pancakescc9"]
-      visible: false
+  - type: Appearance
   - type: SolutionContainerManager
     solutions:
       food:
@@ -453,6 +323,9 @@
           Quantity: 5
         - ReagentId: Theobromine
           Quantity: 1
+  - type: Tag
+    tags:
+    - Pancake
 
 - type: entity
   name: waffles
@@ -462,8 +335,8 @@
   components:
   - type: Sprite
     layers:
-    - state: tray
-    - state: waffles
+      - state: tray
+      - state: waffles
   - type: SolutionContainerManager
     solutions:
       food:
@@ -482,8 +355,8 @@
   components:
   - type: Sprite
     layers:
-    - state: tray
-    - state: waffles-soy
+      - state: tray
+      - state: waffles-soy
   - type: SolutionContainerManager
     solutions:
       food:
@@ -502,8 +375,8 @@
   components:
   - type: Sprite
     layers:
-    - state: tray
-    - state: waffles-soylent
+      - state: tray
+      - state: waffles-soylent
   - type: SolutionContainerManager
     solutions:
       food:
@@ -522,8 +395,8 @@
   components:
   - type: Sprite
     layers:
-    - state: tray
-    - state: waffles-roffle
+      - state: tray
+      - state: waffles-roffle
   - type: SolutionContainerManager
     solutions:
       food:
@@ -580,13 +453,6 @@
           Quantity: 8
         - ReagentId: Protein
           Quantity: 2
-  - type: FlavorProfile
-    flavors:
-      - meaty
-      - bread
-  - type: Tag
-    tags:
-    - Meat
 
 - type: entity
   name: chèvre chaud
@@ -596,10 +462,10 @@
   components:
   - type: FlavorProfile
     flavors:
-    - bread
-    - nutty
-    - creamy
-    - smokey
+      - bread
+      - nutty
+      - creamy
+      - smokey
   - type: Sprite
     state: chevrechaud
   - type: SolutionContainerManager
@@ -613,38 +479,6 @@
           Quantity: 0.5
 
 - type: entity
-  name: cotton chèvre chaud
-  parent: FoodBakedChevreChaud
-  id: FoodBakedChevreChaudCotton
-  description: A disk of slightly melted chèvre flopped on top of a... cotton crostini, and toasted all-round.
-  components:
-  - type: FlavorProfile
-    flavors:
-    - bread
-    - nutty
-    - creamy
-    - smokey
-    - cotton
-  - type: Sprite
-    state: chevrechaud-cotton
-  - type: Food
-    requiresSpecialDigestion: true
-  - type: Tag
-    tags:
-    - ClothMade
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 1
-        - ReagentId: Fiber
-          Quantity: 1
-        - ReagentId: Vitamin
-          Quantity: 0.5
-
-- type: entity
   name: brownies
   parent: FoodBakedBase
   id: FoodBakedBrownieBatch
@@ -652,8 +486,8 @@
   components:
   - type: FlavorProfile
     flavors:
-    - sweet
-    - chocolate
+      - sweet
+      - chocolate
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/brownie.rsi
     state: brownie-batch
@@ -679,8 +513,8 @@
   components:
   - type: FlavorProfile
     flavors:
-    - sweet
-    - chocolate
+      - sweet
+      - chocolate
   - type: Sprite
     sprite: Objects/Consumable/Food/snacks.rsi
     state: mre-brownie-open
@@ -705,9 +539,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - sweet
-    - magical
-    - chocolate
+      - sweet
+      - magical
+      - chocolate
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/brownie.rsi
     state: brownie-batch
@@ -734,9 +568,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - sweet
-    - magical
-    - chocolate
+      - sweet
+      - magical
+      - chocolate
   - type: Sprite
     sprite: Objects/Consumable/Food/snacks.rsi
     state: mre-brownie-open
@@ -761,23 +595,23 @@
   id: FoodOnionRings
   description: You can eat it or propose to your loved ones.
   components:
-  - type: FlavorProfile
-    flavors:
-    - onion
-    - oily
-  - type: Sprite
-    state: onionrings
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 4
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 1
-        - ReagentId: Allicin
-          Quantity: 1
-        - ReagentId: Vitamin
-          Quantity: 1
+    - type: FlavorProfile
+      flavors:
+        - onion
+        - oily
+    - type: Sprite
+      state: onionrings
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 4
+          reagents:
+          - ReagentId: Nutriment
+            Quantity: 1
+          - ReagentId: Allicin
+            Quantity: 1
+          - ReagentId: Vitamin
+            Quantity: 1
 
 - type: entity
   name: croissant
@@ -787,8 +621,8 @@
   components:
   - type: FlavorProfile
     flavors:
-    - bread
-    - butter
+      - bread
+      - butter
   - type: Sprite
     state: croissant
   - type: SolutionContainerManager
@@ -806,35 +640,3 @@
     damage:
       types:
         Blunt: 0 # so the damage stats icon doesn't immediately give away the syndie ones
-
-- type: entity
-  name: cotton croissant
-  parent: FoodBakedCroissant
-  id: FoodBakedCroissantCotton
-  description: Buttery, flaky, fibery goodness.
-  components:
-  - type: FlavorProfile
-    flavors:
-    - bread
-    - butter
-    - cotton
-  - type: Sprite
-    state: croissant-cotton
-  - type: Food
-    requiresSpecialDigestion: true
-  - type: Tag
-    tags:
-    - ClothMade
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 7
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 1.5
-        - ReagentId: Fiber
-          Quantity: 1.5
-        - ReagentId: Butter
-          Quantity: 2
-        - ReagentId: Vitamin
-          Quantity: 1

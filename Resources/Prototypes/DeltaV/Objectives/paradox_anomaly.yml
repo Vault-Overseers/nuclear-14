@@ -4,10 +4,11 @@
   components:
   - type: Objective
     difficulty: 1
-    issuer: objective-issuer-self
+    issuer: self
 
 # not using base kill/keep alive objectives since these intentionally conflict with eachother
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: BaseParadoxAnomalyObjective
   id: ParadoxAnomalyKillObjective
   description: This universe doesn't have room for both of us.
@@ -22,6 +23,7 @@
     requireDead: true
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: BaseParadoxAnomalyObjective
   id: ParadoxAnomalyFriendObjective
   description: Perhaps there is room, as friends.
@@ -35,6 +37,7 @@
   - type: KeepAliveCondition
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: [BaseParadoxAnomalyObjective, BaseLivingObjective]
   id: ParadoxAnomalyEscapeObjective
   name: Escape to centcom alive and unrestrained.

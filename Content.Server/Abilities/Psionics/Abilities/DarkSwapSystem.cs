@@ -40,7 +40,7 @@ namespace Content.Server.Abilities.Psionics
                     args.Handled = true;
                 }
             }
-            else if (_psionics.OnAttemptPowerUse(args.Performer, "DarkSwap"))
+            else if (_psionics.OnAttemptPowerUse(args.Performer, "DarkSwap", args.ManaCost))
             {
                 var newethereal = EnsureComp<EtherealComponent>(args.Performer);
                 newethereal.Darken = true;
@@ -56,3 +56,5 @@ namespace Content.Server.Abilities.Psionics
         }
     }
 }
+
+

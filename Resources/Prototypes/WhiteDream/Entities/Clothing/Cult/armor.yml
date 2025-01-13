@@ -26,8 +26,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: TemperatureProtection
-    heatingCoefficient: 0.001
-    coolingCoefficient: 0.001
+    coefficient: 0.001
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCultArmor
   - type: CultItem
@@ -75,7 +74,7 @@
     clothingPrototype: ClothingHeadHatHoodCultHoodTrue
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:Container { }
+      toggleable-clothing: !type:ContainerSlot { }
 
 - type: entity
   parent: ClothingHeadHatHoodCulthood
@@ -114,13 +113,6 @@
     sprite: Clothing/Eyes/Misc/blindfold.rsi
   - type: FlashImmunity
   - type: EyeProtection
-  - type: NightVision
-    isActive: true
-    isEquipment: true
-    toggleAction: null
-    activateSound: null
-    deactivateSound: null
-    color: White
   - type: ShowHealthBars
     damageContainers:
     - Biological
@@ -128,3 +120,5 @@
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+  # TODO: ADD NIGHT VISION
+

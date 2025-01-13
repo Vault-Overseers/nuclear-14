@@ -1,9 +1,12 @@
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Events;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Mobs.Components;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Projectiles;
@@ -12,8 +15,6 @@ public sealed class EmbedPassiveDamageSystem : EntitySystem
 {
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-
-    private readonly HashSet<EmbedPassiveDamageComponent> _activeEmbeds = new();
 
     public override void Initialize()
     {
@@ -62,7 +63,6 @@ public sealed class EmbedPassiveDamageSystem : EntitySystem
         component.EmbeddedBodyPart = args.BodyPart;
         component.NextDamage = _timing.CurTime + TimeSpan.FromSeconds(1f);
 
-        _activeEmbeds.Add(component);
         Dirty(uid, component);
     }
 
@@ -74,7 +74,6 @@ public sealed class EmbedPassiveDamageSystem : EntitySystem
         component.EmbeddedBodyPart = null;
         component.NextDamage = TimeSpan.Zero;
 
-        _activeEmbeds.Remove(component);
         Dirty(uid, component);
     }
 
@@ -107,23 +106,22 @@ public sealed class EmbedPassiveDamageSystem : EntitySystem
 
     public override void Update(float frameTime)
     {
+        base.Update(frameTime);
         var curTime = _timing.CurTime;
-        foreach (var ent in _activeEmbeds)
+
+        var query = EntityQueryEnumerator<EmbedPassiveDamageComponent>();
+        while (query.MoveNext(out var uid, out var comp))
         {
-            if (ent.Embedded is null || !Exists(ent.Embedded)
-                || ent.EmbeddedDamageable is null
-                || ent.EmbeddedMobState is null
-                || ent.EmbeddedMobState.CurrentState == MobState.Dead)
-            {
-                _activeEmbeds.Remove(ent);
-                continue;
-            }
-
-            if (ent.NextDamage > curTime)
+            if (comp.Embedded is null ||
+                comp.EmbeddedDamageable is null ||
+                comp.NextDamage > curTime || // Make sure they're up for a damage tick
+                comp.EmbeddedMobState is null ||
+                comp.EmbeddedMobState.CurrentState == MobState.Dead) // Don't damage dead mobs, they've already gone through too much
                 continue;
 
-            ent.NextDamage = curTime + TimeSpan.FromSeconds(1f);
-            _damageable.TryChangeDamage(ent.Embedded, ent.Damage, false, false, ent.EmbeddedDamageable, targetPart: ent.EmbeddedBodyPart);
+            comp.NextDamage = curTime + TimeSpan.FromSeconds(1f);
+
+            _damageable.TryChangeDamage(comp.Embedded, comp.Damage, false, false, comp.EmbeddedDamageable, targetPart: comp.EmbeddedBodyPart);
         }
     }
 }

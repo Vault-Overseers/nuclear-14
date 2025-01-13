@@ -1,6 +1,3 @@
-using Robust.Shared.Network;
-
-
 namespace Content.Shared.Chat;
 
 public interface ISharedChatManager

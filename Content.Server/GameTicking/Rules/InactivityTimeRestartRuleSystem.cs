@@ -1,6 +1,5 @@
 using System.Threading;
 using Content.Server.Chat.Managers;
-using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.GameTicking.Components;
 using Robust.Server.Player;

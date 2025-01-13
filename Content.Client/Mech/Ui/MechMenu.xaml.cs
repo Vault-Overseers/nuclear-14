@@ -12,7 +12,7 @@ public sealed partial class MechMenu : FancyWindow
 {
     [Dependency] private readonly IEntityManager _ent = default!;
 
-    private EntityUid _mech;
+    private readonly EntityUid _mech;
 
     public event Action<EntityUid>? OnRemoveButtonPressed;
 
@@ -25,7 +25,6 @@ public sealed partial class MechMenu : FancyWindow
     public void SetEntity(EntityUid uid)
     {
         MechView.SetEntity(uid);
-        _mech = uid;
     }
 
     public void UpdateMechStats()

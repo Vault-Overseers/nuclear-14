@@ -90,8 +90,7 @@ namespace Content.Shared.Damage.Systems
 
         private void OnDoHit(EntityUid uid, DamageOtherOnHitComponent component, ThrowDoHitEvent args)
         {
-            if (TerminatingOrDeleted(args.Target)
-                || component.HitQuantity >= component.MaxHitQuantity)
+            if (component.HitQuantity >= component.MaxHitQuantity)
                 return;
 
             var modifiedDamage = _damageable.TryChangeDamage(args.Target, GetDamage(uid, component, args.Component.Thrower),

@@ -23,7 +23,6 @@ public sealed partial class WarDeclaratorWindow : FancyWindow
     public WarDeclaratorWindow()
     {
         RobustXamlLoader.Load(this);
-        IoCManager.InjectDependencies(this);
 
         WarButton.OnPressed += (_) => OnActivated?.Invoke(Rope.Collapse(MessageEdit.TextRope));
 

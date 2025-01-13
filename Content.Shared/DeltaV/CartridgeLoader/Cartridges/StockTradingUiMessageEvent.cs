@@ -3,12 +3,12 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.CartridgeLoader.Cartridges;
 
 [Serializable, NetSerializable]
-public sealed class StockTradingUiMessageEvent(StockTradingUiAction action, int companyIndex, int amount)
+public sealed class StockTradingUiMessageEvent(StockTradingUiAction action, int companyIndex, float amount)
     : CartridgeMessageEvent
 {
     public readonly StockTradingUiAction Action = action;
     public readonly int CompanyIndex = companyIndex;
-    public readonly int Amount = amount;
+    public readonly float Amount = amount;
 }
 
 [Serializable, NetSerializable]

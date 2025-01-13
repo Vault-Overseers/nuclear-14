@@ -1,4 +1,3 @@
-using Content.Shared.DisplacementMap;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
@@ -44,7 +43,7 @@ public sealed partial class HandsComponent : Component
     /// </summary>
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public float BaseThrowspeed { get; set; } = 11f;
+    public float BaseThrowspeed { get; set; } = 10f;
 
     /// <summary>
     ///     Distance after which longer throw targets stop increasing throw impulse.
@@ -78,15 +77,6 @@ public sealed partial class HandsComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan ThrowCooldown = TimeSpan.FromSeconds(0.5f);
-
-    [DataField]
-    public DisplacementData? HandDisplacement;
-
-    /// <summary>
-    /// If false, hands cannot be stripped, and they do not show up in the stripping menu.
-    /// </summary>
-    [DataField]
-    public bool CanBeStripped = true;
 }
 
 [Serializable, NetSerializable]

@@ -87,7 +87,7 @@ public sealed class CPRSystem : EntitySystem
 
         _doAfterSystem.TryStartDoAfter(doAfterArgs);
 
-        var playingStream = _audio.PlayPvs(performer.Comp.CPRSound, performer, AudioParams.Default);
+        var playingStream = _audio.PlayPvs(performer.Comp.CPRSound, performer, AudioParams.Default.WithLoop(true));
         if (!playingStream.HasValue)
             return;
 
