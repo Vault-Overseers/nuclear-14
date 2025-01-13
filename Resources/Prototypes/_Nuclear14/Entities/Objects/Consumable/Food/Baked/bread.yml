@@ -473,57 +473,6 @@
 # Other than bread/slices
 
 - type: entity
-  name: baguette
-  parent: N14CookedFoodBreadBase
-  id: N14CookedFoodBreadBaguette
-  description: Bon appétit!
-  components:
-  - type: Tag
-    tags:
-    - Baguette
-  - type: Sprite
-    state: baguette
-  - type: SliceableFood
-    count: 12
-    slice: N14CookedFoodBreadBaguetteSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: TableSalt
-          Quantity: 1
-        - ReagentId: Blackpepper
-          Quantity: 1
-# Tastes like France.
-
-- type: entity
-  name: crostini
-  parent: N14CookedFoodBreadSliceBase
-  id: N14CookedFoodBreadBaguetteSlice
-  description: Bon ap-petite!
-  components:
-  - type: Sprite
-    state: crostini
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 2
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 0.5
-        - ReagentId: Vitamin
-          Quantity: 0.1
-        - ReagentId: TableSalt
-          Quantity: 0.1
-        - ReagentId: Blackpepper
-          Quantity: 0.1
-
-- type: entity
   name: buttered toast
   parent: N14CookedFoodBreadSliceBase
   id: N14CookedFoodBreadButteredToast

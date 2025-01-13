@@ -62,12 +62,12 @@
     locPrefix: silicon
   - type: UserInterface
     interfaces:
-    - key: enum.SiliconLawsUiKey.Key
-      type: SiliconLawBoundUserInterface
-    - key: enum.BorgUiKey.Key
-      type: BorgBoundUserInterface
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: ActivatableUI
     key: enum.BorgUiKey.Key
   # - type: SiliconLawBound
@@ -208,7 +208,6 @@
   - type: StandingState
   - type: Tag
     tags:
-    - ShoesRequiredStepTriggerImmune
     - DoorBumpOpener
     - CanPilot
   - type: Emoting
@@ -220,10 +219,12 @@
       - Normal
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - English
+    - Chinese
     - RobotTalk
     understands:
-    - GalacticCommon
+    - English
+    - Chinese
     - RobotTalk
   - type: CanWalk
   - type: NpcFactionMember
