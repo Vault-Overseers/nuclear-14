@@ -29,10 +29,9 @@
   name: syndicate agent
   suffix: Human, Traitor
   components:
-    # make the player a traitor once its taken
-    - type: AutoTraitor
-      giveUplink: false
-      giveObjectives: false
+  # make the player a traitor once its taken
+  - type: AutoTraitor
+    profile: TraitorReinforcement
 
 - type: entity
   parent: MobHumanSyndicateAgentBase
@@ -43,19 +42,18 @@
 
 # Nuclear Operative
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Nuclear Operative
   parent: MobHuman
   id: MobHumanNukeOp
   components:
     - type: NukeOperative
     - type: RandomHumanoidAppearance
-    #- type: PsionicBonusChance #Nyano - Summary: makes more likely to be psionic.
-    #  multiplier: 7
-    #  warn: false
+    - type: Psionic
+      powerRollMultiplier: 7
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: MobHuman
   id: MobHumanLoneNuclearOperative
   name: Lone Operative
@@ -72,31 +70,5 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
-    #- type: PsionicBonusChance #Nyano - Summary: makes more likely to be psionic.
-    #  multiplier: 7
-    #  warn: false
-
-# Space Ninja
-- type: entity
-  noSpawn: true
-  name: Space Ninja
-  parent: MobHuman
-  id: MobHumanSpaceNinja
-  components:
-  - type: RandomHumanoidAppearance
-    randomizeName: false
-  - type: Loadout
-    prototypes: [SpaceNinjaGear]
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: SpaceNinja
-  # - type: GenericAntag
-    # rule: Ninja
-  - type: AutoImplant
-    implants:
-    - DeathAcidifierImplant
-  - type: RandomMetadata
-    nameSegments:
-    - names_ninja_title
-    - names_ninja
+    - type: Psionic
+      powerRollMultiplier: 7

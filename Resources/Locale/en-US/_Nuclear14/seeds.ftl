@@ -39,9 +39,9 @@ clipping-datura-name = datura clipping
 clipping-datura-noun = datura clippings
 clipping-datura-display-name = datura
 
-clipping-jalapeno-name = jalapeno clipping
-clipping-jalapeno-noun = jalapeno clippings
-clipping-jalapeno-display-name = jalapeno
+clipping-glowpepper-name = glowpepper clipping
+clipping-glowpepper-noun = glowpepper clippings
+clipping-glowpepper-display-name = glowpepper
 
 clipping-maize-name = maize clipping
 clipping-maize-noun = maize clippings

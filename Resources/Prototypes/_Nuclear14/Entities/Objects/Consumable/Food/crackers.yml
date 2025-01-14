@@ -1,5 +1,5 @@
 - type: entity
-  parent: FoodBreadSliceBase
+  parent: N14CookedFoodBreadSliceBase
   id: N14FoodCrackerBase
   name: cracker
   abstract: true
@@ -8,13 +8,15 @@
     sprite: _Nuclear14/Objects/Consumable/Food/Tins/crackers.rsi
     layers:
     - state: c_cracker
+  - type: StaticPrice
+    price: 1
 
 # C Cracker
 
 - type: entity
-  name: bread slice
+  name: c ration cracker
   parent: N14FoodCrackerBase
-  id: FoodCrackerCSlice
+  id: N14FoodCrackerCSlice
   description: A c type cracker, plain and old cracker. Little stale.
   components:
   - type: Food
@@ -22,9 +24,9 @@
 # K Cracker
 
 - type: entity
-  name: bread slice
+  name: k ration cracker
   parent: N14FoodCrackerBase
-  id: FoodCrackerKSlice
+  id: N14FoodCrackerKSlice
   description: A k type cracker, also called ranger cracker due to it's buttery flavour.
   components:
   - type: FlavorProfile

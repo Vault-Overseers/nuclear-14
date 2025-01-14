@@ -1,0 +1,309 @@
+# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_meal.yml & food_single.yml
+# Base
+
+- type: entity
+  parent: FoodInjectableBase
+  id: N14CookedFoodPizzaBase
+  abstract: true
+  components:
+  - type: FlavorProfile
+    flavors:
+      - oily
+      - bread
+  - type: Food
+  - type: Sprite
+    sprite: Objects/Consumable/Food/Baked/pizza.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: SliceableFood
+    count: 8
+  - type: Item
+    size: Normal
+  - type: Tag
+    tags:
+    - Pizza
+    - ReptilianFood
+
+- type: entity
+  parent: FoodInjectableBase # Not sliceable
+  id: N14CookedFoodPizzaSliceBase
+  abstract: true
+  components:
+  - type: FlavorProfile
+    flavors:
+      - oily
+      - bread
+  - type: Food
+  - type: Sprite
+    sprite: Objects/Consumable/Food/Baked/pizza.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        # Note: Keep FoodPizzaMoldySlice & N14FoodPizzaSliceBase roughly in sync
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 0.8
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - Pizza
+    - ReptilianFood
+
+# Pizza
+
+- type: entity
+  name: margherita pizza
+  parent: N14CookedFoodPizzaBase
+  id: N14CookedFoodPizzaMargherita
+  description: The flavor of some place called... Iti-lie..? #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - oily
+      - bread
+      - tato #N14 change
+  - type: Sprite
+    layers:
+    - state: margherita
+  - type: SliceableFood
+    slice: N14CookedFoodPizzaMargheritaSlice
+
+- type: entity
+  name: slice of margherita pizza
+  parent: N14CookedFoodPizzaSliceBase
+  id: N14CookedFoodPizzaMargheritaSlice
+  description: A slice of Iti-lie. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - oily
+      - bread
+      - tato #N14 change
+  - type: Sprite
+    layers:
+    - state: margherita-slice
+
+- type: entity
+  name: meat pizza
+  parent: N14CookedFoodPizzaBase
+  id: N14CookedFoodPizzaMeat
+  description: Greasy pizza with delicious meat.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - cheesy
+      - oily
+      - bread
+      - tato #N14 change
+  - type: Sprite
+    layers:
+    - state: meat
+  - type: SliceableFood
+    slice: N14CookedFoodPizzaMeatSlice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
+
+- type: entity
+  name: slice of meat pizza
+  parent: N14CookedFoodPizzaSliceBase
+  id: N14CookedFoodPizzaMeatSlice
+  description: A nutritious slice of meatpizza. Meatzza.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - cheesy
+      - oily
+      - bread
+      - tato #N14 change
+  - type: Sprite
+    layers:
+    - state: meat-slice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
+# Tastes like crust, tomato, cheese, meat.
+
+- type: entity
+  name: mushroom pizza
+  parent: N14CookedFoodPizzaBase
+  id: N14CookedFoodPizzaMushroom
+  description: It reeks of the dark, but tastes like delight. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - mushroom
+      - oily
+      - bread
+  - type: Sprite
+    layers:
+    - state: mushroom
+  - type: SliceableFood
+    slice: N14CookedFoodPizzaMushroomSlice
+
+- type: entity
+  name: slice of mushroom pizza
+  parent: N14CookedFoodPizzaSliceBase
+  id: N14CookedFoodPizzaMushroomSlice
+  description: Chewy and oddly sweet. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - mushroom
+      - oily
+      - bread
+  - type: Sprite
+    layers:
+    - state: mushroom-slice
+# Tastes like crust, tomato, cheese, mushroom.
+
+- type: entity
+  name: vegetable pizza
+  parent: N14CookedFoodPizzaBase
+  id: N14CookedFoodPizzaVegetable
+  description: Probably the healthiest thing a waster has ever tasted. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - onion #N14 change
+      - corn
+      - oily
+      - cheesy
+      - bread
+      - tato #N14 change
+  - type: Sprite
+    layers:
+    - state: vegetable
+  - type: SliceableFood
+    slice: N14CookedFoodPizzaVegetableSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: JuiceCarrot
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 5
+
+- type: entity
+  name: slice of vegetable pizza
+  parent: N14CookedFoodPizzaSliceBase
+  id: N14CookedFoodPizzaVegetableSlice
+  description: You feel less diseased just looking at it. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - onion #N14 change
+      - corn
+      - tato #N14 change
+      - carrot
+      - oily
+      - cheesy
+      - bread
+  - type: Sprite
+    layers:
+    - state: vegetable-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: JuiceCarrot
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+# Tastes like crust, tomato, cheese, carrot.
+
+- type: entity
+  name: Hawaiian pizza
+  parent: N14CookedFoodPizzaBase
+  id: N14CookedFoodPizzaPineapple
+  description: Makes people burst into tears. Tears of joy or sadness depends on the persons fondness for pineapple.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - pineapple
+      - cheesy
+      - oily
+      - bread
+  - type: Sprite
+    layers:
+    - state: pineapple
+  - type: SliceableFood
+    slice: N14CookedFoodPizzaPineappleSlice
+
+- type: entity
+  name: slice of pineapple pizza
+  parent: N14CookedFoodPizzaSliceBase
+  id: N14CookedFoodPizzaPineappleSlice
+  description: A slice of joy/sin.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - pineapple
+      - cheesy
+      - oily
+      - bread
+  - type: Sprite
+    layers:
+    - state: pineapple-slice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
+# Tastes like crust, tomato, cheese, pineapple, ham.
+
+
+#TODO: Make this do poison damage and make cut pizza slices eventually rot into this.
+- type: entity
+  name: slice of moldy pizza
+  parent: N14CookedFoodPizzaSliceBase
+  id: N14CookedFoodPizzaMoldySlice
+  description: Once a perfectly good slice of pizza pie, but now it lies here, rancid and bursting with spores.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bitter
+      - terrible
+      - mushroom
+  - type: Sprite
+    layers:
+    - state: moldy-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        # Note: Keep FoodPizzaMoldySlice & N14FoodPizzaSliceBase roughly in sync
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Mold
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+# Tastes like stale crust, rancid cheese, mushroom.

@@ -13,6 +13,8 @@
       map: ["enum.StorageVisualLayers.Base"]
     - state: closet_door
       map: ["enum.StorageVisualLayers.Door"]
+  - type: Physics
+    bodyType: Static
   - type: EntityStorageVisuals
     stateBaseClosed: closet
     stateDoorOpen: closet_open
@@ -159,11 +161,20 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/Closets/fridgedirty.rsi
   - type: ExplosionResistance
-    resistance: 0.90
+    damageCoefficient: 0.1
   - type: AntiRottingContainer
 
 - type: entity
-  parent: [ N14ClosetFridgeDirty, N14ClosetFridgeFill ]
+  parent: N14ClosetFridgeDirty
+  id: N14ClosetFridgeWideDirty
+  name: fridge
+  description: A dirty old fridge for keeping food fresh
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Storage/Closets/fridgewidedirty.rsi
+
+- type: entity
+  parent: [ N14ClosetFridgeDirty, N14ClosetFridgeWideDirty, N14ClosetFridgeFill ]
   id: N14LootClosetFridge
   suffix: Loot,Domestic,Random
 

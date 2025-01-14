@@ -5,12 +5,31 @@
   description: A clean mattress for sleeping on.
   components:
   - type: Sprite
+    noRot: false
     sprite: _Nuclear14/Structures/Furniture/bedsandchairs.rsi
     state: bed
   - type: Construction
     graph: N14Bed
     node: bed
-    
+  - type: Transform
+    anchored: false
+    noRot: false
+
+- type: entity
+  parent: N14Bed
+  id: N14BedBunk
+  name: "Bunk Bed"
+  description: A clean bunk bed. I call top bunk!
+  components:
+  - type: Sprite
+    state: bed_bunk
+    snapCardinals: true
+    drawdepth: OverMobs
+  - type: Strap
+    position: Down
+    rotation: -270
+    buckleOffset: 0,0.3
+
 - type: entity
   parent: N14Bed
   id: N14BedDirty
@@ -20,7 +39,7 @@
   - type: Sprite
     state: bed_dirty
     snapCardinals: true
-    
+
 - type: entity
   parent: N14Bed
   id: N14BedWood
@@ -32,8 +51,22 @@
   - type: Construction
     graph: N14Bed
     node: bedwood
-    
-# TODO: Reduce the healing rate of all these at some point compared to a proper bed.   
+
+- type: entity
+  parent: N14Bed
+  id: N14BedWoodBunk
+  name: "Wooden Bunk Bed"
+  description: A bunk bed with a wooden frame.
+  components:
+  - type: Sprite
+    state: bed_wood_bunk
+    drawdepth: OverMobs
+  - type: Strap
+    position: Down
+    rotation: -270
+    buckleOffset: 0,0.3
+
+# TODO: Reduce the healing rate of all these at some point compared to a proper bed.
 - type: entity
   id: N14Bedroll
   parent: RollerBed
@@ -94,7 +127,7 @@
   components:
   - type: Foldable
     folded: true
-    
+
 - type: entity
   parent: N14Bed
   id: N14BedMattress0
@@ -106,7 +139,7 @@
   - type: Construction
     graph: N14Bed
     node: mattress
-    
+
 - type: entity
   parent: N14Bed
   id: N14BedMattressDirty1
@@ -116,7 +149,7 @@
   - type: Sprite
     state: mattress1
     snapCardinals: true
-    
+
 - type: entity
   parent: N14BedMattressDirty1
   id: N14BedMattressDirty2
@@ -125,7 +158,7 @@
   components:
   - type: Sprite
     state: mattress2
-    
+
 - type: entity
   parent: N14BedMattressDirty1
   id: N14BedMattressDirty3
@@ -134,7 +167,7 @@
   components:
   - type: Sprite
     state: mattress3
-    
+
 - type: entity
   parent: N14BedMattressDirty1
   id: N14BedMattressDirty4
@@ -143,7 +176,7 @@
   components:
   - type: Sprite
     state: mattress4
-    
+
 - type: entity
   parent: N14BedMattressDirty1
   id: N14BedMattressDirty5

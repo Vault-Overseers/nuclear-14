@@ -4,7 +4,7 @@ ghost-respawn-rules-window-confirm-button = I understand, respawn me
 ghost-gui-respawn-button-denied = Respawn ({$time}s)
 ghost-gui-respawn-button-allowed = Respawn
 ghost-respawn-rules-window-rules = Respawning follows a strict New Life Rule:
-    No matter which character you decide to return as,
+    Upon choosing a new character (Not one who has died in the round),
     you DO NOT remember anything after falling unconcious,
     and there is a strict 15 minute non-aggression period.
     Review the rules for more info.	

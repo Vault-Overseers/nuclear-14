@@ -27,7 +27,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
   - type: Tag
@@ -46,7 +46,7 @@
   - type: OreVein
     currentOre: WildAgave
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -66,7 +66,7 @@
   - type: OreVein
     currentOre: WildBananaYucca
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -86,7 +86,7 @@
   - type: OreVein
     currentOre: WildBarrelCactus
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -107,7 +107,7 @@
   - type: OreVein
     currentOre: WildBlackberries
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -127,7 +127,7 @@
   - type: OreVein
     currentOre: WildBrocFlower
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -147,7 +147,7 @@
   - type: OreVein
     currentOre: WildGourd
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -170,7 +170,7 @@
   - type: OreVein
     currentOre: WildCabbage
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -191,7 +191,7 @@
   - type: OreVein
     currentOre: WildCarrot
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -213,7 +213,7 @@
   - type: OreVein
     currentOre: WildCaveFungus
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -241,7 +241,7 @@
     intensity: 0.3
     slope: 0.03
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -261,7 +261,7 @@
   - type: OreVein
     currentOre: WildCotton
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -281,7 +281,7 @@
   - type: OreVein
     currentOre: WildCoyote
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -301,7 +301,7 @@
   - type: OreVein
     currentOre: WildDatura
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -312,24 +312,30 @@
 
 - type: entity
   parent: N14WastelandFlora
-  id: N14WastelandFloraWildJalapenoPepper
-  name: wild jalapeno pepper plant
-  description: A jalapeno pepper plant growing wild. It's healthy.
+  id: N14WastelandFloraWildGlowpepper #N14 change
+  name: wild glowpepper plant #N14 change
+  description: A glowpepper plant GLOWING wild. AH HA HA HA... it's healthy. #N14 change
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Specific/Hydroponics/jalapeno.rsi
+    sprite: _Nuclear14/Objects/Specific/Hydroponics/jalapeno.rsi #I DON'T KNOW WHERE THIS IS
     state: harvest
   - type: OreVein
-    currentOre: WildJalapenoPepper
+    currentOre: WildGlowpepper
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#00FFFF"
+    castShadows: false
+    netsync: false  
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
         - PlantSampleTaker
     loot:
-      All: WildJalapenoAll
-      PlantSampleTaker: WildJalapenoClippers
+      All: WildGlowpepperAll
+      PlantSampleTaker: WildGlowpepperClippers
 
 - type: entity
   parent: N14WastelandFlora
@@ -343,7 +349,7 @@
   - type: OreVein
     currentOre: WildMaize
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -363,7 +369,7 @@
   - type: OreVein
     currentOre: MesquitePods
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -383,7 +389,7 @@
   - type: OreVein
     currentOre: WildMutfruit
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -404,7 +410,7 @@
   - type: OreVein
     currentOre: WildNettle
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -425,7 +431,7 @@
   - type: OreVein
     currentOre: WildOnion
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -445,7 +451,7 @@
   - type: OreVein
     currentOre: PinyonNuts
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -465,7 +471,7 @@
   - type: OreVein
     currentOre: WildPrickly
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -486,7 +492,7 @@
   - type: OreVein
     currentOre: WildRazorgrain
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -507,7 +513,7 @@
   - type: OreVein
     currentOre: WildStarlightBerries
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -530,7 +536,7 @@
   - type: OreVein
     currentOre: WildTarberries
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -550,7 +556,7 @@
   - type: OreVein
     currentOre: WildTato
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -570,7 +576,7 @@
   - type: OreVein
     currentOre: WildWhiteHorsenettle
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -590,7 +596,7 @@
   - type: OreVein
     currentOre: WildXander
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       components:
         - Hands
       tags:
@@ -966,30 +972,30 @@
 
 - type: entity
   parent: N14FloraProduceFood
-  id: N14FloraProduceWildJalapenoPepper
-  name: wild jalapeno pepper
-  description: Wild jalapeno pepper. Spicy.
+  id: N14FloraProduceWildGlowpepper #N14 change. My mind is going. I may not have tagged all glowpepper changes. Daisy, daisy, give me your answer do.
+  name: wild glowpepper
+  description: Wild glowpepper. Glowy.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Specific/Hydroponics/jalapeno.rsi
+    sprite: _Nuclear14/Objects/Specific/Hydroponics/jalapeno.rsi #WHERE WHERE WHERE
     state: produce
   - type: Stack
-    stackType: WildJalapenoPepper
+    stackType: WildGlowpepper
     count: 1
   - type: SolutionContainerManager
     solutions:
       food:
         maxVol: 10
         reagents:
-        - ReagentId: ExtractJalapenoPepper
+        - ReagentId: ExtractGlowpepper
           Quantity: 10
   - type: Extractable
     juiceSolution:
       reagents:
-      - ReagentId: ExtractJalapenoPepper
+      - ReagentId: ExtractGlowpepper
         Quantity: 10
   - type: Produce
-    seedId: N14WildJalapeno
+    seedId: N14WildGlowpepper
 
 - type: entity
   parent: N14FloraProduce
@@ -1120,14 +1126,14 @@
         - ReagentId: Nutriment
           Quantity: 5
         - ReagentId: Vitamin
-          Quantity: 2
+          Quantity: 4
         - ReagentId: Allicin
-          Quantity: 2
+          Quantity: 4
   - type: Produce
     seedId: N14WildOnion
   - type: SliceableFood
     count: 4
-    slice: FoodOnionRedSlice # N14TODO: Create slice
+    slice: N14FoodOnionRedSlice # N14TODO: Create slice. Changed
 
 - type: entity
   parent: N14FloraProduceFood
@@ -1179,7 +1185,7 @@
     solutions:
       food:
         reagents:
-        - ReagentId: ExtractRazorgrainFlour
+        - ReagentId: ExtractRazorgrainFlour #it should be a goal to make this interchangeable with flour in recipes. -Hazel
           Quantity: 10
   - type: Produce
     seedId: N14WildRazorgrain
@@ -1247,7 +1253,7 @@
   - type: Sprite
     state: Tato
   - type: Stack
-    stackType: WildTato
+    stackType: WildTato #This should be used in place of... either tomatoes, potatoes, or both, I guess. -Hazel
     count: 1
   - type: SolutionContainerManager
     solutions:

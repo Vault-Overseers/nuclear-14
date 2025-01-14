@@ -1,0 +1,234 @@
+# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_baked_whole.yml & food_baked_single.yml
+# Base
+
+- type: entity
+  parent: FoodInjectableBase
+  id: N14CookedFoodPieBase
+  abstract: true
+  components:
+  - type: Item
+    storedRotation: -90
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Sprite
+    sprite: Objects/Consumable/Food/Baked/pie.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents: #Most of these are this with slight variations, not worth changing until we have the rest of the reagents
+        - ReagentId: Nutriment
+          Quantity: 11
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Food #All pies here made with a pie tin; unless you're some kind of savage, you're probably not destroying this when you eat or slice the pie!
+    trash: 
+    - FoodPlateTin
+  - type: SliceableFood
+    count: 4
+  - type: Tag
+    tags:
+    - Pie
+
+- type: entity
+  parent: FoodInjectableBase # Not sliceable
+  id: N14CookedFoodPieSliceBase
+  abstract: true
+  description: A slice of pie. Tasty!
+  components:
+  - type: Item
+    size: Tiny
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Sprite
+    sprite: Objects/Consumable/Food/Baked/pie.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1.2
+        - ReagentId: Vitamin
+          Quantity: 1
+
+# Pie
+
+- type: entity
+  name: mutfruit pie #N14 change
+  parent: N14CookedFoodPieBase
+  id: N14CookedFoodPieMutfruit
+  description: It's all... gloppy. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - mutfruit #N14 change
+  - type: Sprite
+    layers:
+    - state: tin
+    - state: apple
+  - type: SliceableFood
+    slice: N14CookedFoodPieMutfruitSlice
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+
+- type: entity
+  name: slice of mutfruit pie #N14 change
+  parent: N14CookedFoodPieSliceBase
+  id: N14CookedFoodPieMutfruitSlice
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - mutfruit #N14 change
+  - type: Sprite
+    layers:
+    - state: plain-slice
+    - state: alpha-slice-filling
+      color: purple
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+# Tastes like pie, apple.
+
+- type: entity
+  name: baklava
+  parent: N14CookedFoodPieBase
+  id: N14CookedFoodPieBaklava
+  description: A delightful healthy snack made of nut layers with thin bread.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - nutty
+  - type: Sprite
+    layers:
+    - state: tin
+    - state: baklava
+  - type: SliceableFood
+    slice: N14CookedFoodPieBaklavaSlice
+
+- type: entity
+  name: slice of baklava
+  parent: N14CookedFoodPieSliceBase
+  id: N14CookedFoodPieBaklavaSlice
+  description: A portion of a delightful healthy snack made of nut layers with thin bread.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - nutty
+  - type: Sprite
+    state: baklava-slice
+# Tastes like pie, nuts.
+
+- type: entity
+  name: blackberry pie #N14 change
+  parent: N14CookedFoodPieBase
+  id: N14CookedFoodPieBlackberry
+  description: Sweet, light berry pie that stains your teeth purple. You're living large, friend. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - berry
+  - type: Sprite
+    layers:
+    - state: tin
+      color: blue
+    - state: berryclafoutis
+  - type: SliceableFood
+    slice: N14CookedFoodPieBlackberrySlice
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+
+- type: entity
+  name: slice of blackberry pie #N14 change
+  parent: N14CookedFoodPieSliceBase
+  id: N14CookedFoodPieBlackberrySlice
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - berry
+  - type: Sprite
+    layers:
+    - state: plain-slice
+    - state: alpha-slice-filling
+      color: blue
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+# Tastes like pie, blackberries.
+
+- type: entity
+  name: meat pie
+  parent: N14CookedFoodPieBase
+  id: N14CookedFoodPieMeat
+  description: Tastes like the wastes. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+  - type: Sprite
+    layers:
+    - state: tin
+    - state: meat
+  - type: SliceableFood
+    slice: N14CookedFoodPieMeatSlice
+  - type: Tag
+    tags:
+    - Meat
+    - Pie
+
+- type: entity
+  name: slice of meat pie
+  parent: N14CookedFoodPieSliceBase
+  id: N14CookedFoodPieMeatSlice
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+  - type: Sprite
+    layers:
+    - state: plain-slice
+    - state: alpha-slice-filling
+      color: brown
+  - type: Tag
+    tags:
+    - Meat
+    - Pie
+# Tastes like pie, meat.
+
+# Tart
+
+- type: entity
+  name: chocolate lava tart
+  parent: N14CookedFoodPieBase
+  id: N14CookedFoodTartCoco
+  description: A tasty dessert made of chocolate, with a liquid core.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - chocolate
+  - type: Sprite
+    state: cocolava
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 26
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Theobromine
+          Quantity: 2
+# Tastes like tart, dark chocolate.

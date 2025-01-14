@@ -19,7 +19,6 @@
   - type: Sprite
     snapCardinals: true
     drawdepth: Overdoors
-  - type: InteractionOutline
   - type: SpriteFade
   - type: Damageable
     damageContainer: Inorganic
@@ -745,15 +744,17 @@
     maxItemSize: Large
   - type: UserInterface
     interfaces:
-    - key: enum.StorageUiKey.Key
-      type: StorageBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
+  - type: InteractionOutline
 
 - type: entity
   parent: N14DecorStreetMailbox
   id: N14DecorStreetMailboxWide
+  suffix: Wide
   name: mailbox
   description: An old wide mailbox
   components:

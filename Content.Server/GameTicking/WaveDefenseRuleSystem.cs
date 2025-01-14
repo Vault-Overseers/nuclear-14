@@ -15,8 +15,9 @@ using Content.Shared.Administration;
 using Content.Shared.Mobs.Components;
 using System.Linq;
 using Content.Server.Cargo.Components;
-using Content.Server.GameTicking.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.GameTicking.Components;
+
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -47,7 +48,7 @@ public sealed class WaveDefenseRuleSystem : GameRuleSystem<WaveDefenseRuleCompon
 
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnPlayersSpawned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(HandleLatejoin);
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
+        //SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText); FIXME: subscribed by superclass
         SubscribeLocalEvent<WaveDefenderComponent, MobStateChangedEvent>(OnPlayerDied);
         SubscribeLocalEvent<WaveMobComponent, MobStateChangedEvent>(OnMobDied);
     }

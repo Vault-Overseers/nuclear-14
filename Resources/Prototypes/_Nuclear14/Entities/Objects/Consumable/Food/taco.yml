@@ -1,0 +1,170 @@
+# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_single.yml
+
+- type: entity
+  name: taco shell
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodTacoShell
+  description: A taco shell, easy to hold, but falls on its side when put down.
+  components:
+  - type: Item
+    storedRotation: -90
+  - type: Food
+  - type: Sprite
+    sprite: Objects/Consumable/Food/taco.rsi
+    layers:
+    - state: tacoshell
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6.66 # Just using the same values as the bun values, since the recipe for taco shells is roughly the same as buns.
+# Base
+
+- type: entity
+  parent: FoodInjectableBase
+  id: N14CookedFoodTacoBase
+  abstract: true
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - cheesy
+  - type: Food
+    transferAmount: 3
+  - type: Sprite
+    sprite: Objects/Consumable/Food/taco.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Item
+    sprite: Objects/Consumable/Food/taco.rsi
+    storedRotation: -90
+  - type: Tag
+    tags:
+      - Meat
+
+- type: entity
+  name: meat taco
+  parent: N14CookedFoodTacoBase
+  id: N14CookedFoodTacoMeat
+  description: A crispy, cheesy taco. Fuck, imagine this with SPICE... #N14 change
+  components:
+  - type: Food
+  - type: Sprite
+    state: beeftaco
+
+- type: entity
+  name: chicken taco
+  parent: N14CookedFoodTacoBase
+  id: N14CookedFoodTacoChicken
+  description: A flaky chicken taco, now with cheese! #N14 change
+  components:
+  - type: Food
+  - type: Sprite
+    state: chickentaco
+
+- type: entity
+  name: fish taco
+  parent: N14CookedFoodTacoBase
+  id: N14CookedFoodTacoFish
+  description: Once, there were no fish left in these waters.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - onion
+      - fishy
+  - type: Food
+  - type: Sprite
+    state: fishtaco
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 6
+
+- type: entity
+  name: rat taco
+  parent: N14CookedFoodTacoBase
+  id: N14CookedFoodTacoRat
+  description: Yeah, that looks about right...
+  components:
+  - type: Food
+  - type: Sprite
+    state: rattaco
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+
+- type: entity
+  name: meat taco supreme
+  parent: N14CookedFoodTacoBase
+  id: N14CookedFoodTacoMeatSupreme
+  description: REJOICE, SCUM! #N14 change
+  components:
+  - type: Food
+  - type: Sprite
+    state: beeftacosupreme
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 26
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 14
+        - ReagentId: Vitamin
+          Quantity: 6
+
+- type: entity
+  name: chicken taco supreme
+  parent: N14CookedFoodTacoBase
+  id: N14CookedFoodTacoChickenSupreme
+  description: Favorite food of Lord Humungous. #N14 change
+  components:
+  - type: Food
+  - type: Sprite
+    state: chickentacosupreme
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 26
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 14
+        - ReagentId: Vitamin
+          Quantity: 6
+
+- type: entity
+  name: soft taco
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealSoftTaco
+  description: Take a bite!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - tato #N14 change
+      - meaty
+      - onion
+  - type: Sprite
+    state: softtaco
+  - type: Tag
+    tags:
+      - Meat

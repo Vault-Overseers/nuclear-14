@@ -1,1 +1,35 @@
 # These have now been merged upstream so can be found in the same directory there.
+# Slowdown Tile
+- type: entity
+  name: Slowdown Tile
+  id: N14SlowdownTile
+  parent: MarkerBase
+  suffix: slowdown floor
+  components:
+  - type: Sprite
+    layers:
+      - sprite: _Nuclear14/Markers/environment.rsi
+        state: base-blue
+        shader: unshaded
+      - sprite: _Nuclear14/Markers/environment.rsi
+        shader: unshaded
+        state: slowdown_tile
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.6
+    sprintSpeedModifier: 0.6
+  - type: PlacementReplacement
+    key: blocker
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        layer:
+        - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+        hard: false
+  - type: Physics
+    bodyType: Static

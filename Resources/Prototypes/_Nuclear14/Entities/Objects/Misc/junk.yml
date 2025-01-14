@@ -445,8 +445,8 @@
     solution: drink
   - type: UserInterface
     interfaces:
-    - key: enum.TransferAmountUiKey.Key
-      type: TransferAmountBoundUserInterface
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
 
 - type: entity
   parent: N14JunkItemBaseContainer
@@ -738,7 +738,7 @@
     state: buzzer
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentCapacitor1
   name: capacitor
   description: An electrolytic capacitor.
@@ -747,7 +747,7 @@
     state: capacitor_1
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentCapacitor2
   name: capacitor
   description: A ceramic type capacitor.
@@ -759,7 +759,7 @@
     - Capacitor2
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentCapacitor3
   name: capacitor
   description: A paper type capacitor.
@@ -768,7 +768,7 @@
     state: capacitor_3
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentDiode1
   name: diode
   description: An old vacuum diode.
@@ -777,7 +777,7 @@
     state: diode_1
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentDiode2
   name: diode
   description: A more advanced zener diode.
@@ -789,7 +789,7 @@
     - Diode2
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentDiode3
   name: diode
   description: A standard diode.
@@ -798,7 +798,7 @@
     state: diode_3
 
 - type: entity
-  parent: N14JunkItemBasePlastic
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentMainboard
   name: mainframe board
   description: A sophisticated circuit board
@@ -810,7 +810,7 @@
     - Mainboard
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentFuse1
   name: fuse
   description: A large capacity, slow blow fuse.
@@ -819,7 +819,7 @@
     state: fuse_1
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentFuse2
   name: fuse
   description: A small capacity, fast blow fuse.
@@ -869,6 +869,18 @@
 
 - type: entity
   parent: N14JunkItemBaseGlass
+  id: N14JunkComponentElectronic
+  abstract: true
+  components:
+  - type: Sprite
+    state: resistor_1
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Circuitry: 20
+
+- type: entity
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentResistor1
   name: resistor
   description: A low resistance resistor.
@@ -877,7 +889,7 @@
     state: resistor_1
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentResistor2
   name: resistor
   description: A medium resistance resistor.
@@ -889,7 +901,7 @@
     - Resistor2
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentResistor3
   name: resistor
   description: A high resistance resistor.
@@ -912,7 +924,7 @@
     - Screw
 
 - type: entity
-  parent: N14JunkItemBasePlastic
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentSensor
   name: sensor board
   description: A sophisticated sensor board.
@@ -924,7 +936,7 @@
     - Sensor
 
 - type: entity
-  parent: N14JunkItemBasePlastic
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentSensorModule
   name: sensor module
   description: An advanced sensor module.
@@ -945,7 +957,7 @@
     - Switch
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentTransistor1
   name: transistor
   description: A FET or not-a-FET. That is the question.
@@ -954,7 +966,7 @@
     state: transistor_1
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentTransistor2
   name: transistor
   description: A bipolar junction transistor.
@@ -966,7 +978,7 @@
     - Transistor2
 
 - type: entity
-  parent: N14JunkItemBaseGlass
+  parent: N14JunkComponentElectronic
   id: N14JunkComponentTransistor3
   name: transistor
   description: A junction FET.

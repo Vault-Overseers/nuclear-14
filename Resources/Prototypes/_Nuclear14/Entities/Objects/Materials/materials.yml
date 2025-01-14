@@ -65,6 +65,14 @@
 
 - type: entity
   parent: Gunpowder
+  id: Gunpowder20
+  suffix: 20
+  components:
+  - type: Stack
+    count: 20
+
+- type: entity
+  parent: Gunpowder
   id: Gunpowder1
   suffix: Single
   components:
@@ -150,6 +158,8 @@
         reagents:
         - ReagentId: Cellulose
           Quantity: 3
+  - type: StaticPrice
+    price: 0
 
 - type: entity
   parent: N14Paper
@@ -195,6 +205,8 @@
         reagents:
         - ReagentId: Charcoal
           Quantity: 10
+  - type: StaticPrice
+    price: 0
 
 - type: entity
   parent: Charcoal
@@ -427,7 +439,7 @@
   - type: Item
     size: Small
   - type: StaticPrice
-    price: 0
+    price: 3
   - type: Tag
     tags:
     - Scrap
@@ -449,11 +461,10 @@
     layerStates:
     - scrap
     - scrap_2
-    - scrap_3
   - type: Sprite
-    state: scrap_3
+    state: scrap
     layers:
-    - state: scrap_3
+    - state: scrap_2
       map: ["base"]
   - type: Item
     heldPrefix: scrap

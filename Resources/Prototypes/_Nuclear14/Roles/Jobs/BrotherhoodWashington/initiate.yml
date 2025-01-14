@@ -4,10 +4,18 @@
   name: job-name-bos-washington-initiate
   description: job-description-bos-washington-initiate
   playTimeTracker: BoSWashingtonInitiate
+  requirements:
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
+    - !type:CharacterOverallTimeRequirement
+      min: 3600
   startingGear: BoSWashingtonInitiateGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
-  supervisors: job-supervisors-bos-washington-initiate
+  supervisors: job-supervisors-bos-wash-initiate
   canBeAntag: false
   access:
   - WashingtonInitiate
@@ -17,11 +25,6 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodWashington
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSWashingtonInitiateGear
@@ -32,6 +35,7 @@
     id: N14IDBrotherhoodWashingtonHolotagInitiate
     outerClothing: N14ClothingOuterCombatArmorBOS
     belt: ClothingBeltBoSWebbing
+    pocket1: NCRBoSWashingtonkits
 
 - type: playTimeTracker
   id: BoSWashingtonInitiate

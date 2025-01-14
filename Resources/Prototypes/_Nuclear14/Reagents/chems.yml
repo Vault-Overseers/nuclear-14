@@ -25,8 +25,8 @@
       # - !type:LuckModifierReagent # Nuclear 14 Example of adding modifier to Chemicals
       #   luckModifier: 1
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.15
-        sprintSpeedModifier: 1.15
+        walkSpeedModifier: 1.1
+        sprintSpeedModifier: 1.1
       - !type:GenericStatusEffect
         key: SeeingRainbows
         component: SeeingRainbows
@@ -34,12 +34,10 @@
         time: 5
         refresh: false
       - !type:HealthChange
-        conditions:
-        - !type:ReagentThreshold
-          min: 30
         damage:
           types:
-            Asphyxiation: 1
+            Poison: 0.2
+          groups:
       - !type:Jitter
       - !type:GenericStatusEffect
         key: Stun
@@ -73,16 +71,14 @@
     Narcotic:
       effects:
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.40
-        sprintSpeedModifier: 1.40
+        walkSpeedModifier: 1.20
+        sprintSpeedModifier: 1.20
       - !type:Drunk
       - !type:HealthChange
-        conditions:
-        - !type:ReagentThreshold
-          min: 10
         damage:
           types:
-            Asphyxiation: 1.3
+            Poison: 0.5
+          groups:
       - !type:Jitter
       - !type:GenericStatusEffect
         key: Stun
@@ -98,7 +94,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 12
-          
+
 
 - type: reagent
   id: DamageModifyingMixture #used in psycho. TODO: figure out how to make a reagent give you a dmg buff
@@ -112,8 +108,6 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Drunk
-      - !type:StrengthModifierReagent
-        strengthModifier: 2
     Narcotic:
       effects:
       - !type:ChemAddMoodlet
@@ -136,12 +130,6 @@
         type: Add
         time: 10
         refresh: false
-      - !type:CharismaModifierReagent
-        charismaModifier: 3
-      - !type:LuckModifierReagent
-        luckModifier: 3
-      - !type:StrengthModifierReagent
-        strengthModifier: 2
     Food:
       effects:
       - !type:SatiateThirst
@@ -173,12 +161,8 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Jitter
-      - !type:StrengthModifierReagent
-        strengthModifier: 2
-      - !type:EnduranceModifierReagent
-        enduranceModifier: 2
       # - !type:HealthIncreaseReagent
-      #   increaseAmount: 50
+        # increaseAmount: 50
 
 - type: reagent
   id: Buffjet
@@ -191,16 +175,17 @@
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.2
+          groups:
       - !type:Jitter
       - !type:MovespeedModifier
         walkSpeedModifier: 1.1
         sprintSpeedModifier: 1.1
-      - !type:StrengthModifierReagent
-        strengthModifier: 3
-      - !type:EnduranceModifierReagent
-        enduranceModifier: 3
       # - !type:HealthIncreaseReagent
-      #   increaseAmount: 50
+        # increaseAmount: 50
 
 - type: reagent
   id: Bufftats
@@ -214,14 +199,8 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Jitter
-      - !type:StrengthModifierReagent
-        strengthModifier: 3
-      - !type:EnduranceModifierReagent
-        enduranceModifier: 3
-      - !type:PerceptionModifierReagent
-        perceptionModifier: 3
       # - !type:HealthIncreaseReagent
-      #   increaseAmount: 50
+        # increaseAmount: 50
 
 - type: reagent
   id: Mentats
@@ -234,10 +213,7 @@
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
-      - !type:IntelligenceModifierReagent
-        intelligenceModifier: 2
-      - !type:PerceptionModifierReagent
-        perceptionModifier: 2
+      - !type:Jitter #Placeholder for when we get Special working again.
 
 - type: reagent
   id: MentatsBerry
@@ -250,8 +226,7 @@
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
-      - !type:IntelligenceModifierReagent
-        intelligenceModifier: 5
+      - !type:Jitter #Placeholder for when we get Special working again.
 
 - type: reagent
   id: MentatsGrape
@@ -264,8 +239,7 @@
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
-      - !type:CharismaModifierReagent
-        charismaModifier: 5
+      - !type:Jitter #Placeholder for when we get Special working again.
 
 - type: reagent
   id: MentatsOrange
@@ -278,8 +252,7 @@
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
-      - !type:PerceptionModifierReagent
-        perceptionModifier: 5
+      - !type:Jitter #Placeholder for when we get Special working again.
 
 - type: reagent
   id: DamageResistMixture
@@ -292,9 +265,7 @@
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
-      - !type:Drunk
-      - !type:EnduranceModifierReagent
-        enduranceModifier: 4 # increases endurance until % resistance is introduced
+      - !type:Jitter #Placeholder for when we get Special working again.
 
 - type: reagent
   id: Hydra
@@ -320,8 +291,6 @@
         key: SlurredSpeech
         component: TelepathicRepeater
       - !type:Jitter
-      - !type:EnduranceModifierReagent
-        enduranceModifier: -1
       - !type:HealthChange
         damage:
           groups:

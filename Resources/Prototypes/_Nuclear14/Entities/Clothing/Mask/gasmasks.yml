@@ -1,5 +1,27 @@
 - type: entity
   parent: ClothingMaskGas
+  id: N14ClothingMaskGasZealotGasMask
+  name: zealot gas mask
+  description: An old riot gas mask modified by someone religious. The night vision is broken but it gives decent protection.
+  components:
+  - type: Item
+    size: Tiny
+  - type: EyeProtection
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Mask/Gasmask/zealotgasmask.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Mask/Gasmask/zealotgasmask.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.95
+    priceMultiplier: 0.5
+
+- type: entity
+  parent: ClothingMaskGas
   id: ClothingMaskGasFire
   name: fire gas mask
   description: A gasmask with extra protection against fire.
@@ -15,7 +37,9 @@
       coefficients:
         Blunt: 0.95
         Slash: 0.95
+        Piercing: 0.95
         Heat: 0.9
+    priceMultiplier: 0.5
 
 - type: entity
   parent: ClothingMaskGas
@@ -34,7 +58,9 @@
       coefficients:
         Blunt: 0.95
         Slash: 0.95
-        Radiation: 0.9
+        Heat: 0.95
+        Radiation: 0.95
+    priceMultiplier: 0.5
 
 # NCR Rangers, Vets
 

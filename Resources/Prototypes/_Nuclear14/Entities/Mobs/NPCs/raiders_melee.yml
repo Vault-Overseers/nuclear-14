@@ -49,7 +49,6 @@
     damage:
       types:
         Slash: 14
-        Structural: 5
     range: 1
   - type: MovementSpeedModifier
     baseWalkSpeed : 4
@@ -57,7 +56,7 @@
   - type: Hands
   - type: Puller
   - type: Tool
-    speed: 1.0
+    speedModifier: 1.0
     qualities:
       - Prying
   - type: Prying
@@ -68,3 +67,65 @@
     useSound:
       path: /Audio/Items/crowbar.ogg
 
+- type: entity
+  name: Fern Conscript
+  id: N14MobRaiderFernMelee
+  parent: N14MobRaiderPsycho
+  description: Professional mercenary-wannabe, holding a club and ready to dent someone's skull in.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: raider_melee
+      sprite: _Nuclear14/Mobs/RaidersSimpleMob/RaiderMeleeFern.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Critical:
+        Base: raider_dead #TODO: Make crit raider
+      Dead:
+        Base: raider_dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/metal_thud1.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 9
+        Slash: 6
+    range: 1
+
+- type: entity
+  name: Enforcer Beatcop
+  id: N14MobRaiderEnforcerMelee
+  parent: N14MobRaiderPsycho
+  description: Law enforcement? No. Just a really fancy raider with a baton.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: raider_melee
+      sprite: _Nuclear14/Mobs/RaidersSimpleMob/RaiderMeleeEnforcer.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Critical:
+        Base: raider_dead #TODO: Make crit raider
+      Dead:
+        Base: raider_dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/metal_thud1.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 12
+    range: 1

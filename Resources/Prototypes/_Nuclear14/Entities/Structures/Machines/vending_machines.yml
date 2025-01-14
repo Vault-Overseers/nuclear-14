@@ -47,14 +47,11 @@
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
-            min: 1
-            max: 1
+            min: 3
+            max: 5
           N14ScrapElectronic1:
            min: 1
            max: 3
-          N14Scrap1:
-           min: 2
-           max: 4
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
@@ -87,11 +84,14 @@
   - type: Appearance
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - English
+    - Chinese
     - RobotTalk
     understands:
-    - GalacticCommon
+    - English
+    - Chinese
     - RobotTalk
+  - type: InteractionOutline
 
 #MARK: Nuka Vending
 - type: entity
@@ -187,8 +187,8 @@
     maxItemSize: Small
   - type: UserInterface
     interfaces:
-    - key: enum.StorageUiKey.Key
-      type: StorageBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -248,8 +248,8 @@
     maxItemSize: Small
   - type: UserInterface
     interfaces:
-    - key: enum.StorageUiKey.Key
-      type: StorageBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -307,13 +307,14 @@
     maxItemSize: Normal
   - type: UserInterface
     interfaces:
-    - key: enum.StorageUiKey.Key
-      type: StorageBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
   - type: Transform
     anchored: true
+  - type: InteractionOutline
 
 #MARK: Cig Filled
 - type: entity

@@ -5,18 +5,27 @@
   description: job-description-tribal-elder
   playTimeTracker: TribalElder
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: Tribe
-      min: 7200 # 2 hours
+      min: 14400 # 4 hours
   startingGear: TribalElderGear
   icon: "JobIconBotanist"
   supervisors: job-supervisors-tribal-elder
+  access:
+  - TribeMember
+  - TribeChief
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
           - Tribal
+  - !type:AddTraitSpecial
+    traits: [ LanguageTribal ]
 
 - type: startingGear
   id: TribalElderGear
@@ -28,6 +37,7 @@
     gloves: N14ClothingHandsGlovesTribal
     back: N14ClothingBackpackTribalFilled
     pocket1: N14TribalKnife
+    id: N14IDTribeBossPendant
   innerClothingSkirt: N14ClothingUniformJumpskirtTribal
   satchel: N14ClothingBackpackSatchelTribalFilled
 

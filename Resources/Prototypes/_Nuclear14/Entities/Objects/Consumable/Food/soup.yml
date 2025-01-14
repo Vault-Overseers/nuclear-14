@@ -1,0 +1,855 @@
+# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_meal.yml
+
+- type: entity
+  parent: FoodBase
+  id: N14CookedFoodBowlBase
+  abstract: true
+  components:
+  - type: Item
+    storedRotation: -90
+  - type: Food
+    trash: 
+    - FoodBowlBig
+    utensil: Spoon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+  - type: Sprite
+    sprite: Objects/Consumable/Food/bowl.rsi
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: Spillable
+    solution: food
+  # soup weapon!
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Tag
+    tags:
+    - Soup
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -8
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FoodBowlBigTrash:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# Custom Soup Example
+
+- type: entity
+  name: pea soup
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupPea
+  description: A humble split pea soup.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - creamy
+      - peas
+  - type: Sprite
+    sprite: Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: alpha-filling
+      color: green
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 5
+
+# Salad
+
+- type: entity
+  name: herb salad
+  parent: N14CookedFoodBowlBase #cooked is a stretch but... okay, we tag salads as that for now. We can swap it out later if we want. -Hazel
+  id: N14CookedFoodSaladHerb
+  description: A tasty salad with mutfruit on top.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - leafy
+      - apple
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: herb
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: Tag
+    tags:
+    - Fruit
+    - Soup
+
+- type: entity
+  name: coleslaw
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSaladColeslaw
+  description: Shredded cabbage and red onions dressed with a vinaigrette.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - onion
+      - cabbage
+      - sour
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: coleslaw
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Allicin
+          Quantity: 3
+
+- type: entity
+  name: caesar salad
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSaladCaesar
+  description: A simple yet flavorful salad of onions, cabbage, croutons, and shreds of cheese dressed in oil. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - onion
+      - cabbage
+      - bread
+      - cheesy
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: caesar
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 6
+
+- type: entity
+  name: kimchi salad
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSaladKimchi
+  description: It really is just a spicy salad.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - spicy
+      - cabbage
+      - carrot
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: kimchi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Allicin
+          Quantity: 2
+
+- type: entity
+  name: fruit salad
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSaladFruit
+  description: Your standard fruit salad.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - fruity
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: fruit
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Tag
+    tags:
+    - Fruit
+    - Soup
+
+- type: entity
+  name: jungle salad
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSaladJungle
+  description: Exotic fruits in a bowl.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - fruity
+      - jungle
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: fruit
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Tag
+    tags:
+    - Fruit
+    - Soup
+
+- type: entity
+  name: citrus salad
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSaladCitrus
+  description: Citrus overload!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - leafy
+      - sour
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: citrusdelight
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 38
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 18
+        - ReagentId: Vitamin
+          Quantity: 15
+  - type: Tag
+    tags:
+    - Fruit
+    - Soup
+
+# Rice
+
+- type: entity
+  name: boiled rice
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodRiceBoiled
+  description: A warm bowl of rice.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - rice
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: rice
+  - type: SolutionContainerManager #Rice didn't have any sort of nutritional value before I added this. I think. -Hazel
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Tag
+    tags:
+    - Soup
+
+- type: entity
+  name: egg-fried rice
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodRiceEgg
+  description: A bowl of rice with a fried egg.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - rice
+      - egg
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: rice-egg
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
+
+- type: entity
+  name: roadkill rice
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodRiceRoadkill
+  description: Dotted with blackened scraps of waste-meat. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - rice
+      - meaty
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: rice-pork #dunno if I can fix this safely for now?? -Hazel
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 18
+        - ReagentId: Vitamin
+          Quantity: 7
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
+
+- type: entity
+  name: rice pudding
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodRicePudding
+  description: Everybody loves rice pudding!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - rice
+      - sweet
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: rice-pudding
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: N14MilkBrahmin
+          Quantity: 5
+        - ReagentId: Sugar
+          Quantity: 5
+
+- type: entity
+  name: black-eyed gumbo
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodRiceGumbo
+  description: A spicy and savory meat and rice dish.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - rice
+      - spicy
+      - meaty
+      - savory
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: gumbo
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: CapsaicinOil
+          Quantity: 2
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
+
+# Misc
+
+- type: entity
+  name: oatmeal
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodOatmeal
+  description: A nice bowl of oatmeal.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - oats
+      - milk
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: oatmeal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: N14MilkBrahmin
+          Quantity: 10
+
+- type: entity #I'm leaving this here as a placeholder. Maybe poisonous food will be desirable someday. -Hazel
+  name: amanita jelly
+  parent: FoodInjectableBase
+  id: N14CookedFoodJellyAmanita
+  description: It's evil, don't touch it!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - mushroom
+      - jelly
+  - type: Sprite
+    sprite: Objects/Consumable/Food/meals.rsi
+    state: amanita-jelly
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Amatoxin
+          Quantity: 6
+
+# Soup
+
+- type: entity
+  name: meatball soup
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupMeatball
+  description: Meatballs in a soup - well, hell, we work with what we got.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meatballs
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: meatball
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Water
+          Quantity: 10
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
+
+- type: entity
+  name: mutie soup
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupMutie
+  description: Some kind of mutant cooked in sauce. Looks... uh... unappetizing...
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - salty
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: wingfangchu
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Protein
+          Quantity: 9
+        - ReagentId: Soysauce
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 7
+
+- type: entity
+  name: bloodtato soup
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupBloodtato
+  description: The blood blots out the tato flavor. A surprisingly good, if insane, spin on the meal.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - acidic
+      - metallic
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: tomato
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Iron
+          Quantity: 10
+        - ReagentId: Blood
+          Quantity: 5 #these numbers are now scuffed and I am not smart enough to fix them
+  - type: Tag
+    tags:
+    - Fruit
+    - Soup
+
+- type: entity
+  name: vegetable soup
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupVegetable
+  description: A hearty, healthy meal beloved by foragers and farmers.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - vegetables
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: vegetable
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 7
+        - ReagentId: Water
+          Quantity: 10
+        - ReagentId: Oculine
+          Quantity: 1
+
+- type: entity
+  name: nettle soup
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupNettle
+  description: Food for foragers. Said to be a potent restorative.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - nettles
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: nettle
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Water
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 5
+        - ReagentId: Histamine
+          Quantity: 0.5
+
+- type: entity
+  name: bowl of hot chili
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupChiliHot
+  description: A Washington five-alarm chili! #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - spicy
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: chili-hot
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 8
+          - ReagentId: CapsaicinOil
+            Quantity: 5
+          - ReagentId: Vitamin
+            Quantity: 4
+          - ReagentId: Allicin
+            Quantity: 3
+  - type: Tag
+    tags:
+    - ChiliBowl
+
+- type: entity
+  name: tato soup #N14 change
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupTato
+  description: This really doesn't taste good. But it's good for you..? #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - tato #N14 change
+      - sludgy #N14 change
+      - bad #N14 change
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: tomato
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 3
+          - ReagentId: Vitamin
+            Quantity: 5
+          - ReagentId: Water
+            Quantity: 10
+  - type: Tag
+    tags:
+    - Fruit
+    - Soup
+
+- type: entity
+  name: eyeball soup
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupEyeball
+  description: It's looking back at you...
+  components:
+  - type: FlavorProfile
+    flavors:
+      - tomato
+      - squirming
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: eyeball
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 5
+          - ReagentId: Vitamin
+            Quantity: 3
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
+
+- type: entity #not in the game, placeholder
+  name: miso soup
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupMiso
+  description: Salty, fishy soup, best had with ramen.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - miso
+  - type: Food
+    trash: 
+    - FoodBowlFancy
+  - type: Sprite
+    layers:
+    - state: bowl2
+    - state: miso
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 9
+          - ReagentId: Vitamin
+            Quantity: 3
+          - ReagentId: Water
+            Quantity: 10
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
+
+- type: entity
+  name: mushroom soup
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupMushroom
+  description: A delicious and hearty mushroom soup.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - mushroom
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: mushroom
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 2
+          - ReagentId: Vitamin
+            Quantity: 6
+          - ReagentId: Water
+            Quantity: 5
+          - ReagentId: N14MilkBrahmin
+            Quantity: 5
+
+- type: entity
+  name: stew
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupStew
+  description: A nice and warm stew. Healthy and strong.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - tato #N14 change
+      - carrot
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: stew
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 15
+          - ReagentId: Protein
+            Quantity: 5
+          - ReagentId: Vitamin
+            Quantity: 2
+  - type: Tag
+    tags:
+    - Meat
+    - Fruit
+    - Soup
+
+- type: entity
+  name: onion soup
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupOnion
+  description: The cheese thickens it up nicely.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - onion
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: onion
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 4
+          - ReagentId: Vitamin
+            Quantity: 5
+          - ReagentId: Allicin
+            Quantity: 5
+
+- type: entity
+  name: bisque
+  parent: N14CookedFoodBowlBase
+  id: N14CookedFoodSoupBisque
+  description: A fish dish that comes from a guy called Franz.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - creamy
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: bisque
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 6
+          - ReagentId: Vitamin
+            Quantity: 6
+          - ReagentId: Protein
+            Quantity: 6
+          - ReagentId: Water
+            Quantity: 5
+# Tastes like crab.

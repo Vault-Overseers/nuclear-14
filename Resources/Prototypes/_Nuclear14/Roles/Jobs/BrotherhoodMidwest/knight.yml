@@ -5,12 +5,23 @@
   description: job-description-bos-mid-knight
   playTimeTracker: BoSMidKnight
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodMidwest
-      min: 3600 # 1 hour
+      min: 18000 # 5 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
+            - Ghoul
   startingGear: BoSMidKnightGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
+  supervisors: job-supervisors-bos-mid-knight
   canBeAntag: false
   access:
   - BoSMidwest
@@ -20,11 +31,6 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodMidwest
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSMidKnightGear

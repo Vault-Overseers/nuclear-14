@@ -1,0 +1,544 @@
+# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_single.yml
+# Bun
+
+- type: entity
+  name: bun
+  parent: N14CookedFoodBreadSliceBase
+  id: N14CookedFoodBreadBun
+  description: A hamburger bun. Round and convenient to hold.
+  components:
+  - type: Food
+  - type: Sprite
+    sprite: Objects/Consumable/Food/burger.rsi
+    layers:
+    - state: bun
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6.66 # 1/3 of a loaf of bread, technically losing 0.01 nutriment per batch of three buns over making bread loaves/slices
+
+# Base
+
+- type: entity
+  parent: FoodInjectableBase
+  id: N14FoodBurgerBase #Fucking with the bases screws something up in robust toolbox. -Hazel
+  abstract: true
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+  - type: Food
+    transferAmount: 5
+  - type: Sprite
+    sprite: Objects/Consumable/Food/burger.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 3
+  - type: Item
+    sprite: Objects/Consumable/Food/burger.rsi
+
+# Custom Burger Example
+
+- type: entity
+  name: jelly burger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerJelly
+  description: Culinary delight..?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - jelly
+  - type: Sprite
+    layers:
+    - state: custburg-bottom
+    - state: custburg-filling
+      color: red
+    - state: custburg-top
+
+# Burger
+
+- type: entity
+  name: appendix burger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerAppendix
+  description: Tastes like appendicitis.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - grass
+  - type: Sprite
+    state: appendix
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 6
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like bun, grass.
+
+- type: entity
+  name: bacon burger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerBacon
+  description: The perfect combination of all things American.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - bacon
+  - type: Sprite
+    state: bacon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 19
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like bun, bacon.
+
+- type: entity
+  name: bearger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerBear
+  description: Savor your kill, hunter. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+  - type: Sprite
+    state: bearger
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: big bite burger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerBig
+  description: Food fit for the ultimate wasteland hedonists. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+      - oily
+      - cheesy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 33
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 17
+        - ReagentId: Vitamin
+          Quantity: 9
+  - type: Sprite
+    state: bigbite
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like bun, silver, magic.
+
+- type: entity
+  name: brain burger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerBrain
+  description: Like an edible robobrain. Jesus christ. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+  - type: Sprite
+    state: brain
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like bun, brains.
+
+- type: entity
+  name: cheese burger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerCheese
+  description: This. This is what you've been missing all your life. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+      - cheesy
+  - type: Sprite
+    state: cheese
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 7
+        - ReagentId: Protein
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Meat
+# TODO: Make this work.
+  # - type: Sprite
+  #   state: plate
+  # - type: RandomSpriteState
+  #   spriteLayer: 1
+  #   spriteStates:
+  #     - cheese
+  #     - cheesealt
+# Tastes like bun, beef patty, cheese.
+
+- type: entity
+  name: chicken sandwich
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerChicken
+  description: Deliciously portable. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - chicken
+  - type: Sprite
+    state: chicken
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Mayo
+          Quantity: 3
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like bun, chicken.
+
+- type: entity
+  name: crab burger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerCrab
+  description: A delicious patty of the crabby kind, slapped in between a bun.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - crabby
+  - type: Sprite
+    state: crab
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: duck sandwich
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerDuck
+  description: A duck sandwich. Are ducks even real?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - duck
+  - type: Sprite
+    state: chicken
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like bun, duck.
+
+- type: entity
+  name: fillet-o-carp burger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerCarp
+  description: Mythical wasteland fish. Eat to become a goddess. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - fishy
+  - type: Sprite
+    state: fish
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like bun, fish.
+
+- type: entity
+  name: five alarm burger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerFive
+  description: HOT! HOT! HOT!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - spicy
+  - type: Sprite
+    state: fivealarm
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: CapsaicinOil
+          Quantity: 5
+        - ReagentId: Blackpepper
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 1
+
+# Tastes like bun, HEAT.
+
+- type: entity
+  name: McGuffin
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerMcguffin
+  description: A cheap and greasy imitation of an eggs Benedict.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - muffin
+      - egg
+  - type: Sprite
+    state: mcguffin
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: BBQ Rib Sandwich
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerMcrib
+  description: The strong flavor of bighorner meat marries the sweet-smoky sauce so, so well... #N14 change
+  components:
+  - type: Food
+    trash: 
+    - FoodKebabSkewer
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - bacon
+  - type: Sprite
+    state: mcrib
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: BbqSauce
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like bun, pork patty.
+
+- type: entity
+  name: plain burger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerPlain
+  description: A simple, plain burger. For the wasteland, this is pretty good eating. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+  - type: Sprite
+    state: plain
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 3
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: rat burger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerRat
+  description: Pretty much what you'd expect...
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+  - type: Sprite
+    state: rat
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like bun, HEAT.
+
+- type: entity
+  name: super bite burger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerSuper
+  description: This is a mountain of a burger. FOOD!
+  components:
+  - type: FlavorProfile
+    flavors: # What bun?
+      - meaty
+      - oily
+      - cheesy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 55
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 44
+        - ReagentId: Vitamin
+          Quantity: 24
+        - ReagentId: TableSalt
+          Quantity: 5
+        - ReagentId: Blackpepper
+          Quantity: 5
+  - type: Sprite
+    state: superbite
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like bun, diabetes.
+
+- type: entity
+  name: tofu burger
+  parent: N14FoodBurgerBase
+  id: N14CookedFoodBurgerTofu
+  description: What... is that meat?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - tofu
+  - type: Sprite
+    state: tofu
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 3
+# Tastes like bun, tofu.

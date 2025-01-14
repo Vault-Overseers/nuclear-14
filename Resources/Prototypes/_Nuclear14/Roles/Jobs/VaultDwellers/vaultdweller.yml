@@ -2,11 +2,15 @@
   id: VaultDweller
   name: job-name-vault-dweller
   description: job-description-vault-dweller
+  requirements:
+  - !type:CharacterSpeciesRequirement
+    species:
+    - Human
   playTimeTracker: VaultDweller
   startingGear: VaultDwellerGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
-  supervisors: job-supervisors-overseer
+  supervisors: job-supervisors-vault
   access:
   - VaultDweller
   special:
@@ -15,11 +19,6 @@
       - type: NpcFactionMember
         factions:
           - Vault
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: VaultDwellerGear

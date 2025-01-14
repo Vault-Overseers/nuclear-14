@@ -28,8 +28,8 @@
     key: enum.LatheUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.LatheUiKey.Key
-      type: LatheBoundUserInterface
+      enum.LatheUiKey.Key:
+        type: LatheBoundUserInterface
   - type: ExtensionCableReceiver
   - type: ApcPowerReceiver
     needsPower: false
@@ -60,6 +60,8 @@
       - N14WastelandSpear
       - N14WastelandTribalJavelin
       - N14BrassKnife
+      - N14TrainingSword
+      - N14LongSword
 
 - type: entity
   parent: N14WorkbenchBase
@@ -264,8 +266,8 @@
     key: enum.ChemMasterUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.ChemMasterUiKey.Key
-      type: ChemMasterBoundUserInterface
+       enum.ChemMasterUiKey.Key:
+         type: ChemMasterBoundUserInterface
   - type: ChemMaster
     pillDosageLimit: 20
 
@@ -334,6 +336,7 @@
       - HydroponicsToolSpade
       - N14HydroponicsToolScythe
       - N14HydroponicsToolClippers
+      - N14HandLabeler
       # Kitchen
       - N14ButchersCleaver
       - N14KitchenKnife
@@ -346,11 +349,11 @@
       - N14FoodPlateSmall
       - N14FoodPlatePlastic
       - N14FoodPlateSmallPlastic
-      - N14FoodBowlBig
       - N14FoodPlateTin
       - N14FoodKebabSkewer
       - N14JunkCookpot
       - N14JunkCoffeepot
+      - PlantBag
       # Janitorial
       - N14Mop
       - N14MopBucket
@@ -454,16 +457,10 @@
     staticRecipes:
       # Ores
       - N14IngotSilver
-      - N14IngotSilverCharcoal
       - N14IngotIron
-      - N14IngotIronCharcoal
       - N14IngotGold
-      - N14IngotGoldCharcoal
       - N14IngotCopper
-      - N14IngotCopperCharcoal
       - N14SheetSteel
-      - N14SheetSteelCharcoal
-      - N14SheetPlastic
       - N14SheetGlass
       - N14IngotLead
       - SulfurPowder
@@ -473,9 +470,11 @@
       - N14IngotCopperScrap
       - N14IngotGoldScrap
       - N14IngotSteelScrap
-      - N14N14IngotLeadScrap
+      - N14IngotIronScrap
+      - N14IngotLeadScrap
       # Other
       - Charcoal
+      - CharcoalToCoal
 
 - type: entity
   parent: N14WorkbenchBase
@@ -533,7 +532,7 @@
     producingSound: /Audio/Machines/circuitprinter.ogg
     idleState: icon
     runningState: building
-    
+
 - type: entity
   parent: N14WorkbenchIDPrinter
   id: N14WorkbenchIDPrinterTownspeople

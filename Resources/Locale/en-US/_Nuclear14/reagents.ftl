@@ -137,8 +137,8 @@ reagent-name-extract-datura = datura extract
 reagent-desc-extract-datura = A root that is often harvested for its venom which is commonly put on melee weapons. Tastes terrible, it burns your mouth, it makes your stomach feel sick.
 reagent-name-extract-honey-mesquite-pod = honey mesquite pod extract
 reagent-desc-extract-honey-mesquite-pod = A vegetable that vaguely resembles a pea pod. Tastes of buckwheat and clover honey.
-reagent-name-extract-jalapeno-pepper = jalapeno pepper juice
-reagent-desc-extract-jalapeno-pepper = A green pepper, something tells you eating this would probably hurt your mouth. Tastes like pain, more pain, and even more pain.
+reagent-name-extract-glowpepper = glowpepper juice 
+reagent-desc-extract-glowpepper = A glowing pepper; something tells you eating this would probably hurt your mouth. Tastes like glorious nuclear fire.
 reagent-name-extract-maize = maize extract
 reagent-desc-extract-maize = Corn before there was corn, this vegetable is all sorts of different colours. Tastes slightly sweet and starchy.
 reagent-name-extract-mutfruit = mutfruit juice
@@ -309,7 +309,6 @@ materials-aluminum = aluminum
 materials-antchitin = chitin
 materials-charcoal = charcoal
 materials-exoskeleton = exoskeleton
-materials-gunpowder = gunpowder
 materials-leather = leather
 materials-lead = lead
 materials-lead-scrap = scrap lead
@@ -341,8 +340,6 @@ reagent-name-fertilizer = fertilizer
 reagent-desc-fertilizer = Ground fertilizer. Perfect for your plants!
 reagent-name-dung = dung
 reagent-desc-dung = Animal dung. Ripe for turning into compost.
-reagent-name-sulfur = sulfur
-reagent-desc-sulfur = Ground sulfur in a powdery form. You should really wear a gas mask.
 
 
 # Other

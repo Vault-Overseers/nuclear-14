@@ -1,0 +1,457 @@
+# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_meal.yml
+# A bunch of different meals. This stuff doesn't come off their plates because
+# it's assembled on them. Or they just don't have plates.
+
+# Base
+
+- type: entity
+  parent: FoodInjectableBase
+  id: N14CookedFoodMealBase
+  abstract: true
+  description: A delicious meal, cooked with love.
+  components:
+  - type: Item
+    storedRotation: -90
+  - type: Food
+  - type: Sprite
+    sprite: Objects/Consumable/Food/meals.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 26
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+
+# Meals
+
+- type: entity
+  name: loaded baked potato
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealPotatoLoaded
+  description: Totally baked.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - potatoes
+  - type: Sprite
+    state: loadedbakedpotato
+# Tastes like potato.
+
+- type: entity
+  name: fries #N14 change. I don't think I need to change anything else, the ID is the same...
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealFries
+  description: You hear these used to be fried in oil. Baked, salty tatos are just about 'alright'. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - tato #N14 change
+      - salty
+  - type: Sprite
+    state: fries
+# Tastes like fries, salt.
+
+- type: entity
+  name: cheesy fries
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealFriesCheesy
+  description: Alright, this is good shit. You can barely taste the tato. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - tato #N14 change
+      - salty
+      - cheesy
+  - type: Sprite
+    state: fries-cheesy
+# Tastes like fries, cheese.
+
+- type: entity
+  name: carrot fries
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealFriesCarrot
+  description: Tasty fries from fresh carrots.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - carrots
+      - salty
+  - type: Sprite
+    state: fries-carrot
+  - type: Tag
+    tags:
+    - CarrotFries
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 26
+        reagents:
+        - ReagentId: JuiceCarrot
+          Quantity: 20
+# Tastes like carrots, salt.
+
+- type: entity
+  name: nachos
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealNachos
+  description: Corn chips. #N14 change
+  components:
+  - type: FlavorProfile
+    flavors:
+      - nachos
+  - type: Sprite
+    state: nachos
+# Tastes like nachos.
+
+- type: entity
+  name: cheesy nachos
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealNachosCheesy
+  description: The delicious combination of nachos and melting cheese.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - nachos
+      - cheesy
+  - type: Sprite
+    state: nachos-cheesy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: TableSalt
+          Quantity: 1
+# Tastes like nachos, cheese.
+
+- type: entity
+  name: Cuban nachos
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealNachosCuban
+  description: That's some dangerously spicy nachos.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - nachos
+      - cheesy
+      - spicy
+  - type: Sprite
+    state: nachos-cuban
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: CapsaicinOil
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 4
+# Tastes like nachos, hot pepper.
+
+- type: entity
+  name: mint
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealMint
+  description: It's wafer thin.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - minty
+  - type: Sprite
+    state: mint
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        # Note that this acts as the limiter against injecting anything.
+        maxVol: 1
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+# Tastes like parsnips, salt.
+
+- type: entity
+  name: Cuban carp
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealCubancarp
+  description: An impossible meal. The gods smile on you.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - fishy
+      - batter
+      - spicy
+  - type: Sprite
+    state: cubancarp
+# Delta-V: Removed the toxin and changed the description.
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 3
+  - type: Tag
+    tags:
+    - CubanCarp
+    - Meat
+# Tastes like fish, batter, hot peppers.
+
+- type: entity
+  name: bbq ribs
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealRibs
+  description: Big, big, bighorner ribs, slathered in sweet smokey paradise. #N14 change
+  components:
+  - type: Food
+    trash: 
+    - FoodKebabSkewer
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - smokey
+  - type: Sprite
+    state: ribs
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: BbqSauce
+          Quantity: 10
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like meat, smokey sauce.
+
+- type: entity
+  name: eggs benedict
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealEggsbenedict
+  description: There is only one egg on this, how rude.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - egg
+      - bacon
+      - bun
+  - type: Sprite
+    state: benedict
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like eggs, bacon, bun.
+
+- type: entity
+  name: cheese omelette
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealOmelette
+  description: Cheesy.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - egg
+      - cheesy
+  - type: Sprite
+    state: omelette
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like egg, cheese.
+
+- type: entity
+  name: fried egg
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealFriedegg
+  description: A fried egg, with a touch of salt and pepper.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - egg
+      - salty
+      - peppery
+  - type: Sprite
+    state: friedegg
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: TableSalt
+          Quantity: 1
+        - ReagentId: Blackpepper
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Meat
+# Tastes like egg, salt, pepper.
+
+- type: entity
+  name: queso
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealQueso
+  description: A classic dipping sauce that you can't go wrong with.
+  components:
+    - type: FlavorProfile
+      flavors:
+        - cheesy
+    - type: Sprite
+      state: queso
+# Its queso! Everyone loves queso... Right?.
+
+- type: entity
+  name: sashimi
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealSashimi
+  description: Its taste can only be described as "Exotic".
+  components:
+  - type: FlavorProfile
+    flavors:
+      - fishy
+  - type: Sprite
+    state: sashimi
+# Delta-V: Removed the toxin and changed the description.
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 6
+  - type: Tag
+    tags:
+    - Meat
+# tastes exotic
+
+- type: entity
+  name: enchiladas
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealEnchiladas
+  description: Viva La Mexico!
+  components:
+    - type: FlavorProfile
+      flavors:
+        - meaty
+    - type: Sprite
+      state: enchiladas
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 10
+          reagents:
+          - ReagentId: Nutriment
+            Quantity: 8
+          - ReagentId: CapsaicinOil
+            Quantity: 6
+    - type: Tag
+      tags:
+      - Meat
+# What do Europeans eat instead of enchiladas? 25.4 millimeter-iladas.
+
+- type: entity
+  name: melon fruit bowl
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodSaladWatermelonFruitBowl
+  description: The only salad where you can eat the bowl.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - fruity
+      - sour
+  - type: Sprite
+    state: melonfruitbowl
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 65
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: Vitamin
+          Quantity: 15
+        - ReagentId: Water
+          Quantity: 5
+        - ReagentId: Bicaridine
+          Quantity: 5
+        - ReagentId: Kelotane
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: corn in butter
+  parent: N14CookedFoodMealBase
+  id: N14CookedFoodMealCornInButter
+  description: Buttery.
+  components:
+  - type: Food
+    trash: 
+    - FoodPlate
+  - type: FlavorProfile
+    flavors:
+      - corn
+      - butter
+  - type: Sprite
+    state: corn-in-butter
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 4
+
+- type: entity #It felt weird to make an entire snacks folder just for this, so it's here in meals.yml, our catch-all. -Hazel
+  name: popcorn
+  parent: FoodSnackBase
+  id: N14FoodSnackPopcorn
+  description: Feel it in your hands. Nice and warm...
+  components:
+  - type: FlavorProfile
+    flavors:
+      - corn
+      - salt
+      - butter
+  - type: Sprite
+    state: popcorn
+  - type: Item
+    heldPrefix: popcorn
+  - type: Food
+    trash: 
+    - FoodPacketPopcornTrash

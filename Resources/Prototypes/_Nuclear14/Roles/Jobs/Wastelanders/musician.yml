@@ -1,9 +1,12 @@
 - type: job
   id: WastelandMusician
-  setPreference: true
-  name: job-name-musician
-  description: job-description-musician
+  setPreference: false # disabled, use loadouts.
+  name: job-name-waste-musician
+  description: job-description-waste-musician
   playTimeTracker: WastelandMusician
+  requirements:
+    - !type:CharacterOverallTimeRequirement
+      min: 999999
   startingGear: WastelandMusicianGear
   icon: "JobIconMusician"
   supervisors: job-supervisors-hire

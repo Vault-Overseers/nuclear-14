@@ -1,0 +1,79 @@
+- type: entity
+  parent: BaseStructure
+  id: N14PulowskiShelterNew
+  name:  Pulowski Preservation Shelter
+  description: "Pulowski: Nuclear protection on a budget!"
+  components:
+  - type: Sprite
+    scale: 0.54, 0.54
+    offset: 0,.5
+    drawdepth: FloorObjects
+    noRot: true
+    sprite: _Nuclear14/Structures/Misc/shelternew.rsi
+    layers:
+    - state: open
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    bumpOpen: false
+    clickOpen: true
+    closeTimeOne: 0.2
+    closeTimeTwo: 0.6
+    openTimeOne: 0.6
+    openTimeTwo: 0.2
+    openingAnimationTime: 1.3
+    closingAnimationTime: 1.3
+    occludes: false
+  - type: InteractionOutline
+  - type: Cryostorage
+  - type: Physics
+    canCollide: false
+  - type: DragInsertContainer
+    containerId: storage
+  - type: ExitContainerOnMove
+    containerId: storage
+#  - type: PointLight
+#    color: blue
+#    radius: 1.5
+#    energy: 0.5
+#    castShadows: false
+  - type: ContainerContainer
+    containers:
+      storage: !type:ContainerSlot
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CryostorageVisuals.Full:
+        base:
+          True: { state: closed }
+          False: { state: open }
+  - type: AnimationPlayer
+
+
+- type: entity
+  parent: N14PulowskiShelterNew
+  id: N14PulowskiShelterWorn
+  name:  Pulowski Preservation Shelter
+  description: "Pulowski: Nuclear protection on a budget!"
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Nuclear14/Structures/Misc/shelterworn.rsi
+    layers:
+    - state: open
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    bumpOpen: false
+    clickOpen: true
+    closeTimeOne: 0.2
+    closeTimeTwo: 0.6
+    openTimeOne: 0.6
+    openTimeTwo: 0.2
+    openingAnimationTime: 1.0
+    closingAnimationTime: 1.6
+    occludes: false
+  - type: GenericVisualizer
+    visuals:
+      enum.CryostorageVisuals.Full:
+        base:
+          True: { state: closed }
+          False: { state: open }

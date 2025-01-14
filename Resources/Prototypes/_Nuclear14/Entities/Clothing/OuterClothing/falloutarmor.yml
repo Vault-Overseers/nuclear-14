@@ -1,5 +1,78 @@
 - type: entity
   parent: ClothingOuterBase
+  id: N14ClothingOuterZealotDuster
+  name: zealot duster
+  description: A heavily modified highway patrol coat clearly designed by some manner of fanatic.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutzealotduster.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutzealotduster.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+ # - type: ClothingSpecialModifier
+  #  luckModifier: 1
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingScavengerHeavyArmor
+  name: scavenger heavy armor
+  description: A reinforced duster hiding pieces of scavenged armor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutscavengerheavyarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutscavengerheavyarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+  - type: Reflect
+    reflectProb: 0.05
+    spread: 150
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterCoatFollowersArmored
+  name: Followers Armored Labcoat
+  description: A vest used by the followers. It has a bulletproof vest underneath.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutfoaarmoredcoat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutfoaarmoredcoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.85
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+ # - type: ClothingSpecialModifier
+  #  intelligenceModifier: 1
+
+- type: entity
+  parent: ClothingOuterBase
   id: N14ClothingOuterLeatherArmor
   name: leather armor
   description: A leather suit of armor that provides protection against physical threats.
@@ -15,11 +88,35 @@
         Slash: 0.85
         Piercing: 0.85
         Heat: 0.75
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
   - type: Butcherable
     butcheringType: Knife
     spawned:
     - id: N14MaterialLeather1
       amount: 4
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterVestLeather
+  name: leather vest
+  description: A simple armored leather vest, better than nothing.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleathervest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleathervest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.85
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
 
 - type: entity
   parent: ClothingOuterBase
@@ -34,18 +131,19 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.6
-        Piercing: 0.65
-        Heat: 0.8
+        Blunt: 0.8
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.85
+    priceMultiplier: 0.5
   - type: ExplosionResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.85
   - type: Reflect
     reflectProb: 0.05
     spread: 150
   - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
+    walkModifier: 0.95
+    sprintModifier: 0.95
 
 - type: entity
   parent: ClothingOuterBase
@@ -60,12 +158,28 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.65
-        Piercing: 0.6
-        Heat: 0.6
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.7
+    priceMultiplier: 0.5
   - type: ExplosionResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14ClothingOuterCombatArmor
+  id: N14ClothingOuterCombatArmorCargo
+  name: combat armor
+  description: A suit of combat armor that's used in combat. This one bears a hastily added trade mark of the Blue Line Caravan corp.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.7
+    priceMultiplier: 0
 
 - type: entity
   parent: ClothingOuterBase
@@ -80,12 +194,28 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.55
-        Heat: 0.55
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.5
   - type: ExplosionResistance
-    damageCoefficient: 0.65
+    damageCoefficient: 0.75
+
+- type: entity
+  parent: N14ClothingOuterCombatArmorMK2
+  id: N14ClothingOuterCombatArmorMK2Cargo
+  name: combat armor mk2
+  description: A suit of combat armor that's used in combat. It looks stronger than basic combat armor. This one bears a hastily added trade mark of the Blue Line Caravan corp.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0
 
 - type: entity
   parent: ClothingOuterBase
@@ -100,12 +230,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.55
-        Slash: 0.55
-        Piercing: 0.5
-        Heat: 0.5
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.55
+        Heat: 0.55
+    priceMultiplier: 0.5
   - type: ExplosionResistance
-    damageCoefficient: 0.6
+    damageCoefficient: 0.75
 
 - type: entity
   parent: N14ClothingOuterCombatArmorMK2
@@ -131,10 +262,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.7
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.8
         Heat: 0.8
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
 
 - type: entity
   parent: ClothingOuterBase
@@ -153,6 +287,9 @@
         Slash: 0.9
         Piercing: 0.4
         Heat: 0.5
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
 
 #MARK: Tribal
 - type: entity
@@ -168,10 +305,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
-        Heat: 0.9
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.85
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
 
 - type: entity
   parent: ClothingOuterBase
@@ -189,12 +329,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.65
-        Piercing: 0.65
-        Heat: 0.8
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.4
   - type: ExplosionResistance
-    damageCoefficient: 0.85
+    damageCoefficient: 0.8
 
 - type: entity
   parent: ClothingOuterBase
@@ -209,12 +350,16 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.65
-        Heat: 0.65
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.4
   - type: ExplosionResistance
-    damageCoefficient: 0.75
+    damageCoefficient: 0.8
+  # - type: ClothingSpecialModifier
+    # charismaModifier: 1
+    # luckModifier: 1
 
 #MARK: Raiders
 - type: entity
@@ -230,12 +375,15 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Heat: 0.85
-        Piercing: 0.85
-  - type: ClothingSpecialModifier
-    strengthModifier: 1
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.95
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+ # - type: ClothingSpecialModifier
+  #  strengthModifier: 1
 
 - type: entity
   parent: ClothingOuterBase
@@ -252,10 +400,13 @@
       coefficients:
         Blunt: 0.85
         Slash: 0.85
-        Heat: 0.85
-        Piercing: 0.85
-  - type: ClothingSpecialModifier
-    strengthModifier: 1
+        Piercing: 0.9
+        Heat: 0.9
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+ # - type: ClothingSpecialModifier
+  #  agilityModifier: 1
 
 - type: entity
   parent: N14ClothingOuterCombatArmor
@@ -281,12 +432,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.5
-        Heat: 0.5
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.7
+    priceMultiplier: 0.4
   - type: ExplosionResistance
-    damageCoefficient: 0.75
+    damageCoefficient: 0.8
 
 - type: entity
   parent: ClothingOuterBase
@@ -301,10 +453,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.7
-        Heat: 0.7
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
 
 - type: entity
   parent: ClothingOuterBase
@@ -319,12 +474,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.65
-        Heat: 0.65
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.4
   - type: ExplosionResistance
-    damageCoefficient: 0.75
+    damageCoefficient: 0.85
 
 - type: entity
   parent: N14ClothingOuterCombatRusted
@@ -361,10 +517,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
+        Blunt: 0.9
         Slash: 0.9
-        Piercing: 0.75
-        Heat: 0.8
+        Piercing: 0.85
+        Heat: 0.85
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
 
 - type: entity
   parent: ClothingOuterBase
@@ -383,6 +542,7 @@
         Slash: 1.1
         Piercing: 1.2
         Heat: 1.2
+    priceMultiplier: 0
   - type: ClothingSpeedModifier
     walkModifier: 1.2
     sprintModifier: 1.2
@@ -403,16 +563,34 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.7
-        Heat: 0.7
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.8
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: N14ClothingOuterPoliceVest
+  id: N14ClothingOuterPoliceVestCargo
+  name: cargo vest
+  description: A protective vest used for the pre-war police. This one has a Blue Line Caravan corp trade mark sewn into the breast.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.8
+    priceMultiplier: 0
 
 - type: entity
   parent: ClothingOuterStorageBase
   id: N14ClothingOuterSheriffVest
   name: sheriff vest
-  description: The sheriff needs a good piece of armo to protect themselves from the dangers of the wasteland.
+  description: The sheriff needs a good piece of armor to protect themselves from the dangers of the wasteland.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutsheriffvest.rsi
@@ -423,8 +601,11 @@
       coefficients:
         Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.65
-        Heat: 0.65
+        Piercing: 0.75
+        Heat: 0.85
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
 
 #MARK: NCR
 
@@ -441,10 +622,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.65
-        Heat: 0.7
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
@@ -461,10 +643,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.65
-        Heat: 0.7
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
@@ -481,10 +664,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.65
-        Heat: 0.7
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
@@ -501,18 +685,19 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.6
-        Piercing: 0.6
-        Heat: 0.7
+        Blunt: 0.8
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.8
+    priceMultiplier: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.65
+    damageCoefficient: 0.75
   - type: Reflect
     reflectProb: 0.05
     spread: 150
   - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
+    walkModifier: 0.95
+    sprintModifier: 0.95
 
 - type: entity
   parent: ClothingOuterBase
@@ -527,18 +712,19 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.6
-        Piercing: 0.6
-        Heat: 0.7
+        Blunt: 0.8
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.8
+    priceMultiplier: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.65
+    damageCoefficient: 0.75
   - type: Reflect
     reflectProb: 0.05
     spread: 150
   - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
+    walkModifier: 0.95
+    sprintModifier: 0.95
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -553,10 +739,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.65
-        Heat: 0.7
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
@@ -573,10 +760,31 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.65
-        Heat: 0.7
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: N14ClothingOuterNCRPouchedVestSnow
+  name: pouched leather NCR vest
+  description: A leather vest with a light ballistic plate inside, this vest comes with a pack of pouches to hold any kind of things. It's uncomfy to move with it.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest3.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest3.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
@@ -593,10 +801,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.7
-        Heat: 0.75
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
@@ -637,12 +846,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.6
-        Heat: 0.6
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.8
+    damageCoefficient: 0.7
 
 - type: entity
   parent: N14ClothingOuterNCRCombatArmor
@@ -665,6 +875,16 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangersuitb.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangersuitb.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -679,12 +899,16 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.7
-        Heat: 0.55
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.8
+    damageCoefficient: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 1.05
+    sprintModifier: 1.05
 
 #MARK: Veteran
 
@@ -701,12 +925,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.7
-        Heat: 0.55
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.8
+    damageCoefficient: 0.7
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -721,12 +946,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.55
-        Heat: 0.55
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.6
+    priceMultiplier: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.65
+    damageCoefficient: 0.7
 
 - type: entity
   parent: N14ClothingOuterRangerCombat
@@ -774,16 +1000,19 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.3
-        Slash: 0.3
-        Piercing: 0.2
-        Heat: 0.3
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.6
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
 
 - type: entity
   parent: N14ClothingOuterRangerCombat
   id: N14ClothingOuterRangerEliteOld
   name: worn elite ranger combat armor
-  description: A customized and well-worn suit of riot gear with parts of the suit reinforced with leather armor and slain Centurion armor pieces by the wearer. A sniper's veil is wrapped around the neck. This one has seen some wear.
+  description: Worn riot gear granted to Rangers who served as law bringers for times of great unrest. This armor is a testament to the reach and power of the Republic and its will to bring peace to the lawlessness of the wasteland.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerelite.rsi
@@ -792,10 +1021,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.35
-        Heat: 0.4
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.6
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
 
 - type: entity
   parent: N14ClothingOuterRangerCombat
@@ -810,10 +1042,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.4
-        Heat: 0.5
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.6
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
 
 #MARK: washington BoS
 
@@ -874,15 +1109,18 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.4
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
 
 - type: entity
   parent: ClothingOuterStorageBase
   id: N14ClothingOuterBosScribe
-  name: researcher leather vest
+  name: technical leather vest
   description: A leather vest with everything a Scribe could need during a field job, theres no Don Quixote without a Sancho Panza.
   components:
   - type: Sprite
@@ -892,10 +1130,35 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.8
-        Heat: 0.6
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14ClothingOuterCombatArmorMK2
+  id: N14ClothingOuterCombatArmorMK3
+  name: brotherhood combat armor mk3
+  description: Meticulously worked on by the Washington Scribes, its near unrecognisable from its original state.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosmk3armor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosmk3armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+
 
 #MARK: midwest BoS
 
@@ -921,6 +1184,27 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmidbosarmorV2.rsi
 
+- type: entity
+  parent: N14ClothingOuterCombatArmor
+  id: N14ClothingOuterMidwestReconArmor
+  name: midwest BoS recon armor
+  description: A suit of recon armor manufactured by the Midwest Brotherhood, reserved for only higher ranked members.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmidbosreconarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmidbosreconarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
 #MARK: craftable armors
 
 - type: entity
@@ -936,10 +1220,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.65
-        Piercing: 0.65
-        Heat: 0.65
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
 
 - type: entity
   parent: ClothingOuterBase
@@ -954,10 +1241,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.6
-        Piercing: 0.8
-        Heat: 0.7
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
 
 - type: entity
   parent: ClothingOuterBase
@@ -972,10 +1262,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.50
-        Slash: 0.75
-        Piercing: 0.75
-        Heat: 0.8
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
 
 - type: entity
   parent: ClothingOuterBase
@@ -992,8 +1285,9 @@
       coefficients:
         Blunt: 0.85
         Slash: 0.75
-        Piercing: 0.75
-        Heat: 0.85
+        Piercing: 0.8
+        Heat: 0.9
+    priceMultiplier: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.85
 
@@ -1012,10 +1306,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.5
-        Heat: 0.5
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.75
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
 
 - type: entity
   parent: ClothingOuterBase
@@ -1030,9 +1327,76 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.65
-        Piercing: 0.6
-        Heat: 0.6
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.5
   - type: ExplosionResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.8
+
+#MARK: Chinese renmants
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterCombatArmorChinese
+  name: chinese combat armor
+  description: A bulletproof vest combined with knee pads, mostly used by chinese commandos and special forces.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesearmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesearmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterVestChinese
+  name: chinese armored vest
+  description: A light bulletproof vest, mostly used by regular chinese infantry.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesevest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesevest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.75
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+# random other armor
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterPressArmor
+  name: prewar reporter armor
+  description: An old piece of armor once used by the Free Press before the war. Though the ballistic fiber is worn, it will still offer some protection.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/reportersvest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/reportersvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.85
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85

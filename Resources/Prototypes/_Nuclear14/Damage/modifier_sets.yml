@@ -1,21 +1,21 @@
 - type: damageModifierSet
   id: Ghoul
   coefficients:
-    Blunt: 1.2
-    Slash: 1.1
-    Piercing: 0.9
+    Blunt: 1.05
+    Slash: 1.05
+    Piercing: 1.05
     Cold: 1
     Poison: 0.8
     Cellular: 0.2
-    Radiation: 0
+    Radiation: 0.25
     Asphyxiation: 0.1
     Bloodloss: 0.8
     
 - type: damageModifierSet
   id: GhoulGlowing
   coefficients:
-    Blunt: 1.5
-    Slash: 1.5
+    Blunt: 1.1
+    Slash: 1.1
     Piercing: 1.1
     Cold: 0.6
     Poison: 0.6
@@ -23,6 +23,19 @@
     Radiation: 0
     Asphyxiation: 0.1
     Bloodloss: 0.8
+
+- type: damageModifierSet
+  id: GhoulNPC
+  coefficients:
+    Blunt: 1
+    Slash: 1
+    Piercing: 1
+    Cold: 1
+    Poison: 0.25
+    Cellular: 0.2
+    Radiation: 0
+    Asphyxiation: 0.1
+    Bloodloss: 0
 
 # immune to everything except physical and heat damage
 - type: damageModifierSet
@@ -38,7 +51,7 @@
     Bloodloss: 1
     Cellular: 1
   flatReductions:
-    Radiation: 5
+    Radiation: 100
     
 - type: damageModifierSet
   id: N14Insect # Exo-skeleton, should have simillarities to skeleton resistances.
@@ -46,7 +59,7 @@
     Blunt: 1.1
     Heat: 1.5
   flatReductions:
-    Radiation: 5
+    Radiation: 100
     
 - type: damageModifierSet
   id: N14Scale # Skin tougher, bones weaker, strong stomachs, cold-blooded (kindof)
@@ -57,7 +70,7 @@
     Heat: 0.9
     Poison: 0.9
   flatReductions:
-    Radiation: 5
+    Radiation: 100
     
 - type: damageModifierSet
   id: N14ScaleFireresist
@@ -68,5 +81,20 @@
     Heat: 0
     Poison: 0.9
   flatReductions:
-    Radiation: 5
+    Radiation: 100
     Heat: 10
+
+- type: damageModifierSet
+  id: N14ToughAnimal # Made especially for deathclaws and other larger creatures.
+  coefficients:
+    Blunt: 0.9
+    Slash: 0.9
+    Piercing: 0.95
+    Heat: 0.95
+    Poison: 0.8
+  flatReductions:
+    Blunt: 5
+    Slash: 5
+    Piercing: 5
+    Heat: 5
+    Radiation: 100
