@@ -77,8 +77,11 @@
         type: Add
         time: 3
       - !type:GenericStatusEffect
-        key: SlurredSpeech
-        component: TelepathicRepeater
+        key: TemporaryBlindness
+        component: TemporaryBlindness
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
 
 - type: reagent
   id: TeaHoneyMesquite
