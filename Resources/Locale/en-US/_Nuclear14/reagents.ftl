@@ -309,7 +309,6 @@ materials-aluminum = aluminum
 materials-antchitin = chitin
 materials-charcoal = charcoal
 materials-exoskeleton = exoskeleton
-materials-gunpowder = gunpowder
 materials-leather = leather
 materials-lead = lead
 materials-lead-scrap = scrap lead
@@ -341,8 +340,6 @@ reagent-name-fertilizer = fertilizer
 reagent-desc-fertilizer = Ground fertilizer. Perfect for your plants!
 reagent-name-dung = dung
 reagent-desc-dung = Animal dung. Ripe for turning into compost.
-reagent-name-sulfur = sulfur
-reagent-desc-sulfur = Ground sulfur in a powdery form. You should really wear a gas mask.
 
 
 # Other

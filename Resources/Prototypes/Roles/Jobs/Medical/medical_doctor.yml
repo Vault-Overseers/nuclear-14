@@ -4,7 +4,7 @@
   description: job-description-doctor
   playTimeTracker: JobMedicalDoctor
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Medical
       min: 14400 #4 hrs
   startingGear: DoctorGear
@@ -16,11 +16,13 @@
   extendedAccess:
   - Chemistry
   - Paramedic # DeltaV - Add Paramedic access
-  setPreference: false
   special:
   - !type:AddComponentSpecial
     components:
     - type: CPRTraining
+    - type: SurgerySpeedModifier
+      speedModifier: 1.75
+  setPreference: false
 
 - type: startingGear
   id: DoctorGear
@@ -30,7 +32,6 @@
     shoes: ClothingShoesColorWhite
     id: MedicalPDA
     ears: ClothingHeadsetMedical
-    belt: ClothingBeltMedicalFilled
   innerClothingSkirt: ClothingUniformJumpskirtMedicalDoctor
   satchel: ClothingBackpackSatchelMedicalFilled
   duffelbag: ClothingBackpackDuffelMedicalFilled

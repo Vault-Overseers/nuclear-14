@@ -7,43 +7,52 @@
   description: survival-description
   rules:
     - RampingStationEventScheduler
-    # - BasicRoundstartVariation
+    - BasicRoundstartVariation
     - SubGamemodesRule
 
 - type: gamePreset
   id: SurvivalHellshift
   alias:
     - hellshift
-  showInVote: true
+  showInVote: false
   name: hellshift-title
   description: hellshift-description
   rules:
     - HellshiftStationEventScheduler
-    # - BasicRoundstartVariation
+    - BasicRoundstartVariation
     - SubGamemodesRule
 
-# - type: gamePreset
-  # id: SurvivalHellshift
-  # alias:
-    # - hellshift
-  # showInVote: true
-  # name: hellshift-title
-  # description: hellshift-description
-  # rules:
-    # - HellshiftStationEventScheduler
-    # - BasicRoundstartVariation
+- type: gamePreset
+  id: SurvivalIrregular
+  alias: [irregular]
+  showInVote: false
+  name: irregular-title
+  description: irregular-description
+  rules:
+    - IrregularStationEventScheduler
+    - BasicRoundstartVariation
 
-# - type: gamePreset
-  # id: AllAtOnce
-  # name: all-at-once-title
-  # description: all-at-once-description
-  # showInVote: false
-  # rules:
-    # - Nukeops
-    # - Traitor
-    # - Revolutionary
-    # - Zombie
-    # - RampingStationEventScheduler
+- type: gamePreset
+  id: SurvivalIrregularExtended
+  alias: [irregular-extended]
+  showInVote: false
+  name: irregular-extended-title
+  description: irregular-extended-description
+  rules:
+    - IrregularExtendedStationEventScheduler
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: AllAtOnce
+  name: all-at-once-title
+  description: all-at-once-description
+  showInVote: false
+  rules:
+    - Nukeops
+    - Traitor
+    - Revolutionary
+    - Zombie
+    - RampingStationEventScheduler
 
 - type: gamePreset
   id: Extended
@@ -51,23 +60,23 @@
   - extended
   - shittersafari
   name: extended-title
-  showInVote: false #2boring2vote
+  showInVote: false
   description: extended-description
   rules:
   - BasicStationEventScheduler
-  # - BasicRoundstartVariation
+  - BasicRoundstartVariation
   - SubGamemodesRule
 
-# - type: gamePreset
-  # id: Greenshift
-  # alias:
-  # - greenshift
-  # - shittersafarideluxeedition
-  # name: greenshift-title
-  # showInVote: false #4boring4vote
-  # description: greenshift-description
-  # rules:
-  # - BasicRoundstartVariation
+- type: gamePreset
+  id: Greenshift
+  alias:
+  - greenshift
+  - shittersafarideluxeedition
+  name: greenshift-title
+  showInVote: false
+  description: greenshift-description
+  rules:
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Secret
@@ -115,12 +124,12 @@
     - traitor
   name: traitor-title
   description: traitor-description
-  showInVote: true
+  showInVote: false
   rules:
     - Traitor
     - SubGamemodesRule
     - BasicStationEventScheduler
-    # - BasicRoundstartVariation
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: Deathmatch
@@ -129,72 +138,60 @@
     - dm
   name: death-match-title
   description: death-match-description
-  maxPlayers: 15
+  #maxPlayers: 15
   showInVote: false
   supportedMaps: DeathMatchMapPool
   rules:
     - DeathMatch31
 
-# - type: gamePreset
-  # id: Nukeops
-  # alias:
-    # - nukeops
-  # name: nukeops-title
-  # description: nukeops-description
-  # showInVote: false
-  # rules:
-    # - Nukeops
-    # - SubGamemodesRule
-    # - BasicStationEventScheduler
-    # - BasicRoundstartVariation
+- type: gamePreset
+  id: Nukeops
+  alias:
+    - nukeops
+  name: nukeops-title
+  description: nukeops-description
+  showInVote: false
+  rules:
+    - Nukeops
+    - SubGamemodesRule
+    - BasicStationEventScheduler
+    - BasicRoundstartVariation
 
-# - type: gamePreset
-  # id: Revolutionary
-  # alias:
-    # - rev
-    # - revs
-    # - revolutionaries
-  # name: rev-title
-  # description: rev-description
-  # showInVote: false
-  # rules:
-    # - Revolutionary
-    # - SubGamemodesRule
-    # - BasicStationEventScheduler
-    # - BasicRoundstartVariation
+- type: gamePreset
+  id: Revolutionary
+  alias:
+    - rev
+    - revs
+    - revolutionaries
+  name: rev-title
+  description: rev-description
+  showInVote: false
+  rules:
+    - Revolutionary
+    - SubGamemodesRule
+    - BasicStationEventScheduler
+    - BasicRoundstartVariation
 
-# - type: gamePreset
-  # id: Zombie
-  # alias:
-  # - zombie
-  # - zombies
-  # - Zombies
-  # - zz14
-  # - zomber
-  # name: zombie-title
-  # description: zombie-description
-  # showInVote: false
-  # rules:
-  # - Zombie
-  # - BasicStationEventScheduler
-  # - BasicRoundstartVariation
-
-# - type: gamePreset
-  # id: Pirates
-  # alias:
-    # - pirates
-  # name: pirates-title
-  # description: pirates-description
-  # showInVote: false
-  # rules:
-    # - Pirates
-    # - BasicStationEventScheduler
-    # - BasicRoundstartVariation
+- type: gamePreset
+  id: Zombie
+  alias:
+  - zombie
+  - zombies
+  - Zombies
+  - zz14
+  - zomber
+  name: zombie-title
+  description: zombie-description
+  showInVote: false
+  rules:
+  - Zombie
+  - BasicStationEventScheduler
+  - BasicRoundstartVariation
 
 # - type: gamePreset
   # id: Waves
   # name: Vault Wave Defense
   # description: Defend the vault from waves of increasingly difficult attackers.
-  # showInVote: true
+  # showInVote: false
   # rules:
     # - Waves

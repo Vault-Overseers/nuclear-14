@@ -47,7 +47,6 @@ tiles-ms13-carpet-green = ms13 carpet green
 tiles-ms13-carpet-fancy-green = ms13 carpet fancy green
 tiles-ms13-carpet-violet = ms13 carpet violet
 tiles-concrete = concrete
-tiles-concrete-tile = concrete tile
 tiles-concrete-grey = concrete grey
 tiles-concrete-hexacrete = concrete hexacrete
 tiles-concrete-hexacrete-dark = dark concrete hexacrete
