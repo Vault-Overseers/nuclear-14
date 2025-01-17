@@ -1,0 +1,186 @@
+# When adding new food check if needed to also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_baked_whole.yml & food_baked_single.yml
+# This file is for MS13 sprites for tribal and rustic foods.
+# Base
+- type: entity
+  parent: FoodInjectableBase
+  id: N14CookedFoodRusticPancakes
+  name: pancakes
+  description: Some rustic wasteland pancakes. Would be nicer with a topping.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - savory
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/ms13_cooking.rsi
+    state: pancakes
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+
+- type: entity
+  parent: N14CookedFoodRusticPancakes
+  id: N14CookedFoodRusticPancakesAcord
+  name: acord pancakes
+  description: Some rustic wasteland pancakes with chopped acorns in.
+  components:
+  - type: Sprite
+    state: pancakes_acord
+  - type: FlavorProfile
+    flavors:
+      - savory
+      - nutty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: entity
+  parent: N14CookedFoodRusticPancakes
+  id: N14CookedFoodRusticPiePrepper
+  name: prepper pie
+  description: A pie made with odds and ends and shaped like a cornish pasty.
+  components:
+  - type: Sprite
+    state: prepper
+  - type: FlavorProfile
+    flavors:
+      - savory
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 3
+
+- type: entity
+  parent: N14CookedFoodRusticPancakes
+  id: N14CookedFoodRusticPieMeat
+  name: meat pie
+  description: A pie made with nice wasteland meats.
+  components:
+  - type: Sprite
+    state: wolfmeat
+  - type: FlavorProfile
+    flavors:
+      - savory
+      - meaty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 5
+
+- type: entity
+  parent: N14CookedFoodRusticPieMeat
+  id: N14CookedFoodRusticPieMeatGame
+  name: small game pie
+  description: A pie made with pieces of small game.
+  components:
+  - type: Sprite
+    state: smallgame
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Protein
+          Quantity: 3
+          
+- type: entity
+  parent: N14CookedFoodRusticPancakes
+  id: N14CookedFoodRusticPieFruit
+  name: fruit pie
+  description: A pie made with pieces of wasteland fruit.
+  components:
+  - type: Sprite
+    state: fruit
+  - type: FlavorProfile
+    flavors:
+      - fruity
+      - sweet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+
+- type: entity
+  parent: N14CookedFoodRusticPieMeat
+  id: N14CookedFoodRusticPieFish
+  name: fish pie
+  description: A pie made with pieces of wasteland fish.
+  components:
+  - type: Sprite
+    state: fish
+  - type: FlavorProfile
+    flavors:
+      - savory
+      - fishy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Protein
+          Quantity: 3
+
+- type: entity
+  parent: N14CookedFoodRusticPancakes
+  id: N14CookedFoodRusticPie
+  name: pie
+  description: A pie filled with your hopes and dreams. It's empty! just pastry.
+  components:
+  - type: Sprite
+    state: generic
+  - type: FlavorProfile
+    flavors:
+      - savory
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+
+- type: entity
+  parent: N14CookedFoodRusticPancakes
+  id: N14CookedFoodRusticPieCream
+  name: cream pie
+  description: A pie topped with cream. Best not to ask what animal it's from.
+  components:
+  - type: Sprite
+    state: creampie
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - creamy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
