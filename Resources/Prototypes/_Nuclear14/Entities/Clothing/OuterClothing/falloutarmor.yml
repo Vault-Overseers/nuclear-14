@@ -1108,6 +1108,46 @@
   - type: ExplosionResistance
     damageCoefficient: 0.85
 
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterLightLeatherArmor
+  name: light leather armor
+  description: Your basic all leather apparel. Finely crafted from tanned brahmin hide.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleatherarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleatherarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.80
+        Piercing: 0.90
+        Heat: 0.70
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterReinforcedLeatherArmor
+  name: Reinforced leather armor
+  description: An advanced version of the basic leather armor with extra layers of protection. Finely crafted from tanned brahmin hide.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutreinforcedleatherarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutreinforcedleatherarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.85
+        Heat: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+
 #MARK: RCMP armors
 
 - type: entity
@@ -1165,3 +1205,17 @@
         Slash: 0.75
         Piercing: 0.75
         Heat: 0.9
+
+#Chinese stealth suit
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: N14ClothingOuterChineseStealthSuit
+  name: chinese stealth suit
+  description: Yī tào yǐqián wéi zhōngguó tèzhǒng bùduì zhìzào de zhuāngjiǎ.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesestealthsuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesestealthsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHoodChineseStealthSuitHelmet
