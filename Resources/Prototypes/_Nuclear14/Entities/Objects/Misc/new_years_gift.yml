@@ -1,0 +1,579 @@
+- type: entity
+  name: new year's gift
+  parent: BaseItem
+  id: N14NewYearsGift
+  description: Happy New Year!!!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/gift.rsi
+    layers:
+      - state: gift_3
+      - state: yellow
+  - type: Item
+    size: Normal
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14JunkLunchboxFill
+      - id: N14GiftFillDrinks
+        prob: 0.5
+        orGroup: All
+      - id: N14GiftFillMedical
+        prob: 0.4
+        orGroup: All
+      - id: N14GiftFillArmor
+        prob: 0.3
+        orGroup: All
+      - id: N14GiftFillWeapon
+        prob: 0.3
+        orGroup: All
+      - id: Coal1
+        prob: 0.01
+        orGroup: All
+      - id: N14MobGecko
+        prob: 0.005
+        amount: 1
+        maxAmount: 3
+        orGroup: All
+    sound:
+      path: /Audio/_Nuclear14/Effects/open_gift.ogg
+
+- type: entity
+  parent: N14NewYearsGift
+  id: N14NewYearsGift1
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/gift.rsi
+    layers:
+      - state: gift
+      - state: yellow
+
+- type: entity
+  parent: N14NewYearsGift
+  id: N14NewYearsGift2
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/gift.rsi
+    layers:
+      - state: gift_2
+      - state: yellow
+
+#MARK:Sweet
+- type: entity
+  parent: N14JunkLunchbox
+  id: N14JunkLunchboxFill
+  components:
+  - type: StorageFill
+    contents:
+      - id: DrinkWaterBottleFull
+        orGroup: Drink
+        prob: 0.6
+      - id: N14DrinkNukaCola
+        orGroup: Drink
+        prob: 0.4
+      - id: N14DrinkNukaColaYellow
+        orGroup: Drink
+        prob: 0.3
+      - id: N14DrinkNukaColaCherry
+        orGroup: Drink
+        prob: 0.2
+      - id: N14DrinkNukaColaGrape
+        orGroup: Drink
+        prob: 0.2
+      - id: N14DrinkNukaColaOrange
+        orGroup: Drink
+        prob: 0.2
+      - id: N14DrinkNukaColaWild
+        orGroup: Drink
+        prob: 0.1
+      - id: N14DrinkNukaColaQuartz
+        orGroup: Drink
+        prob: 0.1
+      - id: N14DrinkNukaColaVictory
+        orGroup: Drink
+        prob: 0.05
+      - id: N14DrinkNukaColaQuantum
+        orGroup: Drink
+        prob: 0.01
+      - id: N14CookedFoodDonutChocolate
+        prob: 0.25
+        amount: 3
+        orGroup: Sweets
+      - id: N14CookedFoodDonutPink
+        prob: 0.25
+        amount: 3
+        orGroup: Sweets
+      - id: N14CookedFoodDonutHomer
+        prob: 0.2
+        amount: 3
+        orGroup: Sweets
+      - id: N14CookedFoodDonutCaramel
+        prob: 0.25
+        amount: 3
+        orGroup: Sweets
+      - id: N14CookedFoodCakeTarberrySlice
+        prob: 0.2
+        amount: 3
+        orGroup: Sweets
+      - id: N14CookedFoodCakeCheeseSlice
+        prob: 0.25
+        amount: 3
+        orGroup: Sweets
+      - id: N14CookedFoodCakeChocolateSlice
+        prob: 0.25
+        amount: 3
+        orGroup: Sweets
+      - id: N14CookedFoodCakePlainSlice
+        prob: 0.25
+        amount: 3
+        orGroup: Sweets
+      - id: N14CookedFoodCakeMutfruitSlice
+        prob: 0.25
+        amount: 3
+        orGroup: Sweets
+      - id: N14CookedFoodCakeCarrotSlice
+        prob: 0.25
+        amount: 3
+        orGroup: Sweets
+      - id: N14CookedFoodBakedChevreChaud
+        prob: 0.25
+        amount: 3
+        orGroup: Sweets
+      - id: N14CookedFoodBreadBanana
+        prob: 0.15
+        orGroup: Sweets
+      - id: N14CookedFoodBreadCreamcheese
+        prob: 0.15
+        orGroup: Sweets
+
+#MARK: KitGift
+
+- type: entity
+  parent: BaseItem
+  id: N14GiftFillDrinks
+  name: gift
+  description: Wonder what's inside?
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/gift.rsi
+    state: red_gift
+  - type: Item
+    size: Normal
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14DrinkRoentgenRum
+        prob: 0.5
+        orGroup: DrinkAlc
+      - id: N14DrinkWhisky
+        prob: 0.3
+        orGroup: DrinkAlc
+      - id: N14DrinkWine
+        prob: 0.5
+        orGroup: DrinkAlc
+      - id: DrinkVodkaBottleFull
+        prob: 0.3
+        orGroup: DrinkAlc
+      - id: N14CigarettePackWinston
+        prob: 0.5
+        orGroup: Cigarette
+      - id: N14CigarettePackSalem
+        prob: 0.5
+        orGroup: Cigarette
+      - id: N14CigarettePackRepublics
+        prob: 0.3
+        orGroup: Cigarette
+      - id: N14CigarettePackMarlboro
+        prob: 0.3
+        orGroup: Cigarette
+      - id: Lighter
+        prob: 0.3
+        orGroup: lighter
+      - id: FlippoLighter
+        prob: 0.05
+        orGroup: lighter
+      - id: FlippoEngravedLighter
+        prob: 0.02
+        orGroup: lighter
+
+#MARK: Gift Medical
+- type: entity
+  parent: N14GiftFillDrinks
+  id: N14GiftFillMedical
+  components:
+  - type: Sprite
+    state: blue_gift
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14StimpakDirty
+        amount: 1
+        maxAmount: 3
+        prob: 0.5
+        orGroup: Stim
+      - id: N14Stimpak
+        amount: 1
+        maxAmount: 3
+        prob: 0.4
+        orGroup: Stim
+      - id: N14SuperStimpak
+        amount: 1
+        maxAmount: 2
+        prob: 0.1
+        orGroup: Stim
+      - id: N14UltraStimpak
+        prob: 0.01
+        orGroup: Stim
+      - id: N14Bandage
+        prob: 0.5
+        orGroup: Med
+      - id: Brutepack
+        prob: 0.4
+        orGroup: Med
+      - id: Ointment
+        prob: 0.5
+        orGroup: Med
+      - id: RegenerativeMesh
+        prob: 0.2
+        orGroup: Med
+      - id: MedicatedSuture
+        prob: 0.2
+        orGroup: Med
+      - id: N14RadAwayBloodbag
+        prob: 0.5
+        orGroup: Med
+      - id: N14HealingPowder
+        prob: 0.5
+        orGroup: Med
+      - id: N14Jet
+        prob: 0.5
+        orGroup: OtherMed
+      - id: N14Turbo
+        prob: 0.5
+        orGroup: OtherMed
+      - id: N14Psycho
+        prob: 0.3
+        orGroup: OtherMed
+      - id: N14Med-X
+        prob: 0.1
+        orGroup: OtherMed
+      - id: N14Hydra
+        prob: 0.1
+        orGroup: OtherMed
+
+#MARK: Gift Armor
+- type: entity
+  parent: N14GiftFillDrinks
+  id: N14GiftFillArmor
+  components:
+  - type: Sprite
+    state: silver_gift
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingUniformJumpskirtFalloutBlue
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtFalloutBlack
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingBootsFire
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingHeadHatArmyCap
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingBootsCowboy
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingHeadHatBandit
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingEyesSunGlasses
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitManagerSuit
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingEyesGlassesGoggles
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingEyesGlassesGoggles
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingHandsGlovesDriver
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingNeckCloakDarkCloak
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingEyesGlasses
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingHeadHatCowboyGrey
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtSundress
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitWastelandDoc
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpskirtWastelandDoc
+        prob: 0.5
+        orGroup: Clothing
+      - id: N14ClothingHeadHatEnclavePeacekeeperCap
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitMilUniform
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingHeadHatCaravan
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingNeckCloakYaoguai
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingUniformJumpsuitEnclave
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingBackpackVaultPurple
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingHeadHatBeanie
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingHeadHatNightstalker
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingHeadHatEnclaveOfficer
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingHeadHatWoodBoonie
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingHeadHatWinterBoonie
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingMaskGrill
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingHeadHatVancouver
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingHeadHatAnimal
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingMaskHockey
+        prob: 0.4
+        orGroup: Clothing
+      - id: N14ClothingOuterCoatLeatherCoat
+        prob: 0.3
+        orGroup: Clothing
+      - id: N14ClothingOuterCoatSoldierCoat
+        prob: 0.3
+        orGroup: Clothing
+      - id: N14ClothingOuterTownSpecialCoat
+        prob: 0.3
+        orGroup: Clothing
+      - id: N14ClothingOuterEnclaverOfficerCoat
+        prob: 0.3
+        orGroup: Clothing
+      - id: N14ClothingHeadHatCombatHelmet
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingOuterSupafly
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingBootsCombat
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingHandsGlovesCombat
+        prob: 0.2
+        orGroup: Clothing
+      - id: N14ClothingHeadHatCombatHelmetMK2
+        prob: 0.1
+        orGroup: Clothing
+      - id: N14ClothingOuterPoliceCombat
+        prob: 0.1
+        orGroup: Clothing
+      - id: N14ClothingBootsCombatMK2
+        prob: 0.1
+        orGroup: Clothing
+      - id: N14ClothingOuterCombatArmorSeniorBOS
+        prob: 0.03
+        orGroup: Clothing
+      - id: N14ClothingOuterPowerArmorT60Tesla
+        prob: 0.005
+        orGroup: Clothing
+      - id: N14ClothingOuterPowerArmorAdvanced2Hellfire
+        prob: 0.003
+        orGroup: Clothing
+
+#MARK: Gift Weapon
+- type: entity
+  parent: N14GiftFillDrinks
+  id: N14GiftFillWeapon
+  components:
+  - type: Sprite
+    state: gold_gift
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponPistolWebley
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponShotgunSawedOff
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponSMG9mm
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponPistol9mm
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponPistol22lr
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponPistol45Colt
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponPistol10mm
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponPistol10mmPipe
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponRevolver10mm
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponPistol12mm
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponRevolver9mm
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponRevolver44Magnun
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponShotgun
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponRevolverWebley
+        prob: 0.5
+        orGroup: Weapon
+      - id: N14WeaponSMG10mm
+        prob: 0.4
+        orGroup: Weapon
+      - id: N14WeaponSMG10mmPipe
+        prob: 0.4
+        orGroup: Weapon
+      - id: N14WeaponRifle762Fal
+        prob: 0.4
+        orGroup: Weapon
+      - id: N14WeaponLMGAutoRifle
+        prob: 0.4
+        orGroup: Weapon
+      - id: N14WeaponBlowback
+        prob: 0.4
+        orGroup: Weapon
+      - id: N14WeaponSniper45-70BrushGun
+        prob: 0.4
+        orGroup: Weapon
+      - id: N14WeaponShotgunCanadian
+        prob: 0.4
+        orGroup: Weapon
+      - id: N14WeaponShotgunChinese
+        prob: 0.4
+        orGroup: Weapon
+      - id: N14WeaponShotgunAuto
+        prob: 0.4
+        orGroup: Weapon
+      - id: N14WeaponRifle556Butchered
+        prob: 0.4
+        orGroup: Weapon
+      - id: N14WeaponRifle762M14
+        prob: 0.4
+        orGroup: Weapon
+      - id: N14WeaponRifle762Canadian
+        prob: 0.4
+        orGroup: Weapon
+      - id: N14WeaponRifle762SKS
+        prob: 0.4
+        orGroup: Weapon
+      - id: N14WeaponSMG12mm
+        prob: 0.3
+        orGroup: Weapon
+      - id: N14WeaponRifle556EM2
+        prob: 0.3
+        orGroup: Weapon
+      - id: N14WeaponRifle762MarksmanCanadian
+        prob: 0.3
+        orGroup: Weapon
+      - id: N14WeaponRifle556Carbine
+        prob: 0.3
+        orGroup: Weapon
+      - id: N14WeaponRifle762Marksman
+        prob: 0.3
+        orGroup: Weapon
+      - id: N14WeaponSniper308TribalUpgraded
+        prob: 0.3
+        orGroup: Weapon
+      - id: N14WeaponShotgunRiot
+        prob: 0.3
+        orGroup: Weapon
+      - id: N14WeaponLMG
+        prob: 0.3
+        orGroup: Weapon
+      - id: N14WeaponRifle762MarksmanChinese
+        prob: 0.3
+        orGroup: Weapon
+      - id: N14WeaponRifle762Chinese
+        prob: 0.3
+        orGroup: Weapon
+      - id: N14WeaponLMGBren
+        prob: 0.3
+        orGroup: Weapon
+      - id: N14WeaponSniper308Canadian
+        prob: 0.3
+        orGroup: Weapon
+      - id: N14WeaponSMG12mmPipe
+        prob: 0.3
+        orGroup: Weapon
+      - id: N14WeaponSMG12mmAdvancedChinese
+        prob: 0.2
+        orGroup: Weapon
+      - id: N14WeaponSMG12mmAdvancedCanadian
+        prob: 0.1
+        orGroup: Weapon
+      - id: N14WeaponRevolver44MagnumCaptain
+        prob: 0.1
+        orGroup: Weapon
+      - id: N14WeaponRevolver45-70RangerSequoia
+        prob: 0.1
+        orGroup: Weapon
+      - id: N14WeaponPistol9mmSpy
+        prob: 0.1
+        orGroup: Weapon
+      - id: N14WeaponRevolver45-70WildWhisper
+        prob: 0.1
+        orGroup: Weapon
+      - id: N14WeaponRevolver45-70Hunter
+        prob: 0.1
+        orGroup: Weapon
+      - id: N14WeaponSMG12mmAdvanced
+        prob: 0.1
+        orGroup: Weapon
+      - id: N14WeaponLMGchinese
+        prob: 0.05
+        orGroup: Weapon
+      - id: N14WeaponSniper50NCRRifle
+        prob: 0.05
+        orGroup: Weapon
+      - id: N14WeaponSniper50Pipe
+        prob: 0.05
+        orGroup: Weapon
+      - id: N14WeaponHMGcanadian
+        prob: 0.05
+        orGroup: Weapon
+      - id: N14WeaponSniper50AntiMateriel
+        prob: 0.007
+        orGroup: Weapon
+      - id: N14WeaponMinigunAvenger
+        prob: 0.007
+        orGroup: Weapon

@@ -13,6 +13,7 @@ using Content.Shared.Fluids.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
@@ -31,11 +32,9 @@ public sealed class DrainSystem : SharedDrainSystem
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly PuddleSystem _puddleSystem = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-
-    private float DrainRunPeriod = 1f; // 1 second to make multiplying by DrainFrequency correct
-    private float Accumulator;
 
     public override void Initialize()
     {
@@ -44,6 +43,13 @@ public sealed class DrainSystem : SharedDrainSystem
         SubscribeLocalEvent<DrainComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<DrainComponent, AfterInteractUsingEvent>(OnInteract);
         SubscribeLocalEvent<DrainComponent, DrainDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<DrainComponent, ComponentInit>(OnComponentInit);
+    }
+
+    private void OnComponentInit(EntityUid uid, DrainComponent component, ComponentInit args)
+    {
+        // Randomize accumulator on init to try to spread out all drain updates as much as possible.
+        component.Accumulator = _random.NextFloat() * component.DrainFrequency;
     }
 
     private void AddEmptyVerb(Entity<DrainComponent> entity, ref GetVerbsEvent<Verb> args)
@@ -90,19 +96,25 @@ public sealed class DrainSystem : SharedDrainSystem
 
         // Try to transfer as much solution as possible to the drain
 
-        var transferSolution = _solutionContainerSystem.SplitSolution(containerSoln.Value,
-            FixedPoint2.Min(containerSolution.Volume, drainSolution.AvailableVolume));
+        var amountToPutInDrain = drainSolution.AvailableVolume;
+        var amountToSpillOnGround = containerSolution.Volume - drainSolution.AvailableVolume;
 
-        _solutionContainerSystem.TryAddSolution(drain.Solution.Value, transferSolution);
-
-        _audioSystem.PlayPvs(drain.ManualDrainSound, target);
-        _ambientSoundSystem.SetAmbience(target, true);
-
-        // If drain is full, spill
-
-        if (drainSolution.MaxVolume == drainSolution.Volume)
+        if (amountToPutInDrain > 0)
         {
-            _puddleSystem.TrySpillAt(Transform(target).Coordinates, containerSolution, out _);
+            var solutionToPutInDrain = _solutionContainerSystem.SplitSolution(containerSoln.Value, amountToPutInDrain);
+            _solutionContainerSystem.TryAddSolution(drain.Solution.Value, solutionToPutInDrain);
+
+            _audioSystem.PlayPvs(drain.ManualDrainSound, target);
+            _ambientSoundSystem.SetAmbience(target, true);
+        }
+
+
+        // Spill the remainder.
+
+        if (amountToSpillOnGround > 0)
+        {
+            var solutionToSpill = _solutionContainerSystem.SplitSolution(containerSoln.Value, amountToSpillOnGround);
+            _puddleSystem.TrySpillAt(Transform(target).Coordinates, solutionToSpill, out _);
             _popupSystem.PopupEntity(
                 Loc.GetString("drain-component-empty-verb-target-is-full-message", ("object", target)),
                 container);
@@ -111,14 +123,7 @@ public sealed class DrainSystem : SharedDrainSystem
 
     public override void Update(float frameTime)
     {
-        Accumulator += frameTime;
-        if (Accumulator < DrainRunPeriod)
-        {
-            return;
-        }
-        Accumulator -= DrainRunPeriod;
-
-        base.Update(DrainRunPeriod);
+        base.Update(frameTime);
         var managerQuery = GetEntityQuery<SolutionContainerManagerComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
         var puddleQuery = GetEntityQuery<PuddleComponent>();
@@ -127,6 +132,13 @@ public sealed class DrainSystem : SharedDrainSystem
         var query = EntityQueryEnumerator<DrainComponent>();
         while (query.MoveNext(out var uid, out var drain))
         {
+            drain.Accumulator += frameTime;
+            if (drain.Accumulator < drain.DrainFrequency)
+            {
+                continue;
+            }
+            drain.Accumulator -= drain.DrainFrequency;
+
             // Disable ambient sound from emptying manually
             if (!drain.AutoDrain)
             {
@@ -158,7 +170,7 @@ public sealed class DrainSystem : SharedDrainSystem
 
             puddles.Clear();
 
-            foreach (var entity in _lookup.GetEntitiesInRange(xform.MapPosition, drain.Range))
+            foreach (var entity in _lookup.GetEntitiesInRange(_transform.GetMapCoordinates(uid, xform), drain.Range))
             {
                 // No InRangeUnobstructed because there's no collision group that fits right now
                 // and these are placed by mappers and not buildable/movable so shouldnt really be a problem...
@@ -242,9 +254,8 @@ public sealed class DrainSystem : SharedDrainSystem
 
         var doAfterArgs = new DoAfterArgs(EntityManager, args.User, entity.Comp.UnclogDuration, new DrainDoAfterEvent(), entity, args.Target, args.Used)
         {
-            BreakOnTargetMove = true,
-            BreakOnUserMove = true,
             BreakOnDamage = true,
+            BreakOnMove = true,
             BreakOnHandChange = true
         };
 

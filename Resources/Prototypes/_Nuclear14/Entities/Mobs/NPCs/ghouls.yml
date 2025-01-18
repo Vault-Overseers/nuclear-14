@@ -81,6 +81,9 @@
   name: Maypole
   description: A special looking ghoul towering over most everything.
   components:
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: N14ToughAnimal
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -89,8 +92,8 @@
     animation: WeaponArcFist
     damage:
       types:
-        Brute: 10
-        Slash: 3
+        Brute: 15
+        Slash: 15
     range: 2.5
   - type: Sprite
     drawdepth: Mobs
@@ -109,8 +112,8 @@
       # movement:
         # state: sleeping
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 5
+    baseSprintSpeed : 5
   - type: Fixtures
     fixtures:
       fix1:

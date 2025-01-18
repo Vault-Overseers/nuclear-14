@@ -10,7 +10,6 @@
     sprite: Objects/Weapons/Melee/baseball_bat.rsi
     state: icon
   objectType: Item
-  hide: false
 
 - type: construction
   name: ghost sheet
@@ -24,7 +23,6 @@
     sprite: Clothing/OuterClothing/Misc/ghostsheet.rsi
     state: icon
   objectType: Item
-  hide: false
 
 - type: construction
   name: makeshift handcuffs
@@ -36,7 +34,6 @@
   description: "Homemade handcuffs crafted from spare cables."
   icon: { sprite: Objects/Misc/cablecuffs.rsi, state: cuff }
   objectType: Item
-  hide: false
 
 - type: construction
   name: makeshift stunprod
@@ -48,7 +45,6 @@
   description: "Homemade stunprod."
   icon: { sprite: Objects/Weapons/Melee/stunprod.rsi, state: stunprod_off }
   objectType: Item
-  hide: false
 
 - type: construction
   name: muzzle
@@ -62,7 +58,6 @@
   icon:
     sprite: Clothing/Mask/muzzle.rsi
     state: icon
-  hide: false
 
 - type: construction
   name: improvised pneumatic cannon
@@ -76,7 +71,6 @@
   icon:
     sprite: Objects/Weapons/Guns/Cannons/pneumatic_cannon.rsi
     state: icon
-  hide: false
 
 - type: construction
   name: gauze
@@ -90,7 +84,6 @@
   icon:
     sprite: Objects/Specific/Medical/medical.rsi
     state: gauze
-  hide: false
 
 - type: construction
   name: blindfold
@@ -104,7 +97,6 @@
   icon:
     sprite: Clothing/Eyes/Misc/blindfold.rsi
     state: icon
-  hide: false
 
 - type: construction
   name: flower wreath
@@ -118,8 +110,7 @@
     sprite: Clothing/Head/Misc/flower-wreath.rsi
     state: icon
   objectType: Item
-  hide: false
-  
+
 - type: construction
   name: damp rag
   id: rag
@@ -132,7 +123,6 @@
   icon:
     sprite: Objects/Specific/Janitorial/rag.rsi
     state: rag
-  hide: false
 
 - type: construction
   name: improvised shotgun
@@ -174,11 +164,11 @@
     state: icon
 
 - type: construction
-  name: improvised explosive device
-  id: improvisedexplosive
-  graph: ImprovisedExplosive
+  name: fire bomb
+  id: firebomb
+  graph: FireBomb
   startNode: start
-  targetNode: ied
+  targetNode: firebomb
   category: construction-category-weapons
   objectType: Item
   description: A weak, improvised incendiary device.
@@ -192,13 +182,12 @@
   graph: CottonObjects
   startNode: start
   targetNode: cottoncloth
-  category: construction-category-materials
+  category: construction-category-misc
   description: "A homemade piece of cotton cloth, it feels coarse."
   icon:
     sprite: Objects/Materials/materials.rsi
-    state: cloth_3
+    state: cotton_3
   objectType: Item
-  hide: false
 
 - type: construction
   name: straw hat
@@ -212,4 +201,16 @@
     sprite: Clothing/Head/Hats/straw_hat.rsi
     state: icon
   objectType: Item
-  hide: false
+
+- type: construction
+  name: pipe bomb
+  id: pipebomb
+  graph: PipeBomb
+  startNode: start
+  targetNode: pipebomb
+  category: construction-category-weapons
+  objectType: Item
+  description: An improvised explosive made from pipes and wire.
+  icon:
+    sprite: Objects/Weapons/Bombs/pipebomb.rsi
+    state: icon

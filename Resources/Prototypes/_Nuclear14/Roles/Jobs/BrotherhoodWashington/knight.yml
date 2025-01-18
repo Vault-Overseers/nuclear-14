@@ -12,6 +12,11 @@
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodWashington
       min: 3600 # 1 hour as BoSWashingtonInitiate
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
   startingGear: BoSWashingtonKnightGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"

@@ -80,6 +80,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+    priceMultiplier: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.95
 
@@ -97,6 +98,7 @@
         Slash: 0.85
         Piercing: 0.85
         Heat: 0.85
+    priceMultiplier: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
@@ -110,6 +112,29 @@
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/combathelmet.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/combathelmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+    priceMultiplier: 0.5
+
+- type: entity
+  parent: N14ClothingHeadHatCombatHelmet
+  id: N14ClothingHeadHatCombatHelmetCargo
+  name: combat helmet
+  description: A ballistic helmet of the pre-war era.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+    priceMultiplier: 0
 
 - type: entity
   parent: N14ClothingHeadHatBaseHelmetMK2
@@ -121,6 +146,21 @@
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/combathelmetmk2.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/combathelmetmk2.rsi
+
+- type: entity
+  parent: N14ClothingHeadHatCombatHelmetMK2
+  id: N14ClothingHeadHatCombatHelmetMK2Cargo
+  name: combat helmet MK2
+  description: An advanced ballistic helmet of the pre-war era.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+    priceMultiplier: 0
 
 - type: entity
   parent: ClothingHeadBase
@@ -135,12 +175,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
-        Heat: 0.75
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.85
+    priceMultiplier: 0.5
   - type: ExplosionResistance
-    damageCoefficient: 0.85
+    damageCoefficient: 0.9
 
 # Brotherhood of Steel
 - type: entity
@@ -454,8 +495,8 @@
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/bosheadset.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/bosheadset.rsi
-  - type: ClothingSpecialModifier
-    intelligenceModifier: 1
+#  - type: ClothingSpecialModifier
+#    intelligenceModifier: 1
 
 # Washington BoS
 
@@ -501,7 +542,31 @@
   - type: Tag
     tags:
     - HidesHair
-    
+
+# Chinese renmants
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMetal
+  id: N14ClothingHeadHatChineseHelmet
+  name: chinese helmet
+  description: A chinese rounded green helmet, basic and cheap.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/chinesehelmet.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/chinesehelmet.rsi
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMetal
+  id: N14ClothingHeadHatChineseHelmetMk2
+  name: special ops chinese helmet
+  description: A chinese rounded black helmet with integrated night vision.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/chinesespecialhelmet.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/chinesespecialhelmet.rsi
+
 - type: entity
   parent: N14ClothingHeadHatBaseHelmetMetal
   id: N14ClothingHeadHatPressHelmet

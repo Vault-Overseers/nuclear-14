@@ -15,12 +15,16 @@
   startingGear: TribalFarmerGear
   icon: "JobIconBotanist"
   supervisors: job-supervisors-tribal
+  access:
+  - TribeMember
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
           - Tribal
+  - !type:AddTraitSpecial
+    traits: [ LanguageTribal ]
 
 - type: startingGear
   id: TribalFarmerGear
@@ -32,6 +36,7 @@
     back: N14ClothingBackpackTribalFilled
     belt: ClothingBeltPlantFilled # placeholder
     pocket1: N14TribalKnife
+    id: N14IDTribeEnforcerPendant
   innerClothingSkirt: N14ClothingUniformJumpskirtTribal
   satchel: N14ClothingBackpackSatchelTribalFilled
 

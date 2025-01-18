@@ -5,11 +5,15 @@
   description: A clean mattress for sleeping on.
   components:
   - type: Sprite
+    noRot: false
     sprite: _Nuclear14/Structures/Furniture/bedsandchairs.rsi
     state: bed
   - type: Construction
     graph: N14Bed
     node: bed
+  - type: Transform
+    anchored: false
+    noRot: false
 
 - type: entity
   parent: N14Bed
@@ -25,7 +29,6 @@
     position: Down
     rotation: -270
     buckleOffset: 0,0.3
-    maxBuckleDistance: 0.3
 
 - type: entity
   parent: N14Bed
@@ -62,7 +65,6 @@
     position: Down
     rotation: -270
     buckleOffset: 0,0.3
-    maxBuckleDistance: 0.3
 
 # TODO: Reduce the healing rate of all these at some point compared to a proper bed.
 - type: entity
