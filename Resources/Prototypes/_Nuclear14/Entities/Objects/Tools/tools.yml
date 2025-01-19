@@ -24,6 +24,17 @@
     attackRate: 2 #open and close that shit on their arm like hell! because you sure aren't doing any damage with this
     soundHit:
       path: "/Audio/Items/wirecutter.ogg"
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/retractor1.ogg
+    endSound:
+      path: /Audio/_Shitmed/Medical/Surgery/hemostat1.ogg
+  - type: Hemostat
+    speed: 0.6
+  - type: Tweezers
+    speed: 0.6
+  - type: Scalpel
+    speed: 0.4
 
 - type: entity
   name: screwdriver
@@ -49,6 +60,15 @@
         Piercing: 6
     soundHit:
       path: "/Audio/Weapons/bladeslice.ogg"
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/retractor1.ogg
+    endSound:
+      path: /Audio/_Shitmed/Medical/Surgery/hemostat1.ogg
+  - type: Hemostat
+    speed: 0.4
+  - type: Tweezers
+    speed: 0.4
 
 - type: entity
   name: wrench
@@ -208,6 +228,11 @@
         Slash: 10
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/Medical/Surgery/saw.ogg
+  - type: BoneSaw
+    speed: 0.6
 
 - type: entity
   name: choppa
@@ -223,28 +248,8 @@
     qualities:
       - Sawing
     speedModifier: 0.5
-
-- type: entity
-  parent: N14Saw
-  id: N14SawElectric
-  name: circular saw
-  description: For heavy duty cutting.
-  components:
-  - type: Sprite
-    state: electric
-  - type: Item
-    heldPrefix: electric
-    storedRotation: 90
-  - type: MeleeWeapon
-    damage:
-      types:
-        Slash: 15
-    soundHit:
-      path: /Audio/Items/drill_hit.ogg
-  - type: Tool
-    qualities:
-      - Sawing
-    speedModifier: 1.5
+  - type: BoneSaw
+    speed: 0.5
 
 - type: entity
   parent: N14Saw
@@ -268,6 +273,8 @@
     qualities:
       - Sawing
     speedModifier: 2.0
+  - type: BoneSaw
+    speed: 0.8
 
 - type: entity
   parent: BaseItem
@@ -322,3 +329,8 @@
     qualities:
       - Sawing
     speedModifier: 3.0
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/Medical/Surgery/saw.ogg
+  - type: BoneSaw
+    speed: 0.6
