@@ -1,8 +1,6 @@
 - type: job
   id: BoSWashingtonPaladin
   setPreference: true
-  overrideConsoleVisibility: true
-  canBeAntag: false
   name: job-name-bos-washington-paladin
   description: job-description-bos-washington-paladin
   playTimeTracker: BoSWashingtonPaladin
@@ -13,10 +11,16 @@
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodWashington
       min: 54000 # 15 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
   startingGear: BoSWashingtonPaladinGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
   supervisors: job-name-bos-wash
+  canBeAntag: false
   access:
   - WashingtonInitiate
   - WashingtonKnight
@@ -27,20 +31,20 @@
     components:
       - type: NpcFactionMember
         factions:
-          - Wastelander
           - BrotherhoodWashington
 
 - type: startingGear
   id: BoSWashingtonPaladinGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSRed
-    back: N14ClothingBackpackSatchelMilitaryFilled
-    shoes: N14ClothingBootsLeatherFilled
-    outerClothing: N14ClothingOuterWBoSPaladinArmor
+    back: N14ClothingBackpackMilitaryFilled
+    shoes: N14ClothingBootsCombatMK2Filled
+    head: N14ClothingHeadHatBrotherhoodHelmetMK2
+    outerClothing: N14ClothingOuterCombatArmorBOSMK2
     id: N14IDBrotherhoodWashingtonHolotagPaladin
     ears: N14ClothingHeadsetBOSWashington
     belt: ClothingBeltBoSWebbing
-    pocket1: BoSWashingtonPaladinKits
+    pocket1: NCRBoSWashingtonPaladinkits
 
 - type: playTimeTracker
   id: BoSWashingtonPaladin
