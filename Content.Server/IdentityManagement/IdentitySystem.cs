@@ -19,7 +19,7 @@ namespace Content.Server.IdentityManagement;
 /// <summary>
 ///     Responsible for updating the identity of an entity on init or clothing equip/unequip.
 /// </summary>
-public class IdentitySystem : SharedIdentitySystem
+public sealed class IdentitySystem : SharedIdentitySystem
 {
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
@@ -165,7 +165,7 @@ public class IdentitySystem : SharedIdentitySystem
         if (_idCard.TryFindIdCard(target, out var id))
         {
             presumedName = string.IsNullOrWhiteSpace(id.Comp.FullName) ? null : id.Comp.FullName;
-            presumedJob = id.Comp.JobTitle?.ToLowerInvariant();
+            presumedJob = id.Comp.LocalizedJobTitle?.ToLowerInvariant();
         }
 
         // If it didn't find a job, that's fine.

@@ -35,7 +35,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 400
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -53,18 +53,9 @@
         acts: [ "Destruction" ]
       - !type:SpawnEntitiesBehavior
         spawn:
-          N14FloraLogTimber:
-            min: 1
-            max: 1
-  - type: SoundOnGather
-  - type: Gatherable
-    whitelist:
-      tags:
-        - Axe
-        - BotanyHatchet
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: Timber
+          Log:
+            min: 2
+            max: 8
   - type: Pullable
   
 - type: entity
@@ -77,7 +68,7 @@
   - type: Strap
     position: Stand
     buckleOffset: "0,-0.05"
-            
+
 - type: entity
   parent: N14FloraLogBase
   id: N14FloraLogTimber
@@ -87,7 +78,7 @@
   - type: Sprite
     state: tree_timber
   - type: Gatherable
-    whitelist:
+    toolWhitelist:
       tags:
         - Saw
   - type: OreVein
@@ -124,7 +115,7 @@
   - type: Material
   - type: Item
     size: Huge
-    
+
 - type: entity
   parent: N14FloraLogBase
   id: N14FloraLog3

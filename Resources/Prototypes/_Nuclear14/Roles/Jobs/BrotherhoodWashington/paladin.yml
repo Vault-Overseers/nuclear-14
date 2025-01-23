@@ -11,6 +11,11 @@
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodWashington
       min: 54000 # 15 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
   startingGear: BoSWashingtonPaladinGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
@@ -32,7 +37,7 @@
   id: BoSWashingtonPaladinGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSRed
-    back: N14ClothingBackpackMilitary
+    back: N14ClothingBackpackMilitaryFilled
     shoes: N14ClothingBootsCombatMK2Filled
     head: N14ClothingHeadHatBrotherhoodHelmetMK2
     outerClothing: N14ClothingOuterCombatArmorBOSMK2

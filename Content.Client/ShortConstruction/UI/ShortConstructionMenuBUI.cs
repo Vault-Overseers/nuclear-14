@@ -66,10 +66,11 @@ public sealed class ShortConstructionMenuBUI : BoundUserInterface
 
         var mainContainer = new RadialContainer
         {
-            Radius = 36f / MathF.Sin(MathF.PI / 2f / crafting.Prototypes.Count)
+            Radius = 36f / MathF.Sin(MathF.PI / 2f / crafting.Entries.Count)
         };
 
-        foreach (var protoId in crafting.Prototypes)
+    #if BROKEN
+        foreach (var protoId in crafting.Entries)
         {
             if (!_protoManager.TryIndex(protoId, out var proto))
                 continue;
@@ -100,6 +101,7 @@ public sealed class ShortConstructionMenuBUI : BoundUserInterface
         }
 
         menu.AddChild(mainContainer);
+#endif
         return menu;
     }
 

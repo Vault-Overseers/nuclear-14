@@ -5,10 +5,12 @@
   description: job-description-bos-mid-squire
   playTimeTracker: BoSMidSquire
   requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-      - Human
-      - Ghoul
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
+            - Ghoul
     - !type:CharacterOverallTimeRequirement
       min: 3600
   startingGear: BoSMidSquireGear
@@ -29,7 +31,7 @@
   id: BoSMidSquireGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSGreen
-    back: N14ClothingBackpackMilitary
+    back: N14ClothingBackpackMilitaryFilled
     shoes: N14ClothingBootsCombatFilled
     head: N14ClothingHeadHatArmyCap
     outerClothing: N14ClothingOuterMidwestArmor

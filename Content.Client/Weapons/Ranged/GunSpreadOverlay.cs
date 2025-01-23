@@ -5,7 +5,6 @@ using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
-using Content.Shared.Nuclear14.Special.Components;
 
 namespace Content.Client.Weapons.Ranged;
 
@@ -19,8 +18,9 @@ public sealed class GunSpreadOverlay : Overlay
     private readonly IInputManager _input;
     private readonly IPlayerManager _player;
     private readonly GunSystem _guns;
+    private readonly SharedTransformSystem _transform;
 
-    public GunSpreadOverlay(IEntityManager entManager, IEyeManager eyeManager, IGameTiming timing, IInputManager input, IPlayerManager player, GunSystem system)
+    public GunSpreadOverlay(IEntityManager entManager, IEyeManager eyeManager, IGameTiming timing, IInputManager input, IPlayerManager player, GunSystem system, SharedTransformSystem transform)
     {
         _entManager = entManager;
         _eye = eyeManager;
@@ -28,6 +28,7 @@ public sealed class GunSpreadOverlay : Overlay
         _timing = timing;
         _player = player;
         _guns = system;
+        _transform = transform;
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -42,7 +43,7 @@ public sealed class GunSpreadOverlay : Overlay
             return;
         }
 
-        var mapPos = xform.MapPosition;
+        var mapPos = _transform.GetMapCoordinates(player.Value, xform: xform);
 
         if (mapPos.MapId == MapId.Nullspace)
             return;
@@ -59,25 +60,9 @@ public sealed class GunSpreadOverlay : Overlay
         // (☞ﾟヮﾟ)☞
         var maxSpread = gun.MaxAngleModified;
         var minSpread = gun.MinAngleModified;
-        // Nuclear14 Shotting accuracy depends on Perception
-        var decay = gun.AngleDecayModified;
         var timeSinceLastFire = (_timing.CurTime - gun.NextFire).TotalSeconds;
-        Angle currentAngle;
-        if (_entManager.TryGetComponent<SpecialComponent>(player, out var special))
-        {
-            maxSpread += Angle.FromDegrees((10f - special.TotalPerception*2));
-            minSpread += Angle.FromDegrees((10f - special.TotalPerception*2));
-            maxSpread *= 1.5 - special.TotalPerception / 10;
-            minSpread *= 1.5 - special.TotalPerception / 10;
-            decay += Angle.FromDegrees((special.TotalPerception - 5f) / 5);
-
-            currentAngle = new Angle(MathHelper.Clamp(gun.CurrentAngle.Theta - decay.Theta * timeSinceLastFire,
-            minSpread.Theta, maxSpread.Theta));
-        }
-        else
-            currentAngle = new Angle(MathHelper.Clamp(gun.CurrentAngle.Theta - gun.AngleDecayModified.Theta * timeSinceLastFire,
-                gun.MinAngleModified.Theta, gun.MaxAngleModified.Theta));
-        // Nuclear14 end
+        var currentAngle = new Angle(MathHelper.Clamp(gun.CurrentAngle.Theta - gun.AngleDecayModified.Theta * timeSinceLastFire,
+            gun.MinAngleModified.Theta, gun.MaxAngleModified.Theta));
         var direction = (mousePos.Position - mapPos.Position);
 
         worldHandle.DrawLine(mapPos.Position, mousePos.Position + direction, Color.Orange);

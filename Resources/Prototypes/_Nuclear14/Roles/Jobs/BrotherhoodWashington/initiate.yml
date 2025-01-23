@@ -5,10 +5,11 @@
   description: job-description-bos-washington-initiate
   playTimeTracker: BoSWashingtonInitiate
   requirements:
-    - !type:CharacterSpeciesRequirement
-      species:
-      - Human
-      - Ghoul
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
     - !type:CharacterOverallTimeRequirement
       min: 3600
   startingGear: BoSWashingtonInitiateGear
@@ -29,7 +30,7 @@
   id: BoSWashingtonInitiateGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSRed
-    back: N14ClothingBackpackMilitary
+    back: N14ClothingBackpackMilitaryFilled
     shoes: N14ClothingBootsCombatFilled
     id: N14IDBrotherhoodWashingtonHolotagInitiate
     outerClothing: N14ClothingOuterCombatArmorBOS

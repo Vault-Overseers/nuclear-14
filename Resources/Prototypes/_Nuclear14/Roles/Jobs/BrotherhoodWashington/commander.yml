@@ -11,6 +11,11 @@
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodWashington
       min: 72000 #20 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
   weight: 10
   startingGear: BoSWashingtonCommanderGear
   alwaysUseSpawner: true
@@ -31,7 +36,7 @@
   id: BoSWashingtonCommanderGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSBlack
-    back: N14ClothingBackpackMilitary
+    back: N14ClothingBackpackMilitaryFilled
     shoes: N14ClothingBootsCombatMK2Filled
     neck: N14ClothingNeckCloakBrotherhoodWashington
     head: N14ClothingHeadHatBrotherhoodCap
