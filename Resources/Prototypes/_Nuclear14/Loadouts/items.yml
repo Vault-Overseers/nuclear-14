@@ -188,6 +188,13 @@
   items:
     - N14Cigarette
 
+- type: loadout
+  id: N14LoadoutLunchbox
+  category: Items
+  cost: 1
+  items:
+    - N14JunkLunchbox
+
 # Tools
 - type: loadout
   id: N14LoadoutBeltUtility
@@ -196,5 +203,43 @@
   requirements:
     - !type:OverallTimeRequirement
       min: 3600
+    - !type:CharacterItemGroupRequirement
+      group: N14LoadoutBelt
   items:
     - N14ClothingBeltUtilityFilled
+
+- type: loadout
+  id: N14LoadoutBeltMilitary
+  category: Items
+  cost: 5
+  requirements:
+    - !type:OverallTimeRequirement
+      min: 3600
+    - !type:CharacterItemGroupRequirement
+      group: N14LoadoutBelt
+  items:
+    - ClothingBeltMilitary
+
+- type: loadout
+  id: N14LoadoutBeltBandolier
+  category: Items
+  cost: 5
+  requirements:
+    - !type:OverallTimeRequirement
+      min: 3600
+    - !type:CharacterItemGroupRequirement
+      group: N14LoadoutBelt
+  items:
+    - ClothingBeltNCRBandolier
+
+- type: loadout
+  id: N14LoadoutBeltMedical
+  category: Items
+  cost: 5
+  requirements:
+    - !type:OverallTimeRequirement
+      min: 3600
+    - !type:CharacterItemGroupRequirement
+      group: N14LoadoutBelt
+  items:
+    - ClothingBeltMedical
