@@ -8,7 +8,7 @@ character-item-group-LoadoutMasks = Civilian Masks
 character-item-group-LoadoutNeck = Civilian Neckwear
 character-item-group-LoadoutOuter = Civilian Outerwear
 character-item-group-LoadoutShoes = Civilian Shoes
-character-item-group-LoadoutUniformsCivilian = Civilian Uniforms
+character-item-group-LoadoutUniform = Civilian Uniforms
 
 # Generic - Items
 character-item-group-LoadoutAirTank = Emergency Air Tanks
