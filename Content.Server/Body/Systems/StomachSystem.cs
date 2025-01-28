@@ -5,7 +5,6 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Robust.Shared.Random;
 
 namespace Content.Server.Body.Systems
 {
@@ -13,7 +12,6 @@ namespace Content.Server.Body.Systems
     {
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
 
         public const string DefaultSolutionName = "stomach";
 
@@ -26,7 +24,7 @@ namespace Content.Server.Body.Systems
 
         private void OnMapInit(Entity<StomachComponent> ent, ref MapInitEvent args)
         {
-            ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.UpdateInterval * (1+_random.NextFloat());
+            ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.UpdateInterval;
         }
 
         private void OnUnpaused(Entity<StomachComponent> ent, ref EntityUnpausedEvent args)

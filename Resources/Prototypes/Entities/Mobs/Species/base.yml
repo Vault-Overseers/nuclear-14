@@ -3,6 +3,7 @@
   parent:
   - BaseMob
   - MobDamageable
+  - MobPolymorphable
   - MobCombat
   id: BaseMobSpecies
   abstract: true
@@ -13,6 +14,7 @@
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.Face" ]
     - map: [ "enum.HumanoidVisualLayers.RArm" ]
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
@@ -35,13 +37,14 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
+    - map: [ "innerBelt" ]
+    - map: [ "innerNeck" ]
     - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "neck" ]
     - map: [ "back" ]
-    - map: [ "enum.HumanoidVisualLayers.Face" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
@@ -110,11 +113,11 @@
     soundGroups:
       Brute:
         collection:
-          N14MeatBulletImpact # Nuclear 14 Sound Overhaul
+          MeatBulletImpact
     soundTypes:
       Heat:
         collection:
-          N14MeatLaserImpact # Nuclear 14 Sound Overhaul
+          MeatLaserImpact
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -176,6 +179,11 @@
     damage:
       types:
         Blunt: 5
+    heavyRateModifier: 1
+    heavyDamageBaseModifier: 1
+    heavyPartDamageMultiplier: 1
+    heavyStaminaCost: 0
+    maxTargets: 1
   - type: SleepEmitSound
   - type: SSDIndicator
   - type: StandingState
@@ -184,6 +192,12 @@
   - type: Scent
   - type: MindContainer
     showExamineInfo: true
+  - type: CanEnterCryostorage
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
   - type: CanHostGuardian
   - type: NpcFactionMember
     factions:
@@ -237,10 +251,6 @@
     - DoorBumpOpener
   - type: Targeting
   - type: SurgeryTarget
-  - type: CameraFollow # NC-Changes-End
-    backStrength: 50
-    defaultBackStrength: 20
-  - type: RadiationReceiver
 
 - type: entity
   save: false
@@ -292,7 +302,6 @@
   - type: Blindable
   # Other
   - type: Temperature
-    atmosTemperatureTransferEfficiency: 0.5
     heatDamageThreshold: 325
     coldDamageThreshold: 260
     currentTemperature: 310.15
@@ -312,8 +321,6 @@
     normalBodyTemperature: 310.15
     thermalRegulationTemperatureThreshold: 25
   - type: Perishable
-    # Makes humans and human derived species rot after 30 minutes instead of 10 minutes.
-    rotAfter: 1800
   - type: Butcherable
     butcheringType: Spike # TODO human.
     spawned:
@@ -356,6 +363,7 @@
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.Face" ]
     - map: [ "enum.HumanoidVisualLayers.RArm" ]
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
@@ -381,13 +389,14 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
+    - map: [ "innerBelt" ]
+    - map: [ "innerNeck" ]
     - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "neck" ]
     - map: [ "back" ]
-    - map: [ "enum.HumanoidVisualLayers.Face" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

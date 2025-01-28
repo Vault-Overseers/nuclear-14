@@ -10,8 +10,8 @@ using Content.Shared.Language.Systems;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech;
-using Content.Shared.Ghost; // Nuclear-14
 using Microsoft.CodeAnalysis.Host;
+using Content.Shared.Ghost; // Nuclear-14
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -93,16 +93,23 @@ public sealed class RadioSystem : EntitySystem
         string message,
         ProtoId<RadioChannelPrototype> channel,
         EntityUid radioSource,
-        LanguagePrototype? language = null,
         int? frequency = null,
+        LanguagePrototype? language = null,
         bool escapeMarkup = true
         ) =>
-        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, language: language, frequency: frequency);
+        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, frequency: frequency, language: language);
 
     /// <summary>
     /// Send radio message to all active radio listeners
     /// </summary>
-    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, LanguagePrototype? language = null, int? frequency = null, bool escapeMarkup = true)
+    public void SendRadioMessage(
+        EntityUid messageSource,
+        string message,
+        RadioChannelPrototype channel,
+        EntityUid radioSource,
+        LanguagePrototype? language = null,
+        int? frequency = null,
+        bool escapeMarkup = true)
     {
         if (language == null)
             language = _language.GetLanguage(messageSource);
@@ -125,12 +132,12 @@ public sealed class RadioSystem : EntitySystem
             ? FormattedMessage.EscapeText(message)
             : message;
 
-        var wrappedMessage = WrapRadioMessage(messageSource, channel, name, content, language);
+        var wrappedMessage = WrapRadioMessage(messageSource, channel, name, content, language, frequency);
         var msg = new ChatMessage(ChatChannel.Radio, content, wrappedMessage, NetEntity.Invalid, null);
 
         // ... you guess it
         var obfuscated = _language.ObfuscateSpeech(content, language);
-        var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, name, obfuscated, language);
+        var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, name, obfuscated, language, frequency);
         var notUdsMsg = new ChatMessage(ChatChannel.Radio, obfuscated, obfuscatedWrapped, NetEntity.Invalid, null);
 
         var ev = new RadioReceiveEvent(messageSource, channel, msg, notUdsMsg, language, radioSource);
@@ -147,10 +154,8 @@ public sealed class RadioSystem : EntitySystem
         var speakerQuery = GetEntityQuery<RadioSpeakerComponent>();
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
 
-        /*Nuclear-14-Start*/
-        if (frequency == null)
-            frequency = GetFrequency(messageSource, channel);
-        /*Nuclear-14-End*/
+        if (frequency == null) // Nuclear-14
+            frequency = GetFrequency(messageSource, channel); // Nuclear-14
 
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
@@ -161,7 +166,6 @@ public sealed class RadioSystem : EntitySystem
                     continue;
             }
 
-            // Nuclear-14
             if (!HasComp<GhostComponent>(receiver) && GetFrequency(receiver, channel) != frequency)
                 continue;
 
@@ -193,7 +197,13 @@ public sealed class RadioSystem : EntitySystem
         _messages.Remove(message);
     }
 
-    private string WrapRadioMessage(EntityUid source, RadioChannelPrototype channel, string name, string message, LanguagePrototype language)
+    private string WrapRadioMessage(
+        EntityUid source,
+        RadioChannelPrototype channel,
+        string name,
+        string message,
+        LanguagePrototype language,
+        int? frequency = null)
     {
         // TODO: code duplication with ChatSystem.WrapMessage
         var speech = _chat.GetSpeechVerb(source, message);
@@ -205,6 +215,12 @@ public sealed class RadioSystem : EntitySystem
             : "";
         var messageColor = language.IsVisibleLanguage ? languageColor : channel.Color;
 
+        string channelText;
+        if (channel.ShowFrequency && frequency.HasValue)
+            channelText = $"\\[{frequency}\\]";
+        else
+            channelText = $"\\[{channel.LocalizedName}\\]";
+
         return Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("color", channel.Color),
             ("languageColor", languageColor),
@@ -212,7 +228,7 @@ public sealed class RadioSystem : EntitySystem
             ("fontType", language.SpeechOverride.FontId ?? speech.FontId),
             ("fontSize", language.SpeechOverride.FontSize ?? speech.FontSize),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
-            ("channel", $"\\[{channel.LocalizedName}\\]"),
+            ("channel", channelText),
             ("name", name),
             ("message", message),
             ("language", languageDisplay));

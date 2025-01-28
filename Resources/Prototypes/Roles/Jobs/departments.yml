@@ -2,7 +2,6 @@
   id: Logistics # DeltaV - Logistics Department replacing Cargo
   description: department-Cargo-description
   color: "#A46106"
-  editorHidden: true
   roles:
   - CargoTechnician
   - Quartermaster
@@ -14,10 +13,8 @@
   description: department-Civilian-description
   color: "#9FED58"
   weight: -10
-  editorHidden: true
   roles:
   - Bartender
-  - Borg
   - Botanist
   - Boxer
   # - Chaplain # DeltaV - Move Chaplain into Epistemics
@@ -41,7 +38,6 @@
   id: Command
   description: department-Command-description
   color: "#334E6D"
-  editorHidden: true
   roles:
   - Captain
   - CentralCommandOfficial
@@ -66,10 +62,20 @@
   weight: 100
 
 - type: department
+  id: Dignitary
+  description: department-Dignitary-description
+  color: "#33FE6D"
+  roles:
+  - BlueshieldOfficer # Goobstation
+  - NanotrasenRepresentative # Goobstation
+  - Magistrate # Goobstation
+  primary: false
+  weight: 101
+
+- type: department
   id: Engineering
   description: department-Engineering-description
   color: "#EFB341"
-  editorHidden: true
   roles:
   - AtmosphericTechnician
   - ChiefEngineer
@@ -81,7 +87,6 @@
   id: Medical
   description: department-Medical-description
   color: "#52B4E9"
-  editorHidden: true
   roles:
   - Chemist
   - ChiefMedicalOfficer
@@ -97,7 +102,6 @@
   description: department-Security-description
   color: "#DE3A3A"
   weight: 20
-  editorHidden: true
   roles:
   - HeadOfSecurity
   - SecurityCadet
@@ -112,7 +116,6 @@
   id: Epistemics # DeltaV - Epistemics Department replacing Science
   description: department-Science-description
   color: "#D381C9"
-  editorHidden: true
   roles:
   - ResearchDirector
   - SeniorResearcher
@@ -124,11 +127,18 @@
   - Roboticist
 
 - type: department
+  id: Silicon
+  description: department-Silicon-description
+  color: "#D381C9"
+  roles:
+  - Borg
+  - StationAi
+
+- type: department
   id: Specific
   description: department-Specific-description
   color: "#9FED58"
   weight: 10
-  editorHidden: true
   roles:
   - Boxer
   - Reporter
