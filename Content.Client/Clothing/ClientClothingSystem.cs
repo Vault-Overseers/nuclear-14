@@ -300,7 +300,6 @@ public sealed class ClientClothingSystem : ClothingSystem
         // temporary, until layer draw depths get added. Basically: a layer with the key "slot" is being used as a
         // bookmark to determine where in the list of layers we should insert the clothing layers.
         bool slotLayerExists = sprite.LayerMapTryGet(slot, out var index);
-        var displacementData = inventory.Displacements.GetValueOrDefault(slot);
 
         // add the new layers
         foreach (var (key, layerData) in ev.Layers)
