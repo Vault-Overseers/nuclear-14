@@ -331,3 +331,697 @@
       - !type:GenericStatusEffect
         key: SlurredSpeech
         component: TelepathicRepeater
+
+#MARK: General chems
+- type: reagent
+  id: Birazine #neutralizes alcohol in the system 
+  name: reagent-name-birazine #Add this
+  group: Medicine
+  desc: reagent-desc-birazine #And this
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: medicine
+  color: "#8a593b"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:GenericStatusEffect
+        key: Drunk
+        time: 6.0
+        type: Remove
+
+- type: reagent
+  id: Cadtredine #shortens stun and knockdown time
+  name: reagent-name-cadtredine #Add this
+  group: Medicine
+  desc: reagent-desc-cadtredine #And this
+  physicalDesc: reagent-physical-desc-odorless
+  flavor: medicine
+  color: "#ffec71"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        conditions:
+        damage:
+          types:
+            Shock: -0.5
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 0.75
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
+        time: 0.75
+        type: Remove
+        
+- type: reagent
+  id: Plentiphil #Decreases hunger (fun way to avoid food)
+  name: reagent-name-plentiphil #Add this
+  group: Medicine
+  desc: reagent-desc-plentiphil #And this
+  physicalDesc: reagent-physical-desc-oily
+  flavor: medicine
+  color: "#5c8001"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:SatiateHunger
+        factor: 1 #might have to be negative?
+
+- type: reagent
+  id: Cephrine #a movement enhancer
+  name: reagent-name-cephrine #Add this
+  group: Narcotics
+  desc: reagent-desc-cephrine #And this
+  physicalDesc: reagent-physical-desc-powdery
+  flavor: bitter
+  color: "#f2e0ff"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.2
+        sprintSpeedModifier: 1.2 #20% faster
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold #OD
+          min: 20
+        damage:
+          types:
+            Poison: 2 
+            Asphyxiation: 2
+      - !type:Jitter
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Haloperidol
+          max: 0.01
+        key: Drowsiness
+        time: 10
+        type: Remove
+      - !type:PopupMessage
+        visualType: Medium
+        messages: ["ephedrine-effect-tight-pain", "ephedrine-effect-heart-pounds"] #change these
+        type: Local
+        probability: 0.2
+        
+- type: reagent
+  id: Expertine #Staves off Narcolepsy (does *not* cure it)
+  name: reagent-name-expertine #Add this
+  group: Narcotics
+  desc: reagent-desc-expertine #And this
+  physicalDesc: reagent-physical-desc-powdery
+  flavor: bitter
+  color: "#D2FFFA"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ResetNarcolepsy
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        
+- type: reagent
+  id: Revitaline #should help revive/aid plants
+  name: reagent-name-revitaline #Add this
+  group: Medicine
+  desc: reagent-desc-revitaline #And this
+  physicalDesc: reagent-physical-desc-acrid
+  flavor: medicine
+  color: "#b0d637"
+  plantMetabolism:
+    - !type:PlantAdjustToxins
+      amount: -6
+    - !type:PlantPhalanximine #change this
+      conditions:
+      - !type:ReagentThreshold
+        min: 4
+        
+#MARK: Psychology based "medications" - mostly are rp based
+- type: reagent
+  id : Mensitrene
+  name: reagent-name-mensitrene #add this
+  group: Medicine
+  desc: reagent-desc-mensitrene #and this
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: sweet
+  color: "#ff8ba0"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+        type: Local
+        visualType: Medium
+        messages: [ "mannitol-effect-enlightened" ] #add a new this
+        probability: 0.2
+        
+- type: reagent
+  id: Moditrene
+  name: reagent-name-moditrene #Add this
+  group: Medicine
+  desc: reagent-desc-moditrene #And this
+  physicalDesc: reagent-physical-desc-shiny
+  flavor: bitter
+  color: "#340068"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:PopupMessage #can change mood if we ever add that back
+        type: Local
+        visualType: Medium
+        messages:
+        - "psicodine-effect-fearless" #Make new ones of these
+        - "psicodine-effect-anxieties-wash-away"
+        - "psicodine-effect-at-peace"
+        probability: 0.2
+
+- type: reagent
+  id: Execidol #cures addiction and drug effects
+  name: reagent-name-execidol #Add this
+  group: Medicine
+  desc: reagent-desc-execidol #And this
+  physicalDesc: reagent-physical-desc-shiny
+  flavor: bitter
+  color: "#623cea"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        damage:
+          types:
+            Poison: 2
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 8
+        refresh: false
+      - !type:GenericStatusEffect
+        key: Jitter
+        time: 2.0
+        type: Remove
+      - !type:GenericStatusEffect
+        key: Drunk
+        time: 6.0
+        type: Remove
+      - !type:PopupMessage # we dont have sanity/mood so this will have to do
+        type: Local
+        visualType: Medium
+        messages:
+        - "psicodine-effect-fearless" #make new ones
+        - "psicodine-effect-anxieties-wash-away"
+        - "psicodine-effect-at-peace"
+        probability: 0.2
+        
+- type: reagent
+  id: Reqitrene
+  name: reagent-name-reqitrene #Add this
+  group: Medicine
+  desc: reagent-desc-reqitrene #And this
+  physicalDesc: reagent-physical-desc-shiny
+  flavor: bitter
+  color: "#e2b4bd"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:PopupMessage #can change mood if we ever add that back
+        type: Local
+        visualType: Medium
+        messages:
+        - "psicodine-effect-fearless" #Make new ones of these
+        - "psicodine-effect-anxieties-wash-away"
+        - "psicodine-effect-at-peace"
+        probability: 0.2
+      - !type:MovespeedModifier
+        walkSpeedModifier: .75
+        sprintSpeedModifier: .75 #increase crit threshold if possible
+        
+#MARK: Damage reduction medicines, all are a 5% reduction currently
+- type: reagent
+  id: Curatide #radiation
+  name: reagent-name-curatide #Add this
+  group: Medicine
+  desc: reagent-desc-curatide #And this
+  physicalDesc: reagent-physical-desc-grainy
+  flavor: medicine
+  color: "#5c8001"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:GenericStatusEffect
+        key: RadiationProtection #this needs to be looked at and changed
+        component: RadiationProtection
+        time: 2
+        type: Add
+        refresh: false
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold #OD
+            min: 20
+        damage:
+          types:
+            Poison: 1
+            
+- type: reagent
+  id: Puratide #poison
+  name: reagent-name-puratide #Add this
+  group: Medicine
+  desc: reagent-desc-puratide #And this
+  physicalDesc: reagent-physical-desc-grainy
+  flavor: medicine
+  color: "#e2e14a"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:GenericStatusEffect
+        key: PoisonProtection #this needs to be created
+        component: PoisonProtection
+        time: 2
+        type: Add
+        refresh: false
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold #OD
+            min: 20
+        damage:
+          types:
+            Poison: 1
+            
+- type: reagent
+  id: Sealatide # heat
+  name: reagent-name-sealatide #Add this
+  group: Medicine
+  desc: reagent-desc-sealatide #And this
+  physicalDesc: reagent-physical-desc-grainy
+  flavor: medicine
+  color: "#86ffe9"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:GenericStatusEffect
+        key: HeatProtection #this needs to be created
+        component: HeatProtection
+        time: 2
+        type: Add
+        refresh: false
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold #OD
+            min: 20
+        damage:
+          types:
+            Poison: 1
+
+- type: reagent
+  id: Harnitide # cold
+  name: reagent-name-harnitide #Add this
+  group: Medicine
+  desc: reagent-desc-harnitide #And this
+  physicalDesc: reagent-physical-desc-grainy
+  flavor: medicine
+  color: "#ffab49"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:GenericStatusEffect
+        key: ColdProtection #this needs to be created
+        component: ColdProtection
+        time: 2
+        type: Add
+        refresh: false
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold #OD
+            min: 20
+        damage:
+          types:
+            Poison: 1
+
+- type: reagent
+  id: Shelitide # piercing
+  name: reagent-name-shelitide #Add this
+  group: Medicine
+  desc: reagent-desc-shelitide #And this
+  physicalDesc: reagent-physical-desc-grainy
+  flavor: medicine
+  color: "#b99372"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:GenericStatusEffect
+        key: PiercingProtection #this needs to be created
+        component: PiercingProtection
+        time: 2
+        type: Add
+        refresh: false
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold #OD
+            min: 20
+        damage:
+          types:
+            Poison: 1
+
+- type: reagent
+  id: Thinitide # slashing
+  name: reagent-name-thinitide #Add this
+  group: Medicine
+  desc: reagent-desc-thinitide #And this
+  physicalDesc: reagent-physical-desc-grainy
+  flavor: medicine
+  color: "#c2441b"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:GenericStatusEffect
+        key: SlashingProtection #this needs to be created
+        component: SlashingProtection
+        time: 2
+        type: Add
+        refresh: false
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold #OD
+            min: 20
+        damage:
+          types:
+            Poison: 1
+
+- type: reagent
+  id: Boltide # Blunt
+  name: reagent-name-boltide #Add this
+  group: Medicine
+  desc: reagent-desc-boltide #And this
+  physicalDesc: reagent-physical-desc-grainy
+  flavor: medicine
+  color: "#8f3b80"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:GenericStatusEffect
+        key: BluntProtection #this needs to be created
+        component: BluntProtection
+        time: 2
+        type: Add
+        refresh: false
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold #OD
+            min: 20
+        damage:
+          types:
+            Poison: 1
+
+#MARK: Other chems            
+- type: reagent
+  id: Blatrium #To avoid people mixing medicines
+  name: reagent-name-blatrium #Add this
+  group: Medicine
+  desc: reagent-desc-blatrium #And this
+  physicalDesc: reagent-physical-desc-grainy
+  flavor: medicine
+  color: "#b3c5d7"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Genetic: 1
+
+- type: reagent
+  id: Notrizyl #To avoid people mixing medicines, but shouldnt do anything
+  name: reagent-name-notrizyl #Add this
+  group: Medicine
+  desc: reagent-desc-notrizyl #And this
+  physicalDesc: reagent-physical-desc-grainy
+  flavor: medicine
+  color: "#00032c"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types: 
+            Genetic: 0
+            
+- type: reagent
+  id: Claritine #Clears Everything out of someone's system so this one is a lot
+  name: reagent-name-clearitine #Add this
+  group: Medicine
+  desc: reagent-desc-clearitine #And this
+  physicalDesc: reagent-physical-desc-odorless
+  flavor: medicine
+  color: "#d6fdf0"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:AdjustReagent #removing brute medications
+        reagent: Beredine
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Velredine
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Ovardine
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Pentredine
+        amount: -2
+      - !type:AdjustReagent #removing burn medications
+        reagent: Ardgid
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Potentid
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Ignimid
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Frigmid
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Romid
+        amount: -2
+      - !type:AdjustReagent #removes the poison meds
+        reagent: Venroxin
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Pertoxin
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Carotoxin
+        amount: -2
+      - !type:AdjustReagent #Removes other medicines
+        reagent: Resparil
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Sangrastim
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Ocutine
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Trantecan
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Resolin
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Necritrol
+        amount: -2
+      - !type:AdjustReagent #Start of non-medicnes
+        reagent: Blatrium
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Notrizyl
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Birazine
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Cadredine
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Pleniphil
+        amount: -2
+      - !type:AdjustReagent #Mood chems
+        reagent: Medsitrene
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Moditrene
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Reqitrene
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Execidol
+        amount: -2
+      - !type:AdjustReagent #Protection chems
+        reagent: Curatide
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Puratide
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Sealatide
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Harnitide
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Shelitide
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Thinitide
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Bolitide
+        amount: -2
+      - !type:AdjustReagent #back to chems (this is real orgainzied i know)
+        reagent: Cephrine
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Expertine
+        amount: -2
+      - !type:AdjustReagent #Start of poisons
+        reagent: Abhoride
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Somatrene
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Gastrotoxin
+        amount: -2
+      - !type:AdjustReagent
+        reagent: BreakerToxin
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Fungitoxin
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Motorine
+        amount: -2
+      - !type:AdjustReagent
+        reagent: SilentToxin
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Ocudine
+        amount: -2
+      - !type:AdjustReagent #Basic N14 things
+        reagent: NightstalkerBlood
+        amount: -2
+      - !type:AdjustReagent
+        reagent: MovespeedMixture
+        amount: -2
+      - !type:AdjustReagent
+        reagent: RobustMovespeedMixture
+        amount: -2
+      - !type:AdjustReagent
+        reagent: DamageModifyingMixture
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Daytripper
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Cateye
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Buffout
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Buffjet
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Bufftats
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Mentats
+        amount: -2
+      - !type:AdjustReagent
+        reagent: MentatsBerry
+        amount: -2
+      - !type:AdjustReagent
+        reagent: MentatsGrape
+        amount: -2
+      - !type:AdjustReagent
+        reagent: MentatsOrange
+        amount: -2
+      - !type:AdjustReagent
+        reagent: DamageResistMixture
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Hydra
+        amount: -2
+      - !type:AdjustReagent
+        reagent: MourningPoultice
+        amount: -2
+      - !type:AdjustReagent
+        reagent: HealingMixture #Stims
+        amount: -2
+      - !type:AdjustReagent
+        reagent: DirtyStimpak
+        amount: -2
+      - !type:AdjustReagent
+        reagent: HealingPowder
+        amount: -2
+      - !type:AdjustReagent
+        reagent: TraumaPowder
+        amount: -2
+      - !type:AdjustReagent
+        reagent: AntidoteMixture
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Antidote
+        amount: -2
+      - !type:AdjustReagent
+        reagent: RobustHealingMixture #Superstims
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Radaway
+        amount: -2
+      - !type:AdjustReagent
+        reagent: RadawayDiluted
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Radx
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Fixer
+        amount: -2
+      - !type:AdjustReagent
+        reagent: SmellingSalts
+        amount: -2
+      - !type:AdjustReagent
+        reagent: Bitterdrink
+        amount: -2
+      - !type:AdjustReagent
+        reagent: UltraRobustHealingMixture
+        amount: -2
+      - !type:AdjustReagent
+        reagent: AbraxoCleaner
+        amount: -2
+      - !type:AdjustReagent
+        reagent: NightstalkerVenom
+        amount: -2
+      - !type:AdjustReagent
+        reagent: CazadorVenom
+        amount: -2
+      - !type:GenericStatusEffect #Other effects
+        key: Stun
+        time: 0.75
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
+        time: 0.75
+        type: Remove
+      - !type: ChemVomit #For effect

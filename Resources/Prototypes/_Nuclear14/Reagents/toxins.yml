@@ -73,3 +73,184 @@
             Poison: 3
           groups:
             Airloss: 3.5
+
+#MARK: Toxin Chems
+- type: reagent
+  id: Ahboride
+  name: reagent-name-ahboride #Add this
+  group: Toxins
+  desc: reagent-desc-ahboride #And this
+  physicalDesc: reagent-physical-desc-electric
+  flavor: shocking
+  color: "#d87e26"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Electrocute
+        probability: 0.2
+        
+- type: reagent
+  id: Somatrene #Recipeless for now, puts the user to sleep
+  name: reagent-name-somatrene
+  group: Narcotics
+  desc: reagent-desc-somatrene
+  physicalDesc: reagent-physical-desc-powdery
+  color: "#341c50"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Nocturine
+          min: 8
+        key: ForcedSleep
+        component: ForcedSleeping
+        refresh: false
+        type: Add
+        
+- type: reagent
+  id: Somatitride #Slows speed and makes the user tired(rp based)
+  name: reagent-name-somatitride #Add this
+  group: Narcotics
+  desc: reagent-desc-somatitride #And this
+  physicalDesc: reagent-physical-desc-powdery
+  color: "#71598d"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 0.75
+        sprintSpeedModifier: 0.75 #25% slower
+      - !type:PopupMessage
+        visualType: Medium
+        messages: ["ephedrine-effect-tight-pain", "ephedrine-effect-heart-pounds"] #change/make these
+        type: Local
+        probability: 0.2 # could add something about blurred vision, havent decided yet
+        
+- type: reagent
+  id: GastroToxin #this is same as the base SS14, could change if needed
+  name: reagent-name-gastrotoxin
+  group: Toxins
+  desc: reagent-desc-gastrotoxin
+  flavor: bitter
+  color: "#acc91a"
+  physicalDesc: reagent-physical-desc-putrid
+  metabolisms:
+    Poison:
+      effects:
+        - !type:HealthChange
+          damage:
+            types:
+              Poison: 2
+        - !type:ChemVomit
+          conditions:
+          - !type:ReagentThreshold
+            min: 2
+          probability: 0.2
+        
+- type: reagent
+  id: BreakerToxin #Almost same as SS14 Mindbreak, added some effects will be expensive to make
+  name: reagent-name-breaker-toxin #Add this
+  group: Toxins
+  desc: reagent-desc-breaker-toxin #And this
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: bitter
+  color: "#1dc187"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 10
+        refresh: false
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+      - !type:Drunk
+      - !type:Emote
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        emote: Scream
+        probability: 0.2
+
+- type: reagent
+  id: Fungitoxin #Heals Poison
+  name: reagent-name-fungitoxin #Add this
+  group: Toxins
+  desc: reagent-desc-fungitoxin #And this
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: bitter
+  color: "#6e2594"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 3
+            
+- type: reagent
+  id: Motorine # Causes Jittering, for fun
+  name: reagent-name-motorine #Add this
+  group: Toxins
+  desc: reagent-desc-motorine #And this
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: bitter
+  color: "#004f2d"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+   
+- type: reagent
+  id: Tardnix #Slows movement speed
+  name: reagent-name-tardnix #Add this
+  group: Narcotics
+  desc: reagent-desc-tardnix #And this
+  physicalDesc: reagent-physical-desc-powdery
+  color: "#f25757"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 0.7
+        sprintSpeedModifier: 0.7 #30% slower
+        
+- type: reagent
+  id: SilentToxin
+  name: reagent-name-silent-toxin #Add this
+  group: Narcotics
+  desc: reagent-desc-silent-toxin #And this
+  physicalDesc: reagent-physical-desc-syrupy
+  color: "#251d27"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:GenericStatusEffect #temperary, needs at least 1 second of accumulation 
+        key: Muted
+        component: Muted
+        
+- type: reagent
+  id: Ocudine #temperarily blinds the user
+  name: reagent-name-ocudine #Add this
+  group: Narcotics
+  desc: reagent-desc-ocudine #And this
+  physicalDesc: reagent-physical-desc-syrupy
+  color: "#545863"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:GenericStatusEffect
+        key: TemporaryBlindness
+        component: TemporaryBlindness
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
