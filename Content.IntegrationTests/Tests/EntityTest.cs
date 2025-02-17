@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using JetBrains.Annotations;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;
@@ -408,9 +409,12 @@ namespace Content.IntegrationTests.Tests
             await pair.CleanReturnAsync();
         }
 
+        #pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         private EntityUid TrySpawnEntity(IEntityManager entityManager, string? protoName, EntityCoordinates coordinates)
+            #pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         {
             EntityUid result = EntityUid.Invalid;
+
             try
             {
                 result = entityManager.SpawnEntity(protoName, coordinates);
