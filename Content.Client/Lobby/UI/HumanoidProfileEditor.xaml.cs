@@ -2313,6 +2313,7 @@ namespace Content.Client.Lobby.UI
                 .ThenBy(l => Loc.GetString($"loadout-name-{l.Key.ID}"))
                 .ThenBy(l => l.Key.Cost))
             {
+                try {
                 if (_loadoutPreferences.Select(lps => lps.Loadout.ID).Contains(loadout.ID))
                 {
                     var first = _loadoutPreferences.First(lps => lps.Loadout.ID == loadout.ID);
@@ -2335,6 +2336,9 @@ namespace Content.Client.Lobby.UI
 
                 // If there is no category put it in Uncategorized (this shouldn't happen)
                 (match ?? uncategorized).Children.First().Children.First().AddChild(selector);
+                } catch (Exception e) {
+                    Logger.ErrorS("character setup", $"failed to preview loadout {loadout.ID}: {e}");
+                }
             }
 
             // Hide any empty tabs
