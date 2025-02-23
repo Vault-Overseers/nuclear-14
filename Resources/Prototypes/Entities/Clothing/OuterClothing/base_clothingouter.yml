@@ -25,7 +25,7 @@
   - type: HeldSpeedModifier
   - type: Tag
     tags:
-    - WhitelistChameleon
+      - WhitelistChameleon
   - type: Fixtures
     fixtures:
       fix1:
@@ -108,6 +108,7 @@
   abstract: true
   parent: [ClothingOuterStorageFoldableBase, ClothingOuterFoldableBaseOpened]
   id: ClothingOuterStorageFoldableBaseOpened
+  suffix: opened
 
 - type: entity
   abstract: true
@@ -133,8 +134,9 @@
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    heatingCoefficient: 0.01
-    coolingCoefficient: 0.01
+    coefficient: 0.01
+  - type: FireProtection
+    reduction: 0.75 # almost perfectly sealed, atmos firesuit is better
   - type: IgniteFromGasImmunity
     parts:
     - Torso
@@ -171,7 +173,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-    - HidesHarpyWings
+    - HidesHarpyWings #DeltaV: Used by harpies to help render their hardsuit sprites
     - AllowLamiaHardsuit
     - FullBodyOuter
     - PlasmamanSafe
@@ -183,13 +185,8 @@
     localSoundOnly: true
   - type: StaminaDamageResistance
     coefficient: 0.75 # 25%
-  - type: ProtectedFromStepTriggers
+  - type: ClothingRequiredStepTriggerImmune
     slots: WITHOUT_POCKET
-  - type: DamageOnInteractProtection
-    damageProtection:
-      flatReductions:
-        Heat: 10 # the average lightbulb only does around four damage!
-    slots: OUTERCLOTHING
   - type: DamageOtherOnHit
     damage:
       types:
@@ -216,13 +213,6 @@
     requiresWorn: true
     distanceWalking: 2
     distanceSprinting: 3
-  - type: Reflect
-    spread: 270
-    reflectProb: 0.03
-    innate: true
-    reflects:
-    - Energy
-    - NonEnergy
 
 - type: entity
   abstract: true
@@ -259,13 +249,6 @@
   - type: Clothing
     equipDelay: 4 # For stuff like standard Tacsuits and Heavy Hardsuits.
     unequipDelay: 4
-  - type: Reflect
-    spread: 270
-    reflectProb: 0.04
-    innate: true
-    reflects:
-    - Energy
-    - NonEnergy
 
 - type: entity
   abstract: true
@@ -302,13 +285,6 @@
   - type: Clothing
     equipDelay: 5 # For stuff like "Heavy" Tacsuits.
     unequipDelay: 5
-  - type: Reflect
-    spread: 270
-    reflectProb: 0.05
-    innate: true
-    reflects:
-    - Energy
-    - NonEnergy
 
 - type: entity
   abstract: true
@@ -320,8 +296,7 @@
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    heatingCoefficient: 0.01 # Not complete protection from fire
-    coolingCoefficient: 0.01
+    coefficient: 0.01 # Not complete protection from fire
   - type: IgniteFromGasImmunity
     parts:
     - Torso
@@ -348,13 +323,8 @@
   - type: Clothing
     equipDelay: 1.25 # Softsuits are easier to put on and off
     unequipDelay: 1
-  - type: ProtectedFromStepTriggers
+  - type: ClothingRequiredStepTriggerImmune
     slots: WITHOUT_POCKET
-  - type: DamageOnInteractProtection
-    damageProtection:
-      flatReductions:
-        Heat: 10 # the average lightbulb only does around four damage!
-    slots: OUTERCLOTHING
   - type: Fixtures
     fixtures:
       fix1:

@@ -3,15 +3,11 @@
   name: job-name-chef
   description: job-description-chef
   playTimeTracker: JobChef
+  setPreference: false
   requirements:
-  - !type:CharacterDepartmentTimeRequirement
-    department: Civilian
-    min: 3600
-  - !type:CharacterEmployerRequirement
-    employers:
-    - NanoTrasen
-    - OrionExpress
-    - IdrisIncorporated
+    - !type:CharacterDepartmentTimeRequirement
+      department: Civilian
+      min: 3600 #DeltaV 1 hour
   startingGear: ChefGear
   icon: "JobIconChef"
   supervisors: job-supervisors-hop
@@ -21,13 +17,11 @@
   - Kitchen
   extendedAccess:
   - Hydroponics
-  - Bar
+  - Bar #Nyano - Summary: After this line, Professional Che is a component to be added. Very important.
   special:
   - !type:AddComponentSpecial
     components:
-    - type: ProfessionalChef
-    - type: GrantCqc
-      isBlocked: true
+    - type: ProfessionalChef #Nyano - End Summary.
 
 - type: startingGear
   id: ChefGear
@@ -36,17 +30,20 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitChef
     head: ClothingHeadHatChef
-    back: ClothingBackpack
+    back: ClothingBackpackFilled
     mask: ClothingMaskItalianMoustache
     shoes: ClothingShoesColorBlack
     id: ChefPDA
     ears: ClothingHeadsetService
     outerClothing: ClothingOuterApronChef
     belt: ClothingBeltChefFilled
+  innerClothingSkirt: ClothingUniformJumpskirtChef
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled
 
 - type: startingGear
   id: ChefPlasmamanGear
-  parent: BasePlasmamanMaskGear
+  parent: BasePlasmamanGear
   equipment:
     jumpsuit: ClothingUniformEnvirosuitChef
     head: ClothingHeadEnvirohelmColorWhite

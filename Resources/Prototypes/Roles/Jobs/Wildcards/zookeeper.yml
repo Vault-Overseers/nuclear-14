@@ -9,12 +9,8 @@
   access:
   - Service
   - Maintenance
-  - Zookeeper
-  requirements:
-  - !type:CharacterEmployerRequirement
-    inverted: true
-    employers:
-    - Unemployed
+  - Zookeeper # DeltaV - Add Zookeeper access
+  setPreference: false
 
 - type: startingGear
   id: ZookeeperGear
@@ -22,15 +18,18 @@
   - ZookeeperPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitSafari
-    back: ClothingBackpack
+    back: ClothingBackpackFilled
     head: ClothingHeadSafari
     shoes: ClothingShoesColorWhite
     id: ZookeeperPDA
     ears: ClothingHeadsetService
+  innerClothingSkirt: ClothingUniformJumpsuitSafari
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled
 
 - type: startingGear
   id: ZookeeperPlasmamanGear
-  parent: BasePlasmamanMaskGear
+  parent: BasePlasmamanGear
   equipment:
     jumpsuit: ClothingUniformEnvirosuitSafari
     head: ClothingHeadEnvirohelmSafari

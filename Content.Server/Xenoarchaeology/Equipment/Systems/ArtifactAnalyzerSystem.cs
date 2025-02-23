@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Server.Construction;
+using Content.Server.Paper;
 using Content.Server.Power.Components;
 using Content.Server.Research.Systems;
 using Content.Shared.UserInterface;
@@ -9,11 +9,9 @@ using Content.Server.Xenoarchaeology.XenoArtifacts.Events;
 using Content.Shared.Audio;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceLinking.Events;
-using Content.Shared.Paper;
 using Content.Shared.Placeable;
 using Content.Shared.Popups;
 using Content.Shared.Power;
-using Content.Shared.Psionics.Glimmer;
 using Content.Shared.Research.Components;
 using Content.Shared.Xenoarchaeology.Equipment;
 using Content.Shared.Xenoarchaeology.XenoArtifacts;
@@ -24,6 +22,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Psionics.Glimmer; //Nyano - Summary:.
 
 namespace Content.Server.Xenoarchaeology.Equipment.Systems;
 
@@ -57,9 +56,6 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
 
         SubscribeLocalEvent<ArtifactAnalyzerComponent, ItemPlacedEvent>(OnItemPlaced);
         SubscribeLocalEvent<ArtifactAnalyzerComponent, ItemRemovedEvent>(OnItemRemoved);
-
-        SubscribeLocalEvent<ArtifactAnalyzerComponent, RefreshPartsEvent>(OnRefreshParts);
-        SubscribeLocalEvent<ArtifactAnalyzerComponent, UpgradeExamineEvent>(OnUpgradeExamine);
 
         SubscribeLocalEvent<ArtifactAnalyzerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<AnalysisConsoleComponent, NewLinkEvent>(OnNewLink);
@@ -165,17 +161,6 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
             analysis.AnalyzerEntity = uid;
             return;
         }
-    }
-
-    private void OnRefreshParts(EntityUid uid, ArtifactAnalyzerComponent component, RefreshPartsEvent args)
-    {
-        var rating = args.PartRatings[component.MachinePartTimeReduction];
-        component.AnalysisDuration = component.BaseAnalysisDuration - TimeSpan.FromSeconds(component.UpgradeTimeReductionMultiplier * (rating - 1));
-    }
-
-    private void OnUpgradeExamine(EntityUid uid, ArtifactAnalyzerComponent component, UpgradeExamineEvent args)
-    {
-        args.AddPercentageUpgrade("analyzer-artifact-component-upgrade-analysis", component.UpgradeTimeReductionMultiplier); // this is broken and i have no clue how to fix it
     }
 
     private void OnNewLink(EntityUid uid, AnalysisConsoleComponent component, NewLinkEvent args)
@@ -308,8 +293,7 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
             return;
 
         _popup.PopupEntity(Loc.GetString("analysis-console-print-popup"), uid);
-        if (TryComp<PaperComponent>(report, out var paperComp))
-            _paper.SetContent((report, paperComp), msg.ToMarkup());
+        _paper.SetContent(report, msg.ToMarkup());
         UpdateUserInterface(uid, component);
     }
 
@@ -321,15 +305,15 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
 
         var n = component.LastAnalyzedNode;
 
-        msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-id", ("id", n.Id)));
+        msg.AddMarkup(Loc.GetString("analysis-console-info-id", ("id", n.Id)));
         msg.PushNewline();
-        msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-depth", ("depth", n.Depth)));
+        msg.AddMarkup(Loc.GetString("analysis-console-info-depth", ("depth", n.Depth)));
         msg.PushNewline();
 
         var activated = n.Triggered
             ? "analysis-console-info-triggered-true"
             : "analysis-console-info-triggered-false";
-        msg.AddMarkupOrThrow(Loc.GetString(activated));
+        msg.AddMarkup(Loc.GetString(activated));
         msg.PushNewline();
 
         msg.PushNewline();
@@ -338,7 +322,7 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         var triggerProto = _prototype.Index<ArtifactTriggerPrototype>(n.Trigger);
         if (triggerProto.TriggerHint != null)
         {
-            msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-trigger",
+            msg.AddMarkup(Loc.GetString("analysis-console-info-trigger",
                 ("trigger", Loc.GetString(triggerProto.TriggerHint))) + "\n");
             needSecondNewline = true;
         }
@@ -346,7 +330,7 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         var effectproto = _prototype.Index<ArtifactEffectPrototype>(n.Effect);
         if (effectproto.EffectHint != null)
         {
-            msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-effect",
+            msg.AddMarkup(Loc.GetString("analysis-console-info-effect",
                 ("effect", Loc.GetString(effectproto.EffectHint))) + "\n");
             needSecondNewline = true;
         }
@@ -354,11 +338,11 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         if (needSecondNewline)
             msg.PushNewline();
 
-        msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-edges", ("edges", n.Edges.Count)));
+        msg.AddMarkup(Loc.GetString("analysis-console-info-edges", ("edges", n.Edges.Count)));
         msg.PushNewline();
 
         if (component.LastAnalyzerPointValue != null)
-            msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-value", ("value", component.LastAnalyzerPointValue)));
+            msg.AddMarkup(Loc.GetString("analysis-console-info-value", ("value", component.LastAnalyzerPointValue)));
 
         return msg;
     }
@@ -390,8 +374,13 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         _research.ModifyServerPoints(server.Value, pointValue, serverComponent);
         _artifact.AdjustConsumedPoints(artifact.Value, pointValue);
 
-        if (TryComp<ArtifactAnalyzerComponent>(component.AnalyzerEntity.Value, out var analyzer) && analyzer != null)
+        // Nyano - Summary - Begin modified code block: tie artifacts to glimmer.
+        if (TryComp<ArtifactAnalyzerComponent>(component.AnalyzerEntity.Value, out var analyzer) &&
+            analyzer != null)
+        {
             _glimmerSystem.DeltaGlimmerInput(pointValue / analyzer.ExtractRatio);
+        }
+        // Nyano - End modified code block.
 
         _audio.PlayPvs(component.ExtractSound, component.AnalyzerEntity.Value, AudioParams.Default.WithVolume(2f));
 

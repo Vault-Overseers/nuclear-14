@@ -76,7 +76,7 @@ public sealed class ItemToggleSystem : EntitySystem
 
     private void OnActivateVerb(Entity<ItemToggleComponent> ent, ref GetVerbsEvent<ActivationVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || !ent.Comp.OnActivate)
+        if (!args.CanAccess || !args.CanInteract)
             return;
 
         var user = args.User;
@@ -245,9 +245,6 @@ public sealed class ItemToggleSystem : EntitySystem
     /// </summary>
     private void TurnOffOnUnwielded(Entity<ItemToggleComponent> ent, ref ItemUnwieldedEvent args)
     {
-        if (!ent.Comp.WieldToggle) // Goobstation
-            return;
-
         TryDeactivate((ent, ent.Comp), args.User);
     }
 
@@ -256,9 +253,6 @@ public sealed class ItemToggleSystem : EntitySystem
     /// </summary>
     private void TurnOnOnWielded(Entity<ItemToggleComponent> ent, ref ItemWieldedEvent args)
     {
-        if (!ent.Comp.WieldToggle) // Goobstation
-            return;
-
         // FIXME: for some reason both client and server play sound
         TryActivate((ent, ent.Comp));
     }
@@ -293,7 +287,7 @@ public sealed class ItemToggleSystem : EntitySystem
 
         if (comp.ActiveSound != null && comp.PlayingStream == null)
         {
-            var loop = comp.ActiveSound.Params.WithLoop(true);
+            var loop = AudioParams.Default.WithLoop(true);
             var stream = args.Predicted
                 ? _audio.PlayPredicted(comp.ActiveSound, uid, args.User, loop)
                 : _audio.PlayPvs(comp.ActiveSound, uid, loop);

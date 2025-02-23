@@ -10,11 +10,7 @@
   - Cargo
   - Maintenance
   - Mail
-  requirements:
-    - !type:CharacterEmployerRequirement
-      employers:
-      - OrionExpress
-      - NanoTrasen
+  setPreference: false
 
 - type: startingGear
   id: MailCarrierGear
@@ -23,15 +19,18 @@
   equipment:
     head: ClothingHeadMailCarrier
     jumpsuit: ClothingUniformMailCarrier
-    back: ClothingBackpack
+    back: ClothingBackpackFilled
     shoes: ClothingShoesColorBlack
     id: MailCarrierPDA
     ears: ClothingHeadsetCargo
     belt: MailBag
+  innerClothingSkirt: ClothingUniformSkirtMailCarrier
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled
 
 - type: startingGear
   id: MailCarrierPlasmamanGear
-  parent: BasePlasmamanMaskGear
+  parent: BasePlasmamanGear
   equipment:
     jumpsuit: ClothingUniformEnvirosuitMailCarrier
     head: ClothingHeadEnvirohelmMailCarrier

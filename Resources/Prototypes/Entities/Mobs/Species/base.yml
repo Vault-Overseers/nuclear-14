@@ -109,7 +109,7 @@
         layer:
         - MobLayer
   - type: FloorOcclusion
-  # - type: Mood
+  - type: Mood
   - type: RangedDamageSound
     soundGroups:
       Brute:
@@ -194,11 +194,11 @@
   - type: MindContainer
     showExamineInfo: true
   - type: CanEnterCryostorage
-  # - type: InteractionPopup
-    # successChance: 1
-    # interactSuccessString: hugging-success-generic
-    # interactSuccessSound: /Audio/Effects/thudswoosh.ogg
-    # messagePerceivedByOthers: hugging-success-generic-others
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
   - type: CanHostGuardian
   - type: NpcFactionMember
     factions:
@@ -327,7 +327,6 @@
     normalBodyTemperature: 310.15
     thermalRegulationTemperatureThreshold: 25
   - type: Perishable
-    rotAfter: 900 # Half an in-game day, N14 change.
   - type: Butcherable
     butcheringType: Spike # TODO human.
     spawned:
@@ -344,7 +343,6 @@
     alternateState: Standing
   - type: OfferItem
   - type: LayingDown
-    standingUpTime: 5
   - type: Shoving
   - type: BloodstreamAffectedByMass
     power: 0.6 # A minimum size felinid will have 30% blood, a minimum size vulp will have 60%, a maximum size oni will have ~200%

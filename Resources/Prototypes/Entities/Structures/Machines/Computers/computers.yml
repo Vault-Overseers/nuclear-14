@@ -96,10 +96,10 @@
     key: enum.EmergencyConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.EmergencyConsoleUiKey.Key:
-        type: EmergencyConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+        enum.EmergencyConsoleUiKey.Key:
+          type: EmergencyConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -119,10 +119,10 @@
     key: enum.ShuttleConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.ShuttleConsoleUiKey.Key:
-        type: ShuttleConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+        enum.ShuttleConsoleUiKey.Key:
+          type: ShuttleConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
   - type: RadarConsole
   - type: WorldLoader
     radius: 256
@@ -190,7 +190,7 @@
       state: generic_panel_open
   - type: Tag
     tags:
-    - Syndicate
+      - Syndicate
   - type: RadarConsole
     maxRange: 384
   - type: WorldLoader
@@ -201,44 +201,6 @@
     color: "#c94242"
   - type: Computer
     board: SyndicateShuttleConsoleCircuitboard
-  - type: ShuttleConsole
-    ftlToPlanets: true
-
-- type: entity
-  parent: BaseComputerShuttle
-  id: ComputerShuttleSyndieDropPod
-  name: syndicate drop pod console
-  description: "Used to launch a drop pod. It's a one way trip, make sure you've packed your lunch."
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: syndishuttle
-    - map: ["computerLayerKeys"]
-      state: syndie_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: Tag
-    tags:
-    - Syndicate
-  - type: RadarConsole
-    maxRange: 384
-  - type: WorldLoader
-    radius: 1536
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#c94242"
-  - type: Computer
-    board: SyndicateShuttleConsoleCircuitboard
-  - type: ShuttleConsole
-    ftlToPlanets: true
-    ignoreExclusionZones: true # It can intentionally be crashed into the station, crushing whatever's underneath the target location.
-    oneWayTrip: true
 
 - type: entity
   parent: BaseComputerShuttle
@@ -260,19 +222,47 @@
       state: generic_panel_open
   - type: DroneConsole
     components:
-    - type: CargoShuttle
+      - type: CargoShuttle
   - type: RadarConsole
     maxRange: 256
   - type: PointLight
     radius: 1.5
     energy: 1.6
-    color: "#43ccb5"
+    color: "#c94242"
   - type: Computer
     board: CargoShuttleConsoleCircuitboard
   - type: StealTarget
     stealGroup: CargoShuttleConsoleCircuitboard
-  - type: ShuttleConsole
-    ftlToPlanets: true
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttleSalvage
+  name: salvage shuttle console
+  description: Used to pilot the salvage shuttle.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: shuttle
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+    - type: DroneConsole
+      components:
+        - type: SalvageShuttle
+    - type: RadarConsole
+      maxRange: 256
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#c94242"
+    - type: Computer
+      board: SalvageShuttleConsoleCircuitboard
+    - type: StealTarget
+      stealGroup: SalvageShuttleConsoleCircuitboard
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -298,10 +288,10 @@
     key: enum.IFFConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.IFFConsoleUiKey.Key:
-        type: IFFConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+        enum.IFFConsoleUiKey.Key:
+          type: IFFConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
   - type: Computer
     board: ComputerIFFCircuitboard
 
@@ -314,16 +304,16 @@
   components:
   - type: IFFConsole
     allowedFlags:
-    - Hide
-    - HideLabel
+      - Hide
+      - HideLabel
   - type: ActivatableUI
     key: enum.IFFConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.IFFConsoleUiKey.Key:
-        type: IFFConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+        enum.IFFConsoleUiKey.Key:
+          type: IFFConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
   - type: Computer
     board: ComputerIFFSyndicateCircuitboard
 
@@ -466,11 +456,11 @@
     board: PsionicsRecordsComputerCircuitboard
   - type: AccessReader
     access:
-    - [ Chapel ]
-    - [ Library ]
-    - [ Mantis ]
-    - [ ResearchDirector ]
-    # - type: GuideHelp
+      - [ Chapel ]
+      - [ Library ]
+      - [ Mantis ]
+      - [ ResearchDirector ]
+  # - type: GuideHelp
     # guides: # TODO: Add a guide for Psionics Registry
 
 - type: entity
@@ -482,10 +472,10 @@
   - type: GeneralStationRecordConsole
   - type: UserInterface
     interfaces:
-      enum.GeneralStationRecordConsoleKey.Key:
-        type: GeneralStationRecordConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+        enum.GeneralStationRecordConsoleKey.Key:
+          type: GeneralStationRecordConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
   - type: ActivatableUI
     key: enum.GeneralStationRecordConsoleKey.Key
   - type: PointLight
@@ -526,10 +516,10 @@
     key: enum.CrewMonitoringUIKey.Key
   - type: UserInterface
     interfaces:
-      enum.CrewMonitoringUIKey.Key:
-        type: CrewMonitoringBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+        enum.CrewMonitoringUIKey.Key:
+          type: CrewMonitoringBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
   - type: CrewMonitoringConsole
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -612,7 +602,7 @@
   - type: DeviceLinkSource
     range: 5
     ports:
-    - ArtifactAnalyzerSender
+      - ArtifactAnalyzerSender
   - type: ActivatableUI
     key: enum.ArtifactAnalzyerUiKey.Key
   - type: UserInterface
@@ -752,8 +742,8 @@
     energy: 1.6
     color: "#3c5eb5"
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
 
 - type: entity
   parent: ComputerComms
@@ -821,9 +811,6 @@
     radius: 1.5
     energy: 1.6
     color: "#e6e227"
-  - type: GuideHelp
-    guides:
-    - Power
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -848,10 +835,10 @@
     key: enum.RadarConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.RadarConsoleUiKey.Key:
-        type: RadarConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
   - type: Computer
     board: RadarConsoleCircuitboard
   - type: PointLight
@@ -945,7 +932,7 @@
   - type: DeviceLinkSource
     range: 200
     ports:
-    - OrderSender
+      - OrderSender
   - type: GuideHelp
     guides:
     - Cargo
@@ -988,7 +975,6 @@
   - type: GuideHelp
     guides:
     - CargoBounties
-    - Cargo
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -1023,22 +1009,22 @@
   - type: DeviceLinkSource
     range: 4
     ports:
-    - MedicalScannerSender
-    - CloningPodSender
+      - MedicalScannerSender
+      - CloningPodSender
   - type: ActivatableUI
     key: enum.CloningConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.CloningConsoleUiKey.Key:
-        type: CloningConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+        enum.CloningConsoleUiKey.Key:
+          type: CloningConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
   - type: Speech
     speechVerb: Robotic
     speechSounds: Pai
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
   - type: GuideHelp
     guides:
     - Cloning
@@ -1049,52 +1035,52 @@
   name: salvage expeditions computer
   description: Used to accept salvage missions, if you're tough enough.
   components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: [ "computerLayerScreen" ]
-      state: mining
-    - map: ["computerLayerKeys"]
-      state: tech_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ComputerVisuals.Powered:
-        computerLayerScreen:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        computerLayerKeys:
-          True: { visible: true, shader: unshaded }
-          False: { visible: true }
-      enum.WiresVisuals.MaintenancePanelState:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
-  - type: SalvageExpeditionConsole
-  - type: ActivatableUI
-    key: enum.SalvageConsoleUiKey.Expedition
-  - type: ActivatableUIRequiresPower
-  - type: UserInterface
-    interfaces:
-      enum.SalvageConsoleUiKey.Expedition:
-        type: SalvageExpeditionConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Computer
-    board: SalvageExpeditionsComputerCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#b89f25"
-  - type: AccessReader
-    access: [["Salvage"]]
-  - type: StealTarget
-    stealGroup: SalvageExpeditionsComputerCircuitboard
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: [ "computerLayerScreen" ]
+          state: mining
+        - map: ["computerLayerKeys"]
+          state: tech_key
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ComputerVisuals.Powered:
+          computerLayerScreen:
+            True: { visible: true, shader: unshaded }
+            False: { visible: false }
+          computerLayerKeys:
+            True: { visible: true, shader: unshaded }
+            False: { visible: true }
+        enum.WiresVisuals.MaintenancePanelState:
+          enum.WiresVisualLayers.MaintenancePanel:
+            True: { visible: false }
+            False: { visible: true }
+    - type: SalvageExpeditionConsole
+    - type: ActivatableUI
+      key: enum.SalvageConsoleUiKey.Expedition
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.SalvageConsoleUiKey.Expedition:
+          type: SalvageExpeditionConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+    - type: Computer
+      board: SalvageExpeditionsComputerCircuitboard
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#b89f25"
+    - type: AccessReader
+      access: [["Salvage"]]
+    - type: StealTarget
+      stealGroup: SalvageExpeditionsComputerCircuitboard
 
 - type: entity
   parent: BaseComputer
@@ -1130,10 +1116,10 @@
     anchored: true
   - type: UserInterface
     interfaces:
-      enum.SurveillanceCameraMonitorUiKey.Key:
-        type: SurveillanceCameraMonitorBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+        enum.SurveillanceCameraMonitorUiKey.Key:
+          type: SurveillanceCameraMonitorBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
 
 - type: entity
   parent: BaseComputer
@@ -1171,16 +1157,16 @@
   - type: ActivatableUIRequiresVision
   - type: UserInterface
     interfaces:
-      enum.SurveillanceCameraMonitorUiKey.Key:
-        type: SurveillanceCameraMonitorBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+        enum.SurveillanceCameraMonitorUiKey.Key:
+          type: SurveillanceCameraMonitorBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
 
 - type: entity
   id: ComputerPalletConsole
   parent: BaseComputerAiAccess
   name: cargo sale computer
-  description: Used to sell goods loaded onto cargo pallets.
+  description: Used to sell goods loaded onto cargo pallets
   components:
   - type: Sprite
     layers:
@@ -1207,7 +1193,7 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: Computer
-    board: CargoSaleComputerCircuitboard
+    board: CargoRequestComputerCircuitboard
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -1239,7 +1225,7 @@
   - type: DeviceNetworkRequiresPower
   - type: NewsWriter
   - type: AccessReader
-    access: [[ "Service" ]]
+    access: [[ "Command" ]]
   - type: ActivatableUI
     key: enum.NewsWriterUiKey.Key
   - type: ActivatableUIRequiresVision
@@ -1247,10 +1233,10 @@
     anchored: true
   - type: UserInterface
     interfaces:
-      enum.NewsWriterUiKey.Key:
-        type: NewsWriterBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+        enum.NewsWriterUiKey.Key:
+          type: NewsWriterBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
 
 - type: entity
   parent: BaseComputer
@@ -1261,43 +1247,43 @@
   # And it's more fleshed out.
   suffix: TESTING, DO NOT MAP
   components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: sensors
-    - map: ["computerLayerKeys"]
-      state: atmos_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#43ccb5"
-  - type: Computer
-    board: SensorConsoleCircuitboard
-  - type: SensorMonitoringConsole
-  - type: ActivatableUI
-    key: enum.SensorMonitoringConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.SensorMonitoringConsoleUiKey.Key:
-        type: SensorMonitoringConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: DeviceNetwork
-    deviceNetId: AtmosDevices
-    receiveFrequencyId: AtmosMonitor
-    transmitFrequencyId: AtmosMonitor
-    prefix: device-address-prefix-sensor-monitor
-    sendBroadcastAttemptEvent: true
-    examinableAddress: true
-  - type: WiredNetworkConnection
-  - type: DeviceList
-  - type: AtmosDevice
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: sensors
+        - map: ["computerLayerKeys"]
+          state: atmos_key
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#43ccb5"
+    - type: Computer
+      board: SensorConsoleCircuitboard
+    - type: SensorMonitoringConsole
+    - type: ActivatableUI
+      key: enum.SensorMonitoringConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.SensorMonitoringConsoleUiKey.Key:
+          type: SensorMonitoringConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+    - type: DeviceNetwork
+      deviceNetId: AtmosDevices
+      receiveFrequencyId: AtmosMonitor
+      transmitFrequencyId: AtmosMonitor
+      prefix: device-address-prefix-sensor-monitor
+      sendBroadcastAttemptEvent: true
+      examinableAddress: true
+    - type: WiredNetworkConnection
+    - type: DeviceList
+    - type: AtmosDevice
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -1348,8 +1334,6 @@
   name: AI upload console
   description: Used to update the laws of the station AI.
   components:
-  - type: Computer
-    board: StationAiUploadCircuitboard
   - type: Sprite
     layers:
     - map: [ "computerLayerBody" ]

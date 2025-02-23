@@ -7,8 +7,6 @@ using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Decals;
 using Content.Shared.Doors.Components;
 using Content.Shared.Maps;
-using Content.Shared.Standing;
-using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
@@ -17,6 +15,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using System.Linq;
 
 namespace Content.Server.Atmos.EntitySystems;
@@ -29,6 +28,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
+    [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly InternalsSystem _internals = default!;
@@ -40,11 +40,9 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] public readonly PuddleSystem Puddle = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly ThrownItemSystem _thrown = default!;
-    [Dependency] private readonly SharedStunSystem _sharedStunSystem = default!;
-    [Dependency] private readonly StandingStateSystem _standingSystem = default!;
 
     private const float ExposedUpdateDelay = 1f;
     private float _exposedTimer = 0f;
@@ -90,10 +88,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
     private void OnTileChanged(ref TileChangedEvent ev)
     {
-        foreach (var change in ev.Changes)
-        {
-            InvalidateTile(ev.Entity.Owner, change.GridIndices);
-        }
+        InvalidateTile(ev.NewTile.GridUid, ev.NewTile.GridIndices);
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)
@@ -114,10 +109,9 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         if (_exposedTimer < ExposedUpdateDelay)
             return;
 
-        var query = EntityQueryEnumerator<AtmosExposedComponent>();
-        while (query.MoveNext(out var uid, out _))
+        var query = EntityQueryEnumerator<AtmosExposedComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out var transform))
         {
-            var transform = Transform(uid);
             var air = GetContainingMixture((uid, transform));
 
             if (air == null)
@@ -132,6 +126,6 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
     private void CacheDecals()
     {
-        _burntDecals = _protoMan.EnumeratePrototypes<DecalPrototype>().Where(x => x.Tags.Contains("burnt")).Select(x => x.ID).ToArray();
+        _burntDecals = _prototypeManager.EnumeratePrototypes<DecalPrototype>().Where(x => x.Tags.Contains("burnt")).Select(x => x.ID).ToArray();
     }
 }

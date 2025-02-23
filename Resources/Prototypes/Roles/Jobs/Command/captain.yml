@@ -3,17 +3,14 @@
   name: job-name-captain
   description: job-description-captain
   playTimeTracker: JobCaptain
-  requirements:
-  - !type:CharacterTraitRequirement
-    inverted: true
-    traits:
-    - Foreigner
-    - ForeignerLight
-    - Pacifist
-    - Muted
-  - !type:CharacterEmployerRequirement
-    employers:
-    - NanoTrasen
+  setPreference: false
+  # requirements:
+    # - !type:CharacterTraitRequirement
+      # inverted: true
+      # traits:
+        # - Foreigner
+        # - ForeignerLight
+        # - Pacifist
   weight: 20
   startingGear: CaptainGear
   icon: "JobIconCaptain"
@@ -28,9 +25,7 @@
     implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
-    - type: CommandStaff
-    - type: Condemned # Goobstation - Nanotrasen owns your soul pal.
-      soulOwnedNotDevil: true
+      - type: CommandStaff
   afterLoadoutSpecial:
   - !type:ModifyEnvirosuitSpecial
     charges: 8
@@ -43,17 +38,17 @@
   - CaptainPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitCaptain
-    back: ClothingBackpackCaptain
+    back: ClothingBackpackCaptainFilled
     shoes: ClothingShoesBootsLaceup
     id: CaptainPDA
     ears: ClothingHeadsetAltCommand
-  storage:
-    back:
-    - Flash
+  innerClothingSkirt: ClothingUniformJumpskirtCaptain
+  satchel: ClothingBackpackSatchelCaptainFilled
+  duffelbag: ClothingBackpackDuffelCaptainFilled
 
 - type: startingGear
   id: CaptainPlasmamanGear
-  parent: BasePlasmamanMaskGear
+  parent: BasePlasmamanGear
   equipment:
     jumpsuit: ClothingUniformEnvirosuitCaptain
     head: ClothingHeadEnvirohelmCaptain

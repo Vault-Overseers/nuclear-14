@@ -7,7 +7,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared.Movement.Components; // Shitmed - Starlight Abductors Change
 
 namespace Content.Client.Silicons.StationAi;
 
@@ -51,14 +50,6 @@ public sealed class StationAiOverlay : Overlay
         var worldBounds = args.WorldBounds;
 
         var playerEnt = _player.LocalEntity;
-
-        // Shitmed - Starlight Abductors Change Start
-        if (_entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? stationAiOverlay)
-            && stationAiOverlay.AllowCrossGrid
-            && _entManager.TryGetComponent(playerEnt, out RelayInputMoverComponent? relay))
-            playerEnt = relay.RelayEntity;
-        // Shitmed Change End
-
         _entManager.TryGetComponent(playerEnt, out TransformComponent? playerXform);
         var gridUid = playerXform?.GridUid ?? EntityUid.Invalid;
         _entManager.TryGetComponent(gridUid, out MapGridComponent? grid);

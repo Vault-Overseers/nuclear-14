@@ -10,21 +10,15 @@
     - !type:CharacterDepartmentTimeRequirement
       department: Security
       min: 18000 # 4 hrs
-    - !type:CharacterTraitRequirement
-      inverted: true
-      traits:
-        - Foreigner
-        - ForeignerLight
-        - Muted
-        - Blindness
-        - Pacifist
-        - BrittleBoneDisease
-    - !type:CharacterEmployerRequirement
-      employers:
-      - ZavodskoiInterstellar
-      - Interdyne
-      - PMCG
-      - NanoTrasen
+    # - !type:CharacterTraitRequirement
+      # inverted: true
+      # traits:
+        # - Foreigner
+        # - ForeignerLight
+        # - Muted
+        # - Blindness
+        # - Pacifist
+        # - BrittleBoneDisease
   startingGear: CorpsmanGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos
@@ -51,6 +45,7 @@
     charges: 6
   - !type:ModifyEnvirohelmSpecial
     powerCell: PowerCellHigh
+  setPreference: false
 
 - type: startingGear
   id: CorpsmanGear # see Prototypes/Roles/Jobs/Fun/misc_startinggear.yml for "BrigmedicGear"
@@ -59,7 +54,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitBrigmedic
     outerClothing: ClothingOuterArmorPlateCarrier
-    back: ClothingBackpackBrigmedic
+    back: ClothingBackpackBrigmedicFilled
     shoes: ClothingShoesBootsCombatFilled
     gloves: ClothingHandsGlovesNitrile
     eyes: ClothingEyesHudMedical
@@ -67,16 +62,9 @@
     id: CorpsmanPDA
     ears: ClothingHeadsetBrigmedic
     belt: ClothingBeltCorpsmanWebbingFilled
-  storage:
-    back:
-    - EmergencyRollerBedSpawnFolded
-    - BodyBagFolded
-    - Portafib
-    - BruteAutoInjector
-    - BruteAutoInjector
-    - BurnAutoInjector
-    - BurnAutoInjector
-    - MagazinePistol
+  innerClothingSkirt: ClothingUniformJumpskirtBrigmedic
+  satchel: ClothingBackpackSatchelBrigmedicFilled
+  duffelbag: ClothingBackpackDuffelBrigmedicFilled
 
 - type: startingGear
   id: CorpsmanPlasmamanGear

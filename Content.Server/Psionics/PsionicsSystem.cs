@@ -89,7 +89,8 @@ public sealed class PsionicsSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, PsionicComponent component, MapInitEvent args)
     {
-        if (!component.CanReroll)
+        if (!component.Removable
+            || !component.CanReroll)
             return;
 
         Timer.Spawn(TimeSpan.FromSeconds(30), () => DeferRollers(uid));
@@ -142,7 +143,7 @@ public sealed class PsionicsSystem : EntitySystem
                 || component.ActivePowers.Contains(power))
                 continue;
 
-            component.AvailablePowers.TryAdd(id.Key, id.Value);
+            component.AvailablePowers.Add(id.Key, id.Value);
         }
     }
 
@@ -221,13 +222,9 @@ public sealed class PsionicsSystem : EntitySystem
         if (component.Potentia < component.NextPowerCost)
             return false;
 
-        while (component.Potentia >= component.NextPowerCost)
-        {
-            component.Potentia -= component.NextPowerCost;
-            _psionicAbilitiesSystem.AddPsionics(uid);
-            component.NextPowerCost = Math.Abs(component.BaselinePowerCost * MathF.Pow(2, component.PowerSlotsTaken));
-        }
-
+        component.Potentia -= component.NextPowerCost;
+        _psionicAbilitiesSystem.AddPsionics(uid);
+        component.NextPowerCost = component.BaselinePowerCost * MathF.Pow(2, component.PowerSlotsTaken);
         return true;
     }
 
@@ -262,7 +259,7 @@ public sealed class PsionicsSystem : EntitySystem
     public void RollPsionics(EntityUid uid, PsionicComponent component, bool applyGlimmer = true, float rollEventMultiplier = 1f)
     {
         if (!_cfg.GetCVar(CCVars.PsionicRollsEnabled)
-            || !component.Roller)
+            || !component.Removable)
             return;
 
         // Calculate the initial odds based on the innate potential
@@ -272,9 +269,9 @@ public sealed class PsionicsSystem : EntitySystem
             + _random.NextFloat(0, 100);
 
         // Increase the initial odds based on Glimmer.
-        baselineChance += (float) (applyGlimmer
+        baselineChance += applyGlimmer
             ? _glimmerSystem.GetGlimmerEquilibriumRatio() * 25
-            : 0);
+            : 0;
 
         // Certain sources of power rolls provide their own multiplier.
         baselineChance *= rollEventMultiplier;
@@ -283,7 +280,7 @@ public sealed class PsionicsSystem : EntitySystem
         var ev = new OnRollPsionicsEvent(uid, baselineChance);
         RaiseLocalEvent(uid, ref ev);
 
-        if (!HandlePotentiaCalculations(uid, component, ev.BaselineChance))
+        if (HandlePotentiaCalculations(uid, component, ev.BaselineChance))
             return;
 
         HandleRollFeedback(uid);
@@ -296,12 +293,14 @@ public sealed class PsionicsSystem : EntitySystem
     public void RerollPsionics(EntityUid uid, PsionicComponent? psionic = null, float bonusMuliplier = 1f)
     {
         if (!Resolve(uid, ref psionic, false)
+            || !psionic.Removable
             || !psionic.CanReroll)
             return;
 
-        psionic.CanReroll = false;
         RollPsionics(uid, psionic, true, bonusMuliplier);
+        psionic.CanReroll = false;
     }
+
     private void OnMobstateChanged(EntityUid uid, PsionicComponent component, MobStateChangedEvent args)
     {
         if (component.Familiars.Count <= 0

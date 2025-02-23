@@ -33,17 +33,6 @@
     tags:
     - ClothMade
     - WhitelistChameleon
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.25,-0.25,0.25,0.25"
-        density: 35
-        mask:
-        - ItemMask
-        restitution: 0.3
-        friction: 0.2
 
 - type: entity
   abstract: true
@@ -202,7 +191,7 @@
     tags:
     - WhitelistChameleon
     - PlasmamanSafe
-  - type: ProtectedFromStepTriggers
+  - type: ClothingRequiredStepTriggerImmune
     slots: WITHOUT_POCKET
   - type: GuideHelp # While the playerbase is getting introduced to Plasmamen, add their guidebook here
     guides: [ Plasmaman ]
@@ -269,14 +258,3 @@
   - type: WirelessNetworkConnection
     range: 1200
   - type: StationLimitedNetwork
-
-- type: entity
-  abstract: true
-  id: ClothingUniformFoldableBase
-  components:
-  - type: Foldable
-    canFoldInsideContainer: true
-    unfoldVerbText: unfold-verb-clothing-jacket
-    foldVerbText: fold-verb-clothing-jacket
-  - type: FoldableClothing
-    foldedEquippedPrefix: folded

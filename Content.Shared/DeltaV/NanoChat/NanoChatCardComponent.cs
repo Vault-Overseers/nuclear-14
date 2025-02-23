@@ -55,8 +55,4 @@ public sealed partial class NanoChatCardComponent : Component
     /// </summary>
     [DataField]
     public EntityUid? PdaUid = null;
-    ///     Whether the card's number should be listed in NanoChat's lookup
-    /// </summary>
-    [DataField]
-    public bool ListNumber = true;
 }

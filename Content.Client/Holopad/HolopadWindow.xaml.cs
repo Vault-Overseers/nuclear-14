@@ -64,8 +64,8 @@ public sealed partial class HolopadWindow : FancyWindow
 
         // XML formatting
         AnswerCallButton.AddStyleClass("ButtonAccept");
-        EndCallButton.AddStyleClass("Danger");
-        StartBroadcastButton.AddStyleClass("Danger");
+        EndCallButton.AddStyleClass("Caution");
+        StartBroadcastButton.AddStyleClass("Caution");
 
         HolopadContactListPanel.PanelOverride = new StyleBoxFlat
         {

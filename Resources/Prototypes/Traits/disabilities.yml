@@ -1,7 +1,7 @@
 - type: trait
   id: Blindness
   category: Visual
-  points: 6
+  points: 10
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
@@ -14,17 +14,10 @@
         - Photophobia
         - Nearsighted
         - CyberEyes
-        - SecurityEyesModule
-        - MedicalEyesModule
-        - DiagnosticEyesModule
-        - OmniEyesModule
-        - LightAmplificationModule
-        - ThermographicVisionModule
   functions:
     - !type:TraitAddComponent
       components:
         - type: PermanentBlindness
-          incurable: true
 
 - type: trait
   id: Nearsighted
@@ -41,22 +34,16 @@
       traits:
         - Blindness
         - CyberEyes
-        - SecurityEyesModule
-        - MedicalEyesModule
-        - DiagnosticEyesModule
-        - OmniEyesModule
-        - LightAmplificationModule
-        - ThermographicVisionModule
   functions:
     - !type:TraitAddComponent
       components:
         - type: PermanentBlindness
-          blindness: 3
+          blindness: 4
 
 - type: trait
   id: Narcolepsy
   category: Mental
-  points: 6
+  points: 2
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
@@ -86,7 +73,7 @@
 - type: trait
   id: Paracusia
   category: Auditory
-  points: 1
+  points: 2
   functions:
     - !type:TraitAddComponent
       components:
@@ -100,7 +87,7 @@
 - type: trait
   id: Muted
   category: Mental
-  points: 6
+  points: 4
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
@@ -112,11 +99,6 @@
     - !type:TraitAddComponent
       components:
         - type: Muted
-    - !type:TraitModifyLanguages
-      languagesSpoken:
-        - Sign
-      languagesUnderstood:
-        - Sign
 
 - type: trait
   id: Uncloneable
@@ -128,14 +110,6 @@
       jobs:
         - Borg
         - MedicalBorg
-    - !type:CharacterLifepathRequirement
-      inverted: true
-      lifepaths:
-        - Clone
-    - !type:CharacterSpeciesRequirement
-      inverted: true
-      species:
-        - IPC
   functions:
     - !type:TraitAddComponent
       components:
@@ -143,8 +117,6 @@
 
 - type: trait
   id: FrontalLisp
-  # slots: 0
-  # itemGroupSlots: 0
   category: TraitsSpeechAccents
   requirements:
     - !type:CharacterJobRequirement
@@ -184,7 +156,7 @@
 - type: trait
   id: BadKnees
   category: Physical
-  points: 4
+  points: 3
   requirements:
     - !type:CharacterTraitRequirement
       inverted: true
@@ -208,14 +180,13 @@
 - type: trait
   id: Sluggish
   category: Physical
-  points: 5
+  points: 3
   requirements:
     - !type:CharacterTraitRequirement
       inverted: true
       traits:
         - ParkourTraining
         - SnailPaced
-        - WheelchairBound
     - !type:CharacterSpeciesRequirement
       inverted: true
       species:
@@ -231,14 +202,13 @@
 - type: trait
   id: SnailPaced
   category: Physical
-  points: 8
+  points: 5
   requirements:
     - !type:CharacterTraitRequirement
       inverted: true
       traits:
         - ParkourTraining
         - Sluggish
-        - WheelchairBound
     - !type:CharacterSpeciesRequirement
       inverted: true
       species:
@@ -254,7 +224,7 @@
 - type: trait
   id: BloodDeficiency
   category: Physical
-  points: 4
+  points: 5
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
@@ -267,10 +237,6 @@
         - IPC
         - Lamia
         - Plasmaman
-    - !type:CharacterTraitRequirement
-      inverted: true
-      traits:
-        - PlateletFactories
   functions:
     - !type:TraitAddComponent
       components:
@@ -280,7 +246,7 @@
 - type: trait
   id: Hemophilia
   category: Physical
-  points: 4
+  points: 2
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
@@ -312,27 +278,23 @@
       species:
         - Vulpkanin # This trait functions exactly as-is for the Vulpkanin trait.
         - Shadowkin
-        - Tajaran
     - !type:CharacterTraitRequirement
       inverted: true
       traits:
         - Blindness
         - CyberEyes
-        - SecurityEyesModule
-        - MedicalEyesModule
-        - DiagnosticEyesModule
-        - OmniEyesModule
-        - LightAmplificationModule
-        - ThermographicVisionModule
   functions:
-    - !type:TraitAddComponent
+    - !type:TraitReplaceComponent
       components:
-        - type: EyeDamageOnFlashing
+        - type: Flashable
+          eyeDamageChance: 0.3
+          eyeDamage: 1
+          durationMultiplier: 1.5
 
 - type: trait
   id: Clumsy
   category: Physical
-  points: 5
+  points: 1
   requirements:
     - !type:CharacterJobRequirement
       inverted: true

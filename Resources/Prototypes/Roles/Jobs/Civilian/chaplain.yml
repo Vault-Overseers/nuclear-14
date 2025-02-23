@@ -4,24 +4,27 @@
   description: job-description-chaplain
   playTimeTracker: JobChaplain
   requirements:
-  - !type:CharacterDepartmentTimeRequirement
-    department: Epistemics # Chaplain is now one of the station's "Crew-Aligned Wizards"
-    min: 14400 # 4 hours
-  - !type:CharacterLogicOrRequirement
-    requirements:
-    - !type:CharacterSpeciesRequirement
-      inverted: true
-      species:
-      - IPC
-    - !type:CharacterTraitRequirement
-      traits:
-      - AnomalousPositronics
-  - !type:CharacterEmployerRequirement
-    inverted: true
-    employers:
-    - Unemployed
-  - !type:CharacterItemGroupRequirement
-    group: TraitsCasterType
+    - !type:CharacterDepartmentTimeRequirement
+      department: Epistemics # Chaplain is now one of the station's "Crew-Aligned Wizards"
+      min: 14400 # 4 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          inverted: true
+          species:
+            - IPC
+        - !type:CharacterTraitRequirement
+          traits:
+            - AnomalousPositronics
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Shadowkin
+        - !type:CharacterTraitRequirement
+          inverted: true
+          traits:
+            - ShadowkinBlackeye
   startingGear: ChaplainGear
   icon: "JobIconChaplain"
   supervisors: job-supervisors-rd
@@ -35,14 +38,12 @@
     - type: BibleUser
     - type: Psionic
       powerRollMultiplier: 3
-      baselinePowerCost: 150
-      nextPowerCost: 150
-      powerPool: ElementalistPowerPool
     - type: InnatePsionicPowers
       powersToAdd:
-      - HealingWordPower
-      - SummonRemiliaPower
-    - type: Condemned
+        - TelepathyPower
+        - HealingWordPower
+        - SummonRemiliaPower
+  setPreference: false
 
 - type: startingGear
   id: ChaplainGear
@@ -55,10 +56,13 @@
     id: ChaplainPDA
     ears: ClothingHeadsetScience
     pocket1: BookPsionicsGuidebook
+  innerClothingSkirt: ClothingUniformJumpskirtChaplain
+  satchel: ClothingBackpackSatchelChaplainFilled
+  duffelbag: ClothingBackpackDuffelChaplainFilled
 
 - type: startingGear
   id: ChaplainPlasmamanGear
-  parent: BasePlasmamanMaskGear
+  parent: BasePlasmamanGear
   equipment:
     jumpsuit: ClothingUniformEnvirosuitChaplain
     head: ClothingHeadEnvirohelmChaplain

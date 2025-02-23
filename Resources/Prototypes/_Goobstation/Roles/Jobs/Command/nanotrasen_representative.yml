@@ -1,22 +1,17 @@
 - type: job
   id: NanotrasenRepresentative
-  name: Corporate Liaison
-  description: "Represent your employer, send reports back to them on the station's situation, inform the heads of anything CentCom orders them to do."
+  name: Nanotrasen Representative
+  description: "Represent NT, send reports back to them on the station's situation, inform the heads of anything CentCom orders them to do."
   playTimeTracker: JobNanotrasenRepresentative
   requirements:
     - !type:CharacterDepartmentTimeRequirement
       department: Command
       min: 54000 # 15 hours
-    - !type:CharacterTraitRequirement
-      inverted: true
-      traits:
-        - Foreigner
-        - ForeignerLight
-        - Muted
-    - !type:CharacterEmployerRequirement
-      inverted: true
-      employers:
-      - Unemployed
+    # - !type:CharacterTraitRequirement
+      # inverted: true
+      # traits:
+        # - Foreigner
+        # - ForeignerLight
   weight: 20
   startingGear: NanotrasenRepresentativeGear
   icon: "JobIconNanotrasenRepresentative"
@@ -48,6 +43,7 @@
     charges: 8
   - !type:ModifyEnvirohelmSpecial
     powerCell: PowerCellHigh
+  setPreference: false
 
 - type: startingGear
   id: NanotrasenRepresentativeGear
@@ -57,12 +53,12 @@
     shoes: ClothingShoesColorBlack
     id: CentcomPDA
     jumpsuit: ClothingUniformJumpsuitNanotrasenRepresentative
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetCentCom
     pocket1: UniqueNanorepLockerTeleporter
 
 - type: startingGear
   id: NanotrasenRepresentativePlasmamanGear
-  parent: BasePlasmamanMaskGear
+  parent: BasePlasmamanGear
   equipment:
     jumpsuit: ClothingUniformEnvirosuitNanotrasenRepresentative
     head: ClothingHeadEnvirohelmNanotrasenRepresentative

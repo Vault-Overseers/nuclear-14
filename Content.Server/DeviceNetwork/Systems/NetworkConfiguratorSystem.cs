@@ -63,22 +63,17 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
         SubscribeLocalEvent<NetworkConfiguratorComponent, NetworkConfiguratorToggleLinkMessage>(OnToggleLinks);
         SubscribeLocalEvent<NetworkConfiguratorComponent, NetworkConfiguratorButtonPressedMessage>(OnConfigButtonPressed);
 
-        SubscribeLocalEvent<NetworkConfiguratorComponent, BoundUserInterfaceCheckRangeEvent>(OnUiRangeCheck);
-
         SubscribeLocalEvent<DeviceListComponent, ComponentRemove>(OnComponentRemoved);
 
-        SubscribeLocalEvent<BeforeSerializationEvent >(OnMapSave);
+        SubscribeLocalEvent<BeforeSaveEvent>(OnMapSave);
     }
 
-    private void OnMapSave(BeforeSerializationEvent  ev)
+    private void OnMapSave(BeforeSaveEvent ev)
     {
         var enumerator = AllEntityQuery<NetworkConfiguratorComponent>();
         while (enumerator.MoveNext(out var uid, out var conf))
         {
-            if (!TryComp(conf.ActiveDeviceList, out TransformComponent? listXform))
-                continue;
-
-            if (!ev.MapIds.Contains(listXform.MapID))
+            if (CompOrNull<TransformComponent>(conf.ActiveDeviceList)?.MapUid != ev.Map)
                 continue;
 
             // The linked device list is (probably) being saved. Make sure that the configurator is also being saved
@@ -86,10 +81,9 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
             // containing a set of all entities that are about to be saved, which would make checking this much easier.
             // This is a shitty bandaid, and will force close the UI during auto-saves.
             // TODO Map serialization refactor
-            // I'm refactoring it now and I still dont know what to do
 
             var xform = Transform(uid);
-            if (ev.MapIds.Contains(xform.MapID) && IsSaveable(uid))
+            if (xform.MapUid == ev.Map && IsSaveable(uid))
                 continue;
 
             _uiSystem.CloseUi(uid, NetworkConfiguratorUiKey.Configure);
@@ -108,16 +102,6 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
         }
     }
 
-    private void OnUiRangeCheck(Entity<NetworkConfiguratorComponent> ent, ref BoundUserInterfaceCheckRangeEvent args)
-    {
-        if (ent.Comp.ActiveDeviceList == null || args.Result == BoundUserInterfaceRangeResult.Fail)
-            return;
-
-        DebugTools.Assert(Exists(ent.Comp.ActiveDeviceList));
-        if (!_interactionSystem.InRangeUnobstructed(args.Actor!, ent.Comp.ActiveDeviceList.Value))
-            args.Result = BoundUserInterfaceRangeResult.Fail;
-    }
-
     private void OnShutdown(EntityUid uid, NetworkConfiguratorComponent component, ComponentShutdown args)
     {
         ClearDevices(uid, component);
@@ -125,6 +109,23 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
         if (TryComp(component.ActiveDeviceList, out DeviceListComponent? list))
             list.Configurators.Remove(uid);
         component.ActiveDeviceList = null;
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<NetworkConfiguratorComponent>();
+        while (query.MoveNext(out var uid, out var component))
+        {
+            if (component.ActiveDeviceList != null
+            && EntityManager.EntityExists(component.ActiveDeviceList.Value)
+            && _interactionSystem.InRangeUnobstructed(uid, component.ActiveDeviceList.Value))
+                continue;
+
+            //The network configurator is a handheld device. There can only ever be an ui session open for the player holding the device.
+            _uiSystem.CloseUi(uid, NetworkConfiguratorUiKey.Configure);
+        }
     }
 
     private void OnMapInit(EntityUid uid, NetworkConfiguratorComponent component, MapInitEvent args)

@@ -3,15 +3,13 @@
   name: job-name-salvagespec
   description: job-description-salvagespec
   playTimeTracker: JobSalvageSpecialist
+  antagAdvantage: 3 # DeltaV - Reduced TC: External Access + Free hardsuit and weapons
   requirements:
-  - !type:CharacterDepartmentTimeRequirement
-    department: Logistics
-    min: 21600
-  - !type:CharacterEmployerRequirement
-    employers:
-    - OrionExpress
-    - PMCG
-    - NanoTrasen
+    - !type:CharacterDepartmentTimeRequirement
+      department: Logistics # DeltaV - Logistics Department replacing Cargo
+      min: 21600 #DeltaV 6 hrs
+  #  - !type:OverallPlaytimeRequirement #DeltaV
+  #    time: 36000 #10 hrs
   icon: "JobIconShaftMiner"
   startingGear: SalvageSpecialistGear
   supervisors: job-supervisors-qm
@@ -20,6 +18,7 @@
   - Salvage
   - Maintenance
   - External
+  setPreference: false
 
 - type: startingGear
   id: SalvageSpecialistGear
@@ -27,15 +26,16 @@
   - SalvageSpecialistPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
-    back: ClothingBackpackSalvage
+    back: ClothingBackpackSalvageFilled
     shoes: ClothingShoesBootsSalvage
     id: SalvagePDA
     ears: ClothingHeadsetCargo
-    pocket1: MiningVoucher
+  satchel: ClothingBackpackSatchelSalvageFilled
+  duffelbag: ClothingBackpackDuffelSalvageFilled
 
 - type: startingGear
   id: SalvageSpecialistPlasmamanGear
-  parent: BasePlasmamanMaskGear
+  parent: BasePlasmamanGear
   equipment:
     jumpsuit: ClothingUniformEnvirosuitSalvage
     head: ClothingHeadEnvirohelmSalvage

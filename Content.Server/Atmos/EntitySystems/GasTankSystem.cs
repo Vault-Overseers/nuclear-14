@@ -81,7 +81,7 @@ namespace Content.Server.Atmos.EntitySystems
                     TankPressure = component.Air?.Pressure ?? 0,
                     OutputPressure = initialUpdate ? component.OutputPressure : null,
                     InternalsConnected = component.IsConnected,
-                    CanConnectInternals = CanConnectToInternals(ent)
+                    CanConnectInternals = CanConnectToInternals(component)
                 });
         }
 
@@ -182,9 +182,6 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void ToggleInternals(Entity<GasTankComponent> ent)
         {
-            if (!ent.Comp.IsInternals)
-                return;
-
             if (ent.Comp.IsConnected)
             {
                 DisconnectFromInternals(ent);
@@ -220,24 +217,24 @@ namespace Content.Server.Atmos.EntitySystems
             return air;
         }
 
-        public bool CanConnectToInternals(Entity<GasTankComponent> ent)
+        public bool CanConnectToInternals(GasTankComponent component)
         {
-            TryGetInternalsComp(ent, out _, out var internalsComp, ent.Comp.User);
-            return ent.Comp.IsInternals && internalsComp != null && internalsComp.BreathTools.Count != 0 && !ent.Comp.IsValveOpen;
+            var internals = GetInternalsComponent(component, component.User);
+            return internals != null && internals.BreathTools.Count != 0 && !component.IsValveOpen;
         }
 
         public void ConnectToInternals(Entity<GasTankComponent> ent)
         {
             var (owner, component) = ent;
-            if (component.IsConnected || !CanConnectToInternals(ent))
+            if (component.IsConnected || !CanConnectToInternals(component))
                 return;
 
-            TryGetInternalsComp(ent, out var internalsUid, out var internalsComp, ent.Comp.User);
-            if (internalsUid == null || internalsComp == null)
+            var internals = GetInternalsComponent(component);
+            if (internals == null)
                 return;
 
-            if (_internals.TryConnectTank((internalsUid.Value, internalsComp), owner))
-                component.User = internalsUid.Value;
+            if (_internals.TryConnectTank((internals.Owner, internals), owner))
+                component.User = internals.Owner;
 
             _actions.SetToggled(component.ToggleActionEntity, component.IsConnected);
 
@@ -246,7 +243,7 @@ namespace Content.Server.Atmos.EntitySystems
                 return;
 
             component.ConnectStream = _audioSys.Stop(component.ConnectStream);
-            component.ConnectStream = _audioSys.PlayPvs(component.ConnectSound, owner)?.Entity;
+            component.ConnectStream = _audioSys.PlayPvs(component.ConnectSound, component.Owner)?.Entity;
 
             UpdateUserInterface(ent);
         }
@@ -254,59 +251,29 @@ namespace Content.Server.Atmos.EntitySystems
         public void DisconnectFromInternals(Entity<GasTankComponent> ent)
         {
             var (owner, component) = ent;
-
-            if (component.User == null || !ent.Comp.IsInternals)
+            if (component.User == null)
                 return;
 
-            TryGetInternalsComp(ent, out var internalsUid, out var internalsComp, component.User);
+            var internals = GetInternalsComponent(component);
             component.User = null;
 
             _actions.SetToggled(component.ToggleActionEntity, false);
 
-            if (internalsUid != null && internalsComp != null)
-                _internals.DisconnectTank((internalsUid.Value, internalsComp));
+            _internals.DisconnectTank(internals);
             component.DisconnectStream = _audioSys.Stop(component.DisconnectStream);
-            component.DisconnectStream = _audioSys.PlayPvs(component.DisconnectSound, owner)?.Entity;
+            component.DisconnectStream = _audioSys.PlayPvs(component.DisconnectSound, component.Owner)?.Entity;
 
             UpdateUserInterface(ent);
         }
 
-        /// <summary>
-        /// Tries to retrieve the internals component of either the gas tank's user,
-        /// or the gas tank's... containing container
-        /// </summary>
-        /// <param name="user">The user of the gas tank</param>
-        /// <returns>True if internals comp isn't null, false if it is null</returns>
-        private bool TryGetInternalsComp(Entity<GasTankComponent> ent, out EntityUid? internalsUid, out InternalsComponent? internalsComp, EntityUid? user = null)
+        private InternalsComponent? GetInternalsComponent(GasTankComponent component, EntityUid? owner = null)
         {
-            internalsUid = default;
-            internalsComp = default;
-
-            // If the gas tank doesn't exist for whatever reason, don't even bother
-            if (TerminatingOrDeleted(ent.Owner))
-                return false;
-
-            user ??= ent.Comp.User;
-            // Check if the gas tank's user actually has the component that allows them to use a gas tank and mask
-            if (TryComp<InternalsComponent>(user, out var userInternalsComp) && userInternalsComp != null)
-            {
-                internalsUid = user;
-                internalsComp = userInternalsComp;
-                return true;
-            }
-
-            // Yeah I have no clue what this actually does, I appreciate the lack of comments on the original function
-            if (_containers.TryGetContainingContainer((ent.Owner, Transform(ent.Owner)), out var container) && container != null)
-            {
-                if (TryComp<InternalsComponent>(container.Owner, out var containerInternalsComp) && containerInternalsComp != null)
-                {
-                    internalsUid = container.Owner;
-                    internalsComp = containerInternalsComp;
-                    return true;
-                }
-            }
-
-            return false;
+            owner ??= component.User;
+            if (Deleted(component.Owner))return null;
+            if (owner != null) return CompOrNull<InternalsComponent>(owner.Value);
+            return _containers.TryGetContainingContainer(component.Owner, out var container)
+                ? CompOrNull<InternalsComponent>(container.Owner)
+                : null;
         }
 
         public void AssumeAir(Entity<GasTankComponent> ent, GasMixture giver)
@@ -354,7 +321,7 @@ namespace Content.Server.Atmos.EntitySystems
                     if(environment != null)
                         _atmosphereSystem.Merge(environment, component.Air);
 
-                    _audioSys.PlayPvs(component.RuptureSound, Transform(owner).Coordinates, AudioParams.Default.WithVariation(0.125f));
+                    _audioSys.PlayPvs(component.RuptureSound, Transform(component.Owner).Coordinates, AudioParams.Default.WithVariation(0.125f));
 
                     QueueDel(owner);
                     return;

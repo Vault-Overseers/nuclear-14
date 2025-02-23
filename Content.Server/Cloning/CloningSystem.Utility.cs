@@ -326,10 +326,10 @@ public sealed partial class CloningSystem
             if (_config.GetCVar(CCVars.CloningPreserveFlavorText))
                 pref = pref.WithFlavorText(flavorText);
 
-            _humanoidSystem.LoadProfile(mob, pref, loadExtensions: true, generateLoadouts: false);
+            _humanoidSystem.LoadProfile(mob, pref);
             return;
         }
-        _humanoidSystem.LoadProfile(mob, pref, loadExtensions: true, generateLoadouts: false);
+        _humanoidSystem.LoadProfile(mob, pref);
     }
 
     /// <summary>

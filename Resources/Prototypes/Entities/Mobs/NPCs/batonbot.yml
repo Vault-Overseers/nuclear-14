@@ -18,9 +18,6 @@
     factions:
     - NanoTrasen
   - type: CombatMode
-  - type: EmagReplaceFactions
-    factions:
-    - Syndicate
   - type: Stunbaton
     energyPerUse: 0
   - type: MeleeWeapon
@@ -38,17 +35,17 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Dead
+      60: Dead
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 70
+        damage: 50
       behaviors:
       - !type:TriggerBehavior
     - trigger:
         !type:DamageTrigger
-        damage: 80
+        damage: 60
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:

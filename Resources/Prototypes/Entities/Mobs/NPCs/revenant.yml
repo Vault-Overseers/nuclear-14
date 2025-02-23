@@ -1,23 +1,25 @@
 - type: entity
   id: MobRevenant
   parent:
-  - Incorporeal
   - BaseMob
+  - Incorporeal
   name: revenant
   description: A spooky ghostie.
   components:
   - type: Input
     context: "ghost"
-  - type: Spectral
   - type: MovementSpeedModifier
     baseWalkSpeed: 6
     baseSprintSpeed: 6
   - type: Sprite
     noRot: true
     drawdepth: Ghosts
-    sprite: DeltaV/Mobs/Ghosts/revenant.rsi
+    sprite: DeltaV/Mobs/Ghosts/revenant.rsi # DeltaV - Custom revenant sprite
     layers:
     - state: active
+  - type: Reactive # Nyanotrasen - Holy Water affects Revenants
+    groups:
+      Acidic: [Touch]
   - type: Clickable
   - type: StatusEffects
     allowed:
@@ -36,9 +38,9 @@
         mask:
         - GhostImpassable
   - type: MovementIgnoreGravity
-  - type: Damageable
-    damageContainer: ManifestedSpirit
-    damageModifierSet: ManifestedSpirit
+  - type: Damageable # Nyanotrasen - Corporeal Spirit allows Holy water to do damage
+    damageContainer: CorporealSpirit
+    damageModifierSet: CorporealSpirit
   - type: Examiner
   - type: NoSlip
   - type: Eye
@@ -54,9 +56,7 @@
     makeSentient: true
     name: ghost-role-information-revenant-name
     description: ghost-role-information-revenant-description
-    rules: ghost-role-information-antagonist-rules
-    mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    rules: ghost-role-information-revenant-rules
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -96,20 +96,17 @@
     - RevenantTheme
   - type: Speech
     speechVerb: Ghost
-  - type: Reactive
-    groups:
-      Acidic: [Touch]
   - type: Psionic
     removable: false
     roller: false
     psychognomicDescriptors:
-    - p-descriptor-vampiric
+      - p-descriptor-vampiric
   - type: InnatePsionicPowers
     powersToAdd:
-    - XenoglossyPower
-    - TelepathyPower
+      - XenoglossyPower
+      - TelepathyPower
   - type: LanguageSpeaker
   - type: UniversalLanguageSpeaker
   - type: Tag
     tags:
-    - NoPaint
+      - NoPaint

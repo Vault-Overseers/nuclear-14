@@ -8,7 +8,6 @@
     sprite: DeltaV/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
-      state: "pda"
     - state: "light_overlay"
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: "unshaded"
@@ -27,11 +26,7 @@
       - NanoChatCartridge
   - type: Pda
     id: BrigmedicIDCard
-  - type: Appearance
-    appearanceDataInit:
-      enum.PdaVisuals.PdaType:
-        !type:String
-        pda-corpsman
+    state: pda-corpsman
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentVColor: "#447987"
@@ -53,7 +48,6 @@
     sprite: DeltaV/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
-      state: "pda"
     - state: "light_overlay"
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: "unshaded"
@@ -64,17 +58,13 @@
       visible: false
   - type: Pda
     id: ChiefJusticeIDCard
+    state: pda-chiefjustice
     penSlot:
       startingItem: LuxuryPen
       priority: -1
       whitelist:
         tags:
         - Write
-  - type: Appearance
-    appearanceDataInit:
-      enum.PdaVisuals.PdaType:
-        !type:String
-        pda-chiefjustice
   - type: PdaBorderColor
     borderColor: "#470823"
   - type: Icon
@@ -98,7 +88,6 @@
     sprite: DeltaV/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
-      state: "pda"
     - state: "light_overlay"
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: "unshaded"
@@ -109,17 +98,13 @@
       visible: false
   - type: Pda
     id: ClerkIDCard
+    state: pda-clerk
     penSlot:
       startingItem: LuxuryPen
       priority: -1
       whitelist:
         tags:
         - Write
-  - type: Appearance
-    appearanceDataInit:
-      enum.PdaVisuals.PdaType:
-        !type:String
-        pda-clerk
   - type: PdaBorderColor
     borderColor: "#611528"
   - type: Icon
@@ -143,7 +128,6 @@
     sprite: DeltaV/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
-      state: "pda"
     - state: "light_overlay"
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: "unshaded"
@@ -154,17 +138,13 @@
       visible: false
   - type: Pda
     id: ProsecutorIDCard
+    state: pda-prosecutor
     penSlot:
       startingItem: LuxuryPen
       priority: -1
       whitelist:
         tags:
         - Write
-  - type: Appearance
-    appearanceDataInit:
-      enum.PdaVisuals.PdaType:
-        !type:String
-        pda-prosecutor
   - type: PdaBorderColor
     borderColor: "#6f6192"
   - type: Icon
@@ -184,16 +164,12 @@
   components:
   - type: Pda
     id: SyndicateIDCard
+    state: pda-syndi-agent
     penSlot:
       startingItem: CyberPen
       whitelist:
         tags:
         - Write
-  - type: Appearance
-    appearanceDataInit:
-      enum.PdaVisuals.PdaType:
-        !type:String
-        pda-syndi-agent
 
 - type: entity
   parent: BasePDA
@@ -205,7 +181,6 @@
     sprite: Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
-      state: "pda"
     - state: "light_overlay"
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: "unshaded"
@@ -216,17 +191,13 @@
       visible: false
   - type: Pda
     id: AdminAssistantIDCard
+    state: pda-lawyer
     penSlot:
       startingItem: LuxuryPen
       priority: -1
       whitelist:
         tags:
         - Write
-  - type: Appearance
-    appearanceDataInit:
-      enum.PdaVisuals.PdaType:
-        !type:String
-        pda-lawyer
   - type: Icon
     sprite: Objects/Devices/pda.rsi
     state: pda-lawyer

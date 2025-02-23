@@ -5,18 +5,15 @@
   playTimeTracker: JobSeniorResearcher
   requirements:
     - !type:CharacterDepartmentTimeRequirement
-      department: Epistemics
+      department: Epistemics # DeltaV - Epistemics Department replacing Science
       min: 216000 #60 hrs
-    - !type:CharacterEmployerRequirement
-      employers:
-      - NanoTrasen
-      - ZengHuPharmaceuticals
   startingGear: SeniorResearcherGear
   icon: "JobIconSeniorResearcher"
   supervisors: job-supervisors-rd
   access:
   - Research
   - Maintenance
+  setPreference: false
 
 - type: startingGear
   id: SeniorResearcherGear
@@ -25,9 +22,12 @@
   equipment:
     head: ClothingHeadHatBeretRND
     jumpsuit: ClothingUniformJumpsuitSeniorResearcher
-    back: ClothingBackpackScience
+    back: ClothingBackpackScienceFilled
     shoes: ClothingShoesColorBlack
     outerClothing: ClothingOuterCoatLabSeniorResearcher
     id: SeniorResearcherPDA
     ears: ClothingHeadsetScience
     pocket1: BookPsionicsGuidebook
+  innerClothingSkirt: ClothingUniformJumpskirtSeniorResearcher
+  satchel: ClothingBackpackSatchelScienceFilled
+  duffelbag: ClothingBackpackDuffelScienceFilled

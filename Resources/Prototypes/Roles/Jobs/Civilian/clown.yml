@@ -9,7 +9,7 @@
   access:
   - Theatre
   - Maintenance
-  - Clown
+  - Clown # DeltaV - Add Clown access
   special:
   - !type:AddComponentSpecial
     components:
@@ -26,6 +26,7 @@
     - type: Snoring # Necessary so SleepEmitSound sound effects play
   - !type:AddImplantSpecial
     implants: [ SadTromboneImplant ]
+  setPreference: false
 
 - type: startingGear
   id: ClownGear
@@ -33,17 +34,19 @@
   - ClownPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitClown
-    back: ClothingBackpackClown
+    back: ClothingBackpackClownFilled
     shoes: ClothingShoesClown
     mask: ClothingMaskClown
     pocket1: BikeHorn
     pocket2: ClownRecorder
     id: ClownPDA
     ears: ClothingHeadsetService
+  satchel: ClothingBackpackSatchelClownFilled
+  duffelbag: ClothingBackpackDuffelClownFilled
 
 - type: startingGear
   id: ClownPlasmamanGear
-  parent: BasePlasmamanMaskGear
+  parent: BasePlasmamanGear
   equipment:
     jumpsuit: ClothingUniformEnvirosuitClown
     head: ClothingHeadEnvirohelmClown

@@ -6,6 +6,8 @@ namespace Content.Shared._Goobstation.Wires.Systems;
 
 public sealed partial class RequirePanelSystem : EntitySystem
 {
+    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+
     public override void Initialize()
     {
         base.Initialize();

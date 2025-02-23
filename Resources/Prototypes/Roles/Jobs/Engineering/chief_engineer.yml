@@ -3,17 +3,13 @@
   name: job-name-ce
   description: job-description-ce
   playTimeTracker: JobChiefEngineer
-  requirements:
-  - !type:CharacterTraitRequirement
-    inverted: true
-    traits:
-    - Foreigner
-    - ForeignerLight
-  - !type:CharacterEmployerRequirement
-    employers:
-    - NanoTrasen
-    - ZavodskoiInterstellar
-    - HephaestusIndustries
+  setPreference: false
+  # requirements:
+    # - !type:CharacterTraitRequirement
+      # inverted: true
+      # traits:
+        # - Foreigner
+        # - ForeignerLight
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
@@ -33,7 +29,7 @@
     implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
-    - type: CommandStaff
+      - type: CommandStaff
   afterLoadoutSpecial:
   - !type:ModifyEnvirosuitSpecial
     charges: 8
@@ -46,17 +42,17 @@
   - ChiefEngineerPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitChiefEngineer
-    back: ClothingBackpackEngineering
+    back: ClothingBackpackChiefEngineerFilled
     shoes: ClothingShoesColorBrown
     id: CEPDA
-    ears: ClothingHeadsetAltEngineering
-  storage:
-    back:
-    - Flash
+    ears: ClothingHeadsetCE
+  innerClothingSkirt: ClothingUniformJumpskirtChiefEngineer
+  satchel: ClothingBackpackSatchelChiefEngineerFilled
+  duffelbag: ClothingBackpackDuffelChiefEngineerFilled
 
 - type: startingGear
   id: ChiefEngineerPlasmamanGear
-  parent: BasePlasmamanMaskGear
+  parent: BasePlasmamanGear
   equipment:
     jumpsuit: ClothingUniformEnvirosuitChiefEngineer
     head: ClothingHeadEnvirohelmChiefEngineer

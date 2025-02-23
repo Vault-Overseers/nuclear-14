@@ -9,7 +9,6 @@ using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared.Clothing.Loadouts.Prototypes;
 using Content.Shared.Clothing.Loadouts.Systems;
 using Content.Shared.Customization.Systems;
-using Content.Shared.Guidebook;
 using Content.Shared.Labels.Components;
 using Content.Shared.Paint;
 using Content.Shared.Preferences;
@@ -170,8 +169,8 @@ public sealed partial class LoadoutPreferenceSelector : Control
 
             var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
             //TODO: Don't close the guidebook if its already open, just go to the correct page
-            guidebookController.OpenGuidebook(
-                new Dictionary<ProtoId<GuideEntryPrototype>, GuideEntry> { { loadout.GuideEntry, guideRoot } },
+            guidebookController.ToggleGuidebook(
+                new Dictionary<string, GuideEntry> { { loadout.GuideEntry, guideRoot } },
                 includeChildren: true,
                 selected: loadout.GuideEntry);
         };
@@ -188,7 +187,7 @@ public sealed partial class LoadoutPreferenceSelector : Control
                     MinWidth = 32,
                     MaxWidth = 32,
                     ClipText = true,
-                    Margin = new(0, 0, 8, 0),
+                    Margin = new Thickness(0, 0, 8, 0),
                 },
                 new PanelContainer
                 {
@@ -201,23 +200,17 @@ public sealed partial class LoadoutPreferenceSelector : Control
                 new Label
                 {
                     Text = loadoutName,
-                    Margin = new(8, 0, 0, 0),
+                    Margin = new Thickness(8, 0, 0, 0),
                 },
             },
         });
         PreferenceButton.OnToggled += args =>
         {
-            if (args.Pressed == _preference.Selected)
-                return;
-
             _preference.Selected = args.Pressed;
             PreferenceChanged?.Invoke(Preference);
         };
         HeirloomButton.OnToggled += args =>
         {
-            if (args.Pressed == _preference.Selected)
-                return;
-
             _preference.CustomHeirloom = args.Pressed ? true : null;
             PreferenceChanged?.Invoke(Preference);
         };
@@ -238,72 +231,35 @@ public sealed partial class LoadoutPreferenceSelector : Control
         ColorEdit.OnColorChanged += _ =>
         {
             _preference.CustomColorTint = SpecialColorTintToggle.Pressed ? ColorEdit.Color.ToHex() : null;
-            UpdatePaint(new(dummyLoadoutItem, paint), entityManager);
+            UpdatePaint(new Entity<PaintedComponent>(dummyLoadoutItem, paint), entityManager);
         };
 
-        var desc = Loc.GetString(loadoutDesc);
         NameEdit.PlaceHolder = loadoutName;
-        DescriptionEdit.Placeholder = new Rope.Leaf(desc);
+        DescriptionEdit.Placeholder = new Rope.Leaf(Loc.GetString(loadoutDesc));
 
 
-        var tooltip = new Tooltip();
-        PreferenceButton.TooltipSupplier = _ => tooltip;
-        var toolBox = (BoxContainer) tooltip.Children.First();
+        var tooltip = new StringBuilder();
+        // Add the loadout description to the tooltip if there is one
+        if (!string.IsNullOrEmpty(loadoutDesc))
+            tooltip.Append($"{Loc.GetString(loadoutDesc)}");
 
-        if (!string.IsNullOrEmpty(desc))
-            tooltip.SetMessage(FormattedMessage.FromMarkupPermissive(desc));
-        if (loadout.Requirements.Any())
+        // Get requirement reasons
+        characterRequirementsSystem.CheckRequirementsValid(
+            loadout.Requirements, highJob, profile, new Dictionary<string, TimeSpan>(),
+            jobRequirementsManager.IsWhitelisted(), loadout,
+            entityManager, prototypeManager, configManager,
+            out var reasons);
+
+        // Add requirement reasons to the tooltip
+        foreach (var reason in reasons)
+            tooltip.Append($"\n{reason}");
+
+        // Combine the tooltip and format it in the checkbox supplier
+        if (tooltip.Length > 0)
         {
-            toolBox.AddChild(
-                new Label
-                {
-                    Text = Loc.GetString("character-requirement-desc"),
-                    StyleClasses = { StyleBase.StyleClassLabelHeading, },
-                    Margin = new(0, 8, 0, 4),
-                });
-
-            MakeTooltipTree(toolBox, loadout.Requirements);
-            toolBox.AddChild(new() { Margin = new(0, 2), });
-        }
-
-        return;
-
-        void MakeTooltipTree(BoxContainer box, List<CharacterRequirement> requirements)
-        {
-            foreach (var requirement in requirements)
-            {
-                if (requirement is CharacterLogicRequirement logicRequirement)
-                {
-                    requirement.IsValid(
-                        highJob, profile, new(), jobRequirementsManager.IsWhitelisted(), loadout,
-                        entityManager, prototypeManager, configManager, out var reason);
-                    box.AddChild(new RichTextLabel { Text = reason?.Split("\n")[0], Margin = new(8, 2), });
-                    var newBox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, };
-                    box.AddChild(new PanelContainer
-                        {
-                            PanelOverride = new StyleBoxFlat
-                            {
-                                BackgroundColor = Color.FromHex("#1B1B1C"),
-                                BorderColor = Color.FromHex("#3A3A3D"),
-                                BorderThickness = new(1),
-                            },
-                            Margin = new(8, 2),
-                            Children = { newBox, },
-                        });
-                    MakeTooltipTree(newBox, logicRequirement.Requirements);
-                }
-                else
-                {
-                    requirement.IsValid(
-                        highJob, profile, new(), jobRequirementsManager.IsWhitelisted(), loadout,
-                        entityManager, prototypeManager, configManager, out var reason);
-                    box.AddChild(new RichTextLabel
-                    {
-                        Text = reason,
-                        Margin = new(8, 2),
-                    });
-                }
-            }
+            var formattedTooltip = new Tooltip();
+            formattedTooltip.SetMessage(FormattedMessage.FromMarkupPermissive(tooltip.ToString()));
+            PreferenceButton.TooltipSupplier = _ => formattedTooltip;
         }
     }
 

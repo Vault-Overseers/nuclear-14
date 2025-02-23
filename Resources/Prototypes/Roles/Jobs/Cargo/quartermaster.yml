@@ -3,44 +3,38 @@
   name: job-name-qm
   description: job-description-qm
   playTimeTracker: JobQuartermaster
-  requirements:
-  - !type:CharacterTraitRequirement
-    inverted: true
-    traits:
-    - Foreigner
-    - ForeignerLight
-    - Muted
-  - !type:CharacterEmployerRequirement
-    employers:
-    - OrionExpress
-    - IdrisIncorporated
-    - NanoTrasen
+  antagAdvantage: 6 # DeltaV - Reduced TC: Head of Staff
+  # requirements:
+    # - !type:CharacterTraitRequirement
+      # inverted: true
+      # traits:
+        # - Foreigner
+        # - ForeignerLight
   weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
-  requireAdminNotify: true
   supervisors: job-supervisors-captain
   canBeAntag: false
   access:
   - Cargo
   - Salvage
-  - Mail
+  - Mail # Nyanotrasen - MailCarrier, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Cargo/mail-carrier.yml
   - Quartermaster
   - Maintenance
-  - External
   - Command
-  - Orders
-  - External
+  - Orders # DeltaV - Orders, see Resources/Prototypes/DeltaV/Access/cargo.yml
+  - External # DeltaV - for promoting salvage specialists
   - Cryogenics
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
-    - type: CommandStaff
+      - type: CommandStaff
   afterLoadoutSpecial:
   - !type:ModifyEnvirosuitSpecial
     charges: 8
+  setPreference: false
 
 - type: startingGear
   id: QuartermasterGear
@@ -49,19 +43,19 @@
   equipment:
     head: ClothingHeadHatBeretLogi
     jumpsuit: ClothingUniformJumpsuitQM
-    back: ClothingBackpackCargo
+    back: ClothingBackpackQuartermasterFilled
     shoes: ClothingShoesColorBrown
     id: QuartermasterPDA
-    ears: ClothingHeadsetAltCargo
+    ears: ClothingHeadsetQM
     belt: BoxFolderClipboard
     pocket1: AppraisalTool
-  storage:
-    back:
-    - Flash
+  innerClothingSkirt: ClothingUniformJumpskirtQM
+  satchel: ClothingBackpackSatchelQuartermasterFilled
+  duffelbag: ClothingBackpackDuffelQuartermasterFilled
 
 - type: startingGear
   id: QuartermasterPlasmamanGear
-  parent: BasePlasmamanMaskGear
+  parent: BasePlasmamanGear
   equipment:
     jumpsuit: ClothingUniformEnvirosuitQM
     head: ClothingHeadEnvirohelmQM

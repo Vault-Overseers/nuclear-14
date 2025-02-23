@@ -7,31 +7,46 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: ClothingBeltMilitaryWebbing
-        - id: ClothingHandsGlovesCombat
-        - id: JetpackBlackFilled
-        - id: ClothingUniformJumpsuitOperative
-        - id: ClothingUniformJumpskirtOperative
-        - id: ClothingHeadsetAltSyndicate
-        - id: ClothingEyesHudSyndicate
+        - !type:EntSelector
+          id: ClothingBeltMilitaryWebbing
+        - !type:EntSelector
+          id: ClothingHandsGlovesCombat
+        - !type:EntSelector
+          id: JetpackBlackFilled
+        - !type:EntSelector
+          id: ClothingUniformJumpsuitOperative
+        - !type:EntSelector
+          id: ClothingUniformJumpskirtOperative
+        - !type:EntSelector
+          id: ClothingHeadsetAltSyndicate
+        - !type:EntSelector
+          id: ClothingEyesHudSyndicate
 
 - type: entityTable
   id: FillLockerEmergencyStandard
   table: !type:AllSelector
     children:
-    - id: ClothingMaskBreath
-    - id: ClothingOuterSuitEmergency
+    - !type:EntSelector
+      id: ClothingMaskBreath
+    - !type:EntSelector
+      id: ClothingOuterSuitEmergency
     - !type:GroupSelector
       children:
-      - id: EmergencyOxygenTankFilled
-      - id: OxygenTankFilled
-    - id: ToolboxEmergencyFilled
+      - !type:EntSelector
+        id: EmergencyOxygenTankFilled
+      - !type:EntSelector
+        id: OxygenTankFilled
+    - !type:EntSelector
+      id: ToolboxEmergencyFilled
       prob: 0.5
-    - id: MedkitOxygenFilled
-      prob: 0.3
-    - id: WeaponFlareGun
+    - !type:EntSelector
+      id: MedkitOxygenFilled
+      prob: 0.2
+    - !type:EntSelector
+      id: WeaponFlareGun
       prob: 0.05
-    - id: BoxMRE
+    - !type:EntSelector
+      id: BoxMRE
       prob: 0.1
 
 - type: entity
@@ -63,30 +78,42 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: ClothingMaskBreath
-        - id: ClothingOuterSuitEmergency
+        - !type:EntSelector
+          id: ClothingMaskBreath
+        - !type:EntSelector
+          id: ClothingOuterSuitEmergency
         - !type:GroupSelector
           children:
-          - id: EmergencyNitrogenTankFilled
-          - id: NitrogenTankFilled
+          - !type:EntSelector
+            id: EmergencyNitrogenTankFilled
+          - !type:EntSelector
+            id: NitrogenTankFilled
 
 - type: entityTable
   id: FillLockerFireStandard
   table: !type:AllSelector
     children:
-    - id: ClothingOuterSuitFire
-    - id: ClothingHeadHelmetFire
-    - id: ClothingMaskGas
+    - !type:EntSelector
+      id: ClothingOuterSuitFire
+    - !type:EntSelector
+      id: ClothingHeadHelmetFire
+    - !type:EntSelector
+      id: ClothingMaskGas
     - !type:GroupSelector
       children:
-      - id: EmergencyOxygenTankFilled
-      - id: OxygenTankFilled
-    - id: CrowbarRed
+      - !type:EntSelector
+        id: EmergencyOxygenTankFilled
+      - !type:EntSelector
+        id: OxygenTankFilled
+    - !type:EntSelector
+      id: CrowbarRed
     - !type:GroupSelector
       children:
-      - id: FireExtinguisher
+      - !type:EntSelector
+        id: FireExtinguisher
         weight: 98
-      - id: SprayBottleWater #It's just budget cut after budget cut man
+      - !type:EntSelector
+        id: SprayBottleWater #It's just budget cut after budget cut man
         weight: 2
 
 - type: entity
@@ -115,17 +142,28 @@
     children:
     - !type:GroupSelector
       children:
-      - id: ClothingUniformJumpsuitOperative
-      - id: ClothingUniformJumpskirtOperative
-    - id: ClothingBackpackDuffelSyndicate
-    - id: CyberPen
-    - id: CigPackSyndicate
-    - id: ClothingBackpackDuffelSyndicatePyjamaBundle
-    - id: ClothingBeltMilitaryWebbing
-    - id: ClothingShoesBootsCombatFilled
-    - id: ToolboxSyndicateFilled
-    - id: BalloonSyn
-    - id: WeaponSniperMosin
+      - !type:EntSelector
+        id: ClothingUniformJumpsuitOperative
+      - !type:EntSelector
+        id: ClothingUniformJumpskirtOperative
+    - !type:EntSelector
+      id: ClothingBackpackDuffelSyndicate
+    - !type:EntSelector
+      id: CyberPen
+    - !type:EntSelector
+      id: CigPackSyndicate
+    - !type:EntSelector
+      id: ClothingBackpackDuffelSyndicatePyjamaBundle
+    - !type:EntSelector
+      id: ClothingBeltMilitaryWebbing
+    - !type:EntSelector
+      id: ClothingShoesBootsCombatFilled
+    - !type:EntSelector
+      id: ToolboxSyndicateFilled
+    - !type:EntSelector
+      id: BalloonSyn
+    - !type:EntSelector
+      id: WeaponSniperMosin
       weight: 2
     - !type:EntSelector
       id: ClothingEyesNightVisionGogglesSyndie
@@ -136,12 +174,9 @@
   id: MaintenanceLockerLoot
   table: !type:AllSelector
     children:
-    - id: StrangePill
+    - !type:EntSelector
+      id: StrangePill
       prob: 0.20
-    - id: CrayonMagic # Delta V - Just another way to get it
-      prob: .01
-    - id: Wristwatch
-      prob: 0.05
     # Tools
     - !type:NestedSelector
       tableId: MaintToolsTable
@@ -205,4 +240,3 @@
           id: GeigerCounter
           amount: !type:ConstantNumberSelector
             value: 2
-        - id: MedkitRadiationFilled

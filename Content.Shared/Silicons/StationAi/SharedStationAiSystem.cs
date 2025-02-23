@@ -190,17 +190,10 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     private void OnAiInRange(Entity<StationAiOverlayComponent> ent, ref InRangeOverrideEvent args)
     {
         args.Handled = true;
-
-        // Shitmed - Starlight Abductors Change Start
-        var target = args.Target;
-        if (ent.Comp.AllowCrossGrid && TryComp(ent, out RelayInputMoverComponent? relay))
-            target = relay.RelayEntity;
-        // Shitmed Change End
-
-        var targetXform = Transform(target);
+        var targetXform = Transform(args.Target);
 
         // No cross-grid
-        if (targetXform.GridUid != Transform(args.User).GridUid && !ent.Comp.AllowCrossGrid) // Shitmed Change
+        if (targetXform.GridUid != Transform(args.User).GridUid)
         {
             return;
         }

@@ -3,28 +3,23 @@
   name: job-name-cadet
   description: job-description-cadet
   playTimeTracker: JobSecurityCadet
-  requirements:
-  - !type:CharacterTraitRequirement
-    inverted: true
-    traits:
-    - Foreigner
-    - ForeignerLight
-    - Muted
-    - Blindness
-    - Pacifist
-    - BrittleBoneDisease
-  - !type:CharacterEmployerRequirement
-    employers:
-    - ZavodskoiInterstellar
-    - PMCG
-    - NanoTrasen
-    - EastOrionCompany
+  # requirements:
+    # - !type:CharacterTraitRequirement
+      # inverted: true
+      # traits:
+        # - Foreigner
+        # - ForeignerLight
+        # - Muted
+        # - Blindness
+        # - Pacifist
+        # - BrittleBoneDisease
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
   canBeAntag: false
   access:
   - Security
+  #- Brig # Delta V: Removed
   - Maintenance
   - Service
   - External
@@ -37,6 +32,7 @@
     charges: 6
   - !type:ModifyEnvirohelmSpecial
     powerCell: PowerCellHigh
+  setPreference: false
 
 - type: startingGear
   id: SecurityCadetGear
@@ -46,8 +42,11 @@
     jumpsuit: ClothingUniformJumpsuitColorRed
     back: ClothingBackpackSecurity
     shoes: ClothingShoesBootsCombatFilled
-    outerClothing: ClothingOuterArmorDuraVest
+    outerClothing: ClothingOuterArmorDuraVest # DeltaV - ClothingOuterArmorBasic replaced in favour of stab vest. Sucks to suck, cadets
     id: SecurityCadetPDA
-    ears: ClothingHeadsetAltSecurityRegular
+    ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
     pocket2: BookSecurity
+  innerClothingSkirt: ClothingUniformJumpskirtColorRed
+  satchel: ClothingBackpackSatchelSecurity
+  duffelbag: ClothingBackpackDuffelSecurity

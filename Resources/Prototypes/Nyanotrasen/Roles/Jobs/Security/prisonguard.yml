@@ -8,7 +8,7 @@
   canBeAntag: false
   icon: "JobIconPrisonGuard"
   supervisors: job-supervisors-warden
-  setPreference: true
+  setPreference: false
 #  whitelistRequired: true
   access:
   - Security
@@ -22,12 +22,6 @@
     charges: 6
   - !type:ModifyEnvirohelmSpecial
     powerCell: PowerCellHigh
-  requirements:
-    - !type:CharacterEmployerRequirement
-      employers:
-      - ZavodskoiInterstellar
-      - PMCG
-      - NanoTrasen
 
 - type: startingGear
   id: PrisonGuardGear
@@ -35,13 +29,16 @@
   - PrisonGuardPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitPrisonGuard
-    back: ClothingBackpackSecurity
+    back: ClothingBackpackSecurityFilled
     shoes: ClothingShoesBootsCombatFilled
     eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadPrisonGuard
     id: PrisonGuardPDA
     ears: ClothingHeadsetPrisonGuard #DeltaV
     belt: ClothingBeltSecurityFilled
+  innerClothingSkirt: ClothingUniformJumpsuitPrisonGuard
+  satchel: ClothingBackpackSatchelSecurityFilled
+  duffelbag: ClothingBackpackDuffelSecurityFilled
 
 - type: startingGear
   id: PrisonGuardPlasmamanGear

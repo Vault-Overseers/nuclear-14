@@ -98,12 +98,6 @@ namespace Content.Shared.Chemistry
         public readonly int TransferringAmount = transferringAmount;
     }
 
-    [Serializable, NetSerializable]
-    public sealed class ChemMasterAmountsUpdated(List<int> amounts) : BoundUserInterfaceMessage
-    {
-        public readonly List<int> Amounts = amounts;
-    }
-
     public enum ChemMasterMode
     {
         Transfer,
@@ -158,8 +152,7 @@ namespace Content.Shared.Chemistry
         uint pillDosageLimit,
         bool updateLabel,
         int sortMethod,
-        int transferringAmount,
-        List<int> amounts)
+        int transferringAmount)
         : BoundUserInterfaceState
     {
         public readonly ContainerInfo? ContainerInfo = containerInfo;
@@ -186,8 +179,6 @@ namespace Content.Shared.Chemistry
 
         public readonly int SortMethod = sortMethod;
         public readonly int TransferringAmount = transferringAmount;
-
-        public readonly List<int> Amounts = amounts;
     }
 
     [Serializable, NetSerializable]

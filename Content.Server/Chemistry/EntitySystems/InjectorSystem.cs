@@ -38,43 +38,50 @@ public sealed class InjectorSystem : SharedInjectorSystem
         SubscribeLocalEvent<InjectorComponent, AfterInteractEvent>(OnInjectorAfterInteract);
     }
 
-    private bool TryUseInjector(Entity<InjectorComponent> injector, EntityUid target, EntityUid user)
+    private void UseInjector(Entity<InjectorComponent> injector, EntityUid target, EntityUid user)
     {
         // Handle injecting/drawing for solutions
         if (injector.Comp.ToggleState == InjectorToggleMode.Inject)
         {
             if (SolutionContainers.TryGetInjectableSolution(target, out var injectableSolution, out _))
-                return TryInject(injector, target, injectableSolution.Value, user, false);
-
-            if (SolutionContainers.TryGetRefillableSolution(target, out var refillableSolution, out _))
-                return TryInject(injector, target, refillableSolution.Value, user, true);
-
-            if (TryComp<BloodstreamComponent>(target, out var bloodstream))
-                return TryInjectIntoBloodstream(injector, (target, bloodstream), user);
-
-            Popup.PopupEntity(Loc.GetString("injector-component-cannot-transfer-message",
-                ("target", Identity.Entity(target, EntityManager))), injector, user);
-            return false;
+            {
+                TryInject(injector, target, injectableSolution.Value, user, false);
+            }
+            else if (SolutionContainers.TryGetRefillableSolution(target, out var refillableSolution, out _))
+            {
+                TryInject(injector, target, refillableSolution.Value, user, true);
+            }
+            else if (TryComp<BloodstreamComponent>(target, out var bloodstream))
+            {
+                TryInjectIntoBloodstream(injector, (target, bloodstream), user);
+            }
+            else
+            {
+                Popup.PopupEntity(Loc.GetString("injector-component-cannot-transfer-message",
+                    ("target", Identity.Entity(target, EntityManager))), injector, user);
+            }
         }
-
-        if (injector.Comp.ToggleState == InjectorToggleMode.Draw)
+        else if (injector.Comp.ToggleState == InjectorToggleMode.Draw)
         {
             // Draw from a bloodstream, if the target has that
             if (TryComp<BloodstreamComponent>(target, out var stream) &&
                 SolutionContainers.ResolveSolution(target, stream.BloodSolutionName, ref stream.BloodSolution))
             {
-                return TryDraw(injector, (target, stream), stream.BloodSolution.Value, user);
+                TryDraw(injector, (target, stream), stream.BloodSolution.Value, user);
+                return;
             }
 
             // Draw from an object (food, beaker, etc)
             if (SolutionContainers.TryGetDrawableSolution(target, out var drawableSolution, out _))
-                return TryDraw(injector, target, drawableSolution.Value, user);
-
-            Popup.PopupEntity(Loc.GetString("injector-component-cannot-draw-message",
-                ("target", Identity.Entity(target, EntityManager))), injector.Owner, user);
-            return false;
+            {
+                TryDraw(injector, target, drawableSolution.Value, user);
+            }
+            else
+            {
+                Popup.PopupEntity(Loc.GetString("injector-component-cannot-draw-message",
+                    ("target", Identity.Entity(target, EntityManager))), injector.Owner, user);
+            }
         }
-        return false;
     }
 
     private void OnInjectDoAfter(Entity<InjectorComponent> entity, ref InjectorDoAfterEvent args)
@@ -82,7 +89,8 @@ public sealed class InjectorSystem : SharedInjectorSystem
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
 
-        args.Handled = TryUseInjector(entity, args.Args.Target.Value, args.Args.User);
+        UseInjector(entity, args.Args.Target.Value, args.Args.User);
+        args.Handled = true;
     }
 
     private void OnInjectorAfterInteract(Entity<InjectorComponent> entity, ref AfterInteractEvent args)
@@ -106,7 +114,8 @@ public sealed class InjectorSystem : SharedInjectorSystem
             return;
         }
 
-        args.Handled = TryUseInjector(entity, target, args.User);
+        UseInjector(entity, target, args.User);
+        args.Handled = true;
     }
 
     /// <summary>
@@ -232,7 +241,7 @@ public sealed class InjectorSystem : SharedInjectorSystem
         });
     }
 
-    private bool TryInjectIntoBloodstream(Entity<InjectorComponent> injector, Entity<BloodstreamComponent> target,
+    private void TryInjectIntoBloodstream(Entity<InjectorComponent> injector, Entity<BloodstreamComponent> target,
         EntityUid user)
     {
         // Get transfer amount. May be smaller than _transferAmount if not enough room
@@ -242,7 +251,7 @@ public sealed class InjectorSystem : SharedInjectorSystem
             Popup.PopupEntity(
                 Loc.GetString("injector-component-cannot-inject-message",
                     ("target", Identity.Entity(target, EntityManager))), injector.Owner, user);
-            return false;
+            return;
         }
 
         var realTransferAmount = FixedPoint2.Min(injector.Comp.TransferAmount, chemSolution.AvailableVolume);
@@ -251,7 +260,7 @@ public sealed class InjectorSystem : SharedInjectorSystem
             Popup.PopupEntity(
                 Loc.GetString("injector-component-cannot-inject-message",
                     ("target", Identity.Entity(target, EntityManager))), injector.Owner, user);
-            return false;
+            return;
         }
 
         // Move units from attackSolution to targetSolution
@@ -267,18 +276,17 @@ public sealed class InjectorSystem : SharedInjectorSystem
 
         Dirty(injector);
         AfterInject(injector, target);
-        return true;
     }
 
-    private bool TryInject(Entity<InjectorComponent> injector, EntityUid targetEntity,
+    private void TryInject(Entity<InjectorComponent> injector, EntityUid targetEntity,
         Entity<SolutionComponent> targetSolution, EntityUid user, bool asRefill)
     {
         if (HasComp<BlockInjectionComponent>(targetEntity))  // DeltaV
-            return false;
+            return;
 
         if (!SolutionContainers.TryGetSolution(injector.Owner, injector.Comp.SolutionName, out var soln,
                 out var solution) || solution.Volume == 0)
-            return false;
+            return;
 
         // Get transfer amount. May be smaller than _transferAmount if not enough room
         var realTransferAmount =
@@ -290,7 +298,7 @@ public sealed class InjectorSystem : SharedInjectorSystem
                 Loc.GetString("injector-component-target-already-full-message",
                     ("target", Identity.Entity(targetEntity, EntityManager))),
                 injector.Owner, user);
-            return false;
+            return;
         }
 
         // Move units from attackSolution to targetSolution
@@ -313,7 +321,6 @@ public sealed class InjectorSystem : SharedInjectorSystem
 
         Dirty(injector);
         AfterInject(injector, targetEntity);
-        return true;
     }
 
     private void AfterInject(Entity<InjectorComponent> injector, EntityUid target)
@@ -344,13 +351,13 @@ public sealed class InjectorSystem : SharedInjectorSystem
         RaiseLocalEvent(target, ref ev);
     }
 
-    private bool TryDraw(Entity<InjectorComponent> injector, Entity<BloodstreamComponent?> target,
+    private void TryDraw(Entity<InjectorComponent> injector, Entity<BloodstreamComponent?> target,
         Entity<SolutionComponent> targetSolution, EntityUid user)
     {
         if (!SolutionContainers.TryGetSolution(injector.Owner, injector.Comp.SolutionName, out var soln,
                 out var solution) || solution.AvailableVolume == 0)
         {
-            return false;
+            return;
         }
 
         // Get transfer amount. May be smaller than _transferAmount if not enough room, also make sure there's room in the injector
@@ -363,14 +370,14 @@ public sealed class InjectorSystem : SharedInjectorSystem
                 Loc.GetString("injector-component-target-is-empty-message",
                     ("target", Identity.Entity(target, EntityManager))),
                 injector.Owner, user);
-            return false;
+            return;
         }
 
         // We have some snowflaked behavior for streams.
         if (target.Comp != null)
         {
             DrawFromBlood(injector, (target.Owner, target.Comp), soln.Value, realTransferAmount, user);
-            return true;
+            return;
         }
 
         // Move units from attackSolution to targetSolution
@@ -378,7 +385,7 @@ public sealed class InjectorSystem : SharedInjectorSystem
 
         if (!SolutionContainers.TryAddSolution(soln.Value, removedSolution))
         {
-            return false;
+            return;
         }
 
         Popup.PopupEntity(Loc.GetString("injector-component-draw-success-message",
@@ -387,7 +394,6 @@ public sealed class InjectorSystem : SharedInjectorSystem
 
         Dirty(injector);
         AfterDraw(injector, target);
-        return true;
     }
 
     private void DrawFromBlood(Entity<InjectorComponent> injector, Entity<BloodstreamComponent> target,

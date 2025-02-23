@@ -44,7 +44,8 @@ public sealed class WeatherSystem : SharedWeatherSystem
             return;
         }
 
-        if (!Timing.IsFirstTimePredicted || weatherProto.Sound == null)
+        if (!Timing.IsFirstTimePredicted || weatherProto.Sound == null
+            || weather.Stream is not null) // Don't ever generate more than one weather sound.
             return;
 
         weather.Stream ??= _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true)?.Entity;

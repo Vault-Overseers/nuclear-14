@@ -10,6 +10,7 @@
   abstract: true
   description: A miserable pile of scales. #TODO: Add a better description
   components:
+  - type: Flashable
   - type: Polymorphable
   - type: Identity
   - type: Hands
@@ -22,6 +23,9 @@
   - type: Hunger
   - type: Thirst
   - type: IdExaminable
+  - type: Inventory
+    speciesId: lamia
+    templateId: lamia
   - type: HealthExaminable
     examinableTypes:
     - Blunt
@@ -223,15 +227,6 @@
     rightBarePrint: "dragging-1"
     shoesPrint: "dragging-1"
     suitPrint: "dragging-1"
-  - type: Inventory
-    speciesId: lamia
-    templateId: lamia
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
 
 - type: entity
   save: false
@@ -302,11 +297,4 @@
       - map: [ "pocket2" ]
       - map: [ "enum.HumanoidVisualLayers.Tail" ]
   - type: Inventory
-    speciesId: lamia
     templateId: lamia
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female

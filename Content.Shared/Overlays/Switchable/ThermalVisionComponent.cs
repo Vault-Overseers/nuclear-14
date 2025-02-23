@@ -11,9 +11,6 @@ public sealed partial class ThermalVisionComponent : SwitchableOverlayComponent
     public override Color Color { get; set; } = Color.FromHex("#F84742");
 
     [DataField]
-    public override float PulseTime { get; set; } = 2f;
-
-    [DataField]
     public float LightRadius = 5f;
 }
 

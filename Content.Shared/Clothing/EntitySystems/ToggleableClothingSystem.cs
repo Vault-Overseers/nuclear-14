@@ -106,7 +106,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
         if (comp.StripDelay == null)
             return;
 
-        var (time, stealth) = _strippable.GetStripTimeModifiers(user, wearer, toggleable, comp.StripDelay.Value);
+        var (time, stealth) = _strippable.GetStripTimeModifiers(user, wearer, comp.StripDelay.Value);
 
         bool hidden = stealth == ThievingStealth.Hidden;
 
@@ -464,13 +464,12 @@ public sealed class ToggleableClothingSystem : EntitySystem
             return;
 
         var prototypes = comp.ClothingPrototypes;
-        EntityUid? iconEntity = null;
+
         foreach (var prototype in prototypes)
         {
             var spawned = Spawn(prototype.Value, xform.Coordinates);
             var attachedClothing = EnsureComp<AttachedClothingComponent>(spawned);
             attachedClothing.AttachedUid = toggleable;
-            iconEntity = spawned;
             EnsureComp<ContainerManagerComponent>(spawned);
 
             comp.ClothingUids.Add(spawned, prototype.Key);
@@ -482,7 +481,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
         Dirty(toggleable, comp);
 
         if (_actionContainer.EnsureAction(toggleable, ref comp.ActionEntity, out var action, comp.Action))
-            _actionsSystem.SetEntityIcon(comp.ActionEntity.Value, iconEntity, action);
+            _actionsSystem.SetEntityIcon(comp.ActionEntity.Value, toggleable, action);
     }
 
     // Checks status of all attached clothings toggle status

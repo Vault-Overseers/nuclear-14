@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Cargo.Components;
 using Content.Server.Labels.Components;
+using Content.Server.Paper;
 using Content.Server.Station.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
@@ -11,17 +12,16 @@ using Content.Shared.Database;
 using Content.Shared.Emag.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
-using Content.Shared.Paper;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Cargo.Systems
 {
     public sealed partial class CargoSystem
     {
-        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-
         /// <summary>
         /// How much time to wait (in seconds) before increasing bank accounts balance.
         /// </summary>
@@ -88,12 +88,8 @@ namespace Content.Server.Cargo.Systems
                 var stationQuery = EntityQueryEnumerator<StationBankAccountComponent>();
                 while (stationQuery.MoveNext(out var uid, out var bank))
                 {
-<<<<<<< HEAD
                     var balanceToAdd = bank.IncreasePerSecond * Delay;
                     UpdateBankAccount(uid, bank, balanceToAdd);
-=======
-                    account.Balance += account.IncreasePerSecond * Delay;
->>>>>>> 22aa7389e3 (Revert "Crimson Caravan Cargo System" (#630))
                 }
 
                 var query = EntityQueryEnumerator<CargoOrderConsoleComponent>();
@@ -513,9 +509,6 @@ namespace Content.Server.Cargo.Systems
             // Create the item itself
             var item = Spawn(order.ProductId, spawn);
 
-            // Ensure the item doesn't start anchored
-            _transformSystem.Unanchor(item, Transform(item));
-
             // Create a sheet of paper to write the order details on
             var printed = EntityManager.SpawnEntity(paperProto, spawn);
             if (TryComp<PaperComponent>(printed, out var paper))
@@ -524,14 +517,14 @@ namespace Content.Server.Cargo.Systems
                 var val = Loc.GetString("cargo-console-paper-print-name", ("orderNumber", order.OrderId));
                 _metaSystem.SetEntityName(printed, val);
 
-                _paperSystem.SetContent((printed, paper), Loc.GetString(
+                _paperSystem.SetContent(printed, Loc.GetString(
                         "cargo-console-paper-print-text",
                         ("orderNumber", order.OrderId),
                         ("itemName", MetaData(item).EntityName),
-                        ("orderQuantity", order.OrderQuantity),
                         ("requester", order.Requester),
                         ("reason", order.Reason),
-                        ("approver", order.Approver ?? string.Empty)));
+                        ("approver", order.Approver ?? string.Empty)),
+                    paper);
 
                 // attempt to attach the label to the item
                 if (TryComp<PaperLabelComponent>(item, out var label))
