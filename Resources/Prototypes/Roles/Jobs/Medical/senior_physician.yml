@@ -3,7 +3,6 @@
   name: job-name-senior-physician
   description: job-description-senior-physician
   playTimeTracker: JobSeniorPhysician
-  setPreference: false # DeltaV - Disable Senior Roles round start selection
   requirements:
     - !type:CharacterPlaytimeRequirement
       tracker: JobChemist
@@ -27,9 +26,12 @@
     - type: CPRTraining
     - type: SurgerySpeedModifier
       speedModifier: 2.0
+  setPreference: false
 
 - type: startingGear
   id: SeniorPhysicianGear
+  subGear:
+  - DoctorPlasmamanGear
   equipment:
     head: ClothingHeadHatBeretSeniorPhysician
     jumpsuit: ClothingUniformJumpsuitSeniorPhysician
