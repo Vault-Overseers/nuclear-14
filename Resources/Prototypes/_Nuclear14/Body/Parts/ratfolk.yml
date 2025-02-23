@@ -1,0 +1,188 @@
+# TODO: Add descriptions (many)
+# TODO BODY: Part damage
+- type: entity
+  id: N14PartRatfolk
+  parent: PartHuman
+  name: rodent body part
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Biological
+  - type: BodyPart
+  - type: ContainerContainer
+    containers:
+      bodypart: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 0
+    
+- type: entity
+  id: N14TorsoRatfolk
+  name: rodent torso
+  parent: N14PartRatfolk
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "torso_m"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "torso_m"
+  - type: BodyPart
+    partType: Torso
+
+- type: entity
+  id: N14HeadRatfolk
+  name: rodent head
+  parent: N14PartRatfolk
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "head_m"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "head_m"
+  - type: BodyPart
+    partType: Head
+    vital: true
+  - type: Input
+    context: "ghost"
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0
+    baseSprintSpeed: 0
+  - type: InputMover
+  - type: GhostOnMove
+  - type: Tag
+    tags:
+      - Head
+
+- type: entity
+  id: N14LeftArmRatfolk
+  name: left rodent arm
+  parent: N14PartRatfolk
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "l_arm"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "l_arm"
+  - type: BodyPart
+    partType: Arm
+    symmetry: Left
+
+- type: entity
+  id: N14RightArmRatfolk
+  name: right rodent arm
+  parent: N14PartRatfolk
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "r_arm"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "r_arm"
+  - type: BodyPart
+    partType: Arm
+    symmetry: Right
+
+- type: entity
+  id: N14LeftHandRatfolk
+  name: left rodent hand
+  parent: N14PartRatfolk
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "l_hand"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "l_hand"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  id: N14RightHandRatfolk
+  name: right rodent hand
+  parent: N14PartRatfolk
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "r_hand"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "r_hand"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+
+- type: entity
+  id: N14LeftLegRatfolk
+  name: left rodent leg
+  parent: N14PartRatfolk
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "l_leg"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "l_leg"
+  - type: BodyPart
+    partType: Leg
+    symmetry: Left
+  - type: MovementSpeedModifier
+
+- type: entity
+  id: N14RightLegRatfolk
+  name: right rodent leg
+  parent: N14PartRatfolk
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "r_leg"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "r_leg"
+  - type: BodyPart
+    partType: Leg
+    symmetry: Right
+  - type: MovementSpeedModifier
+
+- type: entity
+  id: N14LeftFootRatfolk
+  name: left rodent foot
+  parent: N14PartRatfolk
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "l_foot"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "l_foot"
+  - type: BodyPart
+    partType: Foot
+    symmetry: Left
+
+- type: entity
+  id: N14RightFootRatfolk
+  name: right rodent foot
+  parent: N14PartRatfolk
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "r_foot"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/Ratfolk/parts.rsi
+    state: "r_foot"
+  - type: BodyPart
+    partType: Foot
+    symmetry: Right

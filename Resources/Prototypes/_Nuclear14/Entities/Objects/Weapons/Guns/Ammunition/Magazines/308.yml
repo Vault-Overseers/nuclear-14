@@ -61,7 +61,7 @@
 
 - type: entity
   id: ClipMagazine308Rifle
-  name: "clip (308.)"
+  name: "clip (.308)"
   parent: BaseMagazine308Rifle
   components:
   - type: Tag
@@ -73,4 +73,24 @@
   - type: Sprite
     netsync: false
     sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/308/mag2.rsi
+    
+- type: entity
+  id: Magazine308M60Box
+  name: "M60 Box (.308)"
+  parent: BaseMagazine308Rifle
+  components:
+  - type: Tag
+    tags:
+      - Magazine308M60Box
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge308Rifle
+    capacity: 100
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/308/mag4.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 

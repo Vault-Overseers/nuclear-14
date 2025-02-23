@@ -10,7 +10,7 @@
     damage:
       types:
         Slash: 20
-    soundSwing:
+    soundHit:
       collection: N14BladeMediumSwing
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Melee/machete.rsi
@@ -24,6 +24,8 @@
   - type: Item
     size: Normal
     sprite: _Nuclear14/Objects/Weapons/Melee/machete.rsi
+  - type: StaticPrice
+    price: 30
 
 - type: entity
   name: tribal machete
@@ -52,6 +54,8 @@
         path: /Audio/Weapons/bladeslice.ogg
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/tribal_machete.rsi
+  - type: StaticPrice
+    price: 30
 
 - type: entity
   name: scrap machete
@@ -80,6 +84,8 @@
         path: /Audio/Weapons/bladeslice.ogg
   - type: Item
     sprite: Nuclear14/Objects/Weapons/Melee/scrap_machete.rsi
+  - type: StaticPrice
+    price: 15
 
 - type: entity
   name: ripper
@@ -101,8 +107,8 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Slash: 15
-        Pierce: 15
+        Slash: 18
+        Pierce: 9
   - type: Sharp
   - type: MeleeWeapon
     autoAttack: true
@@ -111,12 +117,10 @@
     attackRate: 4
     damage:
       types:
-        Slash: 3
+        Slash: 6
         Piercing: 3
-        Structural: 4
+        Structural: 8
     soundHit:
-      path: /Audio/Weapons/chainsaw.ogg
-    soundSwing:
       path: /Audio/_Nuclear14/Weapons/Melee/Swing/ripper.ogg
   - type: Item
     size: Large
@@ -136,7 +140,16 @@
   - type: Tool
     qualities:
       - Sawing
-    speed: 3.0
+    speedModifier: 3.0
+  - type: StaticPrice
+    price: 50
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/Medical/Surgery/saw.ogg
+  - type: BoneSaw
+    speed: 0.75
+  - type: Scalpel
+    speed: 0.5
 
 - type: entity
   name: ceremonial sword
@@ -157,8 +170,6 @@
     damage:
       types:
         Slash: 21
-    soundSwing:
-      collection: N14BladeMediumSwing
   - type: MeleeWeapon
     damage:
       types:
@@ -167,6 +178,8 @@
         path: /Audio/Weapons/bladeslice.ogg
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/ceremonialsword.rsi
+  - type: StaticPrice
+    price: 70
 
 - type: entity
   name: chinese officer sword
@@ -194,6 +207,8 @@
         path: /Audio/Weapons/bladeslice.ogg
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/chinesesword.rsi
+  - type: StaticPrice
+    price: 70
 
 - type: entity
   name: longsword
@@ -212,3 +227,5 @@
         path: /Audio/Weapons/bladeslice.ogg
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/long_sword.rsi
+  - type: StaticPrice
+    price: 70

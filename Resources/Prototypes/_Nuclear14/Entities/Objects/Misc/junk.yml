@@ -272,6 +272,8 @@
   components:
   - type: Sprite
     state: lunchbox
+  - type: Item
+    size: Normal
   - type: StorageFill
     contents:
       - id: DrinkWaterBottleFull
@@ -445,8 +447,8 @@
     solution: drink
   - type: UserInterface
     interfaces:
-    - key: enum.TransferAmountUiKey.Key
-      type: TransferAmountBoundUserInterface
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
 
 - type: entity
   parent: N14JunkItemBaseContainer

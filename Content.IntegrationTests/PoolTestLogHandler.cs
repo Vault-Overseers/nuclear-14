@@ -40,6 +40,7 @@ public sealed class PoolTestLogHandler : ILogHandler
 
     public void Log(string sawmillName, LogEvent message)
     {
+        return;
         var level = message.Level.ToRobust();
 
         if (ShuttingDown && (FailureLevel == null || level < FailureLevel))

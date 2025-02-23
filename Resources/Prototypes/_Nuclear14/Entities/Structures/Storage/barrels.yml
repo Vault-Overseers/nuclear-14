@@ -5,14 +5,13 @@
   id: N14BaseBarrel
   name: barrel
   description: This barrel looks like it could contain something.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: blue-closed
     netsync: false
     noRot: true
-    snapCardinals: true
   - type: Fixtures
     fixtures:
       fix1:
@@ -60,7 +59,7 @@
   parent: N14BaseBarrel
   id: N14BaseBarrelOpen
   suffix: open
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -100,9 +99,20 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/barrels.rsi
     state: red-closed
+  - type: SolutionContainerManager
+    solutions:
+      barrel:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 100
+  - type: DamageOnToolInteract
+    tools: Welding
+    weldingDamage:
+      types:
+        Heat: 10
   - type: Explosive
     explosionType: Default
-    totalIntensity: 120 # ~ 5 tile radius
+    totalIntensity: 90
 
 - type: entity
   parent: N14BaseBarrel
@@ -191,16 +201,15 @@
       barrel:
         reagents:
         - ReagentId: WeldingFuel
-          Quantity: 500
+          Quantity: 100
   - type: DamageOnToolInteract
-    tools:
-    - Welding
+    tools: Welding
     weldingDamage:
       types:
         Heat: 10
   - type: Explosive
     explosionType: Default
-    totalIntensity: 120 # ~ 5 tile radius
+    totalIntensity: 90
 
 - type: entity
   parent: N14YellowBarrelOpen
@@ -278,7 +287,7 @@
   - type: LightBehaviour
     behaviours:
       - !type:RandomizeBehaviour # immediately make it bright and flickery
-        id: burnbarrel_lit
+        id: N14burnbarrel_lit
         interpolate: Nearest
         minDuration: 0.02
         maxDuration: 0.06

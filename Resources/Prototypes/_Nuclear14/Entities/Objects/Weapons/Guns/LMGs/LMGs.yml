@@ -61,6 +61,8 @@
   - type: Appearance
   - type: FollowDistance
     backStrength: 6
+  - type: StaticPrice
+    price: 300
 
 - type: entity
   name: canadian HMG
@@ -125,6 +127,8 @@
   - type: Appearance
   - type: FollowDistance
     backStrength: 6
+  - type: StaticPrice
+    price: 600
 
 - type: entity
   name: chinese LMG
@@ -186,6 +190,8 @@
   - type: Appearance
   - type: FollowDistance
     backStrength: 6
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   name: light machine gun
@@ -203,7 +209,7 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item
-    size: Huge 
+    size: Huge
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/lmg.rsi
   - type: Wieldable
   - type: GunRequiresWield
@@ -250,6 +256,8 @@
   - type: Appearance
   - type: FollowDistance
     backStrength: 6
+  - type: StaticPrice
+    price: 475
 
 - type: entity
   name: bren machine gun
@@ -310,3 +318,42 @@
   - type: Appearance
   - type: FollowDistance
     backStrength: 6
+  - type: StaticPrice
+    price: 600
+    
+- type: entity
+  name: M60 GPMG
+  parent: N14WeaponHMGcanadian
+  id: N14WeaponM60GPMG
+  description: The M60 General Purpose Machine Gun (GPMG) is a pre-war machine gun that fires around 600 rounds. Large, powerful, and fearsome - this old-world relic is a monster in combat. The words 'Cheese 'Em' are scratched into the stock.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/M60.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/M60.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Huge
+    sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/M60.rsi
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine308M60Box
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine308M60Box
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge308Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge308Rifle

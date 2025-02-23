@@ -12,6 +12,12 @@
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodMidwest
       min: 18000 # 5 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
+            - Ghoul
   startingGear: BoSMidKnightGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
@@ -30,7 +36,7 @@
   id: BoSMidKnightGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSGreen
-    back: N14ClothingBackpackMilitary
+    back: N14ClothingBackpackMilitaryFilled
     shoes: N14ClothingBootsCombatFilled
     head: N14ClothingHeadHatBrotherhoodMidwestHelmet
     outerClothing: N14ClothingOuterMidwestArmor
