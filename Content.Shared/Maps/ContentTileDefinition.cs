@@ -130,11 +130,4 @@ namespace Content.Shared.Maps
         [DataField]
         public float TileRipResistance = 125f;
     }
-
-    [Flags]
-    public enum TileFlag : byte
-    {
-        None = 0,
-        Roof = 1 << 0,
-    }
 }

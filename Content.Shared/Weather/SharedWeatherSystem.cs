@@ -1,3 +1,5 @@
+using Content.Shared.Light.Components;
+using Content.Shared.Light.EntitySystems;
 using Content.Shared.Maps;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -5,8 +7,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
-using Robust.Shared.Random;
-using Robust.Shared.GameObjects;
 
 namespace Content.Shared.Weather;
 
@@ -18,9 +18,8 @@ public abstract class SharedWeatherSystem : EntitySystem
     [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly SharedRoofSystem _roof = default!;
 
     private EntityQuery<BlockWeatherComponent> _blockQuery;
 
@@ -42,10 +41,13 @@ public abstract class SharedWeatherSystem : EntitySystem
         }
     }
 
-    public bool CanWeatherAffect(EntityUid uid, MapGridComponent grid, TileRef tileRef)
+    public bool CanWeatherAffect(EntityUid uid, MapGridComponent grid, TileRef tileRef, RoofComponent? roofComp = null)
     {
         if (tileRef.Tile.IsEmpty)
             return true;
+
+        if (Resolve(uid, ref roofComp, false) && _roof.IsRooved((uid, grid, roofComp), tileRef.GridIndices))
+            return false;
 
         var tileDef = (ContentTileDefinition) _tileDefManager[tileRef.Tile.TypeId];
 
@@ -88,32 +90,6 @@ public abstract class SharedWeatherSystem : EntitySystem
         return alpha;
     }
 
-    public virtual void SelectNewWeather(EntityUid uid, WeatherComponent component, string proto)
-    {
-        Logger.InfoS("weather", $"UID = {uid}!");
-        var mapId = _entManager.GetComponent<TransformComponent>(uid).MapID;
-        if (!TryComp<WeatherComponent>(MapManager.GetMapEntityId(mapId), out var weatherComp))
-            return;
-        var curTime = Timing.CurTime;
-
-        if(proto == "Default")
-        {
-            if (!ProtoMan.TryGetRandom<WeatherPrototype>(_random, out var weatherProto))
-                return;
-            Logger.InfoS("weather", $"proto = {weatherProto}!");
-
-            SetWeather(mapId, (WeatherPrototype) weatherProto, curTime + TimeSpan.FromSeconds(30));
-        }
-
-        else
-        {
-            if(!ProtoMan.TryIndex<WeatherPrototype>("Default", out var weatherProto))
-                return;
-            Logger.InfoS("weather", $"proto = {weatherProto}!");
-            SetWeather(mapId, weatherProto, curTime + TimeSpan.FromSeconds(30));
-
-        }
-    }
 
     public override void Update(float frameTime)
     {
@@ -129,8 +105,7 @@ public abstract class SharedWeatherSystem : EntitySystem
         {
             if (comp.Weather.Count == 0)
                 continue;
-            try
-            {
+
             foreach (var (proto, weather) in comp.Weather)
             {
                 var endTime = weather.EndTime;
@@ -139,7 +114,6 @@ public abstract class SharedWeatherSystem : EntitySystem
                 if (endTime != null && endTime < curTime)
                 {
                     EndWeather(uid, comp, proto);
-                    SelectNewWeather(uid, comp, proto);
                     continue;
                 }
 
@@ -150,7 +124,6 @@ public abstract class SharedWeatherSystem : EntitySystem
                 {
                     Log.Error($"Unable to find weather prototype for {comp.Weather}, ending!");
                     EndWeather(uid, comp, proto);
-                    SelectNewWeather(uid, comp, proto);
                     continue;
                 }
 
@@ -173,11 +146,6 @@ public abstract class SharedWeatherSystem : EntitySystem
 
                 // Run whatever code we need.
                 Run(uid, weather, weatherProto, frameTime);
-            }
-            }
-            catch(InvalidOperationException)
-            {
-                // we have it since dictionary is changed in foreach loop when weather is changing. It seem not to affect anything
             }
         }
     }
