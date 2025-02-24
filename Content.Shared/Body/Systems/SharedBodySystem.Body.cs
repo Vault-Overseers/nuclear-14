@@ -346,6 +346,7 @@ public partial class SharedBodySystem
                 _gibbingSystem.TryGibEntityWithRef(bodyId, organ.Id, GibType.Drop, GibContentsOption.Skip,
                     ref gibs, playAudio: false, launchImpulse: GibletLaunchImpulse * splatModifier,
                     launchImpulseVariance:GibletLaunchImpulseVariance, launchCone: splatCone);
+                QueueDel(organ.Id);
             }
         }
 
