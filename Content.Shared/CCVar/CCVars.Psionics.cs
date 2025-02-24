@@ -8,7 +8,7 @@ public sealed partial class CCVars
     ///    Whether glimmer is enabled.
     /// </summary>
     public static readonly CVarDef<bool> GlimmerEnabled =
-        CVarDef.Create("glimmer.enabled", true, CVar.REPLICATED);
+        CVarDef.Create("glimmer.enabled", false, CVar.REPLICATED);
 
     /// <summary>
     ///     The rate at which glimmer linearly decays. Since glimmer increases (usually) follow a logistic curve, this means glimmer
@@ -22,7 +22,7 @@ public sealed partial class CCVars
     ///     Guaranteed psionics will still go through.
     /// </summary>
     public static readonly CVarDef<bool> PsionicRollsEnabled =
-        CVarDef.Create("psionics.rolls_enabled", true, CVar.SERVERONLY);
+        CVarDef.Create("psionics.rolls_enabled", false, CVar.SERVERONLY);
 
     /// <summary>
     ///     When mindbroken, permanently eject the player from their own body, and turn their character into an NPC.
