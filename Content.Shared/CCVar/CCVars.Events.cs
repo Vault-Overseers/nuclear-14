@@ -8,7 +8,7 @@ public sealed partial class CCVars
     ///     Controls if the game should run station events
     /// </summary>
     public static readonly CVarDef<bool>
-        EventsEnabled = CVarDef.Create("events.enabled", true, CVar.ARCHIVE | CVar.SERVERONLY);
+        EventsEnabled = CVarDef.Create("events.enabled", false, CVar.ARCHIVE | CVar.SERVERONLY);
 
     /// <summary>
     ///     Average time (in minutes) for when the ramping event scheduler should stop increasing the chaos modifier.
