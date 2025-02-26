@@ -1,0 +1,15 @@
+name: No submodule update checker
+
+on:
+  pull_request:
+    paths:
+      - 'RobustToolbox'
+
+jobs:
+  this_aint_right:
+    if: github.actor != 'sleepyyapril' && github.actor != 'VMSolidus' && github.actor != 'DEATHB4DEFEAT'
+    name: Submodule update in pr found
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail
+        run: exit 1
