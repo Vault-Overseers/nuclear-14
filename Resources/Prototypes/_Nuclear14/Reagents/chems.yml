@@ -335,9 +335,9 @@
 #MARK: General chems
 - type: reagent
   id: Birazine #neutralizes alcohol in the system 
-  name: reagent-name-birazine #Add this
+  name: reagent-name-birazine 
   group: Medicine
-  desc: reagent-desc-birazine #And this
+  desc: reagent-desc-birazine 
   physicalDesc: reagent-physical-desc-opaque
   flavor: medicine
   color: "#8a593b"
@@ -351,9 +351,9 @@
 
 - type: reagent
   id: Cadtredine #shortens stun and knockdown time
-  name: reagent-name-cadtredine #Add this
+  name: reagent-name-cadtredine 
   group: Medicine
-  desc: reagent-desc-cadtredine #And this
+  desc: reagent-desc-cadtredine 
   physicalDesc: reagent-physical-desc-odorless
   flavor: medicine
   color: "#ffec71"
@@ -376,9 +376,9 @@
         
 - type: reagent
   id: Plentiphil #Decreases hunger (fun way to avoid food)
-  name: reagent-name-plentiphil #Add this
+  name: reagent-name-plentiphil 
   group: Medicine
-  desc: reagent-desc-plentiphil #And this
+  desc: reagent-desc-plentiphil 
   physicalDesc: reagent-physical-desc-oily
   flavor: medicine
   color: "#5c8001"
@@ -390,9 +390,9 @@
 
 - type: reagent
   id: Cephrine #a movement enhancer
-  name: reagent-name-cephrine #Add this
+  name: reagent-name-cephrine
   group: Narcotics
-  desc: reagent-desc-cephrine #And this
+  desc: reagent-desc-cephrine 
   physicalDesc: reagent-physical-desc-powdery
   flavor: bitter
   color: "#f2e0ff"
@@ -421,15 +421,15 @@
         type: Remove
       - !type:PopupMessage
         visualType: Medium
-        messages: ["ephedrine-effect-tight-pain", "ephedrine-effect-heart-pounds"] #change these
+        messages: ["cephrine-effect-tight-pain", "cephrine-effect-heart-pounds"] 
         type: Local
         probability: 0.2
         
 - type: reagent
   id: Expertine #Staves off Narcolepsy (does *not* cure it)
-  name: reagent-name-expertine #Add this
+  name: reagent-name-expertine 
   group: Narcotics
-  desc: reagent-desc-expertine #And this
+  desc: reagent-desc-expertine 
   physicalDesc: reagent-physical-desc-powdery
   flavor: bitter
   color: "#D2FFFA"
@@ -443,26 +443,23 @@
         
 - type: reagent
   id: Revitaline #should help revive/aid plants
-  name: reagent-name-revitaline #Add this
+  name: reagent-name-revitaline 
   group: Medicine
-  desc: reagent-desc-revitaline #And this
+  desc: reagent-desc-revitaline 
   physicalDesc: reagent-physical-desc-acrid
   flavor: medicine
   color: "#b0d637"
   plantMetabolism:
     - !type:PlantAdjustToxins
       amount: -6
-    - !type:PlantPhalanximine #change this
-      conditions:
-      - !type:ReagentThreshold
-        min: 4
+
         
 #MARK: Psychology based "medications" - mostly are rp based
 - type: reagent
   id : Mensitrene
-  name: reagent-name-mensitrene #add this
+  name: reagent-name-mensitrene 
   group: Medicine
-  desc: reagent-desc-mensitrene #and this
+  desc: reagent-desc-mensitrene 
   physicalDesc: reagent-physical-desc-opaque
   flavor: sweet
   color: "#ff8ba0"
@@ -475,14 +472,14 @@
           min: 10
         type: Local
         visualType: Medium
-        messages: [ "mannitol-effect-enlightened" ] #add a new this
+        messages: [ "mensitrene-effect-enlightened" ] 
         probability: 0.2
         
 - type: reagent
   id: Moditrene
-  name: reagent-name-moditrene #Add this
+  name: reagent-name-moditrene 
   group: Medicine
-  desc: reagent-desc-moditrene #And this
+  desc: reagent-desc-moditrene 
   physicalDesc: reagent-physical-desc-shiny
   flavor: bitter
   color: "#340068"
@@ -493,16 +490,16 @@
         type: Local
         visualType: Medium
         messages:
-        - "psicodine-effect-fearless" #Make new ones of these
-        - "psicodine-effect-anxieties-wash-away"
-        - "psicodine-effect-at-peace"
+        - "moditrene-effect-fearless"
+        - "moditrene-effect-anxieties-wash-away"
+        - "moditrene-effect-at-peace"
         probability: 0.2
 
 - type: reagent
   id: Execidol #cures addiction and drug effects
-  name: reagent-name-execidol #Add this
+  name: reagent-name-execidol 
   group: Medicine
-  desc: reagent-desc-execidol #And this
+  desc: reagent-desc-execidol 
   physicalDesc: reagent-physical-desc-shiny
   flavor: bitter
   color: "#623cea"
@@ -537,16 +534,16 @@
         type: Local
         visualType: Medium
         messages:
-        - "psicodine-effect-fearless" #make new ones
-        - "psicodine-effect-anxieties-wash-away"
-        - "psicodine-effect-at-peace"
+        - "execidol-effect-freedom" 
+        - "execidol-effect-anxieties-wash-away"
+        - "execidol-effect-at-peace"
         probability: 0.2
         
 - type: reagent
   id: Reqitrene
-  name: reagent-name-reqitrene #Add this
+  name: reagent-name-reqitrene 
   group: Medicine
-  desc: reagent-desc-reqitrene #And this
+  desc: reagent-desc-reqitrene 
   physicalDesc: reagent-physical-desc-shiny
   flavor: bitter
   color: "#e2b4bd"
@@ -557,9 +554,9 @@
         type: Local
         visualType: Medium
         messages:
-        - "psicodine-effect-fearless" #Make new ones of these
-        - "psicodine-effect-anxieties-wash-away"
-        - "psicodine-effect-at-peace"
+        - "reqitrene-effect-calm" 
+        - "reqitrene-effect-sky-clears"
+        - "reqitrene-effect-heart-slows"
         probability: 0.2
       - !type:MovespeedModifier
         walkSpeedModifier: .75
@@ -568,9 +565,9 @@
 #MARK: Damage reduction medicines, all are a 5% reduction currently
 - type: reagent
   id: Curatide #radiation
-  name: reagent-name-curatide #Add this
+  name: reagent-name-curatide 
   group: Medicine
-  desc: reagent-desc-curatide #And this
+  desc: reagent-desc-curatide 
   physicalDesc: reagent-physical-desc-grainy
   flavor: medicine
   color: "#5c8001"
@@ -593,9 +590,9 @@
             
 - type: reagent
   id: Puratide #poison
-  name: reagent-name-puratide #Add this
+  name: reagent-name-puratide 
   group: Medicine
-  desc: reagent-desc-puratide #And this
+  desc: reagent-desc-puratide 
   physicalDesc: reagent-physical-desc-grainy
   flavor: medicine
   color: "#e2e14a"
@@ -618,9 +615,9 @@
             
 - type: reagent
   id: Sealatide # heat
-  name: reagent-name-sealatide #Add this
+  name: reagent-name-sealatide 
   group: Medicine
-  desc: reagent-desc-sealatide #And this
+  desc: reagent-desc-sealatide 
   physicalDesc: reagent-physical-desc-grainy
   flavor: medicine
   color: "#86ffe9"
@@ -643,9 +640,9 @@
 
 - type: reagent
   id: Harnitide # cold
-  name: reagent-name-harnitide #Add this
+  name: reagent-name-harnitide 
   group: Medicine
-  desc: reagent-desc-harnitide #And this
+  desc: reagent-desc-harnitide 
   physicalDesc: reagent-physical-desc-grainy
   flavor: medicine
   color: "#ffab49"
@@ -668,9 +665,9 @@
 
 - type: reagent
   id: Shelitide # piercing
-  name: reagent-name-shelitide #Add this
+  name: reagent-name-shelitide 
   group: Medicine
-  desc: reagent-desc-shelitide #And this
+  desc: reagent-desc-shelitide 
   physicalDesc: reagent-physical-desc-grainy
   flavor: medicine
   color: "#b99372"
@@ -693,9 +690,9 @@
 
 - type: reagent
   id: Thinitide # slashing
-  name: reagent-name-thinitide #Add this
+  name: reagent-name-thinitide 
   group: Medicine
-  desc: reagent-desc-thinitide #And this
+  desc: reagent-desc-thinitide 
   physicalDesc: reagent-physical-desc-grainy
   flavor: medicine
   color: "#c2441b"
@@ -718,9 +715,9 @@
 
 - type: reagent
   id: Boltide # Blunt
-  name: reagent-name-boltide #Add this
+  name: reagent-name-boltide 
   group: Medicine
-  desc: reagent-desc-boltide #And this
+  desc: reagent-desc-boltide 
   physicalDesc: reagent-physical-desc-grainy
   flavor: medicine
   color: "#8f3b80"
@@ -744,9 +741,9 @@
 #MARK: Other chems            
 - type: reagent
   id: Blatrium #To avoid people mixing medicines
-  name: reagent-name-blatrium #Add this
+  name: reagent-name-blatrium 
   group: Medicine
-  desc: reagent-desc-blatrium #And this
+  desc: reagent-desc-blatrium 
   physicalDesc: reagent-physical-desc-grainy
   flavor: medicine
   color: "#b3c5d7"
@@ -760,9 +757,9 @@
 
 - type: reagent
   id: Notrizyl #To avoid people mixing medicines, but shouldnt do anything
-  name: reagent-name-notrizyl #Add this
+  name: reagent-name-notrizyl 
   group: Medicine
-  desc: reagent-desc-notrizyl #And this
+  desc: reagent-desc-notrizyl 
   physicalDesc: reagent-physical-desc-grainy
   flavor: medicine
   color: "#00032c"
@@ -776,9 +773,9 @@
             
 - type: reagent
   id: Claritine #Clears Everything out of someone's system so this one is a lot
-  name: reagent-name-clearitine #Add this
+  name: reagent-name-clearitine 
   group: Medicine
-  desc: reagent-desc-clearitine #And this
+  desc: reagent-desc-clearitine 
   physicalDesc: reagent-physical-desc-odorless
   flavor: medicine
   color: "#d6fdf0"

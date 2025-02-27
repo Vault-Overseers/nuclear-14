@@ -283,6 +283,149 @@ reagent-desc-cateye = A reagent that improves your low-light vision.
 reagent-name-daytripper = daytripper
 reagent-desc-daytripper = The perfect escape for your horrible life.
 
+# Chems
+reagent-name-beredine = beredine
+reagent-desc-beredine = a basic brute medication, here to take care of your basic needs
+
+reagent-name-velredine = velredine
+reagent-desc-velredine = a more advanced version of beredine that speeds up the healing process of your cuts
+
+reagent-name-ovardine = ovardine
+reagent-desc-ovardine = an advanced chemical, use it if you get the life beaten out of you
+
+reagent-name-pentredine = pentredine
+reagent-desc-pentredine = a chemical that reduces gunshot wounds, but is a little painful
+
+reagent-name-ardgid = ardgid
+reagent-desc-ardgid = an odd concotion of elements that heal burns on the skin
+
+reagent-name-ignimid = ignimid
+reagent-desc-ignimid = reaches below the skin to heal thrid degree burns
+
+reagent-name-potentid = potentid
+reagent-desc-potentid = developed by an electrician after he made a few to many mistakes, heals damage done from electric shocks
+
+reagent-name-frigmid = frigmid
+reagent-desc-frigmid = treats things like frostbite, the equivalent of a warm cup of tea
+
+reagent-name-romid = romid
+reagent-desc-romid = bleach can be such a spillable thing! good thing we can fix the damage it causes to the human body
+ 
+reagent-name-venroxin = venroxin
+reagent-desc-ventoxin = a bubbly substance that looks like it would cause more poison than it actually heals
+
+reagent-name-pertoxin = perotoxin
+reagent-desc-pertoxin = an unsual antidote, but tends to flushing out histamine in the system
+
+reagent-name-carotoxin = carotoxin
+reagent-desc-carotoxin = radiation does odd things to the body, so chug some of this before you go out
+
+reagent-name-resparil = resparil
+reagent-desc-resparil = pushes more oxygen through the system, alleviating harshness on the cardio vascular system allowing you to breathe
+
+reagent-name-sangrastim = sangrastim
+reagent-desc-sangrastim = increases how quickly your body repairs damage to stop bleeding
+
+reagent-name-ocutine = ocutine
+reagent-desc-ocutine = love is blind, this fixes that
+
+reagent-name-trantecan = trantecan
+reagent-desc-trantecan = heavily mutated? have a sip of this, maybe a few
+
+reagent-name-resolin = resolin
+reagent-desc-resolin = when in a critial state, this can be used in a pinch
+
+reagent-name-necritol = necritol
+reagent-desc-necritol = one of the few medicines that work on the dead, reduces rotting
+
+#Chemicals - Assorted Chems
+reagent-name-birazine = birazine
+reagent-desc-birazine = a man, or woman's, best friend after a long night of drinking
+
+reagent-name-cadtredine = cadtredine
+reagent-desc-cadtredine = reduces knockdown time for an upcoming fight
+
+reagent-name-plentiphil = plentiphil
+reagent-desc-plentiphil = really? you'd rather drink this than eat real food?
+
+reagent-name-cephrine = cephrine
+reagent-desc-cephrine = watch the speed limit, you speed demon
+
+reagent-name-expertine = expertine
+reagent-desc-expertine = staves off narcolepsy, but doesn't quite cure it
+
+reagent-name-revitaline = revitaline
+reagent-desc-revitaline = for those without a green thumb, or a back up plan
+
+reagent-name-mensitrene = mensitrene
+reagent-desc-mensitrene = increases brain function, for your slower friends
+
+reagent-name-moditrene = moditrene
+reagent-desc-moditrene = makes you feel like new, puts one at ease
+
+reagent-name-execidol = execidol
+reagent-desc-execidol = quickly puts the body through the withdrawl process, cleaning out addictions from the system
+
+reagent-name-reqitrene = reqitrene
+reagent-desc-reqitrene = slows you down, but melts your pain away
+
+reagent-name-curatide = curatide
+reagent-desc-curatide = provides a little protect against the dangers of raditation
+
+reagent-name-puratide = puratide
+reagent-desc-puratide = shields you a bit from the pains of poison
+
+reagent-name-sealatide = sealatide
+reagent-desc-sealatide = creates a very thin layer of protect between you and fire
+
+reagent-name-harnitide = harnitide
+reagent-desc-harnitide = creates almost a small flame in your heart, not dangerous but can prevent some cold from seeping in
+
+reagent-name-shelitide = shelitide
+reagent-desc-shelitide = you can't put a bandage on a gun wound, but you can prevent some piercing damage
+
+reagent-name-thinitide = thinitide
+reagent-desc-thinitide = almost like a little invisible metal plate protects you, though very little
+
+reagent-name-boltide = boltide
+reagent-desc-boltide = prevents some bruising during a long fight
+
+reagent-name-blatrium = blatrium
+reagent-desc-blatrium = a painful mixture that is produced after combining too many things, good work
+
+reagent-name-notrizyl = notrizyl
+reagent-desc-notrizyl = as odd and bubbly as it seems, doesn't really do anything
+
+reagent-name-clearitine = clearitine
+reagent-desc-clearitine = as clean and safe as it seems, it'll clear out your system... all of it
+
+#Chemicals - Toxins
+reagent-name-ahboride = ahboride
+reagent-desc-ahboride = shocks the user, can be a cruel prank on your friends
+
+reagent-name-somatrene = somatrene
+reagent-desc-somatrene = puts the user to sleep whether they want to or not
+
+reagent-name-somatitride = somatitride
+reagent-desc-somatitride = a good thing to use before bed if you have trouble sleeping, makes you tired
+
+reagent-name-breaker-toxin = breaker toxin
+reagent-desc-breaker-toxin = a quick way to mess with someone's mind
+
+reagent-name-fungitoxin = fungitoxin
+reagent-desc-fungitoxin = a poison derived from the local mushrooms
+
+reagent-name-motorine = motorine
+reagent-desc-motorine = causes jittering all throughout the body
+
+reagent-name-tardnix = tardnix
+reagent-desc-tardnix = slows the movements of the user
+
+reagent-name-silent-toxin = silent toxin
+reagent-desc-silent-toxin = for special use when you just need someone to stop talking for a bit
+
+reagent-name-ocudine = ocudine
+reagent-desc-ocudine = use this when you are tired of seeing the world, doesn't last forver but temporaily blinds someone
 
 # Meta
 reagent-name-movespeedmod-mixture = jet

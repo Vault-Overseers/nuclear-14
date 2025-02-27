@@ -159,3 +159,229 @@
       amount: 1
   products:
     Bitterdrink: 1
+
+#MARK: Chem meds
+
+#MARK: Brute Medications
+- type: reaction
+  id: Beredine
+  reactants:
+    Carbon:
+      amount: 1
+    N14Iron:			
+      amount: 1
+    Blood:
+      amount: 1
+  products:
+    Beredine: 3
+    
+- type: reaction
+  id: Velredine
+  reactants:
+    Beredine:
+      amount: 3
+    Oxygen:
+      amount: 1
+  products:
+    Beredine: 4
+    
+- type: reaction
+  id: Ovardine
+  minTemp: 320
+  reactants:
+    Beredine:
+      amount: 2
+    Silicon:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    Ovardine: 4
+    
+- type: reaction
+  id: Pentredine #will be likely most valuable so its a bit more expensive
+  minTemp: 320
+  reactants:  
+    Beredine:
+      amount: 1
+    Hydrogen:
+      amount: 1
+    Carbon:
+      amount: 1
+    Oxygen:
+      amount: 1
+  products:
+    Pentredine: 4
+
+#MARK: Burn Medications
+- type: reaction
+  id: Ardgid
+  reactants:
+    Carbon:
+      amount: 2
+    Plasma:
+      amount: 1
+      catalyst: true
+    Oil:			
+      amount: 1
+  products:
+    Ardgid: 4
+    
+- type: reaction
+  id: Potentide
+  reactants:
+    N14Copper:
+      amount: 1
+    Ardgid:
+      amount: 1
+    Carbon:
+      amount: 1
+  products:
+    Potentide: 3
+    
+- type: reaction
+  id: Ignimid
+  minTemp: 400
+  reactants:
+    Argid:
+      amount: 2
+    Sulfur:
+      amount: 1
+  products:
+    Ignimid: 3
+    
+- type: reaction
+  id: Frigmid
+  reactants:
+    Ardgid:
+      amount: 1
+    N14Silver:
+      amount: 2
+    Phosphorus:
+      amount: 1
+  products:
+    Ammonia: 3
+    
+- type: reaction
+  id: Romid
+  minTemp: 350
+  reactants:
+    Ardgid:
+      amount: 1
+    Ignimid:
+      amount: 1 
+    TableSalt: 		
+      amount: 1
+      catalyst: true
+  products:
+    Romid: 1
+ 
+#MARK: Poison Medications
+- type: reaction
+  id: Venroxin
+  reactants:
+    Charcoal:
+      amount: 2
+    Blood:
+      amount: 1 
+    Silicon:
+      amount: 1
+  products:
+    Venroxin: 4
+    
+- type: reaction
+  id: Pertoxin
+  reactants:
+    Venroxin:
+      amount: 3
+    Phosphorus:
+      amount: 1
+  products:
+    Pertoxin: 3
+    
+- type: reaction
+  id: Carotoxin
+  minTemp: 360
+  reactants:
+    Venroxin:
+      amount: 2
+    Radium:
+      amount: 1
+  products:
+    Carotoxin: 4
+
+#MARK: Other Medications
+- type: reaction
+  id: Resparil
+  reactants:
+    Charcoal:
+      amount: 2
+    Oxygen:
+      amount: 1
+    Plasma: 
+      amount: 1
+      catalyst: true
+  products:
+    Resparil: 3
+    
+- type: reaction
+  id: Sangrastim
+  reactants:
+    Saline:
+      amount: 2
+    Carbon:
+      amount: 1
+    Oil:
+      amount: 1
+  products:
+    Sangrastim: 4
+
+- type: reaction
+  id: Trantecan
+  reactants:
+    Carotoxin:
+      amount: 2
+    Uranium:
+      amount: 1
+  products:
+    Trantecan: 3    
+    
+- type: reaction
+  id: Ocutine
+  reactants:
+    Water:
+      amount: 3
+    Phosphorus:
+      amount: 1
+    Sulfur:
+      amount: 1
+  products:
+    Ocutine: 2
+    
+- type: reaction
+  id: Resolin
+  reactants:
+    Beredine:
+      amount: 1
+    Argid:
+      amount: 1
+    Venroxin:
+      amount: 1
+  products:
+    Resolin: 3
+    
+- type: reaction
+  id: Necritrol
+  reactants:
+    Oxygen:
+      amount: 1
+    Carbon:
+      amount: 1
+    Sugar:
+      amount: 1
+    Water:
+      amount: 1
+    Blood:
+      amount: 1
+  products:
+    Necritol: 4
