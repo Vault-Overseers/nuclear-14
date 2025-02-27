@@ -2,22 +2,20 @@
   id: Logistics # DeltaV - Logistics Department replacing Cargo
   description: department-Cargo-description
   color: "#A46106"
-  editorHidden: true
   roles:
   - CargoTechnician
   - Quartermaster
   - SalvageSpecialist
   - MailCarrier # Nyanotrasen - MailCarrier, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Cargo/mail-carrier.yml
-
+  editorHidden: true
+  
 - type: department
   id: Civilian
   description: department-Civilian-description
   color: "#9FED58"
   weight: -10
-  editorHidden: true
   roles:
   - Bartender
-  - Borg
   - Botanist
   - Boxer
   # - Chaplain # DeltaV - Move Chaplain into Epistemics
@@ -36,12 +34,12 @@
   - MartialArtist # Nyanotrasen - MartialArtist, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Wildcards/martialartist.yml
   - Prisoner # Nyanotrasen - Prisoner, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Wildcards/prisoner.yml
   - Gladiator # Nyanotrasen - Gladiator, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Wildcards/gladiator.yml
-
+  editorHidden: true
+  
 - type: department
   id: Command
   description: department-Command-description
   color: "#334E6D"
-  editorHidden: true
   roles:
   - Captain
   - CentralCommandOfficial
@@ -64,24 +62,36 @@
   - AdministrativeAssistant # Delta V - Administrative Assistant, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Command/admin_assistant.yml
   primary: false
   weight: 100
-
+  editorHidden: true
+  
+- type: department
+  id: Dignitary
+  description: department-Dignitary-description
+  color: "#33FE6D"
+  roles:
+  - BlueshieldOfficer # Goobstation
+  - NanotrasenRepresentative # Goobstation
+  - Magistrate # Goobstation
+  primary: false
+  weight: 101
+  editorHidden: true
+  
 - type: department
   id: Engineering
   description: department-Engineering-description
   color: "#EFB341"
-  editorHidden: true
   roles:
   - AtmosphericTechnician
   - ChiefEngineer
   - SeniorEngineer
   - StationEngineer
   - TechnicalAssistant
-
+  editorHidden: true
+  
 - type: department
   id: Medical
   description: department-Medical-description
   color: "#52B4E9"
-  editorHidden: true
   roles:
   - Chemist
   - ChiefMedicalOfficer
@@ -91,13 +101,13 @@
   - Paramedic
   - SeniorPhysician
   - MedicalBorg  # Delta V - Medical Borg, see Resources/Prototypes/DeltaV/Roles/Jobs/Medical/medicalborg.yml
-
+  editorHidden: true
+  
 - type: department
   id: Security
   description: department-Security-description
   color: "#DE3A3A"
   weight: 20
-  editorHidden: true
   roles:
   - HeadOfSecurity
   - SecurityCadet
@@ -107,12 +117,12 @@
   - Warden
   - PrisonGuard # Nyanotrasen - PrisonGuard, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Security/prisonguard.yml
   - Brigmedic # DeltaV - Brigmedic, see Resources/Prototypes/DeltaV/Roles/Jobs/Security/brigmedic.yml
-
+  editorHidden: true
+  
 - type: department
   id: Epistemics # DeltaV - Epistemics Department replacing Science
   description: department-Science-description
   color: "#D381C9"
-  editorHidden: true
   roles:
   - ResearchDirector
   - SeniorResearcher
@@ -122,13 +132,22 @@
   - ForensicMantis # Nyanotrasen - ForensicMantis, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Epistemics/forensicmantis.yml
   - Librarian
   - Roboticist
-
+  editorHidden: true
+  
+- type: department
+  id: Silicon
+  description: department-Silicon-description
+  color: "#D381C9"
+  roles:
+  - Borg
+  - StationAi
+  editorHidden: true
+  
 - type: department
   id: Specific
   description: department-Specific-description
   color: "#9FED58"
   weight: 10
-  editorHidden: true
   roles:
   - Boxer
   - Reporter
@@ -139,3 +158,4 @@
   - Prisoner # Nyanotrasen - Prisoner, see Resrouces/Prototypes/Nyanotrasen/Roles/Jobs/Wildcards/prisoner.yml
   - Brigmedic # DeltaV - Corpsman, see Resources/Prototypes/DeltaV/Roles/Jobs/Security/brigmedic.yml
   primary: false
+  editorHidden: true

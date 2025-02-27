@@ -267,6 +267,7 @@ public sealed class MindSystem : SharedMindSystem
         if (entity != null)
         {
             component!.Mind = mindId;
+            component.OriginalMind ??= mindId; // DeltaV
             mind.OwnedEntity = entity;
             mind.OriginalOwnedEntity ??= GetNetEntity(mind.OwnedEntity);
             Entity<MindComponent> mindEnt = (mindId, mind);
@@ -344,13 +345,13 @@ public sealed class MindSystem : SharedMindSystem
         }
     }
 
-    public void ControlMob(EntityUid user, EntityUid target)
+    public override void ControlMob(EntityUid user, EntityUid target)
     {
         if (TryComp(user, out ActorComponent? actor))
             ControlMob(actor.PlayerSession.UserId, target);
     }
 
-    public void ControlMob(NetUserId user, EntityUid target)
+    public override void ControlMob(NetUserId user, EntityUid target)
     {
         var (mindId, mind) = GetOrCreateMind(user);
 

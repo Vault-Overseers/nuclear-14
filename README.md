@@ -4,6 +4,7 @@ Nuclear 14 is the original Fallout fork on Space Station 14 created by Peptide90
 The SS13 remake curse and F13 curse have been broken, come check out the community on [discord here](https://discord.gg/4gGSWyNbQF) and consider contributing. Links to the official servers can be found on the discord too or via the launcher at ss14://game.nuclear14.com:1212
 
 # Einstein Engines
+
 <p align="center"><img src="https://raw.githubusercontent.com/Simple-Station/Einstein-Engines/master/Resources/Textures/Logo/splashlogo.png" width="512px" /></p>
 
 ---
@@ -37,7 +38,7 @@ We provide some scripts shown below to make the job easier.
 ### Build dependencies
 
 > - Git
-> - .NET SDK 8.0.100
+> - .NET SDK 9.0.101
 
 
 ### Windows
@@ -63,5 +64,3 @@ We provide some scripts shown below to make the job easier.
 ## License
 
 Please read the [LEGAL.md](./LEGAL.md) file for information on the licenses of the code and assets in this repository.
-
-Note that some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.

@@ -588,3 +588,99 @@
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/prewarmilitaryhelmet.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/prewarmilitaryhelmet.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: N14ClothingHeadHatHelmetRadHelmet
+  name: radiation suit helmet
+  description: A advance helmet used pre war to handle radioactive material.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutradsuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutradsuit.rsi
+  - type: IdentityBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Radiation: 0.75
+  - type: Tag
+    tags:
+    - HidesHair
+    - HidesBeard
+
+- type: entity
+  parent: ClothingHeadBase
+  id: N14ClothingHeadHatHelmetFirefighterHelmet
+  name: fire resistant helmet
+  description: A advance helmet used pre war to handle high temperatures.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutfirefighter.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutfirefighter.rsi
+  - type: IdentityBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.75
+  - type: Tag
+    tags:
+    - HidesHair
+    - HidesBeard
+
+- type: entity
+  parent: ClothingHeadBase
+  id: N14ClothingHeadHatHelmetSpaceHelmet
+  name: space helmet
+  description: A strange Pre-War helmet, useful for doing moonwalks.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutspacesuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutspacesuit.rsi
+  - type: IdentityBlocker
+  - type: BreathMask
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: Tag
+    tags:
+    - HidesHair
+    - HidesBeard
+
+#Chinese Stealth Suit
+- type: entity
+  parent: [ClothingHeadBase, BaseToggleClothing]
+  id: N14ClothingHeadHatHelmetChineseStealthSuitHelmet
+  name: chinese stealth helmet
+  description: the peak of chinese technology.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutchinesestealthsuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutchinesestealthsuit.rsi
+  - type: IdentityBlocker
+  - type: Tag
+    tags:
+    - HidesHair
+    - HidesBeard
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.1
+      lastVisibility: 0.1
+
+- type: entity
+  parent: N14ClothingHeadHatCombatHelmet
+  id: N14Clothingkingoftherats
+  name: Crown of the Rat King
+  description: I care not for Elders, Officers, Shamans, nor Politicians. There is one in the North who is truly worthy of a crown.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/kingoftherats.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/kingoftherats.rsi

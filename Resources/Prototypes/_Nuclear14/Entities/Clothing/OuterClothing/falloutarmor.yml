@@ -1297,6 +1297,46 @@
   - type: ExplosionResistance
     damageCoefficient: 0.85
 
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterLightLeatherArmor
+  name: light leather armor
+  description: Your basic all leather apparel. Finely crafted from tanned brahmin hide.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleatherarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleatherarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.80
+        Piercing: 0.90
+        Heat: 0.70
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterReinforcedLeatherArmor
+  name: Reinforced leather armor
+  description: An advanced version of the basic leather armor with extra layers of protection. Finely crafted from tanned brahmin hide.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutreinforcedleatherarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutreinforcedleatherarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.85
+        Heat: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+
 #MARK: RCMP armors
 
 - type: entity
@@ -1406,3 +1446,32 @@
     priceMultiplier: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.85
+
+#Chinese stealth suit
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: N14ClothingOuterChineseStealthSuit
+  name: chinese stealth suit
+  description: Yī tào yǐqián wéi zhōngguó tèzhǒng bùduì zhìzào de zhuāngjiǎ.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesestealthsuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesestealthsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHelmetChineseStealthSuitHelmet
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.85
+        Heat: 0.6
+        Radiation: 0.6
+  - type: TemperatureProtection
+    coefficient: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.8

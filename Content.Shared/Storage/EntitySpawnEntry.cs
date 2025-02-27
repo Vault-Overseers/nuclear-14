@@ -117,6 +117,10 @@ public static class EntitySpawnCollection
                 if (entry.PrototypeId == null)
                     break;
 
+                // special handling for N14EmptySlot: just never spawn it
+                if (entry.PrototypeId == "N14EmptySlot")
+                    break;
+
                 // Dice roll succeeded, add item and break loop
                 var amount = (int) entry.GetAmount(random);
 

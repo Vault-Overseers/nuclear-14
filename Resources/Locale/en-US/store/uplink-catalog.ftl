@@ -213,8 +213,8 @@ uplink-chemistry-kit-desc = A starter kit for the aspiring chemist, includes tox
 uplink-knives-kit-name = Throwing Knives Kit
 uplink-knives-kit-desc = A set of 4 syndicate branded throwing knives, perfect for embedding into the body of your victims.
 
-uplink-meds-bundle-name = Medical Bundle
-uplink-meds-bundle-desc = All you need to get your comrades back in the fight: mainly a combat medkit, a defibrillator and three combat medipens.
+uplink-meds-bundle-name = Interdyne Medical Bundle
+uplink-meds-bundle-desc = An assortment of autoinjectors and premium medical equipment to cover for every possible situation. Contains an elite compact defibrillator that can be used as a weapon.
 
 uplink-ammo-bundle-name = Ammo Bundle
 uplink-ammo-bundle-desc = Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW.
@@ -329,6 +329,12 @@ uplink-hardsuit-syndieelite-desc = An elite version of the blood-red hardsuit, w
 uplink-clothing-outer-hardsuit-juggernaut-name = Cybersun Juggernaut Suit
 uplink-clothing-outer-hardsuit-juggernaut-desc = Hyper resilient armor made of materials tested in the Tau chromosphere facility. The only thing that's going to be slowing you down is this suit... and tasers.
 
+uplink-night-vision-name = Night vision goggles
+uplink-night-vision-desc = They allow you to see in the dark, all while looking like normal sunglasses!
+
+uplink-thermal-vision-name = Thermal vision goggles
+uplink-thermal-vision-desc = They allow you to see living creatures regardless of obstacles, all while looking like normal sunglasses!
+
 # Misc
 uplink-cyberpen-name = Cybersun Pen
 uplink-cyberpen-desc = Cybersun's legal department pen, invaluable for forging documents and escaping prisons. Smells vaguely of hard-light and war profiteering.
@@ -429,6 +435,9 @@ uplink-syndicate-pai-desc = A Syndicate variant of the pAI with access to the Sy
 
 uplink-bribe-name = Lobbying Bundle
 uplink-bribe-desc = A heartfelt gift that can help you sway someone's opinion. Real or counterfeit? Yes.
+
+uplink-bribe-plasmaman-name = Lobbying Bundle
+uplink-bribe-plasmaman-desc = A heartfelt gift that can help you sway someone's opinion. Real or counterfeit? Yes. Includes a tacticool envirosuit for a tacticool plasmaman like you.
 
 uplink-hypodart-name = Hypodart
 uplink-hypodart-desc = A seemingly unremarkable dart with an enlarged reservoir for chemicals. It can store up to 7u reagents in itself, and instantly inject when it hits the target. Starts empty.

@@ -1,6 +1,5 @@
 using Content.Server.Actions;
 using Content.Server.Bed.Components;
-using Content.Server.Bed.Sleep;
 using Content.Server.Body.Systems;
 using Content.Server.Construction;
 using Content.Server.Power.Components;
@@ -102,6 +101,8 @@ namespace Content.Server.Bed
 
             var metabolicEvent = new ApplyMetabolicMultiplierEvent(args.Buckle, bed.Comp.Multiplier, true);
             RaiseLocalEvent(args.Buckle, ref metabolicEvent);
+
+            EnsureComp<InStasisComponent>(args.Buckle);
         }
 
         private void OnStasisUnstrapped(Entity<StasisBedComponent> bed, ref UnstrappedEvent args)
@@ -111,6 +112,8 @@ namespace Content.Server.Bed
 
             var metabolicEvent = new ApplyMetabolicMultiplierEvent(args.Buckle, bed.Comp.Multiplier, false);
             RaiseLocalEvent(args.Buckle, ref metabolicEvent);
+
+            RemComp<InStasisComponent>(args.Buckle);
         }
 
         private void OnPowerChanged(EntityUid uid, StasisBedComponent component, ref PowerChangedEvent args)
