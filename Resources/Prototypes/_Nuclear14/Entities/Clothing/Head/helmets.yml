@@ -651,7 +651,7 @@
 
 #Chinese Stealth Suit
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, BaseToggleClothing]
   id: N14ClothingHeadHatHelmetChineseStealthSuitHelmet
   name: chinese stealth helmet
   description: the peak of chinese technology.
@@ -665,6 +665,14 @@
     tags:
     - HidesHair
     - HidesBeard
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.1
+      lastVisibility: 0.1
 
 - type: entity
   parent: N14ClothingHeadHatCombatHelmet

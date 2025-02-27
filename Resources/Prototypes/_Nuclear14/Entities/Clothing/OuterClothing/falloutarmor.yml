@@ -1443,7 +1443,7 @@
 
 #Chinese stealth suit
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterHardsuitBase
   id: N14ClothingOuterChineseStealthSuit
   name: chinese stealth suit
   description: Yī tào yǐqián wéi zhōngguó tèzhǒng bùduì zhìzào de zhuāngjiǎ.
@@ -1454,3 +1454,18 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesestealthsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHatHelmetChineseStealthSuitHelmet
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.85
+        Heat: 0.6
+        Radiation: 0.6
+  - type: TemperatureProtection
+    coefficient: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
