@@ -131,6 +131,15 @@ namespace Content.Shared.Storage
         [DataField]
         public bool HideStackVisualsWhenClosed = true;
 
+        // Corvax-Change-Start
+        /// <summary>
+        /// Makes crafting button visible
+        /// This needed to make a crafting bench xd
+        /// </summary>
+        [DataField("craft")]
+        public bool Craft;
+        // Corvax-Change-End
+
         [Serializable, NetSerializable]
         public enum StorageUiKey : byte
         {

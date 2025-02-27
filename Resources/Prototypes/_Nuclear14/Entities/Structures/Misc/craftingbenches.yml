@@ -33,6 +33,9 @@
   - type: ExtensionCableReceiver
   - type: ApcPowerReceiver
     needsPower: false
+  - type: Tag
+    tags:
+      - N14Workbench
 
 - type: entity
   parent: N14WorkbenchBase
@@ -42,6 +45,21 @@
   components:
   - type: Sprite
     state: weaponbench
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.LatheUiKey.Key:
+        type: LatheBoundUserInterface
+  - type: Craftable
+  - type: Storage
+    craft: true
+    maxItemSize: Ginormous
+    grid:
+      - 0,0,12,9
   - type: MaterialStorage
     whitelist:
       tags:
@@ -63,6 +81,11 @@
       - N14TrainingSword
       - N14LongSword
       - N14Bola
+      # Blueprints
+      - N14WeaponLaserRevolverBlueprint
+      - N14WeaponLaserRifleMakeshiftBlueprint
+      - N14WeaponRifle556PipeBlueprint
+      - N14WeaponSniper50PipeBlueprint
 
 - type: entity
   parent: N14WorkbenchBase
