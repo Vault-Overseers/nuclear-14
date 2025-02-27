@@ -22,3 +22,22 @@
 #               prototype: MaterialCloth1
 #               amount: 2
 #             - !type:DeleteEntity
+
+- type: constructionGraph
+  id: N14FoodJarBase
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: icon
+          steps:
+          - material: Glass
+          - tag: Jam
+            name: a glass
+            icon:
+              sprite: _Nuclear14/Objects/Consumable/Food/preserves.rsi
+              state: icon
+            doAfter: 1
+
+    - node: icon
+      entity: N14FoodJarBase
