@@ -21,6 +21,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Timing;
+using Content.Shared.Crafting.Events; // Corvax-Change
 
 namespace Content.Client.UserInterface.Systems.Storage;
 
@@ -135,7 +136,12 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
         {
             OnPieceUnpressed(args, window, piece);
         };
-
+        window.OnCraftButtonPressed += () =>
+        {
+            if (window.StorageEntity is not { } storageEnt)
+                return;
+            EntityManager.RaisePredictiveEvent(new CraftStartedEvent(EntityManager.GetNetEntity(storageEnt)));
+        };
         if (StaticStorageUIEnabled)
         {
             var hotbar = UIManager.GetActiveUIWidgetOrNull<HotbarGui>();
