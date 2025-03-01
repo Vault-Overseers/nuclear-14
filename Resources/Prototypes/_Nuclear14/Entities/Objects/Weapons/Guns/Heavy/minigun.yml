@@ -1,6 +1,6 @@
 - type: entity
   name: minigun
-  parent: BaseWeaponRifle
+  parent: BaseItem
   id: BaseWeaponMinigun
   abstract: true
   components:
@@ -13,15 +13,28 @@
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Guns/Heavy/minigun.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Heavy/minigun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
     size: Ginormous
+  - type: AmmoCounter
   - type: Gun
     minAngle: 2
     maxAngle: 12
     angleIncrease: 2
     angleDecay: 12
     fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
     soundGunshot:
       collection: N14MinigunGunshot
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -53,6 +66,27 @@
   - type: HeldSpeedModifier
   - type: FollowDistance
     backStrength: 6
+  - type: StaticPrice
+    price: 500
+  - type: Execution
+  - type: MeleeWeapon
+    attackRate: 1.3333
+    damage:
+      types:
+        Blunt: 8.5
+    bluntStaminaDamageFactor: 1.25
+    swapKeys: true
+    disableHeavy: true
+    animation: WeaponArcThrust
+    wideAnimationRotation: 180
+    soundHit:
+      collection: MetalThud
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 2.5
+  - type: DamageOtherOnHit
+    staminaCost: 7.5
 
 - type: entity
   name: minigun
