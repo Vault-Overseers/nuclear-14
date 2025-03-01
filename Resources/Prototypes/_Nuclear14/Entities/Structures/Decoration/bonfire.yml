@@ -1,0 +1,42 @@
+- type: entity
+  parent: Bonfire
+  id: N14Bonfire
+  components:
+  - type: Construction
+    graph: N14Bonfire
+    node: bonfire
+  - type: BonfireHeater
+  - type: SolutionHeater
+    heatPerSecond: 160
+  - type: ItemPlacer
+    maxEntities: 8 # big grill, many steaks
+    whitelist:
+      components:
+      - FitsInDispenser
+      - Temperature
+  - type: PlaceableSurface
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.08,-0.35,0.15,0.25"
+        mask:
+        - TabletopMachineMask
+        layer:
+        - Impassable
+        - MidImpassable
+        - LowImpassable
+        hard: false
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    triggerGroups:
+      types:
+      - Lava
+  - type: TileEntityEffect
+    effects:
+    - !type:FlammableReaction
+      multiplier: 2
+      multiplierOnExisting: 0.75
+    - !type:Ignite
