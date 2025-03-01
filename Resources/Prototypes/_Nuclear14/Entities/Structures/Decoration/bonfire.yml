@@ -6,13 +6,15 @@
     graph: N14Bonfire
     node: bonfire
   - type: BonfireHeater
+  - type: SolutionHeater
+    heatPerSecond: 160
   - type: ItemPlacer
-    maxEntities: 4 # big grill, many steaks
+    maxEntities: 8 # big grill, many steaks
     whitelist:
       components:
+      - FitsInDispenser
       - Temperature
   - type: PlaceableSurface
-  - type: ExtensionCableReceiver
   - type: Fixtures
     fixtures:
       fix1:
@@ -31,5 +33,10 @@
     intersectRatio: 0.1
     triggerGroups:
       types:
-        - Lava
-  - type: AlwaysHot
+      - Lava
+  - type: TileEntityEffect
+    effects:
+    - !type:FlammableReaction
+      multiplier: 2
+      multiplierOnExisting: 0.75
+    - !type:Ignite

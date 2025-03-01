@@ -320,6 +320,9 @@ namespace Content.Server.Atmos.EntitySystems
         public void Ignite(EntityUid uid, EntityUid ignitionSource, FlammableComponent? flammable = null,
             EntityUid? ignitionSourceUser = null, bool ignoreFireProtection = false)
         {
+            if (!TryComp(uid, out flammable))
+                return;
+
             if (!Resolve(uid, ref flammable))
                 return;
 
