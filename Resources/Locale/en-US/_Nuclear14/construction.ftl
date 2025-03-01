@@ -13,3 +13,5 @@ lathe-category-weapons-melee = Melee
 lathe-category-weapons-pistols = Pistols
 lathe-category-weapons-rifles = Rifles
 lathe-category-weapons-smgs = Smgs
+lathe-category-identification = Identification
+lathe-category-blueprints = Blueprints

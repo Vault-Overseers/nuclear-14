@@ -38,6 +38,7 @@ public sealed class SharedCraftingSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly SharedJobSystem _jobs = default!; // Corvax-Change
 
     private List<LightCraftingPrototype> _lightPrototypes = default!;
@@ -158,7 +159,7 @@ public sealed class SharedCraftingSystem : EntitySystem
 
         if (!TryComp<ContainerManagerComponent>(ent, out var storage))
             return;
-        if (!TryComp(ent, out MetaDataComponent? meta) || meta.EntityPrototype == null)
+        if (!TryComp<MetaDataComponent>(ent, out var meta) || meta.EntityPrototype == null)
             return;
 
         var workbenchId = meta.EntityPrototype.ID;
@@ -186,7 +187,7 @@ public sealed class SharedCraftingSystem : EntitySystem
         if (!TryComp<ContainerManagerComponent>(ent, out var storage))
             return;
 
-        if (!TryComp(ent, out MetaDataComponent? meta) || meta.EntityPrototype == null)
+        if (!TryComp<MetaDataComponent>(ent, out var meta) || meta.EntityPrototype == null)
             return;
 
         var workbenchId = meta.EntityPrototype.ID;
@@ -261,7 +262,7 @@ public sealed class SharedCraftingSystem : EntitySystem
 
     public string GetItemProtoID(EntityUid item)
     {
-        if (TryComp(item, out MetaDataComponent? meta) && meta.EntityPrototype != null)
+        if (TryComp<MetaDataComponent>(item, out var meta) && meta.EntityPrototype != null)
         {
             return meta.EntityPrototype.ID;
         }
@@ -419,7 +420,7 @@ public sealed class SharedCraftingSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        if (!TryComp(workbench, out MetaDataComponent? meta) || meta.EntityPrototype == null)
+        if (!TryComp<MetaDataComponent>(workbench, out var meta) || meta.EntityPrototype == null)
             return;
 
         var workbenchId = meta.EntityPrototype.ID;
@@ -489,7 +490,7 @@ public sealed class SharedCraftingSystem : EntitySystem
     {
         if (_net.IsClient)
             return;
-        if (!TryComp(workbench, out MetaDataComponent? meta) || meta.EntityPrototype == null)
+        if (!TryComp<MetaDataComponent>(workbench, out var meta) || meta.EntityPrototype == null)
             return;
 
         var workbenchId = meta.EntityPrototype.ID;

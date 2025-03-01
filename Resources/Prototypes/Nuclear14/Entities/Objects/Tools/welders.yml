@@ -4,7 +4,7 @@
   id: N14Welder
   components:
   - type: Sprite
-    sprite: Nuclear14/Objects/Tools/welder.rsi
+    sprite: _Nuclear14/Objects/Tools/welder.rsi
     layers:
     - state: icon
     - state: welder_flame
@@ -12,12 +12,18 @@
       shader: unshaded
       map: ["enum.ToggleVisuals.Layer"]
   - type: Item
-    sprite: Nuclear14/Objects/Tools/welder.rsi
+    sprite: _Nuclear14/Objects/Tools/welder.rsi
   - type: PointLight
     netsync: false
     enabled: false
     radius: 1.5
     color: orange
+  - type: Cautery
+    speed: 0.6
+  - type: Craftable # Corvax-Change
+  - type: Tag # Corvax-Change
+    tags:
+      - N14Welder
 
 - type: entity
   name: industrial welding tool
@@ -26,9 +32,9 @@
   description: "An industrial welder with over double the fuel capacity."
   components:
   - type: Sprite
-    sprite: Nuclear14/Objects/Tools/welder_industrial.rsi
+    sprite: _Nuclear14/Objects/Tools/welder_industrial.rsi
   - type: Item
-    sprite: Nuclear14/Objects/Tools/welder_industrial.rsi
+    sprite: _Nuclear14/Objects/Tools/welder_industrial.rsi
   - type: SolutionContainerManager
     solutions:
       Welder:
@@ -44,9 +50,9 @@
   description: "An advanced industrial welder with over double the fuel capacity and hotter flame."
   components:
   - type: Sprite
-    sprite: Nuclear14/Objects/Tools/welder_industrialadv.rsi
+    sprite: _Nuclear14/Objects/Tools/welder_industrialadv.rsi
   - type: Item
-    sprite: Nuclear14/Objects/Tools/welder_industrialadv.rsi
+    sprite: _Nuclear14/Objects/Tools/welder_industrialadv.rsi
   - type: Tool
     speedModifier: 1.3
 
@@ -57,9 +63,9 @@
   description: "An experimental welder capable of self-fuel generation and less harmful to the eyes."
   components:
   - type: Sprite
-    sprite: Nuclear14/Objects/Tools/welder_experimental.rsi
+    sprite: _Nuclear14/Objects/Tools/welder_experimental.rsi
   - type: Item
-    sprite: Nuclear14/Objects/Tools/welder_experimental.rsi
+    sprite: _Nuclear14/Objects/Tools/welder_experimental.rsi
   - type: SolutionContainerManager
     solutions:
       Welder:
