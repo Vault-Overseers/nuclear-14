@@ -52,6 +52,32 @@
 
 - type: entity
   parent: ClothingOuterBase
+  id: N14ClothingOuterBlackRobes
+  name: black robe
+  description: robe tinted in black with some gold lining.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutblackrobes.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutblackrobes.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHoodBlackRobe
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterLeatherRobes
+  name: leather robe
+  description: A robe made of leather, with a mystic symbol in the chest.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutleatherrobes.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutleatherrobes.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHoodLeatherRobe
+
+- type: entity
+  parent: ClothingOuterBase
   id: N14ClothingOuterRobeHubologist
   name: hubologist robes
   description: Hubologist robes... ominous.
@@ -616,6 +642,17 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/brotherhoodmedicalscribe.rsi
 
+- type: entity
+  parent: N14ClothingOuterBattlecoatCoat
+  id: N14ClothingOuterBrotherhoodWashingtonCoat
+  name: Washington Brotherhood Coat
+  description: A finely made coat made with dark leather, a symbol of the Brotherhood emblazoned across the chest and back.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/washintgton_bos_coat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/washintgton_bos_coat.rsi
+
 #MARK: Tribal
 - type: entity
   parent: ClothingOuterStorageBase
@@ -732,3 +769,74 @@
         Piercing: 0.6
         Heat: 0.6
     priceMultiplier: 0.5
+
+#MARK: Enviorement
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: N14ClothingOuterRadSuit
+  name: radiation suit
+  description: Designed to protect its wearer from radiation.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutradsuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutradsuit.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.90
+        Radiation: 0.001
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHelmetRadHelmet
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: N14ClothingOuterHazmatSuit
+  name: hazmat suit
+  description: Designed to protect its wearer from viruses and environments.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/fallouthazmatsuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/fallouthazmatsuit.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Radiation: 0.60
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingMaskHazmatHelmet
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: N14ClothingOuterSpaceSuit
+  name: Space Suit
+  description: Advanced life support and sensors. Smells kind of minty.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutspacesuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutspacesuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHelmetSpaceHelmet
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: N14ClothingOuterFirefighterSuit
+  name: fire resistant suit
+  description: Designed to protect its wearer from high temperatures and fires.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutfirefighter.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutfirefighter.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.30
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHelmetFirefighterHelmet
+

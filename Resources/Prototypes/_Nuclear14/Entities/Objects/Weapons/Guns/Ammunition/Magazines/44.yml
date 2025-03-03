@@ -1,0 +1,39 @@
+- type: entity
+  id: N14BaseMagazine44Pistol
+  name: pistol magazine (44)
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - N14MagazinePistol44
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14Cartridge44Magnum
+    capacity: 8
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/44/pistolmag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: N14MagazinePistol44
+  name: pistol magazine (44)
+  parent: N14BaseMagazine44Pistol
+  components:
+  - type: BallisticAmmoProvider
+    proto: N14Cartridge44Magnum

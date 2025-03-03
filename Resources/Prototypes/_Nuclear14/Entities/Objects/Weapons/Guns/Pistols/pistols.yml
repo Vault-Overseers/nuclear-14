@@ -67,6 +67,7 @@
     price: 8
   - type: FollowDistance
     backStrength: 6
+  - type: Craftable
 
 - type: entity
   name: N14BaseInternalPistol
@@ -323,6 +324,7 @@
   - type: StaticPrice
     price: 15
 
+
 - type: entity
   parent: N14WeaponPistol10mmPipe
   id: N14WeaponPistol10mmPipeEmpty
@@ -486,3 +488,84 @@
             - N14CartridgePistol9
   - type: StaticPrice
     price: 15
+
+- type: entity
+  name: desert eagle 44
+  parent: N14BaseWeaponPistol
+  id: N14WeaponDesertEagle44
+  description: An ancient Desert Eagle pistol, in .44 Magnum. Interest in late 20th century films made this one of the most popular handguns of all times.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/deserteagle.rsi
+  - type: Item 
+    sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/deserteagle.rsi
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      collection: N14PistolDesertEagleGunshot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazinePistol44
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14MagazinePistol44
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge44Magnum
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge44Magnum
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: lasered desert eagle 44
+  parent: N14BaseWeaponPistol
+  id: N14WeaponLaserdotDesertEagle44
+  description: An ancient Desert Eagle pistol, in .44 Magnum. This one in particular have a laser dot.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/laserdeserteagle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/laserdeserteagle.rsi
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      collection: N14PistolDesertEagleGunshot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazinePistol44
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14MagazinePistol44
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge44Magnum
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge44Magnum
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: FollowDistance
+    backStrength: 3

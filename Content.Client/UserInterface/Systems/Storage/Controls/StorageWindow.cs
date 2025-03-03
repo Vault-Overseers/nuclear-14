@@ -68,6 +68,11 @@ public sealed class StorageWindow : BaseWindow
     private Texture? _sidebarBottomTexture;
     private readonly string _sidebarFatTexturePath = "Storage/sidebar_fat";
     private Texture? _sidebarFatTexture;
+    // Corvax-Change-Start
+    public event Action? OnCraftButtonPressed;
+    private readonly string _craftTexturePath = "Storage/craft";
+    private Texture? _craftTexture;
+    // Corvax-Change-End
 
     public StorageWindow()
     {
@@ -168,6 +173,7 @@ public sealed class StorageWindow : BaseWindow
         _sidebarMiddleTexture = Theme.ResolveTextureOrNull(_sidebarMiddleTexturePath)?.Texture;
         _sidebarBottomTexture = Theme.ResolveTextureOrNull(_sidebarBottomTexturePath)?.Texture;
         _sidebarFatTexture = Theme.ResolveTextureOrNull(_sidebarFatTexturePath)?.Texture;
+        _craftTexture = Theme.ResolveTextureOrNull(_craftTexturePath)?.Texture; // Corvax-Change
     }
 
     public void UpdateContainer(Entity<StorageComponent>? entity)
@@ -244,7 +250,36 @@ public sealed class StorageWindow : BaseWindow
         };
 
         _sidebar.AddChild(exitContainer);
+
         var offset = 2;
+
+        // Corvax-Change-Start
+        if (comp.Craft)
+        {
+            offset++;
+            var craftButton = new TextureButton
+            {
+                TextureNormal = _craftTexture,
+                Scale = new Vector2(2, 2),
+            };
+            craftButton.OnPressed += _ => OnCraftButtonPressed?.Invoke();
+
+            var craftContainer = new BoxContainer
+            {
+                Children =
+                {
+                    new TextureRect
+                    {
+                        Texture = rows == 1 ? _sidebarBottomTexture : _sidebarMiddleTexture,
+                        TextureScale = new Vector2(2, 2),
+                        Children = { craftButton }
+                    }
+                }
+            };
+
+            _sidebar.AddChild(craftContainer);
+        }
+        // Corvax-Change-End
 
         if (_entity.System<StorageSystem>().NestedStorage && rows > 0)
         {
