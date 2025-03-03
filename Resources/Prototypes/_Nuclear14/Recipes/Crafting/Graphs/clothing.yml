@@ -13,6 +13,28 @@
   - node: rags
     entity: N14ClothingUniformJumpsuitRags
 
+- type: constructionGraph
+  id: CoatFollowersArmoredGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+      - to: followercoat
+        steps:
+        - tag: FollowerLabcoat
+          name: follower's labcoat
+          icon:
+            sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutfollowerlabcoat.rsi
+            state: icon
+        - tag: PoliceVest
+          name: police vest
+          icon:
+            sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutpolicevest.rsi
+            state: icon
+          doAfter: 8
+  - node: followercoat
+    entity: N14ClothingOuterCoatFollowersArmored
+
 #MARK: Mantie's
 - type: constructionGraph
   id: LeatherMantleGraph
