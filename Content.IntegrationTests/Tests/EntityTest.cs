@@ -48,7 +48,7 @@ namespace Content.IntegrationTests.Tests
                     // TODO: Fix this better in engine.
                     mapSystem.SetTile(grid.Owner, grid.Comp, Vector2i.Zero, new Tile(1));
                     var coord = new EntityCoordinates(grid.Owner, 0, 0);
-                    entityMan.SpawnEntity(protoId, coord);
+                    TrySpawnEntity(entityMan, protoId, coord);
                 }
             });
 
@@ -104,7 +104,7 @@ namespace Content.IntegrationTests.Tests
                     .ToList();
                 foreach (var protoId in protoIds)
                 {
-                    entityMan.SpawnEntity(protoId, map.GridCoords);
+                    TrySpawnEntity(entityMan, protoId, map.GridCoords);
                 }
             });
             await server.WaitRunTicks(15);
@@ -380,7 +380,7 @@ namespace Content.IntegrationTests.Tests
                             continue;
                         }
 
-                        var entity = entityManager.SpawnEntity(null, testLocation);
+                        var entity = TrySpawnEntity(entityManager, null, testLocation);
 
                         Assert.That(entityManager.GetComponent<MetaDataComponent>(entity).EntityInitialized);
 
@@ -406,6 +406,21 @@ namespace Content.IntegrationTests.Tests
             });
 
             await pair.CleanReturnAsync();
+        }
+
+        private EntityUid TrySpawnEntity(IEntityManager entityManager, string? protoName, EntityCoordinates coordinates)
+        {
+            EntityUid result = EntityUid.Invalid;
+            try
+            {
+                result = entityManager.SpawnEntity(protoName, coordinates);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail($"{protoName} spawned an exception when trying to spawn: {e}");
+            }
+
+            return result;
         }
     }
 }
