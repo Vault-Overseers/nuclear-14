@@ -282,7 +282,7 @@
 #- type: Tag
    # tags:
     #- Gecko
-    
+
 - type: entity
   parent: N14MobGecko
   id: N14MobGeckoFire
@@ -364,7 +364,7 @@
     firestackFade: -1
   - type: Damageable
     damageModifierSet: N14ScaleFireresist
-      
+
 - type: entity
   name: golden gecko
   id: N14MobGeckoGolden
@@ -412,7 +412,7 @@
    #- type: Tag
  # tags:
    #  - Gecko
-      
+
 #MARK: Nightstalker Cub
 - type: entity
   name: nightstalker cub
@@ -1177,9 +1177,16 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: chicken
       sprite: _Nuclear14/Mobs/Animals/chicken.rsi
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: chicken #TODO: Add movement animations
+    noMovementLayers:
+      movement:
+        state: chicken
   - type: DamageStateVisuals
     states:
       Alive:
