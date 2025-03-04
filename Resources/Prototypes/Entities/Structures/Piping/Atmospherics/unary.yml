@@ -70,7 +70,7 @@
     - type: Weldable
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
-      
+
 - type: entity
   parent: GasUnaryBase
   id: GasPassiveVent
@@ -98,7 +98,7 @@
       node: passivevent
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
-      
+
 - type: entity
   parent: [GasUnaryBase, AirSensorBase]
   id: GasVentScrubber
@@ -150,7 +150,7 @@
     - type: Weldable
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentScrubber
-      
+
 - type: entity
   parent: GasUnaryBase
   id: GasOutletInjector
@@ -191,7 +191,7 @@
       - enum.LightLayers.Unshaded
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
-      
+
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   id: BaseGasThermoMachine
@@ -236,7 +236,7 @@
     - type: PowerSwitch
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: Thermoregulator
-      
+
 - type: entity
   parent: BaseGasThermoMachine
   id: GasThermoMachineFreezer
@@ -255,6 +255,7 @@
           map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
         - state: pipe
           map: [ "enum.PipeVisualLayers.Pipe" ]
+          snapCardinals: false
           renderingStrategy: Default
     - type: GenericVisualizer
       visuals:
@@ -300,6 +301,7 @@
           map: ["enum.WiresVisualLayers.MaintenancePanel"]
         - state: pipe
           map: [ "enum.PipeVisualLayers.Pipe" ]
+          snapCardinals: false
           renderingStrategy: Default
     - type: GenericVisualizer
       visuals:
@@ -376,6 +378,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
     - state: pipe
       map: [ "enum.PipeVisualLayers.Pipe" ]
+      snapCardinals: false
       renderingStrategy: Default
     - state: fill-1
       map: ["enum.SolutionContainerLayers.Fill"]
