@@ -198,7 +198,94 @@
   components:
   - type: Sprite
     state: cheese-slice
-# Tastes like sweetness, cream cheese
+# Tastes like sweetness, cream cheese.
+
+- type: entity
+  name: orange cake
+  parent: N14CookedFoodCakeBase
+  id: N14CookedFoodCakeOrange
+  description: A cake with added orange.
+  components:
+  - type: Sprite
+    state: orange
+  - type: SliceableFood
+    slice: N14CookedFoodCakeOrangeSlice
+  - type: Tag
+    tags:
+    - Cake
+    - Fruit
+
+- type: entity
+  name: slice of orange cake
+  parent: N14CookedFoodCakeSliceBase
+  id: N14CookedFoodCakeOrangeSlice
+  components:
+  - type: Sprite
+    state: orange-slice
+  - type: Tag
+    tags:
+    - Cake
+    - Fruit
+    - Slice
+# Tastes like sweetness, cake, oranges.
+
+- type: entity
+  name: lime cake
+  parent: N14CookedFoodCakeBase
+  id: N14CookedFoodCakeLime
+  description: A cake with added lime.
+  components:
+  - type: Sprite
+    state: lime
+  - type: SliceableFood
+    slice: N14CookedFoodCakeLimeSlice
+  - type: Tag
+    tags:
+    - Cake
+    - Fruit
+
+- type: entity
+  name: slice of lime cake
+  parent: N14CookedFoodCakeSliceBase
+  id: N14CookedFoodCakeLimeSlice
+  components:
+  - type: Sprite
+    state: lime-slice
+  - type: Tag
+    tags:
+    - Cake
+    - Fruit
+    - Slice
+# Tastes like sweetness, cake, limes.
+
+- type: entity
+  name: lemon cake
+  parent: N14CookedFoodCakeBase
+  id: N14CookedFoodCakeLemon
+  description: A cake with added lemon.
+  components:
+  - type: Sprite
+    state: lemon
+  - type: SliceableFood
+    slice: N14CookedFoodCakeLemonSlice
+  - type: Tag
+    tags:
+    - Cake
+    - Fruit
+
+- type: entity
+  name: slice of lemon cake
+  parent: N14CookedFoodCakeSliceBase
+  id: N14CookedFoodCakeLemonSlice
+  components:
+  - type: Sprite
+    state: lemon-slice
+  - type: Tag
+    tags:
+    - Cake
+    - Fruit
+    - Slice
+# Tastes like sweetness, cake, lemons.
 
 - type: entity
   name: chocolate cake
