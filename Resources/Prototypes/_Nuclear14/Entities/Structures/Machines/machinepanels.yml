@@ -382,3 +382,69 @@
   components:
     - type: SurveillanceCameraRouter
       subnetFrequency: SurveillanceCameraVault
+
+## Telecoms
+- type: entity
+  parent: N14BaseMachinePowered
+  id: N14MachineRackTelecomsServer
+  suffix: empty
+  name: telecoms server
+  description: An old telecommunications server rack.
+  components:
+  - type: EncryptionKeyHolder
+    keysExtractionMethod: Prying
+    keySlots: 10
+  - type: TelecomServer
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+
+- type: entity
+  parent: N14MachineRackTelecomsServer
+  id: N14MachineRackTelecomsServerWBOS
+  suffix: WBOS
+  name: telecoms server
+  description: An old telecommunications server rack.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyBrotherhoodWashington
+
+- type: entity
+  parent: N14MachineRackTelecomsServer
+  id: N14MachineRackTelecomsServerMBOS
+  suffix: MBOS
+  name: telecoms server
+  description: An old telecommunications server rack.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyBrotherhoodMidwest
+
+- type: entity
+  parent: N14MachineRackTelecomsServer
+  id: N14MachineRackTelecomsServerEnclave
+  suffix: Enclave
+  name: telecoms server
+  description: An old telecommunications server rack.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyEnclave
+
+- type: entity
+  parent: N14MachineRackTelecomsServer
+  id: N14MachineRackTelecomsServerNCR
+  suffix: NCR
+  name: telecoms server
+  description: An old telecommunications server rack.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNCR
