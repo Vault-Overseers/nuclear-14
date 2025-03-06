@@ -30,3 +30,12 @@ frigmid-effect-temperature-adjusting = Your body heats and cools rapidly, findin
 romid-effect-painful = A pain begins to well in your chest.
 
 venroxin-effect-nauseous = You feel queasy after drinking that.
+
+# status effects  - no real use yet still figuring this one out
+reagent-effect-status-effect-RadiationProtection = radiation protection
+reagent-effect-status-effect-PoisonProtection = poison protection
+reagent-effect-status-effect-HeatProtection = heat protection
+reagent-effect-status-effect-ColdProtection = cold protection
+reagent-effect-status-effect-PiercingProtection = piercing protection
+reagent-effect-status-effect-SlashingProtection = slashing protection
+reagent-effect-status-effect-BluntProtection = blunt protection
