@@ -14,6 +14,7 @@
       - RawMaterial
   - type: Damageable
     damageContainer: Inorganic
+  - type: Craftable
   - type: Destructible
     thresholds:
     - trigger:
@@ -74,9 +75,6 @@
     state: cardboard
   - type: Stack
     count: 1
-  - type: Construction
-    graph: N14Cardboard
-    node: cardboard
 
 - type: entity
   parent: MaterialBase
@@ -287,9 +285,9 @@
     sprite: /Textures/Objects/Misc/monkeycube.rsi
     state: cube
     color: "#8A9A5B"
-  # - type: GuideHelp
-    # guides:
-    # - Cloning
+  - type: GuideHelp
+    guides:
+    - Cloning
 
 - type: entity
   parent: MaterialBiomass
@@ -561,6 +559,7 @@
   description: A webby material.
   suffix: Full
   components:
+  - type: Material
   - type: PhysicalComposition
     materialComposition:
       WebSilk: 100

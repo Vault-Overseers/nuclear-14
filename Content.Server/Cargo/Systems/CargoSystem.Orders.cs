@@ -88,7 +88,7 @@ namespace Content.Server.Cargo.Systems
                 var stationQuery = EntityQueryEnumerator<StationBankAccountComponent>();
                 while (stationQuery.MoveNext(out var uid, out var bank))
                 {
-                    var balanceToAdd = (int)Math.Floor(bank.IncreasePerSecond * Delay);
+                    var balanceToAdd = bank.IncreasePerSecond * Delay;
                     UpdateBankAccount(uid, bank, balanceToAdd);
                 }
 
@@ -191,9 +191,7 @@ namespace Content.Server.Cargo.Systems
                 }
             }
 
-            _idCardSystem.TryFindIdCard(player, out var idCard);
-            // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
-            order.SetApproverData(idCard.Comp?.FullName, idCard.Comp?.JobTitle);
+            order.Approved = true;
             _audio.PlayPvs(component.ConfirmSound, uid);
 
             if (!HasComp<EmaggedComponent>(uid))
@@ -430,6 +428,7 @@ namespace Content.Server.Cargo.Systems
 
             // Approve it now
             order.SetApproverData(dest, sender);
+            order.Approved = true;
 
             // Log order addition
             _adminLogger.Add(LogType.Action, LogImpact.Low,

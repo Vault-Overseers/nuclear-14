@@ -19,6 +19,31 @@
         Piercing: 0.95
         Heat: 0.95
     priceMultiplier: 0.5
+  - type: Tag
+    tags:
+    - HidesHair
+    - HidesBeard
+
+- type: entity
+  parent: ClothingMaskBase
+  id: N14ClothingMaskHazmatHelmet
+  name: hazmat suit mask
+  description: A advance mask used pre war to handle viruses and dangerous environments.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Mask/fallouthazmatsuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Mask/fallouthazmatsuit.rsi
+  - type: IdentityBlocker
+  - type: BreathMask
+  - type: Armor
+    modifiers:
+      coefficients:
+        Radiation: 0.95
+  - type: Tag
+    tags:
+    - HidesHair
+    - HidesBeard
 
 - type: entity
   parent: ClothingMaskGas
@@ -78,14 +103,9 @@
     sprite: _Nuclear14/Clothing/Mask/Gasmask/combatgasmask.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Mask/Gasmask/combatgasmask.rsi
-  - type: NightVisionItem
+  - type: NightVision
+    isEquipment: true
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.NightVisionItemVisuals.Active:
-        nightVisionItemLayer:
-          True: { state: icon_on }
-          False: { state: icon }
   - type: Armor
     modifiers:
       coefficients:

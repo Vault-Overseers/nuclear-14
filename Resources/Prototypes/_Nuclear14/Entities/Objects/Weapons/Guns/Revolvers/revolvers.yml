@@ -7,6 +7,7 @@
     backStrength: 6
   - type: StaticPrice
     price: 20
+  - type: Craftable
 
 - type: entity
   name: 9mm revolver
@@ -85,6 +86,7 @@
       collection: N14RevolverMagnunGunshot
   - type: StaticPrice
     price: 75
+
 
 - type: entity
   parent: N14WeaponRevolver10mm
@@ -231,9 +233,11 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - N14Cartridge44Magnum
-        - SpeedLoader44
+      - N14Cartridge44Magnum
+      - SpeedLoader44
     proto: N14Cartridge44Magnum
+    chambers: [true, true, true, true]
+    ammoSlots: [null, null, null, null]
     capacity: 4
   - type: Gun
     soundGunshot:
@@ -282,6 +286,8 @@
         - N14Cartridge44Magnum
         - SpeedLoader44
     proto: N14Cartridge44Magnum
+    chambers: [true, true, true, true, true, true, true, true]
+    ammoSlots: [null, null, null, null, null, null, null, null]
     capacity: 8
   - type: Gun
     soundGunshot:
@@ -311,6 +317,8 @@
         - N14Cartridge45-70
         - SpeedLoader45-70
     proto: N14Cartridge45-70
+    chambers: [true, true, true, true]
+    ammoSlots: [null, null, null, null]
     capacity: 4
   - type: StaticPrice
     price: 75

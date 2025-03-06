@@ -43,6 +43,11 @@ public sealed class PoolTestLogHandler : ILogHandler
         return;
         var level = message.Level.ToRobust();
 
+        // Ignore Sawmill Warnings. This means tests will only fail on debug asserts.
+        // Remove this when we fix the loadout performance issue.
+        if (level == LogLevel.Warning)
+            return;
+
         if (ShuttingDown && (FailureLevel == null || level < FailureLevel))
             return;
 

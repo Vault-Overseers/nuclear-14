@@ -47,12 +47,12 @@
     containers:
       mixer: !type:ContainerSlot
 
-            
+
 # Seed Extractor
 - type: entity
+  parent: BaseStructure
   id: N14SeedExtractor
   name: seed extractor
-  parent: BaseStructure
   description: Extracts seeds from produce.
   components:
   - type: Sprite
@@ -73,11 +73,16 @@
         - MachineLayer
   - type: SeedExtractor
   - type: ApcPowerReceiver
-    powerLoad: 0 
+    powerLoad: 0
     needsPower: false
   - type: Construction
     graph: N14SeedExtractor
     node: seedextractor
+  - type: Machine
+    board: SeedExtractorMachineCircuitboard
+  - type: UpgradePowerDraw
+    powerDrawMultiplier: 0.75
+    scaling: Exponential
 
 - type: entity
   id: N14SeedExtractorFrame
@@ -141,6 +146,7 @@
   - type: Sprite
     sprite: Structures/Hydroponics/misc.rsi
     state: soil
+    snapCardinals: true
     noRot: true
   - type: PlantHolder
     drawWarnings: false
