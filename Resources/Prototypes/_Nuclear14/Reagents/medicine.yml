@@ -425,3 +425,500 @@
         conditions:
         - !type:ReagentThreshold
           min: 25
+
+#MARK: Brute Medications
+- type: reagent
+  id: Beredine #Heals all brute damage
+  name: reagent-name-beredine 
+  group: Medicine
+  desc: reagent-desc-beredine
+  physicalDesc: reagent-physical-desc-opaque 
+  flavor: medicine
+  color: "#ba5a31"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Brute: -2 # less than bicardine but more than a dirty stim
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold # OD limit
+          min: 15 
+        damage:
+          types:
+            Asphyxiation: 0.5
+            Poison: 1.5
+      - !type:ChemVomit
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+        probability: 0.02
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+      - !type:Drunk
+      
+- type: reagent
+  id: Velredine #Heals slashing damage
+  name: reagent-name-velredine 
+  group: Medicine
+  desc: reagent-desc-velredine
+  physicalDesc: reagent-physical-desc-viscous 
+  flavor: syrupy
+  color: "#5f021f"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Slash: -3 # heals more than beredine, but only slashing
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold # lower OD limit
+          min: 10 
+        damage:
+          types:
+            Cold: 3
+            
+- type: reagent
+  id: Ovardine #Heals blunt damage
+  name: reagent-name-ovardine 
+  group: Medicine
+  desc: reagent-desc-ovardine 
+  physicalDesc: reagent-physical-desc-mucus-like
+  flavor: sour
+  color: "#e59f71"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Blunt: -3
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold # Trying to make these more rememorable 
+          min: 10 # same as velredine
+        damage:
+          types:
+            Poison: 4
+            
+- type: reagent
+  id: Pentredine #Heals Piercing dmg
+  name: reagent-name-pentredine 
+  group: Medicine
+  desc: reagent-desc-pentredine 
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: fizzy
+  color: "#ab7777"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Piercing: -3
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold #uniforming these
+          min: 10
+        damage:
+          types:
+            Blunt: 5
+ 
+ #MARK: Burn Medications
+- type: reagent
+  id: Ardgid #Heals all burns
+  name: reagent-name-ardgid 
+  group: Medicine
+  desc: reagent-desc-ardgid 
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: medicine
+  color: "#e89005"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: -1.5
+            Shock: -1.5
+            Cold: -1 .5
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold #Uniform OD is 15 for burns
+          min: 15
+        damage:
+          types:
+            Asphyxiation: 1
+            Cold: 2
+          groups:
+            Brute: 0.5
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+ 
+- type: reagent
+  id: Ignimid #Heals burns
+  name: reagent-name-ignimid 
+  group: Medicine
+  desc: reagent-desc-ignimid 
+  physicalDesc: reagent-physical-desc-thick
+  flavor: syrupy
+  color: "#ff3398"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.1 # slow metabolism to not be a godly combat med, its for treating burn victims efficiently
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: -3
+      # od causes massive bleeding
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold #OD limit
+          min: 15
+        damage:
+          types:
+            Slash: 0.5
+            Piercing: 0.5
+      - !type:ChemVomit
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        probability: 0.1
+      - !type:Emote
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        emote: Scream
+        probability: 0.2
+        
+- type: reagent
+  id: Potentid #Heals shock dmg
+  name: reagent-name-potentid 
+  group: Medicine
+  desc: reagent-desc-potentid 
+  physicalDesc: reagent-physical-desc-frosty
+  flavor: metallic
+  color: "#00bfb2"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Shock: -3
+      # makes you a little chilly when not oding
+      - !type:AdjustTemperature
+        amount: -5000
+      # od makes you freeze to death
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold #uniformed OD
+          min: 15
+        damage:
+          types:
+            Cold: 2
+      - !type:AdjustTemperature
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        amount: -30000
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+
+- type: reagent
+  id: Frigmid #Heals cold dmg
+  name: reagent-name-frigmid 
+  group: Medicine
+  desc: reagent-desc-frigmid 
+  physicalDesc: reagent-physical-desc-pungent
+  flavor: medicine
+  color: "#6fa8dc"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cold: -3 #really only hunger causes this dmg type or an OD, but fun to have
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+          max: 288.15
+        amount: 100000 # thermal energy, not temperature!
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+          min: 298.15
+        amount: -10000
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "frigmid-effect-temperature-adjusting" ]
+        probability: 0.2
+      - !type:ReagentThreshold #uniformed OD
+          min: 15
+          damage:
+          types:
+            Shock: 1
+
+- type: reagent
+  id: Romid #Heals caustic dmg
+  name: reagent-name-romid 
+  group: Medicine
+  desc: reagent-desc-romid 
+  physicalDesc: reagent-physical-desc-thick
+  flavor: sweet
+  color: "#990000"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: -3 #caused by things like bleach
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold #uniform this OD
+          min: 15
+        damage:
+          types:
+            Heat: 2
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        type: Local
+        visualType: Medium
+        messages: [ "romid-effect-painful" ]
+        
+#MARK: Poison-like Medicines
+- type: reagent
+  id: Venroxin #Heals Poison
+  name: reagent-name-venroxin 
+  group: Medicine
+  desc: reagent-desc-ventoxin 
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: medicine
+  color: "#643268"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -2 
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold #uniform OD for poisons is 20
+          min: 20
+        damage:
+          groups:
+            Brute: 2
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        type: Local
+        visualType: Medium
+        messages: [ "venroxin-effect-nauseous" ]
+        probability: 0.2
+      - !type:ChemVomit
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        probability: 0.02
+      - !type:Drunk
+
+- type: reagent
+  id: Pertoxin #heals histamine and a little poison
+  name: reagent-name-pertoxin 
+  group: Medicine
+  desc: reagent-desc-pertoxin 
+  physicalDesc: reagent-physical-desc-chalky
+  flavor: medicine
+  color: "#e65295"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:AdjustReagent
+        reagent: Histamine #a side effect of other medicines/ODs
+        amount: -3.0
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -0.5
+      - !type:GenericStatusEffect
+        key: Jitter
+        time: 3.0
+        type: Remove
+
+- type: reagent
+  id: Carotoxin #Heals radiation dmg
+  name: reagent-name-carotoxin 
+  group: Medicine
+  desc: reagent-desc-carotoxin 
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: medicine
+  color: "#ff6c35"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: -2.5
+      - !type:AdjustReagent
+        reagent: Histamine #a draw back to not using radaway
+        amount: 1
+        
+#MARK: Other Medications
+- type: reagent
+  id: Resparil #Heals Airloss and some bloodloss
+  name: reagent-name-resparil 
+  group: Medicine
+  desc: reagent-desc-resparil 
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: medicine
+  color: "#3e5cdf"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: -3 
+            Bloodloss: -1.5
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold
+            min: 25
+        damage:
+          types:
+            Asphyxiation: 5
+            Cold: 3
+            
+- type: reagent
+  id: Sangrastim #Deals with heavy Bloodloss and bleeding
+  name: reagent-name-sangrastim 
+  group: Medicine
+  desc: reagent-desc-sangrastim 
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: medicine
+  color: "#942352"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ModifyBleedAmount 
+        amount: -1.5
+      - !type:HealthChange
+        damage:
+          types:
+            Bloodloss: -2
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold #OD limit
+          min: 15
+        damage:
+          types:
+            Bloodloss: 3
+    
+- type: reagent
+  id: Ocutine #Heals eyeloss due to things like welding
+  name: reagent-name-ocutine 
+  desc: reagent-desc-ocutine 
+  group: Medicine
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: medicine
+  color: "#022b3a"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ChemHealEyeDamage
+      
+- type: reagent
+  id: Trantecan #heals genetic damage
+  name: reagent-name-trantecan 
+  group: Medicine
+  desc: reagent-desc-trantecan 
+  physicalDesc: reagent-physical-desc-acrid
+  flavor: medicine
+  color: "#4fbd49"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: -1
+            Radiation: 0.5 #could change the damage type here
+      - !type:ChemVomit
+        probability: 0.05
+        
+- type: reagent
+  id: Resolin #Can be used to help someone out of a critical state
+  name: reagent-name-resolin
+  group: Medicine
+  desc: reagent-desc-resolin
+  physicalDesc: reagent-physical-desc-odorless
+  flavor: medicine
+  color: "#395342"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        conditions:
+          # they gotta be in crit first
+        - !type:MobStateCondition
+          mobstate: Critical
+        - !type:ReagentThreshold
+          min: 0
+          max: 20
+        damage:
+          types: #basically does a little of everything until they are up (but slowly)
+            Asphyxiation: -1
+            Poison: -0.5
+          groups:
+            Brute: -1
+            Burn: -1 
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold #OD limit
+          min: 20
+        damage:
+          types:
+            Asphyxiation: 1
+            Poison: 1
+        
+- type: reagent
+  id: Necritol #can delay rotting 
+  name: reagent-name-necritol 
+  group: Medicine
+  desc: reagent-desc-necritol 
+  physicalDesc: reagent-physical-desc-sickly
+  flavor: acid
+  color: "#685a33"
+  worksOnTheDead: true #allows for it to work on the dead
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:ReduceRotting
+          seconds: 20
