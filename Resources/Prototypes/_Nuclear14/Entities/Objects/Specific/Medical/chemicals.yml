@@ -92,6 +92,8 @@
   name: stimpak
   description: A syringe filled with a wondrous mixture of medical reagents. Essential for those with little to no medical knowledge.
   components:
+  - type: StaticPrice
+    price: 15
   - type: Sprite
     layers:
     - state: stimpak
@@ -120,6 +122,8 @@
   name: dirty stimpak
   description: A syringe filled with a once-wondrous mixture of medical reagents, now tainted by the wastes. Essential for those with little to no medical knowledge.
   components:
+  - type: StaticPrice
+    price: 8
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -134,6 +138,8 @@
   name: super stimpak
   description: A stronger version of the stimpak. Be careful, however, as you can overdose from taking too much.
   components:
+  - type: StaticPrice
+    price: 25
   - type: Sprite
     layers:
     - state: superstimpak
@@ -371,6 +377,8 @@
   name: RadAway
   description: A bloodbag filled with an odd oily reagent that cures any radiation you've sustained.
   components:
+  - type: StaticPrice
+    price: 20
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/bloodbags.rsi
     netsync: false
@@ -579,13 +587,11 @@
       behaviors:
       - !type:SpillBehavior
         solution: food
-        transferForensics: true
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
     graph: N14HealingPowder
     node: healingpowder
-
 
 - type: entity
   parent: DrinkBottleGlassBaseFull
@@ -733,7 +739,6 @@
       behaviors:
       - !type:SpillBehavior
         solution: food
-        transferForensics: true
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
 
@@ -763,3 +768,35 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     state: ethanol
+
+- type: entity
+  name: aloe salve
+  description: Used to treat those nasty burns. Less effective on caustic burns.
+  parent: Ointment
+  id: N14AloeSalve
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: N14AloeSalve
+    count: 3
+    baseLayer: base
+    layerStates:
+    - aloe1
+    - aloe2
+    - aloe3
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/ms13_medical_new.rsi
+    layers:
+    - state: aloe3
+      map: ["base"]
+
+- type: entity
+  id: N14AloeSalve1
+  parent: N14AloeSalve
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: N14AloeSalve
+    count: 1
+  - type: Sprite
+    state: aloe1

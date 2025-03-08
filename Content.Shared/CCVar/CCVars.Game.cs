@@ -33,7 +33,7 @@ public sealed partial class CCVars
     ///     Controls the default game preset.
     /// </summary>
     public static readonly CVarDef<string>
-        GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "secret", CVar.ARCHIVE);
+        GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "N14", CVar.ARCHIVE);
 
     /// <summary>
     ///     Controls if the game can force a different preset if the current preset's criteria are not met.
@@ -45,7 +45,7 @@ public sealed partial class CCVars
     ///     The preset for the game to fall back to if the selected preset could not be used, and fallback is enabled.
     /// </summary>
     public static readonly CVarDef<string>
-        GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "Extended", CVar.ARCHIVE);
+        GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "secret", CVar.ARCHIVE);
 
     /// <summary>
     ///     Controls if people can win the game in Suspicion or Deathmatch.
@@ -93,7 +93,7 @@ public sealed partial class CCVars
     ///     Controls the maximum number of character slots a player is allowed to have.
     /// </summary>
     public static readonly CVarDef<int>
-        GameMaxCharacterSlots = CVarDef.Create("game.maxcharacterslots", 30, CVar.ARCHIVE | CVar.SERVERONLY);
+        GameMaxCharacterSlots = CVarDef.Create("game.maxcharacterslots", 15, CVar.ARCHIVE | CVar.SERVERONLY);
 
     /// <summary>
     ///     Controls the game map prototype to load. SS14 stores these prototypes in Prototypes/Maps.

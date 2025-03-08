@@ -4,17 +4,17 @@
   id: N14TallMachineFrame
   graph: N14TallMachineFrame
   startNode: start
-  targetNode: machine
+  targetNode: machineFrame
   category: construction-category-machines
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   icon:
-    sprite: Nuclear14/Structures/Power/32x48_machines.rsi
+    sprite: _Nuclear14/Structures/Power/32x48_machines.rsi
     state: rack_on
 
 #MARK: Servers / Racks / Panels
 - type: construction
-  name: server rack
+  name: electronics rack
   id: N14RackElectronics
   graph: N14TallMachineFrame
   startNode: start
@@ -23,8 +23,9 @@
   description: A server rack filled with electronics.
   objectType: Structure
   canBuildInImpassable: false
+  hide: false
   icon:
-    sprite: Nuclear14/Structures/Power/32x48_machines.rsi
+    sprite: _Nuclear14/Structures/Power/32x48_machines.rsi
     state: rack_on
   conditions:
     - !type:TileNotBlocked
@@ -39,12 +40,13 @@
   description: A server rack filled with electronics.
   objectType: Structure
   canBuildInImpassable: false
+  hide: false
   icon:
-    sprite: Nuclear14/Structures/Power/32x48_machines.rsi
-    state: rack_on
+    sprite: _Nuclear14/Structures/Power/32x48_machines.rsi
+    state: serverrack_on
   conditions:
     - !type:TileNotBlocked
-    
+
 #MARK: Terminals
 - type: construction
   name: terminal
@@ -56,8 +58,9 @@
   description: A server rack filled with electronics.
   objectType: Structure
   canBuildInImpassable: false
+  hide: false
   icon:
-    sprite: Nuclear14/Structures/Power/32x48_machines.rsi
+    sprite: _Nuclear14/Structures/Power/32x48_machines.rsi
     state: rack_on
   conditions:
     - !type:TileNotBlocked
