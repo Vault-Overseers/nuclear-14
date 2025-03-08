@@ -326,7 +326,7 @@
     energy: 2
     color: "#00FFFF"
     castShadows: false
-    netsync: false  
+    netsync: false
   - type: Gatherable
     toolWhitelist:
       components:
@@ -1146,6 +1146,18 @@
   - type: Stack
     stackType: PinyonNuts
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ExtractPinyon
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ExtractPinyon
+        Quantity: 10
   - type: Produce
     seedId: N14WildPinyon
 
