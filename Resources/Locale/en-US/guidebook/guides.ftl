@@ -3,6 +3,7 @@ guide-entry-construction = Construction
 guide-entry-airlock-security = Airlock Upgrades
 guide-entry-atmospherics = Atmospherics
 guide-entry-botany = Botany
+guide-entry-crafting-sys = Blueprints & Crafting
 guide-entry-fires = Fires & Space
 guide-entry-shuttle-craft = Shuttle-craft
 guide-entry-networking = Networking
