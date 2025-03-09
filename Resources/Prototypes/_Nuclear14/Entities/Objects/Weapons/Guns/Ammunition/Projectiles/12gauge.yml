@@ -1,0 +1,23 @@
+- type: entity
+  id: PelletShotgun12
+  name: pellet (12 gauge)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+
+- type: entity
+  id: PelletShotgun12Spread
+  categories: [ HideSpawnMenu ]
+  parent: PelletShotgun12
+  components:
+  - type: ProjectileSpread
+    proto: PelletShotgun12
+    count: 6
+    spread: 15

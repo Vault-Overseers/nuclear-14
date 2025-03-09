@@ -10,17 +10,6 @@
   - type: Sprite
     state: icon
   - type: Craftable
-  - type: Storage
-    grid:
-    - 0,0,2,1
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
 
 #MARK: Plain Coats and Clothing
 - type: entity
@@ -75,7 +64,7 @@
     # charismaModifier: 1
 
 - type: entity
-  parent: N14ClothingOuterBase
+  parent: ClothingOuterBase
   id: N14ClothingOuterBlackRobes
   name: black robe
   description: robe tinted in black with some gold lining.
@@ -86,10 +75,9 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutblackrobes.rsi
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHatHoodBlackRobe
-    slot: head
 
 - type: entity
-  parent: N14ClothingOuterBase
+  parent: ClothingOuterBase
   id: N14ClothingOuterLeatherRobes
   name: leather robe
   description: A robe made of leather, with a mystic symbol in the chest.
@@ -100,7 +88,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutleatherrobes.rsi
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHatHoodLeatherRobe
-    slot: head
 
 - type: entity
   parent: ClothingOuterBase
@@ -164,9 +151,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutfollowerlabcoat.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutfollowerlabcoat.rsi
-  - type: Tag #For crafting
-    tags:
-      - FollowerLabcoat
   # - type: ClothingSpecialModifier
     # intelligenceModifier: 1
 
@@ -492,7 +476,6 @@
   id: N14ClothingOuterEnclaverOfficerCoat
   name: enclave officer coat
   description: A coat worn by Enclave officers. It has armor underneath.
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutarmoredofficer.rsi
@@ -607,7 +590,6 @@
     damageCoefficient: 0.8
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHatHoodScribeTabard
-    slot: head
 
 - type: entity
   parent: N14ClothingOuterCoatWinterArmored
@@ -820,7 +802,6 @@
         Radiation: 0.001
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHatHelmetRadHelmet
-    slot: head
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -838,7 +819,6 @@
         Radiation: 0.60
   - type: ToggleableClothing
     clothingPrototype: N14ClothingMaskHazmatHelmet
-    slot: mask
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -855,7 +835,6 @@
     lowPressureMultiplier: 1000
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHatHelmetSpaceHelmet
-    slot: head
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -873,4 +852,4 @@
         Heat: 0.30
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHatHelmetFirefighterHelmet
-    slot: head
+
