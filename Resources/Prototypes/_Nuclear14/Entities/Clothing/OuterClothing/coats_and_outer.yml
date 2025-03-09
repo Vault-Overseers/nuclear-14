@@ -1,6 +1,19 @@
+#MARK: Base Entity
+- type: entity
+  abstract: true
+  parent: [Clothing, AllowSuitStorageClothing]
+  id: N14ClothingOuterBase
+  components:
+  - type: Clothing
+    slots:
+    - outerClothing
+  - type: Sprite
+    state: icon
+  - type: Craftable
+
 #MARK: Plain Coats and Clothing
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterGhostEchoes
   name: Ghost Echoes
   description: A coat filled with bullets holes... Seems like his previous owner wasn't so lucky
@@ -13,7 +26,7 @@
   #  luckModifier: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterHarperCoat
   name: Harper Coat
   description: A dark coat with some red lining.
@@ -26,7 +39,7 @@
   #  charismaModifier: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterJacketLettermanRed
   name: letterman jacket
   description: A red letterman jacket.
@@ -39,7 +52,7 @@
     # charismaModifier: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterJacketLettermanBrown
   description: A brown letterman jacket.
   components:
@@ -90,7 +103,7 @@
     # intelligenceModifier: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterFlannelRed
   name: flannel shirt
   description: A red flannel shirt
@@ -103,7 +116,7 @@
     # charismaModifier: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterFlannelAqua
   name: flannel shirt
   description: An aqua flannel shirt.
@@ -116,7 +129,7 @@
     # charismaModifier: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterFlannelBrown
   name: flannel shirt
   description: A brown flannel shirt.
@@ -129,7 +142,7 @@
     # charismaModifier: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterCoatFollowerLab
   name: follower's lab coat
   description: A lab coat worn by the Followers of the Apocalypse.
@@ -145,7 +158,7 @@
     # intelligenceModifier: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterJacketBomber
   name: bomber jacket
   description: A nice bomber jacket.
@@ -158,7 +171,7 @@
     # strengthModifier: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterCoatDuster
   name: duster
   description: Don't get dust on it, partner.
@@ -184,7 +197,7 @@
       amount: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterCoatLeatherDuster
   name: leather duster
   description: Why, yes, I do own a brahmin farm. How did you know?
@@ -236,7 +249,7 @@
       amount: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterCoatLeatherCoat
   name: leather coat
   description: A slick and smooth long black leather coat.
@@ -260,7 +273,7 @@
       amount: 2
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterCoatSoldierCoat
   name: soldier coat
   description: A dapper-looking soldier's coat.
@@ -279,7 +292,7 @@
     priceMultiplier: 0.5
 
 - type: entity
-  parent: ClothingOuterStorageBase # balance this?
+  parent: N14ClothingOuterBase # balance this?
   id: N14ClothingOuterPoliceOfficer
   name: police officer uniform
   description: Respect my authoritay.
@@ -298,7 +311,7 @@
     priceMultiplier: 0.5
 
 - type: entity
-  parent: ClothingOuterStorageBase # balance this?
+  parent: N14ClothingOuterBase # balance this?
   id: N14ClothingOuterPoliceLieutenant
   name: police lieutenant uniform
   description: A police uniform worn by lieutenants.
@@ -317,7 +330,7 @@
     priceMultiplier: 0.5
 
 - type: entity
-  parent: ClothingOuterStorageBase # balance this?
+  parent: N14ClothingOuterBase # balance this?
   id: N14ClothingOuterPoliceChief
   name: police chief uniform
   description: A police uniform worn by the chief of police.
@@ -362,7 +375,7 @@
 
 #MARK: Armored Coats
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterCoatWinterArmored
   name: armored winter coat
   description: A winter coat equipped with makeshift armor for when you need to protect yourself from something other than the cold.
@@ -383,7 +396,7 @@
     priceMultiplier: 0.5
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterBattlecoatCoat
   name: battlecoat
   description: For when you're going into battle.
@@ -419,7 +432,7 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutbattlecoattan.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterCoatCombatDuster
   name: combat duster
   description: Refurbished combat armor under a weathered duster. Simple metal plates replace the ceramic plates that have gotten damaged over time.
@@ -481,7 +494,7 @@
 
 #MARK: NCR
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterNCRCorrectional
   name: NCR CF uniform
   description: The uniform of NCR Correctional Facility staff.
@@ -505,7 +518,7 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/ncr_trenchcoat.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterNCRDressJacket
   name: NCR dress jacket
   description: An NCR dress uniform.
@@ -518,7 +531,7 @@
     # charismaModifier: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterNCRDressJacketCO
   name: NCR CO dress jacket
   description: An NCR Commanding Officer dress uniform.
@@ -531,7 +544,7 @@
     # charismaModifier: 1
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterNCRQuartermaster
   name: NCR QM uniform
   description: The uniform of an NCR Quartermaster.
@@ -559,7 +572,7 @@
 
 #MARK: Midwest BoS
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterMidwestBoSCoat
   name: scribe quilted armor
   description: A piece of quilted cloth with Midwest Brotherhood marks and metal plates, it has some pouches for tools storage.
@@ -593,7 +606,7 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/midwestbosfieldscribe.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterBrotherhoodMidwestMedicalScribeRobes
   name: Midwest Brotherhood medical Scribe coat
   description: A finely made robe affixed with leather worn by medical Scribes, a symbol of the Brotherhood emblazoned across the chest and back.
@@ -658,7 +671,7 @@
 
 #MARK: Tribal
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterTribalCoat
   name: tribal armored coat
   description: A heavy armor with ballistic inserts, now sleeveless for temperature control and hanging an ornamental animal skull from the back.
@@ -678,7 +691,7 @@
 
 #MARK: Town
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterTownCoat
   name: town trenchcoat
   description: A non-descript black trenchcoat.
@@ -697,7 +710,7 @@
     priceMultiplier: 0.5
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterTownMediumCoat
   name: armored town trenchcoat
   description: An armored trench coat with added shoulderpads, a chestplate, and leg guards.
@@ -716,7 +729,7 @@
     priceMultiplier: 0.5
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterTownHeavyCoat
   name: combat town trenchcoat
   description: A trenchcoat which does not attempt to hide the full-body worn-down combat armor beneath it.
@@ -735,7 +748,7 @@
     priceMultiplier: 0.5
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterTownSpecialCoat
   name: embroidered trenchcoat
   description: A custom armored trench coat with extra-length and a raised collar. There's a flower embroidered onto the back, although the color is a little faded.
@@ -755,7 +768,7 @@
 
 #MARK: Vancouver preventor
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterPreventorJacket
   name: preventor paded jacket
   description: A winter leather jacket with internal armor layers, the regular piece of armor used by the vancouver law enforcers and preventors.
