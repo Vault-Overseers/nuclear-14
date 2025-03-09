@@ -52,6 +52,9 @@ public sealed class GhostBarSystem : EntitySystem
     const string MapPath = "Maps/_Goobstation/Nonstations/ghostbar.yml";
     private void OnRoundStart(RoundStartingEvent ev)
     {
+        // N14 doesn't have ghost bars.
+        return;
+
         _mapSystem.CreateMap(out var mapId);
         var options = new MapLoadOptions { LoadMap = true };
 
@@ -61,6 +64,9 @@ public sealed class GhostBarSystem : EntitySystem
 
     public void SpawnPlayer(GhostBarSpawnEvent msg, EntitySessionEventArgs args)
     {
+        // N14 doesn't have ghost bars.
+        return;
+
         var player = args.SenderSession;
 
         if (!_mindSystem.TryGetMind(player, out var mindId, out var mind))
