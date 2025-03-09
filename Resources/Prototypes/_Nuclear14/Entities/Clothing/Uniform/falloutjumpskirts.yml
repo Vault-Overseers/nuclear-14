@@ -1,5 +1,19 @@
 - type: entity
-  parent: ClothingUniformSkirtBase
+  abstract: true
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformSkirtBase
+  components:
+  - type: Clothing
+    slots: [innerclothing]
+    femaleMask: UniformTop
+  - type: Tag # Needed for species with nonhuman legs/can only wear skirts
+              # And for moths to be able to eat this.
+    tags:
+    - Skirt
+    - ClothMade
+
+- type: entity
+  parent: N14ClothingUniformSkirtBase
   id: N14ClothingUniformJumpskirtFalloutBlack
   name: black skirt
   description: It's a skirt. This one is black.
@@ -10,7 +24,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSkirts/blackskirt.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: N14ClothingUniformSkirtBase
   id: N14ClothingUniformJumpskirtFalloutBlue
   name: blue skirt
   description: It's a skirt. This one is blue.
@@ -21,7 +35,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSkirts/blueskirt.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: N14ClothingUniformSkirtBase
   id: N14ClothingUniformJumpskirtDressBlack
   name: black dress
   description: It's a dress. This one is black.
@@ -32,7 +46,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSkirts/blackdress.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: N14ClothingUniformSkirtBase
   id: N14ClothingUniformJumpskirtDressBlue
   name: blue dress
   description: It's a dress. This one is blue.
@@ -43,7 +57,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSkirts/bluedress.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: N14ClothingUniformSkirtBase
   id: N14ClothingUniformJumpskirtSundress
   name: sundress
   description: It's a pre-war sundress.
@@ -54,7 +68,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSkirts/sundress.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: N14ClothingUniformSkirtBase
   id: N14ClothingUniformJumpskirtWastelandDoc
   name: wasteland doctor's apparel
   description: It's a uniform that post-war doctors wear. Perfect for shrapnel removal or bandaging bruises.
@@ -65,7 +79,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSkirts/medicaldoctor.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: N14ClothingUniformSkirtBase
   id: N14ClothingUniformJumpskirtMerc
   name: mercenary uniform
   description: A uniform worn by your typical hirable-gun type.
@@ -76,10 +90,10 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSkirts/mercc.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: N14ClothingUniformSkirtBase
   id: N14ClothingUniformJumpskirtTribal
   name: tribal apparel
-  description: Fairly primitive clothing for fairly primitve people. 
+  description: Fairly primitive clothing for fairly primitve people.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSkirts/tribal.rsi
@@ -88,7 +102,7 @@
 
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: N14ClothingUniformSkirtBase
   id: N14ClothingUniformJumpskirtRDFormal
   name: research director's formal dress
   description: Some formal attire for the research director.
@@ -99,7 +113,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSkirts/rdformal.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: N14ClothingUniformSkirtBase
   id: N14ClothingUniformJumpskirtBOSBlack
   name: black brotherhood of steel uniform
   description: A uniform worn by members of The Brotherhood of Steel. This one is black.
@@ -110,7 +124,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSkirts/Brotherhood/bosbasic.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: N14ClothingUniformSkirtBase
   id: N14ClothingUniformJumpskirtBOSSilver
   name: brotherhood of steel uniform
   suffix: ranked silver
@@ -122,7 +136,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSkirts/Brotherhood/bossilver.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: N14ClothingUniformSkirtBase
   id: N14ClothingUniformJumpskirtBOSGold
   name: brotherhood of steel uniform
   suffix: ranked gold
