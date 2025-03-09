@@ -41,6 +41,11 @@ public class GuideEntry
     ///     If the guide is the child of some other guide, the order simply determined by the order of children in <see cref="Children"/>.
     /// </summary>
     [DataField("priority")] public int Priority = 0;
+
+    /// <summary>
+    ///     If true, prevents this entry from showing up in the menu.
+    /// </summary>
+    [DataField] public bool HideInMenu = false;
 }
 
 [Prototype("guideEntry")]
