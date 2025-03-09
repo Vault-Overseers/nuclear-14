@@ -36,7 +36,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,0.5"
+          bounds: "-0.4,-0.4,0.4,0.4"
         layer:
           - SlipLayer
         mask:
@@ -63,6 +63,8 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.2
     sprintSpeedModifier: 0.2
+  - type: TileEmission
+    color: "#55b240"
 
 - type: entity
   parent: N14FloorWaterSewerDeep
@@ -91,7 +93,7 @@
     sprintSpeedModifier: 0.6
 
 - type: entity
-  parent: N14FloorWaterSewerDeep
+  parent: N14FloorWaterDirtyEntity
   id: N14FloorWaterDeep
   name: deep water
   description: Endless Abyss.
@@ -104,7 +106,7 @@
     sprintSpeedModifier: 0.2
 
 - type: entity
-  parent: N14FloorWaterSewerDeep
+  parent: N14FloorWaterDeep
   id: N14FloorWaterMedium
   name: water
   description: Unclean water, likely highly unclean.
@@ -117,7 +119,7 @@
     sprintSpeedModifier: 0.4
 
 - type: entity
-  parent: N14FloorWaterSewerDeep
+  parent: N14FloorWaterDeep
   id: N14FloorWaterShallow
   name: shallow water
   description: Unclean water, likely highly unclean
@@ -130,7 +132,7 @@
     sprintSpeedModifier: 0.6
 
 - type: entity
-  parent: N14FloorWaterSewerDeep
+  parent: N14FloorWaterDirtyEntity
   id: N14FloorWaterSaltDeep
   name: deep salt water
   description: Endless Abyss.
