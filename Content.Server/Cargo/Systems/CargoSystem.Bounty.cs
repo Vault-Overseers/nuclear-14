@@ -119,7 +119,7 @@ public sealed partial class CargoSystem
         msg.PushNewline();
         foreach (var entry in prototype.Entries)
         {
-            msg.AddMarkup($"- {Loc.GetString("bounty-console-manifest-entry",
+            msg.AddMarkupOrThrow($"- {Loc.GetString("bounty-console-manifest-entry",
                 ("amount", entry.Amount),
                 ("item", Loc.GetString(entry.Name)))}");
             msg.PushNewline();
@@ -219,7 +219,7 @@ public sealed partial class CargoSystem
         if (!Resolve(uid, ref component))
             return;
 
-        while (component.Bounties.Count < component.MaxBounties)
+        while (component.Bounties.Count < component.MaxBounties && component.Bounties.Count != 0)
         {
             if (!TryAddBounty(uid, component))
                 break;
