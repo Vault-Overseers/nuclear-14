@@ -1,131 +1,29 @@
 - type: entity
   name: Psycho Raider
+  parent: N14BaseMobRaider
   id: N14MobRaiderPsycho
-  parent: N14MobBaseHostile
   description: Psychopatic raider who will stab and rob just about anyone.
   components:
-  - type: NpcFactionMember
-    factions:
-      - Raider
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: raider_melee
-      sprite: _Nuclear14/Mobs/RaidersSimpleMob/RaiderPsycho.rsi
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-            radius: 0.3
-        density: 40
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      100: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      60: 0.8
-      80: 0.6
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: alive
-      Critical:
-        Base: raider_dead #TODO: Make crit raider
-      Dead:
-        Base: raider_dead
-  - type: MeleeWeapon
-    hidden: true
-    soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
-    angle: 0
-    animation: WeaponArcThrust
-    damage:
-      types:
-        Slash: 14
-    range: 1
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 5
-  - type: Hands
-  - type: Puller
-  - type: Tool
-    speedModifier: 1.0
-    qualities:
-      - Prying
-  - type: Prying
-    pryPowered: !type:Bool
-        true
-    force: !type:Bool
-      true
-    useSound:
-      path: /Audio/Items/crowbar.ogg
+    - type: Loadout
+      prototypes:
+      - PsychoRaiderGear
 
 - type: entity
   name: Fern Conscript
   id: N14MobRaiderFernMelee
-  parent: N14MobRaiderPsycho
+  parent: N14BaseMobRaider
   description: Professional mercenary-wannabe, holding a club and ready to dent someone's skull in.
   components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: raider_melee
-      sprite: _Nuclear14/Mobs/RaidersSimpleMob/RaiderMeleeFern.rsi
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: alive
-      Critical:
-        Base: raider_dead #TODO: Make crit raider
-      Dead:
-        Base: raider_dead
-  - type: MeleeWeapon
-    hidden: true
-    soundHit:
-        path: /Audio/Effects/metal_thud1.ogg
-    angle: 0
-    animation: WeaponArcPunch
-    damage:
-      types:
-        Blunt: 9
-        Slash: 6
-    range: 1
+    - type: Loadout
+      prototypes:
+      - FernConscriptGear
 
 - type: entity
   name: Enforcer Beatcop
   id: N14MobRaiderEnforcerMelee
-  parent: N14MobRaiderPsycho
+  parent: N14BaseMobRaider
   description: Law enforcement? No. Just a really fancy raider with a baton.
   components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: raider_melee
-      sprite: _Nuclear14/Mobs/RaidersSimpleMob/RaiderMeleeEnforcer.rsi
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: alive
-      Critical:
-        Base: raider_dead #TODO: Make crit raider
-      Dead:
-        Base: raider_dead
-  - type: MeleeWeapon
-    hidden: true
-    soundHit:
-        path: /Audio/Effects/metal_thud1.ogg
-    angle: 0
-    animation: WeaponArcPunch
-    damage:
-      types:
-        Blunt: 12
-    range: 1
+    - type: Loadout
+      prototypes:
+      - EnforcerBeatcopGear
