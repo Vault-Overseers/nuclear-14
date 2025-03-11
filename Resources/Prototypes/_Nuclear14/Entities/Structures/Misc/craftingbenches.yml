@@ -273,6 +273,18 @@
         density: 500
         mask:
           - TabletopMachineMask
+  - type: ActivatableUI
+    key: enum.ChemMasterUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ChemMasterUiKey.Key:
+        type: ChemMasterBoundUserInterface
+  - type: ChemMaster
+    pillDosageLimit: 20
+  - type: ContainerContainer
+    containers:
+      beakerSlot: !type:ContainerSlot
+      outputSlot: !type:ContainerSlot
   - type: ItemSlots
     slots:
       beakerSlot:
@@ -288,17 +300,10 @@
   - type: SolutionContainerManager
     solutions:
       buffer: {}
+      pillBuffer: {}
   - type: DumpableSolution
     solution: buffer
     unlimited: true
-  - type: ActivatableUI
-    key: enum.ChemMasterUiKey.Key
-  - type: UserInterface
-    interfaces:
-       enum.ChemMasterUiKey.Key:
-         type: ChemMasterBoundUserInterface
-  - type: ChemMaster
-    pillDosageLimit: 20
 
 - type: entity
   parent: BaseStructure
