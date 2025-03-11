@@ -8,7 +8,7 @@ public sealed partial class CCVars
     ///     Allows enabling/disabling player-started votes for ultimate authority
     /// </summary>
     public static readonly CVarDef<bool> VoteEnabled =
-        CVarDef.Create("vote.enabled", false, CVar.SERVERONLY);
+        CVarDef.Create("vote.enabled", true, CVar.SERVERONLY);
 
     /// <summary>
     ///     See vote.enabled, but specific to restart votes
@@ -26,7 +26,7 @@ public sealed partial class CCVars
     ///     Config for when the restart vote should be allowed to be called based on percentage of ghosts.
     /// </summary>
     public static readonly CVarDef<int> VoteRestartGhostPercentage =
-        CVarDef.Create("vote.restart_ghost_percentage", 75, CVar.SERVERONLY);
+        CVarDef.Create("vote.restart_ghost_percentage", 25, CVar.SERVERONLY);
 
     /// <summary>
     ///     See vote.enabled, but specific to preset votes
@@ -44,7 +44,7 @@ public sealed partial class CCVars
     ///     The required ratio of the server that must agree for a restart round vote to go through.
     /// </summary>
     public static readonly CVarDef<float> VoteRestartRequiredRatio =
-        CVarDef.Create("vote.restart_required_ratio", 0.85f, CVar.SERVERONLY);
+        CVarDef.Create("vote.restart_required_ratio", 0.75f, CVar.SERVERONLY);
 
     /// <summary>
     /// Whether or not to prevent the restart vote from having any effect when there is an online admin
@@ -86,7 +86,7 @@ public sealed partial class CCVars
     ///     Allows enabling/disabling player-started votekick for ultimate authority
     /// </summary>
     public static readonly CVarDef<bool> VotekickEnabled =
-        CVarDef.Create("votekick.enabled", true, CVar.SERVERONLY);
+        CVarDef.Create("votekick.enabled", false, CVar.SERVERONLY);
 
     /// <summary>
     ///     Config for when the votekick should be allowed to be called based on number of eligible voters.
