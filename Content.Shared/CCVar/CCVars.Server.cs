@@ -40,4 +40,9 @@ public sealed partial class CCVars
     /// </remarks>
     public static readonly CVarDef<int> ServerUptimeRestartMinutes =
         CVarDef.Create("server.uptime_restart_minutes", 0, CVar.SERVERONLY);
+
+    /** If enabled, automatically set weather. */
+    public static readonly CVarDef<bool> AutoWeather =
+        CVarDef.Create("weather.auto", false, CVar.SERVERONLY);
+
 }
