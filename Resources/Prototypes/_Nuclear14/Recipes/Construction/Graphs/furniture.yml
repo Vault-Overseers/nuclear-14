@@ -33,16 +33,13 @@
             - material: Cloth
               amount: 3
               doAfter: 2
-        - to: medicalbed
+        - to: mattress
           completed:
             - !type:SnapToGrid { }
           steps:
-            - material: Plasteel
-              amount: 2
-              doAfter: 1
-            - material: Durathread
-              amount: 2
-              doAfter: 1
+            - material: Cloth
+              amount: 6
+              doAfter: 2
     - node: bed
       entity: N14Bed
       edges:
@@ -96,3 +93,14 @@
           steps:
             - tool: Slicing
               doAfter: 1
+    - node: mattress
+      entity: N14BedMattress0
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 6
+          steps:
+            - tool: Cutting
+              doAfter: 2

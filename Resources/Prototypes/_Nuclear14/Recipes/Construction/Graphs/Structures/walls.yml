@@ -73,3 +73,76 @@
           steps:
             - tool: Prying
               doAfter: 10
+
+- type: constructionGraph
+  id: N14ScrapWall
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: RedScrapWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: N14Scrap
+              amount: 2
+              doAfter: 2
+
+        - to: BlueScrapWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: N14Scrap
+              amount: 2
+              doAfter: 2
+
+        - to: RoughScrapWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: N14Scrap
+              amount: 4
+              doAfter: 3
+
+    - node: BlueScrapWall
+      entity: N14WallScrapBlueSlanted
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: N14Scrap
+              amount: 1
+          steps:
+            - tool: Welding
+              doAfter: 10
+
+    - node: RedScrapWall
+      entity: N14WallScrapRedSlanted
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: N14Scrap
+              amount: 1
+          steps:
+            - tool: Welding
+              doAfter: 10
+
+    - node: RoughScrapWall
+      entity: N14WallRoughScrapSlanted
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: N14Scrap
+              amount: 3
+          steps:
+            - tool: Welding
+              doAfter: 25

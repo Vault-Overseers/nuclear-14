@@ -1,3 +1,5 @@
+# Wood
+# Walls
 - type: construction
   name: log wall
   id: N14WoodWallLog
@@ -33,5 +35,142 @@
   icon:
     sprite: _Nuclear14/Structures/Doors/FalloutDoors/wooddoor.rsi
     state: closed
+  conditions:
+    - !type:TileNotBlocked
+
+# Slanted Structures
+## Walls
+- type: construction
+  name: wooden wall
+  id: N14WallWoodSlanted
+  graph: N14WoodWall
+  startNode: start
+  targetNode: WoodWall
+  category: construction-category-structures
+  description: A nice hand built wall.
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/wood.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: blue scrap wall
+  id: N14WallScrapBlueSlanted
+  graph: N14ScrapWall
+  startNode: start
+  targetNode: BlueScrapWall
+  category: construction-category-structures
+  description: Have some rust here and there.
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapblue.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: red scrap wall
+  id: N14WallScrapRedSlanted
+  graph: N14ScrapWall
+  startNode: start
+  targetNode: RedScrapWall
+  category: construction-category-structures
+  description: I hope that's red paint...
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapred.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: rough scrap wall
+  id: N14WallRoughScrapSlanted
+  graph: N14ScrapWall
+  startNode: start
+  targetNode: RoughScrapWall
+  category: construction-category-structures
+  description: I hope that's red paint...
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/roughscrap.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+## Half Walls
+- type: construction
+  name: wooden half wall
+  id: N14WallWoodHalfSlanted
+  graph: N14HalfWall
+  startNode: start
+  targetNode: Wood
+  category: construction-category-structures
+  description: A nice half wall for placing a window pane on.
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/half/wood.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+## Doors
+- type: construction
+  name: wooden door
+  id: N14DoorWooden
+  graph: N14DoorGraph
+  startNode: start
+  targetNode: WoodDoor
+  category: construction-category-structures
+  description: A wooden door good for keeping things out.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/SlantedDoors/wood.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+
+## Windows
+- type: construction
+  name: window pane
+  id: N14Window
+  graph: N14WindowPane
+  startNode: start
+  targetNode: N14WindowSlanted
+  category: construction-category-structures
+  description: A window pane for seeing through things.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  canRotate: false
+  icon:
+    sprite: _Nuclear14/Structures/Windows/slanted/slantedwindow.rsi
+    state: full
   conditions:
     - !type:TileNotBlocked
