@@ -63,4 +63,12 @@ public sealed partial class WeatherPrototype : IPrototype
     [ViewVariables(VVAccess.ReadWrite), DataField("duration")]
     public float Duration = 300;
 
+    /// <summary>
+    /// Chance of this weather being selected. During actual selection, the
+    /// chance of an individual weather being selected is Chance/(Total chance
+    /// of all weather prototypes defined). Setting this to 0 disables it.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public int Chance = 1;
+
 }
