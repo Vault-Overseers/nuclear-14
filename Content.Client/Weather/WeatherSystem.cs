@@ -48,7 +48,6 @@ public sealed class WeatherSystem : SharedWeatherSystem
             return;
 
         weather.Stream ??= _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true)?.Entity;
-
         if (!TryComp(weather.Stream, out AudioComponent? comp))
             return;
 

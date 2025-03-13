@@ -220,7 +220,7 @@ public sealed partial class CargoSystem
         if (!Resolve(uid, ref component))
             return;
 
-        while (component.Bounties.Count < component.MaxBounties)
+        while (component.Bounties.Count < component.MaxBounties && component.Bounties.Count != 0)
         {
             if (!TryAddBounty(uid, component))
                 break;
