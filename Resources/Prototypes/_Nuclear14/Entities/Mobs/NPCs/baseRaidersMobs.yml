@@ -1,0 +1,106 @@
+- type: entity
+  parent: BaseMobHuman
+  id: N14BaseMobRaider
+  abstract: true
+  suffix: AI
+  components:
+    - type: Hunger
+      thresholds:
+        Overfed: 200
+        Okay: 150
+        Peckish: 100
+        Starving: 50
+        Dead: 0
+      baseDecayRate: 0.0 # Decay rate decreased to 0, because humanoid raider NPCs are able to starve to death. We generally don't need life sim for any hostile mob.
+    - type: Thirst
+      thresholds:
+        OverHydrated: 200
+        Okay: 150
+        Thirsty: 100
+        Parched: 50
+        Dead: 0
+      baseDecayRate: 0.0 # Decay rate decreased to 0, because hostile mobs can be way too easily defeated by slowness applied to them.
+    - type: NpcFactionMember
+      factions:
+      - Raider
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        100: Dead #Tweak for "Acidify on Crit"
+    - type: MindContainer
+      showExamineInfo: False
+    - type: InputMover
+    - type: MobMover
+    - type: SurgeryTarget
+      canOperate: false
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: Sprite
+      layers:
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - shader: StencilClear
+        sprite: Mobs/Species/Human/parts.rsi #PJB on stencil clear being on the left leg: "...this is 'fine'" -https://github.com/space-wizards/space-station-14/pull/12217#issuecomment-1291677115
+        # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
+        # sprite refactor when
+        state: l_leg
+      - shader: StencilMask
+        map: ["enum.HumanoidVisualLayers.StencilMask"]
+        sprite: Mobs/Customization/masking_helpers.rsi
+        state: unisex_full
+        visible: false
+      - map: ["jumpsuit"]
+      - map: ["enum.HumanoidVisualLayers.LFoot"]
+      - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: ["enum.HumanoidVisualLayers.LHand"]
+      - map: ["enum.HumanoidVisualLayers.RHand"]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "ears" ]
+      - map: [ "eyes" ]
+      - map: [ "belt" ]
+      - map: [ "id" ]
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - map: [ "clownedon" ] # Dynamically generated
+        sprite: "Effects/creampie.rsi"
+        state: "creampie_human"
+        visible: false
+      - sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/10mmPIPEpistol.rsi
+        state: inhand-right
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTypeTrigger
+          damageType: Heat
+          damage: 400
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawnInContainer: true
+          spawn:
+            Ash:
+              min: 1
+              max: 1
+        - !type:BurnBodyBehavior { }
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MeatLaserImpact
