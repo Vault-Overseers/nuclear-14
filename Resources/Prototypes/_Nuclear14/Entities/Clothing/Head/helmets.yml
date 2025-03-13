@@ -64,6 +64,19 @@
 
 - type: entity
   parent: ClothingHeadBase
+  id: N14ClothingHeadSuitbase
+  abstract: true
+  components:
+  - type: Clothing
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+
+- type: entity
+  parent: ClothingHeadBase
   id: N14ClothingHeadHatBaseHelmetMetal
   name: metal helmet
   abstract: true
@@ -593,7 +606,7 @@
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/prewarmilitaryhelmet.rsi
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: N14ClothingHeadSuitbase
   id: N14ClothingHeadHatHelmetRadHelmet
   name: radiation suit helmet
   description: A advance helmet used pre war to handle radioactive material.
@@ -613,7 +626,7 @@
     - HidesBeard
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: N14ClothingHeadSuitbase
   id: N14ClothingHeadHatHelmetFirefighterHelmet
   name: fire resistant helmet
   description: A advance helmet used pre war to handle high temperatures.
@@ -633,7 +646,7 @@
     - HidesBeard
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: N14ClothingHeadSuitbase
   id: N14ClothingHeadHatHelmetSpaceHelmet
   name: space helmet
   description: A strange Pre-War helmet, useful for doing moonwalks.
@@ -654,7 +667,7 @@
 
 #Chinese Stealth Suit
 - type: entity
-  parent: [ClothingHeadBase, BaseToggleClothing]
+  parent: [N14ClothingHeadSuitbase, BaseToggleClothing]
   id: N14ClothingHeadHatHelmetChineseStealthSuitHelmet
   name: chinese stealth helmet
   description: the peak of chinese technology.
