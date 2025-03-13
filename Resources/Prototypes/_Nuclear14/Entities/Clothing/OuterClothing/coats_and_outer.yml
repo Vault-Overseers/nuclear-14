@@ -10,6 +10,17 @@
   - type: Sprite
     state: icon
   - type: Craftable
+  - type: Storage
+    grid:
+    - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
 
 #MARK: Plain Coats and Clothing
 - type: entity
@@ -151,6 +162,9 @@
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutfollowerlabcoat.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutfollowerlabcoat.rsi
+  - type: Tag #For crafting
+    tags:
+      - FollowerLabcoat
   # - type: ClothingSpecialModifier
     # intelligenceModifier: 1
 
@@ -476,6 +490,7 @@
   id: N14ClothingOuterEnclaverOfficerCoat
   name: enclave officer coat
   description: A coat worn by Enclave officers. It has armor underneath.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Coats/falloutarmoredofficer.rsi
