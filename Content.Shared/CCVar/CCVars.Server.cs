@@ -43,6 +43,6 @@ public sealed partial class CCVars
 
     /** If enabled, automatically set weather. */
     public static readonly CVarDef<bool> AutoWeather =
-        CVarDef.Create("weather.auto", false, CVar.SERVERONLY);
+        CVarDef.Create("weather.auto", true, CVar.SERVERONLY);
 
 }
