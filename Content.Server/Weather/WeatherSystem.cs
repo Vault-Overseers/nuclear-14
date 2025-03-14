@@ -1,4 +1,5 @@
 using Content.Server.Administration;
+using Content.Server.GameTicking;
 using Content.Server.Maps;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -15,6 +16,7 @@ namespace Content.Server.Weather;
 
 public sealed class WeatherSystem : SharedWeatherSystem
 {
+    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IMapManager _map = default!;
@@ -41,7 +43,7 @@ public sealed class WeatherSystem : SharedWeatherSystem
     {
         base.Update(frameTime);
 
-        if (_config.GetCVar(CCVars.AutoWeather) && !WeatherRunning())
+        if (_config.GetCVar(CCVars.AutoWeather) && _gameTicker.RunLevel == GameRunLevel.InRound && !WeatherRunning())
         {
             var (weather, map) = SetRandomWeather();
             if (weather != null)
