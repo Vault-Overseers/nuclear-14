@@ -12,13 +12,12 @@
       - Knife
   - type: MeleeWeapon
     wideAnimationRotation: -135
+    attackRate: 0.8
     damage:
       types:
         Slash: 12
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
-    soundSwing:
-      collection: N14KnifeSwing
   - type: Sprite
   - type: Item
     size: Small
@@ -27,12 +26,19 @@
       - Slicing
     useSound:
       path: /Audio/Items/Culinary/chop.ogg
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Shitmed/Medical/Surgery/scalpel2.ogg
+  - type: Scalpel
+    speed: 0.6
 
 - type: entity
   name: kitchen knife
   parent: N14BaseKnife
   id: N14KitchenKnife
-  description: A general purpose Chef's Knife. Good for preparing food.
+  description: A general purpose chef's knife. Good for preparing food before and after it's alive.
   components:
   - type: Tag
     tags:
@@ -51,12 +57,14 @@
     sprite: _Nuclear14/Objects/Weapons/Melee/kitchen_knife.rsi
   - type: DisarmMalus
     malus: 0.225
+  - type: StaticPrice
+    price: 0
 
 - type: entity
   name: butcher's cleaver
   parent: N14BaseKnife
   id: N14ButchersCleaver
-  description: A huge blade used for chopping and chopping up meat.
+  description: "A huge blade used for hackin', whackin', and choppin' up meat."
   components:
   - type: Tag
     tags:
@@ -78,14 +86,18 @@
         Slash: 20
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/cleaver.rsi
+  - type: Scalpel
+    speed: 0.4
   - type: DisarmMalus
     malus: 0.225
+  - type: StaticPrice
+    price: 0
 
 - type: entity
   name: combat knife
   parent: N14BaseKnife
   id: N14CombatKnife
-  description: A deadly knife intended for melee confrontations.
+  description: A deadly serrated knife intended for melee confrontations.
   components:
   - type: Tag
     tags:
@@ -97,9 +109,7 @@
     state: icon
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: 1.5
-    soundSwing:
-      collection: N14KnifeSwing
+    attackRate: 0.8
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
   - type: DamageOtherOnHit
@@ -110,6 +120,8 @@
     sprite: _Nuclear14/Objects/Weapons/Melee/combat_knife.rsi
   - type: DisarmMalus
     malus: 0.225
+  - type: StaticPrice
+    price: 30
 
 - type: entity
   name: tribal knife
@@ -127,9 +139,7 @@
     state: icon
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: 1.5
-    soundSwing:
-      collection: N14KnifeSwing
+    attackRate: 0.8
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
   - type: DamageOtherOnHit
@@ -140,3 +150,20 @@
     sprite: _Nuclear14/Objects/Weapons/Melee/tribalknife.rsi
   - type: DisarmMalus
     malus: 0.225
+  - type: StaticPrice
+    price: 25
+
+- type: entity
+  name: brass Knife
+  parent: [N14BaseKnife, N14CombatKnife]
+  id: N14BrassKnife
+  description: Homemade brass knife with a cross-guard.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/brass_knife.rsi
+    size: 2
+    state: icon
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Melee/brass_knife.rsi
+  - type: StaticPrice
+    price: 20
