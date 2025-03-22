@@ -1,0 +1,138 @@
+- type: trait
+  id: LanguageChinese
+  category: Speech
+  points: -5
+  functions:
+    - !type:TraitModifyLanguages
+      languagesSpoken:
+        - Chinese
+      languagesUnderstood:
+        - Chinese
+
+- type: trait
+  id: LanguageTribal
+  category: Speech
+  points: -3
+  requirements:
+    - !type:CharacterDepartmentRequirement
+      inverted: true
+      departments:
+        - Tribe
+  functions:
+    - !type:TraitModifyLanguages
+      languagesSpoken:
+        - Tribal
+      languagesUnderstood:
+        - Tribal
+
+- type: trait
+  id: N14SignLanguage
+  category: Speech
+  points: -2
+  functions:
+    - !type:TraitModifyLanguages
+      languagesSpoken:
+        - Sign
+      languagesUnderstood:
+        - Sign
+
+- type: trait
+  id: N14BrotherBeep
+  category: Speech
+  points: -2
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14ExtremeAugKnight
+        - N14ExtremeAugScribe
+        - N14ExtremeAugPaladin
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - BrotherhoodWashington
+  functions:
+    - !type:TraitModifyLanguages
+      languagesSpoken:
+      languagesUnderstood:
+        - N14BrotherBeep
+
+- type: trait
+  id: N14Muted
+  category: Speech
+  points: 4
+  requirements:
+    - !type:CharacterJobRequirement
+      inverted: true
+      jobs:
+        - WastelandReporter
+        - TribalElder
+        - TownMayor
+        - TownSheriff
+        - NCRLT
+        - NCRRangerVeteran
+        - NCRSGT
+        - CaravanLeader
+        - BoSWashingtonCommander
+        - BoSWashingtonPaladin
+        - BoSMidPaladinCommander
+        - BoSMidPaladin
+        - Overseer
+        - VaultSecurity
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14Singer
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: Muted
+
+- type: trait
+  id: N14Stutter
+  category: Speech
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14FrontalLisp
+        - N14ScottishAccent
+        - N14Liar
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: StutteringAccent
+          matchRandomProb: 0.1
+          fourRandomProb: 0
+          threeRandomProb: 0
+          cutRandomProb: 0
+
+- type: trait
+  id: N14FrontalLisp
+  category: Speech
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14Stutter
+        - N14ScottishAccent
+        - N14Liar
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: FrontalLisp
+
+- type: trait
+  id: N14ScottishAccent
+  category: Speech
+  points: -1
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14Stutter
+        - N14FrontalLisp
+        - N14Liar
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: ScottishAccent

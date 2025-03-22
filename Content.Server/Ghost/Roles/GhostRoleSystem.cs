@@ -689,6 +689,7 @@ namespace Content.Server.Ghost.Roles
             }
 
             ghostRole.Taken = true;
+            UnregisterGhostRole((uid, ghostRole));
 
             if (component.DeleteOnSpawn)
                 QueueDel(uid);

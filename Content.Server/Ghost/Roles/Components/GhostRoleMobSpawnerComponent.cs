@@ -10,7 +10,7 @@ namespace Content.Server.Ghost.Roles.Components
     public sealed partial class GhostRoleMobSpawnerComponent : Component
     {
         [DataField]
-        public bool DeleteOnSpawn = true;
+        public bool DeleteOnSpawn = false;
 
         [DataField]
         public int AvailableTakeovers = 1;
