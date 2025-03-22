@@ -275,7 +275,7 @@ trait-description-N14ExtremeAugKnight =
 trait-name-N14ExtremeAugScribe = Extreme Augmentations
 trait-description-N14ExtremeAugScribe =
     You were heavily modified for your designated purpose within your chapter.
-    Your eyes cannot be blinded and your body is full of surgical equipment you can use anytime.
+    Your eyes cannot be blinded and your body is full of equipment to make surgeries performed by you faster.
     On top of that you are able to communicate via an encoded language.
 
 trait-name-N14ExtremeAugPaladin = Extreme Augmentations
