@@ -1,0 +1,439 @@
+- type: entity
+  name: Basic Pet
+  id: N14MobPetBasic
+  parent: N14MobBaseHostile
+  categories: [ HideSpawnMenu ]
+  description: Why are you even reading this?
+  components:
+  - type: NpcFactionMember
+    factions:
+      - Wastelander
+  - type: Puller
+    needsHands: false
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.75
+    baseSprintSpeed : 5.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.30
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: shepherd
+      sprite: _Nuclear14/Mobs/Animals/dogsheperd.rsi
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Critical
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      160: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: shepherd
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 6
+  - type: UniversalLanguageSpeaker
+  - type: PassiveDamage 
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 50
+    damage:
+      groups:
+        Brute: -0.25
+        Burn: -0.25
+        Toxin: -0.25
+
+- type: entity
+  name: Basic Mutt
+  id: N14MobPetDog
+  parent: N14MobPetBasic
+  description: A rather healthy dog, seems to have a collar with a name on it.
+  components:
+  - type: RadiationReceiver
+  - type: RandomMetadata
+    nameSegments: [names_N14pet_dog]
+  - type: InteractionPopup
+    interactSuccessString: petting-success-dog
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/small_dog_bark_happy.ogg
+  - type: ReplacementAccent
+    accent: dog
+
+- type: entity
+  name: MBoS Mutt
+  id: N14MobPetDogMBoS
+  parent: N14MobPetDog
+  description: A rather healthy dog, seems to have a collar with a name on it.
+  components:
+  - type: RadiationReceiver
+  - type: RandomMetadata
+    nameSegments: [names_N14pet_dog]
+  - type: NpcFactionMember
+    factions:
+      - BrotherhoodMidwest
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: dog
+      sprite: _Nuclear14/Mobs/Pets/dog_mbos.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      160: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dog
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Storage
+    grid:
+    - 0,0,3,2
+    maxItemSize: Normal
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+
+- type: entity
+  name: WBoS Mutt
+  id: N14MobPetDogWBoS
+  parent: N14MobPetDog
+  description: A rather healthy dog, seems to have a collar with a name on it.
+  components: #This dog is intentionally missing the RadiationReceiver due cybernetic shenanigans
+  - type: RandomMetadata
+    nameSegments: [names_N14pet_dog]
+  - type: NpcFactionMember
+    factions:
+      - BrotherhoodWashington
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: dog
+      sprite: _Nuclear14/Mobs/Pets/dog_wbos.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      200: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dog
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+
+- type: entity
+  name: NCR Mutt
+  id: N14MobPetDogNCR
+  parent: N14MobPetDog
+  description: A rather healthy dog, seems to have a collar with a name on it.
+  components:
+  - type: RadiationReceiver
+  - type: RandomMetadata
+    nameSegments: [names_N14pet_dog]
+  - type: NpcFactionMember
+    factions:
+      - NCR
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: rottweiler
+      sprite: _Nuclear14/Mobs/Animals/dogrottweiler.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      160: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: rottweiler
+      Critical:
+        Base: rottweiler_sleep
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 8
+
+- type: entity
+  name: CC Mutt
+  id: N14MobPetDogCC
+  parent: N14MobPetDog
+  description: A rather healthy dog, seems to have a collar with a name on it.
+  components:
+  - type: RadiationReceiver
+  - type: RandomMetadata
+    nameSegments: [names_N14pet_dog]
+  - type: NpcFactionMember
+    factions:
+      - CaravanCompany
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: labrador
+      sprite: _Nuclear14/Mobs/Animals/doglabrador.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Critical
+      150: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: labrador
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.75
+    baseSprintSpeed : 6.5
+
+# Dogs end here.
+- type: entity
+  name: Pet Roach
+  id: N14MobPetRoach
+  parent: N14MobPetBasic
+  description: A rather healthy dog, seems to have a collar with a name on it.
+  components:
+  - type: RandomMetadata
+    nameSegments: [names_N14pet_insect]
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: smileroach
+      scale: 0.8, 0.8
+      sprite: _Nuclear14/Mobs/Pets/smileroach.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Critical
+      100: Dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: smileroach
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 3
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2
+    baseSprintSpeed : 4
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadroachFillet
+      amount: 1
+  - type: InteractionPopup
+    interactSuccessString: petting-success-crab
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/small_dog_bark_happy.ogg
+  - type: ReplacementAccent
+    accent: xeno
+
+- type: entity
+  name: Pet Ant
+  id: N14MobPetAnt
+  parent: N14MobPetRoach
+  description: It's an ant...but giant. Watch for the nippers.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: muleant
+      sprite: _Nuclear14/Mobs/Pets/muleant.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: muleant
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.3
+        density: 400
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: Storage
+    grid:
+    - 0,0,9,6
+    maxItemSize: Large
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: Butcherable
+    spawned:
+    - id: N14MaterialAntChitin1
+      amount: 2
+    - id: N14FoodMeatRadRaw
+      amount: 3
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 60
+    animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
+    damage:
+      groups:
+        Brute: 7
+
+- type: entity
+  name: Pet Rat
+  id: N14MobPetPigrat
+  parent: N14MobPetBasic
+  description: Part pig, part rat, full pest. Watch out for the teeth.
+  components:
+  - type: RandomMetadata
+    nameSegments: [names_N14pet_dog]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.30
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: petrat
+      sprite: _Nuclear14/Mobs/Pets/petrat.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Critical
+      120: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: petrat
+      Critical:
+        Base: petrat
+      Dead:
+        Base: dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4.5
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 6
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatPigrat
+      amount: 3
+  - type: InteractionPopup
+    interactSuccessString: petting-success-crab
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/small_dog_bark_happy.ogg
+  - type: ReplacementAccent
+    accent: xeno

@@ -214,11 +214,11 @@ public sealed partial class TraitModifyLanguages : TraitFunction
 
         if (RemoveLanguagesSpoken is not null)
             foreach (var lang in RemoveLanguagesSpoken)
-                language.RemoveLanguage(uid, lang, true, false);
+                language.RemoveLanguage(uid, lang, false, false); /// N14 change to allow multiple language trait pick.
 
         if (RemoveLanguagesUnderstood is not null)
             foreach (var lang in RemoveLanguagesUnderstood)
-                language.RemoveLanguage(uid, lang, false, true);
+                language.RemoveLanguage(uid, lang, false, false); /// N14 change to allow multiple language trait pick.
 
         if (LanguagesSpoken is not null)
             foreach (var lang in LanguagesSpoken)

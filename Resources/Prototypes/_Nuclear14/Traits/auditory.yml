@@ -1,0 +1,68 @@
+- type: trait
+  id: N14Paracusia
+  category: Auditory
+  points: 2
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: Paracusia
+          minTimeBetweenIncidents: 0.1
+          maxTimeBetweenIncidents: 300
+          maxSoundDistance: 7
+          sounds:
+            collection: Paracusia
+
+- type: trait
+  id: N14Snoring
+  category: Auditory
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: Snoring
+
+- type: trait
+  id: N14Stomper
+  category: Auditory
+  points: 0
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14Sneak
+  functions:
+    - !type:TraitReplaceComponent
+      components:
+        - type: FootstepVolumeModifier
+          sprintVolumeModifier: 15
+          walkVolumeModifier: 15
+
+- type: trait
+  id: N14Sneak
+  category: Auditory
+  points: -2
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14Stomper
+  functions:
+    - !type:TraitReplaceComponent
+      components:
+        - type: FootstepVolumeModifier
+          sprintVolumeModifier: -10
+          walkVolumeModifier: -10
+
+- type: trait
+  id: N14Singer
+  category: Auditory
+  points: -3
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14Muted
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: Singer
+          proto: NormalSinger
