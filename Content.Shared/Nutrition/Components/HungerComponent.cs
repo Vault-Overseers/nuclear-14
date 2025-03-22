@@ -24,7 +24,7 @@ public sealed partial class HungerComponent : Component
     /// The base amount at which <see cref="CurrentHunger"/> decays.
     /// </summary>
     [DataField("baseDecayRate"), ViewVariables(VVAccess.ReadWrite)]
-    public float BaseDecayRate = 0.0096f;
+    public float BaseDecayRate = 0.008f;
 
     /// <summary>
     /// The actual amount at which <see cref="CurrentHunger"/> decays.

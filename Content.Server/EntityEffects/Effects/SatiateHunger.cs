@@ -13,7 +13,7 @@ namespace Content.Server.EntityEffects.Effects
     /// </summary>
     public sealed partial class SatiateHunger : EntityEffect
     {
-        private const float DefaultNutritionFactor = 2.55f;
+        private const float DefaultNutritionFactor = 3.0f;
 
         /// <summary>
         ///     How much hunger is satiated.

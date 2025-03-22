@@ -34,6 +34,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
+using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -67,6 +68,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
     [Dependency] private   readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly IEntityManager _entManager = default!;
 
     private const float InteractNextFire = 0.3f;
     private const double SafetyNextFire = 0.5;
@@ -500,6 +502,15 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (playSound && TryComp<CartridgeAmmoComponent>(entity, out var cartridge))
         {
             Audio.PlayPvs(cartridge.EjectSound, entity, AudioParams.Default.WithVariation(SharedContentAudioSystem.DefaultVariation).WithVolume(-1f));
+        }
+
+        // Make spent cartridges unpickable and automatically despawn when ejected.
+        if (TryComp<CartridgeAmmoComponent>(entity, out var cartridge2) && cartridge2.Spent)
+        {
+            var despawn = EnsureComp<TimedDespawnComponent>(entity);
+            despawn.Lifetime = 15f * 60; // 15 minutes
+
+            _entManager.RemoveComponent<ItemComponent>(entity);
         }
     }
 

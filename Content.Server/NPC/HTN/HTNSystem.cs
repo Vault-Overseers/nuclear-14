@@ -232,28 +232,6 @@ public sealed class HTNSystem : EntitySystem
                     {
                         StartupTask(comp.Plan.Tasks[comp.Plan.Index], comp.Blackboard, comp.Plan.Effects[comp.Plan.Index]);
                     }
-
-                    // Send debug info
-                    foreach (var session in _subscribers)
-                    {
-                        var text = new StringBuilder();
-
-                        if (comp.Plan != null)
-                        {
-                            text.AppendLine($"BTR: {string.Join(", ", comp.Plan.BranchTraversalRecord)}");
-                            text.AppendLine($"tasks:");
-                            var root = comp.RootTask;
-                            var btr = new List<int>();
-                            var level = -1;
-                            AppendDebugText(root, text, comp.Plan.BranchTraversalRecord, btr, ref level);
-                        }
-
-                        RaiseNetworkEvent(new HTNMessage()
-                        {
-                            Uid = GetNetEntity(uid),
-                            Text = text.ToString(),
-                        }, session.Channel);
-                    }
                 }
                 // Keeping old plan
                 else
@@ -283,7 +261,32 @@ public sealed class HTNSystem : EntitySystem
     }
 // Corvax-end
 
-    private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)
+    private void HTNDebug(HTNComponent comp)
+    {
+        // Send debug info
+        foreach (var session in _subscribers)
+        {
+            var text = new StringBuilder();
+
+            if (comp.Plan != null)
+            {
+                text.AppendLine($"BTR: {string.Join(", ", comp.Plan.BranchTraversalRecord)}");
+                text.AppendLine($"tasks:");
+                var root = comp.RootTask;
+                var btr = new List<int>();
+                var level = -1;
+                AppendDebugText(root, text, comp.Plan.BranchTraversalRecord, btr, ref level, comp.Plan);
+            }
+
+            RaiseNetworkEvent(new HTNMessage()
+            {
+                Uid = GetNetEntity(comp.Owner),
+                Text = text.ToString(),
+            }, session.Channel);
+        }
+    }
+
+    private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level, HTNPlan plan)
     {
         // If it's the selected BTR then highlight.
         for (var i = 0; i < btr.Count; i++)
@@ -295,6 +298,12 @@ public sealed class HTNSystem : EntitySystem
 
         if (task is HTNPrimitiveTask primitive)
         {
+            // Highlight current task
+            if (plan.CurrentTask == primitive && btr.SequenceEqual(plan.BranchTraversalRecord))
+            {
+                // Still results in false positive if current branch contains multiple of the same task...
+                text.Append("> ");
+            }
             text.AppendLine(primitive.ToString());
             return;
         }
@@ -310,11 +319,10 @@ public sealed class HTNSystem : EntitySystem
             {
                 var branch = branches[i];
                 btr.Add(i);
-                text.AppendLine($" branch {string.Join(", ", btr)}:");
 
                 foreach (var sub in branch.Tasks)
                 {
-                    AppendDebugText(sub, text, planBtr, btr, ref level);
+                    AppendDebugText(sub, text, planBtr, btr, ref level, plan);
                 }
 
                 btr.RemoveAt(btr.Count - 1);
@@ -391,6 +399,8 @@ public sealed class HTNSystem : EntitySystem
                     throw new InvalidOperationException();
             }
         }
+
+        HTNDebug(component);
     }
 
     public void ShutdownTask(HTNOperator currentOperator, NPCBlackboard blackboard, HTNOperatorStatus status)
