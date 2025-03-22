@@ -3,45 +3,67 @@
   name: job-name-chaplain
   description: job-description-chaplain
   playTimeTracker: JobChaplain
-  setPreference: false
   requirements:
     - !type:CharacterDepartmentTimeRequirement
-      department: Epistemics # DeltaV - Epistemics Department replacing Science
-      min: 14400 #DeltaV 4 hours
-    # - !type:CharacterLogicOrRequirement
-      # requirements:
-        # - !type:CharacterSpeciesRequirement
-          # inverted: true
-          # species:
-            # - IPC
+      department: Epistemics # Chaplain is now one of the station's "Crew-Aligned Wizards"
+      min: 14400 # 4 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          inverted: true
+          species:
+            - IPC
         # - !type:CharacterTraitRequirement
           # traits:
             # - AnomalousPositronics
+    # - !type:CharacterLogicOrRequirement
+      # requirements:
+        # - !type:CharacterSpeciesRequirement
+          # species:
+            # - Shadowkin
+        # - !type:CharacterTraitRequirement
+          # inverted: true
+          # traits:
+            # - ShadowkinBlackeye
   startingGear: ChaplainGear
   icon: "JobIconChaplain"
   supervisors: job-supervisors-rd
   access:
   - Chapel
-  - Research # DeltaV - Move Chaplain into Epistemics
+  - Research
   - Maintenance
   special:
   - !type:AddComponentSpecial
     components:
-    - type: BibleUser #Lets them heal with bibles
-    # - type: Psionic
-      # powerRollMultiplier: 3
-    # - type: InnatePsionicPowers
-      # powersToAdd:
-        # - TelepathyPower
+    - type: BibleUser
+    - type: Psionic
+      powerRollMultiplier: 3
+    - type: InnatePsionicPowers
+      powersToAdd:
+        - TelepathyPower
+        - HealingWordPower
+        - SummonRemiliaPower
+  setPreference: false
 
 - type: startingGear
   id: ChaplainGear
+  subGear:
+  - ChaplainPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitChaplain
-    back: ClothingBackpackChaplainFilled
+    back: ClothingBackpack
     shoes: ClothingShoesColorBlack
     id: ChaplainPDA
-    ears: ClothingHeadsetScience # DeltaV - Move Chaplain into Epistemics
+    ears: ClothingHeadsetScience
+    pocket1: BookPsionicsGuidebook
   innerClothingSkirt: ClothingUniformJumpskirtChaplain
   satchel: ClothingBackpackSatchelChaplainFilled
   duffelbag: ClothingBackpackDuffelChaplainFilled
+
+- type: startingGear
+  id: ChaplainPlasmamanGear
+  parent: BasePlasmamanGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitChaplain
+    head: ClothingHeadEnvirohelmChaplain
+    gloves: ClothingHandsGlovesEnviroglovesBlack

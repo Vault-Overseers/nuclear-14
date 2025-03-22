@@ -1,0 +1,67 @@
+- type: trait
+  id: N14Blindness
+  category: Visual
+  points: 10
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14Photophobia
+        - N14Nearsighted
+        - N14GooglyEyes
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: PermanentBlindness
+
+- type: trait
+  id: N14Nearsighted
+  category: Visual
+  points: 1
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14Blindness
+        - N14GooglyEyes
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: PermanentBlindness
+          blindness: 4
+
+- type: trait
+  id: N14GooglyEyes #It's technically an augmentation and should be in the physical file & category, but effects sight and gotta put something in this category.
+  category: Visual
+  points: -5
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14ExtremeAugScribe
+        - N14ExtremeAugPaladin
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: FlashImmunity
+        - type: EyeProtection
+
+- type: trait
+  id: N14Photophobia
+  category: Visual
+  points: 1
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14ExtremeAugScribe
+        - N14ExtremeAugPaladin
+        - N14GooglyEyes
+        - N14Blindness
+  functions:
+    - !type:TraitReplaceComponent
+      components:
+        - type: Flashable
+          eyeDamageChance: 0.3
+          eyeDamage: 1
+          durationMultiplier: 1.5

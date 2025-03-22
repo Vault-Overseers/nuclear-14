@@ -1,0 +1,576 @@
+# Biological and conditioning traits
+- type: trait
+  id: N14PillowKnuckles
+  category: Physical
+  points: 1
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14IronFist
+        - N14RadClaws
+  functions:
+    - !type:TraitModifyUnarmed
+      flatDamageIncrease:
+        types:
+          Blunt: -1
+
+- type: trait
+  id: N14IronFist
+  category: Physical
+  points: -2
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14PillowKnuckles
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+  functions:
+    - !type:TraitModifyUnarmed
+      flatDamageIncrease:
+        types:
+          Blunt: 2
+
+- type: trait
+  id: N14RadClaws
+  category: Physical
+  points: -2
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14PillowKnuckles
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Ghoul
+        - GhoulGlowing
+  functions:
+    - !type:TraitModifyUnarmed
+      flatDamageIncrease:
+        types:
+          Slash: 1
+          Radiation: 1
+
+- type: trait
+  id: N14WeakLiquor
+  category: Physical
+  points: 0
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14PartyAnimal
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: LightweightDrunk
+          boozeStrengthMultiplier: 2
+
+- type: trait
+  id: N14PartyAnimal
+  category: Physical
+  points: -1
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14WeakLiquor
+  functions:
+    - !type:TraitReplaceComponent
+      components:
+        - type: LightweightDrunk
+          boozeStrengthMultiplier: 0.5
+
+- type: trait
+  id: N14ShortArms
+  category: Physical
+  points: 1
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14Blitz
+  functions:
+    - !type:TraitModifyUnarmed
+      rangeModifier: 0.9
+
+- type: trait
+  id: N14Blitz
+  category: Physical
+  points: -2
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14ShortArms
+  functions:
+    - !type:TraitModifyUnarmed
+      rangeModifier: 1.15
+
+- type: trait
+  id: N14ScriptedDeath
+  category: Physical
+  points: 6
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14LifeTaker
+        - N14LifeGiver
+  functions:
+    - !type:TraitReplaceComponent
+      components:
+        - type: DeadModifier
+          deadThresholdModifier: -100
+
+- type: trait
+  id: N14LifeTaker
+  category: Physical
+  points: 2
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14ScriptedDeath
+        - N14LifeGiver
+  functions:
+    - !type:TraitReplaceComponent
+      components:
+        - type: CritModifier
+          critThresholdModifier: -10
+    - !type:TraitReplaceComponent
+      components:
+        - type: DeadModifier
+          deadThresholdModifier: -20
+
+- type: trait
+  id: N14LifeGiver
+  category: Physical
+  points: -3
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14ScriptedDeath
+        - N14LifeTaker
+  functions:
+    - !type:TraitReplaceComponent
+      components:
+        - type: CritModifier
+          critThresholdModifier: 5
+    - !type:TraitReplaceComponent
+      components:
+        - type: DeadModifier
+          deadThresholdModifier: 10
+
+- type: trait
+  id: N14BadReflexes
+  category: Physical
+  points: 1
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14LightningHands
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+        - Ghoul
+  functions:
+    - !type:TraitModifyUnarmed
+      attackRateModifier: 1.1
+
+- type: trait
+  id: N14LightningHands
+  category: Physical
+  points: -2
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14BadReflexes
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+        - Ghoul
+  functions:
+    - !type:TraitModifyUnarmed
+      attackRateModifier: 0.9
+
+- type: trait
+  id: N14Poisoned
+  category: Physical
+  points: 3
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14UnnaturalReg
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+  functions:
+    - !type:TraitReplaceComponent
+      components:
+        - type: PassiveDamage
+          allowedStates:
+          - Alive
+          - Critical
+          damageCap: 200
+          damage:
+            types:
+              Poison: 0.07
+
+- type: trait
+  id: N14UnnaturalReg
+  category: Physical
+  points: -7
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14Poisoned
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+  functions:
+    - !type:TraitReplaceComponent
+      components:
+        - type: PassiveDamage
+          allowedStates:
+          - Alive
+          - Critical
+          damageCap: 200
+          damage:
+            groups:
+              Brute: -0.035
+              Burn: -0.035
+              Airloss: -0.035
+              Toxin: -0.035
+
+- type: trait
+  id: N14WorldChampion
+  category: Physical
+  points: -6 #Make super mutants unable to take this when they get added
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: MeleeThrowOnHit
+          speed: 10
+          lifetime: 0.025
+          minlifetime: 0.0125
+
+- type: trait
+  id: N14SittingDuck
+  category: Physical
+  points: 2
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14MovingAsset
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: TraitSpeedModifier
+          sprintModifier: 0.9
+          walkModifier: 0.9
+          requiredTriggeredSpeedModifier: 0.9
+
+- type: trait
+  id: N14MovingAsset
+  category: Physical
+  points: -2
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14SittingDuck
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: TraitSpeedModifier
+          sprintModifier: 1.05
+          walkModifier: 1.05
+          requiredTriggeredSpeedModifier: 1.05
+
+- type: trait
+  id: N14StiffJoints
+  category: Physical
+  points: 2
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14DeskNinja
+  functions:
+    - !type:TraitReplaceComponent
+      components:
+        - type: ClimbDelayModifier
+          climbDelayMultiplier: 1.25
+        - type: SlippableModifier
+          paralyzeTimeMultiplier: 1.25
+
+- type: trait
+  id: N14DeskNinja
+  category: Physical
+  points: -4
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14StiffJoints
+  functions:
+    - !type:TraitReplaceComponent
+      components:
+        - type: ClimbDelayModifier
+          climbDelayMultiplier: 0.5
+        - type: SlippableModifier
+          paralyzeTimeMultiplier: 0.5
+
+- type: trait
+  id: N14SilentTakedown
+  category: Physical
+  points: -3
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14ExtremeAugKnight
+        - N14ExtremeAugScribe
+        - N14ExtremeAugPaladin
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: StaminaDamageOnHit
+          damage: 8
+
+- type: trait
+  id: N14GammaShield
+  category: Physical
+  points: -8
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Ghoul
+        - GhoulGlowing
+  functions:
+    - !type:TraitAddArmor
+      damageModifierSets:
+        - N14GammaShield
+
+# Agumentations and implants start here
+- type: trait
+  id: N14HandyTools
+  category: Physical
+  points: -5
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14ExtremeAugKnight
+        - N14ExtremeAugScribe
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: Prying
+          speedModifier: 0.75
+
+- type: trait
+  id: N14DermalArmorWaster
+  category: Physical
+  points: -8
+  requirements:
+    - !type:CharacterJobRequirement
+      inverted: true
+      jobs:
+        - BoSMidPaladinCommander
+        - BoSMidPaladin
+        - BoSMidKnight
+        - BoSWashingtonCommander
+        - BoSWashingtonPaladin
+        - BoSWashingtonKnight
+        - VaultDoctor
+        - VaultDweller
+        - VaultEngineer
+        - TribalElder
+        - Tribal
+        - TribalFarmer
+        - TribalHealer
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14DermalArmor
+        - N14PhoenixArmor
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+  functions:
+    - !type:TraitAddArmor
+      damageModifierSets:
+        - N14DermalArmor
+
+- type: trait
+  id: N14DermalArmor
+  category: Physical
+  points: -6
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - BoSMidPaladinCommander
+        - BoSMidPaladin
+        - BoSMidKnight
+        - BoSWashingtonCommander
+        - BoSWashingtonPaladin
+        - BoSWashingtonKnight
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14DermalArmorWaster
+        - N14PhoenixArmor
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+  functions:
+    - !type:TraitAddArmor
+      damageModifierSets:
+        - N14DermalArmor
+
+# Midwestern chapter-only augmentations
+- type: trait
+  id: N14PhoenixArmor
+  category: Physical
+  points: -6
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - BoSMidPaladinCommander
+        - BoSMidPaladin
+        - BoSMidKnight
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14DermalArmorWaster
+        - N14DermalArmor
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+  functions:
+    - !type:TraitAddArmor
+      damageModifierSets:
+        - N14PhoenixArmor
+
+# Washington chapter-only augmentations
+- type: trait
+  id: N14ExtremeAugKnight
+  category: Physical
+  points: -8
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - BoSWashingtonKnight
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14DermalArmor
+        - N14HandyTools
+        - N14IronFist
+        - N14PillowKnuckles
+        - N14SilentTakedown
+        - N14BrotherBeep
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+  functions:
+    - !type:TraitModifyUnarmed
+      flatDamageIncrease:
+        types:
+          Blunt: 1
+    - !type:TraitAddComponent
+      components:
+        - type: Prying
+          speedModifier: 0.75
+        - type: StaminaDamageOnHit
+          damage: 6
+    - !type:TraitModifyLanguages
+      languagesSpoken:
+        - N14BrotherBeep
+      languagesUnderstood:
+        - N14BrotherBeep
+
+- type: trait
+  id: N14ExtremeAugScribe
+  category: Physical
+  points: -8
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - BoSWashingtonScribe
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14DermalArmor
+        - N14GammaShield
+        - N14GooglyEyes
+        - N14HandyTools
+        - N14BrotherBeep
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+        - Ghoul
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: FlashImmunity
+        - type: EyeProtection
+        - type: SurgerySpeedModifier
+          speedModifier: 1.33
+    - !type:TraitModifyLanguages
+      languagesSpoken:
+        - N14BrotherBeep
+      languagesUnderstood:
+        - N14BrotherBeep
+
+- type: trait
+  id: N14ExtremeAugPaladin
+  category: Physical
+  points: -8
+  requirements:
+    - !type:CharacterJobRequirement
+      jobs:
+        - BoSWashingtonCommander
+        - BoSWashingtonPaladin
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14DermalArmor
+        - N14GammaShield
+        - N14GooglyEyes
+        - N14HandyTools
+        - N14IronFist
+        - N14PillowKnuckles
+        - N14RadClaws
+        - N14SilentTakedown
+        - N14BrotherBeep
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+        - Ghoul
+  functions:
+    - !type:TraitModifyUnarmed
+      flatDamageIncrease:
+        types:
+          Blunt: 1
+    - !type:TraitAddComponent
+      components:
+        - type: FlashImmunity
+        - type: EyeProtection
+        - type: StaminaDamageOnHit
+          damage: 6
+    - !type:TraitModifyLanguages
+      languagesSpoken:
+        - N14BrotherBeep
+      languagesUnderstood:
+        - N14BrotherBeep
