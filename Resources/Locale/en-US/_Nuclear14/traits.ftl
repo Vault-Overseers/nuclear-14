@@ -286,7 +286,7 @@ trait-description-N14ExtremeAugPaladin =
 
 trait-name-N14Pickpocket = Pickpocket
 trait-description-N14Pickpocket = 
-    asd
+    You are really good at taking people's things without consent. You steal from them faster and there is a chance it doesn't even get noticed.
 
 trait-name-N14Muted = Muted
 trait-description-N14Muted =
