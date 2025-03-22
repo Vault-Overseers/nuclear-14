@@ -596,7 +596,7 @@ namespace Content.Server.Ghost.Roles
                 return;
 
             ghostRole.Taken = true;
-            UnregisterGhostRole((uid, ghostRole));
+            UnregisterGhostRole((uid, ghostRole)); // N14 change to make to make the ghetto ghost role follower system functional.
         }
 
         private void OnMindRemoved(EntityUid uid, GhostTakeoverAvailableComponent component, MindRemovedMessage args)
