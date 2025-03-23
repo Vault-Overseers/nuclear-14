@@ -1,0 +1,394 @@
+- type: trait
+  id: N14CarefulSteps
+  category: Mental
+  points: -4
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: StepTriggerImmune
+          whitelist:
+            types:
+              - Shard
+              - Landmine
+              - Mousetrap
+              - SlipEntity
+
+- type: trait
+  id: N14Pickpocket
+  category: Mental
+  points: -6
+  functions:
+    - !type:TraitReplaceComponent
+      components:
+        - type: Thieving
+          ignoreStripHidden: true
+          stealth: Subtle
+          stripTimeReduction: 0
+          stripTimeMultiplier: 0.667
+
+- type: trait
+  id: N14Pacifist
+  category: Mental
+  points: 8
+  requirements:
+    - !type:CharacterJobRequirement
+      inverted: true
+      jobs:
+        - TownSheriff
+        - TownDeputy
+        - NCRLT
+        - NCRRangerVeteran
+        - NCRRanger
+        - NCRSGT
+        - NCRWS
+        - NCREngineer
+        - NCRSoldier
+        - NCRCadet
+        - CaravanGuard
+        - BoSWashingtonCommander
+        - BoSWashingtonPaladin
+        - BoSWashingtonKnight
+        - BoSWashingtonInitiate
+        - BoSMidPaladinCommander
+        - BoSMidPaladin
+        - BoSMidKnight
+        - BoSMidSquire
+        - VaultSecurity
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: Pacified
+
+- type: trait
+  id: N14Narcolepsy
+  category: Mental
+  points: 2
+  functions:
+    - !type:TraitAddComponent
+      components:
+      - type: Narcolepsy
+        timeBetweenIncidents: 300, 600
+        durationOfIncident: 10, 30
+
+- type: trait
+  id: N14CPRTraining
+  category: Mental
+  points: -4
+  requirements:
+    - !type:CharacterJobRequirement
+      inverted: true
+      jobs:
+        - TribalHealer
+        - TownDoctor
+        - NCRMedic
+        - BoSWashingtonScribe
+        - BoSMidScribe
+        - VaultDoctor
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: CPRTraining
+
+- type: trait
+  id: N14SelfAware
+  category: Mental
+  points: -4
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: SelfAware
+          analyzableTypes:
+            - Blunt
+            - Slash
+            - Piercing
+            - Heat
+            - Shock
+            - Cold
+            - Caustic
+          detectableGroups:
+            - Airloss
+            - Toxin
+
+- type: trait
+  id: N14Liar
+  category: Mental
+  points: 1
+  requirements:
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14FrontalLisp
+        - N14ScottishAccent
+        - N14Stutter
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: ReplacementAccent
+          replacementChance: 0.2
+          accent: liar
+
+# The flood of various & mixed pet traits shall begin here
+- type: trait
+  id: N14PetRoach
+  category: Mental
+  points: -3
+  requirements:
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - Wastelander
+        - Tribe
+        - Townsfolk
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14PetPigrat
+        - N14PetEyebot
+        - N14PetDog
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: GhostRole
+          name: ghost-role-information-n14pet-roach-name
+          description: ghost-role-information-n14pet-generic-description
+          rules: ghost-role-component-default-rules
+        - type: GhostRoleMobSpawner
+          prototype: N14MobPetRoach
+
+- type: trait
+  id: N14PetPigrat
+  category: Mental
+  points: -4
+  requirements:
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - Wastelander
+        - Tribe
+        - Townsfolk
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14PetRoach
+        - N14PetEyebot
+        - N14PetDog
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: GhostRole
+          name: ghost-role-information-n14pet-pigrat-name
+          description: ghost-role-information-n14pet-generic-description
+          rules: ghost-role-component-default-rules
+        - type: GhostRoleMobSpawner
+          prototype: N14MobPetPigrat
+
+- type: trait
+  id: N14PetAnt
+  category: Mental
+  points: -5
+  requirements:
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - CaravanCompany
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14PetDogCC
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: GhostRole
+          name: ghost-role-information-n14pet-ant-name
+          description: ghost-role-information-n14pet-hauler-description
+          rules: ghost-role-component-default-rules
+        - type: GhostRoleMobSpawner
+          prototype: N14MobPetAnt
+
+# All the eyebots shall be here.
+- type: trait
+  id: N14PetEyebot
+  category: Mental
+  points: -6
+  requirements:
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - Wastelander
+        - Townsfolk
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14PetRoach
+        - N14PetPigrat
+        - N14PetDog
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: GhostRole
+          name: ghost-role-information-n14pet-eyebot-name
+          description: ghost-role-information-n14pet-eyebot-description
+          rules: ghost-role-component-default-rules
+        - type: GhostRoleMobSpawner
+          prototype: N14MobPetEyebot
+
+- type: trait
+  id: N14PetEyebotMBoS
+  category: Mental
+  points: -6
+  requirements:
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - BrotherhoodMidwest
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14PetDogMBoS
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: GhostRole
+          name: ghost-role-information-n14pet-eyebot-mbos-name
+          description: ghost-role-information-n14pet-eyebot-description
+          rules: ghost-role-component-default-rules
+        - type: GhostRoleMobSpawner
+          prototype: N14MobPetEyebotMBoS
+
+- type: trait
+  id: N14PetEyebotWBoS
+  category: Mental
+  points: -6
+  requirements:
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - BrotherhoodWashington
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14PetDogWBoS
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: GhostRole
+          name: ghost-role-information-n14pet-eyebot-wbos-name
+          description: ghost-role-information-n14pet-eyebot-description
+          rules: ghost-role-component-default-rules
+        - type: GhostRoleMobSpawner
+          prototype: N14MobPetEyebotWBoS
+
+# All the dog pet traits because every faction that has turrets needs their own variant
+- type: trait
+  id: N14PetDog
+  category: Mental
+  points: -6
+  requirements:
+    - !type:CharacterOverallTimeRequirement
+      min: 72000
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - Wastelander
+        - Tribe
+        - Townsfolk
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14PetRoach
+        - N14PetPigrat
+        - N14PetEyebot
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: GhostRole
+          name: ghost-role-information-n14pet-dog-name
+          description: ghost-role-information-n14pet-generic-description
+          rules: ghost-role-component-default-rules
+        - type: GhostRoleMobSpawner
+          prototype: N14MobPetDog
+
+- type: trait
+  id: N14PetDogMBoS
+  category: Mental
+  points: -6
+  requirements:
+    - !type:CharacterOverallTimeRequirement
+      min: 72000
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - BrotherhoodMidwest
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14PetEyebotMBoS
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: GhostRole
+          name: ghost-role-information-n14pet-dog-mbos-name
+          description: ghost-role-information-n14pet-hauler-description
+          rules: ghost-role-component-default-rules
+        - type: GhostRoleMobSpawner
+          prototype: N14MobPetDogMBoS
+
+- type: trait
+  id: N14PetDogWBoS
+  category: Mental
+  points: -6
+  requirements:
+    - !type:CharacterOverallTimeRequirement
+      min: 72000
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - BrotherhoodWashington
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14PetEyebotWBoS
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: GhostRole
+          name: ghost-role-information-n14pet-dog-wbos-name
+          description: ghost-role-information-n14pet-generic-description
+          rules: ghost-role-component-default-rules
+        - type: GhostRoleMobSpawner
+          prototype: N14MobPetDogWBoS
+
+- type: trait
+  id: N14PetDogCC
+  category: Mental
+  points: -5
+  requirements:
+    - !type:CharacterOverallTimeRequirement
+      min: 72000
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - CaravanCompany
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - N14PetAnt
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: GhostRole
+          name: ghost-role-information-n14pet-dog-cc-name
+          description: ghost-role-information-n14pet-generic-description
+          rules: ghost-role-component-default-rules
+        - type: GhostRoleMobSpawner
+          prototype: N14MobPetDogCC
+
+- type: trait
+  id: N14PetDogNCR
+  category: Mental
+  points: -5 # The NCR doesn't have any other pet options, I felt bad and made this one whole point cheaper for them
+  requirements:
+    - !type:CharacterOverallTimeRequirement
+      min: 72000
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - NCR
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: GhostRole
+          name: ghost-role-information-n14pet-dog-ncr-name
+          description: ghost-role-information-n14pet-generic-description
+          rules: ghost-role-component-default-rules
+        - type: GhostRoleMobSpawner
+          prototype: N14MobPetDogNCR
