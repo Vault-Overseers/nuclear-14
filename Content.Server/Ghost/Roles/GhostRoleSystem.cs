@@ -689,6 +689,7 @@ namespace Content.Server.Ghost.Roles
             }
 
             ghostRole.Taken = true;
+            UnregisterGhostRole((uid, ghostRole)); // N14 change to make to make the ghetto ghost role follower system functional.
 
             if (component.DeleteOnSpawn)
                 QueueDel(uid);

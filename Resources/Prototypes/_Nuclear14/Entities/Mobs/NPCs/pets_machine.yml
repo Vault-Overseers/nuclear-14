@@ -31,7 +31,6 @@
     - Stutter
     - Electrocution
   - type: MovedByPressure
-  - type: Examiner
   - type: Physics
     bodyType: KinematicController
   - type: NameIdentifier
@@ -66,6 +65,7 @@
   - type: MobMover
   - type: Body
     prototype: Bot
+  - type: StepTriggerImmune
   - type: RandomMetadata
     nameSegments: [names_N14pet_robot]
 # Let's see how much this remains functional, butchered MobSiliconBase, it is.
@@ -78,6 +78,9 @@
   components:
   - type: InputMover
   - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
   - type: NpcFactionMember
     factions:
     - Wastelander
@@ -109,9 +112,9 @@
             radius: 0.4
         density: 150
         mask:
-        - SmallMobLayer
+        - MobMask
         layer:
-        - SmallMobLayer
+        - MobLayer
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 6
@@ -143,75 +146,20 @@
     enabled: true
     toggleOnInteract: true
     IsSpeaker: true
-  - type: LanguageKnowledge
-    speaks:
-    - N14Robot
-    understands:
-    - N14Dog
-    - N14Insect
-    - N14Robot
-    - English
-    - Tribal
-    - Chinese
-    - Sign
-  - type: HandheldLight
-    toggleOnInteract: false
-    addPrefix: true
-    blinkingBehaviourId: blinking
-    radiatingBehaviourId: radiating
-  - type: ToggleableLightVisuals
-  - type: PointLight
-    enabled: false
-    radius: 4.5
-    energy: 1
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    netsync: false
-  - type: LightBehaviour
-    behaviours:
-      - !type:FadeBehaviour
-        id: radiating
-        interpolate: Linear
-        maxDuration: 2.0
-        startValue: 3.0
-        endValue: 2.0
-        isLooped: true
-        reverseWhenFinished: true
-      - !type:PulseBehaviour
-        id: blinking
-        interpolate: Nearest
-        maxDuration: 1.0
-        minValue: 0.1
-        maxValue: 2.0
-        isLooped: true
-  - type: Battery
-    maxCharge: 600 # lights drain 3/s but recharge of 2 makes this 1/s. Therefore 600 is 10 minutes of light.
-    startingCharge: 600
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 2
-  - type: NoSlip
-  - type: StepTriggerImmune
-    whitelist:
-      types:
-      - Shard
-      - Landmine
-      - Mousetrap
-      - SlipTile
-      - SlipEntity
-      - Chasm
+  - type: UniversalLanguageSpeaker
+  - type: ReplacementAccent
+    accent: silicon
   - type: Damageable
     damageContainer: Biological
   - type: PassiveDamage 
     allowedStates:
     - Alive
     - Critical
-    damageCap: 75
+    damageCap: 50
     damage:
       groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -3 # Bandaid fix, soon they'll be non-organic and this will be removed
+        Brute: -0.25
+        Burn: -0.25
 
 - type: entity
   name: MBoS Eyebot
@@ -244,16 +192,3 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: icon
     - state: shadow_eyebot
-  - type: LanguageKnowledge
-    speaks:
-    - N14Robot
-    - N14BrotherBeep
-    understands:
-    - N14Dog
-    - N14BrotherBeep
-    - N14Insect
-    - N14Robot
-    - English
-    - Tribal
-    - Chinese
-    - Sign
