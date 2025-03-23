@@ -1,0 +1,151 @@
+
+- type: entity
+  name: dynamite
+  description: A stick of dynamite.
+  parent: GrenadeBase
+  id: N14Dynamite
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/Dynamite.rsi
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 15
+    totalIntensity: 120
+    canCreateVacuum: false
+  - type: OnUseTimerTrigger
+    delay: 6
+    beepSound:
+      path: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg"
+      params:
+        volume: 4
+    initialBeepDelay: 0
+    beepInterval: 4 
+
+    
+- type: entity
+  name: Baseball grenade
+  description: Hollowed out baseball filled with explosives that explodes on impact.
+  parent: BaseItem
+  id: N14BaseballNade
+  components:
+  - type: Item
+    size: Small
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Appearance
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/Baseballnade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 15
+    totalIntensity: 90
+    canCreateVacuum: false
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+  - type: Damageable
+    damageContainer: Inorganic
+
+- type: entity
+  name: Tin-nade
+  description: Grenade made out of Tincan and bunch of scrap.
+  parent: GrenadeBase
+  id: N14TinNade
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/TincanNade.rsi
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 10
+    totalIntensity: 300
+    canCreateVacuum: false
+  - type: OnUseTimerTrigger
+    examinable: false
+    delay: 1
+    beepSound:
+      path: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg"
+      params:
+        volume: 4
+  - type: RandomTimerTrigger
+    min: 1
+    max: 5
+
+- type: entity
+  name: Nuka-nade
+  description: Highly radioactive grenade made with nuka-cola and love.
+  parent: GrenadeBase
+  id: N14NukaNade
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/NukaNade.rsi
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 5
+    intensitySlope: 1
+    totalIntensity: 1
+    canCreateVacuum: false
+  - type: OnUseTimerTrigger
+    examinable: false
+    delay: 1.5
+    beepSound:
+      path: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg"
+      params:
+        volume: 4
+  - type: RandomTimerTrigger
+    min: 3
+    max: 4
+  - type: SmokeOnTrigger
+    duration: 5
+    spreadAmount: 15
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 5
+      - ReagentId: Radium
+        Quantity: 15
+- type: entity #should spawn fire only when it was activated and then thrown, but when its not activated it just breaks and spills welding fuel.
+  name: Nuka cocktail
+  description: Nuka-cola bottle filled with flammable fuel.
+  parent: GrenadeBase
+  id: N14NukaCocktail
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/TincanNade.rsi
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 10
+    totalIntensity: 30
+    canCreateVacuum: false
+  - type: OnUseTimerTrigger
+    examinable: false
+    delay: 1
+    beepSound:
+      path: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg"
+      params:
+        volume: 4
+#ADD BOOMerang, nuka grenade(made out of nuka quantum tin can turpentine abraxo and gunpowder), molotov, long fuse dynamite(?), FIX BOTTLECAPMINE, plasma grenade with green goo OR with plasma bullets instead of shrapnels,
+#ADD kettlebomb that makes whistle sound when activated and deals heat damage,  
