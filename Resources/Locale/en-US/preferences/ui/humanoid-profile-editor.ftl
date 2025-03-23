@@ -53,27 +53,27 @@ humanoid-profile-editor-antags-tab = Antags
 humanoid-profile-editor-antag-preference-yes-button = Yes
 humanoid-profile-editor-antag-preference-no-button = No
 
-humanoid-profile-editor-traits-tab = Traits
+humanoid-profile-editor-traits-tab = Perks
 humanoid-profile-editor-traits-header = You have {$points ->
     [1] 1 point
     *[other] {$points} points
 } and {$maxTraits ->
     [2147483648] {$traits ->
-        [1] {$traits} trait
-        *[other] {$traits} traits
+        [1] {$traits} perk
+        *[other] {$traits} perks
     }
-    *[other] {$traits}/{$maxTraits} traits
+    *[other] {$traits}/{$maxTraits} perks
 }
-humanoid-profile-editor-traits-show-unusable-button = Show Unusable Traits
+humanoid-profile-editor-traits-show-unusable-button = Show Unusable Perks
 humanoid-profile-editor-traits-show-unusable-button-tooltip =
     When enabled, traits that your current character setup cannot use will be shown highlighted in red or orange if selected.
-    You will still not be able to use the invalid traits unless your character setup changes to fit the requirements.
-    This is most likely useful only if there's a bug hiding traits you actually can use or if you want to see other species' traits or something.
-humanoid-profile-editor-traits-remove-unusable-button = Remove {$count} Unusable Traits
+    You will still not be able to use the invalid perks unless your character setup changes to fit the requirements.
+    This is most likely useful only if there's a bug hiding perks you actually can use or if you want to see other species' perks or something.
+humanoid-profile-editor-traits-remove-unusable-button = Remove {$count} Unusable Perks
 humanoid-profile-editor-traits-remove-unusable-button-tooltip =
-    If you click this button, all traits that your current character setup cannot use will be removed.
-    You will be asked for confirmation before the traits are removed.
-humanoid-profile-editor-traits-no-traits = No traits found
+    If you click this button, all perks that your current character setup cannot use will be removed.
+    You will be asked for confirmation before the perks are removed.
+humanoid-profile-editor-traits-no-traits = No perks found
 
 humanoid-profile-editor-job-priority-high-button = High
 humanoid-profile-editor-job-priority-medium-button = Medium

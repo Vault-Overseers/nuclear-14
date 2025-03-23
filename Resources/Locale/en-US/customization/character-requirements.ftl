@@ -121,7 +121,7 @@ character-weight-requirement = You must{$inverted ->
 character-trait-requirement = You must {$inverted ->
     [true] not have
     *[other] have
-} one of these traits: {$traits}
+} one of these perks: {$traits}
 
 character-loadout-requirement = You must {$inverted ->
     [true] not have

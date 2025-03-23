@@ -149,6 +149,9 @@
   description: An old server rack filled with electronics.
   abstract: true
   components:
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
   - type: Fixtures
     fixtures:
       fix1:
@@ -388,13 +391,15 @@
   parent: N14BaseMachinePowered
   id: N14MachineRackTelecomsServer
   suffix: empty
-  name: telecoms server
-  description: An old telecommunications server rack.
+  name: communications server
+  description: An old communications server rack.
   components:
   - type: EncryptionKeyHolder
     keysExtractionMethod: Prying
     keySlots: 10
   - type: TelecomServer
+  - type: Machine
+    board: TelecomServerCircuitboard
   - type: ContainerContainer
     containers:
       key_slots: !type:Container
@@ -405,8 +410,6 @@
   parent: N14MachineRackTelecomsServer
   id: N14MachineRackTelecomsServerWBOS
   suffix: WBOS
-  name: telecoms server
-  description: An old telecommunications server rack.
   components:
   - type: ContainerFill
     containers:
@@ -417,8 +420,6 @@
   parent: N14MachineRackTelecomsServer
   id: N14MachineRackTelecomsServerMBOS
   suffix: MBOS
-  name: telecoms server
-  description: An old telecommunications server rack.
   components:
   - type: ContainerFill
     containers:
@@ -429,8 +430,6 @@
   parent: N14MachineRackTelecomsServer
   id: N14MachineRackTelecomsServerEnclave
   suffix: Enclave
-  name: telecoms server
-  description: An old telecommunications server rack.
   components:
   - type: ContainerFill
     containers:
@@ -441,10 +440,28 @@
   parent: N14MachineRackTelecomsServer
   id: N14MachineRackTelecomsServerNCR
   suffix: NCR
-  name: telecoms server
-  description: An old telecommunications server rack.
   components:
   - type: ContainerFill
     containers:
       key_slots:
       - EncryptionKeyNCR
+
+- type: entity
+  parent: N14MachineRackTelecomsServer
+  id: N14MachineRackTelecomsServerVault
+  suffix: Vault
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyVault
+
+- type: entity
+  parent: N14MachineRackTelecomsServer
+  id: N14MachineRackTelecomsServerPBS
+  suffix: Studio
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyPBS
