@@ -47,8 +47,8 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
     private bool _hasUnreadAHelp;
 
     public const string AHelpErrorSound = "/Audio/Admin/ahelp_error.ogg";
-    public const string AHelpReceiveSound = "/Audio/Admin/ahelp_receive.ogg";
-    public const string AHelpSendSound = "/Audio/Admin/ahelp_send.ogg";
+    public const string AHelpReceiveSound = "/Audio/Admin/adminhelp_old.ogg";
+    public const string AHelpSendSound = "/Audio/Admin/adminhelp_old.ogg";
 
 
     public override void Initialize()

@@ -1,17 +1,16 @@
 - type: entity
   parent: BaseStructure
-  id: N14PulowskiShelterNew
-  name:  Pulowski Preservation Shelter
-  description: "Pulowski: Nuclear protection on a budget!"
+  id: N14CryoBunkerLadder
+  name: 
+  description: 
   components:
   - type: Sprite
-    scale: 0.54, 0.54
-    offset: 0, 0.5
+    offset: 0, -0.25
     drawdepth: FloorObjects
     noRot: true
-    sprite: _Nuclear14/Structures/Misc/shelternew.rsi
+    sprite: _Nuclear14/Structures/Misc/laddersms13.rsi
     layers:
-    - state: open
+    - state: dasbunker_open
       map: ["base"]
   - type: InteractionOutline
   - type: Cryostorage
@@ -29,18 +28,24 @@
     visuals:
       enum.CryostorageVisuals.Full:
         base:
-          True: { state: closed }
-          False: { state: open }
+          True: { state: dasbunker }
+          False: { state: dasbunker_open }
 
 - type: entity
-  parent: N14PulowskiShelterNew
-  id: N14PulowskiShelterWorn
-  name:  Pulowski Preservation Shelter
-  description: "Pulowski: Nuclear protection on a budget!"
+  parent: N14CryoBunkerLadder
+  id: N14N14CryoBunkerLadderE
+  name: 
+  description: 
   components:
   - type: Sprite
     noRot: true
-    sprite: _Nuclear14/Structures/Misc/shelterworn.rsi
+    sprite: _Nuclear14/Structures/Misc/laddersms13.rsi
     layers:
-    - state: open
+    - state: enclave_open
       map: ["base"]
+  - type: GenericVisualizer
+    visuals:
+      enum.CryostorageVisuals.Full:
+        base:
+          True: { state: enclave }
+          False: { state: enclave_open }
