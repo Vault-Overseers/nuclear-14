@@ -1,23 +1,101 @@
 - type: entity
+  save: false
+  abstract: true
+  id: N14MobFriendlyRobot
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: LagCompensation
+  - type: Reactive
+    groups:
+      Acidic: [Touch]
+  - type: Clickable
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: InteractionOutline
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+  - type: HealthExaminable
+    examinableTypes:
+    - Blunt
+    - Slash
+    - Piercing
+    - Heat
+    - Shock
+    locPrefix: silicon
+  - type: StatusEffects
+    allowed:
+    - Stun
+    - KnockedDown
+    - SlowedDown
+    - Stutter
+    - Electrocution
+  - type: MovedByPressure
+  - type: Physics
+    bodyType: KinematicController
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: Repairable
+    doAfterDelay: 8
+    fuelCost: 15
+  - type: Pullable
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Critical
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: Stamina
+    critThreshold: 150
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Input
+    context: "human"
+  - type: InputMover
+  - type: MobMover
+  - type: Body
+    prototype: Bot
+  - type: StepTriggerImmune
+  - type: RandomMetadata
+    nameSegments: [names_N14pet_robot]
+# Let's see how much this remains functional, butchered MobSiliconBase, it is.
+
+- type: entity
   name: Waster Eyebot
   id: N14MobPetEyebot #Basic Eyebot every other inherits from.
-  parent: MobSiliconBase #Todo: Make a new base robot follower so the others don't have to inherit from the Eyebot.
-  description:
+  parent: N14MobFriendlyRobot
+  description: A military Eyebot with a smiling face to look at! 
   components:
   - type: InputMover
   - type: MobMover
-  - type: NpcFactionMember
-    factions:
-    - Wastelander
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - Wastelander
   - type: Sprite
     sprite: _Nuclear14/Mobs/Pets/eyebot_smile.rsi
     layers:
-    - state: icon
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: icon
     - state: shadow_eyebot
   - type: Appearance
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Critical
+      150: Dead
   - type: DamageStateVisuals
     states:
       Alive:
@@ -26,10 +104,6 @@
         Base: dead
       Dead:
         Base: dead
-  - type: Physics
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 6
   - type: Fixtures
     fixtures:
       fix1:
@@ -41,34 +115,17 @@
         - MobMask
         layer:
         - MobLayer
-  - type: MobState
-    allowedStates:
-      - Alive
-      - Critical
-      - Dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      100: Critical
-      200: Dead
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: Stamina
-    critThreshold: 50
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 6
   - type: MovementAlwaysTouching
   - type: CombatMode
   - type: Gun
-    minAngle: 12
-    maxAngle: 24
+    minAngle: 8
+    maxAngle: 12
     angleIncrease: 4
     angleDecay: 4
-    fireRate: 1.25
+    fireRate: 1
     soundGunshot:
       collection: N14RechargerRifleGunshot
     useKey: false
@@ -108,7 +165,7 @@
   name: MBoS Eyebot
   id: N14MobPetEyebotMBoS
   parent: N14MobPetEyebot
-  description:
+  description: A military Eyebot in the colours of the Midwestern Brotherhood!
   components:
   - type: NpcFactionMember
     factions:
@@ -116,14 +173,15 @@
   - type: Sprite
     sprite: _Nuclear14/Mobs/Pets/eyebot_mbos.rsi
     layers:
-    - state: icon
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: icon
     - state: shadow_eyebot
 
 - type: entity
   name: WBoS Eyebot
   id: N14MobPetEyebotWBoS
   parent: N14MobPetEyebot
-  description:
+  description: A military Eyebot in the colours of the Washington Brotherhood!
   components:
   - type: NpcFactionMember
     factions:
@@ -131,5 +189,6 @@
   - type: Sprite
     sprite: _Nuclear14/Mobs/Pets/eyebot_wbos.rsi
     layers:
-    - state: icon
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: icon
     - state: shadow_eyebot
