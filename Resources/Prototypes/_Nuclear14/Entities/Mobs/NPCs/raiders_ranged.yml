@@ -4,9 +4,6 @@
   id: N14MobRaiderPsychoRanged
   description: Psychopatic raider who will shoot and rob just about anyone.
   components:
-    - type: Loadout
-      prototypes:
-        - RaiderPistolGear
     - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
       minAngle: 4.5
       maxAngle: 22.5
@@ -27,6 +24,18 @@
       rechargeCooldown: 2
       rechargeSound:
         path: /Audio/_Nuclear14/Weapons/Effects/Reload/Pistols/pistol_magin.ogg
+    - type: Loadout
+      prototypes:
+        - RaiderPistolGear
+    - type: Sprite
+      layers:
+      - sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
+        state: inhand-right
+      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
 
 - type: entity
   name: Psycho Raider Boss

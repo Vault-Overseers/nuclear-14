@@ -1,5 +1,13 @@
 # Consider making our own base mob in future so we're resilient to upstream changes.
 #MARK: Base Simple
+- type: body
+  id: N14Animal
+  name: "N14 animal"
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+
 - type: entity
   name: wasteland animal
   abstract: true
@@ -7,6 +15,8 @@
   parent: SimpleSpaceMobBase
   description: It's a dirty wasteland animal. Watch out for it's bite, it could be infectious.
   components:
+  - type: Body
+    prototype: N14Animal
   - type: InputMover
   - type: MobMover
   - type: NpcFactionMember

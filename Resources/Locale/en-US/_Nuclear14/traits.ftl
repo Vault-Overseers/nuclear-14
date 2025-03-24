@@ -60,7 +60,7 @@ trait-name-N14Liar = Pathological liar
 trait-description-N14Liar = You can hardly bring yourself to tell the truth. Sometimes you lie anyway.
 
 trait-name-N14CarefulSteps = Careful Steps
-trait-description-N14CarefulSteps = You can hardly bring yourself to tell the truth. Sometimes you lie anyway.
+trait-description-N14CarefulSteps = You mastered the ability of looking where you step. You can't set off traps like landmines and such.
 
 trait-name-N14CPRTraining = CPR Training
 trait-description-N14CPRTraining =
@@ -173,7 +173,7 @@ trait-description-N14ShortArms =
 
 trait-name-N14Blitz = Blitz
 trait-description-N14Blitz =
-    You are able to move really fast and hand slaps out from far away. Your [color=yellow]melee range[/color] is [color=green]decreased by 15%[/color].
+    You are able to move really fast and hand slaps out from far away. Your [color=yellow]melee range[/color] is [color=green]increased by 15%[/color].
 
 trait-name-N14ScriptedDeath = Scripted Death
 trait-description-N14ScriptedDeath =
@@ -306,6 +306,6 @@ trait-description-N14Photophobia =
     As a result, you may be blinded for a greater duration than others when exposed to sudden flashes of light.
     Your eyes are also more likely to be injured by flashes.
 
-trait-name-N14GooglyEyes = Photophobia
+trait-name-N14GooglyEyes = Googly Eyes
 trait-description-N14GooglyEyes =
     Your eyes were replaced with cybernetics that are less likely to be blinded by sudden flashes.

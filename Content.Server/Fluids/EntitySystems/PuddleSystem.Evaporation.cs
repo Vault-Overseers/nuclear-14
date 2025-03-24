@@ -51,10 +51,10 @@ public sealed partial class PuddleSystem
             // Despawn if we're done
             if (puddleSolution.Volume == FixedPoint2.Zero)
             {
-                // Spawn a *sparkle*
-                Spawn("PuddleSparkle", xformQuery.GetComponent(uid).Coordinates);
                 QueueDel(uid);
             }
+
+            _solutionContainerSystem.UpdateChemicals(puddle.Solution.Value);
         }
     }
 }
