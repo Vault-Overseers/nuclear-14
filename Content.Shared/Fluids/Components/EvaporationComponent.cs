@@ -21,5 +21,5 @@ public sealed partial class EvaporationComponent : Component
     /// How much evaporation per second.
     /// </summary>
     [DataField("evaporationAmount")]
-    public FixedPoint2 EvaporationAmount = FixedPoint2.New(0.3);
+    public FixedPoint2 EvaporationAmount = FixedPoint2.New(0.003);
 }
