@@ -6,7 +6,7 @@ namespace Content.Server.Fluids.EntitySystems;
 
 public sealed partial class PuddleSystem
 {
-    private static readonly TimeSpan EvaporationCooldown = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan EvaporationCooldown = TimeSpan.FromSeconds(3);
 
     private void OnEvaporationMapInit(Entity<EvaporationComponent> entity, ref MapInitEvent args)
     {
