@@ -10,10 +10,12 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 10
-    intensitySlope: 15
-    totalIntensity: 120
+    maxIntensity: 2
+    intensitySlope: 5
+    totalIntensity: 30 #medium range mid damage takes about 3-4 to crit
     canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
   - type: OnUseTimerTrigger
     delay: 6
     beepSound:
@@ -45,10 +47,12 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 10
-    intensitySlope: 15
-    totalIntensity: 90
+    maxIntensity: 1
+    intensitySlope: 5
+    totalIntensity: 15 #god knows why, it works perfectly ~9tiles mid damage
     canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
   - type: DamageOnLand
     damage:
       types:
@@ -64,6 +68,9 @@
       - !type:ExplodeBehavior
   - type: Damageable
     damageContainer: Inorganic
+  - type: Construction
+    graph: N14BaseballNade
+    node: baseballnade
 
 - type: entity
   name: Tin-nade
@@ -77,9 +84,11 @@
   - type: Explosive
     explosionType: Default
     maxIntensity: 10
-    intensitySlope: 10
-    totalIntensity: 300
+    intensitySlope: 10 #dynamite but smaller area?
+    totalIntensity: 30
     canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
   - type: OnUseTimerTrigger
     examinable: false
     delay: 1
@@ -90,6 +99,9 @@
   - type: RandomTimerTrigger
     min: 1
     max: 5
+  - type: Construction
+    graph: N14TinNade
+    node: TinNade
 
 - type: entity
   name: Nuka-nade
@@ -106,6 +118,8 @@
     intensitySlope: 1
     totalIntensity: 1
     canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
   - type: OnUseTimerTrigger
     examinable: false
     delay: 1.5
@@ -117,29 +131,35 @@
     min: 3
     max: 4
   - type: SmokeOnTrigger
-    duration: 5
-    spreadAmount: 15
+    duration: 3
+    spreadAmount: 25
     solution:
       reagents:
       - ReagentId: TearGas
         Quantity: 5
       - ReagentId: Radium
         Quantity: 15
-- type: entity #should spawn fire only when it was activated and then thrown, but when its not activated it just breaks and spills welding fuel.
+  - type: Construction
+    graph: N14NukaNade
+    node: NukaNade
+
+- type: entity #should spawn fire only when it was activated and then thrown, but when its not activated it just breaks and spills welding fuel. for now just weak explosion igniting entities
   name: Nuka cocktail
   description: Nuka-cola bottle filled with flammable fuel.
   parent: GrenadeBase
   id: N14NukaCocktail
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Grenades/TincanNade.rsi
+    sprite: _Nuclear14/Objects/Weapons/Grenades/NukaCocktail.rsi  
   - type: ExplodeOnTrigger
-  - type: Explosive
-    explosionType: Default
-    maxIntensity: 10
-    intensitySlope: 10
+  - type: Explosive # Weak explosion in a small radius. Ignites surrounding entities.
+    explosionType: FireBomb
+    maxIntensity: 2
+    intensitySlope: 8
     totalIntensity: 30
     canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
   - type: OnUseTimerTrigger
     examinable: false
     delay: 1
@@ -147,5 +167,155 @@
       path: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg"
       params:
         volume: 4
-#ADD BOOMerang, nuka grenade(made out of nuka quantum tin can turpentine abraxo and gunpowder), molotov, long fuse dynamite(?), FIX BOTTLECAPMINE, plasma grenade with green goo OR with plasma bullets instead of shrapnels,
-#ADD kettlebomb that makes whistle sound when activated and deals heat damage, THROWING CARD THAT EXPLODES AFTER LIKE 5 SSSECONDS AFTER GETTING STUCK ON SOMETHING, PRETTY MUCH LIKE GLASS SHARD BUT EXPLOSIVE AFTER TIME 
+
+- type: entity
+  parent: GrenadeBase
+  id: N14PlasmaGrenade
+  name: plasma grenade
+  description: Powerful plasma grenade.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/shrapnelgrenade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterGrenade
+    fillPrototype: BulletPlasma
+    maxGrenadesCount: 16
+    grenadeType: enum.GrenadeType.Shoot
+  - type: OnUseTimerTrigger
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 2
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/_Nuclear14/Weapons/Guns/Battery/N14WeaponPlasmaAutoRifle/shot1.ogg"
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+
+- type: entity
+  parent: GrenadeBase
+  id: N14KettleBomb
+  name: kettle bomb
+  description: Caution, hot!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/KettleBomb.rsi 
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterGrenade
+    fillPrototype: BoilingWaterShot #maybe instead copy projectile water guns use. SHOULDNT SET ON FIRE, JUST CAUSE low-medium BURN DAMAGE
+    maxGrenadesCount: 20
+    grenadeType: enum.GrenadeType.Shoot
+  - type: OnUseTimerTrigger
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg" #has to be whistling sound
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 2
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Weapons/Guns/Gunshots/water_spray.ogg"
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+
+- type: entity
+  parent: GrenadeBase
+  id: N148BallNade
+  name: 8ball grenade
+  description: Bouncy explosive grenade. Deadly indoors.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/shrapnelgrenade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterGrenade
+    fillPrototype: N148BallNade #should make first copy// COULD MAKE IT SO IT SPAWNS TWO ENITIES, ONE EXPLODING AND SECOND ONE JUST BOUNCING FURTHER
+    maxGrenadesCount: 1 
+    grenadeType: enum.GrenadeType.Shoot
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/_Nuclear14/Weapons/Guns/Battery/N14WeaponPlasmaAutoRifle/shot1.ogg" # NEEDS boioing sound kinda like roblox jump coil
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1
+    intensitySlope: 5
+    totalIntensity: 5
+    canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:ExplodeBehavior
+  - type: OnUseTimerTrigger
+    delay: 0
+
+- type: entity
+  parent: GrenadeBase
+  id: N14WorldEnding8BallNade
+  name: WORLD ENDING 8ball grenade
+  description: This is end of the world.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/shrapnelgrenade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterGrenade
+    fillPrototype: N148BallNade #should make first copy// COULD MAKE IT SO IT SPAWNS TWO ENITIES, ONE EXPLODING AND SECOND ONE JUST BOUNCING FURTHER
+    maxGrenadesCount: 9 
+    grenadeType: enum.GrenadeType.Shoot
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/_Nuclear14/Weapons/Guns/Battery/N14WeaponPlasmaAutoRifle/shot1.ogg" # NEEDS boioing sound kinda like roblox jump coil
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1
+    intensitySlope: 5
+    totalIntensity: 5
+    canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:ExplodeBehavior
+  - type: OnUseTimerTrigger
+    delay: 0
+#ADD BOOMerang, nuka grenade(made out of nuka quantum tin can turpentine abraxo and gunpowder), molotov (with real file tiles), long fuse dynamite(?), FIX BOTTLECAPMINE, plasma grenade with green goo OR with plasma bullets instead of shrapnels,
+#ADD kettlebomb that makes whistle sound when activated and deals heat damage,  MFC grenade and MFC cluster(you should be able to take individual grenades from the cluster) 8BALL EXPLOSIVE (1 TILE EXPLOSION BUT BOUNCES LIKE 6 TIMES PERFECT FOR SMALL ROOMS)
+#ADD firecracker thats just couple small tile explosions around the place, make something with timer(maybe crafting that takes couple of explosives of same type and a timer and cables making it c4-ish)
+#ADD grenade or contraption that explode somewhat similar to tesla (EITHER VERY VERY EXPENSIVE OR NONCRAFTABLE),
