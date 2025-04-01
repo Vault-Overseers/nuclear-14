@@ -1,4 +1,3 @@
-
 - type: constructionGraph
   id: N14BaseballNade
   start: start
@@ -43,12 +42,12 @@
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: abraxo
-              doAfter: 35
             - tag: Tincan
               name: tin can
               icon:
                 sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
                 state: tincan
+              doAfter: 35
     - node: NukaNade
       entity: N14NukaNade
 
@@ -64,6 +63,11 @@
               amount: 2
             - material: Cable
               amount: 5
+            - tag: DuctTape
+              name: duck tape
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: duct_tape
             - tag: Tincan
               name: tin can
               icon:
@@ -72,79 +76,3 @@
               doAfter: 35
     - node: TinNade
       entity: N14TinNade
-
-
-
-
-
-
-
-- type: constructionGraph
-  id: N14BottlecapMineGraph
-  start: start
-  graph:
-  - node: start
-    edges:
-    - to: emptyCase
-      steps:
-      - tag: SensorModule
-        name: Sensor Module
-        icon:
-          sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
-          state: sensor_module
-      - tag: N14JunkLunchbox
-        doAfter: 1
-      
-  - node: emptyCase
-    entity: IncompleteN14BottlecapMine
-    edges:
-    - to: start
-      completed:
-      - !type:SpawnPrototype
-        prototype: CableApcStack1
-      - !type:DeleteEntity {}
-      steps:
-      - tool: Prying
-        doAfter: 1
-    - to: wiredCase
-      conditions:
-      - !type:MinSolution
-        solution: drink
-        reagent:
-          ReagentId: WeldingFuel
-        quantity: 40
-      steps:
-      - tool: Screwing
-        doAfter: 1
-  - node: wiredCase
-    entity: IncompleteN14BottlecapMineFuel
-    edges:
-    - to: emptyCase
-      conditions:
-      - !type:SolutionEmpty
-        solution: drink
-      steps:
-      - tool: Screwing
-        doAfter: 1
-    - to: mine
-      conditions: # no dumping out 29u of the fuel then adding wires :)
-      - !type:MinSolution
-        solution: drink
-        reagent:
-          ReagentId: WeldingFuel
-        quantity: 30
-      steps:
-      - material: Cable
-        amount: 5
-        doAfter: 2
-  - node: mine
-    entity: LandMineCap
-    edges:
-    - to: wiredCase
-      completed:
-      - !type:SpawnPrototype
-        prototype: CableApcStack1
-        amount: 5
-      steps:
-      - tool: Cutting
-        doAfter: 2
