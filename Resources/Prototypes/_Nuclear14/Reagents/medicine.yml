@@ -345,9 +345,9 @@
       - !type:HealthChange
         damage:
           groups:
-            Burn: -4
-            Brute: -4
-            Airloss: -2
+            Burn: -3
+            Brute: -3
+            Airloss: -1
       - !type:ModifyBleedAmount
         amount: -1
       - !type:Drunk
@@ -358,18 +358,12 @@
         conditions:
         - !type:ReagentThreshold
           min: 10
-      - !type:HealthChange # Taking 2 is more or less a slow death
+      - !type:GenericStatusEffect
+        key: TemporaryBlindness
+        component: TemporaryBlindness
         conditions:
         - !type:ReagentThreshold
-          min: 30
-        damage:
-          groups:
-            Burn: -2.0
-            Brute: -2.0
-            Airloss: -2.0
-          types:
-            Poison: 3
-            Cellular: 0.5 # permanent damage, be glad you aint dead
+          min: 25
 
 - type: reagent
   id: Bitterdrink
