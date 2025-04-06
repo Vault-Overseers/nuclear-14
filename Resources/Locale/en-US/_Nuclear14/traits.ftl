@@ -309,3 +309,7 @@ trait-description-N14Photophobia =
 trait-name-N14GooglyEyes = Googly Eyes
 trait-description-N14GooglyEyes =
     Your eyes were replaced with cybernetics that are less likely to be blinded by sudden flashes.
+
+trait-name-N14PetDogNCRK9Medical = NCR Medical K9
+trait-description-N14PetDogNCRK9Medical =
+     You (might) have an NCRA trained medical dog companion assigned to you.
