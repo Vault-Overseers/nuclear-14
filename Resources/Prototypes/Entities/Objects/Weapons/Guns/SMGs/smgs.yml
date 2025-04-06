@@ -19,14 +19,16 @@
     minAngle: 2
     maxAngle: 16
     fireRate: 8
+    burstFireRate: 8
     angleIncrease: 3
-    angleDecay: 16  
+    angleDecay: 16
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+    defaultDirection: 1, 0
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
@@ -54,6 +56,25 @@
       gun_chamber: !type:ContainerSlot
   - type: StaticPrice
     price: 500
+  - type: Execution
+  - type: MeleeWeapon
+    attackRate: 1.3333
+    damage:
+      types:
+        Blunt: 9.0
+    bluntStaminaDamageFactor: 1.25
+    swapKeys: true
+    disableHeavy: true
+    animation: WeaponArcThrust
+    wideAnimationRotation: 180
+    soundHit:
+      collection: MetalThud
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 2.5
+  - type: DamageOtherOnHit
+    staminaCost: 8
 
 - type: entity
   name: Atreides
@@ -81,9 +102,9 @@
 
 - type: entity
   name: C-20r sub machine gun
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable]
   id: WeaponSubMachineGunC20r
-  description: A firearm that is often used by the infamous nuclear operatives. Uses .35 auto ammo.
+  description: Manufactured by Cybersun-Armaments, the C-20r is one of the most popular personal small-arms in the Coalition of Colonies. Uses .35 auto ammo.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
@@ -94,7 +115,13 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -19
+    maxAngle: -16
   - type: Gun
+    minAngle: 21
+    maxAngle: 32
     shotsPerBurst: 5
     availableModes:
     - SemiAuto
@@ -112,6 +139,15 @@
   - type: Appearance
 
 - type: entity
+  name: antique C-20r submachine gun
+  parent: WeaponSubMachineGunC20r
+  id: WeaponSubMachineGunC20rHoS
+  description: This heavily worn submachine gun is engraved with the words, "Remember Mars".
+  components:
+    - type: StealTarget
+      stealGroup: HoSAntiqueWeapon
+
+- type: entity
   name: Drozd
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunDrozd
@@ -126,14 +162,21 @@
           map: ["enum.GunVisualLayers.Mag"]
     - type: Clothing
       sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
+    - type: Wieldable
+      unwieldOnUse: false
+    - type: GunWieldBonus
+      minAngle: -19
+      maxAngle: -16
     - type: Gun
-      fireRate: 6
+      minAngle: 21
+      maxAngle: 32
+      fireRate: 12
+      burstFireRate: 12
       selectedMode: FullAuto
       soundGunshot:
         path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
       availableModes:
         - FullAuto
-      fireOnDropChance: 0.2
     - type: ItemSlots
       slots:
         gun_magazine:
@@ -234,9 +277,11 @@
     minAngle: 1
     maxAngle: 6
     angleIncrease: 1.5
-    angleDecay: 6  
+    angleDecay: 6
     selectedMode: FullAuto
     shotsPerBurst: 5
+    burstCooldown: 0.2
+    burstFireRate: 7
     availableModes:
     - SemiAuto
     - Burst
@@ -265,6 +310,16 @@
     steps: 6
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  name: antique Wt550
+  id: WeaponSubMachineGunWt550HoS
+  parent: WeaponSubMachineGunWt550
+  description: A prized possession of the station's Head of Security. The smell of dried blood lingers on this weapon's muzzle. A small torch with 24 stars surrounding it has been engraved on the grip.
+  components:
+    - type: StealTarget
+      stealGroup: HoSAntiqueWeapon
+
 
 # Rubber
 - type: entity

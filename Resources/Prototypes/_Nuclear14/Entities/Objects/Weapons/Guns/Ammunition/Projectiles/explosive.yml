@@ -2,7 +2,7 @@
   id: BaseGrenadeProjectile
   name: grenade
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
@@ -11,23 +11,23 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 2 # max 30 per tile
+    maxIntensity: 4 # max 30 per tile
     intensitySlope: 1
-    totalIntensity: 1 # 60 total damage to distribute over tiles
-    maxTileBreak: 1
+    totalIntensity: 3 # 60 total damage to distribute over tiles
+    maxTileBreak: 0
 
 - type: entity
   id: GrenadeProjectile
   name: grenade
   parent: BaseGrenadeProjectile
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 4 # max 30 per tile
-    intensitySlope: 5
-    totalIntensity: 6 # 60 total damage to distribute over tiles
+    maxIntensity: 8 # max 30 per tile
+    intensitySlope: 6
+    totalIntensity: 15 # 60 total damage to distribute over tiles
     maxTileBreak: 0
 
 
@@ -35,16 +35,16 @@
   id: FireGrenadeProjectile
   name: fire grenade
   parent: BaseGrenadeProjectile
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: IgniteOnCollide
     fireStacks: 10
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 3 # max 30 per tile
-    intensitySlope: 3
-    totalIntensity: 4 # 60 total damage to distribute over tiles
+    maxIntensity: 8 # max 30 per tile
+    intensitySlope: 6
+    totalIntensity: 15 # 60 total damage to distribute over tiles
     maxTileBreak: 0
 
 #Missiles
@@ -53,7 +53,7 @@
   id: N14ProjectileMissile
   name: Missile
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: An explosive missile.
   components:
   - type: Projectile
@@ -63,7 +63,7 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 6 # max 30 per tile
+    maxIntensity: 24 # max 30 per tile
     intensitySlope: 6
-    totalIntensity: 10 # 60 total damage to distribute over tiles
-    maxTileBreak: 5
+    totalIntensity: 60 # 60 total damage to distribute over tiles
+    maxTileBreak: 0

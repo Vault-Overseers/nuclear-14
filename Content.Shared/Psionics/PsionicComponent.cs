@@ -1,4 +1,7 @@
+using Content.Shared.Alert;
+using Content.Shared.DoAfter;
 using Content.Shared.Psionics;
+using Content.Shared.Random;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -7,12 +10,29 @@ namespace Content.Shared.Abilities.Psionics
     [RegisterComponent, NetworkedComponent]
     public sealed partial class PsionicComponent : Component
     {
+        [DataField]
+        public bool BypassManaCheck;
+
         /// <summary>
-        ///     How close a Psion is to awakening a new power.
-        ///     TODO: Implement this in a separate PR.
+        ///     How close a Psion is to generating a new power. When Potentia reaches the NextPowerCost, it is "Spent" in order to "Buy" a random new power.
+        ///     TODO: Psi-Potentiometry should be able to read how much Potentia a person has.
         /// </summary>
         [DataField]
-        public float Potentia = 0;
+        public float Potentia;
+
+        /// <summary>
+        ///     The base cost for new powers.
+        /// </summary>
+        [DataField]
+        public float BaselinePowerCost = 100;
+
+        /// <summary>
+        ///     Each time a Psion rolls for a new power, they roll a number between 0 and 100, adding any relevant modifiers. This number is then added to Potentia,
+        ///     meaning that it carries over between rolls. When a character has an amount of potentia equal to at least 100 * 2^(total powers), the potentia is then spent, and a power is generated.
+        ///     This variable stores the cost of the next power.
+        /// </summary>
+        [DataField]
+        public float NextPowerCost = 100;
 
         /// <summary>
         ///     The baseline chance of obtaining a psionic power when rolling for one.
@@ -24,7 +44,7 @@ namespace Content.Shared.Abilities.Psionics
         ///     Whether or not a Psion has an available "Reroll" to spend on attempting to gain powers.
         /// </summary>
         [DataField]
-        public bool CanReroll;
+        public bool CanReroll = true;
 
         /// <summary>
         ///     The Base amount of time (in minutes) this Psion is given the stutter effect if they become mindbroken.
@@ -36,7 +56,16 @@ namespace Content.Shared.Abilities.Psionics
 
         public string MindbreakingStutterAccent = "StutteringAccent";
 
+        /// <summary>
+        ///     The message feedback given on mindbreak.
+        /// </summary>
+        [DataField]
         public string MindbreakingFeedback = "mindbreaking-feedback";
+
+        /// <summary>
+        /// </summary>
+        [DataField]
+        public string HardMindbreakingFeedback = "hard-mindbreaking-feedback";
 
         /// <summary>
         ///     How much should the odds of obtaining a Psionic Power be multiplied when rolling for one.
@@ -97,6 +126,12 @@ namespace Content.Shared.Abilities.Psionics
         }
 
         /// <summary>
+        ///     Whether this entity is capable of randomly rolling for powers.
+        /// </summary>
+        [DataField]
+        public bool Roller = true;
+
+        /// <summary>
         ///     Ifrits, revenants, etc are explicitly magical beings that shouldn't get mindbroken
         /// </summary>
         [DataField]
@@ -110,10 +145,10 @@ namespace Content.Shared.Abilities.Psionics
         public HashSet<PsionicPowerPrototype> ActivePowers = new();
 
         /// <summary>
-        ///     The list of each Psionic Power by action with entityUid.
+        ///     The list of each Psionic Power by prototype with entityUid.
         /// </summary>
         [ViewVariables(VVAccess.ReadOnly)]
-        public Dictionary<EntProtoId, EntityUid?> Actions = new();
+        public Dictionary<string, EntityUid?> Actions = new();
 
         /// <summary>
         ///     What sources of Amplification does this Psion have?
@@ -142,10 +177,59 @@ namespace Content.Shared.Abilities.Psionics
         public float CurrentDampening;
 
         /// <summary>
+        ///     How many "Slots" an entity has for psionic powers. This is not a hard limit, and is instead used for calculating the cost to generate new powers.
+        ///     Exceeding this limit causes an entity to become a Glimmer Source.
+        /// </summary>
+        [DataField]
+        public int PowerSlots = 1;
+
+        /// <summary>
+        ///     How many "Slots" are currently occupied by psionic powers.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        public int PowerSlotsTaken;
+
+        /// <summary>
         ///     List of descriptors this entity will bring up for psychognomy. Used to remove
         ///     unneccesary subs for unique psionic entities like e.g. Oracle.
         /// </summary>
         [DataField]
-        public List<String>? PsychognomicDescriptors = null;
+        public List<string> PsychognomicDescriptors = new();
+
+        /// Used for tracking what spell a Psion is actively casting
+        [DataField]
+        public DoAfterId? DoAfter;
+
+        /// Popup to play if a Psion attempts to start casting a power while already casting one
+        [DataField]
+        public string AlreadyCasting = "already-casting";
+
+        /// <summary>
+        ///     The list of Familiars currently bound to this Psion.
+        /// </summary>
+        [DataField]
+        public List<EntityUid> Familiars = new();
+
+        /// <summary>
+        ///     The maximum number of Familiars a Psion may bind.
+        /// </summary>
+        [DataField]
+        public int FamiliarLimit = 1;
+
+        /// <summary>
+        ///     The list of all potential Assay messages that can be obtained from this Psion.
+        /// </summary>
+        [DataField]
+        public List<string> AssayFeedback = new();
+
+        /// <summary>
+        ///     The list of powers that this Psion is eligible to roll new abilities from.
+        ///     This generates the initial ability pool, but can also be modified by other systems.
+        /// </summary>
+        [DataField]
+        public ProtoId<WeightedRandomPrototype> PowerPool = "RandomPsionicPowerPool";
+
+        [DataField]
+        public Dictionary<string, float> AvailablePowers = new();
     }
 }

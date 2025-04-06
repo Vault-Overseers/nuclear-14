@@ -1,11 +1,15 @@
 using Content.Server.Actions;
 using Content.Server.Chat.Systems;
 using Content.Server.Speech.Components;
+using Content.Shared.ActionBlocker;
+using Content.Shared.CCVar;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Humanoid;
 using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -18,6 +22,11 @@ public sealed class VocalSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
+
+    [ValidatePrototypeId<ReplacementAccentPrototype>]
+    private const string MuzzleAccent = "mumble";
 
     public override void Initialize()
     {
@@ -32,8 +41,9 @@ public sealed class VocalSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, VocalComponent component, MapInitEvent args)
     {
-        // try to add scream action when vocal comp added
-        _actions.AddAction(uid, ref component.ScreamActionEntity, component.ScreamAction);
+        if (_config.GetCVar(CCVars.AllowScreamAction))
+            _actions.AddAction(uid, ref component.ScreamActionEntity, component.ScreamAction);
+
         LoadSounds(uid, component);
     }
 
@@ -53,7 +63,10 @@ public sealed class VocalSystem : EntitySystem
 
     private void OnEmote(EntityUid uid, VocalComponent component, ref EmoteEvent args)
     {
-        if (args.Handled || !args.Emote.Category.HasFlag(EmoteCategory.Vocal))
+        if (args.Handled
+            || !args.Emote.Category.HasFlag(EmoteCategory.Vocal)
+            || !_actionBlocker.CanSpeak(uid)
+            || TryComp<ReplacementAccentComponent>(uid, out var replacement) && replacement.Accent == MuzzleAccent) // This is not ideal, but it works.
             return;
 
         // snowflake case for wilhelm scream easter egg
@@ -69,7 +82,7 @@ public sealed class VocalSystem : EntitySystem
 
     private void OnScreamAction(EntityUid uid, VocalComponent component, ScreamActionEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || !_config.GetCVar(CCVars.AllowScreamAction))
             return;
 
         _chat.TryEmoteWithChat(uid, component.ScreamId);

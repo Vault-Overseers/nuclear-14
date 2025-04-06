@@ -5,14 +5,22 @@
   description: job-description-bos-washington-commander
   playTimeTracker: BoSWashingtonCommander
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodWashington
       min: 72000 #20 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
   weight: 10
   startingGear: BoSWashingtonCommanderGear
   alwaysUseSpawner: true
   icon: "JobIconHeadOfSecurity"
-  supervisors: job-supervisors-bos-washington-commander
+  supervisors: job-supervisors-bos-wash-commander
   requireAdminNotify: true
   canBeAntag: false
   accessGroups:
@@ -23,17 +31,12 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodWashington
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSWashingtonCommanderGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSBlack
-    back: N14ClothingBackpackMilitary
+    back: N14ClothingBackpackMilitaryFilled
     shoes: N14ClothingBootsCombatMK2Filled
     neck: N14ClothingNeckCloakBrotherhoodWashington
     head: N14ClothingHeadHatBrotherhoodCap

@@ -5,13 +5,22 @@
   description: job-description-bos-washington-scribe
   playTimeTracker: BoSWashingtonScribe
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodWashington
       min: 18000 # 5 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
   startingGear: BoSWashingtonScribeGear
   alwaysUseSpawner: true
   icon: "JobIconScientist"
-  supervisors: job-name-bos-washington
+  supervisors: job-name-bos-wash
   access:
   - WashingtonInitiate
   - WashingtonScribe
@@ -22,23 +31,16 @@
         factions:
           - BrotherhoodWashington
       - type: CPRTraining
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSWashingtonScribeGear
   equipment:
     head: N14ClothingHeadHatBrotherhoodBeret
     jumpsuit: N14ClothingUniformJumpsuitBOSBlack
-    back: N14ClothingBackpackSatchelMilitary
+    back: N14ClothingBackpackSatchelMilitaryFilled
     shoes: N14ClothingBootsCombatFilled
-    outerClothing: N14ClothingOuterBosScribe
     id: N14IDBrotherhoodWashingtonHolotagScribe
     ears: N14ClothingHeadsetBOSWashington
-    belt: N14ClothingBeltUtilityFilled
     pocket1: NCRBoSWashingtonScribekits
 
 - type: playTimeTracker

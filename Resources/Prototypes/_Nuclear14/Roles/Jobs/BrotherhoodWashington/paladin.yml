@@ -5,13 +5,21 @@
   description: job-description-bos-washington-paladin
   playTimeTracker: BoSWashingtonPaladin
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodWashington
       min: 54000 # 15 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
   startingGear: BoSWashingtonPaladinGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
-  supervisors: job-name-bos-washington
+  supervisors: job-name-bos-wash
   canBeAntag: false
   access:
   - WashingtonInitiate
@@ -24,17 +32,12 @@
       - type: NpcFactionMember
         factions:
           - BrotherhoodWashington
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSWashingtonPaladinGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSRed
-    back: N14ClothingBackpackMilitary
+    back: N14ClothingBackpackMilitaryFilled
     shoes: N14ClothingBootsCombatMK2Filled
     head: N14ClothingHeadHatBrotherhoodHelmetMK2
     outerClothing: N14ClothingOuterCombatArmorBOSMK2

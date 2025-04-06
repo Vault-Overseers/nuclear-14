@@ -4,9 +4,19 @@
   name: job-name-tribal-healer
   description: job-description-tribal-healer
   playTimeTracker: TribalHealer
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
+      department: Tribe
+      min: 7200 # 2 hours
   startingGear: TribalHealerGear
   icon: "JobIconBotanist"
   supervisors: job-supervisors-tribal
+  access:
+  - TribeMember
   special:
   - !type:AddComponentSpecial
     components:
@@ -14,6 +24,8 @@
         factions:
           - Tribal
       - type: CPRTraining
+  - !type:AddTraitSpecial
+    traits: [ LanguageTribal ]
 
 - type: startingGear
   id: TribalHealerGear
@@ -24,6 +36,7 @@
     gloves: N14ClothingHandsGlovesTribal
     back: N14ClothingBackpackTribalHealerFilled
     pocket1: N14TribalKnife
+    id: N14IDTribeSawbonePendant
   innerClothingSkirt: N14ClothingUniformJumpskirtTribal
   satchel: N14ClothingBackpackSatchelTribalHealerFilled
 

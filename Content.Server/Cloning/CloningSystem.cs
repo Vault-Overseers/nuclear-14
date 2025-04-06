@@ -1,6 +1,7 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.Cloning.Components;
+using Content.Server.Construction;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.EUI;
 using Content.Server.Fluids.EntitySystems;
@@ -9,6 +10,10 @@ using Content.Server.Jobs;
 using Content.Server.Materials;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Silicon.Components; // Goobstation
+using Content.Shared.Atmos;
+using Content.Shared.CCVar;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Cloning;
 using Content.Shared.Damage;
 using Content.Shared.DeviceLinking.Events;
@@ -41,6 +46,8 @@ using Timer = Robust.Shared.Timing.Timer;
 using Content.Server.Power.Components;
 using Content.Shared.Drunk;
 using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Power;
+
 
 namespace Content.Server.Cloning;
 
@@ -78,6 +85,11 @@ public sealed partial class CloningSystem : EntitySystem
     [Dependency] private readonly MobThresholdSystem _thresholds = default!;
     public readonly Dictionary<MindComponent, EntityUid> ClonesWaitingForMind = new();
 
+    // <summary>
+    //   The minimum mass an entity needs for its mass to affect the cloning timer with a MassContest.
+    // </summary>
+    private const float MinMassContestMass = 71f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -90,8 +102,23 @@ public sealed partial class CloningSystem : EntitySystem
         SubscribeLocalEvent<CloningPodComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<CloningPodComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<CloningPodComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<CloningPodComponent, RefreshPartsEvent>(OnPartsRefreshed);
+        SubscribeLocalEvent<CloningPodComponent, UpgradeExamineEvent>(OnUpgradeExamine);
+    }
+    private void OnPartsRefreshed(EntityUid uid, CloningPodComponent component, RefreshPartsEvent args)
+    {
+        var materialRating = args.PartRatings[component.MachinePartMaterialUse];
+        var speedRating = args.PartRatings[component.MachinePartCloningSpeed];
+
+        component.BiomassCostMultiplier = MathF.Pow(component.PartRatingMaterialMultiplier, materialRating - 1);
+        component.CloningTime = component.CloningTime * MathF.Pow(component.PartRatingSpeedMultiplier, speedRating - 1);
     }
 
+    private void OnUpgradeExamine(EntityUid uid, CloningPodComponent component, UpgradeExamineEvent args)
+    {
+        args.AddPercentageUpgrade("cloning-pod-component-upgrade-speed", component.CloningTime / component.CloningTime);
+        args.AddPercentageUpgrade("cloning-pod-component-upgrade-biomass-requirement", component.BiomassCostMultiplier);
+    }
     private void OnPortDisconnected(EntityUid uid, CloningPodComponent pod, PortDisconnectedEvent args)
     {
         pod.ConnectedConsole = null;
@@ -157,7 +184,8 @@ public sealed partial class CloningSystem : EntitySystem
     /// </summary>
     public bool TryCloning(EntityUid uid, EntityUid bodyToClone, Entity<MindComponent> mindEnt, CloningPodComponent clonePod, float failChanceModifier = 1)
     {
-        if (!_mobStateSystem.IsDead(bodyToClone)
+        var allowLivingPeople = _config.GetCVar(CCVars.CloningAllowLivingPeople);
+        if ((!allowLivingPeople && !_mobStateSystem.IsDead(bodyToClone))
             || clonePod.ActivelyCloning
             || clonePod.ConnectedConsole == null
             || !CheckUncloneable(uid, bodyToClone, clonePod, out var cloningCostMultiplier)
@@ -168,7 +196,8 @@ public sealed partial class CloningSystem : EntitySystem
         var mind = mindEnt.Comp;
         if (ClonesWaitingForMind.TryGetValue(mind, out var clone))
         {
-            if (EntityManager.EntityExists(clone) &&
+            if (!allowLivingPeople &&
+                EntityManager.EntityExists(clone) &&
                 !_mobStateSystem.IsDead(clone) &&
                 TryComp<MindContainerComponent>(clone, out var cloneMindComp) &&
                 (cloneMindComp.Mind == null || cloneMindComp.Mind == mindEnt))
@@ -177,7 +206,7 @@ public sealed partial class CloningSystem : EntitySystem
             ClonesWaitingForMind.Remove(mind);
         }
 
-        if (mind.OwnedEntity != null && !_mobStateSystem.IsDead(mind.OwnedEntity.Value)
+        if ((!allowLivingPeople && mind.OwnedEntity != null && !_mobStateSystem.IsDead(mind.OwnedEntity.Value))
             || mind.UserId == null
             || !_playerManager.TryGetSessionById(mind.UserId.Value, out var client)
             || !CheckBiomassCost(uid, physics, clonePod, cloningCostMultiplier))
@@ -189,12 +218,14 @@ public sealed partial class CloningSystem : EntitySystem
             || !_prototypeManager.TryIndex(humanoid.Species, out var speciesPrototype))
             return false;
 
+        if (HasComp<SiliconComponent>(bodyToClone))
+            return false; // Goobstation: Don't clone IPCs.
+
         // Yes, this can return true without making a body. If it returns true, we're making clone soup instead.
         if (CheckGeneticDamage(uid, bodyToClone, clonePod, out var geneticDamage, failChanceModifier))
             return true;
 
         var mob = FetchAndSpawnMob(uid, clonePod, pref, speciesPrototype, humanoid, bodyToClone, geneticDamage);
-
         var ev = new CloningEvent(bodyToClone, mob);
         RaiseLocalEvent(bodyToClone, ref ev);
 
@@ -226,8 +257,11 @@ public sealed partial class CloningSystem : EntitySystem
     {
         if (cloningPodComponent.BodyContainer.ContainedEntity is { Valid: true } entity
             && TryComp<PhysicsComponent>(entity, out var physics)
-            && physics.Mass > 71)
+            && physics.Mass > MinMassContestMass)
+        {
             Timer.Spawn(TimeSpan.FromSeconds(cloningPodComponent.CloningTime * _contests.MassContest(entity, physics, true)), () => EndCloning(cloningPod, cloningPodComponent));
+            return;
+        }
 
         Timer.Spawn(TimeSpan.FromSeconds(cloningPodComponent.CloningTime), () => EndCloning(cloningPod, cloningPodComponent));
     }

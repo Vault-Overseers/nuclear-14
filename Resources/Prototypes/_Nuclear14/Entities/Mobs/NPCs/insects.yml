@@ -36,7 +36,7 @@
       Dead:
         Base: dead
   - type: Stamina
-    critThreshold: 20
+    critThreshold: 99
   - type: Bloodstream
     bloodMaxVolume: 50
   - type: ReplacementAccent
@@ -47,7 +47,13 @@
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 1
   - type: Gun
+    minAngle: 5
+    maxAngle: 15
+    angleIncrease: 2
+    angleDecay: 4
     fireRate: 0.5
+    availableModes:
+      - FullAuto
     selectedMode: FullAuto
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
     useKey: false

@@ -54,7 +54,6 @@
     broadcastChannel: PBS
     toggleOnInteract: true
     frequency: 1667
-    listenRange: 2
   - type: Clickable
   - type: InteractionOutline
   - type: WiresVisuals
@@ -113,7 +112,6 @@
     broadcastChannel: PBS
     toggleOnInteract: false
     frequency: 1667
-    listenRange: 0
 
 - type: entity # Prototype for radio receivers
   name: standing microphone
@@ -128,11 +126,9 @@
     broadcastChannel: PBS
     toggleOnInteract: true
     frequency: 1667
-    listenRange: 2
   - type: ActiveRadio
     channels:
     - PBS
-    listenRange: 2
   - type: Fixtures
     fixtures:
       fix1:
@@ -145,19 +141,26 @@
 - type: entity
   parent: PoweredSmallLight
   id: N14LightRadioOnAirSign
-  name: radio on air sign
+  name: on air sign
+  description: This reminds you that you are on air.
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Misc/radiostation/radioonair.rsi
+    state: off
     offset: 0,-0.25
-    state: base
     layers:
     - state: off
-    - state: on
       map: ["enum.PoweredLightLayers.Base"]
-
+    - state: on
+      map: ["enum.PoweredLightLayers.Glow"]
+      shader: unshaded
   - type: WallMount
   - type: PointLight
-    radius: 7
+    radius: 1
     energy: 0.6
     softness: 0.4
+    color: "#ff0000"
+  - type: PoweredLightVisuals
+    spriteStateMap:
+      off: off
+      on: on

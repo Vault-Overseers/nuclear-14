@@ -8,9 +8,10 @@
   - type: SpawnPoint
     job_id: Wastelander
   - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/wastelanders.rsi
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: wastelander
 
 # BOS Midwest
 - type: entity
@@ -21,13 +22,14 @@
   - type: SpawnPoint
     job_id: BoSMidPaladinCommander
   - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/bosmid.rsi
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: commander
 
 - type: entity
   id: N14SpawnPointBoSMidKnight
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointBoSMidPaladinCommander
   name: BOS midwest knight
   components:
   - type: SpawnPoint
@@ -35,11 +37,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: knight
 
 - type: entity
   id: N14SpawnPointBoSMidPaladin
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointBoSMidPaladinCommander
   name: BOS midwest paladin
   components:
   - type: SpawnPoint
@@ -47,11 +49,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: paladin
 
 - type: entity
   id: N14SpawnPointBoSMidInitiate # change this when I care
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointBoSMidPaladinCommander
   name: BOS midwest squire
   components:
   - type: SpawnPoint
@@ -59,11 +61,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: squire
 
 - type: entity
   id: N14SpawnPointBoSMidScribe
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointBoSMidPaladinCommander
   name: BOS midwest scribe
   components:
   - type: SpawnPoint
@@ -71,7 +73,7 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: scribe
 
 # BOS Washington
 - type: entity
@@ -82,13 +84,14 @@
   - type: SpawnPoint
     job_id: BoSWashingtonCommander
   - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/boswashington.rsi
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: commander
 
 - type: entity
   id: N14SpawnPointBoSWashingtonInitiate
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointBoSWashingtonCommander
   name: BOS washington recruit
   components:
   - type: SpawnPoint
@@ -96,11 +99,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: initiate
 
 - type: entity
   id: N14SpawnPointBoSWashingtonPaladin
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointBoSWashingtonCommander
   name: BOS washington captain
   components:
   - type: SpawnPoint
@@ -108,11 +111,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: paladin
 
 - type: entity
   id: N14SpawnPointBoSWashingtonKnight
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointBoSWashingtonCommander
   name: BOS washington soldier
   components:
   - type: SpawnPoint
@@ -120,11 +123,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: knight
 
 - type: entity
   id: N14SpawnPointBoSWashingtonScribe
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointBoSWashingtonCommander
   name: BOS washington researcher
   components:
   - type: SpawnPoint
@@ -132,7 +135,7 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: scribe
 
 # Caravan Company
 - type: entity
@@ -143,13 +146,14 @@
   - type: SpawnPoint
     job_id: CaravanLeader
   - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/caravan.rsi
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: leader
 
 - type: entity
   id: N14SpawnPointCaravanTrader
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointCaravanLeader
   name: caravan trader
   components:
   - type: SpawnPoint
@@ -157,11 +161,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: trader
 
 - type: entity
   id: N14SpawnPointCaravanGuard
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointCaravanLeader
   name: caravan guard
   components:
   - type: SpawnPoint
@@ -169,7 +173,7 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: guard
 
 # NCR
 - type: entity
@@ -180,13 +184,14 @@
   - type: SpawnPoint
     job_id: NCRCadet
   - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/ncr.rsi
     layers:
       - state: green
-      - state: passenger # TODO make new icons
-  
+      - state: cadet
+
 - type: entity
   id: N14SpawnPointNCRMedic
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointNCRCadet
   name: NCR doctor
   components:
   - type: SpawnPoint
@@ -194,11 +199,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: medic
 
 - type: entity
   id: N14SpawnPointNCRSGT
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointNCRCadet
   name: NCR SGT
   components:
   - type: SpawnPoint
@@ -206,11 +211,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: sgt
 
 - type: entity
   id: N14SpawnPointNCRLT
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointNCRCadet
   name: NCR LT
   components:
   - type: SpawnPoint
@@ -218,11 +223,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: lt
 
 - type: entity
   id: N14SpawnPointNCRWS
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointNCRCadet
   name: NCR WS
   components:
   - type: SpawnPoint
@@ -230,11 +235,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: ws
 
 - type: entity
   id: N14SpawnPointNCREngineer
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointNCRCadet
   name: NCR Engineer
   components:
   - type: SpawnPoint
@@ -242,11 +247,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: engineer
 
 - type: entity
   id: N14SpawnPointNCRRanger
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointNCRCadet
   name: NCR ranger
   components:
   - type: SpawnPoint
@@ -254,11 +259,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: ranger
 
 - type: entity
   id: N14SpawnPointNCRRangerVeteran
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointNCRCadet
   name: NCR ranger veteran
   components:
   - type: SpawnPoint
@@ -266,11 +271,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: rangerveteran
 
 - type: entity
   id: N14SpawnPointNCRSoldier
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointNCRCadet
   name: NCR Soldier
   components:
   - type: SpawnPoint
@@ -278,7 +283,7 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: soldier
 
 # Rangers
 - type: entity
@@ -289,13 +294,14 @@
   - type: SpawnPoint
     job_id: RangerRecruit
   - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/rangers.rsi
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: recruit
 
 - type: entity
   id: N14SpawnPointRanger
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointRangerRecruit
   name: ranger
   components:
   - type: SpawnPoint
@@ -303,11 +309,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: ranger
 
 - type: entity
   id: N14SpawnPointRangerVeteran
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointRangerRecruit
   name: ranger veteran
   components:
   - type: SpawnPoint
@@ -315,7 +321,7 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: veteran
 
 # Tribals
 - type: entity
@@ -326,13 +332,14 @@
   - type: SpawnPoint
     job_id: Tribal
   - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/tribal.rsi
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: tribal
 
 - type: entity
   id: N14SpawnPointTribalElder
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointTribal
   name: tribal elder
   components:
   - type: SpawnPoint
@@ -340,11 +347,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: elder
 
 - type: entity
   id: N14SpawnPointTribalFarmer
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointTribal
   name: tribal farmer
   components:
   - type: SpawnPoint
@@ -352,11 +359,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: farmer
 
 - type: entity
   id: N14SpawnPointTribalHealer
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointTribal
   name: tribal healer
   components:
   - type: SpawnPoint
@@ -364,7 +371,7 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: healer
 
 # Vault
 - type: entity
@@ -375,13 +382,14 @@
   - type: SpawnPoint
     job_id: Overseer
   - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/vault.rsi
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: overseer
 
 - type: entity
   id: N14SpawnPointVaultDoctor
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointOverseer
   name: vault doctor
   components:
   - type: SpawnPoint
@@ -389,11 +397,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: doctor
 
 - type: entity
   id: N14SpawnPointVaultDweller
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointOverseer
   name: vault dweller
   components:
   - type: SpawnPoint
@@ -401,11 +409,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: dweller
 
 - type: entity
   id: N14SpawnPointVaultEngineer
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointOverseer
   name: vault engineer
   components:
   - type: SpawnPoint
@@ -413,11 +421,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: engineer
 
 - type: entity
   id: N14SpawnPointVaultSecurity
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointOverseer
   name: vault security
   components:
   - type: SpawnPoint
@@ -425,7 +433,7 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: security
 
 # Wastelanders
 - type: entity
@@ -438,7 +446,7 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: bartender
 
 - type: entity
   id: N14SpawnPointWastelandChaplain
@@ -450,7 +458,7 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: chaplain
 
 - type: entity
   id: N14SpawnPointWastelandFarmer
@@ -462,19 +470,20 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: farmer
 
 - type: entity
   id: N14SpawnPointWastelandMusician
   parent: N14SpawnPointWastelander
   name: wasteland musician
+  categories: [ HideSpawnMenu ] # disabled, use loadouts
   components:
   - type: SpawnPoint
     job_id: WastelandMusician
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: musician
 
 - type: entity
   id: N14SpawnPointWastelandReporter
@@ -486,19 +495,20 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: reporter
 
 - type: entity
   id: N14SpawnPointWastelandScavenger
   parent: N14SpawnPointWastelander
   name: wasteland scavenger
+  categories: [ HideSpawnMenu ] # disabled, use loadouts
   components:
   - type: SpawnPoint
     job_id: WastelandScavenger
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: scavenger
 
 # Townsfolk
 - type: entity
@@ -509,13 +519,14 @@
   - type: SpawnPoint
     job_id: Townsperson
   - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/town.rsi
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: person
 
 - type: entity
   id: N14SpawnPointTownsfolkTownMechanic
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointTownsfolkTownsperson
   name: town mechanic
   components:
   - type: SpawnPoint
@@ -523,11 +534,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: mechanic
 
 - type: entity
   id: N14SpawnPointTownsfolkTownDoctor
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointTownsfolkTownsperson
   name: town doctor
   components:
   - type: SpawnPoint
@@ -535,11 +546,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: doctor
 
 - type: entity
   id: N14SpawnPointTownsfolkTownShopkeeper
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointTownsfolkTownsperson
   name: town shopkeeper
   components:
   - type: SpawnPoint
@@ -547,11 +558,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: shopkeeper
 
 - type: entity
   id: N14SpawnPointTownsfolkTownDeputy
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointTownsfolkTownsperson
   name: town deputy
   components:
   - type: SpawnPoint
@@ -559,11 +570,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: deputy
 
 - type: entity
   id: N14SpawnPointTownsfolkTownSheriff
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointTownsfolkTownsperson
   name: town sheriff
   components:
   - type: SpawnPoint
@@ -571,11 +582,11 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: sheriff
 
 - type: entity
   id: N14SpawnPointTownsfolkTownMayor
-  parent: N14SpawnPointWastelander
+  parent: N14SpawnPointTownsfolkTownsperson
   name: town mayor
   components:
   - type: SpawnPoint
@@ -583,7 +594,7 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: mayor
 
 
 # Fun / Misc
@@ -597,7 +608,7 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: zetan
 
 - type: entity
   id: N14SpawnPointZetan
@@ -609,4 +620,4 @@
   - type: Sprite
     layers:
       - state: green
-      - state: passenger # TODO make new icons
+      - state: zetan

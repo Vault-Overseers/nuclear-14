@@ -1,0 +1,51 @@
+- type: entity
+  parent: BaseStructure
+  id: N14CryoBunkerLadder
+  name: 
+  description: 
+  components:
+  - type: Sprite
+    offset: 0, -0.25
+    drawdepth: FloorObjects
+    noRot: true
+    sprite: _Nuclear14/Structures/Misc/laddersms13.rsi
+    layers:
+    - state: dasbunker_open
+      map: ["base"]
+  - type: InteractionOutline
+  - type: Cryostorage
+  - type: Physics
+    canCollide: false
+  - type: DragInsertContainer
+    containerId: storage
+  - type: ExitContainerOnMove
+    containerId: storage
+  - type: ContainerContainer
+    containers:
+      storage: !type:ContainerSlot
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CryostorageVisuals.Full:
+        base:
+          True: { state: dasbunker }
+          False: { state: dasbunker_open }
+
+- type: entity
+  parent: N14CryoBunkerLadder
+  id: N14N14CryoBunkerLadderE
+  name: 
+  description: 
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Nuclear14/Structures/Misc/laddersms13.rsi
+    layers:
+    - state: enclave_open
+      map: ["base"]
+  - type: GenericVisualizer
+    visuals:
+      enum.CryostorageVisuals.Full:
+        base:
+          True: { state: enclave }
+          False: { state: enclave_open }

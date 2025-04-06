@@ -1,41 +1,28 @@
-using System.Linq;
-using System.Numerics;
 using Content.Server.Administration;
+using Content.Server.GameTicking;
+using Content.Server.Maps;
 using Content.Shared.Administration;
-using Content.Shared.Maps;
+using Content.Shared.CCVar;
 using Content.Shared.Weather;
+using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Content.Shared.Atmos;
-using Robust.Server.Player;
-using Robust.Shared.GameObjects;
-using Robust.Server.GameObjects;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Robust.Shared.Map;
-using Content.Server.GameTicking;
-using Content.Server.Chat.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Server.Radiation.Systems;
+using System.Linq;
 
 namespace Content.Server.Weather;
 
 public sealed class WeatherSystem : SharedWeatherSystem
 {
+    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
+    [Dependency] private readonly IMapManager _map = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly RadiationSystem _radiation = default!;
-    [Dependency] private readonly TransformSystem _xform = default!;
-
-    private List<Entity<MapGridComponent>> _grids = new();
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
 
     public override void Initialize()
     {
@@ -46,20 +33,37 @@ public sealed class WeatherSystem : SharedWeatherSystem
             Loc.GetString("cmd-weather-help"),
             WeatherTwo,
             WeatherCompletion);
-        SubscribeLocalEvent<WeatherComponent, MapInitEvent>(OnMapInit);
+        _console.RegisterCommand("randomweather",
+            Loc.GetString("cmd-randomweather-desc"),
+            Loc.GetString("cmd-randomweather-help"),
+            RandomWeatherCommand);
     }
 
-    private void OnMapInit(EntityUid uid, WeatherComponent component, MapInitEvent args)
+    public override void Update(float frameTime)
     {
-        Logger.InfoS("weather", $"UID = {uid}!");
-        EnsureComp<WeatherComponent>(uid);
-        var mapId = _entManager.GetComponent<TransformComponent>(uid).MapID;
-        if (!ProtoMan.TryIndex<WeatherPrototype>("Default", out var weatherProto))
-            return;
-        var curTime = Timing.CurTime;
-        Logger.InfoS("weather", $"proto = {weatherProto}!");
-        SetWeather(mapId, weatherProto, curTime + TimeSpan.FromSeconds(30));
+        base.Update(frameTime);
 
+        if (_config.GetCVar(CCVars.AutoWeather) && _gameTicker.RunLevel == GameRunLevel.InRound && !WeatherRunning())
+        {
+            var (weather, map) = SetRandomWeather();
+            if (weather != null)
+            {
+                Logger.InfoS("weather", $"Randomizing weather to {weather.ID} on map {map}");
+            }
+        }
+    }
+
+    private bool WeatherRunning()
+    {
+        var query = EntityQueryEnumerator<WeatherComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.Weather.Count > 0)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void OnWeatherGetState(EntityUid uid, WeatherComponent component, ref ComponentGetState args)
@@ -118,76 +122,65 @@ public sealed class WeatherSystem : SharedWeatherSystem
         SetWeather(mapId, weather, endTime);
     }
 
+    [AdminCommand(AdminFlags.Fun)]
+    private void RandomWeatherCommand(IConsoleShell shell, string argStr, string[] args)
+    {
+        var (weather, map) = SetRandomWeather();
+        if (weather != null)
+        {
+            shell.WriteLine($"Picked {weather.ID} to run on map {map}");
+        }
+    }
+
+    private (WeatherPrototype?, MapId) SetRandomWeather()
+    {
+        var weather = RandomWeather();
+        if (weather != null) {
+            MapId map = GetMainMap();
+            SetWeather(map, weather, null);
+            return (weather, map);
+        }
+        return (weather, MapId.Nullspace);
+    }
+
+    /**
+     * Try to guess the main map on which weather effects should be applied.
+     */
+    private MapId GetMainMap()
+    {
+        foreach (var mapId in _map.GetAllMapIds().OrderBy(id => id.GetHashCode()))
+        {
+            return mapId;
+        }
+        return MapId.Nullspace;
+    }
+
+    private WeatherPrototype? RandomWeather()
+    {
+        int totalChance = 0;
+        foreach (var proto in _prototype.EnumeratePrototypes<WeatherPrototype>())
+        {
+            totalChance += proto.Chance;
+        }
+
+        int tgtChance = _random.Next(totalChance);
+        int curr = 0;
+        foreach (var proto in _prototype.EnumeratePrototypes<WeatherPrototype>())
+        {
+            if (curr <= tgtChance && tgtChance < curr + proto.Chance)
+                return proto;
+            curr += proto.Chance;
+        }
+        return null;
+    }
+
     private CompletionResult WeatherCompletion(IConsoleShell shell, string[] args)
     {
         if (args.Length == 1)
             return CompletionResult.FromHintOptions(CompletionHelper.MapIds(EntityManager), "Map Id");
 
         var a = CompletionHelper.PrototypeIDs<WeatherPrototype>(true, ProtoMan);
-        return CompletionResult.FromHintOptions(a, Loc.GetString("cmd-weather-hint"));
+        var b = a.Concat(new[] { new CompletionOption("null", Loc.GetString("cmd-weather-null")) });
+        return CompletionResult.FromHintOptions(b, Loc.GetString("cmd-weather-hint"));
     }
-
-    protected override void Run(EntityUid uid, WeatherData weather, WeatherPrototype weatherProto, float frameTime)
-    {
-        var atmosphereSystem = _entManager.System<AtmosphereSystem>();
-
-        foreach (var session in _playerManager.Sessions)
-        {
-            if (session.AttachedEntity is not {Valid: true} entity)
-                continue;
-            var transform = Transform(entity);
-            var gridUid = transform.GridUid;
-
-            if (!TryComp<MapGridComponent>(gridUid, out var map))
-                return;
-            var tiles = map.GetTilesIntersecting(Box2.CenteredAround(transform.WorldPosition,
-                new Vector2(5, 5))).ToArray();
-
-            foreach(var tile in tiles)
-            {
-                var tileDef = (ContentTileDefinition) _tileDefManager[tile.Tile.TypeId];
-                var environment = atmosphereSystem.GetTileMixture(tile.GridUid, transform.MapUid, tile.GridIndices, false);
-                if(environment == null)
-                    continue;
-                if(tileDef.Weather)
-                    environment.Temperature = weatherProto.Temperature;
-                else
-                    environment.Temperature = 293.15f;
-            }
-        }
-    }
-
-    public override void SelectNewWeather(EntityUid uid, WeatherComponent component, string proto)
-    {
-        var mapId = _entManager.GetComponent<TransformComponent>(uid).MapID;
-        if (!TryComp<WeatherComponent>(MapManager.GetMapEntityId(mapId), out var weatherComp))
-            return;
-        var curTime = Timing.CurTime;
-
-        if(proto == "Default")
-        {
-            if (!ProtoMan.TryGetRandom<WeatherPrototype>(_random, out var wproto))
-                return;
-            Logger.InfoS("weather", $"new weather = {proto}!");
-            var weatherProto = (WeatherPrototype) wproto;
-            SetWeather(mapId, weatherProto, curTime + TimeSpan.FromSeconds(weatherProto.Duration));
-            if(weatherProto.ShowMessage && weatherProto.Message != string.Empty)
-            {
-                var message = Loc.GetString(weatherProto.Message);
-                var sender = weatherProto.Sender != null ? Loc.GetString(weatherProto.Sender) : "Inner feeling";
-                var color = weatherProto.Color != null ? weatherProto.Color : Color.LightGray;
-                _chat.DispatchGlobalAnnouncement(message, sender, playSound: false, null, color);
-            }
-        }
-
-        else
-        {
-            if(!ProtoMan.TryIndex<WeatherPrototype>("Default", out var weatherProto))
-                return;
-            Logger.InfoS("weather", $"proto = {weatherProto}!");
-            SetWeather(mapId, weatherProto, curTime + TimeSpan.FromSeconds(weatherProto.Duration));
-
-        }
-    }
-
 }

@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Light.Components;
 using Content.Shared.Weather;
 using Robust.Client.Audio;
 using Robust.Client.GameObjects;
@@ -47,15 +48,16 @@ public sealed class WeatherSystem : SharedWeatherSystem
         if (!Timing.IsFirstTimePredicted || weatherProto.Sound == null)
             return;
 
-        weather.Stream ??= _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true).Value.Entity;
+        weather.Stream ??= _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true)?.Entity;
+        if (!TryComp(weather.Stream, out AudioComponent? comp))
+            return;
 
-        var stream = weather.Stream.Value;
-        var comp = Comp<AudioComponent>(stream);
         var occlusion = 0f;
 
         // Work out tiles nearby to determine volume.
         if (TryComp<MapGridComponent>(entXform.GridUid, out var grid))
         {
+            TryComp(entXform.GridUid, out RoofComponent? roofComp);
             var gridId = entXform.GridUid.Value;
             // FloodFill to the nearest tile and use that for audio.
             var seed = _mapSystem.GetTileRef(gridId, grid, entXform.Coordinates);
@@ -70,7 +72,7 @@ public sealed class WeatherSystem : SharedWeatherSystem
                 if (!visited.Add(node.GridIndices))
                     continue;
 
-                if (!CanWeatherAffect(entXform.GridUid.Value, grid, node))
+                if (!CanWeatherAffect(entXform.GridUid.Value, grid, node, roofComp))
                 {
                     // Add neighbors
                     // TODO: Ideally we pick some deterministically random direction and use that
@@ -115,13 +117,13 @@ public sealed class WeatherSystem : SharedWeatherSystem
 
         var alpha = GetPercent(weather, uid);
         alpha *= SharedAudioSystem.VolumeToGain(weatherProto.Sound.Params.Volume);
-        _audio.SetGain(stream, alpha, comp);
+        _audio.SetGain(weather.Stream, alpha, comp);
         comp.Occlusion = occlusion;
     }
 
-    protected override bool SetState(WeatherState state, WeatherComponent comp, WeatherData weather, WeatherPrototype weatherProto)
+    protected override bool SetState(EntityUid uid, WeatherState state, WeatherComponent comp, WeatherData weather, WeatherPrototype weatherProto)
     {
-        if (!base.SetState(state, comp, weather, weatherProto))
+        if (!base.SetState(uid, state, comp, weather, weatherProto))
             return false;
 
         if (!Timing.IsFirstTimePredicted)

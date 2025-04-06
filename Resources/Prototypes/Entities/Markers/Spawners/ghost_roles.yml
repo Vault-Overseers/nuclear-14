@@ -1,4 +1,15 @@
 - type: entity
+  abstract: true
+  parent: MarkerBase
+  id: BaseAntagSpawner
+  name: ghost role spawn point
+  components:
+  - type: GhostRole
+    raffle:
+      settings: default
+  - type: GhostRoleAntagSpawner
+
+- type: entity
   id: SpawnPointGhostRatKing
   name: ghost role spawn point
   suffix: rat king
@@ -8,6 +19,8 @@
     name: ghost-role-information-rat-king-name
     description: ghost-role-information-rat-king-description
     rules: ghost-role-information-rat-king-rules
+    raffle:
+      settings: default
   - type: GhostRoleMobSpawner
     prototype: MobRatKing
   - type: Sprite
@@ -27,6 +40,8 @@
     name: ghost-role-information-remilia-name
     description: ghost-role-information-remilia-description
     rules: ghost-role-information-remilia-rules
+    raffle:
+      settings: short
   - type: GhostRoleMobSpawner
     prototype: MobBatRemilia
   - type: Sprite
@@ -46,6 +61,8 @@
     name: ghost-role-information-cerberus-name
     description: ghost-role-information-cerberus-description
     rules: ghost-role-information-cerberus-rules
+    raffle:
+      settings: default
   - type: GhostRoleMobSpawner
     prototype: MobCorgiCerberus
   - type: Sprite
@@ -56,11 +73,11 @@
         state: narsian
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnPointGhostNukeOperative
   name: ghost role spawn point
   suffix: nukeops
-  parent: MarkerBase
+  parent: BaseAntagSpawner
   components:
   - type: GhostRole
     rules: ghost-role-information-nukeop-rules
@@ -74,23 +91,16 @@
         state: radiation
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnPointLoneNukeOperative
   name: ghost role spawn point
   suffix: loneops
-  parent: MarkerBase
+  parent: BaseAntagSpawner
   components:
   - type: GhostRole
     name: ghost-role-information-loneop-name
     description: ghost-role-information-loneop-description
     rules: ghost-role-information-loneop-rules
-    requirements:
-    - !type:CharacterOverallTimeRequirement
-      min: 172800 # DeltaV - 48 hours
-    - !type:DepartmentTimeRequirement # DeltaV - Security dept time requirement
-      department: Security
-      time: 36000 # DeltaV - 10 hours
-  - type: GhostRoleAntagSpawner
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -99,9 +109,9 @@
         state: radiation
 
 - type: entity
-  parent: MarkerBase
+  parent: BaseAntagSpawner
   id: SpawnPointGhostDragon
-  noSpawn: true
+  categories: [ HideSpawnMenu, Spawner ]
   name: ghost role spawn point
   suffix: dragon
   components:
@@ -118,37 +128,19 @@
       state: alive
 
 - type: entity
+  parent: BaseAntagSpawner
   id: SpawnPointGhostSpaceNinja
+  categories: [ HideSpawnMenu, Spawner ]
   name: ghost role spawn point
   suffix: space ninja
-  parent: MarkerBase
   components:
   - type: GhostRole
     name: ghost-role-information-space-ninja-name
     description: ghost-role-information-space-ninja-description
     rules: ghost-role-information-space-ninja-rules
-  - type: GhostRoleMobSpawner
-    prototype: MobHumanSpaceNinja
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
     - state: green
     - sprite: Objects/Weapons/Melee/energykatana.rsi
       state: icon
-
-- type: entity
-  parent: MarkerBase
-  id: SpawnPointGhostTerminator
-  name: terminator spawn point
-  components:
-  - type: GhostRole
-    name: ghost-role-information-exterminator-name
-    description: ghost-role-information-exterminator-description
-    rules: ghost-role-information-exterminator-rules
-  - type: GhostRoleMobSpawner
-    prototype: MobHumanTerminator
-  - type: Sprite
-    layers:
-    - state: green
-    - sprite: Mobs/Species/Terminator/parts.rsi
-      state: full

@@ -4,15 +4,26 @@
   name: job-name-tribal
   description: job-description-tribal
   playTimeTracker: Tribal
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:OverallTimeRequirement
+      min: 3600 # 1 hour
   startingGear: TribalGear
   icon: "JobIconBotanist"
   supervisors: job-supervisors-tribal
+  access:
+  - TribeMember
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
           - Tribal
+  - !type:AddTraitSpecial
+    traits: [ LanguageTribal ]
 
 - type: startingGear
   id: TribalGear
@@ -23,6 +34,7 @@
     gloves: N14ClothingHandsGlovesTribal
     back: N14ClothingBackpackTribalFilled
     pocket1: N14TribalKnife
+    id: N14IDTribeBulletsPendant
   innerClothingSkirt: N14ClothingUniformJumpskirtTribal
   satchel: N14ClothingBackpackSatchelTribalFilled
 

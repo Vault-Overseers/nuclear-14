@@ -14,6 +14,7 @@
       - RawMaterial
   - type: Damageable
     damageContainer: Inorganic
+  - type: Craftable
   - type: Destructible
     thresholds:
     - trigger:
@@ -54,6 +55,9 @@
         reagents:
         - ReagentId: Cellulose
           Quantity: 6
+  - type: Construction
+    graph: N14Cardboard
+    node: cardboard
 
 - type: entity
   parent: MaterialCardboard
@@ -74,9 +78,6 @@
     state: cardboard
   - type: Stack
     count: 1
-  - type: Construction
-    graph: N14Cardboard
-    node: cardboard
 
 - type: entity
   parent: MaterialBase
@@ -120,6 +121,9 @@
   - type: Appearance
   - type: Food
     requiresSpecialDigestion: true
+  - type: FlavorProfile
+    flavors:
+    - fiber
   - type: SolutionContainerManager
     solutions:
       food:
@@ -284,9 +288,9 @@
     sprite: /Textures/Objects/Misc/monkeycube.rsi
     state: cube
     color: "#8A9A5B"
-  # - type: GuideHelp
-    # guides:
-    # - Cloning
+  - type: GuideHelp
+    guides:
+    - Cloning
 
 - type: entity
   parent: MaterialBiomass
@@ -353,8 +357,17 @@
   components:
   - type: Stack
     stackType: Diamond
+    baseLayer: base
+    layerStates:
+    - diamond
+    - diamond_2
+    - diamond_3
   - type: Sprite
     state: diamond
+    layers:
+    - state: diamond
+      map: ["base"]
+  - type: Appearance
   - type: Item
     heldPrefix: diamond
   - type: Extractable
@@ -365,6 +378,10 @@
         reagents:
         - ReagentId: Carbon
           Quantity: 20
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Diamond: 100
 
 - type: entity
   parent: MaterialDiamond
@@ -395,6 +412,9 @@
   - type: Appearance
   - type: Food
     requiresSpecialDigestion: true
+  - type: FlavorProfile
+    flavors:
+    - fiber
   - type: SolutionContainerManager
     solutions:
       food:
@@ -424,6 +444,58 @@
 
 - type: entity
   parent: MaterialBase
+  id: MaterialPyrotton
+  name: pyrotton
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: Pyrotton
+    baseLayer: base
+    layerStates:
+    - pyrotton
+    - pyrotton_2
+    - pyrotton_3
+  - type: Sprite
+    state: pyrotton_3
+    layers:
+    - state: pyrotton_3
+      map: ["base"]
+  - type: Appearance
+  - type: Food
+    requiresSpecialDigestion: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 5
+        - ReagentId: Phlogiston
+          Quantity: 5
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 3
+      - ReagentId: Phlogiston
+        Quantity: 3
+  - type: Tag
+    tags:
+      - ClothMade
+      - RawMaterial
+
+- type: entity
+  parent: MaterialPyrotton
+  id: MaterialPyrotton1
+  suffix: Single
+  components:
+  - type: Sprite
+    state: pyrotton
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: MaterialBase
   id: MaterialBananium
   name: bananium
   suffix: Full
@@ -444,13 +516,14 @@
     layerStates:
       - bananium
       - bananium_1
-  - type: RadiationSource
+  - type: RadiationSource #Delta V - Adds radiation
     intensity: 0.1
   - type: FlavorProfile
     flavors:
       - banana
   - type: Food
-    trash: TrashBananiumPeel
+    trash:
+    - TrashBananiumPeel
   - type: BadFood
   - type: SolutionContainerManager
     solutions:
@@ -489,6 +562,7 @@
   description: A webby material.
   suffix: Full
   components:
+  - type: Material
   - type: PhysicalComposition
     materialComposition:
       WebSilk: 100
@@ -570,6 +644,62 @@
 - type: entity
   parent: MaterialBones
   id: MaterialBones1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: MaterialBase
+  id: MaterialGunpowder
+  name: gunpowder
+  description: An explosive compound.
+  components:
+  - type: Stack
+    stackType: Gunpowder
+    count: 1
+  - type: Sprite
+    sprite: Objects/Misc/reagent_fillings.rsi
+    state: powderpile
+    color: darkgray
+  - type: PhysicalComposition
+    materialComposition:
+      Gunpowder: 100
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: MaterialBase
+  id: MaterialGoliathHide
+  name: goliath hide plates
+  description: Pieces of a goliath's rocky hide, these might be able to make your suit a bit more durable to attack from the local fauna.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: Objects/Materials/hide.rsi
+    layers:
+    - state: goliath_hide
+      map: [ "base" ]
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 1500
+  - type: Appearance
+  - type: Stack
+    stackType: GoliathHide
+    baseLayer: base
+    layerStates:
+    - goliath_hide
+    - goliath_hide_2
+    - goliath_hide_3
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+
+- type: entity
+  parent: MaterialGoliathHide
+  id: MaterialGoliathHide1
   suffix: 1
   components:
   - type: Stack

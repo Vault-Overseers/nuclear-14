@@ -1,5 +1,21 @@
+#Mark: uniform base
+
 - type: entity
-  parent: ClothingUniformBase
+  abstract: true
+  parent: UnsensoredClothingUniformBase
+  id: N14ClothingUniformBase
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 3
+    - id: N14MaterialThread1
+      amount: 3
+
+#Mark: uniforms
+- type: entity
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitVault
   name: vault jumpsuit
   description: A vault jumpsuit that lacks a number on its back. You feel uneasy while looking at it...
@@ -10,7 +26,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/Vault/vaultsuitempty.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitVault14
   name: vault 14 jumpsuit
   description: A jumpsuit worn by the dwellers of a vault. It has a bright yellow 14 on the back.
@@ -21,7 +37,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/Vault/vaultsuit14.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitDetectiveAlt
   name: detective's suit
   description: A nice suit, perfect for investigating.
@@ -32,7 +48,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/detectivealt.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitBartenderAlt
   name: bartending uniform
   description: A nice and tidy uniform. Shame about the bar, though.
@@ -43,7 +59,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/bartenderalt.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitRDFormal
   name: research director's formal suit
   description: Some formal attire for the research director.
@@ -54,7 +70,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/rdformal.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitRags
   name: wastelander rags
   description: Hey, it's better than nothing.
@@ -63,14 +79,12 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/wastelanderrags.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/wastelanderrags.rsi
-  - type: ClothingSpecialModifier
-    charismaModifier: -1
   - type: Construction
     graph: WastelanderRagsGraph
     node: rags
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitSettlerRags
   name: wasteland settler rags
   description: Some rags worn by folks looking to settle down somewhere.
@@ -81,7 +95,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/wastelandsettler.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitCheckered
   name: checkered suit
   description: The game was rigged from the start.
@@ -92,7 +106,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/checkered.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitWastelandDoc
   name: wasteland doctor's apparel
   description: It's some clothing that post-war doctors wear. Perfect for shrapnel removal or bandaging bruises.
@@ -103,10 +117,11 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/medicaldoctor.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitEnclave
   name: enclave uniform
   description: A uniform worn by members of the Enclave.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/enclaveuni.rsi
@@ -115,7 +130,7 @@
 
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitMerc
   name: mercenary uniform
   description: A uniform worn by your typical hirable-gun type.
@@ -126,7 +141,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/mercc.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitMerchant
   name: merchant apparel
   description: These days, the only people you can trust are the ones that sell you stuff.
@@ -137,7 +152,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/merchant.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitTrader
   name: trader apparel
   description: Hey! You! Wanna buy a gun?
@@ -148,7 +163,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/trader.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitCaravan
   name: caravaneer apparel
   description: Oh, I'm goin' down this road feelin' bad... Lord, I'm goin' down this road feelin' bad...
@@ -159,7 +174,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/caravaneer.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitMechanic
   name: mechanic's jumpsuit
   description: It's a pre-war jumpsuit, probably belonging to a mechanic.
@@ -171,7 +186,7 @@
 
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitPreWarRelaxed
   name: pre-war relaxedwear
   description: It's some pre-war relaxedwear. Despite all the stains and dirt, it's still pretty comfortable.
@@ -182,7 +197,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/relaxedwear.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitPreWarCasual
   name: pre-war casualwear
   description: It's some pre-war casualwear. Despite all the stains and dirt, it's still pretty comfortable.
@@ -193,7 +208,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/casualwear.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitManagerSuit
   name: pre-war businessman suit
   description: It's a pre-war suit. This one looks... greasy.
@@ -204,7 +219,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/manager.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitPreWarManager
   name: black suit
   description: It's a suit. This one is black.
@@ -215,7 +230,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/blacksuit.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitBlueSuit
   name: blue suit
   description: It's a suit. This one is blue.
@@ -226,7 +241,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/bluesuit.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitPreWarLumberjack
   name: lumberjack apparel
   description: Pre-war flannel, probably worn by a lumberjack.
@@ -237,7 +252,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/lumberjack.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitCombat
   name: combat jumpsuit
   description: A comfortable jumpsuit for when you're getting shot at or shooting at someone.
@@ -248,7 +263,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/combatjumpsuit.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitTribal
   name: tribal apparel
   description: Fairly primitive clothing for fairly primitve people.
@@ -259,7 +274,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/tribal.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitWarriorTribal
   name: tribal warrior apparel
   description: Fairly primitive clothing for fairly primitive people, this one is made for warriors.
@@ -271,7 +286,7 @@
 
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitBrahminFarmer
   name: brahmin farmer apparel
   description: A piece of clothing worn by honest post-war farmers.
@@ -282,10 +297,10 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/brahminfarmer.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitFollowers
-  name: followers of the apocolypse uniform
-  description: The uniform often seen under the lab coats of the Followers of the Apocolypse.
+  name: followers of the apocalypse uniform
+  description: The uniform often seen under the lab coats of the Followers of the Apocalypse.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/followersuni.rsi
@@ -293,7 +308,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/followersuni.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitCowboyBrown
   name: brown cowboy apparel
   description: Yeehaw, partner!
@@ -304,7 +319,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/cowboybrown.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitCowboyGrey
   name: grey cowboy apparel
   description: Yeehaw, partner!
@@ -314,10 +329,31 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/cowboygrey.rsi
 
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitFudd
+  name: fudd clothes
+  description: A worn and partially torn pair of jeans, paired with a faded M81 pattern BDU jacket. "If you can't kill it with 6 rounds, you ain't a good shot."
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/fudd.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/fudd.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitMilUniform
+  name: prewar military uniform
+  description: A worn set of prewar M81 pattern BDUs.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/prewaruniform.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/prewaruniform.rsi
 #NCR
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformNCRDesert
   name: NCR trooper uniform
   description: The NCR-designated uniform for all infantry soldiers in the Republic army.
@@ -328,7 +364,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/NCRuniform2.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingOfficerUniformNCRDesert
   name: field NCR officer uniform
   description: A field uniform wore with pride by the officers of the NCR.
@@ -339,7 +375,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/NCRofficer2.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingMPUniformNCRDesert
   name: NCR military police uniform
   description: A simple uniform used by the military police of the NCR.
@@ -350,7 +386,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/NCRmp2.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformNCRSnow
   name: NCR trooper uniform
   description: The NCR-designated uniform for all infantry soldiers in the Republic army.
@@ -361,7 +397,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/NCRuniform.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingOfficerUniformNCRSnow
   name: field NCR officer uniform
   description: A field uniform wore with pride by the officers of the NCR.
@@ -372,7 +408,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/NCRofficer.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingMPUniformNCRSnow
   name: NCR military police uniform
   description: A simple uniform used by the military police of the NCR.
@@ -384,6 +420,17 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: N14ClothingUniformNCRCFUniform
+  name: NCR CF uniform
+  description: The standard uniform of NCR Correctional Facility staff.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/ncrcorrectionsuniform.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/ncrcorrectionsuniform.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformRangerV1
   name: ranger formal apparel
   description: Brown shirt, khaki pants, and a big iron is all a Ranger needs during their patrols.
@@ -394,7 +441,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/rangerv1.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformRangerV2
   name: ranger casual apparel
   description: A long T-shirt with blue pants, simple and comfy, weirdly good for combat.
@@ -405,7 +452,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/rangerv2.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformRangerV3
   name: republic ranger uniform
   description: A white shirt with green pants commonly wore by Republic Rangers.
@@ -416,7 +463,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/rangerv3.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformRangerPatrol
   name: patrol ranger uniform
   description: A pair of brown slacks and a breathable shirt, meant to be worn under NCR Patrol Ranger armour.
@@ -427,7 +474,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/rangerpatrol.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformRangerModif
   name: green ranger uniform
   description: A ranger outfit with a green cotton longshirt and dark grey jeans, along with a black bandana around the neck.
@@ -438,7 +485,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/rangermodif.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformDesertPants
   name: desert pants
   description: An old pair of beat up, Pre-War BDUs. These ones are emblazoned with desert patterns and it has been reinforced around the left knee.
@@ -449,7 +496,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/desertpants.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformDesertPantsFull
   name: desert bdu
   description: An old pair of beat up, Pre-War BDUs. These ones are emblazoned with desert patterns and it has been reinforced around the left knee. Comes with a white shirt.
@@ -460,7 +507,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/desertbdu.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformRangerBlue
   name: blue ranger outfit
   description: Simple rustic clothes for a big iron packin' lawman. A blue collar shirt with tan slacks.
@@ -471,7 +518,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/rangerblue.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformRangerVeteran
   name: ranger flannel outfit
   description: Simple rustic clothes for any big iron packin' Ranger.
@@ -482,7 +529,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/rangerveteran.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformRangerVeteranBlack
   name: black ranger flannel outfit
   description: "A black flannel on top of a pair of slim-fitting pre-war jeans that were kept in excellent condition. The back leather panel is worn out but you can barely read: '512'."
@@ -493,7 +540,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/rangerveteranblack.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformRangerVeteranRed
   name: Thaxton's ranger flannel outfit
   description: A simple outfit for a burly, big iron packin' lawman. A golden belt-buckle in the rough shape of a medallion is proudly presented atop a leather gunbelt.
@@ -506,7 +553,7 @@
 #midwest BoS
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitBOSGreen
   name: MidWest brotherhood uniform
   description: A uniform worn by members of The Midwest Brotherhood of Steel. This one is green.
@@ -517,7 +564,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/Brotherhood/bosgreen.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformBosRecon
   name: MidWest brotherhood paladin uniform
   description: A uniform worn by high ranking members of The Midwest Brotherhood of Steel, different to the standard version due to being comfy to use in power armor.
@@ -528,7 +575,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/Brotherhood/bosrecon.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitBOSScribe
   name: MidWest brotherhood scribe uniform
   description: A uniform worn by scribes of The Midwest Brotherhood of Steel. Affixed with an apron and pockets.
@@ -539,7 +586,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/Brotherhood/midwestbosscribe.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitBOSFieldScribe
   name: MidWest brotherhood scribe uniform
   description: An orange jumper and brown combat trousers, the uniform worn by field-scribes of the Midwest's Brotherhood of Steel.
@@ -554,9 +601,9 @@
 #washington BoS
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitBOSWashingtonFieldScribe
-  name: MidWest brotherhood scribe uniform
+  name: washington brotherhood scribe uniform
   description: A maroon jumper and black combat trousers, the uniform worn by field-scribes of Washington's Brotherhood of Steel.
   components:
   - type: Sprite
@@ -565,7 +612,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/Brotherhood/bosfieldscribe.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitBOSRed
   name: washington brotherhood undersuit
   description: A piece of undersuit modified to be comfy with the use of power armor.
@@ -576,7 +623,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/Brotherhood/bosred.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitBOSBlack
   name: black washington brotherhood uniform
   description: A uniform worn by members of The Washington Brotherhood of Steel. This one is black.
@@ -587,7 +634,7 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/Brotherhood/bosbasic.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitBOSSilver
   name: washington brotherhood of steel uniform
   suffix: silver rank
@@ -601,12 +648,73 @@
 # RCMP
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitRCMP
   name: RCMP uniform
-  description: A elegant red jacket with black pants, not the best camoflage but what it represents is more than enough to make proud anyone who wears it.
+  description: A elegant red jacket with black pants, not the best camouflage but what it represents is more than enough to make proud anyone who wears it.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/mountie.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/mountie.rsi
+
+# Chinese renmants
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitChinese
+  name: chinese uniform
+  description: A green single piece jumpsuit with the chinese flag on it.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/chineseuniform.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/chineseuniform.rsi
+
+# Vancouver preventor
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitVancouver
+  name: vancouver preventor uniform
+  description: A nice piece of cargo pants with a blue long shirt and yellow markings, usually worm by the vancouver prevenetors.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/vancouver.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/vancouver.rsi
+
+#Blue Line Caravan Co
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitCaravanShirt
+  name: Blue Line Caravan Co. uniform
+  description: A white shirt and pair of blue slacks, yellow armband affixed to both sleeves signifying membership of Blue Line Caravan Company.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/caravancompanyuniform.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/caravancompanyuniform.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitCaravanOveralls
+  name: Blue Line Caravan Co. overalls
+  description: A white shirt and pair of workers overalls, yellow armband affixed to both sleeves signifying membership of Blue Line Caravan Company.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/caravancompanyoveralls.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/caravancompanyoveralls.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitCaravanSuit
+  name: Blue Line Caravan Co. suit
+  description: A finely trimmed suit, gold pin tacked on the chest. Worn only by those who have earned the favour and trust of The Boss, enough to run branches of their Blue Line Caravan Company.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/caravancompanysuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/caravancompanysuit.rsi

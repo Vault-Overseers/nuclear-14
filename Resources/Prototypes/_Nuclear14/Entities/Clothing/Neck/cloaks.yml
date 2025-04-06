@@ -48,13 +48,11 @@
     sprite: _Nuclear14/Clothing/Neck/NCRrangercape.rsi
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHatHoodRangerCloak
-    requiredSlot:
-    - neck
+    requiredSlot: neck
     slot: head
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
-
+      toggleable-clothing: !type:Container
 - type: entity
   parent: ClothingNeckBase
   id: N14ClothingNeckCloakRangerPoncho
@@ -65,12 +63,11 @@
     sprite: _Nuclear14/Clothing/Neck/NCRrangerponcho.rsi
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHatHoodPonchoCloak
-    requiredSlot:
-    - neck
+    requiredSlot: neck
     slot: head
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:Container
 
 - type: entity
   parent: ClothingNeckBase
@@ -92,12 +89,11 @@
     sprite: _Nuclear14/Clothing/Neck/leathercloak.rsi
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHatHoodLeatherCloak
-    requiredSlot:
-    - neck
+    requiredSlot: neck
     slot: head
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:Container
   - type: Construction
     graph: LeatherCloakGraph
     node: cloak
@@ -123,3 +119,12 @@
     spawned:
     - id: N14MaterialYaoguaiHide
       amount: 1
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckCloakDarkCloak
+  name: dark cloak
+  description: A dark tinted cloak.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/darkcloak.rsi

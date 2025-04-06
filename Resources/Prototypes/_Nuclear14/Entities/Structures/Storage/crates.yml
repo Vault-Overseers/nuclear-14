@@ -342,7 +342,7 @@
   parent: BaseStructureDynamic
   id: N14CrateBreakBase
   name: wooden crate
-  description: Might have to break it to see whats inside.
+  description: A wooden crate for storage.
   abstract: true
   components:
   - type: Damageable
@@ -371,11 +371,15 @@
     grid:
     - 0,0,6,3
     maxItemSize: Huge
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
         ents: []
-    # TODO: Add crate deconstruction
+  - type: InteractionOutline
 
 - type: entity
   parent: N14CrateBreakBase

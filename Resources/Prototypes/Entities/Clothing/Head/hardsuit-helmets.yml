@@ -17,9 +17,9 @@
     sprite: Clothing/Head/Hardsuits/basic.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/basic.rsi
-  - type: Tag
-    tags:
-    - HidesNose
+  - type: HideLayerClothing
+    slots:
+    - Snout
 
 #Atmospherics Hardsuit
 - type: entity
@@ -62,6 +62,36 @@
     coefficient: 0.005
 
 #Engineering Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitEngineering
+  id: ClothingHeadHelmetHardsuitEngineeringUnpainted
+  name: engineering hardsuit helmet
+  description: An engineering hardsuit helmet designed for working in low-pressure, high radioactive environments.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/engineering-base.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/engineering-base.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: ToggleableLightVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: equipped-head-light
+        shader: unshaded
+
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitEngineering
@@ -136,7 +166,7 @@
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitMaxim
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: salvager maxim helmet
   description: A predication of decay washes over your mind.
   components:
@@ -369,6 +399,35 @@
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
 - type: entity
+  parent: ClothingHeadHelmetHardsuitSyndie
+  id: ClothingHeadHelmetHardsuitShanlinUnpainted
+  name: Cybersun tacsuit helmet
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/syndicate-base.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/syndicate-base.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: ToggleableLightVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: equipped-head-light
+        shader: unshaded
+
+- type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitSyndie
   name: blood-red hardsuit helmet
@@ -419,6 +478,35 @@
 
 #Syndicate Elite Hardsuit
 - type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieElite
+  id: ClothingHeadHelmetHardsuitShiweiUnpainted
+  name: Cybersun elite tacsuit helmet
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/syndicate-elite-base.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/syndicate-elite-base.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: ToggleableLightVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: equipped-head-light
+        shader: unshaded
+
+- type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitSyndieElite
   name: syndicate elite helmet
@@ -436,6 +524,8 @@
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
     coefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
   - type: Armor
     modifiers:
       coefficients:
@@ -742,6 +832,10 @@
         Heat: 0.80
         Radiation: 0.80
         Caustic: 0.95
+  - type: ThermalVision
+    isEquipment: true
+    color: "#98EEFB"
+    lightRadius: 15
 
 #MISC. HARDSUITS
 #Clown Hardsuit

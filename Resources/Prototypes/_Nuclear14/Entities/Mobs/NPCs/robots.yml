@@ -26,7 +26,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-            radius: 0.20
+            radius: 0.4
         density: 150
         mask:
         - MobMask
@@ -95,8 +95,18 @@
   name: Assaultron
   description: Horrifying. Fast. Deadly.
   components:
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2
+    baseWalkSpeed : 3
     baseSprintSpeed : 6
   # - type: GhostRole
     # prob: 1
@@ -126,7 +136,13 @@
     noMovementLayers:
       movement:
         state: icon
-    
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: deathclaw
+      Dead:
+        Base: dead
+
 - type: entity
   parent: N14MobRobotHostileMelee
   id: N14MobRobotProtectronHostile
@@ -134,8 +150,8 @@
   description: A common protectron looking for a fight.
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1
-    baseSprintSpeed : 2
+    baseWalkSpeed : 1.5
+    baseSprintSpeed : 3
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/protectron.rsi
     layers:
@@ -165,7 +181,7 @@
   - type: HTN
     rootTask:
       task: SimpleDumbHostileCompound
-      
+
 - type: entity
   parent: N14MobRobotProtectronHostile
   id: N14MobRobotProtectronBuilderHostile
@@ -185,7 +201,7 @@
       shader: unshaded
       map: ["light"]
       visible: false
-      
+
 - type: entity
   parent: N14MobRobotProtectronHostile
   id: N14MobRobotProtectronFireHostile
@@ -205,7 +221,7 @@
       shader: unshaded
       map: ["light"]
       visible: false
-      
+
 - type: entity
   parent: N14MobRobotProtectronHostile
   id: N14MobRobotProtectronPoliceHostile
@@ -226,6 +242,10 @@
       map: ["light"]
       visible: false
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
+    minAngle: 9
+    maxAngle: 18
+    angleIncrease: 3
+    angleDecay: 4
     fireRate: 1
     soundGunshot:
       collection: N14RechargerRifleGunshot
@@ -235,16 +255,16 @@
       - SemiAuto
   - type: BasicEntityAmmoProvider
     proto: BulletLaser
-    capacity: 12
-    count: 12
+    capacity: 9
+    count: 9
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1
+    rechargeCooldown: 2
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
-      
+
 - type: entity
   parent: N14MobRobotHostileMelee
   id: N14MobRobotMrHandyClaw
@@ -253,8 +273,17 @@
   suffix: hostile, claw
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1
-    baseSprintSpeed : 2
+    baseWalkSpeed : 2
+    baseSprintSpeed : 4
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/metal_thud1.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Pierce: 5
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/mrhandyclaw.rsi
     layers:
@@ -286,13 +315,23 @@
     # volume: -3
     # sound: /Audio/DeltaV/Glimmer_Creatures/mite.ogg
   # - type: AmbientOnPowered
-  
+
 - type: entity
   parent: N14MobRobotMrHandyClaw
   id: N14MobRobotMrHandySaw
   description: A domestic Mr Handy model with a saw attachment.
   suffix: hostile, saw
   components:
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/chainsaw.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Slash: 3
+    attackRate: 0.5
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/mrhandysaw.rsi
     layers:
@@ -306,7 +345,7 @@
       shader: unshaded
       map: ["light"]
       visible: false
-  
+
 - type: entity
   parent: N14MobRobotHostile
   id: N14MobRobotMrHandyGun
@@ -315,8 +354,8 @@
   suffix: hostile, gun
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1
-    baseSprintSpeed : 2
+    baseWalkSpeed : 2
+    baseSprintSpeed : 4
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/mrhandygun.rsi
     layers:
@@ -337,27 +376,32 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
+    minAngle: 9
+    maxAngle: 18
+    angleIncrease: 3
+    angleDecay: 4
     fireRate: 1
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+    soundGunshot:
+      collection: N14RechargerRifleGunshot
     useKey: false
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
   - type: BasicEntityAmmoProvider
-    proto: N14CartridgePistol9
-    capacity: 12
-    count: 12
+    proto: BulletLaser
+    capacity: 9
+    count: 9
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1
+    rechargeCooldown: 2
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: Loadout
     prototypes:
       - RaiderPistolGear
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
-      
+
 - type: entity
   parent: N14MobRobotHostile
   id: N14MobRobotMrHandyGutsy
@@ -366,8 +410,8 @@
   suffix: hostile, plasma
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1
-    baseSprintSpeed : 2
+    baseWalkSpeed : 2
+    baseSprintSpeed : 4
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/mrhandygutsy.rsi
     layers:
@@ -388,7 +432,11 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-    fireRate: 0.5
+    minAngle: 9
+    maxAngle: 18
+    angleIncrease: 3
+    angleDecay: 4
+    fireRate: 1
     soundGunshot:
       collection: N14PlasmaPistolGunshot
     useKey: false
@@ -397,16 +445,16 @@
       - SemiAuto
   - type: BasicEntityAmmoProvider
     proto: BulletPlasma
-    capacity: 12
-    count: 12
+    capacity: 9
+    count: 9
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1
+    rechargeCooldown: 2
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
-      
+
 - type: entity
   parent: N14MobRobotHostile
   id: N14MobRobotRobobrain
@@ -415,8 +463,8 @@
   suffix: hostile, laser
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1
-    baseSprintSpeed : 2
+    baseWalkSpeed : 1.5
+    baseSprintSpeed : 3
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/robobrain.rsi
     layers:
@@ -437,6 +485,10 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
+    minAngle: 6
+    maxAngle: 12
+    angleIncrease: 2
+    angleDecay: 4
     fireRate: 1
     soundGunshot:
       collection: N14RechargerRifleGunshot
@@ -446,16 +498,16 @@
       - SemiAuto
   - type: BasicEntityAmmoProvider
     proto: BulletLaser
-    capacity: 12
-    count: 12
+    capacity: 9
+    count: 9
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1
+    rechargeCooldown: 2
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
-      
+
 - type: entity
   parent: N14MobRobotHostile
   id: N14MobRobotEyebot
@@ -464,14 +516,13 @@
   suffix: hostile, laser
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1
-    baseSprintSpeed : 2
+    baseWalkSpeed : 3
+    baseSprintSpeed : 6
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/eyebot.rsi
     layers:
     - state: icon
     - state: shadow_eyebot
-    state: icon
   # - type: GhostRole
     # prob: 1
     # makeSentient: true
@@ -479,7 +530,11 @@
     # description: |
       # Protect your area and remove any trespassers.
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-    fireRate: 0.5
+    minAngle: 12
+    maxAngle: 24
+    angleIncrease: 4
+    angleDecay: 4
+    fireRate: 1
     soundGunshot:
       collection: N14RechargerRifleGunshot
     useKey: false
@@ -488,12 +543,12 @@
       - SemiAuto
   - type: BasicEntityAmmoProvider
     proto: BulletLaser
-    capacity: 12
-    count: 12
+    capacity: 9
+    count: 9
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1
+    rechargeCooldown: 2
     rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound

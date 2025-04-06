@@ -14,7 +14,7 @@ game-ticker-get-info-text = Hi and welcome to [color=white]Nuclear 14![/color]
                             The current map is: [color=white]{$mapName}[/color]
                             The current game mode is: [color=white]{$gmTitle}[/color]
                             >[color=yellow]{$desc}[/color]
-game-ticker-get-info-preround-text = Hi and welcome to [color=white]Space Station 14![/color]
+game-ticker-get-info-preround-text = Hi and welcome to [color=white]Nuclear 14![/color]
                             The current round is: [color=white]#{$roundId}[/color]
                             The current player count is: [color=white]{$playerCount}[/color] ([color=white]{$readyCount}[/color] {$readyCount ->
                                 [one] is
@@ -25,7 +25,7 @@ game-ticker-get-info-preround-text = Hi and welcome to [color=white]Space Statio
                             >[color=yellow]{$desc}[/color]
 game-ticker-no-map-selected = [color=yellow]Map not yet selected![/color]
 game-ticker-player-no-jobs-available-when-joining = When attempting to join to the game, no jobs were available.
-game-ticker-welcome-to-the-station = The world is a dark and gloomy place. Survive and thrive.
+game-ticker-welcome-to-the-station = You wake up in the state of Washington. War Never Changes.
 
 # Displayed in chat to admins when a player joins
 player-join-message = Player {$name} joined.
@@ -34,10 +34,12 @@ player-first-join-message = Player {$name} joined for the first time.
 # Displayed in chat to admins when a player leaves
 player-leave-message = Player {$name} left.
 
-latejoin-arrival-announcement = Someone new has been spotted in the area.
-latejoin-arrival-sender = Radio Broadcast
-latejoin-arrivals-direction = An escape transport will arrive shortly.
-latejoin-arrivals-direction-time = An escape transport will arrive in {$time} to take you away.
+latejoin-arrival-announcement = {$character} ({$job}) has arrived at the station!
+latejoin-arrival-sender = Station
+latejoin-arrivals-direction = A shuttle transferring you to your station will arrive shortly.
+latejoin-arrivals-direction-time = A shuttle transferring you to your station will arrive in {$time}.
+latejoin-arrivals-dumped-from-shuttle = A mysterious force prevents you from leaving with the arrivals shuttle.
+latejoin-arrivals-teleport-to-spawn = A mysterious force teleports you off the arrivals shuttle. Have a safe shift!
 
 preset-not-enough-ready-players = Can't start {$presetName}. Requires {$minimumPlayers} players but we have {$readyPlayersCount}.
 preset-no-one-ready = Can't start {$presetName}. No players are ready.

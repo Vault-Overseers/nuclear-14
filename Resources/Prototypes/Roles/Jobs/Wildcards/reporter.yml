@@ -3,9 +3,6 @@
   name: job-name-reporter
   description: job-description-reporter
   playTimeTracker: JobReporter
-  requirements:
-    - !type:CharacterOverallTimeRequirement
-      min: 7200 #DeltaV 2 hours
   startingGear: ReporterGear
   icon: "JobIconReporter"
   supervisors: job-supervisors-hop
@@ -18,6 +15,8 @@
 
 - type: startingGear
   id: ReporterGear
+  subGear:
+  - ReporterPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitReporter
     back: ClothingBackpackFilled
@@ -27,3 +26,11 @@
   innerClothingSkirt: ClothingUniformJumpsuitJournalist
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled
+
+- type: startingGear
+  id: ReporterPlasmamanGear
+  parent: BasePlasmamanGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitReporter
+    head: ClothingHeadEnvirohelmReporter
+    gloves: ClothingHandsGlovesEnviroglovesReporter

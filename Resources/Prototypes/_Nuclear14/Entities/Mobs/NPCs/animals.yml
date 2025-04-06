@@ -158,8 +158,8 @@
       state: dogferal-1
       sprite: _Nuclear14/Mobs/Animals/dogferal.rsi
   - type: MovementSpeedModifier
-    baseWalkSpeed : 5
-    baseSprintSpeed : 6
+    baseWalkSpeed : 2.75
+    baseSprintSpeed : 5.5
   - type: Fixtures
     fixtures:
       fix1:
@@ -282,7 +282,7 @@
 #- type: Tag
    # tags:
     #- Gecko
-    
+
 - type: entity
   parent: N14MobGecko
   id: N14MobGeckoFire
@@ -361,10 +361,10 @@
   - type: Flammable
     fireSpread: false
     canResistFire: true
-    FirestackFade: -1
+    firestackFade: -1
   - type: Damageable
     damageModifierSet: N14ScaleFireresist
-      
+
 - type: entity
   name: golden gecko
   id: N14MobGeckoGolden
@@ -412,7 +412,7 @@
    #- type: Tag
  # tags:
    #  - Gecko
-      
+
 #MARK: Nightstalker Cub
 - type: entity
   name: nightstalker cub
@@ -614,6 +614,9 @@
   parent: N14MobBaseHostile
   description: An angry bear... but uglier, meaner, and with bigger claws.
   components:
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: N14ToughAnimal
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -634,13 +637,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      550: Dead
+      300: Dead
   - type: Stamina
     critThreshold: 250
   - type: SlowOnDamage
     speedModifierThresholds:
-      275: 0.7
-      450: 0.5
+      100: 1.05
+      250: 1.1
+      400: 1.2
   - type: Butcherable
     spawned:
     - id: N14MaterialYaoguaiHide
@@ -695,12 +699,23 @@
   parent: N14MobBaseHostileScaley
   description: Look at those claws.
   components:
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: N14ToughAnimal
   - type: Sprite
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: deathclaw
       sprite: _Nuclear14/Mobs/Animals/deathclaw.rsi
+  - type: HTN
+    rootTask:
+      task: SimpleDumbHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
   - type: Fixtures
     fixtures:
       fix1:
@@ -720,14 +735,15 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      500: Critical
-      600: Dead
+      250: Critical
+      300: Dead
   - type: Stamina
     critThreshold: 250
   - type: SlowOnDamage
     speedModifierThresholds:
-      250: 0.7
-      400: 0.5
+      100: 1.05
+      150: 1.1
+      200: 1.15
   - type: DamageStateVisuals
     states:
       Alive:
@@ -746,16 +762,16 @@
     wideAnimation: WeaponArcClaw
     damage:
       types:
-        Slash: 15
-        Structural: 5
-    range: 1.75
+        Slash: 20
+        Structural: 15
+    range: 2
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 5.5
+    baseWalkSpeed : 3
+    baseSprintSpeed : 6
   - type: Hands
   - type: Puller
   - type: Tool
-    speed: 1.5
+    speedModifier: 1.5
     qualities:
       - Prying
   - type: Prying
@@ -819,15 +835,20 @@
     wideAnimation: WeaponArcClaw
     damage:
       types:
-        Slash: 22
-        Structural: 10
+        Slash: 25
+        Structural: 20
   - type: MobThresholds
     thresholds:
       0: Alive
-      750: Critical
-      900: Dead
+      250: Critical
+      300: Dead
   - type: Stamina
     critThreshold: 350
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 1.1
+      150: 1.15
+      200: 1.2
   - type: DamageStateVisuals
     states:
       Alive:
@@ -896,7 +917,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    scale: 1.5, 1.5
+    scale: 1.25, 1.25
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: brahmin-2
@@ -928,7 +949,7 @@
           Quantity: 30
   - type: Udder
     reagentId: N14MilkBrahmin
-    quantityperUpdate: 25
+    quantityPerUpdate: 25
     growthDelay: 60
     hungerUsage: 10
   - type: Damageable
@@ -953,6 +974,8 @@
     - id: N14MobBrahmin
       maxAmount: 1
   - type: ReproductivePartner
+  - type: MobPrice
+    price: 300
 
 #MARK: Bighorner
 - type: entity
@@ -1005,7 +1028,7 @@
           Quantity: 30
   - type: Udder
     reagentId: N14MilkBighorner
-    quantityperUpdate: 25
+    quantityPerUpdate: 25
     growthDelay: 90
     hungerUsage: 7.5
   - type: TimedSpawner
@@ -1075,7 +1098,7 @@
           Quantity: 30
   - type: Udder
     reagentId: N14MilkRadstag
-    quantityperUpdate: 10
+    quantityPerUpdate: 10
     growthDelay: 40
     hungerUsage: 5
   - type: TimedSpawner
@@ -1154,9 +1177,16 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: chicken
       sprite: _Nuclear14/Mobs/Animals/chicken.rsi
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: chicken #TODO: Add movement animations
+    noMovementLayers:
+      movement:
+        state: chicken
   - type: DamageStateVisuals
     states:
       Alive:
@@ -1185,6 +1215,8 @@
   - type: EggLayer
     eggSpawn:
     - id: N14FoodEggChicken
+  - type: MobPrice
+    price: 200
 
 #MARK: Iguana
 - type: entity
@@ -1234,3 +1266,141 @@
   - type: HTN
     rootTask:
       task: MouseCompound
+
+#MARK: Beaver
+- type: entity
+  parent: N14MobBaseSimple
+  id: N14MobNuclearBeaver
+  name: nuclear beaver
+  description: Wonder what kind of trees its knawed down.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: beaver
+      sprite: _Nuclear14/Mobs/Animals/beaver.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: beaver
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 1
+      prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+
+#MARK: Opossum
+- type: entity
+  parent: N14MobBaseSimple
+  id: N14MobNuclearOpossum
+  name: nuclear opossum
+  description: Play dead!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: opossum
+      sprite: _Nuclear14/Mobs/Animals/opossum.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: opossum
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 1
+      prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+
+- type: entity
+  parent: N14MobBaseSimple
+  id: N14MobOpossum
+  name: opossum
+  description: Play dead!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: normopossum
+      sprite: _Nuclear14/Mobs/Animals/opossum.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: normopossum
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw #At some point need their own meat
+      amount: 1
+      prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+
+#MARK: Rabbit
+- type: entity
+  parent: N14MobBaseSimple
+  id: N14MobNuclearRabbit
+  name: nuclear rabbit
+  description: Not a cotton-tail anymore, huh.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: rabbit
+      sprite: _Nuclear14/Mobs/Animals/rabbit.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: rabbit
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 1
+      prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+
+- type: entity
+  parent: N14MobBaseSimple
+  id: N14MobRabbit
+  name: rabbit
+  description: What a sweet little cotton-tail!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: normrabbit
+      sprite: _Nuclear14/Mobs/Animals/rabbit.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: normrabbit
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw #At some point need their own meat
+      amount: 1
+      prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal

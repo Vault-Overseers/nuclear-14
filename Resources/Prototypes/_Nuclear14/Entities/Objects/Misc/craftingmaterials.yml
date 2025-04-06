@@ -20,6 +20,7 @@
       reagents:
       - ReagentId: ScorpionTail
         Quantity: 10
+  - type: Craftable # Corvax-Change
 
 #MARK: Hides
 - type: entity
@@ -39,6 +40,7 @@
   - type: Material
   - type: Item
     size: Normal
+  - type: Craftable # Corvax-Change
 
 - type: entity
   parent: N14MaterialBaseHide
@@ -79,6 +81,9 @@
   components:
   - type: Sprite
     state: pelt_nightstalker
+  - type: Tag
+    tags:
+      - NightstalkerPelt
   - type: PhysicalComposition
     materialComposition:
       RawLeather: 300
@@ -98,7 +103,7 @@
   - type: PhysicalComposition
     materialComposition:
       RawLeather: 600
-    
+
 - type: entity
   parent: BaseItem
   id: N14MaterialHideGecko
@@ -114,13 +119,14 @@
   - type: PhysicalComposition
     materialComposition:
       RawLeather: 600
-    
+  - type: Craftable # Corvax-Change
+
 - type: entity
   parent: N14MaterialHideGecko
   id: N14MaterialHideGeckoFire
   name: fire gecko hide
   description: A thick flame resistant hide from a fire gecko.
-  
+
 - type: entity
   parent: N14MaterialHideGecko
   id: N14MaterialHideGeckoGolden

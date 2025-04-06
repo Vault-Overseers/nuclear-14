@@ -12,6 +12,7 @@
     sprite: _Nuclear14/Objects/Misc/materials.rsi
   - type: Material
   - type: Appearance
+  - type: Craftable # Corvax-Change
 
 - type: entity
   parent: N14MaterialBase
@@ -62,6 +63,14 @@
   components:
   - type: Stack
     count: 10
+
+- type: entity
+  parent: Gunpowder
+  id: Gunpowder20
+  suffix: 20
+  components:
+  - type: Stack
+    count: 20
 
 - type: entity
   parent: Gunpowder
@@ -150,6 +159,8 @@
         reagents:
         - ReagentId: Cellulose
           Quantity: 3
+  - type: StaticPrice
+    price: 0
 
 - type: entity
   parent: N14Paper
@@ -195,6 +206,8 @@
         reagents:
         - ReagentId: Charcoal
           Quantity: 10
+  - type: StaticPrice
+    price: 0
 
 - type: entity
   parent: Charcoal
@@ -426,8 +439,7 @@
     sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
   - type: Item
     size: Small
-  - type: StaticPrice
-    price: 0
+  - type: Craftable # Corvax-Change
   - type: Tag
     tags:
     - Scrap
@@ -449,11 +461,10 @@
     layerStates:
     - scrap
     - scrap_2
-    - scrap_3
   - type: Sprite
-    state: scrap_3
+    state: scrap
     layers:
-    - state: scrap_3
+    - state: scrap_2
       map: ["base"]
   - type: Item
     heldPrefix: scrap

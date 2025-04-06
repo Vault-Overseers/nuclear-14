@@ -14,7 +14,7 @@
   unit: materials-unit-bar
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: ingot_lead }
   color: "#C0C0C0"
-  price: 0.15
+  price: 0.04
 
 - type: material
   id: Sulfur
@@ -23,7 +23,7 @@
   unit: materials-unit-bar
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: powder_brass }
   color: "#FDD805"
-  price: 0.15
+  price: 0.01
 
 - type: material
   id: Aluminum
@@ -32,7 +32,7 @@
   unit: materials-unit-bar
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: ingot_aluminum }
   color: "#C0C0C0"
-  price: 0.15
+  price: 0.01
 
 - type: material
   id: N14Copper
@@ -41,7 +41,7 @@
   unit: materials-unit-bar
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: ingot_copper }
   color: "#B87333"
-  price: 0.15
+  price: 0.01
 
 - type: material
   id: N14Brass
@@ -50,7 +50,7 @@
   unit: materials-unit-bar
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: ingot_brass }
   color: "#B5A642"
-  price: 0.20
+  price: 0.01
 
 - type: material
   id: N14Gold
@@ -59,7 +59,7 @@
   unit: materials-unit-bar
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: ingot_gold }
   color: "#FFD700"
-  price: 1.00
+  price: 0.14
 
 - type: material
   id: N14Iron
@@ -68,7 +68,7 @@
   unit: materials-unit-bar
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: ingot_iron }
   color: "#B0C4DE"
-  price: 0.15
+  price: 0.02
 
 - type: material
   id: N14Silver
@@ -77,16 +77,16 @@
   unit: materials-unit-bar
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: ingot_silver }
   color: "#C0C0C0"
-  price: 0.50
+  price: 0.1
 
 # Materials
-- type: material
-  id: Gunpowder
-  stackEntity: Gunpowder1
-  name: materials-gunpowder
-  icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: powder_lead }
-  color: "#3E201D"
-  price: 0.15
+# - type: material
+  # id: Gunpowder # Replaced by upstream one
+  # stackEntity: Gunpowder1
+  # name: materials-gunpowder
+  # icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: powder_lead }
+  # color: "#3E201D"
+  # price: 0.075
 
 - type: material
   id: ScrapElectronic
@@ -94,7 +94,7 @@
   name: materials-scrap-electronic
   unit: materials-unit-bunch
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: scrap_electronic_3 }
-  price: 0.15
+  price: 0.005
 
 - type: material
   id: ScrapSteel
@@ -102,7 +102,7 @@
   name: materials-scrap-steel
   unit: materials-unit-bunch
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: scrap_steel_3 }
-  price: 0.1
+  price: 0.005
 
 - type: material
   id: ScrapGold
@@ -111,7 +111,7 @@
   unit: materials-unit-bunch
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: scrap_gold }
   color: "#FFD700"
-  price: 0.15
+  price: 0.007
 
 - type: material
   id: ScrapCopper
@@ -120,7 +120,7 @@
   unit: materials-unit-bunch
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: scrap_copper }
   color: "#B87333"
-  price: 0.1
+  price: 0.005
 
 - type: material
   id: ScrapBrass
@@ -129,16 +129,16 @@
   unit: materials-unit-bunch
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: scrap_brass }
   color: "#B5A642"
-  price: 0.1
+  price: 0.005
 
 - type: material
   id: Scrap
   stackEntity: N14Scrap1
   name: materials-scrap
   unit: materials-unit-bunch
-  icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: scrap_3 }
+  icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: scrap_2 }
   color: "#4A4A4A"
-  price: 0.1
+  price: 0.003
 
 - type: material
   id: ScrapLead
@@ -147,7 +147,7 @@
   unit: materials-unit-bunch
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: scrap_lead }
   color: "#C0C0C0"
-  price: 0.1
+  price: 0.005
 
 - type: reagent
   id: Gunpowder
@@ -172,7 +172,7 @@
   name: materials-charcoal
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: powder_lead }
   color: "#1D3B3E"
-  price: 0.15
+  price: 0.005
 
 - type: material
   id: Fertilizer
@@ -180,7 +180,7 @@
   name: materials-fertilizer
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/Sacks/daesack2.rsi, state: icon }
   color: "#1D3B3E"
-  price: 0.15
+  price: 0.05
 
 - type: reagent
   id: Fertilizer
@@ -194,12 +194,10 @@
   - !type:PlantAdjustNutrition
     amount: 3
   - !type:PlantAdjustPests
-    prob: 0.1
     amount: -1
   - !type:PlantAdjustHealth
     amount: 0.1
   - !type:PlantAffectGrowth
-    prob: 0.2
     amount: 1
   - !type:PlantDiethylamine {}
   metabolisms:
@@ -236,7 +234,7 @@
   name: materials-timber
   icon: { sprite: _Nuclear14/Structures/Decoration/flora.rsi, state: tree_timber }
   color: "#1D3B3E"
-  price: 0.15
+  price: 0.003
 
 - type: material
   id: Leather
@@ -244,7 +242,7 @@
   name: materials-leather
   unit: materials-unit-roll
   icon: { sprite: _Nuclear14/Objects/Misc/materials.rsi, state: leather_3 }
-  price: 0.15
+  price: 0.02
 
 - type: material
   id: Exoskeleton
@@ -268,7 +266,7 @@
   name: materials-raw-leather
   unit: materials-unit-roll
   icon: { sprite: _Nuclear14/Objects/Misc/materials.rsi, state: raw_leather_2 }
-  price: 0.10
+  price: 0.01
 
 - type: material
   id: Thread
@@ -277,4 +275,4 @@
   unit: materials-unit-roll
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: thread }
   color: "#d2691e"
-  price: 0.10
+  price: 0.01

@@ -3,6 +3,9 @@
   id: N14MobHumanTribal
   name: Tribal
   components:
+    - type: Icon
+      sprite: _Nuclear14/Markers/Jobs/tribal.rsi
+      state: tribal
     - type: RandomHumanoidAppearance
       randomizeName: true
     - type: Loadout
@@ -10,12 +13,21 @@
     - type: NpcFactionMember
       factions:
       - Tribal
+    - type: LanguageKnowledge
+      speaks:
+      - English
+      - Tribal
+      understands:
+      - English
+      - Tribal
 
 - type: entity
-  parent: MobHuman
+  parent: N14MobHumanTribal
   id: N14MobHumanTribalElder
   name: TribalElder
   components:
+    - type: Icon
+      state: elder
     - type: RandomHumanoidAppearance
       randomizeName: true
     - type: Loadout
@@ -25,10 +37,12 @@
       - Tribal
 
 - type: entity
-  parent: MobHuman
+  parent: N14MobHumanTribal
   id: N14MobHumanTribalFarmer
   name: TribalFarmer
   components:
+    - type: Icon
+      state: farmer
     - type: RandomHumanoidAppearance
       randomizeName: true
     - type: Loadout
@@ -38,10 +52,12 @@
       - Tribal
 
 - type: entity
-  parent: MobHuman
+  parent: N14MobHumanTribal
   id: N14MobHumanTribalHealer
   name: TribalHealer
   components:
+    - type: Icon
+      state: healer
     - type: RandomHumanoidAppearance
       randomizeName: true
     - type: Loadout

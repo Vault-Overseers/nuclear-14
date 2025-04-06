@@ -2,6 +2,7 @@ using Content.Server.Body.Components;
 using Content.Server.Temperature.Components;
 using Content.Server.Temperature.Systems;
 using Content.Shared.ActionBlocker;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Body.Systems;
@@ -9,6 +10,7 @@ namespace Content.Server.Body.Systems;
 public sealed class ThermalRegulatorSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly TemperatureSystem _tempSys = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSys = default!;
 
@@ -22,7 +24,7 @@ public sealed class ThermalRegulatorSystem : EntitySystem
 
     private void OnMapInit(Entity<ThermalRegulatorComponent> ent, ref MapInitEvent args)
     {
-        ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.UpdateInterval;
+        ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.UpdateInterval * (1+_random.NextFloat());
     }
 
     private void OnUnpaused(Entity<ThermalRegulatorComponent> ent, ref EntityUnpausedEvent args)

@@ -3,9 +3,12 @@
   name: job-name-overseer
   description: job-description-overseer
   requirements:
-    - !type:CharacterDepartmentTimeRequirement
-      department: Vault
-      min: 36000 # 10 hours
+  - !type:CharacterSpeciesRequirement
+    species:
+    - Human
+  - !type:CharacterDepartmentTimeRequirement
+    department: Vault
+    min: 36000 # 10 hours
   playTimeTracker: Overseer
   weight: 20
   startingGear: OverseerGear
@@ -23,11 +26,6 @@
       - type: NpcFactionMember
         factions:
           - Vault
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: OverseerGear
@@ -37,7 +35,7 @@
     shoes: N14ClothingBootsBlack
     eyes: ClothingEyesGlassesSunglasses
     id: N14VaultOverseerPDA
-    ears: N14ClothingHeadsetVaultCommand
+    ears: N14ClothingHeadsetVaultDweller
     pocket1: N14WeaponPistol10mm
   innerClothingSkirt: N14ClothingUniformJumpsuitVault14
 

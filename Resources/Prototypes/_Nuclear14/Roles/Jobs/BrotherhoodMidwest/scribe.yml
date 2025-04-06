@@ -5,9 +5,19 @@
   description: job-description-bos-mid-scribe
   playTimeTracker: BoSMidScribe
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodMidwest
       min: 18000 # 5 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
+            - Ghoul
   startingGear: BoSMidScribeGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
@@ -21,17 +31,12 @@
         factions:
           - BrotherhoodMidwest
       - type: CPRTraining
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSMidScribeGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSScribe
-    back: N14ClothingBackpackSatchelMilitary
+    back: N14ClothingBackpackSatchelMilitaryFilled
     shoes: N14ClothingBootsLeather
     pocket1: NCRBoSMidwestScribekits
     id: N14IDBrotherhoodHolotag

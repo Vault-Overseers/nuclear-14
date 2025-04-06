@@ -1,0 +1,68 @@
+- type: entity
+  name: wasteland plant
+  abstract: true
+  id: N14MobBaseHostilePlant
+  parent: N14MobBaseHostile
+  description: A mutated plant. You wonder where it came from, a vault perhaps?
+  components:
+  - type: Damageable
+    damageContainer: Biological
+  - type: NoSlip
+  - type: Speech
+    speechSounds: Squeak
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw #change to something else
+      amount: 1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.30
+        density: 30
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+
+- type: entity
+  name: spore plant
+  parent: N14MobBaseHostilePlant
+  id: N14MobSporeplant
+  description: A mutated venus fly trap. Who knew they got this big?
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: sporeplant
+      sprite: _Nuclear14/Mobs/Plants/sporeplant.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: sporeplant
+      Critical:
+        Base: sporeplant
+      Dead:
+        Base: dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 0
+    baseSprintSpeed : 0
+  - type: Stamina
+    critThreshold: 20
+  - type: Bloodstream
+    bloodMaxVolume: 50
+  - type: ReplacementAccent
+    accent: mouse
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      65: Dead
+  - type: MeleeWeapon
+    range: 2
+    damage:
+      groups:
+        Brute: 6

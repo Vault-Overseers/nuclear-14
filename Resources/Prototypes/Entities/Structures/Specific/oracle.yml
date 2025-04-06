@@ -18,6 +18,9 @@
   - type: Actions
   - type: Psionic
     removable: false
+    roller: false
+    assayFeedback:
+      - oracle-feedback
     psychognomicDescriptors:
       - p-descriptor-old
       - p-descriptor-demiurgic
@@ -33,7 +36,6 @@
       fountain:
         maxVol: 200
   - type: Drink
-    isOpen: true
     solution: fountain
   - type: DrawableSolution
     solution: fountain
@@ -59,14 +61,15 @@
     rewardEntities:
     - OracleRewardDisks
     - OracleRewardCrystals
-    demandBlacklist:
-      tags:
-      - Bluespace
-      components:
-      - MobState
-    demandWhitelist:
-      components:
-      - Item
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic
+  - type: GuideHelp
+    guides: [ Psionics ]
 
 
 - type: weightedRandomEntity

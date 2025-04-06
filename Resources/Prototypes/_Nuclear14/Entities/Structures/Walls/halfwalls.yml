@@ -31,6 +31,14 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: Physics
     bodyType: Static
   - type: Fixtures
