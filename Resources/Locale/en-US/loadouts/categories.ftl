@@ -93,3 +93,4 @@ loadout-category-Belt = Belt
 loadout-category-Shoes = Shoes
 loadout-category-Species = Species
 loadout-category-Uniform = Uniform
+loadout-category-Weapons = Weapons
