@@ -1,29 +1,93 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: IgnitableGrenadeBase
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/Dynamite.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: Item
+    size: Small
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Appearance
+  - type: AnimationPlayer
+  - type: GenericVisualizer
+    visuals:
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: primed }
+          Unprimed: { state: icon }
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: ExplodeOnTrigger
+  - type: Flammable
+    fireSpread: false
+    canResistFire: false
+    alwaysCombustible: true
+    canExtinguish: false 
+    damage:
+      types:
+        Heat: 1
+  - type: FireVisuals
+    sprite: _Nuclear14/Objects/Weapons/Grenades/Dynamite.rsi
+    normalState: primed
 
 - type: entity
   name: dynamite
   description: A stick of dynamite.
-  parent: GrenadeBase
+  parent: IgnitableGrenadeBase
   id: N14Dynamite
   components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Grenades/Dynamite.rsi
-  - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
     maxIntensity: 2
     intensitySlope: 5
-    totalIntensity: 30 #medium range mid damage takes about 3-4 to crit
+    totalIntensity: 35 #medium range mid damage takes about 3-4 to crit
     canCreateVacuum: false
     maxTileBreak: 0
     tileBreakScale: 0
-  - type: OnUseTimerTrigger
-    delay: 6
-    beepSound:
-      path: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg"
-      params:
-        volume: 4
-    initialBeepDelay: 0
-    beepInterval: 4 
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageTrigger
+        damage: 4
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageTrigger
+        damage: 7
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageTrigger
+        damage: 13
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:TriggerBehavior
 
     
 - type: entity
@@ -143,30 +207,83 @@
     graph: N14NukaNade
     node: NukaNade
 
-- type: entity #should spawn fire only when it was activated and then thrown, but when its not activated it just breaks and spills welding fuel. for now just weak explosion igniting entities
+- type: entity #should spawn fire only when it was activated and then thrown, but when its not activated it just breaks and spills welding fuel. 
   name: Nuka cocktail
   description: Nuka-cola bottle filled with flammable fuel.
-  parent: GrenadeBase
+  parent: IgnitableGrenadeBase
   id: N14NukaCocktail
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Grenades/NukaCocktail.rsi  
   - type: ExplodeOnTrigger
-  - type: Explosive # Weak explosion in a small radius. Ignites surrounding entities.
+  - type: Explosive # Weak explosion in a small/medium radius. Ignites surrounding entities.
     explosionType: FireBomb
     maxIntensity: 2
-    intensitySlope: 8
+    intensitySlope: 9
     totalIntensity: 30
     canCreateVacuum: false
     maxTileBreak: 0
     tileBreakScale: 0
-  - type: OnUseTimerTrigger
-    examinable: false
-    delay: 1
-    beepSound:
-      path: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg"
-      params:
-        volume: 4
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 20
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageGroupTrigger  
+        damageGroup: Burn 
+        damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageGroupTrigger  
+        damageGroup: Burn 
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageGroupTrigger  
+        damageGroup: Burn 
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageGroupTrigger  
+        damageGroup: Burn 
+        damage: 20
+      behaviors:
+      - !type:TriggerBehavior
+    - trigger:
+        !type:DamageTrigger # either was thrown ([1 * time] burn damage + 20 brute) or burned too long (21 burn damage)
+        damage: 21
+      behaviors:
+      - !type:TriggerBehavior
+    - trigger:
+        !type:DamageGroupTrigger #20 brute damage which means wasnt set on fire, so no reason to set on fire, it should only splash some welding fuel
+        damageGroup: Brute 
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: FireVisuals
+    sprite: _Nuclear14/Objects/Weapons/Grenades/NukaCocktail.rsi
+    normalState: primed
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 30
+  - type: Spillable
+    solution: drink
 
 - type: entity
   parent: GrenadeBase
