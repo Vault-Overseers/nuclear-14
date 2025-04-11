@@ -156,3 +156,49 @@
 
     - node: jet
       entity: N14JetInhaler
+
+
+- type: constructionGraph
+  id: N14HealingPoultice
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: healing poultice
+          steps:
+            - material: BrocFlower
+            - material: XanderRoot 
+            - material: CaveFungus
+            - material: AgaveLeaf
+
+    - node: healing poultice
+      entity: N14HealingPoultice
+
+
+- type: constructionGraph
+  id: N14gauzeGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: gauze
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 8
+    - node: gauze
+      entity: Gauze1
+
+- type: constructionGraph
+  id: N14AloeSalvegraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: Salve
+          steps:
+            - material: AgaveLeaf
+              amount: 2
+              doAfter: 8
+    - node: Salve
+      entity: N14AloeSalve1
