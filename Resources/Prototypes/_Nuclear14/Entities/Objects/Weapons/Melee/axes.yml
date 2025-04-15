@@ -26,15 +26,16 @@
         Slash: 13
         Piercing: 7
   - type: MeleeWeapon
+    wideAnimationRotation: -135
     damage:
       types:
         Slash: 10
         Piercing: 5
-    soundSwing:
-      collection: N14BladeMediumSwing
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/hatchet.rsi
     size: Normal
+  - type: StaticPrice
+    price: 20
 
 - type: entity
   name: tribal hatchet
@@ -64,21 +65,22 @@
         Slash: 15
         Piercing: 7
   - type: MeleeWeapon
+    wideAnimationRotation: -135
     damage:
       types:
         Slash: 12
-        Piercing: 5
-    soundSwing:
-      collection: N14BladeMediumSwing
+        Piercing: 7
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/tribalhatchet.rsi
     size: Normal
+  - type: StaticPrice
+    price: 25
 
 - type: entity
   name: fireaxe
   parent: N14BaseAxe
   id: N14FireAxe
-  description: Truly, the weapon of a madman. Who would think to fight fire with an axe?
+  description: Truly the weapon of a madman. Who would think to fight fire with an axe?
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/fireaxe.rsi
@@ -90,15 +92,16 @@
     - Back
     - suitStorage
   - type: Item
-    size: Ginormous
+    size: Large
   - type: MeleeWeapon
-    soundSwing:
-      collection: N14LargeSwing
+    wideAnimationRotation: -135
   - type: Tool
     qualities:
       - Prying
   - type: ToolTileCompatible
   - type: Prying
+  - type: StaticPrice
+    price: 30
 
 - type: entity
   name: axe
@@ -114,14 +117,13 @@
     sprite: _Nuclear14/Objects/Weapons/Melee/axe.rsi
     state: icon
   - type: MeleeWeapon
-    attackRate: 0.75
+    wideAnimationRotation: -135
+    attackRate: 1.35
     damage:
       types:
         # axes are kinda like sharp hammers, you know?
         Blunt: 5
         Slash: 5
-    soundSwing:
-      collection: N14LargeSwing
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
@@ -134,3 +136,7 @@
     slots:
     - Back
     - suitStorage
+  - type: Item
+    size: Large
+  - type: StaticPrice
+    price: 30
