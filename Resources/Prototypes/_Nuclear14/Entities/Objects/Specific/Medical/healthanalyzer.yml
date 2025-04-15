@@ -3,6 +3,7 @@
   parent: HandheldHealthAnalyzerUnpowered
   name: health analyzer
   description: A hand-held body scanner capable of distinguishing vital signs of the subject.
+  categories: [ HideSpawnMenu ]
   suffix: Do not map
   components:
   - type: Sprite
@@ -24,3 +25,18 @@
     drawRate: 1.2 #Calculated for 5 minutes on a small cell
   - type: ToggleCellDraw
   - type: ActivatableUIRequiresPowerCell
+
+- type: entity
+  id: N14HandheldHealthAnalyzerAdmin
+  parent: [ N14HandheldHealthAnalyzerUnpowered, PowerCellSlotSmallItem]
+  suffix: Admin
+  components:
+  - type: PowerCellDraw
+    drawRate: 0.1 # No need for this
+  - type: ToggleCellDraw
+  - type: ActivatableUIRequiresPowerCell
+  - type: HealthAnalyzer
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
+    maxScanRange: 999
+    silent: true
