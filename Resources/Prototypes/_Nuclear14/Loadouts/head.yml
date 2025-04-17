@@ -177,3 +177,24 @@
       group: N14LoadoutHead
   items:
     - N14ClothingHeadHatArmyBeretSpecial
+
+- type: loadout
+  id: N14ClothingHeadHatNCRBeretRecon
+  category: Head
+  cost: 0
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: N14LoadoutHead
+      requirements:
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRWS, NCRSGT, NCREngineer, NCRSoldier, NCRLT
+      min: 24000
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRSE
+        - NCRSGT
+        - NCREngineer
+        - NCR Soldier
+        - NCRLT
+  items:
+    - N14ClothingHeadHatNCRBeretRecon
