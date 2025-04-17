@@ -47,6 +47,50 @@
     totalIntensity: 15 # 60 total damage to distribute over tiles
     maxTileBreak: 0
 
+- type: entity
+  id: BoilingWaterShot
+  name: boiling water
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clickable
+  - type: Physics
+    bodyType: Dynamic
+    linearDamping: 0
+    angularDamping: 0
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Projectile
+    damage:
+      types:
+        Heat: 10 #it's just boiling water, bro
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/water_shot.rsi
+    layers:
+    - state: icon
+      map: ["enum.VaporVisualLayers.Base"]
+  - type: Ammo
+    muzzleFlash: null
+  - type: SolutionContainerManager
+    solutions:
+      vapor:
+          maxVol: 15
+          reagents:
+          - ReagentId: Water
+            Quantity: 15
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.30,0.10,0.15"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Vapor
+    active: true
+  - type: Appearance
+  - type: VaporVisuals
 #Missiles
 
 - type: entity
