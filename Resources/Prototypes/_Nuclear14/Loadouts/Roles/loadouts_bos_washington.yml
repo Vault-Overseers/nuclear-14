@@ -19,8 +19,11 @@
     - !type:CharacterJobRequirement
       jobs:
         - BoSWashingtonPaladin
+        - BoSWashingtonCommander
     - !type:CharacterPlaytimeRequirement
-      tracker: BoSWashingtonPaladin
+      tracker: 
+      - BoSWashingtonPaladin
+      - BoSWashingtonCommander
       min: 54000 # 15 hours veterancy unlock
   items:
     - N14ClothingOuterCombatArmorMK3
@@ -34,38 +37,11 @@
     - !type:CharacterJobRequirement
       jobs:
         - BoSWashingtonPaladin
-    - !type:CharacterPlaytimeRequirement
-      tracker: BoSWashingtonPaladin
-      min: 54000 # 15 hours veterancy unlock
-  items:
-    - N14ClothingHeadHatBrotherhoodHelmetMK3
-
-- type: loadout
-  id: LoadoutBoSWashingtonMK3ArmorPaladin
-  category: Roles
-  cost: 6
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
         - BoSWashingtonCommander
     - !type:CharacterPlaytimeRequirement
-      tracker: BoSWashingtonCommander
-      min: 54000 # 15 hours veterancy unlock
-  items:
-    - N14ClothingOuterCombatArmorMK3
-
-- type: loadout
-  id: LoadoutBoSWashingtonMK3HelmetPaladin
-  category: Roles
-  cost: 2
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - BoSWashingtonCommander
-    - !type:CharacterPlaytimeRequirement
-      tracker: BoSWashingtonCommander
+      tracker:
+      - BoSWashingtonPaladin
+      - BoSWashingtonCommander
       min: 54000 # 15 hours veterancy unlock
   items:
     - N14ClothingHeadHatBrotherhoodHelmetMK3
