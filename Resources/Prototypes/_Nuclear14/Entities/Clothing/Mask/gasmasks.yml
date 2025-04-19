@@ -18,7 +18,7 @@
         Slash: 0.9
         Piercing: 0.95
         Heat: 0.95
-  - priceMultiplier: 0.5
+    priceMultiplier: 0.5
   - type: Tag
     tags:
     - HidesHair
@@ -47,9 +47,9 @@
 
 - type: entity
   parent: ClothingMaskGas
-  id: ClothingMaskGasMiner
-  name: Fire Gas Mask
-  description: A gas mask used by firefighters before the war. 
+  id: ClothingMaskGasFire
+  name: fire gas mask
+  description: A gasmask with extra protection against fire.
   components:
   - type: Item
     size: Tiny
@@ -57,7 +57,11 @@
     sprite: _Nuclear14/Clothing/Mask/Gasmask/firegasmask.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Mask/Gasmask/firegasmask.rsi
-  - priceMultiplier: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.95
+    priceMultiplier: 0.5
 
 - type: entity
   parent: ClothingMaskGas
@@ -71,7 +75,10 @@
     sprite: _Nuclear14/Clothing/Mask/Gasmask/minergasmask.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Mask/Gasmask/minergasmask.rsi
-  - priceMultiplier: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+    priceMultiplier: 0.5
 
 - type: entity
   parent: ClothingMaskGasSecurity
