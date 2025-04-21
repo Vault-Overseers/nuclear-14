@@ -89,8 +89,8 @@
       - !type:HealthChange
         damage:
           groups:
-            Burn: -0.5
-            Brute: -0.5
+            Burn: -1.5
+            Brute: -1.5
       - !type:ModifyBleedAmount
         amount: -0.5
       - !type:ChemVomit
@@ -340,23 +340,19 @@
   color: "#24b530"
   metabolisms:
     Medicine:
-      metabolismRate: 0.1 # Effectively once every 10 seconds.
+      metabolismRate: 0.2
       effects:
       - !type:HealthChange
         damage:
           groups:
-            Brute: -0.5
-            Burn: -0.5
-            Toxin: -0.5
+            Burn: -3
+            Brute: -3
+            Airloss: -1
       - !type:ModifyBleedAmount
-        amount: -0.5
-      - !type:ChemVomit
-        probability: 0.05
+        amount: -1
       - !type:Drunk
-        conditions:
-        - !type:ReagentThreshold
-          min: 15
       - !type:Jitter
+      - !type:ChemVomit
         conditions:
         - !type:ReagentThreshold
           min: 25

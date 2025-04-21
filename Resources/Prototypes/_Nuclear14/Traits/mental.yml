@@ -376,7 +376,7 @@
 - type: trait
   id: N14PetDogNCR
   category: Mental
-  points: -5 # The NCR doesn't have any other pet options, I felt bad and made this one whole point cheaper for them
+  points: -6
   requirements:
     - !type:CharacterOverallTimeRequirement
       min: 72000
@@ -392,3 +392,23 @@
           rules: ghost-role-component-default-rules
         - type: GhostRoleMobSpawner
           prototype: N14MobPetDogNCR
+
+- type: trait
+  id: N14PetDogNCRK9Medical
+  category: Mental
+  points: -6
+  requirements:
+    - !type:CharacterOverallTimeRequirement
+      min: 72000
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - NCR
+  functions:
+    - !type:TraitAddComponent
+      components:
+        - type: GhostRole
+          name: ghost-role-information-n14pet-dog-ncrmed-name
+          description: ghost-role-information-n14pet-generic-description
+          rules: ghost-role-component-default-rules
+        - type: GhostRoleMobSpawner
+          prototype: N14MobPetDogNCRMedicK9
