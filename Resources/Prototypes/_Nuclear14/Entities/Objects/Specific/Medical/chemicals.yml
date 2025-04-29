@@ -7,13 +7,13 @@
   description: A syringe filled with an unknown chemical. Chem junkies would kill you for it.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+    sprite: _Nuclear14/Objects/Specific/Medical/ms13_stimpak.rsi
     netsync: false
     layers:
     - state: stimpak
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: Item
-    sprite: Objects/Specific/Medical/medipen.rsi
+    sprite: _Nuclear14/Objects/Specific/Medical/ms13_stimpak.rsi
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -28,7 +28,7 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: stimpak0
+    emptySpriteName: stimpak_empty
   - type: WelderRefinable
     refineResult:
     - id: SheetPlastic1
@@ -141,13 +141,16 @@
   - type: StaticPrice
     price: 25
   - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/ms13_superstimpak.rsi
     layers:
     - state: superstimpak
       map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: Item
+    sprite: _Nuclear14/Objects/Specific/Medical/ms13_superstimpak.rsi
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: superstimpak0
+    emptySpriteName: superstimpak_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 25
@@ -778,7 +781,7 @@
   components:
   - type: Stack
     stackType: N14AloeSalve
-    count: 3
+    count: 10
     baseLayer: base
     layerStates:
     - aloe1

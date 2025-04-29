@@ -13,7 +13,7 @@
 
 #MARK: Armor
 - type: entity
-  parent: N14FalloutArmorBase
+  parent: [N14FalloutArmorBase, N14ClothingOuterBase]
   id: N14ClothingOuterZealotDuster
   name: zealot duster
   description: A heavily modified highway patrol coat clearly designed by some manner of fanatic.
@@ -25,10 +25,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.9
-        Heat: 0.9
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.8
+        Heat: 0.8
     priceMultiplier: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.85
@@ -55,15 +55,12 @@
     priceMultiplier: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.85
-  - type: Reflect
-    reflectProb: 0.05
-    spread: 150
   - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
+    walkModifier: 0.90
+    sprintModifier: 0.90
 
 - type: entity
-  parent: N14FalloutArmorBase
+  parent: [N14FalloutArmorBase, N14ClothingOuterBase]
   id: N14ClothingOuterCoatFollowersArmored
   name: Followers Armored Labcoat
   description: A vest used by the followers. It has a bulletproof vest underneath.
@@ -75,10 +72,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.8
-        Heat: 0.85
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.8
     priceMultiplier: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.85
@@ -853,6 +850,26 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatNCRmk2.rsi
 
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterNCRCFvest
+  name: NCR CF ballistic vest
+  description: A light ballistic plate inside a nylon vest. This one is in the colors of NCR Correctional Facility staff.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/ncrcorrectionskevlarvest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/ncrcorrectionskevlarvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.8
+        Heat: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
 #MARK: NCR Rangers
 
 - type: entity
@@ -1181,6 +1198,127 @@
   - type: ExplosionResistance
     damageCoefficient: 0.75
 
+# New Washington BoS stuff after rework
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterWBoSInitiateArmor
+  name: initiate armor
+  description: A set of light armor used by the Washington Brotherhood's Initiates. It's quite light on actual plating, but cheap to make.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/InitiateArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/InitiateArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.825
+        Slash: 0.825
+        Piercing: 0.775
+        Heat: 0.775
+        Caustic: 0.95
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterWBoSSquireArmor
+  name: squire armor
+  description: A set of light armor used by the Washington Brotherhood's Squires. It's a bit light on actual plating, but insulates from the cold.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/SquireArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/SquireArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.725
+        Heat: 0.725
+        Caustic: 0.95
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterWBoSKnightArmor
+  name: knight armor
+  description: A suit of combat armor used by the Washington Brotherhood's Knights. Almost identical to pre-war sets issued to the military.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/KnightArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/KnightArmor.rsi
+  - type: Armor
+    modifiers: # Basically identical to the normal combat armour
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.7
+        Caustic: 0.9
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterWBoSSeniorKArmor
+  name: senior knight armor
+  description: A suit of combat armor used by the Washington Brotherhood's Senior Knights. It's slightly sturdier than the average rank & file troop's gear.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/SeniorKArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/SeniorKArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.725
+        Slash: 0.725
+        Piercing: 0.675
+        Heat: 0.675
+        Caustic: 0.9
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterWBoSPaladinArmor
+  name: paladin armor
+  description: A suit of sturdy armor used by the Washington Brotherhood's Paladins. Seems to cover almost every inch of one's torso.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/PaladinArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/PaladinArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+        Caustic: 0.85
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
 
 #MARK: midwest BoS
 
@@ -1224,6 +1362,128 @@
         Piercing: 0.65
         Heat: 0.65
     priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+# New Midwest BoS stuff after rework
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterMBoSInitiateArmor
+  name: initiate armor
+  description: A set of light armor used by the Midwestern Brotherhood's Initiates. It's quite light on actual plating, but cheap to make.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/InitiateArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/InitiateArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.825
+        Slash: 0.825
+        Piercing: 0.775
+        Heat: 0.775
+        Caustic: 0.95
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterMBoSSquireArmor
+  name: squire armor
+  description: A set of light armor used by the Midwestern Brotherhood's Squires. It's a bit light on actual plating, but insulates from the cold.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/SquireArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/SquireArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.725
+        Heat: 0.725
+        Caustic: 0.95
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterMBoSKnightArmor
+  name: knight armor
+  description: A suit of combat armor used by the Midwestern Brotherhood's Knights. Almost identical to pre-war sets issued to the military.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/KnightArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/KnightArmor.rsi
+  - type: Armor
+    modifiers: # Basically identical to the normal combat armour
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.7
+        Caustic: 0.9
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterMBoSSeniorKArmor
+  name: senior knight armor
+  description: A suit of combat armor used by the Midwestern Brotherhood's Senior Knights. It's slightly sturdier than the average rank & file troop's gear.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/SeniorKArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/SeniorKArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.725
+        Slash: 0.725
+        Piercing: 0.675
+        Heat: 0.675
+        Caustic: 0.9
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterMBoSPaladinArmor
+  name: paladin armor
+  description: A suit of sturdy armor used by the Midwestern Brotherhood's Paladins. Seems to have been forged by artificers for WAR!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/PaladinArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/PaladinArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+        Caustic: 0.85
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.2
   - type: ExplosionResistance
     damageCoefficient: 0.8
 

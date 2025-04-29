@@ -31,15 +31,15 @@
 #MARK: Gunpowder
 - type: entity
   parent: N14MaterialBasePowder
-  id: Gunpowder
+  id: N14Gunpowder
   name: gunpowder
   description: Explosive.
   components:
   - type: PhysicalComposition
     materialComposition:
-      Gunpowder: 100
+      N14Gunpowder: 100
   - type: Stack
-    stackType: Gunpowder
+    stackType: N14Gunpowder
     baseLayer: powder_lead
   - type: Sprite
     sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
@@ -53,28 +53,20 @@
     solutions:
       powder:
         reagents:
-        - ReagentId: Gunpowder
+        - ReagentId: N14Gunpowder
           Quantity: 10
 
 - type: entity
-  parent: Gunpowder
-  id: Gunpowder10
-  suffix: 10
-  components:
-  - type: Stack
-    count: 10
-
-- type: entity
-  parent: Gunpowder
-  id: Gunpowder20
+  parent: N14Gunpowder
+  id: N14Gunpowder20
   suffix: 20
   components:
   - type: Stack
     count: 20
 
 - type: entity
-  parent: Gunpowder
-  id: Gunpowder1
+  parent: N14Gunpowder
+  id: N14Gunpowder1
   suffix: Single
   components:
   - type: Stack

@@ -158,22 +158,49 @@
     - VeteranRangerAssaultSet
     - VeteranRangerMarksmanSet
 
-#MARK: Knights
+# Brotherhood Initiates
 - type: entity
-  id: NCRBoSMidwestkits
+  id: BoSMidwestInitSet
   name: Undecided BoS Midwest Kit
-  parent: NCRcadetloadoutkits
+  parent: BaseLoadoutKit
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - BoSDefaultSet
-    - BoSCarbineSet
+    - MBoS_IniLas_Set
+    - MBoS_IniBal_Set
 
 - type: entity
-  id: NCRBoSWashingtonkits
+  id: BoSWashingtonInitSet
+  name: Undecided BoS Washington Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - WBoS_IniPla_Set
+    - WBoS_IniBal_Set
+
+# Brotherhood Knights
+- type: entity
+  id: BoSMidwestKnightSet
+  name: Undecided BoS Midwest Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - MBoS_KniLas_Set
+    - MBoS_KniBal_Set
+
+- type: entity
+  id: BoSWashingtonKnightSet
   name: Undecided Washington BoS Kit
   parent: BaseLoadoutKit
   components:
@@ -182,12 +209,12 @@
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - BoSWashingtonDefaultSet
-    - BoSWashingtonCarbineSet
+    - WBoS_KniPla_Set
+    - WBoS_KniBal_Set
 
-#MARK: Scribes
+# Brotherhood Scribes
 - type: entity
-  id: NCRBoSMidwestScribekits
+  id: NCRBoSMidwestScribeKits
   name: Undecided BoS Scribe Midwest Kit
   parent: BaseLoadoutKit
   components:
@@ -196,12 +223,12 @@
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - BoSScribeMedicalSet
-    - BoSScribeFieldSet
-    - BoSScribeEngineerSet
+    - MBoS_ScrMed_Set
+    - MBoS_ScrFld_Set
+    - MBoS_ScrEng_Set
 
 - type: entity
-  id: NCRBoSWashingtonScribekits
+  id: NCRBoSWashingtonScribeKits
   name: Undecided BoS Scribe Washington Kit
   parent: BaseLoadoutKit
   components:
@@ -210,13 +237,13 @@
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - BoSWashingtonScribeMedicalSet
-    - BoSWashingtonScribeFieldSet
-    - BoSWashingtonScribeEngineerSet
+    - WBoS_ScrMed_Set
+    - WBoS_ScrFld_Set
+    - WBoS_ScrEng_Set
 
 #MARK: Paladins
 - type: entity
-  id: NCRBoSMidwestPaladinkits
+  id: NCRBoSMidwestPaladinKits
   name: Undecided BoS Paladin Midwest Kit
   parent: BaseLoadoutKit
   components:
@@ -232,7 +259,7 @@
     - BoSAssaultSet
 
 - type: entity
-  id: NCRBoSWashingtonPaladinkits
+  id: NCRBoSWashingtonPaladinKits
   name: Undecided BoS Paladin Washington Kit
   parent: BaseLoadoutKit
   components:
@@ -597,30 +624,28 @@
   content:
   - KitMarksmanRangerVeteran
 
-#MARK: BoS Midwest Kits
-#default
+# MBoS Initiate
 - type: UndecidedLoadoutBackpackSet
-  id: BoSDefaultSet
-  name: undecided-loadout-category-bos-default-name
-  description: undecided-loadout-category-bos-default-description
+  id: KitMBoSIniLasSet
+  name: undecided-loadout-category-mbos-init-laser-name
+  description: undecided-loadout-category-mbos-init-laser-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
-  - KitDefaultBoSMidwest
+  - KitMBoSIniLas
 
-#laser
 - type: UndecidedLoadoutBackpackSet
-  id: BoSLaserSet
-  name: undecided-loadout-category-bos-laser-name
-  description: undecided-loadout-category-bos-laser-description
+  id: KitMBoSIniBalSet
+  name: undecided-loadout-category-mbos-init-carbine-name
+  description: undecided-loadout-category-mbos-init-carbine-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
-  - KitLaserBoSMidwest
+  - KitMBoSIniBal
 
-#carbine
+# MBoS Knight
 - type: UndecidedLoadoutBackpackSet
   id: BoSCarbineSet
   name: undecided-loadout-category-bos-carbine-name

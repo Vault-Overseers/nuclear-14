@@ -10,9 +10,10 @@
       params:
         volume: 5
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    sprite: _Nuclear14\Objects\Misc\projectiles.rsi
+    scale: 0.75, 0.75
     layers:
-    - state: declone
+    - state: plasma
       shader: unshaded
   - type: Fixtures
     fixtures:
@@ -38,7 +39,27 @@
     damage:
       types:
         Heat: 20
-        Radiation: 5
+        Radiation: 2
+    soundHit:
+      path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
+
+- type: entity
+  name: plasma
+  id: BulletLightPlasma
+  parent: BulletPlasma
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14\Objects\Misc\projectiles.rsi
+    scale: 0.5, 0.5
+    layers:
+    - state: plasma
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Heat: 18
     soundHit:
       path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
 
@@ -48,12 +69,18 @@
   parent: BulletPlasma
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    sprite: _Nuclear14\Objects\Misc\projectiles.rsi
+    scale: 1.0, 1.0
+    layers:
+    - state: plasma
+      shader: unshaded
   - type: Projectile
     impactEffect: BulletImpactEffect
     damage:
       types:
-        Heat: 25
-        Radiation: 5
+        Heat: 24
+        Radiation: 6
     soundHit:
       path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
 

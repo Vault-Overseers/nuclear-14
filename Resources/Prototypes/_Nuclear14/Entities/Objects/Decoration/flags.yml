@@ -14,7 +14,6 @@
     damage:
       types:
         Blunt: 10
-        Structural: 5
     soundHit:
       collection: MetalThud
   - type: Wieldable
@@ -22,7 +21,6 @@
     damage:
       types:
         Blunt: 5
-        Structural: 10
   - type: Item
     size: Huge
   - type: UseDelay
@@ -43,46 +41,26 @@
         acts: [ "Destruction" ]
         # N14TODO: Needs inhands sprites
 
-  #BoS Flagpole
+  #MBoS Flagpole
 - type: entity
-  parent: BaseItem
+  parent: N14DecorationFlagpoleNCR
   id: N14DecorationFlagpoleBOS
-  name: BoS flag pole
-  description: A Midwest Brotherhood flag on a wooden pole.
+  name: Brotherhood flag pole
+  description: A Midwestern Brotherhood flag on a wooden pole.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Decoration/Flags/bos_flagpole.rsi
+    sprite: _Nuclear14/Objects/Decoration/Flags/mbos_flagpole.rsi
     state: icon
     noRot: true
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    damage:
-      types:
-        Blunt: 10
-        Structural: 5
-    soundHit:
-      collection: MetalThud
-  - type: Wieldable
-  - type: IncreaseDamageOnWield
-    damage:
-      types:
-        Blunt: 5
-        Structural: 10
-  - type: Item
-    size: Huge
-  - type: UseDelay
-    delay: 1
-  - type: Damageable
-    damageModifierSet: Wood
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WoodDestroy
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
+
+  #WBoS Flagpole
+- type: entity
+  parent: N14DecorationFlagpoleNCR
+  id: N14DecorationFlagpoleBOS
+  name: Brotherhood flag pole
+  description: A Washinton Brotherhood flag on a wooden pole.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Decoration/Flags/wbos_flagpole.rsi
+    state: icon
+    noRot: true

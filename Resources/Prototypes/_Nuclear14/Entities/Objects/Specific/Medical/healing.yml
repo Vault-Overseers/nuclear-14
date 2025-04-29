@@ -1,0 +1,152 @@
+- type: entity
+  parent: BaseItem
+  id: N14BaseHealingItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Nuclear14\Objects\Specific\Medical\ms13_medical.rsi
+  - type: Item
+    size: Small
+    sprite: _Nuclear14\Objects\Specific\Medical\ms13_medical.rsi
+    heldPrefix: tube1
+  - type: StaticPrice
+    price: 0
+
+- type: entity
+  name: roll of gauze
+  id: N14DirtyGauze10
+  description: Some dirty gauze to wrap around bloody wounds, might not be the best for your long-term health.
+  parent: N14BaseHealingItem
+  suffix: Stack
+  components:
+  - type: Tag
+    tags:
+    - N14DirtyGauze
+  - type: Sprite
+    sprite: _Nuclear14\Objects\Specific\Medical\ms13_medical.rsi
+    state: gauze_diy1
+  - type: Construction
+    graph: N14DGauze
+    node: n14dgauze
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Slash: -7
+        Piercing: -7
+        Poison: 1
+    bloodlossModifier: -7
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Stack
+    stackType: N14DirtyGauze
+    count: 10
+  - type: StackPrice
+    price: 6
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 2
+
+- type: entity
+  id: N14DirtyGauze1
+  parent: N14DirtyGauze10
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: N14DirtyGauze
+    count: 1
+
+- type: entity
+  name: roll of gauze
+  id: N14CleanGauze10
+  description: Some sterile gauze to wrap around bloody wounds.
+  parent: N14BaseHealingItem
+  suffix: Stack
+  components:
+  - type: Tag
+    tags:
+    - N14CleanGauze
+  - type: Sprite
+    sprite: _Nuclear14\Objects\Specific\Medical\ms13_medical.rsi
+    state: gauze
+  - type: Construction
+    graph: N14CGauze
+    node: n14cgauze
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Slash: -10
+        Piercing: -10
+    bloodlossModifier: -10
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Stack
+    stackType: N14CleanGauze
+    count: 10
+  - type: StackPrice
+    price: 10
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 2
+
+- type: entity
+  id: N14CleanGauze1
+  parent: N14CleanGauze10
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: N14CleanGauze
+    count: 1
+
+- type: entity
+  name: ointment
+  id: N14Ointment10
+  description: Used to treat those nasty burns. Less effective on caustic burns.
+  parent: N14BaseHealingItem
+  suffix: Stack
+  components:
+  - type: Tag
+    tags:
+    - Ointment
+  - type: Sprite
+    sprite: _Nuclear14\Objects\Specific\Medical\ms13_medical.rsi
+    state: tube1
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Blunt: -5
+        Heat: -5
+        Cold: -5
+        Shock: -5
+        Caustic: -5
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+  - type: Stack
+    stackType: N14Ointment
+    count: 10
+  - type: StackPrice
+    price: 15
+
+- type: entity
+  id: N14Ointment1
+  parent: N14Ointment10
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: N14Ointment
+    count: 1
