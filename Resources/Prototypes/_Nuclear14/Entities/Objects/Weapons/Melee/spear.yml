@@ -6,6 +6,7 @@
   components:
   - type: EmbeddableProjectile
     offset: 0.15,0.15
+  - type: EmbedPassiveDamage
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -87,8 +88,14 @@
   description: Definition of a classic. Keeping murder affordable since 200,000 BCE.
   components:
   - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 3
+        Slash: 3
   - type: EmbeddableProjectile
     offset: 0.15,0.15
+  - type: EmbedPassiveDamage
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -258,3 +265,4 @@
     damage:
       types:
         Piercing: 36
+

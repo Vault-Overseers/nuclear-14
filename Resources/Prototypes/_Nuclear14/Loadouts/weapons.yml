@@ -1,7 +1,7 @@
 # Pistols
 - type: loadout
   id: N14WeaponPistol22lr
-  category: Items
+  category: Weapons
   cost: 2
   requirements:
     - !type:CharacterItemGroupRequirement
@@ -11,7 +11,7 @@
 
 - type: loadout
   id: N14WeaponRevolver9mm
-  category: Items
+  category: Weapons
   cost: 1
   requirements:
     - !type:CharacterItemGroupRequirement
@@ -21,7 +21,7 @@
 
 - type: loadout
   id: N14WeaponPistol10mmPipe
-  category: Items
+  category: Weapons
   cost: 2
   requirements:
     - !type:CharacterItemGroupRequirement
@@ -31,7 +31,7 @@
 
 - type: loadout
   id: N14WeaponPistol9mm
-  category: Items
+  category: Weapons
   cost: 2
   requirements:
     - !type:CharacterItemGroupRequirement
@@ -42,7 +42,7 @@
 # Shotguns
 - type: loadout
   id: N14WeaponShotgunDoubleBarrel
-  category: Items
+  category: Weapons
   cost: 2
   requirements:
     - !type:OverallTimeRequirement
@@ -52,10 +52,24 @@
   items:
     - N14WeaponShotgunDoubleBarrel
 
+# Rifles
+
+- type: loadout
+  id: N14WeaponRifle556Pipe
+  category: Weapons
+  cost: 5
+  requirements:
+    - !type:OverallTimeRequirement
+      min: 6800
+    - !type:CharacterItemGroupRequirement
+      group: N14LoadoutGuns
+  items:
+    - N14WeaponRifle556Pipe
+
 # Ammo
 - type: loadout
   id: N14SpeedLoader9
-  category: Items
+  category: Weapons
   cost: 1
   requirements:
     - !type:CharacterItemGroupRequirement
@@ -66,10 +80,36 @@
 # Melee
 - type: loadout
   id: N14KitchenKnife
-  category: Items
+  category: Weapons
   cost: 2
   requirements:
     - !type:CharacterItemGroupRequirement
       group: N14LoadoutMelee
   items:
     - N14KitchenKnife
+
+- type: loadout
+  id: N14BrassKnife
+  category: Weapons
+  cost: 3
+  customColorTint: true
+  exclusive: true
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: N14LoadoutMelee
+  items:
+    - N14BrassKnife
+
+- type: loadout
+  id: N14WastelandTribalSpear
+  category: Weapons
+  cost: 4
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: N14LoadoutMelee
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - Wastelander
+        - Tribe
+  items:
+    - N14WastelandTribalSpear

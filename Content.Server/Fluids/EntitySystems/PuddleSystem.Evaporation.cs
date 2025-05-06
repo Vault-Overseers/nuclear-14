@@ -6,7 +6,7 @@ namespace Content.Server.Fluids.EntitySystems;
 
 public sealed partial class PuddleSystem
 {
-    private static readonly TimeSpan EvaporationCooldown = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan EvaporationCooldown = TimeSpan.FromSeconds(3);
 
     private void OnEvaporationMapInit(Entity<EvaporationComponent> entity, ref MapInitEvent args)
     {
@@ -51,10 +51,10 @@ public sealed partial class PuddleSystem
             // Despawn if we're done
             if (puddleSolution.Volume == FixedPoint2.Zero)
             {
-                // Spawn a *sparkle*
-                Spawn("PuddleSparkle", xformQuery.GetComponent(uid).Coordinates);
                 QueueDel(uid);
             }
+
+            _solutionContainerSystem.UpdateChemicals(puddle.Solution.Value);
         }
     }
 }

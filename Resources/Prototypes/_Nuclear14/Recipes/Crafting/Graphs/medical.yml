@@ -172,3 +172,20 @@
 
     - node: n14dgauze
       entity: N14DirtyGauze1
+
+# Healing Poultice
+- type: constructionGraph
+  id: N14HealingPoultice
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: healing poultice
+          steps:
+            - material: BrocFlower
+            - material: XanderRoot 
+            - material: CaveFungus
+            - material: AgaveLeaf
+
+    - node: healing poultice
+      entity: N14HealingPoultice
