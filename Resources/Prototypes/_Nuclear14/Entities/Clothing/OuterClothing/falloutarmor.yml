@@ -1,0 +1,1775 @@
+#MARK: Base Entity
+- type: entity
+  abstract: true
+  parent: [Clothing, AllowSuitStorageClothing]
+  id: N14FalloutArmorBase
+  components:
+  - type: Clothing
+    slots:
+    - outerClothing
+  - type: Sprite
+    state: icon
+  - type: Craftable
+
+#MARK: Armor
+- type: entity
+  parent: [N14FalloutArmorBase, N14ClothingOuterBase]
+  id: N14ClothingOuterZealotDuster
+  name: zealot duster
+  description: A heavily modified highway patrol coat clearly designed by some manner of fanatic.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutzealotduster.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutzealotduster.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+ # - type: ClothingSpecialModifier
+  #  luckModifier: 1
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingScavengerHeavyArmor
+  name: scavenger heavy armor
+  description: A reinforced duster hiding pieces of scavenged armor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutscavengerheavyarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutscavengerheavyarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+  - type: ClothingSpeedModifier
+    walkModifier: 0.90
+    sprintModifier: 0.90
+
+- type: entity
+  parent: [N14FalloutArmorBase, N14ClothingOuterBase]
+  id: N14ClothingOuterCoatFollowersArmored
+  name: Followers Armored Labcoat
+  description: A vest used by the followers. It has a bulletproof vest underneath.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutfoaarmoredcoat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutfoaarmoredcoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.8
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+  - type: Construction
+    graph: CoatFollowersArmoredGraph
+    node: followercoat
+ # - type: ClothingSpecialModifier
+  #  intelligenceModifier: 1
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterLeatherArmor
+  name: leather armor
+  description: A leather suit of armor that provides protection against physical threats.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleather.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleather.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.75
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: N14MaterialLeather1
+      amount: 4
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterVestLeather
+  name: leather vest
+  description: A simple armored leather vest, better than nothing.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleathervest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleathervest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.85
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterMetalArmor
+  name: metal armor
+  description: A suit of metal armor that provides protection against physical threats at the cost of movement.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmetal.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmetal.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.85
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+  - type: Reflect
+    reflectProb: 0.05
+    spread: 150
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterCombatArmor
+  name: combat armor
+  description: A suit of combat armor that's used in combat.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.7
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14ClothingOuterCombatArmor
+  id: N14ClothingOuterCombatArmorCargo
+  name: combat armor
+  description: A suit of combat armor that's used in combat. This one bears a hastily added trade mark of the Blue Line Caravan corp.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.7
+    priceMultiplier: 0
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterCombatArmorMK2
+  name: combat armor mk2
+  description: A suit of combat armor that's used in combat. It looks stronger than basic combat armor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatmk2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatmk2.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+
+- type: entity
+  parent: N14ClothingOuterCombatArmorMK2
+  id: N14ClothingOuterCombatArmorMK2Cargo
+  name: combat armor mk2
+  description: A suit of combat armor that's used in combat. It looks stronger than basic combat armor. This one bears a hastily added trade mark of the Blue Line Caravan corp.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterMarineArmor
+  name: marine armor
+  description: An extremely advanced piece of combat armor, the strongest you can find.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmarinearmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmarinearmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.55
+        Heat: 0.55
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+
+- type: entity
+  parent: N14ClothingOuterCombatArmorMK2
+  id: N14ClothingOuterEnclaveArmor
+  name: enclave armor
+  description: A suit of armor used by Enclave soldiers.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutenclavearmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutenclavearmor.rsi
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterVaultSecVest
+  name: vault security vest
+  description: A vest used by Vault security to protect themselves.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutvaultsec.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutvaultsec.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterEnclavePeacekeeper
+  name: enclave peacekeeper vest
+  description: A bulletproof vest used by Enclave 'peacekeepers'. Pfft. Yeah, right.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutpeacekeeper.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutpeacekeeper.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.4
+        Heat: 0.5
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+#MARK: Tribal
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterTribalArmor
+  name: tribal armor
+  description: A piece of armor used by tribals.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/fallouttribal.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/fallouttribal.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.85
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterTribalArmorHeavy
+  name: heavy tribal armor
+  description: A piece of heavy armor used by tribals.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/fallouttribalheavy.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/fallouttribalheavy.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterCombatTribal
+  name: tribal combat armor
+  description: A salvaged combat armor to fit the tribe's needs.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombattribal.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombattribal.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  # - type: ClothingSpecialModifier
+    # charismaModifier: 1
+    # luckModifier: 1
+
+#MARK: Raiders
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterRaiderBadlands
+  name: raider badlands armor
+  description: A suit of raider armor. It provides barely any protection... but it DOES look cool.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutraiderbadlands.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutraiderbadlands.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.95
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+ # - type: ClothingSpecialModifier
+  #  strengthModifier: 1
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterRaiderBlastmaster
+  name: raider blastmaster armor
+  description: A suit of raider armor. It provides barely any protection... but it DOES look cool.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutraiderblastmaster.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutraiderblastmaster.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+ # - type: ClothingSpecialModifier
+  #  agilityModifier: 1
+
+- type: entity
+  parent: N14ClothingOuterCombatArmor
+  id: N14ClothingOuterRaiderCombat1
+  name: raider combat armor
+  description: An armor piece infamously used by raiders of all kinds in combat.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatraider1.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatraider1.rsi
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterRaiderCombat2
+  name: raider combat armor mk2
+  description: An armor piece infamously used by Raiders of all kinds in combat, this one seems to hold some pieces of a salvaged mk2 combat armor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatraider2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatraider2.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.7
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterPoliceCombat
+  name: police combat armor
+  description: A blue lighter variant of combat armor used by police forces of the pre-war.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutpolicecombat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutpolicecombat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterCombatRusted
+  name: rusted combat armor
+  description: A suit of combat armor. This one looks rusted.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatrusted.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatrusted.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: N14ClothingOuterCombatRusted
+  id: N14ClothingOuterCombatRaider
+  name: raider combat armor
+  description: A suit of combat armor. This one is quite decrepit and broken down.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatraider.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatraider.rsi
+
+- type: entity
+  parent: N14ClothingOuterCombatArmor
+  id: N14ClothingOuterCombatPainspike
+  name: painspike combat armor
+  description: A suit of combat armor. This one seems to be dyed black and modified with spikes around its entirety.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatpainspike.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatpainspike.rsi
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterPainspike
+  name: painspike armor
+  description: A particularly unhuggable armor, even by raider standards. Extremely spiky.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutpainspike.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutpainspike.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.85
+        Heat: 0.85
+    priceMultiplier: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterSupafly
+  name: supafly
+  description: Fabulous mutant powers were revealed to me the day I held aloft my bumper sword and said... BY THE POWER OF NUKA-COLA, I AM RAIDER MAN!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutsupafly.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutsupafly.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 1.1
+        Slash: 1.1
+        Piercing: 1.2
+        Heat: 1.2
+    priceMultiplier: 0
+  - type: ClothingSpeedModifier
+    walkModifier: 1.2
+    sprintModifier: 1.2
+  - type: Reflect
+    reflectProb: 0.5
+    spread: 150
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterPoliceVest
+  name: police vest
+  description: A protective vest used for the pre-war police.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutpolicevest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutpolicevest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.8
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+  - type: Tag #For crafting
+    tags:
+      - PoliceVest
+
+- type: entity
+  parent: N14ClothingOuterPoliceVest
+  id: N14ClothingOuterPoliceVestCargo
+  name: cargo vest
+  description: A protective vest used for the pre-war police. This one has a Blue Line Caravan corp trade mark sewn into the breast.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.8
+    priceMultiplier: 0
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterSheriffVest
+  name: sheriff vest
+  description: The sheriff needs a good piece of armor to protect themselves from the dangers of the wasteland.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutsheriffvest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutsheriffvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.85
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+#MARK: NCR
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterNCRVestSnow
+  name: snow leather NCR vest
+  description: A light ballistic plate inside a leather vest, cheap and easy to mass produce, perfect armor for light infantry. This one is covered in snow-white camo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRvest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterNCRVestWoods
+  name: woods leather NCR vest
+  description: A light ballistic plate inside a leather vest, cheap and easy to mass produce, perfect armor for light infantry. This one is covered in green camo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRvest2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRvest2.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterNCRVestDesert
+  name: desert leather NCR vest
+  description: A light ballistic plate inside a leather vest, cheap and easy to mass produce, perfect armor for light infantry. This one is covered in classic desert camo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRvest3.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRvest3.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterNCRPlateWoods
+  name: NCR plate armor
+  description: A bunch of light steel plates connected to a hollow regular vest, designed to protect during melee combat.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRplatevest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRplatevest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.8
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+  - type: Reflect
+    reflectProb: 0.05
+    spread: 150
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterNCRPlateDesert
+  name: NCR plate armor
+  description: A bunch of light steel plates connected to a hollow regular vest, designed to protect during melee combat.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRplatevest2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRplatevest2.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.8
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+  - type: Reflect
+    reflectProb: 0.05
+    spread: 150
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterNCRPouchedVestWoods
+  name: pouched leather NCR vest
+  description: A leather vest with a light ballistic plate inside, this vest comes with a pack of pouches to hold any kind of things. It's uncomfy to move with it.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterNCRPouchedVestDesert
+  name: pouched leather NCR vest
+  description: A leather vest with a light ballistic plate inside, this vest comes with a pack of pouches to hold any kind of things. It's uncomfy to move with it.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest2.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterNCRPouchedVestSnow
+  name: pouched leather NCR vest
+  description: A leather vest with a light ballistic plate inside, this vest comes with a pack of pouches to hold any kind of things. It's uncomfy to move with it.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest3.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRwebvest3.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterNCRLightPouchedVest
+  name: light pouched leather NCR vest
+  description: A hardened leather vest with a light ballistic plate inside, this vest comes with a pack of pouches to hold any kind of things.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRlightwebvest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutNCRlightwebvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14ClothingOuterCombatArmor
+  id: N14ClothingOuterNCRCombatArmor
+  name: NCR combat armor
+  description: An old military grade pre-war combat armor, repainted to the colour scheme of the New California Republic.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatNCR.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatNCR.rsi
+
+- type: entity
+  parent: N14ClothingOuterCombatArmorMK2
+  id: N14ClothingOuterNCRCombatArmorMK2
+  name: NCR combat armor mk2
+  description: A reinforced set of bracers, greaves, and torso plating of pre-war design. This one is kitted with additional plates, repainted to the colour scheme of the New California Republic.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatNCRmk2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutcombatNCRmk2.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: N14ClothingOuterNCRCFvest
+  name: NCR CF ballistic vest
+  description: A light ballistic plate inside a nylon vest. This one is in the colors of NCR Correctional Facility staff.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/ncrcorrectionskevlarvest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/ncrcorrectionskevlarvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.8
+        Heat: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+#MARK: NCR Rangers
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterRangerVest
+  name: ranger custom leather vest
+  description: A custom NCR leather vest modified to become more versatile and protective.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangervest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangervest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+
+- type: entity
+  parent: N14ClothingOuterNCRCombatArmor
+  id: N14ClothingOuterRangerArmor
+  name: ranger patrol armor
+  description: A complete piece of combat armor created by the NCR itself, used by the NCR Rangers during their most dangerous patrols.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangersuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangersuit.rsi
+
+- type: entity
+  parent: N14ClothingOuterNCRCombatArmor
+  id: N14ClothingOuterRangerArmorB
+  name: customized ranger patrol armor
+  description: A customized and moderately-worn suit of patrol ranger armor. A sun-worn thick olive duster is worn over the armor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangersuitb.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangersuitb.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterRangerDuster
+  name: ranger recon duster
+  description: A thicker than average duster worn by NCR recon rangers out in the field. It's not heavily armored by any means, but is easy to move around in and provides excellent protection from the harsh desert environment.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerduster.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerduster.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 1.05
+    sprintModifier: 1.05
+
+#MARK: Veteran
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterRangerCoat
+  name: NCR ranger armor
+  description: The most feared and skillful soldiers of the NCR that the wasteland can create tend to wear this armor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangercoat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangercoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterRangerCombat
+  name: ranger combat armor
+  description: The Rangers combat armor consists of a pre-war L.A.P.D. riot suit under a duster with rodeo jeans. Considered one of the most prestigious suits of armor to earn and wear while in service of the NCR Rangers.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangercombat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangercombat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.6
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+
+- type: entity
+  parent: N14ClothingOuterRangerCombat
+  id: N14ClothingOuterRangerCombatDesert
+  name: desert ranger combat armor
+  description: This is the original armor the NCR Ranger Combat armor was based off of. An awe inspiring suit of armor used by the legendary Desert Rangers.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerdesertcombat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerdesertcombat.rsi
+
+- type: entity
+  parent: N14ClothingOuterRangerCombat
+  id: N14ClothingOuterRangerFox
+  name: fox ranger combat armor
+  description: A customized and well-worn suit of riot gear with parts of the suit reinforced with leather armor and slain Centurion armor pieces by the wearer. A sniper's veil is wrapped around the neck.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerfox.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerfox.rsi
+
+- type: entity
+  parent: N14ClothingOuterRangerCombat
+  id: N14ClothingOuterRangerWeathered
+  name: weathered ranger combat armor
+  description: A set of pre-unification desert ranger armor, made using parts of what was once USMC riot armor. It looks as if it has been worn for decades; the coat has become discoloured from years under the Mojave sun and has multiple tears and bullet holes in its leather. The armor plating itself seems to be in relatively good shape though it could do with some maintenance.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerweathered.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerweathered.rsi
+
+- type: entity
+  parent: N14ClothingOuterRangerCombat
+  id: N14ClothingOuterRangerElite # Admin event gear (OP)
+  name: elite ranger combat armor
+  description: A customized and well-worn suit of riot gear with parts of the suit reinforced with leather armor and slain Centurion armor pieces by the wearer. A sniper's veil is wrapped around the neck.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerelite.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerelite.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.6
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+
+- type: entity
+  parent: N14ClothingOuterRangerCombat
+  id: N14ClothingOuterRangerEliteOld
+  name: worn elite ranger combat armor
+  description: Worn riot gear granted to Rangers who served as law bringers for times of great unrest. This armor is a testament to the reach and power of the Republic and its will to bring peace to the lawlessness of the wasteland.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerelite.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerelite.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.6
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+
+- type: entity
+  parent: N14ClothingOuterRangerCombat
+  id: N14ClothingOuterRangerPrice
+  name: spider ranger combat armor
+  description: A customised and faded suit of riot gear, reminiscient of that found near Hopeville in the Divide, with a pair of wrist mounted ammo pouches for easy access to spare munitions with a pair of stripes down the back made from a fire-proof material.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerspider.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutrangerspider.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.6
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+
+#MARK: washington BoS
+
+- type: entity
+  parent: N14ClothingOuterCombatArmorMK2
+  id: N14ClothingOuterCombatArmorBOSMK2
+  name: brotherhood combat armor mk2
+  description: A suit of combat armor used by the Washington Brotherhood of Steel.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosmk2armor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosmk2armor.rsi
+
+- type: entity
+  parent: N14ClothingOuterCombatArmor
+  id: N14ClothingOuterCombatArmorBOS
+  name: brotherhood combat armor
+  description: A suit of combat armor used by the low-ranking members of the Washington Brotherhood of Steel.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosarmor.rsi
+
+- type: entity
+  parent: N14ClothingOuterCombatArmor
+  id: N14ClothingOuterCombatArmorKnightBOS
+  name: knight combat armor
+  description: A suit of combat armor used by the Knights in the Washington Brotherhood of Steel.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosknight.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosknight.rsi
+
+- type: entity
+  parent: N14ClothingOuterCombatArmorMK2
+  id: N14ClothingOuterCombatArmorSeniorBOS
+  name: senior knight combat armor
+  description: A suit of combat armor used by the Senior Knights in the Washington Brotherhood of Steel.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbossenior.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbossenior.rsi
+
+- type: entity
+  parent: N14ClothingOuterCombatArmorMK2
+  id: N14ClothingOuterCombatArmorCaptainBOS
+  name: captain combat armor
+  description: A suit of combat armor used by the Captains in the Washington Brotherhood of Steel.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutboscaptain.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutboscaptain.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterBosScribe
+  name: technical leather vest
+  description: A leather vest with everything a Scribe could need during a field job, theres no Don Quixote without a Sancho Panza.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosvest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14ClothingOuterCombatArmorMK2
+  id: N14ClothingOuterCombatArmorMK3
+  name: brotherhood combat armor mk3
+  description: Meticulously worked on by the Washington Scribes, its near unrecognisable from its original state.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosmk3armor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosmk3armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+
+# New Washington BoS stuff after rework
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterWBoSInitiateArmor
+  name: initiate armor
+  description: A set of light armor used by the Washington Brotherhood's Initiates. It's quite light on actual plating, but cheap to make.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/InitiateArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/InitiateArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.825
+        Slash: 0.825
+        Piercing: 0.775
+        Heat: 0.775
+        Caustic: 0.95
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterWBoSSquireArmor
+  name: squire armor
+  description: A set of light armor used by the Washington Brotherhood's Squires. It's a bit light on actual plating, but insulates from the cold.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/SquireArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/SquireArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.725
+        Heat: 0.725
+        Caustic: 0.95
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterWBoSKnightArmor
+  name: knight armor
+  description: A suit of combat armor used by the Washington Brotherhood's Knights. Almost identical to pre-war sets issued to the military.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/KnightArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/KnightArmor.rsi
+  - type: Armor
+    modifiers: # Basically identical to the normal combat armour
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.7
+        Caustic: 0.9
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterWBoSSeniorKArmor
+  name: senior knight armor
+  description: A suit of combat armor used by the Washington Brotherhood's Senior Knights. It's slightly sturdier than the average rank & file troop's gear.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/SeniorKArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/SeniorKArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.725
+        Slash: 0.725
+        Piercing: 0.675
+        Heat: 0.675
+        Caustic: 0.9
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterWBoSPaladinArmor
+  name: paladin armor
+  description: A suit of sturdy armor used by the Washington Brotherhood's Paladins. Seems to cover almost every inch of one's torso.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/PaladinArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Wash/PaladinArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+        Caustic: 0.85
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: Storage
+    grid:
+    - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+
+#MARK: midwest BoS
+
+- type: entity
+  parent: N14ClothingOuterCombatArmor
+  id: N14ClothingOuterMidwestArmor
+  name: midwest BoS combat armor
+  description: A suit of combat armor modified with multiple well-polished metal plates.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmidbosarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmidbosarmor.rsi
+
+- type: entity
+  parent: N14ClothingOuterCombatArmorMK2
+  id: N14ClothingOuterMidwestArmorMK2
+  name: veteran midwest BoS combat armor
+  description: A suit of combat armor modified with multiple well-polished metal plates and vibrant orange lines, a more robust version.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmidbosarmorV2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmidbosarmorV2.rsi
+
+- type: entity
+  parent: N14ClothingOuterCombatArmor
+  id: N14ClothingOuterMidwestReconArmor
+  name: midwest BoS recon armor
+  description: A suit of recon armor manufactured by the Midwest Brotherhood, reserved for only higher ranked members.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmidbosreconarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmidbosreconarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+# New Midwest BoS stuff after rework
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterMBoSInitiateArmor
+  name: initiate armor
+  description: A set of light armor used by the Midwestern Brotherhood's Initiates. It's quite light on actual plating, but cheap to make.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/InitiateArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/InitiateArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.825
+        Slash: 0.825
+        Piercing: 0.775
+        Heat: 0.775
+        Caustic: 0.95
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterMBoSSquireArmor
+  name: squire armor
+  description: A set of light armor used by the Midwestern Brotherhood's Squires. It's a bit light on actual plating, but insulates from the cold.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/SquireArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/SquireArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.725
+        Heat: 0.725
+        Caustic: 0.95
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterMBoSKnightArmor
+  name: knight armor
+  description: A suit of combat armor used by the Midwestern Brotherhood's Knights. Almost identical to pre-war sets issued to the military.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/KnightArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/KnightArmor.rsi
+  - type: Armor
+    modifiers: # Basically identical to the normal combat armour
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.7
+        Caustic: 0.9
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterMBoSSeniorKArmor
+  name: senior knight armor
+  description: A suit of combat armor used by the Midwestern Brotherhood's Senior Knights. It's slightly sturdier than the average rank & file troop's gear.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/SeniorKArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/SeniorKArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.725
+        Slash: 0.725
+        Piercing: 0.675
+        Heat: 0.675
+        Caustic: 0.9
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterMBoSPaladinArmor
+  name: paladin armor
+  description: A suit of sturdy armor used by the Midwestern Brotherhood's Paladins. Seems to have been forged by artificers for WAR!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/PaladinArmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/BoS_Midw/PaladinArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+        Caustic: 0.85
+    priceMultiplier: 0.5
+  - type: FireProtection
+    reduction: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: Storage
+    grid:
+    - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+
+#MARK: craftable armors
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterInsectArmor
+  name: insect armor
+  description: A suit of handmade armor made from a blend of different insect pieces, very protective.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutinsectarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutinsectarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.8
+        Heat: 0.8
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterChitinArmor
+  name: chitin armor
+  description: A suit of handmade armor made from a lot of chitin from insects.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchitinarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchitinarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterRadArmor
+  name: radscorpion armor
+  description: A suit of handmade armor made of pieces of exoskeleton from radscorpions.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutradarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutradarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterLightMetalArmor
+  name: light metal armor
+  description: A suit of light metal armor that provides protection against physical threats.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutlightmetal.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutlightmetal.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.75
+        Piercing: 0.8
+        Heat: 0.9
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterLightLeatherArmor
+  name: light leather armor
+  description: Your basic all leather apparel. Finely crafted from tanned brahmin hide.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleatherarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutleatherarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.80
+        Piercing: 0.90
+        Heat: 0.70
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterReinforcedLeatherArmor
+  name: Reinforced leather armor
+  description: An advanced version of the basic leather armor with extra layers of protection. Finely crafted from tanned brahmin hide.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutreinforcedleatherarmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutreinforcedleatherarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.85
+        Heat: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+
+#MARK: RCMP armors
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterVestRCMP
+  name: RCMP armored vest
+  description: A bulletproof vest used by the Canadian Mounties of the RCMP.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmountievest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmountievest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.75
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterCombatArmorRCMP
+  name: RCMP combat armor
+  description: A suit of combat armor that's used in combat, this one is a post-war model produced by the RCMP.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmountiearmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutmountiearmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+#MARK: Chinese renmants
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterCombatArmorChinese
+  name: chinese combat armor
+  description: A bulletproof vest combined with knee pads, mostly used by chinese commandos and special forces.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesearmor.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesearmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.65
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterVestChinese
+  name: chinese armored vest
+  description: A light bulletproof vest, mostly used by regular chinese infantry.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesevest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesevest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.75
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+# random other armor
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterPressArmor
+  name: prewar reporter armor
+  description: An old piece of armor once used by the Free Press before the war. Though the ballistic fiber is worn, it will still offer some protection.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/reportersvest.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/reportersvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.85
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+#Chinese stealth suit
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: N14ClothingOuterChineseStealthSuit
+  name: chinese stealth suit
+  description: Yī tào yǐqián wéi zhōngguó tèzhǒng bùduì zhìzào de zhuāngjiǎ.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesestealthsuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesestealthsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHelmetChineseStealthSuitHelmet
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.85
+        Heat: 0.6
+        Radiation: 0.6
+  - type: TemperatureProtection
+    coefficient: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
