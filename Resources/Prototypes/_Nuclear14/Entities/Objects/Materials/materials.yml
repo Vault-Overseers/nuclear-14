@@ -5,7 +5,6 @@
   abstract: true
   parent: MaterialBase
   id: N14MaterialBase
-  suffix: Full, 30
   description: A raw material.
   components:
   - type: Sprite
@@ -34,6 +33,7 @@
   id: N14Gunpowder
   name: gunpowder
   description: Explosive.
+  categories: [ HideSpawnMenu ]
   components:
   - type: PhysicalComposition
     materialComposition:
@@ -42,7 +42,7 @@
     stackType: N14Gunpowder
     baseLayer: powder_lead
   - type: Sprite
-    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    sprite: _Nuclear14/Objects/Misc/materials.rsi
     state: powder_lead
     layers:
     - state: powder_lead
@@ -58,11 +58,11 @@
 
 - type: entity
   parent: N14Gunpowder
-  id: N14Gunpowder20
-  suffix: 20
+  id: N14Gunpowder10
+  suffix: Stack
   components:
   - type: Stack
-    count: 20
+    count: 10
 
 - type: entity
   parent: N14Gunpowder
@@ -77,6 +77,7 @@
   parent: N14MaterialBasePowder
   id: SulfurPowder
   name: sulfur
+  categories: [ HideSpawnMenu ]
   components:
   - type: PhysicalComposition
     materialComposition:
@@ -120,7 +121,7 @@
   parent: SheetOtherBase
   id: N14Paper
   name: paper
-  suffix: Full, 10
+  categories: [ HideSpawnMenu ]
   components:
   - type: Stack
     stackType: N14Paper
@@ -175,6 +176,7 @@
   parent: N14MaterialBasePowder
   id: Charcoal
   name: charcoal
+  categories: [ HideSpawnMenu ]
   components:
   - type: Stack
     stackType: Charcoal
@@ -222,7 +224,7 @@
   parent: N14MaterialBase
   id: N14MaterialCircuitry
   name: circuitry
-  suffix: Full
+  categories: [ HideSpawnMenu ]
   components:
   - type: Material
   - type: PhysicalComposition
@@ -270,7 +272,7 @@
   id: N14MaterialLeather
   name: leather
   description: A piece of leather, just non-special leather.
-  suffix: Full, 15
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: leather_3
@@ -303,7 +305,7 @@
   id: N14MaterialRawLeather
   name: raw leather
   description: A piece of raw, unusable skin. Nothing special.
-  suffix: Full, 15
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: raw_leather_2
@@ -335,7 +337,7 @@
   id: N14MaterialAntChitin
   name: ant chitin
   description: A strong and resistent piece of ant "skin".
-  suffix: Full, 3
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/mob_drops.rsi
@@ -389,7 +391,7 @@
   id: N14MaterialThread
   name: thread
   description: A product made from finely twisted yarn.
-  suffix: Full, 10
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
@@ -440,7 +442,7 @@
   parent: N14ScrapBase
   id: N14Scrap
   name: scrap
-  suffix: Full, 30
+  categories: [ HideSpawnMenu ]
   components:
   - type: Material
   - type: PhysicalComposition
@@ -476,7 +478,7 @@
   parent: N14ScrapBase
   id: N14ScrapElectronic
   name: electronic scrap
-  suffix: Full, 30
+  categories: [ HideSpawnMenu ]
   components:
   - type: Material
   - type: PhysicalComposition
@@ -512,7 +514,7 @@
   parent: N14ScrapBase
   id: N14ScrapSteel
   name: steel scrap
-  suffix: Full, 30
+  categories: [ HideSpawnMenu ]
   components:
   - type: Material
   - type: PhysicalComposition
@@ -548,7 +550,7 @@
   parent: N14ScrapBase
   id: N14ScrapGold
   name: gold scrap
-  suffix: Full, 30
+  categories: [ HideSpawnMenu ]
   components:
   - type: Material
   - type: PhysicalComposition
@@ -578,7 +580,7 @@
   parent: N14ScrapBase
   id: N14ScrapCopper
   name: copper scrap
-  suffix: Full, 30
+  categories: [ HideSpawnMenu ]
   components:
   - type: Material
   - type: PhysicalComposition
@@ -608,7 +610,7 @@
   parent: N14ScrapBase
   id: N14ScrapBrass
   name: brass scrap
-  suffix: Full, 30
+  categories: [ HideSpawnMenu ]
   components:
   - type: Material
   - type: PhysicalComposition
@@ -638,7 +640,7 @@
   parent: N14ScrapBase
   id: N14ScrapLead
   name: lead scrap
-  suffix: Full, 30
+  categories: [ HideSpawnMenu ]
   components:
   - type: Material
   - type: PhysicalComposition

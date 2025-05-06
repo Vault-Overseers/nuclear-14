@@ -22,12 +22,11 @@
   - type: Tag
     tags:
     - N14DirtyGauze
+    - Gauze
   - type: Sprite
+    scale: 0.6, 0.6
     sprite: _Nuclear14\Objects\Specific\Medical\ms13_medical.rsi
     state: gauze_diy1
-  - type: Construction
-    graph: N14DGauze
-    node: n14dgauze
   - type: Healing
     damageContainers:
       - Biological
@@ -42,7 +41,7 @@
     healingEndSound:
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
-    stackType: N14DirtyGauze
+    stackType: N14DirtyGauze10
     count: 10
   - type: StackPrice
     price: 6
@@ -58,8 +57,11 @@
   suffix: Single
   components:
   - type: Stack
-    stackType: N14DirtyGauze
+    stackType: N14DirtyGauze10
     count: 1
+  - type: Construction
+    graph: N14DirtyGauze1
+    node: n14dgauze
 
 - type: entity
   name: roll of gauze
@@ -71,12 +73,11 @@
   - type: Tag
     tags:
     - N14CleanGauze
+    - Gauze
   - type: Sprite
+    scale: 0.66, 0.66
     sprite: _Nuclear14\Objects\Specific\Medical\ms13_medical.rsi
     state: gauze
-  - type: Construction
-    graph: N14CGauze
-    node: n14cgauze
   - type: Healing
     damageContainers:
       - Biological
@@ -90,7 +91,7 @@
     healingEndSound:
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
-    stackType: N14CleanGauze
+    stackType: N14CleanGauze10
     count: 10
   - type: StackPrice
     price: 10
@@ -106,7 +107,7 @@
   suffix: Single
   components:
   - type: Stack
-    stackType: N14CleanGauze
+    stackType: N14CleanGauze10
     count: 1
 
 - type: entity
@@ -120,6 +121,7 @@
     tags:
     - Ointment
   - type: Sprite
+    scale: 0.66, 0.66
     sprite: _Nuclear14\Objects\Specific\Medical\ms13_medical.rsi
     state: tube1
   - type: Healing

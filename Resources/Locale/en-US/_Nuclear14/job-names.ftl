@@ -1,5 +1,5 @@
 # Midwest Brotherhood
-job-name-bos-mid-paladin-comm = Midwest BoS Paladin Commander
+job-name-bos-mid-paladin-comm = Midwest BoS Commander
 job-description-bos-mid-paladin-comm = Lead the Midwestern Brotherhood of Steel on their mission.
 job-name-bos-mid-paladin = Midwest BoS Paladin
 job-description-bos-mid-paladin = Assist the Paladin Commander as their second in command & heavy infantry.
@@ -7,11 +7,11 @@ job-name-bos-mid-knight = Midwest BoS Knight
 job-description-bos-mid-knight = Follow the Paladins on their mission for the chapter.
 job-name-bos-mid-scribe = Midwest BoS Scribe
 job-description-bos-mid-scribe = Conduct scientific missions and research for your chapter.
-job-name-bos-mid-squire = Midwest BoS Squire
+job-name-bos-mid-squire = Midwest BoS Initiate
 job-description-bos-mid-squire = Follow the orders of your superiors and prove your worth.
 
 # Washington Brotherhood
-job-name-bos-washington-commander = Washington BoS Paladin Commander
+job-name-bos-washington-commander = Washington BoS Commander
 job-description-bos-washington-commander = Lead the Washington Brotherhood of Steel on their mission.
 job-name-bos-washington-initiate = Washington BoS Initiate
 job-description-bos-washington-initiate = Follow the orders of your superiors and prove your worth.

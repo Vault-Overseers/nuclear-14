@@ -158,16 +158,17 @@
       entity: N14JetInhaler
 
 # Dirty Gauze
-﻿- type: constructionGraph
+- type: constructionGraph
   id: N14DirtyGauze1
   start: start
   graph:
-  - node: start
-    edges:
-    - to: n14dgauze
-      steps:
-      - material: Cloth
-        amount: 2
-        doAfter: 10
-  - node: n14dgauze
-    entity: N14DirtyGauze1
+    - node: start
+      edges:
+        - to: n14dgauze
+          steps:
+          - material: Cloth
+            amount: 2
+            doAfter: 4
+
+    - node: n14dgauze
+      entity: N14DirtyGauze1

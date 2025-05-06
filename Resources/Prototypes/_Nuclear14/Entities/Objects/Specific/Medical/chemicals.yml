@@ -7,13 +7,16 @@
   description: A syringe filled with an unknown chemical. Chem junkies would kill you for it.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Specific/Medical/ms13_stimpak.rsi
-    netsync: false
+    sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     layers:
-    - state: stimpak
-      map: ["enum.SolutionContainerLayers.Fill"]
+      - state: stimpak
+        map: ["enum.SolutionContainerLayers.Fill"]
   - type: Item
     sprite: _Nuclear14/Objects/Specific/Medical/ms13_stimpak.rsi
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: stimpak0
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -25,10 +28,6 @@
     solutionName: pen
     transferAmount: 30
   - type: Appearance
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: stimpak_empty
   - type: WelderRefinable
     refineResult:
     - id: SheetPlastic1
@@ -95,13 +94,15 @@
   - type: StaticPrice
     price: 15
   - type: Sprite
+    scale: 0.66, 0.66
+    sprite: _Nuclear14/Objects/Specific/Medical/ms13_stimpak.rsi
     layers:
     - state: stimpak
-      map: [ "enum.SolutionContainerLayers.Fill" ]
+      map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: stimpak0
+    emptySpriteName: stimpak_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 25
@@ -141,10 +142,11 @@
   - type: StaticPrice
     price: 25
   - type: Sprite
+    scale: 0.66, 0.66
     sprite: _Nuclear14/Objects/Specific/Medical/ms13_superstimpak.rsi
     layers:
     - state: superstimpak
-      map: [ "enum.SolutionContainerLayers.Fill" ]
+      map: ["enum.SolutionContainerLayers.Fill"]
   - type: Item
     sprite: _Nuclear14/Objects/Specific/Medical/ms13_superstimpak.rsi
   - type: SolutionContainerVisuals
@@ -189,7 +191,7 @@
   parent: N14ChemicalSyringeAntidoteEmpty
   id: N14ChemicalSyringeAntidote
   suffix: filled
-  name: antidote
+  name: antidote syringe
   description: A syringe filled with an effective antitoxin.
   components:
   - type: SolutionContainerManager
@@ -208,13 +210,14 @@
   description: A rare injector filled with a narcotic reagent that makes you feel as though you're speeding up. It's weaker but lasts longer than Turbo.
   components:
   - type: Sprite
+    sprite: _Nuclear14\Objects\Specific\Medical\ms13_drugs.rsi
     layers:
     - state: jet
-      map: [ "enum.SolutionContainerLayers.Fill" ]
+      map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: jet
+    emptySpriteName: jet_used
   - type: Hypospray
     solutionName: pen
     transferAmount: 18
@@ -229,7 +232,7 @@
   parent: N14JetInhaler
   id: N14Jet
   suffix: filled
-  name: Jet
+  name: Jet inhaler
   description: A rare injector filled with a narcotic reagent that makes you feel as though you're speeding up. It's weaker but lasts longer than Turbo.
   components:
   - type: SolutionContainerManager
@@ -248,9 +251,10 @@
   description: A small injector filled with a narcotic reagent that makes you feel as though the world around you is slowing down. It's stronger and more dangerous than Jet.
   components:
   - type: Sprite
+    sprite: _Nuclear14\Objects\Specific\Medical\ms13_drugs.rsi
     layers:
     - state: turbo
-      map: [ "enum.SolutionContainerLayers.Fill" ]
+      map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
@@ -267,7 +271,7 @@
   parent: N14TurboInhaler
   id: N14Turbo
   suffix: filled
-  name: Turbo
+  name: Turbo inhaler
   description: A small injector filled with a narcotic reagent that makes you feel as though the world around you is slowing down. It's stronger and more dangerous than Jet.
   components:
   - type: SolutionContainerManager
@@ -285,9 +289,10 @@
   description: A syringe filled with a powerful painkiller. Some believe that it makes you more resistant to pain.
   components:
   - type: Sprite
+    sprite: _Nuclear14\Objects\Specific\Medical\ms13_drugs.rsi
     layers:
     - state: medx
-      map: [ "enum.SolutionContainerLayers.Fill" ]
+      map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
@@ -311,9 +316,10 @@
   description: A bottle of Supa Yum soda with several vials attached to it. Contains a mildly potent healing chemical that comes with addictive side effects.
   components:
   - type: Sprite
+    sprite: _Nuclear14\Objects\Specific\Medical\ms13_drugs.rsi
     layers:
-    - state: hydra
-      map: [ "enum.SolutionContainerLayers.Fill" ]
+    - state: turbo
+      map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
@@ -341,13 +347,15 @@
 - type: entity
   parent: N14ChemicalSyringe
   id: N14PsychoSyringe
+  suffix: empty
   name: psycho syringe
   description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin.
   components:
   - type: Sprite
+    sprite: _Nuclear14\Objects\Specific\Medical\ms13_drugs.rsi
     layers:
     - state: psycho
-      map: [ "enum.SolutionContainerLayers.Fill" ]
+      map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
@@ -363,7 +371,8 @@
 - type: entity
   parent: N14PsychoSyringe
   id: N14Psycho
-  name: psycho
+  suffix: full
+  name: psycho syringe
   description: A syringe filled with a reagent designed to make you more violent. Legend has it that these have a military origin.
   components:
   - type: SolutionContainerManager
@@ -387,7 +396,7 @@
     netsync: false
     layers:
     - state: radaway
-      map: [ "enum.SolutionContainerLayers.Fill" ]
+      map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
@@ -416,7 +425,7 @@
     netsync: false
     layers:
     - state: radawayinhaler1
-      map: [ "enum.SolutionContainerLayers.Fill" ]
+      map: ["enum.SolutionContainerLayers.Fill"]
     - state: radawayinhaler
     - state: radawayinhaler_text
   - type: SolutionContainerVisuals
@@ -521,7 +530,7 @@
     sprite: _Nuclear14/Objects/Specific/Medical/radinhaler.rsi
     layers:
     - state: radawayphial_icon
-      map: [ "enum.SolutionContainerLayers.Fill" ]
+      map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
@@ -619,9 +628,10 @@
   description: A small glass ampoule containing smelling salts. Their smell is said to wake up even a dead ghoul.
   components:
   - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/ms13_medical.rsi
     layers:
-    - state: smellingsalts
-      map: [ "enum.SolutionContainerLayers.Fill" ]
+    - state: powder1
+      map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
@@ -692,19 +702,11 @@
           Quantity: 20
 
 - type: entity
-  parent: N14ChemicalSyringe
+  parent: N14SuperStimpak
   id: N14UltraStimpak
   name: ultra stimpak
   description: A special type of super-stimpak with an additional mixture of chemicals which makes a man near invincible at a great cost. It is widely deemed inhumane and outlawed.
   components:
-  - type: Sprite
-    layers:
-    - state: ultrastimpak
-      map: [ "enum.SolutionContainerLayers.Fill" ]
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: ultrastimpak0
   - type: Hypospray
     solutionName: pen
     transferAmount: 25
