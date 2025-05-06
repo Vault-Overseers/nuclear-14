@@ -80,13 +80,13 @@
   price: 0.1
 
 # Materials
-# - type: material
-  # id: Gunpowder # Replaced by upstream one
-  # stackEntity: Gunpowder1
-  # name: materials-gunpowder
-  # icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: powder_lead }
-  # color: "#3E201D"
-  # price: 0.075
+- type: material
+  id: N14Gunpowder
+  stackEntity: N14Gunpowder1
+  name: materials-gunpowder
+  icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: powder_lead }
+  color: "#3E201D"
+  price: 0.075
 
 - type: material
   id: ScrapElectronic
@@ -150,7 +150,7 @@
   price: 0.005
 
 - type: reagent
-  id: Gunpowder
+  id: N14Gunpowder
   name: reagent-name-gunpowder
   desc: reagent-desc-gunpowder
   physicalDesc: reagent-physical-desc-powdery
@@ -164,7 +164,7 @@
       - !type:HealthChange
         damage:
           types:
-            Poison: 1
+            Poison: 0.25
 
 - type: material
   id: Charcoal

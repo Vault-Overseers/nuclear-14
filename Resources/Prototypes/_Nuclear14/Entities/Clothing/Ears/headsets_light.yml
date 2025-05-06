@@ -1,0 +1,99 @@
+﻿- type: entity
+  abstract: true
+  parent: Clothing
+  id: N14ClothingHeadsetLightScribe
+  name: headset
+  description: A modular intercom that fits over the head. Takes encryption keys and has a powerful light.
+  components:
+  - type: Item
+    heldPrefix: off
+  - type: Headset
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Ears/bosheadset.rsi
+    layers:
+    - state: icon
+    - state: light-icon
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Ears/bosheadset.rsi
+    equippedPrefix: off
+    slots:
+    - ears
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+  - type: EncryptionKeyHolder
+    keySlots: 4
+  - type: Appearance
+  - type: PointLight
+    enabled: false
+    radius: 4.5
+    energy: 1
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+  - type: HandheldLight
+    addPrefix: false
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        property: Radius
+        enabled: false
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        minValue: 0.1
+        maxValue: 2.0
+        isLooped: true
+        property: Radius
+        enabled: false
+  - type: ToggleableLightVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: on-equipped-EARS
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+
+
+- type: entity
+  parent: N14ClothingHeadsetLightScribe
+  id: N14ClothingHeadsetBOSMidwestLightScribe
+  name: midwest brotherhood over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyBrotherhoodMidwest
+
+- type: entity
+  parent: N14ClothingHeadsetLightScribe
+  id: N14ClothingHeadsetBOSWashingtonLightScribe
+  name: washington brotherhood over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyBrotherhoodWashington

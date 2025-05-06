@@ -158,23 +158,10 @@
     - VeteranRangerAssaultSet
     - VeteranRangerMarksmanSet
 
-#MARK: Knights
+# Brotherhood Initiates
 - type: entity
-  id: NCRBoSMidwestkits
-  name: Undecided BoS Midwest Kit
-  parent: NCRcadetloadoutkits
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  - type: UndecidedLoadoutBackpack
-    possibleSets:
-    - BoSDefaultSet
-    - BoSCarbineSet
-
-- type: entity
-  id: NCRBoSWashingtonkits
-  name: Undecided Washington BoS Kit
+  id: BoSMidwestInitSet
+  name: Undecided Midwestern Initiate Kit
   parent: BaseLoadoutKit
   components:
   - type: Sprite
@@ -182,13 +169,12 @@
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - BoSWashingtonDefaultSet
-    - BoSWashingtonCarbineSet
+    - MBoS_IniLas_Set
+    - MBoS_IniBal_Set
 
-#MARK: Scribes
 - type: entity
-  id: NCRBoSMidwestScribekits
-  name: Undecided BoS Scribe Midwest Kit
+  id: BoSWashingtonInitSet
+  name: Undecided Washington Initiate Kit
   parent: BaseLoadoutKit
   components:
   - type: Sprite
@@ -196,13 +182,13 @@
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - BoSScribeMedicalSet
-    - BoSScribeFieldSet
-    - BoSScribeEngineerSet
+    - WBoS_IniPla_Set
+    - WBoS_IniBal_Set
 
+# Brotherhood Knights
 - type: entity
-  id: NCRBoSWashingtonScribekits
-  name: Undecided BoS Scribe Washington Kit
+  id: BoSMidwestKnightSet
+  name: Undecided Midwestern Knight Kit
   parent: BaseLoadoutKit
   components:
   - type: Sprite
@@ -210,14 +196,12 @@
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - BoSWashingtonScribeMedicalSet
-    - BoSWashingtonScribeFieldSet
-    - BoSWashingtonScribeEngineerSet
+    - MBoS_KniLas_Set
+    - MBoS_KniBal_Set
 
-#MARK: Paladins
 - type: entity
-  id: NCRBoSMidwestPaladinkits
-  name: Undecided BoS Paladin Midwest Kit
+  id: BoSWashingtonKnightSet
+  name: Undecided Washington Knight Kit
   parent: BaseLoadoutKit
   components:
   - type: Sprite
@@ -225,15 +209,13 @@
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - BoSDefaultSet
-    - BoSRangedSet
-    - BoSLaserSet 
-    # - BoSPlasmaSet
-    - BoSAssaultSet
+    - WBoS_KniPla_Set
+    - WBoS_KniBal_Set
 
+# Brotherhood Scribes
 - type: entity
-  id: NCRBoSWashingtonPaladinkits
-  name: Undecided BoS Paladin Washington Kit
+  id: BoSMidwestScribeKits
+  name: Undecided Midwestern Scribe Kit
   parent: BaseLoadoutKit
   components:
   - type: Sprite
@@ -241,10 +223,54 @@
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - BoSWashingtonDefaultSet
-    - BoSWashingtonRangedSet
-    - BoSWashingtonPlasmaSet
-    - BoSWashingtonAssaultSet
+    - MBoS_ScrMed_Set
+    - MBoS_ScrFld_Set
+    - MBoS_ScrEng_Set
+
+- type: entity
+  id: BoSWashingtonScribeKits
+  name: Undecided Washington Scribe Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - WBoS_ScrMed_Set
+    - WBoS_ScrFld_Set
+    - WBoS_ScrEng_Set
+
+# Brotherhood Paladins
+- type: entity
+  id: BoSMidwestPaladinKits
+  name: Undecided Midwestern Paladin Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - MBoS_PalLas_Set
+    - MBoS_PalBal_Set
+    - MBoS_PalSni_Set
+    - MBoS_PalPla_Set
+
+- type: entity
+  id: BoSWashingtonPaladinKits
+  name: Undecided Washington Paladin Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - WBoS_PalPla_Set
+    - WBoS_PalBal_Set
+    - WBoS_PalSni_Set
+    - WBoS_PalLas_Set
 
 # Here do the individual ALREADY DECIDED kits start
 # NCRA Cadet Kits
@@ -597,197 +623,230 @@
   content:
   - KitMarksmanRangerVeteran
 
-#MARK: BoS Midwest Kits
-#default
+# MBoS Initiate
 - type: UndecidedLoadoutBackpackSet
-  id: BoSDefaultSet
-  name: undecided-loadout-category-bos-default-name
-  description: undecided-loadout-category-bos-default-description
+  id: MBoS_IniLas_Set
+  name: undecided-loadout-category-mbos-init-las-name
+  description: undecided-loadout-category-mbos-init-las-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
-  - KitDefaultBoSMidwest
+  - KitMBoS_IniLas
 
-#laser
 - type: UndecidedLoadoutBackpackSet
-  id: BoSLaserSet
-  name: undecided-loadout-category-bos-laser-name
-  description: undecided-loadout-category-bos-laser-description
+  id: MBoS_IniBal_Set
+  name: undecided-loadout-category-mbos-init-bal-name
+  description: undecided-loadout-category-mbos-init-bal-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
-  - KitLaserBoSMidwest
+  - KitMBoS_IniBal
 
-#carbine
+# MBoS Knight
 - type: UndecidedLoadoutBackpackSet
-  id: BoSCarbineSet
-  name: undecided-loadout-category-bos-carbine-name
-  description: undecided-loadout-category-bos-carbine-description
+  id: MBoS_KniLas_Set
+  name: undecided-loadout-category-mbos-kni-las-name
+  description: undecided-loadout-category-mbos-kni-las-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: marksman
+    state: rifleman
   content:
-  - KitCarbineBoSMidwest
+  - KitMBoS_KniLas
 
-#ranged-wattz
 - type: UndecidedLoadoutBackpackSet
-  id: BoSRangedSet
-  name: undecided-loadout-category-bos-ranged-name
-  description: undecided-loadout-category-bos-ranged-description
+  id: MBoS_KniBal_Set
+  name: undecided-loadout-category-mbos-kni-bal-name
+  description: undecided-loadout-category-mbos-kni-bal-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: marksman
+    state: rifleman
   content:
-  - KitRangedBoSMidwest
+  - KitMBoS_KniBal
 
-#MARK: Scribes
-#medic
+# MBoS Scribes
 - type: UndecidedLoadoutBackpackSet
-  id: BoSScribeMedicalSet
-  name: undecided-loadout-category-bos-scribe-medic-name
-  description: undecided-loadout-category-bos-scribe-medic-description
+  id: MBoS_ScrMed_Set
+  name: undecided-loadout-category-mbos-scribe-medic-name
+  description: undecided-loadout-category-mbos-scribe-medic-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: medic
   content:
-  - KitScribeMedicBoSMidwest
+  - KitMBoS_ScrMed
 
-#field scribe
 - type: UndecidedLoadoutBackpackSet
-  id: BoSScribeFieldSet
-  name: undecided-loadout-category-bos-scribe-field-name
-  description: undecided-loadout-category-bos-scribe-field-description
+  id: MBoS_ScrFld_Set
+  name: undecided-loadout-category-mbos-scribe-field-name
+  description: undecided-loadout-category-mbos-scribe-field-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: gunner
+  content:
+  - KitMBoS_ScrFld
+
+- type: UndecidedLoadoutBackpackSet
+  id: MBoS_ScrEng_Set
+  name: undecided-loadout-category-mbos-scribe-engineer-name
+  description: undecided-loadout-category-mbos-scribe-engineer-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: gunner
+  content:
+  - KitMBoS_ScrEng
+
+# MBoS Paladin
+- type: UndecidedLoadoutBackpackSet
+  id: MBoS_PalLas_Set
+  name: undecided-loadout-category-mbos-pal-las-name
+  description: undecided-loadout-category-mbos-pal-bal-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
-  - KitScribeFieldBoSMidwest
+  - KitMBoS_PalLas
 
-#engineer
 - type: UndecidedLoadoutBackpackSet
-  id: BoSScribeEngineerSet
-  name: undecided-loadout-category-bos-scribe-engineer-name
-  description: undecided-loadout-category-bos-scribe-engineer-description
+  id: MBoS_PalBal_Set
+  name: undecided-loadout-category-mbos-pal-bal-name
+  description: undecided-loadout-category-mbos-pal-bal-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
-  - KitScribeEngineerBoSMidwest
+  - KitMBoS_PalBal
 
-#MARK: BoS Commander Special
-
-#PlasmaRifle
-# - type: UndecidedLoadoutBackpackSet
-#   id: BoSPlasmaSet
-#   name: undecided-loadout-category-bos-plasma-name
-#   description: undecided-loadout-category-bos-plasma-description
-#   sprite:
-#     sprite: _Nuclear14/Objects/Misc/kits.rsi
-#     state: rifleman
-#   content:
-#   - KitPlasmaBoSMidwest
-
-#AssaultRifle
 - type: UndecidedLoadoutBackpackSet
-  id: BoSAssaultSet
-  name: undecided-loadout-category-bos-ballistics-name
-  description: undecided-loadout-category-bos-ballistics-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitAssaultBoSMidwest
-
-#MARK: WBoS Kits
-#default
-- type: UndecidedLoadoutBackpackSet
-  id: BoSWashingtonDefaultSet
-  name: undecided-loadout-category-bos-washington-default-name
-  description: undecided-loadout-category-bos-washington-default-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitDefaultBoSWashington
-
-#carbine
-- type: UndecidedLoadoutBackpackSet
-  id: BoSWashingtonCarbineSet
-  name: undecided-loadout-category-bos-washington-carbine-name
-  description: undecided-loadout-category-bos-washington-carbine-description
+  id: MBoS_PalSni_Set
+  name: undecided-loadout-category-mbos-pal-sni-name
+  description: undecided-loadout-category-mbos-pal-sni-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
-  - KitCarbineBoSWashington
+  - KitMBoS_PalSni
 
-#MARK: WBoS Scribes
-#medic
 - type: UndecidedLoadoutBackpackSet
-  id: BoSWashingtonScribeMedicalSet
-  name: undecided-loadout-category-bos-washington-scribe-medic-name
-  description: undecided-loadout-category-bos-washington-scribe-medic-description
+  id: MBoS_PalPla_Set
+  name: undecided-loadout-category-mbos-pal-pla-name
+  description: undecided-loadout-category-mbos-pal-pla-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitMBoS_PalPla
+
+# WBoS Initiate
+- type: UndecidedLoadoutBackpackSet
+  id: WBoS_IniPla_Set
+  name: undecided-loadout-category-wbos-init-pla-name
+  description: undecided-loadout-category-wbos-init-pla-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitWBoS_IniPla
+
+- type: UndecidedLoadoutBackpackSet
+  id: WBoS_IniBal_Set
+  name: undecided-loadout-category-wbos-init-bal-name
+  description: undecided-loadout-category-wbos-init-bal-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitWBoS_IniBal
+
+# WBoS Knight
+- type: UndecidedLoadoutBackpackSet
+  id: WBoS_KniPla_Set
+  name: undecided-loadout-category-wbos-kni-pla-name
+  description: undecided-loadout-category-wbos-kni-pla-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitWBoS_KniPla
+
+- type: UndecidedLoadoutBackpackSet
+  id: WBoS_KniBal_Set
+  name: undecided-loadout-category-wbos-kni-bal-name
+  description: undecided-loadout-category-wbos-kni-bal-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitWBoS_KniBal
+
+# WBoS Scribes
+- type: UndecidedLoadoutBackpackSet
+  id: WBoS_ScrMed_Set
+  name: undecided-loadout-category-wbos-scribe-medic-name
+  description: undecided-loadout-category-wbos-scribe-medic-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: medic
   content:
-  - KitScribeMedicBoSWashington
+  - KitWBoS_ScrMed
 
-#field scribe
 - type: UndecidedLoadoutBackpackSet
-  id: BoSWashingtonScribeFieldSet
-  name: undecided-loadout-category-bos-washington-scribe-field-name
-  description: undecided-loadout-category-bos-washington-scribe-field-description
+  id: WBoS_ScrFld_Set
+  name: undecided-loadout-category-wbos-scribe-field-name
+  description: undecided-loadout-category-wbos-scribe-field-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: gunner
+  content:
+  - KitWBoS_ScrFld
+
+- type: UndecidedLoadoutBackpackSet
+  id: WBoS_ScrEng_Set
+  name: undecided-loadout-category-wbos-scribe-engineer-name
+  description: undecided-loadout-category-wbos-scribe-engineer-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: gunner
+  content:
+  - KitWBoS_ScrEng
+
+# WBoS Paladin
+- type: UndecidedLoadoutBackpackSet
+  id: WBoS_PalPla_Set
+  name: undecided-loadout-category-wbos-pal-pla-name
+  description: undecided-loadout-category-wbos-pal-pla-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
-  - KitScribeFieldBoSWashington
+  - KitWBoS_PalPla
 
-#engineer
 - type: UndecidedLoadoutBackpackSet
-  id: BoSWashingtonScribeEngineerSet
-  name: undecided-loadout-category-bos-washington-scribe-engineer-name
-  description: undecided-loadout-category-bos-washington-scribe-engineer-description
+  id: WBoS_PalBal_Set
+  name: undecided-loadout-category-wbos-pal-bal-name
+  description: undecided-loadout-category-wbos-pal-bal-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
   content:
-  - KitScribeEngineerBoSWashington
+  - KitWBoS_PalBal
 
-#MARK: WBoS Commander Special
-
-#PlasmaRifle
 - type: UndecidedLoadoutBackpackSet
-  id: BoSWashingtonPlasmaSet
-  name: undecided-loadout-category-bos-washington-plasma-name
-  description: undecided-loadout-category-bos-washington-plasma-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitPlasmaBoSWashington
-
-#AssaultRifle
-- type: UndecidedLoadoutBackpackSet
-  id: BoSWashingtonAssaultSet
-  name: undecided-loadout-category-bos-washington-ballistics-name
-  description: undecided-loadout-category-bos-washington-ballistics-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitAssaultBoSWashington
-
-#ranged-wattz
-- type: UndecidedLoadoutBackpackSet
-  id: BoSWashingtonRangedSet
-  name: undecided-loadout-category-bos-washington-ranged-name
-  description: undecided-loadout-category-bos-washington-ranged-description
+  id: WBoS_PalSni_Set
+  name: undecided-loadout-category-mbos-pal-sni-name
+  description: undecided-loadout-category-mbos-pal-sni-description
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
   content:
-  - KitMarksmanBoSWashington
+  - KitWBoS_PalSni
+
+- type: UndecidedLoadoutBackpackSet
+  id: WBoS_PalLas_Set
+  name: undecided-loadout-category-wbos-pal-las-name
+  description: undecided-loadout-category-wbos-pal-las-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitWBoS_PalLas
