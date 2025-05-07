@@ -101,11 +101,11 @@
     layers:
       - map: [ "enum.PowerCellVisualLayers.Base" ]
         state: empty
-        scale: 0.6, 0.6
+        scale: 0.5, 0.5
       - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
         state: o2
         shader: unshaded
-        scale: 0.6, 0.6
+        scale: 0.5, 0.5
   - type: Tag
     tags:
       - N14PowerCellSmall
@@ -131,8 +131,10 @@
     layers:
       - map: [ "enum.PowerCellVisualLayers.Base" ]
         state: empty
+        scale: 0.5, 0.5
       - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
         state: o2
+        scale: 0.5, 0.5
         shader: unshaded
   - type: Tag
     tags:
@@ -178,7 +180,7 @@
 #MARK: Plasma cartridge
 
 - type: entity
-  name: plasma cartridge
+  name: base plasma cell
   description: A small green glowing cartridge, commonly used as ammo for any kind of plasma weapon.
   id: N14BasePlasmaCell
   abstract: true
@@ -192,10 +194,6 @@
     intensitySlope: 1.5
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Battery/plasma.rsi
-  - type: Tag
-    tags:
-      - N14PlasmaCartridge
-      - N14AmmoCell
   - type: SolutionContainerManager
     solutions:
       battery:
@@ -218,7 +216,7 @@
 
 - type: entity
   name: plasma cartridge
-  description: A small green glowing cartridge, commonly used as ammo for any kind of plasma weapon.
+  description: A small green glowing cartridge, commonly used as ammo for average plasma weaponry.
   id: N14PlasmaCartridge
   suffix: Full
   parent: N14BasePlasmaCell
@@ -231,9 +229,41 @@
       - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
         state: o2
         shader: unshaded
+  - type: Tag
+    tags:
+      - N14PlasmaCartridge
+      - N14AmmoCell
   - type: Battery
     maxCharge: 1800
     startingCharge: 1800
+
+# This one is used for pistols
+
+- type: entity
+  name: plasma cell
+  parent: N14BasePlasmaCell
+  description: A small green glowing cartridge, commonly used as ammo for light plasma weaponry.
+  id: N14PlasmaCell
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Battery/plasma_small.rsi
+    layers:
+      - map: [ "enum.PowerCellVisualLayers.Base" ]
+        state: empty
+      - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+        state: o2
+        shader: unshaded
+  - type: Tag
+    tags:
+      - N14PlasmaCell
+      - N14AmmoCell
+  - type: Battery
+    maxCharge: 900
+    startingCharge: 900
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLightPlasma
+    fireCost: 50
 
 #MARK: Plasma shell
 
@@ -245,7 +275,7 @@
   parent: N14BasePlasmaCell
   components:
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Battery/plasma.rsi
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Battery/plasma_big.rsi
     layers:
       - map: [ "enum.PowerCellVisualLayers.Base" ]
         state: empty

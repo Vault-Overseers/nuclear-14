@@ -58,25 +58,25 @@
     wideAnimation: WeaponArcBite
     damage:
       types:
-        Blunt: 2
-        Slash: 4
+        Blunt: 4
+        Slash: 8
   - type: UniversalLanguageSpeaker
   - type: PassiveDamage 
     allowedStates:
     - Alive
     - Critical
-    damageCap: 50
+    damageCap: 75
     damage:
       groups:
-        Brute: -0.25
-        Burn: -0.25
-        Toxin: -0.25
+        Brute: -0.5
+        Burn: -0.5
+        Toxin: -0.5
 
 - type: entity
   name: Basic Mutt
   id: N14MobPetDog
   parent: N14MobPetBasic
-  description: A rather healthy dog, seems to have a collar with a name on it.
+  description: A rather normal dog, seems to have a collar with a name on it.
   components:
   - type: RadiationReceiver
   - type: RandomMetadata
@@ -94,7 +94,7 @@
   name: MBoS Mutt
   id: N14MobPetDogMBoS
   parent: N14MobPetDog
-  description: A rather healthy dog, seems to have a collar with a name on it.
+  description: A rather normal dog, seems to have a whole vest with a name on it.
   components:
   - type: RadiationReceiver
   - type: RandomMetadata
@@ -137,7 +137,7 @@
   name: WBoS Mutt
   id: N14MobPetDogWBoS
   parent: N14MobPetDog
-  description: A rather healthy dog, seems to have a collar with a name on it.
+  description: A butchered but overall not-too-rusted cybernetic dog with a name engraved into it.
   components: #This dog is intentionally missing the RadiationReceiver due cybernetic shenanigans
   - type: RandomMetadata
     nameSegments: [names_N14pet_dog]
@@ -163,12 +163,12 @@
         Base: dead
       Dead:
         Base: dead
-
+        
 - type: entity
   name: NCR Mutt
   id: N14MobPetDogNCR
   parent: N14MobPetDog
-  description: A rather healthy dog, seems to have a collar with a name on it.
+  description: A rather big & charming dog, seems to have a collar with a name on it.
   components:
   - type: RadiationReceiver
   - type: RandomMetadata
@@ -205,14 +205,58 @@
     wideAnimation: WeaponArcBite
     damage:
       types:
-        Blunt: 3
-        Slash: 5
+        Blunt: 6
+        Slash: 10
+
+- type: entity
+  name: NCR Medical K9
+  id: N14MobPetDogNCRMedicK9
+  parent: N14MobPetDog
+  description: A rather normal dog, seems to have a whole vest with a name on it.
+  components:
+  - type: RadiationReceiver
+  - type: RandomMetadata
+    nameSegments: [names_N14pet_dog]
+  - type: NpcFactionMember
+    factions:
+      - NCR
+  - type: Sprite
+    scale: 0.9, 0.9
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: k9_medic
+      sprite: _Nuclear14/Mobs/Animals/dog_ncra_medic.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      160: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: k9_medic
+      Critical:
+        Base: k9_medic_dead
+      Dead:
+        Base: k9_medic_dead
+  - type: Storage
+    grid:
+    - 0,0,4,3
+    maxItemSize: Small
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
 
 - type: entity
   name: CC Mutt
   id: N14MobPetDogCC
   parent: N14MobPetDog
-  description: A rather healthy dog, seems to have a collar with a name on it.
+  description: A rather tiny dog, seems to have a collar with a name on it.
   components:
   - type: RadiationReceiver
   - type: RandomMetadata
@@ -248,7 +292,7 @@
   name: Pet Roach
   id: N14MobPetRoach
   parent: N14MobPetBasic
-  description: A rather healthy dog, seems to have a collar with a name on it.
+  description: A rather cultured radroach, seems to have a sticker with a name on it.
   components:
   - type: RandomMetadata
     nameSegments: [names_N14pet_insect]
@@ -293,9 +337,9 @@
     wideAnimation: WeaponArcBite
     damage:
       types:
-        Blunt: 1
-        Slash: 1
-        Radiation: 1
+        Blunt: 2
+        Slash: 2
+        Radiation: 2
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
     baseSprintSpeed : 4
@@ -316,7 +360,7 @@
   name: Pet Ant
   id: N14MobPetAnt
   parent: N14MobPetRoach
-  description: It's an ant...but giant. Watch for the nippers.
+  description: It's an ant... but giant. Seems to be relatively peaceful.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -324,6 +368,9 @@
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: muleant
       sprite: _Nuclear14/Mobs/Pets/muleant.rsi
+  - type: NpcFactionMember
+    factions:
+      - CaravanCompany
   - type: DamageStateVisuals
     states:
       Alive:
@@ -350,7 +397,9 @@
       200: Dead
   - type: Storage
     grid:
-    - 0,0,9,6
+    - 0,0,1,3
+    - 3,0,6,3
+    - 8,0,9,3
     maxItemSize: Large
   - type: UserInterface
     interfaces:
@@ -375,15 +424,15 @@
     wideAnimation: WeaponArcClaw
     damage:
       types:
-        Blunt: 3
-        Slash: 3
-        Radiation: 1
+        Blunt: 6
+        Slash: 6
+        Radiation: 2
 
 - type: entity
   name: Pet Rat
   id: N14MobPetPigrat
   parent: N14MobPetBasic
-  description: Part pig, part rat, full pest. Watch out for the teeth.
+  description: Part pig, part rat, full pest. Watch out for the cleaned teeth?
   components:
   - type: RandomMetadata
     nameSegments: [names_N14pet_dog]
@@ -430,9 +479,9 @@
     wideAnimation: WeaponArcBite
     damage:
       types:
-        Blunt: 2
-        Slash: 3
-        Radiation: 1
+        Blunt: 4
+        Slash: 6
+        Radiation: 2
   - type: Butcherable
     spawned:
     - id: N14FoodMeatPigrat

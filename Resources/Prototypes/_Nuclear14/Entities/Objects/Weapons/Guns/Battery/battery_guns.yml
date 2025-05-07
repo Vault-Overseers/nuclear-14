@@ -189,12 +189,12 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14PlasmaCartridge
+        startingItem: N14PlasmaCell
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
-            - N14PlasmaCartridge
+            - N14PlasmaCell
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -330,7 +330,7 @@
   - type: Cautery
     speed: 0.3
 
-# MARK: Fullauto
+# MARK: FullAuto
 
 - type: entity
   name: AER-9 auto laser rifle
@@ -383,23 +383,26 @@
     price: 225
 
 - type: entity
-  name: plasma automatic rifle
+  name: automatic plasma rifle
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponPlasmaRifleAuto
-  description: A highly advanced automatic plasma rifle.
+  description: A highly advanced automatic plasma rifle in pristine condition.
   components:
   - type: Wieldable
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -56
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_autorifle.rsi
+    scale: 0.8, 0.8
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_autorifle_icon.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
+    - state: mag-2
+      map: ["enum.GunVisualLayers.Mag"]
       shader: unshaded
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_autorifle.rsi
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_autorifle.rsi
     quickEquip: false
@@ -418,7 +421,7 @@
             - N14PlasmaCartridge
   - type: MagazineVisuals
     magState: mag
-    steps: 5
+    steps: 3
     zeroVisible: true
   - type: Gun
     fireRate: 4
@@ -535,6 +538,50 @@
     price: 250
 
 - type: entity
+  name: crude laser rifle
+  parent: N14WeaponLaserRifle
+  id: N14WeaponLaserRifleCrude
+  description: A crude laser rifle, an attempt to create cheap versions of the pre-war AER-9 model. Emits beams of concentrated light to damage targets.
+  components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -56
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle_crude.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle_crude.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellHigh
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellHigh
+  - type: Gun
+    fireRate: 2.5
+    soundGunshot:
+      collection: N14LaserAutoRifleGunshot
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: StaticPrice
+    price: 150
+
+- type: entity
   name: makeshift laser rifle
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponLaserRifleMakeshift
@@ -588,20 +635,23 @@
   name: plasma rifle
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponPlasmaRifle
-  description: A highly advanced plasma rifle.
+  description: An advanced plasma rifle in almost pristine condition.
   components:
   - type: Wieldable
   - type: GunWieldBonus
     minAngle: -24
     maxAngle: -58
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle.rsi
+    scale: 0.8, 0.8
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle_icon.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
+    - state: mag-2
+      map: ["enum.GunVisualLayers.Mag"]
       shader: unshaded
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle.rsi
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle.rsi
     quickEquip: false
@@ -620,7 +670,7 @@
             - N14PlasmaCartridge
   - type: MagazineVisuals
     magState: mag
-    steps: 5
+    steps: 3
     zeroVisible: true
   - type: Gun
     fireRate: 3
@@ -635,6 +685,53 @@
     price: 275
 
 - type: entity
+  name: crude plasma rifle
+  parent: N14WeaponPlasmaRifle
+  id: N14WeaponPlasmaRifleCrude
+  description: A cheap knock-off of a much more advanced plasma rifle.
+  components:
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -56
+  - type: Sprite
+    scale: 0.8, 0.8
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle_crude_icon.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-2
+      map: ["enum.GunVisualLayers.Mag"]
+      shader: unshaded
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle_crude.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle_crude.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PlasmaCartridge
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PlasmaCartridge
+  - type: Gun
+    fireRate: 2.5
+    soundGunshot:
+      collection: N14PlasmaAutoRifleGunshot
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: StaticPrice
+    price: 175
+
+- type: entity
   name: urban plasma rifle
   parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponPlasmaRifleUrban
@@ -645,13 +742,16 @@
     minAngle: -23
     maxAngle: -55
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_urban.rsi
+    scale: 0.8, 0.8
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_urban_icon.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
+    - state: mag-2
+      map: ["enum.GunVisualLayers.Mag"]
       shader: unshaded
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_urban.rsi
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_urban.rsi
     quickEquip: false
@@ -670,7 +770,7 @@
             - N14PlasmaCartridge
   - type: MagazineVisuals
     magState: mag
-    steps: 5
+    steps: 3
     zeroVisible: true
   - type: Gun
     fireRate: 4
@@ -702,7 +802,7 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
+      map: ["enum.GunVisualLayers.Mag"]
       shader: unshaded
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/multiplas.rsi
@@ -883,12 +983,12 @@
     maxAngle: 12
     angleIncrease: 4
     angleDecay: 12
-    fireRate: 7
+    fireRate: 4
     soundGunshot:
       collection: N14PlasmaCasterGunshot
-    selectedMode: SemiAuto
+    selectedMode: FullAuto
     availableModes:
-    - SemiAuto
+    - FullAuto
   - type: Appearance
   - type: MultiHandedItem
   - type: ClothingSpeedModifier

@@ -256,119 +256,151 @@ undecided-loadout-category-veteran-ranger-marksman-description =
     Includes 1 NCR belt, 1 marksman rifle, 3 7.62 marksman rifle magazines,
     1 7.62 ammo box, 2 stimpaks, 1 C ration MRE, and a combat knife.
 
-undecided-loadout-category-bos-default-name = Brotherhood Basic Issue Kit
-undecided-loadout-category-bos-default-description =
-    A crate containing everything a member of Brotherhood might need.
-        For soldiers and laser lovers alike.
-    Includes 1 AER-9 laser rifle, 1 laser pistol, 3 MF cells, 2 energy cells, 1 stimpak, C ration MRE
 
-undecided-loadout-category-bos-carbine-name = Brotherhood Carbine Issue Kit
-undecided-loadout-category-bos-carbine-description =
-    A crate containing everything a member of Brotherhood might need.
-        For your ballistic needs.
-    Includes 1 pre-war carbine rifle, 1 laser pistol, 3 carbine 556 magazines,
-     2 energy cells, 1 stimpak, 1 C ration MRE
+# Midwestern Kits
 
-undecided-loadout-category-bos-laser-name = Brotherhood Laser Issue Kit
-undecided-loadout-category-bos-laser-description =
-    A crate containing everything a member of the Brotherhood might need
-        too lay down some laser and lead.
-    Includes 1 modified AER-9 rifle, 1 12.7mm pistol, 3 carbine MF cells,
-     2 12.7mm pistol magazines, 1 stimpak, 1 C ration MRE
+undecided-loadout-category-mbos-init-las-name = Initiate Laser Kit
+undecided-loadout-category-mbos-init-las-description =
+    A cache containing belongings of a Midwestern chapter Initiate.
+    Includes 1 crude laser rifle, 3 microfusion cells, 1 12.7mm pistol,
+    2 12.7mm pistol magazines, 1 roll of gauze, and 1 K ration MRE.
 
-undecided-loadout-category-bos-scribe-medic-name = Brotherhood Scribe Medical Kit
-undecided-loadout-category-bos-scribe-medic-description =
-    A crate containing everything a member of Brotherhood scribes.
-        For keeping the fighting forces alive.
-    Includes 1 AEP-7 pistol, 2 energy cells, 1 medical belt,
-     1 bullet wound kit, 1 medical scribe clothing, 1 knife, 1 stimpak, 1 C ration MRE
+undecided-loadout-category-mbos-init-bal-name = Initiate Ballistic Kit
+undecided-loadout-category-mbos-init-bal-description =
+    A cache containing belongings of a Midwestern chapter Initiate.
+    Includes 1 old carbine, 3 5.56 magazines, 1 AEP-7, 2 energy
+    cells, 1 roll of gauze, and 1 K ration MRE.
 
-undecided-loadout-category-bos-scribe-field-name = Brotherhood Scribe Field Kit
-undecided-loadout-category-bos-scribe-field-description =
-    A crate containing everything a member of Brotherhood scribes.
-        For supporting your unit from the back.
-    Includes 1 AEP-7 pistol, 2 energy cells, 1 scribe webbing,
-     1 field scribe clothing, 1 knife, 2 stimpak, 1 gauze, 1 bruise pack, 1 ointment, 1 C ration MRE
+undecided-loadout-category-mbos-kni-las-name = Knight Laser Kit
+undecided-loadout-category-mbos-kni-las-description =
+    A cache containing belongings of a Midwestern chapter Knight.
+    Includes 1 AER-9, 3 microfusion cells, 1 12.7mm pistol,
+    2 12.7mm pistol magazines, 1 roll of gauze, 1 K ration MRE.
 
-undecided-loadout-category-bos-scribe-engineer-name = Brotherhood Scribe Engineer Kit
-undecided-loadout-category-bos-scribe-engineer-description =
-    A crate containing everything a member of Brotherhood scribes.
-        For upkeeping the base and tinkering alike.
-    Includes 1 AEP-7 laser pistol, 2 energy cells, 1 utility belt,
-     1 engineer scribe clothing, 1 fire-axe, 1 stimpak, 1 C ration MRE
+undecided-loadout-category-mbos-kni-bal-name = Knight Ballistic Kit
+undecided-loadout-category-mbos-kni-bal-description =
+    A cache containing belongings of a Midwestern chapter Knight.
+    Includes 1 assault carbine, 3 5.56 magazines, 1 AEP-7, 2 energy
+    cells, 1 roll of gauze, and 1 K ration MRE.
 
-undecided-loadout-category-bos-ranged-name = Brotherhood Ranged Paladin Kit
-undecided-loadout-category-bos-ranged-description =
-    A crate containing everything a paladin of Brotherhood might need.
-        For open range fights.
-    Includes 1 wattz 2000 rifle, 1 laser pistol, 3 H-MF cells, 2 energy cells,
-     1 stimpak, 1 C ration MRE
+undecided-loadout-category-mbos-scribe-medic-name = Scribe Medical Kit
+undecided-loadout-category-mbos-scribe-medic-description =
+    A cache containing belongings of a Midwestern chapter Scribe.
+    Includes 1 AEP-7, 2 energy cells, 1 pair of nitrile gloves,
+    1 medical robe, 1 filled medical belt, 1 stack of ointment, 1
+    super stimpak, 1 sterile mask, 1 roll of gauze, and 1 K ration MRE.
 
-undecided-loadout-category-bos-plasma-name = Brotherhood Plasma Paladin Kit
-undecided-loadout-category-bos-plasma-description =
-    A crate containing everything a paladin of Brotherhood might need.
-        For his plasma induced rage.
-    Includes 1 plasma rifle, 1 plasma pistol, 4 plasma cartridges,
-     1 stimpak, 1 C ration MRE
+undecided-loadout-category-mbos-scribe-field-name = Scribe Field Kit
+undecided-loadout-category-mbos-scribe-field-description =
+    A cache containing belongings of a Midwestern chapter Scribe.
+    Includes 1 AEP-7, 2 energy cells, 1 pair of combat gloves,
+    1 field coat, 1 Brotherhood webbing, 1 stack of ointment,
+    1 roll of gauze, and 1 K ration MRE.
 
-undecided-loadout-category-bos-ballistics-name = Brotherhood Assault Paladin Kit
-undecided-loadout-category-bos-ballistics-description =
-    A crate containing everything a paladin of Brotherhood might need.
-        For his insane need of bullets downrange.
-    Includes 1 assault rifle, 3 5.56 magazines, 1 12.7mm pistol,
-     2 12.7mm pistol magazines, 5.56 ammo box, 1 stimpak, 1 C ration MRE
+undecided-loadout-category-mbos-scribe-engineer-name = Scribe Engineer Kit
+undecided-loadout-category-mbos-scribe-engineer-description =
+    A cache containing belongings of a Midwestern chapter Scribe.
+    Includes 1 AEP-7, 2 energy cells, 1 pair of insulated gloves,
+    1 quilted armor, 1 filled utility belt, 1 stack of ointment,
+    1 welding goggles, 1 roll of gauze, and 1 K ration MRE.
 
-undecided-loadout-category-bos-washington-default-name = Brotherhood Basic Issue Kit
-undecided-loadout-category-bos-washington-default-description =
-    A crate containing everything a member of Brotherhood might need.
-        For soldiers and laser lovers alike.
-    Includes 1 1 plasma rifle, 1 laser pistol, 3 MF cells, 2 energy cells, 1 stimpak, C ration MRE
+undecided-loadout-category-mbos-pal-las-name = Paladin Laser Kit
+undecided-loadout-category-mbos-pal-las-description =
+    A cache containing belongings of a Midwestern chapter Paladin.
+    Includes 1 modified AER-9, 3 microfusion cells, 1 12.7mm pistol,
+    2 12.7mm pistol magazines, 1 roll of gauze, 1 stimpak,
+    and 1 K ration MRE.
 
-undecided-loadout-category-bos-washington-carbine-name = Brotherhood Carbine Issue Kit
-undecided-loadout-category-bos-washington-carbine-description =
-    A crate containing everything a member of Brotherhood might need.
-        For your ballistic needs.
-    Includes 1 pre-war carbine rifle, 10mm pistol, 3 carbine 556 magazines,
-     2 10mm pistol magazines, 1 stimpak, 1 C ration MRE
+undecided-loadout-category-mbos-pal-bal-name = Paladin Ballistic Kit
+undecided-loadout-category-mbos-pal-bal-description =
+    A cache containing belongings of a Midwestern chapter Paladin.
+    Includes 1 assault carbine, 3 5.56 magazines, 1 AEP-7, 2 energy
+    cells, 1 roll of gauze, 1 stimpak, and 1 K ration MRE.
 
-undecided-loadout-category-bos-washington-plasma-name = Brotherhood Plasma Issue Kit
-undecided-loadout-category-bos-washington-plasma-description =
-    A crate containing everything a member of the Brotherhood might need
-        too lay down some laser and lead.
-    Includes 1 modified plasma rifle, 1 10mm pistol, 3 plasma cartridges,
-     2 10mm pistol magazines, 1 stimpak, 1 C ration MRE
+undecided-loadout-category-mbos-pal-sni-name = Paladin Sniper Kit
+undecided-loadout-category-mbos-pal-sni-description =
+    A cache containing belongings of a Midwestern chapter Paladin.
+    Includes 1 Wattz 2000, 3 heavy microfusion cells,
+    1 12.7mm pistol, 2 12.7mm pistol magazines, 1 roll of gauze,
+    1 stimpak, and 1 K ration MRE.
 
-undecided-loadout-category-bos-washington-scribe-medic-name = Brotherhood Scribe Medical Kit
-undecided-loadout-category-bos-washington-scribe-medic-description =
-    A crate containing everything a member of Brotherhood scribes.
-        For keeping the fighting forces alive.
-    Includes 1 AEP-7 pistol, 2 energy cells, 1 medical belt,
-     1 bullet wound kit, 1 medical scribe clothing, 1 knife, 1 stimpak, 1 C ration MRE
+undecided-loadout-category-mbos-pal-pla-name = Paladin Plasma Kit
+undecided-loadout-category-mbos-pal-pla-description =
+    A cache containing belongings of a Midwestern chapter Paladin.
+    Includes 1 plasma rifle, 3 plasma cartridge, 1 12.7mm pistol,
+    2 12.7mm pistol magazines, 1 roll of gauze, 1 stimpak,
+    and 1 K ration MRE.
 
-undecided-loadout-category-bos-washington-scribe-field-name = Brotherhood Scribe Field Kit
-undecided-loadout-category-bos-washington-scribe-field-description =
-    A crate containing everything a member of Brotherhood scribes.
-        For supporting your unit from the back.
-    Includes 1 AEP-7 pistol, 1 AEP-7 pistol, 2 energy cells, 1 scribe webbing,
-     1 field scribe clothing, 1 knife, 2 stimpak, 1 gauze, 1 bruise pack, 1 ointment, 1 C ration MRE
 
-undecided-loadout-category-bos-washington-scribe-engineer-name = Brotherhood Scribe Engineer Kit
-undecided-loadout-category-bos-washington-scribe-engineer-description =
-    A crate containing everything a member of Brotherhood scribes.
-        For upkeeping the base and tinkering alike.
-    Includes 1 AEP-7 laser pistol, 2 energy cells, 1 utility belt,
-     1 engineer scribe clothing, 1 fire-axe, 1 stimpak, 1 C ration MRE
+# Washington Kits
 
-undecided-loadout-category-bos-washington-ranged-name = Brotherhood Marksman Paladin Kit
-undecided-loadout-category-bos-washington-ranged-description =
-    A crate containing everything a paladin of Brotherhood might need.
-        For open range fights.
-    Includes 1 wattz 2000 rifle, 1 laser pistol, 3 H-MF cells, 2 energy cells,
-     1 stimpak, 1 C ration MRE
+undecided-loadout-category-wbos-init-pla-name = Initiate Plasma Kit
+undecided-loadout-category-wbos-init-pla-description =
+    A cache containing belongings of a Washington chapter Initiate.
+    Includes 1 crude plasma rifle, 3 plasma cartridges, 1 Webley pistol,
+    2 9mm pistol magazines, 1 roll of gauze, and 1 K ration MRE.
 
-undecided-loadout-category-bos-washington-ballistics-name = Brotherhood Assault Paladin Kit
-undecided-loadout-category-bos-washington-ballistics-description =
-    A crate containing everything a paladin of Brotherhood might need.
-        For his insane need of bullets downrange.
-    Includes 1 assault rifle, 3 5.56 magazines, 1 10mm pistol,
-     2 10mm pistol magazines, 5.56 ammo box, 1 stimpak, 1 C ration MRE
+undecided-loadout-category-wbos-init-bal-name = Initiate Ballistic Kit
+undecided-loadout-category-wbos-init-bal-description =
+    A cache containing belongings of a Washington chapter Initiate.
+    Includes 1 old carbine, 3 5.56 magazines, 1 plasma pistol, 2
+    plasma cells, 1 roll of gauze, and 1 K ration MRE.
+
+undecided-loadout-category-wbos-kni-pla-name = Knight Plasma Kit
+undecided-loadout-category-wbos-kni-pla-description =
+    A cache containing belongings of a Washington chapter Knight.
+    Includes 1 plasma rifle, 3 plasma cartridges, 1 Webley pistol,
+    2 9mm pistol magazines, 1 roll of gauze, 1 K ration MRE.
+
+undecided-loadout-category-wbos-kni-bal-name = Knight Ballistic Kit
+undecided-loadout-category-wbos-kni-bal-description =
+    A cache containing belongings of a Washington chapter Knight.
+    Includes 1 assault carbine, 3 5.56 magazines, 1 plasma pistol,
+    2 plasma cells, 1 roll of gauze, and 1 K ration MRE.
+
+undecided-loadout-category-wbos-scribe-medic-name = Scribe Medical Kit
+undecided-loadout-category-wbos-scribe-medic-description =
+    A cache containing belongings of a Washington chapter Scribe.
+    Includes 1 plasma pistol, 2 plasma cells, 1 pair of nitrile gloves,
+    1 medical robe, 1 filled medical belt, 1 stack of ointment, 1
+    super stimpak, 1 sterile mask, 1 roll of gauze, and 1 K ration MRE.
+
+undecided-loadout-category-wbos-scribe-field-name = Scribe Field Kit
+undecided-loadout-category-wbos-scribe-field-description =
+    A cache containing belongings of a Washington chapter Scribe.
+    Includes 1 plasma pistol, 2 plasma cells, 1 pair of combat gloves,
+    1 field coat, 1 Brotherhood webbing, 1 stack of ointment,
+    1 roll of gauze, and 1 K ration MRE.
+
+undecided-loadout-category-wbos-scribe-engineer-name = Scribe Engineer Kit
+undecided-loadout-category-wbos-scribe-engineer-description =
+    A cache containing belongings of a Washington chapter Scribe.
+    Includes 1 plasma pistol, 2 plasma cells, 1 pair of insulated gloves,
+    1 technical vest, 1 filled utility belt, 1 stack of ointment,
+    1 welding goggles, 1 roll of gauze, and 1 K ration MRE.
+
+undecided-loadout-category-wbos-pal-pla-name = Paladin Plasma Kit
+undecided-loadout-category-wbos-pal-pla-description =
+    A cache containing belongings of a Washington chapter Paladin.
+    Includes 1 automatic plasma rifle, 3 plasma cartridges,
+    1 Webley pistol, 2 9mm pistol magazines, 1 roll of gauze,
+    1 stimpak and 1 K ration MRE.
+
+undecided-loadout-category-wbos-pal-bal-name = Paladin Ballistic Kit
+undecided-loadout-category-wbos-pal-bal-description =
+    A cache containing belongings of a Washington chapter Paladin.
+    Includes 1 assault carbine, 3 5.56 magazines, 1 plasma pistol,
+    1 plasma cells, 1 roll of gauze, 1 stimpak, and 1 K ration MRE.
+
+undecided-loadout-category-wbos-pal-sni-name = Paladin Sniper Kit
+undecided-loadout-category-wbos-pal-sni-description =
+    A cache containing belongings of a Washington chapter Paladin.
+    Includes 1 F2 marksman rifle, 3 7.62 short magazines,
+    1 plasma pistol, 2 plasma cells, 1 roll of gauze,
+    1 stimpak, and 1 K ration MRE.
+
+undecided-loadout-category-wbos-pal-las-name = Paladin Laser Kit
+undecided-loadout-category-wbos-pal-las-description =
+    A cache containing belongings of a Washington chapter Paladin.
+    Includes 1 AER-9, 3 microfusion cells, 1 plasma pistol,
+    2 plasma cells, 1 roll of gauze, 1 stimpak, and 1 K ration MRE.

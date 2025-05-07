@@ -20,6 +20,8 @@ ghost-role-information-n14pet-dog-cc-name = Guard Dog Follower
 
 ghost-role-information-n14pet-dog-ncr-name = Warhound Follower
 
+ghost-role-information-n14pet-dog-ncrmed-name = Medical Dog Follower
+
 ghost-role-information-n14pet-generic-description = You are a follower of someone, obey them and attempt to protect them. In-case they perish you may remain in service of the faction they belonged to (if they belonged to any).
 
 ghost-role-information-n14pet-hauler-description =

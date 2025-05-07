@@ -20,16 +20,16 @@
         Slash: 0.5
         Piercing: 0.55
         Heat: 0.55
+        Caustic: 0.75
         Radiation: 0.6
   - type: TemperatureProtection
-    coefficient: 0.5
+    coefficient: 0.75
+  - type: FireProtection
+    reduction: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorT45
-  # - type: ClothingSpecialModifier
-    # strengthModifier: 2
-    # enduranceModifier: 2
   - type: Reflect
     reflectProb: 0.1
     spread: 150
@@ -49,9 +49,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51.rsi
     equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
     unequipDelay: 6
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
   - type: Armor
     modifiers:
       coefficients:
@@ -59,19 +56,15 @@
         Slash: 0.45
         Piercing: 0.5
         Heat: 0.5
+        Caustic: 0.75
         Radiation: 0.6
-  - type: TemperatureProtection
-    coefficient: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.55
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorT51
-  - type: Reflect
-    reflectProb: 0.1
-    spread: 150
 
 - type: entity
-  parent: N14ClothingOuterPowerArmorT45
+  parent: N14ClothingOuterPowerArmorT51
   id: N14ClothingOuterPowerArmorT60
   name: t-60 power armor
   description: A suit of T-60 Power Armor. The T-60 series of power armor was designed to eventually replace the T-51 as the pinnacle of powered armor technology. It however suffered from a minor drawback in its armor placement, making it somewhat less armored.
@@ -92,16 +85,10 @@
         Slash: 0.475
         Piercing: 0.525
         Heat: 0.525
+        Caustic: 0.75
         Radiation: 0.6
-  - type: TemperatureProtection
-    coefficient: 0.5
-  - type: ExplosionResistance
-    damageCoefficient: 0.55
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorT60
-  - type: Reflect
-    reflectProb: 0.1
-    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT60
@@ -141,9 +128,8 @@
         Slash: 0.4
         Piercing: 0.5
         Heat: 0.5
+        Caustic: 0.75
         Radiation: 0.6
-  - type: TemperatureProtection
-    coefficient: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: ToggleableClothing
@@ -175,9 +161,8 @@
         Slash: 0.45
         Piercing: 0.55
         Heat: 0.55
+        Caustic: 0.75
         Radiation: 0.6
-  - type: TemperatureProtection
-    coefficient: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.55
   - type: ToggleableClothing
@@ -187,7 +172,7 @@
     spread: 150
 
 - type: entity
-  parent: N14ClothingOuterPowerArmorAdvanced1
+  parent: N14ClothingOuterPowerArmorAdvanced2
   id: N14ClothingOuterPowerArmorAdvanced2Hellfire
   name: hellfire power armor
   description: A deep black suit of Enclave-manufactured heavy power armor based on pre-war designs such as the T-51 and improving off of data gathered by post-war designs such as the X-01. Most commonly fielded on the East Coast, no suit rivals its strength.
@@ -199,9 +184,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/hellfire.rsi
     equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
     unequipDelay: 6
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
   - type: Armor
     modifiers:
       coefficients:
@@ -209,16 +191,12 @@
         Slash: 0.45
         Piercing: 0.5
         Heat: 0.5
+        Caustic: 0.75
         Radiation: 0.5
-  - type: TemperatureProtection
-    coefficient: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorHellfire
-  - type: Reflect
-    reflectProb: 0.125
-    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -242,9 +220,8 @@
         Slash: 0.55
         Piercing: 0.6
         Heat: 0.6
+        Caustic: 0.75
         Radiation: 0.65
-  - type: TemperatureProtection
-    coefficient: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: FootstepModifier
@@ -276,19 +253,15 @@
         Slash: 0.475
         Piercing: 0.525
         Heat: 0.525
+        Caustic: 0.75
         Radiation: 0.6
-  - type: TemperatureProtection
-    coefficient: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorMidwest
-  - type: Reflect
-    reflectProb: 0.1
-    spread: 150
 
 - type: entity
-  parent: N14ClothingOuterPowerArmorT45
+  parent: N14ClothingOuterPowerArmorMidwest
   id: N14ClothingOuterPowerArmorMidwestCommander
   name: midwest commander power armor
   description: A unknown model of power armor manufactured by the Midwest Brotherhood. This modified version is commonly used by high-ranking Midwest Brotherhood of Steel Paladins.
@@ -299,9 +272,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/midwestcommander.rsi
     equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
     unequipDelay: 6
-  - type: ClothingSpeedModifier
-    walkModifier: 0.925
-    sprintModifier: 0.925
   - type: Armor
     modifiers:
       coefficients:
@@ -309,16 +279,21 @@
         Slash: 0.45
         Piercing: 0.5
         Heat: 0.5
+        Caustic: 0.75
         Radiation: 0.6
-  - type: TemperatureProtection
-    coefficient: 0.5
-  - type: ExplosionResistance
-    damageCoefficient: 0.6
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHelmetPowerArmorMidwestCommander
-  - type: Reflect
-    reflectProb: 0.1
-    spread: 150
+  - type: Storage
+    grid:
+    - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -342,6 +317,7 @@
         Slash: 0.425
         Piercing: 0.475
         Heat: 0.475
+        Caustic: 0.75
         Radiation: 0.6
   - type: TemperatureProtection
     coefficient: 0.5
@@ -377,6 +353,7 @@
         Slash: 0.55
         Piercing: 0.6
         Heat: 0.6
+        Caustic: 0.75
         Radiation: 0.65
   - type: TemperatureProtection
     coefficient: 0.55
@@ -408,11 +385,75 @@
         Slash: 0.425
         Piercing: 0.475
         Heat: 0.475
+        Caustic: 0.75
         Radiation: 0.6
-  - type: TemperatureProtection
-    coefficient: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.55
   - type: Reflect
     reflectProb: 0.1
     spread: 150
+
+- type: entity
+  parent: N14ClothingOuterPowerArmorT45
+  id: N14ClothingOuterPowerArmorWash51
+  name: modified T-51 power armor
+  description: A modified set of T-51 power armor, it seems to have some slight upgrades over the pre-war model and is in the colours of the Washington Brotherhood.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51wash.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51wash.rsi
+    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
+    unequipDelay: 6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.5
+        Heat: 0.5
+        Caustic: 0.75
+        Radiation: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHelmetPowerArmorT51Wash
+  - type: Reflect
+    reflectProb: 0.125
+    spread: 150
+
+- type: entity
+  parent: N14ClothingOuterPowerArmorWash51
+  id: N14ClothingOuterPowerArmorWash51Elite
+  name: modified T-51 power armor
+  description: A set of T-51 with some upgrades over the pre-war design and painjob made by the Washington Brotherhood. It even has pouches!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51washelite.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51washelite.rsi
+    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
+    unequipDelay: 6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.425
+        Slash: 0.425
+        Piercing: 0.5
+        Heat: 0.5
+        Caustic: 0.75
+        Radiation: 0.6
+  - type: Storage
+    grid:
+    - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
