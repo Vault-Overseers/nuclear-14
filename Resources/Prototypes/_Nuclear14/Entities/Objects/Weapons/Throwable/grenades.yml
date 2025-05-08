@@ -1,0 +1,470 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: IgnitableGrenadeBase
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/Dynamite.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: Item
+    size: Small
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Appearance
+  - type: AnimationPlayer
+  - type: GenericVisualizer
+    visuals:
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: primed }
+          Unprimed: { state: icon }
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: ExplodeOnTrigger
+  - type: Flammable
+    fireSpread: false
+    canResistFire: false
+    alwaysCombustible: true
+    canExtinguish: false 
+    damage:
+      types:
+        Heat: 1
+  - type: FireVisuals
+    sprite: _Nuclear14/Objects/Weapons/Grenades/Dynamite.rsi
+    normalState: primed
+
+- type: entity
+  name: dynamite
+  description: A stick of dynamite.
+  parent: IgnitableGrenadeBase
+  id: N14Dynamite
+  components:
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 4
+    intensitySlope: 14
+    totalIntensity: 50 #medium range mid damage takes about 2-3 to crit
+    canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageTrigger
+        damage: 4
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageTrigger
+        damage: 7
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageTrigger
+        damage: 13
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:TriggerBehavior
+
+    
+- type: entity
+  name: Baseball grenade
+  description: Hollowed out baseball filled with explosives that explodes on impact.
+  parent: BaseItem
+  id: N14BaseballNade
+  components:
+  - type: Item
+    size: Small
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Appearance
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/BaseballNade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 2
+    intensitySlope: 10
+    totalIntensity: 20
+    canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Construction
+    graph: N14BaseballNade
+    node: baseballnade
+
+- type: entity
+  name: Tin-nade
+  description: Grenade made out of Tincan and bunch of scrap.
+  parent: GrenadeBase
+  id: N14TinNade
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/TincanNade.rsi
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 3
+    intensitySlope: 10 #dynamite but smaller area?
+    totalIntensity: 30
+    canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
+  - type: OnUseTimerTrigger
+    examinable: false
+    delay: 1
+    beepSound:
+      path: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg"
+      params:
+        volume: 4
+  - type: RandomTimerTrigger
+    min: 1
+    max: 5
+  - type: Construction
+    graph: N14TinNade
+    node: TinNade
+
+- type: entity
+  name: Nuka-nade
+  description: Highly radioactive grenade made with nuka-cola and love.
+  parent: GrenadeBase
+  id: N14NukaNade
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/NukaNade.rsi
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 5
+    intensitySlope: 1
+    totalIntensity: 1
+    canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
+  - type: OnUseTimerTrigger
+    examinable: false
+    delay: 1.5
+    beepSound:
+      path: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg"
+      params:
+        volume: 4
+  - type: RandomTimerTrigger
+    min: 3
+    max: 4
+  - type: SmokeOnTrigger
+    duration: 3
+    spreadAmount: 25
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 5
+      - ReagentId: Radium
+        Quantity: 15
+  - type: Construction
+    graph: N14NukaNade
+    node: NukaNade
+
+- type: entity #should spawn fire only when it was activated and then thrown, but when its not activated it just breaks and spills welding fuel. 
+  name: Nuka cocktail
+  description: Nuka-cola bottle filled with flammable fuel.
+  parent: IgnitableGrenadeBase
+  id: N14NukaCocktail
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/NukaCocktail.rsi  
+  - type: ExplodeOnTrigger
+  - type: Explosive # Weak explosion in a small/medium radius. Ignites surrounding entities.
+    explosionType: FireBomb
+    maxIntensity: 2
+    intensitySlope: 9
+    totalIntensity: 30
+    canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 20
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageGroupTrigger  
+        damageGroup: Burn 
+        damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageGroupTrigger  
+        damageGroup: Burn 
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageGroupTrigger  
+        damageGroup: Burn 
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg" 
+    - trigger:
+        !type:DamageGroupTrigger  
+        damageGroup: Burn 
+        damage: 20
+      behaviors:
+      - !type:TriggerBehavior
+    - trigger:
+        !type:DamageTrigger # either was thrown ([1 * time] burn damage + 20 brute) or burned too long (21 burn damage)
+        damage: 21
+      behaviors:
+      - !type:TriggerBehavior
+    - trigger:
+        !type:DamageGroupTrigger #20 brute damage which means wasnt set on fire, so no reason to set on fire, it should only splash some welding fuel
+        damageGroup: Brute 
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: FireVisuals
+    sprite: _Nuclear14/Objects/Weapons/Grenades/NukaCocktail.rsi
+    normalState: primed
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 30
+  - type: Spillable
+    solution: drink
+
+- type: entity
+  parent: GrenadeBase
+  id: N14PlasmaGrenade
+  name: plasma grenade
+  description: Powerful plasma grenade.
+  components:
+  - type: Sprite
+    sprite:  _Nuclear14/Objects/Weapons/Grenades/PlasmaGrenade.rsi  
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterGrenade
+    fillPrototype: BulletPlasma
+    maxGrenadesCount: 16
+    grenadeType: enum.GrenadeType.Shoot
+  - type: OnUseTimerTrigger
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 2
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/_Nuclear14/Weapons/Guns/Battery/N14WeaponPlasmaAutoRifle/shot1.ogg"
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+
+- type: entity
+  parent: GrenadeBase
+  id: N14KettleBomb
+  name: kettle bomb
+  description: Caution, hot!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/KettleBomb.rsi 
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterGrenade
+    fillPrototype: BoilingWaterShot #maybe instead copy projectile water guns use. SHOULDNT SET ON FIRE, JUST CAUSE low-medium BURN DAMAGE
+    maxGrenadesCount: 20
+    grenadeType: enum.GrenadeType.Shoot
+  - type: OnUseTimerTrigger
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg" #has to be whistling sound
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 2
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Weapons/Guns/Gunshots/water_spray.ogg"
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+
+- type: entity
+  parent: GrenadeBase
+  id: N14FirecrackerFull
+  name: firecrackers
+  description: BIG POP POP!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/FirecrackerFull.rsi  
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterGrenade
+    fillPrototype: N14FirecrackerHalf #should split and then the splitted firecrackers should spawn more small exploding firecrackers
+    maxGrenadesCount: 3
+    distance: 15
+    velocity: 3
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/_Nuclear14/Weapons/Guns/Battery/N14WeaponPlasmaAutoRifle/shot1.ogg" # NEEDS small explosion sound probably from those popping thingies
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: OnUseTimerTrigger
+    delay: 10
+
+- type: entity
+  parent: GrenadeBase
+  id: N14FirecrackerHalf
+  name: firecrackers
+  description: POP POP!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/FirecrackerHalf.rsi  
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterGrenade
+    fillPrototype: N14Firecracker #splits into small firecrackers that explode on impact
+    maxGrenadesCount: 4
+    distance: 7
+    velocity: 2
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Effects/snap.ogg" 
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+
+- type: entity
+  parent: GrenadeBase
+  id: N14Firecracker
+  name: firecracker
+  description: POP POP!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/Firecracker.rsi  
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1
+    intensitySlope: 5
+    totalIntensity: 5 # should be about 1 tile max very small damage
+    canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/snap.ogg
+  - type: Damageable
+    damageContainer: Inorganic
+
+- type: entity
+  name: cryo grenade
+  description: B-brrr.
+  parent: GrenadeBase
+  id: N14CryoGrenade
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Grenades/CryoGrenade.rsi
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 5
+    intensitySlope: 1
+    totalIntensity: 1
+    canCreateVacuum: false
+    maxTileBreak: 0
+    tileBreakScale: 0
+  - type: OnUseTimerTrigger
+    examinable: false
+    delay: 1.5
+    beepSound:
+      path: "/Audio/_Nuclear14/Weapons/Effects/Wpn_dynam_fuse.ogg"
+      params:
+        volume: 4
+  - type: RandomTimerTrigger
+    min: 3
+    max: 4
+  - type: SmokeOnTrigger
+    duration: 5
+    spreadAmount: 15
+    solution:
+      reagents:
+      - ReagentId: Fresium
+        Quantity: 15
