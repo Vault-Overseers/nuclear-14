@@ -5,36 +5,45 @@
   description: job-description-bos-washington-paladin
   playTimeTracker: BoSWashingtonPaladin
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+    - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodWashington
-<<<<<<<< HEAD:Resources/Prototypes/_Nuclear14/Roles/Jobs/BrotherhoodWashington/captain.yml
-      time: 18000 # 5 hours
-  startingGear: BoSWashingtonCaptainGear
-========
-      min: 18000 # 5 hours
+      min: 54000 # 15 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
   startingGear: BoSWashingtonPaladinGear
->>>>>>>> 749775c75d (fix washington accesses):Resources/Prototypes/_Nuclear14/Roles/Jobs/BrotherhoodWashington/paladin.yml
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
-  supervisors: job-name-bos-washington
+  supervisors: job-name-bos-wash
   canBeAntag: false
   access:
   - WashingtonInitiate
   - WashingtonKnight
   - WashingtonScribe
   - WashingtonPaladin
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodWashington
 
 - type: startingGear
   id: BoSWashingtonPaladinGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSRed
-    back: N14ClothingBackpackMilitary
-    shoes: N14ClothingBootsCombatMK2Filled
-    head: N14ClothingHeadHatBrotherhoodCap
-    outerClothing: N14ClothingOuterCombatArmorBOSMK2
-    id: N14IDBrotherhoodWashingtonHolotagCaptain
+    back: N14ClothingBackpackSatchelMilitaryFilled
+    shoes: N14ClothingBootsCombatFilled
+    outerClothing: N14ClothingOuterWBoSPaladinArmor
+    id: N14IDBrotherhoodWashingtonHolotagPaladin
     ears: N14ClothingHeadsetBOSWashington
     belt: ClothingBeltBoSWebbing
+    pocket1: BoSWashingtonPaladinKits
 
 - type: playTimeTracker
   id: BoSWashingtonPaladin

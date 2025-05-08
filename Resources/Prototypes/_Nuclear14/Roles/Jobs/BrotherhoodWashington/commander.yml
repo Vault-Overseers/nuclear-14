@@ -5,29 +5,45 @@
   description: job-description-bos-washington-commander
   playTimeTracker: BoSWashingtonCommander
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+    - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodWashington
-      time: 36000 # 10 hours
+      min: 72000 #20 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
   weight: 10
   startingGear: BoSWashingtonCommanderGear
+  alwaysUseSpawner: true
   icon: "JobIconHeadOfSecurity"
-  supervisors: job-supervisors-bos-washington-commander
+  supervisors: job-supervisors-bos-wash-commander
   requireAdminNotify: true
   canBeAntag: false
   accessGroups:
   - BOSWashington
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodWashington
 
 - type: startingGear
   id: BoSWashingtonCommanderGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSBlack
-    back: N14ClothingBackpackMilitary
-    shoes: N14ClothingBootsCombatMK2Filled
+    back: N14ClothingBackpackSatchelMilitaryFilled
+    shoes: N14ClothingBootsCombatFilled
     neck: N14ClothingNeckCloakBrotherhoodWashington
-    head: N14ClothingHeadHatBrotherhoodBeret
+    outerClothing: N14ClothingOuterWBoSPaladinArmor
     id: N14IDBrotherhoodWashingtonHolotagCommander
     ears: N14ClothingHeadsetBOSWashington
     belt: ClothingBeltBoSWebbing
+    pocket1: BoSWashingtonPaladinKits
 
 - type: playTimeTracker
   id: BoSWashingtonCommander

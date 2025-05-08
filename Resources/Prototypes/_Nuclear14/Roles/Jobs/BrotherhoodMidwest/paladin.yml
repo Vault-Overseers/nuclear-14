@@ -5,29 +5,45 @@
   description: job-description-bos-mid-paladin
   playTimeTracker: BoSMidPaladin
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+    - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodMidwest
-      time: 18000 # 5 hours
+      min: 54000 # 15 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
+            - Ghoul
   startingGear: BoSMidPaladinGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
+  supervisors: job-supervisors-bos-mid
   canBeAntag: false
-  accessGroups:
-  - BOSMidwest
+  access:
+  - BoSMidwest
+  - Paladin
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - BrotherhoodMidwest
 
 - type: startingGear
   id: BoSMidPaladinGear
   equipment:
     jumpsuit: N14ClothingUniformBosRecon
-    back: N14ClothingBackpackMilitary
+    back: N14ClothingBackpackSatchelMilitaryFilled
     shoes: N14ClothingBootsCombatFilled
-    head:  N14ClothingHeadHatBrotherhoodFieldCap
-    outerClothing: N14ClothingOuterMidwestArmorMK2
-    pocket1: NCRBoSMidwestkits
+    outerClothing: N14ClothingOuterMBoSPaladinArmor
+    pocket1: BoSMidwestPaladinKits
     hands: N14ClothingHandsGlovesCombat
-    id: N14IDBrotherhoodHolotag
-    ears: N14ClothingHeadsetBOSMidwest #placeholder
-    belt: ClothingBeltBoSWebbing
+    id: N14IDBrotherhoodHolotagPaladin
+    ears: N14ClothingHeadsetBOSMidwest
+    belt: ClothingBeltMilitary
 
 - type: playTimeTracker
   id: BoSMidPaladin
