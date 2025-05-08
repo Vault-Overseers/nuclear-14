@@ -1,0 +1,78 @@
+- type: constructionGraph
+  id: N14BaseballNade
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: baseballnade
+          steps:
+            - material: N14Gunpowder
+              amount: 8
+            - tag: Baseball
+              name: baseball 
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: baseball
+            - tag: N14Igniter
+              name: igniter
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: igniter
+              doAfter: 35
+    - node: baseballnade
+      entity: N14BaseballNade
+
+- type: constructionGraph
+  id: N14NukaNade
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: NukaNade
+          steps:
+            - material: N14Gunpowder
+              amount: 2
+            - tag: Turpentine
+              name: turpentine 
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: turpentine
+            - tag: Abraxo
+              name: Abraxo cleaner
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: abraxo
+            - tag: Tincan
+              name: tin can
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: tincan
+              doAfter: 35
+    - node: NukaNade
+      entity: N14NukaNade
+
+- type: constructionGraph
+  id: N14TinNade
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: TinNade
+          steps:
+            - material: N14Gunpowder
+              amount: 10
+            - material: Cable
+              amount: 5
+            - tag: DuctTape
+              name: duck tape
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: duct_tape
+            - tag: Tincan
+              name: tin can
+              icon:
+                sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+                state: tincan
+              doAfter: 35
+    - node: TinNade
+      entity: N14TinNade
