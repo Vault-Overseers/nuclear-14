@@ -254,10 +254,6 @@
         Radiation: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.85
-  - type: Tag
-    tags:
-    - HidesHair
-    - HidesBeard
 
 - type: entity
   parent: N14ClothingHeadHelmetPowerArmorX01
@@ -287,10 +283,6 @@
         Radiation: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.85
-  - type: Tag
-    tags:
-    - HidesHair
-    - HidesBeard
 
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
@@ -344,10 +336,6 @@
         Radiation: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.85
-  - type: Tag
-    tags:
-    - HidesHair
-    - HidesBeard
 
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
@@ -401,10 +389,6 @@
         Radiation: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.85
-  - type: Tag
-    tags:
-    - HidesHair
-    - HidesBeard
 
 - type: entity
   parent: N14ClothingHeadHelmetPowerArmorX01
@@ -433,10 +417,6 @@
         Radiation: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.85
-  - type: Tag
-    tags:
-    - HidesHair
-    - HidesBeard
 
 - type: entity
   parent: N14ClothingHeadHelmetPowerArmorX01
@@ -465,10 +445,10 @@
         Radiation: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.85
-  - type: Tag
-    tags:
-    - HidesHair
-    - HidesBeard
+  - type: ThermalVision
+    isEquipment: true
+    pulseTime: 2
+    toggleAction: PulseThermalVision
 
 - type: entity
   parent: N14ClothingHeadHelmetPowerArmorT51
@@ -486,3 +466,24 @@
       visible: false
       shader: unshaded
       map: [ "light" ]
+
+- type: entity
+  parent: N14ClothingHeadHelmetPowerArmorT51
+  id: N14ClothingHeadHelmetPowerArmorT51WashElite
+  name: t-51 power armor helmet
+  description: An old helmet used with T-51 Power Armor suits. It's way more advanced than any helmet you could normally find.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Clothing/Head/PowerArmorHelmets/t51wash.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: ThermalVision
+    isEquipment: true
+    pulseTime: 2
+    toggleAction: PulseThermalVision
