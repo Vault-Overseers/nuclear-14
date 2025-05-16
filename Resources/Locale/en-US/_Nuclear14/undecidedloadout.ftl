@@ -404,3 +404,35 @@ undecided-loadout-category-wbos-pal-las-description =
     A cache containing belongings of a Washington chapter Paladin.
     Includes 1 AER-9, 3 microfusion cells, 1 plasma pistol,
     2 plasma cells, 1 roll of gauze, 1 stimpak, and 1 K ration MRE.
+
+undecided-loadout-category-Tribal-Stalker-name = Tribal Stalker Kit
+undecided-loadout-category-Tribal-Stalker-description =
+    A crate containing everything a hunter will need who follows the old ways.
+    Inside you will find a bow that fires true, a quiver and enough arrows to fill it, 
+    Your trusty spear, some healing powder and a hat from your last hunt
+
+undecided-loadout-category-Tribal-Champion-name = Tribal Champion Kit
+undecided-loadout-category-Tribal-Champion-description =
+    A crate containing everything for those who defend the tribes honour will need
+    Inside you will find your two handed club, a quiver of javelins
+    some healing powder and a Yao guai cloak to show your ferocity 
+
+undecided-loadout-category-Tribal-Hunter-name = Tribal Hunter Kit
+undecided-loadout-category-Tribal-Hunter-description =
+    A crate containing everything for those who hunt with a rifle
+     using powder and fire to bring down big targets
+    Inside you will find your trusty huntstick, a machete for harvesting your prey
+    some healing powder and a mantle that can help with the bad weather 
+
+undecided-loadout-category-Tribal-Bone-Breaker-name = Tribal Bone Breaker Kit
+undecided-loadout-category-Bone-Breaker-description =
+    A crate containing everything for those who fight using powder and fire
+     shooting often to bring down the foe
+    Inside you will find your reliable tribal rifle, a machete for closing in on the kill 
+    some healing powder and a canine hat to show your loyalty 
+
+undecided-loadout-category-Tribal-pain-bringer-name = Tribal Pain Bringer Kit
+undecided-loadout-category-Tribal-pain-bringer-description =
+    A crate containing everything for those who fight up close with powder and fury
+    Inside you will find your sturdy boom stick, a club for break any item or foe, 
+    some healing powder and a metal mask to protect your face in combat
