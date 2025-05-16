@@ -561,7 +561,7 @@
 # ID Printer
 - type: entity
   parent: BaseLathe
-  id: N14WorkbenchIDPrinter
+  id: N14WorkbenchIDPrinter # Circuit imprinter parent of this
   description: An ID printer.
   name: ID Printer
   abstract: true # Base off of this per faction.
@@ -663,3 +663,16 @@
     - IDVaultEngineer
     - IDVaultSecurity
     - IDVaultDoctor
+
+#Circuit Printers
+
+- type: entity
+  parent: N14WorkbenchIDPrinter
+  id: N14WorkbenchCircuitPrinter
+  description: A circuit printer used to create advanced boards.
+  name: Circuit Printer
+  components:
+  - type: Lathe
+    staticRecipes:
+    - DoorElectronics
+
