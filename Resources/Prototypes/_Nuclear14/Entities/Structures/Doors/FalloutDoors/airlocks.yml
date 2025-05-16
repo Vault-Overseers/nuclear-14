@@ -29,14 +29,17 @@
         Blunt: 80 #if the 2 ton vault door breaking every bone in your body doesn't kill you, the suffocation will
   - type: Sprite
     sprite: _Nuclear14/Structures/Doors/FalloutDoors/vaultdoor.rsi
-    
+
 - type: entity
   parent: N14Airlock
   id: N14DoorBunker
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Doors/FalloutDoors/bunkerdoor.rsi
-    
+  - type: Construction
+    graph: N14BunkerDoorGraph
+    node: Door
+
 - type: entity
   parent: N14Airlock
   id: N14DoorBunkerGlass
@@ -47,3 +50,31 @@
     enabled: false
   - type: Sprite
     sprite: _Nuclear14/Structures/Doors/FalloutDoors/glassbunkerdoor.rsi
+
+- type: entity
+  id: N14BunkerAssembly
+  name: bunker assembly
+  suffix: Crafting
+  parent: AirlockAssembly
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Doors/FalloutDoors/bunkerdoor.rsi
+    state: "open"
+  - type: Construction
+    graph: N14BunkerDoorGraph
+    node: missingWires
+  placement:
+    mode: SnapgridCenter
+
+- type: entity
+  id: N14BunkerAssemblyWired
+  name: bunker assembly
+  suffix: Crafting
+  parent: N14BunkerAssembly
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Doors/FalloutDoors/bunkerdoor.rsi
+    state: "closed"
+  - type: Construction
+    graph: N14BunkerDoorGraph
+    node: Frame

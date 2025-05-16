@@ -24,6 +24,24 @@
             - material: N14ScrapBrass
               amount: 2
               doAfter: 15
+        - to: woodDoorlocked
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 3
+            - material: N14ScrapBrass
+              amount: 2
+              doAfter: 15
+        - to: woodDoorSecureNCR
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 3
+            - material: N14ScrapBrass
+              amount: 2
+              doAfter: 15
     - node: WoodDoor
       entity: N14DoorWoodSlanted
       edges:
@@ -52,3 +70,97 @@
           steps:
             - tool: Anchoring
               doAfter: 15
+    - node: woodDoorlocked
+      entity: N14DoorWoodSecure
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 3
+            - !type:SpawnPrototype
+              prototype: N14ScrapBrass1
+              amount: 2
+          steps:
+            - tool: Anchoring
+              doAfter: 15
+    - node: woodDoorSecureNCR
+      entity: N14DoorWoodSecureNCR
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 3
+            - !type:SpawnPrototype
+              prototype: N14ScrapBrass1
+              amount: 2
+          steps:
+            - tool: Anchoring
+              doAfter: 15
+
+- type: constructionGraph
+  id: N14BunkerDoorGraph
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+        - !type:DeleteEntity
+      edges:
+        - to: missingWires
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 2.5
+
+    - node: missingWires
+      entity: N14BunkerAssembly
+      edges:
+        - to: Frame
+          steps:
+            - material: Cable
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Welding
+              doAfter: 2
+
+    - node: Frame
+      entity: N14BunkerAssemblyWired
+      edges:
+        - to: Door
+          steps:
+            - component: DoorElectronics
+              store: board
+              name: "door electronics circuit board"
+              doAfter: 3
+            - tool: Screwing
+              doAfter: 0.5
+
+        - to: missingWires
+          completed:
+            - !type:SpawnPrototype
+              prototype: CableApcStack1
+          steps:
+            - tool: Cutting
+              doAfter: 0.25
+
+    - node: Door
+      entity: N14DoorBunker
+      edges:
+        - to: Frame
+          conditions:
+            - !type:EntityAnchored {}
+          completed:
+            - !type:EmptyAllContainers
+             pickup: true
+             emptyAtUser: true
+          steps:
+           - tool: Prying
+             doAfter: 5
