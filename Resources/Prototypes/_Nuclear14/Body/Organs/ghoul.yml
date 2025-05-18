@@ -1,39 +1,86 @@
 - type: entity
-  id: N14BaseGhoulOrgan
-  parent: BaseHumanOrgan
+  id: N14BaseGhoulOrganUnGibbable
+  parent: BaseItem
   abstract: true
   components:
   - type: Sprite
-    netsync: false
     sprite: Mobs/Species/Human/organs.rsi
   - type: Organ
   - type: Food
   - type: Extractable
-    grindableSolutionName: organ
+    grindableSolutionName: Organ
   - type: SolutionContainerManager
     solutions:
-      organ:
+      Organ:
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+      - people
+  - type: Tag
+    tags:
+      - Meat
+  - type: StaticPrice
+    price: 5
+  - type: Item
+    size: Normal
+
+
+- type: entity
+  id: N14BaseGhoulOrgan
+  parent: N14BaseGhoulOrganUnGibbable
+  abstract: true
+  components:
+  - type: Gibbable
 
 - type: entity
   id: N14OrganGhoulBrain
-  parent: N14BaseGhoulOrgan
+  parent: N14BaseGhoulOrganUnGibbable
   name: brain
   description: "The source of incredible, unending intelligence. Honk."
   components:
   - type: Sprite
     state: brain
   - type: Organ
+    slotId: brain
+  - type: Food
+    delay: 5
+    forceFeedDelay: 6
+    popupOnEat: true
   - type: Input
     context: "ghost"
-  - type: InputMover
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 0
-    baseSprintSpeed: 0
-  - type: GhostOnMove
   - type: Brain
+  - type: InputMover
+  - type: Examiner
+  - type: BlockMovement
+  - type: BadFood
+  - type: Tag
+    tags:
+      - Meat
+  - type: SolutionContainerManager
+    solutions:
+      Organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: GreyMatter
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+      - people
+  - type: FoodSequenceElement
+    entries:
+      Burger: Brain
+      Taco: Brain
 
 - type: entity
   id: N14OrganGhoulEyes
@@ -41,11 +88,13 @@
   name: eyes
   description: "I see you!"
   components:
+  - type: Organ
+    slotId: eyes
+  - type: Eyes
   - type: Sprite
     layers:
       - state: eyeball-l
       - state: eyeball-r
-  - type: Organ
 
 - type: entity
   id: N14OrganGhoulTongue
@@ -55,7 +104,6 @@
   components:
   - type: Sprite
     state: tongue
-  - type: Organ
 
 - type: entity
   id: N14OrganGhoulAppendix
@@ -67,7 +115,6 @@
     - state: appendix
     - state: appendix-inflamed
       visible: false
-  - type: Organ
 
 - type: entity
   id: N14OrganGhoulEars
@@ -77,7 +124,7 @@
   components:
   - type: Sprite
     state: ears
-  - type: Organ
+  - type: Ears
 
 - type: entity
   id: N14OrganGhoulLungs
@@ -85,29 +132,35 @@
   name: lungs
   description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier."
   components:
+  - type: Organ
+    slotId: lungs
   - type: Sprite
     layers:
       - state: lung-l
       - state: lung-r
-  - type: Organ
   - type: Lung
   - type: Metabolizer
     removeEmpty: true
     solutionOnBody: false
     solution: "Lung"
-    metabolizerTypes: [ Human ]
+    metabolizerTypes: [ Ghoul ]
     groups:
     - id: Gas
       rateModifier: 100.0
   - type: SolutionContainerManager
     solutions:
-      organ:
+      Organ:
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
       Lung:
         maxVol: 100.0
         canReact: false
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
 
 - type: entity
   id: N14OrganGhoulHeart
@@ -115,15 +168,14 @@
   name: heart
   description: "I feel bad for the heartless bastard who lost this."
   components:
+  - type: Heart
+  - type: Organ
+    slotId: heart
   - type: Sprite
     state: heart-on
-  - type: Organ
-  # The heart 'metabolizes' medicines and poisons that aren't filtered out by other organs.
-  # This is done because these chemicals need to have some effect even if they aren't being filtered out of your body.
-  # You're technically 'immune to poison' without a heart, but.. uhh, you'll have bigger problems on your hands.
   - type: Metabolizer
     maxReagents: 2
-    metabolizerTypes: [Human]
+    metabolizerTypes: [Ghoul]
     groups:
     - id: Medicine
     - id: Poison
@@ -135,21 +187,23 @@
   name: stomach
   description: "Gross. This is hard to stomach."
   components:
+  - type: Organ
+    slotId: stomach
   - type: Sprite
     state: stomach
-  - type: Organ
   - type: SolutionContainerManager
     solutions:
       stomach:
         maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
   - type: Stomach
-  # The stomach metabolizes stuff like foods and drinks.
-  # TODO: Have it work off of the ent's solution container, and move this
-  # to intestines instead.
   - type: Metabolizer
-    # mm yummy
     maxReagents: 3
-    metabolizerTypes: [Human]
+    metabolizerTypes: [Ghoul]
     groups:
     - id: Food
     - id: Drink
@@ -160,15 +214,17 @@
   name: liver
   description: "Pairing suggestion: chianti and fava beans."
   components:
+  - type: Liver
+  - type: Organ
+    slotId: liver
   - type: Sprite
     state: liver
-  - type: Organ
-  - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
+  - type: Metabolizer
     maxReagents: 1
-    metabolizerTypes: [Human]
+    metabolizerTypes: [Ghoul]
     groups:
     - id: Alcohol
-      rateModifier: 0.1 # removes alcohol very slowly along with the stomach removing it as a drink
+      rateModifier: 0.1
 
 - type: entity
   id: N14OrganGhoulKidneys
@@ -176,13 +232,13 @@
   name: kidneys
   description: "Filters toxins from the bloodstream."
   components:
+  - type: Organ
+    slotId: kidneys
   - type: Sprite
     layers:
       - state: kidney-l
       - state: kidney-r
-  - type: Organ
-  # The kidneys just remove anything that doesn't currently have any metabolisms, as a stopgap.
   - type: Metabolizer
     maxReagents: 5
-    metabolizerTypes: [Human]
+    metabolizerTypes: [Ghoul]
     removeEmpty: true
