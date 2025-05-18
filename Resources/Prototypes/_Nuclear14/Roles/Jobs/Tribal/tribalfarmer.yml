@@ -1,6 +1,8 @@
 - type: job
   id: TribalFarmer
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-tribal-farmer
   description: job-description-farmer
   playTimeTracker: TribalFarmer
@@ -22,6 +24,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - Tribal
   - !type:AddTraitSpecial
     traits: [ LanguageTribal ]

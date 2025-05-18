@@ -1,11 +1,20 @@
 - type: job
   id: Survivor
+  setPreference: false
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-survivor
   description: job-description-survivor
   playTimeTracker: Survivor
   startingGear: SurvivorGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-wastelander
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: SurvivorGear

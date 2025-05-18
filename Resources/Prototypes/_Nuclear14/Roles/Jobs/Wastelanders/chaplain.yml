@@ -1,6 +1,8 @@
 - type: job
   id: WastelandChaplain
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-chaplain
   description: job-description-chaplain
   playTimeTracker: WastelandChaplain
@@ -13,6 +15,11 @@
   - !type:AddComponentSpecial
     components:
     - type: BibleUser #Lets them heal with bibles
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: WastelandChaplainGear

@@ -11,8 +11,8 @@
     equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
     unequipDelay: 6
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.2
+    sprintModifier: 0.2
   - type: Armor
     modifiers:
       coefficients:
@@ -22,24 +22,33 @@
         Heat: 0.55
         Caustic: 0.75
         Radiation: 0.6
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
+  - type: ToggleableClothing
+    requiredSlot: outerClothing
+    blockUnequipWhenAttached: true
+    replaceCurrentClothing: false
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT45
+      gloves: N14ClothingPAGauntlets
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack
   - type: TemperatureProtection
-    coefficient: 0.75
+    coefficient: 0.25
   - type: FireProtection
     reduction: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.6
-  - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorT45
   - type: HeldSpeedModifier
     mirrorClothingModifier: false
     walkModifier: 0.5
     sprintModifier: 0.5
+  - type: MultiHandedItem
   - type: Reflect
     reflectProb: 0.1
     spread: 150
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: N14FootstepPowerArmor
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -51,8 +60,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
   - type: Armor
     modifiers:
       coefficients:
@@ -62,10 +69,18 @@
         Heat: 0.5
         Caustic: 0.75
         Radiation: 0.6
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
+  - type: ToggleableClothing
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT51
+      gloves: N14ClothingPAGauntlets
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack
   - type: ExplosionResistance
     damageCoefficient: 0.55
-  - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorT51
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT51
@@ -77,11 +92,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t60.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t60.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
-  - type: ClothingSpeedModifier
-    walkModifier: 0.925
-    sprintModifier: 0.925
   - type: Armor
     modifiers:
       coefficients:
@@ -91,8 +101,16 @@
         Heat: 0.525
         Caustic: 0.75
         Radiation: 0.6
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorT60
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT60
+      gloves: N14ClothingPAGauntlets
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT60
@@ -104,11 +122,19 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t60tesla.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t60tesla.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
   - type: Reflect
-    reflectProb: 0.3
+    reflectProb: 0.15
     spread: 275
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
+  - type: ToggleableClothing
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT60
+      gloves: N14ClothingPAGauntletsTesla
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -120,11 +146,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/advanced1.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/advanced1.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
-  - type: ClothingSpeedModifier
-    walkModifier: 0.875
-    sprintModifier: 0.875
   - type: Armor
     modifiers:
       coefficients:
@@ -136,11 +157,18 @@
         Radiation: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.5
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorX01
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorX01
+      gloves: N14ClothingPAGauntletsDark
+      shoes: N14ClothingPABootsDark
+      back: N14ClothingPowerSystemsBack
   - type: Reflect
     reflectProb: 0.15
-    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorAdvanced1
@@ -153,11 +181,9 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/advanced2.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/advanced2.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.2
+    sprintModifier: 0.2
   - type: Armor
     modifiers:
       coefficients:
@@ -169,11 +195,18 @@
         Radiation: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.55
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorX02
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorX02
+      gloves: N14ClothingPAGauntletsDark
+      shoes: N14ClothingPABootsDark
+      back: N14ClothingPowerSystemsBack
   - type: Reflect
     reflectProb: 0.125
-    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorAdvanced2
@@ -186,8 +219,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/hellfire.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/hellfire.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
   - type: Armor
     modifiers:
       coefficients:
@@ -199,8 +230,16 @@
         Radiation: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.5
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorHellfire
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorHellfire
+      gloves: N14ClothingPAGauntletsDark
+      shoes: N14ClothingPABootsDark
+      back: N14ClothingPowerSystemsBack
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -212,11 +251,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/raider.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/raider.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
-  - type: ClothingSpeedModifier
-    walkModifier: 0.875
-    sprintModifier: 0.875
   - type: Armor
     modifiers:
       coefficients:
@@ -228,12 +262,18 @@
         Radiation: 0.65
   - type: ExplosionResistance
     damageCoefficient: 0.6
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: N14FootstepPowerArmor
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
+  - type: ToggleableClothing
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorHellfire
+      gloves: N14ClothingPAGauntletsDark
+      shoes: N14ClothingPABootsDark
+      back: N14ClothingPowerSystemsBack
   - type: Reflect
     reflectProb: 0.075
-    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -245,11 +285,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/midwest.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/midwest.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
-  - type: ClothingSpeedModifier
-    walkModifier: 0.925
-    sprintModifier: 0.925
   - type: Armor
     modifiers:
       coefficients:
@@ -261,8 +296,16 @@
         Radiation: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.6
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorMidwest
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorMidwest
+      gloves: N14ClothingPAGauntletsMBoS
+      shoes: N14ClothingPABootsMBoS
+      back: N14ClothingPowerSystemsBack
 
 - type: entity
   parent: N14ClothingOuterPowerArmorMidwest
@@ -274,8 +317,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/midwestcommander.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/midwestcommander.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
   - type: Armor
     modifiers:
       coefficients:
@@ -285,8 +326,6 @@
         Heat: 0.5
         Caustic: 0.75
         Radiation: 0.6
-  - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorMidwestCommander
   - type: Storage
     grid:
     - 0,0,2,1
@@ -298,6 +337,14 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
+  - type: ToggleableClothing
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorMidwestCommander
+      gloves: N14ClothingPAGauntletsMBoS
+      shoes: N14ClothingPABootsMBoS
+      back: N14ClothingPowerSystemsBack
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -309,11 +356,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51bc.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51bc.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
   - type: Armor
     modifiers:
       coefficients:
@@ -327,11 +369,18 @@
     coefficient: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.55
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorT51BC
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT51BC
+      gloves: N14ClothingPAGauntletsDark
+      shoes: N14ClothingPABootsDark
+      back: N14ClothingPowerSystemsBack
   - type: Reflect
     reflectProb: 0.1
-    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -343,13 +392,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t45ncr.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t45ncr.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
-  - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorT45NCR
-  - type: ClothingSpeedModifier
-    walkModifier: 0.875
-    sprintModifier: 0.875
   - type: Armor
     modifiers:
       coefficients:
@@ -363,9 +405,18 @@
     coefficient: 0.55
   - type: ExplosionResistance
     damageCoefficient: 0.65
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
+  - type: ToggleableClothing
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT45NCR
+      gloves: N14ClothingPAGauntlets
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack
   - type: Reflect
     reflectProb: 0.075
-    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT51
@@ -377,11 +428,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/canadianshield.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/canadianshield.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
   - type: Armor
     modifiers:
       coefficients:
@@ -395,11 +441,10 @@
     damageCoefficient: 0.55
   - type: Reflect
     reflectProb: 0.1
-    spread: 150
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
-  id: N14ClothingOuterPowerArmorWash51
+  id: N14ClothingOuterPowerArmorWashT51
   name: modified T-51 power armor
   description: A modified set of T-51 power armor, it seems to have some slight upgrades over the pre-war model and is in the colours of the Washington Brotherhood.
   components:
@@ -407,11 +452,6 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51wash.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51wash.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
   - type: Armor
     modifiers:
       coefficients:
@@ -423,24 +463,29 @@
         Radiation: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.6
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorT51Wash
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT51Wash
+      gloves: N14ClothingPAGauntlets
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack
   - type: Reflect
     reflectProb: 0.125
-    spread: 150
 
 - type: entity
-  parent: N14ClothingOuterPowerArmorWash51
-  id: N14ClothingOuterPowerArmorWash51Elite
-  name: modified T-51 power armor
+  parent: N14ClothingOuterPowerArmorWashT51
+  id: N14ClothingOuterPowerArmorWashT51Elite
+  name: elite T-51 power armor
   description: A set of T-51 with some upgrades over the pre-war design and painjob made by the Washington Brotherhood. It even has pouches!
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51washelite.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51washelite.rsi
-    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
-    unequipDelay: 6
   - type: Armor
     modifiers:
       coefficients:
@@ -461,3 +506,11 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
+  - type: ToggleableClothing
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT51WashElite
+      gloves: N14ClothingPAGauntlets
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack

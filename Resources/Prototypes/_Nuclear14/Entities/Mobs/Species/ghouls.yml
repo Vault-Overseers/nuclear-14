@@ -2,11 +2,14 @@
   save: false
   name: ghoul
   id: N14BaseMobGhoul
-  parent: BaseMobHuman
+  parent: BaseMobSpeciesOrganic
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
     species: Ghoul
+  - type: Body
+    prototype: Ghoul
+    requiredLegs: 2
   - type: Icon
     sprite: _Nuclear14/Mobs/Species/Ghoul/parts.rsi
     state: full
@@ -96,11 +99,14 @@
   save: false
   name: ghoul
   id: N14BaseMobGhoulGlowing
-  parent: BaseMobHuman
+  parent: BaseMobSpeciesOrganic
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
     species: GhoulGlowing
+  - type: Body
+    prototype: GhoulGlowing
+    requiredLegs: 2
   - type: Icon
     sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
     state: full

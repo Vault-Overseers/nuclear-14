@@ -41,7 +41,7 @@ public sealed partial class PerishableComponent : Component
     /// How many moles of gas released per second, per unit of mass.
     /// </summary>
     [DataField]
-    public float MolsPerSecondPerUnitMass = 0.0025f;
+    public float MolsPerSecondPerUnitMass = 0f;
 
     [DataField, AutoNetworkedField]
     public int Stage;

@@ -10,11 +10,13 @@
   - !type:CharacterDepartmentTimeRequirement
     department: Vault
     min: 18000 # 5 hours
+  setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   startingGear: VaultSecurityGear
   alwaysUseSpawner: true
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-vault
-  canBeAntag: false
   access:
   - VaultDweller
   - VaultSecurity
@@ -23,6 +25,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - Vault
 
 - type: startingGear

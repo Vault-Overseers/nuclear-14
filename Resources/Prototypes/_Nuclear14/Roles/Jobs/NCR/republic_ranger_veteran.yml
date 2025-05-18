@@ -1,6 +1,8 @@
 - type: job
   id: NCRRangerVeteran
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-ncr-ranger-veteran
   description: job-description-ncr-ranger-veteran
   playTimeTracker: NCRRangerVeteran
@@ -16,7 +18,6 @@
   startingGear: NCRRangerVeteranGear
   icon: "JobIconHeadOfSecurity"
   requireAdminNotify: true
-  canBeAntag: false
   access:
   - NCR
   - NCRSGT
@@ -27,6 +28,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - NCR
 
 - type: startingGear
