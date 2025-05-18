@@ -19,25 +19,6 @@
   conditions:
     - !type:TileNotBlocked
 
-# # Doors
-- type: construction
-  name: wooden door
-  id: N14DoorWood
-  graph: N14DoorGraph
-  startNode: start
-  targetNode: woodDoorMakeshift
-  category: construction-category-structures
-  description: A primitive door with manual operation like the cavemen used.
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  hide: false
-  icon:
-    sprite: _Nuclear14/Structures/Doors/FalloutDoors/wooddoor.rsi
-    state: closed
-  conditions:
-    - !type:TileNotBlocked
-
 # Slanted Structures
 ## Walls
 - type: construction
@@ -154,6 +135,79 @@
     state: closed
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  name: wooden door
+  id: N14DoorWood
+  graph: N14DoorGraph
+  startNode: start
+  targetNode: woodDoorMakeshift
+  category: construction-category-structures
+  description: A primitive door with manual operation like the cavemen used.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/FalloutDoors/wooddoor.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: locked wooden door
+  id: N14DoorWoodLocked
+  graph: N14DoorGraph
+  startNode: start
+  targetNode: woodDoorlocked
+  category: construction-category-structures
+  description: It's a secure door, made out of wood.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/FalloutDoors/securedoor.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: ncr wooden door
+  id: N14DoorWoodNCR
+  graph: N14DoorGraph
+  startNode: start
+  targetNode: woodDoorSecureNCR
+  category: construction-category-structures
+  description: It's a secure door, made out of wood. Has the NCR banner in the front.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/FalloutDoors/securedoor_ncr.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: bunker door frame
+  id: N14BunkerDoor
+  graph: N14BunkerDoorGraph
+  startNode: start
+  targetNode: Door
+  category: construction-category-structures
+  description: It opens, it closes, and maybe crushes you.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/FalloutDoors/bunkerdoor.rsi
+    state: open
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 
 ## Windows
 - type: construction
