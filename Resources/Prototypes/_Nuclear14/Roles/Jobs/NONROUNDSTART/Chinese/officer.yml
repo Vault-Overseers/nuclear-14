@@ -1,11 +1,19 @@
 - type: job
   id: ChineseOfficer
-  setPreference: true
+  setPreference: false
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: chinese officer
   description: lead your troops and fight in the name of communism. #need work
   playTimeTracker: ChineseOfficer
   startingGear: ChineseOfficerGear
   icon: "JobIconSecurityCadet"
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: ChineseOfficerGear

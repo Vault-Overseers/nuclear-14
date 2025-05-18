@@ -342,7 +342,37 @@
     access: [["WastelandBartender"]]
   - type: Wires
     layoutId: AirlockService
-    
+
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedInnRoom1
+  suffix: Townie, Locked, Inn
+  components:
+  - type: AccessReader
+    access: [["InnRoomOne"]]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedInnRoom2
+  suffix: Townie, Locked, Inn
+  components:
+  - type: AccessReader
+    access: [["InnRoomTwo"]]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedInnRoom3
+  suffix: Townie, Locked, Inn
+  components:
+  - type: AccessReader
+    access: [["InnRoomThree"]]
+  - type: Wires
+    layoutId: AirlockService
+
 - type: entity
   parent: N14DoorWoodSecure
   id: N14DoorWoodSecureLockedReporter
@@ -628,3 +658,15 @@
     access: [["SilverKey"]]
   - type: Wires
     layoutId: AirlockCargo
+
+# Misc ancient bunker airlock
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedAncient
+  suffix: Locked, Ancient
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAncientBunker ]
+  - type: Wires
+    layoutId: HighSec

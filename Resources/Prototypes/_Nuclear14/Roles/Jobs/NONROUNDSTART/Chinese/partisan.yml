@@ -1,11 +1,19 @@
 - type: job
   id: ChinesePartisan
-  setPreference: true
+  setPreference: false
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: chinese partisan
   description: follow orders from your superior, fight for the communism. #need work
   playTimeTracker: ChinesePartisan
   startingGear: ChinesePartisanGear
   icon: "JobIconSecurityCadet"
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: ChinesePartisanGear

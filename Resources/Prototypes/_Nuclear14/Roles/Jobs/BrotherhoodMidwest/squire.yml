@@ -1,6 +1,8 @@
 - type: job
   id: BoSMidSquire # It was renamed to Initiate, but don't change the ID!
   setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   name: job-name-bos-mid-squire
   description: job-description-bos-mid-squire
   playTimeTracker: BoSMidSquire
@@ -17,7 +19,6 @@
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
   supervisors: job-supervisors-bos-mid-initiate
-  canBeAntag: false
   access:
   - BoSMidwest
   special:
@@ -25,6 +26,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - BrotherhoodMidwest
 
 - type: startingGear

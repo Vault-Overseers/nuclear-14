@@ -1,6 +1,8 @@
 - type: job
   id: BoSMidKnight
   setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   name: job-name-bos-mid-knight
   description: job-description-bos-mid-knight
   playTimeTracker: BoSMidKnight
@@ -22,14 +24,15 @@
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
   supervisors: job-supervisors-bos-mid-knight
-  canBeAntag: false
   access:
   - BoSMidwest
+  - Knight
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - BrotherhoodMidwest
 
 - type: startingGear

@@ -1,6 +1,8 @@
 - type: job
   id: BoSWashingtonCommander
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: true
   name: job-name-bos-washington-commander
   description: job-description-bos-washington-commander
   playTimeTracker: BoSWashingtonCommander
@@ -22,7 +24,6 @@
   icon: "JobIconHeadOfSecurity"
   supervisors: job-supervisors-bos-wash-commander
   requireAdminNotify: true
-  canBeAntag: false
   accessGroups:
   - BOSWashington
   special:
@@ -30,6 +31,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - BrotherhoodWashington
 
 - type: startingGear

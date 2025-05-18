@@ -1,6 +1,8 @@
 - type: job
   id: BoSMidScribe
   setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   name: job-name-bos-mid-scribe
   description: job-description-bos-mid-scribe
   playTimeTracker: BoSMidScribe
@@ -24,11 +26,13 @@
   supervisors: job-supervisors-bos-mid
   access:
   - BoSMidwest
+  - Scribe
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - BrotherhoodMidwest
       - type: CPRTraining
 

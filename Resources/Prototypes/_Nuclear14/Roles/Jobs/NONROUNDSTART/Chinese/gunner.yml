@@ -1,11 +1,19 @@
 - type: job
   id: ChineseGunner
-  setPreference: true
+  setPreference: false
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: chinese gunner
   description: follow orders from your superior, fight for the communism with extra fire power. #need work
   playTimeTracker: ChineseGunner
   startingGear: ChineseGunnerGear
   icon: "JobIconSecurityCadet"
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: ChineseGunnerGear

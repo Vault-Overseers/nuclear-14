@@ -1,6 +1,8 @@
 - type: job
   id: NCRWS
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-ncr-ws
   description: job-description-ncr-ws
   playTimeTracker: NCRWS
@@ -15,7 +17,6 @@
   startingGear: NCRWSGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-ncr
-  canBeAntag: false
   alwaysUseSpawner: true
   access:
   - NCR
@@ -24,6 +25,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - NCR
 
 - type: startingGear

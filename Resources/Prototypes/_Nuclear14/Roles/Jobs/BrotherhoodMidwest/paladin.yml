@@ -1,6 +1,8 @@
 - type: job
   id: BoSMidPaladin
   setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   name: job-name-bos-mid-paladin
   description: job-description-bos-mid-paladin
   playTimeTracker: BoSMidPaladin
@@ -21,15 +23,17 @@
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
   supervisors: job-supervisors-bos-mid
-  canBeAntag: false
   access:
   - BoSMidwest
+  - Knight
+  - Scribe
   - Paladin
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - BrotherhoodMidwest
 
 - type: startingGear

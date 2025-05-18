@@ -1,6 +1,8 @@
 - type: job
   id: NCRLT
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: true
   name: job-name-ncr-lt
   description: job-description-ncr-lt
   playTimeTracker: NCROfficer
@@ -17,7 +19,6 @@
   icon: "JobIconHeadOfSecurity"
   supervisors: job-supervisors-ncr-lt
   requireAdminNotify: true
-  canBeAntag: false
   alwaysUseSpawner: true
   access:
   - NCR
@@ -29,6 +30,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - NCR
 
 - type: startingGear
