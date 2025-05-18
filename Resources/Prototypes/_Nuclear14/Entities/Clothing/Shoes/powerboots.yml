@@ -19,10 +19,22 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 0.975
-        Heat: 0.975
+        Blunt: 0.925
+        Slash: 0.925
+        Piercing: 0.95
+        Heat: 0.95
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: N14FootstepPowerArmor
+  - type: Matchbox
+  - type: ItemSlots
+    slots:
+      item:
+        name: clothing-boots-sidearm
+        whitelist:
+          tags:
+          - Knife
+          - Sidearm
 
 - type: entity
   parent: ClothingShoesBase
@@ -43,13 +55,3 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Shoes/PowerBoots/midwest.rsi
-
-- type: entity
-  parent: ClothingShoesBase
-  id: N14ClothingPABootsWBoS
-  name: power armor boots
-  description: A pair of mechanical boots made from durable materials.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Clothing/Shoes/PowerBoots/washington.rsi
