@@ -1,0 +1,38 @@
+- type: job
+  id: VaultDweller
+  name: job-name-vault-dweller
+  description: job-description-vault-dweller
+  requirements:
+  - !type:CharacterSpeciesRequirement
+    species:
+    - Human
+  setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
+  playTimeTracker: VaultDweller
+  startingGear: VaultDwellerGear
+  alwaysUseSpawner: true
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-vault
+  access:
+  - VaultDweller
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
+          - Vault
+
+- type: startingGear
+  id: VaultDwellerGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitVault14
+    back: N14ClothingBackpackVaultDwellerFilled
+    shoes: N14ClothingBootsBlack
+    id: N14VaultPDA
+    ears: N14ClothingHeadsetVaultDweller
+  innerClothingSkirt: N14ClothingUniformJumpsuitVault14
+
+- type: playTimeTracker
+  id: VaultDweller

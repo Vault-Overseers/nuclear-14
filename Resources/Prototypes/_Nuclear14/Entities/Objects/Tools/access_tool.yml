@@ -1,0 +1,77 @@
+- type: entity
+  parent: BaseItem
+  id: N14AccessConfigurator
+  name: locksmith's guide
+  description: A book on how one can install locks, classic or digital. There are also a few useful tools beside it to make it possible.
+  components:
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Items/multitool_drop.ogg
+    - type: Sprite
+      sprite: _Nuclear14/Objects/Tools/access_book.rsi
+      state: icon
+      scale: 0.75, 0.75
+    - type: Item
+      size: Small
+    - type: AccessOverrider
+      accessLevels:
+      - TownieMechanic # All N14 accesses don't touch them  >:(
+      - TownieShopkeeper
+      - TownieDoctor
+      - TownieLaw
+      - TownieMayor
+      - WastelandReporter
+      - WastelandBartender
+      - InnRoomOne
+      - InnRoomTwo
+      - InnRoomThree
+      - VaultDweller
+      - VaultEngineer
+      - VaultMedical
+      - VaultSecurity
+      - VaultOverseer
+      - TribeMember
+      - TribeChief
+      - CaravanCompanyGuard
+      - WastelandChaplain
+      - WastelandFarmer
+      - WashingtonInitiate
+      - WashingtonKnight
+      - WashingtonScribe
+      - WashingtonPaladin
+      - WashingtonCommander
+      - NCR
+      - NCRSGT
+      - NCRMedic
+      - NCRLT
+      - NCRRanger
+      - BoSMidwest
+      - Knight
+      - Scribe
+      - Paladin
+      - PaladinCommander
+      privilegedIdSlot:
+        name: id-card-console-privileged-id
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+          - IdCard
+      denialSound:
+        path: /Audio/Machines/custom_deny.ogg
+      doAfter: 0.5
+    - type: UserInterface
+      interfaces:
+        enum.AccessOverriderUiKey.Key:
+          type: AccessOverriderBoundUserInterface
+    - type: ActivatableUI
+      key: enum.AccessOverriderUiKey.Key
+      requiresComplex: true
+      requireActiveHand: false
+      singleUser: true
+    - type: ItemSlots
+    - type: ContainerContainer
+      containers:
+        AccessOverrider-privilegedId: !type:ContainerSlot

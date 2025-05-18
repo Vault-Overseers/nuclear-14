@@ -1,0 +1,34 @@
+- type: job
+  id: WastelandFarmer
+  setPreference: false
+  overrideConsoleVisibility: false
+  canBeAntag: false
+  name: job-name-farmer
+  description: job-description-farmer
+  playTimeTracker: Farmer
+  startingGear: FarmerGear
+  icon: "JobIconBotanist"
+  supervisors: job-supervisors-wastelander
+  access:
+  - WastelandFarmer
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
+
+- type: startingGear
+  id: FarmerGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitBrahminFarmer
+    back: N14ClothingBackpackWastelanderFilled
+    shoes: N14ClothingBootsLeather
+    outerClothing: ClothingOuterApronBotanist
+    belt: N14ClothingBeltPlantFilled
+  innerClothingSkirt: N14ClothingUniformJumpsuitBrahminFarmer #placeholder
+  satchel: N14ClothingBackpackSatchelWastelanderFilled
+  duffelbag: N14ClothingBackpackDuffelFilled
+  
+- type: playTimeTracker
+  id: Farmer

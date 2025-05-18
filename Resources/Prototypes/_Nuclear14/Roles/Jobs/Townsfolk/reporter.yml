@@ -1,0 +1,42 @@
+- type: job
+  id: WastelandReporter
+  setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: false
+  name: job-name-townreporter
+  description: job-description-townreporter
+  playTimeTracker: WastelandReporter
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
+      department: Townsfolk
+      min: 7200 # 2 hours
+  startingGear: WastelandReporterGear
+  icon: "JobIconReporter"
+  supervisors: job-supervisors-townsfolk
+  access:
+  - WastelandReporter
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
+          - Townsfolk
+
+- type: startingGear
+  id: WastelandReporterGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitDetectiveAlt
+    back: N14ClothingBackpackWastelanderFilled
+    shoes: N14ClothingShoesBlack
+    id: N14IDReporterTown
+  innerClothingSkirt: N14ClothingUniformJumpsuitDetectiveAlt
+  satchel: N14ClothingBackpackSatchelWastelanderFilled
+  duffelbag: N14ClothingBackpackDuffelFilled
+
+- type: playTimeTracker
+  id: WastelandReporter

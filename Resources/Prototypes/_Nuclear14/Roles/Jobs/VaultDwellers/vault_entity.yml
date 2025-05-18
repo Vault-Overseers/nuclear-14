@@ -1,0 +1,80 @@
+- type: entity
+  parent: MobHuman
+  id: N14MobHumanVaultDweller
+  name: VaultDweller
+  components:
+    - type: Icon
+      sprite: _Nuclear14/Markers/Jobs/vault.rsi
+      state: dweller
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: Loadout
+      prototypes: [VaultDwellerGear]
+    - type: NpcFactionMember
+      factions:
+      - Vault
+
+- type: entity
+  parent: N14MobHumanVaultDweller
+  id: N14MobHumanVaultDoctor
+  name: VaultDoctor
+  components:
+    - type: Icon
+      state: doctor
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: Loadout
+      prototypes: [VaultDoctorGear]
+    - type: NpcFactionMember
+      factions:
+      - Wastelander
+      - Vault
+
+- type: entity
+  parent: N14MobHumanVaultDweller
+  id: N14MobHumanVaultEngineer
+  name: VaultEngineer
+  components:
+    - type: Icon
+      state: engineer
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: Loadout
+      prototypes: [VaultEngineerGear]
+    - type: NpcFactionMember
+      factions:
+      - Wastelander
+      - Vault
+
+- type: entity
+  parent: N14MobHumanVaultDweller
+  id: N14MobHumanVaultSecurity
+  name: VaultSecurity
+  components:
+    - type: Icon
+      state: security
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: Loadout
+      prototypes: [VaultSecurityGear]
+    - type: NpcFactionMember
+      factions:
+      - Wastelander
+      - Vault
+
+- type: entity
+  parent: N14MobHumanVaultDweller
+  id: N14MobHumanOverseer
+  name: VaultOverseer
+  components:
+    - type: Icon
+      state: overseer
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: Loadout
+      prototypes: [OverseerGear]
+    - type: NpcFactionMember
+      factions:
+      - Wastelander
+      - Vault
+

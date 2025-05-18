@@ -1,0 +1,66 @@
+# Absolutely not buildable, I didn't have the willpower to make a full on construction path for all kinds of terminals just yet.
+- type: entity
+  id: N14ComputerIDAccess
+  name: access terminal
+  description: A terminal capable of reading and writing information on disks and tapes. It's also able to scan keys and replicate them using a hefty machine beside it.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.2,0.4,0.2"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineMask
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Computer
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Machines/access_terminal.rsi
+    layers:
+      - state: icon
+  - type: Appearance
+  - type: IdCardConsole
+    privilegedIdSlot:
+      name: id-card-console-privileged-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+        - IdCard
+    targetIdSlot:
+      name: id-card-console-target-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+        - IdCard
+  - type: ActivatableUI
+    key: enum.IdCardConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.IdCardConsoleUiKey.Key:
+        type: IdCardConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Tag
+    tags:
+    - EmagImmune
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      IdCardConsole-privilegedId: !type:ContainerSlot
+      IdCardConsole-targetId: !type:ContainerSlot

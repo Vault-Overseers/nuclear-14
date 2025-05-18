@@ -1,0 +1,46 @@
+- type: job
+  id: VaultDoctor
+  name: job-name-vault-doctor
+  description: job-description-vault-doctor
+  requirements:
+  - !type:CharacterSpeciesRequirement
+    species:
+    - Human
+  - !type:CharacterDepartmentTimeRequirement
+    department: Vault
+    min: 7200 # 2 hours
+  setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
+  playTimeTracker: VaultDoctor
+  startingGear: VaultDoctorGear
+  alwaysUseSpawner: true
+  icon: "JobIconMedicalDoctor"
+  supervisors: job-supervisors-vault
+  access:
+  - VaultDweller
+  - VaultMedical
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
+          - Vault
+      - type: CPRTraining
+  
+
+- type: startingGear
+  id: VaultDoctorGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitVault14
+    back: N14ClothingBackpackVaultOverseerFilled
+    shoes: N14ClothingBootsBlack
+    outerClothing: N14ClothingOuterCoatLab
+    id: N14VaultDoctorPDA
+    ears: N14ClothingHeadsetVaultDweller
+    belt: ClothingBeltMedicalFilled
+  innerClothingSkirt: N14ClothingUniformJumpsuitVault14
+
+- type: playTimeTracker
+  id: VaultDoctor

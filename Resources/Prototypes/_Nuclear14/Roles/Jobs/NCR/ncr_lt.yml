@@ -1,0 +1,52 @@
+- type: job
+  id: NCRLT
+  setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: true
+  name: job-name-ncr-lt
+  description: job-description-ncr-lt
+  playTimeTracker: NCROfficer
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
+      department: NCR
+      min: 72000 # 20 hours
+  weight: 10
+  startingGear: NCRLTGear
+  icon: "JobIconHeadOfSecurity"
+  supervisors: job-supervisors-ncr-lt
+  requireAdminNotify: true
+  alwaysUseSpawner: true
+  access:
+  - NCR
+  - NCRSGT
+  - NCRMedic
+  - NCRLT
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
+          - NCR
+
+- type: startingGear
+  id: NCRLTGear
+  equipment:
+    head: N14ClothingHeadHatNCRBeretOfficer
+    back: N14ClothingBackpackNCRFilled
+    jumpsuit: N14ClothingOfficerUniformNCRSnow
+    shoes: N14ClothingBootsCombatFilled
+    eyes: ClothingEyesGlassesSunglasses
+    ears: N14ClothingHeadsetNCR
+    pocket1: NCRLTloadoutkits
+    pocket2: RadioHandheld
+    id: N14IDNCRDogtagOfficer
+  innerClothingSkirt: N14ClothingOfficerUniformNCRSnow #placeholder
+  satchel: N14ClothingBackpackSatchelNCRFilled
+
+- type: playTimeTracker
+  id: NCROfficer

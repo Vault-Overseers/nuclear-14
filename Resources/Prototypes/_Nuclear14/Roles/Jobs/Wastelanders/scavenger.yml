@@ -1,0 +1,37 @@
+- type: job
+  id: WastelandScavenger
+  setPreference: false # Disabled, use loadouts.
+  overrideConsoleVisibility: false
+  canBeAntag: false
+  name: job-name-scavenger
+  description: job-description-scavenger
+  playTimeTracker: WastelandScavenger
+  requirements:
+    - !type:CharacterOverallTimeRequirement
+      min: 999999
+  startingGear: ScavengerGear
+  icon: "JobIconJanitor"
+  supervisors: job-supervisors-wastelander
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: GarbageDay
+    prototype: WeaponRevolverInspector
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
+
+- type: startingGear
+  id: ScavengerGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitMechanic
+    back: N14ClothingBackpackWastelanderFilled
+    shoes: N14ClothingBootsFire
+    belt: N14ClothingBeltUtilityFilled
+  innerClothingSkirt: N14ClothingUniformJumpsuitMechanic
+  satchel: N14ClothingBackpackSatchelWastelanderFilled
+  duffelbag: N14ClothingBackpackDuffelFilled
+
+- type: playTimeTracker
+  id: WastelandScavenger

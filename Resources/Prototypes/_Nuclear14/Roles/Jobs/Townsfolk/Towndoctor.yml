@@ -1,0 +1,46 @@
+- type: job
+  id: TownDoctor
+  setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: false
+  name: job-name-towndoctor
+  description: job-description-towndoctor
+  playTimeTracker: TownDoctor
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
+      department: Townsfolk
+      min: 7200
+  startingGear: TownDoctorGear
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-townsfolk
+  access:
+  - TownieDoctor
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
+          - Townsfolk
+      - type: CPRTraining
+
+- type: startingGear
+  id: TownDoctorGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitWastelandDoc
+    back: N14ClothingBackpackWastelanderFilled # N14TODO: Doctors Bag
+    shoes: N14ClothingShoesBlack
+    gloves: N14ClothingHandsGlovesNitrile
+    id: N14IDDoctorTown
+    outerClothing: N14ClothingOuterCoatLab
+  innerClothingSkirt: N14ClothingUniformJumpskirtFalloutBlack
+  satchel: N14ClothingBackpackSatchelWastelanderFilled
+  duffelbag: N14ClothingBackpackDuffelFilled  # N14TODO: Doctors Bag
+
+- type: playTimeTracker
+  id: TownDoctor
+  

@@ -1,0 +1,151 @@
+- type: entity
+  name: sledge hammer
+  parent: BaseItem
+  id: N14SledgeHammer
+  description: A robust sledge hammer that requires considerable strength to be wielded.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/sledgehammer.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.35
+    damage:
+      types:
+        Blunt: 5
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 30
+        Structural: 25
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/sledgehammer.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  # - type: Tool
+    # qualities:
+      # - Crushing
+    # useSound:
+      # path: /Audio/Items/eating_2.ogg # TODO: Crushing noise
+  - type: StaticPrice
+    price: 60
+
+- type: entity
+  name: super sledge hammer
+  parent: N14SledgeHammer
+  id: N14SuperSledgeHammer
+  description: A bigger, heavier, and more destructive sledge hammer, you really need some strong arms to swing it.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/supersledge.rsi
+    state: icon
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 35
+        Structural: 20
+  - type: MeleeThrowOnHit
+    speed: 10
+    lifetime: 0.025
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/supersledge.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  name: tribal heavy club
+  parent: N14SledgeHammer
+  id: N14TribalBigClub
+  description: A big and heavy tribal club that requires considerable strength to be wielded.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/tribalbigclub.rsi
+    state: icon
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 30
+        Structural: 10
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/tribalbigclub.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: StaticPrice
+    price: 60
+
+- type: entity
+  name: tribal decorated heavy club
+  parent: N14SledgeHammer
+  id: N14TribalBigClubDecorated
+  description: A big and heavy tribal hammer that requires considerable strength to be wielded, animal teeth have been added to this one.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/tribaljaggedbigclub.rsi
+    state: icon
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 25
+        Pierce: 5
+        Slash: 10
+        Structural: 10
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/tribaljaggedbigclub.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: StaticPrice
+    price: 60
+
+- type: entity
+  name: nail board
+  parent: BaseItem
+  id: N14NailBoard
+  description: A crude makeshift board outfitted with nails to pierce living things.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/nail_board
+    state: icon
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 18
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Melee/nail_board
+    quickEquip: false
+    slots:
+    - belt
+  - type: StaticPrice
+    price: 0

@@ -1,0 +1,33 @@
+- type: job
+  id: MountiePatrolman
+  setPreference: false
+  overrideConsoleVisibility: false
+  canBeAntag: false
+  name: mountie patrolman
+  description: follow orders from your sergeant #need work
+  playTimeTracker: MountiePatrolman
+  startingGear: MountiePatrolmanGear
+  icon: "JobIconSecurityCadet"
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
+
+- type: startingGear
+  id: MountiePatrolmanGear
+  equipment:
+    head: N14ClothingHeadHatMountie
+    back: N14ClothingBackpackMilitaryMountieFilled
+    belt: ClothingBeltMountieFilled2
+    jumpsuit: N14ClothingUniformJumpsuitRCMP
+    shoes: N14ClothingBootsMountie
+    gloves: N14ClothingHandsGlovesMountie
+    outerClothing: N14ClothingOuterVestRCMP
+    pocket1: N14WeaponPistolWebley
+    pocket2: N14CombatKnife
+    suitstorage: N14WeaponSniper308Ross
+
+- type: playTimeTracker
+  id: MountiePatrolman

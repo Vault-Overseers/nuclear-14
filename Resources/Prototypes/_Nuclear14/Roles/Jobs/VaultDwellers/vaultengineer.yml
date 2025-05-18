@@ -1,0 +1,44 @@
+- type: job
+  id: VaultEngineer
+  name: job-name-vault-engineer
+  description: job-description-vault-engineer
+  requirements:
+  - !type:CharacterSpeciesRequirement
+    species:
+    - Human
+  - !type:CharacterDepartmentTimeRequirement
+    department: Vault
+    min: 7200 # 2 hours
+  setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
+  playTimeTracker: VaultEngineer
+  startingGear: VaultEngineerGear
+  alwaysUseSpawner: true
+  icon: "JobIconStationEngineer"
+  supervisors: job-supervisors-vault
+  access:
+  - VaultDweller
+  - VaultEngineer
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
+          - Vault
+
+- type: startingGear
+  id: VaultEngineerGear
+  equipment:
+    head: ClothingHeadHatHardhatYellow
+    jumpsuit: N14ClothingUniformJumpsuitVault14
+    back: N14ClothingBackpackVaultDwellerFilled
+    shoes: N14ClothingBootsBlack
+    outerClothing: ClothingOuterVestHazard
+    id: N14VaultEngineerPDA
+    belt: N14ClothingBeltUtilityFilled
+    ears: N14ClothingHeadsetVaultDweller
+
+- type: playTimeTracker
+  id: VaultEngineer

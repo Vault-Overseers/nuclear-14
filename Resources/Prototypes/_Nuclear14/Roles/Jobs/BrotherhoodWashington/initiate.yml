@@ -1,0 +1,44 @@
+- type: job
+  id: BoSWashingtonInitiate
+  setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
+  name: job-name-bos-washington-initiate
+  description: job-description-bos-washington-initiate
+  playTimeTracker: BoSWashingtonInitiate
+  requirements:
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
+    - !type:CharacterOverallTimeRequirement
+      min: 3600
+  startingGear: BoSWashingtonInitiateGear
+  alwaysUseSpawner: true
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-bos-wash-initiate
+  access:
+  - WashingtonInitiate
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
+          - BrotherhoodWashington
+
+- type: startingGear
+  id: BoSWashingtonInitiateGear
+  equipment:
+    head: N14ClothingHeadHatBrotherhoodBeret
+    jumpsuit: N14ClothingUniformJumpsuitBOSRed
+    back: N14ClothingBackpackMilitaryFilled
+    shoes: N14ClothingBootsLeatherFilled
+    id: N14IDBrotherhoodWashingtonHolotagInitiate
+    outerClothing: N14ClothingOuterWBoSInitiateArmor
+    belt: ClothingBeltBoSWebbing
+    pocket1: BoSWashingtonInitSet
+
+- type: playTimeTracker
+  id: BoSWashingtonInitiate
