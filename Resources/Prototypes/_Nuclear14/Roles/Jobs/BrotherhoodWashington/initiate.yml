@@ -1,6 +1,8 @@
 - type: job
   id: BoSWashingtonInitiate
   setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   name: job-name-bos-washington-initiate
   description: job-description-bos-washington-initiate
   playTimeTracker: BoSWashingtonInitiate
@@ -16,7 +18,6 @@
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
   supervisors: job-supervisors-bos-wash-initiate
-  canBeAntag: false
   access:
   - WashingtonInitiate
   special:
@@ -24,6 +25,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - BrotherhoodWashington
 
 - type: startingGear

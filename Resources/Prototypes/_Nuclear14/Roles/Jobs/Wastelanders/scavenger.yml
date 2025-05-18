@@ -1,6 +1,8 @@
 - type: job
   id: WastelandScavenger
-  setPreference: false # disabled, use loadouts.
+  setPreference: false # Disabled, use loadouts.
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-scavenger
   description: job-description-scavenger
   playTimeTracker: WastelandScavenger
@@ -14,6 +16,11 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: GarbageDay
     prototype: WeaponRevolverInspector
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: ScavengerGear

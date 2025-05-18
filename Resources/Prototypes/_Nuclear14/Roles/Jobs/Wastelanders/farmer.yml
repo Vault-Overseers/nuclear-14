@@ -1,6 +1,8 @@
 - type: job
   id: WastelandFarmer
-  setPreference: true
+  setPreference: false
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-farmer
   description: job-description-farmer
   playTimeTracker: Farmer
@@ -9,6 +11,12 @@
   supervisors: job-supervisors-wastelander
   access:
   - WastelandFarmer
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: FarmerGear

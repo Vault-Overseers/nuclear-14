@@ -1,11 +1,19 @@
 - type: job
   id: MountieSkirmisher
-  setPreference: true
+  setPreference: false
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: mountie skirmisher
   description: follow orders from your sergeant #need work
   playTimeTracker: MountieSkirmisher
   startingGear: MountieSkirmisherGear
   icon: "JobIconSecurityCadet"
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: MountieSkirmisherGear

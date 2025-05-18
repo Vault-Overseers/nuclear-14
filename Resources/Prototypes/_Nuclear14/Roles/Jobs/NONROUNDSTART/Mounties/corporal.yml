@@ -1,11 +1,19 @@
 - type: job
   id: MountieCorporal
-  setPreference: true
+  setPreference: false
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: mountie corporal
   description: follow orders from your sergeant #need work
   playTimeTracker: MountieCorporal
   startingGear: MountieCorporalGear
   icon: "JobIconSecurityCadet"
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: MountieCorporalGear
