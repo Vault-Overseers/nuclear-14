@@ -62,7 +62,7 @@
     tags:
     - JunkItem
     - Trash
-  - type: ToolRefinable #for some reason Welder Refinable dont work anymore? weird
+  - type: ToolRefinable
     refineResult:
     - id: SheetGlass1
   - type: PhysicalComposition
@@ -125,6 +125,9 @@
   - type: ToolRefinable
     refineResult:
     - id: N14IngotAluminum1
+  - type: PhysicalComposition
+    materialComposition:
+      Aluminum: 50
 
 - type: entity
   parent: N14JunkItemBase
@@ -172,6 +175,9 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 100
+  - type: Tag
+    tags: 
+      - Abraxo
 
 - type: entity
   parent: N14JunkItemBasePlastic
@@ -191,7 +197,9 @@
   components:
   - type: Sprite
     state: baseball
-
+  - type: Tag #For crafting
+    tags:
+      - Baseball
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkCoffeepot
@@ -268,6 +276,9 @@
   name: lunchbox
   description: A small vault-tec branded lunchbox.
   components:
+  - type: Tag
+    tags:
+    - N14JunkLunchbox
   - type: Sprite
     state: lunchbox
   - type: Item
@@ -359,7 +370,9 @@
     solutions:
       teapot:
         maxVol: 100
-
+  - type: Tag
+    tags:
+    - JunkKettle
 - type: entity
   parent: N14JunkItemBasePlastic
   id: N14JunkTimer
@@ -368,7 +381,9 @@
   components:
   - type: Sprite
     state: timer
-
+  - type: Tag
+    tags: 
+    - JunkTimer
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkTincan
@@ -377,6 +392,9 @@
   components:
   - type: Sprite
     state: tincan
+  - type: Tag
+    tags:
+    - Tincan
 
 - type: entity
   parent: N14JunkItemBaseAluminum
@@ -419,6 +437,9 @@
         reagents:
         - ReagentId: Turpentine
           Quantity: 50
+  - type: Tag
+    tags: 
+      - Turpentine
 
 - type: entity
   parent: N14JunkItemBaseMetal
@@ -473,19 +494,19 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsAction
-  name: gun action
+  name: gun action (part)
   description: An action from a bolt action gun.
   components:
   - type: Sprite
     state: action
   - type: Tag
     tags:
-    - Action #We might want to change the tags from these parts in the future
+    - Action
 
 - type: entity
   parent: N14JunkItemBaseAluminum
   id: N14JunkGunpartsAdvancedFrame
-  name: advance gun frame
+  name: gun frame (part)
   description: An advanced gun frame.
   components:
   - type: Sprite
@@ -497,7 +518,7 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsBarrel
-  name: gun barrel
+  name: gun barrel (part)
   description: An gun barrel.
   components:
   - type: Sprite
@@ -509,7 +530,7 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsBolt
-  name: gun bolt
+  name: gun bolt(part)
   description: A bolt for a gun.
   components:
   - type: Sprite
@@ -521,7 +542,7 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsFrame
-  name: basic gun frame
+  name: gun frame(part)
   description: A frame for a gun.
   components:
   - type: Sprite
@@ -533,7 +554,7 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsFramePistol
-  name: pistol frame
+  name: pistol frame(part)
   description: A frame for a pistol.
   components:
   - type: Sprite
@@ -545,7 +566,7 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsReceiver
-  name: gun receiver
+  name: receiver(part)
   description: A receiver for a gun.
   components:
   - type: Sprite
@@ -557,7 +578,7 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsRecoilComp
-  name: recoil compensator
+  name: recoil compensator(part)
   description: A recoil compensator for a gun.
   components:
   - type: Sprite
@@ -569,7 +590,7 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsRifleFrame
-  name: rifle frame
+  name: rifle frame(part)
   description: A frame for a rifle.
   components:
   - type: Sprite
@@ -581,7 +602,7 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsRifleStock
-  name: rifle stock
+  name: rifle stock(part)
   description: A stock for a rifle.
   components:
   - type: Sprite
@@ -593,7 +614,7 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsRifleScope
-  name: rifle scope
+  name: rifle scope(part)
   description: A scope for a rifle.
   components:
   - type: Sprite
@@ -605,7 +626,7 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsStock
-  name: metal stock
+  name: stock(part)
   description: A metal stock for a gun.
   components:
   - type: Sprite
@@ -617,7 +638,7 @@
 - type: entity
   parent: N14JunkItemBase
   id: N14JunkGunpartsStockWood
-  name: wooden stock
+  name: stock(part)
   description: A wooden stock for a gun.
   components:
   - type: Sprite
@@ -629,7 +650,7 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsTrigger
-  name: trigger
+  name: trigger(part)
   description: A trigger mechanism for a gun.
   components:
   - type: Sprite
@@ -641,7 +662,7 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsWeaponParts1
-  name: energy weapon frame
+  name: energy weapon parts
   description: A collection of broken weapon parts.
   components:
   - type: Sprite
@@ -653,7 +674,7 @@
 - type: entity
   parent: N14JunkItemBaseMetal
   id: N14JunkGunpartsWeaponParts2
-  name: energy weapon focus unit
+  name: energy weapon parts
   description: A collection of broken weapon parts.
   components:
   - type: Sprite
@@ -665,7 +686,7 @@
 - type: entity
   parent: N14JunkItemBaseAluminum
   id: N14JunkGunpartsWeaponParts3
-  name: energy weapon filter
+  name: energy weapon parts
   description: A collection of broken weapon parts.
   components:
   - type: Sprite
@@ -945,6 +966,9 @@
   components:
   - type: Sprite
     state: sensor_module
+  - type: Tag
+    tags:
+    - SensorModule
 
 - type: entity
   parent: N14JunkItemBasePlastic

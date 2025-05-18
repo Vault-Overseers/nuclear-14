@@ -1,6 +1,8 @@
 - type: job
-  id: BoSMidSquire
+  id: BoSMidSquire # It was renamed to Initiate, but don't change the ID!
   setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   name: job-name-bos-mid-squire
   description: job-description-bos-mid-squire
   playTimeTracker: BoSMidSquire
@@ -17,7 +19,6 @@
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
   supervisors: job-supervisors-bos-mid-initiate
-  canBeAntag: false
   access:
   - BoSMidwest
   special:
@@ -25,6 +26,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - BrotherhoodMidwest
 
 - type: startingGear
@@ -32,10 +34,10 @@
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSGreen
     back: N14ClothingBackpackMilitaryFilled
-    shoes: N14ClothingBootsCombatFilled
+    shoes: N14ClothingBootsLeatherFilled
     head: N14ClothingHeadHatArmyCap
-    outerClothing: N14ClothingOuterMidwestArmor
-    pocket1: NCRBoSMidwestkits
+    outerClothing: N14ClothingOuterMBoSInitiateArmor
+    pocket1: BoSMidwestInitSet
     id: N14IDBrotherhoodHolotagSquire
     belt: ClothingBeltMilitary
 

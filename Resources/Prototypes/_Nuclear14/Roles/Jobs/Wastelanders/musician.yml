@@ -1,6 +1,8 @@
 - type: job
   id: WastelandMusician
-  setPreference: false # disabled, use loadouts.
+  setPreference: false # Disabled, use loadouts
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-waste-musician
   description: job-description-waste-musician
   playTimeTracker: WastelandMusician
@@ -14,6 +16,11 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: MikuDay
     prototype: BoxPerformer
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: WastelandMusicianGear

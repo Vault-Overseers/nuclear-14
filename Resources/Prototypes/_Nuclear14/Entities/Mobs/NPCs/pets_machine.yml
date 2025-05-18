@@ -31,6 +31,7 @@
     - Stutter
     - Electrocution
   - type: MovedByPressure
+  - type: Examiner
   - type: Physics
     bodyType: KinematicController
   - type: NameIdentifier
@@ -65,7 +66,6 @@
   - type: MobMover
   - type: Body
     prototype: Bot
-  - type: StepTriggerImmune
   - type: RandomMetadata
     nameSegments: [names_N14pet_robot]
 # Let's see how much this remains functional, butchered MobSiliconBase, it is.
@@ -112,9 +112,9 @@
             radius: 0.4
         density: 150
         mask:
-        - MobMask
+        - SmallMobLayer
         layer:
-        - MobLayer
+        - SmallMobLayer
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 6
@@ -149,17 +149,39 @@
   - type: UniversalLanguageSpeaker
   - type: ReplacementAccent
     accent: silicon
+  - type: HandheldLight
+    toggleOnInteract: false
+    wattage: 0
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: ToggleableLightVisuals
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 4.5
+    netsync: false
+  - type: NoSlip
+  - type: StepTriggerImmune
+    whitelist:
+      types:
+      - Shard
+      - Landmine
+      - Mousetrap
+      - SlipTile
+      - SlipEntity
+      - Chasm
   - type: Damageable
     damageContainer: Biological
   - type: PassiveDamage 
     allowedStates:
     - Alive
     - Critical
-    damageCap: 50
+    damageCap: 75
     damage:
       groups:
-        Brute: -0.25
-        Burn: -0.25
+        Brute: -0.5
+        Burn: -0.5
 
 - type: entity
   name: MBoS Eyebot

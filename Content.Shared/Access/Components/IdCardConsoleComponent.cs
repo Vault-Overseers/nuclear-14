@@ -46,52 +46,41 @@ public sealed partial class IdCardConsoleComponent : Component
     [DataField, AutoNetworkedField]
     public List<ProtoId<AccessLevelPrototype>> AccessLevels = new()
     {
-        "Armory",
-        "Atmospherics",
-        "Bar",
-        //"Brig", Delta V: Removed Brig Access
-        "Boxer",  // DeltaV - Add Boxer access
-        "Detective",
-        "Captain",
-        "Cargo",
-        "Chapel",
-        "Chemistry",
-        "ChiefEngineer",
-        "ChiefMedicalOfficer",
-        "Clown", // DeltaV - Add Clown access
-        "Corpsman", // DeltaV - Add Corpsman access
-        "Command",
-        "Cryogenics",
-        "Engineering",
-        "External",
-        "HeadOfPersonnel",
-        "HeadOfSecurity",
-        "Hydroponics",
-        "Janitor",
-        "Kitchen",
-        "Lawyer",
-        "Library",  // DeltaV - Add Library access
-        "Maintenance",
-        "Medical",
-        "Mime", // DeltaV - Add Mime access
-        "Musician", // DeltaV - Add Musician access
-        "Paramedic", // DeltaV - Add Paramedic access
-        "Psychologist", // DeltaV - Add Psychologist access
-        "Quartermaster",
-        "Reporter", // DeltaV - Add Reporter access
-        "Research",
-        "ResearchDirector",
-        "Salvage",
-        "Security",
-        "Service",
-        "Theatre",
-        "Orders", // DeltaV - Orders, see Resources/Prototypes/DeltaV/Access/cargo.yml
-        "Mail", // Nyanotrasen - Mail, see Resources/Prototypes/Nyanotrasen/Access/cargo.yml
-        "Mantis", // DeltaV - Psionic Mantis, see Resources/Prototypes/DeltaV/Access/epistemics.yml
-        "Zookeeper",  // DeltaV - Add Zookeeper access
-        "ChiefJustice",  // DeltaV - Add Chief Justice access
-        "Justice",  // DeltaV - Add Justice access
-        "Prosecutor", // Delta V - Add Prosecutor access
+        "TownieMechanic", // All N14 change for the access terminals.
+        "TownieShopkeeper",
+        "TownieDoctor",
+        "TownieLaw",
+        "TownieMayor",
+        "WastelandReporter",
+        "WastelandBartender",
+        "InnRoomOne",
+        "InnRoomTwo",
+        "InnRoomThree",
+        "VaultDweller",
+        "VaultEngineer",
+        "VaultMedical",
+        "VaultSecurity",
+        "VaultOverseer",
+        "TribeMember",
+        "TribeChief",
+        "CaravanCompanyGuard",
+        "WastelandChaplain",
+        "WastelandFarmer",
+        "WashingtonInitiate",
+        "WashingtonKnight",
+        "WashingtonScribe",
+        "WashingtonPaladin",
+        "WashingtonCommander",
+        "NCR",
+        "NCRSGT",
+        "NCRMedic",
+        "NCRLT",
+        "NCRRanger",
+        "BoSMidwest",
+        "Knight",
+        "Scribe",
+        "Paladin",
+        "PaladinCommander",
     };
 
     [Serializable, NetSerializable]

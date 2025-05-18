@@ -1,6 +1,8 @@
 - type: job
   id: NCRMedic
   setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   name: job-name-ncr-medic
   description: job-description-ncr-medic
   playTimeTracker: NCRDoctor
@@ -15,7 +17,6 @@
   startingGear: NCRMedicGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-ncr
-  canBeAntag: false
   alwaysUseSpawner: true
   access:
   - NCR
@@ -25,6 +26,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - NCR
       - type: CPRTraining
 

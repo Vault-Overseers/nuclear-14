@@ -1,6 +1,8 @@
 - type: job
   id: BoSWashingtonCommander
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: true
   name: job-name-bos-washington-commander
   description: job-description-bos-washington-commander
   playTimeTracker: BoSWashingtonCommander
@@ -22,7 +24,6 @@
   icon: "JobIconHeadOfSecurity"
   supervisors: job-supervisors-bos-wash-commander
   requireAdminNotify: true
-  canBeAntag: false
   accessGroups:
   - BOSWashington
   special:
@@ -30,21 +31,21 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - BrotherhoodWashington
 
 - type: startingGear
   id: BoSWashingtonCommanderGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSBlack
-    back: N14ClothingBackpackMilitaryFilled
-    shoes: N14ClothingBootsCombatMK2Filled
+    back: N14ClothingBackpackSatchelMilitaryFilled
+    shoes: N14ClothingBootsLeatherFilled
     neck: N14ClothingNeckCloakBrotherhoodWashington
-    head: N14ClothingHeadHatBrotherhoodCap
-    outerClothing: N14ClothingOuterCombatArmorBOSMK2
+    outerClothing: N14ClothingOuterWBoSPaladinArmor
     id: N14IDBrotherhoodWashingtonHolotagCommander
     ears: N14ClothingHeadsetBOSWashington
     belt: ClothingBeltBoSWebbing
-    pocket1: NCRBoSWashingtonPaladinkits
+    pocket1: BoSWashingtonPaladinKits
 
 - type: playTimeTracker
   id: BoSWashingtonCommander

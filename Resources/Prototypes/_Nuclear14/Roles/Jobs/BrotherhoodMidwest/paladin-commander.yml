@@ -1,6 +1,8 @@
 - type: job
   id: BoSMidPaladinCommander
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: true
   name: job-name-bos-mid-paladin-comm
   description: job-description-bos-mid-paladin-comm
   playTimeTracker: BoSMidPaladinCommander
@@ -21,7 +23,6 @@
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
   supervisors: job-supervisors-bos-mid-commander
-  canBeAntag: false
   accessGroups:
   - BOSMidwest
   special:
@@ -29,18 +30,18 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - BrotherhoodMidwest
 
 - type: startingGear
   id: BoSMidPaladinCommanderGear
   equipment:
     jumpsuit: N14ClothingUniformBosRecon
-    back: N14ClothingBackpackMilitaryFilled
-    shoes: N14ClothingBootsCombatFilled
-    head:  N14ClothingHeadHatBrotherhoodFieldCap
-    outerClothing: N14ClothingOuterMidwestArmorMK2
+    back: N14ClothingBackpackSatchelMilitaryFilled
+    shoes: N14ClothingBootsLeatherFilled
+    outerClothing: N14ClothingOuterMBoSPaladinArmor
     hands: N14ClothingHandsGlovesCombat
-    pocket1: NCRBoSMidwestPaladinkits
+    pocket1: BoSMidwestPaladinKits
     id: N14IDBrotherhoodHolotagCommander
     ears: N14ClothingHeadsetBOSMidwest
     belt: ClothingBeltMilitary

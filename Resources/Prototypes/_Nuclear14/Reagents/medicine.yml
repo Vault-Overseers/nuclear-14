@@ -5,36 +5,36 @@
   group: Chems
   desc: reagent-desc-healing-mixture
   physicalDesc: reagent-physical-desc-soothing
-  color: "#00e5ff"
+  color: "#934435"
   metabolisms:
     Medicine:
       effects:
       - !type:HealthChange
         damage:
           groups:
-            Burn: -2.0
-            Brute: -2.0
-            Airloss: -2.0
+            Burn: -2.5
+            Brute: -2.5
+            Airloss: -2.5
       - !type:ModifyBleedAmount
-        amount: -1.5
+        amount: -2
       - !type:HealthChange # Bonus for poison
         conditions:
         - !type:ReagentThreshold
           min: 30
         damage:
           groups:
-            Burn: -1.0
-            Brute: -1.0
-            Airloss: -1.0
+            Burn: -1.25
+            Brute: -1.25
+            Airloss: -1.25
           types:
-            Poison: 0.2
+            Poison: 0.3
       - !type:HealthChange # to prevent doping
         conditions:
         - !type:ReagentThreshold
           min: 50
         damage:
           types:
-            Poison: 1
+            Poison: 1.5
 
 - type: reagent
   id: DirtyStimpak
@@ -42,7 +42,7 @@
   group: Chems
   desc: reagent-desc-dirty-stimpak
   physicalDesc: reagent-physical-desc-soothing
-  color: "#00e5ff"
+  color: "#934435"
   metabolisms:
     Medicine:
       effects:
@@ -162,30 +162,30 @@
   group: Chems
   desc: reagent-desc-robust-healing-mixture
   physicalDesc: reagent-physical-desc-opaque
-  color: "#00e5ff"
+  color: "#934435"
   metabolisms:
     Medicine:
       effects:
       - !type:HealthChange
         damage:
           groups:
-            Burn: -5
-            Brute: -5
-            Airloss: -5
+            Burn: -6.125
+            Brute: -6.125
+            Airloss: -6.125
       - !type:ModifyBleedAmount
-        amount: -1
+        amount: -3
       - !type:HealthChange # Taking 2 is more or less a guaranteed death
         conditions:
         - !type:ReagentThreshold
           min: 30
         damage:
           groups:
-            Burn: -2.0
-            Brute: -2.0
-            Airloss: -2.0
+            Burn: -2.5
+            Brute: -2.5
+            Airloss: -2.5
           types:
-            Poison: 3
-            Cellular: 0.5 # permanent damage, be glad you aint dead
+            Poison: 4.5
+            Cellular: 0.75 # permanent damage, be glad you aint dead
       - !type:MovespeedModifier
         walkSpeedModifier: 0.50
         sprintSpeedModifier: 0.50
@@ -386,31 +386,31 @@
   group: Chems
   desc: reagent-desc-ultra-robust-healing-mixture
   physicalDesc: reagent-physical-desc-overpowering
-  color: "#ff0000"
+  color: "#934435"
   metabolisms:
     Medicine:
       effects:
       - !type:HealthChange
         damage:
           groups:
-            Burn: -10
-            Brute: -10
-            Airloss: -10
-            Toxin: 0.5
+            Burn: -12.5
+            Brute: -12.5
+            Airloss: -12.5
+            Toxin: 0.75
       - !type:ModifyBleedAmount
-        amount: -3
+        amount: -4
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
           min: 30
         damage:
           groups:
-            Burn: -10 # Temporary invincibility more or less
-            Brute: -10
-            Airloss: -10
+            Burn: -15 # Temporary invincibility more or less
+            Brute: -15
+            Airloss: -15
           types:
-            Poison: 3
-            Cellular: 2 # Congratulations. Still revivable, but permanently fucked
+            Poison: 4.5
+            Cellular: 3 # Congratulations. Still revivable, but permanently fucked
       - !type:MovespeedModifier
         walkSpeedModifier: 0.40
         sprintSpeedModifier: 0.40

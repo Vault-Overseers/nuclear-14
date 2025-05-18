@@ -1,6 +1,8 @@
 - type: job
   id: BoSMidPaladin
   setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   name: job-name-bos-mid-paladin
   description: job-description-bos-mid-paladin
   playTimeTracker: BoSMidPaladin
@@ -21,29 +23,30 @@
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
   supervisors: job-supervisors-bos-mid
-  canBeAntag: false
   access:
   - BoSMidwest
+  - Knight
+  - Scribe
   - Paladin
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - BrotherhoodMidwest
 
 - type: startingGear
   id: BoSMidPaladinGear
   equipment:
     jumpsuit: N14ClothingUniformBosRecon
-    back: N14ClothingBackpackMilitaryFilled
-    shoes: N14ClothingBootsCombatFilled
-    head:  N14ClothingHeadHatBrotherhoodFieldCap
-    outerClothing: N14ClothingOuterMidwestArmorMK2
-    pocket1: NCRBoSMidwestPaladinkits
+    back: N14ClothingBackpackSatchelMilitaryFilled
+    shoes: N14ClothingBootsLeatherFilled
+    outerClothing: N14ClothingOuterMBoSPaladinArmor
+    pocket1: BoSMidwestPaladinKits
     hands: N14ClothingHandsGlovesCombat
     id: N14IDBrotherhoodHolotagPaladin
-    ears: N14ClothingHeadsetBOSMidwest #placeholder
+    ears: N14ClothingHeadsetBOSMidwest
     belt: ClothingBeltMilitary
 
 - type: playTimeTracker

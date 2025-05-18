@@ -1,12 +1,20 @@
 - type: job
   id: Wastelander
-  setPreference: true
+  setPreference: false
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-wastelander
   description: job-description-wastelander
   playTimeTracker: Wastelander
   startingGear: WastelanderGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-wastelander
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: WastelanderGear
