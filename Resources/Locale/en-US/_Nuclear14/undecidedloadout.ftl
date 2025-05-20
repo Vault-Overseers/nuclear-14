@@ -405,11 +405,11 @@ undecided-loadout-category-wbos-pal-las-description =
     Includes 1 AER-9, 3 microfusion cells, 1 plasma pistol,
     2 plasma cells, 1 roll of gauze, 1 stimpak, and 1 K ration MRE.
 
-undecided-loadout-category-Tribal-Stalker-name = Tribal Stalker Kit
-undecided-loadout-category-Tribal-Stalker-description =
-    A crate containing everything a hunter will need who follows the old ways.
-    Inside you will find a bow that fires true, a quiver and enough arrows to fill it, 
-    Your trusty spear, some healing powder and a hat from your last hunt
+undecided-loadout-category-Tribal-Fire-Hand-name = Tribal Fire Hand Kit
+undecided-loadout-category-Tribal-Fire-Hand-description =
+    A crate containing everything a tribal gunslinger would want.
+    Inside you will find a holster with two revolvers, spare ammo and healing powder
+    make your shots count kindred
 
 undecided-loadout-category-Tribal-Champion-name = Tribal Champion Kit
 undecided-loadout-category-Tribal-Champion-description =
@@ -421,18 +421,18 @@ undecided-loadout-category-Tribal-Hunter-name = Tribal Hunter Kit
 undecided-loadout-category-Tribal-Hunter-description =
     A crate containing everything for those who hunt with a rifle
      using powder and fire to bring down big targets
-    Inside you will find your trusty huntstick, a machete for harvesting your prey
-    some healing powder and a mantle that can help with the bad weather 
+    Inside you will find your trusty huntstick, a machete for harvesting your prey,
+    some healing powder too if your prey causes problems
 
 undecided-loadout-category-Tribal-Bone-Breaker-name = Tribal Bone Breaker Kit
 undecided-loadout-category-Bone-Breaker-description =
     A crate containing everything for those who fight using powder and fire
      shooting often to bring down the foe
-    Inside you will find your reliable tribal rifle, a machete for closing in on the kill 
-    some healing powder and a canine hat to show your loyalty 
+    Inside you will find your reliable tribal rifle, a machete for closing in on the kill
+    with some healing powder just incase 
 
 undecided-loadout-category-Tribal-pain-bringer-name = Tribal Pain Bringer Kit
 undecided-loadout-category-Tribal-pain-bringer-description =
     A crate containing everything for those who fight up close with powder and fury
-    Inside you will find your sturdy boom stick, a club for break any item or foe, 
-    some healing powder and a metal mask to protect your face in combat
+    Inside you will find your sturdy boom stick and a club to break any item or foe
+    with some healing powder just incase
