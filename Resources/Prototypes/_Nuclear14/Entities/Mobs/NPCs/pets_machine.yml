@@ -78,9 +78,6 @@
   components:
   - type: InputMover
   - type: MobMover
-  - type: HTN
-    rootTask:
-      task: SimpleRangedHostileCompound
   - type: NpcFactionMember
     factions:
     - Wastelander
@@ -146,21 +143,53 @@
     enabled: true
     toggleOnInteract: true
     IsSpeaker: true
-  - type: UniversalLanguageSpeaker
-  - type: ReplacementAccent
-    accent: silicon
+  - type: LanguageKnowledge
+    speaks:
+    - N14Robot
+    understands:
+    - N14Dog
+    - N14Insect
+    - N14Robot
+    - English
+    - Tribal
+    - Chinese
+    - Sign
   - type: HandheldLight
     toggleOnInteract: false
-    wattage: 0
+    addPrefix: true
     blinkingBehaviourId: blinking
     radiatingBehaviourId: radiating
   - type: ToggleableLightVisuals
   - type: PointLight
     enabled: false
+    radius: 4.5
+    energy: 1
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    radius: 4.5
     netsync: false
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        minValue: 0.1
+        maxValue: 2.0
+        isLooped: true
+  - type: Battery
+    maxCharge: 600 # lights drain 3/s but recharge of 2 makes this 1/s. Therefore 600 is 10 minutes of light.
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 2
   - type: NoSlip
   - type: StepTriggerImmune
     whitelist:
@@ -214,3 +243,16 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: icon
     - state: shadow_eyebot
+  - type: LanguageKnowledge
+    speaks:
+    - N14Dog
+    - N14BrotherBeep
+    understands:
+    - N14Dog
+    - N14BrotherBeep
+    - N14Insect
+    - N14Robot
+    - English
+    - Tribal
+    - Chinese
+    - Sign
