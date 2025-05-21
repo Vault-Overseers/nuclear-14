@@ -1474,12 +1474,12 @@
 
 #MARK: Tribal
 
-#tribal gunslinger
+#bow
 - type: entity
-  name: Tribal Fire Hand
+  name: Tribal Stalker
   parent: KitBase
-  id: Kittribalfirehand
-  description: A crate containing everything a tribal gunslinger will want
+  id: Kittribalstalker
+  description: A crate containing everything a hunter will need who follows the old ways
   components:
   - type: Sprite
     state: rifleman
@@ -1487,11 +1487,11 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponRevolver44TribalUpgraded
-        amount: 2
-      - id: N14HealingPowder
-      - id: MagazineBox44
-      - id: ClothingBeltRevolver
+      - id: BowImprovised
+      - id: ClothingBeltQuiver
+      - id: ArrowRegular
+        amount: 17
+      - id: N14WastelandTribalSpear
 
 
 #tribal two handed club
@@ -1512,8 +1512,24 @@
       - id: N14WastelandTribalJavelin
         amount: 4
       - id: N14ClothingNeckCloakYaoguai
-      - id: N14HealingPowder
 
+#tribal gunslinger
+- type: entity
+  name: Tribal Fire Hand
+  parent: KitBase
+  id: Kittribalfirehand
+  description: A crate containing everything a tribal gunslinger will want
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponRevolver44TribalUpgraded
+        amount: 2
+      - id: MagazineBox44
+      - id: ClothingBeltRevolver
 
 #hunt stick
 - type: entity
@@ -1531,7 +1547,6 @@
       - id: N14WeaponSniper308Tribal
       - id: N14TribalMachete
       - id: MagazineBox308
-      - id: N14HealingPowder
 
 #tribal rifle
 - type: entity
@@ -1549,7 +1564,6 @@
       - id: N14WeaponSniper556Tribal
       - id: N14TribalMachete
       - id: MagazineBox556
-      - id: N14HealingPowder
 
 #boomstick
 - type: entity
@@ -1567,4 +1581,3 @@
       - id: N14WeaponShotgunBoomstick
       - id: N14TribalClub
       - id: MagazineBox12gauge
-      - id: N14HealingPowder
