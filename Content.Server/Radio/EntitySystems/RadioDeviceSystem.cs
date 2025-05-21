@@ -235,7 +235,7 @@ public sealed class RadioDeviceSystem : EntitySystem
         var message = args.OriginalChatMsg.Message;
         var nameOverride = Identity.Name(args.MessageSource, EntityManager);
         IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<ChatSystem>()
-                .TrySendInGameICMessage(speaker, message, InGameICChatType.Speak, ChatTransmitRange.HideChat, true, null, null, nameOverride, false, false, args.Language);
+                .TrySendInGameICMessage(speaker, message, InGameICChatType.Speak, ChatTransmitRange.NoGhosts, true, null, null, nameOverride, false, false, args.Language);
         //Old Code: _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
         //Original code was designed to have the parent of the radios (the map) speak to the players at the designated point. 
         //The ability for speaking maps was removed. I have changed it to send an in-game message instead, from each radio that is supposed to send the message.
