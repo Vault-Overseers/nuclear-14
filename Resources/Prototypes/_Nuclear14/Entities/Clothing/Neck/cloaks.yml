@@ -53,6 +53,7 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:Container
+
 - type: entity
   parent: ClothingNeckBase
   id: N14ClothingNeckCloakRangerPoncho
@@ -128,3 +129,19 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Neck/darkcloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckCloakGhillie
+  name: ghillie cloak
+  description: A cloak of ghillie forest camo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/ghilliecloak.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHoodGhillieCloak
+    requiredSlot: neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:Container
