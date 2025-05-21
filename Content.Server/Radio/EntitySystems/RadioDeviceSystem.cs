@@ -20,6 +20,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Network;
 using Robust.Shared.Player; // Nuclear-14
 using Robust.Shared.Prototypes;
+using Content.Shared.IdentityManagement;
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -37,6 +38,7 @@ public sealed class RadioDeviceSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid)> _recentlySent = new();
@@ -229,16 +231,14 @@ public sealed class RadioDeviceSystem : EntitySystem
 
     private void OnReceiveRadio(EntityUid uid, RadioSpeakerComponent component, ref RadioReceiveEvent args)
     {
-        var parent = Transform(uid).ParentUid;
-        if (TryComp(parent, out ActorComponent? actor))
-        {
-            var canUnderstand = _language.CanUnderstand(parent, args.Language.ID);
-            var msg = new MsgChatMessage
-            {
-                Message = canUnderstand ? args.OriginalChatMsg : args.LanguageObfuscatedChatMsg
-            };
-            _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
-        }
+        var speaker = uid;
+        var message = args.OriginalChatMsg.Message;
+        var nameOverride = Identity.Name(args.MessageSource, EntityManager);
+        IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<ChatSystem>()
+                .TrySendInGameICMessage(speaker, message, InGameICChatType.Speak, ChatTransmitRange.HideChat, true, null, null, nameOverride, false, false, args.Language);
+        //Old Code: _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
+        //Original code was designed to have the parent of the radios (the map) speak to the players at the designated point. 
+        //The ability for speaking maps was removed. I have changed it to send an in-game message instead, from each radio that is supposed to send the message.
     }
 
     private void OnIntercomEncryptionChannelsChanged(Entity<IntercomComponent> ent, ref EncryptionChannelsChangedEvent args)
