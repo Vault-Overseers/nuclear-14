@@ -405,34 +405,40 @@ undecided-loadout-category-wbos-pal-las-description =
     Includes 1 AER-9, 3 microfusion cells, 1 plasma pistol,
     2 plasma cells, 1 roll of gauze, 1 stimpak, and 1 K ration MRE.
 
-undecided-loadout-category-Tribal-Fire-Hand-name = Tribal Fire Hand Kit
-undecided-loadout-category-Tribal-Fire-Hand-description =
-    A crate containing everything a tribal gunslinger would want.
-    Inside you will find a holster with two revolvers, spare ammo and healing powder
-    make your shots count kindred
+undecided-loadout-category-Tribal-Stalker-name = Tribal Stalker Kit
+undecided-loadout-category-Tribal-Stalker-description =
+    A crate containing everything a hunter will need who follows the old ways.
+    Inside you will find a bow that fires true, a quiver and enough arrows to fill it
+    and your trusty spear
 
 undecided-loadout-category-Tribal-Champion-name = Tribal Champion Kit
 undecided-loadout-category-Tribal-Champion-description =
     A crate containing everything for those who defend the tribes honour will need
     Inside you will find your two handed club, a quiver of javelins
-    some healing powder and a Yao guai cloak to show your ferocity 
+    and a Yao guai cloak to show your ferocity 
+
+undecided-loadout-category-Tribal-Fire-Hand-name = Tribal Fire Hand Kit
+undecided-loadout-category-Tribal-Fire-Hand-description =
+    A crate containing everything a tribal gunslinger would want.
+    Inside you will find a holster with two revolvers with spare ammo
+    make your shots count kindred
 
 undecided-loadout-category-Tribal-Hunter-name = Tribal Hunter Kit
 undecided-loadout-category-Tribal-Hunter-description =
     A crate containing everything for those who hunt with a rifle
      using powder and fire to bring down big targets
-    Inside you will find your trusty huntstick, a machete for harvesting your prey,
-    some healing powder too if your prey causes problems
+    Inside you will find your trusty huntstick and a machete
+    if your prey causes problems, spare ammo included
 
 undecided-loadout-category-Tribal-Bone-Breaker-name = Tribal Bone Breaker Kit
 undecided-loadout-category-Bone-Breaker-description =
     A crate containing everything for those who fight using powder and fire
      shooting often to bring down the foe
-    Inside you will find your reliable tribal rifle, a machete for closing in on the kill
-    with some healing powder just incase 
+    Inside you will find your reliable tribal rifle and a machete
+    some death seeds included
 
 undecided-loadout-category-Tribal-pain-bringer-name = Tribal Pain Bringer Kit
 undecided-loadout-category-Tribal-pain-bringer-description =
     A crate containing everything for those who fight up close with powder and fury
-    Inside you will find your sturdy boom stick and a club to break any item or foe
-    with some healing powder just incase
+    Inside you will find your sturdy boom stick and a club to break any item or foe.
+    spare shells included
