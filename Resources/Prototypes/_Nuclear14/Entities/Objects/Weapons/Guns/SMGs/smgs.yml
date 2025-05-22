@@ -28,6 +28,7 @@
     - Back
     - suitStorage
   - type: Sprite
+    scale: 0.8, 0.8
     sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmSMG.rsi
     layers:
     - state: base
@@ -38,6 +39,63 @@
     fireRate: 8
     soundGunshot:
       collection: N14Pistol10mmGunshot
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 28
+    angleIncrease: 6
+    angleDecay: 16
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -15
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazineSMG10mm
+        insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
+        ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
+        whitelist:
+          tags:
+            - N14MagazineSMG10mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol10
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol10
+  - type: StaticPrice
+    price: 75
+
+- type: entity
+  name: 10mm suppressed SMG
+  parent: N14WeaponSMGBase
+  id: N14WeaponSMG10mmSuppressed
+  description: Fully automatic submachine gun chambered in 10mm, this one comes with a suppressor. # TODO: Need to create projectiles, magazines and boxes for 10mm.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmSMGsuppressed.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    scale: 0.8, 0.8
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmSMGsuppressed.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 8
+    soundGunshot:
+      collection: N14PistolSpyGunshot
     selectedMode: Fullauto
     availableModes:
     - Fullauto
@@ -407,6 +465,63 @@
     price: 50
 
 - type: entity
+  name: infiltrator
+  parent: N14WeaponSMGBase
+  id: N14WeaponSMG9mminfiltrator
+  description: A simple metallic pre-war submachine gun modified with a integrated suppressor, chambered in 9mm ammo.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/infiltrator.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    scale: 0.8, 0.8
+    sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/infiltrator.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 8.5
+    soundGunshot:
+      collection: N14PistolSpyGunshot
+    selectedMode: Fullauto
+    availableModes:
+    - Fullauto
+    minAngle: 8
+    maxAngle: 24
+    angleIncrease: 4
+    angleDecay: 16
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -17
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14MagazineSMG9mm
+        insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
+        ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
+        whitelist:
+          tags:
+            - N14MagazineSMG9mm
+      gun_chamber:
+        name: Chamber
+        startingItem: N14CartridgePistol9
+        priority: 1
+        whitelist:
+          tags:
+            - N14CartridgePistol9
+  - type: StaticPrice
+    price: 50
+
+- type: entity
   name: .45 SMG
   parent: N14WeaponSMGBase
   id: N14WeaponSMG45
@@ -654,7 +769,7 @@
   - type: Gun
     fireRate: 7
     soundGunshot:
-      collection: N14Pistol10mmGunshot
+      collection: N14PistolSpyGunshot
     selectedMode: Fullauto
     availableModes:
     - Fullauto
