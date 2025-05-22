@@ -6,6 +6,15 @@
       actions:
         - !type:DestroyEntity {}
       edges:
+        - to: WoodDoor
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 4
+            - material: N14ScrapBrass
+              amount: 2
+              doAfter: 15
         - to: woodDoorMakeshift
           completed:
             - !type:SnapToGrid { }

@@ -10,10 +10,15 @@
     - !type:CharacterSpeciesRequirement
       species:
       - Human
-      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodMidwest
       min: 54000 # 15 hours
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
+            - Ghoul
   startingGear: BoSMidPaladinGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
