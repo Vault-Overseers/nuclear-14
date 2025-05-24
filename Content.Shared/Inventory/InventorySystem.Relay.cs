@@ -24,6 +24,7 @@ using Content.Shared.Chat;
 using Content.Shared.Overlays.Switchable;
 
 using Content.Shared.Stunnable;
+using Content.Shared.Movement.Events;
 
 namespace Content.Shared.Inventory;
 
@@ -47,6 +48,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, TargetBeforeHyposprayInjectsEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, SelfBeforeGunShotEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, SelfBeforeClimbEvent>(RelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, MakeFootstepSoundEvent>(RelayInventoryEvent);
 
         // by-ref events
         SubscribeLocalEvent<InventoryComponent, GetExplosionResistanceEvent>(RefRelayInventoryEvent);
