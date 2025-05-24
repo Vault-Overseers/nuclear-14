@@ -212,6 +212,9 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+      # Goobstation - changelings
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
       enum.InstrumentUiKey.Key:
         type: InstrumentBoundUserInterface
         requireInputValidation: false
@@ -265,6 +268,7 @@
   abstract: true
   components:
   - type: Flashable
+  - type: Absorbable # Goobstation - changelings
   - type: Barotrauma
     damage:
       types:
@@ -420,6 +424,7 @@
   - type: Body
     prototype: Human
     requiredLegs: 2
+  - type: Absorbable # Goobstation - changelings
   - type: UserInterface
     interfaces:
       enum.HumanoidMarkingModifierKey.Key: # sure, this can go here too
