@@ -6,15 +6,6 @@
       actions:
         - !type:DestroyEntity {}
       edges:
-        - to: WoodDoor
-          completed:
-            - !type:SnapToGrid { }
-          steps:
-            - material: WoodPlank
-              amount: 4
-            - material: N14ScrapBrass
-              amount: 2
-              doAfter: 15
         - to: woodDoorMakeshift
           completed:
             - !type:SnapToGrid { }
@@ -41,20 +32,6 @@
               amount: 3
             - material: N14ScrapBrass
               amount: 2
-              doAfter: 15
-    - node: WoodDoor
-      entity: N14DoorWoodSlanted
-      edges:
-        - to: start
-          completed:
-            - !type:SpawnPrototype
-              prototype: MaterialWoodPlank1
-              amount: 4
-            - !type:SpawnPrototype
-              prototype: N14ScrapBrass1
-              amount: 2
-          steps:
-            - tool: Anchoring
               doAfter: 15
     - node: woodDoorMakeshift
       entity: N14DoorMakeshift

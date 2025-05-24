@@ -10,7 +10,7 @@ public sealed partial class LayingDownComponent : Component
     public TimeSpan StandingUpTime = TimeSpan.FromSeconds(1);
 
     [DataField, AutoNetworkedField]
-    public float LyingSpeedModifier = 0.0875f,
+    public float LyingSpeedModifier = 0.175f,
                  CrawlingUnderSpeedModifier = 0.125f;
 
     [DataField, AutoNetworkedField]
@@ -24,7 +24,7 @@ public sealed partial class LayingDownComponent : Component
 
     [DataField, AutoNetworkedField]
     public int NormalDrawDepth = (int) DrawDepth.DrawDepth.Mobs,
-               CrawlingUnderDrawDepth = (int) DrawDepth.DrawDepth.SmallMobs;
+               CrawlingUnderDrawDepth = (int) DrawDepth.DrawDepth.Mobs; /// Switching between drawdepths in-game tends to glitch, so let's keep the two the same
 }
 
 [Serializable, NetSerializable]

@@ -18,5 +18,5 @@ public sealed partial class CrematoriumComponent : Component
     public SoundSpecifier CrematingSound = new SoundPathSpecifier("/Audio/Effects/burning.ogg");
 
     [DataField("cremateFinishSound")]
-    public SoundSpecifier CremateFinishSound = new SoundPathSpecifier("/Audio/Machines/ding.ogg");
+    public SoundSpecifier CremateFinishSound = new SoundPathSpecifier("/Audio/Machines/tray_eject.ogg"); /// Screw the microwave ding
 }
