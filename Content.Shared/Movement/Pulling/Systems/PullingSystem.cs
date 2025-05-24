@@ -11,7 +11,7 @@ using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification; // Goobstation
-using Content.Shared.Cuffs.Components; // Goobstation
+using Content.Shared.Cuffs; // Goobstation
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components; // Goobstation
 using Content.Shared.Damage.Systems; // Goobstation
