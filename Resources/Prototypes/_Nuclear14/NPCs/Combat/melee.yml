@@ -1,0 +1,14 @@
+- type: htnCompound
+  id: N14MeleeCombatCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyMeleeTargets
+        - !type:HTNCompoundTask
+          task: BeforeMeleeAttackTargetCompound
+    # Melee combat (unarmed or otherwise)
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeAttackTargetCompound
+# Removed the ability to unbuckle and pick up melee weapons.

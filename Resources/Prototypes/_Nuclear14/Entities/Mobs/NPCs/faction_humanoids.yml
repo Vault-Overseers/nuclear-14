@@ -1,21 +1,26 @@
+# Town of [insert map here] should have its own NPCs for protection.
 - type: entity
-  name: Psycho Raider
+  name: Town Militia
   parent: N14BaseMobRaider
-  id: N14MobRaiderPsychoRanged
-  description: Psychopatic raider who will shoot and rob just about anyone.
+  id: N14MobNPCTown
+  suffix: NPC
+  description: Angry mob ready to defend their homes, might not be the best at combat but he is trying.
   components:
-    - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
-      minAngle: 6
-      maxAngle: 22.5
-      angleIncrease: 1
+    - type: NpcFactionMember
+      factions:
+      - Townsfolk
+    - type: Gun
+      minAngle: 9
+      maxAngle: 45
+      angleIncrease: 0.5
       angleDecay: 4
-      fireRate: 1.33
-      soundGunshot: /Audio/_Nuclear14/Weapons/Guns/Pistols/N14WeaponPistol10mm/shot1.ogg
+      fireRate: 2
+      soundGunshot:
+        collection: N14Pistol10mmGunshot
       useKey: false
       selectedMode: SemiAuto
       availableModes:
         - SemiAuto
-    - type: CombatMode
     - type: BasicEntityAmmoProvider
       proto: N14CartridgePistol10
       capacity: 10
@@ -26,7 +31,7 @@
         path: /Audio/_Nuclear14/Weapons/Effects/Reload/Pistols/pistol_magin.ogg
     - type: Loadout
       prototypes:
-        - RaiderPistolGear
+        - TownMilitiaNPC
     - type: Sprite
       layers: # Long boring part to make sure layering is correct
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -76,351 +81,31 @@
         sprite: Objects/Misc/handcuffs.rsi
         state: body-overlay-2
         visible: false
-      - sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
+      - sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/10mmPIPEpistol.rsi
         state: inhand-right  # Only part we change, the gun sprite.
 
 - type: entity
-  name: Psycho Raider Boss
+  name: Business Security
   parent: N14BaseMobRaider
-  id: N14MobRaiderBoss
-  description: Boss of all those psycho raiders you see around this area. Good luck!
+  id: N14MobNPCTownGuard
+  suffix: NPC
+  description: Professional mercenary armed with a combat shotgun. Probably it's better to not mess around at his workplace.
   components:
+    - type: NpcFactionMember
+      factions:
+      - TownsfolkSecureArea # Especialy made for the clinic & store, will attack anyone who steps in the storage and not a legal resident.
     - type: Gun
-      minAngle: 10
-      maxAngle: 34.5
-      angleIncrease: 8
-      angleDecay: 16
-      fireRate: 2.66
-      soundGunshot: /Audio/_Nuclear14/Weapons/Guns/Pistols/N14WeaponPistol10mm/shot1.ogg
-      useKey: false
-      selectedMode: FullAuto
-      availableModes:
-        - FullAuto
-    - type: CombatMode
-    - type: BasicEntityAmmoProvider
-      proto: N14CartridgePistol10
-      capacity: 35
-      count: 35
-    - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 2
-      rechargeSound:
-        path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
-    - type: Loadout
-      prototypes:
-        - RaiderBossGear
-    - type: Sprite
-      layers: # Long boring part to make sure layering is correct
-      - map: [ "enum.HumanoidVisualLayers.Chest" ]
-      - map: [ "enum.HumanoidVisualLayers.Head" ]
-      - map: [ "enum.HumanoidVisualLayers.Snout" ]
-      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-      - map: [ "enum.HumanoidVisualLayers.Face" ]
-      - map: [ "enum.HumanoidVisualLayers.RArm" ]
-      - map: [ "enum.HumanoidVisualLayers.LArm" ]
-      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      - shader: StencilClear
-        sprite: Mobs/Species/Human/parts.rsi
-      - shader: StencilMask
-        map: ["enum.HumanoidVisualLayers.StencilMask"]
-        sprite: Mobs/Customization/masking_helpers.rsi
-        state: unisex_full
-        visible: false
-      - map: ["jumpsuit"]
-      - map: ["enum.HumanoidVisualLayers.LFoot"]
-      - map: ["enum.HumanoidVisualLayers.RFoot"]
-      - map: ["enum.HumanoidVisualLayers.LHand"]
-      - map: ["enum.HumanoidVisualLayers.RHand"]
-      - map: [ "gloves" ]
-      - map: [ "shoes" ]
-      - map: [ "ears" ]
-      - map: [ "innerBelt" ]
-      - map: [ "innerNeck" ]
-      - map: [ "outerClothing" ]
-      - map: [ "eyes" ]
-      - map: [ "belt" ]
-      - map: [ "id" ]
-      - map: [ "neck" ]
-      - map: [ "back" ]
-      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-      - map: [ "enum.HumanoidVisualLayers.Hair" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-      - map: [ "enum.HumanoidVisualLayers.Tail" ]
-      - map: [ "enum.HumanoidVisualLayers.Wings" ]
-      - map: [ "mask" ]
-      - map: [ "head" ]
-      - map: [ "pocket1" ]
-      - map: [ "pocket2" ]
-      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
-        color: "#ffffff"
-        sprite: Objects/Misc/handcuffs.rsi
-        state: body-overlay-2
-        visible: false
-      - sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
-        state: inhand-right  # Only part we change, the gun sprite.
-
-- type: entity
-  name: Psycho Raider Hunter
-  parent: N14BaseMobRaider
-  id: N14MobRaiderHunter
-  description: Psychopatic raider armed with a long rifle. Dangerous at a distance.
-  components:
-    - type: Gun
-      minAngle: 4.5
-      maxAngle: 22.5
-      angleIncrease: 1
-      angleDecay: 4
-      fireRate: 0.5
-      soundGunshot: /Audio/_Nuclear14/Weapons/Guns/Snipers/N14WeaponPipeRifle/shot1.ogg
-      useKey: false
-      selectedMode: SemiAuto
-      availableModes:
-        - SemiAuto
-    - type: CombatMode
-    - type: BasicEntityAmmoProvider
-      proto: N14Cartridge308Rifle
-      capacity: 1
-      count: 1
-    - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 1
-      rechargeSound:
-        path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
-    - type: Loadout
-      prototypes:
-        - RaiderHunterGear
-    - type: Sprite
-      layers: # Long boring part to make sure layering is correct
-      - map: [ "enum.HumanoidVisualLayers.Chest" ]
-      - map: [ "enum.HumanoidVisualLayers.Head" ]
-      - map: [ "enum.HumanoidVisualLayers.Snout" ]
-      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-      - map: [ "enum.HumanoidVisualLayers.Face" ]
-      - map: [ "enum.HumanoidVisualLayers.RArm" ]
-      - map: [ "enum.HumanoidVisualLayers.LArm" ]
-      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      - shader: StencilClear
-        sprite: Mobs/Species/Human/parts.rsi
-      - shader: StencilMask
-        map: ["enum.HumanoidVisualLayers.StencilMask"]
-        sprite: Mobs/Customization/masking_helpers.rsi
-        state: unisex_full
-        visible: false
-      - map: ["jumpsuit"]
-      - map: ["enum.HumanoidVisualLayers.LFoot"]
-      - map: ["enum.HumanoidVisualLayers.RFoot"]
-      - map: ["enum.HumanoidVisualLayers.LHand"]
-      - map: ["enum.HumanoidVisualLayers.RHand"]
-      - map: [ "gloves" ]
-      - map: [ "shoes" ]
-      - map: [ "ears" ]
-      - map: [ "innerBelt" ]
-      - map: [ "innerNeck" ]
-      - map: [ "outerClothing" ]
-      - map: [ "eyes" ]
-      - map: [ "belt" ]
-      - map: [ "id" ]
-      - map: [ "neck" ]
-      - map: [ "back" ]
-      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-      - map: [ "enum.HumanoidVisualLayers.Hair" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-      - map: [ "enum.HumanoidVisualLayers.Tail" ]
-      - map: [ "enum.HumanoidVisualLayers.Wings" ]
-      - map: [ "mask" ]
-      - map: [ "head" ]
-      - map: [ "pocket1" ]
-      - map: [ "pocket2" ]
-      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
-        color: "#ffffff"
-        sprite: Objects/Misc/handcuffs.rsi
-        state: body-overlay-2
-        visible: false
-      - sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
-        state: inhand-right # Only part we change, the gun sprite.
-
-- type: entity
-  name: Psycho Raider Skirmisher
-  parent: N14BaseMobRaider
-  id: N14MobRaiderSkrimisher
-  description: Psychopatic raider armed with a scattergun. Deadly at close range.
-  components:
-    - type: Gun
-      minAngle: 34.5
+      minAngle: 23
       maxAngle: 104
-      angleIncrease: 8
-      angleDecay: 16
-      fireRate: 0.75
-      soundGunshot: /Audio/_Nuclear14/Weapons/Guns/Shotguns/N14WeaponDoubleBarrelShotgun/shot1.ogg
-      useKey: false
-      selectedMode: SemiAuto
-      availableModes:
-        - SemiAuto
-    - type: CombatMode
-    - type: BasicEntityAmmoProvider
-      proto: N14ShellShotgun20
-      capacity: 2
-      count: 2
-    - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 2
-      rechargeSound:
-        path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
-    - type: Loadout
-      prototypes:
-        - RaiderSkrimisherGear
-    - type: Sprite
-      layers: # Long boring part to make sure layering is correct
-      - map: [ "enum.HumanoidVisualLayers.Chest" ]
-      - map: [ "enum.HumanoidVisualLayers.Head" ]
-      - map: [ "enum.HumanoidVisualLayers.Snout" ]
-      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-      - map: [ "enum.HumanoidVisualLayers.Face" ]
-      - map: [ "enum.HumanoidVisualLayers.RArm" ]
-      - map: [ "enum.HumanoidVisualLayers.LArm" ]
-      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      - shader: StencilClear
-        sprite: Mobs/Species/Human/parts.rsi
-      - shader: StencilMask
-        map: ["enum.HumanoidVisualLayers.StencilMask"]
-        sprite: Mobs/Customization/masking_helpers.rsi
-        state: unisex_full
-        visible: false
-      - map: ["jumpsuit"]
-      - map: ["enum.HumanoidVisualLayers.LFoot"]
-      - map: ["enum.HumanoidVisualLayers.RFoot"]
-      - map: ["enum.HumanoidVisualLayers.LHand"]
-      - map: ["enum.HumanoidVisualLayers.RHand"]
-      - map: [ "gloves" ]
-      - map: [ "shoes" ]
-      - map: [ "ears" ]
-      - map: [ "innerBelt" ]
-      - map: [ "innerNeck" ]
-      - map: [ "outerClothing" ]
-      - map: [ "eyes" ]
-      - map: [ "belt" ]
-      - map: [ "id" ]
-      - map: [ "neck" ]
-      - map: [ "back" ]
-      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-      - map: [ "enum.HumanoidVisualLayers.Hair" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-      - map: [ "enum.HumanoidVisualLayers.Tail" ]
-      - map: [ "enum.HumanoidVisualLayers.Wings" ]
-      - map: [ "mask" ]
-      - map: [ "head" ]
-      - map: [ "pocket1" ]
-      - map: [ "pocket2" ]
-      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
-        color: "#ffffff"
-        sprite: Objects/Misc/handcuffs.rsi
-        state: body-overlay-2
-        visible: false
-      - sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/double_shotgun.rsi
-        state: inhand-right # Only part we change, the gun sprite.
-
-- type: entity
-  name: Fern Private
-  parent: N14BaseMobRaider
-  id: N14MobFernMercPrivate
-  description: Professional mercenary armed with a carbine. One might be better off avoiding him.
-  components:
-    - type: Gun
-      minAngle: 4.5
-      maxAngle: 13.5
-      angleIncrease: 8
-      angleDecay: 16
-      fireRate: 2
-      soundGunshot: /Audio/_Nuclear14/Weapons/Guns/Rifles/N14WeaponOldCarbine/shot1.ogg
-      useKey: false
-      selectedMode: SemiAuto
-      availableModes:
-        - SemiAuto
-    - type: CombatMode
-    - type: BasicEntityAmmoProvider
-      proto: N14Cartridge556Rifle
-      capacity: 25
-      count: 25
-    - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 2
-      rechargeSound:
-        path: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-    - type: Loadout
-      prototypes:
-        - FernMercPrivateGear
-    - type: Sprite
-      layers: # Long boring part to make sure layering is correct
-      - map: [ "enum.HumanoidVisualLayers.Chest" ]
-      - map: [ "enum.HumanoidVisualLayers.Head" ]
-      - map: [ "enum.HumanoidVisualLayers.Snout" ]
-      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-      - map: [ "enum.HumanoidVisualLayers.Face" ]
-      - map: [ "enum.HumanoidVisualLayers.RArm" ]
-      - map: [ "enum.HumanoidVisualLayers.LArm" ]
-      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      - shader: StencilClear
-        sprite: Mobs/Species/Human/parts.rsi
-      - shader: StencilMask
-        map: ["enum.HumanoidVisualLayers.StencilMask"]
-        sprite: Mobs/Customization/masking_helpers.rsi
-        state: unisex_full
-        visible: false
-      - map: ["jumpsuit"]
-      - map: ["enum.HumanoidVisualLayers.LFoot"]
-      - map: ["enum.HumanoidVisualLayers.RFoot"]
-      - map: ["enum.HumanoidVisualLayers.LHand"]
-      - map: ["enum.HumanoidVisualLayers.RHand"]
-      - map: [ "gloves" ]
-      - map: [ "shoes" ]
-      - map: [ "ears" ]
-      - map: [ "innerBelt" ]
-      - map: [ "innerNeck" ]
-      - map: [ "outerClothing" ]
-      - map: [ "eyes" ]
-      - map: [ "belt" ]
-      - map: [ "id" ]
-      - map: [ "neck" ]
-      - map: [ "back" ]
-      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-      - map: [ "enum.HumanoidVisualLayers.Hair" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-      - map: [ "enum.HumanoidVisualLayers.Tail" ]
-      - map: [ "enum.HumanoidVisualLayers.Wings" ]
-      - map: [ "mask" ]
-      - map: [ "head" ]
-      - map: [ "pocket1" ]
-      - map: [ "pocket2" ]
-      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
-        color: "#ffffff"
-        sprite: Objects/Misc/handcuffs.rsi
-        state: body-overlay-2
-        visible: false
-      - sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/carbine.rsi
-        state: inhand-right  # Only part we change, the gun sprite.
-
-- type: entity
-  name: Fern Sergeant
-  parent: N14BaseMobRaider
-  id: N14MobFernMercSergeant
-  description: Professional mercenary armed with a combat shotgun. This man can finish anyone off in close quarters.
-  components:
-    - type: Gun
-      minAngle: 34.5
-      maxAngle: 104
-      angleIncrease: 8
+      angleIncrease: 4
       angleDecay: 16
       fireRate: 1
-      soundGunshot: /Audio/_Nuclear14/Weapons/Guns/Shotguns/N14WeaponAutoShotgun/shot1.ogg
+      soundGunshot:
+        collection: N14AutoShotgunGunshot
       useKey: false
       selectedMode: SemiAuto
       availableModes:
         - SemiAuto
-    - type: CombatMode
     - type: BasicEntityAmmoProvider
       proto: N14ShellShotgun12
       capacity: 8
@@ -428,10 +113,10 @@
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 2
       rechargeSound:
-        path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+        path: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
     - type: Loadout
       prototypes:
-        - FernMercSergeantGear
+        - TownMilitiaGuardNPC
     - type: Sprite
       layers: # Long boring part to make sure layering is correct
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -484,35 +169,40 @@
       - sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/combat_shotgun.rsi
         state: inhand-right  # Only part we change, the gun sprite.
 
+# Midwestern chapter's humanoid NPCs for event making and such.
 - type: entity
-  name: Fern Lieutenant
+  name: Chapter Serf
   parent: N14BaseMobRaider
-  id: N14MobFernMercLieutenant
-  description: Professional mercenary armed with an SMG. Looks like an officer, more might be around!
+  id: N14MobNPCMBoSSerf
+  suffix: NPC
+  description: A servant of the Midwestern Brotherhood chapter, not a full member. He likely works for food and shelter.
   components:
+    - type: NpcFactionMember
+      factions:
+      - BrotherhoodMidwestSecureArea
     - type: Gun
-      minAngle: 1.5
-      maxAngle: 13.5
+      minAngle: 9
+      maxAngle: 30
       angleIncrease: 1
       angleDecay: 4
-      fireRate: 2.5
-      soundGunshot: /Audio/_Nuclear14/Weapons/Guns/Pistols/N14WeaponPistol12mm/shot1.ogg
+      fireRate: 1.5
+      soundGunshot:
+        collection: N14Pistol12mmGunshot
       useKey: false
-      selectedMode: FullAuto
+      selectedMode: SemiAuto
       availableModes:
-        - FullAuto
-    - type: CombatMode
+        - SemiAuto
     - type: BasicEntityAmmoProvider
       proto: N14CartridgePistol127
-      capacity: 28
-      count: 28
+      capacity: 10
+      count: 10
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 2
       rechargeSound:
         path: /Audio/_Nuclear14/Weapons/Effects/Reload/Pistols/pistol_magin.ogg
     - type: Loadout
       prototypes:
-        - FernMercLieutenantGear
+        - MBoSSerfNPC
     - type: Sprite
       layers: # Long boring part to make sure layering is correct
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -562,38 +252,299 @@
         sprite: Objects/Misc/handcuffs.rsi
         state: body-overlay-2
         visible: false
-      - sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmSMG.rsi
+      - sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/12mm.rsi
         state: inhand-right  # Only part we change, the gun sprite.
 
 - type: entity
-  name: Enforcer Trooper
+  name: Brotherhood Knight
   parent: N14BaseMobRaider
-  id: N14MobEnforcerTrooper
-  description: Nothing more than a raider in fancy clothes, wielding a 9mm SMG.
+  id: N14MobNPCMBoSKnight
+  suffix: NPC
+  description: A soldier of the Midwestern Brotherhood, not the most skilled and easily forgetable. Still, he might be dangerous.
   components:
+    - type: NpcFactionMember
+      factions:
+      - BrotherhoodMidwestSecureArea
     - type: Gun
-      minAngle: 1.5
-      maxAngle: 13.5
-      angleIncrease: 16
+      minAngle: 6
+      maxAngle: 14
+      angleIncrease: 4
       angleDecay: 16
-      fireRate: 2
-      soundGunshot: /Audio/_Nuclear14/Weapons/Guns/Pistols/N14WeaponPistol9mm/shot1.ogg
+      fireRate: 2.5
+      soundGunshot:
+        collection: N14CarbineGunshot
       useKey: false
-      selectedMode: FullAuto
+      selectedMode: SemiAuto
       availableModes:
-        - FullAuto
-    - type: CombatMode
+        - SemiAuto
+    - type: BasicEntityAmmoProvider
+      proto: N14Cartridge556Rifle
+      capacity: 35
+      count: 35
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 2
+      rechargeSound:
+        path: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+    - type: Loadout
+      prototypes:
+        - MBoSKnightNPC
+    - type: Sprite
+      layers: # Long boring part to make sure layering is correct
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.Face" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - shader: StencilClear
+        sprite: Mobs/Species/Human/parts.rsi
+      - shader: StencilMask
+        map: ["enum.HumanoidVisualLayers.StencilMask"]
+        sprite: Mobs/Customization/masking_helpers.rsi
+        state: unisex_full
+        visible: false
+      - map: ["jumpsuit"]
+      - map: ["enum.HumanoidVisualLayers.LFoot"]
+      - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: ["enum.HumanoidVisualLayers.LHand"]
+      - map: ["enum.HumanoidVisualLayers.RHand"]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "ears" ]
+      - map: [ "innerBelt" ]
+      - map: [ "innerNeck" ]
+      - map: [ "outerClothing" ]
+      - map: [ "eyes" ]
+      - map: [ "belt" ]
+      - map: [ "id" ]
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "enum.HumanoidVisualLayers.Wings" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/assaultcarbine.rsi
+        state: inhand-right  # Only part we change, the gun sprite.
+
+# Washington chapter's humanoid NPCs for event making and such.
+- type: entity
+  name: Brotherhood Initiate
+  parent: N14BaseMobRaider
+  id: N14MobNPCWBoSInitiate
+  suffix: NPC
+  description: A low-ranked member of the Washington Brotherhood, probably tasked with support duties. He is barely a threat, but still is one.
+  components:
+    - type: NpcFactionMember
+      factions:
+      - BrotherhoodWashingtonSecureArea
+    - type: Gun
+      minAngle: 9
+      maxAngle: 30
+      angleIncrease: 1
+      angleDecay: 4
+      fireRate: 2.5
+      soundGunshot:
+        collection: N14Pistol9mmGunshot
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
     - type: BasicEntityAmmoProvider
       proto: N14CartridgePistol9
-      capacity: 30
-      count: 30
+      capacity: 15
+      count: 15
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 2
+      rechargeSound:
+        path: /Audio/_Nuclear14/Weapons/Effects/Reload/Pistols/pistol_magin.ogg
+    - type: Loadout
+      prototypes:
+        - WBoSInitiateNPC
+    - type: Sprite
+      layers: # Long boring part to make sure layering is correct
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.Face" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - shader: StencilClear
+        sprite: Mobs/Species/Human/parts.rsi
+      - shader: StencilMask
+        map: ["enum.HumanoidVisualLayers.StencilMask"]
+        sprite: Mobs/Customization/masking_helpers.rsi
+        state: unisex_full
+        visible: false
+      - map: ["jumpsuit"]
+      - map: ["enum.HumanoidVisualLayers.LFoot"]
+      - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: ["enum.HumanoidVisualLayers.LHand"]
+      - map: ["enum.HumanoidVisualLayers.RHand"]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "ears" ]
+      - map: [ "innerBelt" ]
+      - map: [ "innerNeck" ]
+      - map: [ "outerClothing" ]
+      - map: [ "eyes" ]
+      - map: [ "belt" ]
+      - map: [ "id" ]
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "enum.HumanoidVisualLayers.Wings" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - sprite: _Nuclear14/Objects/Weapons/Guns/Pistols/webleypistol.rsi
+        state: inhand-right  # Only part we change, the gun sprite.
+
+- type: entity
+  name: Brotherhood Knight
+  parent: N14BaseMobRaider
+  id: N14MobNPCWBoSKnight
+  suffix: NPC
+  description: A soldier of the Washington Brotherhood, not the most skilled and easily forgetable. Still, he might be dangerous.
+  components:
+    - type: NpcFactionMember
+      factions:
+      - BrotherhoodWashingtonSecureArea
+    - type: Gun
+      minAngle: 6
+      maxAngle: 14
+      angleIncrease: 4
+      angleDecay: 16
+      fireRate: 2.5
+      soundGunshot:
+        collection: N14CarbineGunshot
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+    - type: BasicEntityAmmoProvider
+      proto: N14Cartridge556Rifle
+      capacity: 35
+      count: 35
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 2
+      rechargeSound:
+        path: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+    - type: Loadout
+      prototypes:
+        - WBoSKnightNPC
+    - type: Sprite
+      layers: # Long boring part to make sure layering is correct
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.Face" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - shader: StencilClear
+        sprite: Mobs/Species/Human/parts.rsi
+      - shader: StencilMask
+        map: ["enum.HumanoidVisualLayers.StencilMask"]
+        sprite: Mobs/Customization/masking_helpers.rsi
+        state: unisex_full
+        visible: false
+      - map: ["jumpsuit"]
+      - map: ["enum.HumanoidVisualLayers.LFoot"]
+      - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: ["enum.HumanoidVisualLayers.LHand"]
+      - map: ["enum.HumanoidVisualLayers.RHand"]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "ears" ]
+      - map: [ "innerBelt" ]
+      - map: [ "innerNeck" ]
+      - map: [ "outerClothing" ]
+      - map: [ "eyes" ]
+      - map: [ "belt" ]
+      - map: [ "id" ]
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "enum.HumanoidVisualLayers.Wings" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/assaultcarbine.rsi
+        state: inhand-right  # Only part we change, the gun sprite.
+
+# The NCR Army's humanoid NPCs for event making and such.
+- type: entity
+  name: NCR Army Guard
+  parent: N14BaseMobRaider
+  id: N14MobNPCNCRGuard
+  suffix: NPC
+  description: An trooper in the uniform of the NCR Army's Military Police section. He's here to keep the order by spraying lead.
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NCRSecureArea
+    - type: Gun
+      minAngle: 6
+      maxAngle: 30
+      angleIncrease: 4
+      angleDecay: 16
+      fireRate: 4.3
+      soundGunshot:
+        collection: N14Pistol9mmGunshot
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+    - type: BasicEntityAmmoProvider
+      proto: N14CartridgePistol9
+      capacity: 31
+      count: 31
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 2
       rechargeSound:
         path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
     - type: Loadout
       prototypes:
-        - EnforcerTrooperGear
+        - NCRAGuardNPC
     - type: Sprite
       layers: # Long boring part to make sure layering is correct
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -647,34 +598,38 @@
         state: inhand-right  # Only part we change, the gun sprite.
 
 - type: entity
-  name: Enforcer Warden
+  name: NCR Army Trooper
   parent: N14BaseMobRaider
-  id: N14MobEnforcerWarden
-  description: A raider wearing pre-war law enforcement uniform. One might want to keep distance because he has a riot shotgun!
+  id: N14MobNPCNCRTrooper
+  suffix: NPC
+  description: An Army trooper of the NCR. He's tasked to guard places and is quite easy to forget, but he's still dangerous.
   components:
+    - type: NpcFactionMember
+      factions:
+      - NCRSecureArea
     - type: Gun
-      minAngle: 34.5
-      maxAngle: 156
-      angleIncrease: 8
+      minAngle: 3
+      maxAngle: 21
+      angleIncrease: 4
       angleDecay: 16
-      fireRate: 1.25
-      soundGunshot: /Audio/_Nuclear14/Weapons/Guns/Shotguns/N14WeaponRiotShotgun/shot1.ogg
+      fireRate: 2.5
+      soundGunshot:
+        collection: N14ServiceGunshot
       useKey: false
       selectedMode: SemiAuto
       availableModes:
         - SemiAuto
-    - type: CombatMode
     - type: BasicEntityAmmoProvider
-      proto: N14ShellShotgun20
-      capacity: 10
-      count: 10
+      proto: N14Cartridge556Rifle
+      capacity: 25
+      count: 25
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 2
       rechargeSound:
-        path: /Audio/_Nuclear14/Weapons/Effects/Reload/Shotguns/shotgun_insert.ogg
+        path: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
     - type: Loadout
       prototypes:
-        - EnforcerWardenGear
+        - NCRATrooperNPC
     - type: Sprite
       layers: # Long boring part to make sure layering is correct
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -724,86 +679,197 @@
         sprite: Objects/Misc/handcuffs.rsi
         state: body-overlay-2
         visible: false
-      - sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/combat_shotgun.rsi
+      - sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/servicerifle.rsi
+        state: inhand-right  # Only part we change, the gun sprite.
+
+# The Blue Line caravan's humanoid NPCs for event making and such.
+- type: entity
+  name: Caravan Mercenary
+  parent: N14BaseMobRaider
+  id: N14MobNPCCaravanMerc
+  suffix: NPC
+  description: A man hired to stand guard and ensure the safety of the Blue Line station. Surely he won't do anything else, right?
+  components:
+    - type: NpcFactionMember
+      factions:
+      - CaravanCompanySecureArea
+    - type: Gun
+      minAngle: 6
+      maxAngle: 30
+      angleIncrease: 4
+      angleDecay: 16
+      fireRate: 4.3
+      soundGunshot:
+        collection: N14Pistol9mmGunshot
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+    - type: BasicEntityAmmoProvider
+      proto: N14CartridgePistol9
+      capacity: 31
+      count: 31
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 2
+      rechargeSound:
+        path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
+    - type: Loadout
+      prototypes:
+        - CaravanMercNPC
+    - type: Sprite
+      layers: # Long boring part to make sure layering is correct
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.Face" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - shader: StencilClear
+        sprite: Mobs/Species/Human/parts.rsi
+      - shader: StencilMask
+        map: ["enum.HumanoidVisualLayers.StencilMask"]
+        sprite: Mobs/Customization/masking_helpers.rsi
+        state: unisex_full
+        visible: false
+      - map: ["jumpsuit"]
+      - map: ["enum.HumanoidVisualLayers.LFoot"]
+      - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: ["enum.HumanoidVisualLayers.LHand"]
+      - map: ["enum.HumanoidVisualLayers.RHand"]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "ears" ]
+      - map: [ "innerBelt" ]
+      - map: [ "innerNeck" ]
+      - map: [ "outerClothing" ]
+      - map: [ "eyes" ]
+      - map: [ "belt" ]
+      - map: [ "id" ]
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "enum.HumanoidVisualLayers.Wings" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/9mmSMG.rsi
+        state: inhand-right  # Only part we change, the gun sprite.
+
+# The Tribe faction's humanoid NPCs for event making and such.
+- type: entity
+  name: Tribal Skirmisher
+  parent: N14BaseMobRaider
+  id: N14MobNPCTribeSkir
+  suffix: NPC
+  description: A skirmisher of the local tribes, he bears a firearm to protect his kin. A silent hero.
+  components:
+    - type: NpcFactionMember
+      factions:
+      - TribalSecureArea
+    - type: Gun
+      minAngle: 6
+      maxAngle: 30
+      angleIncrease: 1
+      angleDecay: 4
+      fireRate: 1
+      soundGunshot:
+        collection: N14RevolverMagnunGunshot
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+    - type: BasicEntityAmmoProvider
+      proto: N14Cartridge44Magnum
+      capacity: 4
+      count: 4
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 2
+      rechargeSound:
+        path: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+    - type: Loadout
+      prototypes:
+        - TribalSkirmisherNPC
+    - type: Sprite
+      layers: # Long boring part to make sure layering is correct
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.Face" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - shader: StencilClear
+        sprite: Mobs/Species/Human/parts.rsi
+      - shader: StencilMask
+        map: ["enum.HumanoidVisualLayers.StencilMask"]
+        sprite: Mobs/Customization/masking_helpers.rsi
+        state: unisex_full
+        visible: false
+      - map: ["jumpsuit"]
+      - map: ["enum.HumanoidVisualLayers.LFoot"]
+      - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: ["enum.HumanoidVisualLayers.LHand"]
+      - map: ["enum.HumanoidVisualLayers.RHand"]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "ears" ]
+      - map: [ "innerBelt" ]
+      - map: [ "innerNeck" ]
+      - map: [ "outerClothing" ]
+      - map: [ "eyes" ]
+      - map: [ "belt" ]
+      - map: [ "id" ]
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "enum.HumanoidVisualLayers.Wings" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/tribalrevolver1.rsi
         state: inhand-right  # Only part we change, the gun sprite.
 
 - type: entity
-  name: Enforcer Chief
+  name: Tribal Warrior
   parent: N14BaseMobRaider
-  id: N14MobEnforcerChief
-  description: Rough man in fine clothes, carrying a magnum revolver.
-  components:
-    - type: Gun
-      minAngle: 4.5
-      maxAngle: 13.5
-      angleIncrease: 2
-      angleDecay: 4
-      fireRate: 1.25
-      soundGunshot: /Audio/_Nuclear14/Weapons/Guns/Revolvers/N14WeaponRevolverMagnun/shot1.ogg
-      useKey: false
-      selectedMode: SemiAuto
-      availableModes:
-        - SemiAuto
-    - type: CombatMode
-    - type: BasicEntityAmmoProvider
-      proto: N14Cartridge44Magnum
-      capacity: 6
-      count: 6
-    - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 2
-      rechargeSound:
-        path: /Audio/_Nuclear14/Weapons/Effects/Reload/Pistols/pistol_magin.ogg
+  id: N14MobNPCTribeWarr
+  suffix: NPC
+  description: A large and tough warrior, not many could best him in battle. He shall stand guard.
+  components: # No gun or ammo components because this is a melee variant.
+    - type: NpcFactionMember
+      factions:
+      - TribalSecureArea
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        150: Dead
     - type: Loadout
       prototypes:
-        - EnforcerChiefGear
+        - TribalWarriorNPC
     - type: Sprite
-      layers: # Long boring part to make sure layering is correct
-      - map: [ "enum.HumanoidVisualLayers.Chest" ]
-      - map: [ "enum.HumanoidVisualLayers.Head" ]
-      - map: [ "enum.HumanoidVisualLayers.Snout" ]
-      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-      - map: [ "enum.HumanoidVisualLayers.Face" ]
-      - map: [ "enum.HumanoidVisualLayers.RArm" ]
-      - map: [ "enum.HumanoidVisualLayers.LArm" ]
-      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      - shader: StencilClear
-        sprite: Mobs/Species/Human/parts.rsi
-      - shader: StencilMask
-        map: ["enum.HumanoidVisualLayers.StencilMask"]
-        sprite: Mobs/Customization/masking_helpers.rsi
-        state: unisex_full
-        visible: false
-      - map: ["jumpsuit"]
-      - map: ["enum.HumanoidVisualLayers.LFoot"]
-      - map: ["enum.HumanoidVisualLayers.RFoot"]
-      - map: ["enum.HumanoidVisualLayers.LHand"]
-      - map: ["enum.HumanoidVisualLayers.RHand"]
-      - map: [ "gloves" ]
-      - map: [ "shoes" ]
-      - map: [ "ears" ]
-      - map: [ "innerBelt" ]
-      - map: [ "innerNeck" ]
-      - map: [ "outerClothing" ]
-      - map: [ "eyes" ]
-      - map: [ "belt" ]
-      - map: [ "id" ]
-      - map: [ "neck" ]
-      - map: [ "back" ]
-      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-      - map: [ "enum.HumanoidVisualLayers.Hair" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-      - map: [ "enum.HumanoidVisualLayers.Tail" ]
-      - map: [ "enum.HumanoidVisualLayers.Wings" ]
-      - map: [ "mask" ]
-      - map: [ "head" ]
-      - map: [ "pocket1" ]
-      - map: [ "pocket2" ]
-      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
-        color: "#ffffff"
-        sprite: Objects/Misc/handcuffs.rsi
-        state: body-overlay-2
-        visible: false
-      - sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/magnum.rsi
-        state: inhand-right  # Only part we change, the gun sprite.
+      scale: 1.05, 1.05

@@ -9,6 +9,14 @@ trait-description-N14SignLanguage =
     You can understand and use a basic & generally accepted sign language.
     If you are mute for any reason, you can still communicate with sign language.
 
+trait-name-LanguageTribalRanger = Tribal Language
+trait-description-LanguageTribalRanger = You can understand and speak the local Tribal language. Whether through learning or backstory.
+
+trait-name-N14SignLanguageRanger = Sign Language
+trait-description-N14SignLanguageRanger =
+    You can understand and use a basic & generally accepted sign language.
+    If you are mute for any reason, you can still communicate with sign language.
+
 trait-name-N14ScottishAccent = Scottish Accent
 trait-description-N14ScottishAccent =
     Fer tha folk who come frae Hielan clan.  You have Scottish accent, that's about it. Do I have to explain it?
