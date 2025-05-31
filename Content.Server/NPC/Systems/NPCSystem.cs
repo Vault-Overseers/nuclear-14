@@ -7,6 +7,9 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Systems;
+using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -21,6 +24,7 @@ namespace Content.Server.NPC.Systems
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
         [Dependency] private readonly HTNSystem _htn = default!;
         [Dependency] private readonly MobStateSystem _mobState = default!;
+        [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
 
         /// <summary>
         /// Whether any NPCs are allowed to run at all.
@@ -38,6 +42,8 @@ namespace Content.Server.NPC.Systems
 
             Subs.CVar(_configurationManager, CCVars.NPCEnabled, value => Enabled = value, true);
             Subs.CVar(_configurationManager, CCVars.NPCMaxUpdates, obj => _maxUpdates = obj, true);
+
+            SubscribeLocalEvent<GetVerbsEvent<Verb>>(AddNpcOrderVerbs);
         }
 
         public void OnPlayerNPCAttach(EntityUid uid, HTNComponent component, PlayerAttachedEvent args)
@@ -71,7 +77,7 @@ namespace Content.Server.NPC.Systems
         /// <summary>
         /// Is the NPC awake and updating?
         /// </summary>
-        public bool IsAwake(EntityUid uid, HTNComponent component, ActiveNPCComponent? active = null)
+        public bool IsAwake(EntityUid uid, ActiveNPCComponent? active = null)
         {
             return Resolve(uid, ref active, false);
         }
@@ -154,6 +160,35 @@ namespace Content.Server.NPC.Systems
                 case MobState.Dead:
                     SleepNPC(uid, component);
                     break;
+            }
+        }
+
+        private void AddNpcOrderVerbs(GetVerbsEvent<Verb> args)
+        {
+            if (TryComp<NpcFactionMemberComponent>(args.Target, out var member)
+                    && member.FriendlyOrderable
+                    && _npcFaction.IsEntityFriendly(args.Target, args.User))
+            {
+                var start = new Verb()
+                {
+                    Text = Loc.GetString("npc-order-start"),
+                    Act = () => WakeNPC(args.Target)
+                };
+
+                var stop = new Verb()
+                {
+                    Text = Loc.GetString("npc-order-stop"),
+                    Act = () => SleepNPC(args.Target)
+                };
+
+                if (IsAwake(args.Target))
+                {
+                    args.Verbs.Add(stop);
+                }
+                else
+                {
+                    args.Verbs.Add(start);
+                }
             }
         }
     }
