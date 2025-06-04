@@ -63,6 +63,14 @@
       - map: [ "head" ]
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
+  - type: Perishable
+    rotAfter: 3600 # An entire in-game day.
+  - type: Hunger
+    starvationDamage:
+      types:
+        Cold: 0.5
+        Bloodloss: 0.5
+  - type: Thirst
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Ghoul
@@ -160,6 +168,14 @@
       - map: [ "head" ]
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
+  - type: Perishable
+    rotAfter: 3600 # An entire in-game day.
+  - type: Hunger
+    starvationDamage:
+      types:
+        Cold: 0.5
+        Bloodloss: 0.5
+  - type: Thirst
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: GhoulGlowing
@@ -181,7 +197,7 @@
       150: Dead
   - type: PointLight
     radius: 2
-    energy: 2
+    energy: 0.5
     color: "#4CBB17FF"
   - type: RadiationSource
     intensity: 0.5

@@ -1,0 +1,84 @@
+- type: entity
+  name: little stash
+  parent: BaseItem
+  id: N14RaiderStash
+  description: A small tin hiding riches, treasures, or maybe just garbage. You'll only know when you open it.
+  components:
+  - type: Sprite
+    scale: 0.5, 0.5
+    sprite: _Nuclear14/Objects/Misc/currency.rsi
+    state: moneypouch
+  - type: Item
+    size: Small
+  - type: StaticPrice
+    price: 0
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14CurrencyCap # Our dudes should carry some money.
+        prob: 0.6
+        orGroup: StashCash
+      - id: N14CurrencyCap10
+        prob: 0.3
+        orGroup: StashCash
+      - id: N14CurrencyCap50
+        prob: 0.1
+        orGroup: StashCash
+      - id: N14DirtyGauze1 # Let's also give them some medicine or chems.
+        prob: 0.25
+        orGroup: StashMeds
+      - id: N14Ointment1
+        prob: 0.1375
+        orGroup: StashMeds
+      - id: N14CleanGauze1
+        prob: 0.125
+        orGroup: StashMeds
+      - id: N14Jet
+        prob: 0.05
+        orGroup: StashMeds
+      - id: N14Turbo
+        prob: 0.05
+        orGroup: StashMeds
+      - id: N14Psycho
+        prob: 0.05
+        orGroup: StashMeds
+      - id: N14RadAwayBloodbag
+        prob: 0.05
+        orGroup: StashMeds
+      - id: N14HealingPowder
+        prob: 0.05
+        orGroup: StashMeds
+      - id: N14HealingPoultice
+        prob: 0.05
+        orGroup: StashMeds
+      - id: N14StimpakDirty
+        prob: 0.1
+        orGroup: StashMeds
+      - id: N14Stimpak
+        prob: 0.025
+        orGroup: StashMeds
+      - id: N14SuperStimpak
+        prob: 0.0125
+        orGroup: StashMeds
+      - id: N14MagazinePistol9mm #Let's give them som basic ammo types.
+        prob: 0.5
+        orGroup: StashAmmo
+      - id: N14MagazineSMG9mm
+        prob: 0.15
+        orGroup: StashAmmo
+      - id: N14MagazinePistol10mm
+        prob: 0.15
+        orGroup: StashAmmo
+      - id: Magazine556Rifle
+        prob: 0.05
+        orGroup: StashAmmo
+      - id: LongMagazine556Rifle
+        prob: 0.05
+        orGroup: StashAmmo
+      - id: N14MagazineShotgun12
+        prob: 0.05
+        orGroup: StashAmmo
+      - id: N14MagazineShotgun20
+        prob: 0.05
+        orGroup: StashAmmo
+    sound:
+      path: /Audio/Items/can_open3.ogg
