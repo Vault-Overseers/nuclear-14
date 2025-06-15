@@ -1,7 +1,6 @@
 using System.Numerics;
 using Content.KayMisaZlevels.Shared.Miscellaneous;
 using Content.KayMisaZlevels.Shared.Systems;
-using Content.Shared._Finster.Rulebook;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
@@ -57,9 +56,7 @@ public sealed partial class ClimbSystem : VirtualController
     [Dependency] private readonly SharedMapSystem _mapSys = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly DiceSystem _dice = default!;
 
-    public const string SkillClimbing = "Climbing";
 
     private const string ClimbingFixtureName = "climb";
     private const int ClimbingCollisionGroup = (int) (CollisionGroup.TableLayer | CollisionGroup.LowImpassable);
@@ -270,24 +267,6 @@ public sealed partial class ClimbSystem : VirtualController
         // Try to move player between Z levels, if descend coords is not null
         if (component.DescendCoords is not null && _netManager.IsServer)
         {
-            // If it is ladders or another objects - ignore skill checking
-            if (!component.IgnoreSkillCheck)
-            {
-                // Check skill known in character
-                if (!_dice.TryGetSkill(uid, SkillClimbing, out var skillLevel))
-                {
-                    SendDescendFailureMessage(uid, args.Args.Used.Value, args.Args.Target.Value);
-                    return;
-                }
-
-                // Try roll skill
-                if (!_dice.RollSkill(out var critical, dice: SkillsComponent.GetDice(skillLevel)))
-                {
-                    SendDescendFailureMessage(uid, args.Args.Used.Value, args.Args.Target.Value);
-                    return;
-                }
-            }
-
             DescendedClimb(uid, args.Args.Used.Value, args.Args.Target.Value, climbing: component);
             args.Handled = true;
             return;

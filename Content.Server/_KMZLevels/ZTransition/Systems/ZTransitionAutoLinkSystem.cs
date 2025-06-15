@@ -2,6 +2,7 @@ using Content.KayMisaZlevels.Server.Systems;
 using Content.KayMisaZlevels.Shared.Components;
 using Content.KayMisaZlevels.Shared.Miscellaneous;
 using Content.Shared.Climbing.Components;
+using Content.Shared.Climbing;
 using Content.Shared.Teleportation.Components;
 using Content.Shared.Teleportation.Systems;
 using Robust.Server.GameObjects;
