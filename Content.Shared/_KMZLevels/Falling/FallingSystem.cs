@@ -41,7 +41,8 @@ public sealed class FallingSystem : EntitySystem
                 continue;
             _stun.TryParalyze(contact.Owner, ent.Comp.LandingStunTime, true);
             _damSystem.TryChangeDamage(contact.Owner, ent.Comp.BaseDamage * args.Distance, ignoreResistances: true, targetPart: TargetBodyPart.Head);
-            _damSystem.TryChangeDamage(contact.Owner, ent.Comp.BaseDamage * args.Distance, ignoreResistances: true, targetPart: TargetBodyPart.Neck);
+            // Neck isn't defined in our TargetBodyPart enum so deal torso damage instead.
+            _damSystem.TryChangeDamage(contact.Owner, ent.Comp.BaseDamage * args.Distance, ignoreResistances: true, targetPart: TargetBodyPart.Torso);
         }
 
         //if (TryComp<JumpComponent>(ent.Owner, out var jumpComp))

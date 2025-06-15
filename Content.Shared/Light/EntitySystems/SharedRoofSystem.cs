@@ -79,7 +79,9 @@ public abstract class SharedRoofSystem : EntitySystem
             if (!isRoofEnt.Comp.Enabled)
                 continue;
 
-            return isRoofEnt.Comp.Color ?? roof.Color;
+            // Individual roof entities don't carry a colour property in this codebase,
+            // so fallback to the roof component's colour.
+            return roof.Color;
         }
 
         return null;
