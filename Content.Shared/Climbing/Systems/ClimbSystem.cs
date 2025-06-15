@@ -1,3 +1,6 @@
+using System.Numerics;
+using Content.KayMisaZlevels.Shared.Miscellaneous;
+using Content.KayMisaZlevels.Shared.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
@@ -9,13 +12,19 @@ using Content.Shared.DragDrop;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Maps;
+using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Standing;
 using Content.Shared.Stunnable;
+using Content.Shared.Tag;
 using Content.Shared.Traits.Assorted.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
@@ -31,6 +40,8 @@ namespace Content.Shared.Climbing.Systems;
 public sealed partial class ClimbSystem : VirtualController
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
@@ -41,9 +52,16 @@ public sealed partial class ClimbSystem : VirtualController
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
+    [Dependency] private readonly SharedZStackSystem _zStack = default!;
+    [Dependency] private readonly SharedMapSystem _mapSys = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+
 
     private const string ClimbingFixtureName = "climb";
     private const int ClimbingCollisionGroup = (int) (CollisionGroup.TableLayer | CollisionGroup.LowImpassable);
+
+    private const string WallTag = "Wall";
 
     private EntityQuery<FixturesComponent> _fixturesQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -65,6 +83,7 @@ public sealed partial class ClimbSystem : VirtualController
         SubscribeLocalEvent<ClimbableComponent, CanDropTargetEvent>(OnCanDragDropOn);
         SubscribeLocalEvent<ClimbableComponent, GetVerbsEvent<AlternativeVerb>>(AddClimbableVerb);
         SubscribeLocalEvent<ClimbableComponent, DragDropTargetEvent>(OnClimbableDragDrop);
+        SubscribeLocalEvent<ClimbableComponent, AttemptClimbEvent>(OnAttemtClimb);
 
         SubscribeLocalEvent<GlassTableComponent, ClimbedOnEvent>(OnGlassClimbed);
     }
@@ -213,6 +232,10 @@ public sealed partial class ClimbSystem : VirtualController
         if (climbing.IsClimbing)
             return true;
 
+        // Should be cleared, before a new define for the descend coordinates
+        climbing.IgnoreSkillCheck = false;
+        climbing.DescendCoords = null;
+
         var ev = new AttemptClimbEvent(user, entityToMove, climbable);
         RaiseLocalEvent(climbable, ref ev);
         if (ev.Cancelled)
@@ -241,8 +264,98 @@ public sealed partial class ClimbSystem : VirtualController
         if (args.Handled || args.Cancelled || args.Args.Target == null || args.Args.Used == null)
             return;
 
+        // Try to move player between Z levels, if descend coords is not null
+        if (component.DescendCoords is not null && _netManager.IsServer)
+        {
+            DescendedClimb(uid, args.Args.Used.Value, args.Args.Target.Value, climbing: component);
+            args.Handled = true;
+            return;
+        }
+
         Climb(uid, args.Args.User, args.Args.Target.Value, climbing: component);
         args.Handled = true;
+    }
+
+    private void SendDescendFailureMessage(EntityUid uid, EntityUid user, EntityUid climbable)
+    {
+        string selfMessage;
+
+        if (user == uid)
+        {
+            selfMessage = Loc.GetString("comp-climbable-user-climbs-failure", ("climbable", climbable));
+        }
+        else
+        {
+            selfMessage = Loc.GetString("comp-climbable-user-climbs-failure-force", ("moved-user", Identity.Entity(uid, EntityManager)),
+            ("climbable", climbable));
+        }
+
+        _popupSystem.PopupEntity(selfMessage, uid, user, PopupType.SmallCaution);
+    }
+
+    private void DescendedClimb(EntityUid uid, EntityUid user, EntityUid climbable, bool silent = false, ClimbingComponent? climbing = null,
+        PhysicsComponent? physics = null, FixturesComponent? fixtures = null, ClimbableComponent? comp = null)
+    {
+        if (!Resolve(uid, ref climbing, ref physics, ref fixtures, false))
+            return;
+
+        if (!Resolve(climbable, ref comp, false))
+            return;
+
+        if (climbing.DescendCoords is null)
+            return;
+
+        var selfEvent = new SelfBeforeClimbEvent(uid, user, (climbable, comp));
+        RaiseLocalEvent(uid, selfEvent);
+
+        if (selfEvent.Cancelled)
+            return;
+
+        var targetEvent = new TargetBeforeClimbEvent(uid, user, (climbable, comp));
+        RaiseLocalEvent(climbable, targetEvent);
+
+        if (targetEvent.Cancelled)
+            return;
+
+        // Move the entity on new map
+        // TODO: Maybe it should be animated or something like that
+        _xformSystem.SetCoordinates(user, climbing.DescendCoords.Value);
+
+        climbing.DescendCoords = null;
+        Dirty(uid, climbing);
+
+        _audio.PlayPredicted(comp.FinishClimbSound, climbable, user);
+
+        var startEv = new StartClimbEvent(climbable);
+        var climbedEv = new ClimbedOnEvent(uid, user);
+        RaiseLocalEvent(uid, ref startEv);
+        RaiseLocalEvent(climbable, ref climbedEv);
+
+        if (silent)
+            return;
+
+        string selfMessage;
+        string othersMessage;
+
+        if (user == uid)
+        {
+            othersMessage = Loc.GetString("comp-climbable-user-climbs-other",
+                ("user", Identity.Entity(uid, EntityManager)),
+                ("climbable", climbable));
+
+            selfMessage = Loc.GetString("comp-climbable-user-climbs", ("climbable", climbable));
+        }
+        else
+        {
+            othersMessage = Loc.GetString("comp-climbable-user-climbs-force-other",
+                ("user", Identity.Entity(user, EntityManager)),
+                ("moved-user", Identity.Entity(uid, EntityManager)), ("climbable", climbable));
+
+            selfMessage = Loc.GetString("comp-climbable-user-climbs-force", ("moved-user", Identity.Entity(uid, EntityManager)),
+                ("climbable", climbable));
+        }
+
+        _popupSystem.PopupPredicted(selfMessage, othersMessage, uid, user);
     }
 
     private void Climb(EntityUid uid, EntityUid user, EntityUid climbable, bool silent = false, ClimbingComponent? climbing = null,
@@ -359,6 +472,169 @@ public sealed partial class ClimbSystem : VirtualController
                 manager: fixturesComp))
         {
             return false;
+        }
+
+        return true;
+    }
+
+    private void OnAttemtClimb(EntityUid uid, ClimbableComponent climbable, ref AttemptClimbEvent args)
+    {
+        if (!TryComp<ClimbingComponent>(args.Climber, out var climbing) ||
+            climbable.DescendDirection is null)
+            return;
+
+        var climbableXform = Transform(args.Climbable);
+
+        // If true - set descend coords for Z levels transition
+        if (TryGetDescendableCoords(
+                args.Climber,
+                climbable.DescendDirection.Value,
+                out var targetEntityCoords,
+                targetPosition: climbableXform.Coordinates.Position,
+                comp: climbing,
+                ignoreTiles: climbable.IgnoreTiles))
+        {
+            climbing.IgnoreSkillCheck = climbable.IgnoreSkillCheck;
+            climbing.DescendCoords = targetEntityCoords;
+        }
+        else
+        {
+            args.Cancelled = true;
+        }
+    }
+
+    /// <summary>
+    ///     Try to check if climber can descend on Z level.
+    ///     If result is true, then we can use the out variable of EntityCoordinates.
+    /// </summary>
+    /// <param name="climber"></param>
+    /// <param name="direction"></param>
+    /// <param name="descendEntityCoords"></param>
+    /// <param name="targetPosition"></param>
+    /// <param name="comp"></param>
+    /// <param name="ignoreTiles"></param>
+    /// <returns></returns>
+    public bool TryGetDescendableCoords(
+        EntityUid climber,
+        ClimbDirection direction,
+        out EntityCoordinates? descendEntityCoords,
+        Vector2? targetPosition = null,
+        ClimbingComponent? comp = null,
+        bool ignoreTiles = false)
+    {
+        descendEntityCoords = null;
+
+        if (!Resolve(climber, ref comp))
+            return false;
+
+        var xform = Transform(climber);
+        if (xform.MapUid == null)
+            return false;
+
+        if (!_zStack.TryGetZStack(xform.MapUid.Value, out var zStack))
+            return false;
+
+        var maps = zStack.Value.Comp.Maps;
+        var mapIdx = maps.IndexOf(xform.MapUid.Value);
+        int targetMapIdx = -1;
+        if (direction == ClimbDirection.Down)
+        {
+            targetMapIdx = mapIdx - 1;
+
+            // Because there is no bottom levels
+            if (targetMapIdx < 0)
+                return false;
+        }
+        else
+        {
+            targetMapIdx = mapIdx + 1;
+
+            // Because there is no top levels
+            if (targetMapIdx >= maps.Count)
+                return false;
+        }
+
+        if ((TryComp<InputMoverComponent>(climber, out var inputMoverComp) && !inputMoverComp.CanMove) ||
+            (TryComp<StandingStateComponent>(climber, out var standingComp) && standingComp.CurrentState < StandingState.Standing))
+            return false;
+
+        if (targetPosition is null)
+            targetPosition = xform.Coordinates.Position;
+
+        var userTransf = Transform(climber);
+        if ((userTransf.WorldPosition - targetPosition.Value).Length() > comp.DescendRange)
+            return false;
+
+        descendEntityCoords = new EntityCoordinates(maps[targetMapIdx], targetPosition.Value);
+
+        // If we try to climb on ladders - then there is all okay, we can do it.
+        if (ignoreTiles)
+            return true;
+
+        // Check grids and another world objects.
+        if (direction == ClimbDirection.Down)
+        {
+            // No grids founded
+            if (!_mapManager.TryFindGridAt(maps[mapIdx], targetPosition.Value, out _, out var grid))
+                return false;
+
+            // Check if there is a bottom grid.
+            if (!_mapManager.TryFindGridAt(maps[targetMapIdx], targetPosition.Value, out var bottomGridUid, out var bottomGrid))
+                return false;
+
+            var currentEntityCoords = new EntityCoordinates(maps[mapIdx], targetPosition.Value);
+            var currentCoordsPosInt = currentEntityCoords.ToVector2i(EntityManager, _mapManager, _xformSystem);
+            var descendCoordsPosInt = descendEntityCoords.Value.ToVector2i(EntityManager, _mapManager, _xformSystem);
+
+            // Check grid on current map.
+            _mapSys.TryGetTile(grid, currentCoordsPosInt, out var tile);
+            // Tile should be empty.
+            if (!tile.IsEmpty)
+                return false;
+
+            // Check for grid on bottom map. Because we can't descend on the empty tile.
+            _mapSys.TryGetTile(bottomGrid, descendCoordsPosInt, out var bottomTile);
+            if (bottomTile.IsEmpty)
+                return false;
+
+            // Check walls on the tile.
+            var tileBounds = new Box2(descendCoordsPosInt, descendCoordsPosInt + bottomGrid.TileSize);
+            tileBounds = tileBounds.Enlarged(-0.1f);
+            foreach (var ent in _lookup.GetEntitiesIntersecting(bottomGridUid, tileBounds))
+            {
+                if (_tag.HasTag(ent, WallTag))
+                    return false;
+            }
+        }
+        else // If we wanna go up
+        {
+            // Check if there is a bottom grid.
+            if (!_mapManager.TryFindGridAt(maps[targetMapIdx], targetPosition.Value, out var topGridUid, out var topGrid))
+                return false;
+
+            var currentEntityCoords = xform.Coordinates;
+            var currentCoordsPosInt = currentEntityCoords.ToVector2i(EntityManager, _mapManager, _xformSystem);
+            var descendCoordsPosInt = descendEntityCoords.Value.ToVector2i(EntityManager, _mapManager, _xformSystem);
+
+            // Check grid on top map from cur position. Because we can't dodge the roof hehe.
+            _mapSys.TryGetTile(topGrid, currentCoordsPosInt, out var tile);
+            // Tile should be empty.
+            if (!tile.IsEmpty)
+                return false;
+
+            // Check for grid on bottom map. Because we can't descend on the empty tile.
+            _mapSys.TryGetTile(topGrid, descendCoordsPosInt, out var topTile);
+            if (topTile.IsEmpty)
+                return false;
+
+            // Check walls on the tile.
+            var tileBounds = new Box2(descendCoordsPosInt, descendCoordsPosInt + topGrid.TileSize);
+            tileBounds = tileBounds.Enlarged(-0.1f);
+            foreach (var ent in _lookup.GetEntitiesIntersecting(topGridUid, tileBounds))
+            {
+                if (_tag.HasTag(ent, WallTag))
+                    return false;
+            }
         }
 
         return true;
