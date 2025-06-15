@@ -1,0 +1,11 @@
+﻿<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <!-- Locate RT so we can depend on it. RT projects traditionally bring in their own versioned copy of RT instead of using NuGet. -->
+    <RobustToolboxLocation Condition="Exists('../RobustToolbox')">../RobustToolbox</RobustToolboxLocation>
+    <RobustToolboxLocation Condition="Exists('../../RobustToolbox')">../../RobustToolbox</RobustToolboxLocation>
+    <RobustToolboxLocation Condition="Exists('../../../RobustToolbox')">../../../RobustToolbox</RobustToolboxLocation>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\RobustToolbox.props" />
+  <PropertyGroup>
+    <!-- Work around https://github.com/dotnet/project-system/issues/4314 -->
+    <TargetFramework>$(TargetFramework)</TargetFramework>
+    <LangVersion>12</LangVersion>
+    <IsPackable>false</IsPackable>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+    <Nullable>enable</Nullable>
+    <NoWarn>MSB4011</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Content.KZLevels.Shared\Content.KayMisaZlevels.Shared.csproj" />
+    <ProjectReference Include="$(RobustToolboxLocation)/Robust.Shared.Maths/Robust.Shared.Maths.csproj" />
+    <ProjectReference Include="$(RobustToolboxLocation)/Robust.Shared/Robust.Shared.csproj" />
+    <ProjectReference Include="$(RobustToolboxLocation)/Robust.Client/Robust.Client.csproj" />
+  </ItemGroup>
+
+  <Import Project="$(RobustToolboxLocation)/MSBuild/Robust.Properties.targets" />
+</Project>

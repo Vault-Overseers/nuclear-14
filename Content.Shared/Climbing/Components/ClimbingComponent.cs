@@ -1,5 +1,6 @@
 using System.Numerics;
 using Robust.Shared.GameStates;
+using Robust.Shared.Map;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Climbing.Components;
@@ -46,4 +47,22 @@ public sealed partial class ClimbingComponent : Component
 
     [AutoNetworkedField, DataField]
     public Dictionary<string, int> DisabledFixtureMasks = new();
+
+    /// <summary>
+    /// Stores coordinates calculated when descending between Z levels. Only valid for the duration of the climb.
+    /// </summary>
+    [AutoNetworkedField, DataField]
+    public EntityCoordinates? DescendCoords;
+
+    /// <summary>
+    /// Range within which a descent can begin. Defaults to normal climbing range.
+    /// </summary>
+    [DataField]
+    public float DescendRange = 2f;
+
+    /// <summary>
+    /// Whether skill checks should be ignored for the current climb action.
+    /// </summary>
+    [DataField]
+    public bool IgnoreSkillCheck;
 }

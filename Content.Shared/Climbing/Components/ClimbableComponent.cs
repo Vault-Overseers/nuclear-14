@@ -1,4 +1,5 @@
 using Content.Shared.Interaction;
+using Content.Shared.Climbing;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
@@ -32,5 +33,24 @@ namespace Content.Shared.Climbing.Components
         /// </summary>
         [DataField("finishClimbSound")]
         public SoundSpecifier? FinishClimbSound = null;
+
+        /// <summary>
+        /// Optional direction used for Z level transitions when this climbable acts as a ladder or stairs.
+        /// </summary>
+        [DataField]
+        public ClimbDirection? DescendDirection;
+
+        /// <summary>
+        /// If true, tile checks are skipped when determining if the user can descend.
+        /// </summary>
+        [DataField]
+        public bool IgnoreTiles;
+
+        /// <summary>
+        /// If true, skill checks are ignored when climbing via this entity.
+        /// Only used by KMZ Z-level features.
+        /// </summary>
+        [DataField]
+        public bool IgnoreSkillCheck;
     }
 }
