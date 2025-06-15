@@ -111,7 +111,9 @@ public sealed partial class ZDefinedStackSystem : EntitySystem
             LoadMap = true
         };
 
-        if (_mapLoader.TryLoad(_map.CreateMap(out var mapId), path.ToString(), out var roots, options))
+        var mapUid = _map.CreateMap(out var mapId);
+
+        if (_mapLoader.TryLoad(mapId, path.ToString(), out var roots, options))
         {
             var map = _mapManager.GetMapEntityId(mapId);
 
