@@ -20,13 +20,16 @@ public class SharedZTransitionStairsSystem : EntitySystem
 {
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedZStackSystem _zStack = default!;
+    [Dependency] private readonly IEntitySystemManager _sysMan = default!;
+
+    private SharedZStackSystem? _zStack;
 
     private const string UpFixture = "upFixture";
     private const string DownFixture = "downFixture";
 
     public override void Initialize()
     {
+        _zStack = _sysMan.GetEntitySystem<SharedZStackSystem>();
         SubscribeLocalEvent<ZStairsComponent, StartCollideEvent>(OnTeleportStartCollide);
     }
 
@@ -83,8 +86,8 @@ public class SharedZTransitionStairsSystem : EntitySystem
         if (!TryComp<TransformComponent>(target, out var targetXformComp) || targetXformComp.MapUid is null)
             return false;
 
-        if (!_zStack.TryGetZStack((EntityUid) xformComp.MapUid, out var zStack))
-            return false; // Not in a Z level containing space.
+        if (_zStack == null || !_zStack.TryGetZStack((EntityUid) xformComp.MapUid, out var zStack))
+            return false; // Not in a Z level containing space or system missing.
 
         var maps = zStack.Value.Comp.Maps;
         var mapIdx = maps.IndexOf((EntityUid) xformComp.MapUid);
