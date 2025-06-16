@@ -1,47 +1,51 @@
 - type: entity
-  parent: BaseMobHuman
+  parent: BaseMobSpeciesOrganic
   id: N14BaseMobRaider
   abstract: true
   suffix: AI
   components:
-    - type: Hunger
-      thresholds:
-        Overfed: 200
-        Okay: 150
-        Peckish: 100
-        Starving: 50
-        Dead: 0
-      baseDecayRate: 0.0 # Decay rate decreased to 0, because humanoid raider NPCs are able to starve to death. We generally don't need life sim for any hostile mob.
-    - type: Thirst
-      thresholds:
-        OverHydrated: 200
-        Okay: 150
-        Thirsty: 100
-        Parched: 50
-        Dead: 0
-      baseDecayRate: 0.0 # Decay rate decreased to 0, because hostile mobs can be way too easily defeated by slowness applied to them.
     - type: NpcFactionMember
       factions:
       - Raider
     - type: MobThresholds
       thresholds:
         0: Alive
-        100: Dead #Tweak for "Acidify on Crit"
+        100: Dead
+    - type: PassiveDamage # It's mostly for the faction NPCs, but can be here nonetheless.
+      allowedStates:
+      - Alive
+      damage:
+        groups:
+          Toxin: -1
+          Airloss: -3
     - type: MindContainer
       showExamineInfo: False
     - type: InputMover
+    - type: Rotatable
     - type: MobMover
     - type: SurgeryTarget
       canOperate: false
     - type: HTN
       rootTask:
-        task: SimpleHumanoidHostileCompound
+        task: N14RangedHostileCompound
+    - type: Carriable
+    - type: Butcherable
+      butcheringType: Spike
+      spawned:
+      - id: FoodMeatHuman
+        amount: 5
+    - type: HumanoidAppearance
+      species: Human
+      hideLayersOnEquip:
+      - Hair
+      - Snout
     - type: Sprite
       layers:
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
       - map: [ "enum.HumanoidVisualLayers.Head" ]
       - map: [ "enum.HumanoidVisualLayers.Snout" ]
       - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.Face" ]
       - map: [ "enum.HumanoidVisualLayers.RArm" ]
       - map: [ "enum.HumanoidVisualLayers.LArm" ]
       - map: [ "enum.HumanoidVisualLayers.RLeg" ]
@@ -64,6 +68,9 @@
       - map: [ "gloves" ]
       - map: [ "shoes" ]
       - map: [ "ears" ]
+      - map: [ "innerBelt" ]
+      - map: [ "innerNeck" ]
+      - map: [ "outerClothing" ]
       - map: [ "eyes" ]
       - map: [ "belt" ]
       - map: [ "id" ]
@@ -74,8 +81,11 @@
       - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
       - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
       - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "enum.HumanoidVisualLayers.Wings" ]
       - map: [ "mask" ]
       - map: [ "head" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
       - map: ["enum.HumanoidVisualLayers.Handcuffs"]
         color: "#ffffff"
         sprite: Objects/Misc/handcuffs.rsi
@@ -85,20 +95,3 @@
         sprite: "Effects/creampie.rsi"
         state: "creampie_human"
         visible: false
-    - type: Destructible
-      thresholds:
-      - trigger:
-          !type:DamageTypeTrigger
-          damageType: Heat
-          damage: 400
-        behaviors:
-        - !type:SpawnEntitiesBehavior
-          spawnInContainer: true
-          spawn:
-            Ash:
-              min: 1
-              max: 1
-        - !type:BurnBodyBehavior { }
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MeatLaserImpact

@@ -618,33 +618,33 @@
     reattaching: true
     slotId: eyes
 
-- type: entity
-  parent: SurgeryBase
-  id: SurgeryLobotomize
-  name: Lobotomize
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Surgery
-    requirement: SurgeryOpenIncision
-    steps:
-    - SurgeryStepLobotomize
-    - SurgeryStepCloseIncision
-  - type: SurgeryOrganCondition
-    organ:
-    - type: Brain
-    slotId: brain
-  - type: SurgeryOrganOnAddCondition
-    components:
-      brain:
-        - type: OhioAccent
-        - type: RatvarianLanguage
-        - type: Clumsy
-          gunShootFailDamage: # Placeholder values to be able to initialize the component
-            types:
-              Blunt: 0
-    inverse: true
-  - type: SurgeryPartCondition
-    part: Head
+# - type: entity
+  # parent: SurgeryBase
+  # id: SurgeryLobotomize
+  # name: Lobotomize
+  # categories: [ HideSpawnMenu ]
+  # components:
+  # - type: Surgery
+    # requirement: SurgeryOpenIncision
+    # steps:
+    # - SurgeryStepLobotomize
+    # - SurgeryStepCloseIncision
+  # - type: SurgeryOrganCondition
+    # organ:
+    # - type: Brain
+    # slotId: brain
+  # - type: SurgeryOrganOnAddCondition
+    # components:
+      # brain:
+        # - type: OhioAccent
+        # - type: RatvarianLanguage
+        # - type: Clumsy
+          # gunShootFailDamage: # Placeholder values to be able to initialize the component
+            # types:
+              # Blunt: 0
+    # inverse: true
+  # - type: SurgeryPartCondition
+    # part: Head
 
 - type: entity
   parent: SurgeryBase

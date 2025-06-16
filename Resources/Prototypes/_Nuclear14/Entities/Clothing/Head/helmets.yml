@@ -331,6 +331,52 @@
 
 - type: entity
   parent: N14ClothingHeadHatBaseHelmetMetal
+  id: N14ClothingHeadHatNCRHelmetMetalRadioWood
+  name: NCR radio helmet
+  description: A rounded NCR helmet offering some protection, this one is commonly used by radio operators and NCOs.
+  categories: [ HideSpawnMenu ] # Unused for now
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrsergeanthelmet.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrsergeanthelmet.rsi
+  - type: Headset
+    requiredSlot: HEAD
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNCR
+  - type: EncryptionKeyHolder
+    keySlots: 4
+
+- type: entity
+  parent: N14ClothingHeadHatNCRHelmetMetalRadioWood
+  id: N14ClothingHeadHatNCRHelmetMetalRadioSnow
+  name: NCR radio helmet
+  description: A rounded NCR helmet offering some protection, this one is commonly used by radio operators and NCOs.
+  categories: [ HideSpawnMenu ] #Unused for now
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrsergeanthelmet2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrsergeanthelmet2.rsi
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMetal
+  id: N14ClothingHeadHatNCRHelmetMetalGhillie
+  name: NCR ghillie helmet
+  description: A rounded NCR helmet offering some protection, this one has been covered with some ghillie forest camo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmetghillie.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmetghillie.rsi
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMetal
   id: N14ClothingHeadHatNCRHelmetMetalMilitaryPolice
   name: NCR metal helmet
   description: A rounded NCR helmet offering some protection, worn by Military Police.
@@ -705,13 +751,49 @@
 - type: entity
   parent: N14ClothingHeadHatBaseHelmetMK2
   id: N14ClothingHeadHatTribalPowerhelm
-  name: Elders Heavy Helmet
-  description: A relic of the past. handed down to you
+  name: elders heavy helmet
+  description: A relic of the past. Handed down to you.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/tribalpowerhelm.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/tribalpowerhelm.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+  - type: IngestionBlocker
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: N14ClothingHeadHatCombatHelmet
+  id: N14ClothingHeadHatEdlerSkullhelm
+  name: elders skull helmet
+  description: The skull of a mighty beast, worn as a trophy.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/drylander-elder-helm.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/drylander-elder-helm.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+  - type: IngestionBlocker
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: N14ClothingHeadHatCombatHelmet
+  id: N14ClothingHeadHatEldersDamagedSkullHelm
+  name: elders skull helmet
+  description: The skull of a mighty beast, damaged from the battle but still a great trophy.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/drylander-elder-helm-broken.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/drylander-elder-helm-broken.rsi
   - type: HideLayerClothing
     slots:
     - Hair

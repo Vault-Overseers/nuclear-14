@@ -53,6 +53,7 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:Container
+
 - type: entity
   parent: ClothingNeckBase
   id: N14ClothingNeckCloakRangerPoncho
@@ -106,8 +107,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: N14ClothingNeckCloakYaoguai
-  name: yaoguai cloak
-  description: A handmade cloak, comfy and warm. This piece comes from a dangerous yao-guai.
+  name: Yao Guai cloak
+  description: A handmade cloak, comfy and warm. This piece comes from a dangerous Yao Guai.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Neck/yaoguai.rsi
@@ -128,3 +129,73 @@
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Neck/darkcloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckCloakGhillie
+  name: ghillie cloak
+  description: A cloak of ghillie forest camo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/ghilliecloak.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadHatHoodGhillieCloak
+    requiredSlot: neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:Container
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckShawl
+  name: shawl
+  description: A shawl worn around the neck.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/Shawl.rsi
+
+
+#tribe
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckTribalCloak
+  name: tribal cloak
+  description: A handmade cloak from the local tribe. It will keep you warm on a cold winter.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/Tribal-Cloak.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadTribalCloakHood
+    requiredSlot: neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:Container
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 2
+
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckTribalCloakBr
+  name: tribal cloak
+  description: A brown handmade cloak from the local tribe. It will keep you warm on a cold winter.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/Tribal-Cloak-Br.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadTribalCloakHoodBr
+    requiredSlot: neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:Container
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 2

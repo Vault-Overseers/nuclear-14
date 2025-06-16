@@ -141,6 +141,13 @@ undecided-loadout-category-ws-sniper-description =
     1 .50 sniper rifle, 1 box of .50 rounds, 1 9mm pistol, 2 9mm pistol magazines,
     C ration MRE, 1 stimpak, 1 Radaway inhaler, 1 bandage pack and a flare.
 
+undecided-loadout-category-ws-stealth-name = Specialist Infiltrator Kit
+undecided-loadout-category-ws-stealth-description =
+    A crate containing all a NCR soldier needs to take people out in the dark.
+    Includes 1 dark NCR leather vest, 1 black balaclava, 1 NCR belt, 1 night vision
+    goggles, 1 suppressed SMG, 3 9mm SMG magazines, 1 9mm pistol, 2 9mm pistol magazines,
+    C ration MRE, 1 stimpak, 1 Radaway inhaler, 1 bandage pack and a flare.
+
 # NCRA Sergeant Kits
 
 undecided-loadout-category-sgt-rifleman-name = Sergeant Rifleman Kit
@@ -404,3 +411,45 @@ undecided-loadout-category-wbos-pal-las-description =
     A cache containing belongings of a Washington chapter Paladin.
     Includes 1 AER-9, 3 microfusion cells, 1 plasma pistol,
     2 plasma cells, 1 roll of gauze, 1 stimpak, and 1 K ration MRE.
+
+
+# Tribal Kits
+
+undecided-loadout-category-Tribal-Stalker-name = Tribal Stalker Kit
+undecided-loadout-category-Tribal-Stalker-description =
+    A crate containing everything a hunter of the old ways will need.
+    Inside you will find a bow, a quiver with enough arrows to fill it
+    and your trusty spear.
+
+undecided-loadout-category-Tribal-Champion-name = Tribal Champion Kit
+undecided-loadout-category-Tribal-Champion-description =
+    A crate containing everything for those who defend the tribes honour.
+    Inside you will find your two handed club, a quiver of javelins
+    and a yao guai cloak to show your ferocity.
+
+undecided-loadout-category-Tribal-Fire-Hand-name = Tribal Fire Hand Kit
+undecided-loadout-category-Tribal-Fire-Hand-description =
+    A crate containing everything a tribal gunslinger would want.
+    Inside you will find a holster with two revolvers and spare ammo.
+    Make your shots count kin.
+
+undecided-loadout-category-Tribal-Hunter-name = Tribal Hunter Kit
+undecided-loadout-category-Tribal-Hunter-description =
+    A crate containing everything for those who hunt with a rifle.
+    Using powder and fire to bring down big targets.
+    Inside you will find your trusty huntstick and a machete
+    if your prey causes problems. Spare ammo included.
+
+undecided-loadout-category-Tribal-Bone-Breaker-name = Tribal Bone Breaker Kit
+undecided-loadout-category-Bone-Breaker-description =
+    A crate containing everything for those who fight using powder and fire.
+    Shooting often to bring down the foe.
+    Inside you will find your reliable tribal rifle and a machete.
+    Spare ammo included.
+
+undecided-loadout-category-Tribal-pain-bringer-name = Tribal Pain Bringer Kit
+undecided-loadout-category-Tribal-pain-bringer-description =
+    A crate containing everything for those who fight up close
+    with powder and fury. Inside you will find.
+    Your sturdy boom stick thats strong enough to break any foe.
+    Spare shells included and a mask for protection when up close.

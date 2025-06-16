@@ -1,0 +1,37 @@
+- type: htnCompound
+  id: N14TurretCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyGunTargets
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              rangeKey: RangedRange
+            - !type:TargetInLOSPrecondition
+              targetKey: Target
+              rangeKey: RangedRange
+          operator: !type:GunOperator
+            targetKey: Target
+            requireLOS: true
+          services:
+            - !type:UtilityService
+              id: RangedService
+              proto: NearbyGunTargets
+              key: Target
+# No unnecessary turret spin all the time.
+
+- type: htnCompound
+  id: N14RangedHostileCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: N14RangedCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: N14MeleeCombatCompound
+# Whole point of making this was to ensure mobs don't roam around freely across the map when they have no targets. Don't change that.

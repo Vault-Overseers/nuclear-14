@@ -90,6 +90,7 @@
     - NCRA_GunnerSet
     - NCRA_GrenadierSet
     - NCRA_SniperSet
+    - NCRA_StealthSet
 
 - type: entity
   id: NCRSGTloadoutkits
@@ -447,6 +448,16 @@
     state: marksman
   content:
   - KitNCR_WSSniper
+
+- type: UndecidedLoadoutBackpackSet
+  id: NCRA_StealthSet
+  name: undecided-loadout-category-ws-stealth-name
+  description: undecided-loadout-category-ws-stealth-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitNCR_WSStealth
 
 # NCRA Sergeant Kits
 - type: UndecidedLoadoutBackpackSet
@@ -850,3 +861,92 @@
     state: rifleman
   content:
   - KitWBoS_PalLas
+
+#MARK: Tribal
+
+- type: entity
+  id: Triballoadoutkits
+  name: Undecided Tribal Loadout Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - TribalStalkerSet
+    - TribalChampionSet
+    - TribalHunterSet
+    - TribalBoneBreakerSet
+    - TribalPainBringerSet
+    - TribalFireHand
+
+
+#tribal bow
+- type: UndecidedLoadoutBackpackSet
+  id: TribalStalkerSet
+  name: undecided-loadout-category-Tribal-Stalker-name
+  description: undecided-loadout-category-Tribal-Stalker-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - Kittribalstalker
+
+
+#two revolvers
+- type: UndecidedLoadoutBackpackSet
+  id: TribalFireHand
+  name: undecided-loadout-category-Tribal-Fire-Hand-name
+  description: undecided-loadout-category-Tribal-Fire-Hand-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - Kittribalfirehand
+
+#two handed club
+- type: UndecidedLoadoutBackpackSet
+  id: TribalChampionSet
+  name: undecided-loadout-category-Tribal-Champion-name
+  description: undecided-loadout-category-Tribal-Champion-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - Kittribalchampion
+
+
+#hunt stick
+- type: UndecidedLoadoutBackpackSet
+  id: TribalHunterSet
+  name: undecided-loadout-category-Tribal-Hunter-name
+  description: undecided-loadout-category-Tribal-Hunter-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - Kittribalhunter
+
+
+#tribal rifle
+- type: UndecidedLoadoutBackpackSet
+  id: TribalBoneBreakerSet
+  name: undecided-loadout-category-Tribal-Bone-Breaker-name
+  description: undecided-loadout-category-Bone-Breaker-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - Kittribalbonebreaker
+
+#boomstick
+- type: UndecidedLoadoutBackpackSet
+  id: TribalPainBringerSet
+  name: undecided-loadout-category-Tribal-pain-bringer-name
+  description: undecided-loadout-category-Tribal-pain-bringer-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - Kittribalpainbringer

@@ -242,9 +242,9 @@
   - type: CanEscapeInventory # Carrying system from nyanotrasen.
   - type: LanguageKnowledge # This is here so even if species doesn't have a defined language, they at least speak GC
     speaks:
-    - TauCetiBasic
+    - English
     understands:
-    - TauCetiBasic
+    - English
   - type: Tag
     tags:
     - CanPilot
@@ -326,8 +326,8 @@
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 310.15
     thermalRegulationTemperatureThreshold: 25
-  - type: Perishable
-    rotAfter: 900 # Half an in-game day, N14 change.
+  # - type: Perishable
+    # rotAfter: 900 # N14 change, had to comment it out for the sake of entity count because of NPCs.
   - type: Butcherable
     butcheringType: Spike # TODO human.
     spawned:
@@ -344,6 +344,7 @@
     alternateState: Standing
   - type: OfferItem
   - type: LayingDown
+    standingUpTime: 2.5
   - type: Shoving
   - type: BloodstreamAffectedByMass
     power: 0.6 # A minimum size felinid will have 30% blood, a minimum size vulp will have 60%, a maximum size oni will have ~200%
