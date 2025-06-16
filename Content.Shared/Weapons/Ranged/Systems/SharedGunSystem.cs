@@ -480,7 +480,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     protected void EjectCartridge(
         EntityUid entity,
         Angle? angle = null,
-        bool playSound = true)
+        bool playSound = true,
 		GunComponent? gunComp = null)
     {
         // TODO: Sound limit version.
