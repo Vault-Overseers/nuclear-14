@@ -79,19 +79,19 @@ public sealed class ZStackCommand : ToolshedCommand
     [CommandImplementation("load_stack")]
     public void LoadStack(IInvocationContext ctx, int intMapId, string mapPath)
     {
-        var mapId = new MapId(intMapId);
+        var requestedMapId = new MapId(intMapId);
 
         // no loading null space
-        if (mapId == MapId.Nullspace)
+        if (requestedMapId == MapId.Nullspace)
         {
             ctx.WriteLine(Loc.GetString("cmd-loadmap-nullspace"));
             return;
         }
 
         _map ??= GetSys<MapSystem>();
-        if (_map.MapExists(mapId))
+        if (_map.MapExists(requestedMapId))
         {
-            ctx.WriteLine(Loc.GetString("cmd-loadmap-exists", ("mapId", mapId)));
+            ctx.WriteLine(Loc.GetString("cmd-loadmap-exists", ("mapId", requestedMapId)));
             return;
         }
 
@@ -111,21 +111,19 @@ public sealed class ZStackCommand : ToolshedCommand
             ctx.WriteLine(Loc.GetString("cmd-loadmap-error", ("path", mapPath)));
             return;
         }
-
-        var mapId = newMapId;
-
+        var newMap = newMapId;
         // Try load levels
         var result = _defStackSys.LoadMap(mapUid);
         if (!result)
         {
-            ctx.WriteLine($"Levels for {mapId.ToString()} can't loaded! You are coocked bro!");
+            ctx.WriteLine($"Levels for {newMap.ToString()} can't loaded! You are coocked bro!");
             return;
         }
 
         // Initialize parent main map
         //_map.InitializeMap(mapId);
 
-        ctx.WriteLine(Loc.GetString("cmd-loadmap-success", ("mapId", mapId), ("path", mapPath)));
+        ctx.WriteLine(Loc.GetString("cmd-loadmap-success", ("mapId", newMap), ("path", mapPath)));
     }
 
     [CommandImplementation("save_stack")]
@@ -173,12 +171,12 @@ public sealed class ZStackCommand : ToolshedCommand
             if (TryComp<ZDefinedStackMemberComponent>(map, out var defStackMemberComp) &&
                 defStackMemberComp.SavePath is not null)
             {
-                _mapLoader.TrySaveMap(map, (ResPath) defStackMemberComp.SavePath);
+                _mapLoader.SaveMap(map, defStackMemberComp.SavePath.Value.ToString());
             }
         }
 
         // And save the main map
-        _mapLoader.TrySaveMap(mapId, new ResPath(mapPath));
+        _mapLoader.SaveMap(mapId, mapPath);
         ctx.WriteLine(Loc.GetString("cmd-savemap-success"));
     }
 
