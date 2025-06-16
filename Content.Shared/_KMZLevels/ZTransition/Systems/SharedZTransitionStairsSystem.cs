@@ -29,7 +29,7 @@ public class SharedZTransitionStairsSystem : EntitySystem
 
     public override void Initialize()
     {
-        _zStack = _sysMan.GetEntitySystem<SharedZStackSystem>();
+        _sysMan.TryGetEntitySystem(out _zStack);
         SubscribeLocalEvent<ZStairsComponent, StartCollideEvent>(OnTeleportStartCollide);
     }
 
