@@ -34,6 +34,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared.Climbing.Systems;
 
@@ -52,7 +53,8 @@ public sealed partial class ClimbSystem : VirtualController
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly SharedZStackSystem _zStack = default!;
+    [Dependency] private readonly IEntitySystemManager _sysMan = default!;
+    private SharedZStackSystem? _zStack;
     [Dependency] private readonly SharedMapSystem _mapSys = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TagSystem _tag = default!;
@@ -70,6 +72,8 @@ public sealed partial class ClimbSystem : VirtualController
     public override void Initialize()
     {
         base.Initialize();
+
+        _sysMan.TryGetEntitySystem(out _zStack);
 
         _fixturesQuery = GetEntityQuery<FixturesComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
@@ -531,7 +535,7 @@ public sealed partial class ClimbSystem : VirtualController
         if (xform.MapUid == null)
             return false;
 
-        if (!_zStack.TryGetZStack(xform.MapUid.Value, out var zStack))
+        if (_zStack == null || !_zStack.TryGetZStack(xform.MapUid.Value, out var zStack))
             return false;
 
         var maps = zStack.Value.Comp.Maps;

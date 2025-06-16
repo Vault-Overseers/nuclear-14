@@ -20,11 +20,14 @@ public sealed partial class ZDefinedStackSystem : EntitySystem
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly ZStackSystem _zStack = default!;
+    [Dependency] private readonly IEntitySystemManager _sysMan = default!;
+    private ZStackSystem? _zStack;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _sysMan.TryGetEntitySystem(out _zStack);
 
         SubscribeLocalEvent<ZDefinedStackComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ZDefinedStackComponent, MapInitEvent>(OnMapInit);
@@ -76,7 +79,7 @@ public sealed partial class ZDefinedStackSystem : EntitySystem
         }
 
         // Add initial map as middle level in the world
-        _zStack.AddToStack(initialMapUid, ref stackLoc);
+        _zStack?.AddToStack(initialMapUid, ref stackLoc);
 
         // Load level upper
         foreach (var path in defStackComp.UpLevels)
@@ -123,7 +126,7 @@ public sealed partial class ZDefinedStackSystem : EntitySystem
             ClearViewSubscribers(map);
 
             // Add to stack
-            _zStack.AddToStack(map, ref stackLoc);
+            _zStack?.AddToStack(map, ref stackLoc);
 
             // Mark as a member of defined maps. It needs for multi saving
             AddComp(map,

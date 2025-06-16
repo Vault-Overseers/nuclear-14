@@ -4,6 +4,7 @@ using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.Maps;
 using Robust.Server.GameObjects;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
@@ -13,7 +14,8 @@ namespace Content.Server.Light.EntitySystems;
 public sealed class RoofSystem : SharedRoofSystem
 {
     [Dependency] private readonly SharedMapSystem _maps = default!;
-    [Dependency] private readonly ZStackSystem _zstack = default!;
+    [Dependency] private readonly IEntitySystemManager _sysMan = default!;
+    private ZStackSystem? _zstack;
     [Dependency] private readonly TransformSystem _xform = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
@@ -23,6 +25,7 @@ public sealed class RoofSystem : SharedRoofSystem
     public override void Initialize()
     {
         base.Initialize();
+        _sysMan.TryGetEntitySystem(out _zstack);
         _gridQuery = GetEntityQuery<MapGridComponent>();
         SubscribeLocalEvent<SetRoofComponent, ComponentStartup>(OnFlagStartup);
         SubscribeLocalEvent<RoofComponent, MapInitEvent>(OnMapInit, after: [typeof(ZDefinedStackSystem)]);
@@ -34,7 +37,7 @@ public sealed class RoofSystem : SharedRoofSystem
     private void OnStartup(EntityUid uid, IsRoofComponent roof, ref ComponentStartup args)
     {
         var xform = Transform(uid);
-        if (!_zstack.TryGetZStack(uid, out var zStack) || xform.MapUid == null)
+        if (_zstack == null || !_zstack.TryGetZStack(uid, out var zStack) || xform.MapUid == null)
             return;
 
         var maps = zStack.Value.Comp.Maps;
@@ -67,7 +70,7 @@ public sealed class RoofSystem : SharedRoofSystem
 
     private void OnMapInit(Entity<RoofComponent> ent, ref MapInitEvent args)
     {
-        if (!_zstack.TryGetZStack(ent, out var stack))
+        if (_zstack == null || !_zstack.TryGetZStack(ent, out var stack))
             return;
         if (!_gridQuery.TryComp(ent, out var grid))
             return;
@@ -98,7 +101,7 @@ public sealed class RoofSystem : SharedRoofSystem
 
     private void OnTileChanged(ref TileChangedEvent args)
     {
-        if (!_zstack.TryGetZStack(args.Entity, out var stack))
+        if (_zstack == null || !_zstack.TryGetZStack(args.Entity, out var stack))
             return;
 
         var mapUid = GetMapUidByGrid(args.Entity);

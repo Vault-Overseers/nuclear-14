@@ -6,6 +6,7 @@ using Content.Shared.Climbing;
 using Content.Shared.Teleportation.Components;
 using Content.Shared.Teleportation.Systems;
 using Robust.Server.GameObjects;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using System.Linq;
 
@@ -15,11 +16,13 @@ public class ZTransitionAutoLinkSystem : EntitySystem
 {
     [Dependency] private readonly LinkedEntitySystem _linkedEntitySystem = default!;
     [Dependency] private readonly TransformSystem _xform = default!;
-    [Dependency] private readonly ZStackSystem _zStack = default!;
+    [Dependency] private readonly IEntitySystemManager _sysMan = default!;
+    private ZStackSystem? _zStack;
 
     public override void Initialize()
     {
         base.Initialize();
+        _sysMan.TryGetEntitySystem(out _zStack);
 
         SubscribeLocalEvent<ZTransitionAutoLinkComponent, ComponentInit>(OnAutoLinkInit);
         SubscribeLocalEvent<ZTransitionAutoLinkComponent, MapInitEvent>(HandleMapInitialization, after: new[] { typeof(ZDefinedStackSystem) });
@@ -45,7 +48,7 @@ public class ZTransitionAutoLinkSystem : EntitySystem
 
         var firstMapUid = fXformComp.MapUid.Value;
 
-        if (!_zStack.TryGetZStack(firstMapUid, out var zStack))
+        if (_zStack == null || !_zStack.TryGetZStack(firstMapUid, out var zStack))
             return false; // Not in a Z level containing space.
 
         var coords = _xform.GetWorldPosition(entity);

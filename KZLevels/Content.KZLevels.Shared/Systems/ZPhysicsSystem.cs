@@ -32,7 +32,8 @@ namespace Content.KayMisaZlevels.Shared.Systems;
 public sealed class ZPhysicsSystem : EntitySystem
 {
     [Dependency] private readonly SharedMapSystem _maps = default!;
-    [Dependency] private readonly SharedZStackSystem _zStack = default!;
+    [Dependency] private readonly IEntitySystemManager _sysMan = default!;
+    private SharedZStackSystem? _zStack;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
@@ -42,6 +43,7 @@ public sealed class ZPhysicsSystem : EntitySystem
     public override void Initialize()
     {
         // TODO: Use KMZPhysicsComponent instead of PhysicsComponent
+        _sysMan.TryGetEntitySystem(out _zStack);
         SubscribeLocalEvent((Entity<PhysicsComponent> ent, ref MoveEvent args) => OnPossiblyFalling(ent, ref args));
         if (_cfg.GetCVar(KMZLevelsCVars.ProcessAllPhysicsObjects))
             _xform.OnGlobalMoveEvent += XformOnOnGlobalMoveEvent;
@@ -60,7 +62,7 @@ public sealed class ZPhysicsSystem : EntitySystem
 
     private void OnPossiblyFalling(EntityUid ent, ref MoveEvent args)
     {
-        if (!_zStack.TryGetZStack(ent, out var zStack))
+        if (_zStack == null || !_zStack.TryGetZStack(ent, out var zStack))
             return; // Not in a Z level containing space.
 
         if (args.Entity.Comp1.ParentUid != args.Entity.Comp1.MapUid || args.Entity.Comp1.MapUid is null)
@@ -147,7 +149,7 @@ public sealed class ZPhysicsSystem : EntitySystem
 
         if (zStack is null)
         {
-            if (!_zStack.TryGetZStack(xform.MapUid.Value, out var _zStackComp))
+            if (_zStack == null || !_zStack.TryGetZStack(xform.MapUid.Value, out var _zStackComp))
                 return false;
 
             zStack = _zStackComp.Value.Comp;
