@@ -168,10 +168,13 @@ public sealed class ZStackCommand : ToolshedCommand
         // Save childrent maps from stack
         foreach (var map in stackComp.Value.Comp.Maps)
         {
+            if (!TryComp<MapComponent>(map, out var mapComp))
+                continue;
+
             if (TryComp<ZDefinedStackMemberComponent>(map, out var defStackMemberComp) &&
                 defStackMemberComp.SavePath is not null)
             {
-                _mapLoader.SaveMap(map, defStackMemberComp.SavePath.Value.ToString());
+                _mapLoader.SaveMap(mapComp.MapId, defStackMemberComp.SavePath.Value.ToString());
             }
         }
 

@@ -34,30 +34,35 @@ public sealed class RoofSystem : SharedRoofSystem
     private void OnStartup(EntityUid uid, IsRoofComponent roof, ref ComponentStartup args)
     {
         var xform = Transform(uid);
-        if (_zstack.TryGetZStack(uid, out var zStack) &&
-            xform != null &&
-            xform.MapUid != null &&
-            roof.Tile != null)
-        {
-            var maps = zStack.Value.Comp.Maps;
-            var mapIdx = maps.IndexOf(xform.MapUid.Value);
+        if (!_zstack.TryGetZStack(uid, out var zStack) || xform.MapUid == null)
+            return;
 
-            if (mapIdx + 1 >= maps.Count)
-                return;
+        var maps = zStack.Value.Comp.Maps;
+        var mapIdx = maps.IndexOf(xform.MapUid.Value);
 
-            var targetMap = maps[mapIdx + 1];
+        if (mapIdx + 1 >= maps.Count)
+            return;
 
-            if (!_mapManager.TryFindGridAt(targetMap, xform.WorldPosition, out _, out var zGrid))
-                return;
+        var targetMap = maps[mapIdx + 1];
 
-            var intPos = xform.Coordinates.ToVector2i(EntityManager, _mapManager, _xform);
-            _maps.TryGetTile(zGrid, intPos, out var tile);
+        if (!_mapManager.TryFindGridAt(targetMap, xform.WorldPosition, out _, out var zGrid))
+            return;
 
-            if (!tile.IsEmpty)
-                return;
+        var intPos = xform.Coordinates.ToVector2i(EntityManager, _mapManager, _xform);
+        _maps.TryGetTile(zGrid, intPos, out var tile);
 
-            zGrid.SetTile(new EntityCoordinates(zGrid.Owner, xform.WorldPosition), new Tile(_tileDefinitionManager[roof.Tile].TileId));
-        }
+        if (!tile.IsEmpty)
+            return;
+
+        if (xform.GridUid == null || !_gridQuery.TryComp(xform.GridUid.Value, out var grid))
+            return;
+
+        _maps.TryGetTile(grid, intPos, out var originTile);
+
+        if (originTile.IsEmpty)
+            return;
+
+        zGrid.SetTile(new EntityCoordinates(zGrid.Owner, xform.WorldPosition), originTile);
     }
 
     private void OnMapInit(Entity<RoofComponent> ent, ref MapInitEvent args)
@@ -85,12 +90,7 @@ public sealed class RoofSystem : SharedRoofSystem
 
             ContentTileDefinition tileDef = (ContentTileDefinition) _tileDefinitionManager[tileRef.Value.Tile.TypeId];
 
-            bool isRoofed;
-            if (tileDef.ID == ContentTileDefinition.SpaceID ||
-                !tileDef.CanCastShadow)
-                isRoofed = false;
-            else
-                isRoofed = true;
+            bool isRoofed = tileDef.ID != ContentTileDefinition.SpaceID;
 
             SetRoof((targetMapUid, targetGrid, null), tileRef.Value.GridIndices, isRoofed);
         }
@@ -120,12 +120,7 @@ public sealed class RoofSystem : SharedRoofSystem
 
         ContentTileDefinition? tileDef = (ContentTileDefinition) _tileDefinitionManager[args.NewTile.Tile.TypeId];
 
-        bool isRoofed;
-        if (tileDef.ID == ContentTileDefinition.SpaceID ||
-            !tileDef.CanCastShadow)
-            isRoofed = false;
-        else
-            isRoofed = true;
+        bool isRoofed = tileDef.ID != ContentTileDefinition.SpaceID;
 
         SetRoof((targetMapUid, targetMapGridComp, null), args.NewTile.GridIndices, isRoofed);
     }
