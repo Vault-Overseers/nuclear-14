@@ -481,6 +481,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         EntityUid entity,
         Angle? angle = null,
         bool playSound = true)
+		GunComponent? gunComp = null)
     {
         // TODO: Sound limit version.
         var offsetPos = Random.NextVector2(EjectOffset);
