@@ -16,6 +16,7 @@ public abstract partial class SharedWeaponAttachmentSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
@@ -49,8 +50,8 @@ public abstract partial class SharedWeaponAttachmentSystem : EntitySystem
         _itemSlots.AddItemSlot(uid, WeaponAttachmentComponent.BayonetSlotId, bayonetSlot, itemSlots);
         _itemSlots.AddItemSlot(uid, WeaponAttachmentComponent.LightSlotId, lightSlot, itemSlots);
 
-        if (_itemSlots.TryGetSlot(uid, WeaponAttachmentComponent.LightSlotId, out var addedLightSlot, itemSlots))
-            addedLightSlot.ContainerSlot!.OccludesLight = false;
+        var lightContainer = _containerSystem.EnsureContainer<ContainerSlot>(uid, WeaponAttachmentComponent.LightSlotId);
+        lightContainer.OccludesLight = false;
     }
 
     private void OnShutdown(EntityUid uid, WeaponAttachmentComponent component, ComponentShutdown args)
