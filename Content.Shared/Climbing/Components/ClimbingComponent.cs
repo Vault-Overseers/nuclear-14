@@ -52,13 +52,13 @@ public sealed partial class ClimbingComponent : Component
     /// Stores coordinates calculated when descending between Z levels. Only valid for the duration of the climb.
     /// </summary>
     [AutoNetworkedField, DataField]
-    public EntityCoordinates? DescendCoords;
+    public EntityCoordinates? DescendTargetCoords;
 
     /// <summary>
     /// Range within which a descent can begin. Defaults to normal climbing range.
     /// </summary>
     [DataField]
-    public float DescendRange = 2f;
+    public float DescendRangeVal = 2f;
 
     /// <summary>
     /// Whether skill checks should be ignored for the current climb action.

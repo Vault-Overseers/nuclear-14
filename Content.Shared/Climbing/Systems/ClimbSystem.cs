@@ -238,7 +238,7 @@ public sealed partial class ClimbSystem : VirtualController
 
         // Should be cleared, before a new define for the descend coordinates
         climbing.IgnoreSkillCheck = false;
-        climbing.DescendCoords = null;
+        climbing.DescendTargetCoords = null;
 
         var ev = new AttemptClimbEvent(user, entityToMove, climbable);
         RaiseLocalEvent(climbable, ref ev);
@@ -269,7 +269,7 @@ public sealed partial class ClimbSystem : VirtualController
             return;
 
         // Try to move player between Z levels, if descend coords is not null
-        if (component.DescendCoords is not null && _netManager.IsServer)
+        if (component.DescendTargetCoords is not null && _netManager.IsServer)
         {
             DescendedClimb(uid, args.Args.Used.Value, args.Args.Target.Value, climbing: component);
             args.Handled = true;
@@ -306,7 +306,7 @@ public sealed partial class ClimbSystem : VirtualController
         if (!Resolve(climbable, ref comp, false))
             return;
 
-        if (climbing.DescendCoords is null)
+        if (climbing.DescendTargetCoords is null)
             return;
 
         var selfEvent = new SelfBeforeClimbEvent(uid, user, (climbable, comp));
@@ -323,9 +323,9 @@ public sealed partial class ClimbSystem : VirtualController
 
         // Move the entity on new map
         // TODO: Maybe it should be animated or something like that
-        _xformSystem.SetCoordinates(user, climbing.DescendCoords.Value);
+        _xformSystem.SetCoordinates(user, climbing.DescendTargetCoords.Value);
 
-        climbing.DescendCoords = null;
+        climbing.DescendTargetCoords = null;
         Dirty(uid, climbing);
 
         _audio.PlayPredicted(comp.FinishClimbSound, climbable, user);
@@ -499,7 +499,7 @@ public sealed partial class ClimbSystem : VirtualController
                 ignoreTiles: climbable.IgnoreTiles))
         {
             climbing.IgnoreSkillCheck = climbable.IgnoreSkillCheck;
-            climbing.DescendCoords = targetEntityCoords;
+            climbing.DescendTargetCoords = targetEntityCoords;
         }
         else
         {
@@ -566,7 +566,7 @@ public sealed partial class ClimbSystem : VirtualController
             targetPosition = xform.Coordinates.Position;
 
         var userTransf = Transform(climber);
-        if ((userTransf.WorldPosition - targetPosition.Value).Length() > comp.DescendRange)
+        if ((userTransf.WorldPosition - targetPosition.Value).Length() > comp.DescendRangeVal)
             return false;
 
         descendEntityCoords = new EntityCoordinates(maps[targetMapIdx], targetPosition.Value);
