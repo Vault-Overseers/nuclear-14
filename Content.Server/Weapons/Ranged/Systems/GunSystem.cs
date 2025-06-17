@@ -13,6 +13,7 @@ using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared._Lavaland.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Reflect;
 using Content.Shared.Damage.Components;
@@ -272,16 +273,43 @@ public sealed partial class GunSystem : SharedGunSystem
                 var spreadEvent = new GunGetAmmoSpreadEvent(ammoSpreadComp.Spread);
                 RaiseLocalEvent(gunUid, ref spreadEvent);
 
-                var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
-                    mapAngle + spreadEvent.Spread / 2, ammoSpreadComp.Count);
+                var plusminusSpread = spreadEvent.Spread * gun.ShotgunSpreadMultiplier / 2;
+                var projectileCount = (int) (ammoSpreadComp.Count * gun.ShotgunProjectileCountModifier);
 
-                ShootOrThrow(ammoEnt, angles[0].ToVec(), gunVelocity, gun, gunUid, user);
+                if (gun.UniformSpread)
+                {
+                    var angles = LinearSpread(mapAngle - plusminusSpread,
+                        mapAngle + plusminusSpread, ammoSpreadComp.Count);
+
+                    ShootOrThrow(ammoEnt, angles[0].ToVec(), gunVelocity, gun, gunUid, user);
+                    shotProjectiles.Add(ammoEnt);
+
+                    for (var i = 1; i < projectileCount; i++)
+                    {
+                        var newuid = Spawn(ammoSpreadComp.Proto, fromEnt);
+                        RaiseLocalEvent(gunUid, new ProjectileShotEvent()
+                        {
+                            FiredProjectile = newuid
+                        });
+                        ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, gunUid, user);
+                        shotProjectiles.Add(newuid);
+                    }
+                    goto SpreadBreak;
+                }
+
+                // !WHY DOES THE FIRST ONE NEED TO BE SPAWNED SEPARATELY? IF I DON'T DO THIS, THE FIRST ONE HITS THE USER!
+                ShootOrThrow(ammoEnt, mapAngle.ToVec(), gunVelocity, gun, gunUid, user);
                 shotProjectiles.Add(ammoEnt);
 
-                for (var i = 1; i < ammoSpreadComp.Count; i++)
+                for (var i = 1; i < projectileCount; i++)
                 {
+                    var angle = Random.NextAngle(mapAngle - plusminusSpread, mapAngle + plusminusSpread);
                     var newuid = Spawn(ammoSpreadComp.Proto, fromEnt);
-                    ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, gunUid, user);
+                    RaiseLocalEvent(gunUid, new ProjectileShotEvent()
+                    {
+                        FiredProjectile = newuid
+                    });
+                    ShootOrThrow(newuid, angle.ToVec(), gunVelocity, gun, gunUid, user);
                     shotProjectiles.Add(newuid);
                 }
             }
@@ -291,6 +319,7 @@ public sealed partial class GunSystem : SharedGunSystem
                 shotProjectiles.Add(ammoEnt);
             }
 
+        SpreadBreak:
             MuzzleFlash(gunUid, ammoComp, mapDirection.ToAngle(), user);
             Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
         }
@@ -305,15 +334,14 @@ public sealed partial class GunSystem : SharedGunSystem
             Dirty(uid, targeted);
         }
 
-        // Do a throw
-        if (!HasComp<ProjectileComponent>(uid))
+        if (!TryComp(uid, out ProjectileComponent? projectileComp))
         {
             RemoveShootable(uid);
             // TODO: Someone can probably yeet this a billion miles so need to pre-validate input somewhere up the call stack.
             ThrowingSystem.TryThrow(uid, mapDirection, gun.ProjectileSpeedModified, user);
             return;
         }
-
+        projectileComp.Damage *= gun.DamageModifier;
         ShootProjectile(uid, mapDirection, gunVelocity, gunUid, user, gun.ProjectileSpeedModified);
     }
 
