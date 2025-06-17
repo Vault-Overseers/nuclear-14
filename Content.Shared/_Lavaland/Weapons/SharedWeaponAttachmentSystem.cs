@@ -45,10 +45,12 @@ public abstract partial class SharedWeaponAttachmentSystem : EntitySystem
             Swap = false,
             EjectOnBreak = true,
             Name = Loc.GetString("attachment-light-slot-name"),
-            OccludesLight = false,
         };
         _itemSlots.AddItemSlot(uid, WeaponAttachmentComponent.BayonetSlotId, bayonetSlot, itemSlots);
         _itemSlots.AddItemSlot(uid, WeaponAttachmentComponent.LightSlotId, lightSlot, itemSlots);
+
+        if (_itemSlots.TryGetSlot(uid, WeaponAttachmentComponent.LightSlotId, out var addedLightSlot, itemSlots))
+            addedLightSlot.ContainerSlot!.OccludesLight = false;
     }
 
     private void OnShutdown(EntityUid uid, WeaponAttachmentComponent component, ComponentShutdown args)
