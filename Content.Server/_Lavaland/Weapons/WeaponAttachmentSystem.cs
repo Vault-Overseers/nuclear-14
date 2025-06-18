@@ -4,6 +4,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Toggleable;
 using Content.Shared.Light;
 using Content.Shared.Light.Components;
+using Content.Shared._NC.FollowDistance.Components;
 
 namespace Content.Server._Lavaland.Weapons;
 
@@ -23,7 +24,7 @@ public sealed class WeaponAttachmentSystem : SharedWeaponAttachmentSystem
 
     protected override void AddScope(EntityUid uid, EntityUid scope)
     {
-        if (!TryComp(scope, out FollowDistanceComponent? scopeComp))
+        if (!TryComp<FollowDistanceComponent>(scope, out var scopeComp))
             return;
 
         var follow = EnsureComp<FollowDistanceComponent>(uid);
