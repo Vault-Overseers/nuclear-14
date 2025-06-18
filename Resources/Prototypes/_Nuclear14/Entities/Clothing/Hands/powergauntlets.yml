@@ -1,0 +1,75 @@
+- type: entity
+  parent: ClothingHandsBase
+  id: N14ClothingPAGauntlets
+  name: power armor gauntlets
+  description: A pair of power suit gauntlets for rough work and battle.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Hands/PowerGauntlets/basic.rsi
+    scale: 0.75, 0.75
+  - type: Clothing
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    slots: gloves
+  - type: Insulated # Don't electrocute my Paladins!
+  - type: MeleeWeapon
+    soundHit:
+      collection: MetalThud
+    range: 1.1
+    attackRate: 1.0
+    damage:
+      types:
+        Blunt: 16
+        Structural: 4
+    animation: WeaponArcFist
+    wideAnimation: WeaponArcFist
+    mustBeEquippedToUse: true
+  - type: MeleeThrowOnHit
+    speed: 10
+    lifetime: 0.025
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.925
+        Slash: 0.925
+        Piercing: 0.95
+        Heat: 0.95
+
+- type: entity
+  parent: N14ClothingPAGauntlets
+  id: N14ClothingPAGauntletsTesla
+  name: tesla armor gauntlets
+  description: A pair of power suit gauntlets that allows people near the user feel energised.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Hands/PowerGauntlets/tesla.rsi
+  - type: MeleeWeapon
+    attackRate: 1.0
+    damage:
+      types:
+        Blunt: 12
+        Shock: 3 # Tesla armour should have shocking punches.
+        Structural: 6
+
+- type: entity
+  parent: N14ClothingPAGauntlets
+  id: N14ClothingPAGauntletsDark
+  name: power armor gauntlets
+  description: A pair of power suit gauntlets for rough work and battle.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Hands/PowerGauntlets/dark.rsi
+
+- type: entity
+  parent: N14ClothingPAGauntlets
+  id: N14ClothingPAGauntletsMBoS
+  name: power armor gauntlets
+  description: A pair of power suit gauntlets for rough work and battle.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Hands/PowerGauntlets/midwest.rsi

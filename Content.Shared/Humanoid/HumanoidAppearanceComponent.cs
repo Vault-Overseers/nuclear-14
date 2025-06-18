@@ -30,7 +30,19 @@ public sealed partial class HumanoidAppearanceComponent : Component
     public Gender Gender;
 
     [DataField, AutoNetworkedField]
+    public string? DisplayPronouns;
+
+    [DataField, AutoNetworkedField]
+    public string? StationAiName;
+
+    [DataField, AutoNetworkedField]
+    public string? CyborgName;
+
+    [DataField, AutoNetworkedField]
     public int Age = 18;
+
+    [DataField, AutoNetworkedField]
+    public string CustomSpecieName = "";
 
     /// <summary>
     ///     Any custom base layers this humanoid might have. See:
@@ -84,6 +96,12 @@ public sealed partial class HumanoidAppearanceComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public Color? CachedFacialHairColor;
+
+    /// <summary>
+    ///     Which layers of this humanoid that should be hidden on equipping a corresponding item..
+    /// </summary>
+    [DataField]
+    public HashSet<HumanoidVisualLayers> HideLayersOnEquip = [HumanoidVisualLayers.Hair];
 
     /// <summary>
     /// DeltaV - let paradox anomaly be cloned

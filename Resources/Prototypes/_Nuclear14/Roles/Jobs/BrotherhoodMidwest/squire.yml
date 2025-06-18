@@ -1,13 +1,24 @@
 - type: job
-  id: BoSMidSquire
+  id: BoSMidSquire # It was renamed to Initiate, but don't change the ID!
   setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   name: job-name-bos-mid-squire
   description: job-description-bos-mid-squire
   playTimeTracker: BoSMidSquire
+  requirements:
+    - !type:CharacterLogicOrRequirement
+      requirements:
+        - !type:CharacterSpeciesRequirement
+          species:
+            - Human
+            - Ghoul
+    - !type:CharacterOverallTimeRequirement
+      min: 3600
   startingGear: BoSMidSquireGear
   alwaysUseSpawner: true
   icon: "JobIconPassenger"
-  canBeAntag: false
+  supervisors: job-supervisors-bos-mid-initiate
   access:
   - BoSMidwest
   special:
@@ -15,20 +26,18 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - BrotherhoodMidwest
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: BoSMidSquireGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBOSGreen
-    back: N14ClothingBackpackMilitary
-    shoes: N14ClothingBootsCombatFilled
+    back: N14ClothingBackpackMilitaryFilled
+    shoes: N14ClothingBootsLeatherFilled
     head: N14ClothingHeadHatArmyCap
-    outerClothing: N14ClothingOuterMidwestArmor
-    pocket1: NCRBoSMidwestkits
+    outerClothing: N14ClothingOuterMBoSInitiateArmor
+    pocket1: BoSMidwestInitSet
     id: N14IDBrotherhoodHolotagSquire
     belt: ClothingBeltMilitary
 

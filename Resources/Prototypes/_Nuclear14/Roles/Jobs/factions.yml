@@ -1,24 +1,25 @@
+# Top-down, highest to lowest rank when possible.
 - type: department
   id: BrotherhoodMidwest
   description: department-BrotherhoodMidwest-description
-  color: "#455a64"
+  color: "#3B72BF"
   roles:
   - BoSMidPaladinCommander
-  - BoSMidSquire
-  - BoSMidKnight
   - BoSMidPaladin
   - BoSMidScribe
+  - BoSMidKnight
+  - BoSMidSquire
 
 - type: department
   id: BrotherhoodWashington
   description: department-BrotherhoodWashington-description
-  color: "#607d8b"
+  color: "#a2000f"
   roles:
   - BoSWashingtonCommander
-  - BoSWashingtonInitiate
-  - BoSWashingtonKnight
   - BoSWashingtonPaladin
   - BoSWashingtonScribe
+  - BoSWashingtonKnight
+  - BoSWashingtonInitiate
 
 - type: department
   id: CaravanCompany
@@ -34,15 +35,15 @@
   description: department-NCR-description
   color: "#fbc02d"
   roles:
-  - NCRCadet
-  - NCRSGT
-  - NCRMedic
   - NCRLT
-  - NCRSoldier
+  - NCRRangerVeteran
+  - NCRSGT
+  - NCRRanger
+  - NCRMedic
   - NCRWS
   - NCREngineer
-  - NCRRanger
-  - NCRRangerVeteran
+  - NCRSoldier
+  - NCRCadet
 
 #- type: department # Disabled until roles are implemented
 #  id: Rangers
@@ -57,12 +58,12 @@
 - type: department
   id: Tribe
   description: department-Tribe-description
-  color: "#5d4037"
+  color: "#d69b3d"
   roles:
-  - Tribal
   - TribalElder
-  - TribalFarmer
   - TribalHealer
+  - TribalFarmer
+  - Tribal
 
 - type: department
   id: Vault
@@ -72,8 +73,8 @@
   - Overseer
   - VaultSecurity
   - VaultDoctor
-  - VaultDweller
   - VaultEngineer
+  - VaultDweller
 
 - type: department
   id: Wastelander
@@ -82,11 +83,9 @@
   roles:
   - Survivor
   - Wastelander
-  - WastelandBartender
   - WastelandChaplain
   - WastelandFarmer
   - WastelandMusician
-  - WastelandReporter
   - WastelandScavenger
 
 - type: department
@@ -94,13 +93,15 @@
   description: department-Townsfolk-description
   color: "#5c733a"
   roles:
-  - Townsperson
-  - TownDoctor
-  - TownMechanic
-  - TownShopkeeper
-  - TownDeputy
-  - TownSheriff
   - TownMayor
+  - TownSheriff
+  - TownDeputy
+  - TownDoctor
+  - TownShopkeeper
+  - WastelandBartender # Moved from the Wastelander department, ID unchanged to avoid glitches for players who have it selected.
+  - WastelandReporter # Moved from the Wastelander department, ID unchanged to avoid glitches for players who have it selected.
+  - TownMechanic
+  - Townsperson
 
 #- type: department #Disabled until roles are implemented.
 #  id: Zetan

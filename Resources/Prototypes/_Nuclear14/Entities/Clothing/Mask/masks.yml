@@ -16,6 +16,7 @@
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.95
+    priceMultiplier: 0.5
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -35,9 +36,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
+        Blunt: 0.95
+        Slash: 0.95
         Piercing: 0.95
+    priceMultiplier: 0.5
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -57,9 +59,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
+        Blunt: 0.95
+        Slash: 0.95
         Piercing: 0.95
+    priceMultiplier: 0.5
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -76,9 +79,46 @@
     sprite: _Nuclear14/Clothing/Mask/brownbalaclava.rsi
   - type: BreathMask
   - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+
+- type: entity
+  parent: ClothingMaskBase
+  id: N14ClothingMaskBlackBalaclava
+  name: black balaclava
+  description: A piece of cloth with a hole in it to see, not really a big invention from the pre-war but it can be warm enough to protect from the cold. This one is black.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Mask/blackbalaclava.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Mask/blackbalaclava.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+  - type: IdentityBlocker
+
+- type: entity
+  parent: ClothingMaskBase
+  id: N14ClothingMaskWhiteBalaclava
+  name: white balaclava
+  description: A piece of cloth with a 2 holes in it to see, not really a big invention from the pre-war but it can be warm enough to protect from the cold. This one is white.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Mask/whitebalaclava.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Mask/whitebalaclava.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+  - type: IdentityBlocker
 
 - type: entity
   parent: ClothingMaskBase
@@ -95,9 +135,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
+        Blunt: 0.95
+        Slash: 0.95
         Piercing: 0.95
+    priceMultiplier: 0.5
   - type: Tag
     tags:
     - WhitelistChameleon

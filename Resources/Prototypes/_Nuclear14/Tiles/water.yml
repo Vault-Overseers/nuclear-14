@@ -22,7 +22,7 @@
       pool:
         maxVol: 9999999 #.inf seems to break the whole yaml file, but would definitely be preferable.
         reagents:
-        - ReagentId: WaterIrradiated
+        - ReagentId: Water
           Quantity: 9999999
   - type: DrainableSolution
     solution: pool
@@ -63,6 +63,8 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.2
     sprintSpeedModifier: 0.2
+  - type: TileEmission
+    color: "#55b240"
 
 - type: entity
   parent: N14FloorWaterSewerDeep
@@ -91,12 +93,13 @@
     sprintSpeedModifier: 0.6
 
 - type: entity
-  parent: N14FloorWaterSewerDeep
+  parent: N14FloorWaterDirtyEntity
   id: N14FloorWaterDeep
   name: deep water
   description: Endless Abyss.
   components:
   - type: Sprite
+    sprite: _Nuclear14/Tiles/ms13/Water.rsi
     layers:
       - state: water_deep
   - type: SpeedModifierContacts
@@ -104,10 +107,10 @@
     sprintSpeedModifier: 0.2
 
 - type: entity
-  parent: N14FloorWaterSewerDeep
+  parent: N14FloorWaterDeep
   id: N14FloorWaterMedium
   name: water
-  description: Unclean water, likely highly irradiated.
+  description: Unclean water, likely highly unclean.
   components:
   - type: Sprite
     layers:
@@ -117,10 +120,10 @@
     sprintSpeedModifier: 0.4
 
 - type: entity
-  parent: N14FloorWaterSewerDeep
+  parent: N14FloorWaterDeep
   id: N14FloorWaterShallow
   name: shallow water
-  description: Unclean water, likely highly irradiated
+  description: Unclean water, likely highly unclean
   components:
   - type: Sprite
     layers:
@@ -128,14 +131,15 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.6
     sprintSpeedModifier: 0.6
-    
+
 - type: entity
-  parent: N14FloorWaterSewerDeep
+  parent: N14FloorWaterDirtyEntity
   id: N14FloorWaterSaltDeep
   name: deep salt water
   description: Endless Abyss.
   components:
   - type: Sprite
+    sprite: _Nuclear14/Tiles/ms13/Water.rsi
     layers:
       - state: water_deep
   - type: SpeedModifierContacts
@@ -146,14 +150,14 @@
       pool:
         maxVol: 9999999 #.inf seems to break the whole yaml file, but would definitely be preferable.
         reagents:
-        - ReagentId: WaterSalt
+        - ReagentId: Water #TODO: Add WaterSalt Reagent.
           Quantity: 9999999
 
 - type: entity
   parent: N14FloorWaterSaltDeep
   id: N14FloorWaterSaltMedium
   name: salt water
-  description: Unclean water, likely irradiated.
+  description: Unclean water, tainted with salt.
   components:
   - type: Sprite
     layers:
@@ -166,7 +170,7 @@
   parent: N14FloorWaterSaltDeep
   id: N14FloorWaterSaltShallow
   name: shallow salt water
-  description: Unclean water, likely irradiated
+  description: Unclean water, tainted with salt
   components:
   - type: Sprite
     layers:

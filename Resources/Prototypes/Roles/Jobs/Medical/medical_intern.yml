@@ -1,4 +1,4 @@
-﻿- type: job
+- type: job
   id: MedicalIntern
   name: job-name-intern
   description: job-description-intern
@@ -15,21 +15,24 @@
   access:
   - Medical
   - Maintenance
-  setPreference: false
   special:
   - !type:AddComponentSpecial
     components:
     - type: CPRTraining
+    - type: SurgerySpeedModifier
+      speedModifier: 1.5
+  setPreference: false
 
 - type: startingGear
   id: MedicalInternGear
+  subGear:
+  - DoctorPlasmamanGear
   equipment:
     jumpsuit: UniformScrubsColorBlue # DeltaV - Intern starts with blue scrubs
     back: ClothingBackpackMedicalFilled
     shoes: ClothingShoesColorWhite
     id: MedicalInternPDA
     ears: ClothingHeadsetMedical
-    belt: ClothingBeltMedicalFilled
     pocket2: BookMedicalReferenceBook
   # innerClothingSkirt: ClothingUniformJumpskirtColorWhite # DeltaV
   satchel: ClothingBackpackSatchelMedicalFilled

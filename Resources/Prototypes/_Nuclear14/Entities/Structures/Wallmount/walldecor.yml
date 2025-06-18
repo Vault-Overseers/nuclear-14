@@ -1,4 +1,22 @@
-# see adverts for sign base
+- type: entity
+  parent: BaseSign
+  id: N14SignBase # for non directional signs otherwise remove snapCardinals: true
+  abstract: true
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    drawdepth: Overdoors
+    sprite: _Nuclear14/Structures/Wallmounts/adverts.rsi
+    snapCardinals: true # one direction
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 # Flags
 - type: entity
@@ -11,7 +29,7 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Wallmounts/walldecor.rsi
     state: flag_us
-    
+
 - type: entity
   parent: N14FlagWallUS
   id: N14FlagWallChina
@@ -20,7 +38,7 @@
   components:
   - type: Sprite
     state: flag_china
-    
+
 - type: entity
   parent: N14FlagWallUS
   id: N14FlagWallCalifornia
@@ -29,7 +47,7 @@
   components:
   - type: Sprite
     state: flag_cali
-    
+
 - type: entity
   parent: N14FlagWallUS
   id: N14FlagWallArizona
@@ -38,7 +56,7 @@
   components:
   - type: Sprite
     state: flag_arizona
-    
+
 - type: entity
   parent: N14FlagWallUS
   id: N14FlagWallEnclave
@@ -47,7 +65,7 @@
   components:
   - type: Sprite
     state: flag_enclave
-    
+
 - type: entity
   parent: N14FlagWallUS
   id: N14FlagWallNCR
@@ -56,7 +74,7 @@
   components:
   - type: Sprite
     state: flag_ncr
-    
+
 - type: entity
   parent: N14FlagWallUS
   id: N14FlagWallLegion
@@ -65,7 +83,7 @@
   components:
   - type: Sprite
     state: flag_legion
-    
+
 - type: entity
   parent: N14FlagWallUS
   id: N14FlagWallRangers
@@ -74,24 +92,26 @@
   components:
   - type: Sprite
     state: flag_rangers
-    
+
 - type: entity
   parent: N14FlagWallUS
   id: N14FlagWallWesternBrotherhood
   suffix: Midwestern BOS
-  description: A Midwest Brotherhood of Steel flag.
+  description: A Midwestern Brotherhood of Steel flag.
   components:
   - type: Sprite
-    state: flag_westbos
+    sprite: _Nuclear14/Structures/Wallmounts/walldecor2.rsi
+    state: flag_midwest
 
 - type: entity
   parent: N14FlagWallUS
-  id: N14FlagWallWashingtonBrotherhood # Actually Eastern but repurposed.
+  id: N14FlagWallWashingtonBrotherhood
   suffix: Washington BOS
   description: A Washington Brotherhood of Steel flag.
   components:
   - type: Sprite
-    state: flag_eastbos
+    sprite: _Nuclear14/Structures/Wallmounts/walldecor3.rsi
+    state: flag_washing
 
 - type: entity
   parent: N14FlagWallUS
@@ -101,7 +121,7 @@
   components:
   - type: Sprite
     state: flag_colorado
-    
+
 - type: entity
   parent: N14FlagWallUS
   id: N14FlagWallDenver
@@ -122,7 +142,7 @@
     sprite: _Nuclear14/Structures/Wallmounts/walldecor.rsi
     snapCardinals: false
     state: clock
-    
+
 - type: entity
   parent: N14WallDecorClock
   id: N14WallDecorCalendar
@@ -130,8 +150,9 @@
   description: A calendar for some forgotten year.
   components:
   - type: Sprite
+    snapCardinals: true
     state: calendar
-    
+
 - type: entity
   parent: N14WallDecorClock
   id: N14WallDecorCalendar1
@@ -139,8 +160,9 @@
   description: A blank calendar for some forgotten year.
   components:
   - type: Sprite
+    snapCardinals: true
     state: calendar_blank
-    
+
 - type: entity
   parent: N14WallDecorClock
   id: N14WallDecorCross
@@ -148,8 +170,9 @@
   description: A symbol from another time.
   components:
   - type: Sprite
+    snapCardinals: true
     state: cross
-    
+
 - type: entity
   parent: N14WallDecorClock
   id: N14WallDecorWallscreen

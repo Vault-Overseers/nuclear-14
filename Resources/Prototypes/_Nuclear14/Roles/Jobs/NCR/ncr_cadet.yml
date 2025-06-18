@@ -1,13 +1,21 @@
 - type: job
   id: NCRCadet
   setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   name: job-name-ncr-cadet
   description: job-description-ncr-cadet
   playTimeTracker: NCRCadet
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterOverallTimeRequirement
+      min: 3600
   startingGear: NCRCadetGear
   icon: "JobIconSecurityCadet"
-  supervisors: job-supervisors-ncr-nco
-  canBeAntag: false
+  supervisors: job-supervisors-ncr
   alwaysUseSpawner: true
   access:
   - NCR
@@ -16,6 +24,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - NCR
 
 - type: startingGear
@@ -24,8 +33,8 @@
     head: N14ClothingHeadHatNCRSidecap
     back: N14ClothingBackpackNCRFilled
     jumpsuit: N14ClothingUniformNCRSnow
-    shoes: N14ClothingBootsLeather
-    pocket1: NCRtrooperloadoutkits
+    shoes: N14ClothingBootsLeatherFilled
+    pocket1: NCRcadetloadoutkits
     id: N14IDNCRDogtag
   innerClothingSkirt: N14ClothingUniformNCRSnow #placeholder
   satchel: N14ClothingBackpackSatchelNCRFilled

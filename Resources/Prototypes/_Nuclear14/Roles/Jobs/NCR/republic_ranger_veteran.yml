@@ -1,10 +1,16 @@
 - type: job
   id: NCRRangerVeteran
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-ncr-ranger-veteran
   description: job-description-ncr-ranger-veteran
   playTimeTracker: NCRRangerVeteran
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterPlaytimeRequirement
       tracker: NCRRanger
       min: 216000 # 60 hours as NCR
@@ -12,14 +18,17 @@
   startingGear: NCRRangerVeteranGear
   icon: "JobIconHeadOfSecurity"
   requireAdminNotify: true
-  canBeAntag: false
-  accessGroups:
+  access:
   - NCR
+  - NCRSGT
+  - NCRMedic
+  - NCRRanger
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - NCR
 
 - type: startingGear

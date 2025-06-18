@@ -5,7 +5,6 @@ using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Tag;
-using Content.Shared.Nuclear14.Special.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
@@ -131,6 +130,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             doAfterArgs.Used = EnsureEntity<DoAfterComponent>(doAfterArgs.NetUsed, uid);
             doAfterArgs.User = EnsureEntity<DoAfterComponent>(doAfterArgs.NetUser, uid);
             doAfterArgs.EventTarget = EnsureEntity<DoAfterComponent>(doAfterArgs.NetEventTarget, uid);
+            doAfterArgs.ShowTo = EnsureEntity<DoAfterComponent>(doAfterArgs.NetShowTo, uid); // Goobstation - Show doAfter popup to another entity
         }
 
         comp.NextId = state.NextId;
@@ -207,11 +207,6 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             return false;
         }
 
-        if (TryComp<SpecialComponent>(args.User, out var special))
-        {
-            args.Delay /= 0.90f + (special.TotalAgility / 50f);
-        }
-
         id = new DoAfterId(args.User, comp.NextId++);
         var doAfter = new DoAfter(id.Value.Index, args, GameTiming.CurTime);
 
@@ -221,12 +216,11 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         args.NetUser = GetNetEntity(args.User);
         args.NetEventTarget = GetNetEntity(args.EventTarget);
 
-        if (args.BreakOnUserMove || args.BreakOnTargetMove)
+        if (args.BreakOnMove)
             doAfter.UserPosition = Transform(args.User).Coordinates;
 
-        if (args.Target != null && args.BreakOnTargetMove)
+        if (args.Target != null && args.BreakOnMove)
         {
-            // Target should never be null if the bool is set.
             var targetPosition = Transform(args.Target.Value).Coordinates;
             doAfter.UserPosition.TryDistance(EntityManager, targetPosition, out doAfter.TargetDistance);
         }
@@ -253,8 +247,9 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         if (args.AttemptFrequency == AttemptFrequency.StartAndEnd && !TryAttemptEvent(doAfter))
             return false;
 
-        if (args.Delay <= TimeSpan.Zero ||
-            _tag.HasTag(args.User, "InstantDoAfters"))
+        // TODO DO AFTER
+        // Why does this tag exist? Just make this a bool on the component?
+        if (args.Delay <= TimeSpan.Zero || _tag.HasTag(args.User, "InstantDoAfters"))
         {
             RaiseDoAfterEvents(doAfter, comp);
             // We don't store instant do-afters. This is just a lazy way of hiding them from client-side visuals.

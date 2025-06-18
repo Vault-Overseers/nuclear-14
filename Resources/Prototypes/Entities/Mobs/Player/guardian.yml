@@ -13,6 +13,8 @@
       makeSentient: true
       name: ghost-role-information-guardian-name
       description: ghost-role-information-guardian-description
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: Input
       context: "human"
@@ -95,13 +97,14 @@
     - type: MeleeSpeech
     - type: UserInterface
       interfaces:
-      - key: enum.MeleeSpeechUiKey.Key
-        type: MeleeSpeechBoundUserInterface
+        enum.MeleeSpeechUiKey.Key:
+          type: MeleeSpeechBoundUserInterface
     - type: Actions
     - type: Guardian
     - type: Tag
       tags:
         - CannotSuicide
+        - NoPaint
 
 # From the uplink injector
 - type: entity
@@ -116,6 +119,8 @@
       makeSentient: true
       name: ghost-role-information-holoparasite-name
       description: ghost-role-information-holoparasite-description
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: NameIdentifier
       group: Holoparasite
@@ -144,8 +149,10 @@
       allowMovement: true
       allowSpeech: true
       makeSentient: true
-      name: ghost-role-information-ifrit-name
-      description: ghost-role-information-ifrit-description
+      name: ghost-role-information-ifrit-wizard-name
+      description: ghost-role-information-ifrit-wizard-description
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: RandomSprite
       available:
@@ -161,9 +168,11 @@
           shader: unshaded
     - type: Psionic
       removable: false
+      roller: false
     - type: InnatePsionicPowers
       powersToAdd:
         - TelepathyPower
+    - type: Dispellable
 
 - type: entity
   name: HoloClown
@@ -177,6 +186,8 @@
       makeSentient: true
       name: ghost-role-information-holoclown-name
       description: ghost-role-information-holoclown-description
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: NameIdentifier
       group: Holoparasite
@@ -215,11 +226,13 @@
       tags:
         - CannotSuicide
         - FootstepSound
+        - NoPaint
     - type: Inventory
       templateId: holoclown
     - type: Hands
+    - type: ComplexInteraction
     - type: Clumsy
-      clumsyDamage:
+      gunShootFailDamage:
         types:
           Blunt: 5
           Piercing: 4
@@ -251,7 +264,7 @@
   id: ActionToggleGuardian
   name: Toggle Guardian
   description: Either manifests the guardian or recalls it back into your body
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     icon: Interface/Actions/manifest.png

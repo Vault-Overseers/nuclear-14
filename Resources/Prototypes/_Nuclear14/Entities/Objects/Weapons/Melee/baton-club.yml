@@ -13,19 +13,19 @@
     damage:
       types:
         Blunt: 8
-    soundSwing:
-      collection: N14BaseballBatSwing
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/policebaton.rsi
     state: icon
   - type: Item
-    size: Normal 
+    size: Normal
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Melee/policebaton.rsi
     quickEquip: false
     slots:
     - belt
     - suitStorage
+  - type: StaticPrice
+    price: 30
 
 - type: entity
   name: tribal club
@@ -37,8 +37,6 @@
     damage:
       types:
         Blunt: 24
-    soundSwing:
-      collection: N14LargeSwing
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/tribalclub.rsi
     state: icon
@@ -50,6 +48,8 @@
     slots:
     - belt
     - suitStorage
+  - type: StaticPrice
+    price: 20
 
 - type: entity
   name: broken pipe
@@ -62,8 +62,6 @@
     damage:
       types:
         Blunt: 22
-    soundSwing:
-      collection: N14LargeSwing
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/pipe.rsi
     state: icon
@@ -75,6 +73,32 @@
     slots:
     - belt
     - suitStorage
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  name: training sword
+  description: A crude wooden sword used for training in melee combat.
+  parent: BaseItem
+  id: N14TrainingSword
+  components:
+  - type: StaminaDamageOnHit
+    damage: 12
+  - type: StaminaDamageOnCollide
+    damage: 8
+  - type: MeleeWeapon
+    wideAnimationRotation: -60
+    attackRate: 0.8
+    damage:
+      types:
+        Blunt: 2
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Melee/training_sword.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: StaticPrice
+    price: 0
 
 - type: entity
   name: trench club
@@ -85,9 +109,8 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 24
-    soundSwing:
-      collection: N14LargeSwing
+        Blunt: 16
+        Piercing: 4
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/trenchclub.rsi
     state: icon
@@ -99,3 +122,5 @@
     slots:
     - belt
     - suitStorage
+  - type: StaticPrice
+    price: 30

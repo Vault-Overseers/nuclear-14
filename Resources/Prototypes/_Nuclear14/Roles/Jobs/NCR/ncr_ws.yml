@@ -1,17 +1,22 @@
 - type: job
   id: NCRWS
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-ncr-ws
   description: job-description-ncr-ws
   playTimeTracker: NCRWS
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: NCR
       min: 18000 # 5 hours
   startingGear: NCRWSGear
   icon: "JobIconWarden"
-  supervisors: job-supervisors-ncr-nco
-  canBeAntag: false
+  supervisors: job-supervisors-ncr
   alwaysUseSpawner: true
   access:
   - NCR
@@ -20,15 +25,15 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - NCR
 
 - type: startingGear
   id: NCRWSGear
   equipment:
-    head: N14ClothingHeadHatNCRHelmetMetalSnow
     back: N14ClothingBackpackNCRFilled
     jumpsuit: N14ClothingUniformNCRSnow
-    shoes: N14ClothingBootsLeather
+    shoes: N14ClothingBootsLeatherFilled
     pocket1: NCRwsloadoutkits
     id: N14IDNCRDogtagWS
   innerClothingSkirt: N14ClothingUniformNCRSnow #placeholder

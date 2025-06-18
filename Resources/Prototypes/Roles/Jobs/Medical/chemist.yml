@@ -3,7 +3,6 @@
   name: job-name-chemist
   description: job-description-chemist
   playTimeTracker: JobChemist
-  setPreference: false
   requirements:
     - !type:CharacterDepartmentTimeRequirement
       department: Medical
@@ -19,17 +18,28 @@
   - !type:AddComponentSpecial
     components:
     - type: CPRTraining
+    - type: SurgerySpeedModifier
+      speedModifier: 1.75
+  setPreference: false
 
 - type: startingGear
   id: ChemistGear
+  subGear:
+  - ChemistPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitChemistry
     back: ClothingBackpackChemistryFilled
     shoes: ClothingShoesColorWhite
     id: ChemistryPDA
     ears: ClothingHeadsetMedical
-    belt: ChemBag
-    # the purple glasses?
   innerClothingSkirt: ClothingUniformJumpskirtChemistry
   satchel: ClothingBackpackSatchelChemistryFilled
   duffelbag: ClothingBackpackDuffelChemistryFilled
+
+- type: startingGear
+  id: ChemistPlasmamanGear
+  parent: BasePlasmamanGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitChemist
+    head: ClothingHeadEnvirohelmChemist
+    gloves: ClothingHandsGlovesEnviroglovesWhite

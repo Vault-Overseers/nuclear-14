@@ -1,0 +1,52 @@
+- type: entity
+  parent: BaseStructure
+  id: N14CryoBunkerLadder
+  name: bunker hatch
+  description: A hatch and ladder leading down to safe spot where one could take some rest.
+  components:
+  - type: Sprite
+    offset: 0, 0.25
+    drawdepth: FloorObjects
+    noRot: true
+    sprite: _Nuclear14/Structures/Misc/laddersms13.rsi
+    layers:
+    - state: dasbunker_open
+      map: ["base"]
+  - type: InteractionOutline
+  - type: Cryostorage
+  - type: Physics
+    canCollide: false
+  - type: DragInsertContainer
+    containerId: storage
+  - type: ExitContainerOnMove
+    containerId: storage
+  - type: ContainerContainer
+    containers:
+      storage: !type:ContainerSlot
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CryostorageVisuals.Full:
+        base:
+          True: { state: dasbunker }
+          False: { state: dasbunker_open }
+
+- type: entity
+  parent: N14CryoBunkerLadder
+  id: N14N14CryoBunkerLadderE
+  name: bunker hatch
+  description: A hatch and ladder leading down to safe spot where one could take some rest. The top of the door has a big E and stars painted on it.
+  components:
+  - type: Sprite
+    offset: 0, 0.25
+    noRot: true
+    sprite: _Nuclear14/Structures/Misc/laddersms13.rsi
+    layers:
+    - state: enclave_open
+      map: ["base"]
+  - type: GenericVisualizer
+    visuals:
+      enum.CryostorageVisuals.Full:
+        base:
+          True: { state: enclave }
+          False: { state: enclave_open }

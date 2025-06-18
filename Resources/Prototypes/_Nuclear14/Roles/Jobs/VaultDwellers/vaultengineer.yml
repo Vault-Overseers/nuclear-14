@@ -6,11 +6,17 @@
   - !type:CharacterSpeciesRequirement
     species:
     - Human
+  - !type:CharacterDepartmentTimeRequirement
+    department: Vault
+    min: 7200 # 2 hours
+  setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   playTimeTracker: VaultEngineer
   startingGear: VaultEngineerGear
   alwaysUseSpawner: true
   icon: "JobIconStationEngineer"
-  supervisors: job-supervisors-overseer
+  supervisors: job-supervisors-vault
   access:
   - VaultDweller
   - VaultEngineer
@@ -19,6 +25,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - Vault
 
 - type: startingGear
@@ -31,7 +38,7 @@
     outerClothing: ClothingOuterVestHazard
     id: N14VaultEngineerPDA
     belt: N14ClothingBeltUtilityFilled
-    ears: N14ClothingHeadsetVaultEngineering
+    ears: N14ClothingHeadsetVaultDweller
 
 - type: playTimeTracker
   id: VaultEngineer

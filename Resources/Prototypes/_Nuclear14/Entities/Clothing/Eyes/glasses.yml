@@ -20,8 +20,8 @@
     sprite: _Nuclear14/Clothing/Eyes/pilotgoggles.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Eyes/pilotgoggles.rsi
-  - type: ClothingSpecialModifier
-    charismaModifier: 1 
+  # - type: ClothingSpecialModifier
+    # charismaModifier: 1 
 
 - type: entity
   parent: ClothingEyesBase
@@ -45,9 +45,6 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/Eyes/glasses.rsi
   - type: VisionCorrection
-  - type: Tag
-    tags: 
-    - GlassesNearsight 
 
 - type: entity
   parent: ClothingEyesBase
@@ -60,6 +57,21 @@
   - type: Clothing
     sprite: _Nuclear14/Clothing/Eyes/sunglasses.rsi
   - type: VisionCorrection
-  - type: ClothingSpecialModifier
-    charismaModifier: 1 
-  
+  # - type: ClothingSpecialModifier
+    # charismaModifier: 1 
+
+- type: entity
+  parent: ClothingEyesBase
+  id: N14ClothingEyesNCRNVGs
+  name: night vision goggles
+  description: Goggles designed to see in the dark, but doesn't do much against flashing lights, are quite heavy and unbalanced.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Eyes/NVG2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Eyes/NVG2.rsi
+  - type: NightVision
+    isEquipment: true
+  - type: ClothingSpeedModifier
+    walkModifier: 0.975
+    sprintModifier: 0.975

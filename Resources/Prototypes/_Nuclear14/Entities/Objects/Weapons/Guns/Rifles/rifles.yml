@@ -3,6 +3,8 @@
   id: N14WeaponRifleBase
   abstract: true
   components:
+  - type: Item
+    size: Large
   - type: Clothing
     quickEquip: false
     slots:
@@ -23,6 +25,9 @@
   - type: Appearance
   - type: FollowDistance
     backStrength: 5
+  - type: StaticPrice
+    price: 100
+  - type: Craftable
 
 - type: entity
   name: R-91 Rifle
@@ -68,6 +73,8 @@
         whitelist:
           tags:
             - N14Cartridge556Rifle
+  - type: StaticPrice
+    price: 100
 
 - type: entity
   name: chinese assault rifle
@@ -106,7 +113,7 @@
         priority: 2
         whitelist:
           tags:
-            - Magazine762Rifle
+            - N14Magazine762Rifle
       gun_chamber:
         name: Chamber
         startingItem: N14Cartridge762Rifle
@@ -114,6 +121,8 @@
         whitelist:
           tags:
             - N14Cartridge762Rifle
+  - type: StaticPrice
+    price: 125
 
 - type: entity
   name: assault carbine
@@ -163,6 +172,8 @@
         whitelist:
           tags:
             - N14Cartridge556Rifle
+  - type: StaticPrice
+    price: 100
 
 - type: entity
   name: marksman carbine
@@ -190,7 +201,7 @@
     angleDecay: 16
     soundGunshot:
       collection: N14MarksmanGunshot
-    fireRate: 5
+    fireRate: 4
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -204,7 +215,7 @@
         priority: 2
         whitelist:
           tags:
-            - Magazine762Rifle
+            - N14Magazine762Rifle
       gun_chamber:
         name: Chamber
         startingItem: N14Cartridge762Rifle
@@ -212,6 +223,8 @@
         whitelist:
           tags:
             - N14Cartridge762Rifle
+  - type: StaticPrice
+    price: 125
 
 - type: entity
   name: service rifle
@@ -219,6 +232,8 @@
   id: N14WeaponRifle556Service
   description: A cheaply mass-produced post-war rifle made by the NCR, chambered in 5.56 ammo.
   components:
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/servicerifle.rsi
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/servicerifle.rsi
     quickEquip: false
@@ -226,7 +241,8 @@
     - Back
     - suitStorage
   - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/servicerifle.rsi
+    scale: 0.8, 0.8
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/servicerifleicon.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
@@ -235,6 +251,60 @@
   - type: Gun
     minAngle: 21
     maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 5
+    soundGunshot:
+      collection: N14ServiceGunshot
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine556Rifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine556Rifle
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge556Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge556Rifle
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  name: scoped service rifle
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle556ServiceScoped
+  description: A cheaply mass-produced post-war rifle made by the NCR, chambered in 5.56 ammo. This one features an optic mounted on the carry handle.
+  components:
+  - type: Item
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/scopedservicerifle.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/scopedservicerifle.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    scale: 0.8, 0.8
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/scopedservicerifleicon.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 24
+    maxAngle: 105
     angleIncrease: 4
     angleDecay: 16
     fireRate: 5
@@ -312,6 +382,8 @@
         whitelist:
           tags:
             - N14Cartridge556Rifle
+  - type: StaticPrice
+    price: 150
 
 - type: entity
   name: battle rifle
@@ -368,6 +440,8 @@
             - N14Cartridge308Rifle
   - type: FollowDistance
     backStrength: 3
+  - type: StaticPrice
+    price: 150
 
 - type: entity
   name: old carbine
@@ -417,3 +491,540 @@
         whitelist:
           tags:
             - N14Cartridge556Rifle
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  name: C70 rifle
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle762Canadian
+  description: A pre-war canadian assault rifle chambered in 7.62mm, surprisingly in good state for being 200 a years old rifle
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/canadianrifle.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/canadianrifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    soundGunshot:
+      collection: N14MarksmanGunshot
+    fireRate: 4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine762Rifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14Magazine762Rifle
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge762Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge762Rifle
+  - type: StaticPrice
+    price: 175
+
+- type: entity
+  name: EM2 rifle
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle556EM2
+  description: A long bullpup assault rifle, uses 5.56 ammo.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/em2.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/em2.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 4
+    soundGunshot:
+      collection: N14CarbineGunshot
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: LongMagazine556Rifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - LongMagazine556Rifle
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge556Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge556Rifle
+  - type: StaticPrice
+    price: 150
+
+- type: entity
+  name: FAL rifle
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle762Fal
+  description: A pre-war battle rifle chambered in 7.62mm, strong and reliable. its said this gun once won the title of "the right arm of the free world", but theres not much left of the world to confirm it.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/fal.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/fal.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    soundGunshot:
+      collection: N14MarksmanGunshot
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine762AmmoShort
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14Magazine762Short
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge762Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge762Rifle
+  - type: StaticPrice
+    price: 175
+
+- type: entity
+  name: M14 rifle
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle762M14
+  description: A pre-war battle rifle chambered in 7.62mm, build to replace the old M1 garand of the US military, it didnt last for long and got remplaced by the R-91 after a few years of service.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/m14.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/m14.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    soundGunshot:
+      collection: N14MarksmanGunshot
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine762AmmoShort
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14Magazine762Short
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge762Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge762Rifle
+  - type: StaticPrice
+    price: 175
+
+- type: entity
+  name: F2 marksman rifle
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle762MarksmanCanadian
+  description: A pre-war canadian marksman rifle chambered in 7.62mm.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/canadianmarksman.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/canadianmarksman.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -44
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    soundGunshot:
+      collection: N14MarksmanGunshot
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine762AmmoShort
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14Magazine762Short
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge762Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge762Rifle
+  - type: StaticPrice
+    price: 175
+
+- type: entity
+  name: chinese marksman rifle
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle762MarksmanChinese
+  description: A pre-war chinese marksman rifle chambered in .308.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/chinesemarksman.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/chinesemarksman.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -44
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    soundGunshot:
+      collection: N14MarksmanGunshot
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine308Rifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14Magazine308Rifle
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge308Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge308Rifle
+  - type: StaticPrice
+    price: 175
+
+- type: entity
+  name: SKS chinese carbine
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle762SKS
+  description: A pre-war chinese rifle chambered in 7.62mm. cheap, simple and easy to use, perfect to arm commie militias from around the world.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/chinesecarbine.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/chinesecarbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    soundGunshot:
+      collection: N14MarksmanGunshot
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine762AmmoShort
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - N14Magazine762Short
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge762Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge762Rifle
+  - type: StaticPrice
+    price: 175
+
+- type: entity
+  name: pipe assault rifle
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle556Pipe
+  description: A rusty pipe automatic rifle, light and extremely cheap, chambered in 5.56mm
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/pipeassaultrifle.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/pipeassaultrifle.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 21
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 3
+    soundGunshot:
+      collection: N14ServiceGunshot
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine556Rifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine556Rifle
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge556Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge556Rifle
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  name: tribal rifle
+  parent: BaseWeaponSniper
+  id: N14WeaponSniper556Tribal
+  description: A surprisingly decent piece of a gun for being made by tribals, with an internal magazine this semi automatic rifle is rustic but trusty. chambered in 5.56mm.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/tribalrifle.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/tribalrifle.rsi
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -104
+  - type: Gun
+    minAngle: 24
+    maxAngle: 105
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 3
+    soundGunshot:
+      collection: N14SniperVarmintGunshot
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14Cartridge556Rifle
+    capacity: 15
+    proto: N14Cartridge556Rifle
+  - type: FollowDistance
+    backStrength: 5
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  name: tribal assault rifle
+  parent: BaseWeaponSniper
+  id: N14WeaponSniper556TribalUpgraded
+  description: A surprisingly decent piece of a gun for being made by tribals, with an internal magazine this semi automatic rifle is rustic but trusty. chambered in 5.56mm.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/tribalrifle2.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/tribalrifle2.rsi
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -104
+  - type: Gun
+    minAngle: 24
+    maxAngle: 105
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 4
+    soundGunshot:
+      collection: N14SniperVarmintGunshot
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14Cartridge556Rifle
+    capacity: 25
+    proto: N14Cartridge556Rifle
+  - type: FollowDistance
+    backStrength: 5
+  - type: StaticPrice
+    price: 75
+
+- type: entity
+  name: butchered service rifle
+  parent: N14WeaponRifleBase
+  id: N14WeaponRifle556Butchered
+  description: A cheaply mass-produced post-war rifle made by the NCR, this one has been tortured horribly and converted into a "carbine", chambered in 5.56 ammo.
+  components:
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/butcheredrifle.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/butcheredrifle.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 26
+    maxAngle: 50
+    angleIncrease: 6
+    angleDecay: 16
+    fireRate: 4
+    soundGunshot:
+      collection: N14ServiceGunshot
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -40
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine556Rifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine556Rifle
+      gun_chamber:
+        name: Chamber
+        startingItem: N14Cartridge556Rifle
+        priority: 1
+        whitelist:
+          tags:
+            - N14Cartridge556Rifle
+  - type: StaticPrice
+    price: 75

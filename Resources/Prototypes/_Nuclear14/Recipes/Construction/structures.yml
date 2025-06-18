@@ -18,25 +18,6 @@
   hide: false
   conditions:
     - !type:TileNotBlocked
-    
-# # Doors
-- type: construction
-  name: wooden door
-  id: N14DoorWood
-  graph: N14DoorGraph
-  startNode: start
-  targetNode: woodDoorMakeshift
-  category: construction-category-structures
-  description: A primitive door with manual operation like the cavemen used.
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  hide: false
-  icon:
-    sprite: _Nuclear14/Structures/Doors/FalloutDoors/wooddoor.rsi
-    state: closed
-  conditions:
-    - !type:TileNotBlocked
 
 # Slanted Structures
 ## Walls
@@ -58,7 +39,64 @@
   hide: false
   conditions:
     - !type:TileNotBlocked
-    
+
+- type: construction
+  name: blue scrap wall
+  id: N14WallScrapBlueSlanted
+  graph: N14ScrapWall
+  startNode: start
+  targetNode: BlueScrapWall
+  category: construction-category-structures
+  description: Have some rust here and there.
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapblue.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: red scrap wall
+  id: N14WallScrapRedSlanted
+  graph: N14ScrapWall
+  startNode: start
+  targetNode: RedScrapWall
+  category: construction-category-structures
+  description: I hope that's red paint...
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapred.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: rough scrap wall
+  id: N14WallRoughScrapSlanted
+  graph: N14ScrapWall
+  startNode: start
+  targetNode: RoughScrapWall
+  category: construction-category-structures
+  description: I hope that's red paint...
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/roughscrap.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
 ## Half Walls
 - type: construction
   name: wooden half wall
@@ -80,139 +118,87 @@
     - !type:TileNotBlocked
 
 ## Doors
-- type: construction
-  name: metal door blue
-  id: N14DoorMetalBlue
-  graph: N14DoorGraph
-  startNode: start
-  targetNode: MetalBlue
-  category: construction-category-structures
-  description: A metal door good for keeping things out.
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  hide: false
-  icon:
-    sprite: _Nuclear14/Structures/Doors/SlantedDoors/metalblue.rsi
-    state: closed
-  conditions:
-    - !type:TileNotBlocked
-    
-- type: construction
-  name: metal door blue
-  id: N14DoorMetalBlueAlt
-  graph: N14DoorGraph
-  startNode: start
-  targetNode: MetalBlueAlt
-  category: construction-category-structures
-  description: A metal door good for keeping things out.
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  hide: false
-  icon:
-    sprite: _Nuclear14/Structures/Doors/SlantedDoors/metalbluealt.rsi
-    state: closed
-  conditions:
-    - !type:TileNotBlocked
-    
-- type: construction
-  name: metal door red
-  id: N14DoorMetalRed
-  graph: N14DoorGraph
-  startNode: start
-  targetNode: MetalRed
-  category: construction-category-structures
-  description: A metal door good for keeping things out.
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  hide: false
-  icon:
-    sprite: _Nuclear14/Structures/Doors/SlantedDoors/metalred.rsi
-    state: closed
-  conditions:
-    - !type:TileNotBlocked
-    
-- type: construction
-  name: metal door blue windowed
-  id: N14DoorMetalBlueWindow
-  graph: N14DoorGraph
-  startNode: start
-  targetNode: MetalBlueWindow
-  category: construction-category-structures
-  description: A metal door good for keeping things out.
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  hide: false
-  icon:
-    sprite: _Nuclear14/Structures/Doors/SlantedDoors/metalbluewindow.rsi
-    state: closed
-  conditions:
-    - !type:TileNotBlocked
-    
-- type: construction
-  name: metal bar door
-  id: N14DoorMetalBar
-  graph: N14DoorGraph
-  startNode: start
-  targetNode: MetalBar
-  category: construction-category-structures
-  description: A metal door good for keeping things out.
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  hide: false
-  icon:
-    sprite: _Nuclear14/Structures/Doors/SlantedDoors/metal_bar.rsi
-    state: closed
-  conditions:
-    - !type:TileNotBlocked
-    
-- type: construction
-  name: metal fence door
-  id: N14DoorMetalFence
-  graph: N14DoorGraph
-  startNode: start
-  targetNode: MetalFence
-  category: construction-category-structures
-  description: A metal door good for keeping things out.
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  hide: false
-  icon:
-    sprite: _Nuclear14/Structures/Doors/SlantedDoors/fence.rsi
-    state: closed
-  conditions:
-    - !type:TileNotBlocked
-    
+
 - type: construction
   name: wooden door
-  id: N14DoorWooden
+  id: N14DoorWood
   graph: N14DoorGraph
   startNode: start
-  targetNode: WoodDoor
+  targetNode: woodDoorMakeshift
   category: construction-category-structures
-  description: A wooden door good for keeping things out.
+  description: A primitive door with manual operation like the cavemen used.
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   hide: false
   icon:
-    sprite: _Nuclear14/Structures/Doors/SlantedDoors/wood.rsi
+    sprite: _Nuclear14/Structures/Doors/FalloutDoors/wooddoor.rsi
     state: closed
   conditions:
     - !type:TileNotBlocked
-    
+
+- type: construction
+  name: locked wooden door
+  id: N14DoorWoodLocked
+  graph: N14DoorGraph
+  startNode: start
+  targetNode: woodDoorlocked
+  category: construction-category-structures
+  description: It's a secure door, made out of wood.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/FalloutDoors/securedoor.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: ncr wooden door
+  id: N14DoorWoodNCR
+  graph: N14DoorGraph
+  startNode: start
+  targetNode: woodDoorSecureNCR
+  category: construction-category-structures
+  description: It's a secure door, made out of wood. Has the NCR banner in the front.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/FalloutDoors/securedoor_ncr.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: bunker door frame
+  id: N14BunkerDoor
+  graph: N14BunkerDoorGraph
+  startNode: start
+  targetNode: Door
+  category: construction-category-structures
+  description: It opens, it closes, and maybe crushes you.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Doors/FalloutDoors/bunkerdoor.rsi
+    state: open
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
 ## Windows
 - type: construction
   name: window pane
   id: N14Window
   graph: N14WindowPane
   startNode: start
-  targetNode: Window
+  targetNode: N14WindowSlanted
   category: construction-category-structures
   description: A window pane for seeing through things.
   objectType: Structure

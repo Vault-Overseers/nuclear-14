@@ -6,6 +6,7 @@
   components:
   - type: EmbeddableProjectile
     offset: 0.15,0.15
+  - type: EmbedPassiveDamage
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -27,7 +28,7 @@
         friction: 0.2
   - type: Sharp
   - type: Sprite
-    sprite: Objects/Weapons/Melee/spear.rsi
+    sprite: _Nuclear14/Objects/Weapons/Melee/spear.rsi
     layers:
     - state: spear
     - state: spear1
@@ -77,6 +78,8 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     fillBaseName: spear
+  - type: StaticPrice
+    price: 30
 
 - type: entity
   name: spear
@@ -85,8 +88,14 @@
   description: Definition of a classic. Keeping murder affordable since 200,000 BCE.
   components:
   - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 3
+        Slash: 3
   - type: EmbeddableProjectile
     offset: 0.15,0.15
+  - type: EmbedPassiveDamage
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -108,7 +117,7 @@
         friction: 0.2
   - type: Sharp
   - type: Sprite
-    sprite: Objects/Weapons/Melee/spear.rsi
+    sprite: _Nuclear14/Objects/Weapons/Melee/spear.rsi
     layers:
     - state: spear
     - state: spear1
@@ -235,6 +244,8 @@
       types:
         Piercing: 16
         Slash: 6
+  - type: StaticPrice
+    price: 30
 
 - type: entity
   name: javelin
@@ -254,3 +265,4 @@
     damage:
       types:
         Piercing: 36
+

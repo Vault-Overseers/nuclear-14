@@ -2,7 +2,7 @@
 special-appearance-component-examine-charisma-very-low = { CAPITALIZE(SUBJECT($user)) } seems repulsive.
 special-appearance-component-examine-charisma-low = { CAPITALIZE(SUBJECT($user)) } seems awkward.
 special-appearance-component-examine-charisma-medium = { CAPITALIZE(SUBJECT($user)) } seems normal.
-special-appearance-component-examine-charisma-high = { CAPITALIZE(SUBJECT($user)) } seem approachable.
+special-appearance-component-examine-charisma-high = { CAPITALIZE(SUBJECT($user)) } seems approachable.
 special-appearance-component-examine-charisma-very-high = { CAPITALIZE(SUBJECT($user)) } seems suave.
 
 # Examine all special modifiers

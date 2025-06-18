@@ -1,31 +1,44 @@
 - type: job
   id: CaravanGuard
   setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   name: job-name-caravan-guard
   description: job-description-caravan-guard
   playTimeTracker: CaravanGuard
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterOverallTimeRequirement
+      min: 3600
   startingGear: CaravanGuardGear
   icon: "JobIconCargoTechnician"
   supervisors: job-supervisors-caravan
   alwaysUseSpawner: true
   access:
   - CaravanCompanyGuard
+  - Orders # DeltaV - Orders, see Resources/Prototypes/DeltaV/Access/cargo.yml
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - CaravanCompany
 
 - type: startingGear
   id: CaravanGuardGear
   equipment:
-    jumpsuit: N14ClothingUniformJumpsuitCaravan
+    head: N14ClothingHeadHatCaravanUniform
+    jumpsuit: N14ClothingUniformJumpsuitCaravanShirt
+    gloves: N14ClothingHandsGlovesBlackBiker
     back: N14ClothingBackpackCaravanFilled
     shoes: N14ClothingBootsLeather
     id: N14IDPassportCaravan
     pocket2: N14WeaponPistol10mm
-    outerClothing: N14ClothingOuterLightMetalArmor
+    outerClothing: N14ClothingOuterPoliceVest
     suitstorage: N14WeaponRifle556R91
   satchel: N14ClothingBackpackSatchelCaravanFilled
   duffelbag: N14ClothingBackpackDuffelCaravanFilled

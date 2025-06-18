@@ -11,7 +11,7 @@ public sealed partial class MorgueComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("doSoulBeep")]
-    public bool DoSoulBeep = true;
+    public bool DoSoulBeep = false;
 
     [ViewVariables]
     public float AccumulatedFrameTime = 0f;

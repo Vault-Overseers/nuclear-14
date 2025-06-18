@@ -1,188 +1,157 @@
-# TODO: Add descriptions (many)
-# TODO BODY: Part damage
 - type: entity
   id: N14PartGhoulGlowing
-  parent: N14PartGhoul
-  name: ghoul body part
+  parent: [BaseItem, BasePart]
+  name: "ghoul body part"
   abstract: true
   components:
-  - type: Damageable
-    damageContainer: Biological
-  - type: BodyPart
-  - type: ContainerContainer
-    containers:
-      bodypart: !type:Container
-        ents: []
-  - type: StaticPrice
-    price: 100
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: Blood
+        Quantity: 10
 
 - type: entity
   id: N14TorsoGhoulGlowing
-  name: ghoul torso
-  parent: N14PartGhoulGlowing
+  name: "ghoul torso"
+  parent: [N14PartGhoulGlowing, BaseTorso]
   components:
   - type: Sprite
-    netsync: false
     sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
     state: "torso_m"
-  - type: Icon
-    sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
-    state: "torso_m"
-  - type: BodyPart
-    partType: Torso
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+  - type: StaticPrice
+    price: 15
+  - type: Item
+    size: Large
 
 - type: entity
   id: N14HeadGhoulGlowing
-  name: ghoul head
-  parent: N14PartGhoulGlowing
+  name: "ghoul head"
+  parent: [N14PartGhoulGlowing, BaseHead]
   components:
   - type: Sprite
-    netsync: false
     sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
     state: "head_m"
-  - type: Icon
-    sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
-    state: "head_m"
-  - type: BodyPart
-    partType: Head
-    vital: true
-  - type: Input
-    context: "ghost"
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 0
-    baseSprintSpeed: 0
-  - type: InputMover
-  - type: GhostOnMove
-  - type: Tag
-    tags:
-      - Head
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: Blood
+        Quantity: 10
+  - type: StaticPrice
+    price: 15
+  - type: Item
+    size: Normal
 
 - type: entity
   id: N14LeftArmGhoulGlowing
-  name: left ghoul arm
-  parent: N14PartGhoulGlowing
+  name: "left ghoul arm"
+  parent: [N14PartGhoulGlowing, BaseLeftArm]
   components:
   - type: Sprite
-    netsync: false
     sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
     state: "l_arm"
-  - type: Icon
-    sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
-    state: "l_arm"
-  - type: BodyPart
-    partType: Arm
-    symmetry: Left
+  - type: StaticPrice
+    price: 10
+  - type: Item
+    size: Normal
 
 - type: entity
   id: N14RightArmGhoulGlowing
-  name: right ghoul arm
-  parent: N14PartGhoulGlowing
+  name: "right ghoul arm"
+  parent: [N14PartGhoulGlowing, BaseRightArm]
   components:
   - type: Sprite
-    netsync: false
     sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
     state: "r_arm"
-  - type: Icon
-    sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
-    state: "r_arm"
-  - type: BodyPart
-    partType: Arm
-    symmetry: Right
+  - type: StaticPrice
+    price: 10
+  - type: Item
+    size: Normal
 
 - type: entity
   id: N14LeftHandGhoulGlowing
-  name: left ghoul hand
-  parent: N14PartGhoulGlowing
+  name: "left ghoul hand"
+  parent: [N14PartGhoulGlowing, BaseLeftHand]
   components:
   - type: Sprite
-    netsync: false
     sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
     state: "l_hand"
-  - type: Icon
-    sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
-    state: "l_hand"
-  - type: BodyPart
-    partType: Hand
-    symmetry: Left
+  - type: StaticPrice
+    price: 5
+  - type: Item
+    size: Small
 
 - type: entity
   id: N14RightHandGhoulGlowing
-  name: right ghoul hand
-  parent: N14PartGhoulGlowing
+  name: "right ghoul hand"
+  parent: [N14PartGhoulGlowing, BaseRightHand]
   components:
   - type: Sprite
-    netsync: false
     sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
     state: "r_hand"
-  - type: Icon
-    sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
-    state: "r_hand"
-  - type: BodyPart
-    partType: Hand
-    symmetry: Right
+  - type: StaticPrice
+    price: 5
+  - type: Item
+    size: Small
 
 - type: entity
   id: N14LeftLegGhoulGlowing
-  name: left ghoul leg
-  parent: N14PartGhoulGlowing
+  name: "left ghoul leg"
+  parent: [N14PartGhoulGlowing, BaseLeftLeg]
   components:
   - type: Sprite
-    netsync: false
     sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
     state: "l_leg"
-  - type: Icon
-    sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
-    state: "l_leg"
-  - type: BodyPart
-    partType: Leg
-    symmetry: Left
-  - type: MovementSpeedModifier
+  - type: StaticPrice
+    price: 10
+  - type: Item
+    size: Normal
 
 - type: entity
   id: N14RightLegGhoulGlowing
-  name: right ghoul leg
-  parent: N14PartGhoulGlowing
+  name: "right ghoul leg"
+  parent: [N14PartGhoulGlowing, BaseRightLeg]
   components:
   - type: Sprite
-    netsync: false
     sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
     state: "r_leg"
-  - type: Icon
-    sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
-    state: "r_leg"
-  - type: BodyPart
-    partType: Leg
-    symmetry: Right
-  - type: MovementSpeedModifier
+  - type: StaticPrice
+    price: 10
+  - type: Item
+    size: Normal
 
 - type: entity
   id: N14LeftFootGhoulGlowing
-  name: left ghoul foot
-  parent: N14PartGhoulGlowing
+  name: "left ghoul foot"
+  parent: [N14PartGhoulGlowing, BaseLeftFoot]
   components:
   - type: Sprite
-    netsync: false
     sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
     state: "l_foot"
-  - type: Icon
-    sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
-    state: "l_foot"
-  - type: BodyPart
-    partType: Foot
-    symmetry: Left
+  - type: StaticPrice
+    price: 5
+  - type: Item
+    size: Small
 
 - type: entity
   id: N14RightFootGhoulGlowing
-  name: right ghoul foot
-  parent: N14PartGhoulGlowing
+  name: "right ghoul foot"
+  parent: [N14PartGhoulGlowing, BaseRightFoot]
   components:
   - type: Sprite
-    netsync: false
     sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
     state: "r_foot"
-  - type: Icon
-    sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
-    state: "r_foot"
-  - type: BodyPart
-    partType: Foot
-    symmetry: Right
+  - type: StaticPrice
+    price: 5
+  - type: Item
+    size: Small

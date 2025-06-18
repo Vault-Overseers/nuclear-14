@@ -92,9 +92,34 @@
 - type: entity
   name: Marker Weather Blocker
   id: MarkerWeatherblocker
+  suffix: roofed
   parent: MarkerBase
   components:
   - type: Sprite
     sprite: Markers/environment.rsi
-    state: weather
+    layers:
+      - sprite: Markers/environment.rsi
+        shader: unshaded
+        state: weather
+      - sprite: Markers/environment.rsi
+        shader: unshaded
+        state: target-blue
+  - type: BlockWeather
+  - type: IsRoof
+  
+- type: entity
+  name: Marker Weather Blocker
+  id: MarkerWeatherblockerNoRoof
+  suffix: no roof
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/environment.rsi
+    layers:
+      - sprite: Markers/environment.rsi
+        shader: unshaded
+        state: weather
+      - sprite: Markers/environment.rsi
+        shader: unshaded
+        state: target-red
   - type: BlockWeather

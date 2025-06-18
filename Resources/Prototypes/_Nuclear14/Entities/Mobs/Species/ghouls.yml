@@ -2,11 +2,14 @@
   save: false
   name: ghoul
   id: N14BaseMobGhoul
-  parent: BaseMobHuman
-  noSpawn: true
+  parent: BaseMobSpeciesOrganic
+  categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
     species: Ghoul
+  - type: Body
+    prototype: Ghoul
+    requiredLegs: 2
   - type: Icon
     sprite: _Nuclear14/Mobs/Species/Ghoul/parts.rsi
     state: full
@@ -60,6 +63,14 @@
       - map: [ "head" ]
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
+  - type: Perishable
+    rotAfter: 3600 # An entire in-game day.
+  - type: Hunger
+    starvationDamage:
+      types:
+        Cold: 0.5
+        Bloodloss: 0.5
+  - type: Thirst
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Ghoul
@@ -79,13 +90,13 @@
       0: Alive
       100: Critical
       150: Dead
-  - type: Special
+  # - type: Special
 
 - type: entity
   save: false
   parent: MobHumanDummy
   id: N14MobGhoulDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
     species: Ghoul
@@ -96,11 +107,14 @@
   save: false
   name: ghoul
   id: N14BaseMobGhoulGlowing
-  parent: BaseMobHuman
-  noSpawn: true
+  parent: BaseMobSpeciesOrganic
+  categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
     species: GhoulGlowing
+  - type: Body
+    prototype: GhoulGlowing
+    requiredLegs: 2
   - type: Icon
     sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
     state: full
@@ -154,6 +168,14 @@
       - map: [ "head" ]
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
+  - type: Perishable
+    rotAfter: 3600 # An entire in-game day.
+  - type: Hunger
+    starvationDamage:
+      types:
+        Cold: 0.5
+        Bloodloss: 0.5
+  - type: Thirst
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: GhoulGlowing
@@ -175,18 +197,18 @@
       150: Dead
   - type: PointLight
     radius: 2
-    energy: 2
+    energy: 0.5
     color: "#4CBB17FF"
   - type: RadiationSource
     intensity: 0.5
     slope: 0.25
-  - type: Special
+  # - type: Special
 
 - type: entity
   save: false
   parent: MobHumanDummy
   id: N14MobGhoulGlowingDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
     species: GhoulGlowing

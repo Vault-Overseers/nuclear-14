@@ -1,12 +1,22 @@
 # Consider making our own base mob in future so we're resilient to upstream changes.
 #MARK: Base Simple
+- type: body
+  id: N14Animal
+  name: "N14 animal"
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+
 - type: entity
   name: wasteland animal
   abstract: true
   id: N14MobBaseSimple
-  parent: SimpleMobBase
+  parent: SimpleSpaceMobBase
   description: It's a dirty wasteland animal. Watch out for it's bite, it could be infectious.
   components:
+  - type: Body
+    prototype: N14Animal
   - type: InputMover
   - type: MobMover
   - type: NpcFactionMember
@@ -59,6 +69,7 @@
     damageModifierSet: WastelandAnimal
   - type: Puller
     needsHands: true
+  - type: IgnitionSource
 
 #MARK: Base Hostile
 - type: entity
@@ -67,12 +78,28 @@
   parent: N14MobBaseSimple
   description: It's a dirty wasteland animal. Watch out for it's bite, it could be infectious.
   components:
+  - type: Hunger
+    thresholds:
+      Overfed: 200
+      Okay: 150
+      Peckish: 100
+      Starving: 50
+      Dead: 0
+    baseDecayRate: 0.0 # Decay rate decreased to 0, because humanoid raider NPCs are able to starve to death. We generally don't need life sim for any hostile mob.
+  - type: Thirst
+    thresholds:
+      OverHydrated: 200
+      Okay: 150
+      Thirsty: 100
+      Parched: 50
+      Dead: 0
+    baseDecayRate: 0.0 # Decay rate decreased to 0, because hostile mobs can be way too easily defeated by slowness applied to them.
   - type: NpcFactionMember
     factions:
     - WastelandAnimal
   - type: HTN
     rootTask:
-      task: SimpleDumbHostileCompound # This replaced SimpleHostileCompound and means they don't dodge between attacks.
+      task: N14RangedHostileCompound
   - type: Sprite
     drawdepth: Mobs
   - type: MobState
@@ -99,7 +126,7 @@
   - type: CombatMode
   - type: MeleeWeapon
     hidden: true
-    attackRate: 0.5
+    attackRate: 2
     range: 1
     soundHit:
         path: /Audio/Effects/bite.ogg
@@ -164,7 +191,7 @@
         - SmallMobMask
         layer:
         - SmallMobLayer
-    
+
 #MARK: Base Humanoid
 - type: entity
   name: raider
@@ -180,9 +207,9 @@
     - Raider
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - English
     understands:
-    - GalacticCommon
+    - English
   - type: Fixtures
     fixtures:
       fix1:
@@ -194,7 +221,7 @@
         - MobMask
         layer:
         - MobLayer
-    
+
 - type: entity
   name: feral ghoul
   abstract: true
@@ -204,14 +231,14 @@
   components:
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Ghoul
+    damageModifierSet: GhoulNPC
   # - type: NoSlip
   - type: NpcFactionMember
     factions:
     - Feral
   - type: HTN
     rootTask:
-      task: SimpleDumbHostileCompound
+      task: N14HostileCompound
     blackboard:
       NavClimb: !type:Bool
         true
@@ -228,8 +255,8 @@
       Dead:
         Base: dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 6
+    baseWalkSpeed : 2.75
+    baseSprintSpeed : 5.5
   - type: Hands
   - type: Puller
   - type: SlowOnDamage
@@ -238,14 +265,11 @@
       80: 0.6
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - English
     understands:
-    - GalacticCommon
+    - English
   - type: Appearance
   - type: Clumsy
-    clumsyDamage:
-      types:
-        Blunt: 1
     clumsySound:
       collection: BodyFall
 
@@ -258,7 +282,7 @@
   components:
   - type: HTN
     rootTask:
-      task: SimpleDumbHostileCompound
+      task: N14HostileCompound
     blackboard:
       NavInteract: !type:Bool
         true
@@ -304,19 +328,19 @@
   id: N14TameableMobBase
   parent: SimpleMobBase
   components:
-  - type: NPCTamingOnTouchBehaviour
-    follow: true
-    persistent: true
-    tameChance: 0.5
-    oneTry: false
-    successPopup: This pet is your friend now!
-    deniedPopup: This pet refused to be your friend.
-    whitelist:
-      components:
-      - HumanoidAppearance
+#  - type: NPCTamingOnTouchBehaviour
+#    follow: true
+#    persistent: true
+#    tameChance: 0.5
+#    oneTry: false
+#    successPopup: This pet is your friend now!
+#    deniedPopup: This pet refused to be your friend.
+#    whitelist:
+#      components:
+#      - HumanoidAppearance
   - type: HTN
     rootTask:
       task: SimpleFollowHostileCompound # HTN compound must include FollowCompound so pet can follow its owner
   - type: LanguageKnowledge
     understands:
-    - GalacticCommon
+    - English

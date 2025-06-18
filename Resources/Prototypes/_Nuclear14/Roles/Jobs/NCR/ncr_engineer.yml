@@ -1,17 +1,23 @@
 - type: job
   id: NCREngineer
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-ncr-engineer
   description: job-description-ncr-engineer
   playTimeTracker: NCREngineer
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: NCR
       min: 18000 # 5 hours
   startingGear: NCREngineerGear
   icon: "JobIconWarden"
-  supervisors: job-supervisors-ncr-nco
-  canBeAntag: false
+  supervisors: job-supervisors-ncr
+  alwaysUseSpawner: true
   access:
   - NCR
   special:
@@ -19,6 +25,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - NCR
 
 - type: startingGear
@@ -27,7 +34,8 @@
     head: N14ClothingHeadHatNCRHelmetMetalSnow
     back: N14ClothingBackpackNCRFilled
     jumpsuit: N14ClothingUniformNCRSnow
-    shoes: N14ClothingBootsLeather
+    shoes: N14ClothingBootsLeatherFilled
+    gloves: N14ClothingHandsGlovesCombat
     id: N14IDNCRDogtagEngineer
     pocket1: NCRengineerloadoutkits
   innerClothingSkirt: N14ClothingUniformNCRSnow #placeholder

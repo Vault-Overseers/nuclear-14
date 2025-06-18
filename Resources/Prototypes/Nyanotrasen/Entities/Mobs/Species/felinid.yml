@@ -49,6 +49,7 @@
         Blunt: 1
   - type: Stamina
     critThreshold: 85
+    decay: 2.55 # 3 base decay multiplied by 0.85 = 2.55
   - type: TypingIndicator
     proto: felinid
   - type: PseudoItem
@@ -67,12 +68,10 @@
   - type: NoShoesSilentFootsteps
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
-    - SolCommon
+    - TauCetiBasic
     - Nekomimetic
     understands:
-    - GalacticCommon
-    - SolCommon
+    - TauCetiBasic
     - Nekomimetic
   - type: Thieving
     ignoreStripHidden: true
@@ -80,13 +79,25 @@
     stripTimeReduction: 0
     stripTimeMultiplier: 0.667
   - type: StepTriggerImmune
+    whitelist:
+      types:
+        - Shard
+        - Landmine
+        - Mousetrap
+        - SlipEntity
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - FelinidEmotes
 
 - type: entity
   save: false
   name: Urist McHands
   parent: MobHumanDummy
   id: MobFelinidDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: A dummy felinid meant to be used in character setup.
   components:
   - type: HumanoidAppearance

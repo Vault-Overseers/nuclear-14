@@ -21,6 +21,7 @@ namespace Content.Shared.Construction
         {
             base.Initialize();
             SubscribeLocalEvent<MachineBoardComponent, ExaminedEvent>(OnMachineBoardExamined);
+            SubscribeLocalEvent<MachinePartComponent, ExaminedEvent>(OnMachinePartExamined);
         }
 
         private void OnMachineBoardExamined(EntityUid uid, MachineBoardComponent component, ExaminedEvent args)
@@ -61,6 +62,20 @@ namespace Content.Shared.Construction
             }
         }
 
+        private void OnMachinePartExamined(EntityUid uid, MachinePartComponent component, ExaminedEvent args)
+        {
+            if (!args.IsInDetailsRange)
+                return;
+
+            using (args.PushGroup(nameof(MachinePartComponent)))
+            {
+                args.PushMarkup(Loc.GetString("machine-part-component-on-examine-rating-text",
+                    ("rating", component.Rating)));
+                args.PushMarkup(Loc.GetString("machine-part-component-on-examine-type-text", ("type",
+                    Loc.GetString(_prototype.Index<MachinePartPrototype>(component.PartType).Name))));
+            }
+        }
+
         public Dictionary<string, int> GetMachineBoardMaterialCost(Entity<MachineBoardComponent> entity, int coefficient = 1)
         {
             var (_, comp) = entity;
@@ -75,9 +90,9 @@ namespace Content.Shared.Construction
 
                 var partRecipe = recipes[0];
                 if (recipes.Count > 1)
-                    partRecipe = recipes.MinBy(p => p.RequiredMaterials.Values.Sum());
+                    partRecipe = recipes.MinBy(p => p.Materials.Values.Sum());
 
-                foreach (var (mat, matAmount) in partRecipe!.RequiredMaterials)
+                foreach (var (mat, matAmount) in partRecipe!.Materials)
                 {
                     materials.TryAdd(mat, 0);
                     materials[mat] += matAmount * amount * coefficient;
@@ -101,9 +116,9 @@ namespace Content.Shared.Construction
                 {
                     var partRecipe = recipes[0];
                     if (recipes.Count > 1)
-                        partRecipe = recipes.MinBy(p => p.RequiredMaterials.Values.Sum());
+                        partRecipe = recipes.MinBy(p => p.Materials.Values.Sum());
 
-                    foreach (var (mat, matAmount) in partRecipe!.RequiredMaterials)
+                    foreach (var (mat, matAmount) in partRecipe!.Materials)
                     {
                         materials.TryAdd(mat, 0);
                         materials[mat] += matAmount * amount * coefficient;
@@ -121,9 +136,9 @@ namespace Content.Shared.Construction
                 {
                     var partRecipe = recipes[0];
                     if (recipes.Count > 1)
-                        partRecipe = recipes.MinBy(p => p.RequiredMaterials.Values.Sum());
+                        partRecipe = recipes.MinBy(p => p.Materials.Values.Sum());
 
-                    foreach (var (mat, matAmount) in partRecipe!.RequiredMaterials)
+                    foreach (var (mat, matAmount) in partRecipe!.Materials)
                     {
                         materials.TryAdd(mat, 0);
                         materials[mat] += matAmount * amount * coefficient;

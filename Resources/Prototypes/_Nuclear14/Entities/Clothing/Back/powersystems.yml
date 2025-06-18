@@ -1,0 +1,23 @@
+- type: entity
+  parent: [Clothing, ContentsExplosionResistanceBase]
+  id: N14ClothingPowerSystemsBack
+  name: armor power systems
+  description: The power systems of a suit of armour, they ensure that you can even move.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Back/PowerSystems/basic.rsi
+    state: icon
+  - type: Clothing
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    sprite: _Nuclear14/Clothing/Back/PowerSystems/basic.rsi
+    slots:
+    - back
+  - type: ClothingSpeedModifier
+    walkModifier: 4.5 # Don't be alarmed, it's this high to compensate for the suit's base slowdown.
+    sprintModifier: 4.5
+  - type: TemperatureProtection
+    coefficient: 0.75
+  - type: FireProtection
+    reduction: 0.1

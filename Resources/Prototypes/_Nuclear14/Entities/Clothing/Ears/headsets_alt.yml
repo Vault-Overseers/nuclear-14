@@ -3,7 +3,7 @@
   parent: Clothing
   id: N14ClothingHeadsetAlt
   name: headset
-  description: A modular intercom that fits over the head. Takes encryption keys.
+  description: An earpiece with an intercom built into it, almost like a radio? Takes encryption keys.
   components:
   - type: Headset
   - type: ContainerContainer
@@ -16,15 +16,16 @@
   - type: EncryptionKeyHolder
     keySlots: 4
   - type: Sprite
-    state: icon_alt
+    scale: 0.75, 0.75
+    state: icon
   - type: Clothing
-    equippedPrefix: alt
+    # equippedPrefix: alt
     slots:
     - ears
 
 - type: entity
   parent: N14ClothingHeadsetAlt
-  id: N14ClothingHeadsetVaulttec
+  id: N14ClothingHeadsetVaulttec #No longer used, all Vault dwellers got the same headset now
   name: Vault-Tec over-ear headset
   components:
   - type: ContainerFill
@@ -38,7 +39,7 @@
 
 - type: entity
   parent: N14ClothingHeadsetAlt
-  id: N14ClothingHeadsetVaultCommand
+  id: N14ClothingHeadsetVaultCommand #No longer used, all Vault dwellers got the same headset now
   name: command over-ear headset
   components:
   - type: ContainerFill
@@ -58,7 +59,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyCommon
+      - EncryptionKeyVault
   - type: Sprite
     sprite: Clothing/Ears/Headsets/cargo.rsi
   - type: Clothing
@@ -66,7 +67,7 @@
 
 - type: entity
   parent: N14ClothingHeadsetAlt
-  id: N14ClothingHeadsetVaultMedical
+  id: N14ClothingHeadsetVaultMedical #No longer used, all Vault dwellers got the same headset now
   name: medical over-ear headset
   components:
   - type: ContainerFill
@@ -81,7 +82,7 @@
 
 - type: entity
   parent: N14ClothingHeadsetAlt
-  id: N14ClothingHeadsetVaultSecurity
+  id: N14ClothingHeadsetVaultSecurity #No longer used, all Vault dwellers got the same headset now
   name: security over-ear headset
   components:
   - type: ContainerFill
@@ -96,7 +97,7 @@
 
 - type: entity
   parent: N14ClothingHeadsetAlt
-  id: N14ClothingHeadsetVaultEngineering
+  id: N14ClothingHeadsetVaultEngineering #No longer used, all Vault dwellers got the same headset now
   name: engineering over-ear headset
   components:
   - type: ContainerFill
@@ -111,7 +112,7 @@
 
 - type: entity
   parent: N14ClothingHeadsetAlt
-  id: N14ClothingHeadsetVaultScience
+  id: N14ClothingHeadsetVaultScience #No longer used, all Vault dwellers got the same headset now
   name: science over-ear headset
   components:
   - type: ContainerFill
@@ -127,49 +128,52 @@
 - type: entity
   parent: N14ClothingHeadsetAlt
   id: N14ClothingHeadsetBOSMidwest
-  name: midwest brotherhood over-ear headset
+  name: midwest radio earpiece
   components:
   - type: ContainerFill
     containers:
       key_slots:
       - EncryptionKeyBrotherhoodMidwest
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: Clothing/Ears/Headsets/command.rsi
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: Clothing/Ears/Headsets/command.rsi
 
 - type: entity
   parent: N14ClothingHeadsetAlt
   id: N14ClothingHeadsetBOSWashington
-  name: washington brotherhood over-ear headset
+  name: washington radio earpiece
   components:
   - type: ContainerFill
     containers:
       key_slots:
       - EncryptionKeyBrotherhoodWashington
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: Clothing/Ears/Headsets/security.rsi
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: Clothing/Ears/Headsets/security.rsi
+  - type: Item
+    sprite: Clothing/Ears/Headsets/security.rsi
 
 - type: entity
   parent: N14ClothingHeadsetAlt
   id: N14ClothingHeadsetEnclave
-  name: enclave over-ear headset
+  name: enclave radio earpiece
+  categories: [ HideSpawnMenu ]
   components:
   - type: ContainerFill
     containers:
       key_slots:
       - EncryptionKeyEnclave
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: Clothing/Ears/Headsets/security.rsi
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: Clothing/Ears/Headsets/security.rsi
 
 - type: entity
   parent: N14ClothingHeadsetAlt
   id: N14ClothingHeadsetNCR
-  name: NCR over-ear headset
+  name: NCR radio earpiece
   components:
   - type: ContainerFill
     containers:

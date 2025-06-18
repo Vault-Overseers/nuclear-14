@@ -24,4 +24,9 @@ public sealed partial class HTNPrimitiveTask : HTNTask
     /// Services actively tick and can potentially update keys, such as combat target.
     /// </summary>
     [DataField("services")] public List<UtilityService> Services = new();
+
+    public override string ToString()
+    {
+        return $"Primitive: {Operator}";
+    }
 }

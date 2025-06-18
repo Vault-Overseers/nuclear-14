@@ -34,15 +34,22 @@ public class GuideEntry
     /// </summary>
     [DataField("filterEnabled")] public bool FilterEnabled = default!;
 
+    [DataField] public bool RuleEntry;
+
     /// <summary>
     ///     Priority for sorting top-level guides when shown in a tree / table of contents.
     ///     If the guide is the child of some other guide, the order simply determined by the order of children in <see cref="Children"/>.
     /// </summary>
     [DataField("priority")] public int Priority = 0;
+
+    /// <summary>
+    ///     If true, prevents this entry from showing up in the menu.
+    /// </summary>
+    [DataField] public bool HideInMenu = false;
 }
 
 [Prototype("guideEntry")]
-public sealed class GuideEntryPrototype : GuideEntry, IPrototype
+public sealed partial class GuideEntryPrototype : GuideEntry, IPrototype
 {
     public string ID => Id;
 }

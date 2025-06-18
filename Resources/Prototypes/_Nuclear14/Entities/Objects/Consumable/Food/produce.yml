@@ -239,7 +239,8 @@
     flavors:
       - banana
   - type: Food
-    trash: TrashBananaPeel
+    trash: 
+    - TrashBananaPeel
   - type: SolutionContainerManager
     solutions:
       food:
@@ -274,7 +275,8 @@
       - banana
       - nothing
   - type: Food
-    trash: TrashMimanaPeel
+    trash: 
+    - TrashMimanaPeel
   - type: SolutionContainerManager
     solutions:
       food:
@@ -493,42 +495,6 @@
       reagents:
       - ReagentId: JuiceOrange
         Quantity: 10
-  - type: Tag
-    tags:
-    - Fruit
-
-- type: entity
-  name: pineapple
-  parent: N14FoodProduceBase
-  id: N14FoodPineapple
-  description: Mmm, tropical.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - pineapple
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 16
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Vitamin
-          Quantity: 2
-        - ReagentId: Water
-          Quantity: 4
-  - type: Sprite
-    sprite: Objects/Specific/Hydroponics/pineapple.rsi
-  - type: Produce
-    seedId: pineapple
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: JuicePineapple
-        Quantity: 10
-  - type: SliceableFood
-    count: 5
-    slice: N14FoodPineappleSlice
   - type: Tag
     tags:
     - Fruit
@@ -810,7 +776,8 @@
     flavors:
       - corn
   - type: Food
-    trash: FoodCornTrash
+    trash: 
+    - FoodCornTrash
   - type: SolutionContainerManager
     solutions:
       food:
@@ -959,26 +926,6 @@
     state: slice
   - type: Extractable
     grindableSolutionName: food
-
-- type: entity
-  name: pineapple slice
-  parent: N14ProduceSliceBase
-  id: N14FoodPineappleSlice
-  description: Mmm, tropical.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - pineapple
-  - type: Sprite
-    sprite: Objects/Specific/Hydroponics/pineapple.rsi
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: JuicePineapple
-        Quantity: 2
-  - type: Tag
-    tags:
-    - Fruit
 
 - type: entity
   name: onion slice
@@ -1324,34 +1271,6 @@
   - type: BadFood
 
 - type: entity
-  name: gatfruit
-  parent: N14FoodProduceBase
-  id: N14FoodGatfruit
-  description: A delicious, gun-shaped fruit with a thick wooden stem.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - gunpowder
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Sulfur
-          Quantity: 5
-  - type: Sprite
-    sprite: Objects/Specific/Hydroponics/gatfruit.rsi
-  - type: Produce
-    seedId: gatfruit
-  - type: Food
-    trash: WeaponRevolverPython
-  - type: Tag
-    tags:
-    - Fruit # It's in the name
-
-- type: entity
   name: rice bushel
   description: Can be ground into rice, perfect for pudding or sake.
   id: N14RiceBushel
@@ -1614,7 +1533,8 @@
     flavors:
       - bungo
   - type: Food
-    trash: FoodBungoPit
+    trash: 
+    - FoodBungoPit
   - type: SolutionContainerManager
     solutions:
       food:

@@ -1,8 +1,8 @@
 reagent-name-absinthe = absinthe
-reagent-desc-absinthe = A anise-flavoured spirit derived from botanicals.
+reagent-desc-absinthe = An anise-flavoured spirit derived from botanicals.
 
 reagent-name-ale = ale
-reagent-desc-ale = A dark alchoholic beverage made by malted barley and yeast.
+reagent-desc-ale = A dark alcoholic beverage made from malted barley and yeast.
 
 reagent-name-beer = beer
 reagent-desc-beer = An alcoholic beverage made from malted grains, hops, yeast, and water.
@@ -53,7 +53,7 @@ reagent-name-whiskey = whiskey
 reagent-desc-whiskey = A type of distilled alcoholic beverage made from fermented grain mash.
 
 reagent-name-wine = wine
-reagent-desc-wine = An premium alchoholic beverage made from distilled grape juice.
+reagent-desc-wine = A premium alcoholic beverage made from fermented grape juice.
 
 reagent-name-champagne = champagne
 reagent-desc-champagne = A premium sparkling wine
@@ -152,7 +152,7 @@ reagent-name-hippies-delight = hippies delight
 reagent-desc-hippies-delight = You just don't get it maaaan.
 
 reagent-name-hooch = hooch
-reagent-desc-hooch = Either someone's failure at cocktail making or attempt in alchohol production. In any case, do you really want to drink that?
+reagent-desc-hooch = Either someone's failure at cocktail making or attempt in alcohol production. In any case, do you really want to drink that?
 
 reagent-name-iced-beer = iced beer
 reagent-desc-iced-beer = A beer which is so cold the air around it freezes.
@@ -261,3 +261,21 @@ reagent-desc-whiskey-soda = For the more refined griffon.
 
 reagent-name-white-russian = white russian
 reagent-desc-white-russian = That's just, like, your opinion, man...
+
+reagent-name-vodka-red-bool = vodka red bool
+reagent-desc-vodka-red-bool = Because heart failure and liver failure go hand in hand.
+
+reagent-name-xeno-basher = xeno basher
+reagent-desc-xeno-basher = The perfect drink before an expedition.
+
+reagent-name-irish-bool = irish bool
+reagent-desc-irish-bool = Like a bool in a Ireland shop.
+
+reagent-name-budget-insuls = budget insuls
+reagent-desc-budget-insuls = A tider's preferred drink.
+
+reagent-name-watermelon-wakeup = watermelon wakeup
+reagent-desc-watermelon-wakeup = If you want to be awake, this will do it... Also sweet.
+
+reagent-name-rubberneck = rubberneck
+reagent-desc-rubberneck = A popular drink amongst those adhering to an all synthetic diet.

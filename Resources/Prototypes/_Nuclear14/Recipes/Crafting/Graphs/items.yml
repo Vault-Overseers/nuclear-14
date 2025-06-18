@@ -22,3 +22,15 @@
 #               prototype: MaterialCloth1
 #               amount: 2
 #             - !type:DeleteEntity
+
+- type: constructionGraph
+  id: N14FoodJarBase
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: icon
+          steps:
+          - material: Glass
+    - node: icon
+      entity: N14FoodJarBase

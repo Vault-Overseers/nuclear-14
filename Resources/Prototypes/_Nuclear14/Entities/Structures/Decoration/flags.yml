@@ -31,7 +31,6 @@
     anchored: true
   - type: Physics
     bodyType: Static
-  - type: InteractionOutline
   - type: Clickable
   - type: SpriteFade
   
@@ -39,7 +38,7 @@
 - type: entity
   parent: N14DecorationFlagBearerEmpty
   id: N14DecorationFlagFlammable
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Reactive
     groups:
@@ -105,11 +104,21 @@
   parent: N14DecorationFlagFlammable
   id: N14DecorationFlagBrotherhoodWashington
   name: Washington Brotherhood flag
-  description: A red and black flag with a sword surrounded in gears and wings, in a dazzling gold.
+  description: A red and black flag with a sword surrounded in gears and wings.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Decoration/flags.rsi
-    state: bosflag
+    sprite: _Nuclear14/Structures/Decoration/flags2.rsi
+    state: wbosflag
+
+- type: entity
+  parent: N14DecorationFlagFlammable
+  id: N14DecorationFlagBrotherhoodMidwest
+  name: Midwestern Brotherhood flag
+  description: A blue and black flag with a sword surrounded in gears and wings.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Decoration/flags2.rsi
+    state: mbosflag
     
 - type: entity
   parent: N14DecorationFlagFlammable

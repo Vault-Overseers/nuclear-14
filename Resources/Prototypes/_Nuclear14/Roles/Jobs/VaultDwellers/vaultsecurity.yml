@@ -9,12 +9,14 @@
     - Human
   - !type:CharacterDepartmentTimeRequirement
     department: Vault
-    min: 7200 # 2 hours
+    min: 18000 # 5 hours
+  setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   startingGear: VaultSecurityGear
   alwaysUseSpawner: true
   icon: "JobIconSecurityOfficer"
-  supervisors: job-supervisors-overseer
-  canBeAntag: false
+  supervisors: job-supervisors-vault
   access:
   - VaultDweller
   - VaultSecurity
@@ -23,6 +25,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - Vault
 
 - type: startingGear
@@ -37,7 +40,7 @@
     id: N14VaultSecurityPDA
     pocket1: N14WeaponPistol10mm
     pocket2: Handcuffs
-    ears: N14ClothingHeadsetVaultSecurity
+    ears: N14ClothingHeadsetVaultDweller
     belt: N14PoliceBaton
 - type: playTimeTracker
   id: VaultSecurity

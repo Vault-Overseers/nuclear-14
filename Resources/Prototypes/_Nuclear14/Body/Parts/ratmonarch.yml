@@ -1,0 +1,188 @@
+# TODO: Add descriptions (many)
+# TODO BODY: Part damage
+- type: entity
+  id: N14PartRatMonarch
+  parent: PartHuman
+  name: rodent body part
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Biological
+  - type: BodyPart
+  - type: ContainerContainer
+    containers:
+      bodypart: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 0
+    
+- type: entity
+  id: N14TorsoRatMonarch
+  name: rodent torso
+  parent: N14PartRatMonarch
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "torso_m"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "torso_m"
+  - type: BodyPart
+    partType: Torso
+
+- type: entity
+  id: N14HeadRatMonarch
+  name: rodent head
+  parent: N14PartRatMonarch
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "head_m"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "head_m"
+  - type: BodyPart
+    partType: Head
+    vital: true
+  - type: Input
+    context: "ghost"
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0
+    baseSprintSpeed: 0
+  - type: InputMover
+  - type: GhostOnMove
+  - type: Tag
+    tags:
+      - Head
+
+- type: entity
+  id: N14LeftArmRatMonarch
+  name: left rodent arm
+  parent: N14PartRatMonarch
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "l_arm"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "l_arm"
+  - type: BodyPart
+    partType: Arm
+    symmetry: Left
+
+- type: entity
+  id: N14RightArmRatMonarch
+  name: right rodent arm
+  parent: N14PartRatMonarch
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "r_arm"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "r_arm"
+  - type: BodyPart
+    partType: Arm
+    symmetry: Right
+
+- type: entity
+  id: N14LeftHandRatMonarch
+  name: left rodent hand
+  parent: N14PartRatMonarch
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "l_hand"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "l_hand"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  id: N14RightHandRatMonarch
+  name: right rodent hand
+  parent: N14PartRatMonarch
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "r_hand"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "r_hand"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+
+- type: entity
+  id: N14LeftLegRatMonarch
+  name: left rodent leg
+  parent: N14PartRatMonarch
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "l_leg"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "l_leg"
+  - type: BodyPart
+    partType: Leg
+    symmetry: Left
+  - type: MovementSpeedModifier
+
+- type: entity
+  id: N14RightLegRatMonarch
+  name: right rodent leg
+  parent: N14PartRatMonarch
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "r_leg"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "r_leg"
+  - type: BodyPart
+    partType: Leg
+    symmetry: Right
+  - type: MovementSpeedModifier
+
+- type: entity
+  id: N14LeftFootRatMonarch
+  name: left rodent foot
+  parent: N14PartRatMonarch
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "l_foot"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "l_foot"
+  - type: BodyPart
+    partType: Foot
+    symmetry: Left
+
+- type: entity
+  id: N14RightFootRatMonarch
+  name: right rodent foot
+  parent: N14PartRatMonarch
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "r_foot"
+  - type: Icon
+    sprite: _Nuclear14/Mobs/Species/RatMonarch/parts.rsi
+    state: "r_foot"
+  - type: BodyPart
+    partType: Foot
+    symmetry: Right

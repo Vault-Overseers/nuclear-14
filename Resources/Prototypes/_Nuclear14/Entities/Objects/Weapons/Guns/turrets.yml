@@ -110,9 +110,10 @@
     - type: BallisticAmmoProvider
       proto: N14CartridgePistol10 
       capacity: 500
+    - type: Rotatable
     - type: HTN
       rootTask:
-        task: TurretCompound
+        task: N14TurretCompound
       blackboard:
         RotateSpeed: !type:Single
           3.141
@@ -199,6 +200,33 @@
     factions:
     - NCR
 
+- type: entity
+  parent: N14BaseWeaponTurret
+  id: N14WeaponTurretCaravan
+  suffix: CaravanCompany, Hostile
+  components:
+  - type: NpcFactionMember
+    factions:
+    - CaravanCompanySecureArea
+
+- type: entity
+  parent: N14BaseWeaponTurret
+  id: N14WeaponTurretRaider
+  suffix: Raider, Hostile
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Raider
+
+- type: entity
+  parent: N14BaseWeaponTurret
+  id: N14WeaponTurretRobot
+  suffix: Robot, Hostile
+  components:
+  - type: NpcFactionMember
+    factions:
+    - HostileRobot
+
 # Spawn Point Turrets
 # These are meta turrets designed to stop spawn point abuse
 - type: entity
@@ -248,9 +276,10 @@
     - type: BallisticAmmoProvider
       proto: N14Bullet50HEIAPMeta
       capacity: 50000
+    - type: Rotatable
     - type: HTN
       rootTask:
-        task: TurretCompound
+        task: N14TurretCompound
       blackboard:
         RotateSpeed: !type:Single
           10

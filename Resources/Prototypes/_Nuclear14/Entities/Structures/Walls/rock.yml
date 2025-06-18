@@ -247,7 +247,7 @@
       noRot: true
     - type: SoundOnGather
     - type: Gatherable
-      whitelist:
+      toolWhitelist:
         tags:
           - Pickaxe
     - type: Damageable
@@ -875,3 +875,33 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_andesite_west
         - state: rock_salt
+
+# Cold Mountain Rock.
+- type: entity
+  id: ColdMountainRock
+  parent: BaseStructure
+  name: cold mountain rock
+  suffix: Un-mineable
+  description: A craggy mountain wall. It is too hard to mine. Colder.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Walls/cold_mountain_rock.rsi
+    state: full
+  - type: Occluder
+  - type: Airtight
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: IconSmooth
+    key: walls
+    base: rock_
+  - type: BlockWeather
+

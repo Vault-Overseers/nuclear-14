@@ -4,7 +4,7 @@
   id: N14IDCard
   name: identification card
   description: A key to open certain doors.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Misc/id_cards.rsi
@@ -161,7 +161,7 @@
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDBrotherhoodHolotag
-  name: holotag (scribe)
+  name: holotag
   description: An ID holotag worn by the Brotherhood of Steel.
   suffix: Midwest Scribe
   components:
@@ -176,7 +176,7 @@
 - type: entity
   parent: N14IDBrotherhoodHolotag
   id: N14IDBrotherhoodHolotagSquire
-  name: holotag (squire)
+  name: holotag
   description: An ID holotag worn by the Brotherhood of Steel.
   suffix: Midwest Squire
   components:
@@ -186,7 +186,7 @@
 - type: entity
   parent: N14IDBrotherhoodHolotag
   id: N14IDBrotherhoodHolotagKnight
-  name: holotag (knight)
+  name: holotag
   description: An ID holotag worn by the Brotherhood of Steel.
   suffix: Midwest Knight
   components:
@@ -196,7 +196,7 @@
 - type: entity
   parent: N14IDBrotherhoodHolotag
   id: N14IDBrotherhoodHolotagPaladin
-  name: holotag (paladin)
+  name: holotag
   description: An ID holotag worn by the Paladins of the Brotherhood of Steel.
   suffix: Midwest Paladin
   components:
@@ -206,7 +206,7 @@
 - type: entity
   parent: N14IDBrotherhoodHolotag
   id: N14IDBrotherhoodHolotagCommander
-  name: holotag (commander)
+  name: holotag
   description: An ID holotag worn by the Paladin Commander of the Brotherhood of Steel.
   suffix: Midwest Commander
   components:
@@ -217,7 +217,7 @@
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDBrotherhoodWashingtonHolotagInitiate
-  name: holotag (initiate)
+  name: holotag
   description: An ID holotag worn by an Initiate in the Washington Brotherhood of Steel.
   suffix: Washington Initiate
   components:
@@ -242,7 +242,7 @@
 - type: entity
   parent: N14IDBrotherhoodWashingtonHolotagInitiate
   id: N14IDBrotherhoodWashingtonHolotagKnight
-  name: holotag (knight)
+  name: holotag
   description: An ID holotag worn by a Knight in the Washington Brotherhood of Steel.
   suffix: Washington Knight
   components:
@@ -252,7 +252,7 @@
 - type: entity
   parent: N14IDBrotherhoodWashingtonHolotagInitiate
   id: N14IDBrotherhoodWashingtonHolotagPaladin
-  name: holotag (paladin)
+  name: holotag
   description: An ID holotag worn by a Paladin in the Washington Brotherhood of Steel.
   suffix: Washington Paladin
   components:
@@ -262,7 +262,7 @@
 - type: entity
   parent: N14IDBrotherhoodWashingtonHolotagInitiate
   id: N14IDBrotherhoodWashingtonHolotagCommander
-  name: holotag (commander)
+  name: holotag
   description: An ID holotag worn by the Commander of the Washington Brotherhood of Steel.
   suffix: Washington Commander
   components:
@@ -273,8 +273,9 @@
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDEnclaveTrooper
-  name: holotag (trooper)
+  name: holotag
   description: An ID holotag worn by the Enclave.
+  categories: [ HideSpawnMenu ]
   suffix: Trooper
   components:
   - type: Sprite
@@ -286,8 +287,9 @@
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDEnclaveOfficer
-  name: holotag (officer)
+  name: holotag
   description: An ID holotag worn by higher ranking memebers of the Enclave.
+  categories: [ HideSpawnMenu ]
   suffix: Officer
   components:
   - type: Sprite
@@ -301,6 +303,7 @@
   id: N14IDEnclaveNoncombat
   name: holotag
   description: An ID holotag worn by the non-combat members of Enclave.
+  categories: [ HideSpawnMenu ]
   suffix: Scientist , Noncombat
   components:
   - type: Sprite
@@ -313,7 +316,7 @@
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDNCRDogtag
-  name: dogtag (soldier)
+  name: dogtag
   description: An ID dogtag worn by members of the NCR.
   suffix: Soldier, Cadet
   components:
@@ -367,7 +370,7 @@
 - type: entity
   parent: N14IDNCRDogtag
   id: N14IDNCRDogtagNCO
-  name: dogtag (NCO)
+  name: dogtag
   description: An ID dogtag worn by decently ranking members of the NCR.
   suffix: SGT
   components:
@@ -380,7 +383,7 @@
 - type: entity
   parent: N14IDNCRDogtag
   id: N14IDNCRDogtagOfficer
-  name: dogtag (officer)
+  name: dogtag
   description: An ID dogtag worn by high ranking members of the NCR.
   suffix: Officer
   components:
@@ -502,6 +505,34 @@
 
 - type: entity
   parent: N14IDPassportTownsfolk
+  id: N14IDReporterTown
+  name: reporter ID
+  description: A passport ID used by a town reporter.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport_presidential
+  - type: PresetIdCard
+    job: WastelandReporter
+  - type: ClothingAddFaction
+    faction: Townsfolk
+
+- type: entity
+  parent: N14IDPassportTownsfolk
+  id: N14IDBartenderTown
+  name: innkeeper ID
+  description: A passport ID used by a town inkeeper.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport_presidential
+  - type: PresetIdCard
+    job: WastelandBartender
+  - type: ClothingAddFaction
+    faction: Townsfolk
+
+- type: entity
+  parent: N14IDPassportTownsfolk
   id: N14IDBadgeTownDeputy
   name: town deputy badge
   description: An ID badge worn by a town deputy.
@@ -536,48 +567,87 @@
   - type: PresetIdCard
     job: TownMayor
 
+# Wastelanders
+- type: entity
+  parent: N14IDPassportPhoto
+  id: N14IDPassportWasteChaplain
+  name: chaplain ID
+  description: A passport ID used by a chaplain of the region.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport
+  - type: PresetIdCard
+    job: WastelandChaplain
+
+- type: entity
+  parent: N14IDPassportPhoto
+  id: N14IDPassportWasteFarmer
+  name: farmer ID
+  description: A passport ID used by a farmer of the region.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/identification.rsi
+    state: passport
+  - type: PresetIdCard
+    job: WastelandFarmer
+
 #MARK: Raiders / Tribes
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDTribeSawbonePendant
-  name: sawbone pendant
-  description: A pendant often worn by tribes as ID. This one is a sawbone.
+  name: healer pendant
+  description: A pendant often worn by tribes as ID. This one is made of a bonesaw.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: sawbone
+  - type: PresetIdCard
+    job: TribalHealer
   - type: ClothingAddFaction
     faction: Tribal
 
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDTribeBulletsPendant
-  name: bullet pendant
+  name: member pendant
   description: A pendant often worn by tribes as ID. This one is made of bullets.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: raider
+  - type: PresetIdCard
+    job: Tribal
+  - type: ClothingAddFaction
+    faction: Tribal
 
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDTribeEnforcerPendant
-  name: enforcer pendant
-  description: A pendant often worn by tribes as ID. This one is a Jet canister.
+  name: farmer pendant
+  description: A pendant often worn by tribes as ID. This one is made of a shotgun shell.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: enforcer
+  - type: PresetIdCard
+    job: TribalFarmer
+  - type: ClothingAddFaction
+    faction: Tribal
 
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDTribeBossPendant
-  name: bullet pendant
-  description: A pendant worn by a tribal leader.
+  name: elder pendant
+  description: A pendant often worn by tribes as ID. This one is made of rifle rounds.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: boss
+  - type: PresetIdCard
+    job: TribalElder
+  - type: ClothingAddFaction
+    faction: Tribal
 
 # Fun / Misc
 - type: entity
@@ -710,6 +780,7 @@
   parent: N14CardAccessBunkerA1
   id: N14CardAccessEnclave
   description: A special keycard stamped with an E.
+  categories: [ HideSpawnMenu ]
   suffix: Enclave
   components:
   - type: Sprite

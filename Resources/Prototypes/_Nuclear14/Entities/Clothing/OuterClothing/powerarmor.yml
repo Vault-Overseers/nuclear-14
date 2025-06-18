@@ -8,33 +8,47 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t45.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t45.rsi
+    equipDelay: 3 # Power armour should not be easily stealable, it should take time to take off or put on.
+    unequipDelay: 6
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
-  - type: TemperatureProtection
-    coefficient: 0.6
+    walkModifier: 0.2
+    sprintModifier: 0.2
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.5
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.55
         Heat: 0.55
-        Radiation: 0.4
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
+        Caustic: 0.75
+        Radiation: 0.6
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorT45
-  - type: ClothingSpecialModifier
-    strengthModifier: 2
-    enduranceModifier: 2
+    requiredSlot: outerClothing
+    blockUnequipWhenAttached: true
+    replaceCurrentClothing: false
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT45
+      gloves: N14ClothingPAGauntlets
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack
+  - type: TemperatureProtection
+    coefficient: 0.25
+  - type: FireProtection
+    reduction: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: HeldSpeedModifier
+    mirrorClothingModifier: false
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: MultiHandedItem
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.1
     spread: 150
-# Maybe someday...
-#  - type: FootstepModifier
-#    footstepSoundCollection:
-#      collection: N14FootstepPowerArmor
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -46,29 +60,30 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51.rsi
-  - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.4
-        Slash: 0.3
-        Piercing: 0.45
-        Heat: 0.45
-        Radiation: 0.3
-  - type: TemperatureProtection
-    coefficient: 0.55
-  - type: ExplosionResistance
-    damageCoefficient: 0.4
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.5
+        Heat: 0.5
+        Caustic: 0.75
+        Radiation: 0.6
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorT51
-  - type: Reflect
-    reflectProb: 0.2
-    spread: 150
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT51
+      gloves: N14ClothingPAGauntlets
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack
+  - type: ExplosionResistance
+    damageCoefficient: 0.55
 
 - type: entity
-  parent: N14ClothingOuterPowerArmorT45
+  parent: N14ClothingOuterPowerArmorT51
   id: N14ClothingOuterPowerArmorT60
   name: t-60 power armor
   description: A suit of T-60 Power Armor. The T-60 series of power armor was designed to eventually replace the T-51 as the pinnacle of powered armor technology. It however suffered from a minor drawback in its armor placement, making it somewhat less armored.
@@ -77,26 +92,25 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t60.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t60.rsi
-  - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.35
-        Slash: 0.3
-        Piercing: 0.5
-        Heat: 0.4
-        Radiation: 0.3
-  - type: TemperatureProtection
-    coefficient: 0.5
-  - type: ExplosionResistance
-    damageCoefficient: 0.35
+        Blunt: 0.475
+        Slash: 0.475
+        Piercing: 0.525
+        Heat: 0.525
+        Caustic: 0.75
+        Radiation: 0.6
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorT60
-  - type: Reflect
-    reflectProb: 0.2
-    spread: 150
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT60
+      gloves: N14ClothingPAGauntlets
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT60
@@ -108,15 +122,19 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t60tesla.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t60tesla.rsi
-  - type: TemperatureProtection
-    coefficient: 0.5
-  - type: ExplosionResistance
-    damageCoefficient: 0.35
-  - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorT60
   - type: Reflect
-    reflectProb: 0.2
-    spread: 150
+    reflectProb: 0.15
+    spread: 275
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
+  - type: ToggleableClothing
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT60
+      gloves: N14ClothingPAGauntletsTesla
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -128,63 +146,74 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/advanced1.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/advanced1.rsi
-  - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.3
-        Slash: 0.25
-        Piercing: 0.45
-        Heat: 0.4
-        Radiation: 0.1
-  - type: TemperatureProtection
-    coefficient: 0.2
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.5
+        Heat: 0.5
+        Caustic: 0.75
+        Radiation: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.2
+    damageCoefficient: 0.5
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorX01
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorX01
+      gloves: N14ClothingPAGauntletsDark
+      shoes: N14ClothingPABootsDark
+      back: N14ClothingPowerSystemsBack
   - type: Reflect
-    reflectProb: 0.2
-    spread: 150
+    reflectProb: 0.15
 
 - type: entity
   parent: N14ClothingOuterPowerArmorAdvanced1
   id: N14ClothingOuterPowerArmorAdvanced2
   name: X-02 power armor
   description: A mass-produced version of the original APA. It sports less plating but is easier to repair and maintain.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/advanced2.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/advanced2.rsi
   - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
+    walkModifier: 0.2
+    sprintModifier: 0.2
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.30
-        Piercing: 0.35
-        Heat: 0.45
-        Radiation: 0.1
-  - type: TemperatureProtection
-    coefficient: 0.25
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.55
+        Heat: 0.55
+        Caustic: 0.75
+        Radiation: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.25
+    damageCoefficient: 0.55
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorX02
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorX02
+      gloves: N14ClothingPAGauntletsDark
+      shoes: N14ClothingPABootsDark
+      back: N14ClothingPowerSystemsBack
   - type: Reflect
-    reflectProb: 0.2
-    spread: 150
+    reflectProb: 0.125
 
 - type: entity
-  parent: N14ClothingOuterPowerArmorAdvanced1
+  parent: N14ClothingOuterPowerArmorAdvanced2
   id: N14ClothingOuterPowerArmorAdvanced2Hellfire
   name: hellfire power armor
   description: A deep black suit of Enclave-manufactured heavy power armor based on pre-war designs such as the T-51 and improving off of data gathered by post-war designs such as the X-01. Most commonly fielded on the East Coast, no suit rivals its strength.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/hellfire.rsi
@@ -193,20 +222,24 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.2
-        Slash: 0.2
-        Piercing: 0.35
-        Heat: 0.25
-        Radiation: 0.1
-  - type: TemperatureProtection
-    coefficient: 0.1
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.5
+        Heat: 0.5
+        Caustic: 0.75
+        Radiation: 0.5
   - type: ExplosionResistance
-    damageCoefficient: 0.15
+    damageCoefficient: 0.5
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorHellfire
-  - type: Reflect
-    reflectProb: 0.2
-    spread: 150
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorHellfire
+      gloves: N14ClothingPAGauntletsDark
+      shoes: N14ClothingPABootsDark
+      back: N14ClothingPowerSystemsBack
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -218,89 +251,100 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/raider.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/raider.rsi
-  - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.5
-        Piercing: 0.55
-        Heat: 0.65
-        Radiation: 0.6
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.6
+        Heat: 0.6
+        Caustic: 0.75
+        Radiation: 0.65
   - type: ExplosionResistance
-    damageCoefficient: 0.65
-  - type: ClothingSpecialModifier
-    strengthModifier: 10
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: N14FootstepPowerArmor
+    damageCoefficient: 0.6
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
+  - type: ToggleableClothing
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorHellfire
+      gloves: N14ClothingPAGauntletsDark
+      shoes: N14ClothingPABootsDark
+      back: N14ClothingPowerSystemsBack
   - type: Reflect
-    reflectProb: 0.10
-    spread: 150
+    reflectProb: 0.075
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
   id: N14ClothingOuterPowerArmorMidwest
   name: midwest power armor
-  description: A unknown model of power armor originated from the midwest region and adopted by the Midwest Brotherhood chapter.
+  description: A unknown model of power armor manufactured by the Midwest Brotherhood. It supports a lighter plating than the normal but is more ergonomic, allowing easier movement.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/midwest.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/midwest.rsi
-  - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.4
-        Slash: 0.3
-        Piercing: 0.45
-        Heat: 0.45
-        Radiation: 0.3
-  - type: TemperatureProtection
-    coefficient: 0.55
+        Blunt: 0.475
+        Slash: 0.475
+        Piercing: 0.525
+        Heat: 0.525
+        Caustic: 0.75
+        Radiation: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.4
+    damageCoefficient: 0.6
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorMidwest
-  - type: Reflect
-    reflectProb: 0.2
-    spread: 150
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorMidwest
+      gloves: N14ClothingPAGauntletsMBoS
+      shoes: N14ClothingPABootsMBoS
+      back: N14ClothingPowerSystemsBack
 
 - type: entity
-  parent: N14ClothingOuterPowerArmorT45
+  parent: N14ClothingOuterPowerArmorMidwest
   id: N14ClothingOuterPowerArmorMidwestCommander
   name: midwest commander power armor
-  description: A unknown model of power armor originated from the midwest region. This modified version is commonly used by high-ranking Midwest Brotherhood of Steel paladins.
+  description: A unknown model of power armor manufactured by the Midwest Brotherhood. This modified version is commonly used by high-ranking Midwest Brotherhood of Steel Paladins.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/midwestcommander.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/midwestcommander.rsi
-  - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.35
-        Slash: 0.25
-        Piercing: 0.35
-        Heat: 0.4
-        Radiation: 0.3
-  - type: TemperatureProtection
-    coefficient: 0.5
-  - type: ExplosionResistance
-    damageCoefficient: 0.3
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.5
+        Heat: 0.5
+        Caustic: 0.75
+        Radiation: 0.6
+  - type: Storage
+    grid:
+    - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorMidwestCommander
-  - type: Reflect
-    reflectProb: 0.2
-    spread: 150
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorMidwestCommander
+      gloves: N14ClothingPAGauntletsMBoS
+      shoes: N14ClothingPABootsMBoS
+      back: N14ClothingPowerSystemsBack
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -312,26 +356,31 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51bc.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51bc.rsi
-  - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.35
-        Slash: 0.25
-        Piercing: 0.35
-        Heat: 0.4
-        Radiation: 0.3
+        Blunt: 0.425
+        Slash: 0.425
+        Piercing: 0.475
+        Heat: 0.475
+        Caustic: 0.75
+        Radiation: 0.6
   - type: TemperatureProtection
     coefficient: 0.5
   - type: ExplosionResistance
-    damageCoefficient: 0.3
+    damageCoefficient: 0.55
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorT51BC
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT51BC
+      gloves: N14ClothingPAGauntletsDark
+      shoes: N14ClothingPABootsDark
+      back: N14ClothingPowerSystemsBack
   - type: Reflect
-    reflectProb: 0.2
-    spread: 150
+    reflectProb: 0.1
 
 - type: entity
   parent: N14ClothingOuterPowerArmorT45
@@ -343,17 +392,34 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t45ncr.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t45ncr.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.6
+        Heat: 0.6
+        Caustic: 0.75
+        Radiation: 0.65
+  - type: TemperatureProtection
+    coefficient: 0.55
+  - type: ExplosionResistance
+    damageCoefficient: 0.65
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: ToggleableClothing
-    clothingPrototype: N14ClothingHeadHelmetPowerArmorT45NCR
-  - type: ClothingSpeedModifier
-    walkModifier: 0.80
-    sprintModifier: 0.80
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT45NCR
+      gloves: N14ClothingPAGauntlets
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack
   - type: Reflect
-    reflectProb: 0.10
-    spread: 150
+    reflectProb: 0.075
 
 - type: entity
-  parent: N14ClothingOuterPowerArmorT45
+  parent: N14ClothingOuterPowerArmorT51
   id: N14ClothingOuterPowerArmorT51Canadian
   name: t-51bc "the canadian shield"
   description: The pinnacle of pre-war technology, appropriated by the RCMP.
@@ -362,21 +428,89 @@
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/canadianshield.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/canadianshield.rsi
-  - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.35
-        Slash: 0.25
-        Piercing: 0.35
-        Heat: 0.4
-        Radiation: 0.3
-  - type: TemperatureProtection
-    coefficient: 0.5
+        Blunt: 0.425
+        Slash: 0.425
+        Piercing: 0.475
+        Heat: 0.475
+        Caustic: 0.75
+        Radiation: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.3
+    damageCoefficient: 0.55
   - type: Reflect
-    reflectProb: 0.2
-    spread: 150
+    reflectProb: 0.1
+
+- type: entity
+  parent: N14ClothingOuterPowerArmorT45
+  id: N14ClothingOuterPowerArmorWashT51
+  name: modified T-51 power armor
+  description: A modified set of T-51 power armor, it seems to have some slight upgrades over the pre-war model and is in the colours of the Washington Brotherhood.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51wash.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51wash.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.5
+        Heat: 0.5
+        Caustic: 0.75
+        Radiation: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
+  - type: ToggleableClothing
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT51Wash
+      gloves: N14ClothingPAGauntlets
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack
+  - type: Reflect
+    reflectProb: 0.125
+
+- type: entity
+  parent: N14ClothingOuterPowerArmorWashT51
+  id: N14ClothingOuterPowerArmorWashT51Elite
+  name: elite T-51 power armor
+  description: A set of T-51 with some upgrades over the pre-war design and painjob made by the Washington Brotherhood. It even has pouches!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51washelite.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51washelite.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.425
+        Slash: 0.425
+        Piercing: 0.5
+        Heat: 0.5
+        Caustic: 0.75
+        Radiation: 0.6
+  - type: Storage
+    grid:
+    - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
+  - type: ToggleableClothing
+    clothingPrototypes: 
+      head: N14ClothingHeadHelmetPowerArmorT51WashElite
+      gloves: N14ClothingPAGauntlets
+      shoes: N14ClothingPABoots
+      back: N14ClothingPowerSystemsBack

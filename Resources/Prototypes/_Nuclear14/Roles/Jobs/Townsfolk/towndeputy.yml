@@ -1,13 +1,19 @@
 - type: job
   id: TownDeputy
   setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   name: job-name-towndeputy
   description: job-description-towndeputy
   playTimeTracker: TownDeputy
   requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: Townsfolk
-      min: 18000 # 5 hours
+      min: 14400 # 4 hours
   startingGear: TownDeputyGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk
@@ -19,6 +25,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - Townsfolk
 
 - type: startingGear

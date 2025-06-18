@@ -333,9 +333,101 @@
   - type: Wires
     layoutId: AirlockService
 
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedBartender
+  suffix: Townie, Locked, Bartender
+  components:
+  - type: AccessReader
+    access: [["WastelandBartender"]]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedInnRoom1
+  suffix: Townie, Locked, Inn
+  components:
+  - type: AccessReader
+    access: [["InnRoomOne"]]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedInnRoom2
+  suffix: Townie, Locked, Inn
+  components:
+  - type: AccessReader
+    access: [["InnRoomTwo"]]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedInnRoom3
+  suffix: Townie, Locked, Inn
+  components:
+  - type: AccessReader
+    access: [["InnRoomThree"]]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedReporter
+  suffix: Townie, Locked, Reporter
+  components:
+  - type: AccessReader
+    access: [["WastelandReporter"]]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: N14DoorSpikedGate
+  id: N14DoorSpikedGateTribal
+  suffix: Tribal, Locked
+  components:
+  - type: AccessReader
+    access: [["TribeMember"]]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedChief
+  suffix: Tribal, Locked, Chief
+  components:
+  - type: AccessReader
+    access: [["TribeChief"]]
+  - type: Wires
+    layoutId: AirlockService
+
+# Wastelander
+    
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedChaplain
+  suffix: Locked, Chaplain
+  components:
+  - type: AccessReader
+    access: [["WastelandChaplain"]]
+  - type: Wires
+    layoutId: AirlockService
+    
+- type: entity
+  parent: N14DoorWoodSecure
+  id: N14DoorWoodSecureLockedFarmer
+  suffix: Locked, Farmer
+  components:
+  - type: AccessReader
+    access: [["WastelandFarmer"]]
+  - type: Wires
+    layoutId: AirlockService
+
 #MARK: Vault
 - type: entity
-  parent: N14DoorBunker
+  parent: N14DoorBunkerVault
   id: N14DoorBunkerLockedVaultDweller
   suffix: Vault Dweller, Locked
   components:
@@ -346,7 +438,7 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
+  parent: N14DoorBunkerVault
   id: N14DoorBunkerLockedVaultEngineer
   suffix: Vault Engineer, Locked
   components:
@@ -357,7 +449,7 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
+  parent: N14DoorBunkerVault
   id: N14DoorBunkerLockedVaultMedical
   suffix: Vault Medical, Locked
   components:
@@ -368,7 +460,7 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
+  parent: N14DoorBunkerVault
   id: N14DoorBunkerLockedVaultSecurity
   suffix: Vault Security, Locked
   components:
@@ -379,7 +471,7 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
+  parent: N14DoorBunkerVault
   id: N14DoorBunkerLockedVaultGatekeeper
   suffix: Vault Gatekeeper, Locked
   components:
@@ -390,7 +482,7 @@
     layoutId: HighSec
 
 - type: entity
-  parent: N14DoorBunker
+  parent: N14DoorBunkerVault
   id: N14DoorBunkerLockedVaultOverseer
   suffix: Vault Overseer, Locked
   components:
@@ -566,3 +658,15 @@
     access: [["SilverKey"]]
   - type: Wires
     layoutId: AirlockCargo
+
+# Misc ancient bunker airlock
+- type: entity
+  parent: N14DoorBunker
+  id: N14DoorBunkerLockedAncient
+  suffix: Locked, Ancient
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAncientBunker ]
+  - type: Wires
+    layoutId: HighSec

@@ -1,9 +1,14 @@
 - type: job
   id: WastelandScavenger
-  setPreference: true
+  setPreference: false # Disabled, use loadouts.
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-scavenger
   description: job-description-scavenger
   playTimeTracker: WastelandScavenger
+  requirements:
+    - !type:CharacterOverallTimeRequirement
+      min: 999999
   startingGear: ScavengerGear
   icon: "JobIconJanitor"
   supervisors: job-supervisors-wastelander
@@ -11,6 +16,11 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: GarbageDay
     prototype: WeaponRevolverInspector
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: ScavengerGear

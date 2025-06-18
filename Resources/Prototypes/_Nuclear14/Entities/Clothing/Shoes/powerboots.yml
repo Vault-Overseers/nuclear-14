@@ -1,0 +1,57 @@
+- type: entity
+  parent: ClothingShoesBase
+  id: N14ClothingPABoots
+  name: power armor boots
+  description: A pair of mechanical boots made from durable materials.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Shoes/PowerBoots/basic.rsi
+  - type: Clothing
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    slots: [ feet ]
+  - type: NoSlip # Power armour users shouldn't slip.
+  - type: ClothingSpeedModifier
+    walkModifier: 1.05 # Yes, the intention is to just barely make you faster with the boots active.
+    sprintModifier: 1.05 # Simply to make people FEEL faster and encourage putting it on. Get psyop-ed!
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.925
+        Slash: 0.925
+        Piercing: 0.95
+        Heat: 0.95
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: N14FootstepPowerArmor
+  - type: Matchbox
+  - type: ItemSlots
+    slots:
+      item:
+        name: clothing-boots-sidearm
+        whitelist:
+          tags:
+          - Knife
+          - Sidearm
+
+- type: entity
+  parent: N14ClothingPABoots
+  id: N14ClothingPABootsDark
+  name: power armor boots
+  description: A pair of mechanical boots made from durable materials.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Shoes/PowerBoots/dark.rsi
+
+- type: entity
+  parent: N14ClothingPABoots
+  id: N14ClothingPABootsMBoS
+  name: power armor boots
+  description: A pair of mechanical boots made from durable materials.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Shoes/PowerBoots/midwest.rsi

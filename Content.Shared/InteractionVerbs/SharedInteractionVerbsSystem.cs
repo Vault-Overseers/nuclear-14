@@ -4,10 +4,12 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Contests;
 using Content.Shared.DoAfter;
 using Content.Shared.Ghost;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.InteractionVerbs.Events;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
@@ -26,16 +28,14 @@ public abstract class SharedInteractionVerbsSystem : EntitySystem
     private readonly InteractionAction.VerbDependencies _verbDependencies = new();
     private List<InteractionVerbPrototype> _globalPrototypes = default!;
 
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfters = default!;
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly ContestsSystem _contests = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactions = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popups = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     public override void Initialize()
     {
@@ -156,7 +156,7 @@ public abstract class SharedInteractionVerbsSystem : EntitySystem
             Broadcast = true,
             BreakOnHandChange = proto.RequiresHands,
             NeedHand = proto.RequiresHands,
-            RequireCanInteract = proto.RequiresCanInteract,
+            RequireCanInteract = proto.RequiresCanAccess,
             Delay = delay,
             Event = new InteractionVerbDoAfterEvent(proto.ID, args)
         };
@@ -178,7 +178,8 @@ public abstract class SharedInteractionVerbsSystem : EntitySystem
         if (_net.IsClient)
             return; // this leads to issues
 
-        if (!proto.Action!.CanPerform(args, proto, false, _verbDependencies) && !force
+        if (!PerformChecks(proto, ref args, out _, out _) && !force
+            || !proto.Action!.CanPerform(args, proto, false, _verbDependencies) && !force
             || !proto.Action.Perform(args, proto, _verbDependencies))
         {
             CreateVerbEffects(proto.EffectFailure, Fail, proto, args);
@@ -271,7 +272,7 @@ public abstract class SharedInteractionVerbsSystem : EntitySystem
             return false;
         }
 
-        if (proto.RequiresCanInteract && args is not { CanInteract: true, CanAccess: true } || !proto.Range.IsInRange(distance))
+        if (!args.CanInteract || proto.RequiresCanAccess && !args.CanAccess || !proto.Range.IsInRange(distance))
         {
             errorLocale = "interaction-verb-cannot-reach";
             return false;
@@ -382,8 +383,8 @@ public abstract class SharedInteractionVerbsSystem : EntitySystem
 
             (string, object)[] localeArgs =
             [
-                ("user", user),
-                ("target", target),
+                ("user", Identity.Entity(user, _entityManager)),
+                ("target", Identity.Entity(target, _entityManager)),
                 ("used", used ?? EntityUid.Invalid),
                 ("selfTarget", user == target),
                 ("hasUsed", used != null)

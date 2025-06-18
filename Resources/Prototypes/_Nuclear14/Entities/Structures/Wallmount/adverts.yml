@@ -1,29 +1,11 @@
-- type: entity
-  parent: BaseSign
-  id: N14SignBase # for non directional signs otherwise remove snapCardinals: true
-  abstract: true
-  components:
-  - type: WallMount
-    arc: 360
-  - type: Sprite
-    drawdepth: Overdoors
-    sprite: _Nuclear14/Structures/Wallmounts/adverts.rsi
-    snapCardinals: true # one direction
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
+# see walldecor.yml for sign base
 
 # Pristine Adverts
 - type: entity
   parent: N14SignBase
   id: N14SignNukaColaGirl
-  name: Nuka Cola advert
-  description: "A near pristine pre-war advert for Nuka Cola."
+  name: Nuka-Cola advert
+  description: "A near pristine pre-war advert for Nuka-Cola."
   components:
   - type: Sprite
     state: nukagirl
@@ -96,8 +78,8 @@
   parent: N14SignNukaColaGirl
   id: N14SignNukaColaGirlWorn
   suffix: worn
-  name: Nuka Cola advert
-  description: "A pre-war advert for Nuka Cola."
+  name: Nuka-Cola advert
+  description: "A pre-war advert for Nuka-Cola."
   components:
   - type: Sprite
     state: nukagirl-worn
@@ -152,8 +134,8 @@
   parent: N14SignBase
   id: N14SignNukaColaGirlDamaged
   suffix: damaged
-  name: Nuka Cola advert
-  description: "A destroyed pre-war advert for Nuka Cola."
+  name: Nuka-Cola advert
+  description: "A destroyed pre-war advert for Nuka-Cola."
   components:
   - type: Sprite
     state: nukagirl-damaged

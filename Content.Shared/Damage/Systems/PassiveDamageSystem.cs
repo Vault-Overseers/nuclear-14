@@ -2,6 +2,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Damage;
@@ -10,6 +11,7 @@ public sealed class PassiveDamageSystem : EntitySystem
 {
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -20,7 +22,7 @@ public sealed class PassiveDamageSystem : EntitySystem
 
     private void OnPendingMapInit(EntityUid uid, PassiveDamageComponent component, MapInitEvent args)
     {
-        component.NextDamage = _timing.CurTime + TimeSpan.FromSeconds(1f);
+        component.NextDamage = _timing.CurTime + TimeSpan.FromSeconds(1f) * (1+_random.NextFloat());
     }
 
     // Every tick, attempt to damage entities

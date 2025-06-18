@@ -15,7 +15,7 @@ public sealed partial class PerishableComponent : Component
     /// How long it takes after death to start rotting.
     /// </summary>
     [DataField]
-    public TimeSpan RotAfter = TimeSpan.FromMinutes(10);
+    public TimeSpan RotAfter = TimeSpan.FromMinutes(30);
 
     /// <summary>
     /// How much rotting has occured
@@ -41,7 +41,7 @@ public sealed partial class PerishableComponent : Component
     /// How many moles of gas released per second, per unit of mass.
     /// </summary>
     [DataField]
-    public float MolsPerSecondPerUnitMass = 0.0025f;
+    public float MolsPerSecondPerUnitMass = 0f;
 
     [DataField, AutoNetworkedField]
     public int Stage;

@@ -1,9 +1,18 @@
 - type: job
   id: Townsperson
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-townsperson
   description: job-description-townsperson
   playTimeTracker: Townsperson
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterOverallTimeRequirement
+      min: 3600 # 1 hour
   startingGear: TownspersonGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk
@@ -12,6 +21,7 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - Townsfolk
 
 - type: startingGear
