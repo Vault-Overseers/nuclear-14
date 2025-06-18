@@ -11,6 +11,7 @@ public sealed partial class WeaponAttachmentComponent : Component
 {
     public const string BayonetSlotId = "bayonet";
     public const string LightSlotId = "light";
+    public const string ScopeSlotId = "scope";
 
     [DataField(required: true)]
     public EntProtoId LightActionPrototype = default!;
@@ -20,6 +21,9 @@ public sealed partial class WeaponAttachmentComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool BayonetAttached;
+
+    [DataField, AutoNetworkedField]
+    public bool ScopeAttached;
 
     [DataField, AutoNetworkedField]
     public bool LightOn;
@@ -33,5 +37,6 @@ public enum WeaponVisualLayers : byte
     Base,
     Bayonet,
     FlightOff,
-    FlightOn
+    FlightOn,
+    Scope
 }

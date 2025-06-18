@@ -24,3 +24,11 @@ public sealed partial class AttachmentBayonetComponent : AttachmentComponent
 public sealed partial class AttachmentFlashlightComponent : AttachmentComponent
 {
 }
+
+/// <summary>
+///     Component to indicate a valid scope for weapon attachment.
+/// </summary>
+[RegisterComponent, NetworkedComponent]
+public sealed partial class AttachmentScopeComponent : AttachmentComponent
+{
+}

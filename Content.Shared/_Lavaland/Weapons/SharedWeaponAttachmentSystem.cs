@@ -47,11 +47,20 @@ public abstract partial class SharedWeaponAttachmentSystem : EntitySystem
             EjectOnBreak = true,
             Name = Loc.GetString("attachment-light-slot-name"),
         };
+        var scopeSlot = new ItemSlot
+        {
+            Whitelist = new EntityWhitelist { Components = ["AttachmentScope"] },
+            Swap = false,
+            EjectOnBreak = true,
+            Name = Loc.GetString("attachment-scope-slot-name"),
+        };
         _itemSlots.AddItemSlot(uid, WeaponAttachmentComponent.BayonetSlotId, bayonetSlot, itemSlots);
         _itemSlots.AddItemSlot(uid, WeaponAttachmentComponent.LightSlotId, lightSlot, itemSlots);
+        _itemSlots.AddItemSlot(uid, WeaponAttachmentComponent.ScopeSlotId, scopeSlot, itemSlots);
 
         var lightContainer = _containerSystem.EnsureContainer<ContainerSlot>(uid, WeaponAttachmentComponent.LightSlotId);
         lightContainer.OccludesLight = false;
+        _containerSystem.EnsureContainer<ContainerSlot>(uid, WeaponAttachmentComponent.ScopeSlotId);
     }
 
     private void OnShutdown(EntityUid uid, WeaponAttachmentComponent component, ComponentShutdown args)
@@ -88,6 +97,8 @@ public abstract partial class SharedWeaponAttachmentSystem : EntitySystem
             BayonetChanged(uid, true, component);
         else if (args.Container.ID == WeaponAttachmentComponent.LightSlotId && HasComp<AttachmentFlashlightComponent>(args.Entity))
             AttachLight(uid, args.Entity, component);
+        else if (args.Container.ID == WeaponAttachmentComponent.ScopeSlotId && HasComp<AttachmentScopeComponent>(args.Entity))
+            AttachScope(uid, args.Entity, component);
     }
 
     private void OnEntRemovedFromContainer(EntityUid uid, WeaponAttachmentComponent component, EntRemovedFromContainerMessage args)
@@ -96,6 +107,8 @@ public abstract partial class SharedWeaponAttachmentSystem : EntitySystem
             BayonetChanged(uid, false, component);
         else if (args.Container.ID == WeaponAttachmentComponent.LightSlotId && HasComp<AttachmentFlashlightComponent>(args.Entity))
             RemoveLight(uid, component);
+        else if (args.Container.ID == WeaponAttachmentComponent.ScopeSlotId && HasComp<AttachmentScopeComponent>(args.Entity))
+            RemoveScope(uid, component);
     }
 
     private void BayonetChanged(EntityUid uid, bool attached, WeaponAttachmentComponent component)
@@ -152,4 +165,27 @@ public abstract partial class SharedWeaponAttachmentSystem : EntitySystem
         RemoveToggleAction(component);
         Dirty(uid, component);
     }
+
+    private void AttachScope(EntityUid uid, EntityUid scope, WeaponAttachmentComponent component)
+    {
+        if (component.ScopeAttached)
+            return;
+
+        component.ScopeAttached = true;
+        AddScope(uid, scope);
+        Dirty(uid, component);
+    }
+
+    private void RemoveScope(EntityUid uid, WeaponAttachmentComponent component)
+    {
+        if (!component.ScopeAttached)
+            return;
+
+        component.ScopeAttached = false;
+        RemScope(uid);
+        Dirty(uid, component);
+    }
+
+    protected abstract void AddScope(EntityUid uid, EntityUid scope);
+    protected abstract void RemScope(EntityUid uid);
 }

@@ -21,6 +21,21 @@ public sealed class WeaponAttachmentSystem : SharedWeaponAttachmentSystem
     protected override void AddSharp(EntityUid uid) => EnsureComp<SharpComponent>(uid);
     protected override void RemSharp(EntityUid uid) => RemCompDeferred<SharpComponent>(uid);
 
+    protected override void AddScope(EntityUid uid, EntityUid scope)
+    {
+        if (!TryComp(scope, out FollowDistanceComponent? scopeComp))
+            return;
+
+        var follow = EnsureComp<FollowDistanceComponent>(uid);
+        follow.MaxDistance = scopeComp.MaxDistance;
+        follow.BackStrength = scopeComp.BackStrength;
+    }
+
+    protected override void RemScope(EntityUid uid)
+    {
+        RemCompDeferred<FollowDistanceComponent>(uid);
+    }
+
     private void OnToggleLight(EntityUid uid, WeaponAttachmentComponent component, ToggleActionEvent args)
     {
         if (!component.LightAttached)

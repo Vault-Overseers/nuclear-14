@@ -13,6 +13,8 @@ public sealed class WeaponAttachmentSystem : SharedWeaponAttachmentSystem
 
     protected override void AddSharp(EntityUid uid) { }
     protected override void RemSharp(EntityUid uid) { }
+    protected override void AddScope(EntityUid uid, EntityUid scope) { }
+    protected override void RemScope(EntityUid uid) { }
 
     private void OnAfterAutoHandleStateEvent(EntityUid uid, WeaponAttachmentComponent component, ref AfterAutoHandleStateEvent args)
     {
@@ -22,5 +24,6 @@ public sealed class WeaponAttachmentSystem : SharedWeaponAttachmentSystem
         sprite.LayerSetVisible(WeaponVisualLayers.Bayonet, component.BayonetAttached);
         sprite.LayerSetVisible(WeaponVisualLayers.FlightOff, component.LightAttached && !component.LightOn);
         sprite.LayerSetVisible(WeaponVisualLayers.FlightOn, component.LightAttached && component.LightOn);
+        sprite.LayerSetVisible(WeaponVisualLayers.Scope, component.ScopeAttached);
     }
 }
