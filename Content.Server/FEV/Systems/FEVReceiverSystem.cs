@@ -2,12 +2,14 @@ using Content.Server.FEV.Components;
 using Content.Server.Medical;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Humanoid;
+using Content.Server.Humanoid;
 using Content.Shared.Popups;
 using Content.Shared.FixedPoint;
 using Content.Shared.Random;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Localization;
 
 namespace Content.Server.FEV.Systems;
 
@@ -16,7 +18,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ITiming _timing = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
 
     public override void Initialize()
