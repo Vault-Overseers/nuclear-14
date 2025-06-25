@@ -6,6 +6,7 @@ using Content.Server.Humanoid;
 using Content.Shared.Popups;
 using Content.Shared.FixedPoint;
 using Content.Shared.Random;
+using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -28,7 +29,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
 
     private void OnMetabolize(EntityUid uid, FEVReceiverComponent comp, ref TryMetabolizeReagent args)
     {
-        if (args.Reagent != "FEV")
+        if (args.Reagent.Prototype != "FEV")
             return;
 
         comp.Accumulated += args.Quantity;
