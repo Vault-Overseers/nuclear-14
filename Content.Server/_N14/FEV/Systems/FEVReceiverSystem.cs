@@ -1,4 +1,4 @@
-using Content.Server.FEV.Components;
+using Content.Server._N14.FEV.Components;
 using Content.Server.Medical;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Humanoid;
@@ -11,7 +11,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Localization;
 
-namespace Content.Server.FEV.Systems;
+namespace Content.Server._N14.FEV.Systems;
 
 public sealed partial class FEVReceiverSystem : EntitySystem
 {

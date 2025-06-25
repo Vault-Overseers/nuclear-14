@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.FEV.Components;
+namespace Content.Server._N14.FEV.Components;
 
 /// <summary>
 /// Tracks metabolized FEV on a mob and handles transformation once thresholds are met.

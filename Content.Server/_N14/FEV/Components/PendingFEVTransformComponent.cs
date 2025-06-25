@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.FEV.Components;
+namespace Content.Server._N14.FEV.Components;
 
 /// <summary>
 /// Handles the staged transformation process once FEV infection reaches the threshold.
