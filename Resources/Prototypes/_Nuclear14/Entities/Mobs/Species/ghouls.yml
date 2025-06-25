@@ -74,16 +74,6 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Ghoul
-  - type: PassiveDamage # Ghoul passive regen. Assuming one damage type, comes out to about 100 damage in 5 minutes. Not enough to really affect during combat, but sure makes them need a lot less stimpaks.
-    allowedStates:
-    - Alive
-    damageCap: 100
-    damage:
-      types:
-        Heat: -1
-      groups:
-        Brute: -1
-        Toxin: -0.1
   - type: RadiationHealing
   - type: MobThresholds
     thresholds:
@@ -179,16 +169,6 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: GhoulGlowing
-  - type: PassiveDamage #Little more regen, +25% more.
-    allowedStates:
-    - Alive
-    damageCap: 100
-    damage:
-      types:
-        Heat: -1.25
-      groups:
-        Brute: -1.25
-        Toxin: -0.125
   - type: RadiationHealing
   - type: MobThresholds
     thresholds:

@@ -1,4 +1,4 @@
-using Content.Server.Damage.Systems;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Movement.Systems;
