@@ -74,6 +74,13 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Ghoul
+  - type: PassiveDamage # Ghoul passive radiation so they will eventually feral unless constantly taking anti rads like in the show.
+    allowedStates:
+    - Alive
+    damageCap: 100
+    damage:
+      types:
+        Radiation: 0.06 # a little less than ~50 rads per hour. Chem dependant
   - type: RadiationHealing
   - type: MobThresholds
     thresholds:
@@ -169,6 +176,13 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: GhoulGlowing
+  - type: PassiveDamage # Ghoul passive radiation so they will eventually feral unless constantly taking anti rads like in the show.
+    allowedStates:
+    - Alive
+    damageCap: 100
+    damage:
+      types:
+        Radiation: 0.06 # a little less than ~50 rads per hour. Chem dependant
   - type: RadiationHealing
   - type: MobThresholds
     thresholds:
