@@ -1,7 +1,7 @@
 using Content.Shared.Movement.Systems;
-using Content.Shared.Radiation.Components;
+using Content.Shared._N14.Radiation.Components;
 
-namespace Content.Shared.Radiation.Systems;
+namespace Content.Shared._N14.Radiation;
 
 public sealed partial class RadiationHealingSystem : EntitySystem
 {

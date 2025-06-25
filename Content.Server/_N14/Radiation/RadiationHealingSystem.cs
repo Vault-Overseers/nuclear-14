@@ -2,10 +2,10 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Radiation.Components;
+using Content.Shared._N14.Radiation.Components;
 using Content.Shared.Radiation.Events;
 
-namespace Content.Server.Radiation.Systems;
+namespace Content.Server._N14.Radiation;
 
 public sealed partial class RadiationHealingSystem : EntitySystem
 {

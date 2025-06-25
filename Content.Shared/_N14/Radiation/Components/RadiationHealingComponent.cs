@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Radiation.Components;
+namespace Content.Shared._N14.Radiation.Components;
 
 /// <summary>
 /// Allows entities to heal when exposed to radiation and slows them based on exposure.
