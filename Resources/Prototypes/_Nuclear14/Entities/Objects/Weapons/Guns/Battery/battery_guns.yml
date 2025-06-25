@@ -116,6 +116,10 @@
     fireRate: 1.5
     soundGunshot:
       collection: N14LaserPistolGunshot
+  - type: N14EnergyWeapon
+    hitscan: true
+    hitscanProto: RedLaser
+    fireCost: 50
   - type: FollowDistance
     backStrength: 6
   - type: StaticPrice
@@ -162,6 +166,10 @@
     fireRate: 1.5
     soundGunshot:
       collection: N14LaserPistolGunshot
+  - type: N14EnergyWeapon
+    hitscan: true
+    hitscanProto: RedMediumLaser
+    fireCost: 50
   - type: FollowDistance
     backStrength: 6
   - type: StaticPrice
@@ -203,6 +211,10 @@
     soundGunshot:
       collection: N14PlasmaPistolGunshot
     fireRate: 1.5
+  - type: N14EnergyWeapon
+    hitscan: false
+    projectileProto: BulletLightPlasma
+    fireCost: 50
   - type: FollowDistance
     backStrength: 6
   - type: StaticPrice
@@ -244,6 +256,10 @@
     soundGunshot:
       collection: N14PlasmaDefenderGunshot
     fireRate: 2.5
+  - type: N14EnergyWeapon
+    hitscan: false
+    projectileProto: BulletPlasma
+    fireCost: 100
   - type: FollowDistance
     backStrength: 6
   - type: StaticPrice
@@ -255,9 +271,9 @@
 
 - type: entity
   name: recharger rifle
-  parent: BaseWeaponBattery
+  parent: N14BaseWeaponPowerCellMedium
   id: N14WeaponLaserRifleRecharger
-  description: The first model for a self-charging laser rifle, its low energy consumption and advanced internal battery lets this gun last for centuries without recharging.
+  description: The first model for a self-charging laser rifle. This variant has been refitted to accept standard power cells.
   components:
   - type: Wieldable
   - type: GunWieldBonus
@@ -273,17 +289,25 @@
       shader: unshaded
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_rifle.rsi
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 25
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellHigh
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellHigh
   - type: Gun
     soundGunshot:
       collection: N14RechargerRifleGunshot
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-  - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+  - type: N14EnergyWeapon
+    hitscan: false
+    projectileProto: BulletRechargerLaser
     fireCost: 50
   - type: FollowDistance
     backStrength: 5
@@ -292,9 +316,9 @@
 
 - type: entity
   name: recharger pistol
-  parent: BaseWeaponBatterySmall
+  parent: N14BaseWeaponPowerCellSmall
   id: N14WeaponLaserPistolRecharger
-  description: The upgraded version of the recharger rifle, compact but maintaining the same power, its low energy consumption and advanced internal battery makes this gun last for centuries without recharging.
+  description: The upgraded version of the recharger rifle, compact but now powered by replaceable cells.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_pistol.rsi
@@ -306,15 +330,23 @@
       shader: unshaded
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_pistol.rsi
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: N14PowerCellSmall
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - N14PowerCellSmall
   - type: Gun
     soundGunshot:
       collection: N14RechargerPistolGunshot
-  - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+  - type: N14EnergyWeapon
+    hitscan: false
+    projectileProto: BulletRechargerLaser
     fireCost: 50
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 20
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -377,6 +409,10 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+  - type: N14EnergyWeapon
+    hitscan: true
+    hitscanProto: RedMediumLaser
+    fireCost: 50
   - type: FollowDistance
     backStrength: 5
   - type: StaticPrice
@@ -430,6 +466,10 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+  - type: N14EnergyWeapon
+    hitscan: false
+    projectileProto: BulletPlasma
+    fireCost: 100
   - type: FollowDistance
     backStrength: 5
   - type: StaticPrice
@@ -480,6 +520,10 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+  - type: N14EnergyWeapon
+    hitscan: true
+    hitscanProto: RedHeavyLaser
+    fireCost: 125
   - type: FollowDistance
     backStrength: 5
   - type: StaticPrice
@@ -532,6 +576,10 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: N14EnergyWeapon
+    hitscan: true
+    hitscanProto: RedMediumLaser
+    fireCost: 50
   - type: FollowDistance
     backStrength: 5
   - type: StaticPrice
@@ -578,6 +626,10 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: N14EnergyWeapon
+    hitscan: true
+    hitscanProto: RedMediumLaser
+    fireCost: 50
   - type: StaticPrice
     price: 150
 
@@ -626,6 +678,10 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: N14EnergyWeapon
+    hitscan: true
+    hitscanProto: RedMediumLaser
+    fireCost: 50
   - type: FollowDistance
     backStrength: 5
   - type: StaticPrice
@@ -679,6 +735,10 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: N14EnergyWeapon
+    hitscan: false
+    projectileProto: BulletPlasma
+    fireCost: 100
   - type: FollowDistance
     backStrength: 5
   - type: StaticPrice
@@ -728,6 +788,10 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: N14EnergyWeapon
+    hitscan: false
+    projectileProto: BulletPlasma
+    fireCost: 100
   - type: StaticPrice
     price: 175
 
@@ -779,6 +843,10 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: N14EnergyWeapon
+    hitscan: false
+    projectileProto: BulletPlasma
+    fireCost: 100
   - type: FollowDistance
     backStrength: 5
   - type: StaticPrice
@@ -832,6 +900,10 @@
     availableModes:
      - SemiAuto
      - Burst
+  - type: N14EnergyWeapon
+    hitscan: false
+    projectileProto: BulletPlasma
+    fireCost: 100
   - type: FollowDistance
     backStrength: 6
   - type: StaticPrice
@@ -885,6 +957,10 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: N14EnergyWeapon
+    hitscan: true
+    hitscanProto: RedShuttleLaser
+    fireCost: 75
   - type: FollowDistance
     backStrength: 4
   - type: StaticPrice
@@ -935,6 +1011,10 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: N14EnergyWeapon
+    hitscan: true
+    hitscanProto: RedShuttleLaser
+    fireCost: 75
   - type: FollowDistance
     backStrength: 4
   - type: StaticPrice
@@ -989,6 +1069,10 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+  - type: N14EnergyWeapon
+    hitscan: false
+    projectileProto: BulletBigPlasma
+    fireCost: 50
   - type: Appearance
   - type: MultiHandedItem
   - type: ClothingSpeedModifier
@@ -1047,6 +1131,10 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+  - type: N14EnergyWeapon
+    hitscan: true
+    hitscanProto: RedLaser
+    fireCost: 50
   - type: Appearance
   - type: MultiHandedItem
   - type: ClothingSpeedModifier
