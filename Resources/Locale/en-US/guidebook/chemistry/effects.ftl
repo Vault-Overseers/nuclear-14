@@ -369,6 +369,7 @@ reagent-effect-guidebook-chem-reroll-psionic =
         *[other] allow
     } a chance to get a different psionic power
 
+
 reagent-effect-guidebook-add-moodlet =
     modifies mood by {$amount}
     { $timeout ->
