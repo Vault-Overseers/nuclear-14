@@ -87,3 +87,4 @@ reagent-desc-lotophagoi-oil = A super potent drug that is much better at inducin
 
 reagent-name-ectoplasm = ectoplasm
 reagent-desc-ectoplasm = The physical component of semi-corporeal spirits.
+

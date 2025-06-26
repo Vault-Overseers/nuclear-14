@@ -348,3 +348,5 @@ reagent-desc-scorpiontail = scorpion tail. Stingy.
 
 compost-mixing-success = compost mixed
 mixing-verb-composting = mix compost
+reagent-name-fev = forced evolutionary virus
+reagent-desc-fev = A highly mutagenic compound that randomly alters the subject's species when enough is metabolized.
