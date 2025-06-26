@@ -7,7 +7,9 @@ namespace Content.Shared._N14.Support;
 /// <summary>
 /// Marks an entity that will trigger an artillery strike after a delay.
 /// </summary>
-[RegisterComponent, Access(typeof(SharedArtilleryStrikeSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState,
+    Access(typeof(SharedArtilleryStrikeSystem))]
+[AutoGenerateComponentPause]
 public sealed partial class ArtilleryStrikeComponent : Component
 {
     [DataField, AutoNetworkedField]

@@ -10,7 +10,7 @@ namespace Content.Server._N14.Support;
 /// <summary>
 /// Manages scheduled vertibird fire support.
 /// </summary>
-public sealed class VertibirdSupportSystem : EntitySystem
+public sealed class VertibirdSupportSystem : SharedVertibirdSupportSystem
 {
     [Dependency] private readonly ExplosionSystem _explosions = default!;
     [Dependency] private readonly IGameTiming _timing = default!;

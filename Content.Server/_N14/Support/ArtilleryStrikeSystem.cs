@@ -8,7 +8,7 @@ namespace Content.Server._N14.Support;
 /// <summary>
 /// Handles simple timed artillery strikes.
 /// </summary>
-public sealed class ArtilleryStrikeSystem : EntitySystem
+public sealed class ArtilleryStrikeSystem : SharedArtilleryStrikeSystem
 {
     [Dependency] private readonly ExplosionSystem _explosions = default!;
     [Dependency] private readonly IGameTiming _timing = default!;

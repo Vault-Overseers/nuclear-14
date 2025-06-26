@@ -8,7 +8,9 @@ namespace Content.Shared._N14.Support;
 /// <summary>
 /// Schedules a series of explosions representing vertibird fire support.
 /// </summary>
-[RegisterComponent, Access(typeof(SharedVertibirdSupportSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState,
+    Access(typeof(SharedVertibirdSupportSystem))]
+[AutoGenerateComponentPause]
 public sealed partial class VertibirdSupportComponent : Component
 {
     [DataField, AutoNetworkedField]
