@@ -94,6 +94,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         InitializeClothing();
         InitializeContainer();
         InitializeSolution();
+        InitializeN14Energy();
 
         // Interactions
         SubscribeLocalEvent<GunComponent, GetVerbsEvent<AlternativeVerb>>(OnAltVerb);
