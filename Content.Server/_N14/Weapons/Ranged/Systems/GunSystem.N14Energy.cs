@@ -13,8 +13,28 @@ public sealed partial class GunSystem
         base.InitializeN14Energy();
     }
 
-    protected override void TakeCellCharge(EntityUid gunUid, EntityUid cellUid, float fireCost, BatteryComponent? battery = null)
+    protected override void TakeCellCharge(EntityUid gunUid, N14EnergyWeaponComponent component, EntityUid cellUid, float fireCost)
     {
-        _battery.UseCharge(cellUid, fireCost, battery);
+        _battery.UseCharge(cellUid, fireCost);
+        UpdateN14EnergyShots(gunUid, component);
+    }
+
+    private void UpdateN14EnergyShots(EntityUid uid, N14EnergyWeaponComponent component)
+    {
+        var cell = GetMagazineEntity(uid);
+
+        if (cell == null || !TryComp<BatteryComponent>(cell.Value, out var battery))
+        {
+            component.Shots = 0;
+            component.Capacity = 0;
+        }
+        else
+        {
+            component.Shots = (int)(battery.CurrentCharge / component.FireCost);
+            component.Capacity = (int)(battery.MaxCharge / component.FireCost);
+        }
+
+        UpdateN14EnergyAppearance(uid, component);
+        Dirty(uid, component);
     }
 }

@@ -1,5 +1,4 @@
 using Content.Shared._N14.Weapons.Ranged.Components;
-using Content.Server.Power.Components; // only needed for parameter type
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Containers;
@@ -42,14 +41,15 @@ public abstract partial class SharedGunSystem
     private void OnN14EnergyTakeAmmo(EntityUid uid, N14EnergyWeaponComponent component, TakeAmmoEvent args)
     {
         var cell = GetMagazineEntity(uid);
-        if (cell == null || !TryComp<BatteryComponent>(cell.Value, out var battery))
+        if (cell == null)
             return;
 
-        for (var i = 0; i < args.Shots; i++)
-        {
-            if (battery.CurrentCharge < component.FireCost)
-                break;
+        var shots = Math.Min(args.Shots, component.Shots);
+        if (shots == 0)
+            return;
 
+        for (var i = 0; i < shots; i++)
+        {
             if (component.Hitscan)
             {
                 var hitscan = ProtoManager.Index<HitscanPrototype>(component.HitscanProto!);
@@ -61,33 +61,25 @@ public abstract partial class SharedGunSystem
                 args.Ammo.Add((ent, EnsureShootable(ent)));
             }
 
-            TakeCellCharge(uid, cell.Value, component.FireCost, battery);
+            component.Shots--;
+            TakeCellCharge(uid, component, cell.Value, component.FireCost);
         }
 
-        UpdateN14EnergyShots(uid, component);
+        UpdateN14EnergyAppearance(uid, component);
+        Dirty(uid, component);
     }
 
-    protected virtual void TakeCellCharge(EntityUid gunUid, EntityUid cellUid, float fireCost, BatteryComponent? battery = null) {}
+    protected virtual void TakeCellCharge(EntityUid gunUid, N14EnergyWeaponComponent component, EntityUid cellUid, float fireCost) {}
 
-    private void UpdateN14EnergyShots(EntityUid uid, N14EnergyWeaponComponent component)
+    partial void UpdateN14EnergyShots(EntityUid uid, N14EnergyWeaponComponent component);
+
+    private void UpdateN14EnergyAppearance(EntityUid uid, N14EnergyWeaponComponent component)
     {
-        var cell = GetMagazineEntity(uid);
-        if (cell == null || !TryComp<BatteryComponent>(cell.Value, out var battery))
-        {
-            component.Shots = 0;
-            component.Capacity = 0;
-        }
-        else
-        {
-            component.Shots = (int)(battery.CurrentCharge / component.FireCost);
-            component.Capacity = (int)(battery.MaxCharge / component.FireCost);
-        }
+        if (!TryComp<AppearanceComponent>(uid, out var appearance))
+            return;
 
-        if (TryComp<AppearanceComponent>(uid, out var appearance))
-        {
-            Appearance.SetData(uid, AmmoVisuals.HasAmmo, component.Shots != 0, appearance);
-            Appearance.SetData(uid, AmmoVisuals.AmmoCount, component.Shots, appearance);
-            Appearance.SetData(uid, AmmoVisuals.AmmoMax, component.Capacity, appearance);
-        }
+        Appearance.SetData(uid, AmmoVisuals.HasAmmo, component.Shots != 0, appearance);
+        Appearance.SetData(uid, AmmoVisuals.AmmoCount, component.Shots, appearance);
+        Appearance.SetData(uid, AmmoVisuals.AmmoMax, component.Capacity, appearance);
     }
 }
