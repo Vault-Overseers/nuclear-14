@@ -6,7 +6,6 @@ namespace Content.Server.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem
 {
-    [Dependency] private readonly BatterySystem _battery = default!;
 
     protected override void InitializeN14Energy()
     {
