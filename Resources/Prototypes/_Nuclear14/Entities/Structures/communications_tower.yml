@@ -1,0 +1,36 @@
+- type: entity
+  id: N14CommunicationsTower
+  parent: BaseStructure
+  name: communications tower
+  description: A sturdy transceiver used to relay radio signals between maps.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,1.2"
+        density: 200
+        mask: [MobLayer]
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Misc/radio.rsi
+    layers:
+    - state: radiotower
+  - type: RadioTower
+  - type: ApcPowerReceiver
+  - type: EncryptionKeyHolder
+    keySlots: 6
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.RadioTowerLayers.Layer:
+        base:
+          Broken: { state: radiotower }
+          Off: { state: radiotower }
+          On: { state: radiotower }

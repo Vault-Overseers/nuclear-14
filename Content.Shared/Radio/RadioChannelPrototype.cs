@@ -36,6 +36,13 @@ public sealed partial class RadioChannelPrototype : IPrototype
     [DataField("longRange"), ViewVariables]
     public bool LongRange = false;
 
+    /// <summary>
+    ///     If true, transmitting across different maps requires an active radio tower with
+    ///     the appropriate channel key on both the sending and receiving maps.
+    /// </summary>
+    [DataField("towerRequired"), ViewVariables]
+    public bool TowerRequired = false;
+
     // Frontier: radio channel frequencies
     /// <summary>
     /// If true, the frequency of the message being sent will be appended to the chat message
