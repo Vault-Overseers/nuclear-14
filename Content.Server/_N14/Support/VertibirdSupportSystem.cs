@@ -1,6 +1,7 @@
 using Content.Shared._N14.Support;
 using Content.Server.Explosion.EntitySystems;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
