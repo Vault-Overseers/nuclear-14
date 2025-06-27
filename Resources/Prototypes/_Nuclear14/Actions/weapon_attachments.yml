@@ -1,0 +1,11 @@
+- type: entity
+  id: ActionFireLauncher
+  name: Fire launcher
+  description: Launch a grenade from the attached launcher.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WorldTargetAction
+    useDelay: 1
+    range: 10
+    checkCanAccess: false
+    event: !type:GrenadeLauncherActionEvent
