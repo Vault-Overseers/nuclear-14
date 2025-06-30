@@ -68,8 +68,8 @@ public sealed class WeaponAttachmentSystem : EntitySystem
             holderFollow.MaxDistance = scopeFollow.MaxDistance;
 
             var camera = EnsureComp<CameraFollowComponent>(holder);
-            if (scope.ActionPrototype != null)
-                _actions.AddAction(holder, ref scope.ActionEntity, scope.ActionPrototype);
+            if (scope.ActionPrototype is { } actionProto)
+                _actions.AddAction(holder, ref scope.ActionEntity, actionProto);
         }
     }
 
@@ -125,7 +125,7 @@ public sealed class WeaponAttachmentSystem : EntitySystem
             return false;
 
         var ent = container.ContainedEntities[0];
-        _containers.Remove(ent);
+        _containers.Remove(ent, container);
         CleanupAttachment(holder, ent);
         return true;
     }

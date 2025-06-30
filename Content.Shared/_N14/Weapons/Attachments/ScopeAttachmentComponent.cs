@@ -9,8 +9,9 @@ namespace Content.Shared._N14.Weapons.Attachments;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class ScopeAttachmentComponent : Component
 {
+    // Allows disabling the scoped camera toggle by leaving this null.
     [DataField]
-    public EntProtoId ActionPrototype = "ActionToggleCamera";
+    public EntProtoId? ActionPrototype = "ActionToggleCamera";
 
     // Runtime storage of the weapon's original follow distance
     [DataField] public Vector2? OriginalMaxDistance;
