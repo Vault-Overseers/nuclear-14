@@ -17,6 +17,7 @@ public sealed class VertibirdSupportSystem : SharedVertibirdSupportSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -39,7 +40,10 @@ public sealed class VertibirdSupportSystem : SharedVertibirdSupportSystem
             if (comp.ShotsFired == 0 && now >= comp.StartTime + comp.Delay)
             {
                 if (comp.ApproachSound != null)
-                    _audio.PlayPvs(comp.ApproachSound, comp.Target);
+                {
+                    var coords = _transform.ToCoordinates(comp.Target);
+                    _audio.PlayPvs(comp.ApproachSound, coords);
+                }
             }
 
             var nextTime = comp.StartTime + comp.Delay + comp.ShotsFired * comp.ShotInterval;
@@ -57,7 +61,10 @@ public sealed class VertibirdSupportSystem : SharedVertibirdSupportSystem
 
             _explosions.QueueExplosion(pos, comp.ExplosionType, comp.Intensity, comp.Slope, comp.MaxIntensity, canCreateVacuum: false);
             if (comp.FireSound != null)
-                _audio.PlayPvs(comp.FireSound, pos);
+            {
+                var fireCoords = _transform.ToCoordinates(pos);
+                _audio.PlayPvs(comp.FireSound, fireCoords);
+            }
 
             comp.ShotsFired++;
             Dirty(uid, comp);
