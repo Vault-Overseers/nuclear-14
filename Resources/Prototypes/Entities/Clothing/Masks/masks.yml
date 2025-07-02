@@ -374,7 +374,7 @@
     hideOnToggle: true
 
 - type: entity
-  parent: ClothingMaskGasExplorer
+  parent: ClothingMaskPullableBase
   id: ClothingMaskGasMerc
   name: mercenary gas mask
   description: Slightly outdated, but reliable military-style gas mask.
@@ -422,7 +422,7 @@
         Heat: 0.90
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskRat
   name: rat mask
   description: A mask of a rat that looks like a rat. Perhaps they will take you for a fellow rat.
@@ -431,7 +431,7 @@
     sprite: Clothing/Mask/rat.rsi
   - type: Clothing
     sprite: Clothing/Mask/rat.rsi
-  - type: BreathMask
+  - type: Mask
   - type: Tag
     tags:
     - IPCMaskWearable # Estacao Pirata - IPCs
@@ -445,7 +445,7 @@
   hideOnToggle: true
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskFox
   name: fox mask
   description: What does the fox say?
@@ -454,7 +454,7 @@
     sprite: Clothing/Mask/fox.rsi
   - type: Clothing
     sprite: Clothing/Mask/fox.rsi
-  - type: BreathMask
+  - type: Mask
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: Tag
@@ -484,7 +484,7 @@
     - Snout
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskBear
   name: bear mask
   description: I'm a cloudy, cloudy, cloudy, I'm not a bear at all.
@@ -493,7 +493,7 @@
     sprite: Clothing/Mask/bear.rsi
   - type: Clothing
     sprite: Clothing/Mask/bear.rsi
-  - type: BreathMask
+  - type: Mask
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: Tag
@@ -505,11 +505,12 @@
     hideOnToggle: true
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskRaven
   name: raven mask
   description: Where I am, death... or glitter.
   components:
+  - type: Mask
   - type: Sprite
     sprite: Clothing/Mask/raven.rsi
   - type: Clothing
@@ -526,7 +527,7 @@
     hideOnToggle: true
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskJackal
   name: jackal mask
   description: It is better not to turn your back to the owner of the mask, it may bite.
@@ -535,7 +536,7 @@
     sprite: Clothing/Mask/jackal.rsi
   - type: Clothing
     sprite: Clothing/Mask/jackal.rsi
-  - type: BreathMask
+  - type: Mask
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: Tag
@@ -547,16 +548,17 @@
     hideOnToggle: true
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskBat
   name: bat mask
   description: A bloodsucker by night, and a cute, blinded beast by day.
   components:
+  - type: Mask
   - type: Sprite
     sprite: Clothing/Mask/bat.rsi
   - type: Clothing
     sprite: Clothing/Mask/bat.rsi
-  - type: BreathMask
+  - type: Mask
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: Tag
@@ -568,7 +570,7 @@
     hideOnToggle: true
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskNeckGaiter
   name: neck gaiter
   description: Stylish neck gaiter for your neck, can protect from the cosmic wind?...
@@ -579,6 +581,7 @@
     sprite: Clothing/Mask/neckgaiter.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
+  - type: Mask
     coverage: MOUTH
   - type: Tag
     tags:
@@ -587,26 +590,30 @@
     hideOnToggle: true
 
 - type: entity
-  parent: ClothingMaskNeckGaiter
+  parent: ClothingMaskPullableBase
   id: ClothingMaskNeckGaiterWhite
   name: neck gaiter
   components:
+  - type: Mask
+  - type: IdentityBlocker
+  - type: IngestionBlocker
   - type: Sprite
     sprite: Clothing/Mask/neckgaiterwhite.rsi
   - type: Clothing
     sprite: Clothing/Mask/neckgaiterwhite.rsi
 
 - type: entity
-  parent: ClothingMaskNeckGaiter
+  parent: ClothingMaskPullableBase
   id: ClothingMaskNeckGaiterRed
   name: red neck gaiter
   components:
+  - type: Mask
   - type: Sprite
     sprite: Clothing/Mask/neckgaiterred.rsi
   - type: Clothing
     sprite: Clothing/Mask/neckgaiterred.rsi
-
-- type: entity
+    type: IdentityBlocker
+  - type: entity
   parent: ClothingMaskClownBase
   id: ClothingMaskSexyClown
   name: sexy clown mask
