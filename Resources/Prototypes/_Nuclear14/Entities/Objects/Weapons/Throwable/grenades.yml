@@ -467,3 +467,20 @@
       reagents:
       - ReagentId: Fresium
         Quantity: 15
+  id: RMCGrenadeMolotov
+  name: improvised firebomb
+  description: A potent, improvised firebomb, coupled with a pinch of gunpowder. Cheap, very effective, and deadly in confined spaces. Commonly found in the hands of rebels and terrorists. It can be difficult to predict how many seconds you have before it goes off, so be careful. Chances are, it might explode in your face.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Grenades/molotov.rsi
+  - type: OnUseTimerTrigger
+    examinable: false
+  - type: RandomTimerTrigger
+    min: 1
+    max: 4
+  - type: TileFireOnTrigger
+    spawn: RMCTileFire
+  - type: Tag
+    tags:
+    - Grenade
+
