@@ -3,10 +3,12 @@ using Content.Server.Medical;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Humanoid;
 using Content.Server.Humanoid;
+using Content.Server.Polymorph.Systems;
 using Content.Shared.Popups;
 using Content.Shared.FixedPoint;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
+using Content.Shared.Polymorph;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -21,6 +23,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private readonly PolymorphSystem _polymorph = default!;
 
     public override void Initialize()
     {
@@ -48,22 +51,35 @@ public sealed partial class FEVReceiverSystem : EntitySystem
 
     private void StartSlowTransform(EntityUid uid, FEVReceiverComponent comp)
     {
-        var weights = _proto.Index<WeightedRandomSpeciesPrototype>(comp.SpeciesWeights);
-        var species = weights.Pick(_random);
+        var weights = _proto.Index<WeightedRandomEntityPrototype>(comp.EntityWeights);
+        var entity = weights.Pick(_random);
 
         var pending = EnsureComp<PendingFEVTransformComponent>(uid);
-        pending.Species = species;
+        pending.Species = entity;
         pending.Stage = 0;
         pending.NextTime = _timing.CurTime + comp.StageInterval;
         comp.Transforming = true;
-        comp.TargetSpecies = species;
+        comp.TargetSpecies = entity;
     }
 
     private void Transform(EntityUid uid, FEVReceiverComponent comp, bool instant)
     {
-        var weights = _proto.Index<WeightedRandomSpeciesPrototype>(comp.SpeciesWeights);
-        var species = weights.Pick(_random);
-        _humanoid.SetSpecies(uid, species, true);
+        var weights = _proto.Index<WeightedRandomEntityPrototype>(comp.EntityWeights);
+        var entity = weights.Pick(_random);
+
+        var config = new PolymorphConfiguration
+        {
+            Entity = entity,
+            Forced = true,
+            TransferDamage = true,
+            TransferName = true,
+            TransferHumanoidAppearance = true,
+            Inventory = PolymorphInventoryChange.Transfer,
+            RevertOnCrit = false,
+            RevertOnDeath = false
+        };
+
+        _polymorph.PolymorphEntity(uid, config);
         comp.Transforming = false;
         comp.Accumulated = FixedPoint2.Zero;
         comp.TargetSpecies = null;
@@ -88,7 +104,19 @@ public sealed partial class FEVReceiverSystem : EntitySystem
             }
             else
             {
-                _humanoid.SetSpecies(uid, pending.Species, true, humanoid);
+                var config = new PolymorphConfiguration
+                {
+                    Entity = pending.Species,
+                    Forced = true,
+                    TransferDamage = true,
+                    TransferName = true,
+                    TransferHumanoidAppearance = true,
+                    Inventory = PolymorphInventoryChange.Transfer,
+                    RevertOnCrit = false,
+                    RevertOnDeath = false
+                };
+
+                _polymorph.PolymorphEntity(uid, config);
                 RemCompDeferred<PendingFEVTransformComponent>(uid);
                 comp.Transforming = false;
                 comp.Accumulated = FixedPoint2.Zero;

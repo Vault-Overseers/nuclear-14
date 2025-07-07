@@ -14,10 +14,11 @@ namespace Content.Server._N14.FEV.Components;
 public sealed partial class FEVReceiverComponent : Component
 {
     /// <summary>
-    /// Weighted species list used when selecting a random mutation result.
+    /// Weighted entity list used when selecting a random mutation result.
+    /// The target entities should be humanoid mobs that will replace the current one.
     /// </summary>
-    [DataField("speciesWeights", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<WeightedRandomSpeciesPrototype>))]
-    public string SpeciesWeights = "SpeciesWeights";
+    [DataField("entityWeights", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<WeightedRandomEntityPrototype>))]
+    public string EntityWeights = "FEVHumanTransforms";
 
     /// <summary>
     /// Minimum FEV units required before a slow transformation begins.
