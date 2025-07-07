@@ -1,8 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._RMC.Atmos;
-using Content.Shared._RMC.Fluids;
-using Content.Shared._RMC.Line;
-using Content.Shared._RMC.Weapons.Common;
+using Content.Shared._RMC;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;

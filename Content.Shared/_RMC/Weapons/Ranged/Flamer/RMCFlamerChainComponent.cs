@@ -1,7 +1,8 @@
-﻿using Content.Shared._RMC.Line;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Map;
+using Content.Shared._RMC;
 
 namespace Content.Shared._RMC.Weapons.Ranged.Flamer;
 

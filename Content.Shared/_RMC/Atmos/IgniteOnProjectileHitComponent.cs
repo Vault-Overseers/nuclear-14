@@ -1,10 +1,9 @@
-﻿using Content.Shared._RMC.Projectiles.Aimed;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._RMC.Atmos;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedRMCFlammableSystem), typeof(AimedProjectileSystem))]
+[Access(typeof(SharedRMCFlammableSystem))]
 public sealed partial class IgniteOnProjectileHitComponent : Component
 {
     [DataField, AutoNetworkedField]
