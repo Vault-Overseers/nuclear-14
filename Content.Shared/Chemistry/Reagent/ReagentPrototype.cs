@@ -100,7 +100,7 @@ namespace Content.Shared.Chemistry.Reagent
         public bool MetamorphicChangeColor { get; private set; } = true;
 
         [DataField]
-        public bool Evaporates;
+        public bool Evaporates { get; private set; } = true;
 
         /// <summary>
         /// If this reagent is part of a puddle is it slippery.
