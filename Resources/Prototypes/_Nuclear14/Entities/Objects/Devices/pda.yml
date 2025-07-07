@@ -23,6 +23,40 @@
     state: pda
   - type: PdaBorderColor
     borderColor: "#717059"
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+  - type: Pda
+    state: pda
+    paiSlot:
+      priority: -2
+      whitelist:
+        components:
+        - PAI
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+    idSlot:
+      name: access-id-card-component-default
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        tags:
+        - IdCardVault
+  - type: Geiger
+    isEnabled: true
+    showControl: true
+    showExamine: true
+    localSoundOnly: false
+    audioParameters:
+      volume: -4
+      maxDistance: 10
+      rolloffFactor: 4
+  - type: RadiationReceiver
 
 - type: entity
   parent: N14BasePipboy
