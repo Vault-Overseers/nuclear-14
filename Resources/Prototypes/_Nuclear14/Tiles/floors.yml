@@ -3,8 +3,8 @@
   id: FloorMetalBlue
   name: tiles-metal-blue
   sprite: /Textures/_Nuclear14/Tiles/metalblue.png
-  baseTurf: FloorWasteland
-  isSubfloor: false
+  baseTurf: FloorBedrock
+  isSubfloor: true
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: N14FootstepMetalHollow
@@ -18,9 +18,10 @@
   id: FloorMetalBlueSolid
   name: tiles-metal-blue-solid
   sprite: /Textures/_Nuclear14/Tiles/metalbluesolid.png
-  baseTurf: FloorWasteland
-  isSubfloor: false
+  baseTurf: FloorBedrock
+  isSubfloor: true
   deconstructTools: [ Prying ]
+  canShovel: true
   footstepSounds:
     collection: N14FootstepMetalSolid
   friction: 0.30
@@ -33,9 +34,10 @@
   id: FloorMetalGreen
   name: tiles-metal-green
   sprite: /Textures/_Nuclear14/Tiles/metalgreen.png
-  baseTurf: FloorWasteland
-  isSubfloor: false
+  baseTurf: FloorBedrock
+  isSubfloor: true
   deconstructTools: [ Prying ]
+  canShovel: true
   footstepSounds:
     collection: N14FootstepMetalHollow
   friction: 0.30
@@ -48,9 +50,10 @@
   id: FloorMetalGreenSolid
   name: tiles-metal-green-solid
   sprite: /Textures/_Nuclear14/Tiles/metalgreensolid.png
-  baseTurf: FloorWasteland
-  isSubfloor: false
+  baseTurf: FloorBedrock
+  isSubfloor: true
   deconstructTools: [ Prying ]
+  canShovel: true
   footstepSounds:
     collection: N14FootstepMetalSolid
   friction: 0.30
@@ -63,8 +66,8 @@
   id: FloorMetalGrey
   name: tiles-metal-grey
   sprite: /Textures/_Nuclear14/Tiles/metalgrey.png
-  baseTurf: FloorWasteland
-  isSubfloor: false
+  baseTurf: FloorBedrock
+  isSubfloor: true
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: N14FootstepMetalHollow
@@ -1747,8 +1750,11 @@
   sprite: /Textures/_Nuclear14/Tiles/wasteland.png
   variants: 4
   placementVariants: [0, 1, 2, 3]
-  baseTurf: space
-  isSubfloor: true
+  baseTurf: FloorDirtNew
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  canShovel: true
+  itemDrop: N14WastelandDirtBlock
   footstepSounds:
     collection: N14FootstepDirt
   friction: 0.30
@@ -1771,8 +1777,11 @@
     East: /Textures/_Nuclear14/Tiles/Dirt/double_edge_E.png
     North: /Textures/_Nuclear14/Tiles/Dirt/double_edge_N.png
     West: /Textures/_Nuclear14/Tiles/Dirt/double_edge_W.png
-  # baseTurf: FloorBase
+  baseTurf: FloorBedrock
   isSubfloor: true
+  itemDrop: N14DirtBlock
+  deconstructTools: [ Prying ]
+  canShovel: true
   footstepSounds:
     collection: N14FootstepDirt
   heatCapacity: 10000
@@ -1792,8 +1801,11 @@
     East: /Textures/_Nuclear14/Tiles/Dirt/double_edge_E.png
     North: /Textures/_Nuclear14/Tiles/Dirt/double_edge_N.png
     West: /Textures/_Nuclear14/Tiles/Dirt/double_edge_W.png
-  # baseTurf: FloorBase
+  baseTurf: FloorBedrock
   isSubfloor: true
+  itemDrop: N14DirtBlock
+  deconstructTools: [ Prying ]
+  canShovel: true
   footstepSounds:
     collection: N14FootstepDirt
   heatCapacity: 10000
@@ -1814,15 +1826,15 @@
     East: /Textures/_Nuclear14/Tiles/Rubble/double_edge_E.png
     North: /Textures/_Nuclear14/Tiles/Rubble/double_edge_N.png
     West: /Textures/_Nuclear14/Tiles/Rubble/double_edge_W.png
-  # baseTurf: FloorBase
+  baseTurf: FloorBedrock
   isSubfloor: true
+  deconstructTools: [ Prying ]
+  canShovel: true
   footstepSounds:
     collection: FootstepAsteroid
   heatCapacity: 10000
   weather: true
-
 - type: tile
-  id: FloorRubbleIndoors
   name: tiles-rubble-indoors
   sprite: /Textures/_Nuclear14/Tiles/Rubble/rubble.png
   variants: 4
@@ -1836,8 +1848,10 @@
     East: /Textures/_Nuclear14/Tiles/Rubble/double_edge_E.png
     North: /Textures/_Nuclear14/Tiles/Rubble/double_edge_N.png
     West: /Textures/_Nuclear14/Tiles/Rubble/double_edge_W.png
-  # baseTurf: FloorBase
+  baseTurf: FloorBedrock
   isSubfloor: true
+  deconstructTools: [ Prying ]
+  canShovel: true
   footstepSounds:
     collection: FootstepAsteroid
   heatCapacity: 10000

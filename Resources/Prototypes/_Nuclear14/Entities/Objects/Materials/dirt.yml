@@ -1,0 +1,34 @@
+- type: entity
+  id: N14DirtBlock
+  parent: BaseItem
+  name: dirt block
+  description: A block of packed soil.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: /Textures/Tiles/Planet/dirt.rsi
+    state: dirt
+  - type: FloorTile
+    outputs:
+      - FloorDirtNew
+  - type: Stack
+    stackType: N14Dirt
+    count: 1
+
+- type: entity
+  id: N14WastelandDirtBlock
+  parent: BaseItem
+  name: wasteland dirt
+  description: A chunk of dusty wasteland soil.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Tiles/wasteland.png
+  - type: FloorTile
+    outputs:
+      - FloorWasteland
+  - type: Stack
+    stackType: N14WastelandDirt
+    count: 1
