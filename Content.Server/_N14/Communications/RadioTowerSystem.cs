@@ -11,8 +11,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Map;
 using System.Linq;
 
-namespace Content.Server._N14.Communications;
-
+namespace Content.Server._N14.Communications
+{
 public sealed partial class RadioTowerSystem : SharedRadioTowerSystem
 {
     [Dependency] private readonly IAdminLogManager _adminLog = default!;

@@ -3,8 +3,8 @@ using Content.Shared._N14.Communications;
 using Content.Shared.Radio;
 using System.Linq;
 
-namespace Content.Server._N14.Communications;
-
+namespace Content.Server._N14.Communications
+{
 public sealed partial class RadioBackpackSystem : EntitySystem
 {
     public override void Initialize()

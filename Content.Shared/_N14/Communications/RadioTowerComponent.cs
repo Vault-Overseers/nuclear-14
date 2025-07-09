@@ -3,8 +3,8 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._N14.Communications;
-
+namespace Content.Shared._N14.Communications
+{
 /// <summary>
 ///     Allows an entity to act as a radio tower for cross map communication.
 /// </summary>
@@ -41,4 +41,6 @@ public enum RadioTowerStatus
 public enum RadioTowerLayers
 {
     Layer,
+}
+
 }
