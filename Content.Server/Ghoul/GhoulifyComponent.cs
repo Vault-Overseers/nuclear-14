@@ -19,17 +19,17 @@ public sealed partial class GhoulifyComponent : Component
     /// Total rads required before ghoulification can start.
     /// </summary>
     [DataField]
-    public float Threshold = 500f;
+    public float Threshold = 50f;
 
     /// <summary>
     /// Probability per rad that exposure will trigger ghoulification once the threshold has been reached.
     /// </summary>
     [DataField]
-    public float ProbabilityPerRad = 0.01f;
+    public float ProbabilityPerRad = 0.015f;
 
     /// <summary>
     /// When to show the next warning popup.
     /// </summary>
     [DataField]
-    public float NextNotify = 100f;
+    public float NextNotify = 25f;
 }

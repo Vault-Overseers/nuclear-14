@@ -94,6 +94,9 @@ public sealed partial class GhoulifySystem : EntitySystem
     {
         var ent = _polymorph.PolymorphEntity(uid, "GhoulFeralPolymorph");
         if (ent != null)
+        {
             _popup.PopupEntity(Loc.GetString("ghoul-feral-complete"), ent.Value, ent.Value);
+            RemCompDeferred<FeralGhoulifyComponent>(uid);
+        }
     }
 }

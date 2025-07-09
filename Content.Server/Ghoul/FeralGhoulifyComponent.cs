@@ -10,11 +10,11 @@ public sealed partial class FeralGhoulifyComponent : Component
     public float AccumulatedRads;
 
     [DataField]
-    public float Threshold = 800f;
+    public float Threshold = 100f;
 
     [DataField]
     public float ProbabilityPerRad = 0.02f;
 
     [DataField]
-    public float NextNotify = 200f;
+    public float NextNotify = 40f;
 }
