@@ -35,9 +35,18 @@ namespace Content.Shared._RMC
             return false;
         }
 
-        public IEnumerator<EntityUid> GetAnchoredEntitiesEnumerator(EntityCoordinates coords)
+        public struct AnchoredEnumerator
         {
-            yield break;
+            public bool MoveNext(out EntityUid uid)
+            {
+                uid = default;
+                return false;
+            }
+        }
+
+        public AnchoredEnumerator GetAnchoredEntitiesEnumerator(EntityCoordinates coords)
+        {
+            return new AnchoredEnumerator();
         }
     }
 
@@ -54,6 +63,13 @@ namespace Content.Shared._RMC
     public sealed class XenoPlasmaSystem : EntitySystem
     {
         public void SetPlasma((EntityUid, object?) ent, float amount) {}
+    }
+
+    [RegisterComponent]
+    public sealed partial class XenoPlasmaComponent : Component
+    {
+        public float Plasma;
+        public float MaxPlasma;
     }
 
     public sealed class SharedRMCEmoteSystem : EntitySystem
@@ -97,7 +113,10 @@ namespace Content.Shared._RMC
     // Event placeholders
     public sealed class RMCTriggerEvent : EntityEventArgs {}
     public sealed class CMExplosiveTriggeredEvent : EntityEventArgs {}
-    public sealed class DamageCollideEvent : EntityEventArgs {}
+    public sealed class DamageCollideEvent : EntityEventArgs
+    {
+        public EntityUid Target { get; set; }
+    }
 
     public sealed class CMGetArmorEvent : EntityEventArgs
     {

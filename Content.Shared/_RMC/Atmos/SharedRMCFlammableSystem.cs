@@ -82,7 +82,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
 
         SubscribeLocalEvent<TileFireComponent, MapInitEvent>(OnTileFireMapInit);
         SubscribeLocalEvent<TileFireComponent, VaporHitEvent>(OnTileFireVaporHit);
-        SubscribeLocalEvent<TileFireComponent, InteractHandEvent>(OnTileFireInteractHand, before: [typeof(InteractionPopupSystem)]);
+        SubscribeLocalEvent<TileFireComponent, InteractHandEvent>(OnTileFireInteractHand);
         SubscribeLocalEvent<TileFireComponent, PreventCollideEvent>(OnTileFirePreventCollide);
 
         SubscribeLocalEvent<CraftsIntoMolotovComponent, ExaminedEvent>(OnCraftsIntoMolotovExamined);
@@ -100,7 +100,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         SubscribeLocalEvent<SteppingOnFireComponent, CMGetArmorEvent>(OnSteppingOnFireGetArmor);
         SubscribeLocalEvent<SteppingOnFireComponent, ComponentRemove>(OnSteppingOnFireRemoved);
 
-        SubscribeLocalEvent<CanBeFirePattedComponent, InteractHandEvent>(OnCanBeFirePattedInteractHand, before: [typeof(InteractionPopupSystem)]);
+        SubscribeLocalEvent<CanBeFirePattedComponent, InteractHandEvent>(OnCanBeFirePattedInteractHand);
 
         SubscribeLocalEvent<FlammableComponent, RMCIgniteEvent>(OnFlammableIgnite);
         SubscribeLocalEvent<FlammableComponent, RMCExtinguishedEvent>(OnFlammableExtinguished);
@@ -124,20 +124,8 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        var water = false;
-        foreach (var container in args.Solution.Comp.Containers)
-        {
-            if (!_solutionContainer.TryGetSolution(args.Solution.Owner, container, out _, out var solution))
-                continue;
-
-            if (solution.ContainsPrototype(WaterReagent))
-            {
-                water = true;
-                break;
-            }
-        }
-
-        if (!water)
+        var solution = args.Solution.Comp.Solution;
+        if (!solution.ContainsPrototype(WaterReagent))
             return;
 
         if (ent.Comp.ExtinguishInstantly)
@@ -195,7 +183,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
 
     private void OnCraftsIntoMolotovInteractUsing(Entity<CraftsIntoMolotovComponent> ent, ref InteractUsingEvent args)
     {
-        if (!HasComp<PaperComponent>(args.Used))
+        if (!HasComp<SharedPaperComponent>(args.Used))
             return;
 
         if (!CanCraftMolotovPopup(ent, args.User, true, out _))
@@ -215,7 +203,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
             return;
 
         args.Handled = true;
-        if (!HasComp<PaperComponent>(args.Used))
+        if (!HasComp<SharedPaperComponent>(args.Used))
             return;
 
         if (!CanCraftMolotovPopup(ent, args.User, true, out var intensity))
@@ -637,26 +625,25 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         _plasma.SetPlasma((ent, plasma), plasma.MaxPlasma);
     }
 
-    public void SetIntensityDuration(Entity<RMCIgniteOnCollideComponent?, DamageOnCollideComponent?> ent, int? intensity, int? duration)
+    public void SetIntensityDuration(EntityUid uid, int? intensity, int? duration)
     {
-        Resolve(ent, ref ent.Comp1, ref ent.Comp2, false);
-        if (ent.Comp1 != null)
+        if (TryComp(uid, out RMCIgniteOnCollideComponent? ignite))
         {
             if (intensity != null)
-                ent.Comp1.Intensity = intensity.Value;
+                ignite.Intensity = intensity.Value;
 
             if (duration != null)
-                ent.Comp1.Duration = duration.Value;
+                ignite.Duration = duration.Value;
 
-            Dirty(ent, ent.Comp1);
+            Dirty(uid, ignite);
         }
 
-        if (ent.Comp2 != null)
+        if (TryComp(uid, out DamageOnCollideComponent? damage))
         {
             if (duration != null)
-                ent.Comp2.Damage.DamageDict[HeatDamage] = duration.Value;
+                damage.Damage.DamageDict[HeatDamage] = duration.Value;
 
-            Dirty(ent, ent.Comp2);
+            Dirty(uid, damage);
         }
     }
 

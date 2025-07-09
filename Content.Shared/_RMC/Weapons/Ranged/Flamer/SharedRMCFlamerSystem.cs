@@ -267,7 +267,7 @@ public abstract class SharedRMCFlamerSystem : EntitySystem
         if (user == null)
             return;
 
-        _rmcSpray.Spray(spray, user.Value, _transform.ToMapCoordinates(toCoordinates));
+        _rmcSpray.Spray(spray, user.Value, toCoordinates);
     }
 
     private bool TryGetTankSolution(Entity<RMCFlamerAmmoProviderComponent> flamer, [NotNullWhen(true)] out Entity<SolutionComponent>? solutionEnt)
