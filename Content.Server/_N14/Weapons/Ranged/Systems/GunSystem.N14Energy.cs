@@ -6,6 +6,7 @@ namespace Content.Server.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem
 {
+    [Dependency] private readonly BatterySystem _battery = default!;
 
     protected override void InitializeN14Energy()
     {
@@ -18,7 +19,7 @@ public sealed partial class GunSystem
         UpdateN14EnergyShots(gunUid, component);
     }
 
-    private void UpdateN14EnergyShots(EntityUid uid, N14EnergyWeaponComponent component)
+    protected override void UpdateN14EnergyShots(EntityUid uid, N14EnergyWeaponComponent component)
     {
         var cell = GetMagazineEntity(uid);
 
