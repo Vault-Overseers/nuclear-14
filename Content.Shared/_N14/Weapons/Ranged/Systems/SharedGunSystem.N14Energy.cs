@@ -71,9 +71,9 @@ public abstract partial class SharedGunSystem
 
     protected virtual void TakeCellCharge(EntityUid gunUid, N14EnergyWeaponComponent component, EntityUid cellUid, float fireCost) {}
 
-    partial void UpdateN14EnergyShots(EntityUid uid, N14EnergyWeaponComponent component);
+    protected virtual void UpdateN14EnergyShots(EntityUid uid, N14EnergyWeaponComponent component) {}
 
-    private void UpdateN14EnergyAppearance(EntityUid uid, N14EnergyWeaponComponent component)
+    protected void UpdateN14EnergyAppearance(EntityUid uid, N14EnergyWeaponComponent component)
     {
         if (!TryComp<AppearanceComponent>(uid, out var appearance))
             return;
