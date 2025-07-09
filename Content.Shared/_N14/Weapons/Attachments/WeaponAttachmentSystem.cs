@@ -3,6 +3,8 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared._NC.FollowDistance.Components;
 using Content.Shared._NC.CameraFollow.Components;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
@@ -21,6 +23,8 @@ public sealed class WeaponAttachmentSystem : EntitySystem
     {
         SubscribeLocalEvent<WeaponAttachmentHolderComponent, MapInitEvent>(OnHolderInit);
         SubscribeLocalEvent<WeaponAttachmentHolderComponent, ComponentShutdown>(OnHolderShutdown);
+        SubscribeLocalEvent<WeaponAttachmentHolderComponent, InteractUsingEvent>(OnHolderInteractUsing);
+        SubscribeLocalEvent<WeaponAttachmentHolderComponent, GetVerbsEvent<AlternativeVerb>>(OnHolderGetVerbs);
         SubscribeLocalEvent<GrenadeLauncherActionEvent>(OnGrenadeLaunch);
     }
 
@@ -47,6 +51,36 @@ public sealed class WeaponAttachmentSystem : EntitySystem
                 foreach (var ent in container.ContainedEntities)
                     CleanupAttachment(uid, ent);
             }
+        }
+    }
+
+    private void OnHolderInteractUsing(EntityUid uid, WeaponAttachmentHolderComponent comp, InteractUsingEvent args)
+    {
+        if (args.Handled || args.Used == null)
+            return;
+
+        if (TryComp<WeaponAttachmentComponent>(args.Used.Value, out var attach))
+            args.Handled = TryAttach(uid, args.Used.Value);
+    }
+
+    private void OnHolderGetVerbs(EntityUid uid, WeaponAttachmentHolderComponent comp, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        foreach (var (id, slot) in comp.Slots)
+        {
+            if (!_containers.TryGetContainer(uid, id, out var container) || container.ContainedEntities.Count == 0)
+                continue;
+
+            var ent = container.ContainedEntities[0];
+            var verb = new AlternativeVerb
+            {
+                Text = "Detach",
+                Act = () => TryDetach(uid, id)
+            };
+
+            args.Verbs.Add(verb);
         }
     }
 
