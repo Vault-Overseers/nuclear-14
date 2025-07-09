@@ -1,6 +1,7 @@
 using Content.Shared.Radio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._N14.Communications;
 
@@ -8,7 +9,7 @@ namespace Content.Shared._N14.Communications;
 ///     Allows an entity to act as a radio tower for cross map communication.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(RadioTowerSystem))]
+[Access(typeof(SharedRadioTowerSystem))]
 public sealed partial class RadioTowerComponent : Component
 {
     [DataField, AutoNetworkedField]

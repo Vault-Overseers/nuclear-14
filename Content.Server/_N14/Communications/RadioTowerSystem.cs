@@ -8,12 +8,12 @@ using Content.Shared.Radio.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
-using System.Linq;
+using Robust.Shared.Map;
 using System.Linq;
 
 namespace Content.Server._N14.Communications;
 
-public sealed partial class RadioTowerSystem : EntitySystem
+public sealed partial class RadioTowerSystem : SharedRadioTowerSystem
 {
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
