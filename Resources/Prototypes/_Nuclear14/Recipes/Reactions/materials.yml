@@ -26,10 +26,10 @@
 - type: reaction
   id: Composting
   source: true # breakdown of existing resource
+  requiredMixerCategories:
+    - Composting
   reactants:
     Dung:
-      amount: 10
-    Water:
       amount: 10
   effects:
     - !type:CreateEntityReactionEffect
@@ -42,5 +42,4 @@
       amount: 1
     Water:
       amount: 1
-  products:
-    SpaceCleaner: 2
+  products:    SpaceCleaner: 2
