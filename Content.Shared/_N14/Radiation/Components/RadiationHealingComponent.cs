@@ -9,9 +9,10 @@ namespace Content.Shared._N14.Radiation.Components;
 public sealed partial class RadiationHealingComponent : Component
 {
     /// <summary>
-    /// Amount of healing per rad per second.
+    /// Amount of damage healed for each rad of radiation consumed.
+    /// Lower values mean slower healing.
     /// </summary>
-    [DataField("healFactor")] public float HealFactor = 1f;
+    [DataField("healFactor")] public float HealFactor = 0.1f;
 
     /// <summary>
     /// Movement speed reduction per rad of exposure.
