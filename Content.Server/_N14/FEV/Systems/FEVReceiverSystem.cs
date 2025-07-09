@@ -37,9 +37,9 @@ public sealed partial class FEVReceiverSystem : EntitySystem
 
         comp.Accumulated += args.Quantity;
 
-        if (comp.Accumulated >= comp.InstantThreshold)
+        if (comp.Accumulated >= comp.InstantThreshold && !HasComp<PendingFEVTransformComponent>(uid))
         {
-            Transform(uid, comp, instant: true);
+            StartInstantTransform(uid, comp);
             return;
         }
 
@@ -58,6 +58,20 @@ public sealed partial class FEVReceiverSystem : EntitySystem
         pending.Species = entity;
         pending.Stage = 0;
         pending.NextTime = _timing.CurTime + comp.StageInterval;
+        comp.Transforming = true;
+        comp.TargetSpecies = entity;
+    }
+
+    private void StartInstantTransform(EntityUid uid, FEVReceiverComponent comp)
+    {
+        var weights = _proto.Index<WeightedRandomEntityPrototype>(comp.EntityWeights);
+        var entity = weights.Pick(_random);
+
+        var pending = EnsureComp<PendingFEVTransformComponent>(uid);
+        pending.Species = entity;
+        pending.Stage = comp.StageMessages.Count; // Skip messages
+        pending.NextTime = _timing.CurTime; // Transform on next update
+
         comp.Transforming = true;
         comp.TargetSpecies = entity;
     }

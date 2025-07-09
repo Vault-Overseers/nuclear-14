@@ -350,3 +350,7 @@ compost-mixing-success = compost mixed
 mixing-verb-composting = mix compost
 reagent-name-fev = forced evolutionary virus
 reagent-desc-fev = A highly mutagenic compound that randomly alters the subject's species when enough is metabolized.
+fev-stage-1 = Your body tingles strangely.
+fev-stage-2 = You feel your muscles shifting.
+fev-stage-3 = Transformation is imminent!
+fev-complete = Your body violently mutates!

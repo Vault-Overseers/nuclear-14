@@ -73,6 +73,7 @@
             Poison: 3
           groups:
             Airloss: 3.5
+
 - type: reagent
   id: FEV
   name: reagent-name-fev
@@ -81,6 +82,19 @@
   physicalDesc: reagent-physical-desc-glowing
   flavor: bitter
   color: "#3cb043"
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 10
+  - !type:PlantAdjustHealth
+    amount: -5
   metabolisms:
-    Poison: {}
+    Poison:
+      metabolismRate: 0.1 #Very Slow acting, default 0.5
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1
+          groups:
+            Airloss: 2
 
