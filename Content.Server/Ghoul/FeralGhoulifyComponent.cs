@@ -17,4 +17,13 @@ public sealed partial class FeralGhoulifyComponent : Component
 
     [DataField]
     public float NextNotify = 40f;
+
+    [DataField]
+    public float GlowingThreshold = 150f;
+
+    [DataField]
+    public float GlowProbabilityPerRad = 0.01f;
+
+    [DataField]
+    public float NextGlowNotify = 80f;
 }
