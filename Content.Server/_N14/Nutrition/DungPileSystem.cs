@@ -2,6 +2,7 @@ using Content.Server.Inventory;
 using Content.Server.Medical;
 using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
+using Content.Shared.Clothing.Components;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Throwing;
@@ -37,17 +38,11 @@ public sealed class DungPileSystem : EntitySystem
 
     private bool IsProtected(EntityUid target)
     {
-        if (_inventory.TryGetSlotEntity(target, "mask", out var mask))
-        {
-            if (HasProtection(mask))
-                return true;
-        }
+        if (_inventory.TryGetSlotEntity(target, "mask", out var mask) && HasProtection(mask.Value))
+            return true;
 
-        if (_inventory.TryGetSlotEntity(target, "head", out var head))
-        {
-            if (HasProtection(head))
-                return true;
-        }
+        if (_inventory.TryGetSlotEntity(target, "head", out var head) && HasProtection(head.Value))
+            return true;
 
         return false;
     }
