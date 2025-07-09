@@ -7,6 +7,7 @@ using Content.Shared.Directions;
 using Content.Shared.Damage;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Maps;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._RMC
@@ -28,7 +29,7 @@ namespace Content.Shared._RMC
             return false;
         }
 
-        public bool HasAnchoredEntityEnumerator<T>(EntityCoordinates coords, out Entity<T> entity)
+        public bool HasAnchoredEntityEnumerator<T>(EntityCoordinates coords, out Entity<T> entity) where T : IComponent
         {
             entity = default!;
             return false;
