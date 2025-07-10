@@ -16,7 +16,7 @@ GITHUB_API_URL    = os.environ.get("GITHUB_API_URL", "https://api.github.com")
 GITHUB_REPOSITORY = os.environ["GITHUB_REPOSITORY"]
 GITHUB_RUN        = os.environ["GITHUB_RUN_ID"]
 GITHUB_TOKEN      = os.environ["GITHUB_TOKEN"]
-CHANGELOG_DIR     = os.environ["CHANGELOG_DIR"]
+CHANGELOG_DIR     = os.environ.get("CHANGELOG_DIR", "Resources/Changelog/Nuclear14.yml")
 CHANGELOG_WEBHOOK = os.environ["CHANGELOG_WEBHOOK"]
 
 # https://discord.com/developers/docs/resources/webhook
