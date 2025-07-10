@@ -331,6 +331,21 @@
     prototypes:
       - N14MobDeathclawMetal
       
+- type: entity
+  name: Lurker Spawner
+  id: N14SpawnMobLurker
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Nuclear14/Mobs/Animals/lurker.rsi
+        state: lurker
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - N14MobRadLurker
+
 #MARK: Insects
 - type: entity
   name: Bloatfly Spawner
@@ -894,7 +909,7 @@
 
 # NPC faction guards
 - type: entity
-  name: Civil Militia Spawner
+  name: Town Militia Spawner
   id: N14SpawnMobNPCTown
   parent: MarkerBase
   components:
@@ -909,7 +924,7 @@
       - N14MobNPCTown
 
 - type: entity
-  name: Town Security Spawner
+  name: Town Enforcer Spawner
   id: N14SpawnMobNPCTownGuard
   parent: MarkerBase
   components:
