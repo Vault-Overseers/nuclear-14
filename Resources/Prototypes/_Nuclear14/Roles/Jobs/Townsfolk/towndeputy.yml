@@ -1,5 +1,5 @@
 - type: job
-  id: TownDeputy
+  id: TownDeputy # Renamed to "Guard", don't touch the prototype ID
   setPreference: true
   overrideConsoleVisibility: true
   canBeAntag: false
@@ -19,7 +19,6 @@
   supervisors: job-supervisors-townsfolk
   access:
   - TownieLaw
-  - TownieMechanic
   special:
   - !type:AddComponentSpecial
     components:
@@ -31,18 +30,15 @@
 - type: startingGear
   id: TownDeputyGear
   equipment:
-    jumpsuit: N14ClothingUniformJumpsuitCowboyBrown
-    head: N14ClothingHeadHatDeputy
-    eyes: N14ClothingEyesSunGlasses
-    back: N14ClothingBackpackDeputyFilled
-    shoes: N14ClothingShoesBlack
+    jumpsuit: N14ClothingUniformJumpsuitTownGuard
+    back: N14ClothingBackpackSatchelSheriffFilled
+    shoes: N14ClothingBootsLeatherFilled
     id: N14IDBadgeTownDeputy
-    outerClothing: N14ClothingOuterPoliceVest
-    belt: ClothingBeltRevolverfilled
-    pocket1: RadioHandheld
+    belt: ClothingBeltMilitary
+    pocket1: TownGuardKits
     pocket2: Handcuffs
   satchel: N14ClothingBackpackSatchelDeputyFilled
-  duffelbag: N14ClothingBackpackDuffelDeputyFilled
+  duffelbag: N14ClothingBackpackSatchelSheriffFilled
 
 - type: playTimeTracker
   id: TownDeputy

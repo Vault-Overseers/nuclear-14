@@ -18,6 +18,6 @@ job-supervisors-vault = the Overseer
 job-supervisors-vault-overseer = your morale code
 job-supervisors-wastelander = yourself and you alone
 job-supervisors-townsfolk = the Mayor of the town
-job-supervisors-townsfolk-deputy = the local Sheriff
+job-supervisors-townsfolk-deputy = the local Marshal
 job-supervisors-townsfolk-sheriff = the Mayor and/or your sense of justice
 job-supervisors-townsfolk-mayor = the people who you represent or your own ambitions

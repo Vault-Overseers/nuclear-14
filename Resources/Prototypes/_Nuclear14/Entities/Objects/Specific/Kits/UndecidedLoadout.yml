@@ -273,6 +273,41 @@
     - WBoS_PalSni_Set
     - WBoS_PalLas_Set
 
+# Tribal kits
+- type: entity
+  id: Triballoadoutkits
+  name: Undecided Tribal Loadout Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - TribalStalkerSet
+    - TribalChampionSet
+    - TribalHunterSet
+    - TribalBoneBreakerSet
+    - TribalPainBringerSet
+    - TribalFireHand
+
+# Town's Guard kits, the only one
+- type: entity
+  id: TownGuardKits
+  name: Undecided Town's Guard Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - TownGuard_Cere_Set
+    - TownGuard_Patr_Set
+    - TownGuard_Lawb_Set
+    - TownGuard_Brea_Set
+    - TownGuard_Riot_Set
+
 # Here do the individual ALREADY DECIDED kits start
 # NCRA Cadet Kits
 - type: UndecidedLoadoutBackpackSet
@@ -862,27 +897,7 @@
   content:
   - KitWBoS_PalLas
 
-#MARK: Tribal
-
-- type: entity
-  id: Triballoadoutkits
-  name: Undecided Tribal Loadout Kit
-  parent: BaseLoadoutKit
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  - type: UndecidedLoadoutBackpack
-    possibleSets:
-    - TribalStalkerSet
-    - TribalChampionSet
-    - TribalHunterSet
-    - TribalBoneBreakerSet
-    - TribalPainBringerSet
-    - TribalFireHand
-
-
-#tribal bow
+# Tribal kits individually
 - type: UndecidedLoadoutBackpackSet
   id: TribalStalkerSet
   name: undecided-loadout-category-Tribal-Stalker-name
@@ -893,8 +908,6 @@
   content:
   - Kittribalstalker
 
-
-#two revolvers
 - type: UndecidedLoadoutBackpackSet
   id: TribalFireHand
   name: undecided-loadout-category-Tribal-Fire-Hand-name
@@ -905,7 +918,6 @@
   content:
   - Kittribalfirehand
 
-#two handed club
 - type: UndecidedLoadoutBackpackSet
   id: TribalChampionSet
   name: undecided-loadout-category-Tribal-Champion-name
@@ -916,8 +928,6 @@
   content:
   - Kittribalchampion
 
-
-#hunt stick
 - type: UndecidedLoadoutBackpackSet
   id: TribalHunterSet
   name: undecided-loadout-category-Tribal-Hunter-name
@@ -928,8 +938,6 @@
   content:
   - Kittribalhunter
 
-
-#tribal rifle
 - type: UndecidedLoadoutBackpackSet
   id: TribalBoneBreakerSet
   name: undecided-loadout-category-Tribal-Bone-Breaker-name
@@ -940,7 +948,6 @@
   content:
   - Kittribalbonebreaker
 
-#boomstick
 - type: UndecidedLoadoutBackpackSet
   id: TribalPainBringerSet
   name: undecided-loadout-category-Tribal-pain-bringer-name
@@ -950,3 +957,54 @@
     state: rifleman
   content:
   - Kittribalpainbringer
+
+# Town Guard kits individually
+- type: UndecidedLoadoutBackpackSet
+  id: TownGuard_Cere_Set
+  name: undecided-loadout-category-town-cere-name
+  description: undecided-loadout-category-town-cere-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitTownGuard_Cere
+
+- type: UndecidedLoadoutBackpackSet
+  id: TownGuard_Patr_Set
+  name: undecided-loadout-category-town-patr-name
+  description: undecided-loadout-category-town-patr-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitTownGuard_Patr
+
+- type: UndecidedLoadoutBackpackSet
+  id: TownGuard_Lawb_Set
+  name: undecided-loadout-category-town-lawb-name
+  description: undecided-loadout-category-town-lawb-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitTownGuard_Lawb
+
+- type: UndecidedLoadoutBackpackSet
+  id: TownGuard_Brea_Set
+  name: undecided-loadout-category-town-brea-name
+  description: undecided-loadout-category-town-brea-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitTownGuard_Brea
+
+- type: UndecidedLoadoutBackpackSet
+  id: TownGuard_Riot_Set
+  name: undecided-loadout-category-town-riot-name
+  description: undecided-loadout-category-town-riot-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitTownGuard_Riot

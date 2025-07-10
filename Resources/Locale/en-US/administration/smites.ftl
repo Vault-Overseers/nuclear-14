@@ -40,6 +40,7 @@ admin-smite-buffering-description = Causes the target to randomly start bufferin
 admin-smite-become-instrument-description = It turns them into a supersynth. Really. That's all it does.
 admin-smite-remove-gravity-description = Grants them anti-gravity.
 admin-smite-reptilian-species-swap-description = It changes their species to Reptilian. Useful for people who were being space racist.
+admin-smite-ghoul-species-swap-description = Turns our beloved players into ghouls, use it with great honour.
 admin-smite-locker-stuff-description = Stuffs them in a (welded) locker.
 admin-smite-headstand-description = Vertically flips their sprite.
 admin-smite-plasma-internals-description = Replaces the contents of their internals with plasma.
