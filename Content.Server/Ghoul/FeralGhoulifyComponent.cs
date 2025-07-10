@@ -29,6 +29,6 @@ public sealed partial class FeralGhoulifyComponent : Component
     /// Amount of radiation lost per second when not irradiated.
     /// </summary>
     [DataField]
-    public float DecayPerSecond = 1f;
+    public float DecayPerSecond = 0.25f;
 
 }
