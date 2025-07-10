@@ -21,6 +21,11 @@
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                N14Scrap:
+                  min: 3
+                  max: 3
     - type: Blocking
       passiveBlockModifier:
         coefficients:
@@ -62,6 +67,11 @@
   parent: N14BaseShield
   id: N14ShieldMetalLight
   description: A sheet of metal with some bolts and welds here and there, it can protect you from some damage.
+  components:
+    - type: Construction
+      graph: N14LightShield
+      node: start
+
 
 - type: entity
   name: heavy metal shield
@@ -81,6 +91,11 @@
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                N14Scrap:
+                  min: 5
+                  max: 5
     - type: Blocking
       passiveBlockModifier:
         coefficients:
@@ -114,3 +129,66 @@
       mirrorClothingModifier: false
       walkModifier: 0.925
       sprintModifier: 0.925
+    - type: Construction
+      graph: N14HeavyShield
+      node: start
+
+- type: entity
+  parent: BaseItem
+  id: N14InsectShield
+  name: insect shield
+  description: A shield made from various pieces of insects.
+  components:
+    - type: Sprite
+      sprite: _Nuclear14/Objects/Weapons/Melee/insectshield.rsi
+      state: icon
+    - type: Item
+      sprite: _Nuclear14/Objects/Weapons/Melee/insectshield.rsi
+      size: Large
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.9
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.8
+          Slash: 0.8
+          Piercing: 0.8
+          Heat: 0.8
+        flatReductions:
+          Blunt: 1
+          Slash: 1
+          Piercing: 1
+          Heat: 1
+    - type: Damageable
+      damageContainer: Shield
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 80
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 40 #This is probably enough damage before it breaks
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel:
+                  min: 2
+                  max: 2
+                SheetGlass:
+                  min: 2
+                  max: 2
+    - type: StaticPrice
+      price: 50
