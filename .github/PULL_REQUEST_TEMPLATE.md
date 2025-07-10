@@ -3,36 +3,19 @@ This is a semi-strict format, you can add/remove sections as needed but the orde
 Remove these comments before submitting
 -->
 
-# Description
+## About the PR
+<!-- What did you change? -->
 
-<!--
-Explain this PR in as much detail as applicable
+## Why / Balance
+<!-- Discuss how this would affect game balance or explain why it was changed. Link any relevant discussions or issues. -->
 
-Some example prompts to consider:
-How might this affect the game? The codebase?
-What might be some alternatives to this?
-How/Who does this benefit/hurt [the game/codebase]?
--->
+## Technical details
+<!-- Summary of code changes for easier review. -->
 
-Description.
+## Media
+<!-- Attach media if the PR makes ingame changes (clothing, items, features, etc). 
+Small fixes/refactors are exempt. Media may be used in SS14 progress reports with credit. -->
 
-<!--
-This is default collapsed, readers click to expand it and see all your media
-The PR media section can get very large at times, so this is a good way to keep it clean
-The title is written using HTML tags
-The title must be within the <summary> tags or you won't see it
--->
-
-<details><summary><h1>Media</h1></summary>
-<p>
-
-![Example Media Embed](https://example.com/thisimageisntreal.png)
-
-</p>
-</details>
-
----
-<details><summary><h1>Media</h1></summary>
 # Changelog
 
 <!--
