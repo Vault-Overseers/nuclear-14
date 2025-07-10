@@ -1,5 +1,114 @@
 - type: entity
   parent: BaseItem
+  id: N14LightShield
+  name: light shield
+  description: A light shield made from various pieces of scraps.
+  components:
+    - type: Sprite
+      sprite: _Nuclear14/Objects/Weapons/Melee/shield_light.rsi
+      state: icon
+    - type: Item
+      sprite: _Nuclear14/Objects/Weapons/Melee/shield_light.rsi
+      size: Large
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.9
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.8
+          Slash: 0.8
+          Piercing: 0.8
+          Heat: 0.8
+        flatReductions:
+          Blunt: 1
+          Slash: 1
+          Piercing: 1
+          Heat: 1
+    - type: Damageable
+      damageContainer: Shield
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                N14Scrap:
+                  min: 2
+                  max: 2
+    - type: Construction
+      graph: N14LightShield
+      node: start
+    - type: StaticPrice
+      price: 100
+
+- type: entity
+  parent: BaseItem
+  id: N14HeavyShield
+  name: heavy shield
+  description: A heavy shield made after some heavy scraps.
+  components:
+    - type: Sprite
+      sprite: _Nuclear14/Objects/Weapons/Melee/heavy_light.rsi
+      state: icon
+    - type: Item
+      sprite: _Nuclear14/Objects/Weapons/Melee/heavy_light.rsi
+      size: Large
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.9
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.8
+          Slash: 0.8
+          Piercing: 0.8
+          Heat: 0.8
+        flatReductions:
+          Blunt: 1
+          Slash: 1
+          Piercing: 1
+          Heat: 1
+    - type: Damageable
+      damageContainer: Shield
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 135
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                N14Scrap:
+                  min: 5
+                  max: 5
+    - type: Construction
+      graph: N14HeavyShield
+      node: start
+    - type: StaticPrice
+      price: 150
+
+
+- type: entity
+  parent: BaseItem
   id: N14InsectShield
   name: insect shield
   description: A shield made from various pieces of insects.

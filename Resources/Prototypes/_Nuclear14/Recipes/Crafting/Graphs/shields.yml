@@ -1,0 +1,33 @@
+- type: constructionGraph
+  id: N14LightShield
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: lightshield
+          steps:
+            - material: N14Scrap
+              amount: 3
+            - material: Steel
+              amount: 5
+              doAfter: 3
+
+    - node: lightshield
+      entity: N14LightShield
+
+- type: constructionGraph
+  id: N14HeavyShield
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: heavyshield
+          steps:
+            - material: N14Scrap
+              amount: 5
+            - material: Steel
+              amount: 10
+              doAfter: 3
+
+    - node: heavyshield
+      entity: N14HeavyShield
