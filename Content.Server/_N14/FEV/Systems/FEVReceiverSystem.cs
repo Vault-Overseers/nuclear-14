@@ -16,7 +16,6 @@ using Robust.Shared.Localization;
 
 namespace Content.Server._N14.FEV.Systems;
 
-[RegisterSystem]
 public sealed partial class FEVReceiverSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
