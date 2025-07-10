@@ -44,6 +44,4 @@ public sealed partial class FEVReceiverComponent : Component
     public FixedPoint2 Accumulated;
     public bool Transforming;
     public string? TargetSpecies;
-    public int CurrentStage;
-    public TimeSpan NextStage;
 }

@@ -76,30 +76,6 @@ public sealed partial class FEVReceiverSystem : EntitySystem
         comp.TargetSpecies = entity;
     }
 
-    private void Transform(EntityUid uid, FEVReceiverComponent comp, bool instant)
-    {
-        var weights = _proto.Index<WeightedRandomEntityPrototype>(comp.EntityWeights);
-        var entity = weights.Pick(_random);
-
-        var config = new PolymorphConfiguration
-        {
-            Entity = entity,
-            Forced = true,
-            TransferDamage = true,
-            TransferName = true,
-            TransferHumanoidAppearance = true,
-            Inventory = PolymorphInventoryChange.Transfer,
-            RevertOnCrit = false,
-            RevertOnDeath = false
-        };
-
-        _polymorph.PolymorphEntity(uid, config);
-        comp.Transforming = false;
-        comp.Accumulated = FixedPoint2.Zero;
-        comp.TargetSpecies = null;
-        if (!instant)
-            _popup.PopupEntity(Loc.GetString("fev-complete"), uid, uid);
-    }
 
     public override void Update(float frameTime)
     {
