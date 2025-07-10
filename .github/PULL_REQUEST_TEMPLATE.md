@@ -43,3 +43,9 @@ This includes all available types for the changelog
 
 :cl:
 - add: Added fun :D
+<!--
+- add: Added fun!
+- remove: Removed fun!
+- tweak: Changed fun!
+- fix: Fixed fun!
+-->
