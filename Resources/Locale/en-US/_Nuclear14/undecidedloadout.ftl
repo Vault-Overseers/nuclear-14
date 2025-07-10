@@ -453,3 +453,41 @@ undecided-loadout-category-Tribal-pain-bringer-description =
     with powder and fury. Inside you will find.
     Your sturdy boom stick thats strong enough to break any foe.
     Spare shells included and a mask for protection when up close.
+
+
+# Town Guard Kits
+
+undecided-loadout-category-town-cere-name = Ceremonial Kit
+undecided-loadout-category-town-cere-description = 
+    Sometimes you have to look fancy and not worry about protection.
+    Includes 1 guard hat, 1 guard greatcoat, 1 .308 battle rifle,
+    3 .308 clips, 1 .44 magnum, 2 .44 speedloaders,
+    1 stack of gauze and basic ration supplies.
+
+undecided-loadout-category-town-patr-name = Patrolman Kit
+undecided-loadout-category-town-patr-description =
+    You don't ask much from life, all you want is vanilla.
+    Includes 1 brodie helmet, 1 light armour, 1 12.7mm SMG,
+    3 12.7mm SMG mags, 1 Webley pistol, 2 9mm pistol mags,
+    1 rain mantle, 1 stack of gauze and basic ration supplies.
+
+undecided-loadout-category-town-lawb-name = Lawbringer Kit
+undecided-loadout-category-town-lawb-description =
+    DAKKA DAKKA! Time to put down an entire revolt, or..?
+    Includes 1 brodie helmet, 1 light armour, 1 Canadian HMG,
+    1 7.62 ammo belt, 1 stack of gauze and basic ration supplies.
+    Nothing else, budget cuts!
+
+undecided-loadout-category-town-brea-name = Breacher Kit
+undecided-loadout-category-town-brea-description =
+    Only when you don't have to worry about friendly fire!
+    Includes 1 blowback shotgun, 1 box of 12 gauge shells,
+    1 Webley pistol, 2 9mm pistol mags,
+    1 stack of gauze and basic ration supplies.
+
+undecided-loadout-category-town-riot-name = Riot Control Kit
+undecided-loadout-category-town-riot-description =
+    Let me solo them! I mean send them home, peacefully!
+    Includes 1 spear, 1 heavy metal shield, 1 hunting revolver,
+    2 .45-70 speedloaders, 1 old cloak, 1 stack of gauze,
+    and basic ration supplies.
