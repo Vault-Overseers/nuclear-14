@@ -18,12 +18,17 @@ public sealed partial class FeralGhoulifyComponent : Component
     [DataField]
     public float NextNotify = 40f;
 
+    /// <summary>
+    /// Once this amount of radiation is reached, others will see the mob
+    /// twitching when examined.
+    /// </summary>
     [DataField]
-    public float GlowingThreshold = 150f;
+    public float ExamineThreshold = 40f;
 
+    /// <summary>
+    /// Amount of radiation lost per second when not irradiated.
+    /// </summary>
     [DataField]
-    public float GlowProbabilityPerRad = 0.01f;
+    public float DecayPerSecond = 1f;
 
-    [DataField]
-    public float NextGlowNotify = 80f;
 }

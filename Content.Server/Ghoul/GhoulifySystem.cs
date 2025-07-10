@@ -3,6 +3,8 @@ using Content.Shared.Humanoid;
 using Content.Shared.Radiation.Events;
 using Content.Server.Polymorph.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Examine;
+using Robust.Shared.Utility;
 using Robust.Shared.Random;
 
 namespace Content.Server.Ghoul;
@@ -21,6 +23,30 @@ public sealed partial class GhoulifySystem : EntitySystem
         SubscribeLocalEvent<GhoulifyComponent, DamageChangedEvent>(OnDamage);
         SubscribeLocalEvent<FeralGhoulifyComponent, OnIrradiatedEvent>(OnFeralIrradiated);
         SubscribeLocalEvent<FeralGhoulifyComponent, DamageChangedEvent>(OnFeralDamage);
+        SubscribeLocalEvent<FeralGhoulifyComponent, ExaminedEvent>(OnFeralExamined);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var ghoulQuery = EntityQueryEnumerator<GhoulifyComponent>();
+        while (ghoulQuery.MoveNext(out var uid, out var comp))
+        {
+            if (comp.AccumulatedRads <= 0f)
+                continue;
+
+            comp.AccumulatedRads = Math.Max(0f, comp.AccumulatedRads - comp.DecayPerSecond * frameTime);
+        }
+
+        var feralQuery = EntityQueryEnumerator<FeralGhoulifyComponent>();
+        while (feralQuery.MoveNext(out var uid, out var comp))
+        {
+            if (comp.AccumulatedRads <= 0f)
+                continue;
+
+            comp.AccumulatedRads = Math.Max(0f, comp.AccumulatedRads - comp.DecayPerSecond * frameTime);
+        }
     }
 
     private void OnIrradiated(EntityUid uid, GhoulifyComponent comp, OnIrradiatedEvent args)
@@ -33,6 +59,21 @@ public sealed partial class GhoulifySystem : EntitySystem
         {
             _popup.PopupEntity(Loc.GetString("ghoulify-start"), uid, uid);
             comp.NextNotify += comp.Threshold / 2f;
+        }
+
+        if (comp.AccumulatedRads >= comp.NextGlowNotify)
+        {
+            _popup.PopupEntity(Loc.GetString("ghoul-glowing-start"), uid, uid);
+            comp.NextGlowNotify += comp.GlowingThreshold / 2f;
+        }
+
+        if (comp.AccumulatedRads >= comp.GlowingThreshold)
+        {
+            if (_random.Prob(args.TotalRads * comp.GlowProbabilityPerRad))
+            {
+                Glowify(uid);
+                return;
+            }
         }
 
         if (comp.AccumulatedRads < comp.Threshold)
@@ -75,21 +116,6 @@ public sealed partial class GhoulifySystem : EntitySystem
             comp.NextNotify += comp.Threshold / 2f;
         }
 
-        if (comp.AccumulatedRads >= comp.NextGlowNotify)
-        {
-            _popup.PopupEntity(Loc.GetString("ghoul-glowing-start"), uid, uid);
-            comp.NextGlowNotify += comp.GlowingThreshold / 2f;
-        }
-
-        if (comp.AccumulatedRads >= comp.GlowingThreshold)
-        {
-            if (_random.Prob(args.TotalRads * comp.GlowProbabilityPerRad))
-            {
-                Glowify(uid);
-                return;
-            }
-        }
-
         if (comp.AccumulatedRads < comp.Threshold)
             return;
 
@@ -105,6 +131,17 @@ public sealed partial class GhoulifySystem : EntitySystem
             comp.AccumulatedRads = Math.Max(0f, comp.AccumulatedRads + (float) rad);
     }
 
+    private void OnFeralExamined(EntityUid uid, FeralGhoulifyComponent comp, ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        if (comp.AccumulatedRads >= comp.ExamineThreshold && comp.AccumulatedRads < comp.Threshold)
+        {
+            args.PushMarkup(Loc.GetString("ghoul-feral-examine"));
+        }
+    }
+
     private void Glowify(EntityUid uid)
     {
         if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
@@ -114,6 +151,7 @@ public sealed partial class GhoulifySystem : EntitySystem
 
         _humanoid.SetSpecies(uid, "GhoulGlowing", humanoid: humanoid);
         _popup.PopupEntity(Loc.GetString("ghoul-glowing-complete"), uid, uid);
+        RemComp<GhoulifyComponent>(uid);
         RemCompDeferred<FeralGhoulifyComponent>(uid);
     }
 
