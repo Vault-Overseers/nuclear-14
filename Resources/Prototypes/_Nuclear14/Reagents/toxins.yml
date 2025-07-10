@@ -82,6 +82,12 @@
   physicalDesc: reagent-physical-desc-glowing
   flavor: bitter
   color: "#3cb043"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:AddToSolutionReaction
+        solution: bloodstream
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: 10
@@ -90,11 +96,5 @@
   metabolisms:
     Poison:
       metabolismRate: 0.1 #Very Slow acting, default 0.5
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Poison: 1
-          groups:
-            Airloss: 2
+      effects: []
 
