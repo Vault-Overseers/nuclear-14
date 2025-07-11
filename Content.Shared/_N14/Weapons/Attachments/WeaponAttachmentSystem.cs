@@ -3,7 +3,7 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared._NC.FollowDistance.Components;
 using Content.Shared._NC.CameraFollow.Components;
-using Content.Shared.Interaction.Events;
+using Content.Shared.Interaction;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
