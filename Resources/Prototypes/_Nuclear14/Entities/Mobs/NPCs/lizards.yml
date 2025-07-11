@@ -606,17 +606,26 @@
 
 # Fatass, aka the Lurker
 - type: entity
-  name: lurker
+  name: Lurker
   id: N14MobRadLurker
   parent: N14MobDeathclaw
   description: It's a Lurker, the creature from the green waters. It might be fat, but is extremely fast and dangerous.
   components:
   - type: Sprite
     drawdepth: Mobs
+    scale: 0.8, 0.8
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: lurker
       sprite: _Nuclear14/Mobs/Animals/lurker.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: lurker
+      Critical:
+        Base: lurker_dead
+      Dead:
+        Base: lurker_dead
   - type: MeleeWeapon
     altDisarm: false
     hidden: true
