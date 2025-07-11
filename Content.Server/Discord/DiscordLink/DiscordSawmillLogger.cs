@@ -1,4 +1,5 @@
-﻿using NetCord.Logging;
+using NetCord.Logging;
+using LogLevel = Robust.Shared.Log.LogLevel;
 
 namespace Content.Server.Discord.DiscordLink;
 

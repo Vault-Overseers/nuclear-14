@@ -3,6 +3,7 @@ using NetCord.Gateway;
 using NetCord.Rest;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
+using System.Threading.Tasks;
 
 namespace Content.Server.Discord.DiscordLink;
 
