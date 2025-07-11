@@ -3,6 +3,10 @@ const fs = require("fs");
 const yaml = require("js-yaml");
 const axios = require("axios");
 
+// Path to the changelog file. Allows overriding via environment variable but
+// defaults to the repository's Nuclear14 changelog.
+const CHANGELOG_PATH = process.env.CHANGELOG_DIR || "Resources/Changelog/Nuclear14.yml";
+
 // Use GitHub token if available
 if (process.env.GITHUB_TOKEN) axios.defaults.headers.common["Authorization"] = `Bearer ${process.env.GITHUB_TOKEN}`;
 
@@ -120,7 +124,7 @@ function getChanges(body) {
 // Get the highest changelog number from the changelogs file
 function getHighestCLNumber() {
     // Read changelogs file
-    const file = fs.readFileSync(`../../${process.env.CHANGELOG_DIR}`, "utf8");
+    const file = fs.readFileSync(`../../${CHANGELOG_PATH}`, "utf8");
 
     // Get list of CL numbers
     const data = yaml.load(file);
@@ -135,8 +139,8 @@ function writeChangelog(entry) {
     let data = { Entries: [] };
 
     // Create a new changelogs file if it does not exist
-    if (fs.existsSync(`../../${process.env.CHANGELOG_DIR}`)) {
-        const file = fs.readFileSync(`../../${process.env.CHANGELOG_DIR}`, "utf8");
+    if (fs.existsSync(`../../${CHANGELOG_PATH}`)) {
+        const file = fs.readFileSync(`../../${CHANGELOG_PATH}`, "utf8");
         data = yaml.load(file);
     }
 
@@ -144,7 +148,7 @@ function writeChangelog(entry) {
 
     // Write updated changelogs file
     fs.writeFileSync(
-        `../../${process.env.CHANGELOG_DIR}`,
+        `../../${CHANGELOG_PATH}`,
         "Entries:\n" +
             yaml.dump(data.Entries, { indent: 2 }).replace(/^---/, "")
     );
