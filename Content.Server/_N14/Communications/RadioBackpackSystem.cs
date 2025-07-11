@@ -33,3 +33,4 @@ public sealed partial class RadioBackpackSystem : EntitySystem
         comp.Channels.UnionWith(holder.Channels.Select(id => new ProtoId<RadioChannelPrototype>(id)));
     }
 }
+}

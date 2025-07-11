@@ -27,7 +27,7 @@ public sealed partial class RadioTowerComponent : Component
 ///     Current operational state of a radio tower.
 /// </summary>
 [Serializable, NetSerializable]
-public enum RadioTowerStatus
+public enum RadioTowerStatus : byte
 {
     Broken,
     Off,
@@ -38,7 +38,7 @@ public enum RadioTowerStatus
 ///     Visual layers for radio towers.
 /// </summary>
 [Serializable, NetSerializable]
-public enum RadioTowerLayers
+public enum RadioTowerLayers : byte
 {
     Layer,
 }

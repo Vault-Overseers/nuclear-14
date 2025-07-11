@@ -106,3 +106,4 @@ public sealed partial class RadioTowerSystem : SharedRadioTowerSystem
             ev.Cancelled = true;
     }
 }
+}
