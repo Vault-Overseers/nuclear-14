@@ -56,11 +56,11 @@ public sealed class WeaponAttachmentSystem : EntitySystem
 
     private void OnHolderInteractUsing(EntityUid uid, WeaponAttachmentHolderComponent comp, InteractUsingEvent args)
     {
-        if (args.Handled || args.Used == null)
+        if (args.Handled)
             return;
 
-        if (TryComp<WeaponAttachmentComponent>(args.Used.Value, out var attach))
-            args.Handled = TryAttach(uid, args.Used.Value);
+        if (TryComp<WeaponAttachmentComponent>(args.Used, out var attach))
+            args.Handled = TryAttach(uid, args.Used);
     }
 
     private void OnHolderGetVerbs(EntityUid uid, WeaponAttachmentHolderComponent comp, GetVerbsEvent<AlternativeVerb> args)
