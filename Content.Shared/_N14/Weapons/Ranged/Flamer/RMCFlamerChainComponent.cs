@@ -1,0 +1,27 @@
+using Content.Shared.Chemistry.Reagent;
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Map;
+using Content.Shared._N14;
+
+namespace Content.Shared._N14.Weapons.Ranged.Flamer;
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[Access(typeof(SharedRMCFlamerSystem))]
+public sealed partial class RMCFlamerChainComponent : Component
+{
+    [DataField, AutoNetworkedField]
+    public EntProtoId Spawn = "RMCTileFire";
+
+    [DataField, AutoNetworkedField]
+    public List<LineTile> Tiles = new();
+
+    [DataField, AutoNetworkedField]
+    public ProtoId<ReagentPrototype> Reagent = "RMCNapalmUT";
+
+    [DataField, AutoNetworkedField]
+    public int MaxIntensity = 20;
+
+    [DataField, AutoNetworkedField]
+    public int MaxDuration = 24;
+}

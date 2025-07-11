@@ -30,13 +30,13 @@ public sealed partial class RadioJammerComponent : Component
         /// to this setting.
         /// </summary>
         [DataField(required: true)]
-        public LocId Message = string.Empty;
+        public LocId Message;
 
         /// <summary>
         /// Name of the setting.
         /// </summary>
         [DataField(required: true)]
-        public LocId Name = string.Empty;
+        public LocId Name;
     }
 
     /// <summary>
