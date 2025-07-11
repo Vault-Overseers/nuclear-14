@@ -2,6 +2,7 @@ using Content.Server.Radio.Components;
 using Content.Shared._N14.Communications;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
+using Robust.Shared.Prototypes;
 using System.Linq;
 
 namespace Content.Server._N14.Communications
@@ -23,8 +24,6 @@ public sealed partial class RadioBackpackSystem : EntitySystem
 
     private void OnEncryptionChanged(EntityUid uid, RadioBackpackComponent component, ref EncryptionChannelsChangedEvent args)
     {
-        if (uid != args.Holder)
-            return;
         UpdateChannels(component, args.Component);
     }
 

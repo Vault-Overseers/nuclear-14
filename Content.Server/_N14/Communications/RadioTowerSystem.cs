@@ -8,6 +8,7 @@ using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using Content.Shared.Database;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Map;
 using System.Linq;
@@ -36,9 +37,6 @@ public sealed partial class RadioTowerSystem : SharedRadioTowerSystem
 
     private void OnEncryptionChanged(EntityUid uid, RadioTowerComponent component, ref EncryptionChannelsChangedEvent args)
     {
-        if (uid != args.Holder)
-            return;
-
         UpdateChannels(uid, component, args.Component);
     }
 
@@ -46,7 +44,7 @@ public sealed partial class RadioTowerSystem : SharedRadioTowerSystem
     {
         comp.Channels.Clear();
         comp.Channels.UnionWith(holder.Channels.Select(id => new ProtoId<RadioChannelPrototype>(id)));
-        Dirty(comp);
+        Dirty(uid, comp);
     }
 
     private void OnInteractHand(EntityUid uid, RadioTowerComponent comp, InteractHandEvent args)
