@@ -8,6 +8,7 @@ using Content.Server.Connection;
 using Content.Server.JoinQueue;
 using Content.Server.Database;
 using Content.Server.DiscordAuth;
+using Content.Server.Discord.DiscordLink;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
 using Content.Server.GhostKick;
