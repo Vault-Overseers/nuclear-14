@@ -31,6 +31,7 @@ public sealed class WeaponAttachmentSystem : EntitySystem
         SubscribeLocalEvent<WeaponAttachmentHolderComponent, GetVerbsEvent<AlternativeVerb>>(OnHolderGetVerbs);
         SubscribeLocalEvent<WeaponAttachmentHolderComponent, GetItemActionsEvent>(OnHolderGetItemActions);
         SubscribeLocalEvent<GrenadeLauncherActionEvent>(OnGrenadeLaunch);
+        SubscribeLocalEvent<WeaponAttachmentHolderComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
     }
 
     private void OnHolderInit(EntityUid uid, WeaponAttachmentHolderComponent comp, MapInitEvent args)
@@ -116,11 +117,10 @@ public sealed class WeaponAttachmentSystem : EntitySystem
             _actions.AddAction(holder, ref gl.ActionEntity, gl.ActionPrototype);
         }
 
-        if (TryComp<SilencerAttachmentComponent>(attachment, out var silencer) &&
-            TryComp<GunComponent>(holder, out var gun))
+        if (HasComp<SilencerAttachmentComponent>(attachment) &&
+            HasComp<GunComponent>(holder))
         {
-            silencer.OriginalSound = gun.SoundGunshot;
-            gun.SoundGunshot = silencer.Sound;
+            _gun.RefreshModifiers(holder);
         }
 
         if (TryComp<ScopeAttachmentComponent>(attachment, out var scope) &&
@@ -163,11 +163,10 @@ public sealed class WeaponAttachmentSystem : EntitySystem
                 RemCompDeferred<CameraFollowComponent>(holder);
         }
 
-        if (TryComp<SilencerAttachmentComponent>(attachment, out var silencer) &&
-            TryComp<GunComponent>(holder, out var gun))
+        if (HasComp<SilencerAttachmentComponent>(attachment) &&
+            HasComp<GunComponent>(holder))
         {
-            if (silencer.OriginalSound != null)
-                gun.SoundGunshot = silencer.OriginalSound;
+            _gun.RefreshModifiers(holder);
         }
     }
 
@@ -209,5 +208,22 @@ public sealed class WeaponAttachmentSystem : EntitySystem
 
         if (TryComp<GunComponent>(gl.GunEntity.Value, out var gun))
             _gun.AttemptShoot(ev.Performer, gl.GunEntity.Value, gun, ev.Target);
+    }
+
+    private void OnGunRefreshModifiers(EntityUid uid, WeaponAttachmentHolderComponent comp, ref GunRefreshModifiersEvent args)
+    {
+        foreach (var (id, _) in comp.Slots)
+        {
+            if (!_containers.TryGetContainer(uid, id, out var container))
+                continue;
+
+            foreach (var ent in container.ContainedEntities)
+            {
+                if (TryComp<SilencerAttachmentComponent>(ent, out var silencer))
+                {
+                    args.SoundGunshot = silencer.Sound;
+                }
+            }
+        }
     }
 }

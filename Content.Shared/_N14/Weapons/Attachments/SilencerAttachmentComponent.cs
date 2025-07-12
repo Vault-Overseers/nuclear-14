@@ -10,6 +10,4 @@ public sealed partial class SilencerAttachmentComponent : Component
     [DataField(required: true)]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Admin/ahelp_receive.ogg");
 
-    [DataField]
-    public SoundSpecifier? OriginalSound;
 }
