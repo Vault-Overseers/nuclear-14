@@ -12,7 +12,7 @@ namespace Content.Shared._N14.Support;
 [AutoGenerateComponentPause]
 public sealed partial class ArtilleryStrikeComponent : Component
 {
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public MapCoordinates Target = MapCoordinates.Nullspace;
 
     [DataField, AutoNetworkedField]
