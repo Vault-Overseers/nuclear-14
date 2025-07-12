@@ -12,16 +12,24 @@ public sealed class ArtilleryStrikeSystem : SharedArtilleryStrikeSystem
 {
     [Dependency] private readonly ExplosionSystem _explosions = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<ArtilleryStrikeComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<ArtilleryStrikeComponent, MapInitEvent>(OnMapInit);
     }
 
     private void OnStartup(EntityUid uid, ArtilleryStrikeComponent component, ComponentStartup args)
     {
         component.StartTime = _timing.CurTime;
+    }
+
+    private void OnMapInit(EntityUid uid, ArtilleryStrikeComponent component, ref MapInitEvent args)
+    {
+        if (component.Target.MapId == MapId.Nullspace)
+            component.Target = _transform.GetMapCoordinates(uid);
     }
 
     public override void Update(float frameTime)
