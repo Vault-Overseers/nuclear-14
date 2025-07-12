@@ -13,7 +13,7 @@ namespace Content.Shared._N14.Support;
 public sealed partial class ArtilleryStrikeComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public MapCoordinates Target;
+    public MapCoordinates Target = MapCoordinates.Nullspace;
 
     [DataField, AutoNetworkedField]
     public TimeSpan Delay = TimeSpan.FromSeconds(5);

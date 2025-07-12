@@ -23,12 +23,19 @@ public sealed class VertibirdSupportSystem : SharedVertibirdSupportSystem
     {
         base.Initialize();
         SubscribeLocalEvent<VertibirdSupportComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<VertibirdSupportComponent, MapInitEvent>(OnMapInit);
     }
 
     private void OnStartup(EntityUid uid, VertibirdSupportComponent component, ComponentStartup args)
     {
         component.StartTime = _timing.CurTime;
         component.ShotsFired = 0;
+    }
+
+    private void OnMapInit(EntityUid uid, VertibirdSupportComponent component, ref MapInitEvent args)
+    {
+        if (component.Target.MapId == MapId.Nullspace)
+            component.Target = _transform.GetMapCoordinates(uid);
     }
 
     public override void Update(float frameTime)
