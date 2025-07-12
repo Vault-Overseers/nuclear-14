@@ -5,8 +5,9 @@ using Robust.Client.UserInterface.XAML;
 
 namespace Content.Client.Terminal;
 
+[Virtual]
 [GenerateTypedNameReferences]
-public sealed partial class TerminalWindow : BaseWindow
+public partial class TerminalWindow : BaseWindow
 {
     public TerminalWindow()
     {
