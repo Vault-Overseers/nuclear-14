@@ -28,7 +28,10 @@ public sealed class DiscordLink : IPostInjectInit
         _sawmillLog = _log.GetSawmill("discord.link.log");
 
         _cfg.OnValueChanged(CCVars.DiscordPrefix, p => BotPrefix = p, true);
+    }
 
+    public void Initialize()
+    {
         var token = _cfg.GetCVar(CCVars.DiscordToken);
         if (string.IsNullOrEmpty(token))
             return;
