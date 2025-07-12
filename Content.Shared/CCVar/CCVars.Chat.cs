@@ -68,4 +68,10 @@ public sealed partial class CCVars
             "",
             CVar.SERVER | CVar.SERVERONLY | CVar.ARCHIVE,
             "A message broadcast to each player that joins the lobby.");
+
+    /// <summary>
+    ///     Discord channel ID for relaying dead chat messages.
+    /// </summary>
+    public static readonly CVarDef<string> DeadChatDiscordChannelId =
+        CVarDef.Create("deadchat.discord_channel_id", string.Empty, CVar.SERVERONLY);
 }
