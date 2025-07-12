@@ -17,7 +17,6 @@ using Robust.Shared.Localization;
 
 namespace Content.Server._N14.FEV.Systems;
 
-[RegisterSystem]
 public sealed partial class FEVReceiverSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -36,7 +35,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
 
     private void OnMetabolize(EntityUid uid, FEVReceiverComponent comp, ref TryMetabolizeReagent args)
     {
-        if (args.Reagent != "FEV")
+        if (args.Prototype.ID != "FEV")
             return;
 
         comp.Accumulated += args.Quantity;
@@ -76,7 +75,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     private void StartSlowTransform(EntityUid uid, FEVReceiverComponent comp)
     {
         var weights = _proto.Index<WeightedRandomEntityPrototype>(comp.EntityWeights);
-        var entity = weights.Pick(_random);
+        var entity = SharedRandomExtensions.Pick(weights, _random);
 
         var pending = EnsureComp<PendingFEVTransformComponent>(uid);
         pending.Species = entity;
@@ -89,7 +88,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     private void StartInstantTransform(EntityUid uid, FEVReceiverComponent comp)
     {
         var weights = _proto.Index<WeightedRandomEntityPrototype>(comp.EntityWeights);
-        var entity = weights.Pick(_random);
+        var entity = SharedRandomExtensions.Pick(weights, _random);
 
         var pending = EnsureComp<PendingFEVTransformComponent>(uid);
         pending.Species = entity;
