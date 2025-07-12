@@ -2,6 +2,7 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared._NC.FollowDistance.Components;
 using Content.Shared._NC.CameraFollow.Components;
 using Content.Shared.Interaction;
