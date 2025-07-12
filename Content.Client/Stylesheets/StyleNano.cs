@@ -1615,9 +1615,9 @@ namespace Content.Client.Stylesheets
                     .Prop(Label.StylePropertyFontColor, Color.FromHex("#333d3b")),
 
                 // Terminal styles
-                Element().Class("terminal")
-                    .Prop("font", notoSansMono)
-                    .Prop(Control.StylePropertyFontColor, Color.FromHex("#00ff00")),
+                Element<Label>().Class("terminal")
+                    .Prop(Label.StylePropertyFont, notoSansMono)
+                    .Prop(Label.StylePropertyFontColor, Color.FromHex("#00ff00")),
 
                 Element<PanelContainer>().Class("TerminalBackgroundRect")
                     .Prop(PanelContainer.StylePropertyPanel, BaseAngleRect)
