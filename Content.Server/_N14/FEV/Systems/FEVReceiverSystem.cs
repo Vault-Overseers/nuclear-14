@@ -17,6 +17,7 @@ using Robust.Shared.Localization;
 
 namespace Content.Server._N14.FEV.Systems;
 
+[RegisterSystem]
 public sealed partial class FEVReceiverSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -35,7 +36,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
 
     private void OnMetabolize(EntityUid uid, FEVReceiverComponent comp, ref TryMetabolizeReagent args)
     {
-        if (args.Reagent.Prototype != "FEV")
+        if (args.Reagent != "FEV")
             return;
 
         comp.Accumulated += args.Quantity;
@@ -123,7 +124,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
                     Forced = true,
                     TransferDamage = true,
                     TransferName = true,
-                    TransferHumanoidAppearance = true,
+                    TransferHumanoidAppearance = false,
                     Inventory = PolymorphInventoryChange.Transfer,
                     RevertOnCrit = false,
                     RevertOnDeath = false
