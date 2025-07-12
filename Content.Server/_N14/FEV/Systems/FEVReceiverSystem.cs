@@ -1,6 +1,7 @@
 using Content.Server._N14.FEV.Components;
 using Content.Server.Medical;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Server.Humanoid;
 using Content.Server.Polymorph.Systems;
@@ -21,6 +22,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
@@ -28,6 +30,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<FEVReceiverComponent, TryMetabolizeReagent>(OnMetabolize);
+        SubscribeLocalEvent<FEVReceiverComponent, SolutionContainerChangedEvent>(OnSolutionChanged);
     }
 
     private void OnMetabolize(EntityUid uid, FEVReceiverComponent comp, ref TryMetabolizeReagent args)
@@ -36,6 +39,26 @@ public sealed partial class FEVReceiverSystem : EntitySystem
             return;
 
         comp.Accumulated += args.Quantity;
+
+        if (comp.Accumulated >= comp.InstantThreshold && !HasComp<PendingFEVTransformComponent>(uid))
+        {
+            StartInstantTransform(uid, comp);
+            return;
+        }
+
+        if (!comp.Transforming && comp.Accumulated >= comp.SlowThreshold)
+        {
+            StartSlowTransform(uid, comp);
+        }
+    }
+
+    private void OnSolutionChanged(EntityUid uid, FEVReceiverComponent comp, ref SolutionContainerChangedEvent args)
+    {
+        if (args.SolutionId != "bloodstream")
+            return;
+
+        var quantity = args.Solution.GetTotalPrototypeQuantity("FEV");
+        comp.Accumulated = quantity;
 
         if (comp.Accumulated >= comp.InstantThreshold && !HasComp<PendingFEVTransformComponent>(uid))
         {
