@@ -1,0 +1,19 @@
+- type: entity
+  id: N14AttachmentLauncherGun
+  name: utility launcher module
+  abstract: true
+  components:
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14Grenade
+    capacity: 1
+    proto: 40mmGrenadeFrag
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
