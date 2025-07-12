@@ -57,6 +57,24 @@
     gunPrototype: N14AttachmentLauncherGun
     actionPrototype: ActionFireLauncher
 
+# Masterkey
+- type: entity
+  id: N14AttachmentMasterkey
+  parent: N14AttachmentBase
+  name: masterkey shotgun
+  description: A short pump shotgun mounted under a rifle barrel.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Weapons/Guns/Shotguns/shortpump.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: WeaponAttachment
+    slot: underbarrel
+  - type: MasterkeyAttachment
+    gunPrototype: N14AttachmentMasterkeyGun
+    actionPrototype: ActionFireMasterkey
+
 # Silencers
 - type: entity
   id: N14AttachmentSilencer
@@ -73,3 +91,20 @@
     slot: muzzle
   - type: SilencerAttachment
     sound: /Audio/Admin/ahelp_receive.ogg
+
+# Bipod
+- type: entity
+  id: N14AttachmentBipod
+  parent: N14AttachmentBase
+  name: folding bipod
+  description: A deployable bipod that steadies the weapon when unfolded.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+    state: scope
+  - type: Item
+    size: Small
+  - type: WeaponAttachment
+    slot: underbarrel
+  - type: BipodAttachment
+    actionPrototype: ActionToggleBipod

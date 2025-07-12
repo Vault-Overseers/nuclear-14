@@ -31,6 +31,8 @@ public sealed class WeaponAttachmentSystem : EntitySystem
         SubscribeLocalEvent<WeaponAttachmentHolderComponent, GetVerbsEvent<AlternativeVerb>>(OnHolderGetVerbs);
         SubscribeLocalEvent<WeaponAttachmentHolderComponent, GetItemActionsEvent>(OnHolderGetItemActions);
         SubscribeLocalEvent<GrenadeLauncherActionEvent>(OnGrenadeLaunch);
+        SubscribeLocalEvent<MasterkeyActionEvent>(OnMasterkeyFire);
+        SubscribeLocalEvent<BipodToggleActionEvent>(OnBipodToggle);
         SubscribeLocalEvent<WeaponAttachmentHolderComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
     }
 
@@ -117,6 +119,17 @@ public sealed class WeaponAttachmentSystem : EntitySystem
             _actions.AddAction(holder, ref gl.ActionEntity, gl.ActionPrototype);
         }
 
+        if (TryComp<MasterkeyAttachmentComponent>(attachment, out var mk))
+        {
+            mk.GunEntity = Spawn(mk.GunPrototype);
+            _actions.AddAction(holder, ref mk.ActionEntity, mk.ActionPrototype);
+        }
+
+        if (TryComp<BipodAttachmentComponent>(attachment, out var bipod))
+        {
+            _actions.AddAction(holder, ref bipod.ActionEntity, bipod.ActionPrototype);
+        }
+
         if (HasComp<SilencerAttachmentComponent>(attachment) &&
             HasComp<GunComponent>(holder))
         {
@@ -148,6 +161,14 @@ public sealed class WeaponAttachmentSystem : EntitySystem
                 _actions.RemoveAction(holder, gl.ActionEntity.Value);
         }
 
+        if (TryComp<MasterkeyAttachmentComponent>(attachment, out var mk))
+        {
+            if (mk.GunEntity != null)
+                QueueDel(mk.GunEntity.Value);
+            if (mk.ActionEntity != null)
+                _actions.RemoveAction(holder, mk.ActionEntity.Value);
+        }
+
         if (TryComp<ScopeAttachmentComponent>(attachment, out var scope) &&
             TryComp<FollowDistanceComponent>(holder, out var holderFollow))
         {
@@ -161,6 +182,12 @@ public sealed class WeaponAttachmentSystem : EntitySystem
 
             if (HasComp<CameraFollowComponent>(holder))
                 RemCompDeferred<CameraFollowComponent>(holder);
+        }
+
+        if (TryComp<BipodAttachmentComponent>(attachment, out var bipod))
+        {
+            if (bipod.ActionEntity != null)
+                _actions.RemoveAction(holder, bipod.ActionEntity.Value);
         }
 
         if (HasComp<SilencerAttachmentComponent>(attachment) &&
@@ -210,6 +237,29 @@ public sealed class WeaponAttachmentSystem : EntitySystem
             _gun.AttemptShoot(ev.Performer, gl.GunEntity.Value, gun, ev.Target);
     }
 
+    private void OnMasterkeyFire(MasterkeyActionEvent ev)
+    {
+        if (!TryComp<MasterkeyAttachmentComponent>(ev.Performer, out var mk) || mk.GunEntity == null)
+            return;
+
+        if (TryComp<GunComponent>(mk.GunEntity.Value, out var gun))
+            _gun.AttemptShoot(ev.Performer, mk.GunEntity.Value, gun, ev.Target);
+    }
+
+    private void OnBipodToggle(BipodToggleActionEvent ev)
+    {
+        if (!TryComp<BipodAttachmentComponent>(ev.Performer, out var bipod))
+            return;
+
+        bipod.Deployed = !bipod.Deployed;
+
+        if (bipod.ActionEntity != null)
+            _actions.SetToggled(bipod.ActionEntity.Value, bipod.Deployed);
+
+        if (TryComp<GunComponent>(ev.Performer, out _))
+            _gun.RefreshModifiers(ev.Performer);
+    }
+
     private void OnGunRefreshModifiers(EntityUid uid, WeaponAttachmentHolderComponent comp, ref GunRefreshModifiersEvent args)
     {
         foreach (var (id, _) in comp.Slots)
@@ -222,6 +272,15 @@ public sealed class WeaponAttachmentSystem : EntitySystem
                 if (TryComp<SilencerAttachmentComponent>(ent, out var silencer))
                 {
                     args.SoundGunshot = silencer.Sound;
+                }
+
+                if (TryComp<BipodAttachmentComponent>(ent, out var bipod) && bipod.Deployed)
+                {
+                    args.CameraRecoilScalar *= 0.75f;
+                    args.AngleIncrease = Angle.FromDegrees(args.AngleIncrease.Degrees * 0.5f);
+                    args.AngleDecay = Angle.FromDegrees(args.AngleDecay.Degrees * 0.5f);
+                    args.MaxAngle = Angle.FromDegrees(args.MaxAngle.Degrees * 0.5f);
+                    args.MinAngle = Angle.FromDegrees(args.MinAngle.Degrees * 0.5f);
                 }
             }
         }

@@ -9,3 +9,24 @@
     range: 10
     checkCanAccess: false
     event: !type:GrenadeLauncherActionEvent
+
+- type: entity
+  id: ActionFireMasterkey
+  name: Fire masterkey
+  description: Blast a shell from the attached shotgun.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WorldTargetAction
+    useDelay: 1
+    range: 8
+    checkCanAccess: false
+    event: !type:MasterkeyActionEvent
+
+- type: entity
+  id: ActionToggleBipod
+  name: Toggle bipod
+  description: Deploy or retract the bipod.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    event: !type:BipodToggleActionEvent
