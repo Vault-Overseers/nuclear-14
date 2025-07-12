@@ -1,0 +1,58 @@
+# Base attachment prototype providing an outline when hovered
+- type: entity
+  id: N14AttachmentBase
+  abstract: true
+  components:
+  - type: InteractionOutline
+
+# Scopes
+- type: entity
+  id: N14AttachmentReflexSight
+  parent: N14AttachmentBase
+  name: reflex sight
+  description: A simple 1x reflex sight scavenged from pre-war firearms.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Sights/reflex.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: WeaponAttachment
+    slot: sight
+
+- type: entity
+  id: N14AttachmentHuntingScope
+  parent: N14AttachmentBase
+  name: hunting scope
+  description: A 3x scope for taking careful shots at range.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+    state: scope
+  - type: Item
+    size: Small
+  - type: WeaponAttachment
+    slot: sight
+  - type: ScopeAttachment
+    actionPrototype: ActionToggleCamera
+  - type: FollowDistance
+    backStrength: 2
+
+# Launchers
+- type: entity
+  id: N14AttachmentUnderbarrelLauncher
+  parent: N14AttachmentBase
+  name: M79 underbarrel launcher
+  description: A single-shot grenade launcher often bolted beneath rifles in the wasteland.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Small
+  - type: WeaponAttachment
+    slot: underbarrel
+  - type: GrenadeLauncherAttachment
+    gunPrototype: N14AttachmentLauncherGun
+    actionPrototype: ActionFireLauncher

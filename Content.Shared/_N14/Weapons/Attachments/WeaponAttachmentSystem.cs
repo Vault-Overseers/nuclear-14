@@ -5,6 +5,7 @@ using Content.Shared._NC.FollowDistance.Components;
 using Content.Shared._NC.CameraFollow.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Verbs;
+using Content.Shared.IdentityManagement;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
@@ -18,6 +19,8 @@ public sealed class WeaponAttachmentSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedGunSystem _gun = default!;
+
+    private static readonly VerbCategory ModsCategory = new("verb-categories-mods");
 
     public override void Initialize()
     {
@@ -76,7 +79,8 @@ public sealed class WeaponAttachmentSystem : EntitySystem
             var ent = container.ContainedEntities[0];
             var verb = new AlternativeVerb
             {
-                Text = "Detach",
+                Text = Identity.Name(ent, EntityManager),
+                Category = ModsCategory,
                 Act = () => TryDetach(uid, id)
             };
 
