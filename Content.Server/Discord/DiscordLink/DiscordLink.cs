@@ -4,6 +4,7 @@ using NetCord.Rest;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Content.Server.Discord.DiscordLink;
 
@@ -27,7 +28,14 @@ public sealed class DiscordLink : IPostInjectInit
         _sawmill = _log.GetSawmill("discord.link");
         _sawmillLog = _log.GetSawmill("discord.link.log");
 
-        _cfg.OnValueChanged(CCVars.DiscordPrefix, p => BotPrefix = p, true);
+        try
+        {
+            _cfg.OnValueChanged(CCVars.DiscordPrefix, p => BotPrefix = p, true);
+        }
+        catch (KeyNotFoundException)
+        {
+            BotPrefix = "!";
+        }
     }
 
     public void Initialize()
