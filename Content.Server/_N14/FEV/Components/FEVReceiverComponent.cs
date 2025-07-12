@@ -44,4 +44,12 @@ public sealed partial class FEVReceiverComponent : Component
     public FixedPoint2 Accumulated;
     public bool Transforming;
     public string? TargetSpecies;
+
+    /// <summary>
+    /// Optional mapping of inventory slots to item prototypes. When a mob finishes
+    /// mutating the specified slots will be replaced with these items. Anything
+    /// currently equipped in the slot will be dropped.
+    /// </summary>
+    [DataField("slotReplacements")]
+    public Dictionary<string, string>? SlotReplacements;
 }

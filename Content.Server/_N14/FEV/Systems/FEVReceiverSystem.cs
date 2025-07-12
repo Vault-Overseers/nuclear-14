@@ -14,9 +14,13 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Localization;
+using Content.Shared.Inventory;
+using Content.Server.Inventory;
+using Content.Server.Transforms;
 
 namespace Content.Server._N14.FEV.Systems;
 
+[RegisterSystem]
 public sealed partial class FEVReceiverSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -26,6 +30,8 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -129,12 +135,31 @@ public sealed partial class FEVReceiverSystem : EntitySystem
                     RevertOnDeath = false
                 };
 
-                _polymorph.PolymorphEntity(uid, config);
+                var newEnt = _polymorph.PolymorphEntity(uid, config);
+                if (newEnt != null)
+                    ReplaceOutfit(newEnt.Value, comp.SlotReplacements);
+
                 RemCompDeferred<PendingFEVTransformComponent>(uid);
                 comp.Transforming = false;
                 comp.Accumulated = FixedPoint2.Zero;
                 comp.TargetSpecies = null;
             }
+        }
+    }
+
+    private void ReplaceOutfit(EntityUid uid, Dictionary<string, string>? replacements)
+    {
+        if (replacements == null || replacements.Count == 0)
+            return;
+
+        var xform = Transform(uid);
+
+        foreach (var (slot, proto) in replacements)
+        {
+            _inventory.TryUnequip(uid, slot, force: true, predicted: false);
+            var item = Spawn(proto, xform.Coordinates);
+            if (!_inventory.TryEquip(uid, item, slot, silent: true, force: true))
+                _transform.DropNextTo(item, uid);
         }
     }
 }
