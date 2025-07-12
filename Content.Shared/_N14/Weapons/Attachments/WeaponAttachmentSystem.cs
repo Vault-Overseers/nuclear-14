@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Actions.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared._NC.FollowDistance.Components;
@@ -28,6 +29,7 @@ public sealed class WeaponAttachmentSystem : EntitySystem
         SubscribeLocalEvent<WeaponAttachmentHolderComponent, ComponentShutdown>(OnHolderShutdown);
         SubscribeLocalEvent<WeaponAttachmentHolderComponent, InteractUsingEvent>(OnHolderInteractUsing);
         SubscribeLocalEvent<WeaponAttachmentHolderComponent, GetVerbsEvent<AlternativeVerb>>(OnHolderGetVerbs);
+        SubscribeLocalEvent<WeaponAttachmentHolderComponent, GetItemActionsEvent>(OnHolderGetItemActions);
         SubscribeLocalEvent<GrenadeLauncherActionEvent>(OnGrenadeLaunch);
     }
 
@@ -88,12 +90,37 @@ public sealed class WeaponAttachmentSystem : EntitySystem
         }
     }
 
+    private void OnHolderGetItemActions(EntityUid uid, WeaponAttachmentHolderComponent comp, GetItemActionsEvent args)
+    {
+        foreach (var (id, slot) in comp.Slots)
+        {
+            if (!_containers.TryGetContainer(uid, id, out var container))
+                continue;
+
+            foreach (var ent in container.ContainedEntities)
+            {
+                if (TryComp<GrenadeLauncherAttachmentComponent>(ent, out var gl))
+                    args.AddAction(ref gl.ActionEntity, gl.ActionPrototype);
+
+                if (TryComp<ScopeAttachmentComponent>(ent, out var scope) && scope.ActionPrototype is { } proto)
+                    args.AddAction(ref scope.ActionEntity, proto);
+            }
+        }
+    }
+
     private void SetupAttachment(EntityUid holder, EntityUid attachment)
     {
         if (TryComp<GrenadeLauncherAttachmentComponent>(attachment, out var gl))
         {
             gl.GunEntity = Spawn(gl.GunPrototype);
             _actions.AddAction(holder, ref gl.ActionEntity, gl.ActionPrototype);
+        }
+
+        if (TryComp<SilencerAttachmentComponent>(attachment, out var silencer) &&
+            TryComp<GunComponent>(holder, out var gun))
+        {
+            silencer.OriginalSound = gun.SoundGunshot;
+            gun.SoundGunshot = silencer.Sound;
         }
 
         if (TryComp<ScopeAttachmentComponent>(attachment, out var scope) &&
@@ -134,6 +161,13 @@ public sealed class WeaponAttachmentSystem : EntitySystem
 
             if (HasComp<CameraFollowComponent>(holder))
                 RemCompDeferred<CameraFollowComponent>(holder);
+        }
+
+        if (TryComp<SilencerAttachmentComponent>(attachment, out var silencer) &&
+            TryComp<GunComponent>(holder, out var gun))
+        {
+            if (silencer.OriginalSound != null)
+                gun.SoundGunshot = silencer.OriginalSound;
         }
     }
 

@@ -56,3 +56,20 @@
   - type: GrenadeLauncherAttachment
     gunPrototype: N14AttachmentLauncherGun
     actionPrototype: ActionFireLauncher
+
+# Silencers
+- type: entity
+  id: N14AttachmentSilencer
+  parent: N14AttachmentBase
+  name: improvised silencer
+  description: A crude suppressor that muffles gunfire.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
+    state: scope
+  - type: Item
+    size: Small
+  - type: WeaponAttachment
+    slot: muzzle
+  - type: SilencerAttachment
+    sound: /Audio/Admin/ahelp_receive.ogg
