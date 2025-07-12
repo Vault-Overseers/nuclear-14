@@ -1,4 +1,4 @@
-using Content.Server.StatusEffects;
+using Content.Shared.StatusEffect;
 using Content.Server.Jittering;
 using Content.Server.Medical;
 using Robust.Shared.Random;
