@@ -1614,6 +1614,30 @@ namespace Content.Client.Stylesheets
                     .Prop(Label.StylePropertyFont, notoSans10)
                     .Prop(Label.StylePropertyFontColor, Color.FromHex("#333d3b")),
 
+                // Terminal styles
+                Element().Class("terminal")
+                    .Prop("font", notoSansMono)
+                    .Prop(Control.StylePropertyFontColor, Color.FromHex("#00ff00")),
+
+                Element<PanelContainer>().Class("TerminalBackgroundRect")
+                    .Prop(PanelContainer.StylePropertyPanel, BaseAngleRect)
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#001100")),
+
+                Element<PanelContainer>().Class("TerminalBorderRect")
+                    .Prop(PanelContainer.StylePropertyPanel, AngleBorderRect),
+
+                Element<PanelContainer>().Class("TerminalBackground")
+                    .Prop(PanelContainer.StylePropertyPanel, BaseButtonOpenBoth)
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#001100")),
+
+                Element<PanelContainer>().Class("TerminalContentBackground")
+                    .Prop(PanelContainer.StylePropertyPanel, BaseButtonOpenBoth)
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#001100")),
+
+                Element<Label>().Class("TerminalWindowFooterText")
+                    .Prop(Label.StylePropertyFont, notoSansMono)
+                    .Prop(Label.StylePropertyFontColor, Color.FromHex("#00ff00")),
+
                 // Fancy Tree
                 Element<ContainerButton>().Identifier(TreeItem.StyleIdentifierTreeButton)
                     .Class(TreeItem.StyleClassEvenRow)

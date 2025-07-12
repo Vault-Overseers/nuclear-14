@@ -25,6 +25,8 @@ public sealed partial class TerminalMenu : TerminalWindow
     {
         RobustXamlLoader.Load(this);
 
+        ApplyTerminalTheme();
+
         ViewContainer.OnChildAdded += c => c.Visible = false;
 
         HomeButton.IconTexture = new SpriteSpecifier.Texture(new("/Textures/Interface/home.png"));
@@ -166,5 +168,33 @@ public sealed partial class TerminalMenu : TerminalWindow
         {
             view.Visible = false;
         }
+    }
+
+    private void ApplyTerminalTheme()
+    {
+        const string fg = "#00ff00";
+        const string bg = "#001100";
+
+        HomeButton.ActiveFgColor = fg;
+        HomeButton.InactiveFgColor = fg;
+        HomeButton.ActiveBgColor = bg;
+        HomeButton.InactiveBgColor = bg;
+
+        ProgramListButton.ActiveFgColor = fg;
+        ProgramListButton.InactiveFgColor = fg;
+        ProgramListButton.ActiveBgColor = bg;
+        ProgramListButton.InactiveBgColor = bg;
+
+        ProgramTitle.ActiveFgColor = fg;
+        ProgramTitle.InactiveFgColor = fg;
+        ProgramTitle.ActiveBgColor = bg;
+        ProgramTitle.InactiveBgColor = bg;
+
+        ProgramCloseButton.ActiveFgColor = fg;
+        ProgramCloseButton.InactiveFgColor = fg;
+        ProgramCloseButton.ActiveBgColor = bg;
+        ProgramCloseButton.InactiveBgColor = bg;
+
+        ProgramTitle.StyleClasses.Add("terminal");
     }
 }

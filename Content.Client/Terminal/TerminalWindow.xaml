@@ -1,20 +1,20 @@
-<terminal:TerminalWindow xmlns="https://spacestation14.io" xmlns:terminal="clr-namespace:Content.Client.Terminal" xmlns:pda="clr-namespace:Content.Client.PDA" MouseFilter="Stop">
-    <PanelContainer Name="Background" Access="Public" StyleClasses="PdaBackgroundRect" />
-    <PanelContainer Name="Border" StyleClasses="PdaBorderRect" />
+<terminal:TerminalWindow xmlns="https://spacestation14.io" xmlns:terminal="clr-namespace:Content.Client.Terminal" xmlns:pda="clr-namespace:Content.Client.PDA" MouseFilter="Stop" StyleClasses="terminal">
+    <PanelContainer Name="Background" Access="Public" StyleClasses="TerminalBackgroundRect" />
+    <PanelContainer Name="Border" StyleClasses="TerminalBorderRect" />
     <BoxContainer Orientation="Vertical" HorizontalExpand="True">
         <BoxContainer SetHeight="26" Margin="4 2 8 0" Orientation="Horizontal">
             <Control HorizontalExpand="True"/>
             <TextureButton Name="CloseButton" StyleClasses="windowCloseButton" VerticalAlignment="Center" Margin="0 4 4 0"/>
         </BoxContainer>
         <Control Margin="18 0" RectClipContent="True" VerticalExpand="true" HorizontalExpand="True">
-            <PanelContainer Name="ContentBorder" StyleClasses="PdaBackground"/>
+            <PanelContainer Name="ContentBorder" StyleClasses="TerminalBackground"/>
             <Control Margin="3 3">
-                <PanelContainer Name="ContentBackground" StyleClasses="PdaContentBackground"/>
+                <PanelContainer Name="ContentBackground" StyleClasses="TerminalContentBackground"/>
                 <BoxContainer Access="Public" Name="ContentsContainer" Orientation="Vertical" StyleClasses="PdaContent"/>
             </Control>
         </Control>
         <BoxContainer Orientation="Horizontal" SetHeight="28">
-            <Label Text="{Loc 'comp-pda-ui-footer'}" StyleClasses="PdaWindowFooterText" Margin="32 0 0 6"/>
+            <Label Text="{Loc 'comp-terminal-ui-footer'}" StyleClasses="TerminalWindowFooterText" Margin="32 0 0 6"/>
         </BoxContainer>
     </BoxContainer>
 </terminal:TerminalWindow>
