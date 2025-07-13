@@ -20,19 +20,19 @@ public sealed partial class VertibirdSupportComponent : Component
     public TimeSpan Delay = TimeSpan.FromSeconds(10);
 
     [DataField, AutoNetworkedField]
-    public int Shots = 3;
+    public int Shots = 10;
 
     [DataField, AutoNetworkedField]
-    public TimeSpan ShotInterval = TimeSpan.FromSeconds(1);
+    public TimeSpan ShotInterval = TimeSpan.FromSeconds(0.1);
 
     [DataField, AutoNetworkedField]
-    public float Spread = 2f;
+    public float Spread = 5f;
 
     [DataField, AutoNetworkedField]
     public string ExplosionType = "Default";
 
     [DataField, AutoNetworkedField]
-    public float Intensity = 30f;
+    public float Intensity = 5f;
 
     [DataField, AutoNetworkedField]
     public float Slope = 2f;
