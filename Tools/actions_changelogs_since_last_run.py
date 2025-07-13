@@ -92,8 +92,20 @@ def get_last_changelog(sess: requests.Session, sha: str) -> str:
         "Accept": "application/vnd.github.raw"
     }
 
-    resp = sess.get(f"{GITHUB_API_URL}/repos/{GITHUB_REPOSITORY}/contents/{CHANGELOG_DIR}", headers=headers, params=params)
-    resp.raise_for_status()
+    resp = sess.get(
+        f"{GITHUB_API_URL}/repos/{GITHUB_REPOSITORY}/contents/{CHANGELOG_DIR}",
+        headers=headers,
+        params=params,
+    )
+
+    try:
+        resp.raise_for_status()
+    except requests.HTTPError as e:
+        if resp.status_code == 404:
+            print("Previous changelog not found; assuming empty")
+            return "Entries: []"
+        raise
+
     return resp.text
 
 
