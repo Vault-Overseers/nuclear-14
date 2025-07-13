@@ -16,7 +16,7 @@ public sealed partial class ArtilleryStrikeComponent : Component
     public MapCoordinates Target = MapCoordinates.Nullspace;
 
     [DataField, AutoNetworkedField]
-    public TimeSpan Delay = TimeSpan.FromSeconds(5);
+    public TimeSpan Delay = TimeSpan.FromSeconds(10);
 
     [DataField, AutoNetworkedField]
     public string ExplosionType = "Default";

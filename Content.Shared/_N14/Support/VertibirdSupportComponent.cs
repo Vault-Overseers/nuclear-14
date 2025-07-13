@@ -17,7 +17,7 @@ public sealed partial class VertibirdSupportComponent : Component
     public MapCoordinates Target = MapCoordinates.Nullspace;
 
     [DataField, AutoNetworkedField]
-    public TimeSpan Delay = TimeSpan.FromSeconds(5);
+    public TimeSpan Delay = TimeSpan.FromSeconds(10);
 
     [DataField, AutoNetworkedField]
     public int Shots = 3;

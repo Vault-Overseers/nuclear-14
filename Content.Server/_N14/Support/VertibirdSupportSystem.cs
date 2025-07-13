@@ -5,6 +5,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server.Light.Components;
 
 namespace Content.Server._N14.Support;
 
@@ -23,19 +24,12 @@ public sealed class VertibirdSupportSystem : SharedVertibirdSupportSystem
     {
         base.Initialize();
         SubscribeLocalEvent<VertibirdSupportComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<VertibirdSupportComponent, MapInitEvent>(OnMapInit);
     }
 
     private void OnStartup(EntityUid uid, VertibirdSupportComponent component, ComponentStartup args)
     {
-        component.StartTime = _timing.CurTime;
+        component.StartTime = TimeSpan.Zero;
         component.ShotsFired = 0;
-    }
-
-    private void OnMapInit(EntityUid uid, VertibirdSupportComponent component, ref MapInitEvent args)
-    {
-        if (component.Target.MapId == MapId.Nullspace)
-            component.Target = _transform.GetMapCoordinates(uid);
     }
 
     public override void Update(float frameTime)
@@ -44,6 +38,19 @@ public sealed class VertibirdSupportSystem : SharedVertibirdSupportSystem
         var query = EntityQueryEnumerator<VertibirdSupportComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
+            if (TryComp<ExpendableLightComponent>(uid, out var light))
+            {
+                if (!light.Activated)
+                    continue;
+
+                if (comp.StartTime == TimeSpan.Zero)
+                    comp.StartTime = now;
+            }
+            else if (comp.StartTime == TimeSpan.Zero)
+            {
+                comp.StartTime = now;
+            }
+
             if (comp.ShotsFired == 0 && now >= comp.StartTime + comp.Delay)
             {
                 if (comp.ApproachSound != null)
@@ -62,6 +69,9 @@ public sealed class VertibirdSupportSystem : SharedVertibirdSupportSystem
                 QueueDel(uid);
                 continue;
             }
+
+            if (comp.Target.MapId == MapId.Nullspace)
+                comp.Target = _transform.GetMapCoordinates(uid);
 
             var offset = _random.NextVector2(-comp.Spread, comp.Spread);
             var pos = comp.Target.Offset(offset);

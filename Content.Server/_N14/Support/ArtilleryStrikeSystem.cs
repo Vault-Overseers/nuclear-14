@@ -1,5 +1,6 @@
 using Content.Shared._N14.Support;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.Light.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
@@ -18,28 +19,38 @@ public sealed class ArtilleryStrikeSystem : SharedArtilleryStrikeSystem
     {
         base.Initialize();
         SubscribeLocalEvent<ArtilleryStrikeComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<ArtilleryStrikeComponent, MapInitEvent>(OnMapInit);
     }
 
     private void OnStartup(EntityUid uid, ArtilleryStrikeComponent component, ComponentStartup args)
     {
-        component.StartTime = _timing.CurTime;
-    }
-
-    private void OnMapInit(EntityUid uid, ArtilleryStrikeComponent component, ref MapInitEvent args)
-    {
-        if (component.Target.MapId == MapId.Nullspace)
-            component.Target = _transform.GetMapCoordinates(uid);
+        component.StartTime = TimeSpan.Zero;
     }
 
     public override void Update(float frameTime)
     {
+
         var now = _timing.CurTime;
         var query = EntityQueryEnumerator<ArtilleryStrikeComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
+            if (TryComp<ExpendableLightComponent>(uid, out var light))
+            {
+                if (!light.Activated)
+                    continue;
+
+                if (comp.StartTime == TimeSpan.Zero)
+                    comp.StartTime = now;
+            }
+            else if (comp.StartTime == TimeSpan.Zero)
+            {
+                comp.StartTime = now;
+            }
+
             if (now < comp.StartTime + comp.Delay)
                 continue;
+
+            if (comp.Target.MapId == MapId.Nullspace)
+                comp.Target = _transform.GetMapCoordinates(uid);
 
             _explosions.QueueExplosion(comp.Target, comp.ExplosionType, comp.Intensity, comp.Slope, comp.MaxIntensity, canCreateVacuum: false);
             QueueDel(uid);
