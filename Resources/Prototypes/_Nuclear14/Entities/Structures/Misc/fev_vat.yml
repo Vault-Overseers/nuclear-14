@@ -30,7 +30,14 @@
         Quantity: 50
   - type: DrainableSolution
     solution: pool
+  - type: TileEntityEffect
+    effects:
+    - !type:AddToBloodstreamIfUncovered
+      reagent: FEV
+      amount: 20
   - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
   - type: Fixtures
     fixtures:
       fix1:
