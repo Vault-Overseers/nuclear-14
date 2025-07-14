@@ -39,7 +39,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
 
     private void OnMetabolize(EntityUid uid, FEVReceiverComponent comp, ref TryMetabolizeReagent args)
     {
-        if (args.Reagent.Prototype != "FEV")
+        if (args.Prototype.ID != "FEV")
             return;
 
         comp.Accumulated += args.Quantity;
@@ -79,7 +79,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     private void StartSlowTransform(EntityUid uid, FEVReceiverComponent comp)
     {
         var weights = _proto.Index<WeightedRandomEntityPrototype>(comp.EntityWeights);
-        var entity = weights.Pick(_random);
+        var entity = _random.Pick(weights.Weights);
 
         var pending = EnsureComp<PendingFEVTransformComponent>(uid);
         pending.Species = entity;
@@ -92,7 +92,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     private void StartInstantTransform(EntityUid uid, FEVReceiverComponent comp)
     {
         var weights = _proto.Index<WeightedRandomEntityPrototype>(comp.EntityWeights);
-        var entity = weights.Pick(_random);
+        var entity = _random.Pick(weights.Weights);
 
         var pending = EnsureComp<PendingFEVTransformComponent>(uid);
         pending.Species = entity;

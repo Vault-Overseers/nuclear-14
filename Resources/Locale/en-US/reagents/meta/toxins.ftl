@@ -89,5 +89,3 @@ reagent-name-ectoplasm = ectoplasm
 reagent-desc-ectoplasm = The physical component of semi-corporeal spirits.
 
 
-reagent-name-fev = forced evolutionary virus
-reagent-desc-fev = A highly mutagenic compound that randomly alters the subject's species when enough is metabolized.

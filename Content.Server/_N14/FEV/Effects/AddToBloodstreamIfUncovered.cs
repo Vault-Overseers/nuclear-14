@@ -22,12 +22,14 @@ namespace Content.Server._N14.FEV.Effects;
 [UsedImplicitly]
 public sealed partial class AddToBloodstreamIfUncovered : EntityEffect
 {
-    [DataField(required: true, customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>))]
+    [DataField("reagent", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>))]
     private string _reagent = default!;
 
-    [DataField] private FixedPoint2 _amount = FixedPoint2.New(5);
+    [DataField("amount")]
+    private FixedPoint2 _amount = FixedPoint2.New(5);
 
-    [DataField] private string _solution = "bloodstream";
+    [DataField("solution")]
+    private string _solution = "bloodstream";
 
     public override void Effect(EntityEffectBaseArgs args)
     {
