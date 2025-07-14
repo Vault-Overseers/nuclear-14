@@ -2,53 +2,56 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Map;
 using Robust.Shared.Audio;
+using System;
 
-namespace Content.Shared._N14.Support;
-
-/// <summary>
-/// Schedules a series of explosions representing vertibird fire support.
-/// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState,
-    Access(typeof(SharedVertibirdSupportSystem))]
-[AutoGenerateComponentPause]
-public sealed partial class VertibirdSupportComponent : Component
+namespace Content.Shared._N14.Support
 {
-    [AutoNetworkedField]
-    public MapCoordinates Target = MapCoordinates.Nullspace;
 
-    [DataField, AutoNetworkedField]
-    public TimeSpan Delay = TimeSpan.FromSeconds(10);
+    /// <summary>
+    /// Schedules a series of explosions representing vertibird fire support.
+    /// </summary>
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState,
+     Access(typeof(SharedVertibirdSupportSystem))]
+    [AutoGenerateComponentPause]
+    public sealed partial class VertibirdSupportComponent : Component
+    {
+        [AutoNetworkedField]
+        public MapCoordinates Target = MapCoordinates.Nullspace;
 
-    [DataField, AutoNetworkedField]
-    public int Shots = 10;
+        [DataField, AutoNetworkedField]
+        public TimeSpan Delay = TimeSpan.FromSeconds(10);
 
-    [DataField, AutoNetworkedField]
-    public TimeSpan ShotInterval = TimeSpan.FromSeconds(0.1);
+        [DataField, AutoNetworkedField]
+        public int Shots = 3;
 
-    [DataField, AutoNetworkedField]
-    public float Spread = 5f;
+        [DataField, AutoNetworkedField]
+        public TimeSpan ShotInterval = TimeSpan.FromSeconds(1);
 
-    [DataField, AutoNetworkedField]
-    public string ExplosionType = "Default";
+        [DataField, AutoNetworkedField]
+        public float Spread = 2f;
 
-    [DataField, AutoNetworkedField]
-    public float Intensity = 5f;
+        [DataField, AutoNetworkedField]
+        public string ExplosionType = "Default";
 
-    [DataField, AutoNetworkedField]
-    public float Slope = 2f;
+        [DataField, AutoNetworkedField]
+        public float Intensity = 30f;
 
-    [DataField, AutoNetworkedField]
-    public float MaxIntensity = 5f;
+        [DataField, AutoNetworkedField]
+        public float Slope = 2f;
 
-    [DataField]
-    public SoundSpecifier? ApproachSound;
+        [DataField, AutoNetworkedField]
+        public float MaxIntensity = 5f;
 
-    [DataField]
-    public SoundSpecifier? FireSound;
+        [DataField]
+        public SoundSpecifier? ApproachSound;
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
-    public TimeSpan StartTime;
+        [DataField]
+        public SoundSpecifier? FireSound;
 
-    [DataField, AutoNetworkedField]
-    public int ShotsFired;
+        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
+        public TimeSpan StartTime;
+
+        [DataField, AutoNetworkedField]
+        public int ShotsFired;
+    }
 }

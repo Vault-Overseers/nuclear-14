@@ -1,13 +1,19 @@
++52-3
 using Content.Shared._N14.Support;
 using Content.Server.Explosion.EntitySystems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Server.Light.Components;
+using Content.Shared.Light.Components;
+using Content.Shared.Light.EntitySystems;
+using System;
 
-namespace Content.Server._N14.Support;
+namespace Content.Server._N14.Support
+{
 
 /// <summary>
 /// Manages scheduled vertibird fire support.
@@ -19,17 +25,26 @@ public sealed class VertibirdSupportSystem : SharedVertibirdSupportSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedRoofSystem _roof = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<VertibirdSupportComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<VertibirdSupportComponent, MapInitEvent>(OnMapInit);
     }
 
     private void OnStartup(EntityUid uid, VertibirdSupportComponent component, ComponentStartup args)
     {
         component.StartTime = TimeSpan.Zero;
         component.ShotsFired = 0;
+    }
+
+    private void OnMapInit(EntityUid uid, VertibirdSupportComponent component, ref MapInitEvent args)
+    {
+        if (component.Target.MapId == MapId.Nullspace)
+            component.Target = _transform.GetMapCoordinates(uid);
     }
 
     public override void Update(float frameTime)
@@ -73,6 +88,21 @@ public sealed class VertibirdSupportSystem : SharedVertibirdSupportSystem
             if (comp.Target.MapId == MapId.Nullspace)
                 comp.Target = _transform.GetMapCoordinates(uid);
 
+            if (_mapManager.TryFindGridAt(comp.Target, out var gridUid, out var grid))
+            {
+                var tile = grid.WorldToTile(comp.Target.Position);
+                RoofComponent? roof = null;
+                if (Resolve(gridUid, ref roof, false))
+                {
+                    var gridEnt = (gridUid, grid, roof);
+                    if (_roof.IsRooved(gridEnt, tile))
+                    {
+                        QueueDel(uid);
+                        continue;
+                    }
+                }
+            }
+
             var offset = _random.NextVector2(-comp.Spread, comp.Spread);
             var pos = comp.Target.Offset(offset);
 
@@ -103,9 +133,12 @@ public sealed class VertibirdSupportSystem : SharedVertibirdSupportSystem
         comp.MaxIntensity = maxIntensity;
         comp.ApproachSound = approach;
         comp.FireSound = fire;
-        comp.StartTime = _timing.CurTime;
+        // StartTime will be initialized when the flare activates.
+        comp.StartTime = TimeSpan.Zero;
         comp.ShotsFired = 0;
         Dirty(ent, comp);
         return ent;
     }
+}
+
 }
