@@ -88,10 +88,41 @@
 #      state: generic_keys
   - type: InteractionOutline
 
+- type: entity
+  parent: N14ComputerTerminalBase
+  id: N14ComputerTerminalBasePoweredCartridge
+  abstract: true
+  components:
+  - type: CartridgeLoader
+    uiKey: enum.TerminalUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+    cartridgeSlot:
+      priority: -1
+      name: device-pda-slot-component-slot-name-cartridge
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        components:
+        - Cartridge
+  - type: ActivatableUI
+    key: enum.TerminalUiKey.Key
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.TerminalUiKey.Key:
+        type: TerminalBoundUserInterface
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      Cartridge-Slot: !type:ContainerSlot {}
+      program-container: !type:Container
+  - type: Terminal
+
 # Terminals in Use
 # New
 - type: entity
-  parent: N14ComputerTerminalBasePowered
+  parent: N14ComputerTerminalBasePoweredCartridge
   id: N14ComputerTerminalNew
   suffix: new
   name: terminal
@@ -155,7 +186,7 @@
 
 # Normal
 - type: entity
-  parent: N14ComputerTerminalBasePowered
+  parent: N14ComputerTerminalBasePoweredCartridge
   id: N14ComputerTerminal
   name: terminal
   description: A computer terminal. Looks aged.
@@ -252,7 +283,7 @@
 
 # Rusted
 - type: entity
-  parent: N14ComputerTerminalBasePowered
+  parent: N14ComputerTerminalBasePoweredCartridge
   id: N14ComputerTerminalRusted
   suffix: rusted
   name: terminal
@@ -279,7 +310,7 @@
 
 # Handmade
 - type: entity
-  parent: N14ComputerTerminalBasePowered
+  parent: N14ComputerTerminalBasePoweredCartridge
   id: N14ComputerTerminalHandmade
   suffix: handmade
   name: terminal
@@ -391,7 +422,7 @@
 # Wall Terminal
 # N14TODO: Needs a way to use it to use the off state.
 - type: entity
-  parent: [ N14ComputerTerminalWallBase, N14ComputerTerminalBasePowered ]
+  parent: [ N14ComputerTerminalWallBase, N14ComputerTerminalBasePoweredCartridge ]
   id: N14ComputerTerminalWall
   name: wall terminal
   description: A computer terminal. Looks old.
@@ -416,7 +447,7 @@
 
 # New
 - type: entity
-  parent: [ N14ComputerTerminalWallBase, N14ComputerTerminalBasePowered ]
+  parent: [ N14ComputerTerminalWallBase, N14ComputerTerminalBasePoweredCartridge ]
   id: N14ComputerTerminalWallNew
   suffix: new
   name: wall terminal
@@ -443,7 +474,7 @@
 
 # Rusted
 - type: entity
-  parent: [ N14ComputerTerminalWallBase, N14ComputerTerminalBasePowered ]
+  parent: [ N14ComputerTerminalWallBase, N14ComputerTerminalBasePoweredCartridge ]
   id: N14ComputerTerminalWallRusted
   suffix: rusted
   name: wall terminal
@@ -470,7 +501,7 @@
 
 # Security
 - type: entity
-  parent: [ N14ComputerTerminalWallBase, N14ComputerTerminalBasePowered ]
+  parent: [ N14ComputerTerminalWallBase, N14ComputerTerminalBasePoweredCartridge ]
   id: N14ComputerTerminalWallDisplays
   name: display terminal
   description: A wall mounted computer terminal. Lots of displays.
@@ -485,7 +516,7 @@
 
 # Classic
 - type: entity
-  parent: [ N14ComputerTerminalWallBase, N14ComputerTerminalBasePowered ]
+  parent: [ N14ComputerTerminalWallBase, N14ComputerTerminalBasePoweredCartridge ]
   id: N14ComputerTerminalWallControls
   name: control terminal
   description: A wall mounted computer terminal.
