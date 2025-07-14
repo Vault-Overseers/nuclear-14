@@ -786,56 +786,56 @@
 
 # MARK: Shotguns
 
-- type: entity
-  name: multiplas
-  parent: N14BaseWeaponPowerCellMedium
-  id: N14WeaponPlasmaMultiplas
-  description: A modified urban plasma rifle, it sacrifices accuracy to instead spread the plasma into multiple projectiles.
-  components:
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -56
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/multiplas.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.Mag"]
-      shader: unshaded
-  - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Battery/multiplas.rsi
-    quickEquip: false
-    slots:
-    - Back
-    - suitStorage
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: N14PlasmaCartridge
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        whitelist:
-          tags:
-            - N14PlasmaCartridge
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
-  - type: Gun
-    fireRate: 6
-    soundGunshot:
-      collection: N14MultiplasGunshot
-    selectedMode: Burst
-    availableModes:
-     - SemiAuto
-     - Burst
-  - type: FollowDistance
-    backStrength: 6
-  - type: StaticPrice
-    price: 225
+# - type: entity
+  # name: multiplas
+  # parent: N14BaseWeaponPowerCellMedium
+  # id: N14WeaponPlasmaMultiplas
+  # description: A modified urban plasma rifle, it sacrifices accuracy to instead spread the plasma into multiple projectiles.
+  # components:
+  # - type: Wieldable
+  # - type: GunWieldBonus
+    # minAngle: -23
+    # maxAngle: -56
+  # - type: Sprite
+    # sprite: _Nuclear14/Objects/Weapons/Guns/Battery/multiplas.rsi
+    # layers:
+    # - state: base
+      # map: ["enum.GunVisualLayers.Base"]
+    # - state: mag-unshaded-4
+      # map: ["enum.GunVisualLayers.Mag"]
+      # shader: unshaded
+  # - type: Clothing
+    # sprite: _Nuclear14/Objects/Weapons/Guns/Battery/multiplas.rsi
+    # quickEquip: false
+    # slots:
+    # - Back
+    # - suitStorage
+  # - type: ItemSlots
+    # slots:
+      # gun_magazine:
+        # name: Magazine
+        # startingItem: N14PlasmaCartridge
+        # insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        # ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        # whitelist:
+          # tags:
+            # - N14PlasmaCartridge
+  # - type: MagazineVisuals
+    # magState: mag
+    # steps: 5
+    # zeroVisible: true
+  # - type: Gun
+    # fireRate: 6
+    # soundGunshot:
+      # collection: N14MultiplasGunshot
+    # selectedMode: Burst
+    # availableModes:
+     # - SemiAuto
+     # - Burst
+  # - type: FollowDistance
+    # backStrength: 6
+  # - type: StaticPrice
+    # price: 225
 
 #MARK: Focused
 # (just a different looking laser rifle until we get more options)

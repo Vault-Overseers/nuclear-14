@@ -13,6 +13,7 @@ using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
+using Robust.Shared.Utility;
 
 namespace Content.Server.NPC.Systems
 {
@@ -172,12 +173,14 @@ namespace Content.Server.NPC.Systems
                 var start = new Verb()
                 {
                     Text = Loc.GetString("npc-order-start"),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/sentient.svg.192dpi.png")),
                     Act = () => WakeNPC(args.Target)
                 };
 
                 var stop = new Verb()
                 {
                     Text = Loc.GetString("npc-order-stop"),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/sentient.svg.192dpi.png")),
                     Act = () => SleepNPC(args.Target)
                 };
 

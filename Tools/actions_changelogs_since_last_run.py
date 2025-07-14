@@ -16,7 +16,7 @@ GITHUB_API_URL    = os.environ.get("GITHUB_API_URL", "https://api.github.com")
 GITHUB_REPOSITORY = os.environ["GITHUB_REPOSITORY"]
 GITHUB_RUN        = os.environ["GITHUB_RUN_ID"]
 GITHUB_TOKEN      = os.environ["GITHUB_TOKEN"]
-CHANGELOG_DIR     = os.environ["CHANGELOG_DIR"]
+CHANGELOG_DIR     = os.environ.get("CHANGELOG_DIR", "Resources/Changelog/Nuclear14.yml")
 CHANGELOG_WEBHOOK = os.environ["CHANGELOG_WEBHOOK"]
 
 # https://discord.com/developers/docs/resources/webhook
@@ -92,8 +92,20 @@ def get_last_changelog(sess: requests.Session, sha: str) -> str:
         "Accept": "application/vnd.github.raw"
     }
 
-    resp = sess.get(f"{GITHUB_API_URL}/repos/{GITHUB_REPOSITORY}/contents/{CHANGELOG_DIR}", headers=headers, params=params)
-    resp.raise_for_status()
+    resp = sess.get(
+        f"{GITHUB_API_URL}/repos/{GITHUB_REPOSITORY}/contents/{CHANGELOG_DIR}",
+        headers=headers,
+        params=params,
+    )
+
+    try:
+        resp.raise_for_status()
+    except requests.HTTPError as e:
+        if resp.status_code == 404:
+            print("Previous changelog not found; assuming empty")
+            return "Entries: []"
+        raise
+
     return resp.text
 
 

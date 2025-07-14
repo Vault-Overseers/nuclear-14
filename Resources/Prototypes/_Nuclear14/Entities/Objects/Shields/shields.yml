@@ -1,0 +1,194 @@
+- type: entity
+  name: base shield
+  parent: BaseItem
+  id: N14BaseShield
+  description: Debug item, you shouldn't see it!
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _Nuclear14/Objects/Weapons/Melee/shield_light.rsi
+      state: icon
+    - type: Item
+      sprite: _Nuclear14/Objects/Weapons/Melee/shield_light.rsi
+      size: Ginormous
+    - type: Damageable
+      damageContainer: Shield
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                N14Scrap:
+                  min: 3
+                  max: 3
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.9
+        flatReductions:
+          Blunt: 1
+          Slash: 1
+          Piercing: 1
+          Heat: 1
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.85
+          Slash: 0.85
+          Piercing: 0.85
+          Heat: 0.85
+        flatReductions:
+          Blunt: 2
+          Slash: 2
+          Piercing: 2
+          Heat: 2
+    - type: Reflect
+      reflectProb: 0.1
+      spread: 150
+    - type: ClothingSpeedModifier
+      walkModifier: 0.975
+      sprintModifier: 0.975
+    - type: HeldSpeedModifier
+      mirrorClothingModifier: false
+      walkModifier: 0.95
+      sprintModifier: 0.95
+    - type: StaticPrice
+      price: 50
+
+- type: entity
+  name: light metal shield
+  parent: N14BaseShield
+  id: N14ShieldMetalLight
+  description: A sheet of metal with some bolts and welds here and there, it can protect you from some damage.
+  components:
+    - type: Construction
+      graph: N14LightShield
+      node: start
+
+
+- type: entity
+  name: heavy metal shield
+  parent: N14BaseShield
+  id: N14ShieldMetalHeavy
+  description: A large chunk of metal with screws and fine welds, it can protect you from beast and gunfire.
+  components:
+    - type: Sprite
+      sprite: _Nuclear14/Objects/Weapons/Melee/shield_heavy.rsi
+    - type: Item
+      sprite: _Nuclear14/Objects/Weapons/Melee/shield_heavy.rsi
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                N14Scrap:
+                  min: 5
+                  max: 5
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.85
+          Slash: 0.85
+          Piercing: 0.85
+          Heat: 0.85
+        flatReductions:
+          Blunt: 2
+          Slash: 2
+          Piercing: 2
+          Heat: 2
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.8
+          Slash: 0.8
+          Piercing: 0.8
+          Heat: 0.8
+        flatReductions:
+          Blunt: 3
+          Slash: 3
+          Piercing: 3
+          Heat: 3
+    - type: Reflect
+      reflectProb: 0.125
+      spread: 150
+    - type: ClothingSpeedModifier
+      walkModifier: 0.95
+      sprintModifier: 0.95
+    - type: HeldSpeedModifier
+      mirrorClothingModifier: false
+      walkModifier: 0.925
+      sprintModifier: 0.925
+    - type: Construction
+      graph: N14HeavyShield
+      node: start
+
+- type: entity
+  parent: BaseItem
+  id: N14InsectShield
+  name: insect shield
+  description: A shield made from various pieces of insects.
+  components:
+    - type: Sprite
+      sprite: _Nuclear14/Objects/Weapons/Melee/insectshield.rsi
+      state: icon
+    - type: Item
+      sprite: _Nuclear14/Objects/Weapons/Melee/insectshield.rsi
+      size: Large
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.9
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.8
+          Slash: 0.8
+          Piercing: 0.8
+          Heat: 0.8
+        flatReductions:
+          Blunt: 1
+          Slash: 1
+          Piercing: 1
+          Heat: 1
+    - type: Damageable
+      damageContainer: Shield
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 80
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 40 #This is probably enough damage before it breaks
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel:
+                  min: 2
+                  max: 2
+                SheetGlass:
+                  min: 2
+                  max: 2
+    - type: StaticPrice
+      price: 50
