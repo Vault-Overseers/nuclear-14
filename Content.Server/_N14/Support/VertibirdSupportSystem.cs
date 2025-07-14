@@ -10,6 +10,7 @@ using Content.Server.Light.Components;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using System;
+using Robust.Shared.Maths;
 
 
 namespace Content.Server._N14.Support
@@ -32,20 +33,16 @@ namespace Content.Server._N14.Support
         {
             base.Initialize();
             SubscribeLocalEvent<VertibirdSupportComponent, ComponentStartup>(OnStartup);
-            SubscribeLocalEvent<VertibirdSupportComponent, MapInitEvent>(OnMapInit);
         }
 
         private void OnStartup(EntityUid uid, VertibirdSupportComponent component, ComponentStartup args)
         {
             component.StartTime = TimeSpan.Zero;
             component.ShotsFired = 0;
+            if (component.LineAngle == Angle.Zero)
+                component.LineAngle = _random.NextAngle();
         }
 
-        private void OnMapInit(EntityUid uid, VertibirdSupportComponent component, ref MapInitEvent args)
-        {
-            if (component.Target.MapId == MapId.Nullspace)
-                component.Target = _transform.GetMapCoordinates(uid);
-        }
 
         public override void Update(float frameTime)
         {
@@ -103,7 +100,14 @@ namespace Content.Server._N14.Support
                     }
                 }
 
-                var offset = _random.NextVector2(-comp.Spread, comp.Spread);
+                var forward = comp.LineAngle.ToWorldVec();
+                var right = (comp.LineAngle + Angle.FromDegrees(90)).ToWorldVec();
+                forward = forward.Normalized();
+                right = right.Normalized();
+
+                var progress = comp.Shots <= 1 ? 0f : comp.LineLength * (comp.ShotsFired / (float) (comp.Shots - 1));
+                var lateral = _random.NextFloat(-comp.Spread, comp.Spread);
+                var offset = forward * progress + right * lateral;
                 var pos = comp.Target.Offset(offset);
 
                 _explosions.QueueExplosion(
@@ -127,9 +131,11 @@ namespace Content.Server._N14.Support
         public EntityUid ScheduleSupport(
             MapCoordinates target,
             TimeSpan delay,
-            int shots = 3,
+            int shots = 10,
             TimeSpan? interval = null,
-            float spread = 2f,
+            float spread = 4f,
+            float lineLength = 10f,
+            Angle? angle = null,
             string type = "Default",
             float intensity = 30f,
             float slope = 2f,
@@ -143,8 +149,10 @@ namespace Content.Server._N14.Support
             comp.Target = target;
             comp.Delay = delay;
             comp.Shots = shots;
-            comp.ShotInterval = interval ?? TimeSpan.FromSeconds(1);
+            comp.ShotInterval = interval ?? TimeSpan.FromSeconds(0.1);
             comp.Spread = spread;
+            comp.LineLength = lineLength;
+            comp.LineAngle = angle ?? _random.NextAngle();
             comp.ExplosionType = type;
             comp.Intensity = intensity;
             comp.Slope = slope;

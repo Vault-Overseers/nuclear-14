@@ -27,7 +27,6 @@ namespace Content.Server._N14.Support
         {
             base.Initialize();
             SubscribeLocalEvent<ArtilleryStrikeComponent, ComponentStartup>(OnStartup);
-            SubscribeLocalEvent<ArtilleryStrikeComponent, MapInitEvent>(OnMapInit);
         }
 
         private void OnStartup(EntityUid uid, ArtilleryStrikeComponent component, ComponentStartup args)
@@ -35,11 +34,6 @@ namespace Content.Server._N14.Support
             component.StartTime = TimeSpan.Zero;
         }
 
-        private void OnMapInit(EntityUid uid, ArtilleryStrikeComponent component, ref MapInitEvent args)
-        {
-            if (component.Target.MapId == MapId.Nullspace)
-                component.Target = _transform.GetMapCoordinates(uid);
-        }
 
         public override void Update(float frameTime)
         {

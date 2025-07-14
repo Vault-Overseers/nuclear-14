@@ -3,6 +3,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Map;
 using Robust.Shared.Audio;
 using System;
+using Robust.Shared.Maths;
 
 namespace Content.Shared._N14.Support
 {
@@ -22,13 +23,19 @@ namespace Content.Shared._N14.Support
         public TimeSpan Delay = TimeSpan.FromSeconds(10);
 
         [DataField, AutoNetworkedField]
-        public int Shots = 3;
+        public int Shots = 10;
 
         [DataField, AutoNetworkedField]
-        public TimeSpan ShotInterval = TimeSpan.FromSeconds(1);
+        public TimeSpan ShotInterval = TimeSpan.FromSeconds(0.1);
 
         [DataField, AutoNetworkedField]
-        public float Spread = 2f;
+        public float Spread = 4f;
+
+        [DataField, AutoNetworkedField]
+        public float LineLength = 10f;
+
+        [DataField, AutoNetworkedField]
+        public Angle LineAngle = Angle.Zero;
 
         [DataField, AutoNetworkedField]
         public string ExplosionType = "Default";
