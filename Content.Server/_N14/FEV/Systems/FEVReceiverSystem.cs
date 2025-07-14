@@ -16,11 +16,9 @@ using Robust.Shared.Timing;
 using Robust.Shared.Localization;
 using Content.Shared.Inventory;
 using Content.Server.Inventory;
-using Content.Server.Transforms;
 
 namespace Content.Server._N14.FEV.Systems;
 
-[RegisterSystem]
 public sealed partial class FEVReceiverSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -31,7 +29,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -81,7 +79,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     private void StartSlowTransform(EntityUid uid, FEVReceiverComponent comp)
     {
         var weights = _proto.Index<WeightedRandomEntityPrototype>(comp.EntityWeights);
-        var entity = SharedRandomExtensions.Pick(weights, _random);
+        var entity = weights.Pick(_random);
 
         var pending = EnsureComp<PendingFEVTransformComponent>(uid);
         pending.Species = entity;
@@ -94,7 +92,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     private void StartInstantTransform(EntityUid uid, FEVReceiverComponent comp)
     {
         var weights = _proto.Index<WeightedRandomEntityPrototype>(comp.EntityWeights);
-        var entity = SharedRandomExtensions.Pick(weights, _random);
+        var entity = weights.Pick(_random);
 
         var pending = EnsureComp<PendingFEVTransformComponent>(uid);
         pending.Species = entity;

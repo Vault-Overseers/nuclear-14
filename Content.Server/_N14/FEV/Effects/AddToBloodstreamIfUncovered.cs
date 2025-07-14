@@ -6,6 +6,9 @@ using Content.Shared.Inventory;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Tag;
 using Content.Shared.FixedPoint;
+using Content.Shared.Chemistry.Reagent;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
