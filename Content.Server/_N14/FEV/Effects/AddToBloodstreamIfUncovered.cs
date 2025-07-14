@@ -36,17 +36,17 @@ public sealed partial class AddToBloodstreamIfUncovered : EntityEffect
         var tag = entMan.System<TagSystem>();
         var solutionSys = entMan.System<SolutionContainerSystem>();
 
-        if (!solutionSys.TryGetSolution(args.TargetEntity, _solution, out _, out var solution))
+        if (!solutionSys.TryGetSolution(args.TargetEntity, _solution, out var solutionEntity, out var solution))
             return;
 
         bool covered = false;
         if (inv.TryGetSlotEntity(args.TargetEntity, "head", out var headUid))
         {
-            if (entMan.HasComponent<IdentityBlockerComponent>(headUid))
+            if (entMan.HasComponent<IdentityBlockerComponent>(headUid.Value))
                 covered = true;
-            else if (entMan.TryGetComponent(headUid, out IngestionBlockerComponent? ingest) && ingest.Enabled)
+            else if (entMan.TryGetComponent(headUid.Value, out IngestionBlockerComponent? ingest) && ingest.Enabled)
                 covered = true;
-            else if (tag.HasTag(headUid, "HidesHair"))
+            else if (tag.HasTag(headUid.Value, "HidesHair"))
                 covered = true;
         }
 
@@ -57,7 +57,7 @@ public sealed partial class AddToBloodstreamIfUncovered : EntityEffect
         if (args is EntityEffectReagentArgs rArgs)
             amount = rArgs.Quantity;
 
-        solutionSys.TryAddReagent(solution.Value, _reagent, amount, out var accepted);
+        solutionSys.TryAddReagent(solutionEntity.Value, _reagent, amount, out var accepted);
 
         if (args is EntityEffectReagentArgs removeArgs)
             removeArgs.Source?.RemoveReagent(_reagent, accepted);

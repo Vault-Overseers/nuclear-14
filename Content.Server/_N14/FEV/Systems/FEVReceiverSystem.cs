@@ -39,7 +39,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
 
     private void OnMetabolize(EntityUid uid, FEVReceiverComponent comp, ref TryMetabolizeReagent args)
     {
-        if (args.Prototype.ID != "FEV")
+        if (args.Reagent.Prototype != "FEV")
             return;
 
         comp.Accumulated += args.Quantity;
