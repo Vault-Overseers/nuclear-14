@@ -1,4 +1,3 @@
-+52-3
 using Content.Shared._N14.Support;
 using Content.Server.Explosion.EntitySystems;
 using Robust.Shared.Audio;
@@ -12,133 +11,151 @@ using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using System;
 
+
 namespace Content.Server._N14.Support
 {
 
-/// <summary>
-/// Manages scheduled vertibird fire support.
-/// </summary>
-public sealed class VertibirdSupportSystem : SharedVertibirdSupportSystem
-{
-    [Dependency] private readonly ExplosionSystem _explosions = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly SharedRoofSystem _roof = default!;
-
-    public override void Initialize()
+    /// <summary>
+    /// Manages scheduled vertibird fire support.
+    /// </summary>
+    public sealed class VertibirdSupportSystem : SharedVertibirdSupportSystem
     {
-        base.Initialize();
-        SubscribeLocalEvent<VertibirdSupportComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<VertibirdSupportComponent, MapInitEvent>(OnMapInit);
-    }
+        [Dependency] private readonly ExplosionSystem _explosions = default!;
+        [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly IMapManager _mapManager = default!;
+        [Dependency] private readonly SharedRoofSystem _roof = default!;
 
-    private void OnStartup(EntityUid uid, VertibirdSupportComponent component, ComponentStartup args)
-    {
-        component.StartTime = TimeSpan.Zero;
-        component.ShotsFired = 0;
-    }
-
-    private void OnMapInit(EntityUid uid, VertibirdSupportComponent component, ref MapInitEvent args)
-    {
-        if (component.Target.MapId == MapId.Nullspace)
-            component.Target = _transform.GetMapCoordinates(uid);
-    }
-
-    public override void Update(float frameTime)
-    {
-        var now = _timing.CurTime;
-        var query = EntityQueryEnumerator<VertibirdSupportComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        public override void Initialize()
         {
-            if (TryComp<ExpendableLightComponent>(uid, out var light))
-            {
-                if (!light.Activated)
-                    continue;
+            base.Initialize();
+            SubscribeLocalEvent<VertibirdSupportComponent, ComponentStartup>(OnStartup);
+            SubscribeLocalEvent<VertibirdSupportComponent, MapInitEvent>(OnMapInit);
+        }
 
-                if (comp.StartTime == TimeSpan.Zero)
-                    comp.StartTime = now;
-            }
-            else if (comp.StartTime == TimeSpan.Zero)
-            {
-                comp.StartTime = now;
-            }
+        private void OnStartup(EntityUid uid, VertibirdSupportComponent component, ComponentStartup args)
+        {
+            component.StartTime = TimeSpan.Zero;
+            component.ShotsFired = 0;
+        }
 
-            if (comp.ShotsFired == 0 && now >= comp.StartTime + comp.Delay)
+        private void OnMapInit(EntityUid uid, VertibirdSupportComponent component, ref MapInitEvent args)
+        {
+            if (component.Target.MapId == MapId.Nullspace)
+                component.Target = _transform.GetMapCoordinates(uid);
+        }
+
+        public override void Update(float frameTime)
+        {
+            var now = _timing.CurTime;
+            var query = EntityQueryEnumerator<VertibirdSupportComponent>();
+            while (query.MoveNext(out var uid, out var comp))
             {
-                if (comp.ApproachSound != null)
+                if (TryComp<ExpendableLightComponent>(uid, out var light))
                 {
-                    var coords = _transform.ToCoordinates(comp.Target);
-                    _audio.PlayPvs(comp.ApproachSound, coords);
-                }
-            }
-
-            var nextTime = comp.StartTime + comp.Delay + comp.ShotsFired * comp.ShotInterval;
-            if (now < nextTime)
-                continue;
-
-            if (comp.ShotsFired >= comp.Shots)
-            {
-                QueueDel(uid);
-                continue;
-            }
-
-            if (comp.Target.MapId == MapId.Nullspace)
-                comp.Target = _transform.GetMapCoordinates(uid);
-
-            if (_mapManager.TryFindGridAt(comp.Target, out var gridUid, out var grid))
-            {
-                var tile = grid.WorldToTile(comp.Target.Position);
-                RoofComponent? roof = null;
-                if (Resolve(gridUid, ref roof, false))
-                {
-                    var gridEnt = (gridUid, grid, roof);
-                    if (_roof.IsRooved(gridEnt, tile))
-                    {
-                        QueueDel(uid);
+                    if (!light.Activated)
                         continue;
+
+                    if (comp.StartTime == TimeSpan.Zero)
+                        comp.StartTime = now;
+                }
+                else if (comp.StartTime == TimeSpan.Zero)
+                {
+                    comp.StartTime = now;
+                }
+
+                if (comp.ShotsFired == 0 && now >= comp.StartTime + comp.Delay)
+                {
+                    if (comp.ApproachSound != null)
+                    {
+                        var coords = _transform.ToCoordinates(comp.Target);
+                        _audio.PlayPvs(comp.ApproachSound, coords);
                     }
                 }
+
+                var nextTime = comp.StartTime + comp.Delay + comp.ShotsFired * comp.ShotInterval;
+                if (now < nextTime)
+                    continue;
+
+                if (comp.ShotsFired >= comp.Shots)
+                {
+                    QueueDel(uid);
+                    continue;
+                }
+
+                if (comp.Target.MapId == MapId.Nullspace)
+                    comp.Target = _transform.GetMapCoordinates(uid);
+
+                if (_mapManager.TryFindGridAt(comp.Target, out var gridUid, out var grid))
+                {
+                    var tile = grid.WorldToTile(comp.Target.Position);
+                    RoofComponent? roof = null;
+                    if (Resolve(gridUid, ref roof, false))
+                    {
+                        var gridEnt = (gridUid, grid, roof);
+                        if (_roof.IsRooved(gridEnt, tile))
+                        {
+                            QueueDel(uid);
+                            continue;
+                        }
+                    }
+                }
+
+                var offset = _random.NextVector2(-comp.Spread, comp.Spread);
+                var pos = comp.Target.Offset(offset);
+
+                _explosions.QueueExplosion(
+                    pos,
+                    comp.ExplosionType,
+                    comp.Intensity,
+                    comp.Slope,
+                    comp.MaxIntensity,
+                    canCreateVacuum: false);
+                if (comp.FireSound != null)
+                {
+                    var fireCoords = _transform.ToCoordinates(pos);
+                    _audio.PlayPvs(comp.FireSound, fireCoords);
+                }
+
+                comp.ShotsFired++;
+                Dirty(uid, comp);
             }
+        }
 
-            var offset = _random.NextVector2(-comp.Spread, comp.Spread);
-            var pos = comp.Target.Offset(offset);
-
-            _explosions.QueueExplosion(pos, comp.ExplosionType, comp.Intensity, comp.Slope, comp.MaxIntensity, canCreateVacuum: false);
-            if (comp.FireSound != null)
-            {
-                var fireCoords = _transform.ToCoordinates(pos);
-                _audio.PlayPvs(comp.FireSound, fireCoords);
-            }
-
-            comp.ShotsFired++;
-            Dirty(uid, comp);
+        public EntityUid ScheduleSupport(
+            MapCoordinates target,
+            TimeSpan delay,
+            int shots = 3,
+            TimeSpan? interval = null,
+            float spread = 2f,
+            string type = "Default",
+            float intensity = 30f,
+            float slope = 2f,
+            float maxIntensity = 5f,
+            SoundSpecifier? approach = null,
+            SoundSpecifier? fire = null
+        )
+        {
+            var ent = Spawn(null, target);
+            var comp = EnsureComp<VertibirdSupportComponent>(ent);
+            comp.Target = target;
+            comp.Delay = delay;
+            comp.Shots = shots;
+            comp.ShotInterval = interval ?? TimeSpan.FromSeconds(1);
+            comp.Spread = spread;
+            comp.ExplosionType = type;
+            comp.Intensity = intensity;
+            comp.Slope = slope;
+            comp.MaxIntensity = maxIntensity;
+            comp.ApproachSound = approach;
+            comp.FireSound = fire;
+            // StartTime will be initialized when the flare activates.
+            comp.StartTime = TimeSpan.Zero;
+            comp.ShotsFired = 0;
+            Dirty(ent, comp);
+            return ent;
         }
     }
-
-    public EntityUid ScheduleSupport(MapCoordinates target, TimeSpan delay, int shots = 3, TimeSpan? interval = null, float spread = 2f, string type = "Default", float intensity = 30f, float slope = 2f, float maxIntensity = 5f, SoundSpecifier? approach = null, SoundSpecifier? fire = null)
-    {
-        var ent = Spawn(null, target);
-        var comp = EnsureComp<VertibirdSupportComponent>(ent);
-        comp.Target = target;
-        comp.Delay = delay;
-        comp.Shots = shots;
-        comp.ShotInterval = interval ?? TimeSpan.FromSeconds(1);
-        comp.Spread = spread;
-        comp.ExplosionType = type;
-        comp.Intensity = intensity;
-        comp.Slope = slope;
-        comp.MaxIntensity = maxIntensity;
-        comp.ApproachSound = approach;
-        comp.FireSound = fire;
-        // StartTime will be initialized when the flare activates.
-        comp.StartTime = TimeSpan.Zero;
-        comp.ShotsFired = 0;
-        Dirty(ent, comp);
-        return ent;
-    }
-}
-
 }
