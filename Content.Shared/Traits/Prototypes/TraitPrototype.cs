@@ -1,6 +1,7 @@
 using Content.Shared.Customization.Systems;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.Manager;
+using ISerializationManager = Robust.Shared.Serialization.Manager.ISerializationManager;
+using ISerializationContext = Robust.Shared.Serialization.Manager.ISerializationContext;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Traits;

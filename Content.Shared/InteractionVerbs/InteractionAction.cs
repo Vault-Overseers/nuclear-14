@@ -2,7 +2,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.Manager;
+using ISerializationManager = Robust.Shared.Serialization.Manager.ISerializationManager;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.InteractionVerbs;

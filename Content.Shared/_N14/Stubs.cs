@@ -133,22 +133,3 @@ namespace Content.Shared._N14
         public EntityUid UserUid { get; set; }
     }
 }
-
-namespace Robust.Shared.GameStates
-{
-    public interface IComponentDelta { }
-}
-
-namespace Robust.Shared.Serialization
-{
-    public interface ISerializationManager { }
-    public interface ISerializationContext { }
-    public sealed class SerializationHookContext { }
-
-    public interface ISerializationGenerated<T>
-    {
-        void Copy(ref T value, ISerializationManager manager, SerializationHookContext context, ISerializationContext? copyContext);
-        void InternalCopy(ref T value, ISerializationManager manager, SerializationHookContext context, ISerializationContext? copyContext);
-        T Instantiate();
-    }
-}

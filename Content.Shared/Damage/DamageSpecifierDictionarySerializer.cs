@@ -2,7 +2,8 @@
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.Manager;
+using ISerializationManager = Robust.Shared.Serialization.Manager.ISerializationManager;
+using ISerializationContext = Robust.Shared.Serialization.Manager.ISerializationContext;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Validation;
 using Robust.Shared.Serialization.Markdown.Value;

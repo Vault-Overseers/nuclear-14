@@ -1,20 +1,21 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using GameStateDelta = Robust.Shared.GameStates.IComponentDelta;
 
 namespace Content.Shared.Weapons.Melee
 {
-    public sealed partial class MeleeWeaponComponent : ISerializationGenerated<IComponentDelta>
+    public sealed partial class MeleeWeaponComponent : ISerializationGenerated<GameStateDelta>
     {
-        IComponentDelta ISerializationGenerated<IComponentDelta>.Instantiate()
+        GameStateDelta ISerializationGenerated<GameStateDelta>.Instantiate()
         {
             return default!;
         }
 
-        void ISerializationGenerated<IComponentDelta>.Copy(ref IComponentDelta value, ISerializationManager manager, SerializationHookContext context, ISerializationContext? copyContext)
+        void ISerializationGenerated<GameStateDelta>.Copy(ref GameStateDelta value, ISerializationManager manager, SerializationHookContext context, ISerializationContext? copyContext)
         {
         }
 
-        void ISerializationGenerated<IComponentDelta>.InternalCopy(ref IComponentDelta value, ISerializationManager manager, SerializationHookContext context, ISerializationContext? copyContext)
+        void ISerializationGenerated<GameStateDelta>.InternalCopy(ref GameStateDelta value, ISerializationManager manager, SerializationHookContext context, ISerializationContext? copyContext)
         {
         }
     }
