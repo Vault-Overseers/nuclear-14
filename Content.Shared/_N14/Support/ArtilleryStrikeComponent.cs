@@ -14,7 +14,10 @@ namespace Content.Shared._N14.Support
     [AutoGenerateComponentPause]
     public sealed partial class ArtilleryStrikeComponent : Component
     {
-        [AutoNetworkedField]
+        /// <summary>
+        /// Target location for the strike. Filled in once the flare lands.
+        /// Not serialized so clients don't fail to spawn the prototype.
+        /// </summary>
         public MapCoordinates Target = MapCoordinates.Nullspace;
 
         [DataField, AutoNetworkedField]

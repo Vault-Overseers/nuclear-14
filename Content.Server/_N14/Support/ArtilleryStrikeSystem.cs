@@ -98,7 +98,7 @@ namespace Content.Server._N14.Support
         {
             var ent = Spawn(null, target);
             var comp = EnsureComp<ArtilleryStrikeComponent>(ent);
-            comp.Target = target;
+            comp.Target = MapCoordinates.Nullspace;
             comp.Delay = delay;
             comp.ExplosionType = type;
             comp.Intensity = intensity;

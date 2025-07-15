@@ -39,6 +39,7 @@ namespace Content.Server._N14.Support
         {
             component.StartTime = TimeSpan.Zero;
             component.ShotsFired = 0;
+            component.ApproachPlayed = false;
             if (component.LineAngle == Angle.Zero)
                 component.LineAngle = _random.NextAngle();
         }
@@ -63,16 +64,36 @@ namespace Content.Server._N14.Support
                     comp.StartTime = now;
                 }
 
-                if (comp.ShotsFired == 0 && now >= comp.StartTime + comp.Delay)
+                if (!comp.ApproachPlayed && now >= comp.StartTime + comp.ApproachDelay)
                 {
+                    if (comp.Target.MapId == MapId.Nullspace)
+                        comp.Target = _transform.GetMapCoordinates(uid);
+
+                    if (_mapManager.TryFindGridAt(comp.Target, out var gridUid, out var grid))
+                    {
+                        var tile = grid.WorldToTile(comp.Target.Position);
+                        RoofComponent? roof = null;
+                        if (Resolve(gridUid, ref roof, false))
+                        {
+                            var gridEnt = (gridUid, grid, roof);
+                            if (_roof.IsRooved(gridEnt, tile))
+                            {
+                                QueueDel(uid);
+                                continue;
+                            }
+                        }
+                    }
+
                     if (comp.ApproachSound != null)
                     {
                         var coords = _transform.ToCoordinates(comp.Target);
                         _audio.PlayPvs(comp.ApproachSound, coords);
                     }
+
+                    comp.ApproachPlayed = true;
                 }
 
-                var nextTime = comp.StartTime + comp.Delay + comp.ShotsFired * comp.ShotInterval;
+                var nextTime = comp.StartTime + comp.ApproachDelay + comp.Delay + comp.ShotsFired * comp.ShotInterval;
                 if (now < nextTime)
                     continue;
 
@@ -82,16 +103,13 @@ namespace Content.Server._N14.Support
                     continue;
                 }
 
-                if (comp.Target.MapId == MapId.Nullspace)
-                    comp.Target = _transform.GetMapCoordinates(uid);
-
-                if (_mapManager.TryFindGridAt(comp.Target, out var gridUid, out var grid))
+                if (_mapManager.TryFindGridAt(comp.Target, out var gridUid1, out var grid1))
                 {
-                    var tile = grid.WorldToTile(comp.Target.Position);
-                    RoofComponent? roof = null;
-                    if (Resolve(gridUid, ref roof, false))
+                    var tile = grid1.WorldToTile(comp.Target.Position);
+                    RoofComponent? roof2 = null;
+                    if (Resolve(gridUid1, ref roof2, false))
                     {
-                        var gridEnt = (gridUid, grid, roof);
+                        var gridEnt = (gridUid1, grid1, roof2);
                         if (_roof.IsRooved(gridEnt, tile))
                         {
                             QueueDel(uid);
@@ -130,6 +148,7 @@ namespace Content.Server._N14.Support
 
         public EntityUid ScheduleSupport(
             MapCoordinates target,
+            TimeSpan approachDelay,
             TimeSpan delay,
             int shots = 10,
             TimeSpan? interval = null,
@@ -146,7 +165,8 @@ namespace Content.Server._N14.Support
         {
             var ent = Spawn(null, target);
             var comp = EnsureComp<VertibirdSupportComponent>(ent);
-            comp.Target = target;
+            comp.Target = MapCoordinates.Nullspace;
+            comp.ApproachDelay = approachDelay;
             comp.Delay = delay;
             comp.Shots = shots;
             comp.ShotInterval = interval ?? TimeSpan.FromSeconds(0.1);
