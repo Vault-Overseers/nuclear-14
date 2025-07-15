@@ -1,0 +1,25 @@
+# Flares for fire support designation
+- type: entity
+  parent: N14Flare
+  id: N14ArtilleryFlare
+  name: artillery flare
+  description: Marks a target for artillery fire.
+  components:
+  - type: ArtilleryStrike
+    delay: 10
+
+- type: entity
+  parent: N14Flare
+  id: N14VertibirdFlare
+  name: vertibird flare
+  description: Calls in vertibird support on this location.
+  components:
+  - type: VertibirdSupport
+    delay: 10
+    shots: 10
+    shotInterval: 0.1
+    spread: 4
+    lineLength: 10
+    intensity: 5
+    approachSound: /Audio/_Nuclear14/Effects/airplane_fly_by.ogg
+    fireSound: /Audio/_Nuclear14/Effects/a10_warthog_brrrt.ogg

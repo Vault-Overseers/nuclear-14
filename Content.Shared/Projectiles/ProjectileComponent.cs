@@ -77,6 +77,6 @@ public sealed partial class ProjectileComponent : Component
     /// <summary>
     ///     Whether this projectile has already damaged an entity.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool DamagedEntity;
 }

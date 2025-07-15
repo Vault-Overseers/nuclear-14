@@ -240,7 +240,7 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         if (configuration.Inventory == PolymorphInventoryChange.Transfer)
         {
-            _inventory.TransferEntityInventories(uid, child);
+            _inventory.TransferEntityInventories(uid, child, configuration.ForceEquip);
             foreach (var hand in _hands.EnumerateHeld(uid))
             {
                 _hands.TryDrop(uid, hand, checkActionBlocker: false);
@@ -316,7 +316,7 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         if (component.Configuration.Inventory == PolymorphInventoryChange.Transfer)
         {
-            _inventory.TransferEntityInventories(uid, parent);
+            _inventory.TransferEntityInventories(uid, parent, component.Configuration.ForceEquip);
             foreach (var held in _hands.EnumerateHeld(uid))
             {
                 _hands.TryDrop(uid, held);
