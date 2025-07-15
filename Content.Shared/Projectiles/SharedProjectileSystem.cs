@@ -15,6 +15,8 @@ using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Camera;
+using Content.Shared.Database;
+using Content.Shared._RMC14.Weapons.Ranged.Prediction;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
@@ -245,12 +247,12 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         var otherName = ToPrettyString(target);
         var direction = ourBody.LinearVelocity.Normalized();
         var modifiedDamage = _netManager.IsServer
-            ? _damageableSystem.TryChangeDamage(target, ev.Damage, component.IgnoreResistances, origin: component.Shooter, tool: uid)
+            ? _damageableSystem.TryChangeDamage(target, ev.Damage, component.IgnoreResistances, origin: component.Shooter)
             : new DamageSpecifier(ev.Damage);
         var deleted = Deleted(target);
 
         var filter = Filter.Pvs(coordinates, entityMan: EntityManager);
-        if (_guns.GunPrediction && TryComp(projectile, out PredictedProjectileServerComponent? serverProjectile))
+        if (_guns.GunPrediction && TryComp(projectile, out PredictedProjectileServerComponent serverProjectile))
             filter = filter.RemovePlayer(serverProjectile.Shooter);
 
         if (modifiedDamage is not null && (EntityManager.EntityExists(component.Shooter) || EntityManager.EntityExists(component.Weapon)))
@@ -364,7 +366,10 @@ public record struct ProjectileReflectAttemptEvent(EntityUid ProjUid, Projectile
 /// Raised when a projectile hits an entity
 /// </summary>
 [ByRefEvent]
-public record struct ProjectileHitEvent(DamageSpecifier Damage, EntityUid Target, EntityUid? Shooter = null);
+public record struct ProjectileHitEvent(DamageSpecifier Damage, EntityUid Target, EntityUid? Shooter = null)
+{
+    public bool Handled;
+}
 
 /// <summary>
 /// Raised after a projectile has dealt it's damage.

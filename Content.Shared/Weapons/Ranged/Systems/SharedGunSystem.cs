@@ -15,6 +15,9 @@ using Content.Shared.Item;
 using Content.Shared.Mech.Components; // Goobstation
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared._RMC14.CCVar;
+using Content.Shared._RMC14.Weapons.Ranged.Prediction;
+using Robust.Shared.Configuration;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
@@ -70,6 +73,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] private   readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
 
     private const float InteractNextFire = 0.3f;
     private const double SafetyNextFire = 0.5;
@@ -77,6 +81,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     protected const string AmmoExamineColor = "yellow";
     protected const string FireRateExamineColor = "yellow";
     public const string ModeExamineColor = "cyan";
+    public bool GunPrediction { get; private set; }
 
     public override void Initialize()
     {
@@ -102,6 +107,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         SubscribeLocalEvent<GunComponent, CycleModeEvent>(OnCycleMode);
         SubscribeLocalEvent<GunComponent, HandSelectedEvent>(OnGunSelected);
         SubscribeLocalEvent<GunComponent, MapInitEvent>(OnMapInit);
+
+        Subs.CVar(_config, RMCCVars.RMCGunPrediction, v => GunPrediction = v, true);
     }
 
     private void OnMapInit(Entity<GunComponent> gun, ref MapInitEvent args)
@@ -482,6 +489,8 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle() + projectile.Angle);
     }
+
+    public virtual void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound, Filter? filter = null, EntityUid? projectile = null) {}
 
     protected abstract void Popup(string message, EntityUid? uid, EntityUid? user);
 
