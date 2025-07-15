@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Content.Client.Projectiles;
 using Content.Shared._RMC14.Weapons.Ranged.Prediction;
-using Content.Shared._RMC14.Xenonids;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
