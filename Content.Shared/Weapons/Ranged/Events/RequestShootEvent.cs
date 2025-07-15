@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
@@ -12,4 +13,5 @@ public sealed class RequestShootEvent : EntityEventArgs
     public NetEntity Gun;
     public NetCoordinates Coordinates;
     public NetEntity? Target;
+    public List<int>? Shot;
 }

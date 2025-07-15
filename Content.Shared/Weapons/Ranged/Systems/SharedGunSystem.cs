@@ -171,6 +171,30 @@ public abstract partial class SharedGunSystem : EntitySystem
         StopShooting(gunUid, gun);
     }
 
+    /// <summary>
+    /// Handles shooting requests where the caller has already validated the user session.
+    /// </summary>
+    public List<EntityUid>? ShootRequested(NetEntity netGun, NetCoordinates coordinates, NetEntity? target, List<int>? projectiles, ICommonSession session)
+    {
+        var user = session.AttachedEntity;
+        if (user == null || !_combatMode.IsInCombatMode(user))
+            return null;
+
+        if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
+            user = mechPilot.Mech;
+
+        if (!TryGetGun(user.Value, out var gunEnt, out var gun) || HasComp<ItemComponent>(user))
+            return null;
+
+        if (gunEnt != GetEntity(netGun))
+            return null;
+
+        gun.ShootCoordinates = GetCoordinates(coordinates);
+        gun.Target = GetEntity(target);
+        AttemptShoot(user.Value, gunEnt, gun);
+        return null;
+    }
+
     public bool CanShoot(GunComponent component)
     {
         if (component.NextFire > Timing.CurTime)
