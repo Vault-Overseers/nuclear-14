@@ -15,6 +15,9 @@ using Content.Shared.Item;
 using Content.Shared.Mech.Components; // Goobstation
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared._RMC14.CCVar;
+using Content.Shared._RMC14.Weapons.Ranged.Prediction;
+using Robust.Shared.Configuration;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
@@ -29,6 +32,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
@@ -69,6 +73,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] private   readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
 
     private const float InteractNextFire = 0.3f;
     private const double SafetyNextFire = 0.5;
@@ -76,6 +81,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     protected const string AmmoExamineColor = "yellow";
     protected const string FireRateExamineColor = "yellow";
     public const string ModeExamineColor = "cyan";
+    public bool GunPrediction { get; private set; }
 
     public override void Initialize()
     {
@@ -101,6 +107,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         SubscribeLocalEvent<GunComponent, CycleModeEvent>(OnCycleMode);
         SubscribeLocalEvent<GunComponent, HandSelectedEvent>(OnGunSelected);
         SubscribeLocalEvent<GunComponent, MapInitEvent>(OnMapInit);
+
+        Subs.CVar(_config, RMCCVars.RMCGunPrediction, v => GunPrediction = v, true);
     }
 
     private void OnMapInit(Entity<GunComponent> gun, ref MapInitEvent args)
@@ -169,6 +177,30 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
 
         StopShooting(gunUid, gun);
+    }
+
+    /// <summary>
+    /// Handles shooting requests where the caller has already validated the user session.
+    /// </summary>
+    public List<EntityUid>? ShootRequested(NetEntity netGun, NetCoordinates coordinates, NetEntity? target, List<int>? projectiles, ICommonSession session)
+    {
+        var user = session.AttachedEntity;
+        if (user == null || !_combatMode.IsInCombatMode(user))
+            return null;
+
+        if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
+            user = mechPilot.Mech;
+
+        if (!TryGetGun(user.Value, out var gunEnt, out var gun) || HasComp<ItemComponent>(user))
+            return null;
+
+        if (gunEnt != GetEntity(netGun))
+            return null;
+
+        gun.ShootCoordinates = GetCoordinates(coordinates);
+        gun.Target = GetEntity(target);
+        AttemptShoot(user.Value, gunEnt, gun);
+        return null;
     }
 
     public bool CanShoot(GunComponent component)
@@ -457,6 +489,8 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle() + projectile.Angle);
     }
+
+    public virtual void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound, Filter? filter = null, EntityUid? projectile = null) {}
 
     protected abstract void Popup(string message, EntityUid? uid, EntityUid? user);
 

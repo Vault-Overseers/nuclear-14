@@ -69,23 +69,4 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<string> DiscordAuthApiKey =
         CVarDef.Create("discord.auth_api_key", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
-
-    /// <summary>
-    ///     The token used to authenticate with Discord.
-    ///     Requires DiscordGuildId and DiscordPrefix to also be set.
-    /// </summary>
-    public static readonly CVarDef<string> DiscordToken =
-        CVarDef.Create("discord.token", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
-
-    /// <summary>
-    ///     The Discord guild ID to use for integration.
-    /// </summary>
-    public static readonly CVarDef<string> DiscordGuildId =
-        CVarDef.Create("discord.guild_id", string.Empty, CVar.SERVERONLY);
-
-    /// <summary>
-    ///     Prefix used for Discord commands.
-    /// </summary>
-    public static readonly CVarDef<string> DiscordPrefix =
-        CVarDef.Create("discord.prefix", "!", CVar.SERVERONLY);
 }
