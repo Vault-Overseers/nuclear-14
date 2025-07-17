@@ -17,21 +17,21 @@ public abstract partial class CP14WorkbenchCraftRequirement
     /// Here a check is made that the recipe as a whole can be fulfilled at the current moment. Do not add anything that affects gameplay here, and only perform checks here.
     /// </summary>
     /// <returns></returns>
-    public abstract bool CheckRequirement(EntityManager entManager,
+    public abstract bool CheckRequirement(IEntityManager entManager,
         IPrototypeManager protoManager,
         HashSet<EntityUid> placedEntities);
 
     /// <summary>
     /// An event that is triggered after crafting. This is the place to put important things like removing items, spending stacks or other things.
     /// </summary>
-    public virtual void PostCraft(EntityManager entManager,
+    public virtual void PostCraft(IEntityManager entManager,
         IPrototypeManager protoManager,
         HashSet<EntityUid> placedEntities)
     {
 
     }
 
-    public virtual double GetPrice(EntityManager entManager,
+    public virtual double GetPrice(IEntityManager entManager,
         IPrototypeManager protoManager)
     {
         return 0;
