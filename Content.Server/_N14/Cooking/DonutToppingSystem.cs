@@ -3,6 +3,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Containers;
 
 namespace Content.Server._N14.Cooking;
@@ -29,8 +30,9 @@ public sealed class DonutToppingSystem : EntitySystem
             !_solutions.TryGetInjectableSolution(uid, out var targetSoln, out var target))
             return;
 
-        foreach (var (reagent, result) in comp.Toppings)
+        foreach (var (reagentId, result) in comp.Toppings)
         {
+            var reagent = new ReagentId(reagentId, null);
             var qty = donor.GetReagentQuantity(reagent);
             if (qty < comp.Amount)
                 continue;

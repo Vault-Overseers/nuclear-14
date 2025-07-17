@@ -343,10 +343,6 @@ reagent-desc-dung = Animal dung. Ripe for turning into compost.
 
 reagent-name-coffee-grounds = coffee grounds
 reagent-desc-coffee-grounds = Finely ground beans with a rich aroma.
-reagent-name-cold-brew-coffee = cold brew coffee
-reagent-desc-cold-brew-coffee = Smooth coffee brewed without heat.
-reagent-name-wasteland-coffee = wasteland coffee
-reagent-desc-wasteland-coffee = A harsh brew made with coyote tobacco and honey mesquite.
 
 
 # Other
