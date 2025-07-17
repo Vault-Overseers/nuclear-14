@@ -35,10 +35,6 @@ public sealed partial class FEVReceiverComponent : Component
     /// </summary>
     [DataField("vomitThreshold")] public FixedPoint2 VomitThreshold = FixedPoint2.New(10);
 
-    /// <summary>
-    /// Accumulated units required before the virus kills the victim with corrosive damage.
-    /// </summary>
-    [DataField("acidThreshold")] public FixedPoint2 AcidThreshold = FixedPoint2.New(25);
 
     /// <summary>
     /// Messages shown to the player during a slow transformation.
