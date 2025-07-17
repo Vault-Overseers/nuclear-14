@@ -35,9 +35,8 @@ public sealed class DonutBatterSystem : EntitySystem
 
     private void OnDeepFried(EntityUid uid, DonutBatterComponent component, BeingDeepFriedEvent args)
     {
-        args.Handled = true;
         var cooked = EntityManager.SpawnEntity(component.CookedPrototype, _transform.GetMapCoordinates(uid));
-        if (TryComp(args.DeepFryer, out DeepFryerComponent fryer))
+        if (TryComp(args.DeepFryer, out DeepFryerComponent? fryer))
             _container.Insert(cooked, fryer.Storage);
         EntityManager.DeleteEntity(uid);
     }
