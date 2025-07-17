@@ -341,6 +341,13 @@ reagent-desc-fertilizer = Ground fertilizer. Perfect for your plants!
 reagent-name-dung = dung
 reagent-desc-dung = Animal dung. Ripe for turning into compost.
 
+reagent-name-coffee-grounds = coffee grounds
+reagent-desc-coffee-grounds = Finely ground beans with a rich aroma.
+reagent-name-cold-brew-coffee = cold brew coffee
+reagent-desc-cold-brew-coffee = Smooth coffee brewed without heat.
+reagent-name-wasteland-coffee = wasteland coffee
+reagent-desc-wasteland-coffee = A harsh brew made with coyote tobacco and honey mesquite.
+
 
 # Other
 reagent-name-scorpiontail = scorpion tail
@@ -348,3 +355,6 @@ reagent-desc-scorpiontail = scorpion tail. Stingy.
 
 compost-mixing-success = compost mixed
 mixing-verb-composting = mix compost
+reagent-name-donut-mix = donut mix
+reagent-desc-donut-mix = A sweet dry mix for making donuts.
+n14-donut-batter-reshape = You reshape the dough into another shape.
