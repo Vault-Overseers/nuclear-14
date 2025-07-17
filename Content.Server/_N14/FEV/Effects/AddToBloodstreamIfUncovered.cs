@@ -57,8 +57,6 @@ public sealed partial class AddToBloodstreamIfUncovered : EntityEffect
             return;
 
         var amount = _amount;
-        if (args is EntityEffectReagentArgs rArgs)
-            amount = rArgs.Quantity;
 
         solutionSys.TryAddReagent(solutionEntity.Value, _reagent, amount, out var accepted);
 
