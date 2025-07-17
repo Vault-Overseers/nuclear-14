@@ -4,6 +4,7 @@ using Content.Shared._N14.Cooking;
 using Content.Server.Popups;
 using Content.Shared.Interaction.Events;
 using Content.Server.GameTicking.Rules;
+using Robust.Shared.Containers;
 
 namespace Content.Server._N14.Cooking;
 
@@ -27,7 +28,7 @@ public sealed class DonutBatterSystem : EntitySystem
             return;
 
         args.Handled = true;
-        var next = EntityManager.SpawnEntity(component.NextShape, _transform.GetCoordinates(uid));
+        var next = EntityManager.SpawnEntity(component.NextShape, _transform.GetMapCoordinates(uid));
         _popup.PopupEntity(Loc.GetString("n14-donut-batter-reshape"), uid, args.User);
         EntityManager.DeleteEntity(uid);
     }
@@ -35,7 +36,7 @@ public sealed class DonutBatterSystem : EntitySystem
     private void OnDeepFried(EntityUid uid, DonutBatterComponent component, BeingDeepFriedEvent args)
     {
         args.Handled = true;
-        var cooked = EntityManager.SpawnEntity(component.CookedPrototype, _transform.GetCoordinates(uid));
+        var cooked = EntityManager.SpawnEntity(component.CookedPrototype, _transform.GetMapCoordinates(uid));
         if (TryComp(args.DeepFryer, out DeepFryerComponent fryer))
             _container.Insert(cooked, fryer.Storage);
         EntityManager.DeleteEntity(uid);

@@ -1,7 +1,8 @@
 using Content.Shared._N14.Cooking;
-using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Containers;
 
 namespace Content.Server._N14.Cooking;
@@ -34,8 +35,8 @@ public sealed class DonutToppingSystem : EntitySystem
             if (qty < comp.Amount)
                 continue;
 
-            _transfer.TryTransferSolution(args.Used, uid, reagent, comp.Amount, donorSoln, targetSoln);
-            var newDonut = EntityManager.SpawnEntity(result, _transform.GetCoordinates(uid));
+            _transfer.Transfer(args.User, args.Used, donorSoln.Value, uid, targetSoln.Value, comp.Amount);
+            var newDonut = EntityManager.SpawnEntity(result, _transform.GetMapCoordinates(uid));
             if (_container.TryGetContainingContainer(uid, out var container))
                 _container.Insert(newDonut, container);
             EntityManager.DeleteEntity(uid);
