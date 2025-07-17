@@ -68,10 +68,9 @@ public sealed partial class FEVReceiverSystem : EntitySystem
 
     private void OnSolutionChanged(EntityUid uid, FEVReceiverComponent comp, ref SolutionContainerChangedEvent args)
     {
-        if (args.SolutionId != "bloodstream")
-            return;
-
-        var quantity = args.Solution.GetTotalPrototypeQuantity("FEV");
+        // Recalculate total FEV across all of the mob's solutions so newly added
+        // reagent immediately counts towards transformation thresholds.
+        var quantity = _solutions.GetTotalPrototypeQuantity(uid, "FEV");
         comp.Accumulated = quantity;
 
         if (!comp.Vomited && comp.Accumulated >= comp.VomitThreshold)
@@ -96,7 +95,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     private void StartSlowTransform(EntityUid uid, FEVReceiverComponent comp)
     {
         var weights = _proto.Index<WeightedRandomEntityPrototype>(comp.EntityWeights);
-        var entity = _random.Pick(weights.Weights);
+        var entity = weights.Pick(_random);
 
         var pending = EnsureComp<PendingFEVTransformComponent>(uid);
         pending.Species = entity;
@@ -109,7 +108,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     private void StartInstantTransform(EntityUid uid, FEVReceiverComponent comp)
     {
         var weights = _proto.Index<WeightedRandomEntityPrototype>(comp.EntityWeights);
-        var entity = _random.Pick(weights.Weights);
+        var entity = weights.Pick(_random);
 
         var pending = EnsureComp<PendingFEVTransformComponent>(uid);
         pending.Species = entity;
