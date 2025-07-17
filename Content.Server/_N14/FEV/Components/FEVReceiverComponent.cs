@@ -31,6 +31,16 @@ public sealed partial class FEVReceiverComponent : Component
     [DataField("instantThreshold")] public FixedPoint2 InstantThreshold = FixedPoint2.New(15);
 
     /// <summary>
+    /// Accumulated units required before the victim violently vomits to purge the virus.
+    /// </summary>
+    [DataField("vomitThreshold")] public FixedPoint2 VomitThreshold = FixedPoint2.New(10);
+
+    /// <summary>
+    /// Accumulated units required before the virus kills the victim with corrosive damage.
+    /// </summary>
+    [DataField("acidThreshold")] public FixedPoint2 AcidThreshold = FixedPoint2.New(25);
+
+    /// <summary>
     /// Messages shown to the player during a slow transformation.
     /// </summary>
     [DataField("stageMessages")]
@@ -44,6 +54,7 @@ public sealed partial class FEVReceiverComponent : Component
     public FixedPoint2 Accumulated;
     public bool Transforming;
     public string? TargetSpecies;
+    public bool Vomited;
 
     /// <summary>
     /// Optional mapping of inventory slots to item prototypes. When a mob finishes

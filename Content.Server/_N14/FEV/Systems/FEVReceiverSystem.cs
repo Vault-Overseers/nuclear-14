@@ -19,6 +19,10 @@ using Content.Server.Inventory;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Content.Server.Medical;
+using Content.Shared.Damage;
+using Content.Server.Damage.Systems;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server._N14.FEV.Systems;
 
@@ -35,6 +39,8 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly VomitSystem _vomit = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -48,6 +54,19 @@ public sealed partial class FEVReceiverSystem : EntitySystem
             return;
 
         comp.Accumulated += args.Quantity;
+
+        if (!comp.Vomited && comp.Accumulated >= comp.VomitThreshold)
+        {
+            _vomit.Vomit(uid);
+            comp.Vomited = true;
+        }
+
+        if (comp.Accumulated >= comp.AcidThreshold)
+        {
+            var caustic = _proto.Index<DamageTypePrototype>("Caustic");
+            _damageable.TryChangeDamage(uid, new DamageSpecifier(caustic, FixedPoint2.New(200)), true);
+            return;
+        }
 
         if (comp.Accumulated >= comp.InstantThreshold && !HasComp<PendingFEVTransformComponent>(uid))
         {
@@ -68,6 +87,19 @@ public sealed partial class FEVReceiverSystem : EntitySystem
 
         var quantity = args.Solution.GetTotalPrototypeQuantity("FEV");
         comp.Accumulated = quantity;
+
+        if (!comp.Vomited && comp.Accumulated >= comp.VomitThreshold)
+        {
+            _vomit.Vomit(uid);
+            comp.Vomited = true;
+        }
+
+        if (comp.Accumulated >= comp.AcidThreshold)
+        {
+            var caustic = _proto.Index<DamageTypePrototype>("Caustic");
+            _damageable.TryChangeDamage(uid, new DamageSpecifier(caustic, FixedPoint2.New(200)), true);
+            return;
+        }
 
         if (comp.Accumulated >= comp.InstantThreshold && !HasComp<PendingFEVTransformComponent>(uid))
         {
