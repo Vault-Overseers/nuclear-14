@@ -16,9 +16,13 @@ using Robust.Shared.Timing;
 using Robust.Shared.Localization;
 using Content.Shared.Inventory;
 using Content.Server.Inventory;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Containers;
+using Robust.Shared.Map;
 
 namespace Content.Server._N14.FEV.Systems;
 
+[RegisterSystem]
 public sealed partial class FEVReceiverSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -30,6 +34,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
@@ -154,10 +159,27 @@ public sealed partial class FEVReceiverSystem : EntitySystem
 
         foreach (var (slot, proto) in replacements)
         {
-            _inventory.TryUnequip(uid, slot, force: true, predicted: false);
+            if (_inventory.TryUnequip(uid, slot, out var oldItem, force: true, predicted: false))
+            {
+                DropAndDelete(oldItem.Value, xform.Coordinates);
+            }
+
             var item = Spawn(proto, xform.Coordinates);
             if (!_inventory.TryEquip(uid, item, slot, silent: true, force: true))
                 _transform.DropNextTo(item, uid);
         }
+    }
+
+    private void DropAndDelete(EntityUid item, EntityCoordinates coords)
+    {
+        if (TryComp<ContainerManagerComponent>(item, out var containers))
+        {
+            foreach (var container in containers.GetAllContainers())
+            {
+                _container.EmptyContainer(container, true, coords);
+            }
+        }
+
+        Del(item);
     }
 }
