@@ -20,6 +20,7 @@ namespace Content.Server._N14.FEV.Effects;
 /// or a <see cref="TagComponent"/> with the "HidesHair" tag on the head slot item.
 /// </summary>
 [UsedImplicitly]
+[DataDefinition]
 public sealed partial class AddToBloodstreamIfUncovered : EntityEffect
 {
     [DataField("reagent", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>))]
