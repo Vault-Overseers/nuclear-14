@@ -33,7 +33,4 @@ public sealed class CP14CookingRecipePrototype : IPrototype
 
     [DataField]
     public TimeSpan CookingTime = TimeSpan.FromSeconds(20f);
-
-    [DataField]
-    public SoundSpecifier CookingAmbient = new SoundPathSpecifier("/Audio/_CP14/Ambience/pan_frying.ogg");
 }

@@ -13,7 +13,6 @@ public sealed partial class AlwaysMet : CP14CookingCraftRequirement
 {
     public override bool CheckRequirement(IEntityManager entManager,
         IPrototypeManager protoManager,
-        IReadOnlyList<EntityUid> placedEntities,
         List<ProtoId<TagPrototype>> placedTags,
         Solution? solution = null)
     {

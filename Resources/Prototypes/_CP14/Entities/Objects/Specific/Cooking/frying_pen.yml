@@ -1,16 +1,15 @@
 - type: entity
   id: CP14FryingPan
-  parent: BaseStorageItem
-  categories: [ ForkFiltered ]
+  parent: CP14CookerBase
   name: frying pan
   description: "You can always watch three things: how fire burns, how water flows, and how delicious meat is cooked."
   components:
   - type: Sprite
     sprite: _CP14/Objects/Specific/Cooking/frying_pan.rsi
-    noRot: true
     layers:
     - state: base
       map: ["enum.StorageVisualLayers.Base"]
+    - map: ["cp14_foodLayers"]
     - state: closed
       map: [ base ]
     - state: cooking
@@ -20,24 +19,6 @@
       visible: false
       color: "#38312e"
       map: [ burn ]
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.StorageVisuals.Open:
-        base:
-          True: { state: opened }
-          False: { state: closed }
-      enum.CP14CookingVisuals.Cooking:
-        cook:
-          True: { visible: true }
-          False: { visible: false }
-      enum.CP14CookingVisuals.Burning:
-        burn:
-          True: { visible: true }
-          False: { visible: false }
-  - type: Item
-    size: Ginormous
-  - type: MultiHandedItem
   - type: MeleeWeapon
     wideAnimationRotation: 270
     damage:
@@ -45,48 +26,29 @@
         Blunt: 6
     soundHit:
       path: "/Audio/Weapons/smash.ogg"
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
   - type: Storage
-    maxItemSize: Normal
     storageOpenSound: /Audio/_CP14/Effects/pan_open.ogg
     storageCloseSound: /Audio/_CP14/Effects/pan_close.ogg
     storageInsertSound: /Audio/Items/toolbox_insert.ogg
     storageRemoveSound: /Audio/Items/toolbox_insert.ogg
-    grid:
-    - 0,0,3,3
-    - 0,0,2,2
-    whitelist:
-      components:
-        - Food
-      tags:
-        - CP14FitInFryingPan
-    cP14Ignorelist:
-      components:
-        - CP14FoodHolder
-        - FoodSequenceStartPoint
   - type: SolutionContainerManager
     solutions:
-      pan:
+      cooker:
         maxVol: 100
+  - type: CP14FoodVisuals
+    solutionId: cooker
+    displacementRsiPath: _CP14/Objects/Consumable/Food/Meals/displacement_pan.rsi
+    maxDisplacementFillLevels: 2
   - type: CP14FoodCooker
     foodType: Meal
-    containerId: storagebase
-    solutionId: pan
-  - type: Temperature
+    solutionId: cooker
   - type: RefillableSolution
-    solution: pan
+    solution: cooker
   - type: DrainableSolution
-    solution: pan
+    solution: cooker
   - type: Spillable
-    solution: pan
-  - type: DoAfter
+    solution: cooker
   - type: AmbientSound
-    enabled: false
-    volume: 5
-    range: 5
     sound:
       path: /Audio/_CP14/Ambience/pan_frying.ogg
   - type: PhysicalComposition

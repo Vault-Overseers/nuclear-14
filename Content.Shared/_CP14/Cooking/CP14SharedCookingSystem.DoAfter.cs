@@ -80,7 +80,6 @@ public abstract partial class CP14SharedCookingSystem
         _doAfter.TryStartDoAfter(doAfterArgs, out var doAfterId);
         ent.Comp.DoAfterId = doAfterId;
         _ambientSound.SetAmbience(ent, true);
-        _ambientSound.SetSound(ent, recipe.CookingAmbient);
     }
 
     private void StartBurning(Entity<CP14FoodCookerComponent> ent)
@@ -118,7 +117,7 @@ public abstract partial class CP14SharedCookingSystem
         if (!_container.TryGetContainer(ent, ent.Comp.ContainerId, out var container))
             return;
 
-        if (container.ContainedEntities.Count <= 0 && ent.Comp.FoodData is null)
+        if (container.ContainedEntities.Count <= 0 && !ent.Comp.HoldFood)
         {
             StopCooking(ent);
             return;
@@ -129,7 +128,7 @@ public abstract partial class CP14SharedCookingSystem
             ent.Comp.LastHeatingTime = _timing.CurTime;
             DirtyField(ent.Owner,ent.Comp, nameof(CP14FoodCookerComponent.LastHeatingTime));
 
-            if (!_doAfter.IsRunning(ent.Comp.DoAfterId) && ent.Comp.FoodData is null)
+            if (!_doAfter.IsRunning(ent.Comp.DoAfterId) && !ent.Comp.HoldFood)
             {
                 var recipe = GetRecipe(ent);
                 if (recipe is not null)

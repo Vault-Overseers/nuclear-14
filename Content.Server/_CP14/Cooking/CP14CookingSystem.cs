@@ -4,11 +4,12 @@
  */
 
 using System.Linq;
+using System.Numerics;
 using Content.Server.Temperature.Systems;
 using Content.Shared._CP14.Cooking;
 using Content.Shared._CP14.Cooking.Components;
 using Content.Shared._CP14.Temperature;
-using Content.Shared.Random.Helpers;
+using Content.Shared.Nutrition.Components;
 using Robust.Shared.Random;
 
 namespace Content.Server._CP14.Cooking;
@@ -22,6 +23,28 @@ public sealed class CP14CookingSystem : CP14SharedCookingSystem
         base.Initialize();
 
         SubscribeLocalEvent<CP14RandomFoodDataComponent, MapInitEvent>(OnRandomFoodMapInit);
+
+        SubscribeLocalEvent<CP14FoodVisualsComponent, CP14BeforeSpillEvent>(OnSpilled);
+        SubscribeLocalEvent<CP14FoodHolderComponent, CP14BeforeSpillEvent>(OnHolderSpilled);
+        SubscribeLocalEvent<CP14FoodCookerComponent, CP14BeforeSpillEvent>(OnCookerSpilled);
+    }
+
+    private void OnCookerSpilled(Entity<CP14FoodCookerComponent> ent, ref CP14BeforeSpillEvent args)
+    {
+        ent.Comp.HoldFood = false;
+        Dirty(ent);
+    }
+
+    private void OnHolderSpilled(Entity<CP14FoodHolderComponent> ent, ref CP14BeforeSpillEvent args)
+    {
+        ent.Comp.HoldFood = false;
+        Dirty(ent);
+    }
+
+    private void OnSpilled(Entity<CP14FoodVisualsComponent> ent, ref CP14BeforeSpillEvent args)
+    {
+        ent.Comp.FoodData = null;
+        Dirty(ent);
     }
 
     private void OnRandomFoodMapInit(Entity<CP14RandomFoodDataComponent> ent, ref MapInitEvent args)
@@ -32,6 +55,7 @@ public sealed class CP14CookingSystem : CP14SharedCookingSystem
         if (!_random.Prob(ent.Comp.Prob))
             return;
 
+        //TODO: Fuck this dublication logic, and randomization visual
         var randomFood = _random.Pick(OrderedRecipes.Where(r => r.FoodType == holder.FoodType).ToList());
 
         //Name and Description
@@ -40,13 +64,25 @@ public sealed class CP14CookingSystem : CP14SharedCookingSystem
         if (randomFood.FoodData.Desc is not null)
             _metaData.SetEntityDescription(ent, Loc.GetString(randomFood.FoodData.Desc));
 
+        var foodVisuals = EnsureComp<CP14FoodVisualsComponent>(ent);
         //Visuals
-        holder.Visuals = randomFood.FoodData.Visuals;
+        foodVisuals.FoodData = randomFood.FoodData;
+
+        //Some randomize
+        foreach (var layer in foodVisuals.FoodData.Visuals)
+        {
+            if (_random.Prob(0.5f))
+                layer.Scale = new Vector2(-1, 1);
+        }
+
         Dirty(ent.Owner, holder);
     }
 
     protected override void OnCookBurned(Entity<CP14FoodCookerComponent> ent, ref CP14BurningDoAfter args)
     {
+        if (args.Cancelled || args.Handled)
+            return;
+
         base.OnCookBurned(ent, ref args);
 
         if (_random.Prob(ent.Comp.BurntAdditionalSpawnProb))
@@ -55,12 +91,13 @@ public sealed class CP14CookingSystem : CP14SharedCookingSystem
 
     protected override void OnCookFinished(Entity<CP14FoodCookerComponent> ent, ref CP14CookingDoAfter args)
     {
-        base.OnCookFinished(ent, ref args);
-
         if (args.Cancelled || args.Handled)
             return;
 
+        //We need transform all BEFORE Shared cooking code
         TryTransformAll(ent);
+
+        base.OnCookFinished(ent, ref args);
     }
 
     private void TryTransformAll(Entity<CP14FoodCookerComponent> ent)
@@ -83,7 +120,15 @@ public sealed class CP14CookingSystem : CP14SharedCookingSystem
 
             var entry = transformable.Entries[0];
 
-            _temperature.ForceChangeTemperature(contained, entry.TemperatureRange.X);
+            var newTemp = (entry.TemperatureRange.X + entry.TemperatureRange.Y) / 2;
+            _temperature.ForceChangeTemperature(contained, newTemp);
         }
     }
+}
+
+/// <summary>
+/// It is invoked on the entity from which all reagents are spilled.
+/// </summary>
+public sealed class CP14BeforeSpillEvent : EntityEventArgs
+{
 }

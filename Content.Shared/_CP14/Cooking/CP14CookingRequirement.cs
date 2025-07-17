@@ -21,7 +21,6 @@ public abstract partial class CP14CookingCraftRequirement
 {
     public abstract bool CheckRequirement(IEntityManager entManager,
         IPrototypeManager protoManager,
-        IReadOnlyList<EntityUid> placedEntities,
         List<ProtoId<TagPrototype>> placedTags,
         Solution? solution = null);
 

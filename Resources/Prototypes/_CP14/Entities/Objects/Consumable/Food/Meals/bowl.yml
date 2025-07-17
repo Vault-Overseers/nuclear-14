@@ -1,0 +1,109 @@
+- type: entity
+  id: CP14BowlBase
+  parent: BaseItem
+  description: This is your bowl for a delicious soups!
+  categories: [ ForkFiltered ]
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/Consumable/Food/Soups/bowls.rsi
+  - type: Item
+    shape:
+    - 0,0,1,0
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+  - type: CP14FoodVisuals
+    displacementRsiPath: _CP14/Objects/Consumable/Food/Soups/displacement.rsi
+    solutionId: food
+  - type: CP14FoodHolder
+    foodType: Soup
+    solutionId: food
+  - type: Appearance
+  - type: SolutionContainerVisuals
+  - type: Food
+    useSound: 
+      path: /Audio/Items/drink.ogg
+    utensil: Spoon
+    transferAmount: 2.5
+
+- type: entity
+  id: CP14BowlWooden
+  parent: CP14BowlBase
+  name: wooden bowl
+  components:
+  - type: Sprite
+    layers:
+    - state: wooden
+    - map: ["cp14_foodLayers"]
+  - type: PhysicalComposition
+    materialComposition:
+      CP14WoodenPlanks: 20
+  - type: Food
+    trash: 
+    - CP14BowlWooden
+
+- type: entity
+  id: CP14BowlIron
+  parent: CP14BowlBase
+  name: iron bowl
+  components:
+  - type: Sprite
+    layers:
+    - state: iron
+    - map: ["cp14_foodLayers"]
+  - type: PhysicalComposition
+    materialComposition:
+      CP14Iron: 20
+  - type: Food
+    trash: 
+    - CP14BowlIron
+
+- type: entity
+  id: CP14BowlGold
+  parent: CP14BowlBase
+  name: gold bowl
+  components:
+  - type: Sprite
+    layers:
+    - state: gold
+    - map: ["cp14_foodLayers"]
+  - type: PhysicalComposition
+    materialComposition:
+      CP14Gold: 20
+  - type: Food
+    trash: 
+    - CP14BowlGold
+
+- type: entity
+  id: CP14BowlCopper
+  parent: CP14BowlBase
+  name: copper bowl
+  components:
+  - type: Sprite
+    layers:
+    - state: copper
+    - map: ["cp14_foodLayers"]
+  - type: PhysicalComposition
+    materialComposition:
+      CP14Copper: 20
+  - type: Food
+    trash: 
+    - CP14BowlCopper
+
+- type: entity
+  id: CP14BowlWoodenRandom
+  parent: CP14BowlWooden
+  suffix: Random food
+  components:
+  - type: CP14RandomFoodData
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Protein
+          Quantity: 15

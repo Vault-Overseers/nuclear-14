@@ -13,11 +13,8 @@ namespace Content.Shared._CP14.Cooking.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), Access(typeof(CP14SharedCookingSystem))]
 public sealed partial class CP14FoodCookerComponent : Component
 {
-    /// <summary>
-    /// What food is currently stored here?
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public CP14FoodData? FoodData;
+    [DataField]
+    public bool HoldFood = false;
 
     [DataField(required: true)]
     public CP14FoodType FoodType;
@@ -59,6 +56,16 @@ public sealed partial class CP14FoodCookerComponent : Component
 [DataDefinition]
 public sealed partial class CP14FoodData
 {
+    public CP14FoodData(CP14FoodData data)
+    {
+        CurrentRecipe = data.CurrentRecipe;
+        Name = data.Name;
+        Desc = data.Desc;
+        Visuals = new List<PrototypeLayerData>(data.Visuals);
+        Trash = new List<EntProtoId>(data.Trash);
+        Flavors = new HashSet<LocId>(data.Flavors);
+    }
+
     [DataField]
     public ProtoId<CP14CookingRecipePrototype>? CurrentRecipe;
 
@@ -81,6 +88,7 @@ public sealed partial class CP14FoodData
 public enum CP14FoodType
 {
     Meal,
+    Soup,
 }
 
 [Serializable, NetSerializable]

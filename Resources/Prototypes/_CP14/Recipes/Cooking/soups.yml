@@ -1,0 +1,159 @@
+- type: CP14CookingRecipe
+  id: InedibleSoup
+  foodType: Soup
+  foodData:
+    name: cp14-soup-recipe-trash-name
+    desc: cp14-soup-recipe-trash-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Soups/misc.rsi
+      state: trash
+  requirements:
+  - !type:AlwaysMet
+
+# 1 req
+
+# We dont have 1 req for soups because all soups is water + something
+
+# 2 req
+
+- type: CP14CookingRecipe
+  id: MeatSoup
+  foodType: Soup
+  foodData:
+    name: cp14-soup-recipe-meat-name
+    desc: cp14-soup-recipe-meat-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Soups/misc.rsi
+      state: meat
+  requirements:
+  - !type:ReagentRequired
+    amount: 20
+    reagents:
+    - Water
+  - !type:TagRequired
+    tags:
+    - CP14Meat
+
+- type: CP14CookingRecipe
+  id: CheeseSoup
+  foodType: Soup
+  foodData:
+    name: cp14-soup-recipe-cheese-name
+    desc: cp14-soup-recipe-cheese-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Soups/misc.rsi
+      state: cheese
+  requirements:
+  - !type:ReagentRequired
+    amount: 20
+    reagents:
+    - Water
+  - !type:TagRequired
+    tags:
+    - CP14Cheese
+
+- type: CP14CookingRecipe
+  id: PumpkinPuree
+  foodType: Soup
+  foodData:
+    name: cp14-soup-recipe-pumpkin-puree-name
+    desc: cp14-soup-recipe-pumpkin-puree-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Soups/misc.rsi
+      state: pumpkin
+  requirements:
+  - !type:ReagentRequired
+    amount: 20
+    reagents:
+    - Water #TODO: Milk Cream!!
+  - !type:TagRequired
+    tags:
+    - CP14Pumpkin
+
+# 3 req
+
+- type: CP14CookingRecipe
+  id: VegSoup
+  foodType: Soup
+  foodData:
+    name: cp14-soup-recipe-veg-name
+    desc: cp14-soup-recipe-veg-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Soups/misc.rsi
+      state: veg_stew
+  requirements:
+  - !type:ReagentRequired
+    amount: 20
+    reagents:
+    - Water
+  - !type:TagRequired
+    tags:
+    - CP14Salad
+    - CP14Vegetable
+  - !type:TagBlocked
+    tags:
+    - CP14Meat
+
+- type: CP14CookingRecipe
+  id: MeatCheeseSoup
+  foodType: Soup
+  foodData:
+    name: cp14-soup-recipe-meat-cheese-name
+    desc: cp14-soup-recipe-meat-cheese-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Soups/misc.rsi
+      state: meat2
+  requirements:
+  - !type:ReagentRequired
+    amount: 20
+    reagents:
+    - Water
+  - !type:TagRequired
+    tags:
+    - CP14Meat
+  - !type:TagRequired
+    tags:
+    - CP14Cheese
+
+- type: CP14CookingRecipe
+  id: MeatSaladSoup
+  foodType: Soup
+  foodData:
+    name: cp14-soup-recipe-meat-salad-name
+    desc: cp14-soup-recipe-meat-salad-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Soups/misc.rsi
+      state: meat_salad
+  requirements:
+  - !type:ReagentRequired
+    amount: 20
+    reagents:
+    - Water
+  - !type:TagRequired
+    tags:
+    - CP14Meat
+  - !type:TagRequired
+    tags:
+    - CP14Salad
+    - CP14Vegetable
+
+- type: CP14CookingRecipe
+  id: MonsterBrew
+  foodType: Soup
+  foodData:
+    name: cp14-soup-recipe-monster-brew-name
+    desc: cp14-soup-recipe-monster-brew-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Soups/misc.rsi
+      state: mole
+  requirements:
+  - !type:ReagentRequired
+    amount: 20
+    reagents:
+    - Water
+  - !type:TagRequired
+    tags:
+    - CP14MeatMonster
+  - !type:TagRequired
+    tags:
+    - CP14Egg

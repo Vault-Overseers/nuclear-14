@@ -60,7 +60,7 @@ public sealed partial class CP14TemperatureSystem : EntitySystem
         var xform = Transform(start);
         foreach (var entry in start.Comp.Entries)
         {
-            if (args.CurrentTemperature > entry.TemperatureRange.X &&
+            if (args.CurrentTemperature >= entry.TemperatureRange.X &&
                 args.CurrentTemperature < entry.TemperatureRange.Y)
             {
                 if (entry.TransformTo == null)

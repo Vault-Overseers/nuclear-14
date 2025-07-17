@@ -24,24 +24,12 @@ public abstract partial class CP14SharedCookingSystem
         if (!TryComp<CP14FoodCookerComponent>(args.Target, out var cooker))
             return;
 
-        if (cooker.FoodData is null)
-            return;
-
-        if (ent.Comp.Visuals is not null)
-            return;
-
         MoveFoodToHolder(ent, (args.Target.Value, cooker));
     }
 
     private void OnInteractUsing(Entity<CP14FoodCookerComponent> ent, ref AfterInteractEvent args)
     {
         if (!TryComp<CP14FoodHolderComponent>(args.Target, out var holder))
-            return;
-
-        if (holder.Visuals is not null)
-            return;
-
-        if (ent.Comp.FoodData is null)
             return;
 
         MoveFoodToHolder((args.Target.Value, holder), ent);
@@ -52,7 +40,7 @@ public abstract partial class CP14SharedCookingSystem
         if (args.Cancelled)
             return;
 
-        if (ent.Comp.FoodData is not null)
+        if (ent.Comp.HoldFood)
         {
             _popup.PopupEntity(Loc.GetString("cp14-cooking-popup-not-empty", ("name", MetaData(ent).EntityName)), ent);
             args.Cancel();

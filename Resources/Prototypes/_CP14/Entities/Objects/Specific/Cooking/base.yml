@@ -1,0 +1,52 @@
+- type: entity
+  id: CP14CookerBase
+  parent: BaseStorageItem
+  categories: [ ForkFiltered ]
+  abstract: true
+  components:
+  - type: Sprite
+    noRot: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: opened }
+          False: { state: closed }
+      enum.CP14CookingVisuals.Cooking:
+        cook:
+          True: { visible: true }
+          False: { visible: false }
+      enum.CP14CookingVisuals.Burning:
+        burn:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,3,3
+    - 0,0,2,2
+    whitelist:
+      components:
+        - Food
+      tags:
+        - CP14FitInFryingPan #Todo delete this tag from game
+    cP14Ignorelist:
+      components:
+        - CP14FoodHolder
+        - FoodSequenceStartPoint
+  - type: CP14FoodCooker
+    containerId: storagebase
+  - type: Temperature
+  - type: DoAfter
+  - type: AmbientSound
+    enabled: false
+    volume: 5
+    range: 5

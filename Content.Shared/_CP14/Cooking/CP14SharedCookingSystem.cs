@@ -4,8 +4,10 @@
  */
 
 using System.Linq;
+using System.Numerics;
 using Content.Shared._CP14.Cooking.Components;
 using Content.Shared.Audio;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.DoAfter;
@@ -28,7 +30,7 @@ public abstract partial class CP14SharedCookingSystem : EntitySystem
     [Dependency] protected readonly SharedContainerSystem _container = default!;
     [Dependency] protected readonly IRobustRandom _random = default!;
     [Dependency] protected readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] protected readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedPuddleSystem _puddle = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -59,8 +61,7 @@ public abstract partial class CP14SharedCookingSystem : EntitySystem
         CacheAndOrderRecipes();
 
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
-        SubscribeLocalEvent<CP14FoodCookerComponent, ExaminedEvent>(OnExaminedEvent);
-        SubscribeLocalEvent<CP14FoodCookerComponent, LandEvent>(OnLand);
+        SubscribeLocalEvent<CP14FoodVisualsComponent, ExaminedEvent>(OnExaminedEvent);
     }
 
     public override void Update(float frameTime)
@@ -84,7 +85,7 @@ public abstract partial class CP14SharedCookingSystem : EntitySystem
         CacheAndOrderRecipes();
     }
 
-    private void OnExaminedEvent(Entity<CP14FoodCookerComponent> ent, ref ExaminedEvent args)
+    private void OnExaminedEvent(Entity<CP14FoodVisualsComponent> ent, ref ExaminedEvent args)
     {
         if (ent.Comp.FoodData?.Name is null)
             return;
@@ -102,85 +103,102 @@ public abstract partial class CP14SharedCookingSystem : EntitySystem
             ("count", remaining)));
     }
 
-    private void OnLand(Entity<CP14FoodCookerComponent> ent, ref LandEvent args)
-    {
-        ent.Comp.FoodData = null;
-        Dirty(ent);
-    }
-
-
 
     /// <summary>
     /// Transfer food data from cooker to holder
     /// </summary>
-    private void MoveFoodToHolder(Entity<CP14FoodHolderComponent> ent, Entity<CP14FoodCookerComponent> cooker)
+    private void MoveFoodToHolder(Entity<CP14FoodHolderComponent> holder, Entity<CP14FoodCookerComponent> cooker)
     {
-        if (!TryComp<FoodComponent>(ent, out var foodComp))
+        if (holder.Comp.HoldFood || !cooker.Comp.HoldFood)
             return;
 
-        if (cooker.Comp.FoodData is null)
+        if (holder.Comp.FoodType != cooker.Comp.FoodType)
             return;
 
-        if (!_solution.TryGetSolution(cooker.Owner, cooker.Comp.SolutionId, out _, out var cookerSolution))
+        if (!TryComp<FoodComponent>(holder, out var holderFoodComp))
+            return;
+
+        if (!TryComp<CP14FoodVisualsComponent>(cooker, out var cookerFoodVisuals) || cookerFoodVisuals.FoodData is null)
+            return;
+
+        if (!_solution.TryGetSolution(cooker.Owner, cooker.Comp.SolutionId, out var cookerSoln, out var cookerSolution))
             return;
 
         //Solutions
-        if (_solution.TryGetSolution(ent.Owner, foodComp.Solution, out var soln, out var solution))
+        if (_solution.TryGetSolution(holder.Owner, holderFoodComp.Solution, out var holderSoln, out var solution))
         {
             if (solution.Volume > 0)
             {
-                _popup.PopupEntity(Loc.GetString("cp14-cooking-popup-not-empty", ("name", MetaData(ent).EntityName)),
-                    ent);
+                _popup.PopupEntity(Loc.GetString("cp14-cooking-popup-not-empty", ("name", MetaData(holder).EntityName)),
+                    holder);
                 return;
             }
 
-            _solution.TryTransferSolution(soln.Value, cookerSolution, solution.MaxVolume);
+            _solution.TryTransferSolution(holderSoln.Value, cookerSolution, solution.MaxVolume);
         }
 
         //Trash
         //If we have a lot of trash, we put 1 random trash in each plate. If it's a last plate (out of solution in cooker), we put all the remaining trash in it.
-        if (cooker.Comp.FoodData.Trash.Count > 0)
+        if (cookerFoodVisuals.FoodData.Trash.Count > 0)
         {
             if (cookerSolution.Volume <= 0)
             {
-                foodComp.Trash.AddRange(cooker.Comp.FoodData.Trash);
+                holderFoodComp.Trash.AddRange(cookerFoodVisuals.FoodData.Trash);
             }
             else
             {
                 if (_net.IsServer)
                 {
-                    var newTrash = _random.Pick(cooker.Comp.FoodData.Trash);
-                    cooker.Comp.FoodData.Trash.Remove(newTrash);
-                    foodComp.Trash.Add(newTrash);
+                    var newTrash = _random.Pick(cookerFoodVisuals.FoodData.Trash);
+                    cookerFoodVisuals.FoodData.Trash.Remove(newTrash);
+                    holderFoodComp.Trash.Add(newTrash);
                 }
             }
         }
 
         //Name and Description
-        if (cooker.Comp.FoodData.Name is not null)
-            _metaData.SetEntityName(ent, Loc.GetString(cooker.Comp.FoodData.Name));
-        if (cooker.Comp.FoodData.Desc is not null)
-            _metaData.SetEntityDescription(ent, Loc.GetString(cooker.Comp.FoodData.Desc));
+        if (cookerFoodVisuals.FoodData.Name is not null)
+            _metaData.SetEntityName(holder, Loc.GetString(cookerFoodVisuals.FoodData.Name));
+        if (cookerFoodVisuals.FoodData.Desc is not null)
+            _metaData.SetEntityDescription(holder, Loc.GetString(cookerFoodVisuals.FoodData.Desc));
 
         //Flavors
-        EnsureComp<FlavorProfileComponent>(ent, out var flavorComp);
-        foreach (var flavor in cooker.Comp.FoodData.Flavors)
+        EnsureComp<FlavorProfileComponent>(holder, out var flavorComp);
+        foreach (var flavor in cookerFoodVisuals.FoodData.Flavors)
         {
             flavorComp.Flavors.Add(flavor);
         }
 
         //Visuals
-        ent.Comp.Visuals = cooker.Comp.FoodData.Visuals;
+        var holderFoodVisuals = EnsureComp<CP14FoodVisualsComponent>(holder);
+        holderFoodVisuals.FoodData = new CP14FoodData(cookerFoodVisuals.FoodData);
+
+        //Visual random
+        foreach (var layer in holderFoodVisuals.FoodData.Visuals)
+        {
+            if (_random.Prob(0.5f))
+                layer.Scale = new Vector2(-1, 1);
+        }
 
         //Clear cooker data
         if (cookerSolution.Volume <= 0)
-            cooker.Comp.FoodData = null;
+        {
+            cookerFoodVisuals.FoodData = null;
+            cooker.Comp.HoldFood = false;
+        }
 
-        Dirty(ent);
+        holder.Comp.HoldFood = true;
+
+        Dirty(holder, holderFoodVisuals);
+        Dirty(cooker, cookerFoodVisuals);
+
+        Dirty(holder);
         Dirty(cooker);
+
+        _solution.UpdateChemicals(cookerSoln.Value);
     }
 
-    private CP14CookingRecipePrototype? GetRecipe(Entity<CP14FoodCookerComponent> ent)
+    public CP14CookingRecipePrototype? GetRecipe(Entity<CP14FoodCookerComponent> ent)
     {
         if (!_container.TryGetContainer(ent, ent.Comp.ContainerId, out var container))
             return null;
@@ -197,6 +215,11 @@ public abstract partial class CP14SharedCookingSystem : EntitySystem
             allTags.AddRange(tags.Tags);
         }
 
+        return GetRecipe(ent.Comp.FoodType, solution, allTags);
+    }
+
+    public CP14CookingRecipePrototype? GetRecipe(CP14FoodType foodType, Solution? solution, List<ProtoId<TagPrototype>> allTags)
+    {
         if (OrderedRecipes.Count == 0)
         {
             throw new InvalidOperationException(
@@ -206,13 +229,13 @@ public abstract partial class CP14SharedCookingSystem : EntitySystem
         CP14CookingRecipePrototype? selectedRecipe = null;
         foreach (var recipe in OrderedRecipes)
         {
-            if (recipe.FoodType != ent.Comp.FoodType)
+            if (recipe.FoodType != foodType)
                 continue;
 
             var conditionsMet = true;
             foreach (var condition in recipe.Requirements)
             {
-                if (!condition.CheckRequirement(EntityManager, _proto, container.ContainedEntities, allTags, solution))
+                if (!condition.CheckRequirement(EntityManager, _proto, allTags, solution))
                 {
                     conditionsMet = false;
                     break;
@@ -284,31 +307,36 @@ public abstract partial class CP14SharedCookingSystem : EntitySystem
         if (solution.Volume <= 0)
             return;
 
-        ent.Comp.FoodData = newData;
+        var foodVisuals = EnsureComp<CP14FoodVisualsComponent>(ent.Owner);
+        foodVisuals.FoodData = newData;
+
+        ent.Comp.HoldFood = true;
+
         Dirty(ent);
+        Dirty(ent, foodVisuals);
     }
 
     protected void BurntFood(Entity<CP14FoodCookerComponent> ent)
     {
-        if (ent.Comp.FoodData is null)
+        if (!TryComp<CP14FoodVisualsComponent>(ent, out var foodVisuals) || foodVisuals.FoodData is null)
             return;
 
         if (!_solution.TryGetSolution(ent.Owner, ent.Comp.SolutionId, out var soln, out var solution))
             return;
 
         //Brown visual
-        foreach (var visuals in ent.Comp.FoodData.Visuals)
+        foreach (var visuals in foodVisuals.FoodData.Visuals)
         {
             visuals.Color = Color.FromHex("#212121");
         }
 
-        ent.Comp.FoodData.Name = Loc.GetString("cp14-meal-recipe-burned-trash-name");
-        ent.Comp.FoodData.Desc = Loc.GetString("cp14-meal-recipe-burned-trash-desc");
+        foodVisuals.FoodData.Name = Loc.GetString("cp14-meal-recipe-burned-trash-name");
+        foodVisuals.FoodData.Desc = Loc.GetString("cp14-meal-recipe-burned-trash-desc");
 
         var replacedVolume = solution.Volume / 2;
         solution.SplitSolution(replacedVolume);
-        solution.AddReagent(_burntFoodReagent, replacedVolume);
+        solution.AddReagent(_burntFoodReagent, replacedVolume / 2);
 
-        DirtyField(ent.Owner, ent.Comp, nameof(CP14FoodCookerComponent.FoodData));
+        DirtyField(ent.Owner, foodVisuals, nameof(CP14FoodVisualsComponent.FoodData));
     }
 }

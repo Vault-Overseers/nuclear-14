@@ -6,21 +6,25 @@
   abstract: true
   components:
   - type: Sprite
+    noRot: true
     sprite: _CP14/Objects/Consumable/Food/Meals/plates.rsi
   - type: Item
     shape:
     - 0,0,1,0
-  - type: Tag
-    tags:
-    - CP14Plate
   - type: SolutionContainerManager
     solutions:
       food:
         maxVol: 20
+  - type: CP14FoodVisuals
+    displacementRsiPath: _CP14/Objects/Consumable/Food/Meals/displacement.rsi
+    solutionId: food
   - type: CP14FoodHolder
     foodType: Meal
     solutionId: food
+  - type: Appearance
+  - type: SolutionContainerVisuals
   - type: Food
+    transferAmount: 2.5
 
 - type: entity
   id: CP14PlateWooden
