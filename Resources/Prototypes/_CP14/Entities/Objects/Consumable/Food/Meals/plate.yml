@@ -1,0 +1,87 @@
+- type: entity
+  id: CP14PlateBase
+  parent: BaseItem
+  description: This is your plate for a delicious meal!
+  categories: [ ForkFiltered ]
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _CP14/Objects/Consumable/Food/Meals/plates.rsi
+  - type: Item
+    shape:
+    - 0,0,1,0
+  - type: Tag
+    tags:
+    - CP14Plate
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+  - type: CP14FoodHolder
+    foodType: Meal
+    solutionId: food
+  - type: Food
+
+- type: entity
+  id: CP14PlateWooden
+  parent: CP14PlateBase
+  name: wooden plate
+  components:
+  - type: Sprite
+    layers:
+    - state: wooden
+    - map: ["cp14_foodLayers"]
+  - type: PhysicalComposition
+    materialComposition:
+      CP14WoodenPlanks: 20
+  - type: Food
+    trash: 
+    - CP14PlateWooden
+
+- type: entity
+  id: CP14PlateIron
+  parent: CP14PlateBase
+  name: iron plate
+  components:
+  - type: Sprite
+    layers:
+    - state: iron
+    - map: ["cp14_foodLayers"]
+  - type: PhysicalComposition
+    materialComposition:
+      CP14Iron: 10
+  - type: Food
+    trash: 
+    - CP14PlateIron
+
+- type: entity
+  id: CP14PlateGold
+  parent: CP14PlateBase
+  name: gold plate
+  components:
+  - type: Sprite
+    layers:
+    - state: gold
+    - map: ["cp14_foodLayers"]
+  - type: PhysicalComposition
+    materialComposition:
+      CP14Gold: 10
+  - type: Food
+    trash: 
+    - CP14PlateGold
+
+- type: entity
+  id: CP14PlateWoodenRandom
+  parent: CP14PlateWooden
+  suffix: Random food
+  components:
+  - type: CP14RandomFoodData
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 10

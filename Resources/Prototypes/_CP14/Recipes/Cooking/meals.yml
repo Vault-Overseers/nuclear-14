@@ -1,0 +1,227 @@
+- type: CP14CookingRecipe
+  id: InedibleMeal
+  foodType: Meal
+  foodData:
+    name: cp14-meal-recipe-trash-name
+    desc: cp14-meal-recipe-trash-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Meals/misc.rsi
+      state: trash
+  requirements:
+  - !type:AlwaysMet
+
+# 1 ingredient types
+
+- type: CP14CookingRecipe
+  id: GreenSalad
+  foodType: Meal
+  foodData:
+    name: cp14-meal-recipe-green-salad-name
+    desc: cp14-meal-recipe-green-salad-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Meals/misc.rsi
+      state: green_salad
+  requirements:
+  - !type:TagRequired
+    tags:
+    - CP14Salad
+    - CP14Vegetable
+
+- type: CP14CookingRecipe
+  id: MeatPlate
+  foodType: Meal
+  foodData:
+    name: cp14-meal-recipe-meat-plate-name
+    desc: cp14-meal-recipe-meat-plate-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Meals/misc.rsi
+      state: meat_plate
+  requirements:
+  - !type:TagRequired
+    tags: 
+    - CP14Meat
+    - CP14MeatSlice
+
+- type: CP14CookingRecipe
+  id: BreadPlate
+  foodType: Meal
+  foodData:
+    name: cp14-meal-recipe-bread-plate-name
+    desc: cp14-meal-recipe-bread-plate-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Meals/misc.rsi
+      state: bread_plate
+  requirements:
+  - !type:TagRequired
+    tags:
+    - CP14Dough
+
+- type: CP14CookingRecipe
+  id: MashedPotato
+  foodType: Meal
+  foodData:
+    name: cp14-meal-recipe-mashed-potato-name
+    desc: cp14-meal-recipe-mashed-potato-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Meals/misc.rsi
+      state: mashed_potato
+  requirements:
+  - !type:TagRequired
+    tags: 
+    - CP14Potato
+
+# 2 ingredient types
+
+- type: CP14CookingRecipe
+  id: GreenSaladMeat
+  foodType: Meal
+  foodData:
+    name: cp14-meal-recipe-green-salad-meat-name
+    desc: cp14-meal-recipe-green-salad-meat-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Meals/misc.rsi
+      state: green_salad_meat
+  requirements:
+  - !type:TagRequired
+    tags: 
+    - CP14Salad
+    - CP14Vegetable
+  - !type:TagRequired
+    tags: 
+    - CP14Meat
+
+- type: CP14CookingRecipe
+  id: MonsterEgg
+  foodType: Meal
+  foodData:
+    name: cp14-meal-recipe-monster-egg-name
+    desc: cp14-meal-recipe-monster-egg-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Meals/misc.rsi
+      state: monster_egg
+  requirements:
+  - !type:TagRequired
+    tags: 
+    - CP14Egg
+  - !type:TagRequired
+    tags: 
+    - CP14MeatMonster
+
+- type: CP14CookingRecipe
+  id: MashedPotatoMeat
+  foodType: Meal
+  foodData:
+    name: cp14-meal-recipe-mashed-potato-meat-name
+    desc: cp14-meal-recipe-mashed-potato-meat-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Meals/misc.rsi
+      state: mashed_potato_meat
+  requirements:
+  - !type:TagRequired
+    tags: 
+    - CP14Potato
+  - !type:TagRequired
+    tags:
+    - CP14Meat
+
+- type: CP14CookingRecipe
+  id: MashedPotatoSalad
+  foodType: Meal
+  foodData:
+    name: cp14-meal-recipe-mashed-potato-salad-name
+    desc: cp14-meal-recipe-mashed-potato-salad-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Meals/misc.rsi
+      state: mashed_potato_salad
+  requirements:
+  - !type:TagRequired
+    tags: 
+    - CP14Potato
+  - !type:TagRequired
+    tags:
+    - CP14Salad
+    - CP14Vegetable
+
+- type: CP14CookingRecipe
+  id: CheeseBread
+  foodType: Meal
+  foodData:
+    name: cp14-meal-recipe-cheese-bread-name
+    desc: cp14-meal-recipe-cheese-bread-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Meals/misc.rsi
+      state: cheese_bread
+  requirements:
+  - !type:TagRequired
+    tags: 
+    - CP14Dough
+  - !type:TagRequired
+    tags:
+    - CP14Cheese
+
+# 3 ingredient types
+
+- type: CP14CookingRecipe
+  id: ZellasianBreakfast
+  foodType: Meal
+  foodData:
+    name: cp14-meal-recipe-zellasian-breakfast-name
+    desc: cp14-meal-recipe-zellasian-breakfast-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Meals/misc.rsi
+      state: zellasian_breakfast
+  requirements:
+  - !type:TagRequired
+    tags: 
+    - CP14Egg
+  - !type:TagRequired
+    tags: 
+    - CP14Dough
+  - !type:TagRequired
+    tags: 
+    - CP14Meat
+
+- type: CP14CookingRecipe
+  id: StuffedPotato
+  foodType: Meal
+  foodData:
+    name: cp14-meal-recipe-stuffed-potato-name
+    desc: cp14-meal-recipe-stuffed-potato-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Meals/misc.rsi
+      state: stuffed_potato
+  requirements:
+  - !type:TagRequired
+    tags:
+    - CP14MeatSlice
+  - !type:TagRequired
+    tags:
+    - CP14Cheese
+  - !type:TagRequired
+    tags:
+    - CP14Potato
+
+# 4 ingredient types
+
+- type: CP14CookingRecipe
+  id: HamInCheese
+  foodType: Meal
+  foodData:
+    name: cp14-meal-recipe-pig-cheese-name
+    desc: cp14-meal-recipe-pig-cheese-desc
+    visuals:
+    - sprite: _CP14/Objects/Consumable/Food/Meals/misc.rsi
+      state: pig_cheese
+  requirements:
+  - !type:TagRequired
+    tags:
+    - CP14MeatPig
+  - !type:TagRequired
+    tags:
+    - CP14MeatLeg
+  - !type:TagRequired
+    tags:
+    - CP14Cheese
+  - !type:TagRequired
+    tags:
+    - CP14Salad

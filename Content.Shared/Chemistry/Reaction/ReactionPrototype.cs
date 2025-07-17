@@ -11,7 +11,7 @@ namespace Content.Shared.Chemistry.Reaction
     /// <summary>
     /// Prototype for chemical reaction definitions
     /// </summary>
-    [Prototype("reaction")]
+    [Prototype]
     public sealed partial class ReactionPrototype : IPrototype, IComparable<ReactionPrototype>
     {
         [ViewVariables]
@@ -60,7 +60,7 @@ namespace Content.Shared.Chemistry.Reaction
         /// <summary>
         /// Effects to be triggered when the reaction occurs.
         /// </summary>
-        [DataField("effects", serverOnly: true)] public List<EntityEffect> Effects = new();
+        [DataField("effects")] public List<EntityEffect> Effects = new();
 
         /// <summary>
         /// How dangerous is this effect? Stuff like bicaridine should be low, while things like methamphetamine
@@ -69,7 +69,7 @@ namespace Content.Shared.Chemistry.Reaction
         [DataField("impact", serverOnly: true)] public LogImpact Impact = LogImpact.Low;
 
         // TODO SERV3: Empty on the client, (de)serialize on the server with module manager is server module
-        [DataField("sound", serverOnly: true)] public SoundSpecifier Sound { get; private set; } = new SoundPathSpecifier("/Audio/Effects/Chemistry/bubbles.ogg");
+        [DataField("sound", serverOnly: true)] public SoundSpecifier? Sound { get; private set; } = new SoundCollectionSpecifier("CP14Bubbles", AudioParams.Default.WithVariation(0.2f)); //CP14 nullable
 
         /// <summary>
         /// If true, this reaction will only consume only integer multiples of the reactant amounts. If there are not
