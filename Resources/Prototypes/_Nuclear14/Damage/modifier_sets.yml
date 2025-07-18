@@ -7,7 +7,7 @@
     Cold: 1
     Poison: 0.8
     Cellular: 0.2
-    Radiation: 0.25
+    Radiation: 0
     Asphyxiation: 0.1
     Bloodloss: 0.8
     
@@ -50,16 +50,12 @@
     Asphyxiation: 0.0
     Bloodloss: 1
     Cellular: 1
-  flatReductions:
-    Radiation: 100
     
 - type: damageModifierSet
   id: N14Insect # Exo-skeleton, should have simillarities to skeleton resistances.
   coefficients:
     Blunt: 1.1
     Heat: 1.5
-  flatReductions:
-    Radiation: 100
     
 - type: damageModifierSet
   id: N14Scale # Skin tougher, bones weaker, strong stomachs, cold-blooded (kindof)
@@ -69,8 +65,6 @@
     Cold: 1.5
     Heat: 0.9
     Poison: 0.9
-  flatReductions:
-    Radiation: 100
     
 - type: damageModifierSet
   id: N14ScaleFireresist
@@ -81,23 +75,21 @@
     Heat: 0
     Poison: 0.9
   flatReductions:
-    Radiation: 100
     Heat: 10
 
 - type: damageModifierSet
-  id: N14ToughAnimal # Made especially for deathclaws and other larger creatures.
+  id: N14ToughAnimal # Made especially for deathclaws and other larger "boss" creatures.
   coefficients:
-    Blunt: 0.9
-    Slash: 0.9
-    Piercing: 0.95
-    Heat: 0.95
-    Poison: 0.8
+    Blunt: 0.8
+    Slash: 0.8
+    Piercing: 0.85
+    Heat: 0.85
+    Poison: 0.75
   flatReductions:
     Blunt: 5
     Slash: 5
     Piercing: 5
     Heat: 5
-    Radiation: 100
 
 - type: damageModifierSet
   id: N14DermalArmor
@@ -125,3 +117,40 @@
     Radiation: 0.2
     Asphyxiation: 0.1
     Bloodloss: 0.8
+
+- type: damageModifierSet
+  id: N14LightRobot # Machines like Mr Handy or Protectron models.
+  coefficients:
+    Blunt: 0.95
+    Slash: 0.9
+    Piercing: 0.95
+    Heat: 0.95
+    Shock: 1.1
+
+- type: damageModifierSet
+  id: N14MediumRobot # Machines like Mr Gutsy or Assaultron.
+  coefficients:
+    Blunt: 0.875
+    Slash: 0.825
+    Piercing: 0.875
+    Heat: 0.875
+    Shock: 1.1
+  flatReductions:
+    Blunt: 2
+    Slash: 2
+    Piercing: 2
+    Heat: 2
+
+- type: damageModifierSet
+  id: N14HeavyRobot # Boss fights like Sentry Bot and whatnot.
+  coefficients:
+    Blunt: 0.8
+    Slash: 0.75
+    Piercing: 0.8
+    Heat: 0.8
+    Shock: 1.1
+  flatReductions:
+    Blunt: 4
+    Slash: 4
+    Piercing: 4
+    Heat: 4

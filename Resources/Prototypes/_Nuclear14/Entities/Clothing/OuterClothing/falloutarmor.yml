@@ -1848,8 +1848,8 @@
   parent: ClothingOuterHardsuitBase
   id: N14ClothingOuterChineseStealthSuit
   name: chinese stealth suit
-  description: Yī tào yǐqián wéi zhōngguó tèzhǒng bùduì zhìzào de zhuāngjiǎ.
-  components:
+  description: Yī tào yǐqián wéi zhōngguó tèzhǒng bùduì zhìzào de zhuāngjiǎ. # Someone translate this shit back to English.
+  components: # Oh and it wouldn't hurt to make this actially functioning stealth suit :P
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutchinesestealthsuit.rsi
   - type: Clothing
@@ -1871,3 +1871,47 @@
     coefficient: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.8
+
+# Town Guard armour
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterTownGuardLight
+  name: the Guard's armor
+  description: An old piece of armor or maybe a replica of one. Nothing more than sheets of metal held together by leather straps, surprisingly sturdy thing.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/townarmorlight.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/townarmorlight.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.825
+        Slash: 0.725
+        Piercing: 0.825
+        Heat: 0.875
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  parent: N14ClothingOuterTownGuardLight
+  id: N14ClothingOuterTownGuardRiot
+  name: the Guard's armor
+  description: An old piece of armor or maybe a replica of one, surprisingly sturdy thing. Additional plating over the left arm for extra protection in melee combat.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/townarmorriot.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/townarmorriot.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.775
+        Slash: 0.675
+        Piercing: 0.775
+        Heat: 0.825
+  - type: ClothingSpeedModifier
+    walkModifier: 0.975
+    sprintModifier: 0.975
