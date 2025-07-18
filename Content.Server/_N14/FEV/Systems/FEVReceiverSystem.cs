@@ -21,7 +21,6 @@ using Content.Server.Medical;
 
 namespace Content.Server._N14.FEV.Systems;
 
-[RegisterSystem]
 public sealed partial class FEVReceiverSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -43,7 +42,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
 
     private void OnMetabolize(EntityUid uid, FEVReceiverComponent comp, ref TryMetabolizeReagent args)
     {
-        if (args.Prototype.ID != "FEV")
+        if (args.Reagent.Prototype != "FEV")
             return;
 
         comp.Accumulated += args.Quantity;

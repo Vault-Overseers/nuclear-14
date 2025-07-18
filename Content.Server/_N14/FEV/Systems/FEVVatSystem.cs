@@ -10,7 +10,6 @@ using Content.Shared.Tag;
 
 namespace Content.Server._N14.FEV.Systems;
 
-[RegisterSystem]
 public sealed partial class FEVVatSystem : EntitySystem
 {
     [Dependency] private readonly SolutionContainerSystem _solutions = default!;
