@@ -71,3 +71,10 @@ public enum VehicleRenderOver
     West = 64,
     NorthWest = 128,
 }
+
+[Serializable, NetSerializable]
+public enum VehicleVisualLayers : byte
+{
+    Base,
+    AutoAnimate,
+}
