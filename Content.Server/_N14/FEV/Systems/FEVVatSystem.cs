@@ -18,10 +18,10 @@ public sealed partial class FEVVatSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<FEVVatComponent, BuckledEvent>(OnBuckled);
+        SubscribeLocalEvent<FEVVatComponent, StrappedEvent>(OnStrapped);
     }
 
-    private void OnBuckled(EntityUid uid, FEVVatComponent comp, ref BuckledEvent args)
+    private void OnStrapped(EntityUid uid, FEVVatComponent comp, ref StrappedEvent args)
     {
         var target = args.Buckle.Owner;
 
