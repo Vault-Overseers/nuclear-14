@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 
@@ -5,18 +7,16 @@ namespace Content.Shared.Fluids;
 
 public abstract partial class SharedPuddleSystem
 {
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string Water = "Water";
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string WaterDirty = "WaterDirty";
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string WaterIrradiated = "WaterIrradiated";
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string WastelandBlood = "WastelandBlood";
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string Blood = "Blood";
+    public static string[] EvaporationReagents { get; private set; } = Array.Empty<string>();
 
-    public static readonly string[] EvaporationReagents = [Water, WaterDirty, WaterIrradiated, WastelandBlood, Blood];
+    private void InitializeEvaporation()
+    {
+        EvaporationReagents = _prototypeManager
+            .EnumeratePrototypes<ReagentPrototype>()
+            .Where(p => p.Evaporates)
+            .Select(p => p.ID)
+            .ToArray();
+    }
 
     public bool CanFullyEvaporate(Solution solution)
     {

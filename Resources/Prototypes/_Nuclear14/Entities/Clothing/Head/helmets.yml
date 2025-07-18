@@ -801,3 +801,58 @@
   - type: IngestionBlocker
   - type: Item
     size: Normal
+
+# Town Guard helmets
+- type: entity
+  parent: ClothingHeadBase
+  id: N14ClothingHeadTownGuardBrodie
+  name: brodie helmet
+  description: A metal helmet offering some protection for the Town's Guard.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/townbrodie.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/townbrodie.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
+  - type: StaticPrice
+    price: 75
+
+- type: entity
+  parent: N14ClothingHeadTownGuardBrodie
+  id: N14ClothingHeadTownGuardBrodieCover
+  name: brodie helmet
+  description: A metal helmet offering some protection for the Town's Guard. This one has a neck cover to offer additional defense against flying shrapnel and the cold.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/townbrodiecover.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/townbrodiecover.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14ClothingHeadTownGuardBrodie
+  id: N14ClothingHeadTownGuardBrodieVisor
+  name: brodie helmet
+  description: A metal helmet offering some protection for the Town's Guard. This one has a visor to protect the eyes from direct damage.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/townriothelmet.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/townriothelmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
