@@ -1,7 +1,7 @@
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Chemistry.DrugMeleeBuff;
+namespace Content.Shared.Chemistry.DrugMeleeBuff;
 
 /// <summary>
 ///     Grants a melee damage bonus via <see cref="BonusMeleeDamageComponent"/> when active.

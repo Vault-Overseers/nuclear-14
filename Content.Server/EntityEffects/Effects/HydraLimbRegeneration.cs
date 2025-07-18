@@ -1,6 +1,9 @@
 using Content.Shared.Body.Part;
 using Content.Shared.EntityEffects;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.EntityEffects.Effects;
@@ -31,8 +34,8 @@ public sealed partial class HydraLimbRegeneration : EntityEffect
         // heal damage on the part
         if (entMan.TryGetComponent<DamageableComponent>(reagentArgs.OrganEntity.Value, out var damage))
         {
-            entMan.System<DamageableSystem>().TryChangeDamage(reagentArgs.OrganEntity.Value,
-                new DamageSpecifier(damage.DamageTypes, damage.DamageGroups) * -1);
+            var damageSys = entMan.System<DamageableSystem>();
+            damageSys.SetAllDamage(reagentArgs.OrganEntity.Value, damage, FixedPoint2.Zero);
         }
 
         if (!part.Enabled && part.CanEnable)
