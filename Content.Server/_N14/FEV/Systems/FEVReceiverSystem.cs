@@ -42,7 +42,7 @@ public sealed partial class FEVReceiverSystem : EntitySystem
 
     private void OnMetabolize(EntityUid uid, FEVReceiverComponent comp, ref TryMetabolizeReagent args)
     {
-        if (args.Reagent.Prototype != "FEV")
+        if (args.Reagent != "FEV")
             return;
 
         comp.Accumulated += args.Quantity;
@@ -192,5 +192,13 @@ public sealed partial class FEVReceiverSystem : EntitySystem
         }
 
         Del(item);
+    }
+
+    public void ForceInstantTransform(EntityUid uid, FEVReceiverComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp))
+            return;
+
+        StartInstantTransform(uid, comp);
     }
 }
