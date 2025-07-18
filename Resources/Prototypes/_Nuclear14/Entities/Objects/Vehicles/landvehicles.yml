@@ -117,5 +117,33 @@
     # southOverride: 0.1
   # - type: Sprite
     # layers:
-    # - state: bike_scrambler2
+  # - state: bike_scrambler2
       # map: ["enum.VehicleVisualLayers.AutoAnimate"]
+
+# Motorbike using the base vehicle system
+- type: entity
+  parent: BaseVehicle
+  id: N14VehicleMotorbike
+  name: motorbike
+  description: A rugged two-wheeler ready to ride.
+  components:
+  - type: Vehicle
+    northOverride: -0.1
+    southOverride: 0.1
+  - type: Sprite
+    sprite: Objects/Vehicles/motorbike.rsi
+    state: vehicle
+    noRot: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - MotorbikeKeys
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -3
