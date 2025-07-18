@@ -19,8 +19,6 @@
     friction: 0.5
     baseWalkSpeed: 4.5
     baseSprintSpeed: 8
-  - type: Strap
-    buckleOffset: "0.1, -0.05"
   - type: ItemSlots
     slots:
       key_slot:
@@ -85,11 +83,15 @@
   name: dune buggy
   description: A rugged offroad buggy.
   components:
+  - type: Vehicle
+    renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
   - type: Sprite
     sprite: _Nuclear14/Objects/Vehicles/bikesbuggy.rsi
     layers:
     - state: buggy_dune
       map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    - state: buggy_dune_cover
+      map: ["enum.VehicleVisualLayers.Cover"]
     netsync: false
     noRot: true
   - type: MovementSpeedModifier
@@ -120,6 +122,8 @@
     layers:
     - state: buggy_olive
       map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    - state: buggy_olive_cover
+      map: ["enum.VehicleVisualLayers.Cover"]
 
 - type: entity
   parent: N14VehicleBuggyDune
@@ -131,6 +135,8 @@
     layers:
     - state: buggy_red
       map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    - state: buggy_red_cover
+      map: ["enum.VehicleVisualLayers.Cover"]
 
 - type: entity
   parent: N14VehicleBuggyDune
@@ -142,6 +148,8 @@
     layers:
     - state: buggy_hot
       map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    - state: buggy_hot_cover
+      map: ["enum.VehicleVisualLayers.Cover"]
 
 - type: entity
   parent: BaseVehicle

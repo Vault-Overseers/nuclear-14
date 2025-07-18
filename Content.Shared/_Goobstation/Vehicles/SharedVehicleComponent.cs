@@ -77,4 +77,5 @@ public enum VehicleVisualLayers : byte
 {
     Base,
     AutoAnimate,
+    Cover,
 }

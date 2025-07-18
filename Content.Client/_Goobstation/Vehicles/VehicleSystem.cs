@@ -1,4 +1,9 @@
 using System.Numerics;
+using System.Collections.Generic;
+using Robust.Shared.Maths;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.GameObjects;
 using Content.Shared.Vehicles;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -11,11 +16,15 @@ public sealed class VehicleSystem : SharedVehicleSystem
     [Dependency] private readonly IEyeManager _eye = default!;
     [Dependency] private readonly SpriteSystem _sprites = default!;
 
+    private const float FreezeRotationSpeed = 3f;
+    private readonly Dictionary<EntityUid, Angle> _lastRotation = new();
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<VehicleComponent, AppearanceChangeEvent>(OnAppearanceChange);
         SubscribeLocalEvent<VehicleComponent, MoveEvent>(OnMove);
+        SubscribeLocalEvent<VehicleComponent, ComponentShutdown>(OnShutdown);
     }
 
     private void OnAppearanceChange(EntityUid uid, VehicleComponent comp, ref AppearanceChangeEvent args)
@@ -36,6 +45,31 @@ public sealed class VehicleSystem : SharedVehicleSystem
     private void OnMove(EntityUid uid, VehicleComponent component, ref MoveEvent args)
     {
         SpritePos(uid, component);
+
+        if (!TryComp<PhysicsComponent>(uid, out var physics))
+            return;
+
+        if (!TryComp<TransformComponent>(uid, out var xform))
+            return;
+
+        var speed = physics.LinearVelocity.Length();
+
+        if (!_lastRotation.ContainsKey(uid))
+            _lastRotation[uid] = xform.LocalRotation;
+
+        if (speed >= FreezeRotationSpeed)
+        {
+            xform.LocalRotation = _lastRotation[uid];
+        }
+        else
+        {
+            _lastRotation[uid] = xform.LocalRotation;
+        }
+    }
+
+    private void OnShutdown(EntityUid uid, VehicleComponent comp, ComponentShutdown args)
+    {
+        _lastRotation.Remove(uid);
     }
 
     private void SpritePos(EntityUid uid, VehicleComponent comp)
