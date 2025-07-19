@@ -295,9 +295,9 @@ public sealed class StationAiVisionSystem : EntitySystem
     {
         public int BatchSize => 1;
 
-        public IEntityManager EntManager;
-        public SharedMapSystem Maps;
-        public StationAiVisionSystem System;
+        public IEntityManager EntManager = default!;
+        public SharedMapSystem Maps = default!;
+        public StationAiVisionSystem System = default!;
 
         public Entity<MapGridComponent> Grid;
         public List<Entity<StationAiVisionComponent>> Data = new();
@@ -305,7 +305,7 @@ public sealed class StationAiVisionSystem : EntitySystem
         // If we're doing range-checks might be able to early out
         public Vector2i? TargetTile;
 
-        public HashSet<Vector2i> VisibleTiles;
+        public HashSet<Vector2i> VisibleTiles = default!;
 
         public readonly List<Dictionary<Vector2i, int>> Vis1 = new();
         public readonly List<Dictionary<Vector2i, int>> Vis2 = new();
