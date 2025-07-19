@@ -3,7 +3,6 @@
  * https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT
  */
 
-using Content.Shared._CP14.Skill;
 using Content.Shared._CP14.Workbench;
 using Content.Shared.Placeable;
 
@@ -11,7 +10,6 @@ namespace Content.Server._CP14.Workbench;
 
 public sealed partial class CP14WorkbenchSystem
 {
-    [Dependency] private readonly CP14SharedSkillSystem _skill = default!;
 
     private void OnCraft(Entity<CP14WorkbenchComponent> entity, ref CP14WorkbenchUiCraftMessage args)
     {
@@ -26,10 +24,10 @@ public sealed partial class CP14WorkbenchSystem
 
     private void UpdateUIRecipes(Entity<CP14WorkbenchComponent> entity)
     {
-        if (!TryComp<ItemPlacerComponent>(entity.Owner, out var placer))
-            return;
+        var getResource = new CP14WorkbenchGetResourcesEvent();
+        RaiseLocalEvent(entity, getResource);
 
-        var placedEntities = placer.PlacedEntities;
+        var resources = getResource.Resources;
 
         var recipes = new List<CP14WorkbenchUiRecipesEntry>();
         foreach (var recipeId in entity.Comp.Recipes)
@@ -41,7 +39,7 @@ public sealed partial class CP14WorkbenchSystem
 
             foreach (var requirement in indexedRecipe.Requirements)
             {
-                if (!requirement.CheckRequirement(EntityManager, _proto, placedEntities))
+                if (!requirement.CheckRequirement(EntityManager, _proto, resources))
                 {
                     canCraft = false;
                     break;

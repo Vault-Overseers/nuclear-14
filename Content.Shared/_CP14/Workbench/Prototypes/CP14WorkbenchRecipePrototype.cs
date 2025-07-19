@@ -3,7 +3,6 @@
  * https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT
  */
 
-using Content.Shared._CP14.Skill.Prototypes;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -28,8 +27,9 @@ public sealed class CP14WorkbenchRecipePrototype : IPrototype
     [DataField(required: true)]
     public List<CP14WorkbenchCraftRequirement> Requirements = new();
 
-    [DataField]
-    public HashSet<ProtoId<CP14SkillPrototype>> RequiredSkills = new();
+    // Skill requirements are not yet implemented.
+    // [DataField]
+    // public HashSet<ProtoId<CP14SkillPrototype>> RequiredSkills = new();
 
     [DataField(required: true)]
     public EntProtoId Result;
