@@ -1078,6 +1078,33 @@
 
 - type: entity
   parent: N14FloraProduceFood
+  id: N14FloraProduceWildSugarBeet
+  name: wild sugar beet
+  description: A plump sugar beet.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Hydroponics/carrot.rsi
+    state: produce
+  - type: Stack
+    stackType: WildSugarBeet
+    count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 10
+  - type: Produce
+    seedId: N14WildSugarBeet
+
+- type: entity
+  parent: N14FloraProduceFood
   id: N14FloraProduceWildNettle
   name: wild nettle
   description: Wild nettles. Stingy.

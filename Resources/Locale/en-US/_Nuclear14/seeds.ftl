@@ -90,3 +90,6 @@ clipping-wild-white-horsenettle-display-name = wild white horsenettle
 clipping-wild-xander-name = wild xander clipping
 clipping-wild-xander-noun = wild xander clippings
 clipping-wild-xander-display-name = wild xander
+clipping-sugar-beet-name = sugar beet clipping
+clipping-sugar-beet-noun = sugar beet clippings
+clipping-sugar-beet-display-name = sugar beet
