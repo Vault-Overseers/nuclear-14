@@ -85,6 +85,14 @@ public sealed partial record PolymorphConfiguration
     public PolymorphInventoryChange Inventory = PolymorphInventoryChange.None;
 
     /// <summary>
+    /// If true, items transferred by the polymorph will be force-equipped even if
+    /// they do not fit the new body's inventory whitelist. If false, incompatible
+    /// items will be dropped on the ground instead of being equipped.
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public bool ForceEquip = true;
+
+    /// <summary>
     /// Whether or not the polymorph reverts when the entity goes into crit.
     /// </summary>
     [DataField(serverOnly: true)]
