@@ -12,6 +12,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Prying.Systems;
 using Content.Shared.Radio.EntitySystems;
 using Content.Shared.Tools.Systems;
+using Content.Shared.Temperature;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 #if EXCEPTION_TOLERANCE

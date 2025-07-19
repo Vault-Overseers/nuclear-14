@@ -24,10 +24,9 @@ public sealed partial class CP14WorkbenchSystem
 
     private void UpdateUIRecipes(Entity<CP14WorkbenchComponent> entity)
     {
-        var getResource = new CP14WorkbenchGetResourcesEvent();
-        RaiseLocalEvent(entity, getResource);
-
-        var resources = getResource.Resources;
+        var resources = _lookup.GetEntitiesInRange(Transform(entity).Coordinates,
+            entity.Comp.WorkbenchRadius,
+            LookupFlags.Uncontained);
 
         var recipes = new List<CP14WorkbenchUiRecipesEntry>();
         foreach (var recipeId in entity.Comp.Recipes)

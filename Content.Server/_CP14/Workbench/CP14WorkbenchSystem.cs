@@ -32,7 +32,6 @@ public sealed partial class CP14WorkbenchSystem : CP14SharedWorkbenchSystem
     public override void Initialize()
     {
         base.Initialize();
-        InitProviders();
 
         SubscribeLocalEvent<CP14WorkbenchComponent, MapInitEvent>(OnMapInit);
 
@@ -82,10 +81,9 @@ public sealed partial class CP14WorkbenchSystem : CP14SharedWorkbenchSystem
         if (!_proto.TryIndex(args.Recipe, out var recipe))
             return;
 
-        var getResource = new CP14WorkbenchGetResourcesEvent();
-        RaiseLocalEvent(ent.Owner, getResource);
-
-        var resources = getResource.Resources;
+        var resources = _lookup.GetEntitiesInRange(Transform(ent).Coordinates,
+            ent.Comp.WorkbenchRadius,
+            LookupFlags.Uncontained);
 
         if (!CanCraftRecipe(recipe, resources, args.User))
         {
@@ -93,37 +91,22 @@ public sealed partial class CP14WorkbenchSystem : CP14SharedWorkbenchSystem
             return;
         }
 
-        //Check conditions
-        var passConditions = true;
-        foreach (var condition in recipe.Conditions)
-        {
-            if (!condition.CheckCondition(EntityManager, _proto, ent, args.User))
-            {
-                condition.FailedEffect(EntityManager, _proto, ent, args.User);
-                passConditions = false;
-            }
-            condition.PostCraft(EntityManager, _proto, ent, args.User);
-        }
-
         foreach (var req in recipe.Requirements)
         {
             req.PostCraft(EntityManager, _proto, resources);
         }
 
-        if (passConditions)
+        var resultEntities = new HashSet<EntityUid>();
+        for (var i = 0; i < recipe.ResultCount; i++)
         {
-            var resultEntities = new HashSet<EntityUid>();
-            for (var i = 0; i < recipe.ResultCount; i++)
-            {
-                var resultEntity = Spawn(recipe.Result);
-                resultEntities.Add(resultEntity);
-            }
+            var resultEntity = Spawn(recipe.Result);
+            resultEntities.Add(resultEntity);
+        }
 
-            //We teleport result to workbench AFTER craft.
-            foreach (var resultEntity in resultEntities)
-            {
-                _transform.SetCoordinates(resultEntity, Transform(ent).Coordinates.Offset(new Vector2(_random.NextFloat(-0.25f, 0.25f), _random.NextFloat(-0.25f, 0.25f))));
-            }
+        //We teleport result to workbench AFTER craft.
+        foreach (var resultEntity in resultEntities)
+        {
+            _transform.SetCoordinates(resultEntity, Transform(ent).Coordinates.Offset(new Vector2(_random.NextFloat(-0.25f, 0.25f), _random.NextFloat(-0.25f, 0.25f))));
         }
 
         UpdateUIRecipes(ent);
