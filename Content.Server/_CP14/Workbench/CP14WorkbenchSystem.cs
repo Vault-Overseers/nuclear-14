@@ -6,7 +6,6 @@
 using System.Numerics;
 using Content.Server.DoAfter;
 using Content.Server.Popups;
-using Content.Shared._CP14.Skill;
 using Content.Shared._CP14.Workbench;
 using Content.Shared._CP14.Workbench.Prototypes;
 using Content.Shared.DoAfter;
@@ -158,11 +157,6 @@ public sealed partial class CP14WorkbenchSystem : CP14SharedWorkbenchSystem
 
     private bool CanCraftRecipe(CP14WorkbenchRecipePrototype recipe, HashSet<EntityUid> entities, EntityUid user)
     {
-        foreach (var skill in recipe.RequiredSkills)
-        {
-            if (!_skill.HaveSkill(user, skill))
-                return false;
-        }
         foreach (var req in recipe.Requirements)
         {
             if (!req.CheckRequirement(EntityManager, _proto, entities))

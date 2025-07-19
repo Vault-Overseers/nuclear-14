@@ -4,10 +4,8 @@
  */
 
 using System.Numerics;
-using Content.Client.DisplacementMap;
 using Content.Shared._CP14.Cooking;
 using Content.Shared._CP14.Cooking.Components;
-using Content.Shared.DisplacementMap;
 using Content.Shared.Rounding;
 using Robust.Client.GameObjects;
 using Robust.Shared.Random;
@@ -17,7 +15,6 @@ namespace Content.Client._CP14.Cooking;
 public sealed class CP14ClientCookingSystem : CP14SharedCookingSystem
 {
     [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly DisplacementMapSystem _displacement = default!;
 
     public override void Initialize()
     {
@@ -111,30 +108,7 @@ public sealed class CP14ClientCookingSystem : CP14SharedCookingSystem
             _sprite.LayerMapSet((ent, sprite), keyCode, layerIndex);
             _sprite.LayerSetData((ent, sprite), layerIndex, layer);
 
-            if (displacementRsiPath is not null)
-            {
-                var displaceData = new DisplacementData
-                {
-                    SizeMaps = new Dictionary<int, PrototypeLayerData>
-                    {
-                        {
-                            32, new PrototypeLayerData
-                            {
-                                RsiPath = displacementRsiPath,
-                                State = "fill-" + closestFillSprite,
-                            }
-                        },
-                    }
-                };
-                if (_displacement.TryAddDisplacement(displaceData,
-                        (ent, sprite),
-                        layerIndex,
-                        keyCode,
-                        out var displacementKey))
-                {
-                    revealedLayers.Add(displacementKey);
-                }
-            }
+            // Displacement map visuals disabled until the system is available.
 
             counter++;
         }

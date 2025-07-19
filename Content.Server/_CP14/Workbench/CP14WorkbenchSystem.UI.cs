@@ -3,7 +3,6 @@
  * https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT
  */
 
-using Content.Shared._CP14.Skill;
 using Content.Shared._CP14.Workbench;
 using Content.Shared.Placeable;
 
@@ -11,7 +10,6 @@ namespace Content.Server._CP14.Workbench;
 
 public sealed partial class CP14WorkbenchSystem
 {
-    [Dependency] private readonly CP14SharedSkillSystem _skill = default!;
 
     private void OnCraft(Entity<CP14WorkbenchComponent> entity, ref CP14WorkbenchUiCraftMessage args)
     {
