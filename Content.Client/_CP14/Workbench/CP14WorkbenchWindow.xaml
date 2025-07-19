@@ -1,18 +1,74 @@
-<controls:FancyWindow xmlns="https://spacestation14.io"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls">
-    <VBoxContainer>
-        <LineEdit Name="SearchBar" HorizontalExpand="True"/>
-        <OptionButton Name="OptionCategories"/>
-        <VBoxContainer Name="CraftsContainer" HorizontalExpand="True" VerticalExpand="True" />
-        <HBoxContainer>
-            <SpriteView Name="ItemView" SetSize="64 64" />
-            <VBoxContainer>
-                <Label Name="ItemName" />
-                <RichTextLabel Name="ItemDescription" />
-                <VBoxContainer Name="ItemRequirements" />
-                <Button Name="CraftButton" Text="Craft" />
-            </VBoxContainer>
-        </HBoxContainer>
-    </VBoxContainer>
-</controls:FancyWindow>
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+               Title="{Loc 'cp14-workbench-ui-title'}"
+               SetSize="700 500"
+               MinSize="700 300">
+    <BoxContainer Orientation="Horizontal">
+        <!-- Main -->
+        <BoxContainer HorizontalExpand="True" VerticalExpand="True" Orientation="Horizontal">
+            <!-- Product list (left side UI) -->
+            <BoxContainer MinWidth="350" HorizontalExpand="True" Orientation="Vertical" Margin="0 0 10 0">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <!-- Search Bar -->
+                    <LineEdit Name="SearchBar" Margin="4" PlaceHolder="Search" HorizontalExpand="True" />
+                    <OptionButton Name="OptionCategories" Access="Public" MinSize="130 0" />
+                </BoxContainer>
+                <!-- Crafts container -->
+                <ScrollContainer HorizontalExpand="True" VerticalExpand="True" MinSize="0 200" HScrollEnabled="False">
+                    <BoxContainer Name="CraftsContainer" Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Top"/>
+                </ScrollContainer>
+            </BoxContainer>
+
+            <!-- Craft view (right side UI) -->
+            <BoxContainer MinWidth="350" Orientation="Vertical" HorizontalExpand="True"
+                          VerticalExpand="True">
+                <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                    <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+                        <!-- Background -->
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BackgroundColor="#41332f" />
+                        </PanelContainer.PanelOverride>
+
+                        <!-- Content -->
+                        <BoxContainer HorizontalExpand="True" VerticalExpand="True" Orientation="Vertical">
+                            <!-- Item info -->
+                            <!-- icon -->
+                            <EntityPrototypeView Name="ItemView"
+                                                 Scale="2,2"
+                                                 Margin="8"
+                                                 MinSize="96 96"
+                                                 MaxSize="96 96"
+                                                 HorizontalAlignment="Left" />
+
+                            <!-- name & description -->
+                            <BoxContainer Margin="5 0 0 0" HorizontalExpand="True" VerticalExpand="True"
+                                          Orientation="Vertical">
+                                <RichTextLabel Name="ItemName" Margin="5" />
+                                <RichTextLabel Name="ItemDescription" Margin="5" />
+                            </BoxContainer>
+
+                            <controls:HLine Color="#404040" Thickness="2" Margin="0 5" />
+
+                            <!-- Required title -->
+                            <Label Margin="5 0 0 0" Text="{Loc 'cp14-workbench-recipe-list'}" />
+
+                            <!-- Craft requirements content -->
+                            <!-- Added by code -->
+                            <BoxContainer
+                                Margin="5 0 0 0"
+                                Name="ItemRequirements"
+                                Orientation="Vertical" VerticalExpand="True"
+                                HorizontalExpand="True" />
+
+                            <controls:HLine Color="#404040" Thickness="5" Margin="0 5" />
+
+                            <!-- Craft button -->
+                            <Button Name="CraftButton" Text="{Loc 'cp14-workbench-craft'}" />
+                        </BoxContainer>
+                    </PanelContainer>
+                </ScrollContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>
