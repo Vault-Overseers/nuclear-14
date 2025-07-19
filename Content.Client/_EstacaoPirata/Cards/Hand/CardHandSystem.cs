@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Numerics;
 using Content.Shared._EstacaoPirata.Cards.Hand;
 using Content.Shared._EstacaoPirata.Cards.Stack;
@@ -11,7 +10,6 @@ namespace Content.Client._EstacaoPirata.Cards.Hand;
 /// </summary>
 public sealed class CardHandSystem : EntitySystem
 {
-    private readonly Dictionary<Entity<CardHandComponent>, int> _notInit = [];
     [Dependency] private readonly CardSpriteSystem _cardSpriteSystem = default!;
 
 
@@ -25,65 +23,20 @@ public sealed class CardHandSystem : EntitySystem
         SubscribeNetworkEvent<CardStackFlippedEvent>(OnStackFlip);
     }
 
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-        foreach (var (ent, value) in _notInit)
-        {
-            if (value >= 5)
-            {
-                _notInit.Remove(ent);
-                continue;
-            }
-            _notInit[ent] = value + 1;
-            if(!TryComp(ent.Owner, out CardStackComponent? stack) || stack.Cards.Count <= 0)
-                continue;
-
-            // If cards were correctly initialized, we update the sprite
-            UpdateSprite(ent.Owner, ent.Comp);
-            _notInit.Remove(ent);
-        }
-    }
-
-    private bool TryGetCardLayer(EntityUid card, out SpriteComponent.Layer? layer)
-    {
-        layer = null;
-        if (!TryComp(card, out SpriteComponent? cardSprite)
-            || !cardSprite.TryGetLayer(0, out var l))
-            return false;
-
-        layer = l;
-        return true;
-    }
-
     private void UpdateSprite(EntityUid uid, CardHandComponent comp)
     {
-        if (!TryComp(uid, out SpriteComponent? sprite)
-            || !TryComp(uid, out CardStackComponent? cardStack))
+        if (!TryComp(uid, out SpriteComponent? sprite))
             return;
 
-        // Prevents error appearing at spawnMenu
-        if (cardStack.Cards.Count <= 0 || !TryGetCardLayer(cardStack.Cards.Last(), out var cardlayer) ||
-            cardlayer == null)
-        {
-            _notInit[(uid, comp)] = 0;
+        if (!TryComp(uid, out CardStackComponent? cardStack))
             return;
-        }
 
         _cardSpriteSystem.TryAdjustLayerQuantity((uid, sprite, cardStack), comp.CardLimit);
 
         var cardCount = Math.Min(cardStack.Cards.Count, comp.CardLimit);
 
-        // Frontier: zero/one card case
-        if (cardCount <= 0)
-        {
-            // Placeholder - we need to have a valid sprite.
-            sprite.LayerSetVisible(0, true);
-            sprite.LayerSetState(0, "singlecard_down_black");
-            sprite.LayerSetOffset(0, new Vector2(0f, 0f));
-            sprite.LayerSetScale(0, new Vector2(1f, 1f));
-        }
-        else if (cardCount == 1)
+        // Frontier: one card case.
+        if (cardCount <= 1)
         {
             _cardSpriteSystem.TryHandleLayerConfiguration(
                 (uid, sprite, cardStack),
@@ -138,13 +91,7 @@ public sealed class CardHandSystem : EntitySystem
     }
     private void OnComponentStartupEvent(EntityUid uid, CardHandComponent comp, ComponentStartup args)
     {
-        if (!TryComp(uid, out CardStackComponent? stack))
-        {
-            _notInit[(uid, comp)] = 0;
-            return;
-        }
-        if(stack.Cards.Count <= 0)
-            _notInit[(uid, comp)] = 0;
+
         UpdateSprite(uid, comp);
     }
 
