@@ -46,11 +46,10 @@ public abstract partial class SharedGunSystem
             || _whitelistSystem.IsWhitelistFailOrNull(component.Whitelist, args.Used)
             || GetBallisticShots(component) >= component.Capacity)
             return;
-        }
-}
+
         if (EntityManager.HasComponent<SpeedLoaderComponent>(args.Used))
         {
-            var emptySlots = component.Capacity - component.UnspawnedCount - component.Entities.Count; // Number of empty slots in the shotgun
+            var emptySlots = component.Capacity - component.UnspawnedCount - component.Entities.Count;
 
             var ammo = new List<(EntityUid? Entity, IShootable Shootable)>();
             var ev = new TakeAmmoEvent(emptySlots, ammo, Transform(uid).Coordinates, args.User);
@@ -78,14 +77,12 @@ public abstract partial class SharedGunSystem
                     break;
             }
         }
-        // if not a speedloader just insert
         else
         {
             component.Entities.Add(args.Used);
             Containers.Insert(args.Used, component.Container);
         }
 
-        // Not predicted so
         Audio.PlayPredicted(component.SoundInsert, uid, args.User);
         args.Handled = true;
         component.Cycled = true;
