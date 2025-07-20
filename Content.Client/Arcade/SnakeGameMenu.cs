@@ -4,6 +4,7 @@ using Content.Shared.Input;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
+using static Robust.Client.UserInterface.Controls.BoxContainer;
 using Robust.Shared.Localization;
 using System.Numerics;
 

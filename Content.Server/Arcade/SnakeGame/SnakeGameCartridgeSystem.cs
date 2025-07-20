@@ -1,6 +1,7 @@
 using Content.Server.CartridgeLoader;
 using Content.Shared.Arcade.SnakeGame;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.CartridgeLoader.Cartridges;
 using Robust.Server.GameObjects;
 
 namespace Content.Server.Arcade.SnakeGame;
