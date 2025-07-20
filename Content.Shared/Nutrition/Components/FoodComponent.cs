@@ -1,14 +1,13 @@
 using Content.Shared._CP14.Cooking;
 using Content.Shared.Body.Components;
 using Content.Shared.FixedPoint;
-using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Nutrition.EntitySystems;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Nutrition.Components;
+namespace Content.Shared.Nutrition.Components;
 
-[RegisterComponent, Access(typeof(FoodSystem), typeof(FoodSequenceSystem), typeof(CP14SharedCookingSystem))]
+[RegisterComponent]
 public sealed partial class FoodComponent : Component
 {
     [DataField]

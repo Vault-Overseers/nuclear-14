@@ -74,10 +74,11 @@ public sealed class CP14ClientCookingSystem : CP14SharedCookingSystem
         if (!TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        //Remove old layers
+        // Remove old layers
         foreach (var key in revealedLayers)
         {
-            _sprite.RemoveLayer((ent, sprite), key);
+            if (sprite.LayerMapTryGet(key, out var oldLayer))
+                sprite.RemoveLayer(oldLayer);
         }
 
         revealedLayers.Clear();
@@ -88,7 +89,7 @@ public sealed class CP14ClientCookingSystem : CP14SharedCookingSystem
         if (!_solution.TryGetSolution(ent, solutionId, out var soln, out var solution))
             return;
 
-        _sprite.LayerMapTryGet((ent, sprite), targetLayerMap, out var index, false);
+        var index = sprite.LayerMapReserveBlank(targetLayerMap);
 
         var fillLevel = (float)solution.Volume / (float)solution.MaxVolume;
         if (fillLevel > 1)
@@ -104,9 +105,9 @@ public sealed class CP14ClientCookingSystem : CP14SharedCookingSystem
             var keyCode = $"cp14-food-layer-{counter}";
             revealedLayers.Add(keyCode);
 
-            _sprite.AddBlankLayer((ent, sprite), layerIndex);
-            _sprite.LayerMapSet((ent, sprite), keyCode, layerIndex);
-            _sprite.LayerSetData((ent, sprite), layerIndex, layer);
+            sprite.AddBlankLayer(layerIndex);
+            sprite.LayerMapSet(keyCode, layerIndex);
+            sprite.LayerSetData(layerIndex, layer);
 
             // Displacement map support pending upstream implementation
 

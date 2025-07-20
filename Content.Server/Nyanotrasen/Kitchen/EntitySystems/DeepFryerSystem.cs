@@ -10,7 +10,7 @@ using Content.Server.DoAfter;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Kitchen.Components;
 using Content.Server.Nutrition;
-using Content.Server.Nutrition.Components;
+using Content.Shared.Nutrition.Components;
 using Content.Server.Nyanotrasen.Kitchen.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;

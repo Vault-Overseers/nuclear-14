@@ -3,7 +3,7 @@ using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Kitchen.Components;
-using Content.Server.Nutrition.Components;
+using Content.Shared.Nutrition.Components;
 using Content.Server.Nyanotrasen.Kitchen.Components;
 using Content.Server.Paper;
 using Content.Shared.Atmos.Rotting;
