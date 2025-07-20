@@ -86,12 +86,3 @@ public sealed class BeforeBlockingEvent(EntityUid user, EntityUid? origin) : Can
     public EntityUid User = user;
     public EntityUid? Origin = origin;
 }
-
-/// <summary>
-///     Raised directed on the blocking object when attempting to block.
-/// </summary>
-public sealed class BeforeBlockingEvent(EntityUid user, EntityUid? origin) : CancellableEntityEventArgs
-{
-    public EntityUid User = user;
-    public EntityUid? Origin = origin;
-}

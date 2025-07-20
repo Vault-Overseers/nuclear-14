@@ -36,9 +36,6 @@ public abstract partial class SharedToolSystem : EntitySystem
     public const string CutQuality = "Cutting";
     public const string PulseQuality = "Pulsing";
 
-    public const string CutQuality = "Cutting";
-    public const string PulseQuality = "Pulsing";
-
     public override void Initialize()
     {
         InitializeMultipleTool();
