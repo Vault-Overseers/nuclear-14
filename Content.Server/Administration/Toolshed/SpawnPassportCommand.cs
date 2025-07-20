@@ -9,7 +9,7 @@ using Content.Server.Mind;
 
 namespace Content.Server.Administration.Toolshed;
 
-[ToolshedCommand, AdminCommand(AdminFlags.Spawn)]
+[ToolshedCommand, AdminCommand(AdminFlags.Debug)]
 public sealed class SpawnPassportCommand : ToolshedCommand
 {
     private SharedPassportSystem? _passportSystem;
