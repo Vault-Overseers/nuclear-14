@@ -1,6 +1,7 @@
 using Content.Client.Arcade.UI;
 using Content.Shared.Arcade.SnakeGame;
 using Content.Shared.Input;
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Localization;

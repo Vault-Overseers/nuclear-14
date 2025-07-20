@@ -106,20 +106,20 @@ public sealed partial class SnakeGame
                 UpdateAll();
                 break;
             case SnakeGamePlayerAction.Up:
-                if (_direction != Vector2i.UnitY)
-                    _direction = -Vector2i.UnitY;
+                if (_direction != new Vector2i(0, 1))
+                    _direction = new Vector2i(0, -1);
                 break;
             case SnakeGamePlayerAction.Down:
-                if (_direction != -Vector2i.UnitY)
-                    _direction = Vector2i.UnitY;
+                if (_direction != new Vector2i(0, -1))
+                    _direction = new Vector2i(0, 1);
                 break;
             case SnakeGamePlayerAction.Left:
-                if (_direction != Vector2i.UnitX)
-                    _direction = -Vector2i.UnitX;
+                if (_direction != new Vector2i(1, 0))
+                    _direction = new Vector2i(-1, 0);
                 break;
             case SnakeGamePlayerAction.Right:
-                if (_direction != -Vector2i.UnitX)
-                    _direction = Vector2i.UnitX;
+                if (_direction != new Vector2i(-1, 0))
+                    _direction = new Vector2i(1, 0);
                 break;
         }
     }

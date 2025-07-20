@@ -39,10 +39,11 @@ public sealed class SnakeGameCartridgeSystem : EntitySystem
 
     private void OnMessage(EntityUid uid, SnakeGameCartridgeComponent comp, CartridgeMessageEvent args)
     {
-        if (args.UiKey != SnakeGameMessages.SnakeGameUiKey.Key)
+        if (args is not SnakeGameUiMessageEvent msg)
             return;
-        if (args.Message is SnakeGameMessages.SnakeGamePlayerActionMessage msg)
-            comp.Game?.ProcessInput(msg.Action);
+
+        comp.Game?.ProcessInput(msg.Action);
+        UpdateUi(uid, GetEntity(args.LoaderUid), comp);
     }
 
     private void UpdateUi(EntityUid uid, EntityUid loader, SnakeGameCartridgeComponent? comp = null)
