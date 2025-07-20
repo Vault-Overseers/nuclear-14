@@ -3,7 +3,36 @@ Nuclear 14 is the original Fallout fork on Space Station 14 created by Peptide90
 
 The SS13 remake curse and F13 curse have been broken, come check out the community on [discord here](https://discord.gg/4gGSWyNbQF) and consider contributing. Links to the official servers can be found on the discord too or via the launcher at `ss14://game.nuclear14.com:1212`
 
-N14 is based on Einstein Engines.
+---
+
+Einstein Engines is a hard fork of [Space Station 14](https://github.com/space-wizards/space-station-14) built around the ideals and design inspirations of the Baystation family of servers from Space Station 13 with a focus on having modular code that anyone can use to make the RP server of their dreams.
+Our founding organization is based on a democratic system whereby our mutual contributors and downstreams have a say in what code goes into their own upstream.
+If you are a representative of a former downstream of Delta-V, we would like to invite you to contact us for an opportunity to represent your fork in this new upstream.
+
+Space Station 14 is inspired heavily by Space Station 13 and runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), a homegrown engine written in C#.
+
+As a hard fork, any code sourced from a different upstream cannot ever be merged directly here, and must instead be ported.
+All code present in this repository is subject to change as desired by the council of maintainers.
+
+## Official Server Policy
+
+**No official servers will ever be made for Einstein-Engines**.
+
+In order to prevent a potential conflict of interest, we will never open any server directly using the Einstein Engines codebase itself.
+Any server claiming to be an official representation of this fork is not endorsed in any way by this organization.
+We however would like to invite anyone wishing to create a server to make a fork of Einstein Engines.
+
+## Links
+
+[Website](https://simplestation.org) | [Discord](https://discord.gg/X4QEXxUrsJ) | [Steam(SSMV Launcher)](https://store.steampowered.com/app/2585480/Space_Station_Multiverse/) | [Steam(WizDen Launcher)](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone](https://spacestationmultiverse.com/downloads/)
+
+## Contributing
+
+We are happy to accept contributions from anybody, come join our Discord if you want to help.
+We've got a [list of issues](https://github.com/Simple-Station/Einstein-Engines/issues) that need to be done and anybody can pick them up. Don't be afraid to ask for help in Discord either!
+
+We are currently accepting translations of the game on our main repository.
+If you would like to translate the game into another language check the #contributor-general channel in our Discord.
 
 ## Building
 

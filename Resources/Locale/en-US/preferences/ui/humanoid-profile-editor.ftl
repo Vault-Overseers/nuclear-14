@@ -2,6 +2,7 @@ humanoid-profile-editor-randomize-everything-button = Randomize everything
 humanoid-profile-editor-name-label = Name:
 humanoid-profile-editor-name-random-button = Randomize
 humanoid-profile-editor-appearance-tab = Appearance
+humanoid-profile-editor-background-tab = Background
 humanoid-profile-editor-clothing = Preview job equipment:
 humanoid-profile-editor-loadouts = Preview loadout items:
 humanoid-profile-editor-clothing-show = Show
@@ -24,12 +25,12 @@ humanoid-profile-editor-pronouns-male-text = He / Him
 humanoid-profile-editor-pronouns-female-text = She / Her
 humanoid-profile-editor-pronouns-epicene-text = They / Them
 humanoid-profile-editor-pronouns-neuter-text = It / It
-humanoid-profile-editor-import-button = Import
-humanoid-profile-editor-export-button = Export
-humanoid-profile-editor-save-button = Save
-humanoid-profile-editor-reset-button = Reset
-humanoid-profile-editor-clothing-label = Clothing:
-humanoid-profile-editor-backpack-label = Backpack:
+humanoid-profile-editor-import-button = Import Character
+humanoid-profile-editor-export-button = Export Character
+humanoid-profile-editor-export-image-button = Export image
+humanoid-profile-editor-open-image-button = Open images
+humanoid-profile-editor-save-button = Save Changes
+humanoid-profile-editor-reset-button = Undo Changes
 humanoid-profile-editor-spawn-priority-label = Spawn priority:
 humanoid-profile-editor-eyes-label = Eye color:
 humanoid-profile-editor-jobs-tab = Jobs
@@ -53,27 +54,27 @@ humanoid-profile-editor-antags-tab = Antags
 humanoid-profile-editor-antag-preference-yes-button = Yes
 humanoid-profile-editor-antag-preference-no-button = No
 
-humanoid-profile-editor-traits-tab = Perks
+humanoid-profile-editor-traits-tab = Traits
 humanoid-profile-editor-traits-header = You have {$points ->
     [1] 1 point
     *[other] {$points} points
 } and {$maxTraits ->
     [2147483648] {$traits ->
-        [1] {$traits} perk
-        *[other] {$traits} perks
+        [1] {$traits} trait
+        *[other] {$traits} traits
     }
-    *[other] {$traits}/{$maxTraits} perks
+    *[other] {$traits}/{$maxTraits} traits
 }
-humanoid-profile-editor-traits-show-unusable-button = Show Unusable Perks
+humanoid-profile-editor-traits-show-unusable-button = Show Unusable Traits
 humanoid-profile-editor-traits-show-unusable-button-tooltip =
     When enabled, traits that your current character setup cannot use will be shown highlighted in red or orange if selected.
-    You will still not be able to use the invalid perks unless your character setup changes to fit the requirements.
-    This is most likely useful only if there's a bug hiding perks you actually can use or if you want to see other species' perks or something.
-humanoid-profile-editor-traits-remove-unusable-button = Remove {$count} Unusable Perks
+    You will still not be able to use the invalid traits unless your character setup changes to fit the requirements.
+    This is most likely useful only if there's a bug hiding traits you actually can use or if you want to see other species' traits or something.
+humanoid-profile-editor-traits-remove-unusable-button = Remove {$count} Unusable Traits
 humanoid-profile-editor-traits-remove-unusable-button-tooltip =
-    If you click this button, all perks that your current character setup cannot use will be removed.
-    You will be asked for confirmation before the perks are removed.
-humanoid-profile-editor-traits-no-traits = No perks found
+    If you click this button, all traits that your current character setup cannot use will be removed.
+    You will be asked for confirmation before the traits are removed.
+humanoid-profile-editor-traits-no-traits = No traits found
 
 humanoid-profile-editor-job-priority-high-button = High
 humanoid-profile-editor-job-priority-medium-button = Medium

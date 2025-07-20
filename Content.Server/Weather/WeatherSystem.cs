@@ -8,9 +8,6 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using System.Linq;
 
 namespace Content.Server.Weather;
 
@@ -19,9 +16,6 @@ public sealed class WeatherSystem : SharedWeatherSystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
-    [Dependency] private readonly IMapManager _map = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
 
     public override void Initialize()
@@ -99,8 +93,21 @@ public sealed class WeatherSystem : SharedWeatherSystem
         {
             if (!ProtoMan.TryIndex(args[1], out weather))
             {
-                shell.WriteError(Loc.GetString("cmd-weather-error-unknown-proto"));
-                return;
+                var curTime = Timing.CurTime;
+                var maxTime = TimeSpan.MaxValue;
+
+                // If it's already running then just fade out with how much time we're into the weather.
+                if (_mapSystem.TryGetMap(mapId, out var mapUid) &&
+                    TryComp<WeatherComponent>(mapUid, out var weatherComp) &&
+                    weatherComp.Weather.TryGetValue(args[1], out var existing))
+                {
+                    maxTime = curTime - existing.StartTime;
+                }
+
+                endTime = curTime + TimeSpan.FromSeconds(durationInt);
+
+                if (endTime > maxTime)
+                    endTime = maxTime;
             }
         }
 

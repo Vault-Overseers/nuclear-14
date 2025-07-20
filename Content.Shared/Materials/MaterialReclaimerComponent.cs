@@ -1,5 +1,6 @@
-﻿using Content.Shared.Construction.Prototypes;
+using Content.Shared.Construction.Prototypes;
 using Content.Shared.Whitelist;
+using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -30,8 +31,14 @@ public sealed partial class MaterialReclaimerComponent : Component
     public bool Enabled = true;
 
     /// <summary>
-    ///     How efficiently the materials are reclaimed.
-    ///     In practice, a multiplier per material when calculating the output of the reclaimer.
+    /// A master control for whether or not the recycler is broken and can function.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Broken;
+
+    /// <summary>
+    /// How efficiently the materials are reclaimed.
+    /// In practice, a multiplier per material when calculating the output of the reclaimer.
     /// </summary>
     [DataField]
     public float Efficiency = 1f;
@@ -52,27 +59,27 @@ public sealed partial class MaterialReclaimerComponent : Component
     public float BaseMaterialProcessRate = 100f;
 
     /// <summary>
-    ///     How quickly it takes to consume X amount of materials per second.
-    ///     For example, with a rate of 50, an entity with 100 total material takes 2 seconds to process.
+    /// How quickly it takes to consume X amount of materials per second.
+    /// For example, with a rate of 50, an entity with 100 total material takes 2 seconds to process.
     /// </summary>
     [DataField, AutoNetworkedField]
     public float MaterialProcessRate = 100f;
 
     /// <summary>
-    ///     Machine part whose rating modifies <see cref="MaterialProcessRate"/>
+    /// Machine part whose rating modifies <see cref="MaterialProcessRate"/>
     /// </summary>
     [DataField]
     public ProtoId<MachinePartPrototype> MachinePartProcessRate = "Manipulator";
 
     /// <summary>
-    ///     How much the machine part quality affects the <see cref="MaterialProcessRate"/>
+    /// How much the machine part quality affects the <see cref="MaterialProcessRate"/>
     /// </summary>
     [DataField]
     public float PartRatingProcessRateMultiplier = 1.5f;
 
     /// <summary>
-    ///     The minimum amount fo time it can take to process an entity.
-    ///     this value supercedes the calculated one using <see cref="MaterialProcessRate"/>
+    /// The minimum amount fo time it can take to process an entity.
+    /// this value supercedes the calculated one using <see cref="MaterialProcessRate"/>
     /// </summary>
     [DataField]
     public TimeSpan MinimumProcessDuration = TimeSpan.FromSeconds(0.5f);
@@ -81,7 +88,7 @@ public sealed partial class MaterialReclaimerComponent : Component
     ///     The id of our output solution
     /// </summary>
     [DataField]
-    public string SolutionContainerId = "output";
+    public string? SolutionContainerId;
 
     /// <summary>
     ///     a whitelist for what entities can be inserted into this reclaimer
@@ -135,11 +142,12 @@ public sealed partial class MaterialReclaimerComponent : Component
 [NetSerializable, Serializable]
 public enum RecyclerVisuals
 {
-    Bloody
+    Bloody,
+    Broken
 }
 
+[UsedImplicitly]
 public enum RecyclerVisualLayers : byte
 {
-    Main,
-    Bloody
+    Main
 }

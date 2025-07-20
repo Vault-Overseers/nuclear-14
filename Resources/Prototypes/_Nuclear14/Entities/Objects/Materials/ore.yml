@@ -1,12 +1,38 @@
 - type: entity
   parent: OreBase # From Entities\Objects\Materials\ore.yml
-  id: N14LeadOre
-  name: lead ore
+  id: N14AluminiumOre
+  name: bauxite
   suffix: Full
   components:
-  # - type: Stack
-    # stackType: N14LeadOre
-    # count: 10
+  - type: Stack
+    stackType: N14AluminiumOre
+    count: 30
+  - type: Sprite
+    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
+    state: aluminium
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawAluminium: 500
+
+- type: entity
+  id: N14AluminiumOre1
+  parent: N14AluminiumOre
+  suffix: Single
+  components:
+    - type: Stack
+      count: 1
+
+
+- type: entity
+  parent: OreBase # From Entities\Objects\Materials\ore.yml
+  id: N14LeadOre
+  name: galena
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: N14LeadOre
+    count: 30
   - type: Sprite
     sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
     state: lead
@@ -27,18 +53,18 @@
   id: N14LeadOre1
   parent: N14LeadOre
   suffix: Single
-  # components:
-    # - type: Stack
-      # count: 1
+  components:
+    - type: Stack
+      count: 1
 
 - type: entity
   parent: OreBase
-  id: N14CopperOre
-  name: copper ore
+  id: CopperOre
+  name: tetrahedrite
   suffix: Full
   components:
   - type: Stack
-    stackType: N14CopperOre
+    stackType: CopperOre
     count: 30
   - type: Sprite
     sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
@@ -46,7 +72,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      N14RawCopper: 500
+      RawCopper: 500
   - type: Extractable
     grindableSolutionName: copperore
   - type: SolutionContainerManager
@@ -57,8 +83,8 @@
           Quantity: 10
 
 - type: entity
-  id: N14CopperOre1
-  parent: N14CopperOre
+  id: CopperOre1
+  parent: CopperOre
   suffix: Single
   components:
     - type: Stack
@@ -66,112 +92,13 @@
 
 - type: entity
   parent: OreBase
-  id: N14IronOre
-  name: iron ore
-  suffix: Full
-  components:
-  - type: Stack
-    stackType: N14IronOre
-    count: 30
-  - type: Sprite
-    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
-    state: iron
-  - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      N14RawIron: 500
-  - type: Extractable
-    grindableSolutionName: ironore
-  - type: SolutionContainerManager
-    solutions:
-      ironore:
-        reagents:
-        - ReagentId: Iron
-          Quantity: 10
-
-- type: entity
-  parent: N14IronOre
-  id: N14IronOre1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-- type: entity
-  parent: OreBase
-  id: N14GoldOre
-  name: gold ore
-  suffix: Full
-  components:
-  - type: Stack
-    stackType: N14GoldOre
-    count: 30
-  - type: Sprite
-    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
-    state: gold
-  - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      N14RawGold: 500
-  - type: Extractable
-    grindableSolutionName: goldore
-  - type: SolutionContainerManager
-    solutions:
-      goldore:
-        reagents:
-        - ReagentId: Gold
-          Quantity: 10
-
-- type: entity
-  parent: N14GoldOre
-  id: N14GoldOre1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-- type: entity
-  parent: OreBase
-  id: N14SilverOre
-  name: silver ore
-  suffix: Full
-  components:
-  - type: Stack
-    stackType: N14SilverOre
-    count: 30
-  - type: Sprite
-    sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
-    state: silver
-  - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      N14RawSilver: 500
-  - type: Extractable
-    grindableSolutionName: silverore
-  - type: SolutionContainerManager
-    solutions:
-      silverore:
-        reagents:
-        - ReagentId: Silver
-          Quantity: 10
-
-- type: entity
-  parent: N14SilverOre
-  id: N14SilverOre1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
-
-- type: entity
-  parent: OreBase
   id: SulfurOre
   name: sulfur ore
   suffix: Full
   components:
-  # - type: Stack
-    # stackType: SulfurOre
-    # count: 10
+  - type: Stack
+    stackType: SulfurOre
+    count: 30
   - type: Sprite
     sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi
     state: sulfur
@@ -192,39 +119,6 @@
   id: SulfurOre1
   parent: SulfurOre
   suffix: Single
-  # components:
-    # - type: Stack
-      # count: 1
-
-- type: entity
-  parent: OreBase
-  id: FertilizerOre
-  name: fertilizer
-  suffix: Full
   components:
-  # - type: Stack
-    # stackType: FertilizerOre
-    # count: 10
-  - type: Sprite
-    sprite: /Textures/_Nuclear14/Objects/Misc/crafting_material.rsi
-    state: ore_fertilizer
-  - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      Fertilizer: 50
-  - type: Extractable
-    grindableSolutionName: fertilizer
-  - type: SolutionContainerManager
-    solutions:
-      fertilizer:
-        reagents:
-        - ReagentId: Fertilizer
-          Quantity: 50
-
-- type: entity
-  id: FertilizerOre1
-  parent: FertilizerOre
-  suffix: Single
-  # components:
-    # - type: Stack
-      # count: 1
+    - type: Stack
+      count: 1

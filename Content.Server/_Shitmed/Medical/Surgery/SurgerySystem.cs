@@ -104,15 +104,6 @@ public sealed class SurgerySystem : SharedSurgerySystem
         if (!IsLyingDown(target, user))
             return;
 
-        // N14-Changes-Start
-        if (!TryComp(target, out SurgeryTargetComponent? surgeryTarget)
-            || !surgeryTarget.CanOperate)
-        {
-            _popup.PopupEntity(Loc.GetString("surgery-error-cannot-operate"), user);
-            return;
-        }
-        // N14-Changes-End
-
         if (user == target && !_config.GetCVar(CCVars.CanOperateOnSelf))
         {
             _popup.PopupEntity(Loc.GetString("surgery-error-self-surgery"), user, user);
@@ -170,7 +161,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
 
     private void OnStepScreamComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
-        if (HasComp<ForcedSleepingComponent>(args.Body))
+        if (HasComp<ForcedSleepingComponent>(args.Body) || HasComp<NoScreamComponent>(args.Body))
             return;
 
         _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);

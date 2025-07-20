@@ -19,7 +19,6 @@ public abstract class SharedWeatherSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SharedRoofSystem _roof = default!;
 
     private EntityQuery<BlockWeatherComponent> _blockQuery;
 
@@ -41,7 +40,7 @@ public abstract class SharedWeatherSystem : EntitySystem
         }
     }
 
-    public bool CanWeatherAffect(EntityUid uid, MapGridComponent grid, TileRef tileRef, RoofComponent? roofComp = null)
+    public bool CanWeatherAffect(EntityUid uid, MapGridComponent grid, TileRef tileRef)
     {
         if (tileRef.Tile.IsEmpty)
             return true;
@@ -139,10 +138,6 @@ public abstract class SharedWeatherSystem : EntitySystem
                     {
                         SetState(uid, WeatherState.Starting, comp, weather, weatherProto);
                     }
-                    else
-                    {
-                        SetState(uid, WeatherState.Running, comp, weather, weatherProto);
-                    }
                 }
 
                 // Run whatever code we need.
@@ -168,7 +163,7 @@ public abstract class SharedWeatherSystem : EntitySystem
                 endTime ??= Timing.CurTime + WeatherComponent.ShutdownTime;
 
             // Reset cooldown if it's an existing one.
-            if (proto is not null && eProto == proto.ID)
+            if (proto == null || eProto == proto.ID)
             {
                 weather.EndTime = endTime;
                 if (weather.State == WeatherState.Ending)

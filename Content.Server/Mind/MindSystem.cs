@@ -1,4 +1,3 @@
-﻿﻿using System.Diagnostics.CodeAnalysis;
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
@@ -14,8 +13,7 @@ using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Robust.Shared.Prototypes;
-using Content.Shared.NPC.Prototypes;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Server.Mind;
 
@@ -197,7 +195,7 @@ public sealed class MindSystem : SharedMindSystem
             component = EnsureComp<MindContainerComponent>(entity.Value);
 
             if (component.HasMind)
-                _gameTicker.OnGhostAttempt(component.Mind.Value, false);
+                _ghosts.OnGhostAttempt(component.Mind.Value, false);
 
             if (TryComp<ActorComponent>(entity.Value, out var actor))
             {

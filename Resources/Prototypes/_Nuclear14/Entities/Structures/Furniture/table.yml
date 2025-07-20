@@ -69,44 +69,25 @@
     state: table_metal_round # N14TODO: There's a second sprite of this, need it to spawn a random one.
 
 - type: entity
-  id: N14TableDeskSchool # Base off this for wooden tables
   parent: N14FreeTableBase
-  name: school desk
-  description: A wooden desk for studying at.
+  id: N14TableDeskSchool
+  name: end table
+  description: A wooden end table.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Structures/Furniture/Tables/schooldesk.rsi
-    state: desk_1
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Wood
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WoodDestroy
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialWoodPlank:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-
-- type: entity
-  parent: N14TableDeskSchool
-  id: N14TableDeskSchoolDamaged
-  name: school desk
-  suffix: damaged
-  description: A wooden desk for studying at. Looks worse for wear.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Structures/Furniture/Tables/schooldesk.rsi
-    state: desk_2
+    sprite: _Nuclear14/Structures/Furniture/Tables/tables.rsi
+    state: table_wood_end
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.15,-0.25,0.25,0.25"
+        density: 55
+        mask: # tables should collide with other tables
+        - TableMask
+        layer:
+        - TableLayer
 
 - type: entity
   parent: N14TableDeskSchool
@@ -347,6 +328,17 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/Tables/counters.rsi
     state: wood_counter
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+        mask: # tables should collide with other tables
+        - TableMask
+        layer:
+        - TableLayer
 
 - type: entity
   parent: N14TableCounter

@@ -36,19 +36,37 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.4"
+          bounds: "-0.5,-0.5,0.5,0.5"
         layer:
           - SlipLayer
         mask:
           - ItemMask
         density: 1000
         hard: false
+      # Goobstation - fishing
+      fishing:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        layer:
+        - ItemMask
+        mask:
+        - HighImpassable
+        density: 1000
+        hard: false
+      # Goobstation - fishing
   - type: FootstepModifier
     footstepSoundCollection:
       collection: N14FootstepWater
       params:
         volume: 8
-
+  # Goobstation - fishing
+  - type: FishingSpot
+    fishList: !type:NestedSelector
+      tableId: WaterFishingLootTable
+    fishDefaultTimer: 25.0
+    fishTimerVariety: 15.0
+  # Goobstation - fishing
 
 - type: entity
   parent: N14FloorWaterDirtyEntity
@@ -63,11 +81,6 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.2
     sprintSpeedModifier: 0.2
-  - type: FishingPool
-    loot: FishingDeep
-    successChance: 0.4
-  - type: TileEmission
-    color: "#55b240"
 
 - type: entity
   parent: N14FloorWaterSewerDeep
@@ -94,18 +107,14 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.6
     sprintSpeedModifier: 0.6
-  - type: FishingPool
-    loot: FishingShallow
-    successChance: 0.5
 
 - type: entity
-  parent: N14FloorWaterDirtyEntity
+  parent: N14FloorWaterSewerDeep
   id: N14FloorWaterDeep
   name: deep water
   description: Endless Abyss.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Tiles/ms13/Water.rsi
     layers:
       - state: water_deep
   - type: SpeedModifierContacts
@@ -113,7 +122,7 @@
     sprintSpeedModifier: 0.2
 
 - type: entity
-  parent: N14FloorWaterDeep
+  parent: N14FloorWaterSewerDeep
   id: N14FloorWaterMedium
   name: water
   description: Unclean water, likely highly unclean.
@@ -126,7 +135,7 @@
     sprintSpeedModifier: 0.4
 
 - type: entity
-  parent: N14FloorWaterDeep
+  parent: N14FloorWaterSewerDeep
   id: N14FloorWaterShallow
   name: shallow water
   description: Unclean water, likely highly unclean
@@ -137,18 +146,14 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.6
     sprintSpeedModifier: 0.6
-  - type: FishingPool
-    loot: FishingShallow
-    successChance: 0.5
 
 - type: entity
-  parent: N14FloorWaterDirtyEntity
+  parent: N14FloorWaterSewerDeep
   id: N14FloorWaterSaltDeep
   name: deep salt water
   description: Endless Abyss.
   components:
   - type: Sprite
-    sprite: _Nuclear14/Tiles/ms13/Water.rsi
     layers:
       - state: water_deep
   - type: SpeedModifierContacts
@@ -161,9 +166,6 @@
         reagents:
         - ReagentId: Water #TODO: Add WaterSalt Reagent.
           Quantity: 9999999
-  - type: FishingPool
-    loot: FishingDeep
-    successChance: 0.4
 
 - type: entity
   parent: N14FloorWaterSaltDeep

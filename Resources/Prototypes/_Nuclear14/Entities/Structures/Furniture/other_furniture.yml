@@ -84,54 +84,6 @@
   - type: Sprite
     state: tiny_tv
 
-# Washroom
-- type: entity
-  parent: N14DecorFloorBase
-  id: N14Shower
-  name: shower
-  description: Wash off that scum...wait, then there would be nothing left.
-  placement:
-    mode: SnapgridCenter
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Structures/Decoration/world.rsi
-    snapCardinals: false
-    state: shower
-    # drawdepth: Overdoors
-  - type: Clickable
-  - type: InteractionOutline
-  - type: Anchorable
-  - type: Physics
-    bodyType: Static
-  - type: Transform
-    anchored: true
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 80
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-      - trigger:
-          !type:DamageTrigger
-          damage: 40
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-          - !type:PlaySoundBehavior
-            sound:
-              collection: MetalBreak
-  - type: AmbientSound
-    enabled: false
-    volume: -8
-    range: 8
-    sound:
-      path: /Audio/Ambience/Objects/drain.ogg
-
 - type: entity
   parent: SeatBase
   id: N14Toilet
@@ -174,8 +126,6 @@
     range: 8
     sound:
       path: /Audio/Ambience/Objects/drain.ogg
-  - type: SecretStash
-    secretPartName: secret-stash-part-toilet
   - type: ContainerContainer
     containers:
       stash: !type:ContainerSlot {}
@@ -185,6 +135,8 @@
         maxVol: 500
       toilet:
         maxVol: 250
+  - type: Drain
+    autoDrain: false
   - type: DumpableSolution
     solution: drainBuffer
 
@@ -215,7 +167,7 @@
     solutions:
       toilet:
         reagents:
-        - ReagentId: WaterDirty
+        - ReagentId: Water
           Quantity: 180
         - ReagentId: GastroToxin
           Quantity: 20
@@ -223,7 +175,7 @@
     solution: toilet
     generated:
       reagents:
-      - ReagentId: WaterDirty
+      - ReagentId: Water
         Quantity: 3
       - ReagentId: GastroToxin
         Quantity: 1
@@ -237,7 +189,7 @@
     solutions:
       toilet:
         reagents:
-        - ReagentId: WaterIrradiated
+        - ReagentId: Water
           Quantity: 180
         - ReagentId: GastroToxin
           Quantity: 20
@@ -245,87 +197,89 @@
     solution: toilet
     generated:
       reagents:
-      - ReagentId: WaterIrradiated
+      - ReagentId: Water
         Quantity: 3
       - ReagentId: GastroToxin
         Quantity: 1
 
-- type: entity
-  parent: N14Shower
-  id: N14Sink
-  name: sink
-  description: Waste not, want not
-  components:
-  - type: Sprite
-    state: sink
-  - type: SolutionContainerManager
-    solutions:
-      drainBuffer:
-        maxVol: 100
-      tank:
-        maxVol: 200
-  - type: DrainableSolution
-    solution: tank
-  - type: ReagentTank
-  - type: DumpableSolution
-    solution: drainBuffer
-
-- type: entity
-  parent: N14Sink
-  id: N14SinkFilledWater
-  suffix: filled water
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drainBuffer:
-        maxVol: 200
-      tank:
-        reagents:
-        - ReagentId: Water
-          Quantity: 200
-  - type: SolutionRegeneration
-    solution: tank
-    generated:
-      reagents:
-      - ReagentId: Water
-        Quantity: 1
-
-- type: entity
-  parent: N14Sink
-  id: N14SinkFilledWaterDirty
-  suffix: filled water dirty
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drainBuffer:
-        maxVol: 200
-      tank:
-        reagents:
-        - ReagentId: WaterDirty
-          Quantity: 200
-  - type: SolutionRegeneration
-    solution: tank
-    generated:
-      reagents:
-      - ReagentId: WaterDirty
-        Quantity: 1
-
-- type: entity
-  parent: N14Sink
-  id: N14SinkFilledWaterIrradiated
-  suffix: filled water irradiated
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drainBuffer:
-        maxVol: 200
-      tank:
-        reagents:
-        - ReagentId: WaterIrradiated
-          Quantity: 200
-  - type: SolutionRegeneration
-    solution: tank
-    generated:
-      reagents:
-      - ReagentId: WaterIrradiated
-        Quantity: 1
+#- type: entity
+#  parent: N14Shower - this parent needs to be made
+#  id: N14Sink
+#  name: sink
+#  description: Waste not, want not
+#  components:
+#  - type: Sprite
+#    state: sink
+#  - type: SolutionContainerManager
+#    solutions:
+#      drainBuffer:
+#        maxVol: 100
+#      tank:
+#        maxVol: 200
+#  - type: DrainableSolution
+#    solution: tank
+#  - type: ReagentTank
+#  - type: Drain
+#    autoDrain: false
+#  - type: DumpableSolution
+#    solution: drainBuffer
+#
+#- type: entity
+#  parent: N14Sink
+#  id: N14SinkFilledWater
+#  suffix: filled water
+#  components:
+#  - type: SolutionContainerManager
+#    solutions:
+#      drainBuffer:
+#        maxVol: 200
+#      tank:
+#        reagents:
+#        - ReagentId: Water
+#          Quantity: 200
+#  - type: SolutionRegeneration
+#    solution: tank
+#    generated:
+#      reagents:
+#      - ReagentId: Water
+#        Quantity: 1
+#
+#- type: entity
+#  parent: N14Sink
+#  id: N14SinkFilledWaterDirty
+#  suffix: filled water dirty
+#  components:
+#  - type: SolutionContainerManager
+#    solutions:
+#      drainBuffer:
+#        maxVol: 200
+#      tank:
+#        reagents:
+#        - ReagentId: WaterDirty
+#          Quantity: 200
+#  - type: SolutionRegeneration
+#    solution: tank
+#    generated:
+#      reagents:
+#      - ReagentId: WaterDirty
+#        Quantity: 1
+#
+#- type: entity
+#  parent: N14Sink
+#  id: N14SinkFilledWaterIrradiated
+#  suffix: filled water irradiated
+#  components:
+#  - type: SolutionContainerManager
+#    solutions:
+#      drainBuffer:
+#        maxVol: 200
+#      tank:
+#        reagents:
+#        - ReagentId: WaterIrradiated
+#          Quantity: 200
+#  - type: SolutionRegeneration
+#    solution: tank
+#    generated:
+#      reagents:
+#      - ReagentId: WaterIrradiated
+#        Quantity: 1

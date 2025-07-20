@@ -52,6 +52,17 @@
     coldDamage:
       types:
         Cold: 0.1
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: Bloodstream
+    bloodMaxVolume: 100
+  - type: MobPrice
+    price: 400
+  - type: Tag
+    tags:
+    - VimPilot
+  - type: ScentTracker
 
 - type: entity
   name: security dog
@@ -67,6 +78,7 @@
     description: "Help out the security team by biting the baddies and barking at everything that moves."
   - type: GhostTakeoverAvailable
   - type: CombatMode
+  - type: ScentTracker
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
     baseSprintSpeed : 5.0
@@ -83,6 +95,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: Speech
+    allowedEmotes: ['Bark', 'Snarl', 'Whine', 'Howl', 'Awoo']
     speechVerb: Canine
     speechSounds: Vulpkanin
   - type: Fixtures
@@ -159,9 +172,17 @@
     tags:
     - DoorBumpOpener
     - VimPilot
+  - type: Vocal
+    sounds:
+      Unsexed: MobDog
   - type: LanguageKnowledge
     speaks:
     - Dog
     understands:
     - Dog
     - TauCetiBasic
+  - type: Access
+    tags:
+    - Security
+    - Brig
+

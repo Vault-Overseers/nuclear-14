@@ -3,7 +3,7 @@
   name: job-name-senior-officer
   description: job-description-senior-officer
   playTimeTracker: JobSeniorOfficer
-  setPreference: false
+  setPreference: true
   requirements:
     - !type:CharacterPlaytimeRequirement
       tracker: JobWarden
@@ -17,22 +17,27 @@
     - !type:CharacterDepartmentTimeRequirement
       department: Security
       min: 216000 # 60 hrs
-    # - !type:CharacterTraitRequirement
-      # inverted: true
-      # traits:
-        # - Foreigner
-        # - ForeignerLight
-        # - Muted
-        # - Blindness
-        # - Pacifist
-        # - BrittleBoneDisease
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - Foreigner
+        - ForeignerLight
+        - Muted
+        - Blindness
+        - Pacifist
+        - BrittleBoneDisease
+    - !type:CharacterEmployerRequirement
+      employers:
+      - ZavodskoiInterstellar
+      - PMCG
+      - NanoTrasen
+      - EastOrionCompany
   startingGear: SeniorOfficerGear
   icon: "JobIconSeniorOfficer"
   supervisors: job-supervisors-hos
   canBeAntag: false
   access:
   - Security
-  #- Brig # Delta V: Removed
   - Maintenance
   - Service
   - External
@@ -55,10 +60,7 @@
     shoes: ClothingShoesBootsCombatFilled
     eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadHatBeretSecurity
-    outerClothing: ClothingOuterArmorPlateCarrier # DeltaV - ClothingOuterArmorBasic replaced in favour of plate carrier
+    outerClothing: ClothingOuterArmorPlateCarrier
     id: SeniorOfficerPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
-  innerClothingSkirt: ClothingUniformJumpskirtSeniorOfficer
-  satchel: ClothingBackpackSatchelSecurity
-  duffelbag: ClothingBackpackDuffelSecurity

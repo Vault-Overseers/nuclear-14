@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Traits.Assorted.Components;
 using Content.Shared.Traits.Assorted.Systems;
 using Robust.Shared.Random;
 using Robust.Client.Player;
@@ -74,7 +75,7 @@ public sealed class ParacusiaSystem : SharedParacusiaSystem
             return;
 
         // Play the sound
-        paracusia.Stream = sound!.Value.Entity;
+        paracusia.Stream = _audio.PlayStatic(paracusia.Sounds, uid, newCoords)?.Entity;
     }
 
 }

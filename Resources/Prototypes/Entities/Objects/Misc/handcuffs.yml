@@ -2,7 +2,7 @@
   name: handcuffs
   description: Used to detain criminals and other assholes.
   id: Handcuffs
-  parent: BaseItem
+  parent: [BaseItem, BaseRestrictedContraband]
   components:
   - type: Item
     size: Small
@@ -23,11 +23,12 @@
     damage:
       types:
         Blunt: 0
-  # - type: GuideHelp
-    # guides:
-    # - Security
+  - type: GuideHelp
+    guides:
+    - Security
+    - Antagonists
   - type: UseDelay
-    delay: 6
+    delay: 3
 
 - type: entity
   name: makeshift handcuffs

@@ -23,7 +23,7 @@ namespace Content.Server.Inventory
             }
         }
 
-        public void TransferEntityInventories(Entity<InventoryComponent?> source, Entity<InventoryComponent?> target, bool forceEquip = true)
+        public void TransferEntityInventories(Entity<InventoryComponent?> source, Entity<InventoryComponent?> target)
         {
             if (!Resolve(source.Owner, ref source.Comp) || !Resolve(target.Owner, ref target.Comp))
                 return;

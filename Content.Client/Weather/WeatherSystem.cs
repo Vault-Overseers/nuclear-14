@@ -49,6 +49,7 @@ public sealed class WeatherSystem : SharedWeatherSystem
             return;
 
         weather.Stream ??= _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true)?.Entity;
+
         if (!TryComp(weather.Stream, out AudioComponent? comp))
             return;
 
@@ -72,7 +73,7 @@ public sealed class WeatherSystem : SharedWeatherSystem
                 if (!visited.Add(node.GridIndices))
                     continue;
 
-                if (!CanWeatherAffect(entXform.GridUid.Value, grid, node, roofComp))
+                if (!CanWeatherAffect(entXform.GridUid.Value, grid, node))
                 {
                     // Add neighbors
                     // TODO: Ideally we pick some deterministically random direction and use that

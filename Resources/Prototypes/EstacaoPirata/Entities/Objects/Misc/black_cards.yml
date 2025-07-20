@@ -7,7 +7,7 @@
   - type: Item
     size: Small
     shape:
-    - 0,0,0,1 #Modified for N14
+    - 0,0,1,1
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
     layers:
@@ -18,7 +18,7 @@
   - type: Storage
     maxItemSize: Normal
     grid:
-    - 0,0,0,1 #Modified for N14
+    - 0,0,1,1
     whitelist:
       components:
       - CardDeck
@@ -37,8 +37,6 @@
   components:
   - type: Item
     size: Small
-    shape:
-    - 0,0,0,1 #Modified for N14
   - type: CardStack
   - type: StripMenuHidden
   - type: ContainerContainer # Frontier
@@ -105,7 +103,7 @@
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
     state: deck_black_full
   - type: CardStack
-    content:
+    initialContent:
     # Clubs
     - CardScAceOfClubsBlack
     - CardSc2OfClubsBlack
@@ -183,7 +181,7 @@
   - type: UseDelay
     delay: 0.5
   - type: Card
-    backSpriteLayers:
+    backSprite:
     - sprite: EstacaoPirata/Objects/Misc/cards.rsi
       state: singlecard_down_black
     flipped: true

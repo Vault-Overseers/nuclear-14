@@ -33,10 +33,4 @@ public sealed partial class NpcFactionMemberComponent : Component
     /// </summary>
     public HashSet<EntityUid> ExceptionalFriendlies = new();
     // Nyano - End modified code block.
-
-    /// <summary>
-    /// If true, friendly factions can give orders to this NPC.
-    /// </summary>
-    [DataField]
-    public bool FriendlyOrderable = false;
 }

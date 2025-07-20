@@ -88,6 +88,10 @@ namespace Content.Server.Medical
                 || !CanScannerInsert(uid, args.Using.Value, component))
                 return;
 
+            var name = "Unknown";
+            if (TryComp(args.Using.Value, out MetaDataComponent? metadata))
+                name = metadata.EntityName;
+
             InteractionVerb verb = new()
             {
                 Act = () => InsertBody(uid, args.Target, component),
@@ -115,7 +119,7 @@ namespace Content.Server.Medical
                 args.Verbs.Add(verb);
             }
             else if (CanScannerInsert(uid, args.User, component)
-                    && _blocker.CanMove(args.User))
+                && _blocker.CanMove(args.User))
             {
                 AlternativeVerb verb = new()
                 {

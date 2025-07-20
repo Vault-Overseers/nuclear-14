@@ -6,6 +6,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Shared.Fax;
 using Content.Shared.Station;
+using Content.Shared.Station.Components;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
@@ -30,8 +31,8 @@ public sealed class StationSystem : EntitySystem
 {
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
+    [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MapSystem _map = default!;
@@ -444,13 +445,13 @@ public sealed class StationSystem : EntitySystem
         if (!Resolve(entity, ref xform))
             throw new ArgumentException("Tried to use an abstract entity!", nameof(entity));
 
-        if (TryComp<StationDataComponent>(entity, out _))
+        if (HasComp<StationDataComponent>(entity))
         {
             // We are the station, just return ourselves.
             return entity;
         }
 
-        if (TryComp<MapGridComponent>(entity, out _))
+        if (HasComp<MapGridComponent>(entity))
         {
             // We are the station, just check ourselves.
             return CompOrNull<StationMemberComponent>(entity)?.Station;

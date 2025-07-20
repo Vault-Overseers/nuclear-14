@@ -19,6 +19,7 @@
     tags:
       - ForceFixRotations
       - Window
+      - WeldbotFixableStructure
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -58,11 +59,11 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Appearance
-        
+
 - type: entity
   parent: N14WindowBase
   id: N14WindowBaseAirtight # use for single tile / standalone windows that are intact
-  description: A window for seeing into places. 
+  description: A window for seeing into places.
   abstract: true
   components:
   - type: Airtight
@@ -71,11 +72,10 @@
     damageDivisor: 2
     trackAllDamage: true
     damageOverlay:
-      sprite: Structures/Windows/cracks.rsi
-  - type: InteractionVerbs
+      sprite: _Nuclear14/Structures/Windows/slanted/cracks.rsi
     allowedVerbs:
     - KnockOn
-      
+
 - type: entity
   parent: N14WindowBase
   id: N14WindowSmoothBase # Use for windows that smooth together
@@ -92,7 +92,7 @@
   - type: IconSmooth
     key: windows
     base: window
-    
+
 - type: entity
   parent: N14WindowSmoothBase
   id: N14WindowSmoothBaseAirtight # use for windows that smooth together that are intact
@@ -111,13 +111,13 @@
     damageDivisor: 2
     trackAllDamage: true
     damageOverlay:
-      sprite: Structures/Windows/cracks.rsi
+      sprite: _Nuclear14/Structures/Windows/slanted/cracks.rsi
 
 ## Smooth Windows
 - type: entity
   id: N14Window
   parent: N14WindowSmoothBaseAirtight
-    
+
 - type: entity
   parent: N14WindowSmoothBase
   id: N14WindowBroken
@@ -127,7 +127,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/windowbroken.rsi
     state: full
-    
+
 ## Single Windows
 # Ruins
 - type: entity
@@ -140,7 +140,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: ruinswindow
-    
+
 - type: entity
   parent: N14WindowBaseAirtight
   id: N14WindowRuinsVertical
@@ -151,7 +151,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: ruinswindowvertical
-    
+
 - type: entity
   parent: N14WindowBase
   id: N14WindowRuinsBroken
@@ -162,7 +162,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: ruinswindowbroken
-    
+
 - type: entity
   parent: N14WindowBase
   id: N14WindowRuinsVerticalBroken
@@ -173,7 +173,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: ruinswindowbrokenvertical
-    
+
 - type: entity
   parent: N14WindowBase
   id: N14WindowRuinsDestroyed
@@ -184,7 +184,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: ruinswindowdestroyed
-    
+
 # Wood / House
 - type: entity
   parent: N14WindowBaseAirtight
@@ -196,7 +196,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: housewindow
-    
+
 - type: entity
   parent: N14WindowBaseAirtight
   id: N14WindowHouseVertical
@@ -207,7 +207,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: housewindowvertical
-    
+
 - type: entity
   parent: N14WindowBaseAirtight
   id: N14WindowHouseWood
@@ -218,7 +218,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: woodwindow
-    
+
 - type: entity
   parent: N14WindowBase
   id: N14WindowHouseBroken
@@ -229,7 +229,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: housewindowbroken
-    
+
 - type: entity
   parent: N14WindowBase
   id: N14WindowHouseBrokenVertical
@@ -240,7 +240,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: housewindowbrokenvertical
-    
+
 - type: entity
   parent: N14WindowBase
   id: N14WindowHouseWoodBroken
@@ -251,7 +251,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: woodwindowbroken
-    
+
 # Store windows
 - type: entity
   parent: N14WindowBaseAirtight
@@ -265,7 +265,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: storewindowleft
-    
+
 - type: entity
   parent: N14WindowStoreLeft
   id: N14WindowStoreMiddleHorizontal
@@ -278,7 +278,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: storewindowhorizontal
-    
+
 - type: entity
   parent: N14WindowStoreLeft
   id: N14WindowStoreRight
@@ -291,7 +291,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: storewindowright
-    
+
 - type: entity
   parent: N14WindowStoreLeft
   id: N14WindowStoreBottom
@@ -304,7 +304,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: storewindowbottom
-    
+
 - type: entity
   parent: N14WindowStoreLeft
   id: N14WindowStoreMiddleVertical
@@ -317,7 +317,7 @@
   - type: Icon
     sprite: _Nuclear14/Structures/Windows/window_ruins.rsi
     state: storewindowvertical
-    
+
 - type: entity
   parent: N14WindowStoreLeft
   id: N14WindowStoreTop

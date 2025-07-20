@@ -79,14 +79,7 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
         args.Handled = true;
     }
 
-    public bool CheckSameImplant(EntityUid target, EntityUid implant)
-    {
-        if (!TryComp<ImplantedComponent>(target, out var implanted))
-            return false;
 
-        var implantPrototype = Prototype(implant);
-        return implanted.ImplantContainer.ContainedEntities.Any(entity => Prototype(entity) == implantPrototype);
-    }
 
     /// <summary>
     /// Attempt to implant someone else.

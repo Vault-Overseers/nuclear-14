@@ -47,8 +47,8 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
     private bool _hasUnreadAHelp;
 
     public const string AHelpErrorSound = "/Audio/Admin/ahelp_error.ogg";
-    public const string AHelpReceiveSound = "/Audio/Admin/adminhelp_old.ogg";
-    public const string AHelpSendSound = "/Audio/Admin/adminhelp_old.ogg";
+    public const string AHelpReceiveSound = "/Audio/Admin/ahelp_receive.ogg";
+    public const string AHelpSendSound = "/Audio/Admin/ahelp_send.ogg";
 
 
     public override void Initialize()
@@ -127,7 +127,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
 
     private void ReceivedBwoink(object? sender, SharedBwoinkSystem.BwoinkTextMessage message)
     {
-        Logger.InfoS("c.s.go.es.bwoink", $"@{message.UserId}: {message.Text}");
+        Logger.GetSawmill("c.s.go.es.bwoink").Info($"@{message.UserId}: {message.Text}");
         var localPlayer = _playerManager.LocalSession;
         if (localPlayer == null)
             return;

@@ -35,20 +35,6 @@
 
 - type: entity
   parent: N14WallStore
-  id: N14WallRuins
-  name: ruined wall
-  description: A ruined wall from a pre-war structure.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/nc14/ruins.rsi
-  - type: Icon
-    sprite: _Nuclear14/Structures/Walls/nc14/ruins.rsi
-  - type: IconSmooth
-    key: wallsruins
-    base: ruin
-
-- type: entity
-  parent: N14WallStore
   id: N14WallBrick
   name: brick wall
   components:
@@ -80,33 +66,6 @@
     sprite: _Nuclear14/Structures/Walls/nc14/concretedark.rsi
   - type: Icon
     sprite: _Nuclear14/Structures/Walls/nc14/concretedark.rsi
-
-# Metal walls
-- type: entity
-  parent: BaseWall
-  id: N14WallMetalEnclave
-  name: metal wall
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Structures/Walls/nc14/enclavewall.rsi
-  - type: Icon
-    sprite: _Nuclear14/Structures/Walls/nc14/enclavewall.rsi
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Girder:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: IconSmooth
-    key: wallsenclave
-    base: enclave
 
 # Wood walls
 - type: entity
@@ -163,7 +122,7 @@
         spawn:
           MaterialWoodPlank:
             min: 1
-            max: 2
+            max: 1
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: IconSmooth

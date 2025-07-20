@@ -13,5 +13,4 @@ public sealed class RequestShootEvent : EntityEventArgs
     public NetEntity Gun;
     public NetCoordinates Coordinates;
     public NetEntity? Target;
-    public List<int>? Shot;
 }

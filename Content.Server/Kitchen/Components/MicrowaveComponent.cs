@@ -13,18 +13,21 @@ namespace Content.Server.Kitchen.Components
     {
         [DataField]
         public float CookTimeMultiplier = 1;
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
-        public string MachinePartCookTimeMultiplier = "Capacitor";
+
+        [DataField]
+        public ProtoId<MachinePartPrototype> MachinePartCookTimeMultiplier = "Capacitor";
+
         [DataField]
         public float CookTimeScalingConstant = 0.5f;
+
         [DataField]
         public float BaseHeatMultiplier = 100;
 
         [DataField]
         public float ObjectHeatMultiplier = 100;
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string BadRecipeEntityId = "FoodBadRecipe";
+        [DataField]
+        public EntProtoId BadRecipeEntityId = "FoodBadRecipe";
 
         #region  audio
         [DataField]
@@ -83,6 +86,9 @@ namespace Content.Server.Kitchen.Components
         public Container Storage = default!;
 
         [DataField]
+        public string ContainerId = "microwave_entity_container";
+
+        [DataField]
         public int Capacity = 10;
 
         [DataField]
@@ -101,7 +107,7 @@ namespace Content.Server.Kitchen.Components
         public float ExplosionChance = .1f;
 
         /// <summary>
-        ///     Chance of lightning occurring when we microwave a metallic object
+        /// Chance of lightning occurring when we microwave a metallic object
         /// </summary>
         [DataField]
         public float LightningChance = .75f;
@@ -109,7 +115,7 @@ namespace Content.Server.Kitchen.Components
         /// <summary>
         /// If this microwave can give ids accesses without exploding
         /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public bool CanMicrowaveIdsSafely = true;
     }
 

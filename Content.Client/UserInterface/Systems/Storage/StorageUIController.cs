@@ -13,6 +13,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Input;
 using Content.Shared.Interaction;
 using Content.Shared.Storage;
+using Robust.Client.GameObjects;
 using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
@@ -41,6 +42,7 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly CloseRecentWindowUIController _closeRecentWindowUIController = default!;
     [UISystemDependency] private readonly StorageSystem _storage = default!;
+    [UISystemDependency] private readonly UserInterfaceSystem _ui = default!;
 
     /// <summary>
     /// Cached positions for opening nested storage.
@@ -123,7 +125,7 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
         StaticStorageUIEnabled = obj;
     }
 
-    public StorageWindow CreateStorageWindow(EntityUid uid)
+    public StorageWindow CreateStorageWindow(StorageBoundUserInterface sBui)
     {
         var window = new StorageWindow();
         window.MouseFilter = Control.MouseFilterMode.Pass;
@@ -136,12 +138,7 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
         {
             OnPieceUnpressed(args, window, piece);
         };
-        window.OnCraftButtonPressed += () =>
-        {
-            if (window.StorageEntity is not { } storageEnt)
-                return;
-            EntityManager.RaisePredictiveEvent(new CraftStartedEvent(EntityManager.GetNetEntity(storageEnt)));
-        };
+
         if (StaticStorageUIEnabled)
         {
             var hotbar = UIManager.GetActiveUIWidgetOrNull<HotbarGui>();
@@ -186,14 +183,25 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
         }
         else
         {
-            window.OpenCenteredLeft();
-
-            if (_reservedStorage.Remove(uid, out var pos))
+            // Open at parent position if it's open.
+            if (_ui.TryGetOpenUi<StorageBoundUserInterface>(EntityManager.GetComponent<TransformComponent>(sBui.Owner).ParentUid,
+                    StorageComponent.StorageUiKey.Key, out var bui) && bui.Position != null)
             {
-                LayoutContainer.SetPosition(window, pos);
+                window.Open(bui.Position.Value);
+            }
+            // Open at the saved position if it exists.
+            else if (_ui.TryGetPosition(sBui.Owner, StorageComponent.StorageUiKey.Key, out var pos))
+            {
+                window.Open(pos);
+            }
+            // Open at the default position.
+            else
+            {
+                window.OpenCenteredLeft();
             }
         }
 
+        _ui.RegisterControl(sBui, window);
         return window;
     }
 

@@ -36,6 +36,9 @@ public abstract partial class SharedToolSystem : EntitySystem
     public const string CutQuality = "Cutting";
     public const string PulseQuality = "Pulsing";
 
+    public const string CutQuality = "Cutting";
+    public const string PulseQuality = "Pulsing";
+
     public override void Initialize()
     {
         InitializeMultipleTool();
@@ -276,6 +279,11 @@ public abstract partial class SharedToolSystem : EntitySystem
                 return this;
 
             return new ToolDoAfterEvent(Fuel, evClone, OriginalTarget);
+        }
+
+        public override bool IsDuplicate(DoAfterEvent other)
+        {
+            return other is ToolDoAfterEvent toolDoAfter && WrappedEvent.IsDuplicate(toolDoAfter.WrappedEvent);
         }
     }
 

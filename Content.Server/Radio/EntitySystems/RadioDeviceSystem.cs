@@ -38,7 +38,6 @@ public sealed class RadioDeviceSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid)> _recentlySent = new();
@@ -231,14 +230,18 @@ public sealed class RadioDeviceSystem : EntitySystem
 
     private void OnReceiveRadio(EntityUid uid, RadioSpeakerComponent component, ref RadioReceiveEvent args)
     {
-        var speaker = uid;
-        var message = args.OriginalChatMsg.Message;
-        var nameOverride = Identity.Name(args.MessageSource, EntityManager);
-        IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<ChatSystem>()
-                .TrySendInGameICMessage(speaker, message, InGameICChatType.Speak, ChatTransmitRange.GhostRangeLimit, true, null, null, nameOverride, false, false, args.Language);
-        //Old Code: _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
-        //Original code was designed to have the parent of the radios (the map) speak to the players at the designated point. 
-        //The ability for speaking maps was removed. I have changed it to send an in-game message instead, from each radio that is supposed to send the message.
+        if (uid == args.RadioSource)
+            return;
+
+        var nameEv = new TransformSpeakerNameEvent(args.MessageSource, Name(args.MessageSource));
+        RaiseLocalEvent(args.MessageSource, nameEv);
+
+        var name = Loc.GetString("speech-name-relay",
+            ("speaker", Name(uid)),
+            ("originalName", nameEv.VoiceName));
+
+        // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
+        _chat.TrySendInGameICMessage(uid, args.OriginalChatMsg.Message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language);
     }
 
     private void OnIntercomEncryptionChannelsChanged(Entity<IntercomComponent> ent, ref EncryptionChannelsChangedEvent args)
@@ -301,7 +304,7 @@ public sealed class RadioDeviceSystem : EntitySystem
         {
             mic.BroadcastChannel = channel;
             if(_protoMan.TryIndex<RadioChannelPrototype>(channel, out var channelProto)) // Frontier
-                mic.Frequency = _radio.GetFrequency(ent, channelProto); // Frontier
+                mic.Frequency = channelProto.Frequency; // Frontier
         }
         if (TryComp<RadioSpeakerComponent>(ent, out var speaker))
             speaker.Channels = new(){ channel };

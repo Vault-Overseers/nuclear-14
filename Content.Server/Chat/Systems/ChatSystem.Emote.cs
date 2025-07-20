@@ -165,18 +165,63 @@ public partial class ChatSystem
     /// <param name="textInput"></param>
     private void TryEmoteChatInput(EntityUid uid, string textInput)
     {
-        var actionLower = textInput.ToLower();
+        var actionTrimmedLower = TrimPunctuation(textInput.ToLower());
         // Replace ending punctuation with nothing
-        if (Punctuation.Any(punctuation => actionLower.EndsWith(punctuation)))
-            actionLower = actionLower.Remove(actionLower.Length - 1);
+        if (Punctuation.Any(punctuation => actionTrimmedLower.EndsWith(punctuation)))
+            actionTrimmedLower = actionTrimmedLower.Remove(actionTrimmedLower.Length - 1);
 
-        if (!_wordEmoteDict.TryGetValue(actionLower, out var emote))
+        if (!_wordEmoteDict.TryGetValue(actionTrimmedLower, out var emote))
+            return;
+
+        if (!AllowedToUseEmote(uid, emote))
             return;
 
         if (!AllowedToUseEmote(uid, emote))
             return;
 
         InvokeEmoteEvent(uid, emote);
+        return;
+
+        static string TrimPunctuation(string textInput)
+        {
+            var trimEnd = textInput.Length;
+            while (trimEnd > 0 && char.IsPunctuation(textInput[trimEnd - 1]))
+            {
+                trimEnd--;
+            }
+
+            var trimStart = 0;
+            while (trimStart < trimEnd && char.IsPunctuation(textInput[trimStart]))
+            {
+                trimStart++;
+            }
+
+            return textInput[trimStart..trimEnd];
+        }
+    }
+    /// <summary>
+    /// Checks if we can use this emote based on the emotes whitelist, blacklist, and availibility to the entity.
+    /// </summary>
+    /// <param name="source">The entity that is speaking</param>
+    /// <param name="emote">The emote being used</param>
+    /// <returns></returns>
+    private bool AllowedToUseEmote(EntityUid source, EmotePrototype emote)
+    {
+        // If emote is in AllowedEmotes, it will bypass whitelist and blacklist
+        if (TryComp<SpeechComponent>(source, out var speech) &&
+            speech.AllowedEmotes.Contains(emote.ID))
+            return true;
+
+        // Check the whitelist and blacklist
+        if (_whitelistSystem.IsWhitelistFail(emote.Whitelist, source) ||
+            _whitelistSystem.IsBlacklistPass(emote.Blacklist, source))
+            return false;
+
+        // Check if the emote is available for all
+        if (!emote.Available)
+            return false;
+
+        return true;
     }
     /// <summary>
     /// Checks if we can use this emote based on the emotes whitelist, blacklist, and availibility to the entity.

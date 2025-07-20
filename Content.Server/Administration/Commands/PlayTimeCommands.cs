@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Shared.Administration;
 using Content.Shared.Players.PlayTimeTracking;
@@ -90,7 +91,7 @@ public sealed class PlayTimeCommandUtilities
     }
 }
 
-[AdminCommand(AdminFlags.Admin)]
+[AdminCommand(AdminFlags.Moderator)]
 public sealed class PlayTimeAddOverallCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -138,7 +139,7 @@ public sealed class PlayTimeAddOverallCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.Admin)]
+[AdminCommand(AdminFlags.Moderator)]
 public sealed class PlayTimeAddRoleCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -198,7 +199,7 @@ public sealed class PlayTimeAddRoleCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.Admin)]
+[AdminCommand(AdminFlags.Moderator)]
 public sealed class PlayTimeGetOverallCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -243,7 +244,7 @@ public sealed class PlayTimeGetOverallCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.Admin)]
+[AdminCommand(AdminFlags.Moderator)]
 public sealed class PlayTimeGetRoleCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -322,7 +323,7 @@ public sealed class PlayTimeGetRoleCommand : IConsoleCommand
 /// <summary>
 /// Saves the timers for a particular player immediately
 /// </summary>
-[AdminCommand(AdminFlags.Admin)]
+[AdminCommand(AdminFlags.Moderator)]
 public sealed class PlayTimeSaveCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;

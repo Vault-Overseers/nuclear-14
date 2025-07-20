@@ -25,7 +25,7 @@ game-ticker-get-info-preround-text = Hi and welcome to [color=white]Nuclear 14![
                             >[color=yellow]{$desc}[/color]
 game-ticker-no-map-selected = [color=yellow]Map not yet selected![/color]
 game-ticker-player-no-jobs-available-when-joining = When attempting to join to the game, no jobs were available.
-game-ticker-welcome-to-the-station = You wake up in the state of Washington. War Never Changes.
+game-ticker-welcome-to-the-station = Welcome to the station crew, enjoy your stay!
 
 # Displayed in chat to admins when a player joins
 player-join-message = Player {$name} joined.
@@ -34,7 +34,8 @@ player-first-join-message = Player {$name} joined for the first time.
 # Displayed in chat to admins when a player leaves
 player-leave-message = Player {$name} left.
 
-latejoin-arrival-announcement = {$character} ({$job}) has arrived at the station!
+latejoin-arrival-announcement = {$character} ({$job}) { CONJUGATE-HAVE($entity) } arrived at the station!
+latejoin-arrival-announcement-special = {$job} {$character} on deck!
 latejoin-arrival-sender = Station
 latejoin-arrivals-direction = A shuttle transferring you to your station will arrive shortly.
 latejoin-arrivals-direction-time = A shuttle transferring you to your station will arrive in {$time}.
@@ -43,3 +44,7 @@ latejoin-arrivals-teleport-to-spawn = A mysterious force teleports you off the a
 
 preset-not-enough-ready-players = Can't start {$presetName}. Requires {$minimumPlayers} players but we have {$readyPlayersCount}.
 preset-no-one-ready = Can't start {$presetName}. No players are ready.
+
+game-run-level-PreRoundLobby = Pre-round lobby
+game-run-level-InRound = In round
+game-run-level-PostRound = Post round

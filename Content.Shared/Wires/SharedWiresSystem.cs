@@ -9,6 +9,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 
 
+
 namespace Content.Shared.Wires;
 
 public abstract class SharedWiresSystem : EntitySystem
@@ -19,7 +20,6 @@ public abstract class SharedWiresSystem : EntitySystem
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] protected readonly SharedToolSystem Tool = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
 
     public override void Initialize()
     {

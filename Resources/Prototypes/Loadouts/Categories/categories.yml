@@ -6,9 +6,9 @@
   id: Uncategorized
   root: true
 
-#- type: loadoutCategory
-#  id: Backpacks
-#  root: true
+- type: loadoutCategory
+  id: Backpacks
+  root: true
 
 - type: loadoutCategory
   id: Eyes
@@ -26,18 +26,19 @@
   id: Items
   root: true
 
-#- type: loadoutCategory
-#  id: Jobs
-#  root: true
-#  subCategories:
-#    - JobsAUncategorized
-    # - JobsCommand
-    # - JobsEngineering
-    # - JobsEpistemics
-    # - JobsLogistics
-    # - JobsMedical
-    # - JobsSecurity
-    # - JobsService
+- type: loadoutCategory
+  id: Jobs
+  root: true
+  subCategories:
+    - JobsAUncategorized
+    - JobsCommand
+    - JobsEngineering
+    - JobsEpistemics
+    - JobsLogistics
+    - JobsMedical
+    - JobsSecurity
+    - JobsService
+    - JobsZMisc
 
 - type: loadoutCategory
   id: JobsAUncategorized
@@ -214,6 +215,7 @@
   id: JobsSecurity
   subCategories:
     - JobsSecurityAUncategorized
+    - JobsSecurityWeapons
     - JobsSecurityCadet
     - JobsSecurityCorpsman
     - JobsSecurityDetective
@@ -224,6 +226,9 @@
 
 - type: loadoutCategory
   id: JobsSecurityAUncategorized
+
+- type: loadoutCategory
+  id: JobsSecurityWeapons
 
 - type: loadoutCategory
   id: JobsSecurityCadet
@@ -291,6 +296,19 @@
 - type: loadoutCategory
   id: JobsServiceReporter
 
+  # Misc
+- type: loadoutCategory
+  id: JobsZMisc # this breaks convention a bit but the oddballs should be after everything else
+  subCategories: # this can also be for unique/station-specific jobs like boxer/gladiator
+    - JobsZMiscAUncategorized
+    - JobsZMiscPrisoner
+
+- type: loadoutCategory
+  id: JobsZMiscAUncategorized
+
+- type: loadoutCategory
+  id: JobsZMiscPrisoner
+
 # Now Leaving: Jobs Category
 
 - type: loadoutCategory
@@ -303,6 +321,10 @@
 
 - type: loadoutCategory
   id: Outer
+  root: true
+
+- type: loadoutCategory
+  id: Belt
   root: true
 
 - type: loadoutCategory

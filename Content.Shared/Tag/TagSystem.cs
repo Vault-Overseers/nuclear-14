@@ -17,6 +17,9 @@ namespace Content.Shared.Tag;
 public sealed class TagSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+
+    private EntityQuery<TagComponent> _tagQuery;
 
     private EntityQuery<TagComponent> _tagQuery;
 
@@ -270,7 +273,7 @@ public sealed class TagSystem : EntitySystem
     /// </exception>
     public bool HasAnyTag(EntityUid entityUid, List<ProtoId<TagPrototype>> tags)
     {
-        return _tagQuery.TryComp(entityUid, out var component) &&
+        return _entityManager.TryGetComponent(entityUid, out TagComponent? component) &&
                HasAnyTag(component, tags);
     }
 

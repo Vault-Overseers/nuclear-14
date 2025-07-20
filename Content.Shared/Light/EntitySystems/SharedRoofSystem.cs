@@ -10,85 +10,33 @@ namespace Content.Shared.Light.EntitySystems;
 /// </summary>
 public abstract class SharedRoofSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-
-    private HashSet<Entity<IsRoofComponent>> _roofSet = new();
-
-    /// <summary>
-    /// Returns whether the specified tile is roof-occupied.
-    /// </summary>
-    /// <returns>Returns false if no data or not rooved.</returns>
-    public bool IsRooved(Entity<MapGridComponent, RoofComponent> grid, Vector2i index)
-    {
-        var roof = grid.Comp2;
-        var chunkOrigin = SharedMapSystem.GetChunkIndices(index, RoofComponent.ChunkSize);
-
-        if (roof.Data.TryGetValue(chunkOrigin, out var bitMask))
-        {
-            var chunkRelative = SharedMapSystem.GetChunkRelative(index, RoofComponent.ChunkSize);
-            var bitFlag = (ulong) 1 << (chunkRelative.X + chunkRelative.Y * RoofComponent.ChunkSize);
-
-            var isRoof = (bitMask & bitFlag) == bitFlag;
-
-            // Early out, otherwise check for components on tile.
-            if (isRoof)
-                return true;
-        }
-
-        _roofSet.Clear();
-        _lookup.GetLocalEntitiesIntersecting(grid.Owner, index, _roofSet);
-
-        foreach (var isRoofEnt in _roofSet)
-        {
-            if (!isRoofEnt.Comp.Enabled)
-                continue;
-
-            return true;
-        }
-
-        return false;
-    }
+    [Dependency] private readonly SharedMapSystem _maps = default!;
 
     public void SetRoof(Entity<MapGridComponent?, RoofComponent?> grid, Vector2i index, bool value)
     {
         if (!Resolve(grid, ref grid.Comp1, ref grid.Comp2, false))
             return;
 
-        var chunkOrigin = SharedMapSystem.GetChunkIndices(index, RoofComponent.ChunkSize);
-        var roof = grid.Comp2;
+        if (!_maps.TryGetTile(grid.Comp1, index, out var tile))
+            return;
 
-        if (!roof.Data.TryGetValue(chunkOrigin, out var chunkData))
-        {
-            // No value to remove so leave it.
-            if (!value)
-            {
-                return;
-            }
+        var mask = (tile.Flags & (byte)TileFlag.Roof);
+        var rooved = mask != 0x0;
 
-            chunkData = 0;
-        }
+        if (rooved == value)
+            return;
 
-        var chunkRelative = SharedMapSystem.GetChunkRelative(index, RoofComponent.ChunkSize);
-        var bitFlag = (ulong) 1 << (chunkRelative.X + chunkRelative.Y * RoofComponent.ChunkSize);
+        Tile newTile;
 
         if (value)
         {
-            // Already set
-            if ((chunkData & bitFlag) == bitFlag)
-                return;
-
-            chunkData |= bitFlag;
+            newTile = tile.WithFlag((byte)(tile.Flags | (ushort)TileFlag.Roof));
         }
         else
         {
-            // Not already set
-            if ((chunkData & bitFlag) == 0x0)
-                return;
-
-            chunkData &= ~bitFlag;
+            newTile = tile.WithFlag((byte)(tile.Flags & ~(ushort)TileFlag.Roof));
         }
 
-        roof.Data[chunkOrigin] = chunkData;
-        Dirty(grid.Owner, roof);
+        _maps.SetTile((grid.Owner, grid.Comp1), index, newTile);
     }
 }

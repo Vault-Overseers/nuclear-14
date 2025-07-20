@@ -36,6 +36,24 @@
   hide: false
 
 - type: construction
+  id: N14MedicalBed
+  name: medical bed
+  description: A hospital bed for patients to recover in. Resting here provides fairly slow healing.
+  graph: bed
+  startNode: start
+  targetNode: medicalbed
+  category: construction-category-furniture
+  icon:
+    sprite: Structures/Furniture/furniture.rsi
+    state: bed-MED
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
+
+- type: construction
   id: N14Bedroll
   name: bedroll
   description: A bedroll for sleeping on the road. Not very comfy.
@@ -46,43 +64,6 @@
   icon:
     sprite: _Nuclear14/Structures/Furniture/bedsandchairs.rsi
     state: bedroll_unrolled
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-  hide: false
-
-- type: construction
-  id: N14BedMattress
-  name: mattress
-  description: A basic cloth mattress for bedding down.
-  graph: N14Bed
-  startNode: start
-  targetNode: mattress
-  category: construction-category-furniture
-  icon:
-    sprite: _Nuclear14/Structures/Furniture/bedsandchairs.rsi
-    state: mattress1
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-  hide: false
-
-# Chairs
-- type: construction
-  name: school chair
-  id: N14ChairSchool
-  graph: N14Seat
-  startNode: start
-  targetNode: N14ChairSchool
-  category: construction-category-furniture
-  description: You sit in this. Either by will or force.
-  icon:
-    sprite: _Nuclear14/Structures/Furniture/schoolchair.rsi
-    state: chair
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

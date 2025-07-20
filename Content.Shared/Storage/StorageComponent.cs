@@ -131,14 +131,11 @@ namespace Content.Shared.Storage
         [DataField]
         public bool HideStackVisualsWhenClosed = true;
 
-        // Corvax-Change-Start
         /// <summary>
-        /// Makes crafting button visible
-        /// This needed to make a crafting bench xd
+        /// If the container is empty, and you try to smart-equip from it, should you equip the container itself.
         /// </summary>
-        [DataField("craft")]
-        public bool Craft;
-        // Corvax-Change-End
+        [DataField]
+        public bool SmartEquipSelfIfEmpty;
 
         [Serializable, NetSerializable]
         public enum StorageUiKey : byte

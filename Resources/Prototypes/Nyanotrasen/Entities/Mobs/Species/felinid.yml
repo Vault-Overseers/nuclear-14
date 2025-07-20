@@ -78,7 +78,7 @@
     stealth: Subtle
     stripTimeReduction: 0
     stripTimeMultiplier: 0.667
-  - type: StepTriggerImmune
+  - type: ProtectedFromStepTriggers
     whitelist:
       types:
         - Shard
@@ -91,6 +91,13 @@
     - FootstepSound
     - DoorBumpOpener
     - FelinidEmotes
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
 
 - type: entity
   save: false
@@ -102,3 +109,10 @@
   components:
   - type: HumanoidAppearance
     species: Felinid
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
