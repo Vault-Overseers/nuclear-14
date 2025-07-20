@@ -22,25 +22,30 @@
     sprite: Objects/Devices/pda.rsi
     state: pda
   - type: Pda
-    state: pda
+    passportSlot:
+      priority: -3
+      whitelist:
+        components:
+          - Passport
     paiSlot:
       priority: -2
       whitelist:
         components:
-        - PAI
+          - PAI
     penSlot:
       startingItem: Pen
       priority: -1
       whitelist:
         tags:
-        - Write
+          - Write
     idSlot:
       name: access-id-card-component-default
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Machines/id_insert.ogg
       whitelist:
         components:
-        - IdCard
+          - IdCard
+  - type: PdaVisuals
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -48,6 +53,7 @@
       PDA-id: !type:ContainerSlot {}
       PDA-pen: !type:ContainerSlot {}
       PDA-pai: !type:ContainerSlot {}
+      PDA-passport: !type:ContainerSlot {}
       Cartridge-Slot: !type:ContainerSlot {}
       program-container: !type:Container
   - type: ItemSlots
@@ -157,7 +163,11 @@
   components:
   - type: Pda
     id: TechnicalAssistantIDCard
-    state: pda-interntech
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-interntech
   - type: PdaBorderColor
     borderColor: "#717059"
     accentVColor: "#949137"
@@ -196,7 +206,11 @@
   components:
   - type: Pda
     id: SecurityCadetIDCard
-    state: pda-interncadet
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-interncadet
   - type: PdaBorderColor
     borderColor: "#717059"
     accentVColor: "#A32D26"
@@ -219,7 +233,11 @@
   components:
   - type: Pda
     id: ResearchAssistantIDCard
-    state: pda-internsci
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-internsci
   - type: PdaBorderColor
     borderColor: "#717059"
     accentVColor: "#8900c9"
@@ -234,7 +252,11 @@
   components:
   - type: Pda
     id: ServiceWorkerIDCard
-    state: pda-internservice
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-internservice
   - type: PdaBorderColor
     borderColor: "#717059"
     accentVColor: "#00cc35"
@@ -249,7 +271,11 @@
   components:
   - type: Pda
     id: ChefIDCard
-    state: pda-cook
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-cook
   - type: PdaBorderColor
     borderColor: "#d7d7d0"
   - type: Icon
