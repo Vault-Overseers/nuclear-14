@@ -6,7 +6,7 @@
       edges:
         - to: Soil
           steps:
-            - material: Compost
+            - material: N14Dirt
               amount: 2
               doAfter: 1
     - node: Soil
@@ -15,7 +15,7 @@
         - to: start
           completed:
             - !type:SpawnPrototype
-              prototype: N14CompostRotted
+              prototype: N14DirtBlock
               amount: 1
             - !type:DeleteEntity {}
           steps:
@@ -43,7 +43,7 @@
       edges:
         - to: Planter
           steps:
-            - material: Compost
+            - material: N14Dirt
               amount: 2
               doAfter: 1
               
@@ -63,7 +63,7 @@
         - to: box
           completed:
           - !type:SpawnPrototype
-                prototype: N14CompostRotted
+                prototype: N14DirtBlock
                 amount: 2
           steps:
             - tool: Prying # shoveling

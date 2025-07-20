@@ -1,0 +1,28 @@
+- type: constructionGraph
+  id: N14KitchenGrillGraph
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: grill
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Steel
+              amount: 4
+              doAfter: 5
+
+    - node: grill
+      entity: N14KitchenGrill
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 4
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Prying
+              doAfter: 2
