@@ -13,26 +13,26 @@ public sealed partial class CardComponent : Component
     /// <summary>
     /// The back of the card
     /// </summary>
-    [DataField(readOnly: true)]
-    public List<SpriteSpecifier> BackSprite = [];
+    [DataField("backSpriteLayers", readOnly: true)]
+    public List<SpriteSpecifier>? BackSprite = [];
 
     /// <summary>
     /// The front of the card
     /// </summary>
-    [DataField(readOnly: true)]
+    [DataField("frontSpriteLayers", readOnly: true)]
     public List<SpriteSpecifier> FrontSprite = [];
 
     /// <summary>
     /// If it is currently flipped. This is used to update sprite and name.
     /// </summary>
-    [DataField(readOnly: true), AutoNetworkedField]
+    [DataField("flipped", readOnly: true), AutoNetworkedField]
     public bool Flipped = false;
 
 
     /// <summary>
     /// The name of the card.
     /// </summary>
-    [DataField(readOnly: true), AutoNetworkedField]
+    [DataField("name", readOnly: true), AutoNetworkedField]
     public string Name = "";
 
 }

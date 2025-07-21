@@ -11,7 +11,6 @@ namespace Content.Client._EstacaoPirata.Cards.Card;
 public sealed class CardSystem : EntitySystem
 {
     [Dependency] private readonly SpriteSystem _spriteSystem = default!;
-    [Dependency] private readonly CardSpriteSystem _cardSpriteSystem = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -39,7 +38,7 @@ public sealed class CardSystem : EntitySystem
         }
 
         comp.BackSprite ??= comp.FrontSprite;
-        DirtyEntity(uid);
+        Dirty(uid, comp);
         UpdateSprite(uid, comp);
     }
 
@@ -53,21 +52,30 @@ public sealed class CardSystem : EntitySystem
     private void UpdateSprite(EntityUid uid, CardComponent comp)
     {
         var newSprite = comp.Flipped ? comp.BackSprite : comp.FrontSprite;
-        //if (newSprite == null)
-        //    return;
+        if (newSprite == null)
+            return;
 
         if (!TryComp(uid, out SpriteComponent? spriteComponent))
             return;
+
         var layerCount = newSprite.Count();
 
         //inserts Missing Layers
         if (spriteComponent.AllLayers.Count() < layerCount)
+        {
             for (var i = spriteComponent.AllLayers.Count(); i < layerCount; i++)
+            {
                 spriteComponent.AddBlankLayer(i);
+            }
+        }
         //Removes extra layers
         else if (spriteComponent.AllLayers.Count() > layerCount)
+        {
             for (var i = spriteComponent.AllLayers.Count() - 1; i >= layerCount; i--)
+            {
                 spriteComponent.RemoveLayer(i);
+            }
+        }
 
         for (var i = 0; i < newSprite.Count(); i++)
         {
