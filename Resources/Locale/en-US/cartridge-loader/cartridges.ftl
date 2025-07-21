@@ -28,3 +28,4 @@ glimmer-monitor-sync = Sync
 astro-nav-program-name = AstroNav
 
 med-tek-program-name = MedTek
+snake-program-name = Snake
