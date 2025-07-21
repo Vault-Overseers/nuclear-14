@@ -116,8 +116,9 @@ public sealed class BodyPrototypeSerializer : ITypeReader<BodyPrototype, Mapping
         var slotNodes = node.Get<MappingDataNode>("slots");
         var allConnections = new Dictionary<string, (string? Part, HashSet<string>? Connections, Dictionary<string, string>? Organs)>();
 
-        foreach (var (slotId, valueNode) in slotNodes)
+        foreach (var (slotIdNode, valueNode) in slotNodes)
         {
+            var slotId = ((ValueDataNode) slotIdNode).Value;
             var slot = (MappingDataNode) valueNode;
 
             string? part = null;
