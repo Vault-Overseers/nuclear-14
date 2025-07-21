@@ -210,17 +210,6 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         return ev.ResistanceBypass;
     }
 
-    public bool GetResistanceBypass(EntityUid uid, EntityUid user, MeleeWeaponComponent? component = null)
-    {
-        if (!Resolve(uid, ref component))
-            return false;
-
-        var ev = new GetMeleeDamageEvent(uid, new(component.Damage), new(), user, component.ResistanceBypass);
-        RaiseLocalEvent(uid, ref ev);
-
-        return ev.ResistanceBypass;
-    }
-
     public bool TryGetWeapon(EntityUid entity, out EntityUid weaponUid, [NotNullWhen(true)] out MeleeWeaponComponent? melee)
     {
         weaponUid = default;
