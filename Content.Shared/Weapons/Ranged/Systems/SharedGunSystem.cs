@@ -50,6 +50,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] protected readonly IMapManager MapManager = default!;
     [Dependency] private   readonly INetManager _netManager = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] protected readonly IPrototypeManager ProtoManager = default!;
     [Dependency] protected readonly IRobustRandom Random = default!;
     [Dependency] protected readonly ISharedAdminLogManager Logs = default!;
@@ -552,7 +553,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             var despawn = EnsureComp<TimedDespawnComponent>(entity);
             despawn.Lifetime = 5f * 60; // 5 minutes
 
-            _entManager.RemoveComponent<ItemComponent>(entity);
+            EntityManager.RemoveComponent<ItemComponent>(entity);
         }
     }
 

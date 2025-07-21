@@ -132,7 +132,7 @@ public sealed class StepTriggerSystem : EntitySystem
         // Immunity checks
         if (TryComp<StepTriggerImmuneComponent>(otherUid, out var stepTriggerImmuneComponent)
             && component.TriggerGroups != null
-            && component.TriggerGroups.IsValid(stepTriggerImmuneComponent))
+            && component.TriggerGroups.IsValid(stepTriggerImmuneComponent.Whitelist))
             return false;
 
         // Can't trigger if we don't ignore weightless entities

@@ -156,7 +156,7 @@ namespace Content.Shared.Decals
                 nodes.Add(lookupNode);
             }
 
-            allData.Add("version", 2.ToString(CultureInfo.InvariantCulture));
+            allData.Add("version", new ValueDataNode(2.ToString(CultureInfo.InvariantCulture)));
             allData.Add("nodes", nodes);
 
             return allData;

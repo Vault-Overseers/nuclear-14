@@ -45,7 +45,7 @@ public abstract class SharedWeatherSystem : EntitySystem
         if (tileRef.Tile.IsEmpty)
             return true;
 
-        if (Resolve(uid, ref roofComp, false) && _roof.IsRooved((uid, grid, roofComp), tileRef.GridIndices))
+        if ((tileRef.Tile.Flags & (byte) TileFlag.Roof) != 0)
             return false;
 
         var tileDef = (ContentTileDefinition) _tileDefManager[tileRef.Tile.TypeId];

@@ -63,12 +63,30 @@ public sealed class SecretStashSystem : EntitySystem
         args.Handled = TryStashItem(entity, args.User, args.Used);
     }
 
+    public bool TryHideItem(EntityUid uid, EntityUid user, EntityUid item)
+    {
+        SecretStashComponent? comp = null;
+        if (!Resolve(uid, ref comp))
+            return false;
+
+        return TryStashItem((uid, comp), user, item);
+    }
+
     private void OnInteractHand(Entity<SecretStashComponent> entity, ref InteractHandEvent args)
     {
         if (args.Handled || !IsStashOpen(entity))
             return;
 
         args.Handled = TryGetItem(entity, args.User);
+    }
+
+    public bool TryGetItem(EntityUid uid, EntityUid user)
+    {
+        SecretStashComponent? comp = null;
+        if (!Resolve(uid, ref comp))
+            return false;
+
+        return TryGetItem((uid, comp), user);
     }
 
     /// <summary>
