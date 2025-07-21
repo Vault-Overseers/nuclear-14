@@ -22,7 +22,7 @@ namespace Content.Shared.SubFloor
         [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!;
         [Dependency] protected readonly SharedMapSystem Map = default!;
         [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-        [Dependency] private readonly VisibilitySystem _visibility = default!;
+        [Dependency] private readonly SharedVisibilitySystem _visibility = default!;
         [Dependency] protected readonly SharedPopupSystem _popup = default!;
 
         private EntityQuery<SubFloorHideComponent> _hideQuery;
