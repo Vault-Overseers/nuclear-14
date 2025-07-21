@@ -3,7 +3,7 @@
   parent: BaseStructure
   id: N14CompostBox
   name: compost box
-  description: Insert animal dung in here to produce compost.
+  description: Insert animal dung to create fertilizer. The box darkens while composting.
   placement:
     mode: SnapgridCenter
   components:
@@ -24,7 +24,7 @@
     - Composting
     # mixMessage: "compost-mixing-success"
   - type: SolutionContainerMixer
-    mixDuration: 5
+    mixDuration: 20
     mixingSound:
       path: /Audio/Machines/buzz_loop.ogg
       params:
@@ -33,7 +33,17 @@
     sprite: _Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
     snapCardinals: true
     netsync: false
-    state: compostbin
+    layers:
+    - state: compostbin
+      map: ["base"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SolutionContainerMixerVisuals.Mixing:
+        base:
+          True: {color: "#754c24"}
+          False: {color: "#FFFFFF"}
+  - type: CompostBox
   - type: ApcPowerReceiver
     powerLoad: 0
     needsPower: false
