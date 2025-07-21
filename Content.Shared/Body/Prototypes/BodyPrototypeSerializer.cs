@@ -142,9 +142,9 @@ public sealed class BodyPrototypeSerializer : ITypeReader<BodyPrototype, Mapping
             {
                 organs = new Dictionary<string, string>();
 
-                foreach (var (organKey, organValueNode) in slotOrgansNode)
+                foreach (var (organKeyNode, organValueNode) in slotOrgansNode)
                 {
-                    organs.Add(organKey, ((ValueDataNode) organValueNode).Value);
+                    organs.Add(((ValueDataNode) organKeyNode).Value, ((ValueDataNode) organValueNode).Value);
                 }
             }
 
