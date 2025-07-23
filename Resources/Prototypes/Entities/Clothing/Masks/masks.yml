@@ -21,7 +21,7 @@
     hideOnToggle: true
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskPullableBase
   id: ClothingMaskGasSecurity
   name: security gas mask
   description: A standard issue Security gas mask.
@@ -41,7 +41,7 @@
         Heat: 0.95
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskPullableBase
   id: ClothingMaskGasSyndicate
   name: syndicate gas mask
   description: A close-fitting tactical mask that can be connected to an air supply.
@@ -61,7 +61,7 @@
         Heat: 0.95
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskPullableBase
   id: ClothingMaskGasAtmos
   name: atmospheric gas mask
   description: Improved gas mask utilized by atmospheric technicians. It's flameproof!
@@ -113,7 +113,7 @@
   - type: IngestionBlocker
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: ClothingMaskPullableBase
   id: ClothingMaskGasExplorer
   name: explorer gas mask
   description: A military-grade gas mask that can be connected to an air supply.
@@ -122,6 +122,13 @@
     sprite: Clothing/Mask/gasexplorer.rsi
   - type: Clothing
     sprite: Clothing/Mask/gasexplorer.rsi
+  - type: Mask
+  - type: IngestionBlocker
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+    - IPCMaskWearable
   - type: Armor
     modifiers:
       coefficients:
@@ -302,7 +309,7 @@
       Plastic: 25
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskMuzzle
   name: muzzle
   description: To stop that awful noise.
@@ -374,11 +381,13 @@
     hideOnToggle: true
 
 - type: entity
-  parent: ClothingMaskGasExplorer
+  parent: ClothingMaskPullableBase
   id: ClothingMaskGasMerc
   name: mercenary gas mask
   description: Slightly outdated, but reliable military-style gas mask.
   components:
+  - type: IngestionBlocker
+  - type: IdentityBlocker
   - type: Sprite
     sprite: Clothing/Mask/merc.rsi
   - type: Clothing
@@ -422,7 +431,7 @@
         Heat: 0.90
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskRat
   name: rat mask
   description: A mask of a rat that looks like a rat. Perhaps they will take you for a fellow rat.
@@ -431,7 +440,8 @@
     sprite: Clothing/Mask/rat.rsi
   - type: Clothing
     sprite: Clothing/Mask/rat.rsi
-  - type: BreathMask
+  - type: Mask
+  - type: IngestionBlocker
   - type: Tag
     tags:
     - IPCMaskWearable # Estacao Pirata - IPCs
@@ -443,7 +453,7 @@
   - type: IdentityBlocker
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskFox
   name: fox mask
   description: What does the fox say?
@@ -452,11 +462,13 @@
     sprite: Clothing/Mask/fox.rsi
   - type: Clothing
     sprite: Clothing/Mask/fox.rsi
-  - type: BreathMask
+  - type: Mask
   - type: IdentityBlocker
+  - type: IngestionBlocker
   - type: Tag
     tags:
     - IPCMaskWearable
+    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Snout
@@ -473,6 +485,7 @@
     sprite: Clothing/Mask/bee.rsi
   - type: BreathMask
   - type: IdentityBlocker
+  - type: IngestionBlocker
   - type: Tag
     tags:
     - IPCMaskWearable
@@ -481,7 +494,7 @@
     - Snout
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskBear
   name: bear mask
   description: I'm a cloudy, cloudy, cloudy, I'm not a bear at all.
@@ -490,17 +503,19 @@
     sprite: Clothing/Mask/bear.rsi
   - type: Clothing
     sprite: Clothing/Mask/bear.rsi
-  - type: BreathMask
+  - type: Mask
   - type: IdentityBlocker
+  - type: IngestionBlocker
   - type: Tag
     tags:
     - IPCMaskWearable
+    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Snout
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskRaven
   name: raven mask
   description: Where I am, death... or glitter.
@@ -509,17 +524,19 @@
     sprite: Clothing/Mask/raven.rsi
   - type: Clothing
     sprite: Clothing/Mask/raven.rsi
-  - type: BreathMask
+  - type: Mask
   - type: IdentityBlocker
+  - type: IngestionBlocker
   - type: Tag
     tags:
     - IPCMaskWearable
+    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Snout
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskJackal
   name: jackal mask
   description: It is better not to turn your back to the owner of the mask, it may bite.
@@ -528,17 +545,19 @@
     sprite: Clothing/Mask/jackal.rsi
   - type: Clothing
     sprite: Clothing/Mask/jackal.rsi
-  - type: BreathMask
+  - type: Mask
   - type: IdentityBlocker
+  - type: IngestionBlocker
   - type: Tag
     tags:
     - IPCMaskWearable
+    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Snout
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskBat
   name: bat mask
   description: A bloodsucker by night, and a cute, blinded beast by day.
@@ -547,17 +566,19 @@
     sprite: Clothing/Mask/bat.rsi
   - type: Clothing
     sprite: Clothing/Mask/bat.rsi
-  - type: BreathMask
+  - type: Mask
   - type: IdentityBlocker
+  - type: IngestionBlocker
   - type: Tag
     tags:
     - IPCMaskWearable
+    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Snout
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskPullableBase
   id: ClothingMaskNeckGaiter
   name: neck gaiter
   description: Stylish neck gaiter for your neck, can protect from the cosmic wind?...
@@ -566,32 +587,46 @@
     sprite: Clothing/Mask/neckgaiter.rsi
   - type: Clothing
     sprite: Clothing/Mask/neckgaiter.rsi
+  - type: Mask
   - type: IdentityBlocker
-    coverage: MOUTH
+  - type: IngestionBlocker  
   - type: Tag
     tags:
     - WhitelistChameleon
     - IPCMaskWearable # Estacao Pirata - IPCs
 
 - type: entity
-  parent: ClothingMaskNeckGaiter
+  parent: ClothingMaskPullableBase
   id: ClothingMaskNeckGaiterWhite
   name: neck gaiter
   components:
+  - type: IdentityBlocker
+  - type: IngestionBlocker  
   - type: Sprite
     sprite: Clothing/Mask/neckgaiterwhite.rsi
   - type: Clothing
     sprite: Clothing/Mask/neckgaiterwhite.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - IPCMaskWearable
+    
 
 - type: entity
-  parent: ClothingMaskNeckGaiter
+  parent: ClothingMaskPullableBase
   id: ClothingMaskNeckGaiterRed
   name: red neck gaiter
   components:
+  - type: IdentityBlocker
+  - type: IngestionBlocker  
   - type: Sprite
     sprite: Clothing/Mask/neckgaiterred.rsi
   - type: Clothing
     sprite: Clothing/Mask/neckgaiterred.rsi
+  - type: Tag
+    tags:
+    - IPCMaskWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingMaskClownBase
