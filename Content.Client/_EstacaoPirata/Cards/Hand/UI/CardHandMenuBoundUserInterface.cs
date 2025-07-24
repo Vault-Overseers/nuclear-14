@@ -32,7 +32,10 @@ public sealed class CardHandMenuBoundUserInterface : BoundUserInterface
         _menu.OpenCenteredAt(_inputManager.MouseScreenPosition.Position / vpSize);
     }
 
-    public void SendCardHandDrawMessage(NetEntity e) => SendMessage(new CardHandDrawMessage(e));
+    public void SendCardHandDrawMessage(NetEntity e)
+    {
+        SendMessage(new CardHandDrawMessage(e));
+    }
 
     protected override void Dispose(bool disposing)
     {

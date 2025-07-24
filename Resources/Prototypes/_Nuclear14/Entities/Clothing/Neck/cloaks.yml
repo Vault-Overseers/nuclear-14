@@ -202,6 +202,25 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: N14ClothingNeckTownGuardCloak
+  name: old cloak
+  description: A brown old cloak, which will keep you warm on a cold winter, probably.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/townformalcloak.rsi
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:Container
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 2
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  parent: ClothingNeckBase
   id: N14ClothingTribalCloakGreen
   name: tribal cloak
   description: A cloak worn by the tribes of the west.
