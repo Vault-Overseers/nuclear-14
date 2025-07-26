@@ -78,11 +78,9 @@ public sealed partial class PlayerTab : Control
         {
             _adminSystem.AdminOverlayOff();
         }
-
-        #endregion
     }
 
-    #endregion
+#endregion
 
     private void ShowDisconnectedPressed(ButtonEventArgs args)
     {
