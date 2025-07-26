@@ -223,30 +223,6 @@ public partial class ChatSystem
 
         return true;
     }
-    /// <summary>
-    /// Checks if we can use this emote based on the emotes whitelist, blacklist, and availibility to the entity.
-    /// </summary>
-    /// <param name="source">The entity that is speaking</param>
-    /// <param name="emote">The emote being used</param>
-    /// <returns></returns>
-    private bool AllowedToUseEmote(EntityUid source, EmotePrototype emote)
-    {
-        // If emote is in AllowedEmotes, it will bypass whitelist and blacklist
-        if (TryComp<SpeechComponent>(source, out var speech) &&
-            speech.AllowedEmotes.Contains(emote.ID))
-            return true;
-
-        // Check the whitelist and blacklist
-        if (_whitelistSystem.IsWhitelistFail(emote.Whitelist, source) ||
-            _whitelistSystem.IsBlacklistPass(emote.Blacklist, source))
-            return false;
-
-        // Check if the emote is available for all
-        if (!emote.Available)
-            return false;
-
-        return true;
-    }
 
     private void InvokeEmoteEvent(EntityUid uid, EmotePrototype proto)
     {

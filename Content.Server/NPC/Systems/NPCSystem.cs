@@ -12,6 +12,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
+using Content.Shared.Verbs;
 
 namespace Content.Server.NPC.Systems
 {

@@ -10,7 +10,7 @@ namespace Content.Server.Alert.Click;
 /// </summary>
 [UsedImplicitly]
 [DataDefinition]
-public sealed partial class AcceptOffer : IAlertClick
+public sealed partial class AcceptOffer
 {
     public void AlertClicked(EntityUid player)
     {

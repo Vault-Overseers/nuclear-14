@@ -115,55 +115,55 @@ public sealed partial class DungeonJob : Job<Dungeon>
 
             switch (post)
             {
-                case AutoCablingPostGen cabling:
+                case AutoCablingDunGen cabling:
                     await PostGen(cabling, dungeon, _gridUid, _grid, random);
                     break;
-                case BiomePostGen biome:
+                case BiomeDunGen biome:
                     await PostGen(biome, dungeon, _gridUid, _grid, random);
                     break;
-                case BoundaryWallPostGen boundary:
+                case BoundaryWallDunGen boundary:
                     await PostGen(boundary, dungeon, _gridUid, _grid, random);
                     break;
-                case CornerClutterPostGen clutter:
+                case CornerClutterDunGen clutter:
                     await PostGen(clutter, dungeon, _gridUid, _grid, random);
                     break;
-                case CorridorClutterPostGen corClutter:
+                case CorridorClutterDunGen corClutter:
                     await PostGen(corClutter, dungeon, _gridUid, _grid, random);
                     break;
-                case CorridorPostGen cordor:
+                case CorridorDunGen cordor:
                     await PostGen(cordor, dungeon, _gridUid, _grid, random);
                     break;
-                case CorridorDecalSkirtingPostGen decks:
+                case CorridorDecalSkirtingDunGen decks:
                     await PostGen(decks, dungeon, _gridUid, _grid, random);
                     break;
-                case EntranceFlankPostGen flank:
+                case EntranceFlankDunGen flank:
                     await PostGen(flank, dungeon, _gridUid, _grid, random);
                     break;
-                case JunctionPostGen junc:
+                case JunctionDunGen junc:
                     await PostGen(junc, dungeon, _gridUid, _grid, random);
                     break;
-                case MiddleConnectionPostGen dordor:
+                case MiddleConnectionDunGen dordor:
                     await PostGen(dordor, dungeon, _gridUid, _grid, random);
                     break;
-                case DungeonEntrancePostGen entrance:
+                case DungeonEntranceDunGen entrance:
                     await PostGen(entrance, dungeon, _gridUid, _grid, random);
                     break;
-                case ExternalWindowPostGen externalWindow:
+                case ExternalWindowDunGen externalWindow:
                     await PostGen(externalWindow, dungeon, _gridUid, _grid, random);
                     break;
-                case InternalWindowPostGen internalWindow:
+                case InternalWindowDunGen internalWindow:
                     await PostGen(internalWindow, dungeon, _gridUid, _grid, random);
                     break;
-                case BiomeMarkerLayerPostGen markerPost:
+                case BiomeMarkerLayerDunGen markerPost:
                     await PostGen(markerPost, dungeon, _gridUid, _grid, random);
                     break;
-                case RoomEntrancePostGen rEntrance:
+                case RoomEntranceDunGen rEntrance:
                     await PostGen(rEntrance, dungeon, _gridUid, _grid, random);
                     break;
-                case WallMountPostGen wall:
+                case WallMountDunGen wall:
                     await PostGen(wall, dungeon, _gridUid, _grid, random);
                     break;
-                case WormCorridorPostGen worm:
+                case WormCorridorDunGen worm:
                     await PostGen(worm, dungeon, _gridUid, _grid, random);
                     break;
                 default:

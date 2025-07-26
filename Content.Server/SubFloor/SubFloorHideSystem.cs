@@ -20,7 +20,6 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
         base.Initialize();
 
         SubscribeNetworkEvent<ShowSubfloorRequestEvent>(OnShowSubfloor);
-        SubscribeLocalEvent<GetVisMaskEvent>(OnGetVisibility);
 
         _player.PlayerStatusChanged += OnPlayerStatus;
     }
@@ -36,16 +35,6 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
             _eye.RefreshVisibilityMask(e.Session.AttachedEntity.Value);
     }
 
-    private void OnGetVisibility(ref GetVisMaskEvent ev)
-    {
-        if (!TryComp(ev.Entity, out ActorComponent? actor))
-            return;
-
-        if (_showFloors.Contains(actor.PlayerSession))
-        {
-            ev.VisibilityMask |= (int)VisibilityFlags.Subfloor;
-        }
-    }
 
     private void OnShowSubfloor(ShowSubfloorRequestEvent ev, EntitySessionEventArgs args)
     {

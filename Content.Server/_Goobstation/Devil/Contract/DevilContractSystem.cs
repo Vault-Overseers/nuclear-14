@@ -19,6 +19,7 @@ using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Implants;
 using Content.Server.Paper;
+using ServerPaperComponent = Content.Server.Paper.PaperComponent;
 using Content.Server.Polymorph.Systems;
 using Content.Shared.Changeling;
 using Content.Shared.Silicon.Components;
@@ -246,7 +247,7 @@ public sealed partial class DevilContractSystem : EntitySystem
         return true;
     }
 
-    private void UpdateContractWeight(Entity<DevilContractComponent> contract, PaperComponent? paper = null)
+    private void UpdateContractWeight(Entity<DevilContractComponent> contract, ServerPaperComponent? paper = null)
     {
         if (!Resolve(contract, ref paper))
             return;
@@ -272,7 +273,7 @@ public sealed partial class DevilContractSystem : EntitySystem
         contract.Comp.ContractWeight = newWeight;
     }
 
-    private void DoContractEffects(Entity<DevilContractComponent> contract, PaperComponent? paper = null)
+    private void DoContractEffects(Entity<DevilContractComponent> contract, ServerPaperComponent? paper = null)
     {
         if (!Resolve(contract, ref paper))
             return;

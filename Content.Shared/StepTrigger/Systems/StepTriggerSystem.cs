@@ -2,6 +2,7 @@ using Content.Shared.Gravity;
 using Content.Shared.StepTrigger.Components;
 using Content.Shared.Traits.Assorted.Components;
 using Content.Shared.Whitelist;
+using Content.Shared.StepTrigger.Prototypes;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;

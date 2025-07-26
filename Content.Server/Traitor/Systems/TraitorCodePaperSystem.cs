@@ -3,6 +3,7 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Paper;
+using ServerPaperSystem = Content.Server.Paper.PaperSystem;
 using Content.Server.Traitor.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -16,7 +17,7 @@ public sealed class TraitorCodePaperSystem : EntitySystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly TraitorRuleSystem _traitorRuleSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private readonly ServerPaperSystem _paper = default!;
 
     public override void Initialize()
     {

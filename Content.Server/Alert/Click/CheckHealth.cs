@@ -11,7 +11,7 @@ namespace Content.Server.Alert.Click;
 
 [UsedImplicitly]
 [DataDefinition]
-public sealed partial class CheckHealth : IAlertClick
+public sealed partial class CheckHealth
 {
     public void AlertClicked(EntityUid player)
     {

@@ -73,16 +73,6 @@ public sealed class BloodstreamSystem : EntitySystem
         ent.Comp.NextUpdate += args.PausedTime;
     }
 
-    private void OnMapInit(Entity<BloodstreamComponent> ent, ref MapInitEvent args)
-    {
-        ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.UpdateInterval;
-    }
-
-    private void OnUnpaused(Entity<BloodstreamComponent> ent, ref EntityUnpausedEvent args)
-    {
-        ent.Comp.NextUpdate += args.PausedTime;
-    }
-
     private void OnReactionAttempt(Entity<BloodstreamComponent> entity, ref ReactionAttemptEvent args)
     {
         if (args.Cancelled)
@@ -592,43 +582,4 @@ public sealed class BloodstreamSystem : EntitySystem
     /// <summary>
     ///   Remove blood from an entity, without spilling it.
     /// </summary>
-    private void RemoveBlood(EntityUid uid, FixedPoint2 amount, BloodstreamComponent? component = null)
-    {
-        if (!Resolve(uid, ref component, logMissing: false)
-            || !_solutionContainerSystem.ResolveSolution(uid, component.BloodSolutionName, ref component.BloodSolution, out var bloodSolution))
-            return;
-
-        bloodSolution.RemoveReagent(component.BloodReagent, amount);
-    }
-
-    /// <summary>
-    ///     Tries to apply natural blood regeneration/loss to the entity. Returns true if succesful.
-    /// </summary>
-    private bool TryDoNaturalRegeneration(Entity<BloodstreamComponent> ent, Solution bloodSolution)
-    {
-        var ev = new NaturalBloodRegenerationAttemptEvent { Amount = ent.Comp.BloodRefreshAmount };
-        RaiseLocalEvent(ent, ref ev);
-
-        if (ev.Cancelled || (ev.Amount > 0 && bloodSolution.Volume >= bloodSolution.MaxVolume))
-            return false;
-
-        var usedHunger = ev.Amount * ent.Comp.BloodRegenerationHunger;
-        var usedThirst = ev.Amount * ent.Comp.BloodRegenerationThirst;
-
-        // First, check if the entity has enough hunger/thirst
-        var hungerComp = CompOrNull<HungerComponent>(ent);
-        var thirstComp = CompOrNull<ThirstComponent>(ent);
-        if (usedHunger > 0 && hungerComp is not null && (hungerComp.CurrentHunger < usedHunger || hungerComp.CurrentThreshold <= HungerThreshold.Starving)
-            ||  usedThirst > 0 && thirstComp is not null && (thirstComp.CurrentThirst < usedThirst || thirstComp.CurrentThirstThreshold <= ThirstThreshold.Parched))
-            return false;
-
-        // Then actually expend hunger and thirst (if necessary) and regenerate blood.
-        if (usedHunger > 0 && hungerComp is not null)
-            _hunger.ModifyHunger(ent, (float) -usedHunger, hungerComp);
-
-        if (usedThirst > 0 && thirstComp is not null)
-            _thirst.ModifyThirst(ent, thirstComp, (float) -usedThirst);
-
-        return TryModifyBloodLevel(ent, ev.Amount, ent.Comp);
-    }
 }
