@@ -281,7 +281,6 @@ public sealed class ClientClothingSystem : ClothingSystem
         bool slotLayerExists = sprite.LayerMapTryGet(slot, out var index);
 
         // Select displacement maps
-        var displacementData = inventory.Displacements.GetValueOrDefault(slot); //Default unsexed map
 
         var equipeeSex = CompOrNull<HumanoidAppearanceComponent>(equipee)?.Sex;
         if (equipeeSex != null)

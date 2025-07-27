@@ -10,7 +10,8 @@ using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
-using static Content.Shared.Paper.SharedPaperComponent;
+// Paper enums now live directly inside PaperComponent after upstream changes.
+using static Content.Shared.Paper.PaperComponent;
 
 namespace Content.Server.Paper
 {

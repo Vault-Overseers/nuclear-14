@@ -131,9 +131,10 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler
             rootEntries = entries.ToList();
         }
 
+        // Upstream removed the HideInMenu flag. Just list all available
+        // entries when populating the guidebook menu.
         return rootEntries
             .Select(rootEntryId => _entries[rootEntryId])
-            .Where(entry => entry.HideInMenu == false)
             .OrderBy(rootEntry => rootEntry.Priority)
             .ThenBy(rootEntry => Loc.GetString(rootEntry.Name));
     }

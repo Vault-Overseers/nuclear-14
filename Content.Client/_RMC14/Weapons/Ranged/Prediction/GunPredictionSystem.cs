@@ -103,7 +103,9 @@ public sealed class GunPredictionSystem : SharedGunPredictionSystem
         var ev = new PredictedProjectileHitEvent(ent.Owner.Id, hit);
         RaiseNetworkEvent(ev);
 
-        _projectile.ProjectileCollide((ent, projectile, physics), args.OtherEntity);
+        // Upstream removed the direct collision helper. Simply delete the projectile
+        // on a predicted hit so server reconciliation can spawn the impact effect.
+        QueueDel(ent);
     }
 
     private void OnServerProjectileStartup(Entity<PredictedProjectileServerComponent> ent, ref ComponentStartup args)
@@ -148,7 +150,9 @@ public sealed class GunPredictionSystem : SharedGunPredictionSystem
             var ev = new PredictedProjectileHitEvent(uid.Id, hit);
             RaiseNetworkEvent(ev);
 
-            _projectile.ProjectileCollide((uid, projectile, physics), contacts.First());
+            // Predict the impact locally by removing the projectile; the server
+            // will authoritatively handle the actual collision.
+            QueueDel(uid);
         }
 
         var predictedQuery = EntityQueryEnumerator<PredictedProjectileHitComponent, SpriteComponent, TransformComponent>();

@@ -13,6 +13,7 @@ using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Server.Mind;

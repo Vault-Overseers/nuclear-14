@@ -1,4 +1,4 @@
-using Content.Server.Animals.Systems;
+using Content.Shared.Animals;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
