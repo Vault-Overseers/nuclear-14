@@ -2,7 +2,7 @@ using Content.Shared._Goobstation.Paper;
 using Content.Shared._Goobstation.Devil;
 using Content.Server.Access.Systems;
 using ServerPaperSystem = Content.Server.Paper.PaperSystem;
-using ServerPaperComponent = Content.Server.Paper.PaperComponent;
+using ServerPaperComponent = Content.Shared.Paper.PaperComponent;
 using Content.Server.Popups;
 using Content.Shared.Paper;
 using Content.Shared.Popups;

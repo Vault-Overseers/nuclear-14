@@ -1,5 +1,5 @@
-using Content.Shared.Abilities.Psionics;
-using Content.Server.Abilities.Psionics;
+using SharedInvisPowerSystem = Content.Shared.Abilities.Psionics.PsionicInvisibilityPowerSystem;
+using ServerInvisPowerSystem = Content.Server.Abilities.Psionics.PsionicInvisibilityPowerSystem;
 using Content.Shared.Eye;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
@@ -12,7 +12,7 @@ namespace Content.Server.Psionics
     public sealed class PsionicInvisibilitySystem : EntitySystem
     {
         [Dependency] private readonly VisibilitySystem _visibilitySystem = default!;
-        [Dependency] private readonly PsionicInvisibilityPowerSystem _invisSystem = default!;
+        [Dependency] private readonly ServerInvisPowerSystem _invisSystem = default!;
         [Dependency] private readonly NpcFactionSystem _npcFactonSystem = default!;
         [Dependency] private readonly SharedEyeSystem _eye = default!;
         public override void Initialize()
