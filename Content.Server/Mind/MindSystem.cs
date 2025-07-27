@@ -7,6 +7,7 @@ using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Prototypes;
 using Content.Shared.Players;
 using Robust.Server.GameStates;
 using Robust.Server.Player;
