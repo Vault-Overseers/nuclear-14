@@ -120,43 +120,6 @@ public sealed partial class AtmosphereSystem
         }
     }
 
-    /// <summary>
-    /// Clears & re-creates all references to <see cref="TileAtmosphere"/>s stored on a grid.
-    /// </summary>
-    private void RebuildGridTiles(
-        Entity<GridAtmosphereComponent, GasTileOverlayComponent, MapGridComponent, TransformComponent> ent)
-    {
-        foreach (var indices in ent.Comp1.Tiles.Keys)
-        {
-            InvalidateVisuals((ent, ent), indices);
-        }
-
-        var atmos = ent.Comp1;
-        atmos.MapTiles.Clear();
-        atmos.ActiveTiles.Clear();
-        atmos.ExcitedGroups.Clear();
-        atmos.HotspotTiles.Clear();
-        atmos.SuperconductivityTiles.Clear();
-        atmos.HighPressureDelta.Clear();
-        atmos.CurrentRunTiles.Clear();
-        atmos.CurrentRunExcitedGroups.Clear();
-        atmos.InvalidatedCoords.Clear();
-        atmos.CurrentRunInvalidatedTiles.Clear();
-        atmos.PossiblyDisconnectedTiles.Clear();
-        atmos.Tiles.Clear();
-
-        var volume = GetVolumeForTiles(ent);
-        TryComp(ent.Comp4.MapUid, out MapAtmosphereComponent? mapAtmos);
-
-        var enumerator = _map.GetAllTilesEnumerator(ent, ent);
-        while (enumerator.MoveNext(out var tileRef))
-        {
-            var tile = GetOrNewTile(ent, ent, tileRef.Value.GridIndices);
-            UpdateTileData(ent, mapAtmos, tile);
-            UpdateAdjacentTiles(ent, tile, activate: true);
-            UpdateTileAir(ent, tile, volume);
-        }
-    }
 
     /// <summary>
     /// Clears & re-creates all references to <see cref="TileAtmosphere"/>s stored on a grid.

@@ -1,7 +1,8 @@
 using Content.Shared._Goobstation.Paper;
 using Content.Shared._Goobstation.Devil;
 using Content.Server.Access.Systems;
-using Content.Server.Paper;
+using ServerPaperSystem = Content.Server.Paper.PaperSystem;
+using ServerPaperComponent = Content.Server.Paper.PaperComponent;
 using Content.Server.Popups;
 using Content.Shared.Paper;
 using Content.Shared.Popups;
@@ -16,7 +17,7 @@ public sealed class SignatureSystem : EntitySystem
 {
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private readonly ServerPaperSystem _paper = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly TagSystem _tags = default!;
 
@@ -25,10 +26,10 @@ public sealed class SignatureSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<PaperComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs);
+        SubscribeLocalEvent<ServerPaperComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs);
     }
 
-    private void OnGetAltVerbs(Entity<PaperComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    private void OnGetAltVerbs(Entity<ServerPaperComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
@@ -53,7 +54,7 @@ public sealed class SignatureSystem : EntitySystem
     /// <summary>
     ///     Tries to add a signature to the paper with signer's name.
     /// </summary>
-    public bool TrySignPaper(Entity<PaperComponent> paper, EntityUid signer, EntityUid pen)
+    public bool TrySignPaper(Entity<ServerPaperComponent> paper, EntityUid signer, EntityUid pen)
     {
         var comp = paper.Comp;
 

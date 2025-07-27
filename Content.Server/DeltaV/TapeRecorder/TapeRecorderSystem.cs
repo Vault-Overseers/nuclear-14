@@ -4,6 +4,7 @@ using Content.Server.Speech;
 using Content.Server.Speech.Components;
 using Content.Shared.Chat;
 using Content.Shared.Paper;
+using ServerPaperSystem = Content.Server.Paper.PaperSystem;
 using Content.Shared.Speech;
 using Content.Shared.DeltaV.TapeRecorder;
 using Content.Shared.DeltaV.TapeRecorder.Components;
@@ -22,7 +23,7 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private readonly ServerPaperSystem _paper = default!;
 
     public override void Initialize()
     {

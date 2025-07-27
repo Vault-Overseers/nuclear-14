@@ -3,6 +3,7 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Extinguisher;
+using Content.Shared.Fluids;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;

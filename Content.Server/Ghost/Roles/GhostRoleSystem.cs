@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.EUI;
+using ServerGhostRoleMobSpawnerComponent = Content.Server.Ghost.Roles.Components.GhostRoleMobSpawnerComponent;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Ghost.Roles.Events;
 using Content.Shared.Ghost.Roles.Raffles;
@@ -81,11 +82,11 @@ public sealed partial class GhostRoleSystem : EntitySystem // Converted to parti
         SubscribeLocalEvent<GhostRoleComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<GhostRoleRaffleComponent, ComponentInit>(OnRaffleInit);
         SubscribeLocalEvent<GhostRoleRaffleComponent, ComponentShutdown>(OnRaffleShutdown);
-        SubscribeLocalEvent<GhostRoleMobSpawnerComponent, TakeGhostRoleEvent>(OnSpawnerTakeRole);
+        SubscribeLocalEvent<ServerGhostRoleMobSpawnerComponent, TakeGhostRoleEvent>(OnSpawnerTakeRole);
         SubscribeLocalEvent<GhostTakeoverAvailableComponent, TakeGhostRoleEvent>(OnTakeoverTakeRole);
-        SubscribeLocalEvent<GhostRoleMobSpawnerComponent, GetVerbsEvent<Verb>>(OnVerb);
         SubscribeLocalEvent<GhostRoleCharacterSpawnerComponent, TakeGhostRoleEvent>(OnSpawnerTakeCharacter);
-        SubscribeLocalEvent<GhostRoleMobSpawnerComponent, GhostRoleRadioMessage>(OnGhostRoleRadioMessage);
+        SubscribeLocalEvent<ServerGhostRoleMobSpawnerComponent, GetVerbsEvent<Verb>>(OnVerb);
+        SubscribeLocalEvent<ServerGhostRoleMobSpawnerComponent, GhostRoleRadioMessage>(OnGhostRoleRadioMessage);
         _playerManager.PlayerStatusChanged += PlayerStatusChanged;
     }
 
@@ -672,7 +673,7 @@ public sealed partial class GhostRoleSystem : EntitySystem // Converted to parti
         UnregisterGhostRole(role);
     }
 
-    private void OnSpawnerTakeRole(EntityUid uid, GhostRoleMobSpawnerComponent component, ref TakeGhostRoleEvent args)
+    private void OnSpawnerTakeRole(EntityUid uid, ServerGhostRoleMobSpawnerComponent component, ref TakeGhostRoleEvent args)
     {
         if (!TryComp(uid, out GhostRoleComponent? ghostRole) ||
             !CanTakeGhost(uid, ghostRole))
@@ -746,7 +747,7 @@ public sealed partial class GhostRoleSystem : EntitySystem // Converted to parti
         args.TookRole = true;
     }
 
-    private void OnVerb(EntityUid uid, GhostRoleMobSpawnerComponent component, GetVerbsEvent<Verb> args)
+    private void OnVerb(EntityUid uid, ServerGhostRoleMobSpawnerComponent component, GetVerbsEvent<Verb> args)
     {
         var prototypes = component.SelectablePrototypes;
         if (prototypes.Count < 1)
@@ -769,7 +770,7 @@ public sealed partial class GhostRoleSystem : EntitySystem // Converted to parti
         args.Verbs.UnionWith(verbs);
     }
 
-    private Verb CreateVerb(EntityUid uid, GhostRoleMobSpawnerComponent component, EntityUid userUid, GhostRolePrototype prototype)
+    private Verb CreateVerb(EntityUid uid, ServerGhostRoleMobSpawnerComponent component, EntityUid userUid, GhostRolePrototype prototype)
     {
         var verbText = Loc.GetString(prototype.Name);
 
@@ -782,7 +783,7 @@ public sealed partial class GhostRoleSystem : EntitySystem // Converted to parti
         };
     }
 
-    public void SetMode(EntityUid uid, GhostRolePrototype prototype, string verbText, GhostRoleMobSpawnerComponent? component, EntityUid? userUid = null)
+    public void SetMode(EntityUid uid, GhostRolePrototype prototype, string verbText, ServerGhostRoleMobSpawnerComponent? component, EntityUid? userUid = null)
     {
         if (!Resolve(uid, ref component))
             return;
@@ -803,7 +804,7 @@ public sealed partial class GhostRoleSystem : EntitySystem // Converted to parti
         }
     }
 
-    public void OnGhostRoleRadioMessage(Entity<GhostRoleMobSpawnerComponent> entity, ref GhostRoleRadioMessage args)
+    public void OnGhostRoleRadioMessage(Entity<ServerGhostRoleMobSpawnerComponent> entity, ref GhostRoleRadioMessage args)
     {
         if (!_prototype.TryIndex(args.ProtoId, out var ghostRoleProto))
             return;

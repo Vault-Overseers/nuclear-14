@@ -103,12 +103,6 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
             CacheDecals();
     }
 
-    private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)
-    {
-        if (ev.WasModified<DecalPrototype>())
-            CacheDecals();
-    }
-
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
