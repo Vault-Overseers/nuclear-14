@@ -1,6 +1,4 @@
 using Content.Server.Popups;
-using Content.Server.Sticky.Components;
-using Content.Server.Sticky.Events;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;

@@ -4,8 +4,6 @@ using Content.Shared.Teleportation.Components;
 using Content.Shared.Verbs;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
-using Robust.Shared.EntitySerialization;
-using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 

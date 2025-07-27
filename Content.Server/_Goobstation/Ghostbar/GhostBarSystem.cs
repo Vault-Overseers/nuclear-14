@@ -16,8 +16,6 @@ using Content.Server.Antag.Components;
 using Content.Server.Traits; // Einstein Engines
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Players;
-using Robust.Shared.EntitySerialization;
-using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
 
 

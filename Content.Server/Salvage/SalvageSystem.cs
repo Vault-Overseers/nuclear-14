@@ -17,7 +17,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 using Content.Server.Labels;
-using Robust.Shared.EntitySerialization.Systems;
 
 namespace Content.Server.Salvage
 {

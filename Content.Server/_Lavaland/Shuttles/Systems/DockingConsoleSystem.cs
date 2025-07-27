@@ -9,7 +9,6 @@ using Content.Shared.Shuttles.Systems;
 using Content.Shared.Timing;
 using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
-using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using Timer = Robust.Shared.Timing.Timer;

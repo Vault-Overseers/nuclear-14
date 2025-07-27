@@ -100,7 +100,7 @@ namespace Content.Server.Paper
         {
             // only allow editing if there are no stamps or when using a cyberpen
             var editable = paperComp.StampedBy.Count == 0 || _tagSystem.HasTag(args.Used, "WriteIgnoreStamps");
-            if (_tagSystem.HasTag(args.Used, "Write") && editable && paperComp.CanEdit)
+            if (_tagSystem.HasTag(args.Used, "Write") && editable && !paperComp.EditingDisabled)
             {
                 var writeEvent = new PaperWriteEvent(uid, args.User);
                 RaiseLocalEvent(args.Used, ref writeEvent);
