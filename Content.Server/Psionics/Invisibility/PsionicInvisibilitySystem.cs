@@ -1,6 +1,7 @@
 using SharedInvisPowerSystem = Content.Shared.Abilities.Psionics.PsionicInvisibilityPowerSystem;
 using ServerInvisPowerSystem = Content.Server.Abilities.Psionics.PsionicInvisibilityPowerSystem;
 using Content.Shared.Eye;
+using Content.Shared.Abilities.Psionics;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Server.GameObjects;
