@@ -5,6 +5,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Teleportation.Systems;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
+using GameMapLoaderSystem = Robust.Server.GameObjects.MapLoaderSystem;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._CP14.StationDungeonMap;
@@ -17,7 +18,7 @@ public sealed partial class CP14StationAdditionalMapSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly LinkedEntitySystem _linkedEntity = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
+    [Dependency] private readonly GameMapLoaderSystem _mapLoader = default!;
 
     public override void Initialize()
     {
