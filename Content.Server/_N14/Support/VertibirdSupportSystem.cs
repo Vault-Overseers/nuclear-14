@@ -28,6 +28,15 @@ namespace Content.Server._N14.Support
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly SharedRoofSystem _roof = default!;
+        [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+
+        private bool IsRoofed((EntityUid Uid, MapGridComponent Grid, RoofComponent? Roof) gridEnt, Vector2i tile)
+        {
+            if (!_mapSystem.TryGetTile(gridEnt.Uid, tile, out var tileRef, gridEnt.Grid))
+                return false;
+
+            return (tileRef.Tile.Flags & (byte) TileFlag.Roof) != 0;
+        }
 
         public override void Initialize()
         {
@@ -76,7 +85,7 @@ namespace Content.Server._N14.Support
                         if (Resolve(gridUid, ref roof, false))
                         {
                             var gridEnt = (gridUid, grid, roof);
-                            if (_roof.IsRooved(gridEnt, tile))
+                            if (IsRoofed(gridEnt, tile))
                             {
                                 QueueDel(uid);
                                 continue;
@@ -110,7 +119,7 @@ namespace Content.Server._N14.Support
                     if (Resolve(gridUid1, ref roof2, false))
                     {
                         var gridEnt = (gridUid1, grid1, roof2);
-                        if (_roof.IsRooved(gridEnt, tile))
+                        if (IsRoofed(gridEnt, tile))
                         {
                             QueueDel(uid);
                             continue;
@@ -134,6 +143,7 @@ namespace Content.Server._N14.Support
                     comp.Intensity,
                     comp.Slope,
                     comp.MaxIntensity,
+                    null,
                     canCreateVacuum: false);
                 if (comp.FireSound != null)
                 {

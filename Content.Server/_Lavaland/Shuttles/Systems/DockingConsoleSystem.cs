@@ -8,7 +8,7 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.Timing;
 using Content.Shared.Whitelist;
-using Robust.Server.GameObjects;
+using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using Timer = Robust.Shared.Timing.Timer;
@@ -188,7 +188,7 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
         Dirty(ent);
 
         // shitcode because funny
-        Timer.Spawn(TimeSpan.FromSeconds(15), () => _mapSystem.DeleteMap(dummyMap));
+        Timer.Spawn(TimeSpan.FromSeconds(15), () => _mapMan.DeleteMap(dummyMap));
     }
 
     /// <summary>

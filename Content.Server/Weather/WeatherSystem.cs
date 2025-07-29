@@ -4,6 +4,7 @@ using Content.Server.Maps;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Weather;
+using System.Linq;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.GameStates;
@@ -17,6 +18,9 @@ public sealed class WeatherSystem : SharedWeatherSystem
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly IMapManager _map = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -37,7 +41,7 @@ public sealed class WeatherSystem : SharedWeatherSystem
     {
         base.Update(frameTime);
 
-        if (_config.GetCVar(CCVars.AutoWeather) && _gameTicker.RunLevel == GameRunLevel.InRound && !WeatherRunning())
+        if (_gameTicker.RunLevel == GameRunLevel.InRound && !WeatherRunning())
         {
             var (weather, map) = SetRandomWeather();
             if (weather != null)
@@ -91,24 +95,7 @@ public sealed class WeatherSystem : SharedWeatherSystem
         WeatherPrototype? weather = null;
         if (!args[1].Equals("null"))
         {
-            if (!ProtoMan.TryIndex(args[1], out weather))
-            {
-                var curTime = Timing.CurTime;
-                var maxTime = TimeSpan.MaxValue;
-
-                // If it's already running then just fade out with how much time we're into the weather.
-                if (_mapSystem.TryGetMap(mapId, out var mapUid) &&
-                    TryComp<WeatherComponent>(mapUid, out var weatherComp) &&
-                    weatherComp.Weather.TryGetValue(args[1], out var existing))
-                {
-                    maxTime = curTime - existing.StartTime;
-                }
-
-                endTime = curTime + TimeSpan.FromSeconds(durationInt);
-
-                if (endTime > maxTime)
-                    endTime = maxTime;
-            }
+            ProtoMan.TryIndex(args[1], out weather);
         }
 
         //Time parsing

@@ -4,7 +4,7 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.GridPreloader;
 using Content.Shared._Lavaland.Shelter;
 using Content.Shared.Chemistry.Components;
-using Robust.Server.GameObjects;
+using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
@@ -73,7 +73,7 @@ public sealed class ShelterCapsuleSystem : SharedShelterCapsuleSystem
             shelter = shelters.FirstOrDefault(x => !TerminatingOrDeleted(x));
 
             SetupShelter(shelter.Value, new EntityCoordinates(mapEnt, posFixed.Position));
-            _mapSystem.DeleteMap(dummyMap);
+            _mapMan.DeleteMap(dummyMap);
             return true;
         }
 

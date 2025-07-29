@@ -1,5 +1,5 @@
 using Content.Server.Station.Components;
-using Robust.Server.GameObjects;
+using Robust.Server.Maps;
 
 namespace Content.Server.Station.Systems;
 

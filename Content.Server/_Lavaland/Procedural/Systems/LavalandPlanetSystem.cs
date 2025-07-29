@@ -16,7 +16,7 @@ using Content.Shared.Gravity;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
-using Robust.Server.GameObjects;
+using Robust.Server.Maps;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -124,7 +124,7 @@ public sealed class LavalandPlanetSystem : EntitySystem
             TerminatingOrDeleted(_lavalandPreloader.Value.Uid))
             return;
 
-        _mapSystem.DeleteMap(_lavalandPreloader.Value.Id);
+        _mapMan.DeleteMap(_lavalandPreloader.Value.Id);
         _lavalandPreloader = null;
     }
 
