@@ -3,6 +3,7 @@ using Content.Shared.Alert;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.HealthExaminable;
+using Content.Server.HealthExaminable;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Player;
