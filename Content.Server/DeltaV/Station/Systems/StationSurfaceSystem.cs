@@ -1,11 +1,12 @@
 using Content.Server.Station.Components;
 using Robust.Server.Maps;
+using Content.Shared.Maps;
 
 namespace Content.Server.Station.Systems;
 
 public sealed class StationSurfaceSystem : EntitySystem
 {
-    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
 
     public override void Initialize()

@@ -8,6 +8,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
+using Content.Shared.Maps;
 using System.Numerics;
 using Content.Server.GameTicking;
 using Content.Shared.GameTicking;
@@ -17,7 +18,7 @@ namespace Content.Server.GridPreloader;
 public sealed class GridPreloaderSystem : SharedGridPreloaderSystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;

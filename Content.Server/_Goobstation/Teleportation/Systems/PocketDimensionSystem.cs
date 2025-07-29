@@ -5,6 +5,7 @@ using Content.Shared.Verbs;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
+using MapLoaderSystem = Robust.Server.Maps.MapLoaderSystem;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 

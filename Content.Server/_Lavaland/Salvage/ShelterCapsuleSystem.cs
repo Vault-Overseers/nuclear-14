@@ -7,6 +7,8 @@ using Content.Shared.Chemistry.Components;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Content.Shared.Maps;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server._Lavaland.Salvage;
 
@@ -14,9 +16,9 @@ public sealed class ShelterCapsuleSystem : SharedShelterCapsuleSystem
 {
     [Dependency] private readonly GridPreloaderSystem _preloader = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SmokeSystem _smoke = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IMapManager _mapMan = default!;
 

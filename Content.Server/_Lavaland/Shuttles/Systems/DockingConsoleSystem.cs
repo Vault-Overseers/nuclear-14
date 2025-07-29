@@ -11,6 +11,7 @@ using Content.Shared.Whitelist;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
+using Content.Shared.Maps;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server._Lavaland.Shuttles.Systems;
@@ -22,7 +23,7 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly IMapManager _mapMan = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
 
     private static readonly ResPath MiningShuttlePath = new ResPath("/Maps/_Lavaland/mining.yml");
 
