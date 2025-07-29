@@ -87,8 +87,6 @@ public sealed class StickySystem : EntitySystem
                 _popupSystem.PopupEntity(msg, user, user);
             }
 
-            component.Stick = true;
-
             // start sticking object to target
             _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, user, delay, new StickyDoAfterEvent(), uid, target: target, used: uid)
             {
@@ -110,7 +108,7 @@ public sealed class StickySystem : EntitySystem
         if (args.Handled || args.Cancelled || args.Args.Target == null)
             return;
 
-        if (component.Stick)
+        if (component.StuckTo == null)
             StickToEntity(uid, args.Args.Target.Value, args.Args.User, component);
         else
             UnstickFromEntity(uid, args.Args.User, component);
@@ -140,8 +138,6 @@ public sealed class StickySystem : EntitySystem
                 var msg = Loc.GetString(component.UnstickPopupStart);
                 _popupSystem.PopupEntity(msg, user, user);
             }
-
-            component.Stick = false;
 
             // start unsticking object
             _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, user, delay, new StickyDoAfterEvent(), uid, target: uid)

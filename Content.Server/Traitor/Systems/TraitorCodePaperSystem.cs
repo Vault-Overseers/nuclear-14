@@ -39,7 +39,7 @@ public sealed class TraitorCodePaperSystem : EntitySystem
         {
             if (TryGetTraitorCode(out var paperContent, component))
             {
-                _paper.SetContent((uid, paperComp), paperContent);
+                _paper.SetContent(uid, paperContent, paperComp);
             }
         }
     }
