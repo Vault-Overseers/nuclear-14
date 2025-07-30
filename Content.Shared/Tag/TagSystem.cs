@@ -21,8 +21,6 @@ public sealed class TagSystem : EntitySystem
 
     private EntityQuery<TagComponent> _tagQuery;
 
-    private EntityQuery<TagComponent> _tagQuery;
-
     public override void Initialize()
     {
         base.Initialize();

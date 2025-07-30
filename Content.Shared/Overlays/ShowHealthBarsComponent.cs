@@ -14,12 +14,12 @@ public sealed partial class ShowHealthBarsComponent : Component
     /// <summary>
     /// Displays health bars of the damage containers.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public List<ProtoId<DamageContainerPrototype>> DamageContainers = new()
     {
         "Biological"
     };
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public ProtoId<HealthIconPrototype>? HealthStatusIcon = "HealthIconFine";
 }

@@ -20,7 +20,7 @@ public sealed class DeviceListSystem : SharedDeviceListSystem
         SubscribeLocalEvent<DeviceListComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<DeviceListComponent, BeforeBroadcastAttemptEvent>(OnBeforeBroadcast);
         SubscribeLocalEvent<DeviceListComponent, BeforePacketSentEvent>(OnBeforePacketSent);
-        SubscribeLocalEvent<BeforeSerializationEvent>(OnMapSave);
+        SubscribeLocalEvent<BeforeSaveEvent>(OnMapSave);
     }
 
     private void OnShutdown(EntityUid uid, DeviceListComponent component, ComponentShutdown args)

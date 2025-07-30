@@ -5,6 +5,7 @@ using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Sequence;
 using Robust.Shared.Serialization.Markdown.Validation;
+using Robust.Shared.Serialization.Markdown.Value;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 using Robust.Shared.Serialization.TypeSerializers.Interfaces;
 
@@ -49,11 +50,13 @@ public sealed class ContainerFillSerializer : ITypeValidator<Dictionary<string, 
 
         foreach (var (key, val) in node.Children)
         {
+            var keyVal = serializationManager.ValidateNode<string>(key, context);
+
             var listVal = (val is SequenceDataNode seq)
                 ? ListSerializer.Validate(serializationManager, seq, dependencies, context)
                 : new ErrorNode(val, "ContainerFillComponent prototypes must be a sequence/list");
 
-            mapping.Add(new ValidatedValueNode(node.GetKeyNode(key)), listVal);
+            mapping.Add(keyVal, listVal);
         }
 
         return new ValidatedMappingNode(mapping);

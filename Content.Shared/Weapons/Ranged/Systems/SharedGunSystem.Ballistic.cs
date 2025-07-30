@@ -46,8 +46,8 @@ public abstract partial class SharedGunSystem
             || _whitelistSystem.IsWhitelistFailOrNull(component.Whitelist, args.Used)
             || GetBallisticShots(component) >= component.Capacity)
             return;
-        }
-}
+
+
         if (EntityManager.HasComponent<SpeedLoaderComponent>(args.Used))
         {
             var emptySlots = component.Capacity - component.UnspawnedCount - component.Entities.Count; // Number of empty slots in the shotgun

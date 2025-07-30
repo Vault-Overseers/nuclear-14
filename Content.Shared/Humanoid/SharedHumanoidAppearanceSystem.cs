@@ -129,24 +129,6 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             args.PushText(Loc.GetString("humanoid-appearance-component-examine-pronouns", ("user", identity), ("pronouns", component.DisplayPronouns)));
     }
 
-    private void OnExamined(EntityUid uid, HumanoidAppearanceComponent component, ExaminedEvent args)
-    {
-        var identity = Identity.Entity(uid, EntityManager);
-        var species = GetSpeciesRepresentation(component.Species, component.CustomSpecieName).ToLower();
-        var age = GetAgeRepresentation(component.Species, component.Age);
-        if (HasComp<ShadowkinComponent>(uid))
-        {
-            var color = component.EyeColor.Name();
-            if (color != null)
-                age = Loc.GetString("identity-eye-shadowkin", ("color", color));
-        }
-
-        args.PushText(Loc.GetString("humanoid-appearance-component-examine", ("user", identity), ("age", age), ("species", species)));
-
-        if (component.DisplayPronouns != null)
-            args.PushText(Loc.GetString("humanoid-appearance-component-examine-pronouns", ("user", identity), ("pronouns", component.DisplayPronouns)));
-    }
-
     /// <summary>
     ///     Toggles a humanoid's sprite layer visibility.
     /// </summary>
