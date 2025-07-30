@@ -165,7 +165,7 @@ public sealed class HTNSystem : EntitySystem
             return;
 
         ent.Comp.Enabled = state;
-        ent.Comp.PlanAccumulator = planCooldown;
+        ent.Comp.NextPlanTime = _gameTiming.CurTime + TimeSpan.FromSeconds(planCooldown);
 
         ent.Comp.PlanningToken?.Cancel();
         ent.Comp.PlanningToken = null;
@@ -180,7 +180,7 @@ public sealed class HTNSystem : EntitySystem
             ent.Comp.Plan = null;
         }
 
-        if (ent.Comp.Enabled && ent.Comp.PlanAccumulator <= 0)
+        if (ent.Comp.Enabled && ent.Comp.NextPlanTime <= _gameTiming.CurTime)
             RequestPlan(ent.Comp);
     }
 

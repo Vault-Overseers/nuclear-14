@@ -207,6 +207,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
             Log,
             DungeonJobTime,
             EntityManager,
+            _mapManager,
             _prototype,
             _tileDefManager,
             _anchorable,
@@ -221,7 +222,6 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
             gridUid,
             seed,
             position,
-            coordinates,
             cancelToken.Token);
 
         _dungeonJobs.Add(job, cancelToken);
@@ -240,6 +240,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
             Log,
             DungeonJobTime,
             EntityManager,
+            _mapManager,
             _prototype,
             _tileDefManager,
             _anchorable,
@@ -254,7 +255,6 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
             gridUid,
             seed,
             position,
-            null,
             cancelToken.Token);
 
         _dungeonJobs.Add(job, cancelToken);

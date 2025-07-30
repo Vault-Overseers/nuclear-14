@@ -34,8 +34,8 @@ public sealed partial class CP14StationAdditionalMapSystem : EntitySystem
         {
             var mapUid = _map.CreateMap(out var mapId);
             Log.Info($"Created map {mapId} for StationAdditionalMap system");
-            var options = new MapLoadOptions { LoadMap = true };
-            if (!_mapLoader.TryLoad(mapId, path.ToString(), out var roots, options))
+            var options = DeserializationOptions.Default with { InitializeMaps = true };
+            if (!_mapLoader.TryLoadMapWithId(mapId, path, out _, out var roots, options))
             {
                 Log.Error($"Failed to load map from {path}!");
                 Del(mapUid);
