@@ -7,6 +7,7 @@ using Content.Shared.Popups;
 using Content.Shared.Follower;
 using Content.Shared.Eye;
 using Robust.Shared.GameObjects;
+using Robust.Server.GameObjects;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
