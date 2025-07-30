@@ -133,7 +133,8 @@ public enum GeneratorComponentUiKey
 public enum GeneratorVisualLayers : byte
 {
     Body,
-    Unlit
+    Unlit,
+    Core
 }
 
 /// <summary>
@@ -146,4 +147,5 @@ public enum GeneratorVisuals : byte
     /// Boolean: is the generator running?
     /// </summary>
     Running,
+    HasCore,
 }
