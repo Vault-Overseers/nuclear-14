@@ -1,0 +1,63 @@
+- type: entity
+  id: FEVVat
+  name: FEV vat
+  description: A bubbling vat filled with the Forced Evolutionary Virus.
+  parent: BaseStructure
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Storage/barrels.rsi
+    drawdepth: BelowFloor
+    state: yellow-full
+  - type: Strap
+    position: Stand
+  - type: Clickable
+  - type: SolutionContainerManager
+    solutions:
+      pool:
+        maxVol: 1000
+        reagents:
+        - ReagentId: FEV
+          Quantity: 1000
+  - type: SolutionRegeneration
+    solution: pool
+    generated:
+      reagents:
+      - ReagentId: FEV
+        Quantity: 50
+  - type: DrainableSolution
+    solution: pool
+  - type: TileEntityEffect
+    effects:
+    - !type:AddToBloodstreamIfUncovered
+      reagent: FEV
+      amount: 20
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+  - type: StepTriggerActive
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - MobLayer
+        layer:
+        - SlipLayer
+        density: 1000
+        hard: false
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+  - type: FEVVat
+    slowAmount: 5
+    instantAmount: 20
+    transformTime: 3
+
