@@ -40,9 +40,9 @@ public sealed class ThirstSystem : EntitySystem
     {
         base.Initialize();
 
-        DebugTools.Assert(_prototype.TryIndex(ThirstIconOverhydratedId, out _thirstIconOverhydrated) &&
-                          _prototype.TryIndex(ThirstIconThirstyId, out _thirstIconThirsty) &&
-                          _prototype.TryIndex(ThirstIconParchedId, out _thirstIconParched));
+        DebugTools.Assert(_prototype.HasIndex(ThirstIconOverhydratedId) &&
+                          _prototype.HasIndex(ThirstIconThirstyId) &&
+                          _prototype.HasIndex(ThirstIconParchedId));
 
         SubscribeLocalEvent<ThirstComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
         SubscribeLocalEvent<ThirstComponent, MapInitEvent>(OnMapInit);

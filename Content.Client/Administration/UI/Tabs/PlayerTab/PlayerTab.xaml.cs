@@ -78,8 +78,6 @@ public sealed partial class PlayerTab : Control
         {
             _adminSystem.AdminOverlayOff();
         }
-
-        #endregion
     }
 
     #endregion

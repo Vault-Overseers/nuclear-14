@@ -27,6 +27,8 @@ public abstract class SharedRoleSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
+    private HashSet<Type> _antagTypes = new();
+
     private CharacterRequirementOverridePrototype? _requirementOverride;
 
     public override void Initialize()

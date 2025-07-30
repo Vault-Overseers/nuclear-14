@@ -29,7 +29,7 @@ namespace Content.Shared.Decals
             IDependencyCollection dependencies, SerializationHookContext hookCtx, ISerializationContext? context = null,
             ISerializationManager.InstantiationDelegate<DecalGridChunkCollection>? _ = default)
         {
-            node.TryGetValue("version", out var versionNode);
+            node.TryGet("version", out var versionNode);
             var version = ((ValueDataNode?) versionNode)?.AsInt() ?? 1;
             Dictionary<Vector2i, DecalChunk> dictionary;
 
@@ -47,7 +47,7 @@ namespace Content.Shared.Decals
 
                     foreach (var (decalUidNode, decalData) in deckNodes)
                     {
-                        var dUid = uint.Parse(decalUidNode, CultureInfo.InvariantCulture);
+                        var dUid = ((ValueDataNode)decalUidNode).AsUint();
                         var coords = serializationManager.Read<Vector2>(decalData, hookCtx, context);
 
                         var chunkOrigin = SharedMapSystem.GetChunkIndices(coords, SharedDecalSystem.ChunkSize);

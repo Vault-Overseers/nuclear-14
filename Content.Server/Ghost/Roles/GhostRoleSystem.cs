@@ -107,8 +107,9 @@ public sealed partial class GhostRoleSystem : EntitySystem // Converted to parti
                 UnregisterGhostRole((component, ghostRole));
                 break;
         }
+    }
 
-        private void OnVerb(EntityUid uid, GhostRoleMobSpawnerComponent component, GetVerbsEvent<Verb> args)
+    private void OnVerb(EntityUid uid, GhostRoleMobSpawnerComponent component, GetVerbsEvent<Verb> args)
         {
             var prototypes = component.SelectablePrototypes;
             if (prototypes.Count < 1)

@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using System.Collections.Generic;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Database;
 using Content.Shared.Follower.Components;
@@ -73,7 +74,7 @@ public sealed class FollowerSystem : EntitySystem
         // We need some way to store entity references in a way that doesn't imply that the entity still exists.
         // Then we wouldn't have to deal with this shit.
 
-        var maps = ev.Entities.Select(x => Transform(x).MapUid).ToHashSet();
+        var maps = new HashSet<EntityUid> { ev.Map ?? ev.Entity };
 
         var query = AllEntityQuery<FollowerComponent, TransformComponent, MetaDataComponent>();
         while (query.MoveNext(out var uid, out var follower, out var xform, out var meta))
@@ -81,7 +82,7 @@ public sealed class FollowerSystem : EntitySystem
             if (meta.EntityPrototype == null || meta.EntityPrototype.MapSavable)
                 continue;
 
-            if (!maps.Contains(xform.MapUid))
+            if (xform.MapUid is not { } map || !maps.Contains(map))
                 continue;
 
             StopFollowingEntity(uid, follower.Following);

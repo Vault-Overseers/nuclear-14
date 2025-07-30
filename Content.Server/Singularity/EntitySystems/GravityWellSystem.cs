@@ -228,8 +228,8 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
         foreach (var entity in _entSet)
         {
             if (!_physicsQuery.TryGetComponent(entity, out var physics))
-            {
                 continue;
+
             bool isStatic = physics.BodyType == BodyType.Static;
             if (!countStatic && isStatic)
                 continue;

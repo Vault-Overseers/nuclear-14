@@ -47,7 +47,7 @@ public abstract partial class SharedProjectileSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ProjectileComponent, StartCollideEvent>(OnStartCollide);
+        // StartCollide handled in prediction
         SubscribeLocalEvent<ProjectileComponent, PreventCollideEvent>(PreventCollision);
         SubscribeLocalEvent<EmbeddableProjectileComponent, ProjectileHitEvent>(OnEmbedProjectileHit);
         SubscribeLocalEvent<EmbeddableProjectileComponent, ThrowDoHitEvent>(OnEmbedThrowDoHit);
