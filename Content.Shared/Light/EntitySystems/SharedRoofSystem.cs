@@ -39,4 +39,15 @@ public abstract class SharedRoofSystem : EntitySystem
 
         _maps.SetTile((grid.Owner, grid.Comp1), index, newTile);
     }
+
+    public bool IsRooved(Entity<MapGridComponent?, RoofComponent?> grid, Vector2i index)
+    {
+        if (!Resolve(grid, ref grid.Comp1, ref grid.Comp2, false))
+            return false;
+
+        if (!_maps.TryGetTile(grid.Comp1, index, out var tile))
+            return false;
+
+        return (tile.Flags & (byte) TileFlag.Roof) != 0x0;
+    }
 }

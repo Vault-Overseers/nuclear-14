@@ -45,7 +45,7 @@ public sealed class FollowerSystem : EntitySystem
         SubscribeLocalEvent<FollowedComponent, ComponentGetStateAttemptEvent>(OnFollowedAttempt);
         SubscribeLocalEvent<FollowerComponent, GotEquippedHandEvent>(OnGotEquippedHand);
         SubscribeLocalEvent<FollowedComponent, EntityTerminatingEvent>(OnFollowedTerminating);
-        SubscribeLocalEvent<BeforeSerializationEvent>(OnBeforeSave);
+        SubscribeLocalEvent<BeforeSaveEvent>(OnBeforeSave);
         SubscribeLocalEvent<FollowedComponent, PolymorphedEvent>(OnFollowedPolymorphed);
     }
 
@@ -64,7 +64,7 @@ public sealed class FollowerSystem : EntitySystem
         }
     }
 
-    private void OnBeforeSave(BeforeSerializationEvent  ev)
+    private void OnBeforeSave(BeforeSaveEvent  ev)
     {
         // Some followers will not be map savable. This ensures that maps don't get saved with some entities that have
         // empty/invalid followers, by just stopping any following happening on the map being saved.

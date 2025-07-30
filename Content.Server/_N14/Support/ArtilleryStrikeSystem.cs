@@ -82,6 +82,7 @@ namespace Content.Server._N14.Support
                     comp.Intensity,
                     comp.Slope,
                     comp.MaxIntensity,
+                    cause: null,
                     canCreateVacuum: false);
                 QueueDel(uid);
             }
