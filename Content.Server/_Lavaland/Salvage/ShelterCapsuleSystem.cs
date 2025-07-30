@@ -8,6 +8,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
+
 
 namespace Content.Server._Lavaland.Salvage;
 
@@ -64,7 +66,9 @@ public sealed class ShelterCapsuleSystem : SharedShelterCapsuleSystem
         if (!_preloader.TryGetPreloadedGrid(comp.PreloadedGrid, out var shelter))
         {
             _mapSystem.CreateMap(out var dummyMap);
-            if (!_mapLoader.TryLoadGrid(dummyMap, proto.Path, out var roots))
+            var mapPath = new ResPath(path);
+
+            if (!_mapLoader.TryLoadGrid(dummyMap, mapPath, out _))
             {
                 Log.Error("Failed to load Shelter grid properly on it's deployment.");
                 return false;

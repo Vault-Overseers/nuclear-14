@@ -14,6 +14,9 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.NPC.Prototypes;
+using Robust.Shared.Prototypes;
+
 
 namespace Content.Server.Mind;
 

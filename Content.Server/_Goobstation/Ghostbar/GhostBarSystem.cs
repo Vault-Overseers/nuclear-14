@@ -16,10 +16,10 @@ using Content.Server.Antag.Components;
 using Content.Server.Traits; // Einstein Engines
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Players;
+using Content.Shared.Roles.Jobs;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
-using Robust.Shared.Utility;
-
+using Robust.Shared.Utility; // Einstein Engines - use JobComponent
 
 namespace Content.Server._Goobstation.Ghostbar;
 
@@ -51,12 +51,11 @@ public sealed class GhostBarSystem : EntitySystem
         SubscribeLocalEvent<GhostBarPlayerComponent, MindRemovedMessage>(OnPlayerGhosted);
     }
 
-    private static readonly ResPath MapPath = new ResPath("Maps/_Goobstation/Nonstations/ghostbar.yml");
-
+    private ResPath MapPath = new("Maps/_Goobstation/Nonstations/ghostbar.yml");
     private void OnRoundStart(RoundStartingEvent ev)
     {
-        var options = new DeserializationOptions { InitializeMaps = true, };
-        _mapLoader.TryLoadMap(MapPath, out _, out _, options);
+        if (_mapLoader.TryLoadMap(MapPath, out var mapId, out _))
+            _mapSystem.SetPaused((mapId.Value.Owner, null), false);
     }
 
     public void SpawnPlayer(GhostBarSpawnEvent msg, EntitySessionEventArgs args)

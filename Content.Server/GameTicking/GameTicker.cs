@@ -10,6 +10,7 @@ using Content.Server.Preferences.Managers;
 using Content.Server.ServerUpdates;
 using Content.Server.Station.Systems;
 using Content.Shared.Chat;
+using Content.Shared.Damage;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
@@ -53,6 +54,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly MapLoaderSystem _loader = default!;
         [Dependency] private readonly SharedMapSystem _map = default!;
+        [Dependency] private readonly DamageableSystem _damageable = default!;
         [Dependency] private readonly GhostSystem _ghost = default!;
         [Dependency] private readonly SharedMindSystem _mind = default!;
         [Dependency] private readonly PlayTimeTrackingSystem _playTimeTrackings = default!;

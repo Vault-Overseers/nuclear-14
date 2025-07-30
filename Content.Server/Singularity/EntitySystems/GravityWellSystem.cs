@@ -116,10 +116,7 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
             return;
 
         var scale = (float)frameTime.TotalSeconds;
-        GravPulse(uid, out var appliedImpulse, gravWell.MaxRange, gravWell.MinRange, gravWell.BaseRadialAcceleration * scale, gravWell.BaseTangentialAcceleration * scale, xform, gravWell.StaticAttraction);
-
-        if (gravWell.ApplyCounterforce && TryComp<PhysicsComponent>(uid, out var physics))
-            _physics.ApplyLinearImpulse(uid, -appliedImpulse, body: physics);
+        GravPulse(uid, gravWell.MaxRange, gravWell.MinRange, gravWell.BaseRadialAcceleration * scale, gravWell.BaseTangentialAcceleration * scale, xform);
     }
 
     #region GravPulse
@@ -147,7 +144,6 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
     /// Greates a gravitational pulse, shoving around all entities within some distance of an epicenter.
     /// </summary>
     /// <param name="uid">The entity at the epicenter of the gravity pulse.</param>
-    /// <param name="gravWell">The state of the gravity well that is pulsing.</param>
     /// <param name="maxRange">The maximum distance at which entities can be affected by the gravity pulse.</param>
     /// <param name="minRange">The minimum distance at which entities can be affected by the gravity pulse.</param>
     /// <param name="baseMatrixDeltaV">The base velocity added to any entities within affected by the gravity pulse scaled by the displacement of those entities from the epicenter.</param>
@@ -155,28 +151,22 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
     public void GravPulse(EntityUid uid, float maxRange, float minRange, in Matrix3x2 baseMatrixDeltaV, TransformComponent? xform = null)
     {
         if (Resolve(uid, ref xform))
-            GravPulse(uid, out appliedImpulse, xform.Coordinates, maxRange, minRange, in baseMatrixDeltaV, staticImpulse);
-        else
-            appliedImpulse = new Vector2(0f, 0f);
+            GravPulse(xform.Coordinates, maxRange, minRange, in baseMatrixDeltaV);
     }
-
 
     /// <summary>
     /// Greates a gravitational pulse, shoving around all entities within some distance of an epicenter.
     /// </summary>
     /// <param name="uid">The entity at the epicenter of the gravity pulse.</param>
-    /// <param name="gravWell">The state of the gravity well that is pulsing.</param>
     /// <param name="maxRange">The maximum distance at which entities can be affected by the gravity pulse.</param>
     /// <param name="minRange">The minimum distance at which entities can be affected by the gravity pulse.</param>
     /// <param name="baseRadialDeltaV">The base radial velocity that will be added to entities within range towards the center of the gravitational pulse.</param>
     /// <param name="baseTangentialDeltaV">The base tangential velocity that will be added to entities within countrclockwise around the center of the gravitational pulse.</param>
     /// <param name="xform">(optional) The transform of the entity at the epicenter of the gravitational pulse.</param>
-    public void GravPulse(EntityUid uid, out Vector2 appliedImpulse, float maxRange, float minRange, float baseRadialDeltaV = 0.0f, float baseTangentialDeltaV = 0.0f, TransformComponent? xform = null, float? staticImpulse = null)
+    public void GravPulse(EntityUid uid, float maxRange, float minRange, float baseRadialDeltaV = 0.0f, float baseTangentialDeltaV = 0.0f, TransformComponent? xform = null)
     {
         if (Resolve(uid, ref xform))
-            GravPulse(uid, out appliedImpulse, xform.Coordinates, maxRange, minRange, baseRadialDeltaV, baseTangentialDeltaV, staticImpulse);
-        else
-            appliedImpulse = new Vector2(0f, 0f);
+            GravPulse(xform.Coordinates, maxRange, minRange, baseRadialDeltaV, baseTangentialDeltaV);
     }
 
     /// <summary>
@@ -203,16 +193,12 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
     /// <summary>
     /// Causes a gravitational pulse, shoving around all entities within some distance of an epicenter.
     /// </summary>
-    /// <param name="uid">The entity at the epicenter of the gravity pulse.</param>
-    /// <param name="gravWell">The state of the gravity well that is pulsing.</param>
     /// <param name="mapPos">The epicenter of the gravity pulse.</param>
     /// <param name="maxRange">The maximum distance at which entities can be affected by the gravity pulse.</param>
     /// <param name="minRange">The minimum distance at which entities can be affected by the gravity pulse. Exists to prevent div/0 errors.</param>
     /// <param name="baseMatrixDeltaV">The base velocity added to any entities within affected by the gravity pulse scaled by the displacement of those entities from the epicenter.</param>
     public void GravPulse(MapCoordinates mapPos, float maxRange, float minRange, in Matrix3x2 baseMatrixDeltaV)
     {
-        appliedImpulse = new Vector2(0f, 0f);
-
         if (mapPos == MapCoordinates.Nullspace)
             return; // No gravpulses in nullspace please.
 
@@ -230,11 +216,12 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
             if (!_physicsQuery.TryGetComponent(entity, out var physics))
             {
                 continue;
-            bool isStatic = physics.BodyType == BodyType.Static;
-            if (!countStatic && isStatic)
+            }
+
+            if (TryComp<MovedByPressureComponent>(entity, out var movedPressure) && !movedPressure.Enabled) //Ignore magboots users
                 continue;
 
-            if (!CanGravPulseAffect(entity))
+            if(!CanGravPulseAffect(entity))
                 continue;
 
             var displacement = epicenter - _transform.GetWorldPosition(entity);
@@ -250,8 +237,6 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
     /// <summary>
     /// Causes a gravitational pulse, shoving around all entities within some distance of an epicenter.
     /// </summary>
-    /// <param name="uid">The entity at the epicenter of the gravity pulse.</param>
-    /// <param name="gravWell">The state of the gravity well that is pulsing.</param>
     /// <param name="mapPos">The epicenter of the gravity pulse.</param>
     /// <param name="maxRange">The maximum distance at which entities can be affected by the gravity pulse.</param>
     /// <param name="minRange">The minimum distance at which entities can be affected by the gravity pulse. Exists to prevent div/0 errors.</param>

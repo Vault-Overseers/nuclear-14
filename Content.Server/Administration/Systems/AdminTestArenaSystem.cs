@@ -34,20 +34,17 @@ public sealed class AdminTestArenaSystem : EntitySystem
         }
 
         var path = new ResPath(ArenaMapPath);
-        var mapUid = _maps.CreateMap(out var mapId);
-
-        if (!_loader.TryLoadGrid(mapId, path, out var grid))
-        {
-            QueueDel(mapUid);
+        if (!_loader.TryLoadMap(path, out var map, out var grids))
             throw new Exception($"Failed to load admin arena");
-        }
 
-        ArenaMap[admin.UserId] = mapUid;
-        _metaDataSystem.SetEntityName(mapUid, $"ATAM-{admin.Name}");
+        ArenaMap[admin.UserId] = map.Value.Owner;
+        _metaDataSystem.SetEntityName(map.Value.Owner, $"ATAM-{admin.Name}");
 
-        ArenaGrid[admin.UserId] = grid.Value.Owner;
-        _metaDataSystem.SetEntityName(grid.Value.Owner, $"ATAG-{admin.Name}");
+        var grid = grids.FirstOrNull();
+        ArenaGrid[admin.UserId] = grid?.Owner;
+        if (grid != null)
+            _metaDataSystem.SetEntityName(grid.Value.Owner, $"ATAG-{admin.Name}");
 
-        return (mapUid, grid.Value.Owner);
+        return (map.Value.Owner, grid?.Owner);
     }
 }

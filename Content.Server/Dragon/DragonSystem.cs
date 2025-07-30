@@ -199,12 +199,6 @@ public sealed partial class DragonSystem : EntitySystem
         _faction.AddFaction(ent.Owner, ent.Comp.Faction);
     }
 
-    private void OnZombified(Entity<DragonComponent> ent, ref EntityZombifiedEvent args)
-    {
-        // prevent carp attacking zombie dragon
-        _faction.AddFaction(ent.Owner, ent.Comp.Faction);
-    }
-
     private void Roar(EntityUid uid, DragonComponent comp)
     {
         if (comp.SoundRoar != null)

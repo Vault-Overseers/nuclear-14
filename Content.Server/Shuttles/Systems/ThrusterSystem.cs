@@ -135,6 +135,7 @@ public sealed class ThrusterSystem : EntitySystem
                 }
             }
         }
+
     }
 
     private void OnActivateThruster(EntityUid uid, ThrusterComponent component, ActivateInWorldEvent args)
@@ -386,11 +387,6 @@ public sealed class ThrusterSystem : EntitySystem
 
         if (!EntityManager.TryGetComponent(gridId, out ShuttleComponent? shuttleComponent))
             return;
-
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower))
-        {
-            apcPower.NeedsPower = false;
-        }
 
         // Logger.DebugS("thruster", $"Disabled thruster {uid}");
 

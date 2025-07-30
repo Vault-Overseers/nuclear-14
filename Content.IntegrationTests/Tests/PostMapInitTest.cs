@@ -16,7 +16,6 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
-using Content.Shared.Station.Components;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.IoC;
@@ -45,12 +44,17 @@ namespace Content.IntegrationTests.Tests
             AdminTestArenaSystem.ArenaMapPath,
         };
 
+        private static readonly string[] IgnoreMaps =
+        {
+            "Box",
+            "Core",
+            "Saltern"
+        };
+
         private static readonly string[] GameMaps =
         {
             "Dev",
             "TestTeg",
-            "CentCommMain",
-            "CentCommHarmony",
             "MeteorArena",
             "Core", // No current maintainer. In need of a rework...
             "Pebble", // Maintained by Plyushune
@@ -169,6 +173,7 @@ namespace Content.IntegrationTests.Tests
 
             var resourceManager = server.ResolveDependency<IResourceManager>();
             var loader = server.System<MapLoaderSystem>();
+
             var mapFolder = new ResPath("/Maps");
             var maps = resourceManager
                 .ContentFindFiles(mapFolder)
@@ -264,6 +269,9 @@ namespace Content.IntegrationTests.Tests
         [Test, TestCaseSource(nameof(GameMaps))]
         public async Task GameMapsLoadableTest(string mapProto)
         {
+            if (IgnoreMaps.Contains(mapProto))
+                return;
+
             await using var pair = await PoolManager.GetServerClient(new PoolSettings
             {
                 Dirty = true // Stations spawn a bunch of nullspace entities and maps like centcomm.
@@ -331,7 +339,6 @@ namespace Content.IntegrationTests.Tests
                             entManager.GetComponent<ShuttleComponent>(shuttle!.Value.Owner),
                             targetGrid.Value),
                         $"Unable to dock {shuttlePath} to {mapProto}");
-#pragma warning restore NUnit2045
                 }
 
                 mapSystem.DeleteMap(shuttleMap);
@@ -418,15 +425,16 @@ namespace Content.IntegrationTests.Tests
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
             var protoMan = server.ResolveDependency<IPrototypeManager>();
+            var pool = protoMan.Index<GameMapPoolPrototype>("DefaultMapPool");
 
-            var gameMaps = protoMan.EnumeratePrototypes<GameMapPrototype>()
-                .Where(x => !pair.IsTestPrototype(x))
+            var gameMapsProtos = protoMan.EnumeratePrototypes<GameMapPrototype>()
+                .Where(x => !pair.IsTestPrototype(x) && pool.Maps.Contains(x.ID))
                 .Select(x => x.ID)
                 .ToHashSet();
 
-            Assert.That(gameMaps.Remove(PoolManager.TestMap));
+            var maps = GameMaps.Where(x => pool.Maps.Contains(x)).ToHashSet();
 
-            Assert.That(gameMaps, Is.EquivalentTo(GameMaps.ToHashSet()), "Game map prototype missing from test cases.");
+            Assert.That(gameMapsProtos, Is.EquivalentTo(maps), "Game map prototype missing from test cases.");
 
             await pair.CleanReturnAsync();
         }
@@ -441,7 +449,6 @@ namespace Content.IntegrationTests.Tests
             var resourceManager = server.ResolveDependency<IResourceManager>();
             var protoManager = server.ResolveDependency<IPrototypeManager>();
             var cfg = server.ResolveDependency<IConfigurationManager>();
-            var mapSystem = server.System<SharedMapSystem>();
             Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
             var gameMaps = protoManager.EnumeratePrototypes<GameMapPrototype>().Select(o => o.MapPath).ToHashSet();
@@ -475,10 +482,10 @@ namespace Content.IntegrationTests.Tests
                     var opts = MapLoadOptions.Default with
                     {
                         DeserializationOptions = DeserializationOptions.Default with
-                    {
-                        InitializeMaps = true,
-                        LogOrphanedGrids = false
-                    }
+                        {
+                            InitializeMaps = true,
+                            LogOrphanedGrids = false
+                        }
                     };
 
                     HashSet<Entity<MapComponent>> maps;

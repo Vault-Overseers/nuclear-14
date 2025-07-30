@@ -70,8 +70,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly AnnouncerSystem _announcer = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
 
     private const float ShuttleSpawnBuffer = 1f;
 
@@ -360,8 +358,8 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         if (result.ResultType == ShuttleDockResultType.NoDock)
         {
             _announcer.SendAnnouncement(
-                _announcer.GetAnnouncementId("ShuttleDock"),
-                "emergency-shuttle-docked",
+                _announcer.GetAnnouncementId("ShuttleNearby"),
+                "emergency-shuttle-nearby",
                 localeArgs:
                 [
                     ("time", $"{_consoleAccumulator:0}"),
@@ -374,8 +372,8 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         else
         {
             _announcer.SendAnnouncement(
-                _announcer.GetAnnouncementId("ShuttleNearby"),
-                "emergency-shuttle-nearby",
+                _announcer.GetAnnouncementId("ShuttleDock"),
+                "emergency-shuttle-docked",
                 localeArgs:
                 [
                     ("time", $"{_consoleAccumulator:0}"),
@@ -559,16 +557,16 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             return;
         }
 
-        if (!Exists(map) || map == EntityUid.Invalid)
+        if (!Exists(map))
         {
-            Log.Error("Failed to set up centcomm map!");
+            Log.Error($"Failed to set up centcomm map!");
             QueueDel(grid);
             return;
         }
 
         if (!Exists(grid))
         {
-            Log.Error("Failed to set up centcomm grid!");
+            Log.Error($"Failed to set up centcomm grid!");
             QueueDel(map);
             return;
         }

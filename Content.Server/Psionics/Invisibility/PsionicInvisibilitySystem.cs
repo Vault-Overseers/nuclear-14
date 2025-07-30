@@ -6,6 +6,8 @@ using Robust.Shared.Player;
 using Robust.Server.GameObjects;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Psionics;
+using PsionicInvisibilityPowerSystem = Content.Shared.Abilities.Psionics.PsionicInvisibilityPowerSystem;
+
 
 namespace Content.Server.Psionics
 {

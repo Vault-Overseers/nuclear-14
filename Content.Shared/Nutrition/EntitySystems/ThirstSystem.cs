@@ -36,6 +36,10 @@ public sealed class ThirstSystem : EntitySystem
     [ValidatePrototypeId<SatiationIconPrototype>]
     private const string ThirstIconParchedId = "ThirstIconParched";
 
+    private SatiationIconPrototype? _thirstIconOverhydrated;
+    private SatiationIconPrototype? _thirstIconThirsty;
+    private SatiationIconPrototype? _thirstIconParched;
+
     public override void Initialize()
     {
         base.Initialize();

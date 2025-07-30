@@ -25,7 +25,7 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
     [Dependency] private readonly IMapManager _mapMan = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
 
-    private static readonly ResPath MiningShuttlePath = new ResPath("/Maps/_Lavaland/mining.yml");
+    private readonly ResPath _miningShuttlePath = new("/Maps/_Lavaland/mining.yml");
 
     public override void Initialize()
     {
@@ -153,7 +153,7 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
             return;
 
         _mapSystem.CreateMap(out var dummyMap);
-        _mapLoader.TryLoadGrid(dummyMap, MiningShuttlePath, out _);
+        _mapLoader.TryLoadGrid(dummyMap, _miningShuttlePath, out _);
 
         // Find the target
         var targetMap = Transform(ent).MapID;

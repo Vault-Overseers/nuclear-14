@@ -7,9 +7,9 @@ using Content.Shared.Tools;
 using Robust.Shared.GameStates;
 using Content.Shared.DoAfter;
 using Content.Shared.Toilet.Components;
+using Content.Shared.Whitelist;
 using Robust.Shared.Serialization;
 using Robust.Shared.Audio;
-using Content.Shared.Whitelist;
 
 namespace Content.Shared.Storage.Components
 {

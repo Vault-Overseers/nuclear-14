@@ -2,6 +2,7 @@ using Content.Shared.Gravity;
 using Content.Shared.StepTrigger.Components;
 using Content.Shared.Traits.Assorted.Components;
 using Content.Shared.Whitelist;
+using Content.Shared.StepTrigger.Prototypes;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -130,10 +131,12 @@ public sealed class StepTriggerSystem : EntitySystem
             return false;
 
         // Immunity checks
-        if (TryComp<StepTriggerImmuneComponent>(otherUid, out var stepTriggerImmuneComponent)
-            && component.TriggerGroups != null
-            && component.TriggerGroups.IsValid(stepTriggerImmuneComponent))
-            return false;
+        if (TryComp<StepTriggerImmuneComponent>(otherUid, out var stepTriggerImmuneComponent))
+        {
+            var group = stepTriggerImmuneComponent.Whitelist;
+            if (group != null && group.IsValid(component))
+                return false;
+        }
 
         // Can't trigger if we don't ignore weightless entities
         // and the entity is flying or currently weightless

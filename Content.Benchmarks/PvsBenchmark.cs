@@ -9,6 +9,7 @@ using Content.Server.Mind;
 using Content.Server.Warps;
 using Robust.Shared;
 using Robust.Shared.Analyzers;
+using Robust.Shared.Enums;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.GameObjects;

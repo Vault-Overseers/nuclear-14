@@ -8,6 +8,8 @@ using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.EntitySerialization;
+using Robust.Shared.EntitySerialization.Systems;
 
 namespace Content.Server.Teleportation;
 
@@ -64,7 +66,7 @@ public sealed class PocketDimensionSystem : EntitySystem
                 return;
             }
 
-            comp.PocketDimensionMap = map;
+            comp.PocketDimensionMap = _mapMan.GetMapEntityId(map.Value.Comp.MapId);
 
             // find the pocket dimension's first grid and put the portal there
             bool foundGrid = false;
