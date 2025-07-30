@@ -1,0 +1,63 @@
+- type: constructionGraph
+  id: N14SandbagBarricade
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: Sandbag
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: N14Dirt
+              amount: 1
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+              doAfter: 1
+
+    - node: Sandbag
+      entity: N14BarricadeSandbagSingle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14DirtBlock
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Prying
+              doAfter: 1
+
+- type: constructionGraph
+  id: N14RazorwireBarricade
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: Razorwire
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: N14ScrapSteel
+              amount: 2
+              doAfter: 1
+
+    - node: Razorwire
+      entity: N14BarricadeRazorwire
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14ScrapSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Prying
+              doAfter: 2

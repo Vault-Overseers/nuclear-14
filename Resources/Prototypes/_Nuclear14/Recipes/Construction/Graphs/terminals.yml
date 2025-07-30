@@ -196,3 +196,37 @@
               prototype: SheetSteel1
               amount: 1
             - !type:DeleteEntity {}
+- type: constructionGraph
+  id: N14HandmadeTerminalGraph
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: Terminal
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+            - material: Circuitry
+              amount: 1
+              doAfter: 1
+
+    - node: Terminal
+      entity: N14ComputerTerminalHandmade
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: N14MaterialCircuitry1
+              amount: 1
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Prying
+              doAfter: 2

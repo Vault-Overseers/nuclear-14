@@ -42,6 +42,9 @@
   - type: RadiationBlocker
     resistance: 1
   - type: BlockWeather
+  - type: Construction
+    graph: N14TentWall
+    node: LeatherWall
         
 - type: entity
   parent: N14TentLeatherWall
@@ -62,12 +65,15 @@
     state: cloth_edge
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 50
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+  - type: Construction
+    graph: N14TentWall
+    node: ClothWall
         
 - type: entity
   parent: N14TentClothWall

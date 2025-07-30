@@ -1,0 +1,43 @@
+- type: constructionGraph
+  id: N14APCBreaker
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: frame
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+    - node: frame
+      entity: N14APCBreakerFrame
+      edges:
+        - to: breaker
+          steps:
+            - material: Cable
+              amount: 1
+              doAfter: 1
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: breaker
+      entity: N14APCBreakerConstructed
+      edges:
+        - to: frame
+          completed:
+            - !type:SpawnPrototype
+              prototype: CableApcStack1
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 2
