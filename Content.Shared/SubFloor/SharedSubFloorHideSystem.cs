@@ -1,10 +1,11 @@
 using Content.Shared.Audio;
 using Content.Shared.Construction.Components;
 using Content.Shared.Explosion;
-using Content.Shared.Eye;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Maps;
 using Content.Shared.Popups;
+using Content.Shared.Follower;
+using Content.Shared.Eye;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;

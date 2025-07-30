@@ -29,8 +29,6 @@ public sealed class HungerSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
 
     [ValidatePrototypeId<SatiationIconPrototype>]
     private const string HungerIconOverfedId = "HungerIconOverfed";
@@ -44,15 +42,6 @@ public sealed class HungerSystem : EntitySystem
     private SatiationIconPrototype? _hungerIconOverfed;
     private SatiationIconPrototype? _hungerIconPeckish;
     private SatiationIconPrototype? _hungerIconStarving;
-
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string HungerIconOverfedId = "HungerIconOverfed";
-
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string HungerIconPeckishId = "HungerIconPeckish";
-
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string HungerIconStarvingId = "HungerIconStarving";
 
     public override void Initialize()
     {
