@@ -10,7 +10,6 @@ using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
-using static Content.Shared.Paper.SharedPaperComponent;
 
 namespace Content.Server.Paper
 {

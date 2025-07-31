@@ -133,7 +133,6 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler
 
         return rootEntries
             .Select(rootEntryId => _entries[rootEntryId])
-            .Where(entry => entry.HideInMenu == false)
             .OrderBy(rootEntry => rootEntry.Priority)
             .ThenBy(rootEntry => Loc.GetString(rootEntry.Name));
     }

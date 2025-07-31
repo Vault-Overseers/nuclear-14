@@ -107,6 +107,7 @@ public sealed partial class GhostRoleSystem : EntitySystem // Converted to parti
                 UnregisterGhostRole((component, ghostRole));
                 break;
         }
+
     }
 
     private void OnVerb(EntityUid uid, GhostRoleMobSpawnerComponent component, GetVerbsEvent<Verb> args)
@@ -165,7 +166,6 @@ public sealed partial class GhostRoleSystem : EntitySystem // Converted to parti
                 _popupSystem.PopupEntity(msg, uid, userUid.Value);
             }
         }
-    }
 
     public override void Shutdown()
     {
@@ -800,64 +800,8 @@ public sealed partial class GhostRoleSystem : EntitySystem // Converted to parti
         GhostRoleInternalCreateMindAndTransfer(args.Player, uid, uid, ghostRole);
         UnregisterGhostRole((uid, ghostRole));
 
+
         args.TookRole = true;
-    }
-
-    private void OnVerb(EntityUid uid, GhostRoleMobSpawnerComponent component, GetVerbsEvent<Verb> args)
-    {
-        var prototypes = component.SelectablePrototypes;
-        if (prototypes.Count < 1)
-            return;
-
-        if (!args.CanAccess || !args.CanInteract || args.Hands == null)
-            return;
-
-        var verbs = new ValueList<Verb>();
-
-        foreach (var prototypeID in prototypes)
-        {
-            if (_prototype.TryIndex<GhostRolePrototype>(prototypeID, out var prototype))
-            {
-                var verb = CreateVerb(uid, component, args.User, prototype);
-                verbs.Add(verb);
-            }
-        }
-
-        args.Verbs.UnionWith(verbs);
-    }
-
-    private Verb CreateVerb(EntityUid uid, GhostRoleMobSpawnerComponent component, EntityUid userUid, GhostRolePrototype prototype)
-    {
-        var verbText = Loc.GetString(prototype.Name);
-
-        return new Verb()
-        {
-            Text = verbText,
-            Disabled = component.Prototype == prototype.EntityPrototype,
-            Category = VerbCategory.SelectType,
-            Act = () => SetMode(uid, prototype, verbText, component, userUid)
-        };
-    }
-
-    public void SetMode(EntityUid uid, GhostRolePrototype prototype, string verbText, GhostRoleMobSpawnerComponent? component, EntityUid? userUid = null)
-    {
-        if (!Resolve(uid, ref component))
-            return;
-
-        var ghostrolecomp = EnsureComp<GhostRoleComponent>(uid);
-
-        component.Prototype = prototype.EntityPrototype;
-        ghostrolecomp.RoleName = verbText;
-        ghostrolecomp.RoleDescription = prototype.Description;
-        ghostrolecomp.RoleRules = prototype.Rules;
-
-        // Dirty(ghostrolecomp);
-
-        if (userUid != null)
-        {
-            var msg = Loc.GetString("ghostrole-spawner-select", ("mode", verbText));
-            _popupSystem.PopupEntity(msg, uid, userUid.Value);
-        }
     }
 
     public void OnGhostRoleRadioMessage(Entity<GhostRoleMobSpawnerComponent> entity, ref GhostRoleRadioMessage args)
@@ -874,9 +818,9 @@ public sealed partial class GhostRoleSystem : EntitySystem // Converted to parti
 
         SetMode(entity.Owner, ghostRoleProto, ghostRoleProto.Name, entity.Comp);
     }
-}
 
-[AnyCommand]
+    }
+
 public sealed class GhostRoles : IConsoleCommand
 {
     [Dependency] private readonly IEntityManager _e = default!;

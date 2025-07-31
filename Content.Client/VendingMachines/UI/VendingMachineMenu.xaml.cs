@@ -12,7 +12,6 @@ using Robust.Shared.Prototypes;
 using FancyWindow = Content.Client.UserInterface.Controls.FancyWindow;
 using Content.Shared.Labels.Components;
 using Content.Shared.Prototypes;
-using System.Reflection.Emit;
 using Content.Client.Labels;
 
 namespace Content.Client.VendingMachines.UI
