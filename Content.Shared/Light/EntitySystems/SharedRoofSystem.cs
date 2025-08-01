@@ -12,6 +12,17 @@ public abstract class SharedRoofSystem : EntitySystem
 {
     [Dependency] private readonly SharedMapSystem _maps = default!;
 
+    public bool IsRooved(Entity<MapGridComponent?, RoofComponent?> grid, Vector2i index)
+    {
+        if (!Resolve(grid, ref grid.Comp1, ref grid.Comp2, false))
+            return false;
+
+        if (!_maps.TryGetTile(grid.Comp1, index, out var tile))
+            return false;
+
+        return (tile.Flags & (byte) TileFlag.Roof) != 0x0;
+    }
+
     public void SetRoof(Entity<MapGridComponent?, RoofComponent?> grid, Vector2i index, bool value)
     {
         if (!Resolve(grid, ref grid.Comp1, ref grid.Comp2, false))

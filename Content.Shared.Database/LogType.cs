@@ -112,4 +112,14 @@ public enum LogType
     /// Storage & entity-storage related interactions
     /// </summary>
     Storage = 93,
+
+    /// <summary>
+    /// Damage dealt by an explosion to an entity.
+    /// </summary>
+    ExplosionHit = 422,
+
+    /// <summary>
+    /// Shuttle-to-shuttle impact events.
+    /// </summary>
+    ShuttleImpact = 423,
 }

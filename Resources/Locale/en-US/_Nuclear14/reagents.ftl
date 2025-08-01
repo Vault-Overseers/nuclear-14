@@ -5,6 +5,34 @@ reagent-desc-uncooked-animal-proteins-rad = Might give you food poisoning.
 reagent-name-rad-particle-food = radioactive contamination
 reagent-desc-rad-particle-food = Too much will make you sick of living.
 
+# Preserves
+reagent-name-agavejam = agave jam
+reagent-desc-agavejam = Agave Jam. What a flavor...
+reagent-name-blackberryjam = blackberry jam
+reagent-desc-blackberryjam = Blackberry Jam. Needs some toast.
+reagent-name-brocjam = broc jam
+reagent-desc-brocjam = Broc Jam. Seems healthy.
+reagent-name-cactusjam = cactus jam
+reagent-desc-cactusjam = Cactus Jam. Needs some toast.
+reagent-name-multifruitjam = multifruit jam
+reagent-desc-multifruitjam = Multifruit Jam. Very Delicious.
+reagent-name-pricklypearjam = pricklypear jam
+reagent-desc-pricklypearjam = Prickly Pear Jam. Has a nice refreshing feeling.
+reagent-name-starlightjam = starlight jam
+reagent-desc-starlightjam = Starlight Jam. The color is quite bright.
+reagent-name-tarberryjam = tarberry jam
+reagent-desc-tarberryjam = Tarberry Jam. Gives you a strange feeling.
+reagent-name-pickledcabbage = pickled cabbage
+reagent-desc-pickledcabbage = Pickled Cabbage. Has a nice crunch.
+reagent-name-pickledcarrots = pickled carrots
+reagent-desc-pickledcarrots = Pickled Carrots. Has a nice crunch.
+reagent-name-pickledcorn = pickled corn
+reagent-desc-pickledcorn = Pickled Corn. An interesting way to eat corn.
+reagent-name-pickledjalapenos = pickled jalapenos
+reagent-desc-pickledjalapenos = Pickled Jalapenos. Perfect amount of spice.
+reagent-name-pickledonions = pickled onions
+reagent-desc-pickledonions = Pickled Onions. Finely aged onions.
+
 # Drinks
 reagent-name-water-dirty = dirty water
 reagent-desc-water-dirty = Looks murky.
@@ -13,7 +41,7 @@ reagent-desc-water-irradiated = That'll put arms on your chest.
 reagent-name-water-filtered = filtered water
 reagent-desc-water-filtered = almost as good as it gets.
 reagent-name-water-salt = salt water
-reagent-desc-water-salt = salty water. Maybe I can boil it for salt. 
+reagent-desc-water-salt = salty water. Maybe I can boil it for salt.
 
 ## Soda
 reagent-name-nuka-cola = Nuka-Cola
@@ -109,14 +137,16 @@ reagent-name-extract-datura = datura extract
 reagent-desc-extract-datura = A root that is often harvested for its venom which is commonly put on melee weapons. Tastes terrible, it burns your mouth, it makes your stomach feel sick.
 reagent-name-extract-honey-mesquite-pod = honey mesquite pod extract
 reagent-desc-extract-honey-mesquite-pod = A vegetable that vaguely resembles a pea pod. Tastes of buckwheat and clover honey.
-reagent-name-extract-jalapeno-pepper = jalapeno pepper juice
-reagent-desc-extract-jalapeno-pepper = A green pepper, something tells you eating this would probably hurt your mouth. Tastes like pain, more pain, and even more pain.
+reagent-name-extract-glowpepper = glowpepper juice 
+reagent-desc-extract-glowpepper = A glowing pepper; something tells you eating this would probably hurt your mouth. Tastes like glorious nuclear fire.
 reagent-name-extract-maize = maize extract
 reagent-desc-extract-maize = Corn before there was corn, this vegetable is all sorts of different colours. Tastes slightly sweet and starchy.
 reagent-name-extract-mutfruit = mutfruit juice
 reagent-desc-extract-mutfruit = A mutated piece of fruit that no one is exactly sure how it came to be. Tastes like berries, apples, bananas.. But they've all gone slightly bad.
 reagent-name-extract-nettle = nettle juice
 reagent-desc-extract-nettle = Juice from a prickly nettle. Tastes minty and medicinal.
+reagent-name-extract-pinyon = pinyon juice
+reagent-desc-extract-pinyon = Juice from a pinyon. Its very strong.
 reagent-name-extract-pricky-pear-fruit = prickly pear juice
 reagent-desc-extract-pricky-pear-fruit = The fruit from a cactus, make sure you get rod of the pokers before eating. Tastes of melon, or kiwi, it is very juicy and refreshing.
 reagent-name-extract-razorgrain = razorgrain flour
@@ -275,22 +305,37 @@ reagent-name-antiseptic = Antiseptic
 reagent-desc-antiseptic = A cleaning solution made from Abraxo Cleaner and some Rubbing Alcohol.
 
 # Ores, Metals, Materials
-materials-gunpowder = gunpowder
-materials-lead = lead
 materials-aluminum = aluminum
-materials-sulfur = sulfur
+materials-antchitin = chitin
 materials-charcoal = charcoal
-materials-raw-lead = raw lead
+materials-exoskeleton = exoskeleton
+materials-leather = leather
+materials-lead-scrap = scrap lead
+materials-raw-leather = raw leather
+materials-thread = thread
+materials-scrap-electronic = scrap electronic
+materials-N14iron = iron
+materials-raw-N14iron = raw iron
+materials-scrap-steel = scrap steel
+materials-scrap-copper = scrap copper
+materials-raw-N14copper = raw copper
+materials-N14gold = gold
+materials-scrap-gold = scrap gold
+materials-raw-N14gold = raw gold
+materials-N14brass = brass
+materials-scrap-brass = scrap brass
+materials-N14silver = silver
+materials-raw-N14silver = raw silver
+materials-scrap = scrap
 materials-raw-aluminum = raw aluminum
-materials-raw-sulfur = raw sulfur
+materials-sulfur = sulfur
+
 reagent-name-gunpowder = gunpowder
 reagent-desc-gunpowder = Small pellet gunpowder. Now just add lead.
 reagent-name-fertilizer = fertilizer
 reagent-desc-fertilizer = Ground fertilizer. Perfect for your plants!
 reagent-name-dung = dung
 reagent-desc-dung = Animal dung. Ripe for turning into compost.
-reagent-name-sulfur = sulfur
-reagent-desc-sulfur = Ground sulfur in a powdery form. You should really wear a gas mask.
 
 
 # Other

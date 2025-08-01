@@ -398,6 +398,9 @@ namespace Content.Server.Database
         [Column("char_name")] public string CharacterName { get; set; } = null!;
         public string FlavorText { get; set; } = null!;
         public string CustomSpecieName { get; set; } = null!;
+        public string Nationality { get; set; } = null!;
+        public string Employer { get; set; } = null!;
+        public string Lifepath { get; set; } = null!;
         public int Age { get; set; }
         public string Sex { get; set; } = null!;
         public string Gender { get; set; } = null!;
@@ -411,6 +414,9 @@ namespace Content.Server.Database
         public string FacialHairColor { get; set; } = null!;
         public string EyeColor { get; set; } = null!;
         public string SkinColor { get; set; } = null!;
+        public string? DisplayPronouns { get; set; }
+        public string? StationAiName { get; set; }
+        public string? CyborgName { get; set; }
         public string Clothing { get; set; } = null!;
         public string Backpack { get; set; } = null!;
         public int SpawnPriority { get; set; } = 0;
@@ -935,7 +941,7 @@ namespace Content.Server.Database
         Panic = 3,
         /*
          * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
-         * 
+         *
          * If baby jail is removed, please reserve this value for as long as can reasonably be done to prevent causing ambiguity in connection denial reasons.
          * Reservation by commenting out the value is likely sufficient for this purpose, but may impact projects which depend on SS14 like SS14.Admin.
          */

@@ -77,11 +77,12 @@ namespace Content.Server._N14.Support
                 }
 
                 _explosions.QueueExplosion(
-                    comp.Target,
-                    comp.ExplosionType,
-                    comp.Intensity,
-                    comp.Slope,
-                    comp.MaxIntensity,
+                    epicenter: comp.Target,
+                    typeId: comp.ExplosionType,
+                    totalIntensity: comp.Intensity,
+                    slope: comp.Slope,
+                    maxTileIntensity: comp.MaxIntensity,
+                    cause: null,
                     canCreateVacuum: false);
                 QueueDel(uid);
             }

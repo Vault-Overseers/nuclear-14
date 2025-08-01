@@ -129,11 +129,12 @@ namespace Content.Server._N14.Support
                 var pos = comp.Target.Offset(offset);
 
                 _explosions.QueueExplosion(
-                    pos,
-                    comp.ExplosionType,
-                    comp.Intensity,
-                    comp.Slope,
-                    comp.MaxIntensity,
+                    epicenter: comp.Target,
+                    typeId: comp.ExplosionType,
+                    totalIntensity: comp.Intensity,
+                    slope: comp.Slope,
+                    maxTileIntensity: comp.MaxIntensity,
+                    cause: null,
                     canCreateVacuum: false);
                 if (comp.FireSound != null)
                 {
