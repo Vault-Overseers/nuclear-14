@@ -52,9 +52,3 @@ public class GuideEntry
     /// </summary>
     [DataField] public bool HideInMenu = false;
 }
-
-[Prototype("guideEntry")]
-public sealed partial class GuideEntryPrototype : GuideEntry, IPrototype
-{
-    public string ID => Id;
-}
