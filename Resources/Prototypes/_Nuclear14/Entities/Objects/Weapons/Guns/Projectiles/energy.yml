@@ -2,7 +2,7 @@
   name: plasma
   id: BulletPlasma
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: FlyBySound
     sound:
@@ -10,9 +10,10 @@
       params:
         volume: 5
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    sprite: _Nuclear14\Objects\Misc\projectiles.rsi
+    scale: 0.75, 0.75
     layers:
-    - state: declone
+    - state: plasma
       shader: unshaded
   - type: Fixtures
     fixtures:
@@ -37,8 +38,49 @@
     impactEffect: BulletImpactEffect
     damage:
       types:
-        Heat: 22
-        Caustic: 4
+        Heat: 20
+        Radiation: 2
+    soundHit:
+      path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
+
+- type: entity
+  name: plasma
+  id: BulletLightPlasma
+  parent: BulletPlasma
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14\Objects\Misc\projectiles.rsi
+    scale: 0.5, 0.5
+    layers:
+    - state: plasma
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Heat: 18
+    soundHit:
+      path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
+
+- type: entity
+  name: plasma
+  id: BulletBigPlasma
+  parent: BulletPlasma
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14\Objects\Misc\projectiles.rsi
+    scale: 1.0, 1.0
+    layers:
+    - state: plasma
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Heat: 24
+        Radiation: 6
     soundHit:
       path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
 
@@ -46,7 +88,7 @@
   name: laser
   id: BulletLaser
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: FlyBySound
     sound:
@@ -74,5 +116,40 @@
     damage:
       types:
         Heat: 20
+    soundHit:
+      collection: MeatLaserImpact
+
+- type: entity 
+  name: recharger laser
+  id: BulletRechargerLaser
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser_greyscale
+      shader: unshaded
+      color: red
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+        - Opaque
+      fly-by: *flybyfixture
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Heat: 12
     soundHit:
       collection: MeatLaserImpact
