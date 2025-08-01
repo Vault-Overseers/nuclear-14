@@ -3,7 +3,6 @@
   id: AnomalyScanner
   name: anomaly scanner
   description: A hand-held scanner built to collect information on various anomalous objects.
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Specific/Research/anomalyscanner.rsi
@@ -17,9 +16,9 @@
       enum.AnomalyScannerUiKey.Key:
         type: AnomalyScannerBoundUserInterface
   - type: AnomalyScanner
-  # - type: GuideHelp
-    # guides:
-    # - ScannersAndVessels
+  - type: GuideHelp
+    guides:
+    - ScannersAndVessels
   - type: Item
     storedRotation: -90
   - type: ReverseEngineering # Nyano
@@ -33,7 +32,6 @@
   name: anomaly locator
   description: A device designed to aid in the locating of anomalies. Did you check the gas miners?
   suffix: Unpowered
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Specific/Research/anomalylocator.rsi
@@ -70,7 +68,6 @@
   id: AnomalyLocator
   parent: [ AnomalyLocatorUnpowered, PowerCellSlotSmallItem ]
   suffix: Powered
-  categories: [ HideSpawnMenu ]
   components:
   - type: PowerCellDraw
     drawRate: 1
@@ -81,7 +78,6 @@
   id: AnomalyLocatorEmpty
   parent: AnomalyLocator
   suffix: Empty
-  categories: [ HideSpawnMenu ]
   components:
   - type: ItemSlots
     slots:
@@ -93,7 +89,6 @@
   parent: AnomalyLocatorUnpowered
   name: wide-spectrum anomaly locator
   description: A device that looks for anomalies from an extended distance, but has no way to determine the distance to them.
-  categories: [ HideSpawnMenu ]
   suffix: Unpowered
   components:
   - type: Sprite
@@ -117,7 +112,6 @@
   id: AnomalyLocatorWideEmpty
   parent: AnomalyLocatorWide
   suffix: Empty
-  categories: [ HideSpawnMenu ]
   components:
   - type: ItemSlots
     slots:
@@ -129,7 +123,6 @@
   parent: BaseItem
   id: WeaponGauntletGorilla
   description: A robust piece of research equipment. When powered with an anomaly core, a single blow can launch anomalous objects through the air.
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/gorilla.rsi

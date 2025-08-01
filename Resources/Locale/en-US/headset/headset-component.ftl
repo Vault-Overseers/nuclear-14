@@ -1,11 +1,11 @@
 # Chat window radio wrap (prefix and postfix)
-chat-radio-message-wrap = [color={$color}]{$channel} {$name} {$verb}, [font="{$fontType}" size={$fontSize}]"[/color][color={$languageColor}]{$message}[/color][color={$color}]"[/font][/color]
-chat-radio-message-wrap-bold = [color={$color}]{$channel} {$name} {$verb}, [font="{$fontType}" size={$fontSize}][bold]"[/color][color={$languageColor}]{$message}[/color][color={$color}]"[/bold][/font][/color]
+chat-radio-message-wrap = [color={$color}]{$channel} [font size=11][color={$languageColor}][bold]{$language}[/bold][/color][/font][bold]{$name}[/bold] {$verb}, [font="{$fontType}" size={$fontSize}][color={$messageColor}]"{$message}"[/color][/font][/color]
+chat-radio-message-wrap-bold = [color={$color}]{$channel} [font size=11][color={$languageColor}][bold]{$language}[/bold][/color][/font][bold]{$name}[/bold] {$verb}, [font="{$fontType}" size={$fontSize}][color={$messageColor}][bold]"{$message}"[/bold][/color][/font][/color]
 
 examine-headset-default-channel = Use {$prefix} for the default channel ([color={$color}]{$channel}[/color]).
 
 chat-radio-common = Common
-chat-radio-centcom = CentCom
+chat-radio-centcom = CentComm
 chat-radio-command = Command
 chat-radio-engineering = Engineering
 chat-radio-medical = Medical

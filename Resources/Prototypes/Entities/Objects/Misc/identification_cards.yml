@@ -22,8 +22,11 @@
     tags:
     - DoorBumpOpener
     - WhitelistChameleon
+    - WhitelistChameleonIdCard
   - type: StealTarget
     stealGroup: IDCard
+  - type: NanoChatCard
+  - type: MiningPoints
 
 #IDs with layers
 
@@ -124,7 +127,7 @@
     - state: assistant
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseGrandTheftContraband]
   id: CaptainIDCard
   name: captain ID card
   components:
@@ -144,6 +147,7 @@
     tags:
     - DoorBumpOpener
     - WhitelistChameleon
+    - WhitelistChameleonIdCard
     - HighRiskItem
   - type: StealTarget
     stealGroup: CaptainIDCard
@@ -247,7 +251,7 @@
 - type: entity
   parent: IDCardStandard
   id: CargoIDCard
-  name: logistics ID card # DeltaV - Logistics Department replacing Cargo
+  name: logistics ID card
   components:
   - type: Sprite
     layers:
@@ -279,16 +283,16 @@
 - type: entity
   parent: IDCardStandard
   id: QuartermasterIDCard
-  name: logistics officer ID card # DeltaV - Logistics Department replacing Cargo
+  name: logistics officer ID card
   components:
   - type: Sprite
     layers:
-      - state: silver
-      - state: departmenthead
-        color: "#1B67A5"
-      - state: subdepartment
-        color: "#B18644"
-      - state: cargotechnician
+    - state: silver
+    - state: departmenthead
+      color: "#1B67A5"
+    - state: subdepartment
+      color: "#B18644"
+    - state: cargotechnician
   - type: Item
     heldPrefix: silver
   - type: PresetIdCard
@@ -309,6 +313,22 @@
     - state: scientist
   - type: PresetIdCard
     job: Scientist
+
+- type: entity
+  parent: IDCardStandard
+  id: RoboticsIDCard
+  name: robotics ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: department
+      color: "#C96DBF"
+    - state: subdepartment
+      color: "#952004"
+    - state: scientist
+  - type: PresetIdCard
+    job: Roboticist
 
 - type: entity
   parent: IDCardStandard
@@ -397,6 +417,9 @@
   - type: PresetIdCard
     job: Bartender
     name: Pun Pun
+  - type: Tag #  Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener
 
 - type: entity
   parent: IDCardStandard
@@ -449,7 +472,7 @@
 - type: entity
   parent: IDCardStandard
   id: LawyerIDCard
-  name: lawyer ID card
+  name: attorney ID card
   components:
   - type: Sprite
     layers:
@@ -461,6 +484,55 @@
     - state: lawyer
   - type: PresetIdCard
     job: Lawyer
+
+- type: entity
+  parent: IDCardStandard
+  id: ChiefJusticeIDCard
+  name: chief justice ID card
+  components:
+  - type: PresetIdCard
+    job: ChiefJustice
+  - type: Sprite
+    layers:
+    - state: default
+    - state: department
+      color: "#878787"
+    - state: subdepartment
+      color: "#CB0000"
+    - state: lawyer
+
+
+- type: entity
+  parent: IDCardStandard
+  id: ClerkIDCard
+  name: clerk ID card
+  components:
+  - type: PresetIdCard
+    job: Clerk
+  - type: Sprite
+    layers:
+    - state: default
+    - state: department
+      color: "#878787"
+    - state: subdepartment
+      color: "#CB0000"
+    - state: lawyer
+
+- type: entity
+  parent: IDCardStandard
+  id: ProsecutorIDCard
+  name: presecutor ID card
+  components:
+  - type: PresetIdCard
+    job: Prosecutor
+  - type: Sprite
+    layers:
+    - state: default
+    - state: department
+      color: "#878787"
+    - state: subdepartment
+      color: "#CB0000"
+    - state: lawyer
 
 - type: entity
   parent: IDCardStandard
@@ -519,7 +591,7 @@
 - type: entity
   parent: IDCardStandard
   id: RDIDCard
-  name: mystagogue ID card # DeltaV - Epistemics Department replacing Science
+  name: mystagogue ID card
   components:
   - type: Sprite
     layers:
@@ -554,8 +626,23 @@
 
 - type: entity
   parent: IDCardStandard
+  id: VisitorIDCard
+  name: visitor ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: visitor
+  - type: IdCard
+    jobTitle: job-title-visitor
+    jobIcon: JobIconVisitor
+  - type: PresetIdCard
+    job: Visitor
+
+- type: entity
+  parent: IDCardStandard
   id: BrigmedicIDCard
-  name: corpsman ID card # DeltaV - rename brigmedic to corpsman
+  name: corpsman ID card
   components:
   - type: Sprite
     layers:
@@ -565,7 +652,7 @@
     - state: subdepartment
       color: "#5B97BC"
     - state: medicaldoctor
-  - type: PresetIdCard # Delta V - Brigmedic, see Prototypes/DeltaV/Roles/Jobs/Security/brigmedic.yml
+  - type: PresetIdCard
     job: Brigmedic
 
 - type: entity
@@ -576,24 +663,15 @@
   - type: Sprite
     layers:
     - state: centcom
-    - state: departmenthead
-      color: "#1B67A5"
-    - state: subdepartment
-      color: "#1B67A5"
-    - state: cc
   - type: Item
     heldPrefix: blue
-  - type: IdCard
-    jobTitle: Central Commander
-    jobIcon: JobIconNanotrasen
-  - type: Access
-    groups:
-    - AllAccess
-    tags:
-    - CentralCommand
+  - type: PresetIdCard
+    job: CentralCommandOfficial
+  - type: NanoChatCard
+    listNumber: false
 
 - type: entity
-  parent: CentcomIDCard
+  parent: IDCardStandard
   id: ERTLeaderIDCard
   name: ERT leader ID card
   components:
@@ -605,13 +683,15 @@
     - state: subdepartment
       color: "#1B67A5"
     - state: captain
-  - type: IdCard
-    jobTitle: ERT Company Commander
+  - type: PresetIdCard
+    job: ERTLeader
   - type: Item
     heldPrefix: gold
+  - type: NanoChatCard
+    listNumber: false
 
 - type: entity
-  parent: ERTLeaderIDCard
+  parent: IDCardStandard
   id: ERTChaplainIDCard
   name: ERT chaplain ID card
   components:
@@ -621,15 +701,17 @@
     - state: departmenthead
       color: "#1B67A5"
     - state: subdepartment
-      color: "#C96DBF"
+      color: "#1B67A5"
     - state: chaplain
-  - type: IdCard
-    jobTitle: ERT Soul Officer
+  - type: PresetIdCard
+    job: ERTChaplain
   - type: Item
     heldPrefix: blue
+  - type: NanoChatCard
+    listNumber: false
 
 - type: entity
-  parent: ERTChaplainIDCard
+  parent: IDCardStandard
   id: ERTEngineerIDCard
   name: ERT engineer ID card
   components:
@@ -641,11 +723,13 @@
     - state: subdepartment
       color: "#F39F27"
     - state: stationengineer
-  - type: IdCard
-    jobTitle: ERT Field Engineer
+  - type: PresetIdCard
+    job: ERTEngineer
+  - type: NanoChatCard
+    listNumber: false
 
 - type: entity
-  parent: ERTChaplainIDCard
+  parent: IDCardStandard
   id: ERTJanitorIDCard
   name: ERT janitor ID card
   components:
@@ -657,11 +741,13 @@
     - state: subdepartment
       color: "#58C800"
     - state: janitor
-  - type: IdCard
-    jobTitle: ERT Custodian
+  - type: PresetIdCard
+    job: ERTJanitor
+  - type: NanoChatCard
+    listNumber: false
 
 - type: entity
-  parent: ERTChaplainIDCard
+  parent: IDCardStandard
   id: ERTMedicIDCard
   name: ERT medic ID card
   components:
@@ -673,11 +759,13 @@
     - state: subdepartment
       color: "#5B97BC"
     - state: medicaldoctor
-  - type: IdCard
-    jobTitle: ERT Medical Doctor
+  - type: PresetIdCard
+    job: ERTMedical
+  - type: NanoChatCard
+    listNumber: false
 
 - type: entity
-  parent: ERTChaplainIDCard
+  parent: IDCardStandard
   id: ERTSecurityIDCard
   name: ERT security ID card
   components:
@@ -687,32 +775,12 @@
     - state: departmenthead
       color: "#1B67A5"
     - state: subdepartment
-      color: "#CB0000"
-    - state: securityofficer
-  - type: IdCard
-    jobTitle: ERT Field Officer
-
-- type: entity
-  parent: IDCardStandard
-  id: CentcomIDCardSyndie
-  name: command officer ID card
-  suffix: Fake
-  components:
-  - type: Sprite
-    layers:
-    - state: centcom
-    - state: departmenthead
-      color: "#1B67A5"
-    - state: subdepartment
       color: "#1B67A5"
     - state: cc
-  - type: Item
-    heldPrefix: blue
-  - type: IdCard
-    jobTitle: Central Commander
-  - type: Access
-    tags:
-    - Maintenance
+  - type: PresetIdCard
+    job: ERTSecurity
+  - type: NanoChatCard
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -745,8 +813,10 @@
     - state: death
   - type: Item
     heldPrefix: blue
-  - type: IdCard
-    jobTitle: Centcom Agent
+  - type: PresetIdCard
+    job: DeathSquad
+  - type: NanoChatCard
+    listNumber: false
 
 - type: entity
   name: passenger ID card
@@ -769,60 +839,6 @@
       color: "#878787"
     - state: passenger
   - type: AgentIDCard
-    icons:
-    # TODO figure out a better way of doing this.
-    # Probably by adding a bool or icon-category data-field to the icon prototype?
-    - JobIconDetective
-    - JobIconQuarterMaster
-    - JobIconBotanist
-    - JobIconBoxer
-    - JobIconAtmosphericTechnician
-    - JobIconNanotrasen
-    - JobIconPrisoner
-    - JobIconJanitor
-    - JobIconChemist
-    - JobIconStationEngineer
-    - JobIconSecurityOfficer
-    - JobIconChiefMedicalOfficer
-    - JobIconRoboticist
-    - JobIconChaplain
-    - JobIconLawyer
-    - JobIconUnknown
-    - JobIconLibrarian
-    - JobIconCargoTechnician
-    - JobIconScientist
-    - JobIconResearchAssistant
-    - JobIconGeneticist
-    - JobIconClown
-    - JobIconCaptain
-    - JobIconHeadOfPersonnel
-    - JobIconVirologist
-    - JobIconShaftMiner
-    - JobIconPassenger
-    - JobIconChiefEngineer
-    - JobIconBartender
-    - JobIconHeadOfSecurity
-    - JobIconBrigmedic
-    - JobIconMedicalDoctor
-    - JobIconParamedic
-    - JobIconChef
-    - JobIconWarden
-    - JobIconResearchDirector
-    - JobIconMime
-    - JobIconMusician
-    - JobIconReporter
-    - JobIconPsychologist
-    - JobIconMedicalIntern
-    - JobIconTechnicalAssistant
-    - JobIconServiceWorker
-    - JobIconSecurityCadet
-    - JobIconZookeeper
-    - JobIconPrisonGuard # Nyanotrasen - PrisonGuard, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Security/prisonguard.yml
-    - JobIconMailCarrier # Nyanotrasen - MailCarrier, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Cargo/mail-carrier.yml
-    - JobIconMartialArtist # Nyanotrasen - MartialArtist, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Wildcards/martialartist.yml
-    - JobIconGladiator # Nyanotrasen - Gladiator, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Wildcards/gladiator.yml
-    - JobIconForensicMantis  # Nyanotrasen - ForensicMantis, see Resources/Prototypes/Nyanotrasen/Roles/Jobs/Epistemics/forensicmantis.yml
-    - JobIconVisitor
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
@@ -832,12 +848,17 @@
   - type: ChameleonClothing
     slot: [idcard]
     default: PassengerIDCard
+    requireTag: WhitelistChameleonIdCard
   - type: UserInterface
     interfaces:
-      - key: enum.AgentIDCardUiKey.Key
+      enum.AgentIDCardUiKey.Key:
         type: AgentIDCardBoundUserInterface
-      - key: enum.ChameleonUiKey.Key
+      enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
+  - type: ClothingAddFaction
+    faction: Syndicate
+  - type: NanoChatCard
+    listNumber: false
 
 - type: entity
   name: passenger ID card
@@ -850,6 +871,8 @@
     - Maintenance
     - SyndicateAgent
     - NuclearOperative
+  - type: ClothingAddFaction
+    faction: Syndicate
 
 - type: entity
   parent: IDCardStandard
@@ -884,6 +907,10 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
+  - type: ClothingAddFaction
+    faction: Syndicate
+  - type: NanoChatCard
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -902,6 +929,10 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
+  - type: ClothingAddFaction
+    faction: Syndicate
+  - type: NanoChatCard
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -999,8 +1030,10 @@
     - state: cc
   - type: Item
     heldPrefix: blue
-  - type: IdCard
-    jobTitle: Centcom Quarantine Officer
+  - type: PresetIdCard
+    job: CBURN
+  - type: NanoChatCard
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1018,11 +1051,13 @@
     - state: clown
       color: "#7C0A0A"
   - type: IdCard
-    jobTitle: Cluwne
+    jobTitle: job-title-cluwne
   - type: Unremoveable
+  - type: NanoChatCard # DeltaV
+    listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: EngineeringIDCard
   id: SeniorEngineerIDCard
   name: senior engineer ID card
   components:
@@ -1038,7 +1073,7 @@
     job: SeniorEngineer
 
 - type: entity
-  parent: IDCardStandard
+  parent: ResearchIDCard
   id: SeniorResearcherIDCard
   name: senior researcher ID card
   components:
@@ -1054,7 +1089,7 @@
     job: SeniorResearcher
 
 - type: entity
-  parent: IDCardStandard
+  parent: MedicalIDCard
   id: SeniorPhysicianIDCard
   name: senior physician ID card
   components:
@@ -1070,7 +1105,7 @@
     job: SeniorPhysician
 
 - type: entity
-  parent: IDCardStandard
+  parent: SecurityIDCard
   id: SeniorOfficerIDCard
   name: senior officer ID card
   components:
@@ -1084,3 +1119,49 @@
     - state: senior
   - type: PresetIdCard
     job: SeniorOfficer
+
+- type: entity
+  parent: IDCardStandard
+  id: AdminAssistantIDCard
+  name: administrative assistant ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: silver
+    - sprite: DeltaV/Objects/Misc/id_cards.rsi
+      state: idadminassistant
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: AdministrativeAssistant
+  - type: NanoChatCard
+    notificationsMuted: true
+    listNumber: false
+
+- type: entity
+  parent: IDCardStandard
+  id: UniversalIDCard
+  name: universal ID card
+  suffix: Admin
+  description: An ID card that gives you access beyond your wildest dreams.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+    layers:
+    - state: admin
+    - state: idadmin
+  - type: Clothing
+    sprite: Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: green
+  - type: IdCard
+    jobTitle: job-title-universal
+    jobIcon: JobIconAdmin
+  - type: Access
+    groups:
+    - AllAccess
+    tags:
+    - CentralCommand
+    - NuclearOperative
+    - SyndicateAgent
+    - Wizard

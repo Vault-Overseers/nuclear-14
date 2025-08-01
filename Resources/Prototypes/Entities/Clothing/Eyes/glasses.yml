@@ -53,7 +53,7 @@
         Blunt: 10
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: [ClothingEyesBase, BaseEngineeringContraband]
   id: ClothingEyesGlassesMeson
   name: engineering goggles #less confusion
   description: Green-tinted goggles using a proprietary polymer that provides protection from eye damage of all types.
@@ -63,9 +63,11 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/meson.rsi
   - type: EyeProtection
+  - type: IdentityBlocker
+    coverage: EYES
   - type: Tag
     tags:
-    - SecDogWearable # DeltaV - let Laika wear meson goggles
+    - SecDogWearable
 
 - type: entity
   parent: ClothingEyesBase
@@ -108,6 +110,7 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/jamjar.rsi
   - type: VisionCorrection
+    visionBonus: -3.5 #a bit stronger
   - type: Tag
     tags:
     - HamsterWearable
@@ -129,8 +132,8 @@
 - type: entity
   parent: ClothingEyesBase
   id: ClothingEyesGlassesCheapSunglasses
-  name: cheap sunglasses
-  description: A pair of black sunglasses. Doesn't block light well, more of an accessory than something useful.
+  name: sunglasses
+  description: A pair of black sunglasses.
   components:
   - type: Sprite
     sprite: Clothing/Eyes/Glasses/sunglasses.rsi
@@ -140,22 +143,27 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
-    - SecDogWearable # DeltaV - let Laika wear sunglasses
+    - SecDogWearable
   - type: IdentityBlocker
     coverage: EYES
 
 - type: entity
   parent: ClothingEyesGlassesCheapSunglasses
   id: ClothingEyesGlassesSunglasses
-  name: sun glasses
-  description: A pair of black sunglasses.
+  name: shielded sunglasses
+  description: A pair of black sunglasses. These ones are specially made to protect the eye from blinding flashes of light.
   components:
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
+  - type: Tag
+    tags:
+    - Sunglasses
+    - HamsterWearable
+    - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons]
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseRestrictedContraband, BallisticGlasses]
   id: ClothingEyesGlassesSecurity
   name: security glasses
   description: Upgraded sunglasses that provide flash immunity and a security HUD.
@@ -167,19 +175,44 @@
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
   - type: Tag
     tags:
     - HamsterWearable
     - WhitelistChameleon
-    - SecDogWearable # DeltaV - let Laika wear secglasses
+    - SecDogWearable
   - type: GuideHelp
     guides:
     - Security
+    - Antagonists
   - type: IdentityBlocker
     coverage: EYES
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: [ClothingEyesBase, BaseCommandContraband, BallisticGlasses]
+  id: ClothingEyesGlassesCommand
+  name: administration glasses
+  description: Upgraded sunglasses that provide flash immunity and show ID card status.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/commandglasses.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/commandglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ShowJobIcons
+
+- type: entity
+  parent: [ClothingEyesBase, BallisticGlasses]
   id: ClothingEyesGlassesMercenary
   name: mercenary glasses
   description: Glasses made for combat, to protect the eyes from bright blinding flashes.
@@ -191,6 +224,8 @@
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
+  - type: IdentityBlocker
+    coverage: EYES
 
 #Make a scanner category when these actually function and we get the trayson
 - type: entity
@@ -208,6 +243,8 @@
       coefficients:
         Heat: 0.95
   - type: GroupExamine
+  - type: IdentityBlocker
+    coverage: EYES
 
 - type: entity
   parent: ClothingEyesBase
@@ -215,14 +252,16 @@
   name: chemical analysis goggles
   description: Goggles that can scan the chemical composition of a solution.
   components:
-    - type: Sprite
-      sprite: Clothing/Eyes/Glasses/science.rsi
-    - type: Clothing
-      sprite: Clothing/Eyes/Glasses/science.rsi
-    - type: SolutionScanner
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/science.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/science.rsi
+  - type: SolutionScanner
+  - type: IdentityBlocker
+    coverage: EYES
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: [ClothingEyesBase, BaseMajorContraband]
   id: ClothingEyesVisorNinja
   name: ninja visor
   description: An advanced visor protecting a ninja's eyes from flashing lights.
@@ -232,6 +271,207 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
   - type: FlashImmunity
+  - type: NightVision
+    isEquipment: true
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlasses3D
+  name: 3D glasses
+  description: twiin armageddon2
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/3d.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/3d.rsi
+
+- type: entity
+  parent: ClothingEyesGlasses
+  id: ClothingEyesGlassesHipster
+  name: hipster glasses
+  description: Made by Uncool. Co.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/hipster.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/hipster.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlasses
+  id: ClothingEyesGlassesMonocle
+  name: monocle
+  description: Such a dapper eyepiece!
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/monocle.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/monocle.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlasses
+  id: ClothingEyesGlassesPanto
+  name: panto glasses
+  description: So iconic. So generic. The monobloc chair of the glasses world.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/panto.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/panto.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingEyesBase, ShowPsionicsIcons]
+  id: ClothingEyesGlassesEpistemics
+  name: epi psionics glasses
+  description: Upgraded sunglasses that provide flash immunity and a epistemics psionics HUD.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/epiglasses.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/epiglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+
+- type: entity
+  parent: ClothingEyesGlassesCheapSunglasses
+  id: ClothingEyesGlassesCheapSunglassesAviator
+  name: aviators
+  description: A pair of designer sunglasses.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/aviators.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/aviators.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlassesSunglasses
+  id: ClothingEyesGlassesSunglassesAviator
+  name: shielded aviators
+  description: A pair of designer sunglasses. These ones are specially made to protect the eye from blinding flashes of light.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/aviators.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/aviators.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlassesSecurity
+  id: ClothingEyesGlassesSecurityAviator
+  name: security aviators
+  description: Upgraded aviators that provide flash immunity and a security HUD.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/secglasses_aviators.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/secglasses_aviators.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlassesCheapSunglasses
+  id: ClothingEyesGlassesCheapSunglassesBig
+  name: big sunglasses
+  description: A pair of black sunglasses with big lenses.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/sunglasses_big.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/sunglasses_big.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlassesSunglasses
+  id: ClothingEyesGlassesSunglassesBig
+  name: big shielded sunglasses
+  description: A pair of black sunglasses with big lenses. These ones are specially made to protect the eye from blinding flashes of light.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/sunglasses_big.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/sunglasses_big.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlassesSecurity
+  id: ClothingEyesGlassesSecurityBig
+  name: big security glasses
+  description: Upgraded big sunglasses that provide flash immunity and a security HUD.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/secglasses_big.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/secglasses_big.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlassesCheapSunglasses
+  id: ClothingEyesGlassesCheapSunglassesVisor
+  name: visor sunglasses
+  description: A pair of visor sunglasses.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/sunglasses_visor.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/sunglasses_visor.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlassesSunglasses
+  id: ClothingEyesGlassesSunglassesVisor
+  name: shielded visor sunglasses
+  description: A pair of visor sunglasses. These ones are specially made to protect the eye from blinding flashes of light.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/sunglasses_visor.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/sunglasses_visor.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlassesSecurity
+  id: ClothingEyesGlassesSecurityVisor
+  name: security visor glasses
+  description: Upgraded visor sunglasses that provide flash immunity and a security HUD.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/secglasses_visor.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/secglasses_visor.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
 
 - type: entity #Fake goggles, the latest in anti-valid hunting technology
   parent: ClothingEyesBase
@@ -250,10 +490,10 @@
   name: purple goggles
   description: These don't have any real function, but they do look cool!
   components:
-    - type: Sprite
-      sprite: Clothing/Eyes/Glasses/science.rsi
-    - type: Clothing
-      sprite: Clothing/Eyes/Glasses/science.rsi
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/science.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/science.rsi
 
 - type: entity
   parent: ClothingEyesBase

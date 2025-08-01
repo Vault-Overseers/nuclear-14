@@ -2,10 +2,11 @@
   id: ChameleonSet
   name: thief-backpack-category-chameleon-name
   description: thief-backpack-category-chameleon-description
-  sprite: 
+  sprite:
     sprite: /Textures/Clothing/OuterClothing/Misc/black_hoodie.rsi
     state: icon
   content:
+  - ChameleonPDA
   - ClothingUniformJumpsuitChameleon
   - ClothingOuterChameleon
   - ClothingNeckChameleon
@@ -14,13 +15,16 @@
   - ClothingEyesChameleon
   - ClothingHeadsetChameleon
   - ClothingShoesChameleon
+  - BarberScissors
   - ChameleonProjector
+  - FakeMindShieldImplanter
+  - AgentIDCard
 
 - type: thiefBackpackSet
   id: ToolsSet
   name: thief-backpack-category-tools-name
   description: thief-backpack-category-tools-description
-  sprite: 
+  sprite:
     sprite: Objects/Tools/jaws_of_life.rsi
     state: jaws_pry
   content:
@@ -28,10 +32,10 @@
   - ClothingEyesGlassesMeson
   - ClothingHandsGlovesColorYellow
   - JawsOfLife
+  - RemoteSignaller
   - Multitool
   - C4
   - C4
-  - ClothingMaskClown
 
 - type: thiefBackpackSet
   id: ChemistrySet
@@ -46,7 +50,7 @@
   - EphedrineChemistryBottle
   - SoapOmega
   - Syringe
-  - DrinkVodkaBottleFull
+  - DrinkShaker
 
 - type: thiefBackpackSet
   id: SyndieSet
@@ -56,10 +60,10 @@
     sprite: Objects/Specific/Syndicate/telecrystal.rsi
     state: telecrystal
   content:
-  - AgentIDCard
+  - RadioJammer
+  - TraitorCodePaper
   - Emag
-  - SyndicatePersonalAI
-  - ClothingHeadHatSyndieMAA
+  - Lighter
   - CigPackSyndicate
   - Telecrystal10 #The thief cannot use them, but it may induce communication with traitors
 
@@ -67,26 +71,27 @@
   id: SleeperSet
   name: thief-backpack-category-sleeper-name
   description: thief-backpack-category-sleeper-description
-  sprite: 
+  sprite:
     sprite: Objects/Tanks/anesthetic.rsi
     state: icon
   content:
-  - ClothingHeadPyjamaSyndicateBlack
-  - ClothingUniformJumpsuitPyjamaSyndicateBlack
-  - NocturineChemistryBottle
   - NocturineChemistryBottle
   - NocturineChemistryBottle
   - HypopenBox
   - NitrousOxideTankFilled
-  - BedsheetSyndie
 
 - type: thiefBackpackSet
   id: CommunicatorSet
   name: thief-backpack-category-communicator-name
   description: thief-backpack-category-communicator-description
-  sprite: 
+  sprite:
     sprite: Objects/Tools/spy_device.rsi
     state: icon
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      inverted: true
+      species:
+      - Plasmaman
   content:
   - EncryptionKeyStationMaster
   - CyberPen
@@ -94,17 +99,34 @@
   - BriefcaseThiefBribingBundleFilled
   - ClothingMaskGasVoiceChameleon
   #- todo Chameleon Stamp
-  
+
+- type: thiefBackpackSet
+  id: CommunicatorSetPlasmaman
+  name: thief-backpack-category-communicator-plasmaman-name
+  description: thief-backpack-category-communicator-plasmaman-description
+  sprite:
+    sprite: Objects/Tools/spy_device.rsi
+    state: icon
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Plasmaman
+  content:
+  - EncryptionKeyStationMaster
+  - CyberPen
+  - SpyCrewMonitor
+  - BriefcaseThiefBribingBundlePlasmamanFilled
+  - ClothingMaskGasVoiceChameleon
+
 - type: thiefBackpackSet
   id: SmugglerSet
   name: thief-backpack-category-smuggler-name
   description: thief-backpack-category-smuggler-description
-  sprite: 
+  sprite:
     sprite: Clothing/Neck/Cloaks/void.rsi
     state: icon
   content:
   - InvisibleCrate
-  - ClothingNeckCloakVoid
   - FultonBeacon
   - Fulton
   - SmokeGrenade

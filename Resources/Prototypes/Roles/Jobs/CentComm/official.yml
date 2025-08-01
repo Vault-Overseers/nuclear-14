@@ -3,6 +3,7 @@
   name: job-name-centcomoff
   description: job-description-centcomoff
   playTimeTracker: JobCentralCommandOfficial
+  setPreference: false
   startingGear: CentcomGear
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-hos
@@ -11,10 +12,16 @@
   - AllAccess
   access:
   - CentralCommand
-  setPreference: false
+  afterLoadoutSpecial:
+  - !type:ModifyEnvirosuitSpecial
+    charges: 10
+  - !type:ModifyEnvirohelmSpecial
+    powerCell: PowerCellHigh
 
 - type: startingGear
   id: CentcomGear
+  subGear:
+  - CentcomPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomOfficial
     shoes: ClothingShoesBootsCombatFilled
@@ -27,3 +34,11 @@
     belt: WeaponPistolN1984
     pocket1: BoxFolderBlack
     pocket2: PenCentcom
+
+- type: startingGear
+  id: CentcomPlasmamanGear
+  parent: BasePlasmamanMaskGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitCentcomOfficial
+    head: ClothingHeadEnvirohelmCentcomOfficial
+    gloves: ClothingHandsGlovesEnviroglovesBlack

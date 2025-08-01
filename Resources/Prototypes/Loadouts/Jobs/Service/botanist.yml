@@ -6,7 +6,19 @@
 # Ears
 
 # Equipment
-
+- type: loadout
+  id: LoadoutBotanistEOCClippers
+  category: JobsServiceBotanist
+  cost: 1
+  requirements:
+    - !type:CharacterEmployerRequirement
+      employers:
+      - EastOrionCompany
+    - !type:CharacterJobRequirement
+      jobs:
+        - Botanist
+  items:
+    - HydroponicsToolClippersEOC
 # Eyes
 
 # Gloves
@@ -20,7 +32,18 @@
 # Mask
 
 # Outer
-
+- type: loadout
+  id: LoadoutServiceBotanistWinterCoat
+  category: JobsServiceBotanist
+  cost: 0
+  requirements:
+  - !type:CharacterItemGroupRequirement
+    group: LoadoutBotanistOuter
+  - !type:CharacterJobRequirement
+    jobs:
+    - Botanist
+  items:
+  - ClothingOuterWinterHydro
 # Shoes
 
 # Uniforms
@@ -46,6 +69,9 @@
   requirements:
     - !type:CharacterItemGroupRequirement
       group: LoadoutBotanistUniforms
+    - !type:CharacterEmployerRequirement
+      employers:
+      - NanoTrasen
     - !type:CharacterJobRequirement
       jobs:
         - Botanist
@@ -60,6 +86,9 @@
   requirements:
     - !type:CharacterItemGroupRequirement
       group: LoadoutBotanistUniforms
+    - !type:CharacterEmployerRequirement
+      employers:
+      - IdrisIncorporated
     - !type:CharacterJobRequirement
       jobs:
         - Botanist
@@ -74,8 +103,45 @@
   requirements:
     - !type:CharacterItemGroupRequirement
       group: LoadoutBotanistUniforms
+    - !type:CharacterEmployerRequirement
+      employers:
+      - OrionExpress
     - !type:CharacterJobRequirement
       jobs:
         - Botanist
   items:
     - ClothingUniformJumpsuitHydroponicsOrion
+
+- type: loadout
+  id: LoadoutServiceJumpsuitHydroponicsEOC
+  category: JobsServiceBotanist
+  cost: 0
+  exclusive: true
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutBotanistUniforms
+    - !type:CharacterEmployerRequirement
+      employers:
+      - EastOrionCompany
+    - !type:CharacterJobRequirement
+      jobs:
+        - Botanist
+  items:
+    - ClothingUniformJumpsuitHydroponicsEOC
+
+- type: loadout
+  id: LoadoutServiceJumpskirtHydroponicsEOC
+  category: JobsServiceBotanist
+  cost: 0
+  exclusive: true
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutBotanistUniforms
+    - !type:CharacterEmployerRequirement
+      employers:
+      - EastOrionCompany
+    - !type:CharacterJobRequirement
+      jobs:
+        - Botanist
+  items:
+    - ClothingUniformJumpskirtHydroponicsEOC

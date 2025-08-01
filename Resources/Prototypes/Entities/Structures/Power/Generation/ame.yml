@@ -2,7 +2,6 @@
   id: AmeController
   name: AME controller
   description: It's a controller for the antimatter engine.
-  categories: [ HideSpawnMenu ]
   placement:
     mode: SnapgridCenter
   components:
@@ -30,8 +29,8 @@
         layer:
         - WallLayer
   - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
   - type: Destructible
     thresholds:
     - trigger:
@@ -98,8 +97,10 @@
   - type: ContainerContainer
     containers:
       fuelSlot: !type:ContainerSlot
-  # - type: GuideHelp
-    # guides: [ AME, Power ]
+  - type: GuideHelp
+    guides:
+    - AME
+    - Power
   - type: Electrified
     onHandInteract: false
     onInteractUsing: false
@@ -123,7 +124,6 @@
   id: AmeShielding
   name: AME shielding
   description: Keeps the antimatter in and the matter out.
-  categories: [ HideSpawnMenu ]
   placement:
     mode: SnapgridCenter
   components:
@@ -155,8 +155,8 @@
         layer:
         - WallLayer
   - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
   - type: Destructible
     thresholds:
     - trigger:
@@ -202,8 +202,8 @@
   - type: Construction
     graph: AmeShielding
     node: ameShielding
-  # - type: GuideHelp
-    # guides: [ AME, Power ]
+  - type: GuideHelp
+    guides: [ AME, Power ]
   - type: Electrified
     onHandInteract: false
     onInteractUsing: false

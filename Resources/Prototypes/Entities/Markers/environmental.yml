@@ -98,21 +98,3 @@
     sprite: Markers/environment.rsi
     state: weather
   - type: BlockWeather
-  - type: IsRoof
-  
-- type: entity
-  name: Marker Weather Blocker
-  id: MarkerWeatherblockerNoRoof
-  suffix: no roof
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    sprite: Markers/environment.rsi
-    layers:
-      - sprite: Markers/environment.rsi
-        shader: unshaded
-        state: weather
-      - sprite: Markers/environment.rsi
-        shader: unshaded
-        state: roof
-  - type: BlockWeather

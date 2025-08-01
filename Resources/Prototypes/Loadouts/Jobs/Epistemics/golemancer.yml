@@ -44,6 +44,19 @@
 
 
 # Belt
+- type: loadout
+  id: LoadoutGolemancerBeltUtility
+  category: JobsEpistemicsGolemancer
+  cost: 3
+  exclusive: true
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutGolemancerBelt
+    - !type:CharacterJobRequirement
+      jobs:
+        - Roboticist
+  items:
+    - ClothingBeltUtilityFilled
 
 # Ears
 
@@ -78,6 +91,7 @@
   id: LoadoutGolemancerPillCanisterSpaceDrugs
   category: JobsEpistemicsGolemancer
   cost: 1
+  guideEntry: Psionics
   requirements:
     - !type:CharacterItemGroupRequirement
       group: LoadoutGolemancerEquipment
@@ -100,7 +114,18 @@
 # Mask
 
 # Outer
-
+- type: loadout
+  id: LoadoutScienceUniformWinterCoatRoboticist
+  category: JobsEpistemicsGolemancer
+  cost: 0
+  requirements:
+  - !type:CharacterItemGroupRequirement
+    group: LoadoutGolemancerUniforms
+  - !type:CharacterJobRequirement
+    jobs:
+    - Roboticist
+  items:
+  - ClothingOuterWinterRobo
 # Shoes
 
 # Uniforms
@@ -131,3 +156,39 @@
         - Roboticist
   items:
     - ClothingUniformJumpsuitRoboticist
+
+- type: loadout
+  id: LoadoutScienceUniformJumpsuitRoboticistNT
+  category: JobsEpistemicsGolemancer
+  cost: 0
+  exclusive: true
+  guideEntry: NanoTrasen
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutGolemancerUniforms
+    - !type:CharacterJobRequirement
+      jobs:
+        - Roboticist
+    - !type:CharacterEmployerRequirement
+      employers:
+        - NanoTrasen
+  items:
+    - ClothingUniformJumpsuitNTRoboticist
+
+- type: loadout
+  id: LoadoutScienceUniformJumpsuitRoboticistHeph
+  category: JobsEpistemicsGolemancer
+  cost: 0
+  exclusive: true
+  guideEntry: HephaestusIndustries
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutGolemancerUniforms
+    - !type:CharacterJobRequirement
+      jobs:
+        - Roboticist
+    - !type:CharacterEmployerRequirement
+      employers:
+        - HephaestusIndustries
+  items:
+    - ClothingUniformJumpsuitHephRoboticist

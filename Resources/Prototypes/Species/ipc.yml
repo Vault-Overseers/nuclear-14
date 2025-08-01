@@ -1,9 +1,10 @@
 - type: species
   id: IPC
   name: species-name-ipc
-  roundStart: false
+  roundStart: true
   prototype: MobIPC
   sprites: MobIPCSprites
+  defaultSkinTone: "#aaa9ad"
   markingLimits: MobIPCMarkingLimits
   dollPrototype: MobIPCDummy
   skinColoration: Hues
@@ -33,7 +34,11 @@
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
     Hair: MobHumanoidMarkingMatchSkin
+    FacialHair: MobHumanoidMarkingMatchSkin
+    Eyes: MobHumanoidAnyMarking
     Chest: MobIPCTorso
+    Underwear: MobHumanoidAnyMarking
+    Undershirt: MobHumanoidAnyMarking
     LArm: MobIPCLArm
     RArm: MobIPCRArm
     LHand: MobIPCLHand
@@ -42,56 +47,60 @@
     RLeg: MobIPCRLeg
     LFoot: MobIPCLFoot
     RFoot: MobIPCRFoot
+    Wings: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobIPCMarkingLimits
   points:
     Head:
-      points: 1
+      points: 6
       required: true
       defaultMarkings: [ MobIPCHeadDefault ]
     Face:
-      points: 1
+      points: 6
       required: false
     Chest:
-      points: 1
+      points: 6
       required: true
       defaultMarkings: [ MobIPCTorsoDefault ]
     HeadSide:
-      points: 1
+      points: 6
       required: false
     RightLeg:
-      points: 1
+      points: 6
       required: false
       defaultMarkings: [ MobIPCRLegDefault ]
     RightFoot:
-      points: 1
+      points: 6
       required: false
       defaultMarkings: [ MobIPCRFootDefault ]
     LeftLeg:
-      points: 1
+      points: 6
       required: false
       defaultMarkings: [ MobIPCLLegDefault ]
     LeftFoot:
-      points: 1
+      points: 6
       required: false
       defaultMarkings: [ MobIPCLFootDefault ]
     RightArm:
-      points: 1
+      points: 6
       required: false
       defaultMarkings: [ MobIPCRArmDefault ]
     RightHand:
-      points: 1
+      points: 6
       required: false
       defaultMarkings: [ MobIPCRHandDefault ]
     LeftArm:
-      points: 1
+      points: 6
       required: false
       defaultMarkings: [ MobIPCLArmDefault ]
     LeftHand:
-      points: 1
+      points: 6
       required: false
       defaultMarkings: [ MobIPCLHandDefault ]
+    Wings:
+      points: 1
+      required: false
 
 - type: humanoidBaseSprite
   id: MobIPCMarkingFollowSkin

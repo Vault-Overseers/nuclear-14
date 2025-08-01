@@ -3,19 +3,17 @@
   name: job-name-ce
   description: job-description-ce
   playTimeTracker: JobChiefEngineer
-  setPreference: false
   requirements:
-    - !type:CharacterPlaytimeRequirement
-      tracker: JobAtmosphericTechnician
-      min: 36000 # DeltaV - 10 hours
-#    - !type:RoleTimeRequirement # DeltaV - No Station Engineer time requirement
-#      role: JobStationEngineer
-#      time: 21600 #6 hrs
-    - !type:CharacterDepartmentTimeRequirement
-      department: Engineering
-      min: 90000 # DeltaV - 25 hours
-#    - !type:OverallPlaytimeRequirement
-#      time: 72000 # DeltaV - 20 hours
+  - !type:CharacterTraitRequirement
+    inverted: true
+    traits:
+    - Foreigner
+    - ForeignerLight
+  - !type:CharacterEmployerRequirement
+    employers:
+    - NanoTrasen
+    - ZavodskoiInterstellar
+    - HephaestusIndustries
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
@@ -35,16 +33,31 @@
     implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
-      - type: CommandStaff
+    - type: CommandStaff
+  afterLoadoutSpecial:
+  - !type:ModifyEnvirosuitSpecial
+    charges: 8
+  - !type:ModifyEnvirohelmSpecial
+    powerCell: PowerCellPotato
 
 - type: startingGear
   id: ChiefEngineerGear
+  subGear:
+  - ChiefEngineerPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitChiefEngineer
-    back: ClothingBackpackChiefEngineerFilled
+    back: ClothingBackpackEngineering
     shoes: ClothingShoesColorBrown
     id: CEPDA
-    ears: ClothingHeadsetCE
-  innerClothingSkirt: ClothingUniformJumpskirtChiefEngineer
-  satchel: ClothingBackpackSatchelChiefEngineerFilled
-  duffelbag: ClothingBackpackDuffelChiefEngineerFilled
+    ears: ClothingHeadsetAltEngineering
+  storage:
+    back:
+    - Flash
+
+- type: startingGear
+  id: ChiefEngineerPlasmamanGear
+  parent: BasePlasmamanMaskGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitChiefEngineer
+    head: ClothingHeadEnvirohelmChiefEngineer
+    gloves: ClothingHandsGlovesEnviroglovesChiefEngineer

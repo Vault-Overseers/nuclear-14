@@ -3,14 +3,28 @@
   name: job-name-brigmedic
   description: job-description-brigmedic
   playTimeTracker: JobBrigmedic
-  setPreference: false
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Medical
       min: 21600 # 6 hrs
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterDepartmentTimeRequirement
       department: Security
       min: 18000 # 4 hrs
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - Foreigner
+        - ForeignerLight
+        - Muted
+        - Blindness
+        - Pacifist
+        - BrittleBoneDisease
+    - !type:CharacterEmployerRequirement
+      employers:
+      - ZavodskoiInterstellar
+      - Interdyne
+      - PMCG
+      - NanoTrasen
   startingGear: CorpsmanGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos
@@ -32,13 +46,20 @@
     - type: CPRTraining
     - type: SurgerySpeedModifier
       speedModifier: 2.0
+  afterLoadoutSpecial:
+  - !type:ModifyEnvirosuitSpecial
+    charges: 6
+  - !type:ModifyEnvirohelmSpecial
+    powerCell: PowerCellHigh
 
 - type: startingGear
   id: CorpsmanGear # see Prototypes/Roles/Jobs/Fun/misc_startinggear.yml for "BrigmedicGear"
+  subGear:
+  - CorpsmanPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitBrigmedic
     outerClothing: ClothingOuterArmorPlateCarrier
-    back: ClothingBackpackBrigmedicFilled
+    back: ClothingBackpackBrigmedic
     shoes: ClothingShoesBootsCombatFilled
     gloves: ClothingHandsGlovesNitrile
     eyes: ClothingEyesHudMedical
@@ -46,6 +67,21 @@
     id: CorpsmanPDA
     ears: ClothingHeadsetBrigmedic
     belt: ClothingBeltCorpsmanWebbingFilled
-  innerClothingSkirt: ClothingUniformJumpskirtBrigmedic
-  satchel: ClothingBackpackSatchelBrigmedicFilled
-  duffelbag: ClothingBackpackDuffelBrigmedicFilled
+  storage:
+    back:
+    - EmergencyRollerBedSpawnFolded
+    - BodyBagFolded
+    - Portafib
+    - BruteAutoInjector
+    - BruteAutoInjector
+    - BurnAutoInjector
+    - BurnAutoInjector
+    - MagazinePistol
+
+- type: startingGear
+  id: CorpsmanPlasmamanGear
+  parent: BasePlasmamanSecurityGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitBrigmedic
+    head: ClothingHeadEnvirohelmBrigmedic
+    gloves: ClothingHandsGlovesEnviroglovesBlack

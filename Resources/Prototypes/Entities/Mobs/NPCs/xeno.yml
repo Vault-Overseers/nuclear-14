@@ -1,6 +1,6 @@
 # Hacky for the stress test so don't even consider adding to this
 - type: entity
-  name: Burrower
+  name: burrower
   id: MobXeno
   parent: SimpleSpaceMobBase
   description: They mostly come at night. Mostly.
@@ -9,6 +9,7 @@
   - type: CombatMode
   - type: InputMover
   - type: MobMover
+  - type: Absorbable
   - type: HTN
     rootTask:
       task: XenoCompound
@@ -21,15 +22,10 @@
         true
       NavSmash: !type:Bool
         true
-  - type: Tool
-    speed: 1.5
-    qualities:
-      - Prying
   - type: Prying
-    pryPowered: !type:Bool
-        true
-    force: !type:Bool
-      true
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
   - type: Reactive
@@ -40,6 +36,7 @@
     factions:
     - Xeno
   - type: Hands
+  - type: ComplexInteraction
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/burrower.rsi
@@ -58,13 +55,18 @@
         layer:
         - MobLayer
   - type: MobState
-    allowedStates:
-    - Alive
-    - Dead
+  - type: Deathgasp
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritFakeDeath
+      - ActionCritLastWords
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Dead
+      50: Critical
+      100: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       25: 0.5
@@ -77,7 +79,7 @@
     altDisarm: false
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     animation: WeaponArcBite
     damage:
       groups:
@@ -92,19 +94,22 @@
       Dead:
         Base: dead
   - type: Puller
+    needsHands: false
   - type: Butcherable
     butcheringType: Spike
     spawned:
     - id: FoodMeatXeno
       amount: 5
-  #- type: GhostRole # Delta V - Moves ghost role from parent to child
-  #  allowMovement: true # Delta V - Moves ghost role from parent to child
-  #  allowSpeech: true # Delta V - Moves ghost role from parent to child
-  #  makeSentient: true # Delta V - Moves ghost role from parent to child
-  #  name: ghost-role-information-xeno-name # Delta V - Moves ghost role from parent to child
-  #  description: ghost-role-information-xeno-description # Delta V - Moves ghost role from parent to child
-  #  rules: ghost-role-information-xeno-rules # Delta V - Moves ghost role from parent to child
-  # - type: GhostTakeoverAvailable # Delta V - Moves ghost role from parent to child
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ghost-role-information-xeno-name
+    description: ghost-role-information-xeno-description
+    rules: ghost-role-information-xeno-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
   - type: TypingIndicator
     proto: alien
   - type: Temperature
@@ -113,26 +118,36 @@
     currentTemperature: 310.15
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: NoSlip
   - type: Perishable #Ummmm the acid kills a lot of the bacteria or something
     molsPerSecondPerUnitMass: 0.0005
   - type: Speech
     speechVerb: LargeMob
-  - type: PotentialPsionic #Nyano - Summary: makes potentially psionic.
-    chance: -2
-  - type: Psionic #Nyano - Summary: makes psionic by default.
+    speechSounds: Xenonid # DeltaV: Use RMC's speech sounds for sentient xenos
+  - type: Psionic
     removable: false
+    roller: false
+  - type: InnatePsionicPowers
+    powersToAdd:
+    - TelepathyPower
   - type: LanguageKnowledge
     speaks:
     - Xeno
     understands:
     - Xeno
+  - type: ThermalVision
+    isActive: true
+    lightRadius: 15
+    color: "#808080"
+    activateSound: null
+    deactivateSound: null
+  - type: Fauna # Lavaland Change
 
 - type: entity
-  name: Praetorian
+  name: praetorian
   parent: MobXeno
   id: MobXenoPraetorianNPC # Delta V - These no longer inherit the ghost takeover comp
   components:
@@ -143,10 +158,12 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: running
+  - type: Absorbable
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Dead
+      100: Critical
+      150: Dead
   - type: Stamina
     critThreshold: 300
   - type: SlowOnDamage
@@ -165,7 +182,7 @@
         - MobLayer
 
 - type: entity
-  name: Drone
+  name: drone
   parent: MobXeno
   id: MobXenoDroneNPC # Delta V - These no longer inherit the ghost takeover comp
   components:
@@ -176,10 +193,12 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: running
+  - type: Absorbable
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Dead
+      80: Critical
+      130: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       40: 0.7
@@ -202,7 +221,7 @@
         - MobLayer
 
 - type: entity
-  name: Queen
+  name: queen
   parent: MobXeno
   id: MobXenoQueenNPC # Delta V - These no longer inherit the ghost takeover comp
   components:
@@ -213,18 +232,20 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: running
+  - type: Absorbable
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Dead
+      300: Critical
+      350: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       150: 0.7
   - type: MovementSpeedModifier
   - type: MeleeWeapon
     damage:
-     groups:
-       Brute: 12
+      groups:
+        Brute: 12
   - type: Fixtures
     fixtures:
       fix1:
@@ -241,17 +262,18 @@
     - CannotSuicide
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - TauCetiBasic
     - Xeno
     understands:
-    - GalacticCommon
+    - TauCetiBasic
     - Xeno
 
 - type: entity
-  name: Ravager
+  name: ravager
   parent: MobXeno
   id: MobXenoRavagerNPC # Delta V - These no longer inherit the ghost takeover comp
   components:
+  - type: Absorbable
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/ravager.rsi
@@ -262,13 +284,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Dead
+      100: Critical
+      150: Dead
   - type: MovementSpeedModifier
     baseSprintSpeed: 4
   - type: MeleeWeapon
     damage:
-     groups:
-       Brute: 10
+      groups:
+        Brute: 10
   - type: SlowOnDamage
     speedModifierThresholds:
       50: 0.7
@@ -285,10 +308,11 @@
         - MobLayer
 
 - type: entity
-  name: Runner
+  name: runner
   parent: MobXeno
   id: MobXenoRunnerNPC # Delta V - These no longer inherit the ghost takeover comp
   components:
+  - type: Absorbable
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/runner.rsi
@@ -300,8 +324,8 @@
     baseSprintSpeed: 6.0
   - type: MeleeWeapon
     damage:
-     groups:
-       Brute: 5
+      groups:
+        Brute: 10
   - type: Fixtures
     fixtures:
       fix1:
@@ -315,7 +339,7 @@
         - MobLayer
 
 - type: entity
-  name: Rouny
+  name: rouny
   parent: MobXenoRunnerNPC # Delta V - These no longer inherit the ghost takeover comp
   id: MobXenoRounyNPC # Delta V - These no longer inherit the ghost takeover comp
   components:
@@ -323,6 +347,7 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/rouny.rsi
     offset: 0,0.6
+    scale: 0.7, 0.7
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -330,10 +355,11 @@
       amount: 3
 
 - type: entity
-  name: Spitter
+  name: spitter
   parent: MobXeno
   id: MobXenoSpitterNPC # Delta V - These no longer inherit the ghost takeover comp
   components:
+  - type: Absorbable
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/spitter.rsi
@@ -362,7 +388,7 @@
     useKey: false
     selectedMode: FullAuto
     availableModes:
-      - FullAuto
+    - FullAuto
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
   - type: Fixtures
     fixtures:
@@ -382,6 +408,7 @@
   id: MobPurpleSnake
   description: A menacing purple snake from Kepler-283c.
   components:
+  - type: Absorbable
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/purple_snake.rsi
@@ -396,6 +423,10 @@
         Base: dead_purple_snake
       Dead:
         Base: dead_purple_snake
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSnake
+      amount: 4
   - type: Grammar
     attributes:
       proper: true
@@ -448,6 +479,7 @@
   suffix: small
   description: A smaller version of the menacing purple snake from Kepler-283c.
   components:
+  - type: Absorbable
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/purple_snake.rsi
@@ -462,5 +494,9 @@
         Base: dead_small_purple_snake
       Dead:
         Base: dead_small_purple_snake
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSnake
+      amount: 2
   - type: SolutionTransfer
     maxTransferAmount: 1

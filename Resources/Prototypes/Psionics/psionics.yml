@@ -18,6 +18,7 @@
     - !type:AddPsionicAssayFeedback
       assayFeedback: dispel-power-metapsionic-feedback
     - !type:AddPsionicStatSources
+      amplificationModifier: 1
       dampeningModifier: 1
   removalFunctions:
     - !type:RemovePsionicActions
@@ -170,6 +171,9 @@
     - !type:AddPsionicStatSources
       amplificationModifier: 0.5
       dampeningModifier: 0.5
+    - !type:PsionicAddAvailablePowers
+      powerPrototype: AssayPower
+      weight: 0.1
   removalFunctions:
     - !type:RemovePsionicActions
     - !type:RemovePsionicPowerComponents
@@ -178,6 +182,8 @@
     - !type:RemovePsionicStatSources
     - !type:RemoveAssayFeedback
       assayFeedback: metapsionic-power-metapsionic-feedback
+    - !type:PsionicRemoveAvailablePowers
+      powerPrototype: AssayPower
 
 - type: psionicPower
   id: PsionicRegenerationPower
@@ -199,7 +205,7 @@
     - !type:AddPsionicAssayFeedback
       assayFeedback: psionic-regeneration-power-metapsionic-feedback
     - !type:AddPsionicStatSources
-      amplificationModifier: 0.5
+      amplificationModifier: 1
       dampeningModifier: 0.5
   removalFunctions:
     - !type:RemovePsionicActions
@@ -332,10 +338,10 @@
       assayFeedback: psionic-language-power-feedback
     - !type:PsionicAddAvailablePowers
       powerPrototype: XenoglossyPower
-      weight: 0.75
+      weight: 2
     - !type:PsionicAddAvailablePowers
       powerPrototype: PsychognomyPower
-      weight: 0.75
+      weight: 0.1
   removalFunctions:
     - !type:RemovePsionicPowerComponents
       components:
@@ -366,11 +372,11 @@
     - !type:AddPsionicAssayFeedback
       assayFeedback: healing-word-power-feedback
     - !type:AddPsionicStatSources
-      amplificationModifier: 0.5
+      amplificationModifier: 1
       dampeningModifier: 0.5
     - !type:PsionicAddAvailablePowers
       powerPrototype: RevivifyPower
-      weight: 0.1
+      weight: 2
   removalFunctions:
     - !type:RemovePsionicActions
     - !type:RemovePsionicStatSources
@@ -448,7 +454,7 @@
       assayFeedback: power-overwhelming-power-feedback
     - !type:AddPsionicPsychognomicDescriptors
       psychognomicDescriptor: OVERWHELMING
-  powerSlotCost: 2
+  powerSlotCost: 0
 
 - type: psionicPower
   id: LowDampening
@@ -497,7 +503,7 @@
       psychognomicDescriptor: tenebrous
     - !type:PsionicAddAvailablePowers
       powerPrototype: DarkSwapPower
-      weight: 0.1
+      weight: 1
   removalFunctions:
     - !type:RemovePsionicActions
     - !type:RemovePsionicStatSources
@@ -591,10 +597,10 @@
       amplificationModifier: 0.25
     - !type:PsionicAddAvailablePowers
       powerPrototype: SummonImpPower
-      weight: 0.3
+      weight: 1
     - !type:PsionicAddAvailablePowers
       powerPrototype: PyrokinesisPower
-      weight: 0.1
+      weight: 1
     - !type:AddPsionicPsychognomicDescriptors
       psychognomicDescriptor: pyre
   removalFunctions:
@@ -661,3 +667,51 @@
     - !type:RemovePsionicPsychognomicDescriptors
       psychognomicDescriptor: calling
   powerSlotCost: 0
+
+- type: psionicPower
+  id: AssayPower
+  name: Assay
+  powerCategories:
+    - Mentalic
+  initializeFunctions:
+    - !type:AddPsionicActions
+      actions:
+        - ActionAssay
+    - !type:PsionicFeedbackPopup
+    - !type:PsionicFeedbackSelfChat
+      feedbackMessage: assay-power-initialization-feedback
+    - !type:AddPsionicAssayFeedback
+      assayFeedback: assay-power-metapsionic-feedback
+    - !type:AddPsionicStatSources
+      dampeningModifier: 0.5
+  removalFunctions:
+    - !type:RemovePsionicActions
+    - !type:RemovePsionicStatSources
+    - !type:RemoveAssayFeedback
+      assayFeedback: assay-power-metapsionic-feedback
+
+- type: psionicPower
+  id: AnoigoPower
+  name: Anoigo
+  powerCategories:
+  - Kinetic
+  initializeFunctions:
+  - !type:AddPsionicActions
+    actions:
+    - ActionAnoigo
+  - !type:PsionicFeedbackPopup
+  - !type:PsionicFeedbackSelfChat
+    feedbackMessage: anoigo-power-initialization-feedback
+  - !type:AddPsionicAssayFeedback
+    assayFeedback: anoigo-power-metapsionic-feedback
+  - !type:AddPsionicStatSources
+    amplificationModifier: 0.25
+  - !type:AddPsionicPsychognomicDescriptors
+    psychognomicDescriptor: kinetic
+  removalFunctions:
+  - !type:RemovePsionicActions
+  - !type:RemovePsionicStatSources
+  - !type:RemoveAssayFeedback
+    assayFeedback: anoigo-power-metapsionic-feedback
+  - !type:RemovePsionicPsychognomicDescriptors
+    psychognomicDescriptor: kinetic

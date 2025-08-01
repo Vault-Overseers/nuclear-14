@@ -3,46 +3,51 @@
   name: job-name-mime
   description: job-description-mime
   playTimeTracker: JobMime
-  requirements:
-    - !type:CharacterOverallTimeRequirement
-      min: 7200 # DeltaV - 2 hours
   startingGear: MimeGear
   icon: "JobIconMime"
   supervisors: job-supervisors-hop
   access:
   - Theatre
   - Maintenance
-  - Mime # DeltaV - Add Mime access
+  - Mime
   special:
   - !type:AddComponentSpecial
     components:
     - type: MimePowers
     - type: FrenchAccent
-  setPreference: false
 
 - type: startingGear
   id: MimeGear
+  subGear:
+  - MimePlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitMime
-    back: ClothingBackpackMimeFilled
+    back: ClothingBackpackMime
     head: ClothingHeadHatBeret
-    belt: ClothingBeltSuspenders
+    belt: ClothingBeltSuspendersRed
     gloves: ClothingHandsGlovesLatex
     shoes: ClothingShoesColorWhite
     pocket1: CrayonMime
-    pocket2: Paper
     mask: ClothingMaskMime
     id: MimePDA
     ears: ClothingHeadsetService
-  innerClothingSkirt: ClothingUniformJumpskirtMime
-  satchel: ClothingBackpackSatchelMimeFilled
-  duffelbag: ClothingBackpackDuffelMimeFilled
+  storage:
+    back:
+    - RubberStampMime
+
+- type: startingGear
+  id: MimePlasmamanGear
+  parent: BasePlasmamanMaskGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitMime
+    head: ClothingHeadEnvirohelmMime
+    gloves: ClothingHandsGlovesEnviroglovesWhite
+    mask: ClothingMaskMime # Parent sets mask to breath mask so set it again here
 
 - type: entity
   id: ActionMimeInvisibleWall
   name: Create Invisible Wall
   description: Create an invisible wall in front of you, if placeable there.
-  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     priority: -1

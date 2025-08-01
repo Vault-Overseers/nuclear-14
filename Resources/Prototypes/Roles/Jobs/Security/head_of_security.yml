@@ -4,15 +4,20 @@
   description: job-description-hos
   playTimeTracker: JobHeadOfSecurity
   requirements:
-    - !type:CharacterPlaytimeRequirement
-      tracker: JobWarden
-      min: 14400 #DeltaV 4 hrs
-    - !type:CharacterDepartmentTimeRequirement # DeltaV - Command dept time requirement
-      department: Command
-      min: 36000 # 10 hours
-    - !type:CharacterOverallTimeRequirement
-      min: 90000 # DeltaV - 25 hours
-    - !type:CharacterWhitelistRequirement
+  - !type:CharacterTraitRequirement
+    inverted: true
+    traits:
+    - Foreigner
+    - ForeignerLight
+    - Muted
+    - Blindness
+    - Pacifist
+    - BrittleBoneDisease
+  - !type:CharacterEmployerRequirement
+    employers:
+    - ZavodskoiInterstellar
+    - PMCG
+    - NanoTrasen
   weight: 10
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"
@@ -22,35 +27,47 @@
   access:
   - HeadOfSecurity
   - Command
-  #- Brig  # Delta V: Removed
   - Security
   - Armory
   - Maintenance
   - Service
   - External
   - Detective
-  - Corpsman # DeltaV - added Corpsman access
   - Cryogenics
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
-      - type: CommandStaff
-  setPreference: false
+    - type: CommandStaff
+  afterLoadoutSpecial:
+  - !type:ModifyEnvirosuitSpecial
+    charges: 8
+  - !type:ModifyEnvirohelmSpecial
+    powerCell: PowerCellHigh
 
 - type: startingGear
   id: HoSGear
+  subGear:
+  - HoSPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitHoS
-    back: ClothingBackpackHOSFilled
+    back: ClothingBackpackSecurity
     shoes: ClothingShoesBootsCombatFilled
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesSecurity
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
-  innerClothingSkirt: ClothingUniformJumpskirtHoS
-  satchel: ClothingBackpackSatchelHOSFilled
-  duffelbag: ClothingBackpackDuffelHOSFilled
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+
+- type: startingGear
+  id: HoSPlasmamanGear
+  parent: BasePlasmamanSecurityGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitHoS
+    head: ClothingHeadEnvirohelmHoS
+    gloves: ClothingHandsGlovesEnviroglovesBlack

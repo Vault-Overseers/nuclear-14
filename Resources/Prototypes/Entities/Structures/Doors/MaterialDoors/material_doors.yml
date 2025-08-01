@@ -41,7 +41,7 @@
   - type: Appearance
   - type: Airtight
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralInorganic
     damageModifierSet: Metallic
   - type: RCDDeconstructable
     cost: 6
@@ -72,7 +72,6 @@
   id: MetalDoor
   name: metal door
   parent: BaseMaterialDoorNavMap
-  categories: [ HideSpawnMenu ]
   components:
   - type: Construction
     graph: DoorGraph
@@ -83,7 +82,6 @@
   name: wooden door
   parent: BaseMaterialDoorNavMap
   description: A door, where will it lead?
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/wood_door.rsi
@@ -102,7 +100,7 @@
     closeSound:
       path: /Audio/Effects/door_close.ogg
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralInorganic
     damageModifierSet: Wood
   - type: Destructible
     thresholds:
@@ -121,7 +119,6 @@
   name: paper door
   parent: BaseMaterialDoorNavMap
   description: A door, where will it lead?
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/paper_door.rsi
@@ -145,7 +142,6 @@
   name: plasma door
   parent: BaseMaterialDoorNavMap
   description: A door, where will it lead?
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/plasma_door.rsi
@@ -153,8 +149,8 @@
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
   - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: StrongMetallic
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
   - type: Destructible
     thresholds:
     - trigger:
@@ -172,7 +168,6 @@
   name: gold door
   parent: BaseMaterialDoorNavMap
   description: A door, where will it lead?
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/gold_door.rsi
@@ -188,7 +183,6 @@
   name: silver door
   parent: BaseMaterialDoorNavMap
   description: A door, where will it lead?
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/silver_door.rsi
@@ -204,7 +198,6 @@
   name: bananium door
   parent: BaseMaterialDoorNavMap
   description: A door, where will it lead?
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/bananium_door.rsi
@@ -225,7 +218,6 @@
   name: web door
   parent: BaseMaterialDoorNavMap
   description: A door, leading to the lands of the spiders... or a spaced room.
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Structures/Doors/web_door.rsi

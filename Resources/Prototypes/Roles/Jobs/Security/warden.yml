@@ -4,20 +4,33 @@
   description: job-description-warden
   playTimeTracker: JobWarden
   requirements:
-    - !type:CharacterPlaytimeRequirement # DeltaV - JobSecurityOfficer time requirement. Make them experienced in proper officer work.
-      tracker: JobSecurityOfficer
-      min: 43200 # DeltaV - 12 hrs
-    - !type:CharacterPlaytimeRequirement # DeltaV - JobDetective time requirement. Give them an understanding of basic forensics.
-      tracker: JobDetective
-      min: 14400 # DeltaV - 4 hours
-    - !type:CharacterWhitelistRequirement
+  - !type:CharacterPlaytimeRequirement
+    tracker: JobSecurityOfficer
+    min: 43200 # DeltaV - 12 hrs
+  - !type:CharacterPlaytimeRequirement
+    tracker: JobDetective
+    min: 14400 # DeltaV - 4 hours
+  - !type:CharacterWhitelistRequirement
+  - !type:CharacterTraitRequirement
+    inverted: true
+    traits:
+    - Foreigner
+    - ForeignerLight
+    - Muted
+    - Blindness
+    - Pacifist
+    - BrittleBoneDisease
+  - !type:CharacterEmployerRequirement
+    employers:
+    - ZavodskoiInterstellar
+    - PMCG
+    - NanoTrasen
   startingGear: WardenGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-hos
   canBeAntag: false
   access:
   - Security
-  #- Brig # Delta V: Removed
   - Armory
   - Maintenance
   - Service
@@ -27,20 +40,31 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
-  setPreference: false
+  afterLoadoutSpecial:
+  - !type:ModifyEnvirosuitSpecial
+    charges: 6
+  - !type:ModifyEnvirohelmSpecial
+    powerCell: PowerCellHigh
 
 - type: startingGear
   id: WardenGear
+  subGear:
+  - WardenPlasmamanGear
   equipment:
     head: ClothingHeadHatWarden
     jumpsuit: ClothingUniformJumpsuitWarden
     back: ClothingBackpackSecurity
     shoes: ClothingShoesBootsCombatFilled
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterCoatWarden
     id: WardenPDA
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetAltSecurityRegular
     belt: ClothingBeltSecurityFilled
-  innerClothingSkirt: ClothingUniformJumpskirtWarden
-  satchel: ClothingBackpackSatchelSecurity
-  duffelbag: ClothingBackpackDuffelSecurity
+
+- type: startingGear
+  id: WardenPlasmamanGear
+  parent: BasePlasmamanSecurityGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitWarden
+    head: ClothingHeadEnvirohelmWarden
+    gloves: ClothingHandsGlovesEnviroglovesBlack

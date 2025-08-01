@@ -13,6 +13,12 @@
     - !type:CharacterDepartmentTimeRequirement
       department: Engineering
       min: 216000 # 60 hrs
+    - !type:CharacterEmployerRequirement
+      employers:
+      - HephaestusIndustries
+      - ZavodskoiInterstellar
+      - EinsteinEngines
+      - NanoTrasen
   startingGear: SeniorEngineerGear
   icon: "JobIconSeniorEngineer"
   supervisors: job-supervisors-ce
@@ -21,19 +27,17 @@
   - Engineering
   - External
   - Atmospherics
-  setPreference: false
 
 - type: startingGear
   id: SeniorEngineerGear
+  subGear:
+  - StationEngineerPlasmamanGear
   equipment:
     head: ClothingHeadHatBeretEngineering
     jumpsuit: ClothingUniformJumpsuitSeniorEngineer
-    back: ClothingBackpackEngineeringFilled
+    back: ClothingBackpackEngineering
     shoes: ClothingShoesBootsWork
     id: SeniorEngineerPDA
     eyes: ClothingEyesGlassesMeson
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
-  innerClothingSkirt: ClothingUniformJumpskirtSeniorEngineer
-  satchel: ClothingBackpackSatchelEngineeringFilled
-  duffelbag: ClothingBackpackDuffelEngineeringFilled

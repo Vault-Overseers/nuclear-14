@@ -11,12 +11,24 @@
   cost: 7500
   recipeUnlocks:
   - MiningDrill
-  - WeaponGrapplingGun
-  - BorgModuleMining
-  - BorgModuleGrapplingGun
+  - MineralScannerEmpty
+  - MechEquipmentDrill # Goobstation
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
-  - SalvageExpeditionsComputerCircuitboard
+
+- type: technology
+  id: SpaceScanning
+  name: research-technology-space-scanning
+  icon:
+    sprite: Objects/Tools/handheld_mass_scanner.rsi
+    state: icon
+  discipline: Industrial
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - RadarConsoleCircuitboard
+  - HandHeldMassScanner
+  - BorgModuleGPS
 
 - type: technology
   id: AdvancedPowercells
@@ -29,7 +41,9 @@
   cost: 7500
   recipeUnlocks:
   - PowerCellHigh
+  - PowerCellMicrortg
   - TurboItemRechargerCircuitboard
+  - SMESAdvancedMachineCircuitboard
 
 - type: technology
   id: MechanicalCompression
@@ -112,20 +126,6 @@
 # Tier 2
 
 - type: technology
-  id: SpaceScanning
-  name: research-technology-space-scanning
-  icon:
-    sprite: Objects/Tools/handheld_mass_scanner.rsi
-    state: icon
-  discipline: Industrial
-  tier: 2
-  cost: 7500
-  recipeUnlocks:
-  - RadarConsoleCircuitboard
-  - HandHeldMassScanner
-  - BorgModuleGPS
-
-- type: technology
   id: Shuttlecraft
   name: research-technology-shuttlecraft
   icon:
@@ -168,7 +168,6 @@
     - PowerDrill
     - JawsOfLife
     - BorgModuleAdvancedTool
-    - BorgModuleRCD
 
 - type: technology
   id: MassExcavation
@@ -182,19 +181,45 @@
   recipeUnlocks:
     - OreBagOfHolding
     - MiningDrillDiamond
+    - AdvancedMineralScannerEmpty
+    - MechEquipmentDrillDiamond
 
 - type: technology
-  id: MechanizedSalvaging
-  name: research-technology-mechanized-salvaging
+  id: Ripley2
+  name: research-technology-ripley-mkii
   icon:
-    sprite: Mobs/Silicon/chassis.rsi
-    state: miner
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: ripleymkii
+  discipline: Industrial
+  tier: 2
+  cost: 8000
+  recipeUnlocks:
+  - RipleyMKIIHarness
+  - RipleyUpgradeKit
+  technologyPrerequisites:
+  - RipleyAPLU
+
+- type: technology
+  id: Clarke
+  name: research-technology-clarke
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: clarke
   discipline: Industrial
   tier: 2
   cost: 10000
   recipeUnlocks:
   - BorgModulePka
   - BorgModuleJetpack
+  - ClarkeHarness
+  - ClarkeHead
+  - ClarkeLArm
+  - ClarkeRArm
+  - ClarkeTreads
+  - ClarkeCentralElectronics
+  - ClarkePeripheralsElectronics
+  technologyPrerequisites:
+  - Ripley2
 
 # Tier 3
 
@@ -211,6 +236,8 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
+  - MaterialSiloCircuitboard
+  softCapContribution: 1.5
 
 - type: technology
   id: PortableFission
@@ -225,3 +252,4 @@
   - PowerCellMicroreactor
   technologyPrerequisites:
   - AdvancedPowercells
+  softCapContribution: 1.5

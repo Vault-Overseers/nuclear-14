@@ -215,6 +215,42 @@
     - !type:TileNotBlocked
 
 - type: construction
+  name: shuttle wall
+  id: ShuttleWall
+  graph: Girder
+  startNode: start
+  targetNode: shuttleWall
+  category: construction-category-structures
+  description: Keeps the air in and the greytide out.
+  icon:
+    sprite: Structures/Walls/shuttle.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: diagonal shuttle wall
+  id: DiagonalShuttleWall
+  graph: Girder
+  startNode: start
+  targetNode: diagonalshuttleWall
+  category: construction-category-structures
+  description: Keeps the air in and the greytide out.
+  icon:
+    sprite: Structures/Walls/shuttle_diagonal.rsi
+    state: state0
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
   name: bananium wall
   id: ClownWall
   graph: Girder
@@ -458,7 +494,7 @@
   targetNode: plasmaWindow
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Clear and even tougher, with a purple tint.
+  description: Explosion resistant and even tougher, with a purple tint.
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -477,12 +513,31 @@
   targetNode: reinforcedPlasmaWindow
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Fire resistant and even tougher, with a purple tint.
+  description: Very explosion resistant and even tougher, with a purple tint.
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
     sprite: Structures/Windows/reinforced_plasma_window.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  name: shuttle window
+  id: ShuttleWindow
+  graph: Window
+  startNode: start
+  targetNode: shuttleWindow
+  category: construction-category-structures
+  canBuildInImpassable: true
+  description: Extra sturdy to resist the pressure of FTL or sustain damage from munitions.
+  conditions:
+    - !type:EmptyOrWindowValidInTile
+    - !type:NoWindowsInTile
+  icon:
+    sprite: Structures/Windows/shuttle_window.rsi
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -496,7 +551,7 @@
   targetNode: plasmaWindowDiagonal
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Clear and even tougher, with a purple tint.
+  description: Explosion resistant and even tougher, with a purple tint.
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -514,7 +569,7 @@
   targetNode: reinforcedPlasmaWindowDiagonal
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Fire resistant and even tougher, with a purple tint.
+  description: Very explosion resistant and even tougher, with a purple tint.
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -586,7 +641,7 @@
   targetNode: plasmaWindowDirectional
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Clear and even tougher, with a purple tint.
+  description: Explosion resistant and even tougher, with a purple tint.
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -604,7 +659,7 @@
   targetNode: plasmaReinforcedWindowDirectional
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Fire resistant and even tougher, with a purple tint.
+  description: Very explosion resistant and even tougher, with a purple tint.
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -689,6 +744,42 @@
   placementMode: SnapgridCenter
 
 - type: construction
+  name: directional uranium window
+  id: UraniumWindowDirectional
+  graph: WindowDirectional
+  startNode: start
+  targetNode: uraniumWindowDirectional
+  category: construction-category-structures
+  canBuildInImpassable: true
+  description: Clear and tougher than regular glass, with added RadAbsorb to protect you from deadly radiation.
+  conditions:
+    - !type:EmptyOrWindowValidInTile
+    - !type:NoWindowsInTile
+  icon:
+    sprite: Structures/Windows/directional.rsi
+    state: uranium_window
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  name: directional reinforced uranium window
+  id: UraniumReinforcedWindowDirectional
+  graph: WindowDirectional
+  startNode: start
+  targetNode: uraniumReinforcedWindowDirectional
+  category: construction-category-structures
+  canBuildInImpassable: true
+  description: Clear and much tougher than regular glass, with added RadAbsorb to protect you from deadly radiation.
+  conditions:
+    - !type:EmptyOrWindowValidInTile
+    - !type:NoWindowsInTile
+  icon:
+    sprite: Structures/Windows/directional.rsi
+    state: uranium_reinforced_window
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
   name: firelock
   id: Firelock
   graph: Firelock
@@ -701,6 +792,7 @@
     state: closed
   objectType: Structure
   placementMode: SnapgridCenter
+  canRotate: false
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
@@ -718,12 +810,13 @@
     state: closed
   objectType: Structure
   placementMode: SnapgridCenter
+  canRotate: false
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
 
 - type: construction
-  name: Thin firelock
+  name: thin firelock
   id: FirelockEdge
   graph: Firelock
   startNode: start
@@ -810,10 +903,11 @@
   conditions:
     - !type:TileNotBlocked
       failIfSpace: false
-    - !type:TileType
-      targets:
-        - Lattice
-        - Plating
+# Lavaland Change: add ability to build catwalks on any tiles
+#    - !type:TileType
+#      targets:
+#        - Lattice
+#        - Plating
   icon:
     sprite: Structures/catwalk.rsi
     state: catwalk_preview
@@ -858,7 +952,6 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden barricade
@@ -876,7 +969,6 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: railing
@@ -894,7 +986,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: railing corner
@@ -912,7 +1003,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: railing corner small
@@ -930,7 +1020,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: railing round
@@ -948,7 +1037,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 # Chain link fencing
 - type: construction
@@ -1036,7 +1124,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden high fence end
@@ -1054,7 +1141,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden high fence corner
@@ -1072,7 +1158,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden high fence t-junction
@@ -1090,7 +1175,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden high fence gate
@@ -1108,7 +1192,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 #Wooden fence small
 - type: construction
@@ -1127,8 +1210,7 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
-    
+
 - type: construction
   name: wooden small fence end
   id: FenceWoodEndSmall
@@ -1145,7 +1227,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden small fence corner
@@ -1163,7 +1244,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden small fence t-junction
@@ -1181,7 +1261,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 - type: construction
   name: wooden small fence gate
@@ -1199,7 +1278,6 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
-  hide: false
 
 #Airlocks
 - type: construction
@@ -1569,23 +1647,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: airtight plastic flaps
-  id: PlasticFlapsAirtight
-  graph: PlasticFlapsGraph
-  startNode: start
-  targetNode: airtightFlaps
-  category: construction-category-structures
-  placementMode: SnapgridCenter
-  description: An airtight plastic flap to let items through and keep people out.
-  objectType: Structure
-  canBuildInImpassable: false
-  icon:
-    sprite: Structures/plastic_flaps.rsi
-    state: plasticflaps
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   name: opaque plastic flaps
   id: PlasticFlapsOpaque
   graph: PlasticFlapsGraph
@@ -1594,23 +1655,6 @@
   category: construction-category-structures
   placementMode: SnapgridCenter
   description: An opaque plastic flap to let items through and keep people out.
-  objectType: Structure
-  canBuildInImpassable: false
-  icon:
-    sprite: Structures/plastic_flaps.rsi
-    state: plasticflaps
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  name: airtight opaque plastic flaps
-  id: PlasticFlapsAirtightOpaque
-  graph: PlasticFlapsGraph
-  startNode: start
-  targetNode: airtightopaqueFlaps
-  category: construction-category-structures
-  placementMode: SnapgridCenter
-  description: An opaque, airtight plastic flap to let items through and keep people out.
   objectType: Structure
   canBuildInImpassable: false
   icon:

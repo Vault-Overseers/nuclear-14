@@ -17,11 +17,13 @@
     - !type:CharacterJobRequirement
       jobs:
         - Bartender
+    - !type:CharacterAgeRequirement
+      min: 21
   items:
     - BoxBeanbag
 
 - type: loadout
-  id: LoadoutServiceBartenderBoxLightRifleRubber
+  id: LoadoutServiceBartenderBoxLightRifle
   category: JobsServiceBartender
   cost: 0
   exclusive: true
@@ -31,8 +33,26 @@
     - !type:CharacterJobRequirement
       jobs:
         - Bartender
+    - !type:CharacterAgeRequirement
+      min: 21
   items:
-    - MagazineBoxLightRifleRubber
+    - MagazineBoxLightRifle
+
+- type: loadout
+  id: LoadoutServiceBartenderBoxRifle
+  category: JobsServiceBartender
+  cost: 0
+  exclusive: true
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutBartenderAmmo
+    - !type:CharacterJobRequirement
+      jobs:
+        - Bartender
+    - !type:CharacterAgeRequirement
+      min: 21
+  items:
+    - MagazineBoxRifle
 
 - type: loadout
   id: LoadoutServiceBartenderShotgunDoubleBarreledRubber
@@ -45,11 +65,13 @@
     - !type:CharacterJobRequirement
       jobs:
         - Bartender
+    - !type:CharacterAgeRequirement
+      min: 21
   items:
     - WeaponShotgunDoubleBarreledRubber
 
 - type: loadout
-  id: LoadoutServiceBartenderMosinRubber
+  id: LoadoutServiceBartenderMosin
   category: JobsServiceBartender
   cost: 0
   canBeHeirloom: true
@@ -59,8 +81,58 @@
     - !type:CharacterJobRequirement
       jobs:
         - Bartender
+    - !type:CharacterAgeRequirement
+      min: 21
   items:
-    - WeaponSniperMosinRubber
+    - WeaponSniperMosin
+
+- type: loadout
+  id: LoadoutServiceBartenderBoxMagnum
+  category: JobsServiceBartender
+  cost: 0
+  exclusive: true
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutBartenderAmmo
+    - !type:CharacterJobRequirement
+      jobs:
+        - Bartender
+    - !type:CharacterAgeRequirement
+      min: 21
+  items:
+    - MagazineBoxMagnum
+
+- type: loadout
+  id: LoadoutServiceBartenderArgenti
+  category: JobsServiceBartender
+  cost: 0
+  exclusive: true
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutBartenderWeapon
+    - !type:CharacterJobRequirement
+      jobs:
+        - Bartender
+    - !type:CharacterAgeRequirement
+      min: 21
+  items:
+    - WeaponRevolverArgenti
+
+- type: loadout
+  id: LoadoutServiceBartenderRepeater
+  category: JobsServiceBartender
+  cost: 0
+  exclusive: true
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutBartenderWeapon
+    - !type:CharacterJobRequirement
+      jobs:
+        - Bartender
+    - !type:CharacterAgeRequirement
+      min: 21
+  items:
+    - WeaponSniperRepeater
 
 # Eyes
 
@@ -116,6 +188,19 @@
 # Mask
 
 # Outer
+- type: loadout
+  id: LoadoutServiceBartenderWinterCoat
+  category: JobsServiceBartender
+  cost: 0
+  requirements:
+  - !type:CharacterItemGroupRequirement
+    group: LoadoutBartenderOuter
+  - !type:CharacterJobRequirement
+    jobs:
+    - Bartender
+  items:
+  - ClothingOuterWinterBar
+
 - type: loadout
   id: LoadoutServiceBartenderArmorDuraVest
   category: JobsServiceBartender

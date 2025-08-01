@@ -30,8 +30,8 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -66,15 +66,11 @@
   - type: Tag
     tags:
     - VimPilot
-  - type: LanguageKnowledge
-    speaks:
-    - Fox
-    understands:
-    - Fox
+  - type: ScentTracker
 
 - type: entity
   name: security dog
-  parent: SimpleMobBase
+  parent: MobCorgi # There isn't a base dog mob, surprisingly.
   id: MobSecDog
   description: Funnily enough, this pig is actually a dog.
   components:
@@ -86,6 +82,7 @@
     description: "Help out the security team by biting the baddies and barking at everything that moves."
   - type: GhostTakeoverAvailable
   - type: CombatMode
+  - type: ScentTracker
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
     baseSprintSpeed : 5.0
@@ -101,8 +98,8 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
-  - type: Physics
   - type: Speech
+    allowedEmotes: ['Bark', 'Snarl', 'Whine', 'Howl', 'Awoo']
     speechVerb: Canine
     speechSounds: Vulpkanin
   - type: Fixtures
@@ -145,8 +142,8 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -179,9 +176,17 @@
     tags:
     - DoorBumpOpener
     - VimPilot
+  - type: Vocal
+    sounds:
+      Unsexed: MobDog
   - type: LanguageKnowledge
     speaks:
     - Dog
     understands:
     - Dog
-    - GalacticCommon
+    - TauCetiBasic
+  - type: Access
+    tags:
+    - Security
+    - Brig
+

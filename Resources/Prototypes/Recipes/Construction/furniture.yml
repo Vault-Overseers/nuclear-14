@@ -597,6 +597,24 @@
 
 #bathroom
 - type: construction
+  name: shower
+  id: Shower
+  graph: Shower
+  startNode: start
+  targetNode: shower
+  category: construction-category-furniture
+  description: A shower, complete with bluespace water.
+  icon:
+    sprite: Structures/Furniture/shower.rsi
+    state: shower
+    objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
   name: toilet
   id: ToiletEmpty
   graph: Toilet
@@ -607,6 +625,41 @@
   icon:
     sprite: Structures/Furniture/toilet.rsi
     state: disposal
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#medical
+- type: construction
+  id: MedicalBed
+  name: medical bed
+  description: A hospital bed for patients to recover in. Resting here provides fairly slow healing.
+  graph: bed
+  startNode: start
+  targetNode: medicalbed
+  category: construction-category-furniture
+  icon:
+    sprite: Structures/Furniture/furniture.rsi
+    state: bed-MED
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: OperatingTable
+  name: operating table
+  description: Used for advanced medical procedures.
+  graph: bed
+  startNode: start
+  targetNode: operatingtable
+  category: construction-category-furniture
+  icon:
+    sprite: Structures/Furniture/Tables/optable.rsi
+    state: operating_table
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -625,23 +678,6 @@
   icon:
     sprite: Structures/Furniture/furniture.rsi
     state: bed
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: MedicalBed
-  name: medical bed
-  description: A hospital bed for patients to recover in. Resting here provides fairly slow healing.
-  graph: bed
-  startNode: start
-  targetNode: medicalbed
-  category: construction-category-furniture
-  icon:
-    sprite: Structures/Furniture/furniture.rsi
-    state: bed-MED
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -732,7 +768,7 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsBlack
   name: black curtains
@@ -762,7 +798,7 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsCyan
   name: cyan curtains
@@ -777,7 +813,7 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsGreen
   name: green curtains
@@ -792,7 +828,7 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsOrange
   name: orange curtains
@@ -807,7 +843,7 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsPink
   name: pink curtains
@@ -822,7 +858,7 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsPurple
   name: purple curtains
@@ -837,7 +873,7 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsRed
   name: red curtains
@@ -896,6 +932,24 @@
   icon:
     sprite: Structures/Wallmounts/noticeboard.rsi
     state: noticeboard
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: Mannequin
+  name: mannequin
+  description: Wooden mannequin designed for clothing displaying
+  graph: Mannequin
+  startNode: start
+  targetNode: mannequin
+  category: construction-category-furniture
+  icon:
+    sprite: Structures/Decoration/mannequin.rsi
+    state: mannequin
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true

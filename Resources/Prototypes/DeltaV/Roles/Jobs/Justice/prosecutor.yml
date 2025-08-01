@@ -3,10 +3,10 @@
   name: job-name-prosecutor
   description: job-description-prosecutor
   playTimeTracker: JobProsecutor
-  setPreference: false
   requirements:
-    - !type:CharacterOverallTimeRequirement
-      min: 36000 # 10 hrs
+    - !type:CharacterEmployerRequirement
+      employers:
+      - NanoTrasen
   startingGear: ProsecutorGear
   icon: "JobIconProsecutor"
   supervisors: job-supervisors-cj
@@ -18,18 +18,18 @@
 
 - type: startingGear
   id: ProsecutorGear
+  subGear:
+  - PassengerPlasmamanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitProsecutor
     neck: ClothingNeckProsecutorbadge
-    back: ClothingBackpackLawyerFilled
+    back: ClothingBackpack
     shoes: ClothingShoesBootsLaceup
     id: ProsecutorPDA
     ears: ClothingHeadsetSecurity
     # TODO add copy of space law
   inhand:
     - BriefcaseBrownFilled
-  innerClothingSkirt: ClothingUniformJumpskirtProsecutor
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
-
-
+  storage:
+    back:
+    - RubberStampLawyer

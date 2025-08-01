@@ -12,6 +12,11 @@
     - Energy
     reflectProb: 0.2
     spread: 90
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 16
+    staminaCost: 45
 
 - type: entity
   parent: CrateBaseWeldable
@@ -28,7 +33,12 @@
     containers:
     - entity_storage
   - type: StaticPrice
-    price: 80
+    price: 100
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 10
+    staminaCost: 30
 
 - type: entity
   parent: CratePlastic
@@ -42,6 +52,11 @@
   - type: AntiRottingContainer
   - type: ExplosionResistance
     damageCoefficient: 0.50
+  - type: Construction
+    graph: CrateFreezer
+    node: done
+    containers:
+    - entity_storage
 
 - type: entity
   parent: CratePlastic
@@ -107,7 +122,7 @@
 - type: entity
   parent: CrateGenericSteel
   id: CrateScience
-  name: epistemics crate # DeltaV - Epistemics Department replacing Science
+  name: epistemics crate
   components:
   - type: Icon
     sprite: Structures/Storage/Crates/science.rsi
@@ -140,7 +155,7 @@
       map: ["enum.StorageVisualLayers.Door"]
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
-      map: ["enum.PaperLabelVisuals.Layer"]  
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: Construction
     graph: WebStructures
     node: crate
@@ -171,7 +186,7 @@
 # Secure Crates
 
 - type: entity
-  parent: CrateBaseSecure
+  parent: [ CrateBaseSecure, BaseRestrictedContraband ]
   id: CrateSecgear
   name: secgear crate
   components:
@@ -211,12 +226,12 @@
   id: CrateChemistrySecure
   name: secure chemistry crate
   components:
-    - type: Icon
-      sprite: Structures/Storage/Crates/chemcrate_secure.rsi
-    - type: Sprite
-      sprite: Structures/Storage/Crates/chemcrate_secure.rsi
-    - type: AccessReader
-      access: [["Chemistry"]]
+  - type: Icon
+    sprite: Structures/Storage/Crates/chemcrate_secure.rsi
+  - type: Sprite
+    sprite: Structures/Storage/Crates/chemcrate_secure.rsi
+  - type: AccessReader
+    access: [["Chemistry"]]
 
 - type: entity
   parent: CrateBaseSecure
@@ -231,7 +246,7 @@
 - type: entity
   parent: CrateBaseSecure
   id: CrateScienceSecure
-  name: secure epistemics crate # DeltaV - Epistemics Department replacing Science
+  name: secure epistemics crate
   components:
   - type: Icon
     sprite: Structures/Storage/Crates/scicrate_secure.rsi
@@ -254,13 +269,25 @@
 
 - type: entity
   parent: CrateBaseSecure
+  id: CrateUranium
+  name: uranium crate
+  components:
+  - type: Icon
+    sprite: Structures/Storage/Crates/uranium.rsi
+  - type: Sprite
+    sprite: Structures/Storage/Crates/uranium.rsi
+  - type: AccessReader
+    access: [["Engineering"], ["Research"]]
+
+- type: entity
+  parent: CrateBaseSecure
   id: CrateSecure
   name: secure crate
   components:
-    - type: Icon
-      sprite: Structures/Storage/Crates/secure.rsi
-    - type: Sprite
-      sprite: Structures/Storage/Crates/secure.rsi
+  - type: Icon
+    sprite: Structures/Storage/Crates/secure.rsi
+  - type: Sprite
+    sprite: Structures/Storage/Crates/secure.rsi
 
 - type: entity
   parent: CrateBaseSecure
@@ -275,7 +302,7 @@
     access: [["Hydroponics"]]
 
 - type: entity
-  parent: CrateBaseSecure
+  parent: CrateBaseSecureReinforced
   id: CrateWeaponSecure
   name: secure weapon crate
   components:
@@ -287,8 +314,8 @@
     access: [["Armory"]]
 
 - type: entity
-  parent: CrateBaseSecure
-  suffix: Armory, Secure
+  parent: [ CrateBaseSecureReinforced, BaseRestrictedContraband ]
+  suffix: Armory, Secure, Reinforced
   id: CrateContrabandStorageSecure
   name: contraband storage crate
   description: An armory access locked crate for storing contraband confiscated from suspects or prisoners.
@@ -326,7 +353,7 @@
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "-0.25,0.625"
-      map: ["enum.PaperLabelVisuals.Layer"]  
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: Icon
     sprite: Structures/Storage/Crates/livestock.rsi
     state: base
@@ -356,7 +383,7 @@
           bounds: "-0.4,-0.4,0.4,0.29"
         density: 135
         mask:
-        - SmallMobMask #this is so they can go under plastic flaps
+        - CrateMask #this is so they can go under plastic flaps
         layer:
         - LargeMobLayer
   - type: Construction
@@ -381,7 +408,7 @@
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "0.0,0.125"
-      map: ["enum.PaperLabelVisuals.Layer"]   
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: Icon
     sprite: Structures/Storage/Crates/cage.rsi
   - type: Destructible
@@ -413,11 +440,11 @@
           bounds: "-0.4,-0.4,0.4,0.29"
         density: 80
         mask:
-        - LargeMobMask
+        - CrateMask
         layer:
         - LargeMobLayer
   - type: StaticPrice
-    price: 60
+    price: 75
 
 - type: entity
   parent: CrateGeneric
@@ -483,7 +510,7 @@
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
     - state: paper
-      map: ["enum.PaperLabelVisuals.Layer"] 
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: Icon
     sprite: Structures/Storage/Crates/coffin.rsi
     state: base
@@ -525,7 +552,7 @@
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "-0.28125,0.625"
-      map: ["enum.PaperLabelVisuals.Layer"] 
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: Icon
     sprite: Structures/Storage/Crates/wooden_grave.rsi
     state: base
@@ -573,7 +600,7 @@
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "-0.3125,0.5625"
-      map: ["enum.PaperLabelVisuals.Layer"] 
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: Icon
     sprite: Structures/Storage/Crates/stone_grave.rsi
     state: base

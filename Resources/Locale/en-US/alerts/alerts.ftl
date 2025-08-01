@@ -4,6 +4,12 @@ alerts-low-oxygen-desc = There is [color=red]not enough oxygen[/color] in the ai
 alerts-low-nitrogen-name = [color=red]Low Nitrogen[/color]
 alerts-low-nitrogen-desc = There is [color=red]not enough nitrogen[/color] in the air you are breathing. Put on [color=green]internals[/color].
 
+alerts-low-plasma-name = [color=red]Low Plasma[/color]
+alerts-low-plasma-desc = There is [color=red]not enough plasma[/color] in the air you are breathing. Put on [color=green]internals[/color].
+
+alerts-high-oxygen-name = [color=red]High Oxygen[/color]
+alerts-high-oxygen-desc = There is [color=red]too much oxygen[/color] in the air you are breathing. Put on [color=green]internals[/color].
+
 alerts-high-toxin-name = [color=red]High Toxin Level[/color]
 alerts-high-toxin-desc = There are [color=red]too many toxins[/color] in the air you are breathing. Put on [color=green]internals[/color] or get away.
 
@@ -26,6 +32,9 @@ alerts-weightless-name = Weightless
 alerts-weightless-desc =
     Gravity has ceased affecting you, and you're floating around aimlessly. Find something sturdy to hold onto, or throw or shoot something in a direction opposite of you.
     Mag-boots or jetpacks would help you move with more control.
+
+alerts-walking-name = Walking
+alerts-walking-desc = Indicates how fast you're moving.
 
 alerts-stunned-name = [color=yellow]Stunned[/color]
 alerts-stunned-desc = You're [color=yellow]stunned[/color]! Something is impairing your ability to move or interact with objects.
@@ -57,9 +66,6 @@ alerts-no-battery-desc = You don't have a battery, rendering you unable to charg
 alerts-internals-name = Toggle internals
 alerts-internals-desc = Toggles your gas tank internals on or off.
 
-alerts-internals-name = Toggle internals
-alerts-internals-desc = Toggles your gas tank internals on or off.
-
 alerts-piloting-name = Piloting Shuttle
 alerts-piloting-desc = You are piloting a shuttle. Click the alert to stop.
 
@@ -82,10 +88,10 @@ alerts-muted-name = Muted
 alerts-muted-desc = You have lost the ability to speak.
 
 alerts-vow-silence-name = Vow of Silence
-alerts-vow-silence-desc = You have taken a vow of silence as part of initiation into the Mystiko Tagma Mimon. Click to break your vow.
+alerts-vow-silence-desc = You have taken a vow forbidding verbal or written communication as part of initiation into the Mystiko Tagma Mimon. Click to break your vow.
 
 alerts-vow-broken-name = Vow Broken
-alerts-vow-broken-desc = You've broken your vows to Mimes everywhere. You can speak, but you've lost your powers for at least 5 entire minutes!!! Click to try and retake your vow.
+alerts-vow-broken-desc = You've broken your vows to Mimes everywhere. You can speak and write, but you've lost your powers for at least 5 entire minutes!!! Click to try and retake your vow.
 
 alerts-pulled-name = Pulled
 alerts-pulled-desc = You're being pulled. Move to break free.
@@ -99,6 +105,9 @@ alerts-bleed-desc = You're [color=red]bleeding[/color].
 alerts-pacified-name = [color=green]Pacified[/color]
 alerts-pacified-desc = You're pacified; you won't be able to harm living creatures.
 
+alerts-adrenaline-name = [color=red]Adrenaline[/color]
+alerts-adrenaline-desc = You're full of adrenaline: pain won't slow you down.
+
 alerts-suit-power-name = Suit Power
 alerts-suit-power-desc = How much power your space ninja suit has.
 
@@ -111,8 +120,8 @@ alerts-revenant-essence-desc = The power of souls. It sustains you and is used f
 alerts-revenant-corporeal-name = Corporeal
 alerts-revenant-corporeal-desc = You have manifested physically. People around you can see and hurt you.
 
-alerts-walking-name = Walking
-alerts-walking-desc = Indicates how fast you're moving.
-
 alerts-offer-name = Offer
 alerts-offer-desc = Someone offers you an item.
+
+alerts-deflecting-name = Deflecting
+alerts-deflecting-desc = You have a chance to deflect incoming projectiles. Standing still or moving slowly will increase this chance.

@@ -6,6 +6,7 @@
   components:
   - type: Speech
     speechSounds: Baritone
+    speechVerb: Oni
   - type: HumanoidAppearance
     species: Oni
   - type: Sprite
@@ -14,8 +15,8 @@
     modifiers:
       coefficients:
         Blunt: 1.35
-        Slash: 1.2
-        Piercing: 1.2
+        Slash: 1.25
+        Piercing: 1.25
         Asphyxiation: 1.35
   - type: Damageable
     damageModifierSet: Oni
@@ -35,18 +36,40 @@
         - MobLayer
   - type: Stamina
     critThreshold: 115
+    decay: 3.45 # 3 base decay multiplied by 1.15 = 3.45
+  - type: TypingIndicator
+    proto: oni
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - TauCetiBasic
     - Nekomimetic
     understands:
-    - GalacticCommon
+    - TauCetiBasic
     - Nekomimetic
+  - type: PotentiaModifier
+    potentiaMultiplier: 0.5
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
 
 - type: entity
   save: false
   name: Urist McOni
   parent: MobHumanDummy
   id: MobOniDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: A dummy oni meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Oni
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

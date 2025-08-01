@@ -1,33 +1,39 @@
-﻿- type: job
+- type: job
   id: ServiceWorker
   name: job-name-serviceworker
   description: job-description-serviceworker
   playTimeTracker: JobServiceWorker
-  requirements:
-    - !type:CharacterOverallTimeRequirement
-      min: 7200 # DeltaV - 2 hours
   startingGear: ServiceWorkerGear
   icon: "JobIconServiceWorker"
   supervisors: job-supervisors-service
-  canBeAntag: true # DeltaV - Can be antagonist
-  antagAdvantage: 1 # DeltaV - Reduced TC: Accesses
   access:
   - Service
   - Maintenance
   extendedAccess:
   - Hydroponics
-  - Bar # DeltaV - moved to extended access
-  - Kitchen # DeltaV - moved to extended access
-  setPreference: false
+  - Bar
+  - Kitchen
+  requirements:
+  - !type:CharacterEmployerRequirement
+    inverted: true
+    employers:
+    - Unemployed
 
 - type: startingGear
   id: ServiceWorkerGear
+  subGear:
+  - ServiceWorkerPlasmamanGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitColorDarkGreen # DeltaV
-    back: ClothingBackpackFilled
+    jumpsuit: ClothingUniformJumpsuitColorDarkGreen
+    back: ClothingBackpack
     shoes: ClothingShoesColorBlack
     id: ServiceWorkerPDA
     ears: ClothingHeadsetService
-  innerClothingSkirt: ClothingUniformJumpskirtColorDarkGreen # DeltaV
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+
+- type: startingGear
+  id: ServiceWorkerPlasmamanGear
+  parent: BasePlasmamanMaskGear
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitColorDarkGreen
+    head: ClothingHeadEnvirohelmColorDarkGreen
+    gloves: ClothingHandsGlovesEnviroglovesColorDarkGreen

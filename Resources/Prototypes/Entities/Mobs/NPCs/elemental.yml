@@ -44,11 +44,10 @@
   - type: Tag
     tags:
     - DoorBumpOpener
-    - ShoesRequiredStepTriggerImmune
   - type: MobState
     allowedStates:
-      - Alive
-      - Dead
+    - Alive
+    - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -73,6 +72,9 @@
   - type: InputMover
   - type: MobMover
   - type: ZombieImmune
+  - type: ProtectedFromStepTriggers
+  - type: Dispellable
+  - type: Fauna # Lavaland Change
 
 - type: entity
   abstract: true
@@ -98,9 +100,17 @@
     baseSprintSpeed : 2.5
   - type: NpcFactionMember
     factions:
-      - SimpleHostile
+    - SimpleHostile
   - type: Damageable
     damageContainer: StructuralInorganic
+  - type: Psionic
+    removable: false
+    roller: false
+    assayFeedback:
+    - orecrab-feedback
+  - type: InnatePsionicPowers
+    powersToAdd:
+    - TelepathyPower
 
 - type: entity
   parent: MobOreCrab
@@ -167,7 +177,7 @@
     attackMemoryLength: 10
   - type: NpcFactionMember
     factions:
-      - SimpleNeutral
+    - SimpleNeutral
   - type: RadiationSource
     intensity: 2
     slope: 0.3
@@ -222,7 +232,7 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  name: Reagent slime
+  name: reagent slime
   id: ReagentSlime
   suffix: Water
   parent: [ MobAdultSlimes, MobCombat ]
@@ -231,6 +241,11 @@
   - type: GhostRole
     prob: 0
     description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -238,9 +253,9 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/elemental.rsi
     layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#75b1f0"
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#75b1f0"
   - type: PointLight
     radius: 2.0
     energy: 3.5
@@ -252,13 +267,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Dead
+      50: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      50: 0.4
+      20: 0.4
   - type: Bloodstream
     bloodReagent: Water
-    chemicalMaxVolume: 100
+    chemicalMaxVolume: 50
   - type: StatusEffects
     allowed:
     - SlowedDown
@@ -269,10 +284,10 @@
     animation: WeaponArcBite
     damage:
       types:
-        Slash: 8
+        Slash: 3
   - type: MeleeChemicalInjector
     solution: bloodstream
-    transferAmount: 5
+    transferAmount: 2
   - type: DamageStateVisuals
     rotate: true
     states:
@@ -282,9 +297,9 @@
         Base: dead
   - type: Tag
     tags:
-      - FootstepSound
-      - CannotSuicide
-      - DoorBumpOpener
+    - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
   - type: NoSlip
   - type: ZombieImmune
   - type: ExaminableSolution
@@ -293,34 +308,56 @@
     solution: bloodstream
   - type: DrainableSolution
     solution: bloodstream
-  - type: CanWalk
+  - type: Psionic
+    roller: false
+    removable: false
+    assayFeedback:
+    - reagent-slime-feedback
+  - type: InnatePsionicPowers
+    powersToAdd:
+    - TelepathyPower
+  - type: Fauna # Lavaland Change
 
 - type: entity
   name: Reagent Slime Spawner
   id: ReagentSlimeSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-        - sprite: Mobs/Aliens/elemental.rsi
-          state: alive
-    - type: RandomSpawner
-      prototypes:
-        - ReagentSlime
-        - ReagentSlimeBeer
-        - ReagentSlimePax
-        - ReagentSlimeNocturine
-        - ReagentSlimeTHC
-        - ReagentSlimeBicaridine
-        - ReagentSlimeToxin
-        - ReagentSlimeNapalm
-        - ReagentSlimeOmnizine
-        - ReagentSlimeMuteToxin
-        - ReagentSlimeNorepinephricAcid
-        - ReagentSlimeEphedrine
-        - ReagentSlimeRobustHarvest
-      chance: 1
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/elemental.rsi
+      state: alive
+  - type: RandomSpawner
+    prototypes:
+    - ReagentSlime
+    - ReagentSlimeBeer
+    - ReagentSlimePax
+    - ReagentSlimeNocturine
+    - ReagentSlimeTHC
+    - ReagentSlimeBicaridine
+    - ReagentSlimeToxin
+    - ReagentSlimeNapalm
+    - ReagentSlimeOmnizine
+    - ReagentSlimeMuteToxin
+    - ReagentSlimeNorepinephricAcid
+    - ReagentSlimeEphedrine
+    - ReagentSlimeRobustHarvest
+    - ReagentSlimeIchor
+    - ReagentSlimeBleach
+    - ReagentSlimeSoap
+    - ReagentSlimeSpacelube
+    - ReagentSlimeBuzzachloricbees
+    - ReagentSlimeWehjuice
+    - ReagentCognizine
+    - ReagentSlimeNecrosol
+    - ReagentSlimeSpaceDrugs
+    - ReagentSlimeUnstableMutagen
+    - ReagentSlimeLead
+    - ReagentSlimechlorinetriflouride
+    - ReagentSlimePotassium
+    - ReagentSlimeLotophagoiOil
+    chance: 1
 
 - type: entity
   id: ReagentSlimeBeer
@@ -335,9 +372,9 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/elemental.rsi
     layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#cfa85f"
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#cfa85f"
 
 - type: entity
   id: ReagentSlimePax
@@ -352,9 +389,9 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/elemental.rsi
     layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#AAAAAA"
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#AAAAAA"
   - type: MeleeChemicalInjector
     solution: bloodstream
     transferAmount: 1
@@ -372,9 +409,9 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/elemental.rsi
     layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#128e80"
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#128e80"
   - type: MeleeChemicalInjector
     solution: bloodstream
     transferAmount: 3
@@ -392,9 +429,9 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/elemental.rsi
     layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#808080"
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#808080"
 
 - type: entity
   id: ReagentSlimeBicaridine
@@ -409,9 +446,9 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/elemental.rsi
     layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#ffaa00"
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#ffaa00"
 
 - type: entity
   id: ReagentSlimeToxin
@@ -426,9 +463,9 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/elemental.rsi
     layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#cf3600"
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#cf3600"
 
 - type: entity
   id: ReagentSlimeNapalm
@@ -443,9 +480,9 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/elemental.rsi
     layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#FA00AF"
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#FA00AF"
 
 - type: entity
   id: ReagentSlimeOmnizine
@@ -460,9 +497,9 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/elemental.rsi
     layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#fcf7f9"
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#fcf7f9"
 
 - type: entity
   id: ReagentSlimeMuteToxin
@@ -477,9 +514,9 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/elemental.rsi
     layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#0f0f0f"
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#0f0f0f"
 
 - type: entity
   id: ReagentSlimeNorepinephricAcid
@@ -494,9 +531,9 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/elemental.rsi
     layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#96a8b5"
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#96a8b5"
 
 - type: entity
   id: ReagentSlimeEphedrine
@@ -511,9 +548,9 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/elemental.rsi
     layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#D2FFFA"
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#D2FFFA"
 
 - type: entity
   id: ReagentSlimeRobustHarvest
@@ -528,6 +565,26 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/elemental.rsi
     layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#3e901c"
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#3e901c"
+
+- type: entity
+  id: ReagentSlimeLotophagoiOil
+  parent: ReagentSlime
+  suffix: Lotophagoi Oil
+  components:
+  - type: Bloodstream
+    bloodReagent: LotophagoiOil
+  - type: PointLight
+    color: "#FFBF00"
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/elemental.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      color: "#3e901c"
+  - type: GhostRole
+    prob: 1 #it's significantly more psionic than the others
+    description: ghost-role-information-angry-slimes-description

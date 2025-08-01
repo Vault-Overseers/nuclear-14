@@ -26,6 +26,7 @@
   - type: Tag
     tags:
       - Meat
+      - Organ
 
 
 - type: entity
@@ -45,6 +46,10 @@
     state: brain
   - type: Organ
     slotId: brain # Shitmed Change
+  - type: Food # Shitmed Change
+    delay: 5
+    forceFeedDelay: 6
+    popupOnEat: true
   - type: Input
     context: "ghost"
   - type: Brain
@@ -55,6 +60,7 @@
   - type: Tag
     tags:
       - Meat
+      - Brain
   - type: SolutionContainerManager
     solutions:
       organ:
@@ -73,7 +79,7 @@
     entries:
       Burger: Brain
       Taco: Brain
-  
+
 - type: entity
   id: OrganHumanEyes
   parent: BaseHumanOrgan
