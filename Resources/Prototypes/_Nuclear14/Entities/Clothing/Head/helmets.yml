@@ -64,10 +64,23 @@
 
 - type: entity
   parent: ClothingHeadBase
+  id: N14ClothingHeadSuitbase
+  abstract: true
+  components:
+  - type: Clothing
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+
+- type: entity
+  parent: ClothingHeadBase
   id: N14ClothingHeadHatBaseHelmetMetal
   name: metal helmet
   abstract: true
-  description: A helmet offering some ballistic protection.
+  description: A metal helmet offering some ballistic protection.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmet.rsi
@@ -76,12 +89,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
+        Blunt: 0.9
+        Slash: 0.9
         Piercing: 0.9
-        Heat: 0.8
-  - type: ClothingSpecialModifier
-    strengthModifier: 1
+        Heat: 0.9
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
 
 - type: entity
   parent: ClothingHeadBase
@@ -93,10 +107,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.8
-        Heat: 0.7
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
 
 - type: entity
   parent: N14ClothingHeadHatBaseHelmetMetal
@@ -108,12 +125,35 @@
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/combathelmet.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/combathelmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+    priceMultiplier: 0.5
+
+- type: entity
+  parent: N14ClothingHeadHatCombatHelmet
+  id: N14ClothingHeadHatCombatHelmetCargo
+  name: combat helmet
+  description: A ballistic helmet of the pre-war era.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+    priceMultiplier: 0
 
 - type: entity
   parent: N14ClothingHeadHatBaseHelmetMK2
   id: N14ClothingHeadHatCombatHelmetMK2
   name: combat helmet MK2
-  description: A advance ballistic helmet of the pre-war era.
+  description: An advanced ballistic helmet of the pre-war era.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/combathelmetmk2.rsi
@@ -121,10 +161,25 @@
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/combathelmetmk2.rsi
 
 - type: entity
+  parent: N14ClothingHeadHatCombatHelmetMK2
+  id: N14ClothingHeadHatCombatHelmetMK2Cargo
+  name: combat helmet MK2
+  description: An advanced ballistic helmet of the pre-war era.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+    priceMultiplier: 0
+
+- type: entity
   parent: ClothingHeadBase
   id: N14ClothingHeadHatBaseHelmetmarine
   name: marine helmet
-  description: A extremely advance combat helmet.
+  description: An extremely advanced combat helmet.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/marinehelmet.rsi
@@ -133,10 +188,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.65
-        Piercing: 0.75
-        Heat: 0.65
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.85
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
 
 # Brotherhood of Steel
 - type: entity
@@ -154,7 +212,7 @@
   parent: N14ClothingHeadHatBaseHelmetMetal
   id: N14ClothingHeadHatBrotherhoodHelmetKnight
   name: Brotherhood of Steel knight helmet
-  description: A helmet worn by knights of the Brotherhood of Steel.
+  description: A helmet worn by Knights of the Brotherhood of Steel.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/brotherhoodhelmetknight.rsi
@@ -165,7 +223,7 @@
   parent: N14ClothingHeadHatBaseHelmetMetal
   id: N14ClothingHeadHatBrotherhoodHelmetCaptain
   name: Brotherhood of Steel captain helmet
-  description: A helmet worn by captains of the Brotherhood of Steel.
+  description: A helmet worn by Captains of the Brotherhood of Steel.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/brotherhoodhelmetcaptain.rsi
@@ -176,7 +234,7 @@
   parent: N14ClothingHeadHatBaseHelmetMK2
   id: N14ClothingHeadHatBrotherhoodHelmetPaladin
   name: Brotherhood of Steel paladin helmet
-  description: A helmet worn by paladins of the Brotherhood of Steel.
+  description: A helmet worn by Paladins of the Brotherhood of Steel.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/brotherhoodhelmetsenior.rsi
@@ -187,7 +245,7 @@
   parent: N14ClothingHeadHatBaseHelmetMetal
   id: N14ClothingHeadHatBrotherhoodHelmetOutcast
   name: Brotherhood of Steel outcast helmet
-  description: A helmet worn by outcasts of the Brotherhood of Steel.
+  description: A helmet worn by Outcasts of the Brotherhood of Steel.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/brotherhoodhelmetoutcast.rsi
@@ -207,44 +265,69 @@
 
 # Enclave
 - type: entity
-  parent: N14ClothingHeadHatBaseHelmetMetal
+  parent: N14ClothingHeadHatBaseHelmetMK2
   id: N14ClothingHeadHatEnclaveHelmet
   name: Enclave helmet
   description: A combat helmet worn by Enclave soldiers.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/enclavehelmet.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/enclavehelmet.rsi
-
-- type: entity
-  parent: N14ClothingHeadHatBaseHelmetMetal
-  id: N14ClothingHeadHatEnclaveHelmetHood
-  name: Enclave hooded helmet
-  description: A combat helmet worn by Enclave soldiers. This one has a hood covering it.
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/enclavehelmethood.rsi
-  - type: Clothing
-    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/enclavehelmethood.rsi
 
 - type: entity
   parent: N14ClothingHeadHatBaseHelmetMK2
+  id: N14ClothingHeadHatEnclaveHelmetHood
+  name: Enclave hooded helmet
+  description: A combat helmet worn by Enclave soldiers. This one has a hood covering it.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/enclavehelmethood.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/enclavehelmethood.rsi
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetmarine
   id: N14ClothingHeadHatEnclaveHelmetMarine
   name: Enclave marine helmet
   description: A marine helmet worn by elite Enclave soldiers.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/enclavehelmetmarine.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/enclavehelmetmarine.rsi
 
-# NCR
+#MARK: NCR
 - type: entity
   parent: N14ClothingHeadHatBaseHelmetMetal
-  id: N14ClothingHeadHatNCRHelmetMetal
-  name: NCR metal helmet
-  description: A rounded NCR helmet offering some protection.
+  id: N14ClothingHeadHatNCRHelmetMetalSnow
+  name: NCR winter metal helmet
+  description: A rounded NCR helmet offering some protection. This one is covered on snow-white camo.
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMetal
+  id: N14ClothingHeadHatNCRHelmetMetalWoods
+  name: NCR woods metal helmet
+  description: A rounded NCR helmet offering some protection. This one is covered on green camo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmet2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmet2.rsi
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMetal
+  id: N14ClothingHeadHatNCRHelmetMetalDesert
+  name: NCR desert metal helmet
+  description: A rounded NCR helmet offering some protection. This one is covered on classic desert camo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmet3.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmet3.rsi
 
 - type: entity
   parent: N14ClothingHeadHatBaseHelmetMetal
@@ -296,7 +379,7 @@
   parent: N14ClothingHeadHatBaseHelmetMetal
   id: N14ClothingHeadHatNCRHelmetMetalMilitaryPolice
   name: NCR metal helmet
-  description: A rounded NCR helmet offering some protection worn by military police.
+  description: A rounded NCR helmet offering some protection, worn by Military Police.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmetmp.rsi
@@ -307,7 +390,7 @@
   parent: N14ClothingHeadHatBaseHelmetMetal
   id: N14ClothingHeadHatNCRHelmetMetalMedic
   name: NCR medic helmet
-  description: A rounded NCR helmet offering some protection worn by field medics.
+  description: A rounded NCR helmet offering some protection, worn by Field Medics.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmetmedic.rsi
@@ -315,10 +398,10 @@
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/ncrhelmetmedic.rsi
 
 - type: entity
-  parent: N14ClothingHeadHatBaseHelmetmarine
+  parent: N14ClothingHeadHatBaseHelmetMK2
   id: N14ClothingHeadHatRangerHelmet
   name: ranger combat helmet
-  description: A helmet offering advanced protection, this one is commonly used by rangers.
+  description: A helmet offering advanced protection, this one is commonly used by Rangers.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/rangerhelmet.rsi
@@ -329,7 +412,7 @@
     - HidesHair
 
 - type: entity
-  parent: N14ClothingHeadHatBaseHelmetmarine
+  parent: N14ClothingHeadHatBaseHelmetMK2
   id: N14ClothingHeadHatRangerHelmetOld
   name: old ranger combat helmet
   description: An old combat helmet, out of use around the time of the war.
@@ -343,7 +426,7 @@
     - HidesHair
 
 - type: entity
-  parent: N14ClothingHeadHatBaseHelmetmarine
+  parent: N14ClothingHeadHatBaseHelmetMK2
   id: N14ClothingHeadHatRangerHelmetDesert
   name: desert ranger combat helmet
   description: An U.S Marine Corps helmet, used by the legendary Desert Rangers.
@@ -357,7 +440,7 @@
     - HidesHair
 
 - type: entity
-  parent: N14ClothingHeadHatBaseHelmetmarine
+  parent: N14ClothingHeadHatBaseHelmetMK2
   id: N14ClothingHeadHatRangerHelmetPrice
   name: spider ranger combat helmet
   description: A customised riot helmet reminiscient of the more advanced riot helmets found in the Divide, sporting purple lenses over the traditional red or green and a pair of red fangs painted over the respirator. The back of the helmet has a the face of an albino spider painted over it.
@@ -371,49 +454,35 @@
     - HidesHair
 
 - type: entity
-  parent: N14ClothingHeadHatBaseHelmetmarine
+  parent: N14ClothingHeadHatBaseHelmetMK2
   id: N14ClothingHeadHatRangerHelmetElite
   name: elite ranger combat helmet
-  description: An old combat helmet seen in the divide, repurposed for higher ranking Rangers.
+  description: An old combat helmet seen in the Divide, repurposed for higher-ranking Rangers.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/rangerhelmetelite.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/rangerhelmetelite.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.4
-        Piercing: 0.5
-        Heat: 0.4
   - type: Tag
     tags:
     - HidesHair
 
 - type: entity
-  parent: N14ClothingHeadHatBaseHelmetmarine
+  parent: N14ClothingHeadHatBaseHelmetMK2
   id: N14ClothingHeadHatRangerHelmetEliteOld
   name: worn elite ranger combat helmet
-  description: An old combat helmet seen in the divide, repurposed for higher ranking Rangers.
+  description: Worn riot helmet from before the war. Faded by time and use, this helmet still sees use as a form of protection for the law bringers of the New California Republic.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/rangerhelmetelite.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/rangerhelmetelite.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.7
-        Slash: 0.6
-        Piercing: 0.7
-        Heat: 0.6
   - type: Tag
     tags:
     - HidesHair
 
 - type: entity
-  parent: N14ClothingHeadHatBaseHelmetmarine
+  parent: N14ClothingHeadHatBaseHelmetMK2
   id: N14ClothingHeadHatRangerHelmetFox
   name: fox ranger combat helmet
   description: A customized and well-worn helmet of riot gear with parts of the suit reinforced with leather armor and slain Centurion armor pieces by the wearer. A sniper's veil is wrapped around the neck.
@@ -427,22 +496,15 @@
     - HidesHair
 
 - type: entity
-  parent: N14ClothingHeadHatBaseHelmetmarine
-  id: N14ClothingHeadHatRangerHelmetEliteModif
+  parent: N14ClothingHeadHatBaseHelmetMK2
+  id: N14ClothingHeadHatRangerHelmetModif
   name: modified ranger combat helmet
-  description: A thicker than average helmet worn by rangers out in the field. This one appears have its mask welded to helmet with some unique modifications.
+  description: A thicker than average helmet worn by rangers out in the field.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/rangerhelmetmodif.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/rangerhelmetmodif.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.7
-        Slash: 0.6
-        Piercing: 0.7
-        Heat: 0.6
   - type: Tag
     tags:
     - HidesHair
@@ -452,7 +514,7 @@
   parent: N14ClothingHeadHatBaseHelmetMetal
   id: N14ClothingHeadHatBrotherhoodMidwestHelmet
   name: midwest BoS helmet
-  description: A modified combat helmet to addapt to the midwest brotherhood needs.
+  description: A modified combat helmet to adapt to the Midwest Brotherhood's needs.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/boshelmet.rsi
@@ -471,6 +533,21 @@
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/boshelmetV2.rsi
 
 - type: entity
+  parent: N14ClothingHeadHatBaseHelmetMK2
+  id: N14ClothingHeadHatBrotherhoodMidwestHelmetRecon
+  name: midwest BoS recon helmet
+  description: A helmet made by the Midwest Brotherhood, expertly designed for both protection and stealth.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/bosreconhelmet.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/bosreconhelmet.rsi
+  - type: Tag
+    tags:
+    - HidesHair
+    - HidesBeard
+
+- type: entity
   parent: ClothingHeadHatLightBase
   id: ClothingHeadBrotherhoodScribeHeadset
   name: scribe headset
@@ -480,3 +557,302 @@
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/bosheadset.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/midwest-brotherhood/bosheadset.rsi
+#  - type: ClothingSpecialModifier
+#    intelligenceModifier: 1
+
+# Washington BoS
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMK2
+  id: N14ClothingHeadHatBrotherhoodHelmetMK3
+  name: BoS helmet MK3
+  description: A helmet continuosly upgraded by the Washington Brotherhood, any pre-war components barely remaining.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/brotherhoodhelmetmk3.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/brotherhoodhelmetmk3.rsi
+  - type: Tag
+    tags:
+    - HidesHair
+
+# Canadian mounties
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMK2
+  id: N14ClothingHeadHatHelmetRCMP
+  name: RCMP combat helmet
+  description: An simple combat helmet painted in black.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/mountiehelmet.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/mountiehelmet.rsi
+  - type: Tag
+    tags:
+    - HidesHair
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMK2
+  id: N14ClothingHeadHatSpecHelmetRCMP
+  name: RCMP specialist helmet
+  description: An simple combat helmet painted in black, this one comes with built-in comms.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/mountiespechelmet.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/mountiespechelmet.rsi
+  - type: Tag
+    tags:
+    - HidesHair
+
+# Chinese renmants
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMetal
+  id: N14ClothingHeadHatChineseHelmet
+  name: chinese helmet
+  description: A chinese rounded green helmet, basic and cheap.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/chinesehelmet.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/chinesehelmet.rsi
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMetal
+  id: N14ClothingHeadHatChineseHelmetMk2
+  name: special ops chinese helmet
+  description: A chinese rounded black helmet with integrated night vision.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/chinesespecialhelmet.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/chinesespecialhelmet.rsi
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMetal
+  id: N14ClothingHeadHatPressHelmet
+  name: prewar reporter helmet
+  description: An old piece of armor once used by the Free Press before the war. Should still offer some protection.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/reporterhelmet.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/reporterhelmet.rsi
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMetal
+  id: N14ClothingHeadHatPrewarMilitaryHelmet
+  name: prewar military helmet
+  description: An old piece of armor once used by the US Army before the end.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/prewarmilitaryhelmet.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/prewarmilitaryhelmet.rsi
+
+- type: entity
+  parent: N14ClothingHeadSuitbase
+  id: N14ClothingHeadHatHelmetRadHelmet
+  name: radiation suit helmet
+  description: A advance helmet used pre war to handle radioactive material.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutradsuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutradsuit.rsi
+  - type: IdentityBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Radiation: 0.75
+  - type: Tag
+    tags:
+    - HidesHair
+    - HidesBeard
+
+- type: entity
+  parent: N14ClothingHeadSuitbase
+  id: N14ClothingHeadHatHelmetFirefighterHelmet
+  name: fire resistant helmet
+  description: A advance helmet used pre war to handle high temperatures.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutfirefighter.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutfirefighter.rsi
+  - type: IdentityBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.75
+  - type: Tag
+    tags:
+    - HidesHair
+    - HidesBeard
+
+- type: entity
+  parent: N14ClothingHeadSuitbase
+  id: N14ClothingHeadHatHelmetSpaceHelmet
+  name: space helmet
+  description: A strange Pre-War helmet, useful for doing moonwalks.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutspacesuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutspacesuit.rsi
+  - type: IdentityBlocker
+  - type: BreathMask
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: Tag
+    tags:
+    - HidesHair
+    - HidesBeard
+
+#Chinese Stealth Suit
+- type: entity
+  parent: [N14ClothingHeadSuitbase, BaseToggleClothing]
+  id: N14ClothingHeadHatHelmetChineseStealthSuitHelmet
+  name: chinese stealth helmet
+  description: the peak of chinese technology.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutchinesestealthsuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutchinesestealthsuit.rsi
+  - type: IdentityBlocker
+  - type: Tag
+    tags:
+    - HidesHair
+    - HidesBeard
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.1
+      lastVisibility: 0.1
+
+- type: entity
+  parent: N14ClothingHeadHatCombatHelmet
+  id: N14Clothingkingoftherats
+  name: Crown of the Rat King
+  description: I care not for Elders, Officers, Shamans, nor Politicians. There is one in the North who is truly worthy of a crown.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/kingoftherats.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/kingoftherats.rsi
+
+
+- type: entity
+  parent: N14ClothingHeadHatBaseHelmetMK2
+  id: N14ClothingHeadHatTribalPowerhelm
+  name: elders heavy helmet
+  description: A relic of the past. Handed down to you.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/tribalpowerhelm.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/tribalpowerhelm.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+  - type: IngestionBlocker
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: N14ClothingHeadHatCombatHelmet
+  id: N14ClothingHeadHatEdlerSkullhelm
+  name: elders skull helmet
+  description: The skull of a mighty beast, worn as a trophy.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/drylander-elder-helm.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/drylander-elder-helm.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+  - type: IngestionBlocker
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: N14ClothingHeadHatCombatHelmet
+  id: N14ClothingHeadHatEldersDamagedSkullHelm
+  name: elders skull helmet
+  description: The skull of a mighty beast, damaged from the battle but still a great trophy.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/drylander-elder-helm-broken.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/drylander-elder-helm-broken.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+  - type: IngestionBlocker
+  - type: Item
+    size: Normal
+
+# Town Guard helmets
+- type: entity
+  parent: ClothingHeadBase
+  id: N14ClothingHeadTownGuardBrodie
+  name: brodie helmet
+  description: A metal helmet offering some protection for the Town's Guard.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/townbrodie.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/townbrodie.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
+  - type: StaticPrice
+    price: 75
+
+- type: entity
+  parent: N14ClothingHeadTownGuardBrodie
+  id: N14ClothingHeadTownGuardBrodieCover
+  name: brodie helmet
+  description: A metal helmet offering some protection for the Town's Guard. This one has a neck cover to offer additional defense against flying shrapnel and the cold.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/townbrodiecover.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/townbrodiecover.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: N14ClothingHeadTownGuardBrodie
+  id: N14ClothingHeadTownGuardBrodieVisor
+  name: brodie helmet
+  description: A metal helmet offering some protection for the Town's Guard. This one has a visor to protect the eyes from direct damage.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/townriothelmet.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/townriothelmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9

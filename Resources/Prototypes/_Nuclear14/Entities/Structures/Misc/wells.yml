@@ -60,17 +60,15 @@
         - LowImpassable
   - type: SolutionContainerManager
     solutions:
-      drainBuffer:
-        maxVol: 100
-      tank:
+      well:
         reagents:
         - ReagentId: Water
           Quantity: 500
   - type: DrainableSolution
-    solution: tank
+    solution: well
   - type: ReagentTank
   - type: SolutionRegeneration
-    solution: tank
+    solution: well
     generated:
       reagents:
       - ReagentId: Water
@@ -83,17 +81,15 @@
   components:
   - type: SolutionContainerManager
     solutions:
-      drainBuffer:
-        maxVol: 100
-      tank:
+      well:
         reagents:
-        - ReagentId: Water
+        - ReagentId: WaterDirty
           Quantity: 500
   - type: SolutionRegeneration
-    solution: tank
+    solution: well
     generated:
       reagents:
-      - ReagentId: Water
+      - ReagentId: WaterDirty
         Quantity: 1
 
 - type: entity
@@ -103,15 +99,13 @@
   components:
   - type: SolutionContainerManager
     solutions:
-      drainBuffer:
-        maxVol: 100
-      tank:
+      well:
         reagents:
-        - ReagentId: Water
+        - ReagentId: WaterIrradiated
           Quantity: 500
   - type: SolutionRegeneration
-    solution: tank
+    solution: well
     generated:
       reagents:
-      - ReagentId: Water
+      - ReagentId: WaterIrradiated
         Quantity: 1

@@ -1,25 +1,33 @@
 using System.Numerics;
 using System.Threading.Tasks;
-using Content.Shared.Decals;
 using Content.Shared.Procedural;
 using Content.Shared.Procedural.DungeonGenerators;
+using Content.Shared.Whitelist;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Procedural;
+namespace Content.Server.Procedural.DungeonJob;
 
 public sealed partial class DungeonJob
 {
-    private async Task<Dungeon> GeneratePrefabDungeon(PrefabDunGen prefab, EntityUid gridUid, MapGridComponent grid, int seed)
+    /// <summary>
+    /// <see cref="PrefabDunGen"/>
+    /// </summary>
+    private async Task<Dungeon> GeneratePrefabDunGen(Vector2i position, DungeonData data, PrefabDunGen prefab, HashSet<Vector2i> reservedTiles, Random random)
     {
-        var random = new Random(seed);
-        var preset = prefab.Presets[random.Next(prefab.Presets.Count)];
-        var gen = _prototype.Index<DungeonPresetPrototype>(preset);
+        if (!data.Tiles.TryGetValue(DungeonDataKey.FallbackTile, out var tileProto) ||
+            !data.Whitelists.TryGetValue(DungeonDataKey.Rooms, out var roomWhitelist))
+        {
+            LogDataError(typeof(PrefabDunGen));
+            return Dungeon.Empty;
+        }
 
-        var dungeonRotation = _dungeon.GetDungeonRotation(seed);
-        var dungeonTransform = Matrix3Helpers.CreateTransform(_position, dungeonRotation);
+        var preset = prefab.Presets[random.Next(prefab.Presets.Count)];
+        var gen = _prototype.Index(preset);
+
+        var dungeonRotation = _dungeon.GetDungeonRotation(random.Next());
+        var dungeonTransform = Matrix3Helpers.CreateTransform(position, dungeonRotation);
         var roomPackProtos = new Dictionary<Vector2i, List<DungeonRoomPackPrototype>>();
 
         foreach (var pack in _prototype.EnumeratePrototypes<DungeonRoomPackPrototype>())
@@ -42,12 +50,15 @@ public sealed partial class DungeonJob
         {
             var whitelisted = false;
 
-            foreach (var tag in prefab.RoomWhitelist)
+            if (roomWhitelist?.Tags != null)
             {
-                if (proto.Tags.Contains(tag))
+                foreach (var tag in roomWhitelist.Tags)
                 {
-                    whitelisted = true;
-                    break;
+                    if (proto.Tags.Contains(tag))
+                    {
+                        whitelisted = true;
+                        break;
+                    }
                 }
             }
 
@@ -182,12 +193,16 @@ public sealed partial class DungeonJob
                         {
                             for (var y = roomSize.Bottom; y < roomSize.Top; y++)
                             {
-                                var index = Vector2.Transform(new Vector2(x, y) + grid.TileSizeHalfVector - packCenter, matty).Floored();
-                                tiles.Add((index, new Tile(_tileDefManager["FloorPlanetGrass"].TileId)));
+                                var index = Vector2.Transform(new Vector2(x, y) + _grid.TileSizeHalfVector - packCenter, matty).Floored();
+
+                                if (reservedTiles.Contains(index))
+                                    continue;
+
+                                tiles.Add((index, new Tile(_tileDefManager[tileProto].TileId)));
                             }
                         }
 
-                        grid.SetTiles(tiles);
+                        _maps.SetTiles(_gridUid, _grid, tiles);
                         tiles.Clear();
                         _sawmill.Error($"Unable to find room variant for {roomDimensions}, leaving empty.");
                         continue;
@@ -215,12 +230,12 @@ public sealed partial class DungeonJob
                 var dungeonMatty = Matrix3x2.Multiply(matty, dungeonTransform);
 
                 // The expensive bit yippy.
-                _dungeon.SpawnRoom(gridUid, grid, dungeonMatty, room);
+                _dungeon.SpawnRoom(_gridUid, _grid, dungeonMatty, room, reservedTiles);
 
-                var roomCenter = (room.Offset + room.Size / 2f) * grid.TileSize;
+                var roomCenter = (room.Offset + room.Size / 2f) * _grid.TileSize;
                 var roomTiles = new HashSet<Vector2i>(room.Size.X * room.Size.Y);
                 var exterior = new HashSet<Vector2i>(room.Size.X * 2 + room.Size.Y * 2);
-                var tileOffset = -roomCenter + grid.TileSizeHalfVector;
+                var tileOffset = -roomCenter + _grid.TileSizeHalfVector;
                 Box2i? mapBounds = null;
 
                 for (var x = -1; x <= room.Size.X; x++)
@@ -232,8 +247,12 @@ public sealed partial class DungeonJob
                             continue;
                         }
 
-                        var tilePos = Vector2.Transform(new Vector2i(x + room.Offset.X, y + room.Offset.Y) + tileOffset, dungeonMatty);
-                        exterior.Add(tilePos.Floored());
+                        var tilePos = Vector2.Transform(new Vector2i(x + room.Offset.X, y + room.Offset.Y) + tileOffset, dungeonMatty).Floored();
+
+                        if (reservedTiles.Contains(tilePos))
+                            continue;
+
+                        exterior.Add(tilePos);
                     }
                 }
 
@@ -249,16 +268,18 @@ public sealed partial class DungeonJob
                         roomTiles.Add(tileIndex);
 
                         mapBounds = mapBounds?.Union(tileIndex) ?? new Box2i(tileIndex, tileIndex);
-                        center += tilePos + grid.TileSizeHalfVector;
+                        center += tilePos + _grid.TileSizeHalfVector;
                     }
                 }
 
                 center /= roomTiles.Count;
 
-                dungeon.Rooms.Add(new DungeonRoom(roomTiles, center, mapBounds!.Value, exterior));
+                dungeon.AddRoom(new DungeonRoom(roomTiles, center, mapBounds!.Value, exterior));
 
-                await SuspendIfOutOfTime();
-                ValidateResume();
+                await SuspendDungeon();
+
+                if (!ValidateResume())
+                    return Dungeon.Empty;
             }
         }
 
@@ -267,20 +288,16 @@ public sealed partial class DungeonJob
 
         foreach (var room in dungeon.Rooms)
         {
-            dungeon.RoomTiles.UnionWith(room.Tiles);
-            dungeon.RoomExteriorTiles.UnionWith(room.Exterior);
+            dungeonCenter += room.Center;
+            SetDungeonEntrance(dungeon, room, reservedTiles, random);
         }
 
-        foreach (var room in dungeon.Rooms)
-        {
-            dungeonCenter += room.Center;
-            SetDungeonEntrance(dungeon, room, random);
-        }
+        dungeon.Rebuild();
 
         return dungeon;
     }
 
-    private void SetDungeonEntrance(Dungeon dungeon, DungeonRoom room, Random random)
+    private void SetDungeonEntrance(Dungeon dungeon, DungeonRoom room, HashSet<Vector2i> reservedTiles, Random random)
     {
         // TODO: Move to dungeonsystem.
 
@@ -323,8 +340,10 @@ public sealed partial class DungeonJob
                     continue;
                 }
 
+                if (reservedTiles.Contains(entrancePos))
+                    continue;
+
                 room.Entrances.Add(entrancePos);
-                dungeon.Entrances.Add(entrancePos);
                 break;
             }
         }

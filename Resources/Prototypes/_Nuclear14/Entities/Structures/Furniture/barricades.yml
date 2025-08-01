@@ -146,6 +146,28 @@
       path: /Audio/Effects/fence_rattle1.ogg
     launchForwardsMultiplier: 0
     paralyzeTime: 0
+
+- type: entity
+  parent: N14BarricadeSandbagSingle
+  id: N14BarricadeMetal
+  name: metal barricade
+  description: A metal fortification.
+  suffix: black
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Furniture/ms13_barricades.rsi
+    state: black
+  - type: Damageable
+    damageModifierSet: Metallic
+    damageContainer: Inorganic
+    
+- type: entity
+  parent: N14BarricadeMetal
+  id: N14BarricadeMetalGreen
+  suffix: green
+  components:
+  - type: Sprite
+    state: green
     
 - type: entity
   parent: N14DecorFloorWorldBase

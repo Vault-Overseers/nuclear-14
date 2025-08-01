@@ -190,7 +190,7 @@ public sealed partial class CloningSystem
         }
 
         if (!HasComp<EmaggedComponent>(uid))
-            _material.SpawnMultipleFromMaterial(_random.Next(1, (int) (clonePod.UsedBiomass / 2.5)), clonePod.RequiredMaterial, Transform(uid).Coordinates);
+            _material.SpawnMultipleFromMaterial(_random.Next(1, Math.Max(1, (int) (clonePod.UsedBiomass / 2.5))), clonePod.RequiredMaterial, Transform(uid).Coordinates);
 
         clonePod.UsedBiomass = 0;
         clonePod.ActivelyCloning = false;
@@ -326,8 +326,10 @@ public sealed partial class CloningSystem
             if (_config.GetCVar(CCVars.CloningPreserveFlavorText))
                 pref = pref.WithFlavorText(flavorText);
 
-            _humanoidSystem.LoadProfile(mob, pref);
+            _humanoidSystem.LoadProfile(mob, pref, loadExtensions: true, generateLoadouts: false);
+            return;
         }
+        _humanoidSystem.LoadProfile(mob, pref, loadExtensions: true, generateLoadouts: false);
     }
 
     /// <summary>

@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Shared.Light.Components;
 using Content.Shared.Weather;
 using Robust.Client.Graphics;
 using Robust.Shared.Map.Components;
@@ -13,8 +12,6 @@ public sealed partial class StencilOverlay
 
     private void DrawWeather(in OverlayDrawArgs args, WeatherPrototype weatherProto, float alpha, Matrix3x2 invMatrix)
     {
-        if (weatherProto.Sprite == null)
-            return;
         var worldHandle = args.WorldHandle;
         var mapId = args.MapId;
         var worldAABB = args.WorldAABB;
@@ -37,12 +34,11 @@ public sealed partial class StencilOverlay
                 var matrix = _transform.GetWorldMatrix(grid, xformQuery);
                 var matty =  Matrix3x2.Multiply(matrix, invMatrix);
                 worldHandle.SetTransform(matty);
-                _entManager.TryGetComponent(grid.Owner, out RoofComponent? roofComp);
 
                 foreach (var tile in grid.Comp.GetTilesIntersecting(worldAABB))
                 {
                     // Ignored tiles for stencil
-                    if (_weather.CanWeatherAffect(grid.Owner, grid, tile, roofComp))
+                    if (_weather.CanWeatherAffect(grid.Owner, grid, tile))
                     {
                         continue;
                     }

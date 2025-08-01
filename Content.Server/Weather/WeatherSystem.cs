@@ -4,7 +4,6 @@ using Content.Shared.Weather;
 using Robust.Shared.Console;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
-using System.Linq;
 
 namespace Content.Server.Weather;
 
@@ -34,50 +33,58 @@ public sealed class WeatherSystem : SharedWeatherSystem
     {
         if (args.Length < 2)
         {
-            shell.WriteError(Loc.GetString("cmd-weather-error-no-arguments"));
+            shell.WriteError($"A");
             return;
         }
 
         if (!int.TryParse(args[0], out var mapInt))
+        {
             return;
+        }
 
         var mapId = new MapId(mapInt);
 
         if (!MapManager.MapExists(mapId))
-            return;
-
-        if (!_mapSystem.TryGetMap(mapId, out var mapUid))
-            return;
-
-        var weatherComp = EnsureComp<WeatherComponent>(mapUid.Value);
-
-        //Weather Proto parsing
-        WeatherPrototype? weather = null;
-        if (!args[1].Equals("null"))
         {
-            if (!ProtoMan.TryIndex(args[1], out weather))
-            {
-                shell.WriteError(Loc.GetString("cmd-weather-error-unknown-proto"));
-                return;
-            }
+            return;
         }
 
-        //Time parsing
         TimeSpan? endTime = null;
+
         if (args.Length == 3)
         {
-            var curTime = Timing.CurTime;
             if (int.TryParse(args[2], out var durationInt))
             {
+                var curTime = Timing.CurTime;
+                var maxTime = TimeSpan.MaxValue;
+
+                // If it's already running then just fade out with how much time we're into the weather.
+                if (_mapSystem.TryGetMap(mapId, out var mapUid) &&
+                    TryComp<WeatherComponent>(mapUid, out var weatherComp) &&
+                    weatherComp.Weather.TryGetValue(args[1], out var existing))
+                {
+                    maxTime = curTime - existing.StartTime;
+                }
+
                 endTime = curTime + TimeSpan.FromSeconds(durationInt);
-            }
-            else
-            {
-                shell.WriteError(Loc.GetString("cmd-weather-error-wrong-time"));
+
+                if (endTime > maxTime)
+                    endTime = maxTime;
             }
         }
 
-        SetWeather(mapId, weather, endTime);
+        if (args[1].Equals("null"))
+        {
+            SetWeather(mapId, null, endTime);
+        }
+        else if (ProtoMan.TryIndex<WeatherPrototype>(args[1], out var weatherProto))
+        {
+            SetWeather(mapId, weatherProto, endTime);
+        }
+        else
+        {
+            shell.WriteError($"Unable to parse weather prototype");
+        }
     }
 
     private CompletionResult WeatherCompletion(IConsoleShell shell, string[] args)
@@ -86,7 +93,6 @@ public sealed class WeatherSystem : SharedWeatherSystem
             return CompletionResult.FromHintOptions(CompletionHelper.MapIds(EntityManager), "Map Id");
 
         var a = CompletionHelper.PrototypeIDs<WeatherPrototype>(true, ProtoMan);
-        var b = a.Concat(new[] { new CompletionOption("null", Loc.GetString("cmd-weather-null")) });
-        return CompletionResult.FromHintOptions(b, Loc.GetString("cmd-weather-hint"));
+        return CompletionResult.FromHintOptions(a, Loc.GetString("cmd-weather-hint"));
     }
 }

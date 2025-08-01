@@ -1,5 +1,5 @@
 # See basemob.yml for parent entities
-#MARK: Molerat #Oh hi Mark.
+# Molerat #Oh hi Mark.
 - type: entity
   name: molerat
   id: N14MobMolerat
@@ -51,20 +51,98 @@
     damage:
       groups:
         Brute: 3
-  - type: Reproductive
-    breedChance: 0.05
-    birthPopup: reproductive-birth-popup
-    makeOffspringInfant: false
-    partnerWhitelist:
-      tags:
-      - Molerat
-    offspring:
-    - id: N14MobMolerat
-      maxAmount: 1
-  - type: ReproductivePartner
-  - type: Tag
-    tags:
-    - Molerat
+ #- type: Reproductive
+   #breedChance: 0.05
+   #birthPopup: reproductive-birth-popup
+   #makeOffspringInfant: false
+   #partnerWhitelist:
+     # tags:
+    #  - Molerat
+   #offspring:
+   #- id: N14MobMolerat
+     #maxAmount: 1
+ #- type: ReproductivePartner
+ # - type: Tag
+ #   tags:
+#    - Molerat
+  # - type: NPCTamingOnTouchBehaviour
+    # follow: true
+    # persistent: true
+    # tameChance: 0.5
+    # oneTry: false
+    # successPopup: This pet is your friend now!
+    # deniedPopup: This pet refused to be your friend.
+    # whitelist:
+      # components:
+      # - HumanoidAppearance
+
+- type: entity
+  name: pigrat
+  id: N14MobPigrat
+  parent: N14MobBaseHostile
+  description: Part pig, part rat, full pest. Watch out for the teeth.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: pigrat
+      sprite: _Nuclear14/Mobs/Animals/pigrat.rsi
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.20
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: pigrat
+      Critical:
+        Base: pigrat
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 60
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 3
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatPigrat
+      amount: 3
+ #- type: Reproductive
+   #breedChance: 0.05
+   #birthPopup: reproductive-birth-popup
+   #makeOffspringInfant: false
+   #partnerWhitelist:
+    #  tags:
+    #  - Pigrat
+   #offspring:
+  #- id: N14MobPigrat
+     #maxAmount: 1
+ #- type: ReproductivePartner
+ #- type: Tag
+ #   tags:
+ #   - Pigrat
 
 #MARK: Feral Dog
 - type: entity
@@ -80,8 +158,8 @@
       state: dogferal-1
       sprite: _Nuclear14/Mobs/Animals/dogferal.rsi
   - type: MovementSpeedModifier
-    baseWalkSpeed : 5
-    baseSprintSpeed : 6
+    baseWalkSpeed : 2.75
+    baseSprintSpeed : 5.5
   - type: Fixtures
     fixtures:
       fix1:
@@ -116,305 +194,31 @@
     damage:
       groups:
         Brute: 5
-  - type: Speech
-    speechVerb: Canine
-    speechSounds: Vulpkanin
-  - type: Reproductive
-    breedChance: 0.05
-    birthPopup: reproductive-birth-popup
-    makeOffspringInfant: false
-    partnerWhitelist:
-      tags:
-      - DogFeral
-    offspring:
-    - id: N14MobDogFeral
-      maxAmount: 1
-  - type: ReproductivePartner
-  - type: Tag
-    tags:
-    - DogFeral
+ #- type: Reproductive
+   #breedChance: 0.05
+   #birthPopup: reproductive-birth-popup
+   #makeOffspringInfant: false
+   #partnerWhitelist:
+     # tags:
+    # - DogFeral
+   #offspring:
+   #- id: N14MobDogFeral
+     #maxAmount: 1
+ #- type: ReproductivePartner
+ #- type: Tag
+ #   tags:
+   # - DogFeral
 
-#MARK: Gecko
+# Yao Guai
 - type: entity
-  name: gecko
-  id: N14MobGecko
-  parent: N14MobBaseHostileScaley
-  description: Looks like a dinosaur. The bite is worse than the claws.
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: gecko
-      sprite: _Nuclear14/Mobs/Animals/gecko.rsi
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 4
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-            radius: 0.3
-        density: 20
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      100: Dead
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: gecko
-      Critical:
-        Base: gecko
-      Dead:
-        Base: dead
-  - type: MeleeWeapon
-    altDisarm: false
-    hidden: true
-    soundHit:
-        path: /Audio/Effects/bite.ogg
-    angle: 60
-    animation: WeaponArcBite
-    wideAnimation: WeaponArcBite
-    damage:
-      types:
-        Slash: 5
-  - type: Butcherable
-    spawned:
-    - id: N14FoodMeatGecko
-      amount: 3
-    - id: N14MaterialRawLeather1
-      amount: 1
-  - type: Reproductive
-    breedChance: 0.05
-    birthPopup: reproductive-laid-egg-popup
-    makeOffspringInfant: false
-    partnerWhitelist:
-      tags:
-      - Gecko
-    offspring:
-    - id: N14FoodEggGeckoFertilized
-      maxAmount: 3
-  - type: ReproductivePartner
-  - type: EggLayer
-    eggSpawn:
-    - id: N14FoodEggGecko
-  - type: Tag
-    tags:
-    - Gecko
-
-#MARK: Nightstalker Cub
-- type: entity
-  name: nightstalker cub
-  id: N14MobNightstalkerCub
-  parent: N14MobBaseHostile
-  description: Is it a coyote? Why does it have a rattler... This one is small.
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: nightstalker
-      sprite: _Nuclear14/Mobs/Animals/nightstalkercub.rsi
-  - type: Bloodstream
-    bloodMaxVolume: 30
-    bloodReagent: NightstalkerBlood
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.5
-    baseSprintSpeed : 4.5
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-            radius: 0.3
-        density: 20
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: MobState
-    allowedStates:
-      - Alive
-      - Critical
-      - Dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      100: Critical
-      150: Dead
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: nightstalker
-      Critical:
-        Base: dead
-      Dead:
-        Base: dead
-  - type: MeleeWeapon
-    altDisarm: false
-    hidden: true
-    soundHit:
-        path: /Audio/Effects/bite.ogg
-    angle: 60
-    animation: WeaponArcBite
-    wideAnimation: WeaponArcBite
-    damage:
-      groups:
-        Brute: 1
-      types:
-        Piercing: 4
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        maxVol: 2.5
-        reagents:
-        - ReagentId: NightstalkerVenom
-          Quantity: 2.5
-      udder:
-        maxVol: 5
-        reagents:
-        - ReagentId: NightstalkerVenom
-          Quantity: 5
-  - type: Speech
-    speechVerb: Canine
-    speechSounds: Vulpkanin
-  - type: Udder
-    reagentId: NightstalkerVenom
-    quantityPerUpdate: 1
-    growthDelay: 30
-    hungerUsage: 2
-  - type: SolutionRegeneration
-    solution: melee
-    generated:
-      reagents:
-      - ReagentId: NightstalkerVenom
-        Quantity: 0.1
-
-#MARK: Nightstalker
-- type: entity
-  name: nightstalker
-  id: N14MobNightstalker
-  parent: N14MobBaseHostile
-  description: Is it a coyote? Why does it have a rattler...
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: nightstalker-1
-      sprite: _Nuclear14/Mobs/Animals/nightstalker.rsi
-  - type: Bloodstream
-    bloodMaxVolume: 50
-    bloodReagent: NightstalkerBlood
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.5
-    baseSprintSpeed : 5
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-            radius: 0.20
-        density: 20
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: MobState
-    allowedStates:
-      - Alive
-      - Critical
-      - Dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      150: Critical
-      200: Dead
-  - type: Butcherable
-    spawned:
-    - id: N14MaterialNightstalkerPelt
-      amount: 1
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: nightstalker-1
-      Critical:
-        Base: dead
-      Dead:
-        Base: dead
-  - type: MeleeWeapon
-    altDisarm: false
-    hidden: true
-    soundHit:
-        path: /Audio/Effects/bite.ogg
-    angle: 60
-    animation: WeaponArcBite
-    wideAnimation: WeaponArcBite
-    damage:
-      groups:
-        Brute: 3
-      types:
-        Piercing: 5
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        maxVol: 10
-        reagents:
-        - ReagentId: NightstalkerVenom
-          Quantity: 10
-      udder:
-        maxVol: 10
-        reagents:
-        - ReagentId: NightstalkerVenom
-          Quantity: 10
-  - type: Udder
-    reagentId: NightstalkerVenom
-    quantityPerUpdate: 1
-    growthDelay: 30
-    hungerUsage: 2
-  - type: SolutionRegeneration
-    solution: melee
-    generated:
-      reagents:
-      - ReagentId: NightstalkerVenom
-        Quantity: 0.25
-  - type: MeleeChemicalInjector
-    solution: melee
-    transferAmount: 1.5
-  - type: Speech
-    speechVerb: Canine
-    speechSounds: Vulpkanin
-  - type: Reproductive
-    breedChance: 0.05
-    birthPopup: reproductive-laid-egg-popup
-    makeOffspringInfant: false
-    partnerWhitelist:
-      tags:
-      - Nightstalker
-    offspring:
-    - id: N14FoodEggNightstalkerFertilized
-      maxAmount: 3
-  - type: ReproductivePartner
-  - type: EggLayer
-    eggSpawn:
-    - id: N14FoodEggNightstalker
-  - type: Tag
-    tags:
-    - Nightstalker
-
-#MARK: Yao Guai
-- type: entity
-  name: yao guai
+  name: Yao Guai
   id: N14MobYaoguai
   parent: N14MobBaseHostile
   description: An angry bear... but uglier, meaner, and with bigger claws.
   components:
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: N14ToughAnimal
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -426,7 +230,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-            radius: 0.49
+            radius: 0.40
         density: 100
         mask:
         - MobMask
@@ -435,13 +239,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      550: Dead
+      300: Dead
   - type: Stamina
     critThreshold: 250
   - type: SlowOnDamage
     speedModifierThresholds:
-      275: 0.7
-      450: 0.5
+      100: 1.05
+      250: 1.1
+      400: 1.2
   - type: Butcherable
     spawned:
     - id: N14MaterialYaoguaiHide
@@ -467,225 +272,26 @@
     damage:
       types:
         Slash: 15
-        Structural: 5
+        Blunt: 5
     range: 1.25
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 4.75
   - type: NoSlip
-  - type: Reproductive
-    breedChance: 0.05
-    birthPopup: reproductive-birth-popup
-    makeOffspringInfant: false
-    partnerWhitelist:
-      tags:
-      - Yaoguai
-    offspring:
-    - id: N14MobYaoguai
-      maxAmount: 1
-  - type: ReproductivePartner
-  - type: Tag
-    tags:
-    - Yaoguai
-
-#MARK:Scaley Animals
-#MARK: Deathclaw
-- type: entity
-  name: deathclaw
-  id: N14MobDeathclaw
-  parent: N14MobBaseHostileScaley
-  description: Look at those claws.
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: deathclaw
-      sprite: _Nuclear14/Mobs/Animals/deathclaw.rsi
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-            radius: 0.4 # TODO: Test this can fit through doors
-        density: 100
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: MobState
-    allowedStates:
-      - Alive
-      - Critical
-      - Dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      500: Critical
-      600: Dead
-  - type: Stamina
-    critThreshold: 250
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      250: 0.7
-      400: 0.5
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: deathclaw
-      Critical:
-        Base: crit
-      Dead:
-        Base: dead
-  - type: MeleeWeapon
-    altDisarm: false
-    hidden: true
-    soundHit:
-      collection: AlienClaw
-    angle: 60
-    animation: WeaponArcClaw
-    wideAnimation: WeaponArcClaw
-    damage:
-      types:
-        Slash: 15
-        Structural: 5
-    range: 1.75
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 5
-  - type: Hands
-  - type: Puller
-  - type: Tool
-    speed: 1.5
-    qualities:
-      - Prying
-  - type: Prying
-    pryPowered: !type:Bool
-        true
-    force: !type:Bool
-      true
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-  - type: Insulated
-  # - type: GhostRole
-    # prob: 0.5
-    # makeSentient: true
-    # name: deathclaw
-    # description: You're a smart killer. Use tactics to hunt and stalk.
-  - type: NoSlip
-  - type: Reproductive
-    breedChance: 0.05
-    birthPopup: reproductive-laid-egg-popup
-    makeOffspringInfant: false
-    partnerWhitelist:
-      tags:
-      - Deathclaw
-    offspring:
-    - id: N14FoodEggDeathclawFertilized
-      maxAmount: 1
-  - type: ReproductivePartner
-  - type: EggLayer
-    eggSpawn:
-    - id: N14FoodEggDeathclaw
-  - type: Tag
-    tags:
-    - Deathclaw
-  - type: Butcherable
-    spawned:
-    - id: N14FoodMeatRadRaw
-      amount: 8
-    - id: N14MaterialRawLeather1
-      amount: 6
-
-#MARK: Albino Deathclaw
-- type: entity
-  name: albino deathclaw
-  id: N14MobDeathclawAlbino
-  parent: N14MobDeathclaw
-  description: Look at those white claws.
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: deathclawalbino
-      sprite: _Nuclear14/Mobs/Animals/deathclawalbino.rsi
-  - type: MeleeWeapon
-    altDisarm: false
-    hidden: true
-    soundHit:
-      collection: AlienClaw
-    angle: 60
-    animation: WeaponArcClaw
-    wideAnimation: WeaponArcClaw
-    damage:
-      types:
-        Slash: 22
-        Structural: 10
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      750: Critical
-      900: Dead
-  - type: Stamina
-    critThreshold: 350
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: deathclaw
-      Critical:
-        Base: dead # TODO: Crit sprite
-      Dead:
-        Base: dead
-
-- type: entity
-  name: deathclaw maid
-  id: N14MobDeathclawMaid
-  parent: N14MobDeathclaw
-  description: They put maid outfit on that thing?!
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: maidclaw
-      sprite: _Nuclear14/Mobs/Animals/maidclaw.rsi
-  - type: Reproductive
-    breedChance: 0.15
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: maidclaw
-      Critical:
-        Base: crit
-      Dead:
-        Base: dead
-
-#MARK: Metal Deathclaw
-- type: entity
-  name: metal deathclaw
-  id: N14MobDeathclawMetal
-  parent: N14MobDeathclawAlbino
-  description: They put armor on that thing?!
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: deathclawmetal
-      sprite: _Nuclear14/Mobs/Animals/deathclawmetal.rsi
-  - type: MeleeWeapon
-    altDisarm: false
-    hidden: true
-    soundHit:
-      collection: AlienClaw
-    angle: 60
-    animation: WeaponArcClaw
-    wideAnimation: WeaponArcClaw
-    damage:
-      types:
-        Slash: 20
-        Structural: 10
+ #- type: Reproductive
+   #breedChance: 0.05
+   #birthPopup: reproductive-birth-popup
+   #makeOffspringInfant: false
+   #partnerWhitelist:
+  #    tags:
+  #    - Yaoguai
+   #offspring:
+   #- id: N14MobYaoguai
+     #maxAmount: 1
+ #- type: ReproductivePartner
+ #- type: Tag
+ #   tags:
+  #  - Yaoguai
 
 #MARK: Passive Animals
 #MARK: Brahmin
@@ -697,7 +303,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    scale: 1.5, 1.5
+    scale: 1.25, 1.25
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: brahmin-2
@@ -729,7 +335,7 @@
           Quantity: 30
   - type: Udder
     reagentId: N14MilkBrahmin
-    quantityperUpdate: 25
+    quantityPerUpdate: 25
     growthDelay: 60
     hungerUsage: 10
   - type: Damageable
@@ -799,7 +405,6 @@
       types:
         Blunt: 8
         Slash: 2
-        Structural: 8
   - type: SolutionContainerManager
     solutions:
       udder:
@@ -809,7 +414,7 @@
           Quantity: 30
   - type: Udder
     reagentId: N14MilkBighorner
-    quantityperUpdate: 25
+    quantityPerUpdate: 25
     growthDelay: 90
     hungerUsage: 7.5
   - type: TimedSpawner
@@ -870,7 +475,6 @@
       types:
         Blunt: 6
         Slash: 2
-        Structural: 8
   - type: SolutionContainerManager
     solutions:
       udder:
@@ -880,7 +484,7 @@
           Quantity: 30
   - type: Udder
     reagentId: N14MilkRadstag
-    quantityperUpdate: 10
+    quantityPerUpdate: 10
     growthDelay: 40
     hungerUsage: 5
   - type: TimedSpawner
@@ -899,6 +503,56 @@
       maxAmount: 1
   - type: ReproductivePartner
 
+#MARK: Radhog
+- type: entity
+  name: radhog
+  parent: N14MobBrahmin
+  id: N14MobRadhog
+  description: Radiated bacon on angry hooves.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: radhog
+      sprite: _Nuclear14/Mobs/Animals/radhog.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: radhog
+      Dead:
+        Base: dead
+  - type: Tag
+    tags:
+    - Radhog
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadstag
+      amount: 4
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    angle: 60
+    animation: WeaponArcClaw
+    wideAnimation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 7
+        Piercing: 1
+ #- type: Reproductive
+   #breedChance: 0.05
+   #birthPopup: reproductive-birth-popup
+   #makeOffspringInfant: false
+   #partnerWhitelist:
+     # tags:
+     # - Radhog
+   #offspring:
+   #- id: N14MobRadhog
+     #maxAmount: 1
+ #- type: ReproductivePartner
+
 #MARK: Chicken
 - type: entity
   parent: MobChicken
@@ -909,9 +563,16 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: chicken
       sprite: _Nuclear14/Mobs/Animals/chicken.rsi
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: chicken #TODO: Add movement animations
+    noMovementLayers:
+      movement:
+        state: chicken
   - type: DamageStateVisuals
     states:
       Alive:
@@ -991,3 +652,141 @@
   - type: HTN
     rootTask:
       task: MouseCompound
+
+#MARK: Beaver
+- type: entity
+  parent: N14MobBaseSimple
+  id: N14MobNuclearBeaver
+  name: nuclear beaver
+  description: Wonder what kind of trees its knawed down.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: beaver
+      sprite: _Nuclear14/Mobs/Animals/beaver.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: beaver
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 1
+      prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+
+#MARK: Opossum
+- type: entity
+  parent: N14MobBaseSimple
+  id: N14MobNuclearOpossum
+  name: nuclear opossum
+  description: Play dead!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: opossum
+      sprite: _Nuclear14/Mobs/Animals/opossum.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: opossum
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 1
+      prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+
+- type: entity
+  parent: N14MobBaseSimple
+  id: N14MobOpossum
+  name: opossum
+  description: Play dead!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: normopossum
+      sprite: _Nuclear14/Mobs/Animals/opossum.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: normopossum
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw #At some point need their own meat
+      amount: 1
+      prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+
+#MARK: Rabbit
+- type: entity
+  parent: N14MobBaseSimple
+  id: N14MobNuclearRabbit
+  name: nuclear rabbit
+  description: Not a cotton-tail anymore, huh.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: rabbit
+      sprite: _Nuclear14/Mobs/Animals/rabbit.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: rabbit
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw
+      amount: 1
+      prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal
+
+- type: entity
+  parent: N14MobBaseSimple
+  id: N14MobRabbit
+  name: rabbit
+  description: What a sweet little cotton-tail!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: normrabbit
+      sprite: _Nuclear14/Mobs/Animals/rabbit.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: normrabbit
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: N14FoodMeatRadRaw #At some point need their own meat
+      amount: 1
+      prob: 0.95
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: WastelandAnimal

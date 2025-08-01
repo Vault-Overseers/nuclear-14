@@ -1,11 +1,19 @@
 - type: job
   id: ChineseSpecOps
-  setPreference: true
+  setPreference: false
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: chinese spec ops 
   description: follow orders from your superior, fight for the communism. #need work
   playTimeTracker: ChineseSpecOps
   startingGear: ChineseSpecOpsGear
   icon: "JobIconSecurityCadet"
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: ChineseSpecOpsGear

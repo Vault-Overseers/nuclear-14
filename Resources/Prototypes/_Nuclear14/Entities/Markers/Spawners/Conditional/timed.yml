@@ -1,7 +1,10 @@
-﻿# Animals
+﻿# Everything was hidden from the spawn menu and made migrations to disappear. I only kept them in case we want to restore something in the future.
+
+# Animals
 - type: entity
   name: Molerat Timed Spawner
   id: N14TimedSpawnerMolerat
+  categories: [ HideSpawnMenu ]
   parent: MarkerBase
   components:
     - type: Sprite
@@ -13,15 +16,58 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobMoleratDespawning
+        - N14MobMolerat
       chance: 0.65
-      intervalSeconds: 1200
+      intervalSeconds: 2400
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 3
+      
+- type: entity
+  name: Pigrat Timed Spawner
+  id: N14TimedSpawnerPigrat
+  categories: [ HideSpawnMenu ]
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: _Nuclear14/Mobs/Animals/pigrat.rsi
+          state: pigrat
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - N14MobPigrat
+      chance: 0.65
+      intervalSeconds: 2400
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 3
+      
+- type: entity
+  name: Radhog Timed Spawner
+  id: N14TimedSpawnerRadhog
+  categories: [ HideSpawnMenu ]
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: _Nuclear14/Mobs/Animals/radhog.rsi
+          state: radhog
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - N14MobRadhog
+      chance: 0.65
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerDogFeral
+  categories: [ HideSpawnMenu ]
   name: Feral Dog Timed Spawner
   components:
     - type: Sprite
@@ -33,15 +79,16 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobDogFeralDespawning
+        - N14MobDogFeral
       chance: 0.65
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerGecko
+  categories: [ HideSpawnMenu ]
   name: Gecko Timed Spawner
   components:
     - type: Sprite
@@ -53,15 +100,58 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobGeckoDespawning
+        - N14MobGecko
       chance: 0.65
-      intervalSeconds: 1200
+      intervalSeconds: 2400
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 3
+      
+- type: entity
+  parent: N14TimedSpawnerMolerat
+  id: N14TimedSpawnerGeckoFire
+  categories: [ HideSpawnMenu ]
+  name: Fire Gecko Timed Spawner
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: _Nuclear14/Mobs/Animals/firegecko.rsi
+          state: gecko
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - N14MobGeckoFire
+      chance: 0.65
+      intervalSeconds: 2400
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 3
+      
+- type: entity
+  parent: N14TimedSpawnerMolerat
+  id: N14TimedSpawnerGeckoGolden
+  categories: [ HideSpawnMenu ]
+  name: Golden Gecko Timed Spawner
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: _Nuclear14/Mobs/Animals/goldengecko.rsi
+          state: gecko
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - N14MobGeckoGolden
+      chance: 0.65
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerNightstalkerCub
+  categories: [ HideSpawnMenu ]
   name: Nightstalker Cub Timed Spawner
   components:
     - type: Sprite
@@ -73,15 +163,16 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobNightstalkerCubDespawning
+        - N14MobNightstalkerCub
       chance: 0.65
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerNightstalker
+  categories: [ HideSpawnMenu ]
   name: Nightstalker Timed Spawner
   components:
     - type: Sprite
@@ -93,16 +184,17 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobNightstalkerDespawning
+        - N14MobNightstalker
       chance: 0.65
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerYaoguai
-  name: Yaoguai Timed Spawner
+  categories: [ HideSpawnMenu ]
+  name: Yao Guai Timed Spawner
   components:
     - type: Sprite
       layers:
@@ -113,15 +205,16 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobYaoguaiDespawning
+        - N14MobYaoguai
       chance: 0.75
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerDeathclaw
+  categories: [ HideSpawnMenu ]
   name: Deathclaw Timed Spawner
   components:
     - type: Sprite
@@ -133,15 +226,16 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobDeathclawDespawning
+        - N14MobDeathclaw
       chance: 0.75
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerDeathclawAlbino
+  categories: [ HideSpawnMenu ]
   name: Deathclaw Albino Timed Spawner
   components:
     - type: Sprite
@@ -153,15 +247,16 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobDeathclawAlbinoDespawning
+        - N14MobDeathclawAlbino
       chance: 0.75
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerDeathclawMetal
+  categories: [ HideSpawnMenu ]
   name: Deathclaw Metal Timed Spawner
   components:
     - type: Sprite
@@ -173,9 +268,9 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobDeathclawMetalDespawning
+        - N14MobDeathclawMetal
       chance: 0.65
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
 
@@ -184,6 +279,7 @@
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerBloatfly
+  categories: [ HideSpawnMenu ]
   name: Bloatfly Timed Spawner
   components:
     - type: Sprite
@@ -195,15 +291,16 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobBloatflyDespawning
+        - N14MobBloatfly
       chance: 0.75
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 4
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerCazador
+  categories: [ HideSpawnMenu ]
   name: Cazador Timed Spawner
   components:
     - type: Sprite
@@ -215,15 +312,16 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobCazadorDespawning
+        - N14MobCazador
       chance: 0.75
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerAnt
+  categories: [ HideSpawnMenu ]
   name: Ant Timed Spawner
   components:
     - type: Sprite
@@ -235,15 +333,16 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobGiantAntDespawning
+        - N14MobGiantAnt
       chance: 0.75
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerFireant
+  categories: [ HideSpawnMenu ]
   name: Fire Ant Timed Spawner
   components:
     - type: Sprite
@@ -255,15 +354,16 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobGiantFireAntDespawning
+        - N14MobGiantFireAnt
       chance: 0.75
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerRadroach
+  categories: [ HideSpawnMenu ]
   name: Radroach Timed Spawner
   components:
     - type: Sprite
@@ -275,15 +375,16 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobRadroachDespawning
+        - N14MobRadroach
       chance: 0.75
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 4
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerRadscorpion
+  categories: [ HideSpawnMenu ]
   name: Radscorpion Timed Spawner
   components:
     - type: Sprite
@@ -295,15 +396,16 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobRadscorpionDespawning
+        - N14MobRadscorpion
       chance: 0.75
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerRadscorpionBark
+  categories: [ HideSpawnMenu ]
   name: Radscorpion Bark Timed Spawner
   components:
     - type: Sprite
@@ -315,9 +417,9 @@
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobRadscorpionBarkDespawning
+        - N14MobRadscorpionBark
       chance: 0.75
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
 
@@ -325,6 +427,7 @@
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerBrahmin
+  categories: [ HideSpawnMenu ]
   name: Brahmin Timed Spawner
   components:
     - type: Sprite
@@ -338,13 +441,14 @@
       prototypes:
         - N14MobBrahmin
       chance: 0.95
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerBighorner
+  categories: [ HideSpawnMenu ]
   name: Bighorner Timed Spawner
   components:
     - type: Sprite
@@ -358,13 +462,14 @@
       prototypes:
         - N14MobBighorner
       chance: 0.95
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerRadstag
+  categories: [ HideSpawnMenu ]
   name: Radstag Timed Spawner
   components:
     - type: Sprite
@@ -378,13 +483,14 @@
       prototypes:
         - N14MobRadstag
       chance: 0.95
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
 
 - type: entity
   parent: N14TimedSpawnerMolerat
   id: N14TimedSpawnerChicken
+  categories: [ HideSpawnMenu ]
   name: Chicken Timed Spawner
   components:
     - type: Sprite
@@ -398,6 +504,69 @@
       prototypes:
         - N14MobChicken
       chance: 0.95
-      intervalSeconds: 1200
+      intervalSeconds: 2400
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 3
+      
+- type: entity
+  name: Raider Ranged Psycho Timed Spawner
+  id: N14TimedSpawnerMobRaiderPsychoRanged
+  categories: [ HideSpawnMenu ]
+  parent: N14TimedSpawnerMolerat
+  components:
+  - type: Sprite
+    layers:
+      - state: blue
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raider_ranged
+      - state: timed
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - N14MobRaiderPsychoRanged
+    chance: 0.95
+    intervalSeconds: 2400
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+
+- type: entity
+  name: Raider Psycho Boss Timed Spawner
+  id: N14TimedSpawnerMobRaiderBoss # Why does this even exist?
+  categories: [ HideSpawnMenu ]
+  parent: N14TimedSpawnerMolerat
+  components:
+  - type: Sprite
+    layers:
+      - state: blue
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/Raiders.rsi
+        state: raiderboss
+      - state: timed
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - N14MobRaiderBoss
+    chance: 0.95
+    intervalSeconds: 2400
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Raider Psycho Timed Spawner
+  id: N14TimedSpawnerMobRaiderPsycho
+  categories: [ HideSpawnMenu ]
+  parent: N14TimedSpawnerMolerat
+  components:
+  - type: Sprite
+    layers:
+      - state: blue
+      - sprite: _Nuclear14/Mobs/RaidersSimpleMob/RaiderPsycho.rsi
+        state: raider_melee
+      - state: timed
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - N14MobRaiderPsycho
+    chance: 0.95
+    intervalSeconds: 2400
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 3

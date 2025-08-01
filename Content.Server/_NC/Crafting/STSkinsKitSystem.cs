@@ -42,11 +42,7 @@ public sealed class STSkinsKitSystem : EntitySystem
     /// </summary>
     public void OnSkinKitExamine(EntityUid uid, STSkinsKitComponent component, ExaminedEvent args)
     {
-<<<<<<< HEAD
         if (!TryComp(args.Examined, out MetaDataComponent? meta))
-=======
-        if (!TryComp<MetaDataComponent>(args.Examined, out var meta))
->>>>>>> d44d23d1c3 (Transfer sys crafting (#800))
             return;
         if (meta.EntityPrototype is null)
             return;

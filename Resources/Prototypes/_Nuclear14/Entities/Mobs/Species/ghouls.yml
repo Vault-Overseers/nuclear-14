@@ -2,11 +2,14 @@
   save: false
   name: ghoul
   id: N14BaseMobGhoul
-  parent: BaseMobHuman
-  noSpawn: true
+  parent: BaseMobSpeciesOrganic
+  categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
     species: Ghoul
+  - type: Body
+    prototype: Ghoul
+    requiredLegs: 2
   - type: Icon
     sprite: _Nuclear14/Mobs/Species/Ghoul/parts.rsi
     state: full
@@ -60,32 +63,32 @@
       - map: [ "head" ]
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
+  - type: Perishable
+    rotAfter: 3600 # An entire in-game day.
+  - type: Hunger
+    starvationDamage:
+      types:
+        Cold: 0.5
+        Bloodloss: 0.5
+  - type: Thirst
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Ghoul
-  - type: PassiveDamage # Ghoul passive regen. Assuming one damage type, comes out to about 100 damage in 5 minutes. Not enough to really affect during combat, but sure makes them need a lot less stimpaks.
-    allowedStates:
-    - Alive
-    damageCap: 100
-    damage:
-      types:
-        Heat: -1
-        Radiation: 0.06 # a little less than ~50 rads per hour. Chem dependant
-      groups:
-        Brute: -1
-        Toxin: -0.1
+  - type: RadiationReceiver
+  - type: RadiationHealing
   - type: MobThresholds
     thresholds:
       0: Alive
       100: Critical
       150: Dead
-  - type: Special
+  - type: FeralGhoulify
+  # - type: Special
 
 - type: entity
   save: false
   parent: MobHumanDummy
   id: N14MobGhoulDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
     species: Ghoul
@@ -96,11 +99,14 @@
   save: false
   name: ghoul
   id: N14BaseMobGhoulGlowing
-  parent: BaseMobHuman
-  noSpawn: true
+  parent: BaseMobSpeciesOrganic
+  categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
     species: GhoulGlowing
+  - type: Body
+    prototype: GhoulGlowing
+    requiredLegs: 2
   - type: Icon
     sprite: _Nuclear14/Mobs/Species/GhoulGlowing/parts.rsi
     state: full
@@ -154,39 +160,37 @@
       - map: [ "head" ]
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
+  - type: Perishable
+    rotAfter: 3600 # An entire in-game day.
+  - type: Hunger
+    starvationDamage:
+      types:
+        Cold: 0.5
+        Bloodloss: 0.5
+  - type: Thirst
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: GhoulGlowing
-  - type: PassiveDamage #Little more regen, +25% more.
-    allowedStates:
-    - Alive
-    damageCap: 100
-    damage:
-      types:
-        Heat: -1.25
-        Radiation: 0.08
-      groups:
-        Brute: -1.25
-        Toxin: -0.125
+  - type: RadiationReceiver
+  - type: RadiationHealing
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      150: Dead
+      90: Critical
+      130: Dead
   - type: PointLight
     radius: 2
-    energy: 2
+    energy: 0.5
     color: "#4CBB17FF"
   - type: RadiationSource
     intensity: 0.5
     slope: 0.25
-  - type: Special
 
 - type: entity
   save: false
   parent: MobHumanDummy
   id: N14MobGhoulGlowingDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
     species: GhoulGlowing

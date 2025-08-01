@@ -75,16 +75,7 @@ public sealed partial class BlockingComponent : Component
     /// when blocking
     /// </summary>
     [DataField("activeBlockFraction"), ViewVariables(VVAccess.ReadWrite)]
-    public float ActiveBlockFraction = 0.75f; /// N14 change to nerf active blocking a bit
-}
-
-/// <summary>
-///     Raised directed on the blocking object when attempting to block.
-/// </summary>
-public sealed class BeforeBlockingEvent(EntityUid user, EntityUid? origin) : CancellableEntityEventArgs
-{
-    public EntityUid User = user;
-    public EntityUid? Origin = origin;
+    public float ActiveBlockFraction = 1.0f;
 }
 
 /// <summary>

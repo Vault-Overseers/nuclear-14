@@ -6,7 +6,7 @@
   components:
   - type: Tag
     tags:
-      - Magazine762Rifle
+      - N14Magazine762Rifle
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
@@ -38,3 +38,50 @@
   components:
   - type: BallisticAmmoProvider
     proto: N14Cartridge762Rifle
+
+- type: entity
+  id: Magazine762AmmoBelt
+  name: "ammo belt (7.62mm)"
+  parent: BaseMagazine762Rifle
+  components:
+  - type: Tag
+    tags:
+      - N14Magazine762Belt
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14Cartridge762Rifle
+    proto: N14Cartridge762Rifle
+    capacity: 100
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/7.62/belt.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+
+- type: entity
+  id: Magazine762AmmoShort
+  name: "short magazine (7.62mm)"
+  parent: BaseMagazine762Rifle
+  components:
+  - type: Tag
+    tags:
+      - N14Magazine762Short
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - N14Cartridge762Rifle
+    proto: N14Cartridge762Rifle
+    capacity: 20
+  - type: Sprite
+    netsync: false
+    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Magazines/7.62/mag2.rsi

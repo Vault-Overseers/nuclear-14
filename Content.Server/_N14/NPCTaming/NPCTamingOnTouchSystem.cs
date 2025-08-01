@@ -1,3 +1,4 @@
+/*
 using System.Numerics;
 using Content.Server.NPC;
 using Content.Server.NPC.Components;
@@ -6,6 +7,8 @@ using Content.Server.Popups;
 using Content.Shared.Damage;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
@@ -206,3 +209,4 @@ public sealed class NPCTamingOnTouchSystem : EntitySystem
             Spawn(comp.SuccessSpawn.Value, _transform.GetMapCoordinates(uid));
     }
 }
+*/

@@ -531,6 +531,36 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
 
+- type: entity
+  name: specialist's infiltrator kit
+  parent: KitBase
+  id: KitNCR_WSStealth
+  description: A crate containing all an NCR weapon specialist needs to perform their job.
+  components:
+  - type: Sprite
+    state: pointman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterNCRVestCoatBlack
+      - id: ClothingBeltNCR
+      - id: N14ClothingMaskBlackBalaclava
+      - id: N14ClothingEyesNCRNVGs
+      - id: N14WeaponSMG9mminfiltrator
+      - id: N14MagazineSMG9mm
+        amount: 3
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+        amount: 2
+      - id: N14BoxCardboardMREBoxCFilled
+      - id: N14Stimpak
+      - id: N14RadAwayBloodbag
+      - id: N14CleanGauze10
+      - id: N14Flare
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
 # NCRA Sergeant Kits
 
 - type: entity
@@ -1124,6 +1154,8 @@
       - id: N14WeaponLaserPistol
       - id: N14PowerCellSmall
         amount: 2
+      - id: N14CleanGauze10
+      - id: N14Ointment10
       - id: N14ClothingOuterMidwestBoSCoat
       - id: N14ClothingEyesGlassesWelding
       - id: ClothingHandsGlovesColorYellow
@@ -1143,7 +1175,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponLaserRifle
+      - id: N14WeaponLaserRifleAuto
       - id: N14PowerCellHigh
         amount: 3
       - id: N14WeaponPistol12mm
@@ -1371,6 +1403,8 @@
       - id: N14WeaponPlasmaPistol
       - id: N14PlasmaCell
         amount: 2
+      - id: N14CleanGauze10
+      - id: N14Ointment10
       - id: N14ClothingOuterBosScribe
       - id: N14ClothingEyesGlassesWelding
       - id: ClothingHandsGlovesColorYellow
@@ -1391,7 +1425,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: N14WeaponPlasmaRifleAuto
-      - id: N14PowerCellHigh
+      - id: N14PlasmaCartridge
         amount: 3
       - id: N14WeaponPistolWebley
       - id: N14MagazinePistol9mm
@@ -1437,8 +1471,8 @@
       - id: N14WeaponRifle556Carbine
       - id: LongMagazine556Rifle
         amount: 3
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
+      - id: N14WeaponPlasmaPistol
+      - id: N14PlasmaCell
         amount: 2
       - id: N14CleanGauze10
       - id: N14Stimpak
@@ -1465,3 +1499,234 @@
       - id: N14CleanGauze10
       - id: N14Stimpak
       - id: N14BoxCardboardMREBoxKFilled
+
+
+# Tribal kits
+#bow
+- type: entity
+  name: Tribal Stalker
+  parent: KitBase
+  id: Kittribalstalker
+  description: A crate containing everything a hunter will need who follows the old ways
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: BowImprovised
+      - id: ClothingBeltQuiver
+      - id: ArrowRegular
+        amount: 17
+      - id: N14WastelandTribalSpear
+
+#tribal two handed club
+- type: entity
+  name: Tribal Champion
+  parent: KitBase
+  id: Kittribalchampion
+  description: A crate containing everything a champion would carry into war
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14TribalBigClub
+      - id: ClothingBeltQuiverSpear
+      - id: N14WastelandTribalJavelin
+        amount: 4
+      - id: N14ClothingNeckCloakYaoguai
+
+#tribal gunslinger
+- type: entity
+  name: Tribal Fire Hand
+  parent: KitBase
+  id: Kittribalfirehand
+  description: A crate containing everything a tribal gunslinger will want
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponRevolver44TribalUpgraded
+        amount: 2
+      - id: MagazineBox44
+      - id: ClothingBeltRevolver
+
+#hunt stick
+- type: entity
+  name: Tribal Hunter
+  parent: KitBase
+  id: Kittribalhunter
+  description: A crate containing everything a hunter will need who knows the secrets of powder
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponSniper308Tribal
+      - id: N14TribalMachete
+      - id: MagazineBox308
+
+#tribal rifle
+- type: entity
+  name: Tribal Bone-Breaker
+  parent: KitBase
+  id: Kittribalbonebreaker
+  description: A crate containing everything a warrior will need who knows the secrets of powder
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponSniper556Tribal
+      - id: N14TribalMachete
+      - id: MagazineBox556
+
+#boomstick
+- type: entity
+  name: Tribal Pain Bringer
+  parent: KitBase
+  id: Kittribalpainbringer
+  description: A crate containing everything a warrior will need who knows the secrets of powder but still wants to get close
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponShotgunBoomstick
+      - id: N14ClothingMaskHockey
+      - id: MagazineBox12gauge
+
+# All of the Town Guard kits
+- type: entity
+  name: the Guard's ceremonial kit
+  parent: KitBase
+  id: KitTownGuard_Cere
+  description: A crate containing everything a Guard of The Town requires to perform their duties for the public.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingHeadHatTownGuard
+      - id: N14ClothingOuterTownGuardCoat
+      - id: N14WeaponRifle308Battle
+      - id: ClipMagazine308Rifle
+        amount: 3
+      - id: N14WeaponRevolver44Magnun
+      - id: SpeedLoader44
+        amount: 2
+      - id: N14CleanGauze10
+      - id: N14JunkCeramicFlask
+      - id: N14FoodTinC1
+      - id: N14FoodTinC2
+
+- type: entity
+  name: the Guard's patrol kit
+  parent: KitBase
+  id: KitTownGuard_Patr
+  description: A crate containing everything a Guard of The Town requires to perform their duties for the public.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingHeadTownGuardBrodie
+      - id: N14ClothingOuterTownGuardLight
+      - id: N14WeaponSMG12mm
+      - id: N14MagazineSMG12mm
+        amount: 3
+      - id: N14WeaponPistolWebley
+      - id: N14MagazinePistol9mm
+        amount: 2
+      - id: N14ClothingNeckTownGuardMantle
+      - id: N14CleanGauze10
+      - id: N14JunkCeramicFlask
+      - id: N14FoodTinC1
+      - id: N14FoodTinC2
+
+- type: entity
+  name: the Guard's lawbringer kit
+  parent: KitBase
+  id: KitTownGuard_Lawb
+  description: A crate containing everything a Guard of The Town requires to perform their duties for the public.
+  components:
+  - type: Sprite
+    state: gunner
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingHeadTownGuardBrodie
+      - id: N14ClothingOuterTownGuardLight
+      - id: N14WeaponHMGcanadian
+      - id: Magazine762AmmoBelt
+      - id: N14CleanGauze10
+      - id: N14JunkCeramicFlask
+      - id: N14FoodTinC1
+      - id: N14FoodTinC2
+
+- type: entity
+  name: the Guard's breacher kit
+  parent: KitBase
+  id: KitTownGuard_Brea
+  description: A crate containing everything a Guard of The Town requires to perform their duties for the public.
+  components:
+  - type: Sprite
+    state: pointman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingHeadTownGuardBrodieCover
+      - id: N14ClothingOuterTownGuardRiot
+      - id: N14WeaponBlowback
+      - id: MagazineBox12gauge
+      - id: N14WeaponPistolWebley
+      - id: N14MagazinePistol9mm
+        amount: 2
+      - id: N14CleanGauze10
+      - id: N14JunkCeramicFlask
+      - id: N14FoodTinC1
+      - id: N14FoodTinC2
+
+- type: entity
+  name: the Guard's riot kit
+  parent: KitBase
+  id: KitTownGuard_Riot
+  description: A crate containing everything a Guard of The Town requires to perform their duties for the public.
+  components:
+  - type: Sprite
+    state: pointman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingHeadTownGuardBrodieVisor
+      - id: N14ClothingOuterTownGuardRiot
+      - id: N14WastelandSpear
+      - id: N14WeaponRevolver45-70Hunter
+      - id: SpeedLoader45-70
+        amount: 2
+      - id: N14ShieldMetalHeavy
+      - id: N14ClothingNeckTownGuardCloak
+      - id: N14CleanGauze10
+      - id: N14JunkCeramicFlask
+      - id: N14FoodTinC1
+      - id: N14FoodTinC2

@@ -1,0 +1,102 @@
+- type: entity
+  parent: Cigarette
+  id: N14Cigarette
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/Cigarettes/cigarette.rsi
+    state: unlit-icon
+    scale: 0.5, 0.5
+  - type: Tag
+    tags:
+      - Cigarette
+      - Trash
+  - type: SpaceGarbage
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/Cigarettes/cigarette.rsi
+    slots: [ mask ]
+    equippedPrefix: unlit
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: N14Cigarette
+  id: N14CigaretteSpent
+  suffix: spent
+  components:
+  - type: Sprite
+    state: burnt-icon
+  - type: Smokable
+    state: Burnt
+  - type: SolutionContainerManager
+    solutions:
+      smokable:
+        maxVol: 20
+  - type: Tag
+    tags:
+      - Cigarette
+      - Trash
+      - Burnt
+      
+- type: entity
+  parent: N14Cigarette
+  id: N14CigaretteKool
+  description: A Kool brand cigarette.
+  suffix: kool
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/Cigarettes/kool.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/Cigarettes/kool.rsi
+    
+- type: entity
+  parent: N14CigaretteKool
+  id: N14CigaretteSalem
+  description: A Salem brand cigarette.
+  suffix: salem
+    
+- type: entity
+  parent: N14Cigarette
+  id: N14CigaretteMarlboro
+  description: A Marlboro brand cigarette.
+  suffix: marlboro
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/Cigarettes/marl.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/Cigarettes/marl.rsi
+    
+- type: entity
+  parent: N14Cigarette
+  id: N14CigaretteRepublic
+  description: A Republic brand cigarette.
+  suffix: republic
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/Cigarettes/republic.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/Cigarettes/republic.rsi
+    
+- type: entity
+  parent: N14Cigarette
+  id: N14CigaretteRollie
+  description: A roll up cigarette.
+  suffix: rollie
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/Cigarettes/rollie.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/Cigarettes/rollie.rsi
+  - type: Construction
+    graph: N14Cigarette
+    node: cigarette
+    
+- type: entity
+  parent: N14Cigarette
+  id: N14CigaretteWinston
+  description: A Winston brand cigarette.
+  suffix: winston
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/Cigarettes/winston.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Consumable/Smokeables/Cigarettes/winston.rsi

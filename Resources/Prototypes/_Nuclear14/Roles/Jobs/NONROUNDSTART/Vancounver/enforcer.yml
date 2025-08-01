@@ -1,11 +1,19 @@
 - type: job
   id: PreventorEnforcer
-  setPreference: true
+  setPreference: false
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: preventor enforcer
   description: make sure the vancouver goverment and blue line commercial agreements are accomplished. #need work
   playTimeTracker: PreventorEnforcer
   startingGear: PreventorEnforcerGear
   icon: "JobIconSecurityCadet"
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: PreventorEnforcerGear

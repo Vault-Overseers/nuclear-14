@@ -1,19 +1,11 @@
 - type: job
-<<<<<<<< HEAD:Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_sgt.yml
-  id: NCRSGT
+  id: NCRWS
   setPreference: true
   overrideConsoleVisibility: false
   canBeAntag: false
-  name: job-name-ncr-sgt
-  description: job-description-ncr-sgt
-  playTimeTracker: NCRNCO
-========
-  id: NCRWS
-  setPreference: true
   name: job-name-ncr-ws
   description: job-description-ncr-ws
   playTimeTracker: NCRWS
->>>>>>>> 2296fe8edf (NCR Update Parts 1 and 2 (#626)):Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_ws.yml
   requirements:
     - !type:CharacterSpeciesRequirement
       species:
@@ -21,25 +13,13 @@
       - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: NCR
-<<<<<<<< HEAD:Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_sgt.yml
-      min: 36000 # 10 hours
-  startingGear: NCRSGTGear
-  icon: "JobIconSecurityOfficer"
-  supervisors: job-supervisors-ncr-sgt
-  alwaysUseSpawner: true
-  access:
-  - NCR
-  - NCRSGT
-========
       min: 18000 # 5 hours
   startingGear: NCRWSGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-ncr
-  canBeAntag: false
   alwaysUseSpawner: true
   access:
   - NCR
->>>>>>>> 2296fe8edf (NCR Update Parts 1 and 2 (#626)):Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_ws.yml
   special:
   - !type:AddComponentSpecial
     components:
@@ -49,23 +29,6 @@
           - NCR
 
 - type: startingGear
-<<<<<<<< HEAD:Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_sgt.yml
-  id: NCRSGTGear
-  equipment:
-    back: N14ClothingBackpackNCRFilled
-    gloves: N14ClothingHandsGlovesCombat
-    jumpsuit: N14ClothingOfficerUniformNCRSnow
-    shoes: N14ClothingBootsCombatFilled
-    neck: N14ClothingNeckMantleNCR
-    pocket1: NCRSGTloadoutkits
-    pocket2: RadioHandheld
-    id: N14IDNCRDogtagNCO
-  innerClothingSkirt: N14ClothingOfficerUniformNCRSnow #placeholder
-  satchel: N14ClothingBackpackSatchelNCRFilled
-
-- type: playTimeTracker
-  id: NCRNCO
-========
   id: NCRWSGear
   equipment:
     back: N14ClothingBackpackNCRFilled
@@ -78,4 +41,3 @@
 
 - type: playTimeTracker
   id: NCRWS
->>>>>>>> 2296fe8edf (NCR Update Parts 1 and 2 (#626)):Resources/Prototypes/_Nuclear14/Roles/Jobs/NCR/ncr_ws.yml

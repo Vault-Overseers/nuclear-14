@@ -1,6 +1,18 @@
 #MARK: Tools
 
 - type: entity
+  parent: PowerDrill
+  id: N14PowerDrill
+  components:
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/saw.ogg
+  - type: Drill
+  - type: StaticPrice
+    price: 30
+
+
+- type: entity
   name: wirecutters
   parent: Wirecutter
   id: N14Wirecutter
@@ -35,6 +47,7 @@
     speed: 0.6
   - type: Scalpel
     speed: 0.4
+  - type: Craftable # Corvax-Change
 
 - type: entity
   name: screwdriver
@@ -69,6 +82,7 @@
     speed: 0.4
   - type: Tweezers
     speed: 0.4
+  - type: Craftable # Corvax-Change
 
 - type: entity
   name: wrench
@@ -91,6 +105,7 @@
         Blunt: 8
     soundHit:
       collection: MetalThud
+  - type: Craftable # Corvax-Change
 
 - type: entity
   name: multitool
@@ -171,7 +186,7 @@
       types:
         Blunt: 4
         Shock: 1
-    soundSwing:
+    soundHit:
       collection: N14LargeSwing
   - type: PhysicalComposition
     materialComposition:
@@ -334,3 +349,15 @@
       path: /Audio/Medical/Surgery/saw.ogg
   - type: BoneSaw
     speed: 0.6
+    
+#MARK: Fishing
+- type: entity
+  parent: BaseItem
+  id: N14FishingRod
+  name: fishing rod
+  description: A rod for catching fish.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Tools/fishing.rsi
+    state: fishingrod
+  - type: FishingRod

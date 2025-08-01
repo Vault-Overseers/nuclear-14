@@ -48,7 +48,7 @@ public sealed class CommsHackerSystem : SharedCommsHackerSystem
         var doAfterArgs = new DoAfterArgs(EntityManager, uid, comp.Delay, new TerrorDoAfterEvent(), target: target, used: uid, eventTarget: uid)
         {
             BreakOnDamage = true,
-            BreakOnUserMove = true,
+            BreakOnMove = true,
             MovementThreshold = 0.5f,
             CancelDuplicate = false
         };
@@ -82,7 +82,7 @@ public sealed class CommsHackerSystem : SharedCommsHackerSystem
     public void CallInThreat(NinjaHackingThreatPrototype ninjaHackingThreat)
     {
         _gameTicker.StartGameRule(ninjaHackingThreat.Rule, out _);
-        _announcer.SendAnnouncement(_announcer.GetAnnouncementId("NinjaHacking"), Filter.Broadcast(),
+        _announcer.SendAnnouncement(_announcer.GetAnnouncementId("NinjaHacking"),
             ninjaHackingThreat.Announcement, colorOverride: Color.Red);
     }
 }

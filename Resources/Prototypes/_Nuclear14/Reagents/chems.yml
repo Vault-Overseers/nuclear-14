@@ -2,7 +2,7 @@
 - type: reagent
   id: MovespeedMixture #used in jet
   name: reagent-name-movespeedmod-mixture
-  group: Narcotics
+  group: Chems
   desc: reagent-desc-healing-mixture
   physicalDesc: reagent-physical-desc-refreshing
   color: "#00e5ff"
@@ -10,23 +10,23 @@
     Medicine:
       effects:
       # - !type:StrengthModifierReagent # Nuclear 14 Example of adding modifier to Chemicals
-        # strengthModifier: 1
-        # # statusLifetime: 5 # may be useful if we want to make it last longer after reagent is gone from blood?
+      #   strengthModifier: 1
+      #   # statusLifetime: 5 # may be useful if we want to make it last longer after reagent is gone from blood?
       # - !type:PerceptionModifierReagent # Nuclear 14 Example of adding modifier to Chemicals
-        # perceptionModifier: 1
+      #   perceptionModifier: 1
       # - !type:EnduranceModifierReagent # Nuclear 14 Example of adding modifier to Chemicals
-        # enduranceModifier: 1
+      #   enduranceModifier: 1
       # - !type:CharismaModifierReagent # Nuclear 14 Example of adding modifier to Chemicals
-        # charismaModifier: 1
+      #   charismaModifier: 1
       # - !type:IntelligenceModifierReagent # Nuclear 14 Example of adding modifier to Chemicals
-        # intelligenceModifier: 1
+      #   intelligenceModifier: 1
       # - !type:AgilityModifierReagent # Nuclear 14 Example of adding modifier to Chemicals
-        # agilityModifier: 1
+      #   agilityModifier: 1
       # - !type:LuckModifierReagent # Nuclear 14 Example of adding modifier to Chemicals
-        # luckModifier: 1
+      #   luckModifier: 1
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.15
-        sprintSpeedModifier: 1.15
+        walkSpeedModifier: 1.1
+        sprintSpeedModifier: 1.1
       - !type:GenericStatusEffect
         key: SeeingRainbows
         component: SeeingRainbows
@@ -34,12 +34,10 @@
         time: 5
         refresh: false
       - !type:HealthChange
-        conditions:
-        - !type:ReagentThreshold
-          min: 30
         damage:
           types:
-            Asphyxiation: 1
+            Poison: 0.2
+          groups:
       - !type:Jitter
       - !type:GenericStatusEffect
         key: Stun
@@ -55,11 +53,15 @@
         conditions:
         - !type:ReagentThreshold
           min: 30
+    Narcotic:
+      effects:
+      - !type:ChemAddMoodlet
+        moodPrototype: JetBenefit
 
 - type: reagent
   id: RobustMovespeedMixture #used in turbo
   name: reagent-name-robust-movespeedmod-mixture
-  group: Narcotics
+  group: Chems
   desc: reagent-name-robust-movespeedmod-mixture
   physicalDesc: reagent-physical-desc-powdery
   color: "#D2FFFA"
@@ -69,16 +71,14 @@
     Narcotic:
       effects:
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.40
-        sprintSpeedModifier: 1.40
+        walkSpeedModifier: 1.20
+        sprintSpeedModifier: 1.20
       - !type:Drunk
       - !type:HealthChange
-        conditions:
-        - !type:ReagentThreshold
-          min: 10
         damage:
           types:
-            Asphyxiation: 1.3
+            Poison: 0.5
+          groups:
       - !type:Jitter
       - !type:GenericStatusEffect
         key: Stun
@@ -95,10 +95,11 @@
         - !type:ReagentThreshold
           min: 12
 
+
 - type: reagent
   id: DamageModifyingMixture #used in psycho. TODO: figure out how to make a reagent give you a dmg buff
   name: reagent-name-damage-mod-mixture
-  group: Medicine
+  group: Chems
   desc: reagent-desc-damage-mod-mixture
   physicalDesc: reagent-physical-desc-volatile
   color: "#00e5ff"
@@ -107,8 +108,10 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Drunk
-      - !type:StrengthModifierReagent
-        strengthModifier: 2
+    Narcotic:
+      effects:
+      - !type:ChemAddMoodlet
+        moodPrototype: PsychoBenefit
 
 - type: reagent
   id: Daytripper
@@ -127,12 +130,6 @@
         type: Add
         time: 10
         refresh: false
-      - !type:CharismaModifierReagent
-        charismaModifier: 3
-      - !type:LuckModifierReagent
-        luckModifier: 3
-      - !type:StrengthModifierReagent
-        strengthModifier: 2
     Food:
       effects:
       - !type:SatiateThirst
@@ -141,7 +138,7 @@
 - type: reagent
   id: Cateye
   name: reagent-name-cateye
-  group: Medicine
+  group: Chems
   desc: reagent-desc-cateye
   physicalDesc: reagent-physical-desc-sticky
   color: "#00e5ff"
@@ -155,7 +152,7 @@
 - type: reagent
   id: Buffout
   name: reagent-name-buffout
-  group: Medicine
+  group: Chems
   desc: reagent-desc-buffout
   physicalDesc: reagent-physical-desc-robust
   color: "#00e5ff"
@@ -164,17 +161,13 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Jitter
-      - !type:StrengthModifierReagent
-        strengthModifier: 2
-      - !type:EnduranceModifierReagent
-        enduranceModifier: 2
       # - !type:HealthIncreaseReagent
-      #   increaseAmount: 50
+        # increaseAmount: 50
 
 - type: reagent
   id: Buffjet
   name: reagent-name-buffjet
-  group: Medicine
+  group: Chems
   desc: reagent-desc-buffjet
   physicalDesc: reagent-physical-desc-robust
   color: "#00e5ff"
@@ -182,21 +175,22 @@
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.2
+          groups:
       - !type:Jitter
       - !type:MovespeedModifier
         walkSpeedModifier: 1.1
         sprintSpeedModifier: 1.1
-      - !type:StrengthModifierReagent
-        strengthModifier: 3
-      - !type:EnduranceModifierReagent
-        enduranceModifier: 3
       # - !type:HealthIncreaseReagent
-      #   increaseAmount: 50
+        # increaseAmount: 50
 
 - type: reagent
   id: Bufftats
   name: reagent-name-bufftats
-  group: Medicine
+  group: Chems
   desc: reagent-desc-bufftats
   physicalDesc: reagent-physical-desc-robust
   color: "#00e5ff"
@@ -205,19 +199,13 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Jitter
-      - !type:StrengthModifierReagent
-        strengthModifier: 3
-      - !type:EnduranceModifierReagent
-        enduranceModifier: 3
-      - !type:PerceptionModifierReagent
-        perceptionModifier: 3
       # - !type:HealthIncreaseReagent
-      #   increaseAmount: 50
+        # increaseAmount: 50
 
 - type: reagent
   id: Mentats
   name: reagent-name-mentats
-  group: Medicine
+  group: Chems
   desc: reagent-desc-mentats
   physicalDesc: reagent-physical-desc-tangy
   color: "#00e5ff"
@@ -225,15 +213,12 @@
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
-      - !type:IntelligenceModifierReagent
-        intelligenceModifier: 2
-      - !type:PerceptionModifierReagent
-        perceptionModifier: 2
+      - !type:Jitter #Placeholder for when we get Special working again.
 
 - type: reagent
   id: MentatsBerry
   name: reagent-name-mentats-berry
-  group: Medicine
+  group: Chems
   desc: reagent-desc-mentats-berry
   physicalDesc: reagent-physical-desc-tangy
   color: "#2E0071"
@@ -241,13 +226,12 @@
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
-      - !type:IntelligenceModifierReagent
-        intelligenceModifier: 5
+      - !type:Jitter #Placeholder for when we get Special working again.
 
 - type: reagent
   id: MentatsGrape
   name: reagent-name-mentats-grape
-  group: Medicine
+  group: Chems
   desc: reagent-desc-mentats-grape
   physicalDesc: reagent-physical-desc-tangy
   color: "#9932a4"
@@ -255,13 +239,12 @@
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
-      - !type:CharismaModifierReagent
-        charismaModifier: 5
+      - !type:Jitter #Placeholder for when we get Special working again.
 
 - type: reagent
   id: MentatsOrange
   name: reagent-name-mentats-orange
-  group: Medicine
+  group: Chems
   desc: reagent-desc-mentats-orange
   physicalDesc: reagent-physical-desc-tangy
   color: "#ffb82e"
@@ -269,8 +252,7 @@
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
-      - !type:PerceptionModifierReagent
-        perceptionModifier: 5
+      - !type:Jitter #Placeholder for when we get Special working again.
 
 - type: reagent
   id: DamageResistMixture
@@ -283,20 +265,18 @@
     Medicine:
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
-      - !type:Drunk
-      - !type:EnduranceModifierReagent
-        enduranceModifier: 4 # increases endurance until % resistance is introduced
+      - !type:Jitter #Placeholder for when we get Special working again.
 
 - type: reagent
   id: Hydra
   name : reagent-name-hydra
-  group: Medicine
+  group: Chems
   desc: reagent-desc-hydra
   physicalDesc: reagent-physical-desc-volatile
   color: "#990099"
   metabolisms:
     Medicine:
-      metabolismRate: 0.25
+      metabolismRate: 0.2
       effects:
       - !type:GenericStatusEffect
         key: SeeingRainbows
@@ -311,13 +291,13 @@
         key: SlurredSpeech
         component: TelepathicRepeater
       - !type:Jitter
-      - !type:EnduranceModifierReagent
-        enduranceModifier: -1
       - !type:HealthChange
         damage:
           groups:
             Brute: -1
             Burn: -1
+      - !type:ModifyBleedAmount
+        amount: -0.5
 
 #MARK: Tribal Chems
 - type: reagent
@@ -337,6 +317,8 @@
             Toxin: 0.5
           types:
             Radiation: 0.5
+      - !type:ModifyBleedAmount
+        amount: 0.1
       - !type:GenericStatusEffect
         key: SeeingRainbows
         component: SeeingRainbows

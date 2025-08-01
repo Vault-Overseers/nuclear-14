@@ -61,6 +61,12 @@ public sealed partial class MeleeWeaponComponent : Component
     [DataField]
     public bool DisableClick = false;
 
+    /// <summary>
+    ///   If true, when a light attack misses, the weapon will perform a power attack instead.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool HeavyOnLightMiss = false;
+
     /*
      * Melee combat works based around 2 types of attacks:
      * 1. Click attacks with left-click. This attacks whatever is under your mnouse
@@ -127,6 +133,18 @@ public sealed partial class MeleeWeaponComponent : Component
     public float Range = 1.5f;
 
     /// <summary>
+    ///     Bonus range for disarm attacks, not currently used for melee weapons, and is instead only on innate melee.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float DisarmRangeModifier = 1f;
+
+    /// <summary>
+    ///     Bonus attack range for light (direct click) attacks.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float LightRangeModifier = 1f;
+
+    /// <summary>
     ///     Attack range for heavy swings
     /// </summary>
     [DataField, AutoNetworkedField]
@@ -148,7 +166,7 @@ public sealed partial class MeleeWeaponComponent : Component
     /// Total width of the angle for wide attacks.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public Angle Angle = Angle.FromDegrees(60);
+    public Angle Angle = Angle.FromDegrees(70);
 
     [DataField, AutoNetworkedField]
     public EntProtoId Animation = "WeaponArcPunch";
@@ -167,7 +185,7 @@ public sealed partial class MeleeWeaponComponent : Component
     public bool SwingLeft;
 
     [DataField, AutoNetworkedField]
-    public float HeavyStaminaCost = 2.5f;
+    public float HeavyStaminaCost = 0.5f;
 
     [DataField, AutoNetworkedField]
     public int MaxTargets = 3;
@@ -214,6 +232,10 @@ public sealed partial class MeleeWeaponComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool MustBeEquippedToUse = false;
+
+    // Goobstation
+    [DataField, AutoNetworkedField]
+    public bool CanWideSwing = true;
 }
 
 /// <summary>

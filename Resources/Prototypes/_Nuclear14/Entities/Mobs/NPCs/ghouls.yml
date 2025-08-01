@@ -92,9 +92,19 @@
     animation: WeaponArcFist
     damage:
       types:
-        Brute: 15
-        Slash: 15
+        Brute: 30
+        Slash: 10
     range: 2.5
+  - type: MeleeThrowOnHit
+    speed: 15
+    lifetime: 0.025
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.925
+        Slash: 0.925
+        Piercing: 0.95
+        Heat: 0.95
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -111,6 +121,10 @@
     # noMovementLayers:
       # movement:
         # state: sleeping
+  - type: PointLight
+    radius: 2
+    energy: 0.5
+    color: "#4CBB17FF"
   - type: MovementSpeedModifier
     baseWalkSpeed : 5
     baseSprintSpeed : 5

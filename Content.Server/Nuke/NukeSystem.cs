@@ -1,4 +1,5 @@
 using Content.Server.AlertLevel;
+using Content.Server.Announcements.Systems;
 using Content.Server.Audio;
 using Content.Server.Chat.Systems;
 using Content.Server.Explosion.EntitySystems;
@@ -22,7 +23,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server.Announcements.Systems;
 
 namespace Content.Server.Nuke;
 
@@ -189,7 +189,7 @@ public sealed class NukeSystem : EntitySystem
                     continue;
 
                 var msg = Loc.GetString("nuke-component-cant-anchor-floor");
-                _popups.PopupEntity(msg, uid, args.Session, PopupType.MediumCaution);
+                _popups.PopupEntity(msg, uid, args.Actor, PopupType.MediumCaution);
 
                 return;
             }
@@ -245,10 +245,7 @@ public sealed class NukeSystem : EntitySystem
 
         else
         {
-            if (args.Session.AttachedEntity is not { } user)
-                return;
-
-            DisarmBombDoafter(uid, user, component);
+            DisarmBombDoafter(uid, args.Actor, component);
         }
     }
 
@@ -368,8 +365,7 @@ public sealed class NukeSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        var ui = _ui.GetUiOrNull(uid, NukeUiKey.Key);
-        if (ui == null)
+        if (!_ui.HasUi(uid, NukeUiKey.Key))
             return;
 
         var anchored = Transform(uid).Anchored;
@@ -390,7 +386,7 @@ public sealed class NukeSystem : EntitySystem
             CooldownTime = (int) component.CooldownTime
         };
 
-        _ui.SetUiState(ui, state);
+        _ui.SetUiState(uid, NukeUiKey.Key, state);
     }
 
     private void PlayNukeKeypadSound(EntityUid uid, int number, NukeComponent? component = null)
@@ -456,11 +452,6 @@ public sealed class NukeSystem : EntitySystem
         if (stationUid != null)
             _alertLevel.SetLevel(stationUid.Value, component.AlertLevelOnActivate, true, true, true, true);
 
-        var pos = nukeXform.MapPosition;
-        var x = (int) pos.X;
-        var y = (int) pos.Y;
-        var posText = $"({x}, {y})";
-
         // We are collapsing the randomness here, otherwise we would get separate random song picks for checking duration and when actually playing the song afterwards
         _selectedNukeSong = _audio.GetSound(component.ArmMusic);
 
@@ -468,10 +459,12 @@ public sealed class NukeSystem : EntitySystem
             _announcer.GetAnnouncementId("NukeArm"),
             "nuke-component-announcement-armed",
             Loc.GetString("nuke-component-announcement-sender"),
+            null,
             Color.Red,
             stationUid ?? uid,
             null,
-            ("time", (int) component.RemainingTime), ("position", posText)
+            ("time", (int) component.RemainingTime),
+            ("location", FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString((uid, nukeXform))))
         );
 
         _sound.PlayGlobalOnStation(uid, _audio.GetSound(component.ArmSound));
@@ -600,9 +593,8 @@ public sealed class NukeSystem : EntitySystem
         var doAfter = new DoAfterArgs(EntityManager, user, nuke.DisarmDoafterLength, new NukeDisarmDoAfterEvent(), uid, target: uid)
         {
             BreakOnDamage = true,
-            BreakOnTargetMove = true,
-            BreakOnUserMove = true,
-            NeedHand = true
+            BreakOnMove = true,
+            NeedHand = true,
         };
 
         if (!_doAfter.TryStartDoAfter(doAfter))

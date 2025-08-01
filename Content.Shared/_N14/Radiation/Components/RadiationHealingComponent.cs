@@ -22,7 +22,7 @@ public sealed partial class RadiationHealingComponent : Component
     /// <summary>
     /// Rate that radiation exposure decays each second when not irradiated.
     /// </summary>
-    [DataField("decayRate")] public float DecayRate = 1f;
+    [DataField("decayRate")] public float DecayRate = 0.25f;
 
     /// <summary>
     /// Current accumulated radiation intensity in rads per second.

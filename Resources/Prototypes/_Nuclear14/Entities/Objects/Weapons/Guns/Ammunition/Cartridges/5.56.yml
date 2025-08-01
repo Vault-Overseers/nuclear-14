@@ -5,7 +5,19 @@
   components:
   - type: CartridgeAmmo
     proto: N14Bullet556
+    soundEject:
+      collection: N14RifleCasingEject
   - type: Tag
     tags:
       - Cartridge
       - N14Cartridge556Rifle
+  - type: EmitSoundOnLand
+    sound:
+      collection: N14RifleCasingEject
+      params:
+        volume: -1
+  - type: EmitSoundOnCollide
+    sound:
+      collection: N14RifleCasingEject
+      params:
+        volume: -1

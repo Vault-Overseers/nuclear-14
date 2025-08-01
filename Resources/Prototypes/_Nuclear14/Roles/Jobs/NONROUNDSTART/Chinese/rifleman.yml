@@ -1,11 +1,19 @@
 - type: job
   id: ChineseRifleman
-  setPreference: true
+  setPreference: false
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: chinese rifleman
   description: follow orders from your superior, fight for the communism. #need work
   playTimeTracker: ChineseRifleman
   startingGear: ChineseRiflemanGear
   icon: "JobIconSecurityCadet"
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
 
 - type: startingGear
   id: ChineseRiflemanGear

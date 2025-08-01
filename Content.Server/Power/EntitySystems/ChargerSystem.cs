@@ -8,7 +8,6 @@ using Content.Shared.Emp;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared.Power.Components;
 using Content.Shared.Storage.Components;
 using Robust.Server.Containers;
 using Content.Shared.Whitelist;
@@ -63,7 +62,7 @@ internal sealed class ChargerSystem : EntitySystem
             // power cells have their own empty message by default, for things like flash lights
             if (container.ContainedEntities.Count == 0)
             {
-                args.PushMarkup(Loc.GetString("Charger is empty."));
+                args.PushMarkup(Loc.GetString("charger-empty"));
             }
             else
             {
@@ -74,7 +73,7 @@ internal sealed class ChargerSystem : EntitySystem
                         continue;
 
                     var chargePercentage = (battery.CurrentCharge / battery.MaxCharge) * 100;
-                    args.PushMarkup(Loc.GetString("Charger has something in it.", ("chargePercentage", (int) chargePercentage)));
+                    args.PushMarkup(Loc.GetString("charger-content", ("chargePercentage", (int) chargePercentage)));
                 }
             }
         }
@@ -235,7 +234,7 @@ internal sealed class ChargerSystem : EntitySystem
 
         return CellChargerStatus.Charging;
     }
-    
+
     private void TransferPower(EntityUid uid, EntityUid targetEntity, ChargerComponent component, float frameTime)
     {
         if (!TryComp(uid, out ApcPowerReceiverComponent? receiverComponent))

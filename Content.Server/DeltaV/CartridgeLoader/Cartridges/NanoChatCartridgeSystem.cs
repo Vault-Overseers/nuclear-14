@@ -32,31 +32,26 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
     // no point in storing it on the comp
     private const int NotificationMaxLength = 64;
 
+    // The max length of the name and job title on the notification before being truncated.
+    private const int NotificationTitleMaxLength = 32;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<NanoChatCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
         SubscribeLocalEvent<NanoChatCartridgeComponent, CartridgeMessageEvent>(OnMessage);
-
-        Subs.BuiEvents<PdaComponent>(PdaUiKey.Key, subs =>
-        {
-            subs.Event<BoundUIClosedEvent>(OnPdaClosed);
-        });
     }
 
-    // Reset current chat when PDA closes.
-    private void OnPdaClosed(EntityUid uid, PdaComponent component, BoundUIClosedEvent args)
+    private void UpdateClosed(Entity<NanoChatCartridgeComponent> ent)
     {
-        var exists = GetCardEntity(uid, out var cardEntity);
-
-        if (!exists)
+        if (!TryComp<CartridgeComponent>(ent, out var cartridge) ||
+            cartridge.LoaderUid is not { } pda ||
+            !TryComp<CartridgeLoaderComponent>(pda, out var loader) ||
+            !GetCardEntity(pda, out var card))
+        {
             return;
-
-        _nanoChat.SetCurrentChat(
-            (cardEntity.Owner, (NanoChatCardComponent?) cardEntity.Comp),
-            null
-        );
+        }
     }
 
     public override void Update(float frameTime)
@@ -64,14 +59,12 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         base.Update(frameTime);
 
         // Update card references for any cartridges that need it
-        var query = EntityQueryEnumerator<NanoChatCartridgeComponent, CartridgeComponent>();
-        while (query.MoveNext(out var uid, out var nanoChat, out var cartridge))
+        var query = EntityQueryEnumerator<NanoChatCartridgeComponent>();
+        while (query.MoveNext(out var uid, out var nanoChat))
         {
-            if (cartridge.LoaderUid == null)
-                continue;
-
-            // Check if we need to update our card reference
-            if (!TryComp<PdaComponent>(cartridge.LoaderUid, out var pda))
+            if (!TryComp(uid, out CartridgeComponent? cartridge)
+                || cartridge.LoaderUid == null
+                || !TryComp(cartridge.LoaderUid, out PdaComponent? pda))
                 continue;
 
             var newCard = pda.ContainedId;
@@ -108,6 +101,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             case NanoChatUiMessageType.SelectChat:
                 HandleSelectChat(card, msg);
                 break;
+            case NanoChatUiMessageType.EditChat:
+                HandleEditChat(card, msg);
+                break;
             case NanoChatUiMessageType.CloseChat:
                 HandleCloseChat(card);
                 break;
@@ -119,6 +115,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                 break;
             case NanoChatUiMessageType.SendMessage:
                 HandleSendMessage(ent, card, msg);
+                break;
+            case NanoChatUiMessageType.ToggleListNumber:
+                HandleToggleListNumber(card);
                 break;
         }
 
@@ -155,17 +154,33 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (msg.RecipientNumber == null || msg.Content == null || msg.RecipientNumber == card.Comp.Number)
             return;
 
+        var name = msg.Content;
+        if (!string.IsNullOrWhiteSpace(name))
+        {
+            name = name.Trim();
+            if (name.Length > IdCardConsoleComponent.MaxFullNameLength)
+                name = name[..IdCardConsoleComponent.MaxFullNameLength];
+        }
+
+        var jobTitle = msg.RecipientJob;
+        if (!string.IsNullOrWhiteSpace(jobTitle))
+        {
+            jobTitle = jobTitle.Trim();
+            if (jobTitle.Length > IdCardConsoleComponent.MaxJobTitleLength)
+                jobTitle = jobTitle[..IdCardConsoleComponent.MaxJobTitleLength];
+        }
+
         // Add new recipient
         var recipient = new NanoChatRecipient(msg.RecipientNumber.Value,
-            msg.Content,
-            msg.RecipientJob);
+            name,
+            jobTitle);
 
         // Initialize or update recipient
         _nanoChat.SetRecipient((card, card.Comp), msg.RecipientNumber.Value, recipient);
 
         _adminLogger.Add(LogType.Action,
             LogImpact.Low,
-            $"{ToPrettyString(msg.Actor):user} created new NanoChat conversation with #{msg.RecipientNumber:D4} ({msg.Content})");
+            $"{ToPrettyString(msg.Actor):user} created new NanoChat conversation with #{msg.RecipientNumber:D4} ({name})");
 
         var recipientEv = new NanoChatRecipientUpdatedEvent(card);
         RaiseLocalEvent(ref recipientEv);
@@ -189,6 +204,42 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                 msg.RecipientNumber.Value,
                 recipient with { HasUnread = false });
         }
+    }
+
+    /// <summary>
+    ///     Handles editing the current chat conversation.
+    /// </summary>
+    private void HandleEditChat(Entity<NanoChatCardComponent> card, NanoChatUiMessageEvent msg)
+    {
+        if (msg.RecipientNumber == null || msg.Content == null || msg.RecipientNumber == card.Comp.Number ||
+            _nanoChat.GetRecipient((card, card.Comp), msg.RecipientNumber.Value) is not {} recipient)
+            return;
+
+        var name = msg.Content;
+        if (!string.IsNullOrWhiteSpace(name))
+        {
+            name = name.Trim();
+            if (name.Length > IdCardConsoleComponent.MaxFullNameLength)
+                name = name[..IdCardConsoleComponent.MaxFullNameLength];
+        }
+
+        var jobTitle = msg.RecipientJob;
+        if (!string.IsNullOrWhiteSpace(jobTitle))
+        {
+            jobTitle = jobTitle.Trim();
+            if (jobTitle.Length > IdCardConsoleComponent.MaxJobTitleLength)
+                jobTitle = jobTitle[..IdCardConsoleComponent.MaxJobTitleLength];
+        }
+
+        // Update recipient
+        recipient.Name = name;
+        recipient.JobTitle = jobTitle;
+
+        _nanoChat.SetRecipient((card, card.Comp), msg.RecipientNumber.Value, recipient);
+
+        var recipientEv = new NanoChatRecipientUpdatedEvent(card);
+        RaiseLocalEvent(ref recipientEv);
+        UpdateUIForCard(card);
     }
 
     /// <summary>
@@ -229,6 +280,12 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         UpdateUIForCard(card);
     }
 
+    private void HandleToggleListNumber(Entity<NanoChatCardComponent> card)
+    {
+        _nanoChat.SetListNumber((card, card.Comp), !_nanoChat.GetListNumber((card, card.Comp)));
+        UpdateUIForAllCards();
+    }
+
     /// <summary>
     ///     Handles sending a new message in a chat conversation.
     /// </summary>
@@ -242,10 +299,18 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (!EnsureRecipientExists(card, msg.RecipientNumber.Value))
             return;
 
+        var content = msg.Content;
+        if (!string.IsNullOrWhiteSpace(content))
+        {
+            content = content.Trim();
+            if (content.Length > NanoChatMessage.MaxContentLength)
+                content = content[..NanoChatMessage.MaxContentLength];
+        }
+
         // Create and store message for sender
         var message = new NanoChatMessage(
             _timing.CurTime,
-            msg.Content,
+            content,
             (uint)card.Comp.Number
         );
 
@@ -265,7 +330,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
         _adminLogger.Add(LogType.Chat,
             LogImpact.Low,
-            $"{ToPrettyString(card):user} sent NanoChat message to {recipientsText}: {msg.Content}{(deliveryFailed ? " [DELIVERY FAILED]" : "")}");
+            $"{ToPrettyString(card):user} sent NanoChat message to {recipientsText}: {content}{(deliveryFailed ? " [DELIVERY FAILED]" : "")}");
 
         var msgEv = new NanoChatMessageReceivedEvent(card);
         RaiseLocalEvent(ref msgEv);
@@ -401,7 +466,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             return;
 
         _nanoChat.AddMessage((recipient, recipient.Comp), senderNumber.Value, message with { DeliveryFailed = false });
-        HandleUnreadNotification(recipient, message);
+        HandleUnreadNotification(recipient, message, (uint) senderNumber);
 
         var msgEv = new NanoChatMessageReceivedEvent(recipient);
         RaiseLocalEvent(ref msgEv);
@@ -411,42 +476,46 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
     /// <summary>
     ///     Handles unread message notifications and updates unread status.
     /// </summary>
-    private void HandleUnreadNotification(Entity<NanoChatCardComponent> recipient, NanoChatMessage message)
+    private void HandleUnreadNotification(Entity<NanoChatCardComponent> recipient,
+        NanoChatMessage message,
+        uint senderNumber)
     {
         // Get sender name from contacts or fall back to number
         var recipients = _nanoChat.GetRecipients((recipient, recipient.Comp));
-        var senderName = recipients.TryGetValue(message.SenderId, out var existingRecipient)
-            ? existingRecipient.Name
+        var senderName = recipients.TryGetValue(message.SenderId, out var senderRecipient)
+            ? senderRecipient.Name
             : $"#{message.SenderId:D4}";
-
-        var shouldUnread = true;
-
-        if (!recipient.Comp.Recipients[message.SenderId].HasUnread && !recipient.Comp.NotificationsMuted)
-        {
-            var pdaQuery = EntityQueryEnumerator<PdaComponent>();
-            while (pdaQuery.MoveNext(out var pdaUid, out var pdaComp))
-            {
-                if (pdaComp.ContainedId != recipient)
-                    continue;
-
-                if (_ui.IsUiOpen((pdaUid, null), PdaUiKey.Key) && recipient.Comp.CurrentChat == message.SenderId)
-                {
-                    shouldUnread = false;
-                    break;
-                }
-
-                _cartridge.SendNotification(pdaUid,
-                    Loc.GetString("nano-chat-new-message-title", ("sender", senderName)),
-                    Loc.GetString("nano-chat-new-message-body", ("message", TruncateMessage(message.Content))));
-                break;
-            }
-        }
+        var hasSelectedCurrentChat = _nanoChat.GetCurrentChat((recipient, recipient.Comp)) == senderNumber;
 
         // Update unread status
-        _nanoChat.SetRecipient(
-            (recipient, recipient.Comp),
-            message.SenderId,
-            existingRecipient with { HasUnread = shouldUnread });
+        if (!hasSelectedCurrentChat)
+            _nanoChat.SetRecipient((recipient, recipient.Comp),
+                message.SenderId,
+                senderRecipient with { HasUnread = true });
+
+        if (recipient.Comp.NotificationsMuted ||
+            recipient.Comp.PdaUid is not {} pdaUid ||
+            !TryComp<CartridgeLoaderComponent>(pdaUid, out var loader) ||
+            // Don't notify if the recipient has the NanoChat program open with this chat selected.
+            (hasSelectedCurrentChat &&
+                _ui.IsUiOpen(pdaUid, PdaUiKey.Key) &&
+                HasComp<NanoChatCartridgeComponent>(loader.ActiveProgram)))
+            return;
+
+        var title = "";
+        if (!String.IsNullOrEmpty(senderRecipient.JobTitle))
+        {
+            var titleRecipient = Truncate(Loc.GetString("nano-chat-new-message-title-recipient",
+                ("sender", senderName), ("jobTitle", senderRecipient.JobTitle)), NotificationTitleMaxLength, " \\[...\\]");
+            title = Loc.GetString("nano-chat-new-message-title", ("sender", titleRecipient));
+        }
+        else
+            title = Loc.GetString("nano-chat-new-message-title", ("sender", senderName));
+
+        _cartridge.SendNotification(pdaUid,
+            title,
+            Loc.GetString("nano-chat-new-message-body", ("message", Truncate(message.Content, NotificationMaxLength, " [...]"))),
+            loader);
     }
 
     /// <summary>
@@ -462,6 +531,20 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                 continue;
 
             UpdateUI((uid, comp), cartridge.LoaderUid.Value);
+        }
+    }
+
+    /// <summary>
+    ///     Updates the UI for all PDAs containing a NanoChat cartridge.
+    /// </summary>
+    private void UpdateUIForAllCards()
+    {
+        // Find any PDA containing this card and update its UI
+        var query = EntityQueryEnumerator<NanoChatCartridgeComponent, CartridgeComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var cartridge))
+        {
+            if (cartridge.LoaderUid is { } loader)
+                UpdateUI((uid, comp), loader);
         }
     }
 
@@ -493,14 +576,12 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Truncates a message to the notification maximum length.
+    ///     Truncates a string to a maximum length.
     /// </summary>
-    private static string TruncateMessage(string message)
-    {
-        return message.Length <= NotificationMaxLength
-            ? message
-            : message[..(NotificationMaxLength - 4)] + " [...]";
-    }
+    private static string Truncate(string text, int maxLength, string overflowText = "...") =>
+        text.Length <= maxLength
+            ? text
+            : text[..(maxLength - overflowText.Length)] + overflowText;
 
     private void OnUiReady(Entity<NanoChatCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
     {
@@ -510,8 +591,27 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
     private void UpdateUI(Entity<NanoChatCartridgeComponent> ent, EntityUid loader)
     {
+        List<NanoChatRecipient>? contacts;
         if (_station.GetOwningStation(loader) is { } station)
+        {
             ent.Comp.Station = station;
+
+            contacts = [];
+
+            var query = AllEntityQuery<NanoChatCardComponent, IdCardComponent>();
+            while (query.MoveNext(out var entityId, out var nanoChatCard, out var idCardComponent))
+            {
+                if (nanoChatCard.ListNumber && nanoChatCard.Number is uint nanoChatNumber && idCardComponent.FullName is string fullName && _station.GetOwningStation(entityId) == station)
+                {
+                    contacts.Add(new NanoChatRecipient(nanoChatNumber, fullName));
+                }
+            }
+            contacts.Sort((contactA, contactB) => string.CompareOrdinal(contactA.Name, contactB.Name));
+        }
+        else
+        {
+            contacts = null;
+        }
 
         var recipients = new Dictionary<uint, NanoChatRecipient>();
         var messages = new Dictionary<uint, List<NanoChatMessage>>();
@@ -519,6 +619,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         uint ownNumber = 0;
         var maxRecipients = 50;
         var notificationsMuted = false;
+        var listNumber = false;
 
         if (ent.Comp.Card != null && TryComp<NanoChatCardComponent>(ent.Comp.Card, out var card))
         {
@@ -528,14 +629,17 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             ownNumber = card.Number ?? 0;
             maxRecipients = card.MaxRecipients;
             notificationsMuted = card.NotificationsMuted;
+            listNumber = card.ListNumber;
         }
 
         var state = new NanoChatUiState(recipients,
             messages,
+            contacts,
             currentChat,
             ownNumber,
             maxRecipients,
-            notificationsMuted);
+            notificationsMuted,
+            listNumber);
         _cartridge.UpdateCartridgeUiState(loader, state);
     }
 }

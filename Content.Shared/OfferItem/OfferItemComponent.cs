@@ -1,4 +1,6 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
+using Content.Shared.Alert;
 
 namespace Content.Shared.OfferItem;
 
@@ -23,4 +25,9 @@ public sealed partial class OfferItemComponent : Component
 
     [DataField]
     public float MaxOfferDistance = 2f;
+
+    [DataField]
+    public ProtoId<AlertPrototype> OfferAlert = "Offer";
 }
+
+public sealed partial class AcceptOfferAlertEvent : BaseAlertEvent;

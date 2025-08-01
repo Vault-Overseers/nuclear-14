@@ -1,38 +1,47 @@
 - type: job
-  id: TownSheriff
+  id: TownSheriff # Renamed to "Marshal", don't touch the prototype ID
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-townsheriff
   description: job-description-townsheriff
   playTimeTracker: TownSheriff
   requirements:
-    - !type:DepartmentTimeRequirement
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+      - Ghoul
+    - !type:CharacterDepartmentTimeRequirement
       department: Townsfolk
-      time: 18000 # 5 hours
+      min: 28800 # 8 hours
   startingGear: TownSheriffGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-townsfolk
+  access:
+  - TownieLaw
+  - TownieMechanic
+  - TownieDoctor
+  - WastelandReporter
   special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - Townsfolk
 
 - type: startingGear
   id: TownSheriffGear
   equipment:
-    jumpsuit: N14ClothingUniformJumpsuitCowboyGrey
-    back: N14ClothingBackpackSheriffFilled
-    shoes: N14ClothingBootsCowboy
-    head: N14ClothingHeadHatSheriff
+    jumpsuit: N14ClothingUniformJumpsuitTownGuardLight
+    back: N14ClothingBackpackSatchelSheriffFilled
+    shoes: N14ClothingBootsLeatherFilled
     id: N14IDBadgeTownSheriff
-    outerClothing: N14ClothingOuterSheriffVest
-    belt: ClothingBeltRevolverfilled
-    pocket1: RadioHandheld
-    pocket2: N14WeaponHunterRevolver
-    suitstorage: N14WeaponLeverRifle
+    belt: ClothingBeltMilitary
+    pocket1: TownGuardKits
+    pocket2: Handcuffs
   satchel: N14ClothingBackpackSatchelSheriffFilled
-  duffelbag: N14ClothingBackpackDuffelSheriffFilled
+  duffelbag: N14ClothingBackpackSatchelSheriffFilled
 
 - type: playTimeTracker
   id: TownSheriff

@@ -1,4 +1,5 @@
 
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.DoAfter;
@@ -67,7 +68,7 @@ public sealed class FlightSystem : SharedFlightSystem
             new FlightDoAfterEvent(), uid, target: uid)
             {
                 BlockDuplicate = true,
-                BreakOnMove = true,
+                BreakOnMove = false,
                 BreakOnDamage = true,
                 NeedHand = true
             };

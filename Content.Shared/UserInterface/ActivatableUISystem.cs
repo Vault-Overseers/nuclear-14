@@ -10,8 +10,6 @@ using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Utility;
-using Content.Shared.Whitelist;
-using Robust.Shared.Containers;
 
 namespace Content.Shared.UserInterface;
 
@@ -19,7 +17,6 @@ public sealed partial class ActivatableUISystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminManager _adminManager = default!;
     [Dependency] private readonly ActionBlockerSystem _blockerSystem = default!;
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
@@ -38,6 +35,8 @@ public sealed partial class ActivatableUISystem : EntitySystem
         SubscribeLocalEvent<ActivatableUIComponent, BoundUIClosedEvent>(OnUIClose);
         SubscribeLocalEvent<ActivatableUIComponent, GetVerbsEvent<ActivationVerb>>(GetActivationVerb);
         SubscribeLocalEvent<ActivatableUIComponent, GetVerbsEvent<Verb>>(GetVerb);
+
+        SubscribeLocalEvent<ActivatableUIComponent, GetVerbsEvent<AlternativeVerb>>(GetAltVerb); // Goobstation
 
         SubscribeLocalEvent<UserInterfaceComponent, OpenUiActionEvent>(OnActionPerform);
 
@@ -70,7 +69,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
     private void GetActivationVerb(EntityUid uid, ActivatableUIComponent component, GetVerbsEvent<ActivationVerb> args)
     {
-        if (component.VerbOnly || !ShouldAddVerb(uid, component, args))
+        if (component.VerbOnly || component.AltVerb || !ShouldAddVerb(uid, component, args)) // Goobstation
             return;
 
         args.Verbs.Add(new ActivationVerb
@@ -84,10 +83,24 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
     private void GetVerb(EntityUid uid, ActivatableUIComponent component, GetVerbsEvent<Verb> args)
     {
-        if (!component.VerbOnly || !ShouldAddVerb(uid, component, args))
+        if (!component.VerbOnly || component.AltVerb || !ShouldAddVerb(uid, component, args)) // Goobstation
             return;
 
         args.Verbs.Add(new Verb
+        {
+            Act = () => InteractUI(args.User, uid, component),
+            Text = Loc.GetString(component.VerbText),
+            // TODO VERB ICON find a better icon
+            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
+        });
+    }
+
+    private void GetAltVerb(EntityUid uid, ActivatableUIComponent component, GetVerbsEvent<AlternativeVerb> args) // Goobstation
+    {
+        if (!component.AltVerb || !ShouldAddVerb(uid, component, args))
+            return;
+
+        args.Verbs.Add(new AlternativeVerb
         {
             Act = () => InteractUI(args.User, uid, component),
             Text = Loc.GetString(component.VerbText),
@@ -105,7 +118,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
             || _whitelistSystem.IsWhitelistFail(component.UserWhitelist, args.User))
             return false;
 
-        if (component.RequireHands)
+        if (component.RequiresComplex)
         {
             if (args.Hands == null)
                 return false;
@@ -193,19 +206,22 @@ public sealed partial class ActivatableUISystem : EntitySystem
         if (!_blockerSystem.CanInteract(user, uiEntity) && (!HasComp<GhostComponent>(user) || aui.BlockSpectators))
             return false;
 
-        if (aui.RequireHands)
+        if (aui.RequiresComplex)
+        {
+            if (!_blockerSystem.CanComplexInteract(user))
+                return false;
+        }
+
+        if (aui.InHandsOnly)
         {
             if (!TryComp(user, out HandsComponent? hands))
                 return false;
 
-            if (aui.InHandsOnly)
-            {
-                if (!_hands.IsHolding(user, uiEntity, out var hand, hands))
-                    return false;
+            if (!_hands.IsHolding(user, uiEntity, out var hand, hands))
+                return false;
 
-                if (aui.RequireActiveHand && hands.ActiveHand != hand)
-                    return false;
-            }
+            if (aui.RequireActiveHand && hands.ActiveHand != hand)
+                return false;
         }
 
         if (aui.AdminOnly && !_adminManager.IsAdmin(user))
@@ -276,13 +292,13 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
     private void OnHandDeselected(Entity<ActivatableUIComponent> ent, ref HandDeselectedEvent args)
     {
-        if (ent.Comp.RequireHands && ent.Comp.InHandsOnly && ent.Comp.RequireActiveHand)
+        if (ent.Comp.InHandsOnly && ent.Comp.RequireActiveHand)
             CloseAll(ent, ent);
     }
 
     private void OnHandUnequipped(Entity<ActivatableUIComponent> ent, ref GotUnequippedHandEvent args)
     {
-        if (ent.Comp.RequireHands && ent.Comp.InHandsOnly)
+        if (ent.Comp.InHandsOnly)
             CloseAll(ent, ent);
     }
 }

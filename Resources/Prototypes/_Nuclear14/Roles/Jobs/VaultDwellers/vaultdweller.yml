@@ -6,9 +6,9 @@
   - !type:CharacterSpeciesRequirement
     species:
     - Human
-  - !type:CharacterDepartmentTimeRequirement
-    department: Vault
-    min: 3600 # 1 hour
+  setPreference: true
+  overrideConsoleVisibility: true
+  canBeAntag: false
   playTimeTracker: VaultDweller
   startingGear: VaultDwellerGear
   alwaysUseSpawner: true
@@ -21,12 +21,8 @@
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - Vault
-  jobBlockForSpecies:
-  - !type:JobBlockForSpecie
-    nameSpecie: Ghoul
-  - !type:JobBlockForSpecie
-    nameSpecie: GhoulGlowing
 
 - type: startingGear
   id: VaultDwellerGear

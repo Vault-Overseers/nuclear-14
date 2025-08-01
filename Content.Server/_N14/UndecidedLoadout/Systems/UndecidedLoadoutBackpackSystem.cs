@@ -79,6 +79,6 @@ public sealed class UndecidedLoadoutBackpackSystem : EntitySystem
             data.Add(i, info);
         }
 
-        _ui.TrySetUiState(uid, UndecidedLoadoutBackpackUIKey.Key, new UndecidedLoadoutBackpackBoundUserInterfaceState(data, MaxSelectedSets));
+        _ui.SetUiState(uid, UndecidedLoadoutBackpackUIKey.Key, new UndecidedLoadoutBackpackBoundUserInterfaceState(data, MaxSelectedSets));
     }
 }

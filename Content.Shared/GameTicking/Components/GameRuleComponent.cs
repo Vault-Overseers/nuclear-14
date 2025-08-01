@@ -1,23 +1,8 @@
-<<<<<<<< HEAD:Content.Server/GameTicking/Components/GameRuleComponent.cs
-<<<<<<<< HEAD:Content.Shared/GameTicking/Components/GameRuleComponent.cs
 using Content.Shared.Destructible.Thresholds;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.GameTicking.Components;
-========
-using Content.Server.Destructible.Thresholds;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-
-namespace Content.Server.GameTicking.Components;
->>>>>>>> 8dc036c8a7 (Upstream merge 16th Sept 2024 (#527)):Content.Server/GameTicking/Components/GameRuleComponent.cs
-========
-using Content.Shared.Destructible.Thresholds;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-
-namespace Content.Shared.GameTicking.Components;
->>>>>>>> 9110293ca6 (Upstream Merge January 2025 (#780)):Content.Shared/GameTicking/Components/GameRuleComponent.cs
 
 /// <summary>
 /// Component attached to all gamerule entities.
@@ -39,7 +24,6 @@ public sealed partial class GameRuleComponent : Component
     public int MinPlayers;
 
     /// <summary>
-<<<<<<<< HEAD:Content.Shared/GameTicking/Components/GameRuleComponent.cs
     /// If true, this rule not having enough players will cancel the preset selection.
     /// If false, it will simply not run silently.
     /// </summary>
@@ -47,8 +31,6 @@ public sealed partial class GameRuleComponent : Component
     public bool CancelPresetOnTooFewPlayers = true;
 
     /// <summary>
-========
->>>>>>>> 8dc036c8a7 (Upstream merge 16th Sept 2024 (#527)):Content.Server/GameTicking/Components/GameRuleComponent.cs
     /// A delay for when the rule the is started and when the starting logic actually runs.
     /// </summary>
     [DataField]

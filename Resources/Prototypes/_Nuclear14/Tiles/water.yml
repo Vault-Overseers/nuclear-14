@@ -63,6 +63,9 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.2
     sprintSpeedModifier: 0.2
+  - type: FishingPool
+    loot: FishingDeep
+    successChance: 0.4
   - type: TileEmission
     color: "#55b240"
 
@@ -91,14 +94,18 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.6
     sprintSpeedModifier: 0.6
+  - type: FishingPool
+    loot: FishingShallow
+    successChance: 0.5
 
 - type: entity
-  parent: N14FloorWaterSewerDeep
+  parent: N14FloorWaterDirtyEntity
   id: N14FloorWaterDeep
   name: deep water
   description: Endless Abyss.
   components:
   - type: Sprite
+    sprite: _Nuclear14/Tiles/ms13/Water.rsi
     layers:
       - state: water_deep
   - type: SpeedModifierContacts
@@ -106,7 +113,7 @@
     sprintSpeedModifier: 0.2
 
 - type: entity
-  parent: N14FloorWaterSewerDeep
+  parent: N14FloorWaterDeep
   id: N14FloorWaterMedium
   name: water
   description: Unclean water, likely highly unclean.
@@ -119,7 +126,7 @@
     sprintSpeedModifier: 0.4
 
 - type: entity
-  parent: N14FloorWaterSewerDeep
+  parent: N14FloorWaterDeep
   id: N14FloorWaterShallow
   name: shallow water
   description: Unclean water, likely highly unclean
@@ -130,14 +137,18 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.6
     sprintSpeedModifier: 0.6
+  - type: FishingPool
+    loot: FishingShallow
+    successChance: 0.5
 
 - type: entity
-  parent: N14FloorWaterSewerDeep
+  parent: N14FloorWaterDirtyEntity
   id: N14FloorWaterSaltDeep
   name: deep salt water
   description: Endless Abyss.
   components:
   - type: Sprite
+    sprite: _Nuclear14/Tiles/ms13/Water.rsi
     layers:
       - state: water_deep
   - type: SpeedModifierContacts
@@ -150,6 +161,9 @@
         reagents:
         - ReagentId: Water #TODO: Add WaterSalt Reagent.
           Quantity: 9999999
+  - type: FishingPool
+    loot: FishingDeep
+    successChance: 0.4
 
 - type: entity
   parent: N14FloorWaterSaltDeep
@@ -169,58 +183,6 @@
   id: N14FloorWaterSaltShallow
   name: shallow salt water
   description: Unclean water, tainted with salt
-  components:
-  - type: Sprite
-    layers:
-      - state: water_shallow
-  - type: SpeedModifierContacts
-    walkSpeedModifier: 0.6
-    sprintSpeedModifier: 0.6
-    
-- type: entity
-  parent: N14FloorWaterSewerDeep
-  id: N14FloorWaterSaltDeep
-  name: deep salt water
-  description: Endless Abyss.
-  components:
-  - type: Sprite
-    layers:
-      - state: water_deep
-  - type: SpeedModifierContacts
-    walkSpeedModifier: 0.2
-    sprintSpeedModifier: 0.2
-  - type: SolutionContainerManager
-    solutions:
-      pool:
-        maxVol: 9999999 #.inf seems to break the whole yaml file, but would definitely be preferable.
-        reagents:
-        - ReagentId: WaterSalt
-          Quantity: 9999999
-  - type: SolutionRegeneration
-    solution: tank
-    generated:
-      reagents:
-      - ReagentId: WaterSalt
-        Quantity: 100
-
-- type: entity
-  parent: N14FloorWaterSaltDeep
-  id: N14FloorWaterSaltMedium
-  name: salt water
-  description: Unclean water, likely irradiated.
-  components:
-  - type: Sprite
-    layers:
-      - state: water_medium
-  - type: SpeedModifierContacts
-    walkSpeedModifier: 0.4
-    sprintSpeedModifier: 0.4
-
-- type: entity
-  parent: N14FloorWaterSaltDeep
-  id: N14FloorWaterSaltShallow
-  name: shallow salt water
-  description: Unclean water, likely irradiated
   components:
   - type: Sprite
     layers:

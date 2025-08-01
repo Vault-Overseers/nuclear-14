@@ -1,5 +1,4 @@
 using Content.Server.Power.Components;
-using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 
@@ -14,25 +13,31 @@ public sealed partial class PowerCellSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var query = EntityQueryEnumerator<PowerCellDrawComponent, PowerCellSlotComponent, ItemToggleComponent>();
+        var query = EntityQueryEnumerator<PowerCellDrawComponent, PowerCellSlotComponent>();
 
-        while (query.MoveNext(out var uid, out var comp, out var slot, out var toggle))
+        while (query.MoveNext(out var uid, out var comp, out var slot))
         {
-            if (!comp.Enabled || !toggle.Activated)
+            if (!comp.Enabled)
                 continue;
 
-            if (Timing.CurTime < comp.NextUpdateTime)
-                continue;
+            // Any delay between zero and 1/tickrate will be equivalent to 1/tickrate delay.
+            // Setting delay to zero makes the draw "continuous"
+            float drawRate = comp.DrawRate;
+            if (comp.Delay == TimeSpan.Zero)
+                drawRate *= frameTime;
+            else
+            {
+                if (Timing.CurTime < comp.NextUpdateTime)
+                    continue;
+            }
 
             comp.NextUpdateTime += comp.Delay;
 
             if (!TryGetBatteryFromSlot(uid, out var batteryEnt, out var battery, slot))
                 continue;
 
-            if (_battery.TryUseCharge(batteryEnt.Value, comp.DrawRate, battery))
+            if (_battery.TryUseCharge(batteryEnt.Value, drawRate, battery))
                 continue;
-
-            Toggle.TryDeactivate((uid, toggle));
 
             var ev = new PowerCellSlotEmptyEvent();
             RaiseLocalEvent(uid, ref ev);
@@ -60,7 +65,10 @@ public sealed partial class PowerCellSystem
         var canUse = !args.Ejected && HasActivatableCharge(uid, component);
 
         if (!canDraw)
-            Toggle.TryDeactivate(uid);
+        {
+            var ev = new PowerCellSlotEmptyEvent();
+            RaiseLocalEvent(uid, ref ev);
+        }
 
         if (canUse != component.CanUse || canDraw != component.CanDraw)
         {

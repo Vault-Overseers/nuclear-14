@@ -1,11 +1,13 @@
 using Content.Server.NPC.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.Interaction;
+using Content.Shared.Physics;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Random;
 
 namespace Content.Server.NPC.Systems;
 
@@ -134,8 +136,10 @@ public sealed partial class NPCCombatSystem
             if (comp.LOSAccumulator < 0f)
             {
                 comp.LOSAccumulator += UnoccludedCooldown;
+
                 // For consistency with NPC steering.
-                comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f);
+                var collisionGroup = comp.UseOpaqueForLOSChecks ? CollisionGroup.Opaque : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
+                comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, collisionGroup);
             }
 
             if (!comp.TargetInLOS)
@@ -189,9 +193,9 @@ public sealed partial class NPCCombatSystem
             EntityCoordinates targetCordinates;
 
             if (_mapManager.TryFindGridAt(xform.MapID, targetPos, out var gridUid, out var mapGrid))
-                targetCordinates = new(gridUid, _map.WorldToLocal(comp.Target, mapGrid, targetSpot));
+                targetCordinates = new EntityCoordinates(gridUid, mapGrid.WorldToLocal(targetSpot));
             else
-                targetCordinates = new(xform.MapUid!.Value, targetSpot);
+                targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
 
             comp.Status = CombatStatus.Normal;
 
@@ -200,7 +204,8 @@ public sealed partial class NPCCombatSystem
                 return;
             }
 
-            _gun.SetTarget(gun, comp.Target);
+            gun.Target = comp.AlwaysDirectTargets || _random.Prob(comp.DirectTargetChance) ? comp.Target : null;
+
             _gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
         }
     }

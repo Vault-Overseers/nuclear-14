@@ -30,13 +30,16 @@ public sealed partial class EtherealComponent : Component
     [DataField]
     public bool CanBeStunned = true;
 
-    /// Drain Mana if this entity is psionic?
+    /// <summary>
+    ///     How much stamina damage does the user take each second they are in the dark realm?
+    /// </summary>
     [DataField]
-    public bool DrainMana = true;
+    public float StaminaPerSecond = 1;
+
+    [DataField]
+    public float StaminaDamageOnFlash = 200f;
 
     public List<EntityUid> DarkenedLights = new();
-
-    public float OldManaGain;
 
     public float DarkenAccumulator;
 

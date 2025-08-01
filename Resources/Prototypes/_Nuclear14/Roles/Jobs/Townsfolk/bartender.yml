@@ -1,6 +1,8 @@
 - type: job
   id: WastelandBartender
   setPreference: true
+  overrideConsoleVisibility: false
+  canBeAntag: false
   name: job-name-townbartender
   description: job-description-townbartender
   playTimeTracker: WastelandBartender
@@ -17,11 +19,15 @@
   supervisors: job-supervisors-townsfolk
   access:
   - WastelandBartender
-  special: 
+  - InnRoomOne
+  - InnRoomTwo
+  - InnRoomThree
+  special:
   - !type:AddComponentSpecial
     components:
       - type: NpcFactionMember
         factions:
+          - Wastelander
           - Townsfolk
       - type: ProfessionalChef
 
