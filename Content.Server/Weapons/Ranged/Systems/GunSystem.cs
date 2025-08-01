@@ -1,13 +1,16 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Cargo.Systems;
-using Content.Shared.Contests;
+using Content.Server.Interaction;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Stunnable;
 using Content.Server.Weapons.Ranged.Components;
+using Content.Shared.Contests;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Effects;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged;
@@ -15,15 +18,14 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Reflect;
-using Content.Shared.Damage.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Robust.Shared.Containers;
-using Content.Shared._Lavaland.Weapons.Ranged.Events;
+using Content.Shared.Nuclear14.Special.Components;
+using Content.Shared.Popups;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -32,14 +34,16 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly DamageExamineSystem _damageExamine = default!;
+    [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly StunSystem _stun = default!;
     [Dependency] private readonly ContestsSystem _contests = default!;
 
     private const float DamagePitchVariation = 0.05f;
+    public const float GunClumsyChance = 0.5f;
 
     public override void Initialize()
     {
@@ -68,14 +72,26 @@ public sealed partial class GunSystem : SharedGunSystem
     {
         userImpulse = true;
 
-        if (user != null)
+        // Try a clumsy roll
+        // TODO: Who put this here
+        if (TryComp<ClumsyComponent>(user, out var clumsy) && gun.ClumsyProof == false)
         {
-            var selfEvent = new SelfBeforeGunShotEvent(user.Value, (gunUid, gun), ammo);
-            RaiseLocalEvent(user.Value, selfEvent);
-            if (selfEvent.Cancelled)
+            for (var i = 0; i < ammo.Count; i++)
             {
-                userImpulse = false;
-                return;
+                if (_interaction.TryRollClumsy(user.Value, GunClumsyChance, clumsy))
+                {
+                    // Wound them
+                    Damageable.TryChangeDamage(user, clumsy.ClumsyDamage, origin: user);
+                    _stun.TryParalyze(user.Value, TimeSpan.FromSeconds(3f), true);
+
+                    // Apply salt to the wound ("Honk!")
+                    Audio.PlayPvs(new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/bang.ogg"), gunUid);
+                    Audio.PlayPvs(clumsy.ClumsySound, gunUid);
+
+                    PopupSystem.PopupEntity(Loc.GetString("gun-clumsy"), user.Value);
+                    userImpulse = false;
+                    return;
+                }
             }
         }
 
@@ -114,8 +130,27 @@ public sealed partial class GunSystem : SharedGunSystem
                 case CartridgeAmmoComponent cartridge:
                     if (!cartridge.Spent)
                     {
-                        var uid = Spawn(cartridge.Prototype, fromEnt);
-                        CreateAndFireProjectiles(uid, cartridge);
+                        if (cartridge.Count > 1)
+                        {
+                            var ev = new GunGetAmmoSpreadEvent(cartridge.Spread);
+                            RaiseLocalEvent(gunUid, ref ev);
+
+                            var angles = LinearSpread(mapAngle - ev.Spread / 2,
+                                mapAngle + ev.Spread / 2, cartridge.Count);
+
+                            for (var i = 0; i < cartridge.Count; i++)
+                            {
+                                var uid = Spawn(cartridge.Prototype, fromEnt);
+                                ShootOrThrow(uid, angles[i].ToVec(), gunVelocity, gun, gunUid, user);
+                                shotProjectiles.Add(uid);
+                            }
+                        }
+                        else
+                        {
+                            var uid = Spawn(cartridge.Prototype, fromEnt);
+                            ShootOrThrow(uid, mapDirection, gunVelocity, gun, gunUid, user);
+                            shotProjectiles.Add(uid);
+                        }
 
                         RaiseLocalEvent(ent!.Value, new AmmoShotEvent()
                         {
@@ -123,6 +158,8 @@ public sealed partial class GunSystem : SharedGunSystem
                         });
 
                         SetCartridgeSpent(ent.Value, cartridge, true);
+                        MuzzleFlash(gunUid, cartridge, user);
+                        Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
 
                         if (cartridge.DeleteOnSpawn)
                             Del(ent.Value);
@@ -135,16 +172,16 @@ public sealed partial class GunSystem : SharedGunSystem
 
                     // Something like ballistic might want to leave it in the container still
                     if (!cartridge.DeleteOnSpawn && !Containers.IsEntityInContainer(ent!.Value))
-                        EjectCartridge(ent.Value, angle, gunComp: gun);
+                        EjectCartridge(ent.Value, angle);
 
                     Dirty(ent!.Value, cartridge);
                     break;
                 // Ammo shoots itself
                 case AmmoComponent newAmmo:
-                    if (ent == null)
-                        break;
-                    CreateAndFireProjectiles(ent.Value, newAmmo);
-
+                    shotProjectiles.Add(ent!.Value);
+                    MuzzleFlash(gunUid, newAmmo, user);
+                    Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
+                    ShootOrThrow(ent.Value, mapDirection, gunVelocity, gun, gunUid, user);
                     break;
                 case HitscanPrototype hitscan:
 
@@ -168,31 +205,7 @@ public sealed partial class GunSystem : SharedGunSystem
                             if (!rayCastResults.Any())
                                 break;
 
-                            var raycastEvent = new HitScanAfterRayCastEvent(rayCastResults);
-                            RaiseLocalEvent(lastUser, ref raycastEvent);
-
-                            if (raycastEvent.RayCastResults == null)
-                                break;
-
-                            var result = raycastEvent.RayCastResults[0];
-
-                            // Check if laser is shot from in a container
-                            if (!_container.IsEntityOrParentInContainer(lastUser))
-                            {
-                                // Checks if the laser should pass over unless targeted by its user
-                                foreach (var collide in rayCastResults)
-                                {
-                                    if (collide.HitEntity != gun.Target &&
-                                        CompOrNull<RequireProjectileTargetComponent>(collide.HitEntity)?.Active == true)
-                                    {
-                                        continue;
-                                    }
-
-                                    result = collide;
-                                    break;
-                                }
-                            }
-
+                            var result = rayCastResults[0];
                             var hit = result.HitEntity;
                             lastHit = hit;
 
@@ -228,7 +241,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         {
                             if (!Deleted(hitEntity))
                             {
-                                if (dmg.AnyPositive())
+                                if (dmg.Any())
                                 {
                                     _color.RaiseEffect(Color.Red, new List<EntityUid>() { hitEntity }, Filter.Pvs(hitEntity, entityManager: EntityManager));
                                 }
@@ -265,66 +278,6 @@ public sealed partial class GunSystem : SharedGunSystem
         {
             FiredProjectiles = shotProjectiles,
         });
-
-        void CreateAndFireProjectiles(EntityUid ammoEnt, AmmoComponent ammoComp)
-        {
-            if (TryComp<ProjectileSpreadComponent>(ammoEnt, out var ammoSpreadComp))
-            {
-                var spreadEvent = new GunGetAmmoSpreadEvent(ammoSpreadComp.Spread);
-                RaiseLocalEvent(gunUid, ref spreadEvent);
-
-                var plusminusSpread = spreadEvent.Spread * gun.ShotgunSpreadMultiplier / 2;
-                var projectileCount = (int) (ammoSpreadComp.Count * gun.ShotgunProjectileCountModifier);
-
-                if (gun.UniformSpread)
-                {
-                    var angles = LinearSpread(mapAngle - plusminusSpread,
-                        mapAngle + plusminusSpread, ammoSpreadComp.Count);
-
-                    ShootOrThrow(ammoEnt, angles[0].ToVec(), gunVelocity, gun, gunUid, user);
-                    shotProjectiles.Add(ammoEnt);
-
-                    for (var i = 1; i < projectileCount; i++)
-                    {
-                        var newuid = Spawn(ammoSpreadComp.Proto, fromEnt);
-                        // Lavaland Change: Raise event when a projectile/pellet is fired from a gun.
-                        RaiseLocalEvent(gunUid, new ProjectileShotEvent()
-                        {
-                            FiredProjectile = newuid
-                        });
-                        ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, gunUid, user);
-                        shotProjectiles.Add(newuid);
-                    }
-                    goto SpreadBreak;
-                }
-
-                // !WHY DOES THE FIRST ONE NEED TO BE SPAWNED SEPARATELY? IF I DON'T DO THIS, THE FIRST ONE HITS THE USER!
-                ShootOrThrow(ammoEnt, mapAngle.ToVec(), gunVelocity, gun, gunUid, user);
-                shotProjectiles.Add(ammoEnt);
-
-                for (var i = 1; i < projectileCount; i++)
-                {
-                    var angle = Random.NextAngle(mapAngle - plusminusSpread, mapAngle + plusminusSpread);
-                    var newuid = Spawn(ammoSpreadComp.Proto, fromEnt);
-                    // Lavaland Change: Raise event when a projectile/pellet is fired from a gun.
-                    RaiseLocalEvent(gunUid, new ProjectileShotEvent()
-                    {
-                        FiredProjectile = newuid
-                    });
-                    ShootOrThrow(newuid, angle.ToVec(), gunVelocity, gun, gunUid, user);
-                    shotProjectiles.Add(newuid);
-                }
-            }
-            else
-            {
-                ShootOrThrow(ammoEnt, mapDirection, gunVelocity, gun, gunUid, user);
-                shotProjectiles.Add(ammoEnt);
-            }
-
-        SpreadBreak:
-            MuzzleFlash(gunUid, ammoComp, mapDirection.ToAngle(), user);
-            Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
-        }
     }
 
     private void ShootOrThrow(EntityUid uid, Vector2 mapDirection, Vector2 gunVelocity, GunComponent gun, EntityUid gunUid, EntityUid? user)
@@ -336,7 +289,8 @@ public sealed partial class GunSystem : SharedGunSystem
             Dirty(uid, targeted);
         }
 
-        if (!TryComp(uid, out ProjectileComponent? projectileComp))
+        // Do a throw
+        if (!HasComp<ProjectileComponent>(uid))
         {
             RemoveShootable(uid);
             // TODO: Someone can probably yeet this a billion miles so need to pre-validate input somewhere up the call stack.
@@ -344,7 +298,6 @@ public sealed partial class GunSystem : SharedGunSystem
             return;
         }
 
-        projectileComp.Damage *= gun.DamageModifier;
         ShootProjectile(uid, mapDirection, gunVelocity, gunUid, user, gun.ProjectileSpeedModified);
     }
 
@@ -367,15 +320,32 @@ public sealed partial class GunSystem : SharedGunSystem
         return angles;
     }
 
-    private Angle GetRecoilAngle(TimeSpan curTime, GunComponent component, Angle direction, EntityUid? user)
+    private Angle GetRecoilAngle(TimeSpan curTime, GunComponent component, Angle direction, EntityUid? shooter)
     {
         var timeSinceLastFire = (curTime - component.LastFire).TotalSeconds;
-        var newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, component.MinAngleModified.Theta, component.MaxAngleModified.Theta);
+        var minAngle = component.MinAngleModified;
+        var decay = component.AngleDecayModified;
+        var maxAngle = component.MaxAngleModified;
+        Angle newTheta;
+        if (TryComp<SpecialComponent>(shooter, out var special))
+        {
+            maxAngle += Angle.FromDegrees((40f - special.TotalPerception * 5));
+            minAngle += Angle.FromDegrees((10f - special.TotalPerception));
+            maxAngle *= 1.5 - special.TotalPerception / 10;
+            minAngle *= 1.5 - special.TotalPerception / 10;
+            decay += Angle.FromDegrees((special.TotalPerception - 10f) / 5);
+
+            newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - decay.Theta * timeSinceLastFire, minAngle.Theta, maxAngle.Theta);
+        }
+        else
+            newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, component.MinAngleModified.Theta, component.MaxAngleModified.Theta);
+        // Nuclear14 end
         component.CurrentAngle = new Angle(newTheta);
         component.LastFire = component.NextFire;
 
         // Convert it so angle can go either side.
-        var random = Random.NextFloat(-0.5f, 0.5f) / _contests.MassContest(user);
+
+        var random = Random.NextFloat(-0.5f, 0.5f) / _contests.MassContest(shooter);
         var spread = component.CurrentAngle.Theta * random;
         var angle = new Angle(direction.Theta + component.CurrentAngle.Theta * random);
         DebugTools.Assert(spread <= component.MaxAngleModified.Theta);
@@ -384,9 +354,9 @@ public sealed partial class GunSystem : SharedGunSystem
 
     protected override void Popup(string message, EntityUid? uid, EntityUid? user) { }
 
-    protected override void CreateEffect(EntityUid gunUid, MuzzleFlashEvent message, EntityUid? user = null)
+    protected override void CreateEffect(EntityUid uid, MuzzleFlashEvent message, EntityUid? user = null)
     {
-        var filter = Filter.Pvs(gunUid, entityManager: EntityManager);
+        var filter = Filter.Pvs(uid, entityManager: EntityManager);
 
         if (TryComp<ActorComponent>(user, out var actor))
             filter.RemovePlayer(actor.PlayerSession);
@@ -447,7 +417,7 @@ public sealed partial class GunSystem : SharedGunSystem
             var (_, gridRot, gridInvMatrix) = TransformSystem.GetWorldPositionRotationInvMatrix(gridXform, xformQuery);
 
             fromCoordinates = new EntityCoordinates(gridUid.Value,
-                Vector2.Transform(fromCoordinates.ToMapPos(EntityManager, TransformSystem), gridInvMatrix));
+                gridInvMatrix.Transform(fromCoordinates.ToMapPos(EntityManager, TransformSystem)));
 
             // Use the fallback angle I guess?
             angle -= gridRot;

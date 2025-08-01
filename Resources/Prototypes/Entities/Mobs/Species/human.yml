@@ -5,9 +5,11 @@
   name: Urist McHands
   abstract: true
   components:
-  - type: Perishable
-    rotAfter: 1800 # Half an in-game day.
   - type: Hunger
+    starvationDamage:
+      types:
+        Cold: 0.5
+        Bloodloss: 0.5
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
     sprite: Mobs/Species/Human/parts.rsi
     state: full
@@ -18,37 +20,15 @@
     spawned:
     - id: FoodMeatHuman
       amount: 5
-  - type: HumanoidAppearance
-    species: Human
-    hideLayersOnEquip:
-    - Hair
-    - Snout
+  - type: PsionicInsulation
   - type: LanguageKnowledge
     speaks:
-    - TauCetiBasic
-    - SolCommon
+    - GalacticCommon
     understands:
-    - TauCetiBasic
-    - SolCommon
-  - type: FootPrints
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
+    - GalacticCommon
+  - type: Special
 
 - type: entity
   parent: BaseSpeciesDummy
   id: MobHumanDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
-
+  noSpawn: true

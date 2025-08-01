@@ -13,8 +13,6 @@
       map: ["enum.StorageVisualLayers.Base"]
     - state: closet_door
       map: ["enum.StorageVisualLayers.Door"]
-  - type: Physics
-    bodyType: Static
   - type: EntityStorageVisuals
     stateBaseClosed: closet
     stateDoorOpen: closet_open
@@ -58,22 +56,22 @@
   - type: Weldable
 
 - type: entity
-  parent: [ N14ClosetGrey1 ]
+  parent: [ N14ClosetGrey1, N14TimedStorageFillDomestic ]
   id: N14ClosetGrey1Refilling
   suffix: Refilling,Domestic,Random
 
 - type: entity
-  parent: [ N14ClosetGrey1 ]
+  parent: [ N14ClosetGrey1, N14StorageFillDomestic ]
   id: N14LootClosetGrey1
   suffix: Loot,Domestic,Random
 
 - type: entity
-  parent: [ N14ClosetGrey1 ]
+  parent: [ N14ClosetGrey1, N14BaseLockerTimedStorageFill ]
   id: N14ClosetGrey1RefillingGeneric
   suffix: Refilling,Generic,Random
 
 - type: entity
-  parent: [ N14ClosetGrey1 ]
+  parent: [ N14ClosetGrey1, N14BaseLockerStorageFill ]
   id: N14LootGenericClosetGrey1
   suffix: Loot,Generic,Random
 
@@ -85,22 +83,22 @@
     sprite: _Nuclear14/Structures/Storage/Closets/closetgrey2.rsi
 
 - type: entity
-  parent: [ N14ClosetGrey2 ]
+  parent: [ N14ClosetGrey2, N14TimedStorageFillDomestic ]
   id: N14ClosetGrey2Refilling
   suffix: Refilling,Domestic,Random
 
 - type: entity
-  parent: [ N14ClosetGrey2 ]
+  parent: [ N14ClosetGrey2, N14StorageFillDomestic ]
   id: N14LootClosetGrey2
   suffix: Loot,Domestic,Random
 
 - type: entity
-  parent: [ N14ClosetGrey2 ]
+  parent: [ N14ClosetGrey2, N14BaseLockerTimedStorageFill ]
   id: N14ClosetGrey2RefillingGeneric
   suffix: Refilling,Generic,Random
 
 - type: entity
-  parent: [ N14ClosetGrey2 ]
+  parent: [ N14ClosetGrey2, N14BaseLockerStorageFill ]
   id: N14LootGenericClosetGrey2
   suffix: Loot,Generic,Random
 
@@ -114,22 +112,22 @@
     sprite: _Nuclear14/Structures/Storage/Closets/closetold.rsi
 
 - type: entity
-  parent: [ N14ClosetRusty ]
+  parent: [ N14ClosetRusty, N14TimedStorageFillDomestic ]
   id: N14ClosetRustyRefilling
   suffix: Refilling,Domestic,Random
 
 - type: entity
-  parent: [ N14ClosetRusty ]
+  parent: [ N14ClosetRusty, N14StorageFillDomestic ]
   id: N14LootClosetRusty
   suffix: Loot,Domestic,Random
 
 - type: entity
-  parent: [ N14ClosetRusty ]
+  parent: [ N14ClosetRusty, N14BaseLockerTimedStorageFill ]
   id: N14ClosetRustyRefillingGeneric
   suffix: Refilling,Generic,Random
 
 - type: entity
-  parent: [ N14ClosetRusty ]
+  parent: [ N14ClosetRusty, N14BaseLockerStorageFill ]
   id: N14LootGenericClosetRusty
   suffix: Loot,Generic,Random
 
@@ -143,12 +141,12 @@
     sprite: _Nuclear14/Structures/Storage/Closets/guncabinet.rsi
 
 - type: entity
-  parent: [ N14ClosetGunCabinet ]
+  parent: [ N14ClosetGunCabinet, N14BaseMilitaryTimedStorageFill ]
   id: N14ClosetGunCabinetRefilling
   suffix: Refilling,Military,Random
 
 - type: entity
-  parent: [ N14ClosetGunCabinet ]
+  parent: [ N14ClosetGunCabinet, N14BaseMilitaryStorageFill ]
   id: N14LootClosetGunCabinet
   suffix: Loot,Military,Random
 
@@ -161,23 +159,11 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Storage/Closets/fridgedirty.rsi
   - type: ExplosionResistance
-    damageCoefficient: 0.90
+    resistance: 0.90
   - type: AntiRottingContainer
 
 - type: entity
-  parent: N14ClosetBaseW
-  id: N14ClosetFridgeWideDirty
-  name: fridge
-  description: A dirty old fridge for keeping food fresh
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Structures/Storage/Closets/fridgewidedirty.rsi
-  - type: ExplosionResistance
-    damageCoefficient: 0.90
-  - type: AntiRottingContainer
-
-- type: entity
-  parent: [ N14ClosetFridgeDirty, N14ClosetFridgeWideDirty ]
+  parent: [ N14ClosetFridgeDirty, N14ClosetFridgeFill ]
   id: N14LootClosetFridge
   suffix: Loot,Domestic,Random
 
@@ -202,22 +188,22 @@
         - MachineLayer
 
 - type: entity
-  parent: [ N14ClosetDouble ]
+  parent: [ N14ClosetDouble, N14TimedStorageFillDomestic ]
   id: N14ClosetDoubleRefilling
   suffix: Refilling,Domestic,Random
 
 - type: entity
-  parent: [ N14ClosetDouble ]
+  parent: [ N14ClosetDouble, N14StorageFillDomestic ]
   id: N14LootClosetDouble
   suffix: Loot,Domestic,Random
 
 - type: entity
-  parent: [ N14ClosetDouble ]
+  parent: [ N14ClosetDouble, N14BaseLockerTimedStorageFill ]
   id: N14ClosetDoubleRefillingGeneric
   suffix: Refilling,Generic,Random
 
 - type: entity
-  parent: [ N14ClosetDouble ]
+  parent: [ N14ClosetDouble, N14BaseLockerStorageFill ]
   id: N14LootGenericClosetDouble
   suffix: Loot,Generic,Random
 
@@ -255,12 +241,12 @@
     - Wooden
 
 - type: entity
-  parent: [ N14ClosetCabinetWood ]
+  parent: [ N14ClosetCabinetWood, N14TimedStorageFillDomestic ]
   id: N14ClosetCabinetWoodRefilling
   suffix: Refilling,Domestic,Random
 
 - type: entity
-  parent: [ N14ClosetCabinetWood ]
+  parent: [ N14ClosetCabinetWood, N14StorageFillDomestic ]
   id: N14LootClosetCabinetWood
   suffix: Loot,Domestic,Random
 
@@ -281,17 +267,17 @@
     sprite: _Nuclear14/Structures/Storage/Closets/closetgeneric.rsi
 
 - type: entity
-  parent: [ N14ClosetGeneric ]
+  parent: [ N14ClosetGeneric, N14BaseLockerStorageFill ]
   id: N14LootClosetGeneric
   suffix: Loot,Generic,Random
 
 - type: entity
-  parent: [ N14ClosetGeneric ]
+  parent: [ N14ClosetGeneric, N14BaseMilitaryStorageFill ]
   id: N14LootMilitaryClosetGeneric
   suffix: Loot,Military,Random
 
 - type: entity
-  parent: [ N14ClosetGeneric ]
+  parent: [ N14ClosetGeneric, N14BaseMilitaryTimedStorageFill ]
   id: N14ClosetGenericRefillingMilitary
   suffix: Refilling,Military,Random
 
@@ -355,11 +341,11 @@
             max: 1
 
 - type: entity
-  parent: [ N14ClosetWallMedicabinet ]
+  parent: [ N14ClosetWallMedicabinet, N14TimedStorageFillMedical ]
   id: N14ClosetWallMedicabinetRefilling
   suffix: Refilling,Medical,Random
 
 - type: entity
-  parent: [ N14ClosetWallMedicabinet ]
+  parent: [ N14ClosetWallMedicabinet, N14StorageFillMedical ]
   id: N14LootClosetWallMedicabinet
   suffix: Loot,Medical,Random

@@ -1,15 +1,16 @@
 using Content.Server.Administration.Logs;
-using Content.Server.Damage.Systems;
 using Content.Server.Effects;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Camera;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Events;
 using Content.Shared.Database;
 using Content.Shared.Projectiles;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
-using Robust.Shared.Utility;
+using Content.Shared.Effects;
+using Content.Shared.Nuclear14.Special.Components;
+using Content.Shared.Popups;
+using Robust.Shared.Random;
 
 namespace Content.Server.Projectiles;
 
@@ -20,19 +21,20 @@ public sealed class ProjectileSystem : SharedProjectileSystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly GunSystem _guns = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<ProjectileComponent, StartCollideEvent>(OnStartCollide);
-        SubscribeLocalEvent<EmbeddableProjectileComponent, DamageExamineEvent>(OnDamageExamine, after: [typeof(DamageOtherOnHitSystem)]);
     }
 
     private void OnStartCollide(EntityUid uid, ProjectileComponent component, ref StartCollideEvent args)
     {
         // This is so entities that shouldn't get a collision are ignored.
         if (args.OurFixtureId != ProjectileFixture || !args.OtherFixture.Hard
-            || component.DamagedEntity || component is { Weapon: null, OnlyCollideWhenShot: true, })
+            || component.DamagedEntity || component is { Weapon: null, OnlyCollideWhenShot: true })
             return;
 
         var target = args.OtherEntity;
@@ -49,16 +51,32 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         RaiseLocalEvent(uid, ref ev);
 
         var otherName = ToPrettyString(target);
+        var direction = args.OurBody.LinearVelocity.Normalized();
+
+        // Nuclear14 Avoid geing hit with projectiles! pure luck?
+        if (TryComp<SpecialComponent>(target, out var special))
+        {
+            var rand = _random.Next(100);
+            if (special.TotalLuck > rand)
+            {
+                var message = Loc.GetString("special-lucky-evasion");
+                _popup.PopupEntity(message, target);
+                return;
+            }
+        }
+        // Nuclear14 end
+
         var modifiedDamage = _damageableSystem.TryChangeDamage(target, ev.Damage, component.IgnoreResistances, origin: component.Shooter);
         var deleted = Deleted(target);
 
         if (modifiedDamage is not null && EntityManager.EntityExists(component.Shooter))
         {
-            if (modifiedDamage.AnyPositive() && !deleted)
-                _color.RaiseEffect(Color.Red, [ target, ], Filter.Pvs(target, entityManager: EntityManager));
+            if (modifiedDamage.Any() && !deleted)
+            {
+                _color.RaiseEffect(Color.Red, new List<EntityUid> { target }, Filter.Pvs(target, entityManager: EntityManager));
+            }
 
-            _adminLogger.Add(
-                LogType.BulletHit,
+            _adminLogger.Add(LogType.BulletHit,
                 HasComp<ActorComponent>(target) ? LogImpact.Extreme : LogImpact.High,
                 $"Projectile {ToPrettyString(uid):projectile} shot by {ToPrettyString(component.Shooter!.Value):user} hit {otherName:target} and dealt {modifiedDamage.GetTotal():damage} damage");
         }
@@ -66,39 +84,17 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         if (!deleted)
         {
             _guns.PlayImpactSound(target, modifiedDamage, component.SoundHit, component.ForceSound);
-
-            if (!args.OurBody.LinearVelocity.IsLengthZero())
-                _sharedCameraRecoil.KickCamera(target, args.OurBody.LinearVelocity.Normalized());
+            _sharedCameraRecoil.KickCamera(target, direction);
         }
 
-        // Goobstation start
-        if (component.Penetrate)
-            component.IgnoredEntities.Add(target);
-        else
-            component.DamagedEntity = true;
-        // Goobstation end
+        component.DamagedEntity = true;
 
-        if (component.DeleteOnCollide || (component.NoPenetrateMask & args.OtherFixture.CollisionLayer) != 0) // Goobstation - Make x-ray arrows not penetrate blob
+        if (component.DeleteOnCollide)
             QueueDel(uid);
 
-        if (component.ImpactEffect != null && TryComp(uid, out TransformComponent? xform))
+        if (component.ImpactEffect != null && TryComp<TransformComponent>(uid, out var xform))
+        {
             RaiseNetworkEvent(new ImpactEffectEvent(component.ImpactEffect, GetNetCoordinates(xform.Coordinates)), Filter.Pvs(xform.Coordinates, entityMan: EntityManager));
-    }
-
-    private void OnDamageExamine(EntityUid uid, EmbeddableProjectileComponent component, ref DamageExamineEvent args)
-    {
-        if (!component.EmbedOnThrow)
-            return;
-
-        if (!args.Message.IsEmpty)
-            args.Message.PushNewline();
-
-        var isHarmful = TryComp<EmbedPassiveDamageComponent>(uid, out var passiveDamage) && passiveDamage.Damage.AnyPositive();
-        var loc = isHarmful
-            ? "damage-examine-embeddable-harmful"
-            : "damage-examine-embeddable";
-
-        var staminaCostMarkup = FormattedMessage.FromMarkupOrThrow(Loc.GetString(loc));
-        args.Message.AddMessage(staminaCostMarkup);
+        }
     }
 }
