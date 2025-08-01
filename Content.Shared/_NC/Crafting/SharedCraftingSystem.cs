@@ -334,7 +334,7 @@ public sealed class SharedCraftingSystem : EntitySystem
             if (!TryComp<MindContainerComponent>(user, out var mindContainer))
                 return false;
 
-            if (!_jobs.MindTryGetJob(mindContainer.Mind, out _, out var jobPrototype))
+            if (!_jobs.MindTryGetJob(mindContainer.Mind, out var jobPrototype))
                 return false;
 
             if (!_jobs.TryGetDepartment(jobPrototype.ID, out var departmentPrototype))
