@@ -5,12 +5,9 @@
   description: job-description-ncr-ranger-veteran
   playTimeTracker: NCRRangerVeteran
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: NCR
-      time: 72000 # 20 hours as NCR
-    - !type:DepartmentTimeRequirement
-      department: NCRRanger
-      time: 36000 # 10 hours as NCRRanger
+    - !type:RoleTimeRequirement
+      role: NCRRanger
+      time: 216000 # 60 hours as NCR
     - !type:WhitelistRequirement
   weight: 10
   startingGear: NCRRangerVeteranGear
@@ -19,22 +16,29 @@
   canBeAntag: false
   accessGroups:
   - NCR
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - NCR
 
 - type: startingGear
   id: NCRRangerVeteranGear
   equipment:
     jumpsuit: N14ClothingUniformRangerVeteran
     shoes: N14ClothingBootsCombatMK2Filled
+    ears: N14ClothingHeadsetNCR
     gloves: N14ClothingHandsGlovesCombat
     belt: ClothingBeltRevolvervetfilled
     mask: ClothingMaskGasRangerOld
     eyes: ClothingEyesGlassesSunglasses
     neck: N14ClothingNeckCloakRanger
     pocket1: MagazineBox45-70
-    pocket2: FlashlightSeclite
+    pocket2: NCRveteranrangerloadoutkits
     outerClothing: N14ClothingOuterRangerCombat
     head: N14ClothingHeadHatRangerHelmetOld
-    id: N14IDBadgeNCRDesertRangerElite
+    id: N14IDBadgeNCRRangerElite
     back: N14ClothingBackpackMilitaryFilled
   innerClothingSkirt: N14ClothingUniformRangerModif #placeholder
   satchel: N14ClothingBackpackSatchelMilitaryFilled

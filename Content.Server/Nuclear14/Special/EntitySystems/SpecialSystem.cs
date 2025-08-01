@@ -33,6 +33,7 @@ public sealed class SpecialSystem : EntitySystem
             return;
         }
 
+        var sum = 0;
         foreach (var item in args.Profile.SpecialPriorities)
         {
             if (!_prototypeManager.TryIndex<SpecialPrototype>(item.Key, out var specialPrototype))
@@ -40,7 +41,20 @@ public sealed class SpecialSystem : EntitySystem
                 Logger.Warning($"No special prototype found with ID {item.Key}!");
                 return;
             }
-            setSpecial(special, specialPrototype, item.Value);
+            sum += (int) item.Value;
+        }
+
+        foreach (var item in args.Profile.SpecialPriorities)
+        {
+            if (!_prototypeManager.TryIndex<SpecialPrototype>(item.Key, out var specialPrototype))
+            {
+                Logger.Warning($"No special prototype found with ID {item.Key}!");
+                return;
+            }
+            if(sum > 40)
+                setSpecial(special, specialPrototype, SpecialPriority.Five);
+            else
+                setSpecial(special, specialPrototype, item.Value);
         }
 
         if (special.TotalIntelligence < 3)
