@@ -1,0 +1,75 @@
+﻿#MARK: Firetoxin
+#Liquid found inside of fire ant stingers, it burns quite a lot.
+- type: reagent
+  id: FireToxin
+  name: reagent-name-firetoxin
+  group: Toxins
+  desc: reagent-desc-firetoxin
+  flavor: tingly
+  color: "#cf3600"
+  physicalDesc: reagent-physical-desc-burning
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 10
+  - !type:PlantAdjustHealth
+    amount: -5
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: 3
+            Poison: 2
+
+#MARK: Nightstalker Venom
+#While not nearly as potent as cazador venom and is a lot slower acting, it will still kill in multiple bites
+- type: reagent
+  id: NightstalkerVenom
+  name: reagent-name-nightstalker-venom
+  group: Toxins
+  desc: reagent-desc-nightstalker-venom
+  flavor: terrible
+  color: "#cf3600"
+  physicalDesc: reagent-physical-desc-viscous
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 10
+  - !type:PlantAdjustHealth
+    amount: -5
+  metabolisms:
+    Poison:
+      metabolismRate: 0.1 #Very Slow acting, default 0.5
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1
+          groups:
+            Airloss: 2
+
+#MARK: Cazador Venom
+#Insanely potent venom which while acts at half speed, can knock down just about anyone in just a few injections
+- type: reagent
+  id: CazadorVenom
+  name: reagent-name-cazador-venom
+  group: Toxins
+  desc: reagent-desc-cazador-venom
+  flavor: terrible
+  color: "#cf3600"
+  physicalDesc: reagent-physical-desc-bubbling
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 10
+  - !type:PlantAdjustHealth
+    amount: -5
+  metabolisms:
+    Poison:
+      metabolismRate: 0.2 #Slow acting, default 0.5
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 3
+          groups:
+            Airloss: 3.5

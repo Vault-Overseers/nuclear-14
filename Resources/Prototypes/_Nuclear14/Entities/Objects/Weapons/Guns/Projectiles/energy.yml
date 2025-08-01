@@ -2,7 +2,7 @@
   name: plasma
   id: BulletPlasma
   parent: BaseBullet
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   components:
   - type: FlyBySound
     sound:
@@ -10,10 +10,9 @@
       params:
         volume: 5
   - type: Sprite
-    scale: 0.75, 0.75
-    sprite: _Nuclear14/Objects/Weapons/Guns/Ammunition/Projectiles/plasma.rsi
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:
-    - state: plasma
+    - state: declone
       shader: unshaded
   - type: Fixtures
     fixtures:
@@ -38,41 +37,23 @@
     impactEffect: BulletImpactEffect
     damage:
       types:
-        Heat: 20
-        Radiation: 2
-    soundHit:
-      path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
-
-- type: entity
-  name: plasma
-  id: BulletLightPlasma
-  parent: BulletPlasma
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    scale: 0.5, 0.5
-  - type: Projectile
-    impactEffect: BulletImpactEffect
-    damage:
-      types:
-        Heat: 18
+        Heat: 22
+        Caustic: 4
     soundHit:
       path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
 
 - type: entity
   name: plasma
   id: BulletBigPlasma
-  parent: BulletPlasma
-  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  noSpawn: true
   components:
-  - type: Sprite
-    scale: 1.0, 1.0
   - type: Projectile
     impactEffect: BulletImpactEffect
     damage:
       types:
-        Heat: 24
-        Radiation: 6
+        Heat: 40
+        Radiation: 10
     soundHit:
       path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
 
@@ -80,7 +61,7 @@
   name: laser
   id: BulletLaser
   parent: BaseBullet
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   components:
   - type: FlyBySound
     sound:
@@ -115,7 +96,7 @@
   name: recharger laser
   id: BulletRechargerLaser
   parent: BaseBullet
-  categories: [ HideSpawnMenu ]
+  noSpawn: true
   components:
   - type: FlyBySound
     sound:
