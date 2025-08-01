@@ -3,8 +3,6 @@ using Content.Shared.Random.Rules;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using RulesPrototype = Content.Shared.Random.Rules.RulesPrototype;
-
 
 namespace Content.Shared.Audio;
 
