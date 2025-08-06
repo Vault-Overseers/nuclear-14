@@ -1,23 +1,25 @@
+using System.Numerics;
 using Content.Server.Ghost.Components;
 using Content.Server.Popups;
+using Content.Server.Warps;
 using Content.Shared.Ghost;
 using Content.Shared.Interaction;
+using Robust.Shared.IoC;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
-using System.Numerics;
-using Content.Server.Warps;
-
 
 namespace Content.Server._N14.Warps;
 
-public class WarperSystem : EntitySystem
+/// <summary>
+/// Handles entities that warp players to named warp points.
+/// </summary>
+public sealed class WarperSystem : EntitySystem
 {
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly WarpPointSystem _warpPointSystem = default!;
 
     public override void Initialize()
     {
@@ -34,33 +36,31 @@ public class WarperSystem : EntitySystem
             return;
         }
 
-        var dest = _warpPointSystem.FindWarpPoint(component.ID);
+        var dest = FindWarpPoint(component.ID);
         if (dest is null)
         {
-            Logger.DebugS("warper", String.Format("Warp destination '{0}' not found", component.ID));
+            Logger.DebugS("warper", $"Warp destination '{component.ID}' not found");
             _popupSystem.PopupEntity(Loc.GetString("warper-goes-nowhere", ("warper", args.Target)), args.User, Filter.Entities(args.User), true);
             return;
         }
 
         var entMan = IoCManager.Resolve<IEntityManager>();
         TransformComponent? destXform;
-        entMan.TryGetComponent<TransformComponent>(dest.Value, out destXform);
+        entMan.TryGetComponent(dest.Value, out destXform);
         if (destXform is null)
         {
-            Logger.DebugS("warper", String.Format("Warp destination '{0}' has no transform", component.ID));
+            Logger.DebugS("warper", $"Warp destination '{component.ID}' has no transform");
             _popupSystem.PopupEntity(Loc.GetString("warper-goes-nowhere", ("warper", args.Target)), args.User, Filter.Entities(args.User), true);
             return;
         }
 
-        // Check that the destination map is initialized and return unless in aghost mode.
         var mapMgr = IoCManager.Resolve<IMapManager>();
         var destMap = destXform.MapID;
         if (!mapMgr.IsMapInitialized(destMap) || mapMgr.IsMapPaused(destMap))
         {
             if (!entMan.HasComponent<GhostComponent>(args.User))
             {
-                // Normal ghosts cannot interact, so if we're here this is already an admin ghost.
-                Logger.DebugS("warper", String.Format("Player tried to warp to '{0}', which is not on a running map", component.ID));
+                Logger.DebugS("warper", $"Player tried to warp to '{component.ID}', which is not on a running map");
                 _popupSystem.PopupEntity(Loc.GetString("warper-goes-nowhere", ("warper", args.Target)), args.User, Filter.Entities(args.User), true);
                 return;
             }
@@ -70,8 +70,17 @@ public class WarperSystem : EntitySystem
         xform.Coordinates = destXform.Coordinates;
         xform.AttachToGridOrMap();
         if (entMan.TryGetComponent(uid, out PhysicsComponent? phys))
-        {
             _physics.SetLinearVelocity(uid, Vector2.Zero);
+    }
+
+    private EntityUid? FindWarpPoint(string id)
+    {
+        var query = EntityQueryEnumerator<WarpPointComponent>();
+        while (query.MoveNext(out var warpUid, out var warp))
+        {
+            if (warp.Location == id)
+                return warpUid;
         }
+        return null;
     }
 }

@@ -1,12 +1,15 @@
 using Content.Server._N14.GameTicking.Rules.Components;
 using Content.Server.GameTicking.Rules;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Objectives;
 using Content.Shared.GameTicking;
 
-
 namespace Content.Server._N14.GameTicking.Rules;
 
+/// <summary>
+/// Assigns a random N14 objective to players when they spawn.
+/// </summary>
 public sealed class N14RuleSystem : GameRuleSystem<N14RuleComponent>
 {
     [Dependency] private readonly MindSystem _mindSystem = default!;
@@ -20,29 +23,22 @@ public sealed class N14RuleSystem : GameRuleSystem<N14RuleComponent>
 
     private void OnSpawnComplete(PlayerSpawnCompleteEvent args)
     {
-        var query = EntityQueryEnumerator<N14RuleComponent>();
-        while (query.MoveNext(out var uid, out var rule))
+        if (_mindSystem.TryGetMind(args.Player, out var mindId, out var mind))
         {
-            if (_mindSystem.TryGetMind(args.Player, out var mindId, out var mind))
+            var objective = _objectives.GetRandomObjective(mindId, mind, "N14Objectives", float.MaxValue);
+            if (objective != null)
             {
-                var objective = _objectives.GetRandomObjective(mindId, mind, "N14Objectives");
-                if (objective != null)
-                {
-                    Logger.DebugS("n14rule", $"Added objective {objective.Value} for {args.Player}");
-                    _mindSystem.AddObjective(mindId, mind, objective.Value);
-                }
-                else
-                {
-                    Logger.DebugS("n14rule", $"No suitable objectives found for {args.Player}");
-                }
+                Logger.DebugS("n14rule", $"Added objective {objective.Value} for {args.Player}");
+                _mindSystem.AddObjective(mindId, mind, objective.Value);
             }
             else
             {
-                Logger.DebugS("n14rule", $"{args.Player} has no mind");
+                Logger.DebugS("n14rule", $"No suitable objectives found for {args.Player}");
             }
-
-            // break out of loop: we only need to do this once
-            break;
+        }
+        else
+        {
+            Logger.DebugS("n14rule", $"{args.Player} has no mind");
         }
     }
 }
