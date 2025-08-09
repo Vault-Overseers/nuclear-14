@@ -43,6 +43,16 @@
           - ItemMask
         density: 1000
         hard: false
+      fishing:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        layer:
+        - ItemMask
+        mask:
+        - HighImpassable
+        density: 1000
+        hard: false
   - type: FootstepModifier
     footstepSoundCollection:
       collection: N14FootstepWater
@@ -63,11 +73,13 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.2
     sprintSpeedModifier: 0.2
-  - type: FishingPool
-    loot: FishingDeep
-    successChance: 0.4
   - type: TileEmission
     color: "#55b240"
+  - type: FishingSpot # N14TODO: change table
+    fishList: !type:NestedSelector
+      tableId: WaterFishingLootTable
+    fishDefaultTimer: 25.0
+    fishTimerVariety: 15.0
 
 - type: entity
   parent: N14FloorWaterSewerDeep
@@ -94,9 +106,11 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.6
     sprintSpeedModifier: 0.6
-  - type: FishingPool
-    loot: FishingShallow
-    successChance: 0.5
+  - type: FishingSpot # N14TODO: change table
+    fishList: !type:NestedSelector
+      tableId: WaterFishingLootTable
+    fishDefaultTimer: 25.0
+    fishTimerVariety: 15.0
 
 - type: entity
   parent: N14FloorWaterDirtyEntity
@@ -137,9 +151,11 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.6
     sprintSpeedModifier: 0.6
-  - type: FishingPool
-    loot: FishingShallow
-    successChance: 0.5
+  - type: FishingSpot # N14TODO: change table
+    fishList: !type:NestedSelector
+      tableId: WaterFishingLootTable
+    fishDefaultTimer: 25.0
+    fishTimerVariety: 15.0
 
 - type: entity
   parent: N14FloorWaterDirtyEntity
@@ -161,9 +177,11 @@
         reagents:
         - ReagentId: Water #TODO: Add WaterSalt Reagent.
           Quantity: 9999999
-  - type: FishingPool
-    loot: FishingDeep
-    successChance: 0.4
+  - type: FishingSpot # N14TODO: change table
+    fishList: !type:NestedSelector
+      tableId: WaterFishingLootTable
+    fishDefaultTimer: 25.0
+    fishTimerVariety: 15.0
 
 - type: entity
   parent: N14FloorWaterSaltDeep
