@@ -1,0 +1,79 @@
+- type: constructionGraph
+  id: N14SandbagRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: SandbagBarricade
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Cloth
+              amount: 4
+              doAfter: 5
+
+    - node: SandbagBarricade
+      entity: N14BarricadeSandbagSingle
+
+- type: constructionGraph
+  id: N14RazorwireRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: RazorwireBarricade
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: PartRodMetal1
+              amount: 2
+              doAfter: 2
+
+    - node: RazorwireBarricade
+      entity: N14BarricadeRazorwire
+
+- type: constructionGraph
+  id: N14RoadBarrierRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: RoadBarrier
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 3
+
+    - node: RoadBarrier
+      entity: N14DecorRoadBarrier
+
+- type: constructionGraph
+  id: N14MetalBarricadeRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MetalBarricade
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 3
+
+    - node: MetalBarricade
+      entity: N14BarricadeMetal

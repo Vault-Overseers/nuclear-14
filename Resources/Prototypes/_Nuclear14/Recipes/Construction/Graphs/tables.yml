@@ -1,3 +1,4 @@
+# Tables & Counters
 - type: constructionGraph
   id: N14TableCounterBarRecipes
   start: start
@@ -54,6 +55,166 @@
             - material: WoodPlank
               amount: 2
               doAfter: 2
-
+    
     - node: TableWoodSettler
       entity: N14TableWoodSettler
+
+- type: constructionGraph
+  id: N14TableMetalRoundRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: TableMetalRound
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Steel
+              amount: 3
+              doAfter: 3
+ 
+    - node: TableMetalRound
+      entity: N14TableMetalRound
+
+- type: constructionGraph
+  id: N14TableWoodEndRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: TableWoodEnd
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 3
+
+    - node: TableWoodEnd
+      entity: N14TableWoodEnd 
+
+- type: constructionGraph
+  id: N14TableCasinoCardsRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: TableCasinoCards
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: WoodPlank
+              amount: 3
+              doAfter: 3
+
+    - node: TableCasinoCards
+      entity: N14TableCasinoCards
+
+- type: constructionGraph
+  id: N14TableCounterRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: WoodenTableCounter
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 3
+
+    - node: WoodenTableCounter
+      entity: N14TableCounter
+    
+- type: constructionGraph
+  id: N14TableCounterBendRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: WoodenTableCounterBend
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 3
+
+    - node: WoodenTableCounterBend
+      entity: N14TableCounterBend
+
+- type: constructionGraph
+  id: N14TableWoodRoundRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: TableWoodRound
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 3
+
+    - node: TableWoodRound
+      entity: N14TableWoodRound
+
+- type: constructionGraph
+  id: N14TableCounterMetalRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: TableCounterMetal
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 3
+
+    - node: TableCounterMetal
+      entity: N14TableCounterMetal
+
+- type: constructionGraph
+  id: N14TableCounterMetalBendRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: TableCounterMetalBend
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 3
+
+    - node: TableCounterMetalBend
+      entity: N14TableCounterMetalBend

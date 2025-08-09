@@ -146,3 +146,85 @@
           steps:
             - tool: Welding
               doAfter: 25
+
+- type: constructionGraph
+  id: N14ClothTentWallRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: ClothTentWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 2
+            
+
+    - node: ClothTentWall
+      entity: N14TentClothWall
+
+- type: constructionGraph
+  id: N14TentLeatherWallRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: LeatherTentWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: N14MaterialLeather1
+              amount: 2
+              doAfter: 2
+            
+
+    - node: LeatherTentWall
+      entity: N14TentLeatherWall
+
+- type: constructionGraph
+  id: N14TentLeatherWallCornerRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: LeatherTentWallCorner
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: N14MaterialLeather1
+              amount: 2
+              doAfter: 2
+
+    - node: LeatherTentWallCorner
+      entity: N14TentLeatherCorner
+
+- type: constructionGraph
+  id: N14TentClothWallCornerRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: ClothTentWallCorner
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 2
+
+    - node: ClothTentWallCorner
+      entity: N14TentClothCorner

@@ -1,0 +1,82 @@
+
+- type: constructionGraph
+  id: N14DresserRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: Dresser
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 3
+
+    - node: Dresser
+      entity: N14Dresser
+
+- type: constructionGraph
+  id: N14ShelfWoodRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: WoodenShelf
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: WoodPlank
+              amount: 5
+              doAfter: 5
+
+    - node: Dresser
+      entity: N14ShelfWood
+
+- type: constructionGraph
+  id: N14StorageTankVatRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: StorageTank
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Steel
+              amount: 10
+              doAfter: 6
+
+    - node: StorageTank
+      entity: N14StorageTankVat
+
+- type: constructionGraph
+  id: N14BookshelfDirtyRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: BookshelfDirty
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: WoodPlank
+              amount: 5
+              doAfter: 6
+
+    - node: BookshelfDirty
+      entity: N14BookshelfDirty
+
+      

@@ -211,3 +211,162 @@
     state: full
   conditions:
     - !type:TileNotBlocked
+
+## Graves
+
+- type: construction
+  name: wooden grave
+  id: CrateWoodenGrave
+  suffix: wooden
+  graph: CrateWoodenGraveRecipes
+  startNode: start
+  targetNode: WoodenGrave
+  category: construction-category-structures
+  description: A wooden grave for burying the dead.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  canRotate: false
+  icon:
+    sprite: Structures/Storage/Crates/wooden_grave.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: stone grave
+  id: CrateStoneGrave
+  suffix: stone
+  graph: CrateStoneGraveRecipes
+  startNode: start
+  targetNode: StoneGrave
+  category: construction-category-structures
+  description: A stone grave for burying the dead.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  canRotate: false
+  icon:
+    sprite: Structures/Storage/Crates/stone_grave.rsi
+    state: closed
+  conditions:
+    - !type:TileNotBlocked
+
+  ## Tents
+- type: construction
+  name: cloth tent wall
+  id: N14TentClothWall
+  graph: N14ClothTentWallRecipes
+  startNode: start
+  targetNode: ClothTentWall
+  category: construction-category-structures
+  description: A wall made of cloth,for making tents.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  canRotate: false
+  icon:
+  sprite: _Nuclear14/Structures/Walls/nc14/tents.rsi
+  state: cloth_edge
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: leather tent wall
+  id: N14TentLeatherWall
+  graph: N14TentLeatherWallRecipes
+  startNode: start
+  targetNode: LeatherTentWall
+  category: construction-category-structures
+  description: A wall made of leather,for making tents.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  canRotate: false
+  icon:
+  sprite: _Nuclear14/Structures/Walls/nc14/tents.rsi
+  state: leather_edge
+  conditions:
+    - !type:TileNotBlockedid: 
+    
+- type: construction
+  name: cloth tent wall corner
+  id: N14TentClothCorner
+  suffix: corner
+  graph: N14TentClothWallCornerRecipes
+  startNode: start
+  targetNode: ClothTentWallCorner
+  category: construction-category-structures
+  description: A wall made of cloth,for making tents.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  canRotate: false
+  icon:
+  sprite: _Nuclear14/Structures/Walls/nc14/tents.rsi
+  state: cloth_corner
+  conditions:
+    - !type:TileNotBlockedid:
+
+- type: construction
+  name: leather tent wall corner
+  id: N14TentLeatherCorner
+  suffix: corner
+  graph: N14TentLeatherWallCornerRecipes
+  startNode: start
+  targetNode: LeatherTentWallCorner
+  category: construction-category-structures
+  description: A wall made of leather,for making tents.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  canRotate: false
+  icon:
+  sprite: _Nuclear14/Structures/Walls/nc14/tents.rsi
+  state: leather_corner
+  conditions:
+    - !type:TileNotBlockedid:
+    
+- type: construction
+  name: cloth tent flap 
+  id: N14DoorTentClothflap
+  graph: N14DoorTentClothflapRecipes
+  startNode: start
+  targetNode: ClothTentFlap
+  category: construction-category-structures
+  description: A wall made of cloth,for making tents.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  canRotate: false
+  icon:
+  sprite: _Nuclear14/Structures/Doors/FalloutDoors/tentcloth.rsi
+  state: closed
+  conditions:
+    - !type:TileNotBlockedid:
+
+- type: construction
+  name: leather tent flap 
+  id: N14DoorTentLeatherflap
+  graph: N14DoorTentLeatherflapRecipes
+  startNode: start
+  targetNode: LeatherTentFlap
+  category: construction-category-structures
+  description: A wall made of leather,for making tents.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  canRotate: false
+  icon:
+  sprite: _Nuclear14/Structures/Doors/FalloutDoors/tentleather.rsi
+  state: closed
+  conditions:
+    - !type:TileNotBlockedid:

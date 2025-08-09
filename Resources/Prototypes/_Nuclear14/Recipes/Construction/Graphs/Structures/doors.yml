@@ -141,3 +141,43 @@
           steps:
            - tool: Prying
              doAfter: 5
+
+- type: constructionGraph
+  id: N14DoorTentClothflapRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: ClothTentFlap
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 2
+
+    - node: ClothTentFlap
+      entity: N14DoorTentClothflap
+
+- type: constructionGraph
+  id: N14DoorTentLeatherflapRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: LeatherTentFlap
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: N14MaterialLeather1
+              amount: 2
+              doAfter: 2
+
+    - node: LeatherTentFlap
+      entity: N14DoorTentLeatherflap
