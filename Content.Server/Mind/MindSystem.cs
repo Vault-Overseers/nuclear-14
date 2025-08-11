@@ -13,6 +13,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.NPC.Components;
+
 
 namespace Content.Server.Mind;
 
@@ -364,4 +366,20 @@ public sealed class MindSystem : SharedMindSystem
         MakeSentientCommand.MakeSentient(target, EntityManager);
         TransferTo(mindId, target, ghostCheckOverride: true, mind: mind);
     }
+    //Nuclear14 Changes Start
+    /// Return true if the entity owned by this mind is a member of one of the
+    /// given factions.
+    
+    public bool InFaction(EntityUid uid, MindComponent mind, HashSet<string> factions)
+    {
+        if (mind.OwnedEntity != null)
+        {
+            if (TryComp(mind.OwnedEntity, out NpcFactionMemberComponent? faction))
+            {
+                return factions.Overlaps(faction.Factions);
+            }
+        }
+        return false;
+    }
+    //Nuclear14 Changes End
 }
