@@ -119,6 +119,37 @@
       program-container: !type:Container
   - type: Terminal
 
+- type: entity
+  parent: N14ComputerTerminalBase
+  id: N14ComputerTerminalBasePoweredCartridge
+  abstract: true
+  components:
+  - type: CartridgeLoader
+    uiKey: enum.TerminalUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+    cartridgeSlot:
+      priority: -1
+      name: device-pda-slot-component-slot-name-cartridge
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        components:
+        - Cartridge
+  - type: ActivatableUI
+    key: enum.TerminalUiKey.Key
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.TerminalUiKey.Key:
+        type: TerminalBoundUserInterface
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      Cartridge-Slot: !type:ContainerSlot {}
+      program-container: !type:Container
+  - type: Terminal
+
 # Terminals in Use
 # New
 - type: entity
