@@ -14,6 +14,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Prototypes;
+using Robust.Shared.Prototypes;
 
 
 namespace Content.Server.Mind;
@@ -369,7 +371,7 @@ public sealed class MindSystem : SharedMindSystem
     //Nuclear14 Changes Start
     /// Return true if the entity owned by this mind is a member of one of the
     /// given factions.
-    
+
     public bool InFaction(EntityUid uid, MindComponent mind, HashSet<string> factions)
     {
         if (mind.OwnedEntity != null)
