@@ -11,5 +11,6 @@ changelog-version-tag = { $fork }/{ $version }
 changelog-button = Changelog
 changelog-button-new-entries = Changelog (new!)
 
+changelog-tab-title-Nuclear14 = Nuclear 14
 changelog-tab-title-Changelog = Einstein Engines
-changelog-tab-title-Admin = Einstein Engines Admin
+changelog-tab-title-Admin = EE Admin
