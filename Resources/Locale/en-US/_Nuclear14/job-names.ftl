@@ -1,25 +1,25 @@
 # Midwest Brotherhood
-job-name-bos-mid-paladin-comm = Brotherhood Paladin Lord
-job-description-bos-mid-paladin-comm = Lead the Midwestern Brotherhood of Steel on their mission in this region.
-job-name-bos-mid-paladin = Brotherhood Paladin
-job-description-bos-mid-paladin = Assist the Paladin Lord as their second in command & heavy infantry.
-job-name-bos-mid-knight = Brotherhood Knight
+job-name-bos-mid-paladin-comm = Midwest BoS Commander
+job-description-bos-mid-paladin-comm = Lead the Midwestern Brotherhood of Steel on their mission.
+job-name-bos-mid-paladin = Midwest BoS Paladin
+job-description-bos-mid-paladin = Assist the Paladin Commander as their second in command & heavy infantry.
+job-name-bos-mid-knight = Midwest BoS Knight
 job-description-bos-mid-knight = Follow the Paladins on their mission for the chapter.
-job-name-bos-mid-scribe = Brotherhood Scribe
+job-name-bos-mid-scribe = Midwest BoS Scribe
 job-description-bos-mid-scribe = Conduct scientific missions and research for your chapter.
-job-name-bos-mid-squire = Brotherhood Initiate
+job-name-bos-mid-squire = Midwest BoS Initiate
 job-description-bos-mid-squire = Follow the orders of your superiors and prove your worth.
 
 # Washington Brotherhood
-job-name-bos-washington-commander = Brotherhood Commander
+job-name-bos-washington-commander = Washington BoS Commander
 job-description-bos-washington-commander = Lead the Washington Brotherhood of Steel on their mission.
-job-name-bos-washington-initiate = Brotherhood Initiate
+job-name-bos-washington-initiate = Washington BoS Initiate
 job-description-bos-washington-initiate = Follow the orders of your superiors and prove your worth.
-job-name-bos-washington-knight = Brotherhood Knight
+job-name-bos-washington-knight = Washington BoS Knight
 job-description-bos-washington-knight = Follow the Paladins on their mission for the chapter.
-job-name-bos-washington-paladin = Brotherhood Paladin
+job-name-bos-washington-paladin = Washington BoS Paladin
 job-description-bos-washington-paladin = Assist the Paladin Commander as their second in command & heavy infantry.
-job-name-bos-washington-scribe = Brotherhood Cleric
+job-name-bos-washington-scribe = Washington BoS Scribe
 job-description-bos-washington-scribe = Conduct scientific missions and research for your chapter.
 
 # Caravan
@@ -39,16 +39,16 @@ job-name-ncr-sgt = NCR Sergeant
 job-description-ncr-sgt = A non-commissioned officer in the NCR military. Lead a squad to protect the NCR interests in the region.
 job-name-ncr-lt = NCR Lieutenant
 job-description-ncr-lt = The local leader of the NCR military. Fulfill your mission by coordinating your military forces in the area. Organise your Sergeants.
-job-name-ncr-soldier = NCR Trooper
-job-description-ncr-soldier = The backbone of any military. Troopers get stuff done and follow a Sergeant on missions.
+job-name-ncr-soldier = NCR Soldier
+job-description-ncr-soldier = The backbone of any military. Soldiers get stuff done and follow a Sergeant on missions.
 job-name-ncr-engineer = NCR Engineer
 job-description-ncr-engineer = The backbone of any squad. Repair equipment, establish defenses, and follow a Sergeant on missions.
 job-name-ncr-ws = NCR Weapon Specialist
 job-description-ncr-ws = The fire support of any squad. Lay down supportive fire, and follow a Sergeant on missions.
 job-name-ncr-ranger = NCR Ranger
-job-description-ncr-ranger = The experienced recon units and saboteurs for the local NCR Army detachment. Dispense justice for the common man and follow the Veteran Ranger on missions.
+job-description-ncr-ranger = The most experienced and robust soldiers form part of this elite group of the NCR Army, lead troops or act by yourself under the orders of the Republic.
 job-name-ncr-ranger-veteran = NCR Ranger Veteran
-job-description-ncr-ranger-veteran = The most experienced Rangers within their ranks. Organise your Rangers and help the common folk, you answer directly to the Lieutenant.
+job-description-ncr-ranger-veteran = The most experienced and robust soldiers form part of this elite group of the NCR Army, lead troops or act by yourself under the orders of the Republic.
 
 # Rangers
 job-name-ranger-recruit = Desert Ranger Recruit
