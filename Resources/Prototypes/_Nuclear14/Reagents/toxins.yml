@@ -1,4 +1,4 @@
-﻿#MARK: Firetoxin
+#MARK: Firetoxin
 #Liquid found inside of fire ant stingers, it burns quite a lot.
 - type: reagent
   id: FireToxin
@@ -73,3 +73,28 @@
             Poison: 3
           groups:
             Airloss: 3.5
+
+- type: reagent
+  id: FEV
+  name: reagent-name-fev
+  group: Toxins
+  desc: reagent-desc-fev
+  physicalDesc: reagent-physical-desc-glowing
+  flavor: bitter
+  color: "#3cb043"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:AddToBloodstreamIfUncovered
+        reagent: FEV
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 10
+  - !type:PlantAdjustHealth
+    amount: -5
+  metabolisms:
+    Poison:
+      metabolismRate: 0.1 #Very Slow acting, default 0.5
+      effects: []
+
