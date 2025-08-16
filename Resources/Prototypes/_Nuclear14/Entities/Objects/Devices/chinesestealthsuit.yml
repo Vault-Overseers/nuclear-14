@@ -1,0 +1,27 @@
+- type: entity
+  parent: ClothingOuterBaseLarge
+  id: N14ChineseStealthSuit
+  name: chinese stealth suit
+  description: "This dark black, form-fitting bodysuit with an opaque faceplate is a suit of armor designed for one thing: Making the operator nigh-invisible." 
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Suits/spaceninja.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Suits/spaceninja.rsi
+  - type: StealthClothing
+    visibility: 1.1
+    toggleAction: ActionTogglePhaseCloak
+  - type: NinjaSuit
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    # throwing in a recharger would bypass glove charging mechanic
+    fitsInCharger: true
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        disableEject: true
