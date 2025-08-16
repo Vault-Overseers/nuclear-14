@@ -12,9 +12,6 @@
           steps:
             - material: WoodPlank
               amount: 3
-            - material: N14ScrapBrass
-              amount: 2
-              doAfter: 15
         - to: woodDoorlocked
           completed:
             - !type:SnapToGrid { }
@@ -41,9 +38,6 @@
             - !type:SpawnPrototype
               prototype: MaterialWoodPlank1
               amount: 3
-            - !type:SpawnPrototype
-              prototype: N14ScrapBrass1
-              amount: 2
           steps:
             - tool: Anchoring
               doAfter: 15
@@ -141,3 +135,93 @@
           steps:
            - tool: Prying
              doAfter: 5
+
+- type: constructionGraph
+  id: N14TentFlap
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: ClothFlap
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 1
+              doAfter: 1
+        - to: LeatherFlap
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Leather
+              amount: 1
+              doAfter: 1
+
+    - node: ClothFlap
+      entity: N14DoorTentClothflap
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+            - !type:DeleteEntity {}
+          steps: []
+
+    - node: LeatherFlap
+      entity: N14DoorTentLeatherflap
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14MaterialLeather1
+              amount: 1
+            - !type:DeleteEntity {}
+          steps: []
+
+- type: constructionGraph
+  id: N14JunkCurtainGraph
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: JunkCurtain
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 1
+              doAfter: 1
+        - to: JunkCurtainOpen
+          completed:
+            - !type:SnapToGrid {}
+          steps:
+            - material: Cloth
+              amount: 1
+              doAfter: 1
+
+    - node: JunkCurtain
+      entity: N14JunkCurtain
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+            - !type:DeleteEntity {}
+          steps: []
+
+    - node: JunkCurtainOpen
+      entity: N14JunkCurtainOpen
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+            - !type:DeleteEntity {}
+          steps: []

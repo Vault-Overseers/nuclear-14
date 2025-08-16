@@ -454,3 +454,39 @@
     state: full
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  name: clean curtains
+  id: N14CurtainsClean
+  graph: Curtains
+  startNode: start
+  targetNode: Curtains
+  category: construction-category-furniture
+  description: Curtains without holes.
+  icon:
+    sprite: Structures/Decoration/Curtains/hospital.rsi
+    state: closed
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: scrap curtains
+  id: N14CurtainsJunk
+  graph: N14JunkCurtainGraph
+  startNode: start
+  targetNode: JunkCurtain
+  category: construction-category-furniture
+  description: Curtains made from scraps.
+  icon:
+    sprite: _Nuclear14/Structures/Doors/Curtains/junkcurtain.rsi
+    state: closed
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
