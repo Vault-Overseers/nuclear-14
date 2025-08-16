@@ -288,7 +288,7 @@
   parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitdrylanderTribal
   name: tribal clothing
-  description: Clothing used by the drylander tribe.
+  description: Clothing used by the southern tribes.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/drylander-uniform.rsi
@@ -327,6 +327,24 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/tribal-pants-necklace.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/tribal-pants-necklace.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitWesternTribe
+  name: tribal clothing
+  description: Warm cloths made from the wool of a big horner. A pair of horns have been attached to a hood.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/TribalFurUniform.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/TribalFurUniform.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadTribalUniformHood
+    requiredSlot: innerclothing
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:Container
 
 - type: entity
   parent: N14ClothingUniformBase
@@ -393,6 +411,30 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/prewaruniform.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/prewaruniform.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitwinter
+  name: padded winter clothing
+  description: A set of fatigues with some extra insulation.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/PeltClothing.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/PeltClothing.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitLeatherSuit
+  name: drab winter clothing
+  description: Drab but warm brown fatigues.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/LeatherSuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/LeatherSuit.rsi
+
+
 #NCR
 
 - type: entity
