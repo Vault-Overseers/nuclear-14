@@ -41,10 +41,26 @@
   startNode: start
   targetNode: seedextractor
   category: construction-category-machines
-  description: A jet inhaler with a RadAway phial screwed on top of it. Two puffs away from being rad free.
   icon:
     sprite: _Nuclear14/Objects/Specific/Hydroponics/equipment.rsi
     state: seedextractor
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
+
+- type: construction
+  name: storage tank
+  id: N14StorageTankVat
+  graph: N14StorageTankVatRecipes
+  startNode: start
+  targetNode: StorageTank
+  category: construction-category-machines
+  icon:
+      sprite: _Nuclear14/Structures/Furniture/np13_misc.rsi
+      state: vat
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

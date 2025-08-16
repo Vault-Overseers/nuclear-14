@@ -122,3 +122,27 @@
               prototype: SheetSteel1
               amount: 3
             - !type:DeleteEntity {}
+
+- type: constructionGraph
+  id: N14VendingMachineNukaRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: NukaColaMachineNew
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Circuitry
+              amount: 1
+              doAfter: 3
+            - material: Steel
+              amount: 5
+              doAfter: 2
+    
+    - node: NukaColaMachineNew
+      entity: N14VendingMachineNukaColaNew
+      

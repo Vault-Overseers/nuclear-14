@@ -138,3 +138,59 @@
   conditions:
     - !type:TileNotBlocked
   hide: false
+  
+  #MARK: Televisions
+
+- type: construction
+  name: small television
+  id: N14TelevisionSmall
+  graph: N14SmallTelevisionRecipes
+  startNode: start
+  targetNode: SmallTelevision
+  category: construction-category-machines
+  description: A television in a small case.
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/televisions.rsi
+    state: small_tv
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
+
+- type: construction
+  name: tiny television
+  id: N14TelevisionTiny
+  graph: N14TelevisionTinyRecipes
+  startNode: start
+  targetNode: TinyTelevision
+  category: construction-category-machines
+  description: A tiny television.
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/televisions.rsi
+    state: tiny_tv
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
+
+- type: construction
+  name: Nuka-Cola machine
+  id: N14VendingMachineNukaColaNew
+  graph: N14VendingMachineNukaRecipes
+  startNode: start
+  targetNode: NukaColaMachineNew
+  category: construction-category-machines
+  description: A Pre-War vending machine that dispenses Nuka-Cola Corporation branded beverages.
+  icon:
+    sprite: _Nuclear14/Structures/Machines/VendingMachines/nukacola.rsi
+    state: off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false

@@ -321,3 +321,7 @@ trait-description-N14GooglyEyes =
 trait-name-N14PetDogNCRK9Medical = NCR Medical K9
 trait-description-N14PetDogNCRK9Medical =
      You (might) have an NCRA trained medical dog companion assigned to you.
+
+trait-name-N14BuiltInQuiver = Built-In Quiver
+trait-description-N14BuiltInQuiver =
+ A quiver built into your bow, letting you carry extra arrows for faster and easier shooting. You must select the bow in the loadout menu to spawn with it.
