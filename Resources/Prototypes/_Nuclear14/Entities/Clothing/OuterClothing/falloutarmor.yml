@@ -307,6 +307,43 @@
   - type: ExplosionResistance
     damageCoefficient: 0.8
 
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterArmoredKit
+  name: armor kit
+  description: Light armor worn over clothing. Its better then nothing.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/ArmoredKit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/ArmoredKit.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterReinforcedArmorKit
+  name: reinforced armor kit
+  description: Less light armor worn over clothing.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/ReinforcedArmorKit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/ReinforcedArmorKit.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+
+
 #MARK: Tribal
 - type: entity
   parent: N14FalloutArmorBase
@@ -381,7 +418,7 @@
   parent: N14ClothingOuterTribalArmor
   id: N14ClothingOuterBandito
   name: tribal bandito armor
-  description: A robe used by tribals skilled with the gun in the drylanders style.
+  description: A robe used by tribals skilled with the gun. Commonly worn by the southern tribes.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/drylander-bandito.rsi
@@ -392,7 +429,7 @@
   parent: N14ClothingOuterTribalArmor
   id: N14ClothingOuterforager
   name: tribal forager armor
-  description: A robe used by tribals who scavange the land in the drylanders style.
+  description: A robe used by tribals who scavange the land. Commonly worn by the southern tribes.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/drylander-forager.rsi
@@ -403,7 +440,7 @@
   parent: N14ClothingOuterTribalArmor
   id: N14ClothingOuterheadtaker
   name: tribal headtaker armor
-  description: A robe used by tribals who fight with blade and fury in the drylanders style.
+  description: A robe used by tribals who fight with blade and fury. Commonly worn by the southern tribes.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/drylander-headtaker.rsi
@@ -414,7 +451,7 @@
   parent: N14ClothingOuterTribalArmor
   id: N14ClothingOuterhunter
   name: tribal hunter armor
-  description: A robe used by tribals who hunt prey in the drylander style.
+  description: A robe used by tribals who hunt prey. Commonly worn by the southern tribes.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/drylander-hunter.rsi
@@ -425,7 +462,7 @@
   parent: N14ClothingOuterTribalArmor
   id: N14ClothingOuterponcho
   name: tribal poncho
-  description: A piece of armor used by tribals in the drylander style.
+  description: A piece of armor used by tribals. Commonly worn by the southern tribes.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/drylander-poncho.rsi
@@ -436,7 +473,7 @@
   parent: N14ClothingOuterTribalArmor
   id: N14ClothingOutershaman
   name: tribal shamanic robes
-  description: A robe worn by the drylander shamans.
+  description: A robe worn by the shamans of the southern tribes.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/drylander-shaman.rsi
@@ -447,12 +484,36 @@
   parent: N14ClothingOuterTribalArmor
   id: N14ClothingOuterdrylandersimple
   name: tribal robes
-  description: A robe used by tribals in the drylander style.
+  description: A robe used by tribals. Commonly worn by the southern tribes.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/drylander-simple.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/drylander-simple.rsi
+
+- type: entity
+  parent: N14ClothingOuterTribalArmor
+  id: N14ClothingOuterWestTribeLight
+  name: tribal armor
+  description: A set of armor worn by tribals. commonly worn by the tribes to the west.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/WestTribeLight.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/WestTribeLight.rsi
+
+- type: entity
+  parent: N14ClothingOuterTribalArmorHeavy
+  id: N14ClothingOuterWestTribeHeavy
+  name: heavy tribal armor
+  description: A heavy set of armor worn by tribals. Commonly found in the tribes to the west. 
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/WestTribeHeavy.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Armor/WestTribeHeavy.rsi
+
+
 
 #MARK: Raiders
 - type: entity
