@@ -365,23 +365,23 @@ undecided-loadout-category-wbos-kni-bal-description =
     Includes 1 assault carbine, 3 5.56 magazines, 1 plasma pistol,
     2 plasma cells, 1 roll of gauze, and 1 K ration MRE.
 
-undecided-loadout-category-wbos-scribe-medic-name = Scribe Medical Kit
+undecided-loadout-category-wbos-scribe-medic-name = Cleric Medical Kit
 undecided-loadout-category-wbos-scribe-medic-description =
-    A cache containing belongings of a Washington chapter Scribe.
+    A cache containing belongings of a Washington chapter Cleric.
     Includes 1 plasma pistol, 2 plasma cells, 1 pair of nitrile gloves,
     1 medical robe, 1 filled medical belt, 1 stack of ointment, 1
     super stimpak, 1 sterile mask, 1 roll of gauze, and 1 K ration MRE.
 
-undecided-loadout-category-wbos-scribe-field-name = Scribe Field Kit
+undecided-loadout-category-wbos-scribe-field-name = Cleric Field Kit
 undecided-loadout-category-wbos-scribe-field-description =
-    A cache containing belongings of a Washington chapter Scribe.
+    A cache containing belongings of a Washington chapter Cleric.
     Includes 1 plasma pistol, 2 plasma cells, 1 pair of combat gloves,
     1 field coat, 1 Brotherhood webbing, 1 stack of ointment,
     1 roll of gauze, and 1 K ration MRE.
 
-undecided-loadout-category-wbos-scribe-engineer-name = Scribe Engineer Kit
+undecided-loadout-category-wbos-scribe-engineer-name = Cleric Engineer Kit
 undecided-loadout-category-wbos-scribe-engineer-description =
-    A cache containing belongings of a Washington chapter Scribe.
+    A cache containing belongings of a Washington chapter Cleric.
     Includes 1 plasma pistol, 2 plasma cells, 1 pair of insulated gloves,
     1 technical vest, 1 filled utility belt, 1 stack of ointment,
     1 welding goggles, 1 roll of gauze, and 1 K ration MRE.
