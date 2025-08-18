@@ -51,10 +51,33 @@ public sealed partial class GhoulifySystem : EntitySystem
 
     private void OnIrradiated(EntityUid uid, GhoulifyComponent comp, OnIrradiatedEvent args)
     {
-        if (args.TotalRads <= 0)
+        // Radiation exposure is tracked via the actual damage taken. The event is kept for ghouls
+        // to accumulate rads when immune, so do nothing here.
+    }
+
+    private void OnDamage(EntityUid uid, GhoulifyComponent comp, DamageChangedEvent args)
+    {
+        if (args.DamageDelta == null)
+            return;
+        if (!args.DamageDelta.DamageDict.TryGetValue("Radiation", out var rad))
             return;
 
-        comp.AccumulatedRads += args.TotalRads;
+        if (rad > 0)
+        {
+            AddRads(uid, comp, (float) rad);
+        }
+        else if (rad < 0)
+        {
+            comp.AccumulatedRads = Math.Max(0f, comp.AccumulatedRads + (float) rad);
+        }
+    }
+
+    private void AddRads(EntityUid uid, GhoulifyComponent comp, float rads)
+    {
+        if (rads <= 0f)
+            return;
+
+        comp.AccumulatedRads += rads;
         if (comp.AccumulatedRads >= comp.NextNotify)
         {
             _popup.PopupEntity(Loc.GetString("ghoulify-start"), uid, uid);
@@ -69,7 +92,7 @@ public sealed partial class GhoulifySystem : EntitySystem
 
         if (comp.AccumulatedRads >= comp.GlowingThreshold)
         {
-            if (_random.Prob(args.TotalRads * comp.GlowProbabilityPerRad))
+            if (_random.Prob(rads * comp.GlowProbabilityPerRad))
             {
                 Glowify(uid);
                 return;
@@ -79,16 +102,8 @@ public sealed partial class GhoulifySystem : EntitySystem
         if (comp.AccumulatedRads < comp.Threshold)
             return;
 
-        if (_random.Prob(args.TotalRads * comp.ProbabilityPerRad))
+        if (_random.Prob(rads * comp.ProbabilityPerRad))
             Ghoulify(uid, comp);
-    }
-
-    private void OnDamage(EntityUid uid, GhoulifyComponent comp, DamageChangedEvent args)
-    {
-        if (args.DamageDelta == null)
-            return;
-        if (args.DamageDelta.DamageDict.TryGetValue("Radiation", out var rad) && rad < 0)
-            comp.AccumulatedRads = Math.Max(0f, comp.AccumulatedRads + (float) rad);
     }
 
     private void Ghoulify(EntityUid uid, GhoulifyComponent comp)
@@ -106,10 +121,32 @@ public sealed partial class GhoulifySystem : EntitySystem
 
     private void OnFeralIrradiated(EntityUid uid, FeralGhoulifyComponent comp, OnIrradiatedEvent args)
     {
-        if (args.TotalRads <= 0)
+        AddFeralRads(uid, comp, args.TotalRads);
+    }
+
+    private void OnFeralDamage(EntityUid uid, FeralGhoulifyComponent comp, DamageChangedEvent args)
+    {
+        if (args.DamageDelta == null)
+            return;
+        if (!args.DamageDelta.DamageDict.TryGetValue("Radiation", out var rad))
             return;
 
-        comp.AccumulatedRads += args.TotalRads;
+        if (rad > 0)
+        {
+            AddFeralRads(uid, comp, (float) rad);
+        }
+        else if (rad < 0)
+        {
+            comp.AccumulatedRads = Math.Max(0f, comp.AccumulatedRads + (float) rad);
+        }
+    }
+
+    private void AddFeralRads(EntityUid uid, FeralGhoulifyComponent comp, float rads)
+    {
+        if (rads <= 0f)
+            return;
+
+        comp.AccumulatedRads += rads;
         if (comp.AccumulatedRads >= comp.NextNotify)
         {
             _popup.PopupEntity(Loc.GetString("ghoul-feral-start"), uid, uid);
@@ -119,16 +156,8 @@ public sealed partial class GhoulifySystem : EntitySystem
         if (comp.AccumulatedRads < comp.Threshold)
             return;
 
-        if (_random.Prob(args.TotalRads * comp.ProbabilityPerRad))
+        if (_random.Prob(rads * comp.ProbabilityPerRad))
             Feralize(uid);
-    }
-
-    private void OnFeralDamage(EntityUid uid, FeralGhoulifyComponent comp, DamageChangedEvent args)
-    {
-        if (args.DamageDelta == null)
-            return;
-        if (args.DamageDelta.DamageDict.TryGetValue("Radiation", out var rad) && rad < 0)
-            comp.AccumulatedRads = Math.Max(0f, comp.AccumulatedRads + (float) rad);
     }
 
     private void OnFeralExamined(EntityUid uid, FeralGhoulifyComponent comp, ExaminedEvent args)

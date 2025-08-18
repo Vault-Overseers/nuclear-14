@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Shared._EstacaoPirata.Cards.Card;
-using Content.Shared._EstacaoPirata.Cards.Deck;
 using Content.Shared._EstacaoPirata.Cards.Stack;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -18,12 +17,9 @@ namespace Content.Shared._EstacaoPirata.Cards.Hand;
 /// <summary>
 /// This handles...
 /// </summary>
-
 public sealed class CardHandSystem : EntitySystem
 {
-    [ValidatePrototypeId<EntityPrototype>]
     public readonly EntProtoId CardHandBaseName = "CardHandBase";
-    [ValidatePrototypeId<EntityPrototype>]
     public readonly EntProtoId CardDeckBaseName = "CardDeckBase";
 
     [Dependency] private readonly CardStackSystem _cardStack = default!;
@@ -51,12 +47,6 @@ public sealed class CardHandSystem : EntitySystem
         if (!TryComp(uid, out CardStackComponent? stack))
             return;
 
-        if (stack.Cards.Count < 0)
-        {
-            Log.Warning($"Invalid negative card count {stack.Cards.Count} detected in stack {ToPrettyString(uid)}");
-            return;
-        }
-
         var text = args.Type switch
         {
             StackQuantityChangeType.Added => "cards-stackquantitychange-added",
@@ -75,14 +65,7 @@ public sealed class CardHandSystem : EntitySystem
     {
         if (!TryComp(uid, out CardStackComponent? stack))
             return;
-        var pickup = _hands.IsHolding(args.Actor, uid);
-        EntityUid? leftover = null;
         var cardEnt = GetEntity(args.Card);
-
-        if (stack.Cards.Count == 2 && pickup)
-        {
-            leftover = stack.Cards[0] != cardEnt ? stack.Cards[0] : stack.Cards[1];
-        }
         if (!_cardStack.TryRemoveCard(uid, cardEnt, stack))
             return;
 
@@ -90,10 +73,6 @@ public sealed class CardHandSystem : EntitySystem
             _storage.PlayPickupAnimation(cardEnt, Transform(cardEnt).Coordinates, Transform(args.Actor).Coordinates, 0);
 
         _hands.TryPickupAnyHand(args.Actor, cardEnt);
-        if (pickup && leftover != null)
-        {
-            _hands.TryPickupAnyHand(args.Actor, leftover.Value);
-        }
     }
 
     private void OpenHandMenu(EntityUid user, EntityUid hand)
@@ -107,9 +86,6 @@ public sealed class CardHandSystem : EntitySystem
 
     private void OnAlternativeVerb(EntityUid uid, CardHandComponent comp, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || args.Hands == null)
-            return;
-
         args.Verbs.Add(new AlternativeVerb()
         {
             Act = () => OpenHandMenu(args.User, uid),
@@ -175,7 +151,7 @@ public sealed class CardHandSystem : EntitySystem
     }
     public void TrySetupHandOfCards(EntityUid user, EntityUid card, CardComponent comp, EntityUid target, CardComponent targetComp, bool pickup)
     {
-        if (card == target || _net.IsClient)
+        if (_net.IsClient)
             return;
         var cardHand = SpawnInSameParent(CardHandBaseName, card);
         if (TryComp<CardHandComponent>(cardHand, out var handComp))
@@ -218,20 +194,11 @@ public sealed class CardHandSystem : EntitySystem
     //           Useful when spawning decks/hands in a backpack, for example.
     private EntityUid SpawnInSameParent(EntProtoId prototype, EntityUid uid)
     {
-        if (prototype == default)
-            throw new ArgumentException("Cannot spawn with null prototype", nameof(prototype));
-
         if (_container.IsEntityOrParentInContainer(uid) &&
             _container.TryGetOuterContainer(uid, Transform(uid), out var container))
         {
-            var entity = SpawnInContainerOrDrop(prototype, container.Owner, container.ID);
-            if (!Exists(entity))
-                Log.Error($"Failed to spawn {prototype} in container {container.ID}");
-            return entity;
+            return SpawnInContainerOrDrop(prototype, container.Owner, container.ID);
         }
-        var worldEntity = Spawn(prototype, Transform(uid).Coordinates);
-        if (!Exists(worldEntity))
-            Log.Error($"Failed to spawn {prototype} at coordinates {Transform(uid).Coordinates}");
-        return worldEntity;
+        return Spawn(prototype, Transform(uid).Coordinates);
     }
 }

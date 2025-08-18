@@ -1,11 +1,12 @@
 using Content.Shared._N14.Casino;
 using Content.Shared.Interaction;
-using Content.Server.Chat.Managers;
+using Content.Server.Chat.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Popups;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Robust.Server.GameObjects;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -14,7 +15,8 @@ namespace Content.Server._N14.Casino;
 public sealed class RouletteTableSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
@@ -50,8 +52,9 @@ public sealed class RouletteTableSystem : EntitySystem
 
         var message = Loc.GetString("roulette-result", ("number", number), ("color", color));
         var plain = FormattedMessage.RemoveMarkupPermissive(message);
-        var filter = Filter.Pvs(uid, 4f);
-        _chat.ChatMessageToManyFiltered(filter, ChatChannel.Server, plain, message, uid, false, true, null);
+        var coords = _transform.GetMapCoordinates(uid);
+        var filter = Filter.Empty().AddInRange(coords, ChatSystem.VoiceRange);
+        _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Speak, false);
         _popup.PopupEntity(plain, uid, filter, true);
     }
 

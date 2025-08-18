@@ -61,14 +61,6 @@ public sealed class CardStackSystem : EntitySystem
         _container.Remove(card, comp.ItemContainer);
         comp.Cards.Remove(card);
 
-        // If there is a final card left over, remove that card from the container and delete the stack alltogether
-        if (comp.Cards.Count == 1)
-        {
-
-            _container.Remove(comp.Cards.First(), comp.ItemContainer);
-            comp.Cards.Clear();
-        }
-
         Dirty(uid, comp);
 
         RaiseLocalEvent(uid, new CardStackQuantityChangeEvent(GetNetEntity(uid), GetNetEntity(card), StackQuantityChangeType.Removed));
@@ -165,15 +157,15 @@ public sealed class CardStackSystem : EntitySystem
         }
         if (changed)
         {
+            if (_net.IsClient)
+                return changed;
+
             if (soundUser != null)
             {
                 _audio.PlayPredicted(firstComp.PlaceDownSound, Transform(firstStack).Coordinates, soundUser.Value);
-                if(_net.IsServer)
-                    _storage.PlayPickupAnimation(firstCard!.Value, Transform(secondStack).Coordinates, Transform(firstStack).Coordinates, 0);
-            }
 
-            if (_net.IsClient)
-                return changed;
+                _storage.PlayPickupAnimation(firstCard!.Value, Transform(secondStack).Coordinates, Transform(firstStack).Coordinates, 0);
+            }
 
             Dirty(firstStack, firstComp);
             if (secondComp.Cards.Count <= 0)
@@ -206,16 +198,12 @@ public sealed class CardStackSystem : EntitySystem
             return;
 
         var coordinates = Transform(uid).Coordinates;
-        var spawnedEntities = new List<EntityUid>();
         foreach (var id in comp.InitialContent)
         {
             var ent = Spawn(id, coordinates);
-            spawnedEntities.Add(ent);
             if (TryInsertCard(uid, ent, comp))
                 continue;
             Log.Error($"Entity {ToPrettyString(ent)} was unable to be initialized into stack {ToPrettyString(uid)}");
-            foreach (var spawned in spawnedEntities)
-                _entityManager.DeleteEntity(spawned);
             return;
         }
         RaiseNetworkEvent(new CardStackInitiatedEvent(GetNetEntity(uid)));
@@ -305,7 +293,15 @@ public sealed class CardStackSystem : EntitySystem
 
     private void JoinStacks(EntityUid user, EntityUid first, CardStackComponent firstComp, EntityUid second, CardStackComponent secondComp)
     {
+        if (_net.IsServer)
+        {
             TryJoinStacks(first, second, firstComp, secondComp, user);
+        }
+        else
+        {
+            if (firstComp.Cards.Count < MaxCardsInStack)
+                _audio.PlayPredicted(firstComp.PlaceDownSound, Transform(first).Coordinates, user);
+        }
     }
 
     public void InsertCardOnStack(EntityUid user, EntityUid stack, CardStackComponent stackComponent, EntityUid card)
@@ -352,17 +348,6 @@ public sealed class CardStackSystem : EntitySystem
             _storage.PlayPickupAnimation(firstCard, Transform(first).Coordinates, Transform(second).Coordinates, 0);
 
             Dirty(second, secondComp);
-            if (firstComp.Cards.Count == 1)
-            {
-                var card = firstComp.Cards.First();
-                _container.Remove(card, firstComp.ItemContainer);
-                if (_hands.IsHolding(user, first))
-                {
-                    _hands.TryDrop(user, first);
-                    _hands.TryPickupAnyHand(user, card);
-                }
-                firstComp.Cards.Clear();
-            }
             if (firstComp.Cards.Count <= 0)
             {
                 _entityManager.DeleteEntity(first);
@@ -381,9 +366,6 @@ public sealed class CardStackSystem : EntitySystem
     private void OnInteractUsing(InteractUsingEvent args)
     {
         if (args.Handled)
-            return;
-
-        if (args.Target == args.Used)
             return;
 
         // This checks if the user is using an item with Stack component
@@ -419,21 +401,16 @@ public sealed class CardStackSystem : EntitySystem
 
     private void OnInteractHand(EntityUid uid, CardStackComponent component, EntityUid user)
     {
-        var pickup = _hands.IsHolding(user, uid);
         if (component.Cards.Count <= 0)
             return;
 
         if (!component.Cards.TryGetValue(component.Cards.Count - 1, out var card))
-            return;
-        if (!component.Cards.TryGetValue(component.Cards.Count - 2, out var under))
             return;
 
         if (!TryRemoveCard(uid, card, component))
             return;
 
         _hands.TryPickupAnyHand(user, card);
-        if (!Exists(uid) && pickup)
-            _hands.TryPickupAnyHand(user, under);
 
         if (TryComp<CardDeckComponent>(uid, out var deck))
             _audio.PlayPredicted(deck.PickUpSound, Transform(card).Coordinates, user);
@@ -447,35 +424,22 @@ public sealed class CardStackSystem : EntitySystem
             return;
 
         if (!TryComp<HandsComponent>(args.User, out var hands))
-        {
-            args.Handled = true;
             return;
-        }
 
         var activeItem = _hands.GetActiveItem((args.User, hands));
 
         if (activeItem == null)
         {
-            // Runs if active item is nothing
-            // behavior is to draw one card from this target onto active hand as a standalone card
             OnInteractHand(args.Target, component, args.User);
-        }
-        else if (activeItem == args.Target)
-        {
-            // Added from a Frontier PR. Don't want to draw a card from a stack onto itself.
-            args.Handled = true;
-            return;
         }
         else if (TryComp<CardStackComponent>(activeItem, out var cardStack))
         {
-            // If the active item contains a card stack, behavior is to draw from Target and place onto activeHand.
             TransferNLastCardFromStacks(args.User, 1, args.Target, component, activeItem.Value, cardStack);
         }
         else if (TryComp<CardComponent>(activeItem, out var card))
         {
             _cardHandSystem.TrySetupHandFromStack(args.User, activeItem.Value, card, args.Target, component, true);
         }
-        args.Handled = true;
     }
 
     #endregion
