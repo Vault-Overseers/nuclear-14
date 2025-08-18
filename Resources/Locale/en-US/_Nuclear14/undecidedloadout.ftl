@@ -51,8 +51,8 @@ undecided-loadout-category-soldier-storm-description =
 undecided-loadout-category-soldier-scout-name = Soldier Scout Kit
 undecided-loadout-category-soldier-scout-description =
     A crate containing all a NCR soldier needs to patrol on the wasteland.
-    Includes 1 pouched NCR leather vest, 1 NCR belt, 1 lever-action carbine,
-    1 box of .44 ammo, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
+    Includes 1 pouched NCR leather vest, 1 NCR belt, 1 recon beret, 1 hunting rifle,
+    1 box of .308 ammo, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
     1 stimpak, 1 Rad-X pill, 1 bandage pack and a flare.
 
 undecided-loadout-category-soldier-point-name = Soldier Pointman Kit
@@ -71,18 +71,18 @@ undecided-loadout-category-soldier-morale-description =
 
 # NCRA Engineer Kits
 
-undecided-loadout-category-engi-mechanic-name = Engineer Mechanic Kit
+undecided-loadout-category-engi-mechanic-name = Engineer Construction Kit
 undecided-loadout-category-engi-mechanic-description =
     A crate containing all a NCR engineer to perform their job at peak efficiency.
-    Includes 1 pouched NCR leather vest, 1 utility belt, 1 9mm SMG, 3 9mm SMG magazines,
+    Includes 1 pouched NCR leather vest, 1 utility belt, 1 butchered service rifle, 3 service rifle magazines magazines,
     1 9mm pistol, 2 9mm pistol magazines, 30 iron scrap, 10 glass sheet, 30 wood planks,
     C ration MRE, 1 stimpak, 1 Radaway, 1 bandage pack and a flare.
 
-undecided-loadout-category-engi-demo-name = Engineer Demolition Kit
+undecided-loadout-category-engi-demo-name = Engineer Sapper Kit
 undecided-loadout-category-engi-demo-description =
     A crate containing all a NCR engineer needs to rip and blow stuff up!
-    Includes 1 pouched NCR leather vest, 1 utility belt, 1 ripper, 1 pump-action shotgun,
-    1 box of 12 gauge shells, 1 9mm pistol, 2 9mm pistol magazines, 1 C4,
+    Includes 1 pouched NCR leather vest, 1 ripper, 1 sawed off pump-action shotgun,
+    1 box of 12 gauge shells, 1 9mm SMG, 3 9mm smg magazines, 1 C4,
     C ration MRE, 1 stimpak, 1 Radaway, 1 bandage pack and a flare.
 
 undecided-loadout-category-engi-breach-name = Engineer Breacher Kit
@@ -97,26 +97,23 @@ undecided-loadout-category-engi-breach-description =
 undecided-loadout-category-med-surg-name = Medic Surgeon Kit
 undecided-loadout-category-med-surg-description =
     A crate containing all a NCR medic needs to take care of other troops.
-    Includes 1 lab coat, 1 medic beret, nitrile gloves, 1 medical belt, 9mm SMG,
-    3 9mm SMG magazines, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
+    Includes 1 lab coat, 1 medic beret, nitrile gloves, 1 .45 pistol, 2 .45 pistol magazines, C ration MRE, surgical bag,
     1 set of bruise packs, 1 pack of ointments, 1 stack of bloodbags, 1 antidote bottle,
-    1 super stimpack, 1 stimpak, 1 Radaway, 2 bandage packs and a flare.
+    1 super stimpack, 1 stimpak, 1 Radaway, 2 bandage packs and a flare,
 
 undecided-loadout-category-med-doc-name = Medic Field Kit
 undecided-loadout-category-med-doc-description =
     A crate containing all a NCR medic needs to take care of other troops.
-    Includes 1 lab coat, 1 medic beret, nitrile gloves, 1 medical belt, 9mm SMG,
-    3 9mm SMG magazines, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 stack of bloodbags, 1 antidote bottle,
-    1 stimpak, 1 Radaway, 2 bandage packs and a flare.
+    Includes 1 puched NCR vest, 1 medic beret, nitrile gloves, 1 medical belt, 9mm SMG,
+    3 9mm SMG magazines, C ration MRE,1 stack of bloodbags, 1 antidote bottle,
+    2 stimpak, 1 Radaway, 1 stack of ointment, 1 stack of brute packs, 2 bandage packs and a flare.
 
 undecided-loadout-category-med-combat-name = Medic Combat Kit
 undecided-loadout-category-med-combat-description =
     A crate containing all a NCR medic needs to take care of other troops.
-    Includes 1 pouched NCR leather vest, 1 medic metal helmet, 1 medical belt,
-    1 pump-action shotgun, 1 box of 12 gauge shells, 1 9mm pistol, 2 9mm pistol magazines,
-    C ration MRE, 1 stack of bloodbags, 1 antidote injector,
-    2 stimpaks, 1 Radaway, 2 bandage packs and a flare.
+    Includes 1 pouched NCR leather vest, 1 medic metal helmet, 1 combat medkit,
+    1 service rifle, 3 service rifle magazines, 1 9mm pistol, 2 9mm pistol magazines,
+    C ration MRE, 2 stimpaks, 1 Radaway, 2 bandage packs and a flare.
 
 # NCRA Weapon Specialist Kits
 
