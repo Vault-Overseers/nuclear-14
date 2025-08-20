@@ -21,7 +21,7 @@ namespace Content.Shared._N14.Support
         public MapCoordinates Target = MapCoordinates.Nullspace;
 
         [DataField, AutoNetworkedField]
-        public TimeSpan Delay = TimeSpan.FromSeconds(10);
+        public TimeSpan Delay = TimeSpan.FromSeconds(5);
 
         [DataField, AutoNetworkedField]
         public string ExplosionType = "Default";
@@ -34,6 +34,9 @@ namespace Content.Shared._N14.Support
 
         [DataField, AutoNetworkedField]
         public float MaxIntensity = 10f;
+
+        [DataField, AutoNetworkedField]
+        public float TileBreakScale = 1f;
 
         [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
         public TimeSpan StartTime;

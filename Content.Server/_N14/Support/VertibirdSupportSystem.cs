@@ -134,6 +134,7 @@ namespace Content.Server._N14.Support
                     comp.Intensity,
                     comp.Slope,
                     comp.MaxIntensity,
+                    comp.TileBreakScale,
                     canCreateVacuum: false);
                 if (comp.FireSound != null)
                 {
@@ -159,6 +160,7 @@ namespace Content.Server._N14.Support
             float intensity = 30f,
             float slope = 2f,
             float maxIntensity = 5f,
+            float tileBreakScale = 1f,
             SoundSpecifier? approach = null,
             SoundSpecifier? fire = null
         )
@@ -177,6 +179,7 @@ namespace Content.Server._N14.Support
             comp.Intensity = intensity;
             comp.Slope = slope;
             comp.MaxIntensity = maxIntensity;
+            comp.TileBreakScale = tileBreakScale;
             comp.ApproachSound = approach;
             comp.FireSound = fire;
             // StartTime will be initialized when the flare activates.
