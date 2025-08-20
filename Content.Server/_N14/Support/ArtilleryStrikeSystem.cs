@@ -94,7 +94,7 @@ namespace Content.Server._N14.Support
             string type = "Default",
             float intensity = 50f,
             float slope = 3f,
-            float maxIntensity = 10f
+            float maxIntensity = 10f,
             float tileBreakScale = 1f,
         )
         {
