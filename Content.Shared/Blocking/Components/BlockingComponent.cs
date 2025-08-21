@@ -34,7 +34,7 @@ public sealed partial class BlockingComponent : Component
     /// The shape of the blocking fixture that will be dynamically spawned
     /// </summary>
     [DataField("shape"), ViewVariables(VVAccess.ReadWrite)]
-    public IPhysShape Shape = new PhysShapeCircle(0.5f);
+    public IPhysShape Shape = new PhysShapeCircle(0.49f);
 
     /// <summary>
     /// The damage modifer to use while passively blocking
