@@ -26,7 +26,7 @@ public sealed partial class VertibirdSupportComponent : Component
     /// Time from activation until the approach sound plays.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public TimeSpan ApproachDelay = TimeSpan.FromSeconds(10);
+    public TimeSpan ApproachDelay = TimeSpan.FromSeconds(5);
 
     /// <summary>
     /// Additional delay after the approach before the first shot.
@@ -60,6 +60,9 @@ public sealed partial class VertibirdSupportComponent : Component
 
     [DataField, AutoNetworkedField]
     public float MaxIntensity = 5f;
+
+    [DataField, AutoNetworkedField]
+    public float TileBreakScale = 1f;
 
     [DataField]
     public SoundSpecifier? ApproachSound;

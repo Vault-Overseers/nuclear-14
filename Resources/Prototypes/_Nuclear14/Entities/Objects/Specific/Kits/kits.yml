@@ -41,7 +41,7 @@
       - id: N14Stimpak
       - id: N14RadXPill
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -69,7 +69,7 @@
       - id: N14Stimpak
       - id: N14RadXPill
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -96,7 +96,7 @@
       - id: N14Stimpak
       - id: N14RadXPill
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -126,7 +126,7 @@
       - id: N14Stimpak
       - id: N14RadXPill
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -154,7 +154,7 @@
       - id: N14Stimpak
       - id: N14RadXPill
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -172,8 +172,8 @@
     items:
       - id: N14ClothingOuterNCRPouchedVestSnow
       - id: ClothingBeltNCR
-      - id: N14WeaponSniper44LeverCarbine
-      - id: MagazineBox44
+      - id: N14WeaponSniperHunting
+      - id: MagazineBox308
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
@@ -181,7 +181,7 @@
       - id: N14Stimpak
       - id: N14RadXPill
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -208,7 +208,7 @@
       - id: N14Stimpak
       - id: N14RadXPill
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -238,17 +238,17 @@
       - id: N14Stimpak
       - id: N14RadXPill
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
 # NCRA Engineer Kit
 
 - type: entity
-  name: engineer's mechanic kit
+  name: engineer's construction kit
   parent: KitBase
   id: KitNCR_EngiMechanic
-  description: A crate containing all an NCR engineer needs to perform their job.
+  description: A crate containing all an NCR engineer needs to build defenses and repair structures.
   components:
   - type: Sprite
     state: rifleman
@@ -258,8 +258,8 @@
     items:
       - id: N14ClothingOuterNCRPouchedVestSnow
       - id: N14ClothingBeltUtilityFilled
-      - id: N14WeaponSMG9mm
-      - id: N14MagazineSMG9mm
+      - id: N14WeaponRifle556Butchered
+      - id: Magazine556Rifle
         amount: 3
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
@@ -271,15 +271,16 @@
       - id: N14Stimpak
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
+
 - type: entity
-  name: engineer's demolition kit
+  name: engineer's sapper kit
   parent: KitBase
   id: KitNCR_EngiDemo
-  description: A crate containing all an NCR engineer needs to perform their job.
+  description: A crate containing all an NCR engineer needs to kick in doors.
   components:
   - type: Sprite
     state: pointman
@@ -289,19 +290,18 @@
     items:
       - id: N14ClothingOuterNCRPouchedVestSnow
       - id: ClothingBeltNCR
-      - id: N14WeaponShotgun
+      - id: N14WeaponSMG9mm
+      - id: N14MagazineSMG9mm
+        amount: 3
+      - id: N14WeaponShotgunShort
       - id: MagazineBox12gauge
-      - id: N14ToolboxMechanical
       - id: C4
       - id: N14ripper
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
       - id: N14BoxCardboardMREBoxCFilled
       - id: N14Stimpak
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -330,14 +330,14 @@
       - id: N14Stimpak
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
 # NCRA Medic Kits
 
 - type: entity
-  name: medic's sugeon kit
+  name: medic's surgeon kit
   parent: KitBase
   id: KitNCR_MedSurgeon
   description: A crate containing all an NCR medic needs to perform their job.
@@ -351,24 +351,22 @@
       - id: N14ClothingOuterCoatLab
       - id: N14ClothingBeltMedicalFilled
       - id: N14ClothingHandsGlovesNitrile
+      - id: ClothingMaskSterile
       - id: N14ClothingHeadHatNCRBeretMedic
-      - id: N14WeaponSMG9mm
-      - id: N14MagazineSMG9mm
-        amount: 3
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
+      - id: N14ClothingBackpackSurgeryFilled
+      - id: N14WeaponPistol45Colt
+      - id: N14BaseMagazine45Pistol
         amount: 2
       - id: N14SuperStimpak
-      - id: Brutepack
+      - id: N14Stimpak
       - id: N14Ointment10
       - id: Bloodpack
       - id: N14Antidote
       - id: N14BoxCardboardMREBoxCFilled
-      - id: N14Stimpak
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
         amount: 2
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -391,9 +389,6 @@
       - id: N14WeaponSMG9mm
       - id: N14MagazineSMG9mm
         amount: 3
-      - id: N14WeaponPistol9mm
-      - id: N14MagazinePistol9mm
-        amount: 2
       - id: Brutepack
       - id: N14Ointment10
       - id: Bloodpack
@@ -404,7 +399,7 @@
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
         amount: 2
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -420,22 +415,23 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14ClothingOuterNCRPouchedVestWoods
-      - id: N14ClothingBeltMedicalFilled
+      - id: N14ClothingOuterNCRPouchedVestSnow
+      - id: ClothingBeltNCR
       - id: N14ClothingHeadHatNCRHelmetMetalMedic
-      - id: N14WeaponShotgun
-      - id: MagazineBox12gauge
+      - id: N14WeaponRifle556Service
+      - id: Magazine556Rifle
+        amount: 4
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
-      - id: N14ChemicalSyringeAntidote
+      - id: N14MedkitCombatFilled
       - id: N14BoxCardboardMREBoxCFilled
       - id: N14Stimpak
         amount: 2
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
         amount: 2
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -467,7 +463,7 @@
       - id: N14Stimpak
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -498,7 +494,7 @@
       - id: N14Stimpak
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -527,7 +523,7 @@
       - id: N14Stimpak
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -557,7 +553,7 @@
       - id: N14Stimpak
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -588,7 +584,7 @@
       - id: N14Stimpak
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -617,7 +613,7 @@
       - id: N14Stimpak
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -646,7 +642,7 @@
       - id: N14Stimpak
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -675,7 +671,7 @@
       - id: N14Stimpak
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -704,7 +700,7 @@
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
         amount: 2
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -731,7 +727,7 @@
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
         amount: 2
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -758,7 +754,7 @@
       - id: N14RadAwayBloodbag
       - id: N14CleanGauze10
         amount: 2
-      - id: N14Flare
+      - id: Torch
     sound:
       path: /Audio/Effects/unwrap.ogg
 
