@@ -13,6 +13,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
 using Robust.Shared.Prototypes;
@@ -372,15 +373,12 @@ public sealed class MindSystem : SharedMindSystem
     /// Return true if the entity owned by this mind is a member of one of the
     /// given factions.
 
-    public bool InFaction(EntityUid uid, MindComponent mind, HashSet<string> factions)
+    public bool InFaction(EntityUid uid, MindComponent mind, IReadOnlySet<string> factions)
     {
-        if (mind.OwnedEntity != null)
-        {
-            if (TryComp(mind.OwnedEntity, out NpcFactionMemberComponent? faction))
-            {
-                return factions.Overlaps(faction.Factions);
-            }
-        }
+        if (mind.OwnedEntity != null && TryComp(mind.OwnedEntity, out NpcFactionMemberComponent? member))
+            // compare each ProtoId's Id (or ToString()) to the string set
+            return member.Factions.Any(fid => factions.Contains(fid.Id));
+
         return false;
     }
     //Nuclear14 Changes End

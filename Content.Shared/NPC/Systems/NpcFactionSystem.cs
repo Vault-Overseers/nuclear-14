@@ -95,6 +95,14 @@ public sealed partial class NpcFactionSystem : EntitySystem
     }
 
     /// <summary>
+    /// Returns whether an entity is a member of any listed faction using raw string IDs.
+    /// </summary>
+    public bool IsMemberOfAny(Entity<NpcFactionMemberComponent?> ent, IEnumerable<string> factions)
+    {
+        return IsMemberOfAny(ent, factions.Select(x => (ProtoId<NpcFactionPrototype>) x));
+    }
+
+    /// <summary>
     /// Adds this entity to the particular faction.
     /// </summary>
     public void AddFaction(Entity<NpcFactionMemberComponent?> ent, string faction, bool dirty = true)
