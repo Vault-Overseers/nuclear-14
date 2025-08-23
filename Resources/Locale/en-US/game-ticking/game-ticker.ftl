@@ -7,7 +7,7 @@ game-ticker-unknown-role = Unknown
 game-ticker-delay-start = Round start has been delayed for {$seconds} seconds.
 game-ticker-pause-start = Round start has been paused.
 game-ticker-pause-start-resumed = Round start countdown is now resumed.
-game-ticker-player-join-game-message = Welcome to Nuclear 14! If this is your first time playing, be sure to read the game rules, and don't be afraid to ask for help in LOOC (local OOC) or OOC (usually available only between rounds).
+game-ticker-player-join-game-message = Welcome to Nuclear 14! If this is your first time playing, be sure to read the game rules, and don't be afraid to ask for help in LOOC (local OOC).
 game-ticker-get-info-text = Hi and welcome to [color=white]Nuclear 14![/color]
                             The current round is: [color=white]#{$roundId}[/color]
                             The current player count is: [color=white]{$playerCount}[/color]
@@ -25,7 +25,7 @@ game-ticker-get-info-preround-text = Hi and welcome to [color=white]Nuclear 14![
                             >[color=yellow]{$desc}[/color]
 game-ticker-no-map-selected = [color=yellow]Map not yet selected![/color]
 game-ticker-player-no-jobs-available-when-joining = When attempting to join to the game, no jobs were available.
-game-ticker-welcome-to-the-station = You wake up in the state of Washington. War Never Changes.
+game-ticker-welcome-to-the-station = You wake up in the former state of Washington.
 
 # Displayed in chat to admins when a player joins
 player-join-message = Player {$name} joined.
@@ -34,7 +34,7 @@ player-first-join-message = Player {$name} joined for the first time.
 # Displayed in chat to admins when a player leaves
 player-leave-message = Player {$name} left.
 
-latejoin-arrival-announcement = {$character} ({$job}) has arrived at the station!
+latejoin-arrival-announcement = {$character} ({$job}) has arrived to the region!
 latejoin-arrival-sender = Station
 latejoin-arrivals-direction = A shuttle transferring you to your station will arrive shortly.
 latejoin-arrivals-direction-time = A shuttle transferring you to your station will arrive in {$time}.

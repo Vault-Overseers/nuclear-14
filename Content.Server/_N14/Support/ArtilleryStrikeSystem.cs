@@ -82,6 +82,7 @@ namespace Content.Server._N14.Support
                     comp.Intensity,
                     comp.Slope,
                     comp.MaxIntensity,
+                    comp.TileBreakScale,
                     canCreateVacuum: false);
                 QueueDel(uid);
             }
@@ -93,7 +94,8 @@ namespace Content.Server._N14.Support
             string type = "Default",
             float intensity = 50f,
             float slope = 3f,
-            float maxIntensity = 10f
+            float maxIntensity = 10f,
+            float tileBreakScale = 1f
         )
         {
             var ent = Spawn(null, target);
@@ -104,6 +106,7 @@ namespace Content.Server._N14.Support
             comp.Intensity = intensity;
             comp.Slope = slope;
             comp.MaxIntensity = maxIntensity;
+            comp.TileBreakScale = tileBreakScale;
             // StartTime will be initialized when the flare activates.
             comp.StartTime = TimeSpan.Zero;
             Dirty(ent, comp);
