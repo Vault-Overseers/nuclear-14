@@ -146,3 +146,74 @@
           steps:
             - tool: Welding
               doAfter: 25
+
+- type: constructionGraph
+  id: N14AdobeWall
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: AdobeWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: N14Dirt
+              amount: 2
+              doAfter: 2
+
+    - node: AdobeWall
+      entity: N14WallAdobeSlanted
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: N14DirtBlock
+              amount: 2
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Prying
+              doAfter: 10
+
+- type: constructionGraph
+  id: N14TentWall
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: LeatherWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Leather
+              amount: 1
+              doAfter: 1
+        - to: ClothWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Cloth
+              amount: 1
+              doAfter: 1
+
+    - node: LeatherWall
+      entity: N14TentLeatherWall
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: N14MaterialLeather1
+              amount: 1
+          steps: []
+
+    - node: ClothWall
+      entity: N14TentClothWall
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps: []

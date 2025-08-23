@@ -41,6 +41,25 @@
     - !type:TileNotBlocked
 
 - type: construction
+  name: adobe wall
+  id: N14WallAdobeSlanted
+  graph: N14AdobeWall
+  startNode: start
+  targetNode: AdobeWall
+  category: construction-category-structures
+  description: A wall built from adobe bricks.
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/adobe.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
   name: blue scrap wall
   id: N14WallScrapBlueSlanted
   graph: N14ScrapWall
@@ -96,6 +115,44 @@
   hide: false
   conditions:
     - !type:TileNotBlocked
+- type: construction
+  name: leather tent wall
+  id: N14TentLeatherWall
+  graph: N14TentWall
+  startNode: start
+  targetNode: LeatherWall
+  category: construction-category-structures
+  description: A tent wall made of leather.
+  icon:
+    sprite: _Nuclear14/Structures/Walls/nc14/tents.rsi
+    state: leather_edge
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: cloth tent wall
+  id: N14TentClothWall
+  graph: N14TentWall
+  startNode: start
+  targetNode: ClothWall
+  category: construction-category-structures
+  description: A tent wall made of cloth.
+  icon:
+    sprite: _Nuclear14/Structures/Walls/nc14/tents.rsi
+    state: cloth_edge
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
 
 ## Half Walls
 - type: construction
@@ -108,6 +165,25 @@
   description: A nice half wall for placing a window pane on.
   icon:
     sprite: _Nuclear14/Structures/Walls/ms13/half/wood.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: adobe half wall
+  id: N14WallAdobeHalfSlanted
+  graph: N14HalfWall
+  startNode: start
+  targetNode: Adobe
+  category: construction-category-structures
+  description: A half height adobe wall for windows.
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/adobe.rsi
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -191,6 +267,61 @@
   conditions:
     - !type:TileNotBlocked
 
+- type: construction
+  name: leather tent flap
+  id: N14DoorTentLeatherflap
+  graph: N14TentFlap
+  startNode: start
+  targetNode: LeatherFlap
+  category: construction-category-structures
+  description: A door for a tent. Leathery.
+  icon:
+    sprite: _Nuclear14/Structures/Doors/FalloutDoors/tentleather.rsi
+    state: closed
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: cloth tent flap
+  id: N14DoorTentClothflap
+  graph: N14TentFlap
+  startNode: start
+  targetNode: ClothFlap
+  category: construction-category-structures
+  description: A door for a tent. Cloth.
+  icon:
+    sprite: _Nuclear14/Structures/Doors/FalloutDoors/tentcloth.rsi
+    state: closed
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: scrap curtains
+  id: N14JunkCurtain
+  graph: N14JunkCurtainGraph
+  startNode: start
+  targetNode: JunkCurtain
+  category: construction-category-structures
+  description: Some old rags for privacy.
+  icon:
+    sprite: _Nuclear14/Structures/Doors/Curtains/junkcurtain.rsi
+    state: closed
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+
 
 ## Windows
 - type: construction
@@ -211,3 +342,39 @@
     state: full
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  name: sandbags
+  id: N14BarricadeSandbagSingle
+  graph: N14SandbagBarricade
+  startNode: start
+  targetNode: Sandbag
+  category: construction-category-structures
+  description: A sandbag fortification.
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/barricades.rsi
+    state: sandbag_single
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false
+
+- type: construction
+  name: razorwire barricade
+  id: N14BarricadeRazorwire
+  graph: N14RazorwireBarricade
+  startNode: start
+  targetNode: Razorwire
+  category: construction-category-structures
+  description: A razorwire fortification.
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/barricades.rsi
+    state: barbedwire_single
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+  hide: false

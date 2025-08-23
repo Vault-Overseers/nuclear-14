@@ -49,10 +49,6 @@
       map: ["enum.ApcVisualLayers.Environment"]
   - type: Appearance
   - type: ApcVisuals
-  - type: Battery
-    maxCharge: 500
-    startingCharge: 0
-  - type: ExaminableBattery
   - type: NodeContainer
     examinable: true
     nodes:
@@ -62,8 +58,6 @@
       output:
         !type:CableDeviceNode
         nodeGroupID: Apc
-  - type: BatteryCharger
-    voltage: Medium
   - type: PowerProvider
     voltage: Apc
   - type: Apc
@@ -77,14 +71,6 @@
     inHandsOnly: false
     singleUser: true
     key: enum.ApcUiKey.Key
-#  - type: Construction
-#    graph: APC
-#    node: apc
-  - type: PowerNetworkBattery
-    maxSupply: 10000
-    maxChargeRate: 5000
-    supplyRampTolerance: 1000
-    supplyRampRate: 500
   - type: WallMount
   - type: WiresPanel
   - type: WiresVisuals
@@ -110,7 +96,6 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: StationInfiniteBatteryTarget
   - type: Electrified
     onHandInteract: false
     onInteractUsing: false
@@ -118,6 +103,9 @@
     requirePower: true
     mediumVoltageNode: input
     lowVoltageNode: output
+  - type: Construction
+    graph: N14APCBreaker
+    node: breaker
   - type: StaticPrice
     price: 500
 
@@ -137,9 +125,6 @@
     drawdepth: Overdoors
     sprite: _Nuclear14/Structures/Power/breakerbox.rsi
     state: frame
-#  - type: Construction
-#    graph: APC
-#    node: apcFrame
   - type: WallMount
   - type: Damageable
     damageContainer: Inorganic
