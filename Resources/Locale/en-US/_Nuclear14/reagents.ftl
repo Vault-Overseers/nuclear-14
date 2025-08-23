@@ -207,6 +207,10 @@ reagent-desc-nightstalker-venom = The venom of a nightstalker. While not nearly 
 reagent-name-cazador-venom = cazador venom
 reagent-desc-cazador-venom = The venom of a cazador. Quick death is near guaranteed.
 
+reagent-name-cannibal-juice = Cannibal Juice
+reagent-desc-cannibal-juice = A reagent that warps the mind and drives the drinker toward madness.
+reagent-physical-desc-thick-red = A thick, blood-red liquid.
+
 # Chems
 reagent-name-healing-powder = healing powder
 reagent-desc-healing-powder = A powder made from crushed plants.
