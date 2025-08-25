@@ -79,7 +79,7 @@
 - type: reagent
   id: N14CannibalJuice
   name: reagent-name-cannibal-juice
-  group: Toxins  
+  group: Toxins
   desc: reagent-desc-cannibal-juice
   physicalDesc: reagent-physical-desc-thick-red
   color: "#8B0000"
@@ -87,18 +87,34 @@
     Poison:
       metabolismRate: 0.05
       effects:
+        # SeeingRainbows effect
         - !type:GenericStatusEffect
           key: SeeingRainbows
           component: SeeingRainbows
           type: Add
           time: 5
           refresh: true
+          conditions:
+            - !type:ReagentThreshold
+              min: 1
+        # Stutter effect
         - !type:GenericStatusEffect
           key: Stutter
           component: StutteringAccent
+          type: Add
+          time: 5
+          refresh: true
+          conditions:
+            - !type:ReagentThreshold
+              min: 1
+        # Movespeed buff  
         - !type:MovespeedModifier
           walkSpeedModifier: 1.05
           sprintSpeedModifier: 1.05
+          conditions:
+            - !type:ReagentThreshold
+              min: 1
+
 
 
 # This is a reagent for the cannibal trait only.The first one is used for the human meat
