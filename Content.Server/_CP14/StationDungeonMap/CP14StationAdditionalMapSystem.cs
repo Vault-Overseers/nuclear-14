@@ -4,21 +4,20 @@ using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared.Teleportation.Systems;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Prototypes;
+using Content.Shared._CP14.StationDungeonMap;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+
 
 namespace Content.Server._CP14.StationDungeonMap;
 
+
 public sealed partial class CP14StationAdditionalMapSystem : EntitySystem
 {
-    [Dependency] private readonly BiomeSystem _biome = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly LinkedEntitySystem _linkedEntity = default!;
-    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
 
     public override void Initialize()
@@ -27,21 +26,39 @@ public sealed partial class CP14StationAdditionalMapSystem : EntitySystem
         SubscribeLocalEvent<CP14StationAdditionalMapComponent, StationPostInitEvent>(OnStationPostInit);
     }
 
-    private void OnStationPostInit(Entity<CP14StationAdditionalMapComponent> addMap, ref StationPostInitEvent args)
+    private void OnStationPostInit(
+        EntityUid uid,
+        CP14StationAdditionalMapComponent addMap,
+        ref StationPostInitEvent args
+    )
     {
-        if (!TryComp(addMap, out StationDataComponent? dataComp))
+        if (!TryComp(uid, out StationDataComponent? _))
             return;
 
-        foreach (var path in addMap.Comp.MapPaths)
+        foreach (var path in addMap.MapPaths)
         {
-            var mapUid = _map.CreateMap(out var mapId);
-            Log.Info($"Created map {mapId} for StationAdditionalMap system");
-            var options = new MapLoadOptions { LoadMap = true };
-            if (!_mapLoader.TryLoad(mapId, path.ToString(), out var roots, options))
+            var dOpts = new DeserializationOptions { InitializeMaps = true };
+
+            Entity<MapComponent>? mapEntity;
+            HashSet<Entity<MapGridComponent>>? grids;
+
+            if (!_mapLoader.TryLoadMap(path, out mapEntity, out grids, dOpts))
             {
                 Log.Error($"Failed to load map from {path}!");
-                Del(mapUid);
                 return;
+            }
+
+            // mapEntity is nullable per the signature; guard just in case.
+            if (mapEntity is { } me)
+            {
+                var mapId = me.Comp.MapId;
+                var gridCount = grids?.Count ?? 0;
+                Log.Info($"Loaded additional map {mapId} from {path} with {gridCount} grids");
+            }
+            else
+            {
+                var gridCount = grids?.Count ?? 0;
+                Log.Info($"Loaded additional map from {path} (no MapComponent returned) with {gridCount} grids");
             }
         }
     }

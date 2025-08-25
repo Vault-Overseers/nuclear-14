@@ -1,5 +1,32 @@
 # Basic fish prototypes
 
+- type: entity
+  name: cooked fish
+  parent: FoodMeatBase
+  id: N14FoodFishCooked
+  description: A cooked slab of fish. Smells fishy.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+    - Fish
+  # - type: Sprite
+    # layers:
+    # - state: plain-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 5
+  - type: FoodSequenceElement
+    entries:
+      Burger: MeatSteak
+      Taco: MeatSteak
+
 # Fish prototypes
 
 # Sockeye Salmon
@@ -19,27 +46,27 @@
     spawned:
       - id: N14FoodFishSockeyeSalmonFillet
         amount: 2
-  # - type: Construction
-    # graph: FishSockeyeSalmon
-    # node: start
-    # defaultTarget: Cooked
+  - type: Construction
+    graph: FishSockeyeSalmon
+    node: start
+    defaultTarget: Cooked
 
-# - type: entity
-  # name: cooked sockeye salmon
-  # parent: FoodMeatCooked
-  # id: N14FoodFishSockeyeSalmonCooked
-  # description: A cooked sockeye salmon.
-  # components:
-  # - type: Sprite
-    # sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
-    # state: fishfry
-  # - type: FlavorProfile
-    # flavors:
-    # - fishy
-  # - type: Construction
-    # graph: FishSockeyeSalmon
-    # node: Cooked
-    # defaultTarget: Cooked
+- type: entity
+  name: cooked sockeye salmon
+  parent: N14FoodFishCooked
+  id: N14FoodFishSockeyeSalmonCooked
+  description: A cooked sockeye salmon.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
+    state: fishfry
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: Construction
+    graph: FishSockeyeSalmon
+    node: Cooked
+    defaultTarget: Cooked
 
 - type: entity
   name: raw sockeye salmon fillet
@@ -60,7 +87,7 @@
 
 - type: entity
   name: cooked sockeye salmon fillet
-  parent: FoodMeatCooked
+  parent: N14FoodFishCooked
   id: N14FoodFishSockeyeSalmonFilletCooked
   description: A cooked fillet of sockeye salmon.
   components:
@@ -92,27 +119,27 @@
     spawned:
       - id: N14FoodFishSmallmouthBassFillet
         amount: 2
-  # - type: Construction
-    # graph: FishSmallmouthBass
-    # node: start
-    # defaultTarget: Cooked
+  - type: Construction
+    graph: FishSmallmouthBass
+    node: start
+    defaultTarget: Cooked
 
-# - type: entity
-  # name: cooked smallmouth bass
-  # parent: FoodMeatCooked
-  # id: N14FoodFishSmallmouthBassCooked
-  # description: A cooked smallmouth bass.
-  # components:
-  # - type: Sprite
-    # sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
-    # state: fishfry
-  # - type: FlavorProfile
-    # flavors:
-    # - fishy
-  # - type: Construction
-    # graph: FishSmallmouthBass
-    # node: Cooked
-    # defaultTarget: Cooked
+- type: entity
+  name: cooked smallmouth bass
+  parent: N14FoodFishCooked
+  id: N14FoodFishSmallmouthBassCooked
+  description: A cooked smallmouth bass.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
+    state: fishfry
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: Construction
+    graph: FishSmallmouthBass
+    node: Cooked
+    defaultTarget: Cooked
 
 - type: entity
   name: raw smallmouth bass fillet
@@ -133,7 +160,7 @@
 
 - type: entity
   name: cooked smallmouth bass fillet
-  parent: FoodMeatCooked
+  parent: N14FoodFishCooked
   id: N14FoodFishSmallmouthBassFilletCooked
   description: A cooked fillet of smallmouth bass.
   components:
@@ -165,27 +192,27 @@
     spawned:
       - id: N14FoodFishLargemouthBassFillet
         amount: 2
-  # - type: Construction
-    # graph: FishLargemouthBass
-    # node: start
-    # defaultTarget: Cooked
+  - type: Construction
+    graph: FishLargemouthBass
+    node: start
+    defaultTarget: Cooked
 
-# - type: entity
-  # name: cooked largemouth bass
-  # parent: FoodMeatCooked
-  # id: N14FoodFishLargemouthBassCooked
-  # description: A cooked largemouth bass.
-  # components:
-  # - type: Sprite
-    # sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
-    # state: fishfry
-  # - type: FlavorProfile
-    # flavors:
-    # - fishy
-  # - type: Construction
-    # graph: FishLargemouthBass
-    # node: Cooked
-    # defaultTarget: Cooked
+- type: entity
+  name: cooked largemouth bass
+  parent: N14FoodFishCooked
+  id: N14FoodFishLargemouthBassCooked
+  description: A cooked largemouth bass.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
+    state: fishfry
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: Construction
+    graph: FishLargemouthBass
+    node: Cooked
+    defaultTarget: Cooked
 
 - type: entity
   name: raw largemouth bass fillet
@@ -206,7 +233,7 @@
 
 - type: entity
   name: cooked largemouth bass fillet
-  parent: FoodMeatCooked
+  parent: N14FoodFishCooked
   id: N14FoodFishLargemouthBassFilletCooked
   description: A cooked fillet of largemouth bass.
   components:
@@ -238,27 +265,27 @@
     spawned:
       - id: N14FoodFishLampreyFillet
         amount: 2
-  # - type: Construction
-    # graph: FishLamprey
-    # node: start
-    # defaultTarget: Cooked
+  - type: Construction
+    graph: FishLamprey
+    node: start
+    defaultTarget: Cooked
 
-# - type: entity
-  # name: cooked lamprey
-  # parent: FoodMeatCooked
-  # id: N14FoodFishLampreyCooked
-  # description: A cooked lamprey.
-  # components:
-  # - type: Sprite
-    # sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
-    # state: fishfry
-  # - type: FlavorProfile
-    # flavors:
-    # - fishy
-  # - type: Construction
-    # graph: FishLamprey
-    # node: Cooked
-    # defaultTarget: Cooked
+- type: entity
+  name: cooked lamprey
+  parent: N14FoodFishCooked
+  id: N14FoodFishLampreyCooked
+  description: A cooked lamprey.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
+    state: fishfry
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: Construction
+    graph: FishLamprey
+    node: Cooked
+    defaultTarget: Cooked
 
 - type: entity
   name: raw lamprey fillet
@@ -279,7 +306,7 @@
 
 - type: entity
   name: cooked lamprey fillet
-  parent: FoodMeatCooked
+  parent: N14FoodFishCooked
   id: N14FoodFishLampreyFilletCooked
   description: A cooked fillet of lamprey.
   components:
@@ -311,27 +338,27 @@
     spawned:
       - id: N14FoodFishPinkSalmonFillet
         amount: 2
-  # - type: Construction
-    # graph: FishPinkSalmon
-    # node: start
-    # defaultTarget: Cooked
+  - type: Construction
+    graph: FishPinkSalmon
+    node: start
+    defaultTarget: Cooked
 
-# - type: entity
-  # name: cooked pink salmon
-  # parent: FoodMeatCooked
-  # id: N14FoodFishPinkSalmonCooked
-  # description: A cooked pink salmon.
-  # components:
-  # - type: Sprite
-    # sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
-    # state: fishfry
-  # - type: FlavorProfile
-    # flavors:
-    # - fishy
-  # - type: Construction
-    # graph: FishPinkSalmon
-    # node: Cooked
-    # defaultTarget: Cooked
+- type: entity
+  name: cooked pink salmon
+  parent: N14FoodFishCooked
+  id: N14FoodFishPinkSalmonCooked
+  description: A cooked pink salmon.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
+    state: fishfry
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: Construction
+    graph: FishPinkSalmon
+    node: Cooked
+    defaultTarget: Cooked
 
 - type: entity
   name: raw pink salmon fillet
@@ -352,7 +379,7 @@
 
 - type: entity
   name: cooked pink salmon fillet
-  parent: FoodMeatCooked
+  parent: N14FoodFishCooked
   id: N14FoodFishPinkSalmonFilletCooked
   description: A cooked fillet of pink salmon.
   components:
@@ -384,27 +411,27 @@
     spawned:
       - id: N14FoodFishWhiteSturgeonFillet
         amount: 2
-  # - type: Construction
-    # graph: FishWhiteSturgeon
-    # node: start
-    # defaultTarget: Cooked
+  - type: Construction
+    graph: FishWhiteSturgeon
+    node: start
+    defaultTarget: Cooked
 
-# - type: entity
-  # name: cooked white sturgeon
-  # parent: FoodMeatCooked
-  # id: N14FoodFishWhiteSturgeonCooked
-  # description: A cooked white sturgeon.
-  # components:
-  # - type: Sprite
-    # sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
-    # state: fishfry
-  # - type: FlavorProfile
-    # flavors:
-    # - fishy
-  # - type: Construction
-    # graph: FishWhiteSturgeon
-    # node: Cooked
-    # defaultTarget: Cooked
+- type: entity
+  name: cooked white sturgeon
+  parent: N14FoodFishCooked
+  id: N14FoodFishWhiteSturgeonCooked
+  description: A cooked white sturgeon.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
+    state: fishfry
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: Construction
+    graph: FishWhiteSturgeon
+    node: Cooked
+    defaultTarget: Cooked
 
 - type: entity
   name: raw white sturgeon fillet
@@ -425,7 +452,7 @@
 
 - type: entity
   name: cooked white sturgeon fillet
-  parent: FoodMeatCooked
+  parent: N14FoodFishCooked
   id: N14FoodFishWhiteSturgeonFilletCooked
   description: A cooked fillet of white sturgeon.
   components:
@@ -457,27 +484,27 @@
     spawned:
       - id: N14FoodFishAsianCarpFillet
         amount: 2
-  # - type: Construction
-    # graph: FishAsianCarp
-    # node: start
-    # defaultTarget: Cooked
+  - type: Construction
+    graph: FishAsianCarp
+    node: start
+    defaultTarget: Cooked
 
-# - type: entity
-  # name: cooked Asian carp
-  # parent: FoodMeatCooked
-  # id: N14FoodFishAsianCarpCooked
-  # description: A cooked Asian carp.
-  # components:
-  # - type: Sprite
-    # sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
-    # state: fishfry
-  # - type: FlavorProfile
-    # flavors:
-    # - fishy
-  # - type: Construction
-    # graph: FishAsianCarp
-    # node: Cooked
-    # defaultTarget: Cooked
+- type: entity
+  name: cooked Asian carp
+  parent: N14FoodFishCooked
+  id: N14FoodFishAsianCarpCooked
+  description: A cooked Asian carp.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
+    state: fishfry
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: Construction
+    graph: FishAsianCarp
+    node: Cooked
+    defaultTarget: Cooked
 
 - type: entity
   name: raw Asian carp fillet
@@ -498,7 +525,7 @@
 
 - type: entity
   name: cooked Asian carp fillet
-  parent: FoodMeatCooked
+  parent: N14FoodFishCooked
   id: N14FoodFishAsianCarpFilletCooked
   description: A cooked fillet of Asian carp.
   components:
@@ -521,7 +548,7 @@
   description: A disturbingly glowing fish with three eyes.
   components:
   - type: Sprite
-    sprite: _Nuclear14/_Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
+    sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
     state: blinky-2
   - type: FlavorProfile
     flavors:
@@ -530,27 +557,27 @@
     spawned:
       - id: N14FoodFishBlinkyFillet
         amount: 2
-  # - type: Construction
-    # graph: FishBlinky
-    # node: start
-    # defaultTarget: Cooked
+  - type: Construction
+    graph: FishBlinky
+    node: start
+    defaultTarget: Cooked
 
-# - type: entity
-  # name: cooked blinky
-  # parent: N14FoodMeatCooked
-  # id: N14FoodFishBlinkyCooked
-  # description: A cooked radioactive fish.
-  # components:
-  # - type: Sprite
-    # sprite: _Nuclear14/_Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
-    # state: glowroachmeat_roasted
-  # - type: FlavorProfile
-    # flavors:
-    # - fishy
-  # - type: Construction
-    # graph: FishBlinky
-    # node: Cooked
-    # defaultTarget: Cooked
+- type: entity
+  name: cooked blinky
+  parent: N14FoodFishCooked
+  id: N14FoodFishBlinkyCooked
+  description: A cooked radioactive fish.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Consumable/Food/Fish/fish_inv.rsi
+    state: glowroachmeat_roasted
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: Construction
+    graph: FishBlinky
+    node: Cooked
+    defaultTarget: Cooked
 
 - type: entity
   name: raw blinky fillet
@@ -567,11 +594,11 @@
   - type: Construction
     graph: FishBlinkyFillet
     node: start
-    defaultTarget: Cooked
+    defaultTarget: Cooked 
 
 - type: entity
   name: cooked blinky fillet
-  parent: N14FoodMeatCooked
+  parent: N14FoodFishCooked
   id: N14FoodFishBlinkyFilletCooked
   description: A cooked fillet from blinky.
   components:
