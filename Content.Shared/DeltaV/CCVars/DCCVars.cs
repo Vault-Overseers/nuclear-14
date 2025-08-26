@@ -75,5 +75,5 @@ public sealed class DCCVars
     /// Whether the Shipyard is enabled.
     /// </summary>
     public static readonly CVarDef<bool> Shipyard =
-        CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.shipyard", false, CVar.SERVERONLY);
 }

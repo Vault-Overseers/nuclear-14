@@ -20,5 +20,5 @@ public sealed partial class CCVars
     ///     entities, such as the PDA.
     /// </summary>
     public static readonly CVarDef<bool> CrewManifestUnsecure =
-        CVarDef.Create("crewmanifest.unsecure", true, CVar.REPLICATED);
+        CVarDef.Create("crewmanifest.unsecure", false, CVar.REPLICATED);
 }

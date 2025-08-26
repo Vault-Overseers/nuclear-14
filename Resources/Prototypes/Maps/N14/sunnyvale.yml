@@ -1,14 +1,17 @@
 - type: gameMap
   id: Sunnyvale
   mapName: 'Sunnyvale'
-  mapPath: /Maps/N14/sunnyvale2-3.yml
+  mapPath: /Maps/N14/SunnyvaleSurface.yml
   minPlayers: 0
   stations:
     Sunnyvale:
-      stationProto: StandardNanotrasenStation
+      stationProto: FalloutStation
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Sunnyvale'
+        - type: CP14StationAdditionalMap
+          mapPaths:
+          - /Maps/N14/SunnyvaleUnderground.yml
         - type: StationJobs
           overflowJobs:
             - Wastelander

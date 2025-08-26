@@ -22,7 +22,6 @@
     tags:
     - DoorBumpOpener
     - WhitelistChameleon
-    - WhitelistChameleonIdCard
   - type: StealTarget
     stealGroup: IDCard
   - type: NanoChatCard
@@ -147,7 +146,6 @@
     tags:
     - DoorBumpOpener
     - WhitelistChameleon
-    - WhitelistChameleonIdCard
     - HighRiskItem
   - type: StealTarget
     stealGroup: CaptainIDCard
@@ -417,9 +415,6 @@
   - type: PresetIdCard
     job: Bartender
     name: Pun Pun
-  - type: Tag #  Ignore Chameleon tags
-    tags:
-    - DoorBumpOpener
 
 - type: entity
   parent: IDCardStandard
@@ -634,7 +629,7 @@
     - state: default
     - state: visitor
   - type: IdCard
-    jobTitle: job-title-visitor
+    jobTitle: Visitor
     jobIcon: JobIconVisitor
   - type: PresetIdCard
     job: Visitor
@@ -848,7 +843,6 @@
   - type: ChameleonClothing
     slot: [idcard]
     default: PassengerIDCard
-    requireTag: WhitelistChameleonIdCard
   - type: UserInterface
     interfaces:
       enum.AgentIDCardUiKey.Key:
@@ -1155,7 +1149,7 @@
   - type: Item
     heldPrefix: green
   - type: IdCard
-    jobTitle: job-title-universal
+    jobTitle: Universal
     jobIcon: JobIconAdmin
   - type: Access
     groups:
@@ -1164,4 +1158,3 @@
     - CentralCommand
     - NuclearOperative
     - SyndicateAgent
-    - Wizard

@@ -1,0 +1,26 @@
+# N14 Plain Gamemode
+- type: gamePreset
+  id: N14SecretExtended #For Admin Use: Runs Extended but shows "Secret" in lobby.
+  alias:
+  - secretextended
+  name: secret-title
+  showInVote: true
+  description: secret-description
+  rules:
+  - BasicRoundstartVariation
+
+# N14 Objectives Gamemode
+- type: gamePreset
+  id: N14
+  name: N14
+  showInVote: true
+  description: N14
+  rules:
+  - N14Rule
+
+- type: entity
+  id: N14Rule
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: N14Rule
