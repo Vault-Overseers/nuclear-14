@@ -9,8 +9,7 @@ namespace Content.Shared.Ghost.Roles.Components
     public sealed partial class GhostRoleMobSpawnerComponent : Component
     {
         [DataField]
-        public bool DeleteOnSpawn = true;
-
+        public bool DeleteOnSpawn = false; /// Change for N14, needed for the ghost role follower traits.
         [DataField]
         public int AvailableTakeovers = 1;
 

@@ -18,11 +18,6 @@
       inverted: true
       departments:
         - Tribe
-    - !type:CharacterJobRequirement
-      inverted: true
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
   functions:
     - !type:TraitModifyLanguages
       languagesSpoken:
@@ -34,12 +29,6 @@
   id: N14SignLanguage
   category: Speech
   points: -2
-  requirements:
-    - !type:CharacterJobRequirement
-      inverted: true
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
   functions:
     - !type:TraitModifyLanguages
       languagesSpoken:
@@ -147,37 +136,3 @@
     - !type:TraitAddComponent
       components:
         - type: ScottishAccent
-
-- type: trait
-  id: LanguageTribalRanger
-  category: Speech
-  points: -2
-  requirements:
-    - !type:CharacterJobRequirement
-      inverted: false
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
-  functions:
-    - !type:TraitModifyLanguages
-      languagesSpoken:
-        - Tribal
-      languagesUnderstood:
-        - Tribal
-
-- type: trait
-  id: N14SignLanguageRanger
-  category: Speech
-  points: -1
-  requirements:
-    - !type:CharacterJobRequirement
-      inverted: false
-      jobs:
-        - NCRRanger
-        - NCRRangerVeteran
-  functions:
-    - !type:TraitModifyLanguages
-      languagesSpoken:
-        - Sign
-      languagesUnderstood:
-        - Sign

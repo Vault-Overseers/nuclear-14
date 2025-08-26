@@ -9,7 +9,7 @@ character-job-requirement = You must{$inverted ->
 character-department-requirement = You must{$inverted ->
     [true]{" "}not
     *[other]{""}
-} be in one of these departments: {$departments}
+} be in one of these factions: {$departments}
 
 character-antagonist-requirement = You must{$inverted ->
     [true]{" "}not
@@ -21,8 +21,8 @@ character-mindshield-requirement = You must{$inverted ->
     *[other]{""}
 } be mindshielded
 
-character-timer-department-insufficient = You require [color=yellow]{TOSTRING($time, "0")}[/color] more minutes of [color={$departmentColor}]{$department}[/color] department playtime
-character-timer-department-too-high = You require [color=yellow]{TOSTRING($time, "0")}[/color] fewer minutes in [color={$departmentColor}]{$department}[/color] department
+character-timer-department-insufficient = You require [color=yellow]{TOSTRING($time, "0")}[/color] more minutes of [color={$departmentColor}]{$department}[/color] faction playtime
+character-timer-department-too-high = You require [color=yellow]{TOSTRING($time, "0")}[/color] fewer minutes in [color={$departmentColor}]{$department}[/color] faction
 
 character-timer-overall-insufficient = You require [color=yellow]{TOSTRING($time, "0")}[/color] more minutes of playtime
 character-timer-overall-too-high = You require [color=yellow]{TOSTRING($time, "0")}[/color] fewer minutes of playtime
