@@ -70,7 +70,7 @@ namespace Content.Shared.Roles
         ///     Should this job appear in preferences menu?
         /// </summary>
         [DataField("setPreference")]
-        public bool SetPreference { get; private set; } = true;
+        public bool SetPreference { get; private set; } = false;
 
         /// <summary>
         ///     Should the selected traits be applied for this job?
