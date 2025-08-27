@@ -75,9 +75,9 @@
     sprintSpeedModifier: 0.2
   - type: TileEmission
     color: "#55b240"
-  - type: FishingSpot # N14TODO: change table
+  - type: FishingSpot 
     fishList: !type:NestedSelector
-      tableId: WaterFishingLootTable
+      tableId: N14SewerWaterFishingLootTable
     fishDefaultTimer: 25.0
     fishTimerVariety: 15.0
 
@@ -106,11 +106,6 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.6
     sprintSpeedModifier: 0.6
-  - type: FishingSpot # N14TODO: change table
-    fishList: !type:NestedSelector
-      tableId: WaterFishingLootTable
-    fishDefaultTimer: 25.0
-    fishTimerVariety: 15.0
 
 - type: entity
   parent: N14FloorWaterDirtyEntity
@@ -125,6 +120,11 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.2
     sprintSpeedModifier: 0.2
+  - type: FishingSpot
+    fishList: !type:NestedSelector
+      tableId: N14FreshWaterFishingLootTable
+    fishDefaultTimer: 25.0
+    fishTimerVariety: 15.0
 
 - type: entity
   parent: N14FloorWaterDeep
@@ -151,11 +151,6 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.6
     sprintSpeedModifier: 0.6
-  - type: FishingSpot # N14TODO: change table
-    fishList: !type:NestedSelector
-      tableId: WaterFishingLootTable
-    fishDefaultTimer: 25.0
-    fishTimerVariety: 15.0
 
 - type: entity
   parent: N14FloorWaterDirtyEntity
@@ -175,11 +170,11 @@
       pool:
         maxVol: 9999999 #.inf seems to break the whole yaml file, but would definitely be preferable.
         reagents:
-        - ReagentId: Water #TODO: Add WaterSalt Reagent.
+        - ReagentId: WaterSalt
           Quantity: 9999999
-  - type: FishingSpot # N14TODO: change table
+  - type: FishingSpot
     fishList: !type:NestedSelector
-      tableId: WaterFishingLootTable
+      tableId: N14SaltWaterFishTable
     fishDefaultTimer: 25.0
     fishTimerVariety: 15.0
 

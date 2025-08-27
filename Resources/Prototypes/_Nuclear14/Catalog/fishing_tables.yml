@@ -1,0 +1,161 @@
+# This should be on every other fishing table
+- type: entityTable
+  id: N14BasicFishingLootTable
+  table: !type:GroupSelector
+    children:
+    # 75% chance of scrap of some kind
+    - !type:GroupSelector
+      weight: 75
+      children:
+      - !type:NestedSelector
+        tableId: N14ScrapFishingLootTable
+        weight: 65
+      # - !type:NestedSelector
+        # tableId: N14ScrapFishingLootTable
+        # weight: 35
+    # 15% chance of some trash
+    - !type:NestedSelector
+      tableId: N14ToolsFishingLootTable
+      weight: 15
+    # 10% chance of low-value treasure or maintenance tools
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - !type:NestedSelector
+        tableId: N14WeaponsFishingLootTable
+      - !type:NestedSelector
+        tableId: N14RareFishTable
+        
+        
+# Fishing Tables in Use:
+- type: entityTable
+  id: N14SaltWaterFishingLootTable # Salt Water
+  table: !type:GroupSelector
+    children:
+    # 75% change of fish
+    - !type:NestedSelector
+      tableId: N14SaltWaterFishTable
+      weight: 75
+    # 25% chance of item
+    - !type:NestedSelector
+      tableId: N14BasicFishingLootTable
+      weight: 25
+      
+- type: entityTable
+  id: N14FreshWaterFishingLootTable # Fresh Water
+  table: !type:GroupSelector
+    children:
+    # 75% change of fish
+    - !type:NestedSelector
+      tableId: N14FreshWaterFishTable
+      weight: 75
+    # 25% chance of item
+    - !type:NestedSelector
+      tableId: N14BasicFishingLootTable
+      weight: 25
+
+- type: entityTable
+  id: N14SewerWaterFishingLootTable # Sewer
+  table: !type:GroupSelector
+    children:
+    # 10% change of fish
+    - !type:NestedSelector
+      tableId: N14FreshWaterFishTable
+      weight: 10
+    # 35% chance of item
+    - !type:NestedSelector
+      tableId: N14BasicFishingLootTable
+      weight: 35
+
+
+# Fishing Sub Tables:
+
+# All types of the legendary and unique fishes
+# - type: entityTable
+  # id: LegendaryFishTable
+  # table: !type:GroupSelector
+    # children:
+    # - id: FishAlien
+    # - id: FishBingle
+    # - id: FishBoyFisher
+    # - id: FishNukeDisk
+    # - id: FishGib
+    # - id: FishMutant
+    # - id: FishNuker
+    # - id: FishToxic
+    # - id: FishIan
+    # - id: FishAngler
+    # - id: FishBass
+    # - id: FishBlob
+    # - id: FishBlueFintuna
+    # - id: FishCat
+    # - id: FishTropicalClown
+    # - id: FishPuffer
+    # - id: FishSilver
+    # - id: FishTropicalSun
+    # - id: FishTropical
+    # - id: FishCheckered
+    # - id: FishJumpercable
+    # - id: FishSkinCrab
+    # - id: FishSoulfish
+
+# All types of the rare and item drops varied
+- type: entityTable
+  id: N14RareFishTable
+  table: !type:GroupSelector
+    children:
+    - id: N14FoodFishBlinky
+
+# Fish from saltwater
+- type: entityTable
+  id: N14SaltWaterFishTable
+  table: !type:GroupSelector
+    children:
+    - id: N14FoodFishSockeyeSalmon
+    - id: N14FoodFishPinkSalmon
+    - id: N14FoodFishLamprey
+    - id: N14FoodFishWhiteSturgeon
+
+# Fish from fresh water
+- type: entityTable
+  id: N14WaterFishTable
+  table: !type:GroupSelector
+    children:
+    - id: N14FoodFishSmallmouthBass
+    - id: N14FoodFishLargemouthBass
+    - id: N14FoodFishAsianCarp
+
+# Scrap from all water
+- type: entityTable
+  id: N14ScrapFishingLootTable
+  table: !type:GroupSelector
+    children:
+    - id: PaperScrap
+    - id: N14JunkCookpot
+    - id: N14JunkCrutch
+    - id: N14JunkTeapot
+    - id: N14JunkToaster
+    - id: N14DrinkBottleMilkEmpty
+    - id: N14DrinkNukaColaEmpty
+
+# Tools and Melee
+- type: entityTable
+  id: N14ToolsFishingLootTable
+  table: !type:GroupSelector
+    children:
+    - id: N14InstrumentTrumpet
+    - id: N14InstrumentSaxaphone
+    - id: N14NailBoard
+    - id: N14GolfClub
+    - id: N14KitchenKnife
+
+# Weapons (rarer)
+- type: entityTable
+  id: N14WeaponsFishingLootTable
+  table: !type:GroupSelector
+    children:
+    - id: N14TinNade
+    - id: N14WeaponRevolver9mm
+    - id: N14WeaponRevolver10mmEmpty
+    - id: N14WeaponRevolverWebley
+    - id: N14WeaponPistol10mmPipe
