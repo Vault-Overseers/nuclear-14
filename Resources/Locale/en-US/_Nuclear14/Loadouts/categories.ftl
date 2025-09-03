@@ -1,1 +1,9 @@
 loadout-category-Weapons = Weapons
+loadout-category-Roles = Roles
+loadout-category-JobsBrotherhoodMidwest = BoS Midwest
+loadout-category-JobsBrotherhoodWashington = BoS Washington
+loadout-category-JobsCaravanCompany = Caravan Company
+loadout-category-JobsNCR = NCR
+loadout-category-JobsRanger = Ranger
+loadout-category-JobsTribal = Tribal
+loadout-category-JobsVault = Vault Dwellers
