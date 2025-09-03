@@ -50,5 +50,5 @@ public class GuideEntry
     /// <summary>
     ///     If true, prevents this entry from showing up in the menu.
     /// </summary>
-    [DataField] public bool HideInMenu = false;
+    [DataField] public bool HideInMenu = true;
 }
