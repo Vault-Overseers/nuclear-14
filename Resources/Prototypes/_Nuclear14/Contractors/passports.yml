@@ -1,0 +1,142 @@
+- type: entity
+  name: passport
+  parent: BaseItem
+  id: N14BasePassport
+  abstract: true
+  description: A passport denoting an individual's nationality and identity.
+  components:
+    - type: Passport
+    - type: Sprite
+      sprite: _EE/Contractors/Passport.rsi
+      layers:
+      - state: passport_biesel_open
+      - state: passport_species_human
+    - type: Appearance
+    - type: EmitSoundOnPickup
+      sound: /Audio/SimpleStation14/Items/Handling/book_pickup.ogg
+    - type: EmitSoundOnDrop
+      sound: /Audio/SimpleStation14/Items/Handling/book_drop.ogg
+    - type: EmitSoundOnLand
+      sound: /Audio/SimpleStation14/Items/Handling/book_drop.ogg
+
+# Example
+# - type: entity
+  # name: Solarian Alliance passport
+  # parent: BasePassport
+  # id: 1SolPassport
+  # components:
+    # - type: Sprite
+      # sprite: _EE/Contractors/Passport.rsi
+      # layers:
+      # - state: passport_sol_open
+      # - state: passport_species_human
+    # - type: ExtendDescription
+      # descriptionList:
+      # - description: "bieselite_view_sol_passport"
+        # fontSize: 12
+        # color: "#ff7777"
+        # requireDetailRange: true
+        # requirements:
+        # - !type:CharacterNationalityRequirement
+          # nationalities:
+          # - Bieselite
+      # - description: "solarian_view_sol_passport"
+        # fontSize: 12
+        # color: "#77ff77"
+        # requireDetailRange: true
+        # requirements:
+        # - !type:CharacterNationalityRequirement
+          # nationalities:
+          # - Solarian
+
+- type: entity
+  name: Oasis passport
+  parent: N14BasePassport
+  id: PassportOasis
+  components:
+    - type: Sprite
+      sprite: _EE/Contractors/Passport.rsi
+      layers:
+      - state: passport_elyran_open
+      - state: passport_species_human
+
+- type: entity
+  name: Vancouver passport
+  parent: N14BasePassport
+  id: PassportVancouver
+  components:
+    - type: Sprite
+      sprite: _EE/Contractors/Passport.rsi
+      layers:
+      - state: passport_elyran_open
+      - state: passport_species_human
+
+- type: entity
+  name: Shi passport
+  parent: N14BasePassport
+  id: PassportShi
+  components:
+    - type: Sprite
+      sprite: _EE/Contractors/Passport.rsi
+      layers:
+      - state: passport_elyran_open
+      - state: passport_species_human
+
+- type: entity
+  name: Vault passport
+  parent: N14BasePassport
+  id: PassportVaultDweller
+  suffix: Dweller
+  components:
+    - type: Sprite
+      sprite: _EE/Contractors/Passport.rsi
+      layers:
+      - state: passport_elyran_open
+      - state: passport_species_human
+
+- type: entity
+  name: Vault passport
+  parent: N14BasePassport
+  id: PassportVaultRemnant
+  suffix: Remnant
+  components:
+    - type: Sprite
+      sprite: _EE/Contractors/Passport.rsi
+      layers:
+      - state: passport_elyran_open
+      - state: passport_species_human
+
+- type: entity
+  name: Brotherhood passport
+  parent: N14BasePassport
+  id: PassportBrotherhoodWashington
+  suffix: Washington
+  components:
+    - type: Sprite
+      sprite: _EE/Contractors/Passport.rsi
+      layers:
+      - state: passport_elyran_open
+      - state: passport_species_human
+
+- type: entity
+  name: Brotherhood passport
+  parent: N14BasePassport
+  id: PassportBrotherhoodMidwest
+  suffix: Midwest
+  components:
+    - type: Sprite
+      sprite: _EE/Contractors/Passport.rsi
+      layers:
+      - state: passport_elyran_open
+      - state: passport_species_human
+
+- type: entity
+  name: NCR passport
+  parent: N14BasePassport
+  id: PassportNCR
+  components:
+    - type: Sprite
+      sprite: _EE/Contractors/Passport.rsi
+      layers:
+      - state: passport_elyran_open
+      - state: passport_species_human
