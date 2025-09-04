@@ -36,4 +36,11 @@ public sealed partial class NationalityPrototype : IPrototype
 
     [DataField]
     public ProtoId<EntityPrototype> PassportPrototype { get; } = new();
+
+    /// <summary>
+    /// If false, this nationality will not appear in the preferences menu.
+    /// Defaults to false to hide upstream.
+    /// </summary>
+    [DataField("showInPreferences")]
+    public bool ShowInPreferences { get; private set; } = false;
 }

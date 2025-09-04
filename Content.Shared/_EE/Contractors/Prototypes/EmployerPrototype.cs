@@ -34,4 +34,11 @@ public sealed partial class EmployerPrototype : IPrototype
 
     [DataField(serverOnly: true)]
     public TraitFunction[] Functions { get; private set; } = Array.Empty<TraitFunction>();
+
+    /// <summary>
+    /// If false, this nationality will not appear in the preferences menu.
+    /// Defaults to false to hide upstream.
+    /// </summary>
+    [DataField("showInPreferences")]
+    public bool ShowInPreferences { get; private set; } = false;
 }
