@@ -909,7 +909,7 @@
 #raider
 
 - type: entity
-  parent: N14ClothingHeadHatCombatHelmet
+  parent: ClothingHeadBase
   id: N14ClothingHeadBaron
   name: raider baron
   description: The ayatollah of rock n rolla!
@@ -918,9 +918,16 @@
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/BaronHelm.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/BaronHelm.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.9
+        Heat: 0.95
 
 - type: entity
-  parent: N14ClothingHeadHatCombatHelmet
+  parent: ClothingHeadBase
   id: N14ClothingHeadJunkHelmet
   name: Raider junk helmet
   description: An intimidating helmet crudely made from metal scrap.
@@ -933,13 +940,20 @@
     slots:
     - Hair
     - Snout
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
   - type: Item
     size: Normal
     shape:
     - 0,0,1,0
 
 - type: entity
-  parent: N14ClothingHeadHatCombatHelmet
+  parent: ClothingHeadBase
   id: N14ClothingHeadBladedHelmet
   name: raider bladed helmet
   description: A menancing metal helmet, adorned with two huge blades on the side.
@@ -952,6 +966,13 @@
     slots:
     - Hair
     - Snout
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.95
   - type: Item
     size: Normal
     shape:
@@ -982,6 +1003,7 @@
     size: Normal
     shape:
     - 0,0,1,0
+
 
 # Town Guard helmets
 - type: entity
