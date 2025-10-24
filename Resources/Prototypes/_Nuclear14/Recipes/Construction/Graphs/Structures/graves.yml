@@ -1,0 +1,42 @@
+- type: constructionGraph
+  id: CrateWoodenGraveRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: WoodenGrave
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: N14Dirt
+              amount: 1
+              doAfter: 5
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2
+    
+    - node: WoodenGrave
+      entity: CrateWoodenGrave
+
+- type: constructionGraph
+  id: CrateStoneGraveRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: StoneGrave
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: N14Dirt
+              amount: 1
+              doAfter: 5
+
+    - node: StoneGrave
+      entity: CrateStoneGrave

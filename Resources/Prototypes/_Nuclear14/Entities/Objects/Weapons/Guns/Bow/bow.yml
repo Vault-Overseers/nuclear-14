@@ -1,0 +1,186 @@
+- type: entity
+  name: bow
+  parent: BaseItem
+  id: BaseBow
+  description: The original rooty tooty point and shooty.
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Bow/bow.rsi
+      state: unwielded
+    - type: Item
+      size: Normal
+    - type: Clothing
+      quickEquip: false
+      slots:
+        - Back
+        - suitStorage
+    - type: Wieldable
+      wieldSound:
+        path: /Audio/Items/bow_pull.ogg
+    - type: UseDelay
+      delay: 1
+    - type: GunRequiresWield
+    - type: Gun
+      minAngle: 0
+      maxAngle: 5
+      fireRate: 1
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot:
+        collection: BulletMiss
+      soundEmpty:
+        path: /Audio/Weapons/Guns/Empty/empty.ogg
+    - type: ItemSlots
+      slots:
+        projectiles:
+          name: Projectiles
+          startingItem: null
+          insertSound: /Audio/Weapons/Guns/Misc/arrow_nock.ogg
+          whitelist:
+            tags:
+              - Arrow
+              - Plunger
+    - type: ContainerContainer
+      containers:
+        projectiles: !type:ContainerSlot
+    - type: ContainerAmmoProvider
+      container: projectiles
+    - type: MeleeWeapon
+      attackRate: 1.4
+      damage:
+        types:
+          Blunt: 5
+      bluntStaminaDamageFactor: 1.0
+      swapKeys: true
+      disableHeavy: true
+      animation: WeaponArcThrust
+      wideAnimationRotation: 180
+
+- type: entity
+  id: BowImprovised
+  parent: BaseBow
+  components:
+    - type: Sprite
+      layers:
+        - state: unwielded
+          map: [ base ]
+        - state: unwielded-arrow
+          map: [ arrow ]
+          visible: false
+        - state: unwielded-plunger
+          map: [ plunger ]
+          visible: false
+    - type: Appearance
+    - type: ItemMapper
+      spriteLayers:
+        - arrow
+        - plunger
+      mapLayers:
+        arrow:
+          whitelist:
+            tags:
+              - Arrow
+        plunger:
+          whitelist:
+            tags:
+              - Plunger
+    - type: GenericVisualizer
+      visuals:
+        enum.WieldableVisuals.Wielded:
+          arrow:
+            True: { state: wielded-arrow }
+            False: { state: unwielded-arrow }
+          plunger:
+            True: { state: wielded-plunger }
+            False: { state: unwielded-plunger }
+          base:
+            True: { state: wielded }
+            False: { state: unwielded }
+    - type: Construction
+      graph: ImprovisedBowGraph1
+      node: ImprovisedBow
+
+- type: entity
+  id: BowImprovisedMagazine
+  parent: BaseBow
+  name: Enhanced Bow(DO NOT USE)
+  description: A bow with an improvised internal magazine, allowing you to carry extra arrows.
+  components:
+    - type: BallisticAmmoProvider
+      capacity: 3
+      proto: null 
+      whitelist:
+        tags:
+          - Arrow
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Bow/bow.rsi
+      layers:
+        - state: unwielded
+    - type: Wieldable
+      wieldSound:
+        path: /Audio/Items/bow_pull.ogg
+    - type: Item
+      size: Normal
+    - type: Clothing
+      quickEquip: false
+      slots:
+        - Back
+        - suitStorage
+    - type: MeleeWeapon
+      attackRate: 1.4
+      damage:
+        types:
+          Blunt: 5
+      bluntStaminaDamageFactor: 1.0
+      swapKeys: true
+      disableHeavy: true
+      animation: WeaponArcThrust
+      wideAnimationRotation: 180
+
+- type: entity
+  id: BowImprovisedMagazineImprovised 
+  parent: BowImprovisedMagazine
+  name: Hunter's Resolve
+  description: A bow allowing you to carry extra arrows.
+  components: 
+    - type: Sprite
+      layers:
+        - state: unwielded
+          map: [ base ]
+        - state: unwielded-arrow
+          map: [ arrow ]
+          visible: false
+        - state: unwielded-plunger
+          map: [ plunger ]
+          visible: false
+    - type: Appearance
+    - type: ItemMapper
+      spriteLayers:
+        - arrow
+        - plunger
+      mapLayers:
+        arrow:
+          whitelist:
+            tags:
+              - Arrow
+        plunger:
+          whitelist:
+            tags:
+              - Plunger
+    - type: GenericVisualizer
+      visuals:
+        enum.WieldableVisuals.Wielded:
+          arrow:
+            True: { state: wielded-arrow }
+            False: { state: unwielded-arrow }
+          plunger:
+            True: { state: wielded-plunger }
+            False: { state: unwielded-plunger }
+          base:
+            True: { state: wielded }
+            False: { state: unwielded }
+    - type: Construction
+      graph: ImprovisedBowGraph1
+      node: ImprovisedBow

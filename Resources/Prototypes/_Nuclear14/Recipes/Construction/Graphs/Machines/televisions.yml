@@ -1,0 +1,45 @@
+- type: constructionGraph
+  id: N14SmallTelevisionRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: SmallTelevision
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Circuitry
+              amount: 1
+              doAfter: 3
+            - material: Steel
+              amount: 5
+              doAfter: 2.5
+    
+    - node: SmallTelevision
+      entity: N14TelevisionSmall
+
+- type: constructionGraph
+  id: N14TelevisionTinyRecipes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: TinyTelevision
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Circuitry
+              amount: 1
+              doAfter: 3
+            - material: Steel
+              amount: 3
+              doAfter: 2
+
+    - node: TinyTelevision
+      entity: N14TelevisionTiny
