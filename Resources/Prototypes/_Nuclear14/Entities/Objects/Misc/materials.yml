@@ -12,7 +12,8 @@
     layers:
       - state: dung
       - state: dung-flies
-# N14:TODO: Add creampie ing but worse and it makes you throw up.
+  - type: CreamPie
+  - type: DungPile
   - type: SolutionContainerManager
     solutions:
       dung:
@@ -28,6 +29,9 @@
     solution: dung
   - type: TimedDespawn
     lifetime: 300
+  - type: Tag
+    tags:
+      - ComposterCompatible
 
 - type: entity
   parent: N14Dung
@@ -40,10 +44,13 @@
       dung:
         maxVol: 25
         reagents:
-        - ReagentId: Dung
-          Quantity: 15
-        - ReagentId: Ammonia
-          Quantity: 10
+          - ReagentId: Dung
+            Quantity: 15
+          - ReagentId: Ammonia
+            Quantity: 10
+  - type: Tag
+    tags:
+      - ComposterCompatible
 
 - type: entity
   parent: BaseItem
