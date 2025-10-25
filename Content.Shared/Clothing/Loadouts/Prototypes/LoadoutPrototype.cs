@@ -12,8 +12,8 @@ public sealed partial class LoadoutPrototype : IPrototype
     [IdDataField]
     public string ID { get; } = default!;
 
-    [DataField]
-    public ProtoId<LoadoutCategoryPrototype> Category = "Uncategorized";
+    [DataField("categories")]
+    public HashSet<ProtoId<LoadoutCategoryPrototype>> Categories { get; private set; } = new() { "Uncategorized" };
 
     [DataField(required: true)]
     public List<ProtoId<EntityPrototype>> Items = new();

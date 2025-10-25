@@ -128,6 +128,10 @@ namespace Content.Client.Lobby.UI
         private int _traitCount;
         private HashSet<LoadoutPreferenceSelector> _loadoutPreferences = new();
 
+        // Fallback if a loadout has no categories defined.
+        private static readonly HashSet<ProtoId<LoadoutCategoryPrototype>> _fallbackUncategorized =
+            new() { "Uncategorized" };
+
         private bool _customizePronouns;
         private bool _customizeStationAiName;
         private bool _customizeBorgName;
@@ -2443,7 +2447,6 @@ namespace Content.Client.Lobby.UI
                 _loadoutPreferences.Clear();
             }
 
-
             // Get the highest priority job to use for loadout filtering
             var highJob = _controller.GetPreferredJob(Profile ?? HumanoidCharacterProfile.DefaultWithSpecies());
 
@@ -2531,29 +2534,135 @@ namespace Content.Client.Lobby.UI
                 .ThenBy(l => Loc.GetString($"loadout-name-{l.Key.ID}"))
                 .ThenBy(l => l.Key.Cost))
             {
-                if (_loadoutPreferences.Select(lps => lps.Loadout.ID).Contains(loadout.ID))
+                // DO NOT early-continue if we already have a selector:
+                // we still need to (re)build the UI every refresh, especially for multi-category placement.
+
+                // Gather existing preference (if any) from the profile, so clones use consistent state.
+                var existingPref = Profile?.LoadoutPreferences.FirstOrDefault(lp => lp.LoadoutName == loadout.ID);
+
+                // Determine category IDs (multi-category) or fallback to Uncategorized
+                var catIds = (loadout.Categories != null && loadout.Categories.Count > 0)
+                    ? loadout.Categories
+                    : _fallbackUncategorized;
+
+                var placedAnywhere = false;
+                var addedCanonical = false; // add to _loadoutPreferences only once per loadout
+
+                foreach (var catId in catIds)
                 {
-                    var first = _loadoutPreferences.First(lps => lps.Loadout.ID == loadout.ID);
-                    var prof = Profile?.LoadoutPreferences.FirstOrDefault(lp => lp.LoadoutName == loadout.ID);
-                    first.Preference = new(loadout.ID, prof?.CustomName, prof?.CustomDescription, prof?.CustomColorTint, prof?.CustomHeirloom);
-                    UpdateSelector(first, usable);
-                    continue;
+                    // IMPORTANT: FindCategory expects a string tab name.
+                    var container = FindCategory(catId.ToString(), LoadoutsTabs);
+                    if (container == null)
+                        continue;
+
+                    // Create a fresh selector per category
+                    var perCatSelector = new LoadoutPreferenceSelector(
+                        loadout, highJob ?? new JobPrototype(),
+                        Profile ?? HumanoidCharacterProfile.DefaultWithSpecies(), ref _dummyLoadouts,
+                        _entManager, _prototypeManager, _cfgManager, _characterRequirementsSystem, _requirements)
+                    { Preference = new(loadout.ID,
+                                       existingPref?.CustomName,
+                                       existingPref?.CustomDescription,
+                                       existingPref?.CustomColorTint,
+                                       existingPref?.CustomHeirloom) };
+
+                    UpdateSelector(perCatSelector, usable);
+
+                    if (!addedCanonical)
+                    {
+                        // The first one is canonical: track it in _loadoutPreferences with the standard wiring.
+                        AddSelector(perCatSelector);
+                        addedCanonical = true;
+                    }
+                    else
+                    {
+                        // For additional categories, DO NOT add to _loadoutPreferences to avoid duplicates.
+                        // Instead, wire the same behavior inline.
+                        perCatSelector.PreferenceChanged += preference =>
+                        {
+                            // Make sure points/selection logic stays consistent with AddSelector
+                            var wasSelected = Profile?.LoadoutPreferences
+                                .FirstOrDefault(it => it.LoadoutName == perCatSelector.Loadout.ID)
+                                ?.Selected ?? false;
+
+                            var selected = preference.Selected && (wasSelected || CheckPoints(-perCatSelector.Loadout.Cost, true));
+
+                            Profile = Profile?.WithLoadoutPreference(
+                                perCatSelector.Loadout.ID,
+                                selected,
+                                preference.CustomName,
+                                preference.CustomDescription,
+                                preference.CustomColorTint,
+                                preference.CustomHeirloom);
+
+                            IsDirty = true;
+                            UpdateLoadoutPreferences();
+                            SetProfile(Profile, CharacterSlot);
+                        };
+                    }
+
+                    // Tab structure: Tab -> ScrollContainer -> BoxContainer
+                    container.Children.First().Children.First().AddChild(perCatSelector);
+                    placedAnywhere = true;
                 }
 
-                var selector = new LoadoutPreferenceSelector(
-                    loadout, highJob ?? new JobPrototype(),
-                    Profile ?? HumanoidCharacterProfile.DefaultWithSpecies(), ref _dummyLoadouts,
-                    _entManager, _prototypeManager, _cfgManager, _characterRequirementsSystem, _requirements)
-                    { Preference = new(loadout.ID) };
-                UpdateSelector(selector, usable);
-                AddSelector(selector);
+                // If no matching category tab existed, place it in Uncategorized tab as a last resort.
+                if (!placedAnywhere)
+                {
+                    var perCatSelector = new LoadoutPreferenceSelector(
+                        loadout, highJob ?? new JobPrototype(),
+                        Profile ?? HumanoidCharacterProfile.DefaultWithSpecies(), ref _dummyLoadouts,
+                        _entManager, _prototypeManager, _cfgManager, _characterRequirementsSystem, _requirements)
+                    { Preference = new(loadout.ID,
+                                       existingPref?.CustomName,
+                                       existingPref?.CustomDescription,
+                                       existingPref?.CustomColorTint,
+                                       existingPref?.CustomHeirloom) };
 
-                // Look for an existing category tab
-                var match = FindCategory(loadout.Category, LoadoutsTabs);
+                    UpdateSelector(perCatSelector, usable);
 
-                // If there is no category put it in Uncategorized (this shouldn't happen)
-                (match ?? uncategorized).Children.First().Children.First().AddChild(selector);
+                    // If nothing was placed, make this the canonical one.
+                    AddSelector(perCatSelector);
+
+                    uncategorized.Children.First().Children.First().AddChild(perCatSelector);
+
+                    // Remove all selector children from all category tabs so we don't stack duplicates.
+                    private void ClearLoadoutCategoryContents(NeoTabContainer parent)
+                    {
+                        foreach (var content in parent.Contents)
+                        {
+                            switch (content)
+                            {
+                                case BoxContainer leaf:
+                                {
+                                    // Expected structure: BoxContainer -> ScrollContainer -> BoxContainer (inner list)
+                                    if (leaf.Children.FirstOrDefault() is ScrollContainer sc &&
+                                        sc.Children.FirstOrDefault() is BoxContainer inner)
+                                    {
+                                        inner.DisposeAllChildren();
+                                    }
+                                    break;
+                                }
+                                case NeoTabContainer subTabs:
+                                    ClearLoadoutCategoryContents(subTabs);
+                                    break;
+                            }
+                        }
+                    }
+
+                    // Rebuild-time scratch: ensure we have a clean slate.
+                    private void ResetLoadoutSelectorsUI()
+                    {
+                        // Clear existing selector widgets from all tabs (including Uncategorized)
+                        ClearLoadoutCategoryContents(LoadoutsTabs);
+
+                        // Clear the in-memory list of canonical selectors so we don't duplicate.
+                        _loadoutPreferences.Clear();
+                    }
+                }
             }
+
+
 
             // Hide any empty tabs
             HideEmptyTabs(_prototypeManager.EnumeratePrototypes<LoadoutCategoryPrototype>().ToList());

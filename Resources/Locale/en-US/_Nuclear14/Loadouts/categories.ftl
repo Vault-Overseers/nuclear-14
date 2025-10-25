@@ -1,5 +1,6 @@
 loadout-category-Weapons = Weapons
 loadout-category-Roles = Roles
+loadout-category-Character = Character Specific
 loadout-category-JobsBrotherhoodMidwest = BoS Midwest
 loadout-category-JobsBrotherhoodWashington = BoS Washington
 loadout-category-JobsCaravanCompany = Caravan Company
