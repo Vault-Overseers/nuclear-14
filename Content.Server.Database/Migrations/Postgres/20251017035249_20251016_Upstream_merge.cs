@@ -6,23 +6,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Content.Server.Database.Migrations.Postgres
 {
     /// <inheritdoc />
-    public partial class UpdateProfile_AddBackpack : Migration
+    public partial class _20251016_Upstream_merge : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "cyborg_name",
-                table: "profile",
-                type: "text",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "display_pronouns",
-                table: "profile",
-                type: "text",
-                nullable: true);
-
             migrationBuilder.AddColumn<string>(
                 name: "employer",
                 table: "profile",
@@ -43,12 +31,6 @@ namespace Content.Server.Database.Migrations.Postgres
                 type: "text",
                 nullable: false,
                 defaultValue: "");
-
-            migrationBuilder.AddColumn<string>(
-                name: "station_ai_name",
-                table: "profile",
-                type: "text",
-                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "special",
@@ -90,14 +72,6 @@ namespace Content.Server.Database.Migrations.Postgres
                 name: "special");
 
             migrationBuilder.DropColumn(
-                name: "cyborg_name",
-                table: "profile");
-
-            migrationBuilder.DropColumn(
-                name: "display_pronouns",
-                table: "profile");
-
-            migrationBuilder.DropColumn(
                 name: "employer",
                 table: "profile");
 
@@ -107,10 +81,6 @@ namespace Content.Server.Database.Migrations.Postgres
 
             migrationBuilder.DropColumn(
                 name: "nationality",
-                table: "profile");
-
-            migrationBuilder.DropColumn(
-                name: "station_ai_name",
                 table: "profile");
         }
     }

@@ -5,23 +5,11 @@
 namespace Content.Server.Database.Migrations.Sqlite
 {
     /// <inheritdoc />
-    public partial class UpdateProfile_AddBackpack : Migration
+    public partial class _20251016_Upstream_merge : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "cyborg_name",
-                table: "profile",
-                type: "TEXT",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "display_pronouns",
-                table: "profile",
-                type: "TEXT",
-                nullable: true);
-
             migrationBuilder.AddColumn<string>(
                 name: "employer",
                 table: "profile",
@@ -42,12 +30,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                 type: "TEXT",
                 nullable: false,
                 defaultValue: "");
-
-            migrationBuilder.AddColumn<string>(
-                name: "station_ai_name",
-                table: "profile",
-                type: "TEXT",
-                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "special",
@@ -89,14 +71,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                 name: "special");
 
             migrationBuilder.DropColumn(
-                name: "cyborg_name",
-                table: "profile");
-
-            migrationBuilder.DropColumn(
-                name: "display_pronouns",
-                table: "profile");
-
-            migrationBuilder.DropColumn(
                 name: "employer",
                 table: "profile");
 
@@ -106,10 +80,6 @@ namespace Content.Server.Database.Migrations.Sqlite
 
             migrationBuilder.DropColumn(
                 name: "nationality",
-                table: "profile");
-
-            migrationBuilder.DropColumn(
-                name: "station_ai_name",
                 table: "profile");
         }
     }
