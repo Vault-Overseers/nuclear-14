@@ -2625,40 +2625,6 @@ namespace Content.Client.Lobby.UI
                     AddSelector(perCatSelector);
 
                     uncategorized.Children.First().Children.First().AddChild(perCatSelector);
-
-                    // Remove all selector children from all category tabs so we don't stack duplicates.
-                    private void ClearLoadoutCategoryContents(NeoTabContainer parent)
-                    {
-                        foreach (var content in parent.Contents)
-                        {
-                            switch (content)
-                            {
-                                case BoxContainer leaf:
-                                {
-                                    // Expected structure: BoxContainer -> ScrollContainer -> BoxContainer (inner list)
-                                    if (leaf.Children.FirstOrDefault() is ScrollContainer sc &&
-                                        sc.Children.FirstOrDefault() is BoxContainer inner)
-                                    {
-                                        inner.DisposeAllChildren();
-                                    }
-                                    break;
-                                }
-                                case NeoTabContainer subTabs:
-                                    ClearLoadoutCategoryContents(subTabs);
-                                    break;
-                            }
-                        }
-                    }
-
-                    // Rebuild-time scratch: ensure we have a clean slate.
-                    private void ResetLoadoutSelectorsUI()
-                    {
-                        // Clear existing selector widgets from all tabs (including Uncategorized)
-                        ClearLoadoutCategoryContents(LoadoutsTabs);
-
-                        // Clear the in-memory list of canonical selectors so we don't duplicate.
-                        _loadoutPreferences.Clear();
-                    }
                 }
             }
 
