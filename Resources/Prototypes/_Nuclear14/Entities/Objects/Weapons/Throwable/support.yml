@@ -1,0 +1,28 @@
+# Flares for fire support designation
+- type: entity
+  parent: N14Flare
+  id: N14ArtilleryFlare
+  name: artillery flare
+  categories: [ HideSpawnMenu ] # How is this even supposed to work? I know how an aircraft spots something, but artillery?
+  description: Marks a target for artillery fire.
+  components:
+  - type: ArtilleryStrike
+    delay: 10
+    tileBreakScale: 0
+
+- type: entity
+  parent: N14Flare
+  id: N14AttackPlaneFlare
+  name: air support flare
+  description: Calls in air support on its location. Don't stand close to it when it's lit and it has to be visible from the skies!
+  components:
+  - type: VertibirdSupport
+    delay: 5
+    shots: 15
+    shotInterval: 0.1
+    spread: 3
+    lineLength: 5
+    intensity: 5
+    tileBreakScale: 0
+    approachSound: /Audio/_Nuclear14/Effects/airplane_fly_by.ogg
+    fireSound: /Audio/_Nuclear14/Effects/a10_warthog_brrrt.ogg

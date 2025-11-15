@@ -288,7 +288,7 @@
   parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitdrylanderTribal
   name: tribal clothing
-  description: Clothing used by the drylander tribe.
+  description: Clothing used by the southern tribes.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/drylander-uniform.rsi
@@ -327,6 +327,24 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/tribal-pants-necklace.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/tribal-pants-necklace.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitWesternTribe
+  name: tribal clothing
+  description: Warm cloths made from the wool of a big horner. A pair of horns have been attached to a hood.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/TribalFurUniform.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/TribalFurUniform.rsi
+  - type: ToggleableClothing
+    clothingPrototype: N14ClothingHeadTribalUniformHood
+    requiredSlot: innerclothing
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:Container
 
 - type: entity
   parent: N14ClothingUniformBase
@@ -393,6 +411,30 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/prewaruniform.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/prewaruniform.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitwinter
+  name: padded winter clothing
+  description: A set of fatigues with some extra insulation.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/PeltClothing.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/PeltClothing.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitLeatherSuit
+  name: drab winter clothing
+  description: Drab but warm brown fatigues.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/LeatherSuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/LeatherSuit.rsi
+
+
 #NCR
 
 - type: entity
@@ -646,8 +688,8 @@
 - type: entity
   parent: N14ClothingUniformBase
   id: N14ClothingUniformJumpsuitBOSWashingtonFieldScribe
-  name: washington brotherhood scribe uniform
-  description: A maroon jumper and black combat trousers, the uniform worn by field-scribes of Washington's Brotherhood of Steel.
+  name: washington brotherhood cleric uniform
+  description: A maroon jumper and black combat trousers, the uniform worn by Clerics of Washington's Brotherhood of Steel on the field.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/Brotherhood/bosfieldscribe.rsi
@@ -761,3 +803,26 @@
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/caravancompanysuit.rsi
   - type: Clothing
     sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/caravancompanysuit.rsi
+
+# The Town Guard's uniforms
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitTownGuard
+  name: the Guard's uniform
+  description: A pre-war military uniform (or replica of it), that was made the signature look of the Town's Guard around this region. Law and order!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/townguarduniform.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/townguarduniform.rsi
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  parent: N14ClothingUniformJumpsuitTownGuard
+  id: N14ClothingUniformJumpsuitTownGuardLight
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/townguarduniformlight.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/townguarduniformlight.rsi

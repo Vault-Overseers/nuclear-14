@@ -34,7 +34,7 @@ public sealed partial class BlockingComponent : Component
     /// The shape of the blocking fixture that will be dynamically spawned
     /// </summary>
     [DataField("shape"), ViewVariables(VVAccess.ReadWrite)]
-    public IPhysShape Shape = new PhysShapeCircle(0.5f);
+    public IPhysShape Shape = new PhysShapeCircle(0.49f);
 
     /// <summary>
     /// The damage modifer to use while passively blocking
@@ -75,7 +75,7 @@ public sealed partial class BlockingComponent : Component
     /// when blocking
     /// </summary>
     [DataField("activeBlockFraction"), ViewVariables(VVAccess.ReadWrite)]
-    public float ActiveBlockFraction = 1.0f;
+    public float ActiveBlockFraction = 0.75f; /// N14 change to nerf active blocking a bit
 }
 
 /// <summary>

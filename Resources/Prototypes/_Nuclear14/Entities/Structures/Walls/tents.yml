@@ -9,6 +9,9 @@
     drawdepth: Walls
     sprite: _Nuclear14/Structures/Walls/nc14/tents.rsi
     state: leather_edge
+  - type: Construction
+    graph: N14TentLeatherWallRecipes
+    node: start
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -50,7 +53,10 @@
   components:
   - type: Sprite
     state: leather_corner
-    
+  - type: Construction
+    graph: N14TentLeatherWallCornerRecipes
+    node: start
+
 - type: entity
   parent: N14TentLeatherWall
   id: N14TentClothWall
@@ -60,6 +66,9 @@
   - type: Sprite
     sprite: _Nuclear14/Structures/Walls/nc14/tents.rsi
     state: cloth_edge
+  - type: Construction
+    graph: N14ClothTentWallRecipes
+    node: start
   - type: Destructible
     thresholds:
     - trigger:
@@ -68,7 +77,7 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-        
+  
 - type: entity
   parent: N14TentClothWall
   id: N14TentClothCorner
@@ -76,3 +85,6 @@
   components:
   - type: Sprite
     state: cloth_corner
+  - type: Construction
+    graph: N14TentClothWallCornerRecipes
+    node: start

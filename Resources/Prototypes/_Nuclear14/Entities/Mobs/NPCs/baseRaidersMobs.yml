@@ -21,7 +21,6 @@
     - type: MindContainer
       showExamineInfo: False
     - type: InputMover
-    - type: Rotatable
     - type: MobMover
     - type: SurgeryTarget
       canOperate: false
@@ -29,10 +28,14 @@
       rootTask:
         task: N14RangedHostileCompound
     - type: Carriable
+    - type: Perishable
+      rotAfter: 1800 # Rots after half of an in-game day
+    - type: RotInto 
+      entity: N14FoodMeatRadRaw # and becomes a single chunk of meat.
     - type: Butcherable
       butcheringType: Spike
       spawned:
-      - id: FoodMeatHuman
+      - id: N14FoodMeatRadRaw
         amount: 5
     - type: HumanoidAppearance
       species: Human

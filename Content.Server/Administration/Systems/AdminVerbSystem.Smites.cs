@@ -663,6 +663,20 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(reptilian);
 
+        Verb ghoultf = new()
+        {
+            Text = "Ghoul Transformation",
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new ("/Textures/_Nuclear14/Objects/Misc/crafting_material.rsi"), "compost"),
+            Act = () =>
+            {
+                _polymorphSystem.PolymorphEntity(args.Target, "AdminGhoulSmite");
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-ghoul-species-swap-description"),
+        };
+        args.Verbs.Add(ghoultf);
+
         Verb locker = new()
         {
             Text = "Locker stuff",

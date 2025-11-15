@@ -51,8 +51,8 @@ undecided-loadout-category-soldier-storm-description =
 undecided-loadout-category-soldier-scout-name = Soldier Scout Kit
 undecided-loadout-category-soldier-scout-description =
     A crate containing all a NCR soldier needs to patrol on the wasteland.
-    Includes 1 pouched NCR leather vest, 1 NCR belt, 1 lever-action carbine,
-    1 box of .44 ammo, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
+    Includes 1 pouched NCR leather vest, 1 NCR belt, 1 hunting rifle,
+    1 box of .308 ammo, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
     1 stimpak, 1 Rad-X pill, 1 bandage pack and a flare.
 
 undecided-loadout-category-soldier-point-name = Soldier Pointman Kit
@@ -71,18 +71,18 @@ undecided-loadout-category-soldier-morale-description =
 
 # NCRA Engineer Kits
 
-undecided-loadout-category-engi-mechanic-name = Engineer Mechanic Kit
+undecided-loadout-category-engi-mechanic-name = Engineer Construction Kit
 undecided-loadout-category-engi-mechanic-description =
     A crate containing all a NCR engineer to perform their job at peak efficiency.
-    Includes 1 pouched NCR leather vest, 1 utility belt, 1 9mm SMG, 3 9mm SMG magazines,
-    1 9mm pistol, 2 9mm pistol magazines, 30 iron scrap, 10 glass sheet, 30 wood planks,
-    C ration MRE, 1 stimpak, 1 Radaway, 1 bandage pack and a flare.
+    Includes 1 pouched NCR leather vest, 1 utility belt, 1 butchered service rifle,
+    3 5.56 rifle magazines, 1 9mm pistol, 2 9mm pistol magazines, 30 iron scraps, 10 glass sheets,
+    30 wood planks, C ration MRE, 1 stimpak, 1 Radaway, 1 bandage pack and a flare.
 
-undecided-loadout-category-engi-demo-name = Engineer Demolition Kit
+undecided-loadout-category-engi-demo-name = Engineer Sapper Kit
 undecided-loadout-category-engi-demo-description =
     A crate containing all a NCR engineer needs to rip and blow stuff up!
-    Includes 1 pouched NCR leather vest, 1 utility belt, 1 ripper, 1 pump-action shotgun,
-    1 box of 12 gauge shells, 1 9mm pistol, 2 9mm pistol magazines, 1 C4,
+    Includes 1 pouched NCR leather vest, 1 NCR belt 1 ripper, 1 sawed off shotgun,
+    1 box of 12 gauge shells, 1 9mm SMG, 3 9mm smg magazines, 1 C4,
     C ration MRE, 1 stimpak, 1 Radaway, 1 bandage pack and a flare.
 
 undecided-loadout-category-engi-breach-name = Engineer Breacher Kit
@@ -97,26 +97,24 @@ undecided-loadout-category-engi-breach-description =
 undecided-loadout-category-med-surg-name = Medic Surgeon Kit
 undecided-loadout-category-med-surg-description =
     A crate containing all a NCR medic needs to take care of other troops.
-    Includes 1 lab coat, 1 medic beret, nitrile gloves, 1 medical belt, 9mm SMG,
-    3 9mm SMG magazines, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 set of bruise packs, 1 pack of ointments, 1 stack of bloodbags, 1 antidote bottle,
-    1 super stimpack, 1 stimpak, 1 Radaway, 2 bandage packs and a flare.
+    Includes 1 lab coat, 1 medic beret, nitrile gloves, 1 .45 pistol, 2 .45 pistol
+    magazines, C ration MRE, surgical bag, 1 set of bruise packs, 1 pack of ointments,
+    1 stack of bloodbags, 1 antidote bottle, 1 super stimpack, 1 stimpak,
+    1 Radaway, 2 bandage packs and a flare,
 
 undecided-loadout-category-med-doc-name = Medic Field Kit
 undecided-loadout-category-med-doc-description =
     A crate containing all a NCR medic needs to take care of other troops.
-    Includes 1 lab coat, 1 medic beret, nitrile gloves, 1 medical belt, 9mm SMG,
-    3 9mm SMG magazines, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 stack of bloodbags, 1 antidote bottle,
-    1 stimpak, 1 Radaway, 2 bandage packs and a flare.
+    Includes 1 puched NCR vest, 1 medic beret, nitrile gloves, 1 medical belt,
+    9mm SMG, 3 9mm SMG magazines, C ration MRE, 1 stack of bloodbags, 1 antidote bottle,
+    2 stimpaks, 1 Radaway, 1 stack of ointment, 2 bandage packs and a flare.
 
 undecided-loadout-category-med-combat-name = Medic Combat Kit
 undecided-loadout-category-med-combat-description =
     A crate containing all a NCR medic needs to take care of other troops.
-    Includes 1 pouched NCR leather vest, 1 medic metal helmet, 1 medical belt,
-    1 pump-action shotgun, 1 box of 12 gauge shells, 1 9mm pistol, 2 9mm pistol magazines,
-    C ration MRE, 1 stack of bloodbags, 1 antidote injector,
-    2 stimpaks, 1 Radaway, 2 bandage packs and a flare.
+    Includes 1 pouched NCR leather vest, 1 medic metal helmet, 1 combat medkit,
+    1 service rifle, 3 service rifle magazines, 1 9mm pistol, 2 9mm pistol magazines,
+    C ration MRE, 2 stimpaks, 1 Radaway, 2 bandage packs and a flare.
 
 # NCRA Weapon Specialist Kits
 
@@ -365,23 +363,23 @@ undecided-loadout-category-wbos-kni-bal-description =
     Includes 1 assault carbine, 3 5.56 magazines, 1 plasma pistol,
     2 plasma cells, 1 roll of gauze, and 1 K ration MRE.
 
-undecided-loadout-category-wbos-scribe-medic-name = Scribe Medical Kit
+undecided-loadout-category-wbos-scribe-medic-name = Cleric Medical Kit
 undecided-loadout-category-wbos-scribe-medic-description =
-    A cache containing belongings of a Washington chapter Scribe.
+    A cache containing belongings of a Washington chapter Cleric.
     Includes 1 plasma pistol, 2 plasma cells, 1 pair of nitrile gloves,
     1 medical robe, 1 filled medical belt, 1 stack of ointment, 1
     super stimpak, 1 sterile mask, 1 roll of gauze, and 1 K ration MRE.
 
-undecided-loadout-category-wbos-scribe-field-name = Scribe Field Kit
+undecided-loadout-category-wbos-scribe-field-name = Cleric Field Kit
 undecided-loadout-category-wbos-scribe-field-description =
-    A cache containing belongings of a Washington chapter Scribe.
+    A cache containing belongings of a Washington chapter Cleric.
     Includes 1 plasma pistol, 2 plasma cells, 1 pair of combat gloves,
     1 field coat, 1 Brotherhood webbing, 1 stack of ointment,
     1 roll of gauze, and 1 K ration MRE.
 
-undecided-loadout-category-wbos-scribe-engineer-name = Scribe Engineer Kit
+undecided-loadout-category-wbos-scribe-engineer-name = Cleric Engineer Kit
 undecided-loadout-category-wbos-scribe-engineer-description =
-    A cache containing belongings of a Washington chapter Scribe.
+    A cache containing belongings of a Washington chapter Cleric.
     Includes 1 plasma pistol, 2 plasma cells, 1 pair of insulated gloves,
     1 technical vest, 1 filled utility belt, 1 stack of ointment,
     1 welding goggles, 1 roll of gauze, and 1 K ration MRE.
@@ -453,3 +451,41 @@ undecided-loadout-category-Tribal-pain-bringer-description =
     with powder and fury. Inside you will find.
     Your sturdy boom stick thats strong enough to break any foe.
     Spare shells included and a mask for protection when up close.
+
+
+# Town Guard Kits
+
+undecided-loadout-category-town-cere-name = Ceremonial Kit
+undecided-loadout-category-town-cere-description = 
+    Sometimes you have to look fancy and not worry about protection.
+    Includes 1 guard hat, 1 guard greatcoat, 1 .308 battle rifle,
+    3 .308 clips, 1 .44 magnum, 2 .44 speedloaders,
+    1 stack of gauze and basic ration supplies.
+
+undecided-loadout-category-town-patr-name = Patrolman Kit
+undecided-loadout-category-town-patr-description =
+    You don't ask much from life, all you want is vanilla.
+    Includes 1 brodie helmet, 1 light armour, 1 12.7mm SMG,
+    3 12.7mm SMG mags, 1 Webley pistol, 2 9mm pistol mags,
+    1 rain mantle, 1 stack of gauze and basic ration supplies.
+
+undecided-loadout-category-town-lawb-name = Lawbringer Kit
+undecided-loadout-category-town-lawb-description =
+    DAKKA DAKKA! Time to put down an entire revolt, or..?
+    Includes 1 brodie helmet, 1 light armour, 1 Canadian HMG,
+    1 7.62 ammo belt, 1 stack of gauze and basic ration supplies.
+    Nothing else, budget cuts!
+
+undecided-loadout-category-town-brea-name = Breacher Kit
+undecided-loadout-category-town-brea-description =
+    Only when you don't have to worry about friendly fire!
+    Includes 1 blowback shotgun, 1 box of 12 gauge shells,
+    1 Webley pistol, 2 9mm pistol mags,
+    1 stack of gauze and basic ration supplies.
+
+undecided-loadout-category-town-riot-name = Riot Control Kit
+undecided-loadout-category-town-riot-description =
+    Let me solo them! I mean send them home, peacefully!
+    Includes 1 spear, 1 heavy metal shield, 1 hunting revolver,
+    2 .45-70 speedloaders, 1 old cloak, 1 stack of gauze,
+    and basic ration supplies.
