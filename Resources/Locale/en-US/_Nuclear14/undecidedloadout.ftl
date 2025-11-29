@@ -14,188 +14,187 @@ undecided-loadout-button-deselect = Select [X]
 undecided-loadout-category-cadet-rifleman-name = Cadet Rifleman Kit
 undecided-loadout-category-cadet-rifleman-description =
     A crate containing all a NCR soldier needs to patrol on the wasteland.
-    Includes 1 NCR leather vest, 1 NCR pouches bandolier, 1 service rifle,
-    3 5.56 service rifle magazines, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 stimpak, 1 Rad-X pill, 1 bandage pack and a flare.
+    Includes 1 service rifle, 3 5.56 service rifle magazines,
+    1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
+    1 stimpak, 1 Rad-X pill, 1 bandage pack and a torch.
 
 undecided-loadout-category-cadet-storm-name = Cadet Stormtrooper Kit
 undecided-loadout-category-cadet-storm-description =
     A crate containing all a NCR soldier needs to patrol on the wasteland.
-    Includes 1 NCR leather vest, 1 NCR pouches bandolier, 1 butchered service rifle,
-    3 5.56 service rifle magazines, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 stimpak, 1 Rad-X pill, 1 bandage pack and a flare.
+    Includes 1 butchered service rifle, 3 5.56 service rifle magazines, 
+    1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
+    1 stimpak, 1 Rad-X pill, 1 bandage pack and a torch.
 
 undecided-loadout-category-cadet-scout-name = Cadet Scout Kit
 undecided-loadout-category-cadet-scout-description =
     A crate containing all a NCR soldier needs to patrol on the wasteland.
-    Includes 1 NCR leather vest, 1 NCR pouches bandolier, 1 lever-action carbine,
-    1 box of .44 ammo, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 stimpak, 1 Rad-X, 1 bandage pack and a flare.
+    Includes 1 lever-action carbine, 1 box of .44 ammo, 
+    1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
+    1 stimpak, 1 Rad-X, 1 bandage pack and a torch.
 
 # NCRA Soldier Sets
 
 undecided-loadout-category-soldier-rifleman-name = Soldier Rifleman Kit
 undecided-loadout-category-soldier-rifleman-description =
     A crate containing all a NCR soldier needs to patrol on the wasteland.
-    Includes 1 pouched NCR leather vest, 1 NCR belt, 1 service rifle,
-    3 5.56 service rifle magazines, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 stimpak, 1 Rad-X pill, 1 bandage pack and a flare.
+    Includes 1 service rifle, 3 5.56 service rifle magazines, 
+    1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
+    1 stimpak, 1 Rad-X pill, 1 bandage pack and a torch.
 
 undecided-loadout-category-soldier-storm-name = Soldier Stormtrooper Kit
 undecided-loadout-category-soldier-storm-description =
     A crate containing all a NCR soldier needs to patrol on the wasteland.
-    Includes 1 pouched NCR leather vest, 1 NCR belt, 1 butchered service rifle,
-    3 5.56 service rifle magazines, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 stimpak, 1 Rad-X pill, 1 bandage pack and a flare.
+    Includes 1 butchered service rifle, 3 5.56 service rifle magazines,
+    1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
+    1 stimpak, 1 Rad-X pill, 1 bandage pack and a torch.
 
 undecided-loadout-category-soldier-scout-name = Soldier Scout Kit
 undecided-loadout-category-soldier-scout-description =
     A crate containing all a NCR soldier needs to patrol on the wasteland.
-    Includes 1 pouched NCR leather vest, 1 NCR belt, 1 hunting rifle,
-    1 box of .308 ammo, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 stimpak, 1 Rad-X pill, 1 bandage pack and a flare.
+    Includes 1 hunting rifle, 1 box of .308 ammo, 
+    1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
+    1 stimpak, 1 Rad-X pill, 1 bandage pack and a torch.
 
 undecided-loadout-category-soldier-point-name = Soldier Pointman Kit
 undecided-loadout-category-soldier-point-description =
     A crate containing all a NCR soldier needs to patrol on the wasteland.
-    Includes 1 pouched NCR leather vest, 1 NCR belt, 1 pump-action shotgun,
-    1 box of 12 gauge ammo, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 stimpak, 1 Rad-X pill, 1 bandage pack and a flare.
+    Includes 1 pump-action shotgun, 1 box of 12 gauge ammo, 
+    1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
+    1 stimpak, 1 Rad-X pill, 1 bandage pack and a torch.
 
 undecided-loadout-category-soldier-morale-name = Morale Booster Kit
 undecided-loadout-category-soldier-morale-description =
     A crate containing all a trooper needs to engage the enemy in glorious melee combat.
-    Includes 1 NCR plate armor, 1 plate mask, 1 NCR belt, 1 hatchet,
-    1 NCR spear flag, 1 9mm pistol, 2 9mm magazines, 1 Psycho,
-    C ration MRE, 1 stimpak, 1 Rad-X pill, 1 bandage pack and a flare.
+    Includes 1 hatchet, 1 NCR spear flag, 1 9mm pistol, 
+    2 9mm magazines, 1 Psycho, C ration MRE, 1 stimpak, 
+    1 Rad-X pill, 1 bandage pack and a torch.
 
 # NCRA Engineer Kits
 
 undecided-loadout-category-engi-mechanic-name = Engineer Construction Kit
 undecided-loadout-category-engi-mechanic-description =
     A crate containing all a NCR engineer to perform their job at peak efficiency.
-    Includes 1 pouched NCR leather vest, 1 utility belt, 1 butchered service rifle,
-    3 5.56 rifle magazines, 1 9mm pistol, 2 9mm pistol magazines, 30 iron scraps, 10 glass sheets,
-    30 wood planks, C ration MRE, 1 stimpak, 1 Radaway, 1 bandage pack and a flare.
+    Includes 1 utility belt, 1 butchered service rifle, 3 5.56 rifle magazines,
+    1 9mm pistol, 2 9mm pistol magazines, 30 iron scraps, 10 glass sheets,
+    30 wood planks, C ration MRE, 1 stimpak, 1 Radaway, 1 bandage pack and a torch.
 
 undecided-loadout-category-engi-demo-name = Engineer Sapper Kit
 undecided-loadout-category-engi-demo-description =
     A crate containing all a NCR engineer needs to rip and blow stuff up!
-    Includes 1 pouched NCR leather vest, 1 NCR belt 1 ripper, 1 sawed off shotgun,
-    1 box of 12 gauge shells, 1 9mm SMG, 3 9mm smg magazines, 1 C4,
-    C ration MRE, 1 stimpak, 1 Radaway, 1 bandage pack and a flare.
+    Includes 1 ripper, 1 sawed off shotgun, 1 box of 12 gauge shells, 
+    1 9mm SMG, 3 9mm smg magazines, 1 C4, C ration MRE, 
+    1 stimpak, 1 Radaway, 1 bandage pack and a torch.
 
 undecided-loadout-category-engi-breach-name = Engineer Breacher Kit
 undecided-loadout-category-engi-breach-description =
     A crate containing all a NCR engineer needs to get any door open!
-    Includes 1 pouched NCR leather vest, 1 NCR belt, 1 combat shotgun,
-    3 12 gauge drum mags, 1 9mm pistol, 2 9mm pistol magazines, 1 toolbox,
-    C ration MRE, 1 stimpak, 1 Radaway, 1 bandage pack and a flare.
+    Includes 1 combat shotgun, 3 12 gauge drum mags, 
+    1 9mm pistol, 2 9mm pistol magazines, 1 toolbox,
+    C ration MRE, 1 stimpak, 1 Radaway, 1 bandage pack and a torch.
 
 # NCRA Medic Kits
 
 undecided-loadout-category-med-surg-name = Medic Surgeon Kit
 undecided-loadout-category-med-surg-description =
     A crate containing all a NCR medic needs to take care of other troops.
-    Includes 1 lab coat, 1 medic beret, nitrile gloves, 1 .45 pistol, 2 .45 pistol
-    magazines, C ration MRE, surgical bag, 1 set of bruise packs, 1 pack of ointments,
+    Includes nitrile gloves, 1 .45 pistol, 2 .45 pistol magazines,
+    C ration MRE, surgical bag, 1 set of bruise packs, 1 pack of ointments,
     1 stack of bloodbags, 1 antidote bottle, 1 super stimpack, 1 stimpak,
-    1 Radaway, 2 bandage packs and a flare,
+    1 Radaway, 2 bandage packs and a torch,
 
 undecided-loadout-category-med-doc-name = Medic Field Kit
 undecided-loadout-category-med-doc-description =
     A crate containing all a NCR medic needs to take care of other troops.
-    Includes 1 puched NCR vest, 1 medic beret, nitrile gloves, 1 medical belt,
-    9mm SMG, 3 9mm SMG magazines, C ration MRE, 1 stack of bloodbags, 1 antidote bottle,
-    2 stimpaks, 1 Radaway, 1 stack of ointment, 2 bandage packs and a flare.
+    Includes nitrile gloves, 1 medical belt, 9mm SMG, 
+    3 9mm SMG magazines, C ration MRE, 1 stack of bloodbags, 1 antidote bottle,
+    2 stimpaks, 1 Radaway, 1 stack of ointment, 2 bandage packs and a torch.
 
 undecided-loadout-category-med-combat-name = Medic Combat Kit
 undecided-loadout-category-med-combat-description =
     A crate containing all a NCR medic needs to take care of other troops.
-    Includes 1 pouched NCR leather vest, 1 medic metal helmet, 1 combat medkit,
-    1 service rifle, 3 service rifle magazines, 1 9mm pistol, 2 9mm pistol magazines,
-    C ration MRE, 2 stimpaks, 1 Radaway, 2 bandage packs and a flare.
+    Includes 1 combat medkit, 1 service rifle, 3 service rifle magazines,
+    1 9mm pistol, 2 9mm pistol magazines, C ration MRE, 
+    2 stimpaks, 1 Radaway, 2 bandage packs and a torch.
 
 # NCRA Weapon Specialist Kits
 
 undecided-loadout-category-ws-gunner-name = Specialist Gunner Kit
 undecided-loadout-category-ws-gunner-description =
     A crate containing all a NCR soldier needs to pin down enemy combatants.
-    Includes 1 pouched NCR leather vest, 1 metal helmet, 1 NCR belt, 1 NCR cloak, 1 LMG,
-    3 5.56 LMG magazines, 1 9mm pistol, 2 9mm pistol magazines,
-    C ration MRE, 1 stimpak, 1 Radaway inhaler, 1 bandage pack and a flare.
+    Includes 1 LMG, 3 5.56 LMG magazines, 1 9mm pistol, 2 9mm pistol magazines,
+    C ration MRE, 1 stimpak, 1 Radaway inhaler, 1 bandage pack and a torch.
 
 undecided-loadout-category-ws-grenadier-name = Specialist Grenadier Kit
 undecided-loadout-category-ws-grenadier-description =
     A crate containing all a NCR soldier needs to blow stuff (and people) up!
-    Includes 1 pouched NCR leather vest, 1 metal helmet 1 NCR belt, 1 NCR cloak,
+    Includes 
     1 grenade rifle, 4 40mm grenades, 1 .45 handgun, 2 .45 pistol magazines, 1 smoke grenade,
-    C ration MRE, 1 stimpak, 1 Radaway inhaler, 1 bandage pack and a flare.
+    C ration MRE, 1 stimpak, 1 Radaway inhaler, 1 bandage pack and a torch.
 
 undecided-loadout-category-ws-sniper-name = Specialist Sniper Kit
 undecided-loadout-category-ws-sniper-description =
     A crate containing all a NCR soldier needs to take people out from afar.
-    Includes 1 pouched NCR leather vest, 1 recon beret, 1 NCR belt, 1 NCR cloak,
+    Includes 
     1 .50 sniper rifle, 1 box of .50 rounds, 1 9mm pistol, 2 9mm pistol magazines,
-    C ration MRE, 1 stimpak, 1 Radaway inhaler, 1 bandage pack and a flare.
+    C ration MRE, 1 stimpak, 1 Radaway inhaler, 1 bandage pack and a torch.
 
 undecided-loadout-category-ws-stealth-name = Specialist Infiltrator Kit
 undecided-loadout-category-ws-stealth-description =
     A crate containing all a NCR soldier needs to take people out in the dark.
-    Includes 1 dark NCR leather vest, 1 black balaclava, 1 NCR belt, 1 night vision
-    goggles, 1 suppressed SMG, 3 9mm SMG magazines, 1 9mm pistol, 2 9mm pistol magazines,
-    C ration MRE, 1 stimpak, 1 Radaway inhaler, 1 bandage pack and a flare.
+    Includes 1 night vision goggles, 1 suppressed SMG, 
+    3 9mm SMG magazines, 1 9mm pistol, 2 9mm pistol magazines,
+    C ration MRE, 1 stimpak, 1 Radaway inhaler, 1 bandage pack and a torch.
 
 # NCRA Sergeant Kits
 
 undecided-loadout-category-sgt-rifleman-name = Sergeant Rifleman Kit
 undecided-loadout-category-sgt-rifleman-description =
     A crate containing all a NCR sergeant needs to lead patrols on the wasteland.
-    Includes 1 pouched NCR leather vest, 1 metal helmet, 1 NCR belt, 1 assault carbine,
-    3 5.56 carbine magazines, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 stimpak, 1 Radaway inhaler, 1 bandage pack and a flare.
+    Includes 1 assault carbine, 3 5.56 carbine magazines, 1 9mm pistol, 
+    2 9mm pistol magazines, C ration MRE, 1 stimpak, 
+    1 Radaway inhaler, 1 bandage pack and a torch.
 
 undecided-loadout-category-sgt-gunner-name = Sergeant Gunner Kit
 undecided-loadout-category-sgt-gunner-description =
     A crate containing all a NCR sergeant needs to lead patrols on the wasteland.
-    Includes 1 pouched NCR leather vest, 1 metal helmet, 1 NCR belt, 1 automated rifle,
-    3 .308 rifle magazines, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 stimpak, 1 Radaway inhaler, 1 bandage pack and a flare.
+    Includes 1 automated rifle, 3 .308 rifle magazines, 
+    1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
+    1 stimpak, 1 Radaway inhaler, 1 bandage pack and a torch.
 
 undecided-loadout-category-sgt-scout-name = Sergeant Scout Kit
 undecided-loadout-category-sgt-scout-description =
     A crate containing all a NCR sergeant needs to lead patrols on the wasteland.
-    Includes 1 pouched NCR leather vest, 1 recon beret, 1 NCR belt, 1 battle rifle,
-    6 .308 clips, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 stimpak, 1 Radaway inhaler, 1 bandage pack and a flare.
+    Includes 1 battle rifle, 6 .308 clips, 1 9mm pistol, 
+    2 9mm pistol magazines, C ration MRE, 1 stimpak, 
+    1 Radaway inhaler, 1 bandage pack and a torch.
 
 undecided-loadout-category-sgt-point-name = Sergeant Pointman Kit
 undecided-loadout-category-sgt-point-description =
     A crate containing all a NCR sergeant needs to lead patrols on the wasteland.
-    Includes 1 pouched NCR leather vest, 1 metal helmet, 1 NCR belt, 1 combat shotgun,
-    3 12 gauge drum mags, 1 9mm pistol, 2 9mm pistol magazines, C ration MRE,
-    1 stimpak, 1 Radaway inhaler, 1 bandage pack and a flare.
+    Includes 1 combat shotgun, 3 12 gauge drum mags, 1 9mm pistol, 
+    2 9mm pistol magazines, C ration MRE, 1 stimpak, 
+    1 Radaway inhaler, 1 bandage pack and a torch.
 
 # NCRA Lieutenant Kits
 
 undecided-loadout-category-lt-pencil-name = LT's Pencilpusher Kit
 undecided-loadout-category-lt-pencil-description =
     A crate containing all a NCR soldier needs to lead troopers across the wasteland.
-    Includes 1 NCR trench coat, 1 officer revolver, 3 .44 speedloaders
-    1 holster, 1 lever-action carbine, 1 box of .44 rounds, C ration MRE,
+    Includes 1 officer revolver, 3 .44 speedloaders, 1 holster, 
+    1 lever-action carbine, 1 box of .44 rounds, C ration MRE,
     1 super stimpak, 1 Radaway inhaler, 1 bandage pack and a flare.
 
 undecided-loadout-category-lt-scout-name = LT's Veteran Scout Kit
 undecided-loadout-category-lt-scout-description =
     A crate containing all a NCR soldier needs to lead troopers across the wasteland.
-    Includes 1 NCR trench coat, 1 magnum revolver, 3 .44 speedloaders
+    Includes 1 magnum revolver, 3 .44 speedloaders
     1 holster, 1 battle rifle, 6 .308 clips, C ration MRE,
     1 super stimpak, 1 Radaway inhaler, 1 bandage pack and a flare.
 
 undecided-loadout-category-lt-tactical-name = LT's Tactical Kit
 undecided-loadout-category-lt-tactical-description =
-    Includes 1 NCR combat armor, 1 magnum revolver, 3 .44 speedloaders
-    1 holster, 1 assault carbine, 3 5.56 carbine magazines, C ration MRE,
+    Includes 1 magnum revolver, 3 .44 speedloaders, 1 holster, 
+    1 assault carbine, 3 5.56 carbine magazines, C ration MRE,
     1 super stimpak, 1 Radaway inhaler, 1 bandage pack and a flare.
 
 # Ranger stuff thingies
