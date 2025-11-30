@@ -198,8 +198,8 @@ trait-description-N14LifeTaker =
 trait-name-N14LifeGiver = Life Giver
 trait-description-N14LifeGiver =
     Whether it be through raw grit, willpower, or some sort of augmentation you are more difficult to kill.
-    Your damage [color=yellow]threshold for Critical[/color] is [color=green]decreased by 5 points[/color].
-    And the damage [color=yellow]tresshold for Death[/color] is [color=green]decreased by 10 points[/color].
+    Your damage [color=yellow]threshold for Critical[/color] is [color=green]increased by 5 points[/color].
+    And the damage [color=yellow]tresshold for Death[/color] is [color=green]increased by 10 points[/color].
 
 trait-name-N14BadReflexes = Bad Reflexes
 trait-description-N14BadReflexes =
