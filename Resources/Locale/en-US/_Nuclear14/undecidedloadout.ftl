@@ -141,8 +141,8 @@ undecided-loadout-category-ws-sniper-description =
 undecided-loadout-category-ws-stealth-name = Specialist Infiltrator Kit
 undecided-loadout-category-ws-stealth-description =
     A crate containing all a NCR soldier needs to take people out in the dark.
-    Includes 1 night vision goggles, 1 suppressed SMG, 
-    3 9mm SMG magazines, 1 9mm pistol, 2 9mm pistol magazines,
+    Includes 1 dark NCR leather vest, 1 black balaclava, 1 night vision goggles,
+    1 suppressed SMG, 3 9mm SMG magazines, 1 9mm pistol, 2 9mm pistol magazines,
     C ration MRE, 1 stimpak, 1 Radaway inhaler, 1 bandage pack and a torch.
 
 # NCRA Sergeant Kits

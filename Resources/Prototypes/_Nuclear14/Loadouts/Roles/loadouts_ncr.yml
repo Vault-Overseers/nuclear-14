@@ -229,7 +229,7 @@
         - NCREngineer
         - NCRCadet
         - NCRSGT
-        - NCRMedic
+        - NCRLT
   items:
     - N14ClothingHeadHatNCRHelmetMetalSnow
 
@@ -248,7 +248,7 @@
         - NCREngineer
         - NCRCadet
         - NCRSGT
-        - NCRMedic
+        - NCRLT
   items:
     - N14ClothingHeadHatNCRHelmetMetalWoods
 
@@ -267,7 +267,7 @@
         - NCREngineer
         - NCRCadet
         - NCRSGT
-        - NCRMedic
+        - NCRLT
   items:
     - N14ClothingHeadHatNCRHelmetMetalDesert
 
@@ -285,7 +285,7 @@
         - NCRWS
         - NCREngineer
         - NCRSGT
-        - NCRMedic
+        - NCRLT
   items:
     - N14ClothingHeadHatNCRHelmetMetalHooded
 
@@ -303,7 +303,7 @@
         - NCRWS
         - NCREngineer
         - NCRSGT
-        - NCRMedic
+        - NCRLT
   items:
     - N14ClothingHeadHatNCRHelmetMetalHoodedGreen
 
@@ -321,7 +321,7 @@
         - NCRWS
         - NCREngineer
         - NCRSGT
-        - NCRMedic
+        - NCRLT
   items:
     - N14ClothingHeadHatNCRHelmetBrodie
 
@@ -338,7 +338,6 @@
         - NCREngineer
         - NCRCadet
         - NCRSGT
-        - NCRMedic
         - NCRLT
   items:
     - N14ClothingEyesGlassesGoggles
@@ -356,7 +355,6 @@
         - NCREngineer
         - NCRCadet
         - NCRSGT
-        - NCRMedic
         - NCRLT
   items:
     - N14ClothingHandsGlovesNCR
@@ -675,3 +673,31 @@
         - NCRLT
   items:
     - N14ClothingMaskPlate
+
+- type: loadout
+  id: LoadoutClothingMedicHelmet
+  category: Head
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: N14LoadoutHead
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRMedic
+  items:
+    - N14ClothingHeadHatNCRHelmetMetalMedic
+
+- type: loadout
+  id: LoadoutClothingMedicHoodedHelmet
+  category: Head
+  cost: 1
+  exclusive: true
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: N14LoadoutHead
+    - !type:CharacterJobRequirement
+      jobs:
+        - NCRMedic
+  items:
+    - N14ClothingHeadHatNCRHelmetMetalHoodedMedic
