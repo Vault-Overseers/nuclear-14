@@ -451,6 +451,36 @@ undecided-loadout-category-Tribal-pain-bringer-description =
     Your sturdy boom stick thats strong enough to break any foe.
     Spare shells included and a mask for protection when up close.
 
+# Tribal healer
+
+undecided-loadout-category-Tribal-Healer-name = Tribal healer kit
+undecided-loadout-category-Tribal-Healer-description =
+    A crate containing everything for healing your kin
+    inside you will find
+    1 Bitterdrink, 2 healing powders, 1 heling poultice, 
+    1 antidote bottle, 10 aloe cream, 10 bandages,
+    1 tribal revolver, 2 speed loaders
+    
+
+undecided-loadout-category-Tribal-Shaman-name = Tribal Shaman Kit
+undecided-loadout-category-Tribal-Shaman-description =
+    A crate containing everything for healing your kin
+    with powders and mixtures
+    inside you will find
+    5 broc, 5 xander, 2 ceramic flask, 1 mortar and pestle
+    1 Large beaker, 10 aloe cream, 10 bandages, 1 spear
+
+undecided-loadout-category-Tribal-outlander-healer-name = Tribal outlander healer Kit
+undecided-loadout-category-Tribal-outlander-healer-description =
+    A crate containing everything for healing your kin
+    inside you will find
+    1 super stimpack, 2 stimpacks, 1 antidote bottle,
+    10 aloe cream, 10 bandages, 10mm revolver,
+    2 speed loaders.
+
+
+
+
 
 # Town Guard Kits
 

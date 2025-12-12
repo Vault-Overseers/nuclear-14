@@ -276,7 +276,7 @@
 # Tribal kits
 - type: entity
   id: Triballoadoutkits
-  name: Undecided Tribal Loadout Kit
+  name: Undecided Tribal Kit
   parent: BaseLoadoutKit
   components:
   - type: Sprite
@@ -290,6 +290,21 @@
     - TribalBoneBreakerSet
     - TribalPainBringerSet
     - TribalFireHand
+
+- type: entity
+  id: TribalHealerkits
+  name: Undecided Tribal Healer Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - TribalOtlanderHealerSet
+    - TribalShamanSet
+    - TribalHealerSet
+
 
 # Town's Guard kits, the only one
 - type: entity
@@ -957,6 +972,36 @@
     state: rifleman
   content:
   - Kittribalpainbringer
+
+- type: UndecidedLoadoutBackpackSet
+  id: TribalHealerSet
+  name: undecided-loadout-category-Tribal-Healer-name
+  description: undecided-loadout-category-Tribal-Healer-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KittribalHealer
+
+- type: UndecidedLoadoutBackpackSet
+  id: TribalShamanSet
+  name: undecided-loadout-category-Tribal-Shaman-name
+  description: undecided-loadout-category-Tribal-Shaman-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KittribalShaman
+
+- type: UndecidedLoadoutBackpackSet
+  id: TribalOtlanderHealerSet
+  name: undecided-loadout-category-Tribal-outlander-healer-name
+  description: undecided-loadout-category-Tribal-outlander-healer-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KittribalOutlander
 
 # Town Guard kits individually
 - type: UndecidedLoadoutBackpackSet

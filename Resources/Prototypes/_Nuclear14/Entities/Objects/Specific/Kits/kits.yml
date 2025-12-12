@@ -1550,6 +1550,78 @@
       - id: N14ClothingMaskHockey
       - id: MagazineBox12gauge
 
+
+#healer
+- type: entity
+  name: Tribal Healer
+  parent: KitBase
+  id: KittribalHealer
+  description: A crate containing everything a tribal healer would need
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14Bitterdrink
+      - id: N14HealingPoultice
+      - id: N14HealingPowder
+        amount: 2
+      - id: AloeCream
+      - id: N14CleanGauze10
+      - id: N14WeaponRevolver44TribalUpgraded
+      - id: SpeedLoader44
+        amount: 2
+
+#shaman
+- type: entity
+  name: Tribal Shaman
+  parent: KitBase
+  id: KittribalShaman
+  description: A crate containing everything a tribal shaman would need.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14FloraProduceWildXander
+        amount: 5
+      - id: N14FloraProduceWildBrocFlower
+        amount: 5
+      - id: N14JunkCeramicFlask
+        amount: 2
+      - id: N14MortarpestleGrinder
+      - id: AloeCream
+      - id: N14CleanGauze10
+      - id: LargeBeaker
+      - id: N14WastelandTribalSpear
+
+#outlander
+- type: entity
+  name: Tribal Outlander Healer
+  parent: KitBase
+  id: KittribalOutlander
+  description: A crate containing everything a tribal healer would need using outlander chems
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14Stimpak
+        amount: 2
+      - id: N14SuperStimpak
+      - id: AloeCream
+      - id: N14CleanGauze10
+      - id: N14Antidote
+      - id: N14WeaponRevolver10mm
+      - id: SpeedLoader10
+        amount: 2
+
 # All of the Town Guard kits
 - type: entity
   name: the Guard's ceremonial kit
