@@ -453,9 +453,9 @@ undecided-loadout-category-Tribal-Healer-name = Tribal healer kit
 undecided-loadout-category-Tribal-Healer-description =
     A crate containing everything for healing your kin
     inside you will find
-    1 Bitterdrink, 2 healing powders, 1 heling poultice, 
-    1 antidote bottle, 10 aloe cream, 10 bandages,
-    1 tribal revolver, 2 speed loaders
+    1 Bitterdrink, 2 healing powders, 1 healing poultice, 
+    10 aloe cream, 10 bandages, 1 tribal revolver,
+    2 speed loaders
     
 
 undecided-loadout-category-Tribal-Shaman-name = Tribal Shaman Kit
@@ -463,8 +463,9 @@ undecided-loadout-category-Tribal-Shaman-description =
     A crate containing everything for healing your kin
     with powders and mixtures
     inside you will find
-    5 broc, 5 xander, 2 ceramic flask, 1 mortar and pestle
-    1 Large beaker, 10 aloe cream, 10 bandages, 1 spear
+    5 broc, 5 xander, 2 ceramic flask, 1 mortar & pestle
+    1 large beaker, 10 aloe cream, 10 bandages, 
+    1 healing poultice, 1 spear, one syringe
 
 undecided-loadout-category-Tribal-outlander-healer-name = Tribal outlander healer Kit
 undecided-loadout-category-Tribal-outlander-healer-description =
@@ -480,30 +481,29 @@ undecided-loadout-category-Tribal-old-ways-elder-name = Old ways elder kit
 undecided-loadout-category-Tribal-old-ways-elder-description =
     A crate containing everything for leading in the old ways
     inside you will find
-    1 tribal decorated heavy club, 1 Tribal Handcannon, 
-    1 heling poultice, 10 aloe cream, 10 bandages,
+    1 tribal decorated heavy club, 1 decorated handcannon, 
+    1 healing poultice, 10 aloe cream, 10 bandages,
     4 javelins, 2 speed loaders, 1 javlin belt
 
-undecided-loadout-category-Tribal-Elder-Bone-Breaker-name = Elder bone breaker kit
+undecided-loadout-category-Tribal-Elder-Bone-Breaker-name = Elder bone smasher kit
 undecided-loadout-category-Tribal-Elder-Bone-Breaker-description =
     A crate containing everything for leading form the front
     inside you will find
-    1 Bloody Stick, 1 upgraded revolver. 1 heling poultice, 
-    10 aloe cream, 10 bandages, 
-    1 box of shells, 1 box of .44 ammo
+    1 Bloody Stick, 1 upgraded revolver. 1 healing poultice, 
+    10 aloe cream, 10 bandages, 1 box of ammo for both
 
 undecided-loadout-category-Tribal-Elder-fighter-name = Elder fighters kit
 undecided-loadout-category-Tribal-Elder-fighter-description =
     A crate containing for a elder who shoots often
     inside you will find
-    1 tribal assult rifle, 1 boxes of 5.56, 1 upgraded revolver,
+    1 tribal assault rifle, 1 box of 5.56, 1 upgraded revolver,
     1 box of .44 ammo, 10 aloe cream, 10 bandages
 
 undecided-loadout-category-Tribal-Long-eyed-elder-name = Long eyed elders kit
 undecided-loadout-category-Tribal-Long-eyed-elder-description =
     A crate containing everything for a elder to fight at range
     inside you will find
-    1 master hunt stick, boxes of 357, 1 Upgraded revolver
+    1 master hunt stick, 1 box of 357, 1 Upgraded revolver
     1 box of .44 ammo, 10 aloe cream, 10 bandages
 
 
