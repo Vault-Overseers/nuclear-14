@@ -415,7 +415,7 @@ undecided-loadout-category-wbos-pal-las-description =
 undecided-loadout-category-Tribal-Stalker-name = Tribal Stalker Kit
 undecided-loadout-category-Tribal-Stalker-description =
     A crate containing everything a hunter of the old ways will need.
-    Inside you will find 1 bow, 1 quiver. 17 arrows, 1 spear
+    Inside you will find 1 bow, 1 quiver. 19 arrows, 1 spear
 
 undecided-loadout-category-Tribal-Champion-name = Tribal Champion Kit
 undecided-loadout-category-Tribal-Champion-description =
@@ -489,7 +489,7 @@ undecided-loadout-category-Tribal-Elder-Bone-Breaker-description =
     A crate containing everything for leading form the front
     inside you will find
     1 Bloody Stick, 1 upgraded revolver. 1 heling poultice, 
-    2 baseball grenades, 10 aloe cream, 10 bandages, 
+    10 aloe cream, 10 bandages, 
     1 box of shells, 1 box of .44 ammo
 
 undecided-loadout-category-Tribal-Elder-fighter-name = Elder fighters kit
