@@ -276,7 +276,7 @@
 # Tribal kits
 - type: entity
   id: Triballoadoutkits
-  name: Undecided Tribal Loadout Kit
+  name: Undecided Tribal Kit
   parent: BaseLoadoutKit
   components:
   - type: Sprite
@@ -290,6 +290,36 @@
     - TribalBoneBreakerSet
     - TribalPainBringerSet
     - TribalFireHand
+
+- type: entity
+  id: TribalHealerkits
+  name: Undecided Tribal Healer Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - TribalHealerSet
+    - TribalShamanSet
+    - TribalOtlanderHealerSet
+
+
+- type: entity
+  id: TribalEldersKits
+  name: Undecided Tribal Elders Kits
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - TribalOldwaysElderSet
+    - TribalElderBoneBreakerSet
+    - TribalElderLongEyedSet
+    - TribalElderFighterSet
 
 # Town's Guard kits, the only one
 - type: entity
@@ -957,6 +987,76 @@
     state: rifleman
   content:
   - Kittribalpainbringer
+
+- type: UndecidedLoadoutBackpackSet
+  id: TribalHealerSet
+  name: undecided-loadout-category-Tribal-Healer-name
+  description: undecided-loadout-category-Tribal-Healer-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KittribalHealer
+
+- type: UndecidedLoadoutBackpackSet
+  id: TribalShamanSet
+  name: undecided-loadout-category-Tribal-Shaman-name
+  description: undecided-loadout-category-Tribal-Shaman-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KittribalShaman
+
+- type: UndecidedLoadoutBackpackSet
+  id: TribalOtlanderHealerSet
+  name: undecided-loadout-category-Tribal-outlander-healer-name
+  description: undecided-loadout-category-Tribal-outlander-healer-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KittribalOutlander
+
+- type: UndecidedLoadoutBackpackSet
+  id: TribalOldwaysElderSet
+  name: undecided-loadout-category-Tribal-old-ways-elder-name
+  description: undecided-loadout-category-Tribal-old-ways-elder-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KittribalElderOldWay
+
+- type: UndecidedLoadoutBackpackSet
+  id: TribalElderBoneBreakerSet
+  name: undecided-loadout-category-Tribal-Elder-Bone-Breaker-name
+  description: undecided-loadout-category-Tribal-Elder-Bone-Breaker-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KittribalElderBoneBreaker
+
+- type: UndecidedLoadoutBackpackSet
+  id: TribalElderFighterSet
+  name: undecided-loadout-category-Tribal-Elder-fighter-name
+  description: undecided-loadout-category-Tribal-Elder-fighter-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KittribalElderFighter
+
+- type: UndecidedLoadoutBackpackSet
+  id: TribalElderLongEyedSet
+  name: undecided-loadout-category-Tribal-Long-eyed-elder-name
+  description: undecided-loadout-category-Tribal-Long-eyed-elder-description
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KittribalLongEyed
 
 # Town Guard kits individually
 - type: UndecidedLoadoutBackpackSet

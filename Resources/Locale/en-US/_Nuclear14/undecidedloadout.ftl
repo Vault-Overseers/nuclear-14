@@ -415,41 +415,96 @@ undecided-loadout-category-wbos-pal-las-description =
 undecided-loadout-category-Tribal-Stalker-name = Tribal Stalker Kit
 undecided-loadout-category-Tribal-Stalker-description =
     A crate containing everything a hunter of the old ways will need.
-    Inside you will find a bow, a quiver with enough arrows to fill it
-    and your trusty spear.
+    Inside you will find 1 bow, 1 quiver. 19 arrows, 1 spear
 
 undecided-loadout-category-Tribal-Champion-name = Tribal Champion Kit
 undecided-loadout-category-Tribal-Champion-description =
     A crate containing everything for those who defend the tribes honour.
-    Inside you will find your two handed club, a quiver of javelins
-    and a yao guai cloak to show your ferocity.
+    Inside you will find 1 two handed club, 1 quiver, 4 javelins
+    1 yao guai cloak
 
 undecided-loadout-category-Tribal-Fire-Hand-name = Tribal Fire Hand Kit
 undecided-loadout-category-Tribal-Fire-Hand-description =
     A crate containing everything a tribal gunslinger would want.
-    Inside you will find a holster with two revolvers and spare ammo.
-    Make your shots count kin.
+    Inside you will find 1 holster, 2 revolvers,
+    44 ammo, 2 speed loaders.
 
 undecided-loadout-category-Tribal-Hunter-name = Tribal Hunter Kit
 undecided-loadout-category-Tribal-Hunter-description =
     A crate containing everything for those who hunt with a rifle.
     Using powder and fire to bring down big targets.
-    Inside you will find your trusty huntstick and a machete
-    if your prey causes problems. Spare ammo included.
+    Inside you will find 1 huntstick, 1 machete, 1 box of 308 ammo
 
 undecided-loadout-category-Tribal-Bone-Breaker-name = Tribal Bone Breaker Kit
 undecided-loadout-category-Bone-Breaker-description =
     A crate containing everything for those who fight using powder and fire.
     Shooting often to bring down the foe.
-    Inside you will find your reliable tribal rifle and a machete.
-    Spare ammo included.
+    Inside you will find 1 tribal rifle, machete, 1 box of 5.56 ammo
 
 undecided-loadout-category-Tribal-pain-bringer-name = Tribal Pain Bringer Kit
 undecided-loadout-category-Tribal-pain-bringer-description =
     A crate containing everything for those who fight up close
     with powder and fury. Inside you will find.
-    Your sturdy boom stick thats strong enough to break any foe.
-    Spare shells included and a mask for protection when up close.
+    1 boom stick and 1 box of shells.
+
+# Tribal healer
+
+undecided-loadout-category-Tribal-Healer-name = Tribal healer kit
+undecided-loadout-category-Tribal-Healer-description =
+    A crate containing everything for healing your kin
+    inside you will find
+    1 Bitterdrink, 2 healing powders, 1 healing poultice, 
+    10 aloe cream, 10 bandages, 1 tribal revolver,
+    2 speed loaders
+    
+
+undecided-loadout-category-Tribal-Shaman-name = Tribal Shaman Kit
+undecided-loadout-category-Tribal-Shaman-description =
+    A crate containing everything for healing your kin
+    with powders and mixtures
+    inside you will find
+    5 broc, 5 xander, 2 ceramic flask, 1 mortar & pestle
+    1 large beaker, 10 aloe cream, 10 bandages, 
+    1 healing poultice, 1 spear, one syringe
+
+undecided-loadout-category-Tribal-outlander-healer-name = Tribal outlander healer Kit
+undecided-loadout-category-Tribal-outlander-healer-description =
+    A crate containing everything for healing your kin
+    inside you will find
+    1 super stimpack, 2 stimpacks, 1 antidote bottle,
+    10 aloe cream, 10 bandages, 10mm revolver,
+    2 speed loaders.
+
+# Tribal Elder
+
+undecided-loadout-category-Tribal-old-ways-elder-name = Old ways elder kit
+undecided-loadout-category-Tribal-old-ways-elder-description =
+    A crate containing everything for leading in the old ways
+    inside you will find
+    1 tribal decorated heavy club, 1 decorated handcannon, 
+    1 healing poultice, 10 aloe cream, 10 bandages,
+    4 javelins, 2 speed loaders, 1 javlin belt
+
+undecided-loadout-category-Tribal-Elder-Bone-Breaker-name = Elder bone smasher kit
+undecided-loadout-category-Tribal-Elder-Bone-Breaker-description =
+    A crate containing everything for leading form the front
+    inside you will find
+    1 Bloody Stick, 1 upgraded revolver. 1 healing poultice, 
+    10 aloe cream, 10 bandages, 1 box of ammo for both
+
+undecided-loadout-category-Tribal-Elder-fighter-name = Elder fighters kit
+undecided-loadout-category-Tribal-Elder-fighter-description =
+    A crate containing for a elder who shoots often
+    inside you will find
+    1 tribal assault rifle, 1 box of 5.56, 1 upgraded revolver,
+    1 box of .44 ammo, 10 aloe cream, 10 bandages
+
+undecided-loadout-category-Tribal-Long-eyed-elder-name = Long eyed elders kit
+undecided-loadout-category-Tribal-Long-eyed-elder-description =
+    A crate containing everything for a elder to fight at range
+    inside you will find
+    1 master hunt stick, 1 box of 357, 1 Upgraded revolver
+    1 box of .44 ammo, 10 aloe cream, 10 bandages
 
 
 # Town Guard Kits
