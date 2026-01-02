@@ -153,3 +153,20 @@
       sprite: DeltaV/Structures/Machines/glimmer_machines.rsi
       state: prober
   - type: PsiWatchCartridge
+
+- type: entity
+  parent: BaseItem
+  id: SnakeGameCartridge
+  name: snake game cartridge
+  description: A cartridge containing a simple snake game.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-b
+  - type: UIFragment
+    ui: !type:SnakeGameUi
+  - type: Cartridge
+    programName: snake-program-name
+    icon:
+      sprite: Interface/Misc/program_icons.rsi
+      state: crew_manifest

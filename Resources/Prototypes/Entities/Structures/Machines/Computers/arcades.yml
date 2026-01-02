@@ -148,3 +148,36 @@
     maximumWait: 240
   - type: SpeakOnUIClosed
     pack: BlockGameGoodbyes
+
+- type: entity
+  id: SnakeArcade
+  name: snake arcade
+  parent: ArcadeBase
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/arcade.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: arcade
+    - map: ["computerLayerScreen"]
+      state: screen_blockgame
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: panel
+      visible: false
+  - type: SnakeArcade
+  - type: ActivatableUI
+    key: enum.SnakeGameUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: StationAiWhitelist
+  - type: UserInterface
+    interfaces:
+      enum.SnakeGameUiKey.Key:
+        type: SnakeGameBoundUserInterface
+  - type: Computer
+    board: SnakeArcadeComputerCircuitboard
+  - type: Advertise
+    pack: BlockGameAds
+    minimumWait: 60
+    maximumWait: 240
+  - type: SpeakOnUIClosed
+    pack: BlockGameGoodbyes
