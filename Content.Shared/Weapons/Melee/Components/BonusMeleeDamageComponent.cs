@@ -3,13 +3,14 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.GameStates;
 
+using Content.Shared.Chemistry.DrugMeleeBuff;
 namespace Content.Shared.Weapons.Melee.Components;
 
 /// <summary>
 /// This is used for adding in bonus damage via <see cref="GetMeleeWeaponEvent"/>
 /// This exists only for event relays and doing entity shenanigans.
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedMeleeWeaponSystem))]
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedMeleeWeaponSystem), typeof(SharedDrugMeleeBuffSystem))]
 public sealed partial class BonusMeleeDamageComponent : Component
 {
     /// <summary>
