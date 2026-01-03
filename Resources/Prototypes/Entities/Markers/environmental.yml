@@ -123,3 +123,47 @@
         shader: unshaded
         state: target-red
   - type: BlockWeather
+
+- type: entity
+  name: Invisible Chasm
+  id: MarkerChasmInvisible # For random goofy things like collapsed bridges.
+  suffix: DANGER
+  parent: MarkerBase
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Markers/environment.rsi
+    layers:
+      - sprite: Markers/environment.rsi
+        shader: unshaded
+        state: base-red
+      - sprite: Markers/environment.rsi
+        shader: unshaded
+        state: wall
+  - type: Chasm
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.4
+    blacklist:
+      tags:
+      - Catwalk
+    triggerGroups:
+      types:
+      - Chasm
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        layer:
+        - WallLayer
+        mask:
+        - ItemMask
+        density: 1000
+        hard: false
