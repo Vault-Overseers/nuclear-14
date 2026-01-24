@@ -670,7 +670,7 @@ undecided-loadout-category-town-Armorers-description =
 
 undecided-loadout-category-town-carpenters-name = carpenters Kit
 undecided-loadout-category-town-carpenters-description =
-    I'm a lumberjack and I'm ok, you got your trusty axe
+    I'm a lumberjack and I'm ok.
     Includes your axe, wood planks and your own outfit
 
 undecided-loadout-category-town-Junkie-name = Junkie Kit
@@ -683,13 +683,7 @@ undecided-loadout-category-town-Goon-name = Goons Kit
 undecided-loadout-category-town-Goon-description =
     hehe man ... i love hurting people
     Includes a baseball bat, 10mm pistol and spare ammo
-
-
-undecided-loadout-category-town-Beggars-name = Beggars Kit
-undecided-loadout-category-town-Beggars-description =
-    Some money for the poor?
-    Includes a bedroll, metal mug and knife
-
+    
 undecided-loadout-category-town-Hunters-name = Hunters Kit
 undecided-loadout-category-town-Hunters-description =
     Its hunting season
