@@ -121,21 +121,15 @@
     - N14ClothingTribalRadstagSkull
 
 - type: loadout
-  id: N14LoadoutHeadHat
-  category: Head
-  cost: 2
-  requirements:
-    - !type:CharacterItemGroupRequirement
-      group: N14LoadoutHead
-  items:
-    - N14ClothingHeadHatHeadscarf
-
-- type: loadout
   id: N14ClothingHeadHatRaiderSack
   category: Head
   cost: 2
   exclusive: true
   requirements:
+    - !type:CharacterDepartmentRequirement
+      inverted: true
+      departments:
+        - Vault
     - !type:CharacterItemGroupRequirement
       group: N14LoadoutHead
   items:
@@ -147,6 +141,10 @@
   cost: 2
   exclusive: true
   requirements:
+    - !type:CharacterDepartmentRequirement
+      inverted: true
+      departments:
+        - Vault
     - !type:CharacterItemGroupRequirement
       group: N14LoadoutHead
   items:

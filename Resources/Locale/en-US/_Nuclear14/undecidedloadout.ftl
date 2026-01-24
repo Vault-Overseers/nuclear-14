@@ -647,8 +647,8 @@ undecided-loadout-category-town-Energy-enthusiast-description =
     Includes a 3 laser rifles, 1 plasma rifle, 
     1 wattz 2000, 2 recharger rifles, 
     a collection of pistols, ammo for all
-    ammo for all, some medical stock, tool belt
-    and the least amount of supplies
+    ammo for all, some medical stock, tool belt,
+    turbo recharger and the least amount of supplies
     to make your own ammo for those poor people
     with primitive lead throwers......
 
