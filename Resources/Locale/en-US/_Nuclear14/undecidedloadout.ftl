@@ -550,41 +550,37 @@ undecided-loadout-category-town-Mayor-name = Town Mayors Kit
 undecided-loadout-category-town-Mayor-description =
     You won your place through the votes of the people. 
     Be it from bribes, threats or pure bureaucracy.
-    Includes 500 caps, 200 ncr dollars, pen and paper, 
-    Official stamps for official business, 
+    Includes pen and paper, Official stamps for official business, 
     2 .45-70 speed loaders and a cost effective revolver.
 
 undecided-loadout-category-town-Nobles-name = Town Nobles Kit
 undecided-loadout-category-town-Nobles-description =
     If this town was left to the common man it would collapse.
     It is your birthright to keep things moving in a civilised manner
-    Includes 400 caps, 100 ncr dollars, Wig, 
-    A cane with a nasty surprise, monocle,
+    Includes dollars, Wig, A cane with a nasty surprise, monocle,
     2 .45-70 speed loaders and a noble revolver.
 
 undecided-loadout-category-town-Warlords-name = Town Warlords Kit
 undecided-loadout-category-town-Warlords-description =
     You took this town by force and you intend to keep it. 
     Use your guards to keep people in there place.
-    Includes 300 caps, 100 ncr dollars, 45 Smg 
-    45 pistol, town guard armor, cloak, beret, 
-    bandolier and spare ammo for all of this.
+    Includes a 45 Smg, town guard armor, a powerful revolver,
+    cloak, beret, bandolier and spare ammo for all of this.
+    
 
 #town reporter
 
 undecided-loadout-category-town-radio-host-name = Radio Host Kit
 undecided-loadout-category-town-radio-host-description =
-    The truth is out there and you have the means to 
-    report on it!
-    Includes 2 handheld radios, 100 caps and
-    a sawn off shotgun for unwelcome guest.
+    The truth is out there and you have the means to report on it!
+    Includes 2 handheld radios and a sawn off shotgun for unwelcome guest.
+    
 
 undecided-loadout-category-town-News-crew-name = News Crew Kit
 undecided-loadout-category-town-News-crew-description =
-    The truth is out there and you have the means to 
-    report on it!
-    Includes pen, paper, clipboard, 100 caps and
-    press armor. you shouldn't need it right?
+    The truth is out there and you have the means to report on it!
+    Includes pen, paper, clipboard, and press armor.
+    you shouldn't need it right?
 
 #Town Doctors
 
@@ -619,16 +615,16 @@ undecided-loadout-category-town-electrician-name = electricians Kit
 undecided-loadout-category-town-electrician-description =
     Most machines don't work anymore but those that do is likely
     because of you. Here are the tools to keep it this way.
-    Includes a electrical toolbox, circuits, 10 steel sheets,
-    laser revolver with spare cell and 50 caps
+    Includes a electrical toolbox, circuits, 10 steel sheets and
+    laser revolver with spare cell
 
 undecided-loadout-category-town-Builders-name = Builders Kit
 undecided-loadout-category-town-Builders-description =
     Building a future for this town or simply maintaining it.
     This kit will help you achieve both hopefully
     Includes a power drill, welding mask, 10 steel sheets,
-    10mm pistol with spare ammo, 10 wooden planks,
-    10 glass and 50 caps for more supplies
+    10mm pistol with spare ammo, 10 wooden planks and 10 glass.
+
 
 #merchant kits
 
@@ -639,8 +635,8 @@ undecided-loadout-category-Merchant-gun-nut-description =
     OPEN INSIDE YOUR SHOP!
     Includes a 2 assault rifles, 2 12mm smg's, 
     2 shotguns, 2 9mm smg's, a collection of pistols,
-    ammo for all, caps and ncr dollars, some medical stock,
-    tool belt incase and the most amount of supplies
+    ammo for all, some medical stock, tool belt
+    and the most amount of supplies
     to make your own ammo. lets make some money
 
 
@@ -651,8 +647,8 @@ undecided-loadout-category-town-Energy-enthusiast-description =
     Includes a 3 laser rifles, 1 plasma rifle, 
     1 wattz 2000, 2 recharger rifles, 
     a collection of pistols, ammo for all
-    ammo for all, caps and ncr dollars, some medical stock,
-    tool belt incase and the least amount of supplies
+    ammo for all, some medical stock, tool belt
+    and the least amount of supplies
     to make your own ammo for those poor people
     with primitive lead throwers......
 
@@ -660,37 +656,34 @@ undecided-loadout-category-town-Energy-enthusiast-description =
 undecided-loadout-category-town-Armorers-name = Armorers Kit
 undecided-loadout-category-town-Armorers-description =
     Sometimes you want to cell armour to people. 
-    keeping your customers alive is good for 
-    business. lets make some caps
+    keeping your customers alive is good for business.
     OPEN INSIDE YOUR SHOP!
     Includes a 2 Combat armor, 3 police vest, 
     3 town combat armor, 2 radiation suits, 
     2 light metal armor, 2 leather armor, 
     2 reinforced leather armor, 2 metal armor
-    ammo for all, caps and ncr dollars, extra medical stock,
-    tool belt incase and a good amount of supplies
-    to make your own ammo. lets make some money
+    ammo for all, extra medical stock, tool belt
+    and a good amount of supplies to make your
+    own ammo. lets make some money
 
 #townie jobs
 
 undecided-loadout-category-town-carpenters-name = carpenters Kit
 undecided-loadout-category-town-carpenters-description =
     I'm a lumberjack and I'm ok, you got your trusty axe
-    Includes your axe, 20 caps, wood planks
-    and your own outfit
+    Includes your axe, wood planks and your own outfit
 
 undecided-loadout-category-town-Junkie-name = Junkie Kit
 undecided-loadout-category-town-Junkie-description =
     Looking for the next fix. always looking.
-    Includes Jet, jet, what little caps you got
-    left to buy more jet, abrax cleaner to make
+    Includes Jet, jet, abrax cleaner to make
     jet and a knife to rob more jet.
 
 undecided-loadout-category-town-Goon-name = Goons Kit
 undecided-loadout-category-town-Goon-description =
     hehe man ... i love hurting people
-    Includes a baseball bat, 10mm pistol,
-    spare ammo and some caps
+    Includes a baseball bat, 10mm pistol and spare ammo
+
 
 undecided-loadout-category-town-Beggars-name = Beggars Kit
 undecided-loadout-category-town-Beggars-description =
@@ -700,63 +693,58 @@ undecided-loadout-category-town-Beggars-description =
 undecided-loadout-category-town-Hunters-name = Hunters Kit
 undecided-loadout-category-town-Hunters-description =
     Its hunting season
-    Includes a hunting rifle, knife, 5 spare rounds
-    and some caps
+    Includes a hunting rifle, knife and 5 spare rounds
 
 undecided-loadout-category-town-Musician-name = Musicians Kit
 undecided-loadout-category-town-Musician-description =
     The show must go on.
-    Includes a collection of instruments and some caps
+    Includes a collection of instruments
     recommend opening it at town to store what's not used
     or form a band with friends.
 
 undecided-loadout-category-town-Local-name = Locals Kit
 undecided-loadout-category-town-local-description =
     Just someone who lives in this mad town.
-    Includes a 9mm pistol. spare ammo and a lot of caps
+    Includes a 9mm pistol and spare ammo with extra caps
 
 
 undecided-loadout-category-town-brahmin-herders-name = Brahmin herders Kit
 undecided-loadout-category-town-brahmin-herders-description =
     Your herd brahmin to places they can eat, sometimes mutants
     or raiders want them, you got something to stop them
-    Includes a caravan shotgun, 4 spare shells and not 
-    a bad supply of caps.
+    Includes a caravan shotgun and 4 spare shells
 
 undecided-loadout-category-town-hair-dresser-name = Hair Dressers kit
 undecided-loadout-category-town-hair-dresser-description =
     Someone's got to keep this town looking good,
     have you seen what happens when people don't look
     after there hair? The tribals need to learn from you.
-    Includes a pair of scissors, knife, bubblegum
-    and as always. Caps.
+    Includes a pair of scissors, knife and bubblegum.
 
 undecided-loadout-category-town-militias-name = Town Militias kit
 undecided-loadout-category-town-militias-description =
     So what your not a guard. someone's got to
     protect our town. guess you'll have to do
-    Includes a polearm, town helmet, reinforced armor kit
-    and a hand full of caps.
+    Includes a polearm, town helmet and a reinforced armor kit
 
 undecided-loadout-category-town-lawyers-name = lawyers kit
 undecided-loadout-category-town-lawyers-description =
     The hardest job in the town. Stopping the guards
     from killing someone. good luck
-    Includes a pen, paper and clipboard and
-    a nice amount of caps. 
+    Includes a pen, paper and clipboard. 
 
 undecided-loadout-category-town-Chefs-name = Chefs kit
 undecided-loadout-category-town-Chefs-description =
     Lets cook something nice today
     Includes Chefs outfit, beaker box, maize
-    carrots, tatos, razorgrain, caps, 
-    hand labeler and a big knife.
+    carrots, tatos, razorgrain, salt,
+    hand labeler, sugar and a big knife.
 
 undecided-loadout-category-town-Bartenders-name = Bartenders kit
 undecided-loadout-category-town-Bartenders-description =
     Even if the world ends. People want a good drink.
     Includes More drinks for the bar, double barreled shotgun,
-    4 spare shells, bunch of caps and a hand labeler.
+    4 spare shells and a hand labeler.
 
 #Vault
 
@@ -814,8 +802,8 @@ undecided-loadout-category-Vault-Hydroponics-expert-description =
 undecided-loadout-category-Vault-Chef-name = Chef kit
 undecided-loadout-category-Vault-Chef-description =
     The g.o.a.t said your the vaults Chef.
-    Includes a butchers cleaver, chefs outfit and
-    a bag of flour.
+    Includes a butchers cleaver, chefs outfit,
+    a bag of flour, sugar and salt.
 
 undecided-loadout-category-Vault-Baseball-players-name = Baseball players kit
 undecided-loadout-category-Vault-Baseball-players-description =
