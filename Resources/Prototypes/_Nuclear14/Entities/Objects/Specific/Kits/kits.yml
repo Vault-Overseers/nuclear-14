@@ -1713,6 +1713,7 @@
 
 
 
+#MARK: Town Kits
 
 # All of the Town Guard kits
 - type: entity
@@ -1835,3 +1836,1008 @@
       - id: N14JunkCeramicFlask
       - id: N14FoodTinC1
       - id: N14FoodTinC2
+
+#Mayor kits
+
+- type: entity
+  name: Mayors kit
+  parent: KitBase
+  id: KitTownMayor
+  description: A crate containing everything a the mayor of a town would need to run things.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: Pen
+      - id: BoxFolderClipboard
+      - id: Paper
+        amount: 3
+      - id: RubberStampApproved
+      - id: RubberStampDenied
+      - id: N14WeaponRevolver45-70WildWhisper
+      - id: SpeedLoader45-70
+        amount: 2
+
+- type: entity
+  name: Nobles kit
+  parent: KitBase
+  id: KitTownNoble
+  description: A crate containing everything someone who was born to rule would need.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: CaneSheathFilled
+      - id: N14WeaponRevolver45-70WildWhisper
+      - id: SpeedLoader45-70
+        amount: 2
+      - id: ClothingHeadHatPwig
+      - id: ClothingEyesGlassesMonocle
+
+- type: entity
+  name: Warlords kit
+  parent: KitBase
+  id: KitTownWarlord
+  description: This town is yours and all in this container will help it remain so
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponSMG45
+      - id: Magazine45SubMachineGun
+        amount: 3
+      - id: N14WeaponRevolver45-70WildWhisper
+      - id: SpeedLoader45-70
+        amount: 2
+      - id: N14ClothingOuterTownGuardRiot
+      - id: N14ClothingHeadHatArmyBeretSpecial
+      - id: ClothingBeltNCRBandolier
+      - id: N14ClothingNeckTownGuardCloak
+
+#reporters kits
+
+- type: entity
+  name: News crew kit
+  parent: KitBase
+  id: KitNewsCrew
+  description: a kit for the reporter who records the cutting edge news in the region
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: Pen
+      - id: BoxFolderClipboard
+      - id: Paper
+        amount: 3
+      - id: N14ClothingOuterPressArmor
+
+- type: entity
+  name: Radio host kit
+  parent: KitBase
+  id: KitRadioHost
+  description: a kit for the hardest job in the town. Arguing with the town guard that someone shouldnt be killed.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponShotgunSawedOff
+      - id: RadioHandheld
+        amount: 2
+      - id: N14ShellShotgun12
+        amount: 4
+
+#doctor 
+
+- type: entity
+  name: Town doctors kit
+  parent: KitBase
+  id: KitTownDoctor
+  description: A crate containing everything a doctor would need to save lives
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingBeltMedicalFilled
+      - id: N14SuperStimpak 
+      - id: N14WeaponPistol45Colt
+      - id: N14MagazinePistol45
+      - id: N14HandheldHealthAnalyzer
+      - id: BoxBodyBag
+
+- type: entity
+  name: Town chemist kit
+  parent: KitBase
+  id: KitTownChemist
+  description: A crate containing everything a chemist would want
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14Stimpak
+      - id: BoxBeaker
+      - id: N14JunkAbraxoCleaner
+      - id: N14BuffoutCanisterFilled
+      - id: N14Jet
+        amount: 2
+      - id: N14Turbo
+      - id: N14DoctorSyringe
+      - id: N14HandheldHealthAnalyzer
+      - id: Ointment
+      - id: N14CleanGauze10
+      - id: BoxBodyBag
+      - id: N14Med-X
+
+- type: entity
+  name: Town surgeon kit
+  parent: KitBase
+  id: KitTownSurgeon
+  description: A crate containing everything a surgeon would want
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingBackpackDuffelSurgeryFilled
+      - id: N14ClothingHandsGlovesNitrile
+      - id: ClothingMaskSterile
+      - id: N14HandheldHealthAnalyzer
+      - id: Ointment
+      - id: N14CleanGauze10
+      - id: BoxBodyBag
+
+#town mechanic
+
+
+- type: entity
+  name: Electricians kit
+  parent: KitBase
+  id: KitTownElectrician
+  description: A crate containing everything a electrician would need
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: RadioHandheld
+        amount: 2
+      - id: N14MaterialCircuitry1
+        amount: 3
+      - id: SheetSteel10
+      - id: ToolboxElectricalFilled
+      - id: N14WeaponLaserRevolver
+      - id: N14PowerCellHigh
+
+- type: entity
+  name: Builders kit
+  parent: KitBase
+  id: KitTownBuilder
+  description: A crate containing everything a builder would need
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14PowerDrill
+      - id: ClothingHeadHatWelding
+      - id: SheetSteel10
+      - id: N14WeaponPistol10mm
+      - id: N14MagazinePistol10mm
+        amount: 2
+      - id: MaterialWoodPlank10
+      - id: SheetGlass10
+      - id: N14Scrap1
+        amount: 5
+
+
+#merchant kits
+
+- type: entity
+  name: Gun nuts kit
+  parent: KitBase
+  id: KitTownGunNut
+  description: a kit for the local gun nut. OPEN IN YOUR SHOP!!
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponRifle762Fal
+      - id: N14WeaponRifle556EM2
+      - id: N14WeaponSMG12mm
+        amount: 2
+      - id: N14WeaponShotgunAuto
+      - id: N14WeaponShotgun
+      - id: N14WeaponSMG9mmCanadian
+        amount: 2
+      - id: N14WeaponPistol45Colt
+      - id: N14WeaponPistol10mm
+      - id: N14WeaponPistol12mm
+      - id: N14WeaponRevolver44Magnun
+      - id: Magazine762AmmoShort
+        amount: 2
+      - id: Magazine556Rifle
+        amount: 2
+      - id: N14MagazineSMG12mm
+        amount: 4
+      - id: MagazineBox12gauge
+      - id: N14MagazineShotgun12
+        amount: 2
+      - id: N14MagazineSMG9mm
+        amount: 2
+      - id: N14MagazinePistol45
+        amount: 2
+      - id: N14MagazinePistol10mm
+        amount: 2
+      - id: N14MagazinePistol12mm
+        amount: 2
+      - id: SpeedLoader44
+        amount: 2
+      - id: N14Paper10
+        amount: 2
+      - id: MaterialCardboard
+        amount: 2
+      - id: SheetSteel
+        amount: 2
+      - id: N14IngotLead
+        amount: 2
+      - id: HandLabeler
+      - id: N14CleanGauze10
+        amount: 2
+      - id: N14Ointment10
+        amount: 2
+      - id: N14Stimpak
+        amount: 2
+      - id: N14ClothingBeltUtilityFilled
+      - id: CrayonBox
+
+- type: entity
+  name: Energy enthusiast kit
+  parent: KitBase
+  id: KitTownEnergyEnthusiast
+  description: a kit for the local laser lover. OPEN IN YOUR SHOP!!
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponPlasmaRifle
+      - id: N14WeaponLaserRifle
+        amount: 3
+      - id: N14WeaponLaserRifleWattz2000
+      - id: N14WeaponLaserRifleRecharger
+        amount: 2
+      - id: N14WeaponPlasmaPistol
+      - id: N14WeaponLaserPistolRecharger
+      - id: N14WeaponLaserPistol
+        amount: 2
+      - id: N14PlasmaCartridge
+        amount: 2
+      - id: N14PlasmaCartridge
+        amount: 2
+      - id: N14PowerCellFocused
+      - id: N14PowerCellHigh
+        amount: 6
+      - id: N14PowerCellSmall
+        amount: 4
+      - id: N14Paper10
+      - id: MaterialCardboard10
+        amount: 2
+      - id: SheetSteel10
+        amount: 2
+      - id: N14IngotLead20
+      - id: HandLabeler
+      - id: N14CleanGauze10
+        amount: 2
+      - id: N14Ointment10
+        amount: 2
+      - id: N14Stimpak
+        amount: 2
+      - id: N14ClothingBeltUtilityFilled
+      - id: TurboItemRecharger
+      - id: CrayonBox
+
+- type: entity
+  name: Armorers kit
+  parent: KitBase
+  id: KitTownArmorers
+  description: a kit for the shop keeper who sells armour
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterCombatArmor
+        amount: 2
+      - id: N14ClothingOuterPoliceVest
+        amount: 4
+      - id: N14ClothingOuterTownHeavyCoat
+        amount: 3
+      - id: N14ClothingOuterRadSuit
+        amount: 2 
+      - id: N14ClothingOuterLightMetalArmor
+        amount: 2
+      - id: N14ClothingOuterLeatherArmor
+        amount: 2
+      - id: N14ClothingOuterReinforcedLeatherArmor
+        amount: 2
+      - id: N14ClothingOuterMetalArmor
+        amount: 2
+      - id: N14Paper10
+      - id: MaterialCardboard
+      - id: SheetSteel
+      - id: N14IngotLead
+      - id: HandLabeler
+      - id: N14CleanGauze10
+        amount: 3
+      - id: N14Ointment10
+        amount: 3
+      - id: N14Stimpak
+        amount: 3
+      - id: N14ClothingBeltUtilityFilled
+      - id: CrayonBox
+
+
+#townies job
+
+- type: entity
+  name: Carpenters kit
+  parent: KitBase
+  id: KitTownCarpenter
+  description: a kit for the local carpenter
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14BaseAxe
+        amount: 2
+      - id: MaterialWoodPlank10
+        amount: 2
+      - id: N14ClothingUniformJumpsuitPreWarLumberjack
+
+- type: entity
+  name: junkies kit
+  parent: KitBase
+  id: KitTownjunkie
+  description: a kit for the local junkie
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14BrassKnife
+      - id: N14Jet
+        amount: 2
+      - id: N14JunkAbraxoCleaner     
+
+- type: entity
+  name: Goons kit
+  parent: KitBase
+  id: KitTownGoon
+  description: a kit for the Goons of the town
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14BaseBallBat
+      - id: N14MagazinePistol10mm
+      - id: N14WeaponPistol10mm     
+
+- type: entity
+  name: Hunters kit
+  parent: KitBase
+  id: KitTownHunter
+  description: a kit for the hunter of the town
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponSniperHunting
+      - id: N14BrassKnife
+      - id: N14Cartridge308Rifle
+        amount: 5
+
+- type: entity
+  name: musicians kit
+  parent: KitBase
+  id: KitTownMusician
+  description: a kit for the towns musician
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: CelloInstrument
+      - id: AccordionInstrument
+      - id: N14InstrumentGuitar
+      - id: N14InstrumentClarinet
+      - id: N14InstrumentBanjo
+      - id: BagpipeInstrument
+
+- type: entity
+  name: Locals kit
+  parent: KitBase
+  id: KitTownLocal
+  description: One of the locals
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponPistol9mm
+      - id: N14MagazinePistol9mm
+      - id: N14CurrencyCap50
+
+- type: entity
+  name: brahmin herders kit
+  parent: KitBase
+  id: KitTownBrahminHerder
+  description: a kit for the brahmin herders of the town
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponShotgunCaravan
+      - id: N14ShellShotgun20
+        amount: 4
+
+- type: entity
+  name: HairDressers kit
+  parent: KitBase
+  id: KitTownHairDresser
+  description: a kit for a good hairdresser
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: BarberScissors
+      - id: N14BrassKnife
+      - id: N14FoodBubblegum
+
+- type: entity
+  name: militias kit
+  parent: KitBase
+  id: KitTownMilitias
+  description: a kit for someone who wants to defend there home
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WastelandPolearm
+      - id: N14ClothingOuterReinforcedArmorKit
+      - id: N14ClothingHeadTownGuardBrodieCover
+
+- type: entity
+  name: lawyers kit
+  parent: KitBase
+  id: KitTownLawers
+  description: a kit for the hardest job in the town. Arguing with the town guard that someone shouldnt be killed.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: Pen
+      - id: BoxFolderClipboard
+      - id: Paper
+        amount: 3
+
+#Bartenders kits
+
+- type: entity
+  name: Chefs kit
+  parent: KitBase
+  id: KitTownChef
+  description: a kit for someone who Cooks. suggest opening in the bar
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14FloraProduceWildRazorgrain
+        amount: 5
+      - id: N14FloraProduceWildTato
+        amount: 5
+      - id: N14FloraProduceWildCarrot
+        amount: 5
+      - id: N14FloraProduceWildMaize
+        amount: 5
+      - id: N14ButchersCleaver
+      - id: ClothingHeadHatChef
+      - id: ClothingOuterJacketChef
+      - id: ClothingOuterApronChef
+      - id: BoxBeaker
+      - id: HandLabeler
+      - id: ReagentContainerSugar
+      - id: N14FoodShakerSalt
+        amount: 2
+
+- type: entity
+  name: Bartenders kit
+  parent: KitBase
+  id: KitTownBartender
+  description: a kit for someone who serves drinks. suggest opening in the bar
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14DrinkGammagulpBeer
+        amount: 2
+      - id: N14DrinkNukaCola
+        amount: 4
+      - id: N14DrinkWhisky
+        amount: 2
+      - id: N14DrinkWine
+        amount: 2
+      - id: N14WeaponShotgunDoubleBarrel
+      - id: ShellShotgun
+        amount: 4
+      - id: HandLabeler
+
+#MARK: Vault Kits
+
+#overseer
+
+- type: entity
+  name: Overseers kit
+  parent: KitBase
+  id: KitVaultOverseer
+  description: Who is indisputably the most important person in Vault?
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: Pen
+      - id: BoxFolderClipboard
+      - id: Paper
+        amount: 3
+      - id: N14WeaponPistol10mm
+      - id: N14MagazinePistol10mm
+        amount: 2
+
+- type: entity
+  name: Vault boss kit
+  parent: KitBase
+  id: KitVaultBoss
+  description:  Those who shelters us from the harshness of the atomic wasteland.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponRevolver10mm
+      - id: CigarCase
+      - id: SpeedLoader10
+        amount: 2
+      - id: FlippoEngravedLighter
+
+- type: entity
+  name: Questionable origins kit
+  parent: KitBase
+  id: KitVaultQuestionable
+  description: To whom we owe everything we have, including our lives
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponPlasmaPistol
+      - id: N14PlasmaCell
+      - id: CombatKnife
+
+#Vault dweller
+
+- type: entity
+  name: Barbers kit
+  parent: KitBase
+  id: KitVaultBarber
+  description: a kit for those who got the job of barber in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: BarberScissors
+      - id: N14DrinkNukaCola
+      - id: N14FoodBubblegum
+
+- type: entity
+  name: Boxers kit
+  parent: KitBase
+  id: KitVaultBoxer
+  description: a kit for those who got the job of boxer in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14UniformShortsRedWithTop
+      - id: N14UniformShortsRed
+      - id: ClothingHandsGlovesBoxingBlue
+      - id: ClothingHandsGlovesBoxingRed
+
+- type: entity
+  name: Garbage burner kit
+  parent: KitBase
+  id: KitVaultGarbageBurner
+  description: a kit for those who got the job of garbage burner in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: TrashBagBlue
+      - id: Soap
+      - id: ClothingHandsGlovesJanitor
+      - id: WetFloorSign
+      - id: BoxMousetrap
+      - id: Plunger
+      - id: FlashlightLantern
+
+- type: entity
+  name: Teachers kit
+  parent: KitBase
+  id: KitVaultTeachers
+  description: a kit for those who got the job of Teacher in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: Pen
+      - id: BoxFolderClipboard
+      - id: Paper
+        amount: 3
+      - id: N14ClothingEyesGlasses
+
+- type: entity
+  name: Chaplains kit
+  parent: KitBase
+  id: KitVaultChaplains
+  description: a kit for those who got the job of Chaplain in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterLeatherRobes
+      - id: Bible
+      - id: ClothingNeckStoleChaplain
+      - id: BoxCandle
+      - id: FoodBakedBunHotX
+        amount: 3
+
+- type: entity
+  name: Hydroponics expert kit
+  parent: KitBase
+  id: KitVaultHydroponicsExpert
+  description: a kit for those who got the job of hydroponics expert in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingHandsDispelGloves
+      - id: Bucket
+      - id: PlantBag
+      - id: N14CompostRotted
+        amount: 2
+      - id: N14HydroponicsToolHatchet
+      - id: HydroponicsToolMiniHoe
+      - id: HydroponicsToolSpade
+
+- type: entity
+  name: Chefs kit
+  parent: KitBase
+  id: KitVaultChef
+  description: a kit for those who got the job of Chef in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ButchersCleaver
+      - id: ClothingHeadHatChef
+      - id: ClothingOuterJacketChef
+      - id: ClothingOuterApronChef
+      - id: ClothingMaskItalianMoustache
+      - id: N14ReagentContainerFlour
+      - id: ReagentContainerSugar
+      - id: N14FoodShakerSalt
+        amount: 2
+
+- type: entity
+  name: Baseball Player kit
+  parent: KitBase
+  id: KitVaultBaseBall
+  description: a kit for those who got the job of designated hitter for the baseball team.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14BaseBallBat
+      - id: N14JunkBaseball
+      - id: N14ClothingHeadHatBaseball
+
+#Engineer
+
+- type: entity
+  name: electrician kit
+  parent: KitBase
+  id: KitVaultElectrician
+  description: a kit for those who got the job of electrician in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: ToolboxElectricalFilled
+      - id: SheetSteel10
+
+- type: entity
+  name: Pip Boy programmer kit
+  parent: KitBase
+  id: KitVaultPipBoyProgrammer
+  description: a kit for those who got the job of pip-boy programmer in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: PowerCellRecharger
+      - id: SheetSteel10
+      - id: N14MaterialCircuitry1
+        amount: 5
+
+- type: entity
+  name: Furniture specialist kit
+  parent: KitBase
+  id: KitVaultFurnitureSpecialist
+  description: a kit for those who got the job of furniture specialist in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: MaterialWoodPlank
+      - id: SheetSteel
+      - id: MaterialCloth
+      - id: N14MaterialLeather1
+        amount: 10
+
+- type: entity
+  name: Contamination specialist kit
+  parent: KitBase
+  id: KitVaultContaminationSpecialist
+  description: a kit for those who got the job of contamination specialist in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterRadSuit
+      - id: BoxInflatable
+
+#vault doctor
+
+- type: entity
+  name: Health inspector kit
+  parent: KitBase
+  id: KitVaultHealthInspector
+  description: a kit for those who got the job of health inspector in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14SuperStimpak 
+      - id: N14Stimpak
+        amount: 3
+      - id: N14HandheldHealthAnalyzer
+      - id: N14Med-X
+
+- type: entity
+  name: Chemist kit
+  parent: KitBase
+  id: KitVaultChemist
+  description: a kit for those who got the job of Chemist in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14Stimpak
+      - id: N14RadXCanisterFilled
+      - id: N14ChemicalSyringeAntidote
+        amount: 2
+      - id: N14MentatsCanisterFilled
+      - id: N14Ethanol
+      - id: N14DoctorSyringe
+      - id: N14HandheldHealthAnalyzer
+      - id: Ointment
+      - id: N14CleanGauze10
+      - id: BoxBeaker
+
+- type: entity
+  name: Surgeon kit
+  parent: KitBase
+  id: KitVaultSurgeon
+  description: a kit for those who got the job of surgeon in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingBackpackDuffelSurgeryFilled
+      - id: N14ClothingHandsGlovesNitrile
+      - id: ClothingMaskSterile
+      - id: N14HandheldHealthAnalyzer
+
+#vault security
+
+- type: entity
+  name: Vault security kit
+  parent: KitBase
+  id: KitVaultSecurity
+  description: a kit for those who got the job of security guard in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14PoliceBaton
+      - id: N14WeaponPistol10mm
+      - id: Handcuffs
+      - id: Bola
+      - id: TearGasGrenade
+      - id: N14ClothingHeadHatVaultRiot
+      - id: N14MagazinePistol10mm
+        amount: 2
+
+
+- type: entity
+  name: Vault loyalty inspector
+  parent: KitBase
+  id: KitVaultLoyaltyInspector
+  description: a kit for those who got the job of loyalty inspector in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14PoliceBaton
+      - id: N14WeaponShotgun
+      - id: N14ShellShotgun12
+        amount: 12
+      - id: ClothingBeltNCRBandolier
+      - id: ClothingEyesGlassesSunglassesAviator
+      - id: ClothingMaskMuzzle
+      - id: ClothingEyesBlindfold
+
+- type: entity
+  name: Vault Detective
+  parent: KitBase
+  id: KitVaultDetective
+  description: a kit for those who got the job of detective in the G.O.A.T.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14PoliceBaton
+      - id: SpeedLoader10
+        amount: 2
+      - id: ClothingNeckTieDet
+      - id: N14WeaponRevolver10mm
+      - id: ClothingHandsGlovesForensic
+      - id: N14ClothingOuterDetectivecoat
+      - id: ClothingHeadHatFedoraBrown
+      - id: BoxEvidenceMarkers
+      - id: RubberStampDetective

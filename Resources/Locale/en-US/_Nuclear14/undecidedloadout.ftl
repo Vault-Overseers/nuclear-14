@@ -543,3 +543,314 @@ undecided-loadout-category-town-riot-description =
     Includes 1 spear, 1 heavy metal shield, 1 hunting revolver,
     2 .45-70 speedloaders, 1 old cloak, 1 stack of gauze,
     and basic ration supplies.
+
+# Town Kits
+
+undecided-loadout-category-town-Mayor-name = Town Mayors Kit
+undecided-loadout-category-town-Mayor-description =
+    You won your place through the votes of the people. 
+    Be it from bribes, threats or pure bureaucracy.
+    Includes pen and paper, Official stamps for official business, 
+    2 .45-70 speed loaders and a cost effective revolver.
+
+undecided-loadout-category-town-Nobles-name = Town Nobles Kit
+undecided-loadout-category-town-Nobles-description =
+    If this town was left to the common man it would collapse.
+    It is your birthright to keep things moving in a civilised manner
+    Includes a cane with a nasty surprise, wig, monocle,
+    2 .45-70 speed loaders and a noble revolver.
+
+undecided-loadout-category-town-Warlords-name = Town Warlords Kit
+undecided-loadout-category-town-Warlords-description =
+    You took this town by force and you intend to keep it. 
+    Use your guards to keep people in there place.
+    Includes a 45 Smg, town guard armor, a powerful revolver,
+    cloak, beret, bandolier and spare ammo for all of this.
+    
+
+#town reporter
+
+undecided-loadout-category-town-radio-host-name = Radio Host Kit
+undecided-loadout-category-town-radio-host-description =
+    The truth is out there and you have the means to report on it!
+    Includes 2 handheld radios and a sawn off shotgun for unwelcome guest.
+    
+
+undecided-loadout-category-town-News-crew-name = News Crew Kit
+undecided-loadout-category-town-News-crew-description =
+    The truth is out there and you have the means to report on it!
+    Includes pen, paper, clipboard, and press armor.
+    you shouldn't need it right?
+
+#Town Doctors
+
+undecided-loadout-category-town-Doctor-name = Doctors Kit
+undecided-loadout-category-town-Doctor-description =
+    You keep the people of this town alive. 
+    It can be a thankless task but one that's needed
+    Includes a belt full of meds, super stimpack,
+    box of body bags, health analyzer and
+    a 45 pistol with ammo just incase..
+
+undecided-loadout-category-town-Chemist-name = Chemist Kit
+undecided-loadout-category-town-Chemist-description =
+    Sometimes people need chems, the good and 
+    not so good kind. You can provide it. 
+    Includes a box of beakers, buffout canister, 
+    2 jet, turbo, med x, abrax cleaner, syringe,
+    health analyzer, Body bags, stimpack,
+    spare gauze and ointment.
+
+undecided-loadout-category-town-surgeon-name = surgeon Kit
+undecided-loadout-category-town-surgeon-description =
+    Some people cut others to harm them,
+    You cut into people to heal them. 
+    Includes a duffle bag full of tools, 
+    gloves and mask, Body bags, health analyzer,
+    Spare gauze and ointment.
+
+#town mechanic
+
+undecided-loadout-category-town-electrician-name = electricians Kit
+undecided-loadout-category-town-electrician-description =
+    Most machines don't work anymore but those that do is likely
+    because of you. Here are the tools to keep it this way.
+    Includes a electrical toolbox, circuits, 10 steel sheets and
+    laser revolver with spare cell
+
+undecided-loadout-category-town-Builders-name = Builders Kit
+undecided-loadout-category-town-Builders-description =
+    Building a future for this town or simply maintaining it.
+    This kit will help you achieve both hopefully
+    Includes a power drill, welding mask, 10 steel sheets,
+    10mm pistol with spare ammo, 10 wooden planks and 10 glass.
+
+
+#merchant kits
+
+undecided-loadout-category-Merchant-gun-nut-name = Gun nuts kit
+undecided-loadout-category-Merchant-gun-nut-description =
+    Do you love guns? Do you really love guns? 
+    Then this kit is for you! inside you find many guns.
+    OPEN INSIDE YOUR SHOP!
+    Includes a 2 assault rifles, 2 12mm smg's, 
+    2 shotguns, 2 9mm smg's, a collection of pistols,
+    ammo for all, some medical stock, tool belt
+    and the most amount of supplies to make your own ammo.
+
+
+undecided-loadout-category-town-Energy-enthusiast-name = Energy enthusiasts kit
+undecided-loadout-category-town-Energy-enthusiast-description =
+    Bullets are nice but lasers are the future!
+    OPEN INSIDE YOUR SHOP!
+    Includes a 3 laser rifles, 1 plasma rifle, 
+    1 wattz 2000, 2 recharger rifles, 
+    a collection of pistols, ammo for all
+    ammo for all, some medical stock, tool belt,
+    turbo recharger and the least amount of supplies
+    to make your own ammo for those poor people
+    with primitive lead throwers......
+
+
+undecided-loadout-category-town-Armorers-name = Armorers Kit
+undecided-loadout-category-town-Armorers-description =
+    Sometimes you want to cell armour to people. 
+    keeping your customers alive is good for business.
+    OPEN INSIDE YOUR SHOP!
+    Includes a 2 Combat armor, 3 police vest, 
+    3 town combat armor, 2 radiation suits, 
+    2 light metal armor, 2 leather armor, 
+    2 reinforced leather armor, 2 metal armor.
+    extra medical stock, tool belt and a
+    good amount of supplies to make your own ammo
+
+#townie jobs
+
+undecided-loadout-category-town-carpenters-name = carpenters Kit
+undecided-loadout-category-town-carpenters-description =
+    I'm a lumberjack and I'm ok.
+    Includes your axe, wood planks and your own outfit
+
+undecided-loadout-category-town-Junkie-name = Junkie Kit
+undecided-loadout-category-town-Junkie-description =
+    Looking for the next fix. always looking.
+    Includes Jet, jet, abrax cleaner to make
+    jet and a knife to rob more jet.
+
+undecided-loadout-category-town-Goon-name = Goons Kit
+undecided-loadout-category-town-Goon-description =
+    hehe man ... i love hurting people
+    Includes a baseball bat, 10mm pistol and spare ammo
+    
+undecided-loadout-category-town-Hunters-name = Hunters Kit
+undecided-loadout-category-town-Hunters-description =
+    Its hunting season
+    Includes a hunting rifle, knife and 5 spare rounds
+
+undecided-loadout-category-town-Musician-name = Musicians Kit
+undecided-loadout-category-town-Musician-description =
+    The show must go on.
+    Includes a collection of instruments
+    recommend opening it at town to store what's not used
+    or form a band with friends.
+
+undecided-loadout-category-town-Local-name = Locals Kit
+undecided-loadout-category-town-local-description =
+    Just someone who lives in this mad town.
+    Includes a 9mm pistol and spare ammo with extra caps
+
+
+undecided-loadout-category-town-brahmin-herders-name = Brahmin herders Kit
+undecided-loadout-category-town-brahmin-herders-description =
+    Your herd brahmin to places they can eat, sometimes mutants
+    or raiders want them, you got something to stop them
+    Includes a caravan shotgun and 4 spare shells
+
+undecided-loadout-category-town-hair-dresser-name = Hair Dressers kit
+undecided-loadout-category-town-hair-dresser-description =
+    Someone's got to keep this town looking good,
+    have you seen what happens when people don't look
+    after there hair? The tribals need to learn from you.
+    Includes a pair of scissors, knife and bubblegum.
+
+undecided-loadout-category-town-militias-name = Town Militias kit
+undecided-loadout-category-town-militias-description =
+    So what your not a guard. someone's got to
+    protect our town. guess you'll have to do
+    Includes a polearm, town helmet and a reinforced armor kit
+
+undecided-loadout-category-town-lawyers-name = lawyers kit
+undecided-loadout-category-town-lawyers-description =
+    The hardest job in the town. Stopping the guards
+    from killing someone. good luck
+    Includes a pen, paper and clipboard. 
+
+undecided-loadout-category-town-Chefs-name = Chefs kit
+undecided-loadout-category-town-Chefs-description =
+    Lets cook something nice today
+    Includes Chefs outfit, beaker box, maize
+    carrots, tatos, razorgrain, salt,
+    hand labeler, sugar and a big knife.
+
+undecided-loadout-category-town-Bartenders-name = Bartenders kit
+undecided-loadout-category-town-Bartenders-description =
+    Even if the world ends. People want a good drink.
+    Includes More drinks for the bar, double barreled shotgun,
+    4 spare shells and a hand labeler.
+
+#Vault
+
+undecided-loadout-category-Vault-Overseers-name = Overseers kit
+undecided-loadout-category-Vault-Overseers-description =
+    Who is indisputably the most important person in Vault?
+    Includes pen, paper, clipboard and a 10mm pistol with ammo just incase.
+
+undecided-loadout-category-Vault-boss-name = boss's kit
+undecided-loadout-category-Vault-boss-description =
+    Those who shelters us from the harshness of the atomic wasteland.
+    Includes cigar case, engraved lighter and 10mm revolver with speed loaders. 
+
+undecided-loadout-category-Vault-Questionable-origins-name = Questionable origins kit
+undecided-loadout-category-Vault-Questionable-origins-description =
+    To whom we owe everything we have, including our lives.
+    Includes a plasma pistol, spare cell and a knife
+
+undecided-loadout-category-Vault-Barbers-name = Barbers kit
+undecided-loadout-category-Vault-Barbers-description =
+    The g.o.a.t said your the vaults barber.
+    Includes a pair of scissors, nuka cola, bubble gum.
+
+undecided-loadout-category-Vault-Boxer-name = Boxer kit
+undecided-loadout-category-Vault-Boxer-description =
+    The g.o.a.t said your in charge of the vaults boxing club.
+    Includes a 2 boxing outfits, 2 sets of boxing gloves.
+
+undecided-loadout-category-Vault-Garbage-burner-name = Garbage burners kit
+undecided-loadout-category-Vault-Garbage-burner-description =
+    The g.o.a.t said your the vaults garbage burner.
+    Includes a trash bag, soap, gloves, wet floor sign.
+    mouse traps, plunger, a spare flashlight. 
+
+undecided-loadout-category-Vault-Teachers-name = Teachers kit
+undecided-loadout-category-Vault-Teachers-description =
+    The g.o.a.t said your the vaults teacher.
+    Includes a pen, paper, clipboard and some glasses.
+
+undecided-loadout-category-Vault-Chaplain-name = Chaplains kit
+undecided-loadout-category-Vault-Chaplain-description =
+    The g.o.a.t said your the vaults chaplain.
+    Includes a set of robes, bible, a stole, 
+    box of candles and hot cross buns.
+
+undecided-loadout-category-Vault-Hydroponics-expert-name = Hydroponics expert kit
+undecided-loadout-category-Vault-Hydroponics-expert-description =
+    The g.o.a.t said your the vaults hydroponics expert.
+    Includes a set of gloves, bucket, plant bag,
+    2 compost, hatchet, hoe and a spade
+
+undecided-loadout-category-Vault-Chef-name = Chef kit
+undecided-loadout-category-Vault-Chef-description =
+    The g.o.a.t said your the vaults Chef.
+    Includes a butchers cleaver, chefs outfit,
+    a bag of flour, sugar and salt.
+
+undecided-loadout-category-Vault-Baseball-players-name = Baseball players kit
+undecided-loadout-category-Vault-Baseball-players-description =
+    The g.o.a.t said your in the vaults baseball team.
+    Includes a baseball, baseball bat and baseball cap
+
+undecided-loadout-category-Vault-electrician-name = Electricians kit
+undecided-loadout-category-Vault-electrician-description =
+    The g.o.a.t said your the vaults electrician.
+    Includes a toolbox with electrical supplies and 10 steel
+
+undecided-loadout-category-Vault-Pip-boy-programmer-name = Pip Boy programmer
+undecided-loadout-category-Vault-Pip-boy-programmer-description =
+    The g.o.a.t said your the Pip-boy-programmer.
+    Includes a cell recharger, 10 steel and 5 circuits.
+
+undecided-loadout-category-Vault-Furniture-specialist-name = Furniture specialist kit
+undecided-loadout-category-Vault-Furniture-specialist-description =
+    The g.o.a.t said your the vaults Furniture specialist.
+    Includes a stack of wood, steel, cloth and 10 leather
+
+undecided-loadout-category-Vault-Contamination-specialist-name = Contamination specialist kit
+undecided-loadout-category-Vault-Contamination-specialist-description =
+    The g.o.a.t said your the vaults Contamination specialist.
+    Includes a radiation suit and a box of inflatable walls
+
+undecided-loadout-category-Vault-Health-inspector-name = Health inspectors kit
+undecided-loadout-category-Vault-Health-inspector-description =
+    The g.o.a.t said your the vaults health inspector.
+    Includes a super stimpack, 3 stimpacks, health analyzer and med X.
+
+undecided-loadout-category-Vault-Chemist-name = Chemists kit
+undecided-loadout-category-Vault-Chemist-description =
+    The g.o.a.t said your the vaults chemist.
+    Includes a stimpack, container of rad x, 2 antidote syringes,
+    bottle of mentats, ethanol, syringe, health analyzer,
+    ointment, gauze and a box of beakers. 
+
+undecided-loadout-category-Vault-Surgeon-name = Surgeons kit
+undecided-loadout-category-Vault-Surgeon-description =
+    The g.o.a.t said your the vaults surgeon.
+    Includes a duffle bag full of surgical tools, gloves, mask 
+    and a health analyzer. 
+
+undecided-loadout-category-Vault-security-name = security's kit
+undecided-loadout-category-Vault-security-description =
+    The g.o.a.t said your the vaults security guard.
+    Includes a police baton, 10mm pistol, handcuffs, bola, 
+    tear gas, riot helmet and some spare ammo. 
+
+undecided-loadout-category-Vault-loyalty-inspector-name = loyalty inspectors kit
+undecided-loadout-category-Vault-loyalty-inspector-description =
+    The g.o.a.t said your the vaults loyalty inspector.
+    Includes a shotgun, 12 shells, bandolier,blindfold, gag, baton and a pair of aviators.
+
+undecided-loadout-category-Vault-Detective-name = Detectives kit
+undecided-loadout-category-Vault-Detective-description =
+    The g.o.a.t said your the vaults detective.
+    Includes a detective hat, gloves, tie and hat coat.
+    Evidence markers, detective stamp, baton, 10mm revolver
+    with speed loaders.
