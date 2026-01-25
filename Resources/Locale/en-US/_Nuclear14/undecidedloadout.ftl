@@ -557,7 +557,7 @@ undecided-loadout-category-town-Nobles-name = Town Nobles Kit
 undecided-loadout-category-town-Nobles-description =
     If this town was left to the common man it would collapse.
     It is your birthright to keep things moving in a civilised manner
-    Includes dollars, Wig, A cane with a nasty surprise, monocle,
+    Includes a cane with a nasty surprise, wig, monocle,
     2 .45-70 speed loaders and a noble revolver.
 
 undecided-loadout-category-town-Warlords-name = Town Warlords Kit
@@ -636,8 +636,7 @@ undecided-loadout-category-Merchant-gun-nut-description =
     Includes a 2 assault rifles, 2 12mm smg's, 
     2 shotguns, 2 9mm smg's, a collection of pistols,
     ammo for all, some medical stock, tool belt
-    and the most amount of supplies
-    to make your own ammo. lets make some money
+    and the most amount of supplies to make your own ammo.
 
 
 undecided-loadout-category-town-Energy-enthusiast-name = Energy enthusiasts kit
@@ -661,10 +660,9 @@ undecided-loadout-category-town-Armorers-description =
     Includes a 2 Combat armor, 3 police vest, 
     3 town combat armor, 2 radiation suits, 
     2 light metal armor, 2 leather armor, 
-    2 reinforced leather armor, 2 metal armor
-    ammo for all, extra medical stock, tool belt
-    and a good amount of supplies to make your
-    own ammo. lets make some money
+    2 reinforced leather armor, 2 metal armor.
+    extra medical stock, tool belt and a
+    good amount of supplies to make your own ammo
 
 #townie jobs
 
@@ -745,20 +743,17 @@ undecided-loadout-category-town-Bartenders-description =
 undecided-loadout-category-Vault-Overseers-name = Overseers kit
 undecided-loadout-category-Vault-Overseers-description =
     Who is indisputably the most important person in Vault?
-    Includes pen, paper, clipboard, most amount of money
-    and a 10mm pistol with ammo just incase.
+    Includes pen, paper, clipboard and a 10mm pistol with ammo just incase.
 
 undecided-loadout-category-Vault-boss-name = boss's kit
 undecided-loadout-category-Vault-boss-description =
     Those who shelters us from the harshness of the atomic wasteland.
-    Includes cigar case, engraved lighter, good amount
-    of money, 10mm revolver with speed loaders. 
+    Includes cigar case, engraved lighter and 10mm revolver with speed loaders. 
 
 undecided-loadout-category-Vault-Questionable-origins-name = Questionable origins kit
 undecided-loadout-category-Vault-Questionable-origins-description =
     To whom we owe everything we have, including our lives.
-    Includes a plasma pistol, spare cell, knife and
-    a good amount of money
+    Includes a plasma pistol, spare cell and a knife
 
 undecided-loadout-category-Vault-Barbers-name = Barbers kit
 undecided-loadout-category-Vault-Barbers-description =
@@ -774,7 +769,7 @@ undecided-loadout-category-Vault-Garbage-burner-name = Garbage burners kit
 undecided-loadout-category-Vault-Garbage-burner-description =
     The g.o.a.t said your the vaults garbage burner.
     Includes a trash bag, soap, gloves, wet floor sign.
-    mouse traps, plunger, a spare light.
+    mouse traps, plunger, a spare flashlight. 
 
 undecided-loadout-category-Vault-Teachers-name = Teachers kit
 undecided-loadout-category-Vault-Teachers-description =
@@ -851,11 +846,11 @@ undecided-loadout-category-Vault-security-description =
 undecided-loadout-category-Vault-loyalty-inspector-name = loyalty inspectors kit
 undecided-loadout-category-Vault-loyalty-inspector-description =
     The g.o.a.t said your the vaults loyalty inspector.
-    Includes a shotgun, 12 shells, bandolier and a pair of aviators.
+    Includes a shotgun, 12 shells, bandolier,blindfold, gag, baton and a pair of aviators.
 
 undecided-loadout-category-Vault-Detective-name = Detectives kit
 undecided-loadout-category-Vault-Detective-description =
     The g.o.a.t said your the vaults detective.
     Includes a detective hat, gloves, tie and hat coat.
-    Evidence markers, detective stamp, 10mm revolver
+    Evidence markers, detective stamp, baton, 10mm revolver
     with speed loaders.
