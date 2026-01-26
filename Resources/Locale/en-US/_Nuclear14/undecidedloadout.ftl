@@ -406,8 +406,8 @@ undecided-loadout-category-wbos-pal-sni-description =
 undecided-loadout-category-wbos-pal-las-name = Paladin Laser Kit
 undecided-loadout-category-wbos-pal-las-description =
     A cache containing belongings of a Washington chapter Paladin.
-    Includes 1 AER-9, 3 microfusion cells, 1 plasma pistol,
-    2 plasma cells, 1 roll of gauze, 1 stimpak, and 1 K ration MRE.
+    Includes 1 AER-9, 3 microfusion cells, 1 Webley pistol,
+    2 9mm mags, 1 roll of gauze, 1 stimpak, and 1 K ration MRE.
 
 
 # Tribal Kits
@@ -785,8 +785,8 @@ undecided-loadout-category-Vault-Chaplain-description =
 undecided-loadout-category-Vault-Hydroponics-expert-name = Hydroponics expert kit
 undecided-loadout-category-Vault-Hydroponics-expert-description =
     The g.o.a.t said your the vaults hydroponics expert.
-    Includes a set of gloves, bucket, plant bag,
-    2 compost, hatchet, hoe and a spade
+    Includes a set of gloves, bucket, plant bag, 2 compost,
+    a collection of seeds, hatchet, hoe and a spade
 
 undecided-loadout-category-Vault-Chef-name = Chef kit
 undecided-loadout-category-Vault-Chef-description =
