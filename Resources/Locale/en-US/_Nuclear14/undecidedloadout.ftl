@@ -635,8 +635,9 @@ undecided-loadout-category-Merchant-gun-nut-description =
     OPEN INSIDE YOUR SHOP!
     Includes a 2 assault rifles, 2 12mm smg's, 
     2 shotguns, 2 9mm smg's, a collection of pistols,
-    ammo for all, some medical stock, tool belt
-    and the most amount of supplies to make your own ammo.
+    ammo for all, some medical stock, tool belt,
+    2 radiation suits, 3 sets of town combat armor
+    and a lot of supplies to make your own ammo.
 
 
 undecided-loadout-category-town-Energy-enthusiast-name = Energy enthusiasts kit
@@ -647,7 +648,8 @@ undecided-loadout-category-town-Energy-enthusiast-description =
     1 wattz 2000, 2 recharger rifles, 
     a collection of pistols, ammo for all
     ammo for all, some medical stock, tool belt,
-    turbo recharger and the least amount of supplies
+    2 radiation suits, 3 sets of town combat armor,
+    turbo recharger and the less supplies
     to make your own ammo for those poor people
     with primitive lead throwers......
 
