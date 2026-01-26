@@ -651,19 +651,6 @@ undecided-loadout-category-town-Energy-enthusiast-description =
     to make your own ammo for those poor people
     with primitive lead throwers......
 
-
-undecided-loadout-category-town-Armorers-name = Armorers Kit
-undecided-loadout-category-town-Armorers-description =
-    Sometimes you want to cell armour to people. 
-    keeping your customers alive is good for business.
-    OPEN INSIDE YOUR SHOP!
-    Includes a 2 Combat armor, 3 police vest, 
-    3 town combat armor, 2 radiation suits, 
-    2 light metal armor, 2 leather armor, 
-    2 reinforced leather armor, 2 metal armor.
-    extra medical stock, tool belt and a
-    good amount of supplies to make your own ammo
-
 #townie jobs
 
 undecided-loadout-category-town-carpenters-name = carpenters Kit
