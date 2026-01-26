@@ -846,7 +846,8 @@ undecided-loadout-category-Vault-security-description =
 undecided-loadout-category-Vault-loyalty-inspector-name = loyalty inspectors kit
 undecided-loadout-category-Vault-loyalty-inspector-description =
     The g.o.a.t said your the vaults loyalty inspector.
-    Includes a shotgun, 12 shells, bandolier,blindfold, gag, baton and a pair of aviators.
+    Includes a shotgun, 12 shells, bandolier, helmet,
+    blindfold, gag, baton and a pair of aviators.
 
 undecided-loadout-category-Vault-Detective-name = Detectives kit
 undecided-loadout-category-Vault-Detective-description =
