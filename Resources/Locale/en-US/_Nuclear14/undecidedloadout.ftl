@@ -718,7 +718,7 @@ undecided-loadout-category-town-Chefs-name = Chefs kit
 undecided-loadout-category-town-Chefs-description =
     Lets cook something nice today
     Includes Chefs outfit, beaker box, maize
-    carrots, tatos, razorgrain, salt,
+    carrots, tatos, razorgrain, salt, enzyme
     hand labeler, sugar and a big knife.
 
 undecided-loadout-category-town-Bartenders-name = Bartenders kit
@@ -842,5 +842,5 @@ undecided-loadout-category-Vault-Detective-name = Detectives kit
 undecided-loadout-category-Vault-Detective-description =
     The g.o.a.t said your the vaults detective.
     Includes a detective hat, gloves, tie and hat coat.
-    Evidence markers, detective stamp, baton, 10mm revolver
+    Evidence markers, detective stamp, baton, 44 magnum revolver
     with speed loaders.
