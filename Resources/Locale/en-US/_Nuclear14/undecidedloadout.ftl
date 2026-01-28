@@ -406,8 +406,8 @@ undecided-loadout-category-wbos-pal-sni-description =
 undecided-loadout-category-wbos-pal-las-name = Paladin Laser Kit
 undecided-loadout-category-wbos-pal-las-description =
     A cache containing belongings of a Washington chapter Paladin.
-    Includes 1 AER-9, 3 microfusion cells, 1 plasma pistol,
-    2 plasma cells, 1 roll of gauze, 1 stimpak, and 1 K ration MRE.
+    Includes 1 AER-9, 3 microfusion cells, 1 Webley pistol,
+    2 9mm mags, 1 roll of gauze, 1 stimpak, and 1 K ration MRE.
 
 
 # Tribal Kits
@@ -635,8 +635,9 @@ undecided-loadout-category-Merchant-gun-nut-description =
     OPEN INSIDE YOUR SHOP!
     Includes a 2 assault rifles, 2 12mm smg's, 
     2 shotguns, 2 9mm smg's, a collection of pistols,
-    ammo for all, some medical stock, tool belt
-    and the most amount of supplies to make your own ammo.
+    ammo for all, some medical stock, tool belt,
+    2 radiation suits, 3 sets of town combat armor
+    and a lot of supplies to make your own ammo.
 
 
 undecided-loadout-category-town-Energy-enthusiast-name = Energy enthusiasts kit
@@ -647,22 +648,10 @@ undecided-loadout-category-town-Energy-enthusiast-description =
     1 wattz 2000, 2 recharger rifles, 
     a collection of pistols, ammo for all
     ammo for all, some medical stock, tool belt,
-    turbo recharger and the least amount of supplies
+    2 radiation suits, 3 sets of town combat armor,
+    turbo recharger and the less supplies
     to make your own ammo for those poor people
     with primitive lead throwers......
-
-
-undecided-loadout-category-town-Armorers-name = Armorers Kit
-undecided-loadout-category-town-Armorers-description =
-    Sometimes you want to cell armour to people. 
-    keeping your customers alive is good for business.
-    OPEN INSIDE YOUR SHOP!
-    Includes a 2 Combat armor, 3 police vest, 
-    3 town combat armor, 2 radiation suits, 
-    2 light metal armor, 2 leather armor, 
-    2 reinforced leather armor, 2 metal armor.
-    extra medical stock, tool belt and a
-    good amount of supplies to make your own ammo
 
 #townie jobs
 
@@ -729,7 +718,7 @@ undecided-loadout-category-town-Chefs-name = Chefs kit
 undecided-loadout-category-town-Chefs-description =
     Lets cook something nice today
     Includes Chefs outfit, beaker box, maize
-    carrots, tatos, razorgrain, salt,
+    carrots, tatos, razorgrain, salt, enzyme
     hand labeler, sugar and a big knife.
 
 undecided-loadout-category-town-Bartenders-name = Bartenders kit
@@ -785,8 +774,8 @@ undecided-loadout-category-Vault-Chaplain-description =
 undecided-loadout-category-Vault-Hydroponics-expert-name = Hydroponics expert kit
 undecided-loadout-category-Vault-Hydroponics-expert-description =
     The g.o.a.t said your the vaults hydroponics expert.
-    Includes a set of gloves, bucket, plant bag,
-    2 compost, hatchet, hoe and a spade
+    Includes a set of gloves, bucket, plant bag, 2 compost,
+    a collection of seeds, hatchet, hoe and a spade
 
 undecided-loadout-category-Vault-Chef-name = Chef kit
 undecided-loadout-category-Vault-Chef-description =
@@ -846,11 +835,12 @@ undecided-loadout-category-Vault-security-description =
 undecided-loadout-category-Vault-loyalty-inspector-name = loyalty inspectors kit
 undecided-loadout-category-Vault-loyalty-inspector-description =
     The g.o.a.t said your the vaults loyalty inspector.
-    Includes a shotgun, 12 shells, bandolier,blindfold, gag, baton and a pair of aviators.
+    Includes a shotgun, 12 shells, bandolier, helmet,
+    blindfold, gag, baton and a pair of aviators.
 
 undecided-loadout-category-Vault-Detective-name = Detectives kit
 undecided-loadout-category-Vault-Detective-description =
     The g.o.a.t said your the vaults detective.
     Includes a detective hat, gloves, tie and hat coat.
-    Evidence markers, detective stamp, baton, 10mm revolver
+    Evidence markers, detective stamp, baton, 44 magnum revolver
     with speed loaders.
