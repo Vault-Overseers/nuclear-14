@@ -57,6 +57,9 @@
       effects:
       - !type:ChemAddMoodlet
         moodPrototype: JetBenefit
+      - !type:AddictionEffect
+        drugId: Jet
+        addictionStatus: JetAddiction
 
 - type: reagent
   id: RobustMovespeedMixture #used in turbo
@@ -94,6 +97,9 @@
         conditions:
         - !type:ReagentThreshold
           min: 12
+      - !type:AddictionEffect
+        drugId: Jet
+        addictionStatus: JetAddiction
 
 
 - type: reagent
@@ -108,10 +114,18 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Drunk
+      - !type:GenericStatusEffect
+        key: PsychoMeleeBuff
+        component: PsychoMeleeBuff
+        time: 30
+        refresh: false
     Narcotic:
       effects:
       - !type:ChemAddMoodlet
         moodPrototype: PsychoBenefit
+      - !type:AddictionEffect
+        drugId: Psycho
+        addictionStatus: PsychoAddiction
 
 - type: reagent
   id: Daytripper
@@ -147,7 +161,11 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Jitter
-      # - !type:NightvisionHalf
+      - !type:GenericStatusEffect
+        key: CateyeVision
+        component: NightVision
+        time: 30
+        refresh: false
 
 - type: reagent
   id: Buffout
@@ -163,6 +181,14 @@
       - !type:Jitter
       # - !type:HealthIncreaseReagent
         # increaseAmount: 50
+      - !type:GenericStatusEffect
+        key: BuffoutProtection
+        component: BuffoutProtection
+        time: 30
+        refresh: false
+      - !type:AddictionEffect
+        drugId: Buffout
+        addictionStatus: BuffoutAddiction
 
 - type: reagent
   id: Buffjet
@@ -186,6 +212,9 @@
         sprintSpeedModifier: 1.1
       # - !type:HealthIncreaseReagent
         # increaseAmount: 50
+      - !type:AddictionEffect
+        drugId: Buffjet
+        addictionStatus: BuffoutAddiction
 
 - type: reagent
   id: Bufftats
@@ -214,6 +243,15 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Jitter #Placeholder for when we get Special working again.
+      - !type:AddictionEffect
+        drugId: Mentats
+        addictionStatus: MentatsAddiction
+      - !type:AddictionEffect
+        drugId: Mentats
+        addictionStatus: MentatsAddiction
+      - !type:AddictionEffect
+        drugId: Mentats
+        addictionStatus: MentatsAddiction
 
 - type: reagent
   id: MentatsBerry
@@ -227,6 +265,9 @@
       metabolismRate: 0.2 # Effectively once every 5 seconds.
       effects:
       - !type:Jitter #Placeholder for when we get Special working again.
+      - !type:AddictionEffect
+        drugId: Mentats
+        addictionStatus: MentatsAddiction
 
 - type: reagent
   id: MentatsGrape
@@ -298,6 +339,10 @@
             Burn: -1
       - !type:ModifyBleedAmount
         amount: -0.5
+      - !type:HydraLimbRegeneration
+      - !type:AddictionEffect
+        drugId: Hydra
+        addictionStatus: HydraAddiction
 
 #MARK: Tribal Chems
 - type: reagent
