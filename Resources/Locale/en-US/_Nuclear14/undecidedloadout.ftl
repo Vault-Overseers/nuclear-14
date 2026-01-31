@@ -666,6 +666,11 @@ undecided-loadout-category-town-Junkie-description =
     Includes Jet, jet, abrax cleaner to make
     jet and a knife to rob more jet.
 
+undecided-loadout-category-town-Miner-name = Miners Kit
+undecided-loadout-category-town-Miner-description =
+    You strike the earth to find ores.
+    Includes a pickaxe, mining helmet and a ore bag
+
 undecided-loadout-category-town-Goon-name = Goons Kit
 undecided-loadout-category-town-Goon-description =
     hehe man ... i love hurting people
