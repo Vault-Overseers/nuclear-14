@@ -717,7 +717,7 @@ undecided-loadout-category-town-lawyers-name = lawyers kit
 undecided-loadout-category-town-lawyers-description =
     The hardest job in the town. Stopping the guards
     from killing someone. good luck
-    Includes a pen, paper and clipboard. 
+    Includes a pen, paper, clipboard and your signature suit.  
 
 undecided-loadout-category-town-Chefs-name = Chefs kit
 undecided-loadout-category-town-Chefs-description =
