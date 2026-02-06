@@ -11,16 +11,16 @@ job-name-bos-mid-squire = Brotherhood Initiate
 job-description-bos-mid-squire = Follow the orders of your superiors and prove your worth.
 
 # Washington Brotherhood
-job-name-bos-washington-commander = Brotherhood Commander
-job-description-bos-washington-commander = Lead the Washington Brotherhood of Steel on their mission.
-job-name-bos-washington-initiate = Brotherhood Initiate
-job-description-bos-washington-initiate = Follow the orders of your superiors and prove your worth.
-job-name-bos-washington-knight = Brotherhood Knight
-job-description-bos-washington-knight = Follow the Paladins on their mission for the chapter.
-job-name-bos-washington-paladin = Brotherhood Paladin
-job-description-bos-washington-paladin = Assist the Paladin Commander as their second in command & heavy infantry.
-job-name-bos-washington-scribe = Brotherhood Cleric
-job-description-bos-washington-scribe = Conduct scientific missions and research for your chapter.
+job-name-bos-wash-commander = Brotherhood Commander
+job-description-bos-wash-commander = Lead the Washington Brotherhood of Steel on their mission.
+job-name-bos-wash-initiate = Brotherhood Initiate
+job-description-bos-wash-initiate = Follow the orders of your superiors and prove your worth.
+job-name-bos-wash-knight = Brotherhood Knight
+job-description-bos-wash-knight = Follow the Paladins on their mission for the chapter.
+job-name-bos-wash-paladin = Brotherhood Paladin
+job-description-bos-wash-paladin = Assist the Paladin Commander as their second in command & heavy infantry.
+job-name-bos-wash-scribe = Brotherhood Cleric
+job-description-bos-wash-scribe = Conduct scientific missions and research for your chapter.
 
 # Caravan
 job-name-caravan-leader = Caravan Leader
