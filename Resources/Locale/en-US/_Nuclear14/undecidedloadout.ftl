@@ -666,6 +666,11 @@ undecided-loadout-category-town-Junkie-description =
     Includes Jet, jet, abrax cleaner to make
     jet and a knife to rob more jet.
 
+undecided-loadout-category-town-Miner-name = Miners Kit
+undecided-loadout-category-town-Miner-description =
+    You strike the earth to find ores.
+    Includes a pickaxe, mining helmet and a ore bag
+
 undecided-loadout-category-town-Goon-name = Goons Kit
 undecided-loadout-category-town-Goon-description =
     hehe man ... i love hurting people
@@ -712,7 +717,7 @@ undecided-loadout-category-town-lawyers-name = lawyers kit
 undecided-loadout-category-town-lawyers-description =
     The hardest job in the town. Stopping the guards
     from killing someone. good luck
-    Includes a pen, paper and clipboard. 
+    Includes a pen, paper, clipboard and your signature suit.  
 
 undecided-loadout-category-town-Chefs-name = Chefs kit
 undecided-loadout-category-town-Chefs-description =
