@@ -37,3 +37,22 @@
   placementMode: SnapgridCenter
   hide: false
   canBuildInImpassable: false
+
+- type: construction
+  name: meat spike
+  id: KitchenSpike
+  graph: MeatSpikeRecipes
+  startNode: start
+  targetNode: MeatSpike
+  category: construction-category-structures
+  description: A spike for collecting meat.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  hide: false
+  canRotate: false
+  icon:
+    sprite: Structures/meat_spike.rsi
+    state: spike
+  conditions:
+    - !type:TileNotBlocked

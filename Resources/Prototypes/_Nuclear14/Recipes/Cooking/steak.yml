@@ -238,3 +238,18 @@
       - minTemperature: 305
   - node: MeatCooked
     entity: N14FoodMeatRadscorpionLegBoiled
+
+- type: constructionGraph
+  id: MeatSteakHuman
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: SteakCooked
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 305
+  - node: SteakCooked
+    entity: N14FoodMeatHumanCooked
