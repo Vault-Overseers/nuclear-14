@@ -21,6 +21,10 @@ reagent-desc-grenadine = Not cherry flavored!
 
 reagent-name-iced-coffee = iced coffee
 reagent-desc-iced-coffee = Coffee and ice, refreshing and cool.
+reagent-name-cold-brew-coffee = cold brew coffee
+reagent-desc-cold-brew-coffee = Coffee steeped in cold water for a smoother taste.
+reagent-name-wasteland-coffee = wasteland coffee
+reagent-desc-wasteland-coffee = Bitter coffee brewed with tobacco and mesquite.
 
 reagent-name-iced-green-tea = iced green tea
 reagent-desc-iced-green-tea = Cold green tea.

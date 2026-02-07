@@ -193,3 +193,38 @@
       amount: 1
   products:
    TeaFireantNectar: 2
+
+# Coffee brewing
+- type: reaction
+  id: CoffeeFromGrounds
+  minTemp: 353.15 # 80 degrees Celcius.
+  reactants:
+    CoffeeGrounds:
+      amount: 1
+    Water:
+      amount: 1
+  products:
+    Coffee: 2
+
+- type: reaction
+  id: ColdBrewCoffee
+  reactants:
+    CoffeeGrounds:
+      amount: 1
+    Water:
+      amount: 1
+  products:
+    ColdBrewCoffee: 2
+
+- type: reaction
+  id: WastelandCoffee
+  minTemp: 353.15 # 80 degrees Celcius.
+  reactants:
+    ExtractCoyoteTobacco:
+      amount: 1
+    ExtractHoneyMesquitePod:
+      amount: 1
+    Water:
+      amount: 1
+  products:
+    WastelandCoffee: 3
