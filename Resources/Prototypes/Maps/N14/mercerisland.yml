@@ -1,7 +1,7 @@
 - type: gameMap
   id: MercerIsland
   mapName: 'Mercer Island'
-  mapPath: /Maps/N14/MercerIslandSurface.yml
+  mapPath: /Maps/N14/MercerIslandSurfaceNew.yml
   minPlayers: 0
   stations:
     MercerIsland:
@@ -9,14 +9,17 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Mercer Island'
-        - type: CP14StationAdditionalMap
-          mapPaths:
-          - /Maps/N14/MercerIslandSewers.yml
+#        - type: CP14StationAdditionalMap
+#          mapPaths:
+#          - /Maps/N14/MercerIslandSewers.yml
         - type: StationJobs
           overflowJobs:
             - Wastelander
           availableJobs:
             Wastelander: [ -1, -1 ]
+            WastelandFarmer: [ 1, 2 ]
+            WastelandReporter: [ 1, 2 ]
+            WastelandBartender: [ 1, 2 ]
             TribalElder: [ 1, 1 ]
             Tribal: [ 2, 4 ]
             TribalFarmer: [ 2, 2 ]
@@ -28,18 +31,31 @@
             TownMechanic: [ 1, 1 ]
             TownShopkeeper: [ 2, 2 ]
             Townsperson: [ 4, 4 ]
-            NCRRangerVeteran: [ 1, 1 ]
-            NCRRanger: [ 3, 3 ]
+            NCRRanger: [ 2, 2 ]
+            NCRLT: [ 1, 1 ]
+            NCRSGT: [ 2, 2 ]
+            NCRWS: [ 2, 2 ]
+            NCREngineer: [ 1, 1 ]
+            NCRMedic: [ 1, 2 ] 
+            NCRCadet: [ 3, 3 ]
+            NCRSoldier: [ 4, 4 ]
             CaravanLeader: [ 1, 1 ]
-            CaravanTrader: [ 1, 1 ]
+            CaravanTrader: [ 2, 2 ]
             CaravanGuard: [ 2, 2 ]
             BoSMidPaladinCommander: [ 1, 1 ]
             BoSMidPaladin: [ 1, 1 ]
-            BoSMidKnight: [ 1, 1 ]
-            BoSMidScribe: [ 1, 1 ]
-            BoSMidSquire: [ 1, 1 ]
+            BoSMidKnight: [ 2, 2 ]
+            BoSMidScribe: [ 2, 2 ]
+            BoSMidSquire: [ 4, 4 ]
             Overseer: [ 1, 1 ]
-            VaultDoctor: [ 1, 1 ]
-            VaultDweller: [ 3, 3 ]
-            VaultEngineer: [ 1, 1 ]
-            VaultSecurity: [ 1, 1 ]
+            VaultDoctor: [ 2, 2 ]
+            VaultDweller: [ 5, 5 ]
+            VaultEngineer: [ 2, 2 ]
+            VaultSecurity: [ 2, 2 ]
+            BoSWashingtonCommander: [ 1, 1 ]
+            BoSWashingtonInitiate: [ 2, 2 ]
+            BoSWashingtonKnight: [ 3, 3 ]
+            BoSWashingtonPaladin: [ 1, 1 ]
+            BoSWashingtonScribe: [ 2, 2 ]
+            
+            

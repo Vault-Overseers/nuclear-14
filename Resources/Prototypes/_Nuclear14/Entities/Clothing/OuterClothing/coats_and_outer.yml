@@ -104,7 +104,7 @@
     slot: head
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterRobeHubologist
   name: hubologist robes
   description: Hubologist robes... ominous.
@@ -240,7 +240,7 @@
       amount: 1
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: N14ClothingOuterBase
   id: N14ClothingOuterCoatLeatherJacket
   name: leather jacket
   description: A slick and smooth leather jacket. Perfect for any greaser.
@@ -636,6 +636,42 @@
   # - type: ClothingSpecialModifier
     # charismaModifier: 1
 
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterNCRArmoredWinterCoat
+  name: NCR troopers coat
+  description: Warm, uncomfortable and protective. Commonly worn by the troops of the 3rd battalion.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/FalloutNcrArmoredWinterCoat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/FalloutNcrArmoredWinterCoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: N14ClothingOuterNCRArmoredShortWinterCoat
+  name: NCR trooper coat
+  description: Warm, uncomfortable and protective. Commonly worn by the troops of the 3rd battalion.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/FalloutNcrArmoredShortWinterCoat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/FalloutNcrArmoredShortWinterCoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.8
+
 #MARK: Vault
 - type: entity
   parent: N14ClothingOuterBattlecoatCoat
@@ -906,6 +942,9 @@
       coefficients:
         Heat: 0.90
         Radiation: 0.001
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
   - type: ToggleableClothing
     clothingPrototype: N14ClothingHeadHatHelmetRadHelmet
     slot: head
@@ -995,3 +1034,155 @@
     damageCoefficient: 0.9
   - type: StaticPrice
     price: 75
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterDetectivecoat
+  name: detective trenchcoat
+  description: A rugged canvas trenchcoat.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Coats/detective.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Coats/detective.rsi
+  - type: StorageFill
+    contents:
+    - id: SmokingPipeFilledTobacco
+    - id: FlippoEngravedLighter
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.8
+        Heat: 0.8
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterSlickCoat
+  name: Slick coat
+  description: A pretty slick coat
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/slick.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/slick.rsi
+  - type: Armor
+    modifiers:
+     coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.85
+    priceMultiplier: 0.5
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterSlickCoat2
+  name: Slick coat
+  description: A pretty slick coat
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/slick2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/slick2.rsi
+  - type: Armor
+    modifiers:
+     coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.85
+    priceMultiplier: 0.5
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterSlickCoat3
+  name: Slick coat
+  description: A pretty slick coat
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/slick3.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/slick3.rsi
+  - type: Armor
+    modifiers:
+     coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.85
+    priceMultiplier: 0.5
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterSlickCoat4
+  name: Slick coat
+  description: A pretty slick coat
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/slick4.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/slick4.rsi
+  - type: Armor
+    modifiers:
+     coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.85
+    priceMultiplier: 0.5
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterSlickCoat5
+  name: Slick coat
+  description: A pretty slick coat
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/slick5.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/slick5.rsi
+  - type: Armor
+    modifiers:
+     coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.85
+    priceMultiplier: 0.5
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterSlickCoat6
+  name: Slick coat
+  description: A pretty slick coat
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/slick6.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/OuterClothing/Coats/slick6.rsi
+  - type: Armor
+    modifiers:
+     coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.85
+    priceMultiplier: 0.5
+
+- type: entity
+  parent: N14ClothingOuterBase
+  id: N14ClothingOuterLawersCoat
+  name: Lawyers coat
+  description: Worth ever cap
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Coats/gentlecoat.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Coats/gentlecoat.rsi
+  - type: Armor
+    modifiers:
+     coefficients:
+        Slash: 0.9
+        Piercing: 0.95
