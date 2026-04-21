@@ -255,3 +255,36 @@
               prototype: MaterialCloth1
               amount: 3
             - !type:DeleteEntity {}
+
+- type: constructionGraph
+  id: DecorationFlagBazar
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: FlagBazar
+          steps:
+            - material: WoodPlank
+              amount: 5
+              doAfter: 3
+            - material: Cloth
+              amount: 5
+              doAfter: 3
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+    - node: FlagBazar
+      entity: N14DecorationFlagBazar
+      edges:
+        - to: start
+          steps:
+            - tool: Prying
+              doAfter: 5
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialWoodPlank1
+              amount: 3
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 3
+            - !type:DeleteEntity {}

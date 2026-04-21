@@ -29,3 +29,6 @@ ent-N14DecorationFlagChurch = The Church flag
 ent-N14DecorationFlagLegion = Legion flag
     .suffix = Mapping
     .desc = Scarlet like blood-drenched lands conquered by the Legion. At its heart, a bronze bull, a symbol of fury and power. The sight of the flag reminds you of Caesar's promise to purify the world through conquest
+ent-N14DecorationFlagBazar = Bazar flag
+    .suffix = Mapping
+    .desc = А flag of the settlement "Bazaar" located in Wendover
