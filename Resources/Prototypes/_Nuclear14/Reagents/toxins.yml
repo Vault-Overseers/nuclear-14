@@ -1,4 +1,4 @@
-﻿#MARK: Firetoxin
+﻿﻿#MARK: Firetoxin
 #Liquid found inside of fire ant stingers, it burns quite a lot.
 - type: reagent
   id: FireToxin
@@ -73,3 +73,82 @@
             Poison: 3
           groups:
             Airloss: 3.5
+#MARK: Cannibal Juice
+# Used for consuming human meat.Works similar to a drug.
+
+- type: reagent
+  id: N14CannibalJuice
+  name: reagent-name-cannibal-juice
+  group: Toxins
+  desc: reagent-desc-cannibal-juice
+  physicalDesc: reagent-physical-desc-thick-red
+  color: "#8B0000"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.05
+      effects:
+        # SeeingRainbows effect
+        - !type:GenericStatusEffect
+          key: SeeingRainbows
+          component: SeeingRainbows
+          type: Add
+          time: 5
+          refresh: true
+          conditions:
+            - !type:ReagentThreshold
+              min: 1
+        # Stutter effect
+        - !type:GenericStatusEffect
+          key: Stutter
+          component: StutteringAccent
+          type: Add
+          time: 5
+          refresh: true
+          conditions:
+            - !type:ReagentThreshold
+              min: 1
+        # Movespeed buff  
+        - !type:MovespeedModifier
+          walkSpeedModifier: 1.05
+          sprintSpeedModifier: 1.05
+          conditions:
+            - !type:ReagentThreshold
+              min: 1
+
+
+
+# This is a reagent for the cannibal trait only.The first one is used for the human meat
+ #- type: reagent
+#  id: N14CannibalJuice2
+#  name: "cannibal-juice-name"      
+#  desc: "cannibal-juice-desc"      
+#  physicalDesc: "cannibal-juice-physical"  
+#  group: Toxins
+#  color: "#8B0000"
+#  metabolizable: false   # <- stays forever
+#  metabolisms:
+  #  Poison:
+  #    effects:
+  #      - !type:PopupMessage
+  #       type: Local
+  #        showInChat: false
+  #        messages:
+  #          - "A hunger gnaws at your insides..."
+  #         - "You feel your instincts screaming..."
+  #          - "Dark urges course through your veins..."
+  #        probability: 0.2
+
+  #      - !type:Emote
+  #        emote: Laugh
+  #        probability: 0.5
+  #        cooldown: 36000
+
+  #      - !type:Emote
+  #        emote: Shiver
+  #        probability: 0.4
+  #        cooldown: 43200
+
+  #      - !type:Emote
+  #        emote: Smile
+  #        probability: 0.3
+  #        cooldown: 72000

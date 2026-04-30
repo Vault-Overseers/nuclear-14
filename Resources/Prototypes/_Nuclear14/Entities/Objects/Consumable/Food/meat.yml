@@ -340,6 +340,30 @@
     node: start
     defaultTarget: MeatCooked
 
+- type: entity
+  name: raw human meat
+  parent: N14FoodMeatBrahmin
+  id: N14FoodMeatHuman
+  description: A chunk of raw human meat.
+  components:
+  - type: Sprite
+    state: brahminmeat
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: N14UncookedAnimalProteinsRad
+          Quantity: 9
+        - ReagentId: N14CannibalJuice
+          Quantity: 3
+  - type: SliceableFood
+    count: 3
+    slice: N14FoodMeatHumanCutlet
+  - type: Construction
+    graph: MeatSteakHuman
+    node: start
+    defaultTarget: SteakCooked
+
 # Cooked
 - type: entity
   name: cooked irradiated meat
@@ -775,6 +799,34 @@
     node: MeatCooked
     defaultTarget: MeatCooked
 
+- type: entity
+  name: cooked human steak
+  parent: N14FoodMeatBrahminCooked
+  id: N14FoodMeatHumanCooked
+  description: A well-cooked slab of human meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: brahminmeat_roasted
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: N14CannibalJuice
+          Quantity: 5
+  - type: SliceableFood
+    count: 3
+    slice: N14FoodMeatHumanCutletCooked
+  - type: Construction
+    graph: MeatSteakHuman
+    node: SteakCooked
+    defaultTarget: SteakCooked
+
 
 # Cooked Boiled
 - type: entity
@@ -949,6 +1001,30 @@
     node: start
     defaultTarget: CutletCooked
 
+- type: entity
+  name: raw human cutlet
+  parent: N14FoodMeatRadCutlet
+  id: N14FoodMeatHumanCutlet
+  description: A cutlet of raw human meat.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet
+    - state: cutlet-alpha
+      color: brown
+  - type: Construction
+    graph: MeatHumanCutlet
+    node: start
+    defaultTarget: CutletCooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: N14CannibalJuice
+          Quantity: 1
+
 # Cooked
 - type: entity
   name: cooked cutlet
@@ -1089,6 +1165,29 @@
     node: CutletCooked
     defaultTarget: CutletCooked
 
+- type: entity
+  name: cooked human cutlet
+  parent: N14FoodMeatRadCutletCooked
+  id: N14FoodMeatHumanCutletCooked
+  description: A cutlet of cooked human meat. You feel a little guilty eating this.
+  components:
+  - type: Sprite
+    layers:
+    - state: cutlet-cooked
+    - state: cutlet-alpha
+      color: brown
+  - type: Construction
+    graph: MeatHumanCutlet
+    node: CutletCooked
+    defaultTarget: CutletCooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: N14CannibalJuice
+          Quantity: 1
 #- type: entity
 #  name: raw bacon
   # bacon is cured so not raw = cant rot

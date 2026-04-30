@@ -114,7 +114,7 @@
   name: raw human meat
   parent: FoodMeatRawBase
   id: FoodMeatHuman
-  description: Gross.
+  description: A slab of raw human meat.
   components:
   - type: Sprite
     state: plain
@@ -124,9 +124,20 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 9
+        - ReagentId: Fat
+          Quantity: 9
   - type: SliceableFood
     count: 3
     slice: FoodMeatCutlet
+  - type: InternalTemperature
+    conductivity: 0.43
+  - type: Construction
+    graph: MeatSteak
+    node: start
+    defaultTarget: meat steak
+  - type: Tag
+    tags:
+    - Meat
 
 - type: entity
   name: raw carp fillet
