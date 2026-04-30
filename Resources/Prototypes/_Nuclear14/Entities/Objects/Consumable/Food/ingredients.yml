@@ -190,6 +190,22 @@
         - ReagentId: Sugar
           Quantity: 20
 
+- type: entity
+  parent: N14ReagentPacketBase
+  id: N14ReagentContainerDonutMix
+  name: Slocum Joes donut mix bag
+  description: A bag filled with donut mix.
+  components:
+  - type: Sprite
+    state: flour-small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: DonutMix
+          Quantity: 30
+
 # Misc
 
 - type: entity
@@ -426,6 +442,43 @@
       - sweetdough
   - type: Sprite
     state: cakebatter
+
+- type: entity
+  id: N14FoodDonutBatterBase
+  parent: N14FoodBakingBase
+  abstract: true
+  name: donut batter
+  description: Batter ready for frying into donuts.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweetdough
+  - type: Sprite
+    state: cakebatter
+
+- type: entity
+  parent: N14FoodDonutBatterBase
+  id: N14FoodDonutBatterRound
+  components:
+  - type: DonutBatter
+    cookedPrototype: N14CookedFoodDonutPlain
+    nextShape: N14FoodDonutBatterFilled
+
+- type: entity
+  parent: N14FoodDonutBatterBase
+  id: N14FoodDonutBatterFilled
+  components:
+  - type: DonutBatter
+    cookedPrototype: N14CookedFoodDonutJellyPlain
+    nextShape: N14FoodDonutBatterBar
+
+- type: entity
+  parent: N14FoodDonutBatterBase
+  id: N14FoodDonutBatterBar
+  components:
+  - type: DonutBatter
+    cookedPrototype: N14CookedFoodDonutBar
+    nextShape: N14FoodDonutBatterRound
 
 - type: entity
   name: stick of butter
