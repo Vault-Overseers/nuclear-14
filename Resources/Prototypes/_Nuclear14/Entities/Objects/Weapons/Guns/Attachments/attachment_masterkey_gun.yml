@@ -1,0 +1,19 @@
+- type: entity
+  id: N14AttachmentMasterkeyGun
+  name: masterkey module
+  abstract: true
+  components:
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - N14ShellShotgun12
+    capacity: 1
+    proto: N14ShellShotgun12
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
