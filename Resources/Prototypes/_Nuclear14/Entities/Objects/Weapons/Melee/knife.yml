@@ -141,7 +141,11 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/tribalknife.rsi
     size: 2
-    state: icon
+    layers:
+    - state: knife
+    - state: knife1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 0.8
@@ -173,6 +177,10 @@
     malus: 0.225
   - type: StaticPrice
     price: 25
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    fillBaseName: knife
 
 - type: entity
   name: brass Knife

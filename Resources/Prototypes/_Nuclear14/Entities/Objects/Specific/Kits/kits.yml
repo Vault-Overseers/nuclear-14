@@ -1860,6 +1860,8 @@
       - id: N14WeaponRevolver45-70WildWhisper
       - id: SpeedLoader45-70
         amount: 2
+      - id: N14CurrencyCap100
+        amount: 2
 
 - type: entity
   name: Nobles kit
@@ -1879,6 +1881,7 @@
         amount: 2
       - id: ClothingHeadHatPwig
       - id: ClothingEyesGlassesMonocle
+      - id: N14CurrencyCap100
 
 - type: entity
   name: Warlords kit
@@ -1895,8 +1898,8 @@
       - id: N14WeaponSMG45
       - id: Magazine45SubMachineGun
         amount: 3
-      - id: N14WeaponRevolver45-70WildWhisper
-      - id: SpeedLoader45-70
+      - id: N14WeaponPistol45Colt
+      - id: N14MagazinePistol45
         amount: 2
       - id: N14ClothingOuterTownGuardRiot
       - id: N14ClothingHeadHatArmyBeretSpecial
@@ -1922,12 +1925,18 @@
       - id: Paper
         amount: 3
       - id: N14ClothingOuterPressArmor
+      - id: N14ClothingHeadHatPressHelmet
+      - id: N14WeaponShotgunSawedOff
+      - id: RadioHandheld
+        amount: 2
+      - id: N14ShellShotgun12
+        amount: 4
 
 - type: entity
-  name: Radio host kit
+  name: Town detective kit
   parent: KitBase
-  id: KitRadioHost
-  description: a kit for the hardest job in the town. Arguing with the town guard that someone shouldnt be killed.
+  id: KitTownDective
+  description: a kit for the towns detective
   components:
   - type: Sprite
     state: rifleman
@@ -1935,11 +1944,22 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponShotgunSawedOff
-      - id: RadioHandheld
+      - id: N14PoliceBaton
+      - id: SpeedLoader44
         amount: 2
-      - id: N14ShellShotgun12
-        amount: 4
+      - id: ClothingNeckTieDet
+      - id: N14WeaponRevolverWebley
+      - id: ClothingHandsGlovesForensic
+      - id: N14ClothingOuterDetectivecoat
+      - id: ClothingHeadHatFedoraBrown
+      - id: BoxEvidenceMarkers
+      - id: RubberStampDetective
+      - id: Pen
+      - id: Handcuffs
+      - id: BoxFolderClipboard
+      - id: Paper
+        amount: 3
+
 
 #doctor 
 
@@ -1987,6 +2007,8 @@
       - id: N14CleanGauze10
       - id: BoxBodyBag
       - id: N14Med-X
+      - id: N14Ethanol
+      - id: ClothingBeltMedical
 
 - type: entity
   name: Town surgeon kit
@@ -2007,6 +2029,8 @@
       - id: Ointment
       - id: N14CleanGauze10
       - id: BoxBodyBag
+      - id: EmergencyRollerBedSpawnFolded
+      - id: ClothingBeltMedical
 
 #town mechanic
 
@@ -2026,11 +2050,15 @@
       - id: RadioHandheld
         amount: 2
       - id: N14MaterialCircuitry1
-        amount: 3
+        amount: 5
       - id: SheetSteel10
-      - id: ToolboxElectricalFilled
+        amount: 2
+      - id: trayScanner
       - id: N14WeaponLaserRevolver
       - id: N14PowerCellHigh
+      - id: CableHVStack
+      - id: CableMVStack
+      - id: CableApcStack
 
 - type: entity
   name: Builders kit
@@ -2047,13 +2075,16 @@
       - id: N14PowerDrill
       - id: ClothingHeadHatWelding
       - id: SheetSteel10
+        amount: 2
       - id: N14WeaponPistol10mm
       - id: N14MagazinePistol10mm
         amount: 2
       - id: MaterialWoodPlank10
+        amount: 2
       - id: SheetGlass10
+        amount: 2
       - id: N14Scrap1
-        amount: 5
+        amount: 10
 
 
 #merchant kits
@@ -2071,12 +2102,15 @@
   - type: SpawnItemsOnUse
     items:
       - id: N14WeaponRifle762Fal
-      - id: N14WeaponRifle556EM2
+      - id: N14WeaponRifle556Carbine
       - id: N14WeaponSMG12mm
         amount: 2
       - id: N14WeaponShotgunAuto
       - id: N14WeaponShotgun
       - id: N14WeaponSMG9mmCanadian
+        amount: 2
+      - id: N14WeaponLMG
+      - id: LMGMagazine556Rifle
         amount: 2
       - id: N14WeaponPistol45Colt
       - id: N14WeaponPistol10mm
@@ -2139,14 +2173,14 @@
     items:
       - id: N14WeaponPlasmaRifle
       - id: N14WeaponLaserRifle
-        amount: 3
+      - id: N14WeaponLaserRifleMakeshift
+        amount: 2
       - id: N14WeaponLaserRifleWattz2000
       - id: N14WeaponLaserRifleRecharger
-        amount: 2
       - id: N14WeaponPlasmaPistol
       - id: N14WeaponLaserPistolRecharger
       - id: N14WeaponLaserPistol
-        amount: 2
+      - id: N14WeaponLaserRevolver
       - id: N14PlasmaCartridge
         amount: 2
       - id: N14PlasmaCell
@@ -2155,7 +2189,7 @@
       - id: N14PowerCellHigh
         amount: 6
       - id: N14PowerCellSmall
-        amount: 4
+        amount: 2
       - id: N14Paper10
       - id: MaterialCardboard10
         amount: 2
@@ -2195,10 +2229,10 @@
   - type: SpawnItemsOnUse
     items:
       - id: N14BaseAxe
-        amount: 2
-      - id: MaterialWoodPlank10
-        amount: 2
+      - id: MaterialWoodPlank
       - id: N14ClothingUniformJumpsuitPreWarLumberjack
+      - id: N14CurrencyCap10
+        amount: 2
 
 - type: entity
   name: junkies kit
@@ -2212,10 +2246,11 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14BrassKnife
+      - id: N14KitchenKnife
       - id: N14Jet
         amount: 2
       - id: N14JunkAbraxoCleaner     
+      - id: N14Psycho  
   
 - type: entity
   name: Miners kit
@@ -2232,6 +2267,8 @@
       - id: Pickaxe
       - id: ClothingHeadHatHardhatYellow
       - id: OreBag     
+      - id: N14CurrencyCap10
+        amount: 2
 
 - type: entity
   name: Goons kit
@@ -2247,7 +2284,8 @@
     items:
       - id: N14BaseBallBat
       - id: N14MagazinePistol10mm
-      - id: N14WeaponPistol10mm     
+      - id: N14WeaponPistol10mm  
+      - id: N14Psycho     
 
 - type: entity
   name: Hunters kit
@@ -2264,7 +2302,8 @@
       - id: N14WeaponSniperHunting
       - id: N14BrassKnife
       - id: N14Cartridge308Rifle
-        amount: 5
+        amount: 10
+      - id: ClothingBeltNCRBandolier
 
 - type: entity
   name: musicians kit
@@ -2300,6 +2339,8 @@
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
       - id: N14CurrencyCap50
+      - id: N14DrinkNukaCola
+      - id: N14FoodBlamcomaccheeseLarge
 
 - type: entity
   name: brahmin herders kit
@@ -2313,9 +2354,10 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponShotgunCaravan
-      - id: N14ShellShotgun20
-        amount: 4
+      - id: N14WeaponShotgunPipe
+      - id: N14ShellShotgun12
+        amount: 10
+      - id: ClothingBeltNCRBandolier
 
 - type: entity
   name: HairDressers kit
@@ -2346,7 +2388,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: N14WastelandPolearm
-      - id: N14ClothingOuterReinforcedArmorKit
+      - id: N14ClothingOuterLightLeatherArmor
       - id: N14ClothingHeadTownGuardBrodieCover
 
 - type: entity
@@ -2432,7 +2474,8 @@
       - id: DrinkIceJug
       - id: DrinkCreamCartonXL
       - id: DrinkTonicWaterBottleFull
-
+      - id: DrinkCoffeeJug
+      - id: DrinkTeaJug
 
 #MARK: Vault Kits
 
