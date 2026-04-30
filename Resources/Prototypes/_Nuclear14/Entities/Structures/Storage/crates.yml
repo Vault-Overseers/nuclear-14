@@ -337,6 +337,17 @@
   id: N14LootCrateMilitary
   suffix: Loot,Random Military
 
+- type: entity
+  parent: CrateGenericSteel
+  id: N14AmmoBox
+  name: Ammo box
+  description: Metalic container designed to transport large ammounts of ammunition.
+  components:
+  - type: Icon
+    sprite: _Nuclear14/Structures/Storage/Crates/AmmoBox.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Storage/Crates/AmmoBox.rsi
+
 # Breakable Crates (deconstruct or destroy)
 - type: entity
   parent: BaseStructureDynamic
@@ -438,3 +449,16 @@
   components:
   - type: Sprite
     state: army_crate-1 # TODO: Make this random between states -1 and -2
+
+- type: entity
+  parent: N14CrateFootlocker
+  id: N14AmmoCrate
+  name: Ammo Crate
+  description: A metal container to hold ammunition
+  components:
+  - type: Icon
+    sprite: _Nuclear14/Structures/Storage/Crates/trashcart.rsi
+  - type: Sprite
+    sprite: _Nuclear14/Structures/Storage/Crates/trashcart.rsi
+  - type: TileFrictionModifier
+    modifier: 0.4
