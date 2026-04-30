@@ -245,6 +245,11 @@
         damage:
           types:
             Radiation: -1
+      - !type:GenericStatusEffect
+        key: RadXProtection
+        component: RadXProtection
+        time: 30
+        refresh: false
 
 # Other
 - type: reagent
@@ -258,7 +263,7 @@
     Medicine:
       metabolismRate: 0.1 # Effectively once every 10 seconds.
       effects:
-      - !type:GenericStatusEffect # Remove this block when !type:CureAddiction is functional
+      - !type:GenericStatusEffect
         key: Drunk
         time: 6.0
         type: Remove
@@ -266,8 +271,7 @@
         damage:
           types:
             Poison: -0.5
-     # - !type:Drunk
-     # - !type:CureAddiction
+      - !type:CureAddiction
 
 # - type: reagent
 #   id: Addictol
